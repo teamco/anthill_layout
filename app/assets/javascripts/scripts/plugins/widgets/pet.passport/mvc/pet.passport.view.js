@@ -39,7 +39,7 @@ define([
              * @type {PetPassportElement}
              */
             this.elements.$petpassport = new PetPassportElement(this, {
-                $container: this.get$container(),
+                $container: this.get$container().$,
                 id: this.createUUID()
             });
 

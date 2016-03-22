@@ -39,7 +39,7 @@ define([
              * @type {ScribdElement}
              */
             this.elements.$scribd = new ScribdElement(this, {
-                $container: this.get$container(),
+                $container: this.get$container().$,
                 id: this.createUUID()
             });
 

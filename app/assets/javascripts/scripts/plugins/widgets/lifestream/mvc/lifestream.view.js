@@ -39,7 +39,7 @@ define([
              * @type {LifestreamElement}
              */
             this.elements.$lifestream = new LifestreamElement(this, {
-                $container: this.get$container(),
+                $container: this.get$container().$,
                 id: this.createUUID()
             });
 

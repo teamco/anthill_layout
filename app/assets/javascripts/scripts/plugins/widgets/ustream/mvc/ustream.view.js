@@ -39,7 +39,7 @@ define([
              * @type {UstreamElement}
              */
             this.elements.$ustream = new UstreamElement(this, {
-                $container: this.get$container(),
+                $container: this.get$container().$,
                 id: this.createUUID()
             });
 

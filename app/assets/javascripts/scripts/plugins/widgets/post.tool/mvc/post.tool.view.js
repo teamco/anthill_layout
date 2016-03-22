@@ -39,7 +39,7 @@ define([
              * @type {PostToolElement}
              */
             this.elements.$posttool = new PostToolElement(this, {
-                $container: this.get$container(),
+                $container: this.get$container().$,
                 id: this.createUUID()
             });
 

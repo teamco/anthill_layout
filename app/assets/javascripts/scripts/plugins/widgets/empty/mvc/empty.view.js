@@ -39,7 +39,7 @@ define([
              * @type {EmptyElement}
              */
             this.elements.$empty = new EmptyElement(this, {
-                $container: this.get$container(),
+                $container: this.get$container().$,
                 id: this.createUUID()
             });
 

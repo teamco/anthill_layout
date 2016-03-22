@@ -39,7 +39,7 @@ define([
              * @type {SwfElement}
              */
             this.elements.$swf = new SwfElement(this, {
-                $container: this.get$container(),
+                $container: this.get$container().$,
                 id: this.createUUID()
             });
 

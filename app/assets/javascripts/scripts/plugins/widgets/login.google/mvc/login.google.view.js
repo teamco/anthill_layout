@@ -39,7 +39,7 @@ define([
              * @type {LoginGoogleElement}
              */
             this.elements.$logingoogle = new LoginGoogleElement(this, {
-                $container: this.get$container(),
+                $container: this.get$container().$,
                 id: this.createUUID()
             });
 

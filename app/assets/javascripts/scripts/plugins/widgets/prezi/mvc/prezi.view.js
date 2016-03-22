@@ -39,7 +39,7 @@ define([
              * @type {PreziElement}
              */
             this.elements.$prezi = new PreziElement(this, {
-                $container: this.get$container(),
+                $container: this.get$container().$,
                 id: this.createUUID()
             });
 

@@ -39,7 +39,7 @@ define([
              * @type {VideoPayNetElement}
              */
             this.elements.$videopaynet = new VideoPayNetElement(this, {
-                $container: this.get$container(),
+                $container: this.get$container().$,
                 id: this.createUUID()
             });
 

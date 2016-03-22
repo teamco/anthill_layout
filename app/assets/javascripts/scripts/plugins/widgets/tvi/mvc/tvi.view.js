@@ -39,7 +39,7 @@ define([
              * @type {TviElement}
              */
             this.elements.$tvi = new TviElement(this, {
-                $container: this.get$container(),
+                $container: this.get$container().$,
                 id: this.createUUID()
             });
 

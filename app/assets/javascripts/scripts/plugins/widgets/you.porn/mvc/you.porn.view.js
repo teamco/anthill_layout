@@ -39,7 +39,7 @@ define([
              * @type {YouPornElement}
              */
             this.elements.$youporn = new YouPornElement(this, {
-                $container: this.get$container(),
+                $container: this.get$container().$,
                 id: this.createUUID()
             });
 

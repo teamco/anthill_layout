@@ -39,7 +39,7 @@ define([
              * @type {SomeEcardsElement}
              */
             this.elements.$someecards = new SomeEcardsElement(this, {
-                $container: this.get$container(),
+                $container: this.get$container().$,
                 id: this.createUUID()
             });
 

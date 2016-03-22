@@ -39,7 +39,7 @@ define([
              * @type {WordcampTvElement}
              */
             this.elements.$wordcamptv = new WordcampTvElement(this, {
-                $container: this.get$container(),
+                $container: this.get$container().$,
                 id: this.createUUID()
             });
 

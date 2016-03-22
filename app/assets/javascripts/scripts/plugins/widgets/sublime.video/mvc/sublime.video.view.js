@@ -39,7 +39,7 @@ define([
              * @type {SublimeVideoElement}
              */
             this.elements.$sublimevideo = new SublimeVideoElement(this, {
-                $container: this.get$container(),
+                $container: this.get$container().$,
                 id: this.createUUID()
             });
 

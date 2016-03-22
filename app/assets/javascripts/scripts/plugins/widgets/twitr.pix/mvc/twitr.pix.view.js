@@ -39,7 +39,7 @@ define([
              * @type {TwitrPixElement}
              */
             this.elements.$twitrpix = new TwitrPixElement(this, {
-                $container: this.get$container(),
+                $container: this.get$container().$,
                 id: this.createUUID()
             });
 

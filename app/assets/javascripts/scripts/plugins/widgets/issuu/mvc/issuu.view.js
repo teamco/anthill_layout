@@ -39,7 +39,7 @@ define([
              * @type {IssuuElement}
              */
             this.elements.$issuu = new IssuuElement(this, {
-                $container: this.get$container(),
+                $container: this.get$container().$,
                 id: this.createUUID()
             });
 

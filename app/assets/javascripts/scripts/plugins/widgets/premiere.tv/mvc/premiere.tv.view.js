@@ -39,7 +39,7 @@ define([
              * @type {PremiereTvElement}
              */
             this.elements.$premieretv = new PremiereTvElement(this, {
-                $container: this.get$container(),
+                $container: this.get$container().$,
                 id: this.createUUID()
             });
 

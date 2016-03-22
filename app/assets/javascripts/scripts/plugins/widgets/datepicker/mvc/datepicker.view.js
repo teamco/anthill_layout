@@ -39,7 +39,7 @@ define([
              * @type {DatepickerElement}
              */
             this.elements.$datepicker = new DatepickerElement(this, {
-                $container: this.get$container(),
+                $container: this.get$container().$,
                 id: this.createUUID()
             });
 

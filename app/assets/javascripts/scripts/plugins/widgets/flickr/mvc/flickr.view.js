@@ -39,7 +39,7 @@ define([
              * @type {FlickrElement}
              */
             this.elements.$flickr = new FlickrElement(this, {
-                $container: this.get$container(),
+                $container: this.get$container().$,
                 id: this.createUUID()
             });
 

@@ -39,7 +39,7 @@ define([
              * @type {RssElement}
              */
             this.elements.$rss = new RssElement(this, {
-                $container: this.get$container(),
+                $container: this.get$container().$,
                 id: this.createUUID()
             });
 

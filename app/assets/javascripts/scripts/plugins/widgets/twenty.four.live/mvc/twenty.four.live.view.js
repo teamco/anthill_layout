@@ -39,7 +39,7 @@ define([
              * @type {TwentyFourLiveElement}
              */
             this.elements.$twentyfourlive = new TwentyFourLiveElement(this, {
-                $container: this.get$container(),
+                $container: this.get$container().$,
                 id: this.createUUID()
             });
 

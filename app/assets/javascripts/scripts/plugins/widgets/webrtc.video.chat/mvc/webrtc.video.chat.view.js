@@ -39,7 +39,7 @@ define([
              * @type {WebrtcVideoChatElement}
              */
             this.elements.$webrtcvideochat = new WebrtcVideoChatElement(this, {
-                $container: this.get$container(),
+                $container: this.get$container().$,
                 id: this.createUUID()
             });
 

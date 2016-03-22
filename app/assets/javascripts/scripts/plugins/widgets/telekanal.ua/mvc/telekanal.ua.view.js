@@ -39,7 +39,7 @@ define([
              * @type {TelekanalUaElement}
              */
             this.elements.$telekanalua = new TelekanalUaElement(this, {
-                $container: this.get$container(),
+                $container: this.get$container().$,
                 id: this.createUUID()
             });
 

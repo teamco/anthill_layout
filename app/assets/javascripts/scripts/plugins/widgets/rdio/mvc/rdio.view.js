@@ -39,7 +39,7 @@ define([
              * @type {RdioElement}
              */
             this.elements.$rdio = new RdioElement(this, {
-                $container: this.get$container(),
+                $container: this.get$container().$,
                 id: this.createUUID()
             });
 

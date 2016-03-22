@@ -39,7 +39,7 @@ define([
              * @type {PinterestElement}
              */
             this.elements.$pinterest = new PinterestElement(this, {
-                $container: this.get$container(),
+                $container: this.get$container().$,
                 id: this.createUUID()
             });
 

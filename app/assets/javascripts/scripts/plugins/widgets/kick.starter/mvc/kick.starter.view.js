@@ -39,7 +39,7 @@ define([
              * @type {KickStarterElement}
              */
             this.elements.$kickstarter = new KickStarterElement(this, {
-                $container: this.get$container(),
+                $container: this.get$container().$,
                 id: this.createUUID()
             });
 

@@ -39,7 +39,7 @@ define([
              * @type {OnePlusOneElement}
              */
             this.elements.$oneplusone = new OnePlusOneElement(this, {
-                $container: this.get$container(),
+                $container: this.get$container().$,
                 id: this.createUUID()
             });
 

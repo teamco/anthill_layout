@@ -39,7 +39,7 @@ define([
              * @type {KeezMoviesElement}
              */
             this.elements.$keezmovies = new KeezMoviesElement(this, {
-                $container: this.get$container(),
+                $container: this.get$container().$,
                 id: this.createUUID()
             });
 

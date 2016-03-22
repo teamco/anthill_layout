@@ -39,7 +39,7 @@ define([
              * @type {MusTvElement}
              */
             this.elements.$mustv = new MusTvElement(this, {
-                $container: this.get$container(),
+                $container: this.get$container().$,
                 id: this.createUUID()
             });
 

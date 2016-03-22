@@ -39,7 +39,7 @@ define([
              * @type {DeviantArtElement}
              */
             this.elements.$deviantart = new DeviantArtElement(this, {
-                $container: this.get$container(),
+                $container: this.get$container().$,
                 id: this.createUUID()
             });
 

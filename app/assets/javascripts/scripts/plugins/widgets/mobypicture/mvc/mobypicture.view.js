@@ -39,7 +39,7 @@ define([
              * @type {MobypictureElement}
              */
             this.elements.$mobypicture = new MobypictureElement(this, {
-                $container: this.get$container(),
+                $container: this.get$container().$,
                 id: this.createUUID()
             });
 

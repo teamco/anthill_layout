@@ -39,7 +39,7 @@ define([
              * @type {XVideosElement}
              */
             this.elements.$xvideos = new XVideosElement(this, {
-                $container: this.get$container(),
+                $container: this.get$container().$,
                 id: this.createUUID()
             });
 

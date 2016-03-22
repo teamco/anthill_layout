@@ -39,7 +39,7 @@ define([
              * @type {ClocklinkElement}
              */
             this.elements.$clocklink = new ClocklinkElement(this, {
-                $container: this.get$container(),
+                $container: this.get$container().$,
                 id: this.createUUID()
             });
 

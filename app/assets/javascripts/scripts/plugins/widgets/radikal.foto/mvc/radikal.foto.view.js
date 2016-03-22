@@ -39,7 +39,7 @@ define([
              * @type {RadikalFotoElement}
              */
             this.elements.$radikalfoto = new RadikalFotoElement(this, {
-                $container: this.get$container(),
+                $container: this.get$container().$,
                 id: this.createUUID()
             });
 

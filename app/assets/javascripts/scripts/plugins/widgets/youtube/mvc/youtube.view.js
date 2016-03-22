@@ -39,7 +39,7 @@ define([
              * @type {YoutubeElement}
              */
             this.elements.$youtube = new YoutubeElement(this, {
-                $container: this.get$container(),
+                $container: this.get$container().$,
                 id: this.createUUID()
             });
 

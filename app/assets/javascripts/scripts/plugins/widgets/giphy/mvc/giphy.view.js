@@ -39,7 +39,7 @@ define([
              * @type {GiphyElement}
              */
             this.elements.$giphy = new GiphyElement(this, {
-                $container: this.get$container(),
+                $container: this.get$container().$,
                 id: this.createUUID()
             });
 

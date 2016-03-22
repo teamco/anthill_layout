@@ -39,7 +39,7 @@ define([
              * @type {DailyMotionElement}
              */
             this.elements.$dailymotion = new DailyMotionElement(this, {
-                $container: this.get$container(),
+                $container: this.get$container().$,
                 id: this.createUUID()
             });
 

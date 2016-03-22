@@ -39,7 +39,7 @@ define([
              * @type {PetRadarElement}
              */
             this.elements.$petradar = new PetRadarElement(this, {
-                $container: this.get$container(),
+                $container: this.get$container().$,
                 id: this.createUUID()
             });
 

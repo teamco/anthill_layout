@@ -39,7 +39,7 @@ define([
              * @type {IctvElement}
              */
             this.elements.$ictv = new IctvElement(this, {
-                $container: this.get$container(),
+                $container: this.get$container().$,
                 id: this.createUUID()
             });
 

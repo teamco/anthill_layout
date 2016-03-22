@@ -39,7 +39,7 @@ define([
              * @type {BlipTvElement}
              */
             this.elements.$bliptv = new BlipTvElement(this, {
-                $container: this.get$container(),
+                $container: this.get$container().$,
                 id: this.createUUID()
             });
 

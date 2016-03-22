@@ -39,7 +39,7 @@ define([
              * @type {TrubaElement}
              */
             this.elements.$truba = new TrubaElement(this, {
-                $container: this.get$container(),
+                $container: this.get$container().$,
                 id: this.createUUID()
             });
 

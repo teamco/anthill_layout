@@ -39,7 +39,7 @@ define([
              * @type {EmpflixElement}
              */
             this.elements.$empflix = new EmpflixElement(this, {
-                $container: this.get$container(),
+                $container: this.get$container().$,
                 id: this.createUUID()
             });
 

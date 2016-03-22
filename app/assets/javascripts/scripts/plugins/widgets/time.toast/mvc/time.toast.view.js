@@ -39,7 +39,7 @@ define([
              * @type {TimeToastElement}
              */
             this.elements.$timetoast = new TimeToastElement(this, {
-                $container: this.get$container(),
+                $container: this.get$container().$,
                 id: this.createUUID()
             });
 

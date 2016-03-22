@@ -39,7 +39,7 @@ define([
              * @type {YapFilesElement}
              */
             this.elements.$yapfiles = new YapFilesElement(this, {
-                $container: this.get$container(),
+                $container: this.get$container().$,
                 id: this.createUUID()
             });
 

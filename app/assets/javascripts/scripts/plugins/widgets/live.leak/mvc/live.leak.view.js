@@ -39,7 +39,7 @@ define([
              * @type {LiveLeakElement}
              */
             this.elements.$liveleak = new LiveLeakElement(this, {
-                $container: this.get$container(),
+                $container: this.get$container().$,
                 id: this.createUUID()
             });
 

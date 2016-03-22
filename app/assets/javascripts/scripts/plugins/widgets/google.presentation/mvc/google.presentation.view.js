@@ -39,7 +39,7 @@ define([
              * @type {GooglePresentationElement}
              */
             this.elements.$googlepresentation = new GooglePresentationElement(this, {
-                $container: this.get$container(),
+                $container: this.get$container().$,
                 id: this.createUUID()
             });
 

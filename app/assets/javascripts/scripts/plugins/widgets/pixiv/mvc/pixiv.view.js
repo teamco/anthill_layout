@@ -39,7 +39,7 @@ define([
              * @type {PixivElement}
              */
             this.elements.$pixiv = new PixivElement(this, {
-                $container: this.get$container(),
+                $container: this.get$container().$,
                 id: this.createUUID()
             });
 

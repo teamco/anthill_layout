@@ -39,7 +39,7 @@ define([
              * @type {InstagramElement}
              */
             this.elements.$instagram = new InstagramElement(this, {
-                $container: this.get$container(),
+                $container: this.get$container().$,
                 id: this.createUUID()
             });
 

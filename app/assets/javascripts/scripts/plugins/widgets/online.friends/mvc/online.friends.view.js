@@ -39,7 +39,7 @@ define([
              * @type {OnlineFriendsElement}
              */
             this.elements.$onlinefriends = new OnlineFriendsElement(this, {
-                $container: this.get$container(),
+                $container: this.get$container().$,
                 id: this.createUUID()
             });
 

@@ -39,7 +39,7 @@ define([
              * @type {FotoKritikElement}
              */
             this.elements.$fotokritik = new FotoKritikElement(this, {
-                $container: this.get$container(),
+                $container: this.get$container().$,
                 id: this.createUUID()
             });
 

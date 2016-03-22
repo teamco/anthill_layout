@@ -39,7 +39,7 @@ define([
              * @type {MultipleIconsElement}
              */
             this.elements.$multipleicons = new MultipleIconsElement(this, {
-                $container: this.get$container(),
+                $container: this.get$container().$,
                 id: this.createUUID()
             });
 

@@ -39,7 +39,7 @@ define([
              * @type {TinyPicElement}
              */
             this.elements.$tinypic = new TinyPicElement(this, {
-                $container: this.get$container(),
+                $container: this.get$container().$,
                 id: this.createUUID()
             });
 

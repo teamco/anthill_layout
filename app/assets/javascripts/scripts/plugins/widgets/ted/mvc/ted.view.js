@@ -39,7 +39,7 @@ define([
              * @type {TedElement}
              */
             this.elements.$ted = new TedElement(this, {
-                $container: this.get$container(),
+                $container: this.get$container().$,
                 id: this.createUUID()
             });
 

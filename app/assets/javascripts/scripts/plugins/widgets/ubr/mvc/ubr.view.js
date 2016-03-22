@@ -39,7 +39,7 @@ define([
              * @type {UbrElement}
              */
             this.elements.$ubr = new UbrElement(this, {
-                $container: this.get$container(),
+                $container: this.get$container().$,
                 id: this.createUUID()
             });
 

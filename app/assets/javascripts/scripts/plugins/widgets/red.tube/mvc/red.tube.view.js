@@ -39,7 +39,7 @@ define([
              * @type {RedTubeElement}
              */
             this.elements.$redtube = new RedTubeElement(this, {
-                $container: this.get$container(),
+                $container: this.get$container().$,
                 id: this.createUUID()
             });
 

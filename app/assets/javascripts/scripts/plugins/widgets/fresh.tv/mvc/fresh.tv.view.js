@@ -39,7 +39,7 @@ define([
              * @type {FreshTvElement}
              */
             this.elements.$freshtv = new FreshTvElement(this, {
-                $container: this.get$container(),
+                $container: this.get$container().$,
                 id: this.createUUID()
             });
 

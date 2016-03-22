@@ -39,7 +39,7 @@ define([
              * @type {CollegeHumorElement}
              */
             this.elements.$collegehumor = new CollegeHumorElement(this, {
-                $container: this.get$container(),
+                $container: this.get$container().$,
                 id: this.createUUID()
             });
 

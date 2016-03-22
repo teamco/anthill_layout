@@ -39,7 +39,7 @@ define([
              * @type {TnaFlixElement}
              */
             this.elements.$tnaflix = new TnaFlixElement(this, {
-                $container: this.get$container(),
+                $container: this.get$container().$,
                 id: this.createUUID()
             });
 

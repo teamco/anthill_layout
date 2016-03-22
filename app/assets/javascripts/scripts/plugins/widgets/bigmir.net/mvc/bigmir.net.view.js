@@ -39,7 +39,7 @@ define([
              * @type {BigmirNetElement}
              */
             this.elements.$bigmirnet = new BigmirNetElement(this, {
-                $container: this.get$container(),
+                $container: this.get$container().$,
                 id: this.createUUID()
             });
 

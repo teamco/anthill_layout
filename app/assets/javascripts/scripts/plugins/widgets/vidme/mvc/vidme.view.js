@@ -39,7 +39,7 @@ define([
              * @type {VidmeElement}
              */
             this.elements.$vidme = new VidmeElement(this, {
-                $container: this.get$container(),
+                $container: this.get$container().$,
                 id: this.createUUID()
             });
 

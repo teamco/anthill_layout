@@ -39,7 +39,7 @@ define([
              * @type {ImageElement}
              */
             this.elements.$image = new ImageElement(this, {
-                $container: this.get$container(),
+                $container: this.get$container().$,
                 id: this.createUUID()
             });
 

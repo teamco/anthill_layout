@@ -39,7 +39,7 @@ define([
              * @type {ChannelTwoIlElement}
              */
             this.elements.$channeltwoil = new ChannelTwoIlElement(this, {
-                $container: this.get$container(),
+                $container: this.get$container().$,
                 id: this.createUUID()
             });
 

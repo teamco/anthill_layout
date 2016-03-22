@@ -39,7 +39,7 @@ define([
              * @type {LoginFacebookElement}
              */
             this.elements.$loginfacebook = new LoginFacebookElement(this, {
-                $container: this.get$container(),
+                $container: this.get$container().$,
                 id: this.createUUID()
             });
 

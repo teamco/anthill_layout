@@ -39,7 +39,7 @@ define([
              * @type {FiveChannelUaElement}
              */
             this.elements.$fivechannelua = new FiveChannelUaElement(this, {
-                $container: this.get$container(),
+                $container: this.get$container().$,
                 id: this.createUUID()
             });
 

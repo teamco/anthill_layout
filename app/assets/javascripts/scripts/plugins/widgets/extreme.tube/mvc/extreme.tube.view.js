@@ -39,7 +39,7 @@ define([
              * @type {ExtremeTubeElement}
              */
             this.elements.$extremetube = new ExtremeTubeElement(this, {
-                $container: this.get$container(),
+                $container: this.get$container().$,
                 id: this.createUUID()
             });
 

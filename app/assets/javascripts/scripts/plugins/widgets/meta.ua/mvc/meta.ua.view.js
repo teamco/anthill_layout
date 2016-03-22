@@ -39,7 +39,7 @@ define([
              * @type {MetaUaElement}
              */
             this.elements.$metaua = new MetaUaElement(this, {
-                $container: this.get$container(),
+                $container: this.get$container().$,
                 id: this.createUUID()
             });
 

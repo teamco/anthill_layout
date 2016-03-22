@@ -39,7 +39,7 @@ define([
              * @type {MixcloudElement}
              */
             this.elements.$mixcloud = new MixcloudElement(this, {
-                $container: this.get$container(),
+                $container: this.get$container().$,
                 id: this.createUUID()
             });
 

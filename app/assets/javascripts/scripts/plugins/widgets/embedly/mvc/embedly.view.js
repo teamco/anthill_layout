@@ -39,7 +39,7 @@ define([
              * @type {EmbedlyElement}
              */
             this.elements.$embedly = new EmbedlyElement(this, {
-                $container: this.get$container(),
+                $container: this.get$container().$,
                 id: this.createUUID()
             });
 

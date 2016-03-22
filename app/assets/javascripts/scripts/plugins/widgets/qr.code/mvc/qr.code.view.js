@@ -39,7 +39,7 @@ define([
              * @type {QrCodeElement}
              */
             this.elements.$qrcode = new QrCodeElement(this, {
-                $container: this.get$container(),
+                $container: this.get$container().$,
                 id: this.createUUID()
             });
 

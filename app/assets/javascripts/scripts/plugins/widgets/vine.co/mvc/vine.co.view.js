@@ -39,7 +39,7 @@ define([
              * @type {VineCoElement}
              */
             this.elements.$vineco = new VineCoElement(this, {
-                $container: this.get$container(),
+                $container: this.get$container().$,
                 id: this.createUUID()
             });
 

@@ -39,7 +39,7 @@ define([
              * @type {GeolocationElement}
              */
             this.elements.$geolocation = new GeolocationElement(this, {
-                $container: this.get$container(),
+                $container: this.get$container().$,
                 id: this.createUUID()
             });
 

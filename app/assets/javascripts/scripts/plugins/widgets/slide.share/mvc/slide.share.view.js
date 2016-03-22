@@ -39,7 +39,7 @@ define([
              * @type {SlideShareElement}
              */
             this.elements.$slideshare = new SlideShareElement(this, {
-                $container: this.get$container(),
+                $container: this.get$container().$,
                 id: this.createUUID()
             });
 

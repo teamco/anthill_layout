@@ -39,7 +39,7 @@ define([
              * @type {PicasaElement}
              */
             this.elements.$picasa = new PicasaElement(this, {
-                $container: this.get$container(),
+                $container: this.get$container().$,
                 id: this.createUUID()
             });
 

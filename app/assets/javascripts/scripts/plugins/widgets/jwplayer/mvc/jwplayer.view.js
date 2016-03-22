@@ -39,7 +39,7 @@ define([
              * @type {JwplayerElement}
              */
             this.elements.$jwplayer = new JwplayerElement(this, {
-                $container: this.get$container(),
+                $container: this.get$container().$,
                 id: this.createUUID()
             });
 

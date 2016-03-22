@@ -39,7 +39,7 @@ define([
              * @type {FunnyOrDieElement}
              */
             this.elements.$funnyordie = new FunnyOrDieElement(this, {
-                $container: this.get$container(),
+                $container: this.get$container().$,
                 id: this.createUUID()
             });
 

@@ -39,7 +39,7 @@ define([
              * @type {IceFloeElement}
              */
             this.elements.$icefloe = new IceFloeElement(this, {
-                $container: this.get$container(),
+                $container: this.get$container().$,
                 id: this.createUUID()
             });
 

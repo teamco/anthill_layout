@@ -39,7 +39,7 @@ define([
              * @type {OneTwelveChannelUaElement}
              */
             this.elements.$onetwelvechannelua = new OneTwelveChannelUaElement(this, {
-                $container: this.get$container(),
+                $container: this.get$container().$,
                 id: this.createUUID()
             });
 

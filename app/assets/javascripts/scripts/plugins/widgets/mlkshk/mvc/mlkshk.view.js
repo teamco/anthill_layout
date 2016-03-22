@@ -39,7 +39,7 @@ define([
              * @type {MlkshkElement}
              */
             this.elements.$mlkshk = new MlkshkElement(this, {
-                $container: this.get$container(),
+                $container: this.get$container().$,
                 id: this.createUUID()
             });
 

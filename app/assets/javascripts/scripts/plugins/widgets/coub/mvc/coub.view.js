@@ -39,7 +39,7 @@ define([
              * @type {CoubElement}
              */
             this.elements.$coub = new CoubElement(this, {
-                $container: this.get$container(),
+                $container: this.get$container().$,
                 id: this.createUUID()
             });
 

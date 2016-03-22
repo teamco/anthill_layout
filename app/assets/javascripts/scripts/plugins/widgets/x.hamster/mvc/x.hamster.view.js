@@ -39,7 +39,7 @@ define([
              * @type {XHamsterElement}
              */
             this.elements.$xhamster = new XHamsterElement(this, {
-                $container: this.get$container(),
+                $container: this.get$container().$,
                 id: this.createUUID()
             });
 

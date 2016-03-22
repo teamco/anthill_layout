@@ -39,7 +39,7 @@ define([
              * @type {KremElement}
              */
             this.elements.$krem = new KremElement(this, {
-                $container: this.get$container(),
+                $container: this.get$container().$,
                 id: this.createUUID()
             });
 

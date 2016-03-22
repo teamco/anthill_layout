@@ -39,7 +39,7 @@ define([
              * @type {TwentyThreeElement}
              */
             this.elements.$twentythree = new TwentyThreeElement(this, {
-                $container: this.get$container(),
+                $container: this.get$container().$,
                 id: this.createUUID()
             });
 

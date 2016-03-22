@@ -39,7 +39,7 @@ define([
              * @type {TextEditorElement}
              */
             this.elements.$texteditor = new TextEditorElement(this, {
-                $container: this.get$container(),
+                $container: this.get$container().$,
                 id: this.createUUID()
             });
 

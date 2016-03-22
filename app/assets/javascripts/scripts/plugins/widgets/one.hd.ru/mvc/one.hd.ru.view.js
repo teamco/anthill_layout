@@ -39,7 +39,7 @@ define([
              * @type {OneHdRuElement}
              */
             this.elements.$onehdru = new OneHdRuElement(this, {
-                $container: this.get$container(),
+                $container: this.get$container().$,
                 id: this.createUUID()
             });
 

@@ -39,7 +39,7 @@ define([
              * @type {ChannelTenIlElement}
              */
             this.elements.$channeltenil = new ChannelTenIlElement(this, {
-                $container: this.get$container(),
+                $container: this.get$container().$,
                 id: this.createUUID()
             });
 

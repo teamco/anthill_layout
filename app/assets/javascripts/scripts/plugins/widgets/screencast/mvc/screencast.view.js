@@ -39,7 +39,7 @@ define([
              * @type {ScreencastElement}
              */
             this.elements.$screencast = new ScreencastElement(this, {
-                $container: this.get$container(),
+                $container: this.get$container().$,
                 id: this.createUUID()
             });
 

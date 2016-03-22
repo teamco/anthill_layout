@@ -39,7 +39,7 @@ define([
              * @type {AnimotoElement}
              */
             this.elements.$animoto = new AnimotoElement(this, {
-                $container: this.get$container(),
+                $container: this.get$container().$,
                 id: this.createUUID()
             });
 

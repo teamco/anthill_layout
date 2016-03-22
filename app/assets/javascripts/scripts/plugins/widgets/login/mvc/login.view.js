@@ -39,7 +39,7 @@ define([
              * @type {LoginElement}
              */
             this.elements.$login = new LoginElement(this, {
-                $container: this.get$container(),
+                $container: this.get$container().$,
                 id: this.createUUID()
             });
 
