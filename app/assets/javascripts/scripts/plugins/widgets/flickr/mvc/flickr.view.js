@@ -39,8 +39,7 @@ define([
              * @type {FlickrElement}
              */
             this.elements.$flickr = new FlickrElement(this, {
-                $container: this.get$container().$,
-                id: this.createUUID()
+                $container: this.get$container().$
             });
 
             this.footer(Footer, this.get$container());

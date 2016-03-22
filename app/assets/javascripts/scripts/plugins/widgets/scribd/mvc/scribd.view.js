@@ -39,8 +39,7 @@ define([
              * @type {ScribdElement}
              */
             this.elements.$scribd = new ScribdElement(this, {
-                $container: this.get$container().$,
-                id: this.createUUID()
+                $container: this.get$container().$
             });
 
             this.footer(Footer, this.get$container());

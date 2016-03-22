@@ -39,8 +39,7 @@ define([
              * @type {XkcdElement}
              */
             this.elements.$xkcd = new XkcdElement(this, {
-                $container: this.get$container().$,
-                id: this.createUUID()
+                $container: this.get$container().$
             });
 
             this.footer(Footer, this.get$container());

@@ -39,8 +39,7 @@ define([
              * @type {UstreamElement}
              */
             this.elements.$ustream = new UstreamElement(this, {
-                $container: this.get$container().$,
-                id: this.createUUID()
+                $container: this.get$container().$
             });
 
             this.footer(Footer, this.get$container());

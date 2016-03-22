@@ -39,8 +39,7 @@ define([
              * @type {ChannelNineUaElement}
              */
             this.elements.$channelnineua = new ChannelNineUaElement(this, {
-                $container: this.get$container().$,
-                id: this.createUUID()
+                $container: this.get$container().$
             });
 
             this.footer(Footer, this.get$container());

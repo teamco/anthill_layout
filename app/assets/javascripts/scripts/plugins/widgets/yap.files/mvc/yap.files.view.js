@@ -39,8 +39,7 @@ define([
              * @type {YapFilesElement}
              */
             this.elements.$yapfiles = new YapFilesElement(this, {
-                $container: this.get$container().$,
-                id: this.createUUID()
+                $container: this.get$container().$
             });
 
             this.footer(Footer, this.get$container());

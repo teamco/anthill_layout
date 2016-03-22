@@ -39,8 +39,7 @@ define([
              * @type {EventsCalendarElement}
              */
             this.elements.$eventscalendar = new EventsCalendarElement(this, {
-                $container: this.get$container().$,
-                id: this.createUUID()
+                $container: this.get$container().$
             });
 
             this.footer(Footer, this.get$container());

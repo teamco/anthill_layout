@@ -39,8 +39,7 @@ define([
              * @type {PixivElement}
              */
             this.elements.$pixiv = new PixivElement(this, {
-                $container: this.get$container().$,
-                id: this.createUUID()
+                $container: this.get$container().$
             });
 
             this.footer(Footer, this.get$container());

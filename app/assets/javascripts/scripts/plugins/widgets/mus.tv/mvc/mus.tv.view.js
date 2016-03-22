@@ -39,8 +39,7 @@ define([
              * @type {MusTvElement}
              */
             this.elements.$mustv = new MusTvElement(this, {
-                $container: this.get$container().$,
-                id: this.createUUID()
+                $container: this.get$container().$
             });
 
             this.footer(Footer, this.get$container());

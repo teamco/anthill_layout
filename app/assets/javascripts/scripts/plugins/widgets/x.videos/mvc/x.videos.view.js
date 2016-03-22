@@ -39,8 +39,7 @@ define([
              * @type {XVideosElement}
              */
             this.elements.$xvideos = new XVideosElement(this, {
-                $container: this.get$container().$,
-                id: this.createUUID()
+                $container: this.get$container().$
             });
 
             this.footer(Footer, this.get$container());

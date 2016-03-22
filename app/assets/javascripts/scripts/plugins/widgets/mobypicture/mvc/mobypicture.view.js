@@ -39,8 +39,7 @@ define([
              * @type {MobypictureElement}
              */
             this.elements.$mobypicture = new MobypictureElement(this, {
-                $container: this.get$container().$,
-                id: this.createUUID()
+                $container: this.get$container().$
             });
 
             this.footer(Footer, this.get$container());

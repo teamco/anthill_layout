@@ -39,8 +39,7 @@ define([
              * @type {BlipTvElement}
              */
             this.elements.$bliptv = new BlipTvElement(this, {
-                $container: this.get$container().$,
-                id: this.createUUID()
+                $container: this.get$container().$
             });
 
             this.footer(Footer, this.get$container());

@@ -39,8 +39,7 @@ define([
              * @type {FlipPdfElement}
              */
             this.elements.$flippdf = new FlipPdfElement(this, {
-                $container: this.get$container().$,
-                id: this.createUUID()
+                $container: this.get$container().$
             });
 
             this.footer(Footer, this.get$container());

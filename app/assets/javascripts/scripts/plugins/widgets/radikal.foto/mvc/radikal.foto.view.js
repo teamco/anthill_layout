@@ -39,8 +39,7 @@ define([
              * @type {RadikalFotoElement}
              */
             this.elements.$radikalfoto = new RadikalFotoElement(this, {
-                $container: this.get$container().$,
-                id: this.createUUID()
+                $container: this.get$container().$
             });
 
             this.footer(Footer, this.get$container());

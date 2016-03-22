@@ -39,8 +39,7 @@ define([
              * @type {InstagramElement}
              */
             this.elements.$instagram = new InstagramElement(this, {
-                $container: this.get$container().$,
-                id: this.createUUID()
+                $container: this.get$container().$
             });
 
             this.footer(Footer, this.get$container());

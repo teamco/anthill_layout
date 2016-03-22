@@ -39,8 +39,7 @@ define([
              * @type {YouPornElement}
              */
             this.elements.$youporn = new YouPornElement(this, {
-                $container: this.get$container().$,
-                id: this.createUUID()
+                $container: this.get$container().$
             });
 
             this.footer(Footer, this.get$container());

@@ -43,8 +43,7 @@ define([
              */
             this.elements.$bar = new BarElement(this, {
                 $container: this.get$container().$,
-                style: 'panel-bar',
-                id: this.createUUID()
+                style: 'panel-bar'
             });
 
             this.footer(Footer, this.get$container());

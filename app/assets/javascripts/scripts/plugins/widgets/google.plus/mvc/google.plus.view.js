@@ -39,8 +39,7 @@ define([
              * @type {GooglePlusElement}
              */
             this.elements.$googleplus = new GooglePlusElement(this, {
-                $container: this.get$container().$,
-                id: this.createUUID()
+                $container: this.get$container().$
             });
 
             this.footer(Footer, this.get$container());

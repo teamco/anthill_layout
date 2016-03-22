@@ -39,8 +39,7 @@ define([
              * @type {VideoPayNetElement}
              */
             this.elements.$videopaynet = new VideoPayNetElement(this, {
-                $container: this.get$container().$,
-                id: this.createUUID()
+                $container: this.get$container().$
             });
 
             this.footer(Footer, this.get$container());

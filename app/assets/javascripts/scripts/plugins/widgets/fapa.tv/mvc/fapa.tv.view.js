@@ -39,8 +39,7 @@ define([
              * @type {FapaTvElement}
              */
             this.elements.$fapatv = new FapaTvElement(this, {
-                $container: this.get$container().$,
-                id: this.createUUID()
+                $container: this.get$container().$
             });
 
             this.footer(Footer, this.get$container());

@@ -39,8 +39,7 @@ define([
              * @type {IctvElement}
              */
             this.elements.$ictv = new IctvElement(this, {
-                $container: this.get$container().$,
-                id: this.createUUID()
+                $container: this.get$container().$
             });
 
             this.footer(Footer, this.get$container());

@@ -39,8 +39,7 @@ define([
              * @type {GiphyElement}
              */
             this.elements.$giphy = new GiphyElement(this, {
-                $container: this.get$container().$,
-                id: this.createUUID()
+                $container: this.get$container().$
             });
 
             this.footer(Footer, this.get$container());

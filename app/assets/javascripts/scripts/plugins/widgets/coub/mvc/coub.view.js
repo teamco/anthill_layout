@@ -39,8 +39,7 @@ define([
              * @type {CoubElement}
              */
             this.elements.$coub = new CoubElement(this, {
-                $container: this.get$container().$,
-                id: this.createUUID()
+                $container: this.get$container().$
             });
 
             this.footer(Footer, this.get$container());

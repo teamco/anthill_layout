@@ -39,8 +39,7 @@ define([
              * @type {FirePicElement}
              */
             this.elements.$firepic = new FirePicElement(this, {
-                $container: this.get$container().$,
-                id: this.createUUID()
+                $container: this.get$container().$
             });
 
             this.footer(Footer, this.get$container());

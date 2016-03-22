@@ -39,8 +39,7 @@ define([
              * @type {BigmirNetElement}
              */
             this.elements.$bigmirnet = new BigmirNetElement(this, {
-                $container: this.get$container().$,
-                id: this.createUUID()
+                $container: this.get$container().$
             });
 
             this.footer(Footer, this.get$container());

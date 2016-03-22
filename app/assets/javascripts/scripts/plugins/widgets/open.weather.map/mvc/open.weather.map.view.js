@@ -39,8 +39,7 @@ define([
              * @type {OpenWeatherMapElement}
              */
             this.elements.$openweathermap = new OpenWeatherMapElement(this, {
-                $container: this.get$container().$,
-                id: this.createUUID()
+                $container: this.get$container().$
             });
 
             this.footer(Footer, this.get$container());

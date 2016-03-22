@@ -39,8 +39,7 @@ define([
              * @type {SwfElement}
              */
             this.elements.$swf = new SwfElement(this, {
-                $container: this.get$container().$,
-                id: this.createUUID()
+                $container: this.get$container().$
             });
 
             this.footer(Footer, this.get$container());

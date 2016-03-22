@@ -39,8 +39,7 @@ define([
              * @type {OneHdRuElement}
              */
             this.elements.$onehdru = new OneHdRuElement(this, {
-                $container: this.get$container().$,
-                id: this.createUUID()
+                $container: this.get$container().$
             });
 
             this.footer(Footer, this.get$container());

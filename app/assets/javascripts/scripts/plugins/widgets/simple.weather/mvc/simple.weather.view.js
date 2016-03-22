@@ -40,7 +40,6 @@ define([
              */
             this.elements.$simpleweather = new SimpleWeatherElement(this, {
                 $container: this.get$container().$,
-                id: this.createUUID(),
                 style: 'weather'
             });
 

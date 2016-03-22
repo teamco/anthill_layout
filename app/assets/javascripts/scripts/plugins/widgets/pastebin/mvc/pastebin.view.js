@@ -39,8 +39,7 @@ define([
              * @type {PastebinElement}
              */
             this.elements.$pastebin = new PastebinElement(this, {
-                $container: this.get$container().$,
-                id: this.createUUID()
+                $container: this.get$container().$
             });
 
             this.footer(Footer, this.get$container());

@@ -39,8 +39,7 @@ define([
              * @type {ImageElement}
              */
             this.elements.$image = new ImageElement(this, {
-                $container: this.get$container().$,
-                id: this.createUUID()
+                $container: this.get$container().$
             });
 
             this.footer(Footer, this.get$container());

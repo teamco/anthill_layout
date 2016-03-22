@@ -39,8 +39,7 @@ define([
              * @type {EmpflixElement}
              */
             this.elements.$empflix = new EmpflixElement(this, {
-                $container: this.get$container().$,
-                id: this.createUUID()
+                $container: this.get$container().$
             });
 
             this.footer(Footer, this.get$container());

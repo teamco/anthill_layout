@@ -39,8 +39,7 @@ define([
              * @type {QuicktimeElement}
              */
             this.elements.$quicktime = new QuicktimeElement(this, {
-                $container: this.get$container().$,
-                id: this.createUUID()
+                $container: this.get$container().$
             });
 
             this.footer(Footer, this.get$container());

@@ -39,8 +39,7 @@ define([
              * @type {SomeEcardsElement}
              */
             this.elements.$someecards = new SomeEcardsElement(this, {
-                $container: this.get$container().$,
-                id: this.createUUID()
+                $container: this.get$container().$
             });
 
             this.footer(Footer, this.get$container());

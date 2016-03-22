@@ -39,8 +39,7 @@ define([
              * @type {ImageGalleryElement}
              */
             this.elements.$imagegallery = new ImageGalleryElement(this, {
-                $container: this.get$container().$,
-                id: this.createUUID()
+                $container: this.get$container().$
             });
 
             this.footer(Footer, this.get$container());
