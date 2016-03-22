@@ -25,7 +25,7 @@ define([
         /**
          * Render data
          * @memberOf PagesPreferences
-         * @param {data} opts
+         * @param {{data}} opts
          */
         renderData: function renderData(opts) {
 
@@ -163,8 +163,13 @@ define([
                      * Define isCheckBox
                      * @type {boolean}
                      */
-                    var isCheckBox = opts.data[index].type === 'checkbox',
-                        className = 'page-prefs' + (isCheckBox ? ' checkbox' : '');
+                    var isCheckBox = opts.data[index].type === 'checkbox';
+
+                    /**
+                     * Define class name
+                     * @type {string}
+                     */
+                    var className = 'page-prefs' + (isCheckBox ? ' checkbox' : '');
 
                     nodes.push(
                         $('<li />').append(
