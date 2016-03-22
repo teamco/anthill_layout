@@ -326,7 +326,7 @@ define([
 
             /**
              * Render slider input
-             * @type {TextFieldRenderer}
+             * @type {TextFieldRenderer|jQuery}
              */
             var $textfield = this.renderTextField({
                 name: 'siteWidthSlider',
@@ -342,9 +342,8 @@ define([
              * @private
              */
             function _slide(event, ui) {
-                $textfield[1].val(ui.value);
+                $textfield.find('input').val(ui.value);
                 $workspace.updateWidth(ui.value);
-
                 scope.logger.debug('On slide', event, ui);
             }
 
