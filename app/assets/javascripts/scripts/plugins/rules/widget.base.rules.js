@@ -45,7 +45,7 @@ define([
          */
         getTemplate: function getTemplate(text) {
             return $([
-                '<div class="input-group input-group-sm">',
+                '<div class="input-group">',
                 '<span class="input-group-addon">', text, '</span>',
                 '</div>'
             ].join(''));

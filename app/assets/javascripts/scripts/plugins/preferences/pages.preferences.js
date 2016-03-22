@@ -221,14 +221,15 @@ define([
              * @type {Layout}
              */
             var layout = page.controller.getLayout(),
-                workspace = page.controller.getContainment(),
-                modes = page.LAYOUT_MODES;
+                workspace = page.controller.getContainment();
+
+            var modes = page.LAYOUT_MODES;
 
             /**
              * Define layout container
              * @type {*|jQuery}
              */
-            var $ul = $('<ul class="default" />').addClass('layout-prefs');
+            var $ul = $('<ul class="default layout-prefs" />');
 
             /**
              * Define dom prefs
@@ -252,6 +253,13 @@ define([
             // Get padding
             var padding = page.model.getConfig('html/padding');
 
+            var text = 'Mode',
+                $combo = $([
+                    '<div class="input-group">',
+                    '<span class="input-group-addon">', text, '</span>',
+                    '</div>'
+                ].join(''));
+
             return $ul.append([
 
                 $('<li />').append(
@@ -265,26 +273,28 @@ define([
                 ).attr('rel', 'layout-cell-width'),
 
                 $('<li />').append(
-                    this.renderCombobox(
-                        [
-                            {
-                                type: 'text',
-                                value: modes.freeStyle
-                            },
-                            {
-                                type: 'text',
-                                value: modes.jqUIGrid
-                            },
-                            {
-                                type: 'text',
-                                value: modes.snap2grid
-                            }
-                        ],
-                        layout.controller.getBehaviorMode(),
-                        'Mode',
-                        'layoutMode',
-                        undefined,
-                        true
+                    $combo.append(
+                        this.renderCombobox(
+                            [
+                                {
+                                    type: 'text',
+                                    value: modes.freeStyle
+                                },
+                                {
+                                    type: 'text',
+                                    value: modes.jqUIGrid
+                                },
+                                {
+                                    type: 'text',
+                                    value: modes.snap2grid
+                                }
+                            ],
+                            layout.controller.getBehaviorMode(),
+                            'Mode',
+                            'layoutMode',
+                            undefined,
+                            true
+                        )
                     )
                 ).attr('rel', 'layout-behavior'),
 
@@ -296,8 +306,7 @@ define([
                         visible: true,
                         disabled: true
                     })
-                ).attr('rel', 'page-width').
-                    addClass('page-width'),
+                ).attr('rel', 'page-width').addClass('page-width'),
 
                 $('<li />').append(
                     this.renderTextField({
@@ -307,8 +316,7 @@ define([
                         visible: true,
                         disabled: false
                     })
-                ).attr('rel', 'layout-columns').
-                    addClass('page-layout-columns'),
+                ).attr('rel', 'layout-columns').addClass('page-layout-columns'),
 
                 $('<li />').append(
                     this.renderNumberField({
@@ -318,8 +326,7 @@ define([
                         visible: true,
                         disabled: false
                     })
-                ).attr('rel', 'page-padding-top').
-                    addClass('page-padding'),
+                ).attr('rel', 'page-padding-top').addClass('page-padding'),
 
                 $('<li />').append(
                     this.renderNumberField({
@@ -329,8 +336,7 @@ define([
                         visible: true,
                         disabled: false
                     })
-                ).attr('rel', 'page-padding-left').
-                    addClass('page-padding'),
+                ).attr('rel', 'page-padding-left').addClass('page-padding'),
 
                 $('<li />').append(
                     this.renderNumberField({
@@ -340,8 +346,7 @@ define([
                         visible: true,
                         disabled: false
                     })
-                ).attr('rel', 'page-padding-bottom').
-                    addClass('page-padding'),
+                ).attr('rel', 'page-padding-bottom').addClass('page-padding'),
 
                 $('<li />').append(
                     this.renderNumberField({
@@ -351,8 +356,7 @@ define([
                         visible: true,
                         disabled: false
                     })
-                ).attr('rel', 'page-padding-right').
-                    addClass('page-padding')
+                ).attr('rel', 'page-padding-right').addClass('page-padding')
             ]);
         },
 
@@ -421,11 +425,9 @@ define([
                                 preferences.resource
                             )
                         ).attr({
-                                rel: uuid,
-                                title: title
-                            }).css(css).
-
-                            on('mouseenter.widgetPrefs mouseleave.widgetPrefs click.widgetPrefs',
+                            rel: uuid,
+                            title: title
+                        }).css(css).on('mouseenter.widgetPrefs mouseleave.widgetPrefs click.widgetPrefs',
                             this.showWidgetPrefs.bind(this)
                         );
 
@@ -522,13 +524,11 @@ define([
                     }
 
                     nodes.push(
-                        $('<li />').
-                            addClass([
-                                [page.name.toClassName(), index].join('-'),
-                                node.type,
-                                node.visible ? '' : 'hidden'
-                            ].join(' ')).
-                            append($element)
+                        $('<li />').addClass([
+                            [page.name.toClassName(), index].join('-'),
+                            node.type,
+                            node.visible ? '' : 'hidden'
+                        ].join(' ')).append($element)
                     );
                 }
             }
@@ -550,7 +550,7 @@ define([
             var view = this.view;
 
             // Get $widget item ui
-            var $widget =  $(e.target);
+            var $widget = $(e.target);
 
             /**
              * Get uuid
