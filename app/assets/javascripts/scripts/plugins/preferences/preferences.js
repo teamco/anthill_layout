@@ -15,6 +15,7 @@ define(['jquery'], function defineBasePreferencesElement($) {
      * @extends ComboBoxRenderer
      * @extends NumberFieldRenderer
      * @extends RangeRenderer
+     * @extends ModalElement
      * @extends EventLinkRenderer
      * @constructor
      */
@@ -22,29 +23,7 @@ define(['jquery'], function defineBasePreferencesElement($) {
     };
 
     return BasePreferencesElement.extend('BasePreferencesElement', {
-
-        /**
-         * Toggle fieldset
-         * @memberOf BasePreferencesElement
-         * @param e
-         */
-        toggleFieldset: function toggleFieldset(e) {
-
-            /**
-             * Define $el
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $el = $(e.target);
-
-            $el.parents('div.html').
-                find('.open').
-                removeClass('open');
-
-            $el.addClass('open');
-
-            this.adoptModalDialogPosition();
-        },
-
+        
         /**
          * Open preferences
          * @memberOf BasePreferencesElement

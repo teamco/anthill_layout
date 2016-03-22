@@ -27,7 +27,6 @@ define(function defineSliderRenderer() {
         renderSlider: function renderSlider($container, opts) {
 
             if (!$container) {
-
                 this.view.scope.logger.warn('Undefined $container', opts);
                 return false;
             }
@@ -43,11 +42,11 @@ define(function defineSliderRenderer() {
                 // Calculate left position
                 var left = ( i / opts.max * 100 ).toFixed(2) + "%";
 
-                var $separator = $("<div/>").addClass("ui-slider-tick separator").css({
+                var $separator = $('<div class="ui-slider-tick separator" />').css({
                     left: left
                 });
 
-                var $label = $("<div/>").addClass("ui-slider-tick label").css({
+                var $label = $('<div class="ui-slider-tick label" />').css({
                     left: left
                 }).text(labels[i]);
 

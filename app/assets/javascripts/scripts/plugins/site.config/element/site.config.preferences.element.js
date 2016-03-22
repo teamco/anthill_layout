@@ -27,9 +27,7 @@ define([
             destroy: true
         });
 
-        this.$.append(
-            this.getPreferencesHtml(opts.map)
-        );
+        this.getPreferencesHtml(opts.map);
 
         return this;
     };

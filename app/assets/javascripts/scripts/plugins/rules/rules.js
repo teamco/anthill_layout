@@ -14,27 +14,7 @@ define(function defineBaseRules() {
     };
 
     return BaseRules.extend('BaseRules', {
-
-        /**
-         * Toggle fieldset
-         * @memberOf BaseRules
-         * @param e
-         */
-        toggleFieldset: function toggleFieldset(e) {
-
-            /**
-             * Define $li
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $li = $(e.target);
-
-            $li.hasClass('open') ?
-                $li.removeClass('open') :
-                $li.addClass('open');
-
-            this.adoptModalDialogPosition();
-        },
-
+        
         /**
          * Open preferences
          * @memberOf BaseRules

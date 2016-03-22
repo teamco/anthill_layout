@@ -23,28 +23,6 @@ define([
     return SitePreferences.extend('SitePreferences', {
 
         /**
-         * Toggle fieldset
-         * @memberOf SitePreferences
-         * @param e
-         */
-        toggleFieldset: function toggleFieldset(e) {
-
-            /**
-             * Define $el
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $el = $(e.target);
-
-            $el.parents('div.html').
-                find('.open').
-                removeClass('open');
-
-            $el.addClass('open');
-
-            this.adoptModalDialogPosition();
-        },
-
-        /**
          * Get preferences HTML
          * @memberOf SitePreferences
          * @param {Array} map
@@ -52,28 +30,40 @@ define([
          */
         getPreferencesHtml: function getPreferencesHtml(map) {
 
-            return [
-                this.setSiteMetaData(),
-                this.siteWidthSlider(map),
-                this.googleAnalytics()
-            ];
-        },
 
-        setSiteMetaData: function setSiteMetaData() {
+            var $tabs = this.renderTabs(),
+                $container = this.renderTabItemsContent(),
+                text = 'Meta Data';
 
-            return $('<li />').append(
-                this.renderFieldSet(
-                    'Meta Data',
-                    $('<ul class="default" />').append(
-                        this.setSiteTitle(),
-                        this.setSiteMetaAuthor(),
-                        this.setSiteMetaDescription(),
-                        this.setSiteMetaKeywords()
-                    ),
-                    true
+            this.$.append($tabs, $container);
+
+            this.addTabItem($tabs, {
+                uuid: 'meta_data',
+                text: text,
+                $container: $container,
+                content: $('<ul class="default" />').append(
+                    this.setSiteTitle(),
+                    this.setSiteMetaAuthor(),
+                    this.setSiteMetaDescription(),
+                    this.setSiteMetaKeywords()
                 )
-            );
+            }, true);
 
+            text = 'Global Preferences';
+            this.addTabItem($tabs, {
+                uuid: 'width_slider',
+                text: text,
+                $container: $container,
+                content: this.siteWidthSlider(map)
+            }, false);
+
+            text = 'Google Analytics';
+            this.addTabItem($tabs, {
+                uuid: 'google_analytics',
+                text: text,
+                $container: $container,
+                content: this.googleAnalytics()
+            }, false);
         },
 
         /**
@@ -117,9 +107,7 @@ define([
                 value: siteTitle || seoTitle[seoTitle.length - 1]
             });
 
-            return $('<li />').
-                addClass('workspace-title-prefs').
-                append($title);
+            return $('<li />').addClass('workspace-title-prefs').append($title);
         },
 
         /**
@@ -149,9 +137,7 @@ define([
                 value: preferences['siteDescription'] || $('meta[name="description"]').attr('content')
             });
 
-            return $('<li />').
-                addClass('workspace-description-prefs').
-                append($description);
+            return $('<li />').addClass('workspace-description-prefs').append($description);
         },
 
         /**
@@ -181,9 +167,7 @@ define([
                 value: preferences['siteKeywords'] || $('meta[name="keywords"]').attr('content')
             });
 
-            return $('<li />').
-                addClass('workspace-keywords-prefs').
-                append($keywords);
+            return $('<li />').addClass('workspace-keywords-prefs').append($keywords);
         },
 
         /**
@@ -213,9 +197,7 @@ define([
                 value: preferences['siteAuthor'] || $('meta[name="author"]').attr('content')
             });
 
-            return $('<li />').
-                addClass('workspace-author-prefs').
-                append($author);
+            return $('<li />').addClass('workspace-author-prefs').append($author);
         },
 
         /**
@@ -241,7 +223,7 @@ define([
 
             /**
              * Define checkbox
-             * @type {*[]}
+             * @type {CheckBoxRenderer}
              */
             var $element = this.renderCheckbox({
                 name: text,
@@ -256,12 +238,10 @@ define([
                 }
             });
 
-            return $('<li />').
-                addClass([
-                    ['workspace', text.humanize().toClassName(), 'prefs'].join('-'),
-                    'checkbox'
-                ].join(' ')).
-                append($element);
+            return $('<li />').addClass([
+                ['workspace', text.humanize().toClassName(), 'prefs'].join('-'),
+                'checkbox'
+            ].join(' ')).append($element);
         },
 
         /**
@@ -275,8 +255,13 @@ define([
              * Get workspace
              * @type {Workspace}
              */
-            var workspace = this.view.controller.getWorkspace(),
-                $workspace = workspace.view.elements.$workspace;
+            var workspace = this.view.controller.getWorkspace();
+
+            /**
+             * Get $workspace
+             * @type {WorkspaceElement}
+             */
+            var $workspace = workspace.view.get$item();
 
             var $input = $(e.target),
                 $slider = $('.ui-slider', $input.parents('ul')),
@@ -306,19 +291,30 @@ define([
         siteWidthSlider: function siteWidthSlider(map) {
 
             /**
+             * Get scope
+             * @type {SiteConfig}
+             */
+            var scope = this.view.scope;
+
+            /**
              * Get workspace
              * @type {Workspace}
              */
-            var workspace = this.view.controller.getWorkspace(),
-                $workspace = workspace.view.elements.$workspace,
-                preferences = workspace.model.getConfig('preferences');
+            var workspace = scope.controller.getWorkspace();
 
             /**
-             * Define title
-             * @type {string}
+             * Get w$workspace
+             * @type {WorkspaceElement}
              */
-            var cname = 'Global Preferences',
-                uuid = this.base.lib.generator.UUID() + '-slider',
+            var $workspace = workspace.view.get$item();
+
+            /**
+             * Get site preferences
+             * @type {{siteWidthSlider, staticWidth}}
+             */
+            var preferences = workspace.model.getConfig('preferences');
+
+            var uuid = scope.base.lib.generator.UUID() + '-slider',
                 $ul = $('<ul class="default site-width-slider" />'),
                 $slider = $('<div />');
 
@@ -330,7 +326,7 @@ define([
 
             /**
              * Render slider input
-             * @type {*[]}
+             * @type {TextFieldRenderer}
              */
             var $textfield = this.renderTextField({
                 name: 'siteWidthSlider',
@@ -349,11 +345,10 @@ define([
                 $textfield[1].val(ui.value);
                 $workspace.updateWidth(ui.value);
 
-                this.view.scope.logger.debug('On slide', event, ui);
+                scope.logger.debug('On slide', event, ui);
             }
 
             this.renderSlider($slider, {
-
                 value: sliderValue || 1,
                 min: 0,
                 max: map.length - 1,
@@ -371,9 +366,7 @@ define([
                 )
             );
 
-            return $('<li />').append(
-                this.renderFieldSet(cname, $ul)
-            );
+            return $ul;
         },
 
         /**
@@ -382,12 +375,6 @@ define([
          * @returns {*|jQuery}
          */
         googleAnalytics: function googleAnalytics() {
-
-            /**
-             * Define title
-             * @type {string}
-             */
-            var cname = 'Google Analytics';
 
             /**
              * Render slider input
@@ -406,15 +393,9 @@ define([
                 }
             });
 
-            return $('<li />').append(
-                this.renderFieldSet(
-                    cname,
-                    $('<ul class="default" />').append(
-                        $('<li class="workspace-google-analytics-prefs" />').
-                            append($textfield)
-                    )
-                )
-            )
+            return $('<ul class="default" />').append(
+                $('<li class="workspace-google-analytics-prefs" />').append($textfield)
+            );
         }
 
     }, BasePreferencesElement.prototype);

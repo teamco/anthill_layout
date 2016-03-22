@@ -7,12 +7,35 @@ define(function defineFieldSetRenderer() {
     /**
      * Define FieldSetRenderer
      * @class FieldSetRenderer
+     * @extends ModalElement
      * @constructor
      */
     var FieldSetRenderer = function FieldSetRenderer() {
     };
 
     return FieldSetRenderer.extend('FieldSetRenderer', {
+
+        /**
+         * Toggle fieldset
+         * @memberOf FieldSetRenderer
+         * @param e
+         */
+        toggleFieldset: function toggleFieldset(e) {
+
+            /**
+             * Define $li
+             * @type {*|jQuery|HTMLElement}
+             */
+            var $li = $(e.target);
+
+            $li.hasClass('open') ?
+                $li.removeClass('open') :
+                $li.addClass('open');
+
+            if (_.isFunction(this.adoptModalDialogPosition)) {
+                this.adoptModalDialogPosition();
+            }
+        },
 
         /**
          * Render fieldset
