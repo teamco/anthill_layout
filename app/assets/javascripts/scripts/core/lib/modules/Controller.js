@@ -358,7 +358,9 @@ define([
                     scope = this;
 
                 if (!containment) {
-                    scope.logger.debug('Undefined containment');
+                    if (scope !== scope.controller.root()) {
+                        scope.logger.warn('Undefined containment');
+                    }
                     return false;
                 }
 
@@ -380,7 +382,7 @@ define([
                      * Define generated getter
                      * @returns {*}
                      */
-                    controller[fnName] = function generatedGetter() {
+                    controller[fnName] = function genericGetter() {
                         return scope;
                     };
 
