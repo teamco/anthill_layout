@@ -55,6 +55,7 @@ define([
          * Define defaults
          * @type {{
          *      plugin: boolean,
+         *      getter: boolean,
          *      html: {
          *          style: string,
          *          header: boolean,
@@ -71,6 +72,7 @@ define([
          */
         var DEFAULTS = {
             plugin: true,
+            getter: true,
             html: {
                 style: 'default',
                 header: true,
@@ -103,7 +105,7 @@ define([
 
         /**
          * Define MVC
-         * @memberOf SiteConfig
+         * @property SiteConfig
          * @type {MVC}
          */
         this.mvc = new MVC({

@@ -32,14 +32,14 @@ define([
 
         /**
          * Define active content
-         * @memberOf Maximize
+         * @property Maximize
          * @type {*}
          */
         this.activeContent = undefined;
 
         /**
          * Allow to locate element
-         * @memberOf Maximize
+         * @property Maximize
          * @type {boolean}
          */
         this.allowToLocate = true;
@@ -48,6 +48,7 @@ define([
          * Define defaults
          * @type {{
          *      plugin: boolean,
+         *      getter: boolean,
          *      html: {
          *          style: string,
          *          header: boolean,
@@ -64,6 +65,7 @@ define([
          */
         var DEFAULTS = {
             plugin: true,
+            getter: true,
             html: {
                 style: 'default',
                 header: true,
@@ -80,7 +82,7 @@ define([
 
         /**
          * Define MVC
-         * @memberOf Maximize
+         * @property Maximize
          * @type {MVC}
          */
         this.mvc = new MVC({

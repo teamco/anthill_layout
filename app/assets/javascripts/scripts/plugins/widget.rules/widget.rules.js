@@ -26,20 +26,20 @@ define([
 
         /**
          * Define containment
-         * @memberOf WidgetRules
+         * @property WidgetRules
          */
         this.containment = containment;
 
         /**
          * Define active content
-         * @memberOf WidgetRules
+         * @property WidgetRules
          * @type {*}
          */
         this.activeContent = undefined;
 
         /**
          * Allow to locate element
-         * @memberOf WidgetRules
+         * @property WidgetRules
          * @type {boolean}
          */
         this.allowToLocate = true;
@@ -48,6 +48,7 @@ define([
          * Define defaults
          * @type {{
          *      plugin: boolean,
+         *      getter: boolean,
          *      html: {
          *          style: string,
          *          header: boolean,
@@ -64,6 +65,7 @@ define([
          */
         var DEFAULTS = {
             plugin: true,
+            getter: true,
             html: {
                 style: 'default',
                 header: true,
@@ -80,7 +82,7 @@ define([
 
         /**
          * Define MVC
-         * @memberOf WidgetRules
+         * @property WidgetRules
          * @type {MVC}
          */
         this.mvc = new MVC({

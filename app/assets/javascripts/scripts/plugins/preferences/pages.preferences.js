@@ -567,8 +567,13 @@ define([
              * Define panel
              * @type {Panel}
              */
-            var panel = view.controller.getDesignTimePanel(),
-                module = 'page-data';
+            var panel = view.controller.getDesignTimePanel();
+
+            /**
+             * Define module name
+             * @type {string}
+             */
+            var module = 'page-data';
 
             /**
              * Define page data

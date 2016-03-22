@@ -26,20 +26,20 @@ define([
 
         /**
          * Define containment
-         * @memberOf PageData
+         * @property PageData
          */
         this.containment = containment;
 
         /**
          * Define active content
-         * @memberOf PageData
+         * @property PageData
          * @type {*}
          */
         this.activeContent = undefined;
 
         /**
          * Allow to locate element
-         * @memberOf PageData
+         * @property PageData
          * @type {boolean}
          */
         this.allowToLocate = true;
@@ -48,6 +48,7 @@ define([
          * Define defaults
          * @type {{
          *      plugin: boolean,
+         *      getter: boolean,
          *      html: {
          *          style: string,
          *          header: boolean,
@@ -64,6 +65,7 @@ define([
          */
         var DEFAULTS = {
             plugin: true,
+            getter: true,
             html: {
                 style: 'default',
                 header: true,
@@ -80,7 +82,7 @@ define([
 
         /**
          * Define MVC
-         * @memberOf PageData
+         * @property PageData
          * @type {MVC}
          */
         this.mvc = new MVC({
@@ -96,7 +98,7 @@ define([
             render: true
         });
 
-        this.observer.publish(
+        this.observer.batchPublish(
             this.eventmanager.eventList.successCreated
         );
 

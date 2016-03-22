@@ -26,20 +26,20 @@ define([
 
         /**
          * Define containment
-         * @memberOf WorkspaceData
+         * @property WorkspaceData
          */
         this.containment = containment;
 
         /**
          * Define active content
-         * @memberOf WorkspaceData
+         * @property WorkspaceData
          * @type {Page}
          */
         this.activeContent = undefined;
 
         /**
          * Allow to locate element
-         * @memberOf WorkspaceData
+         * @property WorkspaceData
          * @type {boolean}
          */
         this.allowToLocate = true;
@@ -48,6 +48,7 @@ define([
          * Define defaults
          * @type {{
          *      plugin: boolean,
+         *      getter: boolean,
          *      switch: boolean,
          *      html: {
          *          style: string,
@@ -65,6 +66,7 @@ define([
          */
         var DEFAULTS = {
             plugin: true,
+            getter: true,
             switch: false,
             html: {
                 style: 'default',
@@ -82,7 +84,7 @@ define([
 
         /**
          * Define MVC
-         * @memberOf WorkspaceData
+         * @property WorkspaceData
          * @type {MVC}
          */
         this.mvc = new MVC({

@@ -19,14 +19,14 @@ define([
 
         /**
          * Init modules
-         * @memberOf PanelModel
+         * @property PanelModel
          * @type {Array}
          */
         this.modules = [];
 
         /**
          * Define packages
-         * @memberOf PanelModel
+         * @property PanelModel
          * @type {Array}
          */
         this.packages = [];
@@ -58,13 +58,33 @@ define([
         },
 
         /**
+         * Get all modules
+         * @memberOf PanelModel
+         * @returns {Array}
+         */
+        getAllModules: function getAllModules() {
+            return this.modules;
+        },
+
+        /**
+         * Get all packages
+         * @memberOf PanelModel
+         * @returns {Array}
+         */
+        getAllPackages: function getAllPackages() {
+            return this.packages;
+        },
+
+        /**
          * Get module by index
          * @memberOf PanelModel
          * @param {number} [index]
          * @returns {*}
          */
         getModule: function getModule(index) {
-            return this.modules[index] || this.modules;
+            var modules = this.getAllModules(),
+                module = modules[index];
+            return module ? module : modules;
         },
 
         /**
@@ -74,7 +94,9 @@ define([
          * @returns {*}
          */
         getPackage: function getPackage(index) {
-            return this.packages[index] || this.packages;
+            var packages = this.getAllPackages(),
+                packet = packages[index];
+            return packet ? packet : packages;
         },
 
         /**

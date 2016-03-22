@@ -337,10 +337,57 @@ define([
              * @memberOf BaseController
              */
             successCreated: function successCreated() {
+
                 this.logger.debug(
                     'Successfully created',
                     this
                 );
+
+                this.observer.publish(
+                    this.eventmanager.eventList.defineGetter
+                );
+            },
+
+            /**
+             * Define instance getter
+             * @memberOf BaseController
+             */
+            defineGetter: function defineGetter() {
+
+                var containment = this.controller.getContainment(),
+                    scope = this;
+
+                if (!containment) {
+                    scope.logger.debug('Undefined containment');
+                    return false;
+                }
+
+                /**
+                 * Get constructor prototype
+                 * @type {BaseController}
+                 */
+                var controller = containment.controller.constructor.prototype;
+
+                var fnName = 'get' + this.name;
+
+                if (_.isFunction(controller[fnName])) {
+
+                    scope.logger.debug('Getter already implemented', fnName);
+
+                } else if (scope.config.getter) {
+
+                    /**
+                     * Define generated getter
+                     * @returns {*}
+                     */
+                    controller[fnName] = function _generatedGetter() {
+                        return scope;
+                    };
+
+                } else {
+
+                    scope.logger.debug('Config getter was missing', scope);
+                }
             },
 
             /**
@@ -349,8 +396,7 @@ define([
              */
             successRendered: function successRendered() {
                 this.logger.debug(
-                    this.i18n.t('success.rendered').
-                        replace(/\{0}/, this.name),
+                    this.i18n.t('success.rendered').replace(/\{0}/, this.name),
                     this
                 );
             },

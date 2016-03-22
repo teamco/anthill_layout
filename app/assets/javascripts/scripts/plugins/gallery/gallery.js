@@ -26,7 +26,7 @@ define([
 
         /**
          * Define containment
-         * @memberOf Gallery
+         * @property Gallery
          */
         this.containment = containment;
 
@@ -34,6 +34,7 @@ define([
          * Define defaults
          * @type {{
          *      plugin: boolean,
+         *      getter: boolean,
          *      html: {
          *          style: string,
          *          header: boolean,
@@ -50,6 +51,7 @@ define([
          */
         var DEFAULTS = {
             plugin: true,
+            getter: true,
             html: {
                 style: 'default',
                 header: true,
@@ -69,7 +71,7 @@ define([
 
         /**
          * Define MVC
-         * @memberOf Gallery
+         * @property Gallery
          * @type {MVC}
          */
         this.mvc = new MVC({
@@ -97,7 +99,5 @@ define([
         );
     };
 
-    return Gallery.extend('Gallery', {
-
-    }, AntHill.prototype);
+    return Gallery.extend('Gallery', {}, AntHill.prototype);
 });

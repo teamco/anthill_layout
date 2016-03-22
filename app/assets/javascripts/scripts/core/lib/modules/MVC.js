@@ -103,7 +103,8 @@ define([
             afterResizeWindow: 'after.resize.window',
             successRenderHeader: 'success.render.header',
             successRenderFooter: 'success.render.footer',
-            bindModelObserver: 'bind.model.observer'
+            bindModelObserver: 'bind.model.observer',
+            defineGetter: 'define.getter'
         };
 
         /**
