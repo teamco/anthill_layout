@@ -380,7 +380,7 @@ define([
                      * Define generated getter
                      * @returns {*}
                      */
-                    controller[fnName] = function _generatedGetter() {
+                    controller[fnName] = function generatedGetter() {
                         return scope;
                     };
 
