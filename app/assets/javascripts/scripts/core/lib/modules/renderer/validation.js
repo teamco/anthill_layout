@@ -2,9 +2,7 @@
  * Created by teamco on 10/30/14.
  */
 
-define([
-    'jquery'
-], function defineTextFieldRenderer($) {
+define(function defineTextFieldRenderer() {
 
     /**
      * Define ValidationRenderer
@@ -12,7 +10,6 @@ define([
      * @constructor
      */
     var ValidationRenderer = function ValidationRenderer() {
-
     };
 
     return ValidationRenderer.extend('ValidationRenderer', {
@@ -24,6 +21,8 @@ define([
          */
         validateByMask: function validateByMask($input, opts) {
 
+            opts.validate = opts.validate || {};
+
             /**
              * Validate mask
              * @param value
@@ -34,7 +33,7 @@ define([
 
                 /**
                  * Get mask
-                 * @type {Array|RegExp}
+                 * @type {Array|RegExp|number}
                  */
                 var mask = opts.validate.mask,
                     i = 0, match = [];
@@ -63,37 +62,49 @@ define([
              * @private
              */
             function _checkEmpty(value) {
-                if (_.isUndefined(opts.validate.blank)) return true;
-                return $.trim(value.length) > 0;
+                return opts.validate.blank ?
+                    true : !!$.trim(value.length);
             }
 
-            if (typeof(opts.validate) === 'object') {
+            /**
+             * Add message container
+             * @type {*|jQuery}
+             */
+            var $span = $('<span class="validate" />').text(
+                'The «' + opts.text + '» you entered is not valid'
+            );
+
+            /**
+             * Show error
+             * @private
+             */
+            function _showError() {
+                $input.addClass('validate');
+                $input.after($span);
+            }
+
+            /**
+             * Hide error
+             * @private
+             */
+            function _hideError() {
+                $input.removeClass('validate');
+                $span.remove();
+            }
+
+            $input.focusout(function focusOut() {
 
                 /**
-                 * Add message container
-                 * @type {*|jQuery}
+                 * Get value
+                 * @type {string}
                  */
-                var $span = $('<span class="validate" />').
-                    text('The «' + opts.text + '» you entered is not valid');
+                var value = $input.val();
 
-                $input.focusout(function focusOut() {
+                _showError();
 
-                    /**
-                     * Get value
-                     * @type {string}
-                     */
-                    var value = $input.val();
-
-                    $input.addClass('validate');
-                    $input.after($span);
-
-                    if (_checkMask(value) && _checkEmpty(value)) {
-
-                        $input.removeClass('validate');
-                        $span.remove();
-                    }
-                });
-            }
+                if (_checkEmpty(value)) return _hideError();
+                if (_checkMask(value)) _hideError();
+            });
         }
     });
 });
