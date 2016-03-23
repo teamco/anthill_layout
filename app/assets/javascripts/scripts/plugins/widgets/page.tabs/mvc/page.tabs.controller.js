@@ -212,6 +212,9 @@ define([
                         this.model.getPrefs('pagetabsSwipe')
                     ]
                 );
+
+                // Reset event handler
+                this.openUrlEventHandler = 0;
             }
         },
 

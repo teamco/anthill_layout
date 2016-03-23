@@ -233,6 +233,13 @@ define([
              */
             this.layout = {};
 
+            /**
+             * Init open Url Event Handler
+             * @property Page
+             * @type {number}
+             */
+            this.openUrlEventHandler = 0;
+
             this.observer.publish(
                 this.eventmanager.eventList.createLayout,
                 this.config.layout

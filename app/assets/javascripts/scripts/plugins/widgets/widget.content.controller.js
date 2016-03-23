@@ -40,6 +40,13 @@ define([
                 var observer = this.observer;
 
                 /**
+                 * Init open Url Event Handler
+                 * @property WidgetContent
+                 * @type {number}
+                 */
+                this.openUrlEventHandler = 0;
+
+                /**
                  * Define event list
                  * @type {Object}
                  */

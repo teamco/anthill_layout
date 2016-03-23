@@ -86,13 +86,6 @@ define([
          * @type {Logger}
          */
         this.logger = undefined;
-
-        /**
-         * Init open Url Event Handler
-         * @property Anthill
-         * @type {number}
-         */
-        this.openUrlEventHandler = 0;
     };
 
     return AntHill.extend('AntHill', {

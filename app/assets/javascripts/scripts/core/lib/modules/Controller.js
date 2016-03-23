@@ -565,6 +565,7 @@ define([
 
                 if (this.openUrlEventHandler > 1) {
 
+                    // Reset event handler
                     this.openUrlEventHandler = 0;
                     return false;
                 }
