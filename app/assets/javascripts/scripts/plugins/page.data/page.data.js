@@ -107,7 +107,8 @@ define([
             ['plugins/page.data/translations/en-us']
         );
 
-        this.controller.subscribeRefreshContent();
+        this.controller.subscribeRefreshContentAfterDestroyItems();
+        this.controller.subscribeRefreshContentSwitchPage();
     };
 
     return PageData.extend('PageData', {}, AntHill.prototype);

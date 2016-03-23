@@ -38,6 +38,7 @@ define([
 
             /**
              * Define Panel element
+             * @property PanelView.elements
              * @type {PanelElement}
              */
             this.elements.$panel = new Panel(this, {
@@ -50,7 +51,7 @@ define([
 
             this.renderContentContainer();
 
-            this.footer(Footer, this.elements.$panel);
+            this.footer(Footer, this.get$item());
 
             this.controller.renderPackages();
 
@@ -67,7 +68,7 @@ define([
              * @type {PanelContentContainerElement}
              */
             this.elements.$content = new PanelContentContainer(this, {
-                $container: this.elements.$panel.getContentContainer(),
+                $container: this.get$item().getContentContainer(),
                 style: 'panel-content'
             });
         },
@@ -86,16 +87,12 @@ define([
              * @type {string}
              */
             var style = [
-                    module.name.toDash(),
+                    this.scope.model.getPanelEntityResourceName(module),
                     'content'
                 ].join('-'),
                 sname = '$' + style;
 
-            /**
-             * Define content
-             * @type {{}}
-             */
-            this.elements.items = this.elements.items || {};
+            this.updateElementItems();
 
             if ((this.isCachedItems() || this.elements.items.hasOwnProperty(sname)) && !force) {
                 return false;
@@ -112,7 +109,7 @@ define([
 
             module.view.defineContainer($item);
 
-            this.elements.items[sname] = $item;
+            this.updateElementItems($item, sname);
         },
 
         /**

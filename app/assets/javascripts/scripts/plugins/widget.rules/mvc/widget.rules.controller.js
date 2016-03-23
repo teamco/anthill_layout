@@ -75,7 +75,6 @@ define([
                     widget.eventmanager.getEvents(),
                     widget.controller.getContent().eventmanager.getEvents()
                 );
-
             }
         },
 
@@ -100,6 +99,7 @@ define([
 
             if (!widget) {
                 this.logger.warn('Undefined widget', uuid, page);
+                return false;
             }
 
             /**

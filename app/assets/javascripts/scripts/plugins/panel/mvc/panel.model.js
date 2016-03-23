@@ -100,6 +100,16 @@ define([
         },
 
         /**
+         * Get module/package resource name
+         * @memberOf PanelModel
+         * @param entity
+         * @returns {string}
+         */
+        getPanelEntityResourceName: function getPanelEntityResourceName(entity) {
+            return entity.name.toDash();
+        },
+
+        /**
          * Get module index
          * @memberOf PanelModel
          * @param resource
@@ -114,7 +124,7 @@ define([
             var modules = this.modules;
 
             for (var i = 0, l = modules.length; i < l; i++) {
-                if (resource === modules[i].module.name.toDash()) {
+                if (resource === this.getPanelEntityResourceName(modules[i].module)) {
                     return i;
                 }
             }
@@ -141,7 +151,7 @@ define([
             var packages = this.packages;
 
             for (var i = 0, l = packages.length; i < l; i++) {
-                if (resource === packages[i].name.toDash()) {
+                if (resource === this.getPanelEntityResourceName(packages[i])) {
                     return i;
                 }
             }

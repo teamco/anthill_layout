@@ -40,10 +40,10 @@ requirejs.config({
         html2canvas: 'lib/packages/html2canvas',
 
         'lz-string': 'lib/lz-string',
-        jquery: 'lib/jquery/jquery-2.2.1.min',
+        jquery: 'lib/jquery/jquery-2.2.2.min',
         'jquery.ujs': 'lib/jquery/jquery_ujs',
         'jquery.timeago': 'lib/jquery/jquery.timeago',
-        'jquery.ui': 'lib/jquery/jquery-ui.min',
+        'jquery.ui': 'lib/jquery/jquery-ui-1.12.0-rc.1.min',
         'jquery.resizestop': 'lib/jquery/jquery.resizestop',
         'jquery.pseudo': 'lib/jquery/jquery.pseudo',
         'jquery.zoomooz': 'lib/jquery/jquery.zoomooz.min',

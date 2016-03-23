@@ -231,6 +231,110 @@ define([
          */
         getResourceClassName: function getResourceClassName(resource) {
             return resource.replace(/\./g, '-');
+        },
+
+        /**
+         * Refresh module content
+         * @memberOf PluginController
+         * @param {string} moduleName
+         */
+        refreshModuleContent: function refreshModuleContent(moduleName) {
+
+            /**
+             * Get scope
+             * @type {PageData|Maximize}
+             */
+            var scope = this.scope;
+
+            /**
+             * Get panel
+             * @type {Panel}
+             */
+            var panel = scope.containment;
+
+            /**
+             * Get module name
+             * @type {string}
+             */
+            var activeModule = panel.active,
+                resourceName = panel.model.getPanelEntityResourceName(scope);
+
+            if (activeModule !== resourceName) {
+
+                scope.logger.debug('Module does not activated in panel');
+                return false;
+            }
+
+            scope.logger.debug('Refresh content');
+
+            panel.observer.publish(
+                panel.eventmanager.eventList.showContent,
+                [true, moduleName]
+            );
+        },
+
+        /**
+         * Subscribe to refresh content after destroy items
+         * @memberOf PluginController
+         */
+        subscribeRefreshContentAfterDestroyItems: function subscribeRefreshContentAfterDestroyItems() {
+
+            /**
+             * Get page
+             * @type {Page|PageData|Maximize}
+             */
+            var page = this.getPage(),
+                scope = this.scope;
+
+            /**
+             * Get event manager
+             * @type {PageEventManager}
+             */
+            var pageEventManager = page.eventmanager;
+
+            pageEventManager.subscribe({
+                event: {
+                    eventName: pageEventManager.eventList.afterDestroyItems
+                },
+                callback: function destroyWidgetsCallback() {
+
+                    scope.controller.refreshModuleContent(
+                        scope.containment.model.getPanelEntityResourceName(scope)
+                    )
+                }
+            }, false);
+        },
+
+        /**
+         * Subscribe refresh content after switch to page
+         * @memberOf PluginController
+         */
+        subscribeRefreshContentSwitchPage: function subscribeRefreshContentSwitchPage() {
+
+            /**
+             * Get workspace
+             * @type {Workspace|PageData|Maximize}
+             */
+            var workspace = this.getWorkspace(),
+                scope = this.scope;
+
+            /**
+             * Get event manager
+             * @type {WorkspaceEventManager}
+             */
+            var workspaceEventManager = workspace.eventmanager;
+
+            workspaceEventManager.subscribe({
+                event: {
+                    eventName: workspaceEventManager.eventList.afterSwitchToPage
+                },
+                callback: function afterSwitchToPageCallback() {
+
+                    scope.controller.refreshModuleContent(
+                        scope.containment.model.getPanelEntityResourceName(scope)
+                    )
+                }
+            }, false);
         }
 
     }, AntHill.prototype, BaseController.prototype);
@@ -290,7 +394,9 @@ define([
              */
             var widget = this.controller.getContainment();
 
-            widget.controller.prepareRenderingContent(this, _successRenderedCallback);
+            widget.controller.prepareRenderingContent(
+                this, _successRenderedCallback
+            );
 
         } else {
 

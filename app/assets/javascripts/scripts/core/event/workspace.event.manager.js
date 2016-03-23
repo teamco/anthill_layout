@@ -26,7 +26,7 @@ define(
 
             /**
              * Define events
-             * @memberOf WorkspaceEventManager
+             * @property WorkspaceEventManager
              * @type {{}}
              */
             this.events = {};
@@ -36,7 +36,7 @@ define(
 
             /**
              * Define event list
-             * @memberOf WorkspaceEventManager
+             * @property WorkspaceEventManager
              * @type {{
              *      bindHashChange: string,
              *      createPage: string,

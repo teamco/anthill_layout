@@ -39,9 +39,9 @@ define([
                 $container: this.getContainerSelector()
             });
 
-            this.header(Header, this.elements.$workspace);
+            this.header(Header, this.get$item());
             this.pages();
-            this.footer(Footer, this.elements.$workspace);
+            this.footer(Footer, this.get$item());
         },
 
         /**
@@ -55,7 +55,7 @@ define([
              * @type {WorkspaceContentElement}
              */
             this.elements.$pages = new WorkspaceContentElement(this, {
-                $container: this.elements.$workspace.$,
+                $container: this.get$item().$,
                 style: 'pages'
             });
         },

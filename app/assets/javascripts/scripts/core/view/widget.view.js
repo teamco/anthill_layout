@@ -49,10 +49,10 @@ define([
 
             this.scope.map.setPosition();
 
-            this.header(Header, this.elements.$widget);
+            this.header(Header, this.get$item());
             this.content();
             this.contentSharing();
-            this.footer(Footer, this.elements.$widget);
+            this.footer(Footer, this.get$item());
         },
 
         /**
@@ -69,7 +69,7 @@ define([
                 style: 'content',
                 resource: this.controller.getResource(),
                 thumbnail: this.controller.getThumbnail(),
-                $container: this.elements.$widget.$
+                $container: this.get$item().$
             });
         },
 
@@ -85,7 +85,7 @@ define([
              */
             this.elements.$expander = new WidgetExpanderElement(this, {
                 style: 'expander',
-                $container: this.elements.$widget.$
+                $container: this.get$item().$
             });
         },
 

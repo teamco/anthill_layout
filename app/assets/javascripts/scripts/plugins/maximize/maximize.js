@@ -26,7 +26,7 @@ define([
 
         /**
          * Define containment
-         * @memberOf Maximize
+         * @property Maximize
          */
         this.containment = containment;
 
@@ -106,9 +106,10 @@ define([
             this.eventmanager.eventList.updateTranslations,
             ['plugins/maximize/translations/en-us']
         );
+
+        this.controller.subscribeRefreshContentAfterDestroyItems();
+        this.controller.subscribeRefreshContentSwitchPage();
     };
 
-    return Maximize.extend('Maximize', {
-
-    }, AntHill.prototype);
+    return Maximize.extend('Maximize', {}, AntHill.prototype);
 });

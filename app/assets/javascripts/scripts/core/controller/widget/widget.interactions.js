@@ -36,6 +36,36 @@ define([
     return WidgetInteractions.extend('WidgetInteractions', {
 
         /**
+         * Validate interaction config
+         * @memberOf WidgetInteractions
+         * @param {string} type
+         * @param config
+         * @returns {*}
+         */
+        validateInteractionConfig: function validateInteractionConfig(type, config) {
+
+            /**
+             * Get widget
+             * @type {Widget}
+             */
+            var scope = this.scope;
+
+            if (typeof scope.view.get$item().$[type] !== 'function') {
+
+                scope.logger.warn('Unable to define', type, config);
+                return false;
+            }
+
+            if (typeof config.containment === true) {
+
+                scope.logger.warn('Check containment', config);
+                config.containment = 'parent';
+            }
+
+            return config;
+        },
+
+        /**
          * Setup interactions {Drag|Resize}
          * @memberOf WidgetInteractions
          */

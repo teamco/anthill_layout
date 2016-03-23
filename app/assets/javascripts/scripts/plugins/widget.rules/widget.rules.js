@@ -106,6 +106,9 @@ define([
             this.eventmanager.eventList.updateTranslations,
             ['plugins/widget.rules/translations/en-us']
         );
+
+        this.controller.subscribeRefreshContentAfterDestroyItems();
+        this.controller.subscribeRefreshContentSwitchPage();
     };
 
     return WidgetRules.extend('WidgetRules', {

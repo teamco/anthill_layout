@@ -49,26 +49,29 @@ define([
              * Define scope
              * @type {Widget}
              */
-            var scope = this.scope,
-                resizable = scope.model.getConfig('events').resizable;
+            var scope = this.scope;
+
+            // Get resizable config
+            var resizable = scope.model.getConfig('events').resizable;
 
             if (scope.permission.authorizedFunctionCall(this.init)) {
 
-                if (typeof this.$scope.resizable !== 'function') {
-
-                    scope.logger.warn('Unable to define resizable', this);
-                    return false;
-                }
-
-                this.$scope.resizable(
-                    $.extend({
-                        containment: resizable.containment,
-                        create: this.create.bind(this),
-                        start: this.start.bind(this),
-                        stop: this.stop.bind(this),
-                        resize: this.resize.bind(this)
-                    }, resizable)
+                resizable = scope.controller.validateInteractionConfig(
+                    'resizable', resizable
                 );
+
+                if (resizable) {
+
+                    this.$scope.resizable(
+                        $.extend({
+                            containment: resizable.containment,
+                            create: this.create.bind(this),
+                            start: this.start.bind(this),
+                            stop: this.stop.bind(this),
+                            resize: this.resize.bind(this)
+                        }, resizable)
+                    );
+                }
             }
         },
 

@@ -49,26 +49,29 @@ define([
              * Define scope
              * @type {Widget}
              */
-            var scope = this.scope,
-                draggable = scope.model.getConfig('events').draggable;
+            var scope = this.scope;
+
+            // Get draggable config
+            var draggable = scope.model.getConfig('events').draggable;
 
             if (scope.permission.authorizedFunctionCall(this.init)) {
 
-                if (typeof this.$scope.draggable !== 'function') {
-
-                    scope.logger.warn('Unable to define draggable', this);
-                    return false;
-                }
-
-                this.$scope.draggable(
-                    $.extend({
-                        containment: draggable.containment,
-                        create: this.create.bind(this),
-                        start: this.start.bind(this),
-                        stop: this.stop.bind(this),
-                        drag: this.drag.bind(this)
-                    }, scope.model.getConfig('events').draggable)
+                draggable = scope.controller.validateInteractionConfig(
+                    'draggable', draggable
                 );
+
+                if (draggable) {
+
+                    this.$scope.draggable(
+                        $.extend({
+                            containment: draggable.containment,
+                            create: this.create.bind(this),
+                            start: this.start.bind(this),
+                            stop: this.stop.bind(this),
+                            drag: this.drag.bind(this)
+                        }, draggable)
+                    );
+                }
             }
         },
 

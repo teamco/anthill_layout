@@ -41,10 +41,10 @@ define([
                 $container: this.getContainerSelector()
             });
 
-            this.header(Header, this.elements.$page);
+            this.header(Header, this.get$item());
             this.widgets();
             this.deltaScroll();
-            this.footer(Footer, this.elements.$page);
+            this.footer(Footer, this.get$item());
 
             /**
              * Get workspace
@@ -68,7 +68,7 @@ define([
              * @type {DeltaScroll}
              */
             this.elements.$deltaScroll = new DeltaScroll(this, {
-                $container: this.elements.$page.$,
+                $container: this.get$item().$,
                 style: 'delta-scroll'
             });
         },
@@ -85,7 +85,7 @@ define([
              */
             this.elements.$widgets = new Content(this, {
                 style: 'widgets',
-                $container: this.elements.$page.$
+                $container: this.get$item().$
             });
         },
 
@@ -102,7 +102,7 @@ define([
                 title: 'Remove widgets',
                 html: [
                     '<p>Are you sure want to destroy:</p>',
-                    this.elements.$page.getItemsList(widgets)
+                    this.get$item().getItemsList(widgets)
                 ].join(''),
                 cover: true,
                 autoclose: true,

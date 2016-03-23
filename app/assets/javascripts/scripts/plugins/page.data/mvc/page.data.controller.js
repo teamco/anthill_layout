@@ -358,47 +358,6 @@ define([
             page.api.destroyWidget(
                 content.controller.getContainment()
             );
-        },
-
-        /**
-         * Subscribe to refresh content
-         * @memberOf PageDataController
-         */
-        subscribeRefreshContent: function() {
-
-            /**
-             * Get page
-             * @type {Page}
-             */
-            var page = this.getPage(),
-                scope = this.scope;
-
-            /**
-             * Get event manager
-             * @type {PageEventManager}
-             */
-            var pageEventManager = page.eventmanager;
-
-            pageEventManager.subscribe({
-                event: {
-                    eventName: pageEventManager.eventList.afterDestroyItems
-                },
-                callback: function destroyWidgetsCallback() {
-
-                    /**
-                     * Get DesignTime panel
-                     * @type {Panel}
-                     */
-                    var dPanel = scope.controller.getDesignTimePanel();
-
-                    scope.logger.debug('Refresh content');
-
-                    dPanel.observer.publish(
-                        dPanel.eventmanager.eventList.showContent,
-                        [true, 'page-data']
-                    );
-                }
-            }, false);
         }
 
     }, AntHill.prototype, PluginBase.prototype);

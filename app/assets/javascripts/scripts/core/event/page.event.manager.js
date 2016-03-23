@@ -13,13 +13,14 @@ define([
     /**
      * Define page event manager
      * @class PageEventManager
+     * @extends BaseEvent
      * @constructor
      */
     var PageEventManager = function PageEventManager() {
 
         /**
          * Define events
-         * @memberOf PageEventManager
+         * @property PageEventManager
          * @type {{}}
          */
         this.events = {};
@@ -29,7 +30,7 @@ define([
 
         /**
          * Define event list
-         * @memberOf PageEventManager
+         * @property PageEventManager
          * @type {{
          *      setMaximized: string,
          *      unsetMaximized: string,
