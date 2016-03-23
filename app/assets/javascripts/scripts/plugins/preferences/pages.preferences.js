@@ -93,7 +93,7 @@ define([
                         callback: this.toggleOpenUrlInDialog.bind(this)
                     },
                     validate: {
-                        mask: [ws.base.isUrl.regex],
+                        mask: ws.base.isUrl.regex,
                         blank: true
                     }
                 },

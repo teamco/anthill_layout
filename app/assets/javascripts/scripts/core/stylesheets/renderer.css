@@ -76,3 +76,8 @@ textarea {
 .import-area.hover {
     background-color: honeydew;
 }
+
+div.source {
+    max-height: 400px;
+    overflow: auto;
+}

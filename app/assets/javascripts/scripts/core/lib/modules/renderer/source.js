@@ -27,7 +27,7 @@ define(function defineSourceRenderer() {
          */
         renderSource: function renderSource(src, type, opts) {
 
-            var $source = $('<pre><code class="hljs"></code></pre>'),
+            var $source = $('<div class="source"><pre><code class="hljs"></code></pre></div>'),
                 $code = $source.find('code');
 
             require([
