@@ -63,7 +63,7 @@ define(function defineTextFieldRenderer() {
              */
             function _checkEmpty(value) {
                 return opts.validate.blank ?
-                    true : !!$.trim(value.length);
+                    true : !!$.trim(value).length;
             }
 
             /**
@@ -102,7 +102,7 @@ define(function defineTextFieldRenderer() {
 
                 _showError();
 
-                if (_checkEmpty(value)) return _hideError();
+                if (!$.trim(value).length && _checkEmpty(value)) return _hideError();
                 if (_checkMask(value)) _hideError();
             });
         }
