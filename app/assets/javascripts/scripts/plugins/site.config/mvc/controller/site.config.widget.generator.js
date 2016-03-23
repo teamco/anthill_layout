@@ -87,8 +87,9 @@ define([
                      * @type {SiteConfigController}
                      */
                     var controller = this.controller,
-                        scope = controller.scope,
-                        data = this.data,
+                        scope = controller.scope;
+
+                    var data = this.data,
                         validate = controller.i18n.t('widget.generation.inputs.validate');
 
                     if (!data) {
@@ -197,8 +198,7 @@ define([
                 _handleSuccessSendWidgetData: function _handleSuccessSendWidgetData(data, status, xhr) {
 
                     this.scope.logger.debug(
-                        this.i18n.t('widget.generated.ok').
-                            replace(/\{1}/, data.name),
+                        this.i18n.t('widget.generated.ok').replace(/\{1}/, data.name),
                         arguments
                     );
 

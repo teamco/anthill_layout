@@ -25,7 +25,7 @@ define([
         /**
          * Render data
          * @memberOf PagesPreferences
-         * @param {{data}} opts
+         * @param {{data, page}} opts
          */
         renderData: function renderData(opts) {
 
@@ -33,16 +33,25 @@ define([
              * Get workspace
              * @type {Workspace}
              */
-            var ws = this.view.controller.getWorkspace(),
-                config = ws.model.getConfig('page');
+            var ws = this.view.controller.getWorkspace();
+
+            // Get ws default page config
+            var config = ws.model.getConfig('page');
+
+            // Get page prefs
+            var pagePrefs = opts.page.model.getConfig('preferences');
+
+            ws.base.isUrl();
 
             /**
              * Define default widget prefs
              * @type {{
+             *      uuid: {type: string, disabled: boolean, value},
              *      title: {type: string, disabled: boolean, value},
              *      siteDescription: {type: string, disabled: boolean, value},
              *      siteKeywords: {type: string, disabled: boolean, value},
              *      pageUrl: {type: string, disabled: boolean, value},
+             *      pageOpenUrlInDialog: {type: string, disabled: boolean, value},
              *      pageHeader: {type: string, disabled: boolean, value},
              *      pageFooter: {type: string, disabled: boolean, value},
              *      animateSwipe: {type: string, disabled: boolean, value}
@@ -50,6 +59,12 @@ define([
              * }}
              */
             var defaultPrefs = {
+                uuid: {
+                    type: 'text',
+                    disabled: true,
+                    value: opts.page.model.getUUID(),
+                    visible: true
+                },
                 title: {
                     type: 'text',
                     disabled: false,
@@ -70,8 +85,22 @@ define([
                 },
                 pageUrl: {
                     type: 'text',
-                    disabled: true,
+                    disabled: false,
                     value: undefined,
+                    visible: true,
+                    monitor: {
+                        events: ['blur', 'keydown'],
+                        callback: this.toggleOpenUrlInDialog.bind(this)
+                    },
+                    validate: {
+                        mask: [ws.base.isUrl.regex],
+                        blank: true
+                    }
+                },
+                pageOpenUrlInDialog: {
+                    type: 'checkbox',
+                    disabled: !(pagePrefs.pageUrl && pagePrefs.pageUrl.length),
+                    value: false,
                     visible: true
                 },
                 pageHeader: {
@@ -211,6 +240,20 @@ define([
                 $container: $container,
                 content: node[0]
             });
+        },
+
+        /**
+         * Render Layout prefs
+         * @memberOf PagesPreferences
+         * @param {Event} e
+         * @returns {*}
+         */
+        toggleOpenUrlInDialog: function toggleOpenUrlInDialog(e) {
+
+            var url = e.target.value,
+                $toggleDialog = $('input[name="pageOpenUrlInDialog"]');
+
+            $toggleDialog.prop({disabled: !url.length})
         },
 
         /**

@@ -4,7 +4,7 @@
  * link:   http://www.phpied.com/rgb-color-parser-in-javascript/
  * license: Use it if you like it
  */
-define([], function defineRGB() {
+define(function defineRGB() {
 
     /**
      * Define RGBColor

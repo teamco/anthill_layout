@@ -127,17 +127,23 @@ define([
              */
             var eventmanager = scope.eventmanager;
 
+            /**
+             * Get scope
+             * @type {PageTabs}
+             */
+            var pageTabs = this;
+
             eventmanager.subscribe({
 
                 event: {
                     eventName: eventmanager.eventList[eventName]
                 },
 
-                callback: function _callback() {
+                callback: function _callbackSubscribePageEventCallback() {
 
-                    this.observer.publish(callbackEvent);
+                    pageTabs.observer.publish(callbackEvent);
 
-                }.bind(this)
+                }
 
             }, false);
         },
@@ -183,8 +189,14 @@ define([
 
             if ($page.pageUrl) {
 
-                this.logger.debug('Open url', e);
-                window.open($page.pageUrl);
+                this.logger.debug('Open url', arguments);
+
+                this.observer.publish(
+                    this.eventmanager.eventList.openUrlOnEvent, [
+                        $page.pageUrl,
+                        $page.pageTab.model.getConfig('preferences').pageOpenUrlInDialog
+                    ]
+                );
 
             } else {
 

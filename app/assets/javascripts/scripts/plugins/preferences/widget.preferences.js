@@ -52,13 +52,12 @@ define([
                     ).toPoint().humanize();
 
                     nodes.push(
-                        $('<div />').
-                            addClass([
-                                title.humanize().toClassName() + '-prefs',
-                                node.type,
-                                node.visible ? '' : 'hidden',
-                                node.separator ? 'separator' : ''
-                            ].join(' ')).append(
+                        $('<div />').addClass([
+                            title.humanize().toClassName() + '-prefs',
+                            node.type,
+                            node.visible ? '' : 'hidden',
+                            node.separator ? 'separator' : ''
+                        ].join(' ')).append(
                             this.getNodeRenderer(node, text, index)
                         )
                     );
@@ -226,7 +225,7 @@ define([
                 )
             });
 
-            text = 'Widget Interactions';
+            text = 'Interactions';
             this.addTabItem($tabs, {
                 uuid: 'widget-interactions',
                 text: text,
@@ -243,6 +242,19 @@ define([
                 $container: $container,
                 content: this.renderPrefsForm(
                     this.renderLayoutInteractions(), text
+                )
+            });
+
+            text = 'Source';
+            this.addTabItem($tabs, {
+                uuid: 'source',
+                text: text,
+                $container: $container,
+                content: this.renderSource(
+                    this.view.get$item().$.parent().html(),
+                    'xml', {
+                        visible: true
+                    }
                 )
             });
         },

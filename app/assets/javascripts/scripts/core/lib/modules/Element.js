@@ -277,8 +277,7 @@ define([
             if (this.base.defineBoolean(destroy, false, true)) {
 
                 this.view.scope.logger.debug(
-                    this.i18n.t('element.overwritten').
-                        replace(/\{0}/, this.name)
+                    this.i18n.t('element.overwritten').replace(/\{0}/, this.name)
                 );
 
                 $('.' + this.$.attr('class').replace(/ /g, '.'), this.$container).remove();
@@ -882,8 +881,7 @@ define([
 
             if ($('.scroll-cover', $container).length === 0) {
 
-                $('<div class="scroll-cover" />').
-                    appendTo($container).append(
+                $('<div class="scroll-cover" />').appendTo($container).append(
                     this.$,
                     '<div class="clear" />'
                 );
@@ -1021,9 +1019,7 @@ define([
                 }
             );
 
-            return '<p class="text-center"><span class="badge" title="{0}">{0}</span>{1}</p>'.
-                replace(/\{0}/g, counter.length.toString()).
-                replace(/\{1}/g, this.i18n.t('panel.items'));
+            return '<p class="text-center"><span class="badge" title="{0}">{0}</span>{1}</p>'.replace(/\{0}/g, counter.length.toString()).replace(/\{1}/g, this.i18n.t('panel.items'));
         },
 
         /**
@@ -1047,6 +1043,7 @@ define([
 
         /**
          * Define sort asc/desc
+         * @memberOf BaseElement
          * @param $element
          * @returns {boolean}
          */
@@ -1057,8 +1054,9 @@ define([
         },
 
         /**
-         * Define sort text @elemets
-         * @param event
+         * Define sort text @elemet
+         * @memberOf BaseElement
+         * @param {Event} event
          */
         sortTextElements: function sortTextElements(event) {
 
@@ -1074,6 +1072,7 @@ define([
             var sorted = $element.defineSorted($(event.target));
 
             $(on, $container).sort(function (a, b) {
+
                 var t1, t2;
                 if (selector) {
                     t1 = $(selector, a).text();
@@ -1085,10 +1084,9 @@ define([
                 if (t1 < t2) return sorted ? -1 : 1;
                 if (t1 > t2) return sorted ? 1 : -1;
                 return 0;
+
             }).appendTo($container);
-        },
-        
-        
+        }
 
     }, AntHill.prototype, Renderer.prototype);
 });

@@ -553,6 +553,39 @@ define([
             },
 
             /**
+             * Open url in new window or in dialog
+             * @memberOf BaseController
+             * @param {string} url
+             * @param {boolean} isDialog
+             */
+            openUrlOnEvent: function openUrlOnEvent(url, isDialog) {
+
+                // Workaround to multiple clicks
+                this.openUrlEventHandler += 1;
+
+                if (this.openUrlEventHandler > 1) {
+
+                    this.openUrlEventHandler = 0;
+                    return false;
+                }
+
+                if (isDialog) {
+                    // TODO
+                    this.logger.debug('Open url in dialog', url);
+                    return false;
+                }
+
+                this.logger.debug('Open url in new window', url);
+
+                /**
+                 * Define opened window instance
+                 * @property AntHill
+                 * @type {Window}
+                 */
+                this.openedWindow = window.open(url);
+            },
+
+            /**
              * Update site description
              * @memberOf BaseController
              */

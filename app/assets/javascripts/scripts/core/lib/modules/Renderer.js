@@ -26,8 +26,9 @@ define([
     'modules/renderer/upload.on.drop',
     'modules/renderer/text.download',
     'modules/renderer/validation',
-    'modules/renderer/range'
-], function defineRenderer(AntHill, CheckBox, ComboBox, EventLink, Iframe, Embed, ObjectEmbed, Filter, Comments, Label, Tabs, FieldSet, Slider, TextEditor, TextArea, TextField, NumberField, ToolTip, UploadOnDrop, TextDownload, Validation, Range) {
+    'modules/renderer/range',
+    'modules/renderer/source'
+], function defineRenderer(AntHill, CheckBox, ComboBox, EventLink, Iframe, Embed, ObjectEmbed, Filter, Comments, Label, Tabs, FieldSet, Slider, TextEditor, TextArea, TextField, NumberField, ToolTip, UploadOnDrop, TextDownload, Validation, Range, Source) {
 
     /**
      * Define renderer
@@ -55,6 +56,7 @@ define([
      * @extends {TextDownloadRenderer} TextDownload
      * @extends {ValidationRenderer} Validation
      * @extends {RangeRenderer} Range
+     * @extends {SourceRenderer} Source
      * @constructor
      */
     var Renderer = function Renderer() {
@@ -161,6 +163,7 @@ define([
         UploadOnDrop.prototype,
         ToolTip.prototype,
         Validation.prototype,
-        Range.prototype
+        Range.prototype,
+        Source.prototype
     );
 });

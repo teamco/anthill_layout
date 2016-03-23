@@ -15,6 +15,7 @@ define(function defineFilterRenderer() {
      * Define FilterRenderer
      * @class FilterRenderer
      * @extends LabelRenderer
+     * @extends TextFieldRenderer
      * @constructor
      */
     var FilterRenderer = function FilterRenderer() {
@@ -54,6 +55,7 @@ define(function defineFilterRenderer() {
             var $search = this.renderTextField({
                 text: opts.text,
                 name: opts.name,
+                type: 'input-sm',
                 placeholder: opts.placeholder,
                 monitor: {
                     events: [filterEvent],

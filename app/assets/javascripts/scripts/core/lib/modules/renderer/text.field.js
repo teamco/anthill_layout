@@ -24,6 +24,7 @@ define(function defineTextFieldRenderer() {
          *      name: string,
          *      [placeholder]: string,
          *      value,
+         *      [type]: string,
          *      [style]: string,
          *      [disabled]: boolean,
          *      [monitor],
@@ -45,7 +46,7 @@ define(function defineTextFieldRenderer() {
              * Define $input
              * @type {jQuery}
              */
-            var $input = $('<input class="form-control" />').attr({
+            var $input = $('<input class="form-control" />').addClass(opts.type).attr({
                 name: opts.name,
                 type: 'text',
                 placeholder: opts.placeholder,
@@ -56,7 +57,7 @@ define(function defineTextFieldRenderer() {
             }).val(opts.value);
 
             var labelClass = [opts.style, opts.visible ? '' : 'hide'].join(' '),
-                $template = $('<div class="input-group input-group-sm" />').append(
+                $template = $('<div class="input-group" />').append(
                     this.renderLabel(uuid, opts.text, labelClass, opts.visible)
                 );
 

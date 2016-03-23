@@ -265,7 +265,7 @@ define([
              */
             var scope = this.view.scope,
                 duration = force ? 0 : 500;
-                dom = scope.dom;
+            dom = scope.dom;
 
             scope.controller.root().view.get$item().hideScroll(false);
 
@@ -480,8 +480,17 @@ define([
          */
         bindOnClickOpenUrl: function bindOnClickOpenUrl(url) {
 
+            /**
+             * Get scope
+             * @type {Widget}
+             */
+            var scope = this.view.scope;
+
             this.$.on('click.openUrl', function openUrl() {
-                window.open(url);
+                scope.observer.publish(
+                    scope.eventmanager.eventList.openUrlOnEvent,
+                    [url, false]
+                )
             });
         },
 

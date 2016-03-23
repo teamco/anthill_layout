@@ -2,12 +2,11 @@
  * Created by teamco on 7/10/14.
  */
 
-define([], function defineIframeRenderer() {
+define(function defineIframeRenderer() {
 
     /**
      * Define IframeRenderer
      * @class IframeRenderer
-     * @extends LabelRenderer
      * @extends AntHill
      * @constructor
      */

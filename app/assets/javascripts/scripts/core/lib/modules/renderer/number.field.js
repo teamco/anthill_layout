@@ -51,7 +51,7 @@ define(function defineNumberFieldRenderer() {
             }).val(opts.value);
 
             var labelClass = [opts.style, opts.visible ? '' : 'hide'].join(' '),
-                $template = $('<div class="input-group input-group-sm" />').append(
+                $template = $('<div class="input-group" />').append(
                     this.renderLabel(uuid, opts.text, labelClass, opts.visible)
                 );
 

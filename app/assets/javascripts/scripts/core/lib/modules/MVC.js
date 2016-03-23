@@ -90,7 +90,8 @@ define([
          *      successRenderHeader: string,
          *      successRenderFooter: string,
          *      bindModelObserver: string,
-         *      defineGenericGetter: string
+         *      defineGenericGetter: string,
+         *      openUrlOnEvent: string
          * }}
          */
         this.defaultListeners = {
@@ -105,7 +106,8 @@ define([
             successRenderHeader: 'success.render.header',
             successRenderFooter: 'success.render.footer',
             bindModelObserver: 'bind.model.observer',
-            defineGenericGetter: 'define.generic.getter'
+            defineGenericGetter: 'define.generic.getter',
+            openUrlOnEvent: 'open.url.on.event'
         };
 
         /**

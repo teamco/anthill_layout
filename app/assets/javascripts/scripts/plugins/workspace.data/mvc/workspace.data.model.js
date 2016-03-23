@@ -19,8 +19,8 @@ define([
 
         /**
          * Define preferences
-         * @memberOf WorkspaceDataModel
-         * @type {{url: string}}
+         * @property WorkspaceDataModel
+         * @type {{}}
          */
         this.preferences = {
         };

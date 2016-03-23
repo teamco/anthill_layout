@@ -66,7 +66,7 @@ define([
 
             /**
              * Define pageUrl
-             * @memberOf PageTabsItemElement
+             * @property PageTabsItemElement
              * @type {*}
              */
             this.pageUrl = preferences.pageUrl;
@@ -87,19 +87,22 @@ define([
          */
         bindClick: function bindClick() {
 
-            this.$.on(
+            this.$.off('click.pageTab').on(
                 'click.pageTab',
                 this.clickCallback.bind(this)
             );
         },
 
         /**
-         * Click callback
+         * Tab click callback
          * @memberOf PageTabsItemElement
-         * @param e
+         * @param {Event} e
          * @private
          */
         clickCallback: function clickCallback(e) {
+
+            e.preventDefault();
+            e.stopPropagation();
 
             /**
              * Get scope

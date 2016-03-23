@@ -2,7 +2,7 @@
     position: absolute;
     height: 100%;
     top: 0;
-    z-index: 100;
+    z-index: 1000;
     box-shadow: 0 0 5px #333;
     background-color: rgba(47, 64, 80, 0.8);
     border-color: #999;

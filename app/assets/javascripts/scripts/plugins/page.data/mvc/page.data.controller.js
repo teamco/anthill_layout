@@ -398,7 +398,7 @@ define([
                         [true, 'page-data']
                     );
                 }
-            }, false)
+            }, false);
         }
 
     }, AntHill.prototype, PluginBase.prototype);
