@@ -44,15 +44,16 @@ define([
          * Define update elements items
          * @memberOf BaseView
          * @param {BaseElement} [$item]
+         * @param {string} [customId]
          */
-        updateElementItems: function updateElementItems($item) {
+        updateElementItems: function updateElementItems($item, customId) {
 
             if (!$item) {
-                this.elements.items = {};
+                this.elements.items = this.elements.items || {};
                 return false;
             }
 
-            this.elements.items[$item.id] = $item
+            this.elements.items[customId ? customId : $item.id] = $item;
         },
 
         /**
@@ -96,7 +97,7 @@ define([
          * @memberOf BaseView
          * @returns {*}
          */
-        get$preferences: function get$preferences(){
+        get$preferences: function get$preferences() {
             return this.elements.$preferences;
         },
 
