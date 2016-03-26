@@ -30,11 +30,13 @@ define(function defineRaygunIO() {
          */
         init: function init() {
 
+            // Get scope
+            var scope = this;
+
             require([this.path], function _loadRaygun() {
 
-                Raygun.init(this.apiKey).attach();
-
-            }.bind(this));
+                Raygun.init(scope.apiKey).attach();
+            });
         }
     });
 });

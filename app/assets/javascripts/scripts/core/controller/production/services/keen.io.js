@@ -59,7 +59,7 @@ define(function defineKeenIO() {
                 var keen = new Keen({
                     projectId: keenIO.projectId, // String (required always)
                     writeKey: keenIO.writeKey,   // String (required for sending data)
-                    readKey: keenIO.readKey,      // String (required for querying data)
+                    readKey: keenIO.readKey,     // String (required for querying data)
                     protocol: 'auto',
                     requestType: 'xhr'
                 });

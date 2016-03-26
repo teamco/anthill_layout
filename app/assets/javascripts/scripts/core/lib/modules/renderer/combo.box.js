@@ -36,7 +36,7 @@ define([], function defineComboBoxRenderer() {
 
             /**
              * Define active content
-             * @type {*|Page|WidgetContent}
+             * @type {{name}|Page|WidgetContent}
              */
             var activeContent = this.view.scope.activeContent;
 
