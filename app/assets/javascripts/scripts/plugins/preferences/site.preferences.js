@@ -80,8 +80,10 @@ define([
              */
             thirdPartyPlugins: function thirdPartyPlugins() {
 
-                function _showPluginConfig(e) {
-
+                function _showPluginConfig(index) {
+                    $('.plugin-wrapper').html(
+                        plugins[index].renderer
+                    );
                 }
 
                 /**
@@ -89,12 +91,10 @@ define([
                  * @type {{googleAnalytics, snapEngage}}
                  */
                 var plugins = {
-                    googleAnalytics: {
-                        name: 'Google Analytics',
+                    'Google Analytics': {
                         renderer: this.googleAnalytics()
                     },
-                    snapEngage: {
-                        name: 'SnapEngage',
+                    'SnapEngage': {
                         renderer: this.snapEngage()
                     }
                 };
@@ -106,15 +106,16 @@ define([
                     if (plugins.hasOwnProperty(index)) {
                         pluginList.push({
                             type: 'text',
-                            value: plugins[index].name
+                            value: index
                         });
                     }
                 }
 
+                var text = 'Plugins';
                 var $combo = this.renderCombobox(
                     pluginList,
                     pluginList[0].value,
-                    'Plugins',
+                    text,
                     'pluginConfig', {
                         type: 'click.showPluginConfig',
                         callback: _showPluginConfig
@@ -122,9 +123,17 @@ define([
                     true
                 );
 
+                var $template = $([
+                    '<div class="input-group">',
+                    '<span class="input-group-addon">', text, '</span>',
+                    '</div>'
+                ].join(''));
+
                 return [
-                    $combo,
-                    plugins.googleAnalytics.renderer
+                    $template.append($combo),
+                    $('<div class="plugin-wrapper" />').append(
+                        plugins['Google Analytics'].renderer
+                    )
                 ];
             }
         },

@@ -19,12 +19,25 @@ define(function defineSiteConfigSnapEngagePreferences() {
          */
         snapEngage: function snapEngage() {
 
+            /**
+             * Get workspace
+             * @type {*|Workspace}
+             */
+            var workspace = this.view.controller.getWorkspace();
+
+            /**
+             * Get workspace prefs
+             * @type {{snapEngageCode}}
+             */
+            var preferences = workspace.model.getConfig('preferences');
+
             var $textarea = this.renderTextArea({
+                name: 'snapEngageCode',
                 text: 'SnapEngage Code',
                 placeholder: 'Paste SnapEngage Code here',
                 disabled: false,
                 visible: true,
-                value: ''
+                value: preferences.snapEngageCode || ''
             });
 
             return $('<div class="workspace-snap-engage-prefs" />').append($textarea);

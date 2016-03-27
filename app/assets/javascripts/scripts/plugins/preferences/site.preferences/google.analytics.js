@@ -35,7 +35,9 @@ define(function defineSiteConfigGoogleAnalyticsPreferences() {
                 }
             });
 
-            return $('<div class="workspace-google-analytics-prefs" />').append($textfield);
+            return $('<div class="workspace-google-analytics-prefs" />').append(
+                $textfield
+            );
         }
     });
 });
