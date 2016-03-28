@@ -139,9 +139,10 @@
 .panel-container.navbar-default .nav > li.activated > a {
     background-color: #293846;
     border-top: 1px solid #a7b1c2;
-    color: white
+    color: white;
 }
 
 .panel-container.navbar-default .nav > li.collapsed > a {
     padding: 5px 20px 5px 25px;
+    transition: all 0.5s ease;
 }

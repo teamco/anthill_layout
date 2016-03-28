@@ -1019,7 +1019,13 @@ define([
                 }
             );
 
-            return '<p class="text-center"><span class="badge" title="{0}">{0}</span>{1}</p>'.replace(/\{0}/g, counter.length.toString()).replace(/\{1}/g, this.i18n.t('panel.items'));
+            var $template = '<p class="text-center"><span class="badge" title="{0}">{0}</span>{1}</p>';
+
+            return $template.replace(
+                /\{0}/g, counter.length.toString()
+            ).replace(
+                /\{1}/g, this.i18n.t('panel.items')
+            );
         },
 
         /**

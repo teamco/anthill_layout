@@ -74,9 +74,9 @@ define(
                  */
                 renderContent: function renderContent(data) {
 
+                    this.cleanElementItems();
                     this.updateElementItems();
-
-                    this.get$item().empty();
+                    
                     this.renderCreatePage();
 
                     this.renderFilter(

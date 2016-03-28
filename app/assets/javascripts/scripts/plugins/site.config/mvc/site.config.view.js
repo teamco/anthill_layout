@@ -93,8 +93,8 @@ define(
                  */
                 renderContent: function renderContent(data) {
 
+                    this.cleanElementItems();
                     this.updateElementItems();
-                    this.get$item().empty();
 
                     var index, counter = 1;
 

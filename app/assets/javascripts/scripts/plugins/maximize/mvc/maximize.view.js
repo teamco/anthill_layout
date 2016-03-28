@@ -57,8 +57,8 @@ define([
              */
             renderContent: function renderContent(data) {
 
+                this.cleanElementItems();
                 this.updateElementItems();
-                this.get$item().empty();
 
                 this.renderFilter(
                     this.updateFooterContent.bind(this)

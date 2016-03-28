@@ -57,6 +57,18 @@ define([
         },
 
         /**
+         * Clean elements items
+         * @memberOf BaseView
+         */
+        cleanElementItems: function cleanElementItems() {
+
+            // clean content
+            this.get$item().empty();
+
+            delete this.elements.items;
+        },
+
+        /**
          * Get config HTML
          * @memberOf BaseView
          * @param {string} [key]

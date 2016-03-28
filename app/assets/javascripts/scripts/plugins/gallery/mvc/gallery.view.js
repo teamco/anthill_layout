@@ -102,9 +102,7 @@ define([
                 return false;
             }
 
-            // clean content
-            this.get$item().empty();
-
+            this.cleanElementItems();
             this.updateElementItems();
 
             /**
