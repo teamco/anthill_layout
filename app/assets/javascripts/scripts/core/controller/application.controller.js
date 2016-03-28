@@ -56,10 +56,7 @@ define(
                     if (this.model.loadWorkspaces() === -1) {
 
                         this.model.setConfig('loading', true);
-
-                        this.api.createWorkspace([], true).
-                            api.createPage([], true);
-
+                        this.api.createWorkspace([], true).api.createPage([], true);
                         this.model.setConfig('loading', false);
 
                         /**
@@ -67,6 +64,17 @@ define(
                          * @type {Page}
                          */
                         var page = this.controller.getPage();
+
+                        /**
+                         * Get current workspace
+                         * @type {Workspace}
+                         */
+                        var workspace = this.controller.getWorkspace();
+
+                        workspace.observer.publish(
+                            workspace.eventmanager.eventList.switchToPage,
+                            page
+                        );
 
                         page.view.get$item().showLoader();
                         page.observer.publish(
@@ -172,8 +180,7 @@ define(
                      * Define resize callback
                      * @type {Function}
                      */
-                    var callback = this.controller.resizeWindowPublisher.
-                        bind(this);
+                    var callback = this.controller.resizeWindowPublisher.bind(this);
 
                     $(window).on('resizestop', callback);
                 },
