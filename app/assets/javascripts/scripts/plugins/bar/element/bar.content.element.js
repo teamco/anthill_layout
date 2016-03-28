@@ -5,8 +5,8 @@
  * Time: 11:48 AM
  */
 define([
-    'modules/Element'
-], function defineBarContentElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineBarContentElement(PluginElement) {
 
     /**
      * Define Bar Content Element
@@ -15,7 +15,7 @@ define([
      * @returns {BarContentElement}
      * @constructor
      * @class BarContentElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends Renderer
      */
     var BarContentElement = function BarContentElement(view, opts) {
@@ -66,8 +66,9 @@ define([
              * Define panel instance
              * @type {Panel}
              */
-            var panel = this.view.scope.containment,
-                publish = panel.observer.publish.bind(panel.observer),
+            var panel = this.view.scope.containment;
+
+            var publish = panel.observer.publish.bind(panel.observer),
                 event = panel.eventmanager.eventList;
 
             this.$.on(
@@ -80,5 +81,5 @@ define([
             );
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 });

@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineGeolocationElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineGeolocationElement(PluginElement) {
 
     /**
      * Define Geolocation Element
@@ -16,7 +16,7 @@ define([
      * @returns {GeolocationElement}
      * @constructor
      * @class GeolocationElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var GeolocationElement = function GeolocationElement(view, opts) {
 
@@ -71,6 +71,6 @@ define([
             this.view.controller.clearParentThumbnail();
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

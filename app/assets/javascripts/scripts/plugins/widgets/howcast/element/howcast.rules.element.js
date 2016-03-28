@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineHowcastRulesElement(BaseElement, BaseWidgetRules) {
+], function defineHowcastRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define Howcast Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {HowcastRulesElement}
      * @constructor
      * @class HowcastRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var HowcastRulesElement = function HowcastRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return HowcastRulesElement.extend('HowcastRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

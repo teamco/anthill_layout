@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineTwentyFourVideoPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineTwentyFourVideoPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define TwentyFourVideo Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {TwentyFourVideoPreferencesElement}
      * @constructor
      * @class TwentyFourVideoPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var TwentyFourVideoPreferencesElement = function TwentyFourVideoPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return TwentyFourVideoPreferencesElement.extend('TwentyFourVideoPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

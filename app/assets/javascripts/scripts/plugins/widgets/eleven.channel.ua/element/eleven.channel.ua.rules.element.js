@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineElevenChannelUaRulesElement(BaseElement, BaseWidgetRules) {
+], function defineElevenChannelUaRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define ElevenChannelUa Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {ElevenChannelUaRulesElement}
      * @constructor
      * @class ElevenChannelUaRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var ElevenChannelUaRulesElement = function ElevenChannelUaRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return ElevenChannelUaRulesElement.extend('ElevenChannelUaRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

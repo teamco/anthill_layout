@@ -141,7 +141,7 @@ define([
 
                     /**
                      * Define $html
-                     * @type {BaseElement}
+                     * @type {PluginElement}
                      */
                     var $html = content.view.renderPreferences();
 

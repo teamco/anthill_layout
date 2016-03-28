@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineHromadskeTvElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineHromadskeTvElement(PluginElement) {
 
     /**
      * Define HromadskeTv Element
@@ -16,7 +16,7 @@ define([
      * @returns {HromadskeTvElement}
      * @constructor
      * @class HromadskeTvElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var HromadskeTvElement = function HromadskeTvElement(view, opts) {
 
@@ -46,6 +46,6 @@ define([
             );
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineEmbedlyElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineEmbedlyElement(PluginElement) {
 
     /**
      * Define Embedly Element
@@ -16,7 +16,7 @@ define([
      * @returns {EmbedlyElement}
      * @constructor
      * @class EmbedlyElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var EmbedlyElement = function EmbedlyElement(view, opts) {
 
@@ -72,5 +72,5 @@ define([
             }).done(_updateContent.bind(this));
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 });

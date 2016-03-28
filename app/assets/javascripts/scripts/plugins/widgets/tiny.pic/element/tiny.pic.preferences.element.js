@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineTinyPicPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineTinyPicPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define TinyPic Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {TinyPicPreferencesElement}
      * @constructor
      * @class TinyPicPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var TinyPicPreferencesElement = function TinyPicPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return TinyPicPreferencesElement.extend('TinyPicPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

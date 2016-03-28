@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineGiphyPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineGiphyPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define Giphy Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {GiphyPreferencesElement}
      * @constructor
      * @class GiphyPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var GiphyPreferencesElement = function GiphyPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return GiphyPreferencesElement.extend('GiphyPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

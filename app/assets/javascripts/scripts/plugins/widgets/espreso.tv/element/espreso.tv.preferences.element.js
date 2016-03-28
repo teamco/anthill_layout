@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineEspresoTvPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineEspresoTvPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define EspresoTv Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {EspresoTvPreferencesElement}
      * @constructor
      * @class EspresoTvPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var EspresoTvPreferencesElement = function EspresoTvPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return EspresoTvPreferencesElement.extend('EspresoTvPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

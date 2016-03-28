@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineAOneHipHopRulesElement(BaseElement, BaseWidgetRules) {
+], function defineAOneHipHopRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define AOneHipHop Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {AOneHipHopRulesElement}
      * @constructor
      * @class AOneHipHopRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var AOneHipHopRulesElement = function AOneHipHopRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return AOneHipHopRulesElement.extend('AOneHipHopRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

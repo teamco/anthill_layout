@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function definePostToolPreferencesElement(BaseElement, WidgetPreferences) {
+], function definePostToolPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define PostTool Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {PostToolPreferencesElement}
      * @constructor
      * @class PostToolPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var PostToolPreferencesElement = function PostToolPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return PostToolPreferencesElement.extend('PostToolPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

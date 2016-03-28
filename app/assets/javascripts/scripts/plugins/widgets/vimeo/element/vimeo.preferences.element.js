@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineVimeoPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineVimeoPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define Vimeo Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {VimeoPreferencesElement}
      * @constructor
      * @class VimeoPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var VimeoPreferencesElement = function VimeoPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return VimeoPreferencesElement.extend('VimeoPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

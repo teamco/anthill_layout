@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineTrubaPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineTrubaPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define Truba Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {TrubaPreferencesElement}
      * @constructor
      * @class TrubaPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var TrubaPreferencesElement = function TrubaPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return TrubaPreferencesElement.extend('TrubaPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

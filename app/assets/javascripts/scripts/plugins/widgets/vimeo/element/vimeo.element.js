@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineVimeoElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineVimeoElement(PluginElement) {
 
     /**
      * Define Vimeo Element
@@ -16,7 +16,7 @@ define([
      * @returns {VimeoElement}
      * @constructor
      * @class VimeoElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var VimeoElement = function VimeoElement(view, opts) {
 
@@ -41,6 +41,6 @@ define([
             this.$.append(iframe);
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

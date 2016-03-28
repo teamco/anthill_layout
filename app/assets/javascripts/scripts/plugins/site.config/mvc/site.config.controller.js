@@ -7,7 +7,7 @@
 
 define(
     [
-        'plugins/plugin',
+        'plugins/plugin.controller',
         'config/routes',
         'plugins/site.config/mvc/controller/site.config.import',
         'plugins/site.config/mvc/controller/site.config.export',

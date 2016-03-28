@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineSyntaxHighlighterPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineSyntaxHighlighterPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define SyntaxHighlighter Preferences Element
@@ -16,7 +16,7 @@ define([
      * @class SyntaxHighlighterPreferencesElement
      * @param {SyntaxHighlighterView} view
      * @param opts
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      * @returns {SyntaxHighlighterPreferencesElement}
      */
@@ -35,6 +35,6 @@ define([
     return SyntaxHighlighterPreferencesElement.extend('SyntaxHighlighterPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineTwitrPixPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineTwitrPixPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define TwitrPix Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {TwitrPixPreferencesElement}
      * @constructor
      * @class TwitrPixPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var TwitrPixPreferencesElement = function TwitrPixPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return TwitrPixPreferencesElement.extend('TwitrPixPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

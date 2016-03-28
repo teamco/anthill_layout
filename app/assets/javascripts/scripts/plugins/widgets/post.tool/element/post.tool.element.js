@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function definePostToolElement(BaseElement) {
+    'plugins/plugin.element'
+], function definePostToolElement(PluginElement) {
 
     /**
      * Define PostTool Element
@@ -16,7 +16,7 @@ define([
      * @returns {PostToolElement}
      * @constructor
      * @class PostToolElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var PostToolElement = function PostToolElement(view, opts) {
 
@@ -52,6 +52,6 @@ define([
             $element.$.append($postToolFrame);
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

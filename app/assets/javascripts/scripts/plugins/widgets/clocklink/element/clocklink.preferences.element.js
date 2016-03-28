@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineClocklinkPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineClocklinkPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define Clocklink Preferences Element
@@ -16,7 +16,7 @@ define([
      * @class ClocklinkPreferencesElement
      * @param {ClocklinkView} view
      * @param opts
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      * @returns {ClocklinkPreferencesElement}
      */
@@ -35,6 +35,6 @@ define([
     return ClocklinkPreferencesElement.extend('ClocklinkPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

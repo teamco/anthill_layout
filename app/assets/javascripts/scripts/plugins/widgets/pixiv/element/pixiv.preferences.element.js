@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function definePixivPreferencesElement(BaseElement, WidgetPreferences) {
+], function definePixivPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define Pixiv Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {PixivPreferencesElement}
      * @constructor
      * @class PixivPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var PixivPreferencesElement = function PixivPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return PixivPreferencesElement.extend('PixivPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

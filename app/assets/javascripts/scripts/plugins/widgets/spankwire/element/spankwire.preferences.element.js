@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineSpankwirePreferencesElement(BaseElement, WidgetPreferences) {
+], function defineSpankwirePreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define Spankwire Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {SpankwirePreferencesElement}
      * @constructor
      * @class SpankwirePreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var SpankwirePreferencesElement = function SpankwirePreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return SpankwirePreferencesElement.extend('SpankwirePreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

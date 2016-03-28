@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineHromadskeTvPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineHromadskeTvPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define HromadskeTv Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {HromadskeTvPreferencesElement}
      * @constructor
      * @class HromadskeTvPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var HromadskeTvPreferencesElement = function HromadskeTvPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return HromadskeTvPreferencesElement.extend('HromadskeTvPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

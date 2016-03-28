@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineGeolocationRulesElement(BaseElement, BaseWidgetRules) {
+], function defineGeolocationRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define Geolocation Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {GeolocationRulesElement}
      * @constructor
      * @class GeolocationRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var GeolocationRulesElement = function GeolocationRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return GeolocationRulesElement.extend('GeolocationRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

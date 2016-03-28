@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineLivestreamRulesElement(BaseElement, BaseWidgetRules) {
+], function defineLivestreamRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define Livestream Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {LivestreamRulesElement}
      * @constructor
      * @class LivestreamRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var LivestreamRulesElement = function LivestreamRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return LivestreamRulesElement.extend('LivestreamRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

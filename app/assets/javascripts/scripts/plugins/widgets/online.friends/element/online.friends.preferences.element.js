@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineOnlineFriendsPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineOnlineFriendsPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define OnlineFriends Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {OnlineFriendsPreferencesElement}
      * @constructor
      * @class OnlineFriendsPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var OnlineFriendsPreferencesElement = function OnlineFriendsPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return OnlineFriendsPreferencesElement.extend('OnlineFriendsPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

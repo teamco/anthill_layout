@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineFotoKritikPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineFotoKritikPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define FotoKritik Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {FotoKritikPreferencesElement}
      * @constructor
      * @class FotoKritikPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var FotoKritikPreferencesElement = function FotoKritikPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return FotoKritikPreferencesElement.extend('FotoKritikPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

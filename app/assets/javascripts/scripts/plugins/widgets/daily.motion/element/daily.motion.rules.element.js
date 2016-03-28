@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineDailyMotionRulesElement(BaseElement, BaseWidgetRules) {
+], function defineDailyMotionRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define DailyMotion Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {DailyMotionRulesElement}
      * @constructor
      * @class DailyMotionRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var DailyMotionRulesElement = function DailyMotionRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return DailyMotionRulesElement.extend('DailyMotionRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

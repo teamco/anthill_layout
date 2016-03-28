@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineVideoPayNetRulesElement(BaseElement, BaseWidgetRules) {
+], function defineVideoPayNetRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define VideoPayNet Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {VideoPayNetRulesElement}
      * @constructor
      * @class VideoPayNetRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var VideoPayNetRulesElement = function VideoPayNetRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return VideoPayNetRulesElement.extend('VideoPayNetRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

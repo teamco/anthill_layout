@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineVideoPayNetElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineVideoPayNetElement(PluginElement) {
 
     /**
      * Define VideoPayNet Element
@@ -16,7 +16,7 @@ define([
      * @returns {VideoPayNetElement}
      * @constructor
      * @class VideoPayNetElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var VideoPayNetElement = function VideoPayNetElement(view, opts) {
 
@@ -44,6 +44,6 @@ define([
             );
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

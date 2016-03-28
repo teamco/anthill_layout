@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineLoginFacebookRulesElement(BaseElement, BaseWidgetRules) {
+], function defineLoginFacebookRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define LoginFacebook Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {LoginFacebookRulesElement}
      * @constructor
      * @class LoginFacebookRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var LoginFacebookRulesElement = function LoginFacebookRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return LoginFacebookRulesElement.extend('LoginFacebookRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

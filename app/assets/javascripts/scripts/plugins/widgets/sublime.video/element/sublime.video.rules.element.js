@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineSublimeVideoRulesElement(BaseElement, BaseWidgetRules) {
+], function defineSublimeVideoRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define SublimeVideo Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {SublimeVideoRulesElement}
      * @constructor
      * @class SublimeVideoRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var SublimeVideoRulesElement = function SublimeVideoRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return SublimeVideoRulesElement.extend('SublimeVideoRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

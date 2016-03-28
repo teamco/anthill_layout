@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineXkcdPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineXkcdPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define Xkcd Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {XkcdPreferencesElement}
      * @constructor
      * @class XkcdPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var XkcdPreferencesElement = function XkcdPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return XkcdPreferencesElement.extend('XkcdPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

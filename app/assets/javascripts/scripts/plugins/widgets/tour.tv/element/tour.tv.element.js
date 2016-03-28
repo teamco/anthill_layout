@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineTourTvElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineTourTvElement(PluginElement) {
 
     /**
      * Define TourTv Element
@@ -16,7 +16,7 @@ define([
      * @returns {TourTvElement}
      * @constructor
      * @class TourTvElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var TourTvElement = function TourTvElement(view, opts) {
 
@@ -45,6 +45,6 @@ define([
             );
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

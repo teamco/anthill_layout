@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function definePastebinRulesElement(BaseElement, BaseWidgetRules) {
+], function definePastebinRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define Pastebin Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {PastebinRulesElement}
      * @constructor
      * @class PastebinRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var PastebinRulesElement = function PastebinRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return PastebinRulesElement.extend('PastebinRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

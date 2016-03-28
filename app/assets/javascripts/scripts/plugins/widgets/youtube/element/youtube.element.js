@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineYoutubeElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineYoutubeElement(PluginElement) {
 
     /**
      * Define Youtube Element
@@ -16,7 +16,7 @@ define([
      * @returns {YoutubeElement}
      * @constructor
      * @class YoutubeElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var YoutubeElement = function YoutubeElement(view, opts) {
 
@@ -46,6 +46,6 @@ define([
             );
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

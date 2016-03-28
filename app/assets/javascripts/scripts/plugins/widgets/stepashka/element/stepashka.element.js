@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineStepashkaElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineStepashkaElement(PluginElement) {
 
     /**
      * Define Stepashka Element
@@ -16,7 +16,7 @@ define([
      * @returns {StepashkaElement}
      * @constructor
      * @class StepashkaElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var StepashkaElement = function StepashkaElement(view, opts) {
 
@@ -43,6 +43,6 @@ define([
             );
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

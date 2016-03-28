@@ -7,7 +7,7 @@
 
 define(
     [
-        'plugins/plugin',
+        'plugins/plugin.controller',
         'plugins/preferences/preferences.controller'
     ],
 
@@ -211,7 +211,7 @@ define(
 
                     /**
                      * Define $item
-                     * @type {BaseElement}
+                     * @type {PluginElement}
                      */
                     var $item = this.scope.activeContent.view.get$item();
 

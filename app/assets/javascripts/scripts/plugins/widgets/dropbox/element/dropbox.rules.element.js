@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineDropboxRulesElement(BaseElement, BaseWidgetRules) {
+], function defineDropboxRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define Dropbox Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {DropboxRulesElement}
      * @constructor
      * @class DropboxRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var DropboxRulesElement = function DropboxRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return DropboxRulesElement.extend('DropboxRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineScreenrRulesElement(BaseElement, BaseWidgetRules) {
+], function defineScreenrRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define Screenr Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {ScreenrRulesElement}
      * @constructor
      * @class ScreenrRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var ScreenrRulesElement = function ScreenrRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return ScreenrRulesElement.extend('ScreenrRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

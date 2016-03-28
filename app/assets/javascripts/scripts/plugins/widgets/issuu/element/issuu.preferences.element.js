@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineIssuuPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineIssuuPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define Issuu Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {IssuuPreferencesElement}
      * @constructor
      * @class IssuuPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var IssuuPreferencesElement = function IssuuPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return IssuuPreferencesElement.extend('IssuuPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

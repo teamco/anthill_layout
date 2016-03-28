@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineSpankwireRulesElement(BaseElement, BaseWidgetRules) {
+], function defineSpankwireRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define Spankwire Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {SpankwireRulesElement}
      * @constructor
      * @class SpankwireRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var SpankwireRulesElement = function SpankwireRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return SpankwireRulesElement.extend('SpankwireRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

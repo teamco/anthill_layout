@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function definePikTvRulesElement(BaseElement, BaseWidgetRules) {
+], function definePikTvRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define PikTv Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {PikTvRulesElement}
      * @constructor
      * @class PikTvRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var PikTvRulesElement = function PikTvRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return PikTvRulesElement.extend('PikTvRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineHromadskeTvRulesElement(BaseElement, BaseWidgetRules) {
+], function defineHromadskeTvRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define HromadskeTv Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {HromadskeTvRulesElement}
      * @constructor
      * @class HromadskeTvRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var HromadskeTvRulesElement = function HromadskeTvRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return HromadskeTvRulesElement.extend('HromadskeTvRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

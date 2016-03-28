@@ -6,14 +6,14 @@
  */
 
 define([
-    'modules/Element'
-], function defineExternalElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineExternalElement(PluginElement) {
 
     /**
      * Define External Element
      * @constructor
      * @class ExternalElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @param {ExternalView} view
      * @param opts
      * @returns {ExternalElement}
@@ -40,5 +40,5 @@ define([
 
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 });

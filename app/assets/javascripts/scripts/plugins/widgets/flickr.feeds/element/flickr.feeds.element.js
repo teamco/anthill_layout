@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineFlickrFeedsElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineFlickrFeedsElement(PluginElement) {
 
     /**
      * Define FlickrFeeds Element
@@ -16,7 +16,7 @@ define([
      * @returns {FlickrFeedsElement}
      * @constructor
      * @class FlickrFeedsElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var FlickrFeedsElement = function FlickrFeedsElement(view, opts) {
 
@@ -92,5 +92,5 @@ define([
             );
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 });

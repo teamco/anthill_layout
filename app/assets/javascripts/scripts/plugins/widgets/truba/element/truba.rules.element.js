@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineTrubaRulesElement(BaseElement, BaseWidgetRules) {
+], function defineTrubaRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define Truba Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {TrubaRulesElement}
      * @constructor
      * @class TrubaRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var TrubaRulesElement = function TrubaRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return TrubaRulesElement.extend('TrubaRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

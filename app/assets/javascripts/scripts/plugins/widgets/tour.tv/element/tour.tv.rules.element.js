@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineTourTvRulesElement(BaseElement, BaseWidgetRules) {
+], function defineTourTvRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define TourTv Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {TourTvRulesElement}
      * @constructor
      * @class TourTvRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var TourTvRulesElement = function TourTvRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return TourTvRulesElement.extend('TourTvRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

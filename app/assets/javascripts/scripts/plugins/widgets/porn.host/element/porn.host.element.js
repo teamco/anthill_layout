@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function definePornHostElement(BaseElement) {
+    'plugins/plugin.element'
+], function definePornHostElement(PluginElement) {
 
     /**
      * Define PornHost Element
@@ -16,7 +16,7 @@ define([
      * @returns {PornHostElement}
      * @constructor
      * @class PornHostElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var PornHostElement = function PornHostElement(view, opts) {
 
@@ -43,6 +43,6 @@ define([
             );
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

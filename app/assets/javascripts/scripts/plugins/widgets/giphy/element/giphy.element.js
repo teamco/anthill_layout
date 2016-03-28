@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineGiphyElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineGiphyElement(PluginElement) {
 
     /**
      * Define Giphy Element
@@ -16,7 +16,7 @@ define([
      * @returns {GiphyElement}
      * @constructor
      * @class GiphyElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var GiphyElement = function GiphyElement(view, opts) {
 
@@ -61,7 +61,7 @@ define([
             }
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });
 

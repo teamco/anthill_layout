@@ -7,7 +7,7 @@
 
 define([
     'config/anthill',
-    'plugins/plugin'
+    'plugins/plugin.controller'
 ], function definePageDataController(AntHill, PluginBase) {
 
     /**

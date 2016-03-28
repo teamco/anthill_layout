@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineAnimotoRulesElement(BaseElement, BaseWidgetRules) {
+], function defineAnimotoRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define Animoto Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {AnimotoRulesElement}
      * @constructor
      * @class AnimotoRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var AnimotoRulesElement = function AnimotoRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return AnimotoRulesElement.extend('AnimotoRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

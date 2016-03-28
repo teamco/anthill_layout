@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineUbrPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineUbrPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define Ubr Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {UbrPreferencesElement}
      * @constructor
      * @class UbrPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var UbrPreferencesElement = function UbrPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return UbrPreferencesElement.extend('UbrPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

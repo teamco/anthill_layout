@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineEmpflixElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineEmpflixElement(PluginElement) {
 
     /**
      * Define Empflix Element
@@ -16,7 +16,7 @@ define([
      * @returns {EmpflixElement}
      * @constructor
      * @class EmpflixElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var EmpflixElement = function EmpflixElement(view, opts) {
 
@@ -43,6 +43,6 @@ define([
             );
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

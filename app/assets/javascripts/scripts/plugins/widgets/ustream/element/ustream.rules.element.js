@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineUstreamRulesElement(BaseElement, BaseWidgetRules) {
+], function defineUstreamRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define Ustream Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {UstreamRulesElement}
      * @constructor
      * @class UstreamRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var UstreamRulesElement = function UstreamRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return UstreamRulesElement.extend('UstreamRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

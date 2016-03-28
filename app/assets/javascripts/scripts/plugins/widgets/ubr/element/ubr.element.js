@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineUbrElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineUbrElement(PluginElement) {
 
     /**
      * Define Ubr Element
@@ -16,7 +16,7 @@ define([
      * @returns {UbrElement}
      * @constructor
      * @class UbrElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var UbrElement = function UbrElement(view, opts) {
 
@@ -43,6 +43,6 @@ define([
             );
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

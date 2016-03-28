@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineYapFilesRulesElement(BaseElement, BaseWidgetRules) {
+], function defineYapFilesRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define YapFiles Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {YapFilesRulesElement}
      * @constructor
      * @class YapFilesRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var YapFilesRulesElement = function YapFilesRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return YapFilesRulesElement.extend('YapFilesRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

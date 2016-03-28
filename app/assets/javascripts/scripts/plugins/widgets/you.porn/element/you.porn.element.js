@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineYouPornElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineYouPornElement(PluginElement) {
 
     /**
      * Define YouPorn Element
@@ -16,7 +16,7 @@ define([
      * @returns {YouPornElement}
      * @constructor
      * @class YouPornElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var YouPornElement = function YouPornElement(view, opts) {
 
@@ -43,6 +43,6 @@ define([
             );
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineScreencastRulesElement(BaseElement, BaseWidgetRules) {
+], function defineScreencastRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define Screencast Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {ScreencastRulesElement}
      * @constructor
      * @class ScreencastRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var ScreencastRulesElement = function ScreencastRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return ScreencastRulesElement.extend('ScreencastRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

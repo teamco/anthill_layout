@@ -7,8 +7,8 @@
 
 define([
     'jquery',
-    'modules/Element'
-], function defineEventsElement($, BaseElement) {
+    'plugins/plugin.element'
+], function defineEventsElement($, PluginElement) {
 
     /**
      * Define Events Element
@@ -17,7 +17,7 @@ define([
      * @returns {EventsElement}
      * @constructor
      * @class EventsElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends Renderer
      */
     var EventsElement = function EventsElement(view, opts) {
@@ -180,6 +180,6 @@ define([
             );
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

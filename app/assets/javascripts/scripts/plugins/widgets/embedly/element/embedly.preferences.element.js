@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineEmbedlyPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineEmbedlyPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define Embedly Preferences Element
@@ -16,7 +16,7 @@ define([
      * @class EmbedlyPreferencesElement
      * @param {EmbedlyView} view
      * @param opts
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      * @returns {EmbedlyPreferencesElement}
      */
@@ -35,6 +35,6 @@ define([
     return EmbedlyPreferencesElement.extend('EmbedlyPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

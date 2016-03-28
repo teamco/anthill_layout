@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineGiphyRulesElement(BaseElement, BaseWidgetRules) {
+], function defineGiphyRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define Giphy Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {GiphyRulesElement}
      * @constructor
      * @class GiphyRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var GiphyRulesElement = function GiphyRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return GiphyRulesElement.extend('GiphyRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineMultipleIconsRulesElement(BaseElement, BaseWidgetRules) {
+], function defineMultipleIconsRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define MultipleIcons Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {MultipleIconsRulesElement}
      * @constructor
      * @class MultipleIconsRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var MultipleIconsRulesElement = function MultipleIconsRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return MultipleIconsRulesElement.extend('MultipleIconsRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

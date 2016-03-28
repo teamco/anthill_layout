@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineXkcdElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineXkcdElement(PluginElement) {
 
     /**
      * Define Xkcd Element
@@ -16,7 +16,7 @@ define([
      * @returns {XkcdElement}
      * @constructor
      * @class XkcdElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var XkcdElement = function XkcdElement(view, opts) {
 
@@ -45,6 +45,6 @@ define([
             );
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

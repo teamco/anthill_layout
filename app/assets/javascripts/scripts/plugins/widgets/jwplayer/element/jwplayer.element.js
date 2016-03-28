@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineJwplayerElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineJwplayerElement(PluginElement) {
 
     /**
      * Define Jwplayer Element
@@ -16,7 +16,7 @@ define([
      * @returns {JwplayerElement}
      * @constructor
      * @class JwplayerElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var JwplayerElement = function JwplayerElement(view, opts) {
 
@@ -85,6 +85,6 @@ define([
             })
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineFilmOnPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineFilmOnPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define FilmOn Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {FilmOnPreferencesElement}
      * @constructor
      * @class FilmOnPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var FilmOnPreferencesElement = function FilmOnPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return FilmOnPreferencesElement.extend('FilmOnPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

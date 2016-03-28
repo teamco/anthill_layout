@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineSimpleWeatherElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineSimpleWeatherElement(PluginElement) {
 
     /**
      * Define SimpleWeather Element
@@ -16,7 +16,7 @@ define([
      * @returns {SimpleWeatherElement}
      * @constructor
      * @class SimpleWeatherElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var SimpleWeatherElement = function SimpleWeatherElement(view, opts) {
 
@@ -99,5 +99,5 @@ define([
                 }
             });
         }
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 });

@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineRdioRulesElement(BaseElement, BaseWidgetRules) {
+], function defineRdioRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define Rdio Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {RdioRulesElement}
      * @constructor
      * @class RdioRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var RdioRulesElement = function RdioRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return RdioRulesElement.extend('RdioRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

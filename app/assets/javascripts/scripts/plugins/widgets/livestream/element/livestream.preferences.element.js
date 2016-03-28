@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineLivestreamPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineLivestreamPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define Livestream Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {LivestreamPreferencesElement}
      * @constructor
      * @class LivestreamPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var LivestreamPreferencesElement = function LivestreamPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return LivestreamPreferencesElement.extend('LivestreamPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

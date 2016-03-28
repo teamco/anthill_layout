@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function definePinterestElement(BaseElement) {
+    'plugins/plugin.element'
+], function definePinterestElement(PluginElement) {
 
     /**
      * Define Pinterest Element
@@ -16,7 +16,7 @@ define([
      * @returns {PinterestElement}
      * @constructor
      * @class PinterestElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var PinterestElement = function PinterestElement(view, opts) {
 
@@ -79,6 +79,6 @@ define([
             }.bind(this));
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

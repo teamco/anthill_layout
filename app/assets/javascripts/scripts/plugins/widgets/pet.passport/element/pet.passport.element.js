@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function definePetPassportElement(BaseElement) {
+    'plugins/plugin.element'
+], function definePetPassportElement(PluginElement) {
 
     /**
      * Define PetPassport Element
@@ -16,7 +16,7 @@ define([
      * @returns {PetPassportElement}
      * @constructor
      * @class PetPassportElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var PetPassportElement = function PetPassportElement(view, opts) {
 
@@ -59,6 +59,6 @@ define([
 
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

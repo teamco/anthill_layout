@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineSoundCloudElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineSoundCloudElement(PluginElement) {
 
     /**
      * Define SoundCloud Element
@@ -16,7 +16,7 @@ define([
      * @returns {SoundCloudElement}
      * @constructor
      * @class SoundCloudElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var SoundCloudElement = function SoundCloudElement(view, opts) {
 
@@ -43,6 +43,6 @@ define([
             );
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

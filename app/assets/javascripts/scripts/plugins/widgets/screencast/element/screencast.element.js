@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineScreencastElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineScreencastElement(PluginElement) {
 
     /**
      * Define Screencast Element
@@ -16,7 +16,7 @@ define([
      * @returns {ScreencastElement}
      * @constructor
      * @class ScreencastElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var ScreencastElement = function ScreencastElement(view, opts) {
 
@@ -46,6 +46,6 @@ define([
             );
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

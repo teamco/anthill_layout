@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineXVideosRulesElement(BaseElement, BaseWidgetRules) {
+], function defineXVideosRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define XVideos Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {XVideosRulesElement}
      * @constructor
      * @class XVideosRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var XVideosRulesElement = function XVideosRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return XVideosRulesElement.extend('XVideosRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

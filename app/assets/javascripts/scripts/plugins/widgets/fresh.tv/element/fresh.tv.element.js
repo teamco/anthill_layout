@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineFreshTvElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineFreshTvElement(PluginElement) {
 
     /**
      * Define FreshTv Element
@@ -16,7 +16,7 @@ define([
      * @returns {FreshTvElement}
      * @constructor
      * @class FreshTvElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var FreshTvElement = function FreshTvElement(view, opts) {
 
@@ -45,6 +45,6 @@ define([
             );
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

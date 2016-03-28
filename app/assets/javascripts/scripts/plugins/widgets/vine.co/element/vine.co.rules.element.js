@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineVineCoRulesElement(BaseElement, BaseWidgetRules) {
+], function defineVineCoRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define VineCo Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {VineCoRulesElement}
      * @constructor
      * @class VineCoRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var VineCoRulesElement = function VineCoRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return VineCoRulesElement.extend('VineCoRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

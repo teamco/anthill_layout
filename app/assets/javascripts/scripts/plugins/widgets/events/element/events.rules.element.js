@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineEventsRulesElement(BaseElement, BaseWidgetRules) {
+], function defineEventsRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define Events Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {EventsRulesElement}
      * @constructor
      * @class EventsRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var EventsRulesElement = function EventsRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return EventsRulesElement.extend('EventsRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

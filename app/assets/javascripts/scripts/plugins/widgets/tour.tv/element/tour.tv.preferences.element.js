@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineTourTvPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineTourTvPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define TourTv Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {TourTvPreferencesElement}
      * @constructor
      * @class TourTvPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var TourTvPreferencesElement = function TourTvPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return TourTvPreferencesElement.extend('TourTvPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineVineCoPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineVineCoPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define VineCo Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {VineCoPreferencesElement}
      * @constructor
      * @class VineCoPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var VineCoPreferencesElement = function VineCoPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return VineCoPreferencesElement.extend('VineCoPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

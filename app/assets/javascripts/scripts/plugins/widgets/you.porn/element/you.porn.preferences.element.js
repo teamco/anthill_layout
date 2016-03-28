@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineYouPornPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineYouPornPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define YouPorn Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {YouPornPreferencesElement}
      * @constructor
      * @class YouPornPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var YouPornPreferencesElement = function YouPornPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return YouPornPreferencesElement.extend('YouPornPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

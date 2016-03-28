@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineDropboxPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineDropboxPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define Dropbox Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {DropboxPreferencesElement}
      * @constructor
      * @class DropboxPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var DropboxPreferencesElement = function DropboxPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return DropboxPreferencesElement.extend('DropboxPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

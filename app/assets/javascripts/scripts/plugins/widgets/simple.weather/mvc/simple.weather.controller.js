@@ -7,7 +7,7 @@
 
 define([
     'modules/Geolocation',
-    'plugins/plugin',
+    'plugins/plugin.controller',
     'plugins/widgets/widget.content.controller'
 ], function defineSimpleWeatherController(BaseGeolocation, PluginBase, WidgetContentController) {
 

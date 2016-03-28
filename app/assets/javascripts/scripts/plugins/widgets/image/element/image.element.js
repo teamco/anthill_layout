@@ -6,14 +6,14 @@
  */
 
 define([
-    'modules/Element'
-], function defineImageElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineImageElement(PluginElement) {
 
     /**
      * Define Image Element
      * @constructor
      * @class ImageElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @param {ImageView} view
      * @param opts
      * @returns {ImageElement}
@@ -441,5 +441,5 @@ define([
             }
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 });

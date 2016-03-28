@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineChannelTenIlRulesElement(BaseElement, BaseWidgetRules) {
+], function defineChannelTenIlRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define ChannelTenIl Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {ChannelTenIlRulesElement}
      * @constructor
      * @class ChannelTenIlRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var ChannelTenIlRulesElement = function ChannelTenIlRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return ChannelTenIlRulesElement.extend('ChannelTenIlRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

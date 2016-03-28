@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineTnaFlixPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineTnaFlixPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define TnaFlix Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {TnaFlixPreferencesElement}
      * @constructor
      * @class TnaFlixPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var TnaFlixPreferencesElement = function TnaFlixPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return TnaFlixPreferencesElement.extend('TnaFlixPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

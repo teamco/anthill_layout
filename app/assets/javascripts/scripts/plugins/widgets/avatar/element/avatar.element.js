@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/widgets/avatar/lib/avatar.behavior'
-], function defineAvatarElement(BaseElement, AvatarBehavior) {
+], function defineAvatarElement(PluginElement, AvatarBehavior) {
 
     /**
      * Define Avatar Element
@@ -17,7 +17,7 @@ define([
      * @returns {AvatarElement}
      * @constructor
      * @class AvatarElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var AvatarElement = function AvatarElement(view, opts) {
 
@@ -130,7 +130,7 @@ define([
                 this.bindConfig();
             }
         },
-        BaseElement.prototype,
+        PluginElement.prototype,
         AvatarBehavior.prototype
     );
 });

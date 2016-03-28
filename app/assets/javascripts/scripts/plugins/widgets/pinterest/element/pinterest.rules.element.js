@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function definePinterestRulesElement(BaseElement, BaseWidgetRules) {
+], function definePinterestRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define Pinterest Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {PinterestRulesElement}
      * @constructor
      * @class PinterestRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var PinterestRulesElement = function PinterestRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return PinterestRulesElement.extend('PinterestRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

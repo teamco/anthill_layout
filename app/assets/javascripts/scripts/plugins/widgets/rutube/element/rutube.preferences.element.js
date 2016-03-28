@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineRutubePreferencesElement(BaseElement, WidgetPreferences) {
+], function defineRutubePreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define Rutube Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {RutubePreferencesElement}
      * @constructor
      * @class RutubePreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var RutubePreferencesElement = function RutubePreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return RutubePreferencesElement.extend('RutubePreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

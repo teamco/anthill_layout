@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineEmptyPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineEmptyPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define Empty Preferences Element
@@ -16,7 +16,7 @@ define([
      * @class EmptyPreferencesElement
      * @param {EmptyView} view
      * @param opts
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      * @returns {EmptyPreferencesElement}
      */
@@ -35,6 +35,6 @@ define([
     return EmptyPreferencesElement.extend('EmptyPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

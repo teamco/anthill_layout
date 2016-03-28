@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineEventsPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineEventsPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define Events Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {EventsPreferencesElement}
      * @constructor
      * @class EventsPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var EventsPreferencesElement = function EventsPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return EventsPreferencesElement.extend('EventsPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

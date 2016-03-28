@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineTviRulesElement(BaseElement, BaseWidgetRules) {
+], function defineTviRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define Tvi Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {TviRulesElement}
      * @constructor
      * @class TviRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var TviRulesElement = function TviRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return TviRulesElement.extend('TviRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineTelekanalUaPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineTelekanalUaPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define TelekanalUa Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {TelekanalUaPreferencesElement}
      * @constructor
      * @class TelekanalUaPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var TelekanalUaPreferencesElement = function TelekanalUaPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return TelekanalUaPreferencesElement.extend('TelekanalUaPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

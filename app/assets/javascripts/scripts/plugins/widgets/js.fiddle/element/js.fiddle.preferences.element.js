@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineJsFiddlePreferencesElement(BaseElement, WidgetPreferences) {
+], function defineJsFiddlePreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define JsFiddle Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {JsFiddlePreferencesElement}
      * @constructor
      * @class JsFiddlePreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var JsFiddlePreferencesElement = function JsFiddlePreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return JsFiddlePreferencesElement.extend('JsFiddlePreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

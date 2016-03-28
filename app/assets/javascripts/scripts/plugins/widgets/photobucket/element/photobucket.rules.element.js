@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function definePhotobucketRulesElement(BaseElement, BaseWidgetRules) {
+], function definePhotobucketRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define Photobucket Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {PhotobucketRulesElement}
      * @constructor
      * @class PhotobucketRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var PhotobucketRulesElement = function PhotobucketRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return PhotobucketRulesElement.extend('PhotobucketRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

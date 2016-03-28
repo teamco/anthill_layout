@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineBarElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineBarElement(PluginElement) {
 
     /**
      * Define Bar Element
@@ -16,7 +16,7 @@ define([
      * @returns {BarElement}
      * @constructor
      * @class BarElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var BarElement = function BarElement(view, opts) {
 
@@ -50,5 +50,5 @@ define([
             return this.$.find('.nav');
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 });

@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function definePetRadarElement(BaseElement) {
+    'plugins/plugin.element'
+], function definePetRadarElement(PluginElement) {
 
     /**
      * Define PetRadar Element
@@ -16,7 +16,7 @@ define([
      * @returns {PetRadarElement}
      * @constructor
      * @class PetRadarElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var PetRadarElement = function PetRadarElement(view, opts) {
 
@@ -64,5 +64,5 @@ define([
 
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 });

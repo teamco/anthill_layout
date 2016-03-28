@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineGooglePlusRulesElement(BaseElement, BaseWidgetRules) {
+], function defineGooglePlusRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define GooglePlus Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {GooglePlusRulesElement}
      * @constructor
      * @class GooglePlusRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var GooglePlusRulesElement = function GooglePlusRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return GooglePlusRulesElement.extend('GooglePlusRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

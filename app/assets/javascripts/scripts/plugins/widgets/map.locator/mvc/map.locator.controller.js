@@ -9,7 +9,7 @@ define(
     [
         'lib/jquery/jquery.knob',
         'modules/Geolocation',
-        'plugins/plugin',
+        'plugins/plugin.controller',
         'plugins/widgets/widget.content.controller'
     ],
 

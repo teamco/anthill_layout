@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function definePikTvElement(BaseElement) {
+    'plugins/plugin.element'
+], function definePikTvElement(PluginElement) {
 
     /**
      * Define PikTv Element
@@ -16,7 +16,7 @@ define([
      * @returns {PikTvElement}
      * @constructor
      * @class PikTvElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends Renderer
      */
     var PikTvElement = function PikTvElement(view, opts) {
@@ -44,6 +44,6 @@ define([
             );
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

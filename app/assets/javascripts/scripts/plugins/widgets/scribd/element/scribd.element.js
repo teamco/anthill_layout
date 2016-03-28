@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineScribdElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineScribdElement(PluginElement) {
 
     /**
      * Define Scribd Element
@@ -16,7 +16,7 @@ define([
      * @returns {ScribdElement}
      * @constructor
      * @class ScribdElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var ScribdElement = function ScribdElement(view, opts) {
 
@@ -53,6 +53,6 @@ define([
             );
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

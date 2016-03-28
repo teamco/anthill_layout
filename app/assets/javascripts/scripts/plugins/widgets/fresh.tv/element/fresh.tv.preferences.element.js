@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineFreshTvPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineFreshTvPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define FreshTv Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {FreshTvPreferencesElement}
      * @constructor
      * @class FreshTvPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var FreshTvPreferencesElement = function FreshTvPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return FreshTvPreferencesElement.extend('FreshTvPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

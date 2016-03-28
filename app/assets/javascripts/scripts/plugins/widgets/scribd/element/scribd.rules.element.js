@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineScribdRulesElement(BaseElement, BaseWidgetRules) {
+], function defineScribdRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define Scribd Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {ScribdRulesElement}
      * @constructor
      * @class ScribdRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var ScribdRulesElement = function ScribdRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return ScribdRulesElement.extend('ScribdRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

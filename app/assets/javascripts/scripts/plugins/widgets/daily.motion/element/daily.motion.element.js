@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineDailyMotionElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineDailyMotionElement(PluginElement) {
 
     /**
      * Define DailyMotion Element
@@ -16,7 +16,7 @@ define([
      * @returns {DailyMotionElement}
      * @constructor
      * @class DailyMotionElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var DailyMotionElement = function DailyMotionElement(view, opts) {
 
@@ -43,6 +43,6 @@ define([
             );
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

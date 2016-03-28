@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineHowcastElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineHowcastElement(PluginElement) {
 
     /**
      * Define Howcast Element
@@ -16,7 +16,7 @@ define([
      * @returns {HowcastElement}
      * @constructor
      * @class HowcastElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var HowcastElement = function HowcastElement(view, opts) {
 
@@ -43,6 +43,6 @@ define([
             );
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

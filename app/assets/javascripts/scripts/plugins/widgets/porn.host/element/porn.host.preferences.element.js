@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function definePornHostPreferencesElement(BaseElement, WidgetPreferences) {
+], function definePornHostPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define PornHost Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {PornHostPreferencesElement}
      * @constructor
      * @class PornHostPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var PornHostPreferencesElement = function PornHostPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return PornHostPreferencesElement.extend('PornHostPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

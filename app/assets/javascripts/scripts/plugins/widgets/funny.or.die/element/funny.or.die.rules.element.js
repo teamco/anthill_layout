@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineFunnyOrDieRulesElement(BaseElement, BaseWidgetRules) {
+], function defineFunnyOrDieRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define FunnyOrDie Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {FunnyOrDieRulesElement}
      * @constructor
      * @class FunnyOrDieRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var FunnyOrDieRulesElement = function FunnyOrDieRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return FunnyOrDieRulesElement.extend('FunnyOrDieRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

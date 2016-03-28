@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineBlipTvPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineBlipTvPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define BlipTv Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {BlipTvPreferencesElement}
      * @constructor
      * @class BlipTvPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var BlipTvPreferencesElement = function BlipTvPreferencesElement(view, opts) {
@@ -34,7 +34,7 @@ define([
 
     return BlipTvPreferencesElement.extend(
         'BlipTvPreferencesElement', {},
-        BaseElement.prototype,
+        PluginElement.prototype,
         WidgetPreferences.prototype
     );
 });

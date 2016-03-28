@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineMusTvPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineMusTvPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define MusTv Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {MusTvPreferencesElement}
      * @constructor
      * @class MusTvPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var MusTvPreferencesElement = function MusTvPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return MusTvPreferencesElement.extend('MusTvPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

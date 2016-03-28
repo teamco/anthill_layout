@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineQrCodeRulesElement(BaseElement, BaseWidgetRules) {
+], function defineQrCodeRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define QrCode Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {QrCodeRulesElement}
      * @constructor
      * @class QrCodeRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var QrCodeRulesElement = function QrCodeRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return QrCodeRulesElement.extend('QrCodeRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineXHamsterElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineXHamsterElement(PluginElement) {
 
     /**
      * Define XHamster Element
@@ -16,7 +16,7 @@ define([
      * @returns {XHamsterElement}
      * @constructor
      * @class XHamsterElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var XHamsterElement = function XHamsterElement(view, opts) {
 
@@ -41,6 +41,6 @@ define([
             this.$.append(iframe);
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

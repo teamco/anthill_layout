@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineRdioPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineRdioPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define Rdio Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {RdioPreferencesElement}
      * @constructor
      * @class RdioPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var RdioPreferencesElement = function RdioPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return RdioPreferencesElement.extend('RdioPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

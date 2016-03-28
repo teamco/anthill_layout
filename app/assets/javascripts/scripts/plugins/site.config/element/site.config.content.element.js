@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineSiteConfigContentElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineSiteConfigContentElement(PluginElement) {
 
     /**
      * Define SiteConfig Content Element
@@ -17,7 +17,7 @@ define([
      * @constructor
      * @class SiteConfigContentElement
      * @type {function}
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var SiteConfigContentElement = function SiteConfigContentElement(view, opts) {
 
@@ -139,5 +139,5 @@ define([
                 _clickPreferences.bind(this)
             );
         }
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 });

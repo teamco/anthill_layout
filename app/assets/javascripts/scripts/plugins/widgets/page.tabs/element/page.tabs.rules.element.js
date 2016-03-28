@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function definePageTabsRulesElement(BaseElement, BaseWidgetRules) {
+], function definePageTabsRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define PageTabs Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {PageTabsRulesElement}
      * @constructor
      * @class PageTabsRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var PageTabsRulesElement = function PageTabsRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return PageTabsRulesElement.extend('PageTabsRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

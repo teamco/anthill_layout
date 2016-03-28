@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineRevisionRulesElement(BaseElement, BaseWidgetRules) {
+], function defineRevisionRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define Revision Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {RevisionRulesElement}
      * @constructor
      * @class RevisionRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var RevisionRulesElement = function RevisionRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return RevisionRulesElement.extend('RevisionRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

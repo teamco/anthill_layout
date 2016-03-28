@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function definePicasaElement(BaseElement) {
+    'plugins/plugin.element'
+], function definePicasaElement(PluginElement) {
 
     /**
      * Define Picasa Element
@@ -16,7 +16,7 @@ define([
      * @returns {PicasaElement}
      * @constructor
      * @class PicasaElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var PicasaElement = function PicasaElement(view, opts) {
 
@@ -56,6 +56,6 @@ define([
             }
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

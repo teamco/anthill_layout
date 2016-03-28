@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineXVideosPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineXVideosPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define XVideos Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {XVideosPreferencesElement}
      * @constructor
      * @class XVideosPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var XVideosPreferencesElement = function XVideosPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return XVideosPreferencesElement.extend('XVideosPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function definePolldaddyRulesElement(BaseElement, BaseWidgetRules) {
+], function definePolldaddyRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define Polldaddy Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {PolldaddyRulesElement}
      * @constructor
      * @class PolldaddyRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var PolldaddyRulesElement = function PolldaddyRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return PolldaddyRulesElement.extend('PolldaddyRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

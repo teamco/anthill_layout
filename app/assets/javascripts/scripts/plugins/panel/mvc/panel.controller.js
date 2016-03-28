@@ -6,7 +6,7 @@
  */
 
 define([
-    'plugins/plugin'
+    'plugins/plugin.controller'
 ], function definePanelController(PluginController) {
 
     /**

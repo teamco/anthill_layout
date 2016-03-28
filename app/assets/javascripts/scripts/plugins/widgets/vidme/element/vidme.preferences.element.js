@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineVidmePreferencesElement(BaseElement, WidgetPreferences) {
+], function defineVidmePreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define Vidme Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {VidmePreferencesElement}
      * @constructor
      * @class VidmePreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var VidmePreferencesElement = function VidmePreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return VidmePreferencesElement.extend('VidmePreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

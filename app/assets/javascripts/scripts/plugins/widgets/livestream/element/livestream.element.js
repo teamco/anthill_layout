@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineLivestreamElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineLivestreamElement(PluginElement) {
 
     /**
      * Define Livestream Element
@@ -16,7 +16,7 @@ define([
      * @returns {LivestreamElement}
      * @constructor
      * @class LivestreamElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var LivestreamElement = function LivestreamElement(view, opts) {
 
@@ -43,6 +43,6 @@ define([
             );
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

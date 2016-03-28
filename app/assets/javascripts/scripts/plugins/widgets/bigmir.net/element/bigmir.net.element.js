@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineBigmirNetElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineBigmirNetElement(PluginElement) {
 
     /**
      * Define BigmirNet Element
@@ -16,7 +16,7 @@ define([
      * @returns {BigmirNetElement}
      * @constructor
      * @class BigmirNetElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var BigmirNetElement = function BigmirNetElement(view, opts) {
 
@@ -43,6 +43,6 @@ define([
             );
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

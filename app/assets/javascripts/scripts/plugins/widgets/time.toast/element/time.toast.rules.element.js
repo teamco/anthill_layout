@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineTimeToastRulesElement(BaseElement, BaseWidgetRules) {
+], function defineTimeToastRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define TimeToast Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {TimeToastRulesElement}
      * @constructor
      * @class TimeToastRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var TimeToastRulesElement = function TimeToastRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return TimeToastRulesElement.extend('TimeToastRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

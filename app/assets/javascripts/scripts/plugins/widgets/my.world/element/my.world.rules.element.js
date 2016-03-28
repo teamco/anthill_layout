@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineMyWorldRulesElement(BaseElement, BaseWidgetRules) {
+], function defineMyWorldRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define MyWorld Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {MyWorldRulesElement}
      * @constructor
      * @class MyWorldRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var MyWorldRulesElement = function MyWorldRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return MyWorldRulesElement.extend('MyWorldRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

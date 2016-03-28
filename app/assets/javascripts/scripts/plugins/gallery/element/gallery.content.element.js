@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineGalleryContentElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineGalleryContentElement(PluginElement) {
 
     /**
      * Define Gallery Content Element
@@ -16,7 +16,7 @@ define([
      * @returns {GalleryContentElement}
      * @constructor
      * @class GalleryContentElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends Renderer
      */
     var GalleryContentElement = function GalleryContentElement(view, opts) {
@@ -119,5 +119,5 @@ define([
             });
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 });

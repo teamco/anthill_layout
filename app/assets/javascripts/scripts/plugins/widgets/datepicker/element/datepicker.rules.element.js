@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineDatepickerRulesElement(BaseElement, BaseWidgetRules) {
+], function defineDatepickerRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define Datepicker Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {DatepickerRulesElement}
      * @constructor
      * @class DatepickerRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var DatepickerRulesElement = function DatepickerRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return DatepickerRulesElement.extend('DatepickerRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

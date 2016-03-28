@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineCoubRulesElement(BaseElement, BaseWidgetRules) {
+], function defineCoubRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define Coub Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {CoubRulesElement}
      * @constructor
      * @class CoubRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var CoubRulesElement = function CoubRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return CoubRulesElement.extend('CoubRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

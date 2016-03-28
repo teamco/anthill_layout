@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineFunnyOrDieElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineFunnyOrDieElement(PluginElement) {
 
     /**
      * Define FunnyOrDie Element
@@ -16,7 +16,7 @@ define([
      * @returns {FunnyOrDieElement}
      * @constructor
      * @class FunnyOrDieElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var FunnyOrDieElement = function FunnyOrDieElement(view, opts) {
 
@@ -43,6 +43,6 @@ define([
             );
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

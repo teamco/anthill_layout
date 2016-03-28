@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineSpankwireElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineSpankwireElement(PluginElement) {
 
     /**
      * Define Spankwire Element
@@ -16,7 +16,7 @@ define([
      * @returns {SpankwireElement}
      * @constructor
      * @class SpankwireElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var SpankwireElement = function SpankwireElement(view, opts) {
 
@@ -43,6 +43,6 @@ define([
             );
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

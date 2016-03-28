@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function definePastebinPreferencesElement(BaseElement, WidgetPreferences) {
+], function definePastebinPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define Pastebin Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {PastebinPreferencesElement}
      * @constructor
      * @class PastebinPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var PastebinPreferencesElement = function PastebinPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return PastebinPreferencesElement.extend('PastebinPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

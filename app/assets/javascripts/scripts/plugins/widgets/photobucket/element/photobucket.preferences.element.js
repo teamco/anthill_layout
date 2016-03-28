@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function definePhotobucketPreferencesElement(BaseElement, WidgetPreferences) {
+], function definePhotobucketPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define Photobucket Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {PhotobucketPreferencesElement}
      * @constructor
      * @class PhotobucketPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var PhotobucketPreferencesElement = function PhotobucketPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return PhotobucketPreferencesElement.extend('PhotobucketPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

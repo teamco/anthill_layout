@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function definePdfRulesElement(BaseElement, BaseWidgetRules) {
+], function definePdfRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define Pdf Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {PdfRulesElement}
      * @constructor
      * @class PdfRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var PdfRulesElement = function PdfRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return PdfRulesElement.extend('PdfRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

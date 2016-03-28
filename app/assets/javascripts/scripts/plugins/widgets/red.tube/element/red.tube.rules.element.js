@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineRedTubeRulesElement(BaseElement, BaseWidgetRules) {
+], function defineRedTubeRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define RedTube Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {RedTubeRulesElement}
      * @constructor
      * @class RedTubeRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var RedTubeRulesElement = function RedTubeRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return RedTubeRulesElement.extend('RedTubeRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineTwitsElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineTwitsElement(PluginElement) {
 
     /**
      * Define Twits Element
@@ -16,7 +16,7 @@ define([
      * @returns {TwitsElement}
      * @constructor
      * @class TwitsElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var TwitsElement = function TwitsElement(view, opts) {
 
@@ -93,6 +93,6 @@ define([
             }.bind(this));
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

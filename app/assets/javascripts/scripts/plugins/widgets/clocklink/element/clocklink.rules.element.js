@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineClocklinkRulesElement(BaseElement, BaseWidgetRules) {
+], function defineClocklinkRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define Clocklink Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {ClocklinkRulesElement}
      * @constructor
      * @class ClocklinkRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var ClocklinkRulesElement = function ClocklinkRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return ClocklinkRulesElement.extend('ClocklinkRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

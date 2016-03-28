@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineTubeEightElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineTubeEightElement(PluginElement) {
 
     /**
      * Define TubeEight Element
@@ -16,7 +16,7 @@ define([
      * @returns {TubeEightElement}
      * @constructor
      * @class TubeEightElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var TubeEightElement = function TubeEightElement(view, opts) {
 
@@ -43,6 +43,6 @@ define([
             );
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

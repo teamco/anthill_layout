@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineSublimeVideoPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineSublimeVideoPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define SublimeVideo Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {SublimeVideoPreferencesElement}
      * @constructor
      * @class SublimeVideoPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var SublimeVideoPreferencesElement = function SublimeVideoPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return SublimeVideoPreferencesElement.extend('SublimeVideoPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

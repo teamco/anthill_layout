@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element'
+    'plugins/plugin.element'
     // 'plugins/widgets/multiple.icons/mvc/multiple.icons.behavior'
-], function defineMultipleIconsElement(BaseElement) {
+], function defineMultipleIconsElement(PluginElement) {
 
     /**
      * Define MultipleIcons Element
@@ -17,7 +17,7 @@ define([
      * @returns {MultipleIconsElement}
      * @constructor
      * @class MultipleIconsElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var MultipleIconsElement = function MultipleIconsElement(view, opts) {
 
@@ -53,6 +53,6 @@ define([
             });
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

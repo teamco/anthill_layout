@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineMusTvRulesElement(BaseElement, BaseWidgetRules) {
+], function defineMusTvRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define MusTv Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {MusTvRulesElement}
      * @constructor
      * @class MusTvRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var MusTvRulesElement = function MusTvRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return MusTvRulesElement.extend('MusTvRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

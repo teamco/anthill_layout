@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function definePageDataElement(BaseElement) {
+    'plugins/plugin.element'
+], function definePageDataElement(PluginElement) {
 
     /**
      * Define PageData Element
@@ -16,7 +16,7 @@ define([
      * @returns {PageDataElement}
      * @constructor
      * @class PageDataElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var PageDataElement = function PageDataElement(view, opts) {
 
@@ -31,5 +31,5 @@ define([
     };
 
     return PageDataElement.extend('PageDataElement', {
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 });

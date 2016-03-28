@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineDatepickerElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineDatepickerElement(PluginElement) {
 
     /**
      * Define Datepicker Element
@@ -16,7 +16,7 @@ define([
      * @returns {DatepickerElement}
      * @constructor
      * @class DatepickerElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var DatepickerElement = function DatepickerElement(view, opts) {
 
@@ -45,5 +45,5 @@ define([
             });
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 });

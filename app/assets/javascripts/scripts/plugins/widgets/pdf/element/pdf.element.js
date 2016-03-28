@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function definePdfElement(BaseElement) {
+    'plugins/plugin.element'
+], function definePdfElement(PluginElement) {
 
     /**
      * Define Pdf Element
@@ -16,7 +16,7 @@ define([
      * @returns {PdfElement}
      * @constructor
      * @class PdfElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var PdfElement = function PdfElement(view, opts) {
 
@@ -52,6 +52,6 @@ define([
             this.$.append($iframe);
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

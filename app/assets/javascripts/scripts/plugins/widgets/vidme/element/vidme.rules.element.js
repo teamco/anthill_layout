@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineVidmeRulesElement(BaseElement, BaseWidgetRules) {
+], function defineVidmeRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define Vidme Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {VidmeRulesElement}
      * @constructor
      * @class VidmeRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var VidmeRulesElement = function VidmeRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return VidmeRulesElement.extend('VidmeRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

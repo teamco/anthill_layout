@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineRadikalFotoRulesElement(BaseElement, BaseWidgetRules) {
+], function defineRadikalFotoRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define RadikalFoto Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {RadikalFotoRulesElement}
      * @constructor
      * @class RadikalFotoRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var RadikalFotoRulesElement = function RadikalFotoRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return RadikalFotoRulesElement.extend('RadikalFotoRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

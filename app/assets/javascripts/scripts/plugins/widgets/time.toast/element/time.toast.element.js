@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineTimeToastElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineTimeToastElement(PluginElement) {
 
     /**
      * Define TimeToast Element
@@ -16,7 +16,7 @@ define([
      * @returns {TimeToastElement}
      * @constructor
      * @class TimeToastElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var TimeToastElement = function TimeToastElement(view, opts) {
 
@@ -43,6 +43,6 @@ define([
             );
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineSomeEcardsPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineSomeEcardsPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define SomeEcards Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {SomeEcardsPreferencesElement}
      * @constructor
      * @class SomeEcardsPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var SomeEcardsPreferencesElement = function SomeEcardsPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return SomeEcardsPreferencesElement.extend('SomeEcardsPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

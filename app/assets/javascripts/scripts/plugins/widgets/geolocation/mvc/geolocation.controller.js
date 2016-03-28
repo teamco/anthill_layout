@@ -8,7 +8,7 @@
 define(
     [
         'modules/Geolocation',
-        'plugins/plugin',
+        'plugins/plugin.controller',
         'plugins/widgets/widget.content.controller'
     ],
 

@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineRutubeElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineRutubeElement(PluginElement) {
 
     /**
      * Define Rutube Element
@@ -16,7 +16,7 @@ define([
      * @returns {RutubeElement}
      * @constructor
      * @class RutubeElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var RutubeElement = function RutubeElement(view, opts) {
 
@@ -67,6 +67,6 @@ define([
             );
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineOnetvRuElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineOnetvRuElement(PluginElement) {
 
     /**
      * Define OnetvRu Element
@@ -16,7 +16,7 @@ define([
      * @returns {OnetvRuElement}
      * @constructor
      * @class OnetvRuElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var OnetvRuElement = function OnetvRuElement(view, opts) {
 
@@ -43,6 +43,6 @@ define([
             );
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

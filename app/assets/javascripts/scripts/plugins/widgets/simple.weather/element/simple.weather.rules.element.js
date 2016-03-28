@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineSimpleWeatherRulesElement(BaseElement, BaseWidgetRules) {
+], function defineSimpleWeatherRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define SimpleWeather Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {SimpleWeatherRulesElement}
      * @constructor
      * @class SimpleWeatherRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var SimpleWeatherRulesElement = function SimpleWeatherRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return SimpleWeatherRulesElement.extend('SimpleWeatherRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

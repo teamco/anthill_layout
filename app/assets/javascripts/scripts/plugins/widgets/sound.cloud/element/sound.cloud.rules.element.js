@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineSoundCloudRulesElement(BaseElement, BaseWidgetRules) {
+], function defineSoundCloudRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define SoundCloud Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {SoundCloudRulesElement}
      * @constructor
      * @class SoundCloudRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var SoundCloudRulesElement = function SoundCloudRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return SoundCloudRulesElement.extend('SoundCloudRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

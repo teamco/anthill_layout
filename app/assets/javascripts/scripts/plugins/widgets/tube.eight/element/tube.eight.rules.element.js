@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineTubeEightRulesElement(BaseElement, BaseWidgetRules) {
+], function defineTubeEightRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define TubeEight Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {TubeEightRulesElement}
      * @constructor
      * @class TubeEightRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var TubeEightRulesElement = function TubeEightRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return TubeEightRulesElement.extend('TubeEightRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

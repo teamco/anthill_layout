@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineChannelTwoIlRulesElement(BaseElement, BaseWidgetRules) {
+], function defineChannelTwoIlRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define ChannelTwoIl Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {ChannelTwoIlRulesElement}
      * @constructor
      * @class ChannelTwoIlRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var ChannelTwoIlRulesElement = function ChannelTwoIlRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return ChannelTwoIlRulesElement.extend('ChannelTwoIlRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

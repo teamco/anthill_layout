@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineMyWorldElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineMyWorldElement(PluginElement) {
 
     /**
      * Define MyWorld Element
@@ -16,7 +16,7 @@ define([
      * @returns {MyWorldElement}
      * @constructor
      * @class MyWorldElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var MyWorldElement = function MyWorldElement(view, opts) {
 
@@ -43,6 +43,6 @@ define([
             );
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

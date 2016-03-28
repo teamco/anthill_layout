@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineExtremeTubePreferencesElement(BaseElement, WidgetPreferences) {
+], function defineExtremeTubePreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define ExtremeTube Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {ExtremeTubePreferencesElement}
      * @constructor
      * @class ExtremeTubePreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var ExtremeTubePreferencesElement = function ExtremeTubePreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return ExtremeTubePreferencesElement.extend('ExtremeTubePreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

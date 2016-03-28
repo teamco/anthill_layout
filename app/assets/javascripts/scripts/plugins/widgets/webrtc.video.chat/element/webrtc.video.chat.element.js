@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'element/button.element'
-], function defineWebrtcVideoChatElement(BaseElement, ButttonElement) {
+], function defineWebrtcVideoChatElement(PluginElement, ButttonElement) {
 
     /**
      * Define WebrtcVideoChat Element
@@ -17,7 +17,7 @@ define([
      * @returns {WebrtcVideoChatElement}
      * @constructor
      * @class WebrtcVideoChatElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends Renderer
      */
     var WebrtcVideoChatElement = function WebrtcVideoChatElement(view, opts) {
@@ -111,6 +111,6 @@ define([
             return this[$element][1].val();
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

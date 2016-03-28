@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineQuicktimeRulesElement(BaseElement, BaseWidgetRules) {
+], function defineQuicktimeRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define Quicktime Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {QuicktimeRulesElement}
      * @constructor
      * @class QuicktimeRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var QuicktimeRulesElement = function QuicktimeRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return QuicktimeRulesElement.extend('QuicktimeRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineRssRulesElement(BaseElement, BaseWidgetRules) {
+], function defineRssRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define Rss Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {RssRulesElement}
      * @constructor
      * @class RssRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var RssRulesElement = function RssRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return RssRulesElement.extend('RssRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

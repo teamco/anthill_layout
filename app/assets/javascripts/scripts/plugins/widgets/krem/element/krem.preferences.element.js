@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineKremPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineKremPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define Krem Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {KremPreferencesElement}
      * @constructor
      * @class KremPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var KremPreferencesElement = function KremPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return KremPreferencesElement.extend('KremPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

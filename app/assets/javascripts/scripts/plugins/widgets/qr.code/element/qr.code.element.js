@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineQrCodeElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineQrCodeElement(PluginElement) {
 
     /**
      * Define QrCode Element
@@ -16,7 +16,7 @@ define([
      * @returns {QrCodeElement}
      * @constructor
      * @class QrCodeElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var QrCodeElement = function QrCodeElement(view, opts) {
 
@@ -62,5 +62,5 @@ define([
             }.bind(this));
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 });

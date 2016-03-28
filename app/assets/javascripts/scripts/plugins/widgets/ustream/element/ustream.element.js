@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineUstreamElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineUstreamElement(PluginElement) {
 
     /**
      * Define Ustream Element
@@ -16,7 +16,7 @@ define([
      * @returns {UstreamElement}
      * @constructor
      * @class UstreamElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var UstreamElement = function UstreamElement(view, opts) {
 
@@ -43,6 +43,6 @@ define([
             );
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

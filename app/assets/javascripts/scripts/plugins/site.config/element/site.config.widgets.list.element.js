@@ -3,9 +3,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/gallery/element/gallery.providers.element'
-], function defineSiteConfigWidgetsListElement(BaseElement, GalleryProvidersElement) {
+], function defineSiteConfigWidgetsListElement(PluginElement, GalleryProvidersElement) {
 
     /**
      * Define SiteConfigWidgetsListElement
@@ -14,7 +14,7 @@ define([
      * @param {SiteConfigView} view
      * @param opts
      * @extends AntHill
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends Renderer
      * @extends GalleryProvidersElement
      * @returns {SiteConfigWidgetsListElement}
@@ -760,5 +760,5 @@ define([
             }
         }
 
-    }, BaseElement.prototype, GalleryProvidersElement.prototype);
+    }, PluginElement.prototype, GalleryProvidersElement.prototype);
 });

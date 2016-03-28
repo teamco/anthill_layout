@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineSportExpressPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineSportExpressPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define SportExpress Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {SportExpressPreferencesElement}
      * @constructor
      * @class SportExpressPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var SportExpressPreferencesElement = function SportExpressPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return SportExpressPreferencesElement.extend('SportExpressPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

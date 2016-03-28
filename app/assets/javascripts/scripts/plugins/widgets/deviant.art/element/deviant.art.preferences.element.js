@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineDeviantArtPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineDeviantArtPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define DeviantArt Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {DeviantArtPreferencesElement}
      * @constructor
      * @class DeviantArtPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var DeviantArtPreferencesElement = function DeviantArtPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return DeviantArtPreferencesElement.extend('DeviantArtPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

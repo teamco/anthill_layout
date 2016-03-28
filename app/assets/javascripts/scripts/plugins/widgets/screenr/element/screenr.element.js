@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineScreenrElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineScreenrElement(PluginElement) {
 
     /**
      * Define Screenr Element
@@ -16,7 +16,7 @@ define([
      * @returns {ScreenrElement}
      * @constructor
      * @class ScreenrElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var ScreenrElement = function ScreenrElement(view, opts) {
 
@@ -43,6 +43,6 @@ define([
             );
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

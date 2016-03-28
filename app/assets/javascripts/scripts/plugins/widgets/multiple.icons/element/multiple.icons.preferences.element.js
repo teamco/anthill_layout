@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineMultipleIconsPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineMultipleIconsPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define MultipleIcons Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {MultipleIconsPreferencesElement}
      * @constructor
      * @class MultipleIconsPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var MultipleIconsPreferencesElement = function MultipleIconsPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return MultipleIconsPreferencesElement.extend('MultipleIconsPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineTnaFlixElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineTnaFlixElement(PluginElement) {
 
     /**
      * Define TnaFlix Element
@@ -16,7 +16,7 @@ define([
      * @returns {TnaFlixElement}
      * @constructor
      * @class TnaFlixElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var TnaFlixElement = function TnaFlixElement(view, opts) {
 
@@ -43,6 +43,6 @@ define([
             );
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

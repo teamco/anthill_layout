@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineOnlineFriendsRulesElement(BaseElement, BaseWidgetRules) {
+], function defineOnlineFriendsRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define OnlineFriends Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {OnlineFriendsRulesElement}
      * @constructor
      * @class OnlineFriendsRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var OnlineFriendsRulesElement = function OnlineFriendsRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return OnlineFriendsRulesElement.extend('OnlineFriendsRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function definePolldaddyPreferencesElement(BaseElement, WidgetPreferences) {
+], function definePolldaddyPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define Polldaddy Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {PolldaddyPreferencesElement}
      * @constructor
      * @class PolldaddyPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var PolldaddyPreferencesElement = function PolldaddyPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return PolldaddyPreferencesElement.extend('PolldaddyPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

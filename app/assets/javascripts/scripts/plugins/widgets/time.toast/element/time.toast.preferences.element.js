@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineTimeToastPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineTimeToastPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define TimeToast Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {TimeToastPreferencesElement}
      * @constructor
      * @class TimeToastPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var TimeToastPreferencesElement = function TimeToastPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return TimeToastPreferencesElement.extend('TimeToastPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

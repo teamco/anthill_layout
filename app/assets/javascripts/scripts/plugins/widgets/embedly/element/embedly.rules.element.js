@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineEmbedlyRulesElement(BaseElement, BaseWidgetRules) {
+], function defineEmbedlyRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define Embedly Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {EmbedlyRulesElement}
      * @constructor
      * @class EmbedlyRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var EmbedlyRulesElement = function EmbedlyRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return EmbedlyRulesElement.extend('EmbedlyRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

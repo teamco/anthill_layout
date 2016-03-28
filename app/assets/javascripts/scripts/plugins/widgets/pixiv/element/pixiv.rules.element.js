@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function definePixivRulesElement(BaseElement, BaseWidgetRules) {
+], function definePixivRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define Pixiv Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {PixivRulesElement}
      * @constructor
      * @class PixivRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var PixivRulesElement = function PixivRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return PixivRulesElement.extend('PixivRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

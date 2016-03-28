@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineTedElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineTedElement(PluginElement) {
 
     /**
      * Define Ted Element
@@ -16,7 +16,7 @@ define([
      * @returns {TedElement}
      * @constructor
      * @class TedElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var TedElement = function TedElement(view, opts) {
 
@@ -43,6 +43,6 @@ define([
             );
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

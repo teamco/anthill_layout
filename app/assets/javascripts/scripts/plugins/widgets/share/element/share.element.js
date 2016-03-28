@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineShareElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineShareElement(PluginElement) {
 
     /**
      * Define Share Element
@@ -16,7 +16,7 @@ define([
      * @returns {ShareElement}
      * @constructor
      * @class ShareElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var ShareElement = function ShareElement(view, opts) {
 
@@ -71,5 +71,5 @@ define([
             }
 
         },
-        BaseElement.prototype);
+        PluginElement.prototype);
 });

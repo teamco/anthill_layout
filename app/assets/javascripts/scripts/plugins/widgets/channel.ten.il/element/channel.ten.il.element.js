@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineChannelTenIlElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineChannelTenIlElement(PluginElement) {
 
     /**
      * Define ChannelTenIl Element
@@ -16,7 +16,7 @@ define([
      * @returns {ChannelTenIlElement}
      * @constructor
      * @class ChannelTenIlElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var ChannelTenIlElement = function ChannelTenIlElement(view, opts) {
 
@@ -45,6 +45,6 @@ define([
             );
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

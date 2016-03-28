@@ -3,8 +3,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineProviders(BaseElement) {
+    'plugins/plugin.element'
+], function defineProviders(PluginElement) {
 
     /**
      * Define Providers Element
@@ -13,7 +13,7 @@ define([
      * @returns {GalleryProvidersElement}
      * @constructor
      * @class GalleryProvidersElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends Renderer
      */
     var GalleryProvidersElement = function GalleryProvidersElement(view, opts) {
@@ -90,6 +90,6 @@ define([
             return this;
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

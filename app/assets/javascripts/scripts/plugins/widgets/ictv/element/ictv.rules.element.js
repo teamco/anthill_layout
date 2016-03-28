@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineIctvRulesElement(BaseElement, BaseWidgetRules) {
+], function defineIctvRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define Ictv Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {IctvRulesElement}
      * @constructor
      * @class IctvRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var IctvRulesElement = function IctvRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return IctvRulesElement.extend('IctvRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

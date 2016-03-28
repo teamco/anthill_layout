@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineFirePicElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineFirePicElement(PluginElement) {
 
     /**
      * Define FirePic Element
@@ -16,7 +16,7 @@ define([
      * @returns {FirePicElement}
      * @constructor
      * @class FirePicElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var FirePicElement = function FirePicElement(view, opts) {
 
@@ -45,6 +45,6 @@ define([
             );
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

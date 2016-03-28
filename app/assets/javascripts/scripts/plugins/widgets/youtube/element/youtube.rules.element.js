@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineYoutubeRulesElement(BaseElement, BaseWidgetRules) {
+], function defineYoutubeRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define Youtube Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {YoutubeRulesElement}
      * @constructor
      * @class YoutubeRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var YoutubeRulesElement = function YoutubeRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return YoutubeRulesElement.extend('YoutubeRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

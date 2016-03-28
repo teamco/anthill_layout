@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineLoginPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineLoginPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define Login Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {LoginPreferencesElement}
      * @constructor
      * @class LoginPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var LoginPreferencesElement = function LoginPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return LoginPreferencesElement.extend('LoginPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

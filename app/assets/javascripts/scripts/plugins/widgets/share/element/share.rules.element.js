@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineShareRulesElement(BaseElement, BaseWidgetRules) {
+], function defineShareRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define Share Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {ShareRulesElement}
      * @constructor
      * @class ShareRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var ShareRulesElement = function ShareRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return ShareRulesElement.extend('ShareRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

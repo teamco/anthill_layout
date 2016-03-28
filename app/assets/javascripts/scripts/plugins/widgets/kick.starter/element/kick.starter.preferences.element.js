@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineKickStarterPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineKickStarterPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define KickStarter Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {KickStarterPreferencesElement}
      * @constructor
      * @class KickStarterPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var KickStarterPreferencesElement = function KickStarterPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return KickStarterPreferencesElement.extend('KickStarterPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

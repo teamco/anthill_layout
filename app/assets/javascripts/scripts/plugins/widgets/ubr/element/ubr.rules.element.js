@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineUbrRulesElement(BaseElement, BaseWidgetRules) {
+], function defineUbrRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define Ubr Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {UbrRulesElement}
      * @constructor
      * @class UbrRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var UbrRulesElement = function UbrRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return UbrRulesElement.extend('UbrRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

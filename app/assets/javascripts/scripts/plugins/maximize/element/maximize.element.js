@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineMaximizeElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineMaximizeElement(PluginElement) {
 
     /**
      * Define Maximize Element
@@ -16,7 +16,7 @@ define([
      * @returns {MaximizeElement}
      * @constructor
      * @class MaximizeElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var MaximizeElement = function MaximizeElement(view, opts) {
 
@@ -29,5 +29,5 @@ define([
         return this;
     };
 
-    return MaximizeElement.extend('MaximizeElement', {}, BaseElement.prototype);
+    return MaximizeElement.extend('MaximizeElement', {}, PluginElement.prototype);
 });

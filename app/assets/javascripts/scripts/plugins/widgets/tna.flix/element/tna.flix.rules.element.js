@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineTnaFlixRulesElement(BaseElement, BaseWidgetRules) {
+], function defineTnaFlixRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define TnaFlix Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {TnaFlixRulesElement}
      * @constructor
      * @class TnaFlixRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var TnaFlixRulesElement = function TnaFlixRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return TnaFlixRulesElement.extend('TnaFlixRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

@@ -201,7 +201,7 @@ define([
          * @memberOf PluginController
          * @param config
          * @param {boolean} load
-         * @param {Event} event
+         * @param {Event} [event]
          * @param {function} [callback]
          */
         prepareActiveComponent: function prepareActiveComponent(config, load, event, callback) {
@@ -257,7 +257,7 @@ define([
 
             /**
              * Define $item
-             * @type {BaseElement}
+             * @type {PluginElement}
              */
             var $item = active.controller.getContainment().view.get$item();
 

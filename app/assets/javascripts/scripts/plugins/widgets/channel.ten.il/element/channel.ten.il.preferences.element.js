@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineChannelTenIlPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineChannelTenIlPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define ChannelTenIl Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {ChannelTenIlPreferencesElement}
      * @constructor
      * @class ChannelTenIlPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var ChannelTenIlPreferencesElement = function ChannelTenIlPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return ChannelTenIlPreferencesElement.extend('ChannelTenIlPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

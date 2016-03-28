@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineMixcloudElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineMixcloudElement(PluginElement) {
 
     /**
      * Define Mixcloud Element
@@ -16,7 +16,7 @@ define([
      * @returns {MixcloudElement}
      * @constructor
      * @class MixcloudElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var MixcloudElement = function MixcloudElement(view, opts) {
 
@@ -43,6 +43,6 @@ define([
             );
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineSmotriComPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineSmotriComPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define SmotriCom Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {SmotriComPreferencesElement}
      * @constructor
      * @class SmotriComPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var SmotriComPreferencesElement = function SmotriComPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return SmotriComPreferencesElement.extend('SmotriComPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

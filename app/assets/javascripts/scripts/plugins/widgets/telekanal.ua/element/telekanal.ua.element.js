@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineTelekanalUaElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineTelekanalUaElement(PluginElement) {
 
     /**
      * Define TelekanalUa Element
@@ -16,7 +16,7 @@ define([
      * @returns {TelekanalUaElement}
      * @constructor
      * @class TelekanalUaElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var TelekanalUaElement = function TelekanalUaElement(view, opts) {
 
@@ -43,6 +43,6 @@ define([
             );
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

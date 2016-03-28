@@ -3,8 +3,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineSiteConfigCleanUpElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineSiteConfigCleanUpElement(PluginElement) {
 
     /**
      * Define SiteConfigCleanUpElement
@@ -12,7 +12,7 @@ define([
      * @constructor
      * @param {SiteConfigView} view
      * @param opts
-     * @extends BaseElement
+     * @extends PluginElement
      * @returns {SiteConfigCleanUpElement}
      */
     var SiteConfigCleanUpElement = function SiteConfigCleanUpElement(view, opts) {
@@ -66,5 +66,5 @@ define([
             }
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 });

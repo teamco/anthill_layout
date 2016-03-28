@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineSoundCloudPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineSoundCloudPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define SoundCloud Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {SoundCloudPreferencesElement}
      * @constructor
      * @class SoundCloudPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var SoundCloudPreferencesElement = function SoundCloudPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return SoundCloudPreferencesElement.extend('SoundCloudPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

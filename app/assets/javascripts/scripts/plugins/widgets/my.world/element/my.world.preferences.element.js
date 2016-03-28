@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineMyWorldPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineMyWorldPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define MyWorld Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {MyWorldPreferencesElement}
      * @constructor
      * @class MyWorldPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var MyWorldPreferencesElement = function MyWorldPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return MyWorldPreferencesElement.extend('MyWorldPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

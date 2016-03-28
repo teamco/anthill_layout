@@ -6,15 +6,15 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineImagePreferencesElement(BaseElement, WidgetPreferences) {
+], function defineImagePreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define Image Preferences Element
      * @constructor
      * @class ImagePreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      * @param {ImageView} view
      * @param opts
@@ -91,7 +91,7 @@ define([
                 $item[callback]($img, target.value);
             }
         },
-        BaseElement.prototype,
+        PluginElement.prototype,
         WidgetPreferences.prototype
     );
 });

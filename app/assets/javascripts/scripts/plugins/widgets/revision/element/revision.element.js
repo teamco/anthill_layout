@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineRevisionElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineRevisionElement(PluginElement) {
 
     /**
      * Define Revision Element
@@ -16,7 +16,7 @@ define([
      * @returns {RevisionElement}
      * @constructor
      * @class RevisionElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var RevisionElement = function RevisionElement(view, opts) {
 
@@ -43,6 +43,6 @@ define([
             );
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineWorkspaceDataElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineWorkspaceDataElement(PluginElement) {
 
     /**
      * Define WorkspaceData Element
@@ -16,7 +16,7 @@ define([
      * @constructor
      * @class WorkspaceDataElement
      * @type {Function}
-     * @extends BaseElement
+     * @extends PluginElement
      * @returns {WorkspaceDataElement}
      */
     var WorkspaceDataElement = function WorkspaceDataElement(view, opts) {
@@ -78,5 +78,5 @@ define([
                     replace(/position: relative;/, '')
             );
         }
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 });

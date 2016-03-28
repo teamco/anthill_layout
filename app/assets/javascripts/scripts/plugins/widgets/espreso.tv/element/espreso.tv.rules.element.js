@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineEspresoTvRulesElement(BaseElement, BaseWidgetRules) {
+], function defineEspresoTvRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define EspresoTv Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {EspresoTvRulesElement}
      * @constructor
      * @class EspresoTvRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var EspresoTvRulesElement = function EspresoTvRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return EspresoTvRulesElement.extend('EspresoTvRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

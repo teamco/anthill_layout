@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineBlipTvRulesElement(BaseElement, BaseWidgetRules) {
+], function defineBlipTvRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define BlipTv Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {BlipTvRulesElement}
      * @constructor
      * @class BlipTvRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var BlipTvRulesElement = function BlipTvRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return BlipTvRulesElement.extend('BlipTvRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

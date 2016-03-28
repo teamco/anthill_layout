@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineLiveLeakRulesElement(BaseElement, BaseWidgetRules) {
+], function defineLiveLeakRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define LiveLeak Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {LiveLeakRulesElement}
      * @constructor
      * @class LiveLeakRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var LiveLeakRulesElement = function LiveLeakRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return LiveLeakRulesElement.extend('LiveLeakRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

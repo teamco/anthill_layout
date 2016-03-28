@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineSublimeVideoElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineSublimeVideoElement(PluginElement) {
 
     /**
      * Define SublimeVideo Element
@@ -16,7 +16,7 @@ define([
      * @returns {SublimeVideoElement}
      * @constructor
      * @class SublimeVideoElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var SublimeVideoElement = function SublimeVideoElement(view, opts) {
 
@@ -43,6 +43,6 @@ define([
             );
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

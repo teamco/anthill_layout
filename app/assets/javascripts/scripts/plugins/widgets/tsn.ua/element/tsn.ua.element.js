@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineTsnUaElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineTsnUaElement(PluginElement) {
 
     /**
      * Define TsnUa Element
@@ -16,7 +16,7 @@ define([
      * @returns {TsnUaElement}
      * @constructor
      * @class TsnUaElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var TsnUaElement = function TsnUaElement(view, opts) {
 
@@ -43,6 +43,6 @@ define([
             );
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

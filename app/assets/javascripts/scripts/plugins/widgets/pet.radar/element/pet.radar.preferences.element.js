@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function definePetRadarPreferencesElement(BaseElement, WidgetPreferences) {
+], function definePetRadarPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define PetRadar Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {PetRadarPreferencesElement}
      * @constructor
      * @class PetRadarPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var PetRadarPreferencesElement = function PetRadarPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return PetRadarPreferencesElement.extend('PetRadarPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineQuicktimePreferencesElement(BaseElement, WidgetPreferences) {
+], function defineQuicktimePreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define Quicktime Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {QuicktimePreferencesElement}
      * @constructor
      * @class QuicktimePreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var QuicktimePreferencesElement = function QuicktimePreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return QuicktimePreferencesElement.extend('QuicktimePreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

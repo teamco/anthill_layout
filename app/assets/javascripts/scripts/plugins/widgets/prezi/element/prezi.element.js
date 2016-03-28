@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function definePreziElement(BaseElement) {
+    'plugins/plugin.element'
+], function definePreziElement(PluginElement) {
 
     /**
      * Define Prezi Element
@@ -16,7 +16,7 @@ define([
      * @returns {PreziElement}
      * @constructor
      * @class PreziElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var PreziElement = function PreziElement(view, opts) {
 
@@ -43,6 +43,6 @@ define([
             );
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

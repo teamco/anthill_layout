@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineFirePicPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineFirePicPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define FirePic Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {FirePicPreferencesElement}
      * @constructor
      * @class FirePicPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var FirePicPreferencesElement = function FirePicPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return FirePicPreferencesElement.extend('FirePicPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

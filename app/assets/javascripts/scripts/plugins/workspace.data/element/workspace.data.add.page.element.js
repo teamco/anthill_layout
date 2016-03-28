@@ -6,21 +6,21 @@
  */
 
 define(
-    ['modules/Element'],
+    ['plugins/plugin.element'],
 
     /**
      * Define WorkspaceDataAddPageElement
-     * @param {BaseElement} BaseElement
+     * @param {PluginElement} PluginElement
      * @returns {*}
      */
-    function defineWorkspaceDataAddPageElement(BaseElement) {
+    function defineWorkspaceDataAddPageElement(PluginElement) {
 
         /**
          * Define WorkspaceData AddPage Element
          * @constructor
          * @class WorkspaceDataAddPageElement
          * @extends Renderer
-         * @extends BaseElement
+         * @extends PluginElement
          * @param {WorkspaceDataView} view
          * @param opts
          * @returns {WorkspaceDataAddPageElement}
@@ -159,7 +159,7 @@ define(
                     ]);
                 }
             },
-            BaseElement.prototype
+            PluginElement.prototype
         );
     }
 );

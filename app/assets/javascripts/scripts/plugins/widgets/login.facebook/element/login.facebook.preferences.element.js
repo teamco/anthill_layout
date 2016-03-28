@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineLoginFacebookPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineLoginFacebookPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define LoginFacebook Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {LoginFacebookPreferencesElement}
      * @constructor
      * @class LoginFacebookPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var LoginFacebookPreferencesElement = function LoginFacebookPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return LoginFacebookPreferencesElement.extend('LoginFacebookPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

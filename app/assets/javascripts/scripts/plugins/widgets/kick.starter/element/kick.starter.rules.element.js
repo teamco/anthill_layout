@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineKickStarterRulesElement(BaseElement, BaseWidgetRules) {
+], function defineKickStarterRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define KickStarter Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {KickStarterRulesElement}
      * @constructor
      * @class KickStarterRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var KickStarterRulesElement = function KickStarterRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return KickStarterRulesElement.extend('KickStarterRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

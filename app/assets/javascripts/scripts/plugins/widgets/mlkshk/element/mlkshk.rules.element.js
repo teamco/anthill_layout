@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineMlkshkRulesElement(BaseElement, BaseWidgetRules) {
+], function defineMlkshkRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define Mlkshk Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {MlkshkRulesElement}
      * @constructor
      * @class MlkshkRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var MlkshkRulesElement = function MlkshkRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return MlkshkRulesElement.extend('MlkshkRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

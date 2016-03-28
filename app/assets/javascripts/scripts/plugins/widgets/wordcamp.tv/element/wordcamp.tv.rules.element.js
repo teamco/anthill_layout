@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineWordcampTvRulesElement(BaseElement, BaseWidgetRules) {
+], function defineWordcampTvRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define WordcampTv Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {WordcampTvRulesElement}
      * @constructor
      * @class WordcampTvRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var WordcampTvRulesElement = function WordcampTvRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return WordcampTvRulesElement.extend('WordcampTvRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

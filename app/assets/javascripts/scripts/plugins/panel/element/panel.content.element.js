@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function definePanelContentElement(BaseElement) {
+    'plugins/plugin.element'
+], function definePanelContentElement(PluginElement) {
 
     /**
      * Define Panel Content Element
@@ -16,7 +16,7 @@ define([
      * @returns {PanelContentElement}
      * @constructor
      * @class PanelContentElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var PanelContentElement = function PanelContentElement(view, opts) {
 
@@ -47,6 +47,6 @@ define([
             $('ul.panel-bar li', this.$).removeClass('activated').addClass('collapsed');
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

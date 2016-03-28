@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function definePremiereTvPreferencesElement(BaseElement, WidgetPreferences) {
+], function definePremiereTvPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define PremiereTv Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {PremiereTvPreferencesElement}
      * @constructor
      * @class PremiereTvPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var PremiereTvPreferencesElement = function PremiereTvPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return PremiereTvPreferencesElement.extend('PremiereTvPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

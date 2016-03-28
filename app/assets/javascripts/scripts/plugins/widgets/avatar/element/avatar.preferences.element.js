@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineAvatarPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineAvatarPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define Avatar Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {AvatarPreferencesElement}
      * @constructor
      * @class AvatarPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var AvatarPreferencesElement = function AvatarPreferencesElement(view, opts) {
@@ -34,7 +34,7 @@ define([
 
     return AvatarPreferencesElement.extend(
         'AvatarPreferencesElement', {},
-        BaseElement.prototype,
+        PluginElement.prototype,
         WidgetPreferences.prototype
     );
 });

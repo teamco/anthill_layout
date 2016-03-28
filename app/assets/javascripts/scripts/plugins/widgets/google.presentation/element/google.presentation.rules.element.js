@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineGooglePresentationRulesElement(BaseElement, BaseWidgetRules) {
+], function defineGooglePresentationRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define GooglePresentation Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {GooglePresentationRulesElement}
      * @constructor
      * @class GooglePresentationRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var GooglePresentationRulesElement = function GooglePresentationRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return GooglePresentationRulesElement.extend('GooglePresentationRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

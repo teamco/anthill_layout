@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineMapLocatorRulesElement(BaseElement, BaseWidgetRules) {
+], function defineMapLocatorRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define MapLocator Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {MapLocatorRulesElement}
      * @constructor
      * @class MapLocatorRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var MapLocatorRulesElement = function MapLocatorRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return MapLocatorRulesElement.extend('MapLocatorRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

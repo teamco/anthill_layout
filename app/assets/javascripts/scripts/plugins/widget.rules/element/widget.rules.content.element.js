@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineWidgetRulesContentElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineWidgetRulesContentElement(PluginElement) {
 
     /**
      * Define WidgetRules Content Element
@@ -16,7 +16,7 @@ define([
      * @returns {WidgetRulesContentElement}
      * @constructor
      * @class WidgetRulesContentElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends Renderer
      */
     var WidgetRulesContentElement = function WidgetRulesContentElement(view, opts) {
@@ -40,8 +40,7 @@ define([
          * @memberOf WidgetRulesContentElement
          */
         getTemplate: function getTemplate(data) {
-            $('<a class="widget ' + data.model.getConfig('preferences').resource.toClassName() + '" />').
-                appendTo(this.$);
+            $('<a class="widget ' + data.model.getConfig('preferences').resource.toClassName() + '" />').appendTo(this.$);
         },
 
         /**
@@ -95,31 +94,6 @@ define([
         },
 
         /**
-         * Locate widget before showing rules
-         * @memberOf WidgetRulesContentElement
-         * @param data
-         */
-        bindLocate: function bindLocate(data) {
-
-            /**
-             * Define scope
-             * @type {WidgetRules}
-             */
-            var scope = this.view.scope;
-
-            // Get location event
-            var locateOn = 'mouseenter.rules mouseleave.rules';
-
-            this.$.off(locateOn).on(
-                locateOn,
-                scope.controller.locateWidget.bind({
-                    scope: scope,
-                    uuid: data.model.getUUID()
-                })
-            );
-        },
-
-        /**
          * Bind show rules
          * @memberOf WidgetRulesContentElement
          * @param data
@@ -127,43 +101,17 @@ define([
         bindShowRules: function bindShowRules(data) {
 
             /**
-             * Define scope
+             * Get scope
              * @type {WidgetRules}
              */
             var scope = this.view.scope;
 
-            /**
-             * Load stored rules
-             * @private
-             */
-            function _loadStoredRules() {
-                scope.controller.loadStoredRules(config.rules);
-            }
-
-            /**
-             * Click prefs
-             * @private
-             * @param {Event} e
-             */
-            function _clickRules(e) {
-                e.preventDefault();
-                scope.observer.publish(
-                    scope.eventmanager.eventList.prepareActiveComponent,
-                    [config, true, e, _loadStoredRules]
+            this.bindShowModalData(data, function _loadStoredRules() {
+                scope.controller.loadStoredRules(
+                    data.model.getConfig().rules
                 );
-            }
-
-            /**
-             * Get config
-             * @type {*}
-             */
-            var config = data.model.getConfig();
-
-            this.$.off('click.rules').on(
-                'click.rules',
-                _clickRules
-            );
+            });
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 });

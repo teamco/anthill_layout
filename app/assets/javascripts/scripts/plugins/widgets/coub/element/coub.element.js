@@ -7,8 +7,8 @@
 
 define([
     'jquery',
-    'modules/Element'
-], function defineCoubElement($, BaseElement) {
+    'plugins/plugin.element'
+], function defineCoubElement($, PluginElement) {
 
     /**
      * Define Coub Element
@@ -17,7 +17,7 @@ define([
      * @returns {CoubElement}
      * @constructor
      * @class CoubElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var CoubElement = function CoubElement(view, opts) {
 
@@ -69,6 +69,6 @@ define([
             );
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

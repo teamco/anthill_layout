@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineTwentyFourVideoRulesElement(BaseElement, BaseWidgetRules) {
+], function defineTwentyFourVideoRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define TwentyFourVideo Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {TwentyFourVideoRulesElement}
      * @constructor
      * @class TwentyFourVideoRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var TwentyFourVideoRulesElement = function TwentyFourVideoRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return TwentyFourVideoRulesElement.extend('TwentyFourVideoRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

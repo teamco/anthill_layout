@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineDeviantArtElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineDeviantArtElement(PluginElement) {
 
     /**
      * Define DeviantArt Element
@@ -16,7 +16,7 @@ define([
      * @returns {DeviantArtElement}
      * @constructor
      * @class DeviantArtElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var DeviantArtElement = function DeviantArtElement(view, opts) {
 
@@ -48,6 +48,6 @@ define([
             );
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

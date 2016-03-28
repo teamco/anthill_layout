@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineTwentyFourVideoElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineTwentyFourVideoElement(PluginElement) {
 
     /**
      * Define TwentyFourVideo Element
@@ -16,7 +16,7 @@ define([
      * @returns {TwentyFourVideoElement}
      * @constructor
      * @class TwentyFourVideoElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var TwentyFourVideoElement = function TwentyFourVideoElement(view, opts) {
 
@@ -43,6 +43,6 @@ define([
             );
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

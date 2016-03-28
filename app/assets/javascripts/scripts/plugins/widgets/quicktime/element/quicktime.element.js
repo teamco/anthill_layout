@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineQuicktimeElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineQuicktimeElement(PluginElement) {
 
     /**
      * Define Quicktime Element
@@ -16,7 +16,7 @@ define([
      * @returns {QuicktimeElement}
      * @constructor
      * @class QuicktimeElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var QuicktimeElement = function QuicktimeElement(view, opts) {
 
@@ -67,6 +67,6 @@ define([
             });
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

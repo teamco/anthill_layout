@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineOpenWeatherMapElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineOpenWeatherMapElement(PluginElement) {
 
     /**
      * Define OpenWeatherMap Element
@@ -16,7 +16,7 @@ define([
      * @returns {OpenWeatherMapElement}
      * @constructor
      * @class OpenWeatherMapElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var OpenWeatherMapElement = function OpenWeatherMapElement(view, opts) {
 
@@ -106,6 +106,6 @@ define([
 //            this.view.controller.clearParentThumbnail();
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

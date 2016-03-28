@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineMlkshkElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineMlkshkElement(PluginElement) {
 
     /**
      * Define Mlkshk Element
@@ -16,7 +16,7 @@ define([
      * @returns {MlkshkElement}
      * @constructor
      * @class MlkshkElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var MlkshkElement = function MlkshkElement(view, opts) {
 
@@ -55,6 +55,6 @@ define([
             );
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

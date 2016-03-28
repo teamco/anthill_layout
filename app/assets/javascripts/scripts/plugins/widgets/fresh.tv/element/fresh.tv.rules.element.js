@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineFreshTvRulesElement(BaseElement, BaseWidgetRules) {
+], function defineFreshTvRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define FreshTv Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {FreshTvRulesElement}
      * @constructor
      * @class FreshTvRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var FreshTvRulesElement = function FreshTvRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return FreshTvRulesElement.extend('FreshTvRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

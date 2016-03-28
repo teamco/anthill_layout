@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineVideoPayNetPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineVideoPayNetPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define VideoPayNet Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {VideoPayNetPreferencesElement}
      * @constructor
      * @class VideoPayNetPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var VideoPayNetPreferencesElement = function VideoPayNetPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return VideoPayNetPreferencesElement.extend('VideoPayNetPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

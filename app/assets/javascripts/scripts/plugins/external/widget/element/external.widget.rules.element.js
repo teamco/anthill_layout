@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineExternalRulesElement(BaseElement, BaseWidgetRules) {
+], function defineExternalRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define External Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {ExternalRulesElement}
      * @constructor
      * @class ExternalRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var ExternalRulesElement = function ExternalRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return ExternalRulesElement.extend('ExternalRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

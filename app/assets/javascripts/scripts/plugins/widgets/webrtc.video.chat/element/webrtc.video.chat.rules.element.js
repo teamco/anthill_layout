@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineWebrtcVideoChatRulesElement(BaseElement, BaseWidgetRules) {
+], function defineWebrtcVideoChatRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define WebrtcVideoChat Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {WebrtcVideoChatRulesElement}
      * @constructor
      * @class WebrtcVideoChatRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var WebrtcVideoChatRulesElement = function WebrtcVideoChatRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return WebrtcVideoChatRulesElement.extend('WebrtcVideoChatRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

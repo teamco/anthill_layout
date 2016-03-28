@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineCoubPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineCoubPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define Coub Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {CoubPreferencesElement}
      * @constructor
      * @class CoubPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var CoubPreferencesElement = function CoubPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return CoubPreferencesElement.extend('CoubPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

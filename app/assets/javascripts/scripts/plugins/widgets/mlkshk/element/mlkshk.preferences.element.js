@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineMlkshkPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineMlkshkPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define Mlkshk Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {MlkshkPreferencesElement}
      * @constructor
      * @class MlkshkPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var MlkshkPreferencesElement = function MlkshkPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return MlkshkPreferencesElement.extend('MlkshkPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

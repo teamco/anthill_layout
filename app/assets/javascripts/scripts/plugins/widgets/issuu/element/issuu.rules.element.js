@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineIssuuRulesElement(BaseElement, BaseWidgetRules) {
+], function defineIssuuRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define Issuu Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {IssuuRulesElement}
      * @constructor
      * @class IssuuRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var IssuuRulesElement = function IssuuRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return IssuuRulesElement.extend('IssuuRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

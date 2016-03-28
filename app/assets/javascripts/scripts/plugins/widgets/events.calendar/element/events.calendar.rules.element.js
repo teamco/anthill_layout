@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineEventsCalendarRulesElement(BaseElement, BaseWidgetRules) {
+], function defineEventsCalendarRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define EventsCalendar Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {EventsCalendarRulesElement}
      * @constructor
      * @class EventsCalendarRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var EventsCalendarRulesElement = function EventsCalendarRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return EventsCalendarRulesElement.extend('EventsCalendarRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

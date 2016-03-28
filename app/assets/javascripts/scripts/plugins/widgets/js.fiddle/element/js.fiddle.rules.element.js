@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineJsFiddleRulesElement(BaseElement, BaseWidgetRules) {
+], function defineJsFiddleRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define JsFiddle Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {JsFiddleRulesElement}
      * @constructor
      * @class JsFiddleRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var JsFiddleRulesElement = function JsFiddleRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return JsFiddleRulesElement.extend('JsFiddleRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

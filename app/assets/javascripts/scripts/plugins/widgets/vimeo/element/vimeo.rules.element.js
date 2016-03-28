@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineVimeoRulesElement(BaseElement, BaseWidgetRules) {
+], function defineVimeoRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define Vimeo Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {VimeoRulesElement}
      * @constructor
      * @class VimeoRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var VimeoRulesElement = function VimeoRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return VimeoRulesElement.extend('VimeoRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

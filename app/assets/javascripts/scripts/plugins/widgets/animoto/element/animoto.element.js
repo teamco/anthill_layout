@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineAnimotoElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineAnimotoElement(PluginElement) {
 
     /**
      * Define Animoto Element
@@ -16,7 +16,7 @@ define([
      * @returns {AnimotoElement}
      * @constructor
      * @class AnimotoElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var AnimotoElement = function AnimotoElement(view, opts) {
 
@@ -55,6 +55,6 @@ define([
             this.$.append($embed);
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

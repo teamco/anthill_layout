@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineLifestreamRulesElement(BaseElement, BaseWidgetRules) {
+], function defineLifestreamRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define Lifestream Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {LifestreamRulesElement}
      * @constructor
      * @class LifestreamRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var LifestreamRulesElement = function LifestreamRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return LifestreamRulesElement.extend('LifestreamRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

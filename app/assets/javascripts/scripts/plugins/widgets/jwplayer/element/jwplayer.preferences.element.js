@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineJwplayerPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineJwplayerPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define Jwplayer Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {JwplayerPreferencesElement}
      * @constructor
      * @class JwplayerPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var JwplayerPreferencesElement = function JwplayerPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return JwplayerPreferencesElement.extend('JwplayerPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

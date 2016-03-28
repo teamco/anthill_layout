@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineEspresoTvElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineEspresoTvElement(PluginElement) {
 
     /**
      * Define EspresoTv Element
@@ -16,7 +16,7 @@ define([
      * @returns {EspresoTvElement}
      * @constructor
      * @class EspresoTvElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var EspresoTvElement = function EspresoTvElement(view, opts) {
 
@@ -46,6 +46,6 @@ define([
             );
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

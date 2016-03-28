@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineTwentyThreePreferencesElement(BaseElement, WidgetPreferences) {
+], function defineTwentyThreePreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define TwentyThree Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {TwentyThreePreferencesElement}
      * @constructor
      * @class TwentyThreePreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var TwentyThreePreferencesElement = function TwentyThreePreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return TwentyThreePreferencesElement.extend('TwentyThreePreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

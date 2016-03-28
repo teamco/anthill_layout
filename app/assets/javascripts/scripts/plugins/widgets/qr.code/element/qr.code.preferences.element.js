@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineQrCodePreferencesElement(BaseElement, WidgetPreferences) {
+], function defineQrCodePreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define QrCode Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {QrCodePreferencesElement}
      * @constructor
      * @class QrCodePreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var QrCodePreferencesElement = function QrCodePreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return QrCodePreferencesElement.extend('QrCodePreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

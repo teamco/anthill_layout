@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function definePreziRulesElement(BaseElement, BaseWidgetRules) {
+], function definePreziRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define Prezi Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {PreziRulesElement}
      * @constructor
      * @class PreziRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var PreziRulesElement = function PreziRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return PreziRulesElement.extend('PreziRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

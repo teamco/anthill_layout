@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineCollegeHumorPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineCollegeHumorPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define CollegeHumor Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {CollegeHumorPreferencesElement}
      * @constructor
      * @class CollegeHumorPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var CollegeHumorPreferencesElement = function CollegeHumorPreferencesElement(view, opts) {
@@ -34,7 +34,7 @@ define([
 
     return CollegeHumorPreferencesElement.extend(
         'CollegeHumorPreferencesElement', {},
-        BaseElement.prototype,
+        PluginElement.prototype,
         WidgetPreferences.prototype
     );
 });

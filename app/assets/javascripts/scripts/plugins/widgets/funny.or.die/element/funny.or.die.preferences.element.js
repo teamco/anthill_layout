@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineFunnyOrDiePreferencesElement(BaseElement, WidgetPreferences) {
+], function defineFunnyOrDiePreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define FunnyOrDie Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {FunnyOrDiePreferencesElement}
      * @constructor
      * @class FunnyOrDiePreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var FunnyOrDiePreferencesElement = function FunnyOrDiePreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return FunnyOrDiePreferencesElement.extend('FunnyOrDiePreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

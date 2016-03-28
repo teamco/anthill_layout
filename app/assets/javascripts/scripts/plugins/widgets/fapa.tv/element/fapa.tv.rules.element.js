@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineFapaTvRulesElement(BaseElement, BaseWidgetRules) {
+], function defineFapaTvRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define FapaTv Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {FapaTvRulesElement}
      * @constructor
      * @class FapaTvRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var FapaTvRulesElement = function FapaTvRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return FapaTvRulesElement.extend('FapaTvRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function definePixivElement(BaseElement) {
+    'plugins/plugin.element'
+], function definePixivElement(PluginElement) {
 
     /**
      * Define Pixiv Element
@@ -16,7 +16,7 @@ define([
      * @returns {PixivElement}
      * @constructor
      * @class PixivElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var PixivElement = function PixivElement(view, opts) {
 
@@ -88,5 +88,5 @@ define([
             );
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 });

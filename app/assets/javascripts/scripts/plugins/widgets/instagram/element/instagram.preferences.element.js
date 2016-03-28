@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineInstagramPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineInstagramPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define Instagram Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {InstagramPreferencesElement}
      * @constructor
      * @class InstagramPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var InstagramPreferencesElement = function InstagramPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return InstagramPreferencesElement.extend('InstagramPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

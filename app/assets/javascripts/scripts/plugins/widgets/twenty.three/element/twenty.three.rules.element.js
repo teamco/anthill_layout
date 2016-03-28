@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineTwentyThreeRulesElement(BaseElement, BaseWidgetRules) {
+], function defineTwentyThreeRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define TwentyThree Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {TwentyThreeRulesElement}
      * @constructor
      * @class TwentyThreeRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var TwentyThreeRulesElement = function TwentyThreeRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return TwentyThreeRulesElement.extend('TwentyThreeRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

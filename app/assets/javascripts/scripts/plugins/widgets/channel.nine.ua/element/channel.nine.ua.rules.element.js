@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineChannelNineUaRulesElement(BaseElement, BaseWidgetRules) {
+], function defineChannelNineUaRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define ChannelNineUa Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {ChannelNineUaRulesElement}
      * @constructor
      * @class ChannelNineUaRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var ChannelNineUaRulesElement = function ChannelNineUaRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return ChannelNineUaRulesElement.extend('ChannelNineUaRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

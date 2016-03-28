@@ -5,8 +5,8 @@
  * Time: 11:48 AM
  */
 define([
-    'modules/Element'
-], function definePanelContentContainerElement(BaseElement) {
+    'plugins/plugin.element'
+], function definePanelContentContainerElement(PluginElement) {
 
     /**
      * Define Panel Content Container Element
@@ -15,7 +15,7 @@ define([
      * @returns {PanelContentContainerElement}
      * @constructor
      * @class PanelContentContainerElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var PanelContentContainerElement = function PanelContentContainerElement(view, opts) {
 
@@ -27,5 +27,5 @@ define([
         return this;
     };
 
-    return PanelContentContainerElement.extend('PanelContentContainerElement', {}, BaseElement.prototype);
+    return PanelContentContainerElement.extend('PanelContentContainerElement', {}, PluginElement.prototype);
 });

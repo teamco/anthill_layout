@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineSyntaxHighlighterRulesElement(BaseElement, BaseWidgetRules) {
+], function defineSyntaxHighlighterRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define SyntaxHighlighter Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {SyntaxHighlighterRulesElement}
      * @constructor
      * @class SyntaxHighlighterRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var SyntaxHighlighterRulesElement = function SyntaxHighlighterRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return SyntaxHighlighterRulesElement.extend('SyntaxHighlighterRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

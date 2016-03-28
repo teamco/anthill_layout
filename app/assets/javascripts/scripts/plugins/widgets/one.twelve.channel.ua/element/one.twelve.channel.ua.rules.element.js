@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineOneTwelveChannelUaRulesElement(BaseElement, BaseWidgetRules) {
+], function defineOneTwelveChannelUaRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define OneTwelveChannelUa Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {OneTwelveChannelUaRulesElement}
      * @constructor
      * @class OneTwelveChannelUaRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var OneTwelveChannelUaRulesElement = function OneTwelveChannelUaRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return OneTwelveChannelUaRulesElement.extend('OneTwelveChannelUaRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

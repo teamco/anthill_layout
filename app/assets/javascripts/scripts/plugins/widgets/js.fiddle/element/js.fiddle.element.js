@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineJsFiddleElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineJsFiddleElement(PluginElement) {
 
     /**
      * Define JsFiddle Element
@@ -16,7 +16,7 @@ define([
      * @returns {JsFiddleElement}
      * @constructor
      * @class JsFiddleElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var JsFiddleElement = function JsFiddleElement(view, opts) {
 
@@ -43,6 +43,6 @@ define([
             );
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

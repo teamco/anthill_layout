@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineAnimotoPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineAnimotoPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define Animoto Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {AnimotoPreferencesElement}
      * @constructor
      * @class AnimotoPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var AnimotoPreferencesElement = function AnimotoPreferencesElement(view, opts) {
@@ -34,7 +34,7 @@ define([
 
     return AnimotoPreferencesElement.extend(
         'AnimotoPreferencesElement', {},
-        BaseElement.prototype,
+        PluginElement.prototype,
         WidgetPreferences.prototype
     );
 });

@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineTedRulesElement(BaseElement, BaseWidgetRules) {
+], function defineTedRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define Ted Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {TedRulesElement}
      * @constructor
      * @class TedRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var TedRulesElement = function TedRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return TedRulesElement.extend('TedRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

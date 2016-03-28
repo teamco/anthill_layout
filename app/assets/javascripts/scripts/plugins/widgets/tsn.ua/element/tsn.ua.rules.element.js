@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineTsnUaRulesElement(BaseElement, BaseWidgetRules) {
+], function defineTsnUaRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define TsnUa Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {TsnUaRulesElement}
      * @constructor
      * @class TsnUaRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var TsnUaRulesElement = function TsnUaRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return TsnUaRulesElement.extend('TsnUaRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

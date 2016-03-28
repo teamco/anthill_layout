@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function definePageTabsPreferencesElement(BaseElement, WidgetPreferences) {
+], function definePageTabsPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define PageTabs Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {PageTabsPreferencesElement}
      * @constructor
      * @class PageTabsPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var PageTabsPreferencesElement = function PageTabsPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return PageTabsPreferencesElement.extend('PageTabsPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

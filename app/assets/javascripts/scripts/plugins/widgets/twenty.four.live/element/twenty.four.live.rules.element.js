@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineTwentyFourLiveRulesElement(BaseElement, BaseWidgetRules) {
+], function defineTwentyFourLiveRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define TwentyFourLive Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {TwentyFourLiveRulesElement}
      * @constructor
      * @class TwentyFourLiveRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var TwentyFourLiveRulesElement = function TwentyFourLiveRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return TwentyFourLiveRulesElement.extend('TwentyFourLiveRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

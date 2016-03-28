@@ -6,15 +6,15 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/site.preferences'
-], function defineSiteConfigPreferencesElement(BaseElement, SitePreferences) {
+], function defineSiteConfigPreferencesElement(PluginElement, SitePreferences) {
 
     /**
      * Define SiteConfig Preferences Element
      * @constructor
      * @class SiteConfigPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends SitePreferences
      * @param view
      * @param opts
@@ -34,7 +34,7 @@ define([
 
     return SiteConfigPreferencesElement.extend(
         'SiteConfigPreferencesElement', {},
-        BaseElement.prototype,
+        PluginElement.prototype,
         SitePreferences.prototype
     );
 });

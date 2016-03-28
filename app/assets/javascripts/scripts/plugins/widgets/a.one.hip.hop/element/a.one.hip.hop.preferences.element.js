@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineAOneHipHopPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineAOneHipHopPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define AOneHipHop Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {AOneHipHopPreferencesElement}
      * @constructor
      * @class AOneHipHopPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var AOneHipHopPreferencesElement = function AOneHipHopPreferencesElement(view, opts) {
@@ -34,7 +34,7 @@ define([
 
     return AOneHipHopPreferencesElement.extend(
         'AOneHipHopPreferencesElement', {},
-        BaseElement.prototype,
+        PluginElement.prototype,
         WidgetPreferences.prototype
     );
 });

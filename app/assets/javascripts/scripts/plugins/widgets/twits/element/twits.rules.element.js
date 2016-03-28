@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineTwitsRulesElement(BaseElement, BaseWidgetRules) {
+], function defineTwitsRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define Twits Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {TwitsRulesElement}
      * @constructor
      * @class TwitsRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var TwitsRulesElement = function TwitsRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return TwitsRulesElement.extend('TwitsRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

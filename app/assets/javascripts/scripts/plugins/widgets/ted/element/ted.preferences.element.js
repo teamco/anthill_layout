@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineTedPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineTedPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define Ted Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {TedPreferencesElement}
      * @constructor
      * @class TedPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var TedPreferencesElement = function TedPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return TedPreferencesElement.extend('TedPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

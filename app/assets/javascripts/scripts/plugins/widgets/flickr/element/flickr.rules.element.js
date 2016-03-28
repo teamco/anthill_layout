@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineFlickrRulesElement(BaseElement, BaseWidgetRules) {
+], function defineFlickrRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define Flickr Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {FlickrRulesElement}
      * @constructor
      * @class FlickrRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var FlickrRulesElement = function FlickrRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return FlickrRulesElement.extend('FlickrRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

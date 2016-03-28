@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineTinyPicElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineTinyPicElement(PluginElement) {
 
     /**
      * Define TinyPic Element
@@ -16,7 +16,7 @@ define([
      * @returns {TinyPicElement}
      * @constructor
      * @class TinyPicElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var TinyPicElement = function TinyPicElement(view, opts) {
 
@@ -53,6 +53,6 @@ define([
             this.$.append($content);
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

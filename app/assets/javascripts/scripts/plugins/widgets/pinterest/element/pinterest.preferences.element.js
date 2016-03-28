@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function definePinterestPreferencesElement(BaseElement, WidgetPreferences) {
+], function definePinterestPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define Pinterest Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {PinterestPreferencesElement}
      * @constructor
      * @class PinterestPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var PinterestPreferencesElement = function PinterestPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return PinterestPreferencesElement.extend('PinterestPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

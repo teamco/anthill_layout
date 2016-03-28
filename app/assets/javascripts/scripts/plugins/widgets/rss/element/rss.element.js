@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineRssElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineRssElement(PluginElement) {
 
     /**
      * Define Rss Element
@@ -16,7 +16,7 @@ define([
      * @returns {RssElement}
      * @constructor
      * @class RssElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var RssElement = function RssElement(view, opts) {
 
@@ -76,6 +76,6 @@ define([
             console.log(data.responseData.feed);
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineTextEditorRulesElement(BaseElement, BaseWidgetRules) {
+], function defineTextEditorRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define TextEditor Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {TextEditorRulesElement}
      * @constructor
      * @class TextEditorRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var TextEditorRulesElement = function TextEditorRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return TextEditorRulesElement.extend('TextEditorRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

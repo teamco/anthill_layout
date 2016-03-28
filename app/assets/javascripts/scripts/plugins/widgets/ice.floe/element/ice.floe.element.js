@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineIceFloeElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineIceFloeElement(PluginElement) {
 
     /**
      * Define IceFloe Element
@@ -16,7 +16,7 @@ define([
      * @returns {IceFloeElement}
      * @constructor
      * @class IceFloeElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var IceFloeElement = function IceFloeElement(view, opts) {
 
@@ -47,6 +47,6 @@ define([
             );
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

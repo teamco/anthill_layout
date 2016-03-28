@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineFilmOnElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineFilmOnElement(PluginElement) {
 
     /**
      * Define FilmOn Element
@@ -16,7 +16,7 @@ define([
      * @returns {FilmOnElement}
      * @constructor
      * @class FilmOnElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var FilmOnElement = function FilmOnElement(view, opts) {
 
@@ -41,6 +41,6 @@ define([
             this.$.append(iframe);
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

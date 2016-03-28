@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineGooglePresentationElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineGooglePresentationElement(PluginElement) {
 
     /**
      * Define GooglePresentation Element
@@ -16,7 +16,7 @@ define([
      * @returns {GooglePresentationElement}
      * @constructor
      * @class GooglePresentationElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var GooglePresentationElement = function GooglePresentationElement(view, opts) {
 
@@ -56,6 +56,6 @@ define([
             );
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

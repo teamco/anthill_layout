@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineVidmeElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineVidmeElement(PluginElement) {
 
     /**
      * Define Vidme Element
@@ -16,7 +16,7 @@ define([
      * @returns {VidmeElement}
      * @constructor
      * @class VidmeElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var VidmeElement = function VidmeElement(view, opts) {
 
@@ -43,6 +43,6 @@ define([
             );
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

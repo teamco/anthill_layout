@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineFlickrFeedsRulesElement(BaseElement, BaseWidgetRules) {
+], function defineFlickrFeedsRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define FlickrFeeds Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {FlickrFeedsRulesElement}
      * @constructor
      * @class FlickrFeedsRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var FlickrFeedsRulesElement = function FlickrFeedsRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return FlickrFeedsRulesElement.extend('FlickrFeedsRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

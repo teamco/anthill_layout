@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineMetaUaRulesElement(BaseElement, BaseWidgetRules) {
+], function defineMetaUaRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define MetaUa Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {MetaUaRulesElement}
      * @constructor
      * @class MetaUaRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var MetaUaRulesElement = function MetaUaRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return MetaUaRulesElement.extend('MetaUaRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

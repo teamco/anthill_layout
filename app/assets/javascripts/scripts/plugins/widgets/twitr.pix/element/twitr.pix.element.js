@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineTwitrPixElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineTwitrPixElement(PluginElement) {
 
     /**
      * Define TwitrPix Element
@@ -16,7 +16,7 @@ define([
      * @returns {TwitrPixElement}
      * @constructor
      * @class TwitrPixElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var TwitrPixElement = function TwitrPixElement(view, opts) {
 
@@ -46,6 +46,6 @@ define([
             this.$.append(embed);
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

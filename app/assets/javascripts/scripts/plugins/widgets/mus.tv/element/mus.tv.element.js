@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineMusTvElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineMusTvElement(PluginElement) {
 
     /**
      * Define MusTv Element
@@ -16,7 +16,7 @@ define([
      * @returns {MusTvElement}
      * @constructor
      * @class MusTvElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var MusTvElement = function MusTvElement(view, opts) {
 
@@ -43,6 +43,6 @@ define([
             );
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

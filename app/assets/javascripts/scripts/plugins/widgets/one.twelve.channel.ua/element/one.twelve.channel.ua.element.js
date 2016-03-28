@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineOneTwelveChannelUaElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineOneTwelveChannelUaElement(PluginElement) {
 
     /**
      * Define OneTwelveChannelUa Element
@@ -16,7 +16,7 @@ define([
      * @returns {OneTwelveChannelUaElement}
      * @constructor
      * @class OneTwelveChannelUaElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var OneTwelveChannelUaElement = function OneTwelveChannelUaElement(view, opts) {
 
@@ -45,6 +45,6 @@ define([
             );
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

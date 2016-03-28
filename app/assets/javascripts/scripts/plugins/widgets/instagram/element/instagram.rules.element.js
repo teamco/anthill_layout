@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineInstagramRulesElement(BaseElement, BaseWidgetRules) {
+], function defineInstagramRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define Instagram Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {InstagramRulesElement}
      * @constructor
      * @class InstagramRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var InstagramRulesElement = function InstagramRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return InstagramRulesElement.extend('InstagramRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

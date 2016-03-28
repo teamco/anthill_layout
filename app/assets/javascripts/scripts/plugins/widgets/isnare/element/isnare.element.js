@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineIsnareElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineIsnareElement(PluginElement) {
 
     /**
      * Define Isnare Element
@@ -16,7 +16,7 @@ define([
      * @returns {IsnareElement}
      * @constructor
      * @class IsnareElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var IsnareElement = function IsnareElement(view, opts) {
 
@@ -46,6 +46,6 @@ define([
             this.view.controller.clearParentThumbnail();
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineGooglePlusPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineGooglePlusPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define GooglePlus Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {GooglePlusPreferencesElement}
      * @constructor
      * @class GooglePlusPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var GooglePlusPreferencesElement = function GooglePlusPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return GooglePlusPreferencesElement.extend('GooglePlusPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

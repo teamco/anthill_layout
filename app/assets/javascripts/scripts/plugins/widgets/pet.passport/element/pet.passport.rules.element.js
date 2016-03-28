@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function definePetPassportRulesElement(BaseElement, BaseWidgetRules) {
+], function definePetPassportRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define PetPassport Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {PetPassportRulesElement}
      * @constructor
      * @class PetPassportRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var PetPassportRulesElement = function PetPassportRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return PetPassportRulesElement.extend('PetPassportRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

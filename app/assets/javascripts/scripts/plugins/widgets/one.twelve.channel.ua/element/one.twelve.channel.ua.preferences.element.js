@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineOneTwelveChannelUaPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineOneTwelveChannelUaPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define OneTwelveChannelUa Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {OneTwelveChannelUaPreferencesElement}
      * @constructor
      * @class OneTwelveChannelUaPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var OneTwelveChannelUaPreferencesElement = function OneTwelveChannelUaPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return OneTwelveChannelUaPreferencesElement.extend('OneTwelveChannelUaPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

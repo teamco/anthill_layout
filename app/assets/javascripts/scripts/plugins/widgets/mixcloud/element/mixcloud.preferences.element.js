@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineMixcloudPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineMixcloudPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define Mixcloud Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {MixcloudPreferencesElement}
      * @constructor
      * @class MixcloudPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var MixcloudPreferencesElement = function MixcloudPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return MixcloudPreferencesElement.extend('MixcloudPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

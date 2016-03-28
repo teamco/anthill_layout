@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineFlickrElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineFlickrElement(PluginElement) {
 
     /**
      * Define Flickr Element
@@ -16,7 +16,7 @@ define([
      * @returns {FlickrElement}
      * @constructor
      * @class FlickrElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var FlickrElement = function FlickrElement(view, opts) {
 
@@ -58,6 +58,6 @@ define([
             );
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineEventsCalendarElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineEventsCalendarElement(PluginElement) {
 
     /**
      * Define EventsCalendar Element
@@ -16,7 +16,7 @@ define([
      * @returns {EventsCalendarElement}
      * @constructor
      * @class EventsCalendarElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var EventsCalendarElement = function EventsCalendarElement(view, opts) {
 
@@ -131,6 +131,6 @@ define([
             });
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

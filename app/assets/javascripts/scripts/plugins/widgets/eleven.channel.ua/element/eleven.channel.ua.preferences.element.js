@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineElevenChannelUaPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineElevenChannelUaPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define ElevenChannelUa Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {ElevenChannelUaPreferencesElement}
      * @constructor
      * @class ElevenChannelUaPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var ElevenChannelUaPreferencesElement = function ElevenChannelUaPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return ElevenChannelUaPreferencesElement.extend('ElevenChannelUaPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineChannelTwoIlPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineChannelTwoIlPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define ChannelTwoIl Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {ChannelTwoIlPreferencesElement}
      * @constructor
      * @class ChannelTwoIlPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var ChannelTwoIlPreferencesElement = function ChannelTwoIlPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return ChannelTwoIlPreferencesElement.extend('ChannelTwoIlPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

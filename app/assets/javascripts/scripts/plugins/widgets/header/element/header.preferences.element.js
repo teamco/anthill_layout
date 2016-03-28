@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineHeaderPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineHeaderPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define Header Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {HeaderPreferencesElement}
      * @constructor
      * @class HeaderPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var HeaderPreferencesElement = function HeaderPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return HeaderPreferencesElement.extend('HeaderPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineDeviantArtRulesElement(BaseElement, BaseWidgetRules) {
+], function defineDeviantArtRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define DeviantArt Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {DeviantArtRulesElement}
      * @constructor
      * @class DeviantArtRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var DeviantArtRulesElement = function DeviantArtRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return DeviantArtRulesElement.extend('DeviantArtRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

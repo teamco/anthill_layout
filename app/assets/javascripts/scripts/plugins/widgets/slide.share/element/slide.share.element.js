@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineSlideShareElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineSlideShareElement(PluginElement) {
 
     /**
      * Define SlideShare Element
@@ -16,7 +16,7 @@ define([
      * @returns {SlideShareElement}
      * @constructor
      * @class SlideShareElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var SlideShareElement = function SlideShareElement(view, opts) {
 
@@ -61,6 +61,6 @@ define([
             );
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

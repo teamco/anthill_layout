@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineTviPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineTviPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define Tvi Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {TviPreferencesElement}
      * @constructor
      * @class TviPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var TviPreferencesElement = function TviPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return TviPreferencesElement.extend('TviPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

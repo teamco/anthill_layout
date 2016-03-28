@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function definePremiereTvRulesElement(BaseElement, BaseWidgetRules) {
+], function definePremiereTvRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define PremiereTv Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {PremiereTvRulesElement}
      * @constructor
      * @class PremiereTvRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var PremiereTvRulesElement = function PremiereTvRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return PremiereTvRulesElement.extend('PremiereTvRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

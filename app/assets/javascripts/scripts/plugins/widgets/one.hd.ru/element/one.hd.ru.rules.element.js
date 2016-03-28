@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineOneHdRuRulesElement(BaseElement, BaseWidgetRules) {
+], function defineOneHdRuRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define OneHdRu Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {OneHdRuRulesElement}
      * @constructor
      * @class OneHdRuRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var OneHdRuRulesElement = function OneHdRuRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return OneHdRuRulesElement.extend('OneHdRuRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

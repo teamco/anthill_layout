@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineSyntaxHighlighterElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineSyntaxHighlighterElement(PluginElement) {
 
     /**
      * Define SyntaxHighlighter Element
@@ -16,7 +16,7 @@ define([
      * @returns {SyntaxHighlighterElement}
      * @constructor
      * @class SyntaxHighlighterElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var SyntaxHighlighterElement = function SyntaxHighlighterElement(view, opts) {
 
@@ -68,6 +68,6 @@ define([
             });
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

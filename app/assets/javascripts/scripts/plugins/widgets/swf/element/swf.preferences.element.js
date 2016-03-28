@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineSwfPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineSwfPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define Swf Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {SwfPreferencesElement}
      * @constructor
      * @class SwfPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var SwfPreferencesElement = function SwfPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return SwfPreferencesElement.extend('SwfPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

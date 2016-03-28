@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineFotoKritikRulesElement(BaseElement, BaseWidgetRules) {
+], function defineFotoKritikRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define FotoKritik Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {FotoKritikRulesElement}
      * @constructor
      * @class FotoKritikRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var FotoKritikRulesElement = function FotoKritikRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return FotoKritikRulesElement.extend('FotoKritikRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

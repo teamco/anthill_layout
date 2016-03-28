@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineWordcampTvElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineWordcampTvElement(PluginElement) {
 
     /**
      * Define WordcampTv Element
@@ -16,7 +16,7 @@ define([
      * @returns {WordcampTvElement}
      * @constructor
      * @class WordcampTvElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var WordcampTvElement = function WordcampTvElement(view, opts) {
 
@@ -43,6 +43,6 @@ define([
             );
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

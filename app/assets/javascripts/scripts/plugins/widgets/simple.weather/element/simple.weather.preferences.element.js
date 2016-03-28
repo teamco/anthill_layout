@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineSimpleWeatherPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineSimpleWeatherPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define SimpleWeather Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {SimpleWeatherPreferencesElement}
      * @constructor
      * @class SimpleWeatherPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var SimpleWeatherPreferencesElement = function SimpleWeatherPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return SimpleWeatherPreferencesElement.extend('SimpleWeatherPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

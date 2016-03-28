@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineFiveChannelUaElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineFiveChannelUaElement(PluginElement) {
 
     /**
      * Define FiveChannelUa Element
@@ -16,7 +16,7 @@ define([
      * @returns {FiveChannelUaElement}
      * @constructor
      * @class FiveChannelUaElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var FiveChannelUaElement = function FiveChannelUaElement(view, opts) {
 
@@ -46,6 +46,6 @@ define([
             );
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

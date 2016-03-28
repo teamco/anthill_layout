@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function definePhotobucketElement(BaseElement) {
+    'plugins/plugin.element'
+], function definePhotobucketElement(PluginElement) {
 
     /**
      * Define Photobucket Element
@@ -16,7 +16,7 @@ define([
      * @returns {PhotobucketElement}
      * @constructor
      * @class PhotobucketElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var PhotobucketElement = function PhotobucketElement(view, opts) {
 
@@ -41,6 +41,6 @@ define([
             this.$.append(embed);
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineXVideosElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineXVideosElement(PluginElement) {
 
     /**
      * Define XVideos Element
@@ -16,7 +16,7 @@ define([
      * @returns {XVideosElement}
      * @constructor
      * @class XVideosElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var XVideosElement = function XVideosElement(view, opts) {
 
@@ -43,6 +43,6 @@ define([
             );
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

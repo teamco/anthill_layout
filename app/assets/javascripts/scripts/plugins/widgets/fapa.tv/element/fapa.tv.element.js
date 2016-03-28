@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineFapaTvElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineFapaTvElement(PluginElement) {
 
     /**
      * Define FapaTv Element
@@ -16,7 +16,7 @@ define([
      * @returns {FapaTvElement}
      * @constructor
      * @class FapaTvElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var FapaTvElement = function FapaTvElement(view, opts) {
 
@@ -43,6 +43,6 @@ define([
             );
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

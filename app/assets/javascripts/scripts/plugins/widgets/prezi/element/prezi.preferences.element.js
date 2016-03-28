@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function definePreziPreferencesElement(BaseElement, WidgetPreferences) {
+], function definePreziPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define Prezi Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {PreziPreferencesElement}
      * @constructor
      * @class PreziPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var PreziPreferencesElement = function PreziPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return PreziPreferencesElement.extend('PreziPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

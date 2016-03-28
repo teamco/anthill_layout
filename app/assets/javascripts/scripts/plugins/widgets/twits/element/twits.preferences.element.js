@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineTwitsPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineTwitsPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define Twits Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {TwitsPreferencesElement}
      * @constructor
      * @class TwitsPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var TwitsPreferencesElement = function TwitsPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return TwitsPreferencesElement.extend('TwitsPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineSmotriComRulesElement(BaseElement, BaseWidgetRules) {
+], function defineSmotriComRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define SmotriCom Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {SmotriComRulesElement}
      * @constructor
      * @class SmotriComRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var SmotriComRulesElement = function SmotriComRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return SmotriComRulesElement.extend('SmotriComRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

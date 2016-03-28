@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineChannelTwoIlElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineChannelTwoIlElement(PluginElement) {
 
     /**
      * Define ChannelTwoIl Element
@@ -16,7 +16,7 @@ define([
      * @returns {ChannelTwoIlElement}
      * @constructor
      * @class ChannelTwoIlElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var ChannelTwoIlElement = function ChannelTwoIlElement(view, opts) {
 
@@ -45,6 +45,6 @@ define([
             );
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

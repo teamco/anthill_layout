@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineIctvPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineIctvPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define Ictv Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {IctvPreferencesElement}
      * @constructor
      * @class IctvPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var IctvPreferencesElement = function IctvPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return IctvPreferencesElement.extend('IctvPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

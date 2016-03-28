@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineFlickrPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineFlickrPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define Flickr Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {FlickrPreferencesElement}
      * @constructor
      * @class FlickrPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var FlickrPreferencesElement = function FlickrPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return FlickrPreferencesElement.extend('FlickrPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

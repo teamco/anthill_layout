@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineHeaderRulesElement(BaseElement, BaseWidgetRules) {
+], function defineHeaderRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define Header Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {HeaderRulesElement}
      * @constructor
      * @class HeaderRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var HeaderRulesElement = function HeaderRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return HeaderRulesElement.extend('HeaderRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

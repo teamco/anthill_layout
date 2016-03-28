@@ -6,15 +6,15 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineExternalPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineExternalPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define External Preferences Element
      * @constructor
      * @class ExternalPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      * @param {ExternalView} view
      * @param opts
@@ -34,7 +34,7 @@ define([
 
     return ExternalPreferencesElement.extend(
         'ExternalPreferencesElement', {},
-        BaseElement.prototype,
+        PluginElement.prototype,
         WidgetPreferences.prototype
     );
 });

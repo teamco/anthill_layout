@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function definePostTemplateRulesElement(BaseElement, BaseWidgetRules) {
+], function definePostTemplateRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define PostTemplate Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {PostTemplateRulesElement}
      * @constructor
      * @class PostTemplateRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var PostTemplateRulesElement = function PostTemplateRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return PostTemplateRulesElement.extend('PostTemplateRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

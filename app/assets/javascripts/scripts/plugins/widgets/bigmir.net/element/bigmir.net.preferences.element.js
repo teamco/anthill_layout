@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineBigmirNetPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineBigmirNetPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define BigmirNet Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {BigmirNetPreferencesElement}
      * @constructor
      * @class BigmirNetPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var BigmirNetPreferencesElement = function BigmirNetPreferencesElement(view, opts) {
@@ -34,7 +34,7 @@ define([
 
     return BigmirNetPreferencesElement.extend(
         'BigmirNetPreferencesElement', {},
-        BaseElement.prototype,
+        PluginElement.prototype,
         WidgetPreferences.prototype
     );
 });

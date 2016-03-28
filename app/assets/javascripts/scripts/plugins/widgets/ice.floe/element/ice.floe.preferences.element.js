@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineIceFloePreferencesElement(BaseElement, WidgetPreferences) {
+], function defineIceFloePreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define IceFloe Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {IceFloePreferencesElement}
      * @constructor
      * @class IceFloePreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var IceFloePreferencesElement = function IceFloePreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return IceFloePreferencesElement.extend('IceFloePreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

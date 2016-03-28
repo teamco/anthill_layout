@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineJwplayerRulesElement(BaseElement, BaseWidgetRules) {
+], function defineJwplayerRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define Jwplayer Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {JwplayerRulesElement}
      * @constructor
      * @class JwplayerRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var JwplayerRulesElement = function JwplayerRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return JwplayerRulesElement.extend('JwplayerRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

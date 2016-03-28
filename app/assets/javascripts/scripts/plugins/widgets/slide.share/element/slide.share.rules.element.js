@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineSlideShareRulesElement(BaseElement, BaseWidgetRules) {
+], function defineSlideShareRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define SlideShare Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {SlideShareRulesElement}
      * @constructor
      * @class SlideShareRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var SlideShareRulesElement = function SlideShareRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return SlideShareRulesElement.extend('SlideShareRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

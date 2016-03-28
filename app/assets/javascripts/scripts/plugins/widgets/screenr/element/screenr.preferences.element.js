@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineScreenrPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineScreenrPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define Screenr Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {ScreenrPreferencesElement}
      * @constructor
      * @class ScreenrPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var ScreenrPreferencesElement = function ScreenrPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return ScreenrPreferencesElement.extend('ScreenrPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

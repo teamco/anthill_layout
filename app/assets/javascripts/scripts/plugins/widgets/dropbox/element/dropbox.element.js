@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineDropboxElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineDropboxElement(PluginElement) {
 
     /**
      * Define Dropbox Element
@@ -16,7 +16,7 @@ define([
      * @returns {DropboxElement}
      * @constructor
      * @class DropboxElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var DropboxElement = function DropboxElement(view, opts) {
 
@@ -123,6 +123,6 @@ define([
 
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

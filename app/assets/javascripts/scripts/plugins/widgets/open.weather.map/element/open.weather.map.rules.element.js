@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineOpenWeatherMapRulesElement(BaseElement, BaseWidgetRules) {
+], function defineOpenWeatherMapRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define OpenWeatherMap Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {OpenWeatherMapRulesElement}
      * @constructor
      * @class OpenWeatherMapRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var OpenWeatherMapRulesElement = function OpenWeatherMapRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return OpenWeatherMapRulesElement.extend('OpenWeatherMapRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

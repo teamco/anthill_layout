@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineExtremeTubeElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineExtremeTubeElement(PluginElement) {
 
     /**
      * Define ExtremeTube Element
@@ -16,7 +16,7 @@ define([
      * @returns {ExtremeTubeElement}
      * @constructor
      * @class ExtremeTubeElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var ExtremeTubeElement = function ExtremeTubeElement(view, opts) {
 
@@ -43,6 +43,6 @@ define([
             );
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineRedTubePreferencesElement(BaseElement, WidgetPreferences) {
+], function defineRedTubePreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define RedTube Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {RedTubePreferencesElement}
      * @constructor
      * @class RedTubePreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var RedTubePreferencesElement = function RedTubePreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return RedTubePreferencesElement.extend('RedTubePreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

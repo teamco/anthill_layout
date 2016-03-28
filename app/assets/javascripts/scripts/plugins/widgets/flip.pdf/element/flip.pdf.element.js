@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineFlipPdfElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineFlipPdfElement(PluginElement) {
 
     /**
      * Define FlipPdf Element
@@ -16,7 +16,7 @@ define([
      * @returns {FlipPdfElement}
      * @constructor
      * @class FlipPdfElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var FlipPdfElement = function FlipPdfElement(view, opts) {
 
@@ -43,6 +43,6 @@ define([
             );
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

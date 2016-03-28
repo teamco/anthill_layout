@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineRdioElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineRdioElement(PluginElement) {
 
     /**
      * Define Rdio Element
@@ -16,7 +16,7 @@ define([
      * @returns {RdioElement}
      * @constructor
      * @class RdioElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var RdioElement = function RdioElement(view, opts) {
 
@@ -43,6 +43,6 @@ define([
             );
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

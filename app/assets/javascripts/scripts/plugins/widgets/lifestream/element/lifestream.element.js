@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineLifestreamElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineLifestreamElement(PluginElement) {
 
     /**
      * Define Lifestream Element
@@ -16,7 +16,7 @@ define([
      * @returns {LifestreamElement}
      * @constructor
      * @class LifestreamElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var LifestreamElement = function LifestreamElement(view, opts) {
 
@@ -81,6 +81,6 @@ define([
             );
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

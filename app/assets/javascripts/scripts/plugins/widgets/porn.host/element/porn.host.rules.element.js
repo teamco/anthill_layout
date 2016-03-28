@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function definePornHostRulesElement(BaseElement, BaseWidgetRules) {
+], function definePornHostRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define PornHost Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {PornHostRulesElement}
      * @constructor
      * @class PornHostRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var PornHostRulesElement = function PornHostRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return PornHostRulesElement.extend('PornHostRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

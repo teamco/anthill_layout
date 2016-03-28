@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineTelekanalUaRulesElement(BaseElement, BaseWidgetRules) {
+], function defineTelekanalUaRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define TelekanalUa Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {TelekanalUaRulesElement}
      * @constructor
      * @class TelekanalUaRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var TelekanalUaRulesElement = function TelekanalUaRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return TelekanalUaRulesElement.extend('TelekanalUaRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

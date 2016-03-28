@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineTubeEightPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineTubeEightPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define TubeEight Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {TubeEightPreferencesElement}
      * @constructor
      * @class TubeEightPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var TubeEightPreferencesElement = function TubeEightPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return TubeEightPreferencesElement.extend('TubeEightPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

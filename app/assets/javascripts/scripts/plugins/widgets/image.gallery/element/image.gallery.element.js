@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineImageGalleryElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineImageGalleryElement(PluginElement) {
 
     /**
      * Define ImageGallery Element
@@ -16,7 +16,7 @@ define([
      * @returns {ImageGalleryElement}
      * @constructor
      * @class ImageGalleryElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @example Urls: http://pehaa.com/wp-content/uploads/2012/02/tut_pinkonhead/images/flo3.jpg,http://pehaa.com/wp-content/uploads/2012/02/tut_pinkonhead/images/lights1.jpg,http://pehaa.com/wp-content/uploads/2012/02/tut_pinkonhead/images/flo2.jpg,http://pehaa.com/wp-content/uploads/2012/02/tut_pinkonhead/images/lights3.jpg
      * @example Texts: Spring flowers,City lights,Spring flowers,City lights
      */
@@ -142,6 +142,6 @@ define([
             }.bind(this))
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

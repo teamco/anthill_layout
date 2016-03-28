@@ -6,14 +6,14 @@
  */
 
 define([
-    'modules/Element'
-], function defineSiteConfigImportFileElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineSiteConfigImportFileElement(PluginElement) {
 
     /**
      * Define SiteConfigImportFileElement Element
      * @constructor
      * @class SiteConfigImportFileElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends Renderer
      * @param {SiteConfigView} view
      * @param opts
@@ -52,6 +52,6 @@ define([
             return this;
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

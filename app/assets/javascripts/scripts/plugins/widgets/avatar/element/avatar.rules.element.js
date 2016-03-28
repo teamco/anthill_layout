@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineAvatarRulesElement(BaseElement, BaseWidgetRules) {
+], function defineAvatarRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define Avatar Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {AvatarRulesElement}
      * @constructor
      * @class AvatarRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var AvatarRulesElement = function AvatarRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return AvatarRulesElement.extend('AvatarRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

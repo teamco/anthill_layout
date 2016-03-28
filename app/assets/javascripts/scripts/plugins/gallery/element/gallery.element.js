@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineGalleryElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineGalleryElement(PluginElement) {
 
     /**
      * Define Gallery Element
@@ -16,7 +16,7 @@ define([
      * @returns {GalleryElement}
      * @constructor
      * @class GalleryElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var GalleryElement = function GalleryElement(view, opts) {
 
@@ -30,6 +30,6 @@ define([
     };
 
     return GalleryElement.extend('GalleryElement', {
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

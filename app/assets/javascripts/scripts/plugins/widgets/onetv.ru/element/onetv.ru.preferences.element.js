@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineOnetvRuPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineOnetvRuPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define OnetvRu Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {OnetvRuPreferencesElement}
      * @constructor
      * @class OnetvRuPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var OnetvRuPreferencesElement = function OnetvRuPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return OnetvRuPreferencesElement.extend('OnetvRuPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

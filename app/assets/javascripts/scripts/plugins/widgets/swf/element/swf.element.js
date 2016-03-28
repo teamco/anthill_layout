@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineSwfElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineSwfElement(PluginElement) {
 
     /**
      * Define Swf Element
@@ -16,7 +16,7 @@ define([
      * @returns {SwfElement}
      * @constructor
      * @class SwfElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var SwfElement = function SwfElement(view, opts) {
 
@@ -74,6 +74,6 @@ define([
             });
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

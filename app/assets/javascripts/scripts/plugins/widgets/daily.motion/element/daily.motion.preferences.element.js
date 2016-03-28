@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineDailyMotionPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineDailyMotionPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define DailyMotion Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {DailyMotionPreferencesElement}
      * @constructor
      * @class DailyMotionPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var DailyMotionPreferencesElement = function DailyMotionPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return DailyMotionPreferencesElement.extend('DailyMotionPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

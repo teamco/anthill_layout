@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineCollegeHumorRulesElement(BaseElement, BaseWidgetRules) {
+], function defineCollegeHumorRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define CollegeHumor Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {CollegeHumorRulesElement}
      * @constructor
      * @class CollegeHumorRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var CollegeHumorRulesElement = function CollegeHumorRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return CollegeHumorRulesElement.extend('CollegeHumorRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

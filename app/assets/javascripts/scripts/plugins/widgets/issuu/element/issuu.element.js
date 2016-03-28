@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineIssuuElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineIssuuElement(PluginElement) {
 
     /**
      * Define Issuu Element
@@ -16,7 +16,7 @@ define([
      * @returns {IssuuElement}
      * @constructor
      * @class IssuuElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var IssuuElement = function IssuuElement(view, opts) {
 
@@ -45,6 +45,6 @@ define([
             );
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

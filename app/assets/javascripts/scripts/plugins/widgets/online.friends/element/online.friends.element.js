@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineOnlineFriendsElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineOnlineFriendsElement(PluginElement) {
 
     /**
      * Define OnlineFriends Element
@@ -16,7 +16,7 @@ define([
      * @returns {OnlineFriendsElement}
      * @constructor
      * @class OnlineFriendsElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var OnlineFriendsElement = function OnlineFriendsElement(view, opts) {
 
@@ -62,6 +62,6 @@ define([
             });
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

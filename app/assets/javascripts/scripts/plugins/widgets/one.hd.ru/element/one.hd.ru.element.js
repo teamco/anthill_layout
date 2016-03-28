@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineOneHdRuElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineOneHdRuElement(PluginElement) {
 
     /**
      * Define OneHdRu Element
@@ -16,7 +16,7 @@ define([
      * @returns {OneHdRuElement}
      * @constructor
      * @class OneHdRuElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var OneHdRuElement = function OneHdRuElement(view, opts) {
 
@@ -45,6 +45,6 @@ define([
             );
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineTextEditorPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineTextEditorPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define TextEditor Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {TextEditorPreferencesElement}
      * @constructor
      * @class TextEditorPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var TextEditorPreferencesElement = function TextEditorPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return TextEditorPreferencesElement.extend('TextEditorPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

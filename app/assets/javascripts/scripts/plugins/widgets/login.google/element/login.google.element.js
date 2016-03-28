@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineLoginGoogleElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineLoginGoogleElement(PluginElement) {
 
     /**
      * Define LoginGoogle Element
@@ -16,7 +16,7 @@ define([
      * @returns {LoginGoogleElement}
      * @constructor
      * @class LoginGoogleElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var LoginGoogleElement = function LoginGoogleElement(view, opts) {
 
@@ -46,6 +46,6 @@ define([
             );
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

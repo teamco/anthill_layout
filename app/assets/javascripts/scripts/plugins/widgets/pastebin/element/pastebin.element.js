@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function definePastebinElement(BaseElement) {
+    'plugins/plugin.element'
+], function definePastebinElement(PluginElement) {
 
     /**
      * Define Pastebin Element
@@ -16,7 +16,7 @@ define([
      * @returns {PastebinElement}
      * @constructor
      * @class PastebinElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var PastebinElement = function PastebinElement(view, opts) {
 
@@ -43,6 +43,6 @@ define([
             );
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

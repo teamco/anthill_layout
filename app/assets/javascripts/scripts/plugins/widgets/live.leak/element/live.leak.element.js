@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineLiveLeakElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineLiveLeakElement(PluginElement) {
 
     /**
      * Define LiveLeak Element
@@ -16,7 +16,7 @@ define([
      * @returns {LiveLeakElement}
      * @constructor
      * @class LiveLeakElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var LiveLeakElement = function LiveLeakElement(view, opts) {
 
@@ -43,6 +43,6 @@ define([
             );
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

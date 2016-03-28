@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineKeezMoviesPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineKeezMoviesPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define KeezMovies Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {KeezMoviesPreferencesElement}
      * @constructor
      * @class KeezMoviesPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var KeezMoviesPreferencesElement = function KeezMoviesPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return KeezMoviesPreferencesElement.extend('KeezMoviesPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

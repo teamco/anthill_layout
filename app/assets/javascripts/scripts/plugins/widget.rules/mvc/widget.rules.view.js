@@ -132,7 +132,7 @@ define([
 
                 /**
                  * Define $html
-                 * @type {BaseElement}
+                 * @type {PluginElement}
                  */
                 var $html = this.controller.getRulesHtml(config.uuid, load);
 

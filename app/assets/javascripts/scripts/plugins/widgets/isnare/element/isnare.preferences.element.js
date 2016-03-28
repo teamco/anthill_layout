@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineIsnarePreferencesElement(BaseElement, WidgetPreferences) {
+], function defineIsnarePreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define Isnare Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {IsnarePreferencesElement}
      * @constructor
      * @class IsnarePreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var IsnarePreferencesElement = function IsnarePreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return IsnarePreferencesElement.extend('IsnarePreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function definePolldaddyElement(BaseElement) {
+    'plugins/plugin.element'
+], function definePolldaddyElement(PluginElement) {
 
     /**
      * Define Polldaddy Element
@@ -16,7 +16,7 @@ define([
      * @returns {PolldaddyElement}
      * @constructor
      * @class PolldaddyElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var PolldaddyElement = function PolldaddyElement(view, opts) {
 
@@ -63,6 +63,6 @@ define([
             }
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

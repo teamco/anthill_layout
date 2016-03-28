@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineFapaTvPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineFapaTvPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define FapaTv Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {FapaTvPreferencesElement}
      * @constructor
      * @class FapaTvPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var FapaTvPreferencesElement = function FapaTvPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return FapaTvPreferencesElement.extend('FapaTvPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

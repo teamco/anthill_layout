@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineVineCoElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineVineCoElement(PluginElement) {
 
     /**
      * Define VineCo Element
@@ -16,7 +16,7 @@ define([
      * @returns {VineCoElement}
      * @constructor
      * @class VineCoElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var VineCoElement = function VineCoElement(view, opts) {
 
@@ -83,6 +83,6 @@ define([
             });
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

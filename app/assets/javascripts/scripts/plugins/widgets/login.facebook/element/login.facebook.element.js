@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineLoginFacebookElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineLoginFacebookElement(PluginElement) {
 
     /**
      * Define LoginFacebook Element
@@ -16,7 +16,7 @@ define([
      * @returns {LoginFacebookElement}
      * @constructor
      * @class LoginFacebookElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var LoginFacebookElement = function LoginFacebookElement(view, opts) {
 
@@ -46,6 +46,6 @@ define([
             );
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

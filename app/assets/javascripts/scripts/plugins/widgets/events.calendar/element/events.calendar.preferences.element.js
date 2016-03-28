@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineEventsCalendarPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineEventsCalendarPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define EventsCalendar Preferences Element
@@ -16,7 +16,7 @@ define([
      * @class EventsCalendarPreferencesElement
      * @param {EventsCalendarView} view
      * @param opts
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      * @returns {EventsCalendarPreferencesElement}
      */
@@ -35,6 +35,6 @@ define([
     return EventsCalendarPreferencesElement.extend('EventsCalendarPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

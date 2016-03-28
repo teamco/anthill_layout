@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function definePicasaRulesElement(BaseElement, BaseWidgetRules) {
+], function definePicasaRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define Picasa Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {PicasaRulesElement}
      * @constructor
      * @class PicasaRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var PicasaRulesElement = function PicasaRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return PicasaRulesElement.extend('PicasaRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

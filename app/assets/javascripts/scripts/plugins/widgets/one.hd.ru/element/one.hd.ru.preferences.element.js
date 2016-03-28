@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineOneHdRuPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineOneHdRuPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define OneHdRu Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {OneHdRuPreferencesElement}
      * @constructor
      * @class OneHdRuPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var OneHdRuPreferencesElement = function OneHdRuPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return OneHdRuPreferencesElement.extend('OneHdRuPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function definePageDataContentElement(BaseElement) {
+    'plugins/plugin.element'
+], function definePageDataContentElement(PluginElement) {
 
     /**
      * Define PageData Content Element
@@ -16,7 +16,7 @@ define([
      * @returns {PageDataContentElement}
      * @constructor
      * @class PageDataContentElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends Renderer
      */
     var PageDataContentElement = function PageDataContentElement(view, opts) {
@@ -94,69 +94,13 @@ define([
         },
 
         /**
-         * Locate widget before showing prefs
-         * @memberOf PageDataContentElement
-         * @param data
-         */
-        bindLocate: function bindLocate(data) {
-
-            /**
-             * Define scope
-             * @type {WidgetRules}
-             */
-            var scope = this.view.scope;
-            
-            // Get location event
-            var locateOn = 'mouseenter.prefs mouseleave.prefs';
-
-            this.$.off(locateOn).on(
-                locateOn,
-                scope.controller.locateWidget.bind({
-                    scope: scope,
-                    uuid: data.model.getUUID()
-                })
-            );
-        },
-
-        /**
          * Bind show prefs
          * @memberOf PageDataContentElement
          * @param data
          */
         bindShowPrefs: function bindShowPrefs(data) {
-
-            /**
-             * Click prefs
-             * @param {Event} event
-             * @private
-             */
-            function _clickPrefs(event) {
-
-                event.preventDefault();
-
-                scope.observer.publish(
-                    scope.eventmanager.eventList.prepareActiveComponent,
-                    [config, true]
-                );
-            }
-
-            /**
-             * Get config
-             * @type {*}
-             */
-            var config = data.model.getConfig();
-
-            /**
-             * Define scope
-             * @type {PageData}
-             */
-            var scope = this.view.scope;
-
-            this.$.off('click.prefs').on(
-                'click.prefs',
-                _clickPrefs.bind(this)
-            );
+            this.bindShowModalData(data);
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 });

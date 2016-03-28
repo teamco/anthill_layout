@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineRevisionPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineRevisionPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define Revision Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {RevisionPreferencesElement}
      * @constructor
      * @class RevisionPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var RevisionPreferencesElement = function RevisionPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return RevisionPreferencesElement.extend('RevisionPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

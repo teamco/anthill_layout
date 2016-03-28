@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineRedTubeElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineRedTubeElement(PluginElement) {
 
     /**
      * Define RedTube Element
@@ -16,7 +16,7 @@ define([
      * @returns {RedTubeElement}
      * @constructor
      * @class RedTubeElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var RedTubeElement = function RedTubeElement(view, opts) {
 
@@ -43,6 +43,6 @@ define([
             );
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

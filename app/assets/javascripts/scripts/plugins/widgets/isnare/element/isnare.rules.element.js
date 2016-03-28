@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineIsnareRulesElement(BaseElement, BaseWidgetRules) {
+], function defineIsnareRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define Isnare Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {IsnareRulesElement}
      * @constructor
      * @class IsnareRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var IsnareRulesElement = function IsnareRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return IsnareRulesElement.extend('IsnareRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

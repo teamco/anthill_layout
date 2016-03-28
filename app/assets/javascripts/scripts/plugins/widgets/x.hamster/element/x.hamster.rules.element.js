@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineXHamsterRulesElement(BaseElement, BaseWidgetRules) {
+], function defineXHamsterRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define XHamster Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {XHamsterRulesElement}
      * @constructor
      * @class XHamsterRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var XHamsterRulesElement = function XHamsterRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return XHamsterRulesElement.extend('XHamsterRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

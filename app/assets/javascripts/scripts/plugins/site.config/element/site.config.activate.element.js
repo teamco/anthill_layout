@@ -3,8 +3,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineSiteConfigActivateElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineSiteConfigActivateElement(PluginElement) {
 
     /**
      * Define SiteConfigActivateElement
@@ -12,7 +12,7 @@ define([
      * @constructor
      * @param {SiteConfigView} view
      * @param opts
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends Renderer
      * @returns {SiteConfigActivateElement}
      */
@@ -74,5 +74,5 @@ define([
             this.$.append($combo);
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 });

@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function definePostTemplatePreferencesElement(BaseElement, WidgetPreferences) {
+], function definePostTemplatePreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define PostTemplate Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {PostTemplatePreferencesElement}
      * @constructor
      * @class PostTemplatePreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var PostTemplatePreferencesElement = function PostTemplatePreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return PostTemplatePreferencesElement.extend('PostTemplatePreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineGooglePresentationPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineGooglePresentationPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define GooglePresentation Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {GooglePresentationPreferencesElement}
      * @constructor
      * @class GooglePresentationPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var GooglePresentationPreferencesElement = function GooglePresentationPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return GooglePresentationPreferencesElement.extend('GooglePresentationPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

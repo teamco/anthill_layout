@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineMobypictureRulesElement(BaseElement, BaseWidgetRules) {
+], function defineMobypictureRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define Mobypicture Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {MobypictureRulesElement}
      * @constructor
      * @class MobypictureRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var MobypictureRulesElement = function MobypictureRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return MobypictureRulesElement.extend('MobypictureRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

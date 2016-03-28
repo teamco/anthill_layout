@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function definePornhubPreferencesElement(BaseElement, WidgetPreferences) {
+], function definePornhubPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define Pornhub Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {PornhubPreferencesElement}
      * @constructor
      * @class PornhubPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var PornhubPreferencesElement = function PornhubPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return PornhubPreferencesElement.extend('PornhubPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

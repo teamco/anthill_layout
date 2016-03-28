@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineStepashkaRulesElement(BaseElement, BaseWidgetRules) {
+], function defineStepashkaRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define Stepashka Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {StepashkaRulesElement}
      * @constructor
      * @class StepashkaRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var StepashkaRulesElement = function StepashkaRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return StepashkaRulesElement.extend('StepashkaRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

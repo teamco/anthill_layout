@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineRadikalFotoElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineRadikalFotoElement(PluginElement) {
 
     /**
      * Define RadikalFoto Element
@@ -16,7 +16,7 @@ define([
      * @returns {RadikalFotoElement}
      * @constructor
      * @class RadikalFotoElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var RadikalFotoElement = function RadikalFotoElement(view, opts) {
 
@@ -45,6 +45,6 @@ define([
             );
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

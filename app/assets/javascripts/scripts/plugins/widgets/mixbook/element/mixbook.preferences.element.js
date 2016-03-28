@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineMixbookPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineMixbookPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define Mixbook Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {MixbookPreferencesElement}
      * @constructor
      * @class MixbookPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var MixbookPreferencesElement = function MixbookPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return MixbookPreferencesElement.extend('MixbookPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineMixbookRulesElement(BaseElement, BaseWidgetRules) {
+], function defineMixbookRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define Mixbook Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {MixbookRulesElement}
      * @constructor
      * @class MixbookRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var MixbookRulesElement = function MixbookRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return MixbookRulesElement.extend('MixbookRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

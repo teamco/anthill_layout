@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineTwentyThreeElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineTwentyThreeElement(PluginElement) {
 
     /**
      * Define TwentyThree Element
@@ -16,7 +16,7 @@ define([
      * @returns {TwentyThreeElement}
      * @constructor
      * @class TwentyThreeElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var TwentyThreeElement = function TwentyThreeElement(view, opts) {
 
@@ -41,6 +41,6 @@ define([
             this.$.append(embed);
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

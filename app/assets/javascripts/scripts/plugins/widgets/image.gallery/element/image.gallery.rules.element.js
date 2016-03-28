@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineImageGalleryRulesElement(BaseElement, BaseWidgetRules) {
+], function defineImageGalleryRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define ImageGallery Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {ImageGalleryRulesElement}
      * @constructor
      * @class ImageGalleryRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var ImageGalleryRulesElement = function ImageGalleryRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return ImageGalleryRulesElement.extend('ImageGalleryRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineIctvElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineIctvElement(PluginElement) {
 
     /**
      * Define Ictv Element
@@ -16,7 +16,7 @@ define([
      * @returns {IctvElement}
      * @constructor
      * @class IctvElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var IctvElement = function IctvElement(view, opts) {
 
@@ -52,6 +52,6 @@ define([
             ].join(''));
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

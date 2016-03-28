@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function definePetRadarRulesElement(BaseElement, BaseWidgetRules) {
+], function definePetRadarRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define PetRadar Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {PetRadarRulesElement}
      * @constructor
      * @class PetRadarRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var PetRadarRulesElement = function PetRadarRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return PetRadarRulesElement.extend('PetRadarRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineWorkspaceDataContentElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineWorkspaceDataContentElement(PluginElement) {
 
     /**
      * Define WorkspaceData Content Element
@@ -15,7 +15,7 @@ define([
      * @class WorkspaceDataContentElement
      * @param {WorkspaceDataView} view
      * @param opts
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends Renderer
      * @returns {WorkspaceDataContentElement}
      */
@@ -212,5 +212,5 @@ define([
                 _clickPrefs
             );
         }
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 });

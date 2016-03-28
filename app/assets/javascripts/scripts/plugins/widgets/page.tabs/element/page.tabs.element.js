@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function definePageTabsElement(BaseElement) {
+    'plugins/plugin.element'
+], function definePageTabsElement(PluginElement) {
 
     /**
      * Define PageTabs Element
@@ -16,7 +16,7 @@ define([
      * @returns {PageTabsElement}
      * @constructor
      * @class PageTabsElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var PageTabsElement = function PageTabsElement(view, opts) {
 
@@ -120,6 +120,6 @@ define([
                 addClass(this.current);
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

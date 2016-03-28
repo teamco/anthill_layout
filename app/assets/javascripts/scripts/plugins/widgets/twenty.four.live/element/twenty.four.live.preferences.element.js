@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineTwentyFourLivePreferencesElement(BaseElement, WidgetPreferences) {
+], function defineTwentyFourLivePreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define TwentyFourLive Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {TwentyFourLivePreferencesElement}
      * @constructor
      * @class TwentyFourLivePreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var TwentyFourLivePreferencesElement = function TwentyFourLivePreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return TwentyFourLivePreferencesElement.extend('TwentyFourLivePreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineOnePlusOneRulesElement(BaseElement, BaseWidgetRules) {
+], function defineOnePlusOneRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define OnePlusOne Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {OnePlusOneRulesElement}
      * @constructor
      * @class OnePlusOneRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var OnePlusOneRulesElement = function OnePlusOneRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return OnePlusOneRulesElement.extend('OnePlusOneRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

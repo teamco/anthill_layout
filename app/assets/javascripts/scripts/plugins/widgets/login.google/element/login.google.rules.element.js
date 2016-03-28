@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineLoginGoogleRulesElement(BaseElement, BaseWidgetRules) {
+], function defineLoginGoogleRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define LoginGoogle Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {LoginGoogleRulesElement}
      * @constructor
      * @class LoginGoogleRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var LoginGoogleRulesElement = function LoginGoogleRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return LoginGoogleRulesElement.extend('LoginGoogleRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

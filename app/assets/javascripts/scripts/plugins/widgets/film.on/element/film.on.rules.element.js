@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineFilmOnRulesElement(BaseElement, BaseWidgetRules) {
+], function defineFilmOnRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define FilmOn Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {FilmOnRulesElement}
      * @constructor
      * @class FilmOnRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var FilmOnRulesElement = function FilmOnRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return FilmOnRulesElement.extend('FilmOnRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

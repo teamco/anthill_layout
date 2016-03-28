@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function definePageTabsElement(BaseElement) {
+    'plugins/plugin.element'
+], function definePageTabsElement(PluginElement) {
 
     /**
      * Define PageTabs Item Element
@@ -15,7 +15,7 @@ define([
      * @param opts
      * @constructor
      * @class PageTabsItemElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @returns {PageTabsItemElement}
      */
     var PageTabsItemElement = function PageTabsItemElement(view, opts) {
@@ -116,5 +116,5 @@ define([
             );
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 });

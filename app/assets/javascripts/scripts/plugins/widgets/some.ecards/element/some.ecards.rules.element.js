@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineSomeEcardsRulesElement(BaseElement, BaseWidgetRules) {
+], function defineSomeEcardsRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define SomeEcards Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {SomeEcardsRulesElement}
      * @constructor
      * @class SomeEcardsRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var SomeEcardsRulesElement = function SomeEcardsRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return SomeEcardsRulesElement.extend('SomeEcardsRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

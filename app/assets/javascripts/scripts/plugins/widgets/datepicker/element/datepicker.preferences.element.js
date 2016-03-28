@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineDatepickerPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineDatepickerPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define Datepicker Preferences Element
@@ -16,7 +16,7 @@ define([
      * @class DatepickerPreferencesElement
      * @param {DatepickerView} view
      * @param opts
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      * @returns {DatepickerPreferencesElement}
      */
@@ -35,6 +35,6 @@ define([
     return DatepickerPreferencesElement.extend('DatepickerPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

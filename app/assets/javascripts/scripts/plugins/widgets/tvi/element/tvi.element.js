@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineTviElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineTviElement(PluginElement) {
 
     /**
      * Define Tvi Element
@@ -16,7 +16,7 @@ define([
      * @returns {TviElement}
      * @constructor
      * @class TviElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var TviElement = function TviElement(view, opts) {
 
@@ -43,6 +43,6 @@ define([
             );
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

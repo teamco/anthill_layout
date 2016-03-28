@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineSmotriComElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineSmotriComElement(PluginElement) {
 
     /**
      * Define SmotriCom Element
@@ -16,7 +16,7 @@ define([
      * @returns {SmotriComElement}
      * @constructor
      * @class SmotriComElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var SmotriComElement = function SmotriComElement(view, opts) {
 
@@ -43,6 +43,6 @@ define([
             );
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

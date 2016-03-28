@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineFiveChannelUaRulesElement(BaseElement, BaseWidgetRules) {
+], function defineFiveChannelUaRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define FiveChannelUa Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {FiveChannelUaRulesElement}
      * @constructor
      * @class FiveChannelUaRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var FiveChannelUaRulesElement = function FiveChannelUaRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return FiveChannelUaRulesElement.extend('FiveChannelUaRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

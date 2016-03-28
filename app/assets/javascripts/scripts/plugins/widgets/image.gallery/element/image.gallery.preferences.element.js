@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineImageGalleryPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineImageGalleryPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define ImageGallery Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {ImageGalleryPreferencesElement}
      * @constructor
      * @class ImageGalleryPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var ImageGalleryPreferencesElement = function ImageGalleryPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return ImageGalleryPreferencesElement.extend('ImageGalleryPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

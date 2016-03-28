@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineTwitrPixRulesElement(BaseElement, BaseWidgetRules) {
+], function defineTwitrPixRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define TwitrPix Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {TwitrPixRulesElement}
      * @constructor
      * @class TwitrPixRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var TwitrPixRulesElement = function TwitrPixRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return TwitrPixRulesElement.extend('TwitrPixRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

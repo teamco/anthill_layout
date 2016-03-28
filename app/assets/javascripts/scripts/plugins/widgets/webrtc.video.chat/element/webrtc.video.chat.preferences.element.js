@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineWebrtcVideoChatPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineWebrtcVideoChatPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define WebrtcVideoChat Preferences Element
@@ -16,7 +16,7 @@ define([
      * @class WebrtcVideoChatPreferencesElement
      * @param {WebrtcVideoChatView} view
      * @param opts
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      * @returns {WebrtcVideoChatPreferencesElement}
      */
@@ -35,6 +35,6 @@ define([
     return WebrtcVideoChatPreferencesElement.extend('WebrtcVideoChatPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

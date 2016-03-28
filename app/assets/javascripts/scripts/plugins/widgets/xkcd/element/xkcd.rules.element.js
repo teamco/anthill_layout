@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineXkcdRulesElement(BaseElement, BaseWidgetRules) {
+], function defineXkcdRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define Xkcd Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {XkcdRulesElement}
      * @constructor
      * @class XkcdRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var XkcdRulesElement = function XkcdRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return XkcdRulesElement.extend('XkcdRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

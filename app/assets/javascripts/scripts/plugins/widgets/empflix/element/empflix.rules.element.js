@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineEmpflixRulesElement(BaseElement, BaseWidgetRules) {
+], function defineEmpflixRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define Empflix Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {EmpflixRulesElement}
      * @constructor
      * @class EmpflixRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var EmpflixRulesElement = function EmpflixRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return EmpflixRulesElement.extend('EmpflixRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

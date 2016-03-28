@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineTextEditorElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineTextEditorElement(PluginElement) {
 
     /**
      * Define TextEditor Element
@@ -16,7 +16,7 @@ define([
      * @returns {TextEditorElement}
      * @constructor
      * @class TextEditorElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var TextEditorElement = function TextEditorElement(view, opts) {
 
@@ -46,6 +46,6 @@ define([
             }
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

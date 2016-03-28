@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineKremRulesElement(BaseElement, BaseWidgetRules) {
+], function defineKremRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define Krem Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {KremRulesElement}
      * @constructor
      * @class KremRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var KremRulesElement = function KremRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return KremRulesElement.extend('KremRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

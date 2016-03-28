@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineSharePreferencesElement(BaseElement, WidgetPreferences) {
+], function defineSharePreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define Share Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {SharePreferencesElement}
      * @constructor
      * @class SharePreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var SharePreferencesElement = function SharePreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return SharePreferencesElement.extend('SharePreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

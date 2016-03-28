@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineMixcloudRulesElement(BaseElement, BaseWidgetRules) {
+], function defineMixcloudRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define Mixcloud Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {MixcloudRulesElement}
      * @constructor
      * @class MixcloudRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var MixcloudRulesElement = function MixcloudRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return MixcloudRulesElement.extend('MixcloudRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

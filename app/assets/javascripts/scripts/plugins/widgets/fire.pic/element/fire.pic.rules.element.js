@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineFirePicRulesElement(BaseElement, BaseWidgetRules) {
+], function defineFirePicRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define FirePic Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {FirePicRulesElement}
      * @constructor
      * @class FirePicRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var FirePicRulesElement = function FirePicRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return FirePicRulesElement.extend('FirePicRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineLoginElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineLoginElement(PluginElement) {
 
     /**
      * Define Login Element
@@ -16,7 +16,7 @@ define([
      * @returns {LoginElement}
      * @constructor
      * @class LoginElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var LoginElement = function LoginElement(view, opts) {
 
@@ -121,6 +121,6 @@ define([
             }).addClass(style + '-login');
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

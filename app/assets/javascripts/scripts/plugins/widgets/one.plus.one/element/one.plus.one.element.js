@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineOnePlusOneElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineOnePlusOneElement(PluginElement) {
 
     /**
      * Define OnePlusOne Element
@@ -16,7 +16,7 @@ define([
      * @returns {OnePlusOneElement}
      * @constructor
      * @class OnePlusOneElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var OnePlusOneElement = function OnePlusOneElement(view, opts) {
 
@@ -43,6 +43,6 @@ define([
             );
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

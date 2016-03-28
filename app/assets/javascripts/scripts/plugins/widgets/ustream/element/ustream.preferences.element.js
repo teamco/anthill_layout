@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineUstreamPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineUstreamPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define Ustream Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {UstreamPreferencesElement}
      * @constructor
      * @class UstreamPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var UstreamPreferencesElement = function UstreamPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return UstreamPreferencesElement.extend('UstreamPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

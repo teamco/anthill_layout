@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineChannelNineUaElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineChannelNineUaElement(PluginElement) {
 
     /**
      * Define ChannelNineUa Element
@@ -16,7 +16,7 @@ define([
      * @returns {ChannelNineUaElement}
      * @constructor
      * @class ChannelNineUaElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var ChannelNineUaElement = function ChannelNineUaElement(view, opts) {
 
@@ -43,6 +43,6 @@ define([
             );
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

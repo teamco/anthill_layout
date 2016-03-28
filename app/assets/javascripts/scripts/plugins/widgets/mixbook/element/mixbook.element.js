@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineMixbookElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineMixbookElement(PluginElement) {
 
     /**
      * Define Mixbook Element
@@ -16,7 +16,7 @@ define([
      * @returns {MixbookElement}
      * @constructor
      * @class MixbookElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var MixbookElement = function MixbookElement(view, opts) {
 
@@ -43,6 +43,6 @@ define([
             );
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

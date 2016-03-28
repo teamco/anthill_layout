@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineRadikalFotoPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineRadikalFotoPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define RadikalFoto Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {RadikalFotoPreferencesElement}
      * @constructor
      * @class RadikalFotoPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var RadikalFotoPreferencesElement = function RadikalFotoPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return RadikalFotoPreferencesElement.extend('RadikalFotoPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

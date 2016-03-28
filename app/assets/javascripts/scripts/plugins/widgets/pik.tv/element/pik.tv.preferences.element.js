@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function definePikTvPreferencesElement(BaseElement, WidgetPreferences) {
+], function definePikTvPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define PikTv Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {PikTvPreferencesElement}
      * @constructor
      * @class PikTvPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var PikTvPreferencesElement = function PikTvPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return PikTvPreferencesElement.extend('PikTvPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

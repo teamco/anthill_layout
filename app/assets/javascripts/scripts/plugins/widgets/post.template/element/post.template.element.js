@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function definePostTemplateElement(BaseElement) {
+    'plugins/plugin.element'
+], function definePostTemplateElement(PluginElement) {
 
     /**
      * Define PostTemplate Element
@@ -16,7 +16,7 @@ define([
      * @returns {PostTemplateElement}
      * @constructor
      * @class PostTemplateElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var PostTemplateElement = function PostTemplateElement(view, opts) {
 
@@ -51,6 +51,6 @@ define([
             $element.$.append($construction);
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineYapFilesElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineYapFilesElement(PluginElement) {
 
     /**
      * Define YapFiles Element
@@ -16,7 +16,7 @@ define([
      * @returns {YapFilesElement}
      * @constructor
      * @class YapFilesElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var YapFilesElement = function YapFilesElement(view, opts) {
 
@@ -43,6 +43,6 @@ define([
             );
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

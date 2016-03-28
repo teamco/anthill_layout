@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineYouPornRulesElement(BaseElement, BaseWidgetRules) {
+], function defineYouPornRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define YouPorn Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {YouPornRulesElement}
      * @constructor
      * @class YouPornRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var YouPornRulesElement = function YouPornRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return YouPornRulesElement.extend('YouPornRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

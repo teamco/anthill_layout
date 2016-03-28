@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineOnetvRuRulesElement(BaseElement, BaseWidgetRules) {
+], function defineOnetvRuRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define OnetvRu Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {OnetvRuRulesElement}
      * @constructor
      * @class OnetvRuRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var OnetvRuRulesElement = function OnetvRuRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return OnetvRuRulesElement.extend('OnetvRuRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

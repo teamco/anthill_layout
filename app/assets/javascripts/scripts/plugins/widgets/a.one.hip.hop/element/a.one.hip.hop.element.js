@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineAOneHipHopElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineAOneHipHopElement(PluginElement) {
 
     /**
      * Define AOneHipHop Element
@@ -16,7 +16,7 @@ define([
      * @returns {AOneHipHopElement}
      * @constructor
      * @class AOneHipHopElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var AOneHipHopElement = function AOneHipHopElement(view, opts) {
 
@@ -45,6 +45,6 @@ define([
             );
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

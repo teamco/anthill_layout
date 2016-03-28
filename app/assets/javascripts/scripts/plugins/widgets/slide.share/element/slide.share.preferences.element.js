@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineSlideSharePreferencesElement(BaseElement, WidgetPreferences) {
+], function defineSlideSharePreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define SlideShare Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {SlideSharePreferencesElement}
      * @constructor
      * @class SlideSharePreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var SlideSharePreferencesElement = function SlideSharePreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return SlideSharePreferencesElement.extend('SlideSharePreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

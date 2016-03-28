@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineHowcastPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineHowcastPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define Howcast Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {HowcastPreferencesElement}
      * @constructor
      * @class HowcastPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var HowcastPreferencesElement = function HowcastPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return HowcastPreferencesElement.extend('HowcastPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

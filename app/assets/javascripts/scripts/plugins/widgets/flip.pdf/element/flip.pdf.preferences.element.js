@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineFlipPdfPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineFlipPdfPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define FlipPdf Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {FlipPdfPreferencesElement}
      * @constructor
      * @class FlipPdfPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var FlipPdfPreferencesElement = function FlipPdfPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return FlipPdfPreferencesElement.extend('FlipPdfPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

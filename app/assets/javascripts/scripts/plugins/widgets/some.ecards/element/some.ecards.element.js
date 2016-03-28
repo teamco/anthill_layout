@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineSomeEcardsElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineSomeEcardsElement(PluginElement) {
 
     /**
      * Define SomeEcards Element
@@ -16,7 +16,7 @@ define([
      * @returns {SomeEcardsElement}
      * @constructor
      * @class SomeEcardsElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var SomeEcardsElement = function SomeEcardsElement(view, opts) {
 
@@ -46,6 +46,6 @@ define([
             this.$.append(embed);
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

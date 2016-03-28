@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineWordcampTvPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineWordcampTvPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define WordcampTv Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {WordcampTvPreferencesElement}
      * @constructor
      * @class WordcampTvPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var WordcampTvPreferencesElement = function WordcampTvPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return WordcampTvPreferencesElement.extend('WordcampTvPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

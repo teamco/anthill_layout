@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function definePanelElement(BaseElement) {
+    'plugins/plugin.element'
+], function definePanelElement(PluginElement) {
 
     /**
      * Define Panel Element
@@ -16,7 +16,7 @@ define([
      * @returns {PanelElement}
      * @constructor
      * @class PanelElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var PanelElement = function PanelElement(view, opts) {
 
@@ -163,6 +163,6 @@ define([
             return ['$', this.view.scope.active, '-content'].join('');
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

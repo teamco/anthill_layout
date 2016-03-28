@@ -4,8 +4,8 @@
 
 define([
     'jquery',
-    'modules/Element'
-], function defineSiteConfigApproveImportElement($, BaseElement) {
+    'plugins/plugin.element'
+], function defineSiteConfigApproveImportElement($, PluginElement) {
 
     /**
      * Define SiteConfigApproveImportElement
@@ -13,7 +13,7 @@ define([
      * @constructor
      * @param {SiteConfigView} view
      * @param opts
-     * @extends BaseElement
+     * @extends PluginElement
      * @returns {SiteConfigApproveImportElement}
      */
     var SiteConfigApproveImportElement = function SiteConfigApproveImportElement(view, opts) {
@@ -68,5 +68,5 @@ define([
             }
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 });

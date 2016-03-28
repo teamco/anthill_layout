@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineLoginGooglePreferencesElement(BaseElement, WidgetPreferences) {
+], function defineLoginGooglePreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define LoginGoogle Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {LoginGooglePreferencesElement}
      * @constructor
      * @class LoginGooglePreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var LoginGooglePreferencesElement = function LoginGooglePreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return LoginGooglePreferencesElement.extend('LoginGooglePreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

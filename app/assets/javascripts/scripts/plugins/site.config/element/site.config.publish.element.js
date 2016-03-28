@@ -3,8 +3,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineSiteConfigPublishElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineSiteConfigPublishElement(PluginElement) {
 
     /**
      * Define SiteConfigPublishElement
@@ -12,7 +12,7 @@ define([
      * @constructor
      * @param {SiteConfigView} view
      * @param opts
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends Renderer
      * @returns {SiteConfigPublishElement}
      */
@@ -37,5 +37,5 @@ define([
             // TODO
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 });

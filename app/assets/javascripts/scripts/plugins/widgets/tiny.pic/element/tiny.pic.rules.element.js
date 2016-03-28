@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineTinyPicRulesElement(BaseElement, BaseWidgetRules) {
+], function defineTinyPicRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define TinyPic Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {TinyPicRulesElement}
      * @constructor
      * @class TinyPicRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var TinyPicRulesElement = function TinyPicRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return TinyPicRulesElement.extend('TinyPicRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

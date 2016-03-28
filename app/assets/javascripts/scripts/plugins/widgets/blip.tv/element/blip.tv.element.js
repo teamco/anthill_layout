@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineBlipTvElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineBlipTvElement(PluginElement) {
 
     /**
      * Define BlipTv Element
@@ -16,7 +16,7 @@ define([
      * @returns {BlipTvElement}
      * @constructor
      * @class BlipTvElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var BlipTvElement = function BlipTvElement(view, opts) {
 
@@ -43,6 +43,6 @@ define([
             );
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function definePremiereTvElement(BaseElement) {
+    'plugins/plugin.element'
+], function definePremiereTvElement(PluginElement) {
 
     /**
      * Define PremiereTv Element
@@ -16,7 +16,7 @@ define([
      * @returns {PremiereTvElement}
      * @constructor
      * @class PremiereTvElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var PremiereTvElement = function PremiereTvElement(view, opts) {
 
@@ -45,6 +45,6 @@ define([
             );
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

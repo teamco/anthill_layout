@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineGeolocationPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineGeolocationPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define Geolocation Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {GeolocationPreferencesElement}
      * @constructor
      * @class GeolocationPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var GeolocationPreferencesElement = function GeolocationPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return GeolocationPreferencesElement.extend('GeolocationPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

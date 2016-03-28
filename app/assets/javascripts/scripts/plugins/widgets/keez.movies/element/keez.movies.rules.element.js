@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineKeezMoviesRulesElement(BaseElement, BaseWidgetRules) {
+], function defineKeezMoviesRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define KeezMovies Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {KeezMoviesRulesElement}
      * @constructor
      * @class KeezMoviesRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var KeezMoviesRulesElement = function KeezMoviesRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return KeezMoviesRulesElement.extend('KeezMoviesRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

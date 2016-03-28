@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineMetaUaPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineMetaUaPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define MetaUa Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {MetaUaPreferencesElement}
      * @constructor
      * @class MetaUaPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var MetaUaPreferencesElement = function MetaUaPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return MetaUaPreferencesElement.extend('MetaUaPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

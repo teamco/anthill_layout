@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineWidgetRulesElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineWidgetRulesElement(PluginElement) {
 
     /**
      * Define WidgetRules Element
@@ -16,7 +16,7 @@ define([
      * @returns {WidgetRulesElement}
      * @constructor
      * @class WidgetRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var WidgetRulesElement = function WidgetRulesElement(view, opts) {
 
@@ -31,5 +31,5 @@ define([
     };
 
     return WidgetRulesElement.extend('WidgetRulesElement', {
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 });

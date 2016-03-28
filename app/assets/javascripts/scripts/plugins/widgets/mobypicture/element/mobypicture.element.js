@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineMobypictureElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineMobypictureElement(PluginElement) {
 
     /**
      * Define Mobypicture Element
@@ -16,7 +16,7 @@ define([
      * @returns {MobypictureElement}
      * @constructor
      * @class MobypictureElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var MobypictureElement = function MobypictureElement(view, opts) {
 
@@ -41,6 +41,6 @@ define([
             this.$.append(embed);
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

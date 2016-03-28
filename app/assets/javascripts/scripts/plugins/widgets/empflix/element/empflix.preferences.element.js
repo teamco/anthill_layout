@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineEmpflixPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineEmpflixPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define Empflix Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {EmpflixPreferencesElement}
      * @constructor
      * @class EmpflixPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var EmpflixPreferencesElement = function EmpflixPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return EmpflixPreferencesElement.extend('EmpflixPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

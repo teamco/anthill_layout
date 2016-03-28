@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineHeaderElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineHeaderElement(PluginElement) {
 
     /**
      * Define Header Element
@@ -16,7 +16,7 @@ define([
      * @returns {HeaderElement}
      * @constructor
      * @class HeaderElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var HeaderElement = function HeaderElement(view, opts) {
 
@@ -52,6 +52,6 @@ define([
             // TODO
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

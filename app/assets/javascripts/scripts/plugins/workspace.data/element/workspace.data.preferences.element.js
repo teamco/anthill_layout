@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/pages.preferences'
-], function defineWorkspaceDataPreferencesElement(BaseElement, PagesPreferences) {
+], function defineWorkspaceDataPreferencesElement(PluginElement, PagesPreferences) {
 
     /**
      * Define WorkspaceData Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {WorkspaceDataPreferencesElement}
      * @constructor
      * @class WorkspaceDataPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends PagesPreferences
      */
     var WorkspaceDataPreferencesElement = function WorkspaceDataPreferencesElement(view, opts) {
@@ -34,7 +34,7 @@ define([
 
     return WorkspaceDataPreferencesElement.extend(
         'WorkspaceDataPreferencesElement', {},
-        BaseElement.prototype,
+        PluginElement.prototype,
         PagesPreferences.prototype
     );
 });

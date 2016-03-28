@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineSiteConfigElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineSiteConfigElement(PluginElement) {
 
     /**
      * Define SiteConfig Element
@@ -16,7 +16,7 @@ define([
      * @constructor
      * @class SiteConfigElement
      * @type {Function}
-     * @extends BaseElement
+     * @extends PluginElement
      * @returns {SiteConfigElement}
      */
     var SiteConfigElement = function SiteConfigElement(view, opts) {
@@ -31,5 +31,5 @@ define([
         return this;
     };
 
-    return SiteConfigElement.extend('SiteConfigElement', {}, BaseElement.prototype);
+    return SiteConfigElement.extend('SiteConfigElement', {}, PluginElement.prototype);
 });

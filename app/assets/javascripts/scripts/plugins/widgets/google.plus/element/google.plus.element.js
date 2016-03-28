@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineGooglePlusElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineGooglePlusElement(PluginElement) {
 
     /**
      * Define GooglePlus Element
@@ -16,7 +16,7 @@ define([
      * @returns {GooglePlusElement}
      * @constructor
      * @class GooglePlusElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var GooglePlusElement = function GooglePlusElement(view, opts) {
 
@@ -52,6 +52,6 @@ define([
             });
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

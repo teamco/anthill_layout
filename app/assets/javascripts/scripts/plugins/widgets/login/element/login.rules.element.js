@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineLoginRulesElement(BaseElement, BaseWidgetRules) {
+], function defineLoginRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define Login Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {LoginRulesElement}
      * @constructor
      * @class LoginRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var LoginRulesElement = function LoginRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return LoginRulesElement.extend('LoginRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

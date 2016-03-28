@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineTsnUaPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineTsnUaPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define TsnUa Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {TsnUaPreferencesElement}
      * @constructor
      * @class TsnUaPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var TsnUaPreferencesElement = function TsnUaPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return TsnUaPreferencesElement.extend('TsnUaPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

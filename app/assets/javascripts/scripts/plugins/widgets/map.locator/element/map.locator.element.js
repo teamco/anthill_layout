@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineMapLocatorElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineMapLocatorElement(PluginElement) {
 
     /**
      * Define MapLocator Element
@@ -16,7 +16,7 @@ define([
      * @returns {MapLocatorElement}
      * @constructor
      * @class MapLocatorElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var MapLocatorElement = function MapLocatorElement(view, opts) {
 
@@ -405,6 +405,6 @@ define([
             this.drawCircle(marker);
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

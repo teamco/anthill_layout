@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineStepashkaPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineStepashkaPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define Stepashka Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {StepashkaPreferencesElement}
      * @constructor
      * @class StepashkaPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var StepashkaPreferencesElement = function StepashkaPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return StepashkaPreferencesElement.extend('StepashkaPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineYapFilesPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineYapFilesPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define YapFiles Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {YapFilesPreferencesElement}
      * @constructor
      * @class YapFilesPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var YapFilesPreferencesElement = function YapFilesPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return YapFilesPreferencesElement.extend('YapFilesPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

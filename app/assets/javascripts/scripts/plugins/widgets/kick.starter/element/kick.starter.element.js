@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineKickStarterElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineKickStarterElement(PluginElement) {
 
     /**
      * Define KickStarter Element
@@ -16,7 +16,7 @@ define([
      * @returns {KickStarterElement}
      * @constructor
      * @class KickStarterElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var KickStarterElement = function KickStarterElement(view, opts) {
 
@@ -43,6 +43,6 @@ define([
             );
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

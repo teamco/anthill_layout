@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineKeezMoviesElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineKeezMoviesElement(PluginElement) {
 
     /**
      * Define KeezMovies Element
@@ -16,7 +16,7 @@ define([
      * @returns {KeezMoviesElement}
      * @constructor
      * @class KeezMoviesElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var KeezMoviesElement = function KeezMoviesElement(view, opts) {
 
@@ -43,6 +43,6 @@ define([
             );
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

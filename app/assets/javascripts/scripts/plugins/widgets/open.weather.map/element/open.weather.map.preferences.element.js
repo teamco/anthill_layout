@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineOpenWeatherMapPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineOpenWeatherMapPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define OpenWeatherMap Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {OpenWeatherMapPreferencesElement}
      * @constructor
      * @class OpenWeatherMapPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var OpenWeatherMapPreferencesElement = function OpenWeatherMapPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return OpenWeatherMapPreferencesElement.extend('OpenWeatherMapPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

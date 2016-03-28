@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineRssPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineRssPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define Rss Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {RssPreferencesElement}
      * @constructor
      * @class RssPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var RssPreferencesElement = function RssPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return RssPreferencesElement.extend('RssPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

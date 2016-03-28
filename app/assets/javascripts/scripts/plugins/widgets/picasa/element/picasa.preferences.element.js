@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function definePicasaPreferencesElement(BaseElement, WidgetPreferences) {
+], function definePicasaPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define Picasa Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {PicasaPreferencesElement}
      * @constructor
      * @class PicasaPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var PicasaPreferencesElement = function PicasaPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return PicasaPreferencesElement.extend('PicasaPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

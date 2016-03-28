@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineTrubaElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineTrubaElement(PluginElement) {
 
     /**
      * Define Truba Element
@@ -16,7 +16,7 @@ define([
      * @returns {TrubaElement}
      * @constructor
      * @class TrubaElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var TrubaElement = function TrubaElement(view, opts) {
 
@@ -43,6 +43,6 @@ define([
             );
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

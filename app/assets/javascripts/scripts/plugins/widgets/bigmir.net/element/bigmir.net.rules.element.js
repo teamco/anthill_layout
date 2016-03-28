@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineBigmirNetRulesElement(BaseElement, BaseWidgetRules) {
+], function defineBigmirNetRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define BigmirNet Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {BigmirNetRulesElement}
      * @constructor
      * @class BigmirNetRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var BigmirNetRulesElement = function BigmirNetRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return BigmirNetRulesElement.extend('BigmirNetRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

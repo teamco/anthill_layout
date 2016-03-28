@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineScribdPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineScribdPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define Scribd Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {ScribdPreferencesElement}
      * @constructor
      * @class ScribdPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var ScribdPreferencesElement = function ScribdPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return ScribdPreferencesElement.extend('ScribdPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineClocklinkElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineClocklinkElement(PluginElement) {
 
     /**
      * Define Clocklink Element
@@ -16,7 +16,7 @@ define([
      * @returns {ClocklinkElement}
      * @constructor
      * @class ClocklinkElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends Renderer
      */
     var ClocklinkElement = function ClocklinkElement(view, opts) {
@@ -118,6 +118,6 @@ define([
             this.$.append($content);
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

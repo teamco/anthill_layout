@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineMapLocatorPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineMapLocatorPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define MapLocator Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {MapLocatorPreferencesElement}
      * @constructor
      * @class MapLocatorPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var MapLocatorPreferencesElement = function MapLocatorPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return MapLocatorPreferencesElement.extend('MapLocatorPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

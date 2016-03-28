@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function definePdfPreferencesElement(BaseElement, WidgetPreferences) {
+], function definePdfPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define Pdf Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {PdfPreferencesElement}
      * @constructor
      * @class PdfPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var PdfPreferencesElement = function PdfPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return PdfPreferencesElement.extend('PdfPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

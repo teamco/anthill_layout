@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineKremElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineKremElement(PluginElement) {
 
     /**
      * Define Krem Element
@@ -16,7 +16,7 @@ define([
      * @returns {KremElement}
      * @constructor
      * @class KremElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var KremElement = function KremElement(view, opts) {
 
@@ -43,6 +43,6 @@ define([
             );
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

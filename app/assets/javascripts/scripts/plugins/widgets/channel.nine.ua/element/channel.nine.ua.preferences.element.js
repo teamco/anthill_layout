@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineChannelNineUaPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineChannelNineUaPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define ChannelNineUa Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {ChannelNineUaPreferencesElement}
      * @constructor
      * @class ChannelNineUaPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var ChannelNineUaPreferencesElement = function ChannelNineUaPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return ChannelNineUaPreferencesElement.extend('ChannelNineUaPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

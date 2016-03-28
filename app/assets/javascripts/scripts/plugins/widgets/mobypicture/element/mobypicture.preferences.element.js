@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineMobypicturePreferencesElement(BaseElement, WidgetPreferences) {
+], function defineMobypicturePreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define Mobypicture Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {MobypicturePreferencesElement}
      * @constructor
      * @class MobypicturePreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var MobypicturePreferencesElement = function MobypicturePreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return MobypicturePreferencesElement.extend('MobypicturePreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

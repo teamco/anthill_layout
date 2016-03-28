@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function definePostToolRulesElement(BaseElement, BaseWidgetRules) {
+], function definePostToolRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define PostTool Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {PostToolRulesElement}
      * @constructor
      * @class PostToolRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var PostToolRulesElement = function PostToolRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return PostToolRulesElement.extend('PostToolRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

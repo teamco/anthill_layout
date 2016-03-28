@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineIceFloeRulesElement(BaseElement, BaseWidgetRules) {
+], function defineIceFloeRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define IceFloe Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {IceFloeRulesElement}
      * @constructor
      * @class IceFloeRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var IceFloeRulesElement = function IceFloeRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return IceFloeRulesElement.extend('IceFloeRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

@@ -6,7 +6,7 @@
  */
 
 define([
-    'plugins/plugin',
+    'plugins/plugin.controller',
     'plugins/widgets/widget.content.controller'
 ], function defineWebrtcVideoChatController(PluginBase, WidgetContentController) {
 

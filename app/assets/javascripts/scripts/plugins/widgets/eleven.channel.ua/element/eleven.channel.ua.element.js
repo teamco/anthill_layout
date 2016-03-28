@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineElevenChannelUaElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineElevenChannelUaElement(PluginElement) {
 
     /**
      * Define ElevenChannelUa Element
@@ -16,7 +16,7 @@ define([
      * @returns {ElevenChannelUaElement}
      * @constructor
      * @class ElevenChannelUaElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var ElevenChannelUaElement = function ElevenChannelUaElement(view, opts) {
 
@@ -43,6 +43,6 @@ define([
             );
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

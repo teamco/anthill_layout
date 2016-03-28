@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineScreencastPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineScreencastPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define Screencast Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {ScreencastPreferencesElement}
      * @constructor
      * @class ScreencastPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var ScreencastPreferencesElement = function ScreencastPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return ScreencastPreferencesElement.extend('ScreencastPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

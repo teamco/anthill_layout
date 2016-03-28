@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineSportExpressElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineSportExpressElement(PluginElement) {
 
     /**
      * Define SportExpress Element
@@ -16,7 +16,7 @@ define([
      * @returns {SportExpressElement}
      * @constructor
      * @class SportExpressElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var SportExpressElement = function SportExpressElement(view, opts) {
 
@@ -43,6 +43,6 @@ define([
             );
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

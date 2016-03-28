@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineCollegeHumorElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineCollegeHumorElement(PluginElement) {
 
     /**
      * Define CollegeHumor Element
@@ -16,7 +16,7 @@ define([
      * @returns {CollegeHumorElement}
      * @constructor
      * @class CollegeHumorElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var CollegeHumorElement = function CollegeHumorElement(view, opts) {
 
@@ -45,6 +45,6 @@ define([
             );
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineRutubeRulesElement(BaseElement, BaseWidgetRules) {
+], function defineRutubeRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define Rutube Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {RutubeRulesElement}
      * @constructor
      * @class RutubeRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var RutubeRulesElement = function RutubeRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return RutubeRulesElement.extend('RutubeRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

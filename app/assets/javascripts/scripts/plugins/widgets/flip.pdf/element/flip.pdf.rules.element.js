@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineFlipPdfRulesElement(BaseElement, BaseWidgetRules) {
+], function defineFlipPdfRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define FlipPdf Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {FlipPdfRulesElement}
      * @constructor
      * @class FlipPdfRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var FlipPdfRulesElement = function FlipPdfRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return FlipPdfRulesElement.extend('FlipPdfRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

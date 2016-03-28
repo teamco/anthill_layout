@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineEmptyElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineEmptyElement(PluginElement) {
 
     /**
      * Define Empty Element
@@ -16,7 +16,7 @@ define([
      * @returns {EmptyElement}
      * @constructor
      * @class EmptyElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var EmptyElement = function EmptyElement(view, opts) {
 
@@ -40,6 +40,6 @@ define([
             // TODO
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

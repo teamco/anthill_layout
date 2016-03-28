@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineMetaUaElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineMetaUaElement(PluginElement) {
 
     /**
      * Define MetaUa Element
@@ -16,7 +16,7 @@ define([
      * @returns {MetaUaElement}
      * @constructor
      * @class MetaUaElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var MetaUaElement = function MetaUaElement(view, opts) {
 
@@ -43,6 +43,6 @@ define([
             );
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

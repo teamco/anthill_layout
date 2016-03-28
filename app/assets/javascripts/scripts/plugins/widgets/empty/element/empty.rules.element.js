@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineEmptyRulesElement(BaseElement, BaseWidgetRules) {
+], function defineEmptyRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define Empty Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {EmptyRulesElement}
      * @constructor
      * @class EmptyRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var EmptyRulesElement = function EmptyRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return EmptyRulesElement.extend('EmptyRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineSwfRulesElement(BaseElement, BaseWidgetRules) {
+], function defineSwfRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define Swf Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {SwfRulesElement}
      * @constructor
      * @class SwfRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var SwfRulesElement = function SwfRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return SwfRulesElement.extend('SwfRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

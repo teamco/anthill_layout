@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineXHamsterPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineXHamsterPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define XHamster Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {XHamsterPreferencesElement}
      * @constructor
      * @class XHamsterPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var XHamsterPreferencesElement = function XHamsterPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return XHamsterPreferencesElement.extend('XHamsterPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

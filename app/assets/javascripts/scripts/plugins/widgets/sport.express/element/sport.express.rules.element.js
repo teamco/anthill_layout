@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineSportExpressRulesElement(BaseElement, BaseWidgetRules) {
+], function defineSportExpressRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define SportExpress Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {SportExpressRulesElement}
      * @constructor
      * @class SportExpressRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var SportExpressRulesElement = function SportExpressRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return SportExpressRulesElement.extend('SportExpressRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

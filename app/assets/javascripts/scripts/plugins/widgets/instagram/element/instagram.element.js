@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineInstagramElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineInstagramElement(PluginElement) {
 
     /**
      * Define Instagram Element
@@ -16,7 +16,7 @@ define([
      * @returns {InstagramElement}
      * @constructor
      * @class InstagramElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var InstagramElement = function InstagramElement(view, opts) {
 
@@ -46,5 +46,5 @@ define([
             this.$.append(embed);
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 });

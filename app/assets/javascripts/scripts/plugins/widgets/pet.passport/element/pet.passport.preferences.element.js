@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function definePetPassportPreferencesElement(BaseElement, WidgetPreferences) {
+], function definePetPassportPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define PetPassport Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {PetPassportPreferencesElement}
      * @constructor
      * @class PetPassportPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var PetPassportPreferencesElement = function PetPassportPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return PetPassportPreferencesElement.extend('PetPassportPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

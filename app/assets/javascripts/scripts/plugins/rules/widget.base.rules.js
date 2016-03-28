@@ -15,7 +15,7 @@ define([
      * @class BaseWidgetRules
      * @extends Renderer
      * @extends BaseRules
-     * @extends BaseElement
+     * @extends PluginElement
      * @constructor
      */
     var BaseWidgetRules = function BaseWidgetRules() {

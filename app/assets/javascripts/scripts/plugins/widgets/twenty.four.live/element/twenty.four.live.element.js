@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineTwentyFourLiveElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineTwentyFourLiveElement(PluginElement) {
 
     /**
      * Define TwentyFourLive Element
@@ -16,7 +16,7 @@ define([
      * @returns {TwentyFourLiveElement}
      * @constructor
      * @class TwentyFourLiveElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var TwentyFourLiveElement = function TwentyFourLiveElement(view, opts) {
 
@@ -46,6 +46,6 @@ define([
             );
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

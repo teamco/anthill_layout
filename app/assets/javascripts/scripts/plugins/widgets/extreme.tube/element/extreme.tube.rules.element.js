@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineExtremeTubeRulesElement(BaseElement, BaseWidgetRules) {
+], function defineExtremeTubeRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
      * Define ExtremeTube Rules Element
@@ -17,7 +17,7 @@ define([
      * @returns {ExtremeTubeRulesElement}
      * @constructor
      * @class ExtremeTubeRulesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends BaseWidgetRules
      */
     var ExtremeTubeRulesElement = function ExtremeTubeRulesElement(view, opts) {
@@ -38,6 +38,6 @@ define([
 
     return ExtremeTubeRulesElement.extend('ExtremeTubeRulesElement', {
 
-    }, BaseElement.prototype, BaseWidgetRules.prototype);
+    }, PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

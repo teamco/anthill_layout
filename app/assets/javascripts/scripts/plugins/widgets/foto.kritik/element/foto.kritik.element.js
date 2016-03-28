@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineFotoKritikElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineFotoKritikElement(PluginElement) {
 
     /**
      * Define FotoKritik Element
@@ -16,7 +16,7 @@ define([
      * @returns {FotoKritikElement}
      * @constructor
      * @class FotoKritikElement
-     * @extends BaseElement
+     * @extends PluginElement
      */
     var FotoKritikElement = function FotoKritikElement(view, opts) {
 
@@ -43,6 +43,6 @@ define([
             );
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/Element'
-], function defineMaximizeContentElement(BaseElement) {
+    'plugins/plugin.element'
+], function defineMaximizeContentElement(PluginElement) {
 
     /**
      * Define Maximize Content Element
@@ -16,7 +16,7 @@ define([
      * @returns {MaximizeContentElement}
      * @constructor
      * @class MaximizeContentElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends Renderer
      */
     var MaximizeContentElement = function MaximizeContentElement(view, opts) {
@@ -141,6 +141,6 @@ define([
             );
         }
 
-    }, BaseElement.prototype);
+    }, PluginElement.prototype);
 
 });

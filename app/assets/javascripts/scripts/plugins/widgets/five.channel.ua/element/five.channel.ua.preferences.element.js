@@ -6,9 +6,9 @@
  */
 
 define([
-    'modules/Element',
+    'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineFiveChannelUaPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineFiveChannelUaPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
      * Define FiveChannelUa Preferences Element
@@ -17,7 +17,7 @@ define([
      * @returns {FiveChannelUaPreferencesElement}
      * @constructor
      * @class FiveChannelUaPreferencesElement
-     * @extends BaseElement
+     * @extends PluginElement
      * @extends WidgetPreferences
      */
     var FiveChannelUaPreferencesElement = function FiveChannelUaPreferencesElement(view, opts) {
@@ -35,6 +35,6 @@ define([
     return FiveChannelUaPreferencesElement.extend('FiveChannelUaPreferencesElement', {
 
 
-    }, BaseElement.prototype, WidgetPreferences.prototype);
+    }, PluginElement.prototype, WidgetPreferences.prototype);
 
 });
