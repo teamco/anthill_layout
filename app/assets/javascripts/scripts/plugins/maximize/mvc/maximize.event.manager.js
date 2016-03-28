@@ -20,20 +20,20 @@ define([
 
         /**
          * Define events
-         * @memberOf MaximizeEventManager
+         * @property MaximizeEventManager
          * @type {{}}
          */
         this.events = {};
 
         /**
          * Define event list
-         * @memberOf MaximizeEventManager
+         * @property MaximizeEventManager
          * @type {{
          *      updateTranslations: string,
          *      loadContent: string,
          *      storeItem: string,
          *      setActiveContent: string,
-         *      loadPreferences: string,
+         *      prepareActiveComponent: string,
          *      defineInteraction: string
          * }}
          */
@@ -41,13 +41,13 @@ define([
             updateTranslations: 'update.translations',
             loadModuleContent: 'load.module.content',
             defineInteraction: 'define.interaction',
-            loadPreferences: 'load.preferences',
             storeItem: 'store.item',
+            prepareActiveComponent: 'prepare.active.component',
             setActiveContent: 'set.active.content'
         };
     };
 
-    return MaximizeEventManager.extend('MaximizeEventManager', {
-
-    }, BaseEvent.prototype);
+    return MaximizeEventManager.extend(
+        'MaximizeEventManager', {}, BaseEvent.prototype
+    );
 });

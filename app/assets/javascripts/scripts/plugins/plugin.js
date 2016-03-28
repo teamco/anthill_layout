@@ -173,31 +173,95 @@ define([
         },
 
         /**
-         * Locate element
-         * @param $element
-         * @param {*} e
-         * @returns {boolean}
+         * Locate widget
+         * @memberOf PluginController
+         * @param {Event} event
          */
-        locateElement: function locateElement($element, e) {
+        locateWidget: function locateWidget(event) {
 
-            if (!$element) {
+            event.preventDefault();
+
+            /**
+             * Define scope
+             * @type {WidgetRules}
+             */
+            var scope = this.scope;
+
+            scope.observer.publish(
+                scope.eventmanager.eventList.prepareActiveComponent, [
+                    {uuid: this.uuid},
+                    false, event,
+                    scope.controller.locateModuleItem.bind(scope)
+                ]
+            );
+        },
+
+        /**
+         * Prepare active component
+         * @memberOf PluginController
+         * @param config
+         * @param {boolean} load
+         * @param {Event} event
+         * @param {function} [callback]
+         */
+        prepareActiveComponent: function prepareActiveComponent(config, load, event, callback) {
+
+            this.observer.publish(
+                this.eventmanager.eventList.setActiveContent,
+                config.uuid
+            );
+
+            /**
+             * Define showModal
+             * @type {function}
+             */
+            var showModal = this.view['show' + this.name + 'Modal'];
+
+            if (_.isFunction(showModal) && load) {
+                showModal.bind(this.view)(config, load);
+            }
+
+            /**
+             * Define collected items
+             * @type {*}
+             */
+            var items = this.model.getCollectedItems(),
+                index;
+
+            for (index in items) {
+                if (items.hasOwnProperty(index)) {
+                    this.controller.defineContentReferrer(items[index]);
+                }
+            }
+
+            if (_.isFunction(callback)) {
+                callback(event);
+            }
+        },
+
+        /**
+         * Locate module item
+         * @memberOf PluginController
+         * @param {Event} e
+         */
+        locateModuleItem: function locateModuleItem(e) {
+
+            // Get active content
+            var active = this.activeContent;
+
+            if (!active) {
+
+                this.logger.warn('Unable fetch active component');
                 return false;
             }
 
             /**
-             * Hide border on locate element
-             * @private
+             * Define $item
+             * @type {BaseElement}
              */
-            function _hideBorder() {
-                $element.$.removeClass('select');
-            }
+            var $item = active.controller.getContainment().view.get$item();
 
-            $element.$.parent().children().removeClass('select');
-            $element.$.addClass('select');
-
-            if (e.type === 'mouseleave' || e.type === 'click') {
-                setTimeout(_hideBorder, 300);
-            }
+            this.view.get$item().locateElement($item, e);
         },
 
         /**

@@ -63,10 +63,7 @@ define([
              * Get description
              * @type {string}
              */
-            var description = preferences.description || '',
-                cname = this.view.controller.getResourceClassName(
-                    preferences.resource
-                );
+            var description = preferences.description || '';
 
             /**
              * Define data
@@ -77,10 +74,6 @@ define([
                 name: title,
                 description: description
             };
-
-            //this.setText(title);
-            //
-            //this.$.prepend('<i class="fa ' + cname + '"></i>');
 
             this.renderTooltip({
                 title: title,
@@ -97,40 +90,20 @@ define([
         bindLocate: function bindLocate(data) {
 
             /**
-             * Locate widget
-             * @param event
-             * @private
-             */
-            function _locatePrefs(event) {
-
-                event.preventDefault();
-
-                scope.observer.publish(
-                    scope.eventmanager.eventList.loadPreferences, [
-                        {uuid: config.uuid},
-                        event,
-                        scope.controller.locateMaximize.bind(
-                            scope.controller
-                        )
-                    ]
-                );
-            }
-
-            /**
-             * Get config
-             * @type {*}
-             */
-            var config = data.model.getConfig();
-
-            /**
              * Define scope
-             * @type {PageData}
+             * @type {WidgetRules}
              */
             var scope = this.view.scope;
 
-            this.$.off('mouseenter.prefs mouseleave.prefs').on(
-                'mouseenter.prefs mouseleave.prefs',
-                _locatePrefs.bind(this)
+            // Get location event
+            var locateOn = 'mouseenter.prefs mouseleave.prefs';
+
+            this.$.off(locateOn).on(
+                locateOn,
+                scope.controller.locateWidget.bind({
+                    scope: scope,
+                    uuid: data.model.getUUID()
+                })
             );
         },
 

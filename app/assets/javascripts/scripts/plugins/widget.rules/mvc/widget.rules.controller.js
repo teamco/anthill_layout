@@ -85,6 +85,11 @@ define([
          */
         setActiveContent: function setActiveContent(uuid) {
 
+            if (!uuid) {
+                this.logger.debug('Skip active content setter');
+                return false;
+            }
+
             /**
              * Get current page
              * @type {Page}
@@ -115,68 +120,6 @@ define([
             this.activeContent.referrer = this;
 
             this.logger.debug('Active content', this.activeContent);
-        },
-
-        /**
-         * Load rules
-         * @memberOf WidgetRulesController
-         * @param config
-         * @param load
-         * @param [event]
-         * @param {function} [callback]
-         */
-        loadDataRules: function loadDataRules(config, load, event, callback) {
-
-            this.observer.publish(
-                this.eventmanager.eventList.setActiveContent,
-                config.uuid
-            );
-
-            this.view.showRules(config, load);
-
-            /**
-             * Define collected items
-             * @type {*}
-             */
-            var items = this.model.getCollectedItems();
-
-            for (var index in items) {
-
-                if (items.hasOwnProperty(index)) {
-                    this.controller.defineContentReferrer(items[index]);
-                }
-            }
-
-            if (_.isFunction(callback)) {
-                callback(event);
-            }
-        },
-
-        /**
-         * Locate widget
-         * @memberOf WidgetRulesController
-         * @param {Event} event
-         */
-        locateWidget: function locateWidget(event) {
-
-            event.preventDefault();
-
-            /**
-             * Define scope
-             * @type {WidgetRules}
-             */
-            var scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.loadDataRules, [
-                    {uuid: this.uuid},
-                    false,
-                    event,
-                    scope.controller.locateWidgetRules.bind(
-                        scope.controller
-                    )
-                ]
-            );
         },
 
         /**
@@ -256,22 +199,6 @@ define([
             scope.activeContent.controller.updateRules(
                 scope.view.elements.$modal
             );
-        },
-
-        /**
-         * Locate page data element
-         * @memberOf WidgetRulesController
-         * @param e
-         */
-        locateWidgetRules: function locateWidgetRules(e) {
-
-            /**
-             * Define $item
-             * @type {WidgetElement}
-             */
-            var $item = this.scope.activeContent.containment.view.get$item();
-
-            this.locateElement($item, e);
         },
 
         /**

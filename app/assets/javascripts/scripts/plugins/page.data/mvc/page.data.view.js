@@ -118,24 +118,19 @@ define([
              * @param config
              * @param {boolean} load
              */
-            showPreferences: function showPreferences(config, load) {
+            showPageDataModal: function showPageDataModal(config, load) {
 
                 /**
                  * Define scope
-                 * @type {PageData}
+                 * @type {PageData|{name}}
                  */
                 var scope = this.scope;
-
-                scope.observer.publish(
-                    scope.eventmanager.eventList.setActiveContent,
-                    config.uuid
-                );
 
                 /**
                  * Get content
                  * @type {WidgetContent}
                  */
-                var content = this.scope.activeContent;
+                var content = scope.activeContent;
 
                 if (!content) {
                     scope.logger.warn('Undefined content');
@@ -176,7 +171,7 @@ define([
                                 text: 'Rules',
                                 type: 'info',
                                 events: {
-                                    click: 'rules' + this.scope.name
+                                    click: 'rules' + scope.name
                                 }
                             },
                             reject: {

@@ -50,6 +50,11 @@ define([
          */
         setActiveContent: function setActiveContent(uuid) {
 
+            if (!uuid) {
+                this.logger.debug('Skip active content setter');
+                return false;
+            }
+            
             /**
              * Get workspace data
              * @type {WorkspaceData}
@@ -112,63 +117,6 @@ define([
         },
 
         /**
-         * Load data prefs
-         * @memberOf PageDataController
-         * @param config
-         * @param load
-         * @param event
-         * @param {function} [callback]
-         */
-        loadDataPreferences: function loadDataPreferences(config, load, event, callback) {
-
-            this.view.showPreferences(config, load);
-
-            /**
-             * Define collected items
-             * @type {*}
-             */
-            var items = this.model.getCollectedItems();
-
-            for (var index in items) {
-
-                if (items.hasOwnProperty(index)) {
-                    this.controller.defineContentReferrer(items[index]);
-                }
-            }
-
-            if (_.isFunction(callback)) {
-                callback(event);
-            }
-        },
-
-        /**
-         * Locate widget
-         * @memberOf PageDataController
-         * @param {Event} event
-         */
-        locateWidget: function locateWidget(event) {
-
-            /**
-             * Define scope
-             * @type {PageData}
-             */
-            var scope = this.scope;
-
-            event.preventDefault();
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.loadDataPreferences, [
-                    {uuid: this.uuid},
-                    false,
-                    event,
-                    scope.controller.locatePageData.bind(
-                        scope.controller
-                    )
-                ]
-            );
-        },
-
-        /**
          * Check if content was updated
          * @memberOf PageDataController
          * @param data
@@ -224,30 +172,7 @@ define([
                 widget
             );
         },
-
-        /**
-         * Locate page data element
-         * @memberOf PageDataController
-         * @param e
-         */
-        locatePageData: function locatePageData(e) {
-
-            // Get active content
-            var active = this.scope.activeContent;
-
-            if (!active) {
-                return false;
-            }
-
-            /**
-             * Define $item
-             * @type {BaseElement}
-             */
-            var $item = active.controller.getContainment().view.get$item();
-
-            this.locateElement($item, e);
-        },
-
+        
         /**
          * Open rules from prefs dialog
          * @memberOf PageDataController

@@ -1060,7 +1060,7 @@ define([
         },
 
         /**
-         * Define sort text @elemet
+         * Define sort text @element
          * @memberOf BaseElement
          * @param {Event} event
          */
@@ -1092,6 +1092,35 @@ define([
                 return 0;
 
             }).appendTo($container);
+        },
+
+        /**
+         * Locate element
+         * @memberOf BaseElement
+         * @param {BaseElement} $element
+         * @param {Event} e
+         * @returns {boolean}
+         */
+        locateElement: function locateElement($element, e) {
+
+            if (!$element) {
+                return false;
+            }
+
+            /**
+             * Hide border on locate element
+             * @private
+             */
+            function _hideBorder() {
+                $element.$.removeClass('select');
+            }
+
+            $element.$.parent().children().removeClass('select');
+            $element.$.addClass('select');
+
+            if (e.type === 'mouseleave' || e.type === 'click') {
+                setTimeout(_hideBorder, 300);
+            }
         }
 
     }, AntHill.prototype, Renderer.prototype);

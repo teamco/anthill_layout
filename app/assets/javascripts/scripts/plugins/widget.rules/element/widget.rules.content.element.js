@@ -112,8 +112,8 @@ define([
 
             this.$.off(locateOn).on(
                 locateOn,
-                this.view.controller.locateWidget.bind({
-                    scope: this.view.scope,
+                scope.controller.locateWidget.bind({
+                    scope: scope,
                     uuid: data.model.getUUID()
                 })
             );
@@ -148,8 +148,8 @@ define([
             function _clickRules(e) {
                 e.preventDefault();
                 scope.observer.publish(
-                    scope.eventmanager.eventList.loadDataRules,
-                    [config, true, e, _loadStoredRules.bind(this)]
+                    scope.eventmanager.eventList.prepareActiveComponent,
+                    [config, true, e, _loadStoredRules]
                 );
             }
 

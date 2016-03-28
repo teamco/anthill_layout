@@ -118,52 +118,48 @@ define([
              * @param load
              * @returns {boolean|*}
              */
-            showRules: function showRules(config, load) {
+            showWidgetRulesModal: function showWidgetRulesModal(config, load) {
+
+                if (!load) {
+                    return false;
+                }
 
                 /**
                  * Define scope
-                 * @type {PageData}
+                 * @type {WidgetRules|{name}}
                  */
                 var scope = this.scope;
 
-                scope.observer.publish(
-                    scope.eventmanager.eventList.setActiveContent,
-                    config.uuid
-                );
+                /**
+                 * Define $html
+                 * @type {BaseElement}
+                 */
+                var $html = this.controller.getRulesHtml(config.uuid, load);
 
-                if (load) {
+                if (!$html) {
 
-                    /**
-                     * Define $html
-                     * @type {BaseElement}
-                     */
-                    var $html = this.controller.getRulesHtml(config.uuid, load);
+                    scope.logger.warn('Wait for loading rules');
+                    return false;
+                }
 
-                    if (!$html) {
-
-                        scope.logger.warn('Wait for loading rules');
-                        return false;
-                    }
-
-                    this.openRules({
-                        config: config,
-                        $html: $html.$,
-                        style: [
-                            config.preferences.resource,
-                            'widget-rules rules'
-                        ].join(' '),
-                        title: 'Widget rules',
-                        buttons: {
-                            preferences: {
-                                text: 'Preferences',
-                                type: 'info',
-                                events: {
-                                    click: 'preferences' + this.scope.name
-                                }
+                this.openRules({
+                    config: config,
+                    $html: $html.$,
+                    style: [
+                        config.preferences.resource,
+                        'widget-rules rules'
+                    ].join(' '),
+                    title: 'Widget rules',
+                    buttons: {
+                        preferences: {
+                            text: 'Preferences',
+                            type: 'info',
+                            events: {
+                                click: 'preferences' + scope.name
                             }
                         }
-                    });
-                }
+                    }
+                });
             },
 
             /**

@@ -31,7 +31,7 @@ define([
          * @type {{
          *      updateTranslations: string,
          *      loadModuleContent: string,
-         *      loadDataRules: string,
+         *      prepareActiveComponent: string,
          *      storeItem: string,
          *      setActiveContent: string
          * }}
@@ -39,7 +39,7 @@ define([
         this.eventList = {
             updateTranslations: 'update.translations',
             loadModuleContent: 'load.module.content',
-            loadDataRules: 'load.data.rules',
+            prepareActiveComponent: 'prepare.active.component',
             storeItem: 'store.item',
             setActiveContent: 'set.active.content'
         };

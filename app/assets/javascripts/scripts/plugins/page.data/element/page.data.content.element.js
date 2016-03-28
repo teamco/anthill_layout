@@ -100,13 +100,19 @@ define([
          */
         bindLocate: function bindLocate(data) {
 
+            /**
+             * Define scope
+             * @type {WidgetRules}
+             */
+            var scope = this.view.scope;
+            
             // Get location event
             var locateOn = 'mouseenter.prefs mouseleave.prefs';
 
             this.$.off(locateOn).on(
                 locateOn,
-                this.view.controller.locateWidget.bind({
-                    scope: this.view.scope,
+                scope.controller.locateWidget.bind({
+                    scope: scope,
                     uuid: data.model.getUUID()
                 })
             );
@@ -129,7 +135,7 @@ define([
                 event.preventDefault();
 
                 scope.observer.publish(
-                    scope.eventmanager.eventList.loadDataPreferences,
+                    scope.eventmanager.eventList.prepareActiveComponent,
                     [config, true]
                 );
             }

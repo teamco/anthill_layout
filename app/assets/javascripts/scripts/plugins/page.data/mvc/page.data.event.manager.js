@@ -20,18 +20,18 @@ define([
 
         /**
          * Define events
-         * @memberOf PageDataEventManager
+         * @property PageDataEventManager
          * @type {{}}
          */
         this.events = {};
 
         /**
          * Define event list
-         * @memberOf PageDataEventManager
+         * @property PageDataEventManager
          * @type {{
          *      updateTranslations: string,
          *      loadModuleContent: string,
-         *      loadDataPreferences: string,
+         *      prepareActiveComponent: string,
          *      storeItem: string,
          *      setActiveContent: string
          * }}
@@ -39,7 +39,7 @@ define([
         this.eventList = {
             updateTranslations: 'update.translations',
             loadModuleContent: 'load.module.content',
-            loadDataPreferences: 'load.data.preferences',
+            prepareActiveComponent: 'prepare.active.component',
             storeItem: 'store.item',
             setActiveContent: 'set.active.content'
         };

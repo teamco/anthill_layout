@@ -94,62 +94,7 @@ define([
 
             this.logger.debug('Active content', this.activeContent);
         },
-
-        /**
-         * Load prefs
-         * @memberOf MaximizeController
-         * @param config
-         * @param event
-         * @param {function} [callback]
-         */
-        loadPreferences: function loadPreferences(config, event, callback) {
-
-            this.observer.publish(
-                this.eventmanager.eventList.setActiveContent,
-                config.uuid
-            );
-
-            /**
-             * Define collected items
-             * @type {*}
-             */
-            var items = this.model.getCollectedItems();
-
-            for (var index in items) {
-
-                if (items.hasOwnProperty(index)) {
-                    this.controller.defineContentReferrer(items[index]);
-                }
-            }
-
-            if (_.isFunction(callback)) {
-                callback(event);
-            }
-        },
-
-        /**
-         * Locate page data element
-         * @memberOf MaximizeController
-         * @param e
-         */
-        locateMaximize: function locateMaximize(e) {
-
-            // Get active content
-            var active = this.scope.activeContent;
-
-            if (!active) {
-                return false;
-            }
-
-            /**
-             * Define $item
-             * @type {BaseElement}
-             */
-            var $item = active.controller.getContainment().view.get$item();
-
-            this.locateElement($item, e);
-        },
-
+        
         /**
          * Load maximize content
          * @memberOf MaximizeController
