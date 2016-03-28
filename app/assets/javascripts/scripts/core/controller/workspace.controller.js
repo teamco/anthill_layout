@@ -80,39 +80,7 @@ define(
                         [index, value]
                     );
                 },
-
-                /**
-                 * Load config preferences
-                 * @memberOf WorkspaceController
-                 */
-                loadPreferences: function loadPreferences() {
-
-                    /**
-                     * Get preferences
-                     * @type {{}}
-                     */
-                    var prefs = this.model.getConfig('preferences');
-
-                    $.each(prefs, function each(index, value) {
-
-                        /**
-                         * Define method name
-                         * @type {string}
-                         */
-                        var setter = 'set' + index.toCamel().capitalize();
-
-                        if (typeof(this.model[setter]) === 'function') {
-
-                            this.model[setter](value);
-
-                        } else {
-
-                            this.logger.debug('Skip', setter);
-                        }
-
-                    }.bind(this));
-                },
-
+                
                 /**
                  * Update site width
                  * @memberOf WorkspaceController

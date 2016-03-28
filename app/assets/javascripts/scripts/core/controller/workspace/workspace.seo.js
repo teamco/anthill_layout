@@ -10,6 +10,7 @@ define(function defineWorkspaceSEO() {
     /**
      * Define WorkspaceSEO
      * @class WorkspaceSEO
+     * @extends BaseController
      * @constructor
      */
     var WorkspaceSEO = function WorkspaceSEO() {
@@ -68,7 +69,7 @@ define(function defineWorkspaceSEO() {
 
                 /**
                  * Get current page
-                 * @type {Page}
+                 * @type {Page|string}
                  */
                 var page = scope.model.getCurrentItem(),
                     title = siteTitle;
@@ -143,24 +144,6 @@ define(function defineWorkspaceSEO() {
                     $item.getSiteAuthor();
 
                 $item.setSiteAuthor(siteAuthor);
-            },
-
-            /**
-             * Load google analytics tracking snippet
-             * @memberOf WorkspaceSEO
-             */
-            loadTrackingSnippet: function loadTrackingSnippet() {
-
-                /**
-                 * Get tracking id
-                 * @type {string}
-                 */
-                var trackingId = this.model.getConfig('preferences').trackingId;
-
-                if (typeof(trackingId) === 'string' && trackingId.length > 0) {
-
-                    this.view.get$item().renderGoogleAnalytics(trackingId);
-                }
             }
         }
     );

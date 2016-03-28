@@ -496,11 +496,14 @@ define([
              */
             _setItemInfoPreferences: function _setItemInfoPreferences(index, value) {
 
-                // Update config
-                this.scope.config.preferences[index] = value;
+                // Get scope
+                var scope = this.scope;
 
-                this.scope.observer.publish(
-                    this.scope.eventmanager.eventList.afterUpdatePreferences,
+                // Update config
+                scope.config.preferences[index] = value;
+
+                scope.observer.publish(
+                    scope.eventmanager.eventList.afterUpdatePreferences,
                     arguments
                 );
             },

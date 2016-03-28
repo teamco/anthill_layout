@@ -26,7 +26,7 @@ define(function defineSiteConfigGoogleAnalyticsPreferences() {
 
             /**
              * Get workspace prefs
-             * @type {{googleAnalyticsTrackingId}}
+             * @type {{googleAnalyticsTrackingId, activateGoogleAnalytics}}
              */
             var preferences = workspace.model.getConfig('preferences');
 
@@ -47,8 +47,17 @@ define(function defineSiteConfigGoogleAnalyticsPreferences() {
                 }
             });
 
+            var $checkbox = this.renderCheckbox({
+                name: 'activateGoogleAnalytics',
+                text: 'Activate',
+                checked: preferences.activateGoogleAnalytics,
+                value: preferences.activateGoogleAnalytics,
+                disabled: false,
+                visible: true
+            });
+
             return $('<div class="workspace-google-analytics-prefs" />').append(
-                $textfield
+                $checkbox, $textfield
             );
         }
     });

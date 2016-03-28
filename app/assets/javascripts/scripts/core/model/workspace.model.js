@@ -152,26 +152,6 @@ define([
         },
 
         /**
-         * Set google analytics tracking id
-         * @memberOf WorkspaceModel
-         * @param {string} trackingId
-         */
-        setTrackingId: function setTrackingId(trackingId) {
-
-            /**
-             * Set local scope
-             * @type {Workspace}
-             */
-            var scope = this.scope;
-
-            scope.config.preferences.trackingId = trackingId;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.loadTrackingSnippet
-            );
-        },
-
-        /**
          * Define clone item content
          * @memberOf WorkspaceModel
          * @param {string} itemUUID

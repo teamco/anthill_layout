@@ -6,35 +6,8 @@
  * To change this template use File | Settings | File Templates.
  */
 
-define(
-    [
-        'require',
-        'controller/workspace.controller'
-    ],
-
-    /**
-     * Define overwrites
-     * @param require
-     * @param {WorkspaceController} WorkspaceController
-     */
-    function defineListeners(require, WorkspaceController) {
-
-        /**
-         * Create authoring panel
-         * @memberOf WorkspaceController
-         */
-        WorkspaceController.prototype.createDesignTimePanel = function createDesignTimePanel() {
-            this.logger.debug('Create authoring panel', arguments);
-        };
-
-        /**
-         * Create tool panel
-         * @memberOf WorkspaceController
-         */
-        WorkspaceController.prototype.createRunTimePanel = function createRunTimePanel() {
-            this.logger.debug('Create tool panel', arguments);
-        };
-
+define(['require'], function defineListeners(require) {
+        
         require(
             [
                 './listeners/application.listeners',
@@ -53,7 +26,6 @@ define(
              * @param {Widget} Widget
              */
             function defineRequiredModules(Application, Workspace, Page, Layout, Widget) {
-
             }
         );
     }

@@ -125,3 +125,9 @@ ul.site-config .content.widget-generator > a {
 .modal .plugin-wrapper {
     margin-top: 10px;
 }
+
+.modal.clean-up-data .modal-body {
+    overflow-x: auto;
+    margin-right: 30px;
+    padding-right: 0;
+}

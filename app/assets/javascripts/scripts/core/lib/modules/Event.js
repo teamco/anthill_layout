@@ -120,7 +120,7 @@ define([
         /**
          * Add event listener
          * @memberOf BaseEvent
-         * @param {{eventName}} opts
+         * @param {{eventName, eventUUID}} opts
          * @returns {*}
          */
         addListener: function addListener(opts) {
@@ -147,6 +147,7 @@ define([
          * @returns {Boolean|String}
          */
         subscribe: function subscribe(opts, internal) {
+            
             var base = this.base, event;
             opts = base.define(opts, {}, true);
             internal = base.defineBoolean(internal, false, true);

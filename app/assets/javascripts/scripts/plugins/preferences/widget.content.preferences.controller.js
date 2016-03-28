@@ -27,12 +27,13 @@ define(function defineWidgetContentPreferencesController() {
 
                 /**
                  * Get widget
-                 * @type {Widget}
+                 * @type {Widget|*}
                  */
                 var widget = this.controller.getContainment(),
                     globalPrefs = widget.model.getConfig('preferences'),
-                    localPrefs = this.model.preferences || {},
-                    index, value;
+                    localPrefs = this.model.preferences || {};
+
+                var index, value;
 
                 for (index in localPrefs) {
 
@@ -56,7 +57,7 @@ define(function defineWidgetContentPreferencesController() {
                             var fn = this.base.lib.function.create({
                                 name: setter,
                                 params: index,
-                                body: 'this.setPrefs("' + index + '", ' + index + ');',
+                                body: 'this.setPrefs("' + index + '", ' + index + ');' + this.controller.getCustomPublisher(index),
                                 scope: this.model.constructor.prototype
                             });
 

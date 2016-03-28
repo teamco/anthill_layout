@@ -57,13 +57,10 @@ define(
              *      updateSiteKeywords: string,
              *      updateMetaData: string,
              *      updateSiteWidth: string,
-             *      loadTrackingSnippet: string,
              *      loadPreferences: string,
              *      transferPreferences: string,
              *      transferContentPreferences: string,
              *      afterUpdatePreferences: string,
-             *      createDesignTimePanel: string,
-             *      createRunTimePanel: string,
              *      clonePage: string
              * }}
              */
@@ -94,15 +91,10 @@ define(
                 updateSiteKeywords: 'update.site.keywords',
                 updateMetaData: 'update.meta.data',
 
-                loadTrackingSnippet: 'load.tracking.snippet',
-
                 loadPreferences: 'load.preferences',
                 transferPreferences: 'transfer.preferences',
                 transferContentPreferences: 'transfer.content.preferences',
                 afterUpdatePreferences: 'after.update.preferences',
-
-                createDesignTimePanel: 'create.design.time.panel',
-                createRunTimePanel: 'create.run.time.panel',
 
                 clonePage: 'clone.page'
             }

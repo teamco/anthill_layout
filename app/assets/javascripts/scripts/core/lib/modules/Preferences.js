@@ -56,6 +56,8 @@ define(function defineBasePreferences() {
                  */
                 function _validateCallback() {
 
+                    opts.scope.logger.debug('Validate prefs callback', opts);
+
                     setter.bind(opts.scope.model)(
                         opts.value
                     );
@@ -66,47 +68,39 @@ define(function defineBasePreferences() {
                     );
                 }
 
-                /**
-                 * Define setter as a function
-                 * @type {function}
-                 */
+                // Define setter as a function
                 var setter = opts.scope.model[opts.setter],
                     name = opts.name;
 
-                if (typeof(setter) !== 'function') {
+                if (typeof(setter) === 'function') {
+                    return _validateCallback();
+                }
 
-                    if (opts.type !== 'radio' || (opts.type === 'radio' && opts.setter !== 'on')) {
+                if (!name.length) {
+                    opts.scope.logger.debug('Skip model setter', opts);
+                    return false;
+                }
 
-                        if (name.length > 0) {
+                if (opts.type !== 'radio' || (opts.type === 'radio' && opts.setter !== 'on')) {
 
-                            opts.scope.logger.debug('Undefined model setter', opts);
+                    opts.scope.logger.debug('Undefined model setter', opts);
 
-                            // Toggle method core component <=> widget content
-                            var method = opts.scope.controller.isCoreComponent() ?
-                                '_setItemInfoPreferences' : 'setPrefs';
+                    // Toggle method core component <=> widget content
+                    var method = opts.scope.controller.isCoreComponent() ?
+                        '_setItemInfoPreferences' : 'setPrefs';
 
-                            /**
-                             * Define setter
-                             * @type {Function}
-                             */
-                            setter = opts.scope.base.lib.function.create({
-                                name: opts.setter,
-                                params: name,
-                                body: 'this.' + method + '("' + name + '", ' + name + ');',
-                                scope: opts.scope.model.constructor.prototype
-                            });
+                    /**
+                     * Define setter
+                     * @type {Function}
+                     */
+                    setter = opts.scope.base.lib.function.create({
+                        name: opts.setter,
+                        params: name,
+                        body: 'this.' + method + '("' + name + '", ' + name + ');' + opts.scope.controller.getCustomPublisher(opts.name),
+                        scope: opts.scope.model.constructor.prototype
+                    });
 
-                            opts.scope.logger.debug('Define model setter', setter, opts);
-
-                            _validateCallback();
-
-                        } else {
-
-                            opts.scope.logger.debug('Skip model setter', opts);
-                        }
-                    }
-
-                } else {
+                    opts.scope.logger.debug('Define model setter', setter, opts);
 
                     _validateCallback();
                 }
@@ -160,8 +154,7 @@ define(function defineBasePreferences() {
                     scope: isContentPrefs ?
                         scope : containment
                 });
-
-            }.bind(this));
+            });
 
             if (render) {
                 scope.view['render' + this.scope.name]();

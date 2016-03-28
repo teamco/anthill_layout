@@ -27,7 +27,7 @@ define(function defineSiteConfigSnapEngagePreferences() {
 
             /**
              * Get workspace prefs
-             * @type {{snapEngageCode}}
+             * @type {{snapEngageCode, activateSnapEngage}}
              */
             var preferences = workspace.model.getConfig('preferences');
 
@@ -40,7 +40,18 @@ define(function defineSiteConfigSnapEngagePreferences() {
                 value: preferences.snapEngageCode || ''
             });
 
-            return $('<div class="workspace-snap-engage-prefs" />').append($textarea);
+            var $checkbox = this.renderCheckbox({
+                name: 'activateSnapEngage',
+                text: 'Activate',
+                checked: preferences.activateSnapEngage,
+                value: preferences.activateSnapEngage,
+                disabled: false,
+                visible: true
+            });
+
+            return $('<div class="workspace-snap-engage-prefs" />').append(
+                $checkbox, $textarea
+            );
         }
     });
 });

@@ -509,6 +509,70 @@ define([
             },
 
             /**
+             * Get Custom publisher
+             * @memberOf BaseController
+             * @returns {string}
+             */
+            getCustomPublisher: function getCustomPublisher(name) {
+
+                // Get event
+                var event = this.scope.eventmanager.eventList['load' + name.capitalize()];
+
+                // Define custom event
+                var publishCustomEvent = event ? [
+                    'this.scope.logger.debug(\'Publish custom event\',"' + event + '");',
+                    'this.scope.observer.publish("' + event + '");'
+                ].join('') : '';
+
+                this.scope.logger.debug('Found custom publisher', publishCustomEvent, event);
+
+                return publishCustomEvent;
+            },
+
+            /**
+             * Load config preferences
+             * @memberOf WorkspaceController
+             */
+            loadPreferences: function loadPreferences() {
+
+                // Get scope
+                var scope = this;
+
+                /**
+                 * Get preferences
+                 * @type {{}}
+                 */
+                var prefs = scope.model.getConfig('preferences');
+
+                $.each(prefs, function each(index, value) {
+
+                    /**
+                     * Define method name
+                     * @type {string}
+                     */
+                    var setter = 'set' + index.toCamel().capitalize();
+
+                    if (typeof(scope.model[setter]) !== 'function') {
+
+                        /**
+                         * Define setter
+                         * @type {Function}
+                         */
+                        var fn = scope.base.lib.function.create({
+                            name: setter,
+                            params: index,
+                            body: 'this._setItemInfoPreferences("' + index + '", ' + index + ');' + scope.controller.getCustomPublisher(index),
+                            scope: scope.model.constructor.prototype
+                        });
+
+                        scope.logger.debug('Define model setter', fn, index, setter);
+                    }
+
+                    scope.model[setter](value);
+                });
+            },
+
+            /**
              * After update preferences
              * @memberOf BaseController
              */
@@ -650,11 +714,11 @@ define([
             /**
              * Check is root
              * @memberOf BaseController
-             * @param scope
+             * @param [scope]
              * @returns {boolean}
              */
             isRoot: function isRoot(scope) {
-                return scope === this.root();
+                return (scope || this.scope) === this.root();
             },
 
             /**

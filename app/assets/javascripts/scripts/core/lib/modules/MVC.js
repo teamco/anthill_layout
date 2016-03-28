@@ -303,9 +303,7 @@ define([
                  * Define name space
                  * @type {string}
                  */
-                name = mvcPattern.prototype.name.
-                    replace(scope.name, '').
-                    toLowerCase();
+                name = mvcPattern.prototype.name.replace(scope.name, '').toLowerCase();
 
                 /**
                  * Define pattern
@@ -471,72 +469,73 @@ define([
                 base = this.base,
                 eventmanager = scope.eventmanager;
 
-            if (base.isDefined(eventmanager)) {
+            if (!base.isDefined(eventmanager)) {
 
-                eventmanager.scope = scope;
-                eventmanager.abstract = base.define(
-                    eventmanager.abstract, {}, true
-                );
+                scope.logger.warn('Undefined Event manager');
+                return false;
+            }
 
-                var eventList = eventmanager.eventList,
-                    index;
+            this.applyGlobalEvents();
 
-                for (index in eventList) {
+            eventmanager.scope = scope;
+            eventmanager.abstract = base.define(
+                eventmanager.abstract, {}, true
+            );
 
-                    if (eventList.hasOwnProperty(index)) {
+            var eventList = eventmanager.eventList,
+                index;
 
-                        var event = eventList[index],
-                            callback = scope.controller[index];
+            for (index in eventList) {
 
-                        if (!base.isDefined(callback)) {
-                            var method = index.toPoint().split('.'),
-                                key = method[0];
+                if (eventList.hasOwnProperty(index)) {
 
-                            method.shift();
-                            method = ('.' + method.join('.')).toCamel();
+                    var event = eventList[index],
+                        callback = scope.controller[index];
 
-                            if (this.RESERVED.hasOwnProperty(key)) {
+                    if (!base.isDefined(callback)) {
+                        var method = index.toPoint().split('.'),
+                            key = method[0];
 
-                                if ($.inArray(method, this.RESERVED[key].singular) > -1) {
+                        method.shift();
+                        method = ('.' + method.join('.')).toCamel();
 
-                                    eventmanager.abstract[key + 'Item'] = index;
-                                    callback = scope.controller[key + 'Item'];
+                        if (this.RESERVED.hasOwnProperty(key)) {
 
-                                } else if ($.inArray(method, this.RESERVED[key].plural) > -1) {
+                            if ($.inArray(method, this.RESERVED[key].singular) > -1) {
 
-                                    eventmanager.abstract[key + 'Items'] = index;
-                                    callback = scope.controller[key + 'Items'];
+                                eventmanager.abstract[key + 'Item'] = index;
+                                callback = scope.controller[key + 'Item'];
 
-                                } else {
+                            } else if ($.inArray(method, this.RESERVED[key].plural) > -1) {
 
-                                    this.scope.logger.warn(
-                                        'Undefined Event Callback', [
-                                            scope.controller,
-                                            key + method
-                                        ]
-                                    );
-                                }
+                                eventmanager.abstract[key + 'Items'] = index;
+                                callback = scope.controller[key + 'Items'];
+
+                            } else {
+
+                                this.scope.logger.warn(
+                                    'Undefined Event Callback', [
+                                        scope.controller,
+                                        key + method
+                                    ]
+                                );
                             }
                         }
-
-                        eventmanager.subscribe({
-                            event: event,
-                            callback: callback
-                        }, true);
                     }
+
+                    eventmanager.subscribe({
+                        event: event,
+                        callback: callback
+                    }, true);
                 }
-
-                this.applyDefaultListeners();
-
-                scope.logger.debug('Subscribe events', eventmanager);
-
-                this.applyListeners('local');
-                this.applyListeners('global');
-
-            } else {
-
-                scope.logger.warn('Undefined Event manager', scope.eventmanager);
             }
+
+            this.applyDefaultListeners();
+
+            scope.logger.debug('Subscribe events', eventmanager);
+
+            this.applyListeners('local');
+            this.applyListeners('global');
         },
 
         /**
@@ -558,6 +557,39 @@ define([
                         event: listeners[index],
                         callback: this.scope.controller[index]
                     }, true);
+                }
+            }
+        },
+
+        /**
+         * Apply global events
+         * @memberOf MVC
+         */
+        applyGlobalEvents: function applyGlobalEvents() {
+
+            // Get scope
+            var scope = this.scope,
+                index, event,
+                eventManager = scope.eventmanager;
+
+            if (scope.globalEvents) {
+
+                for (index in scope.globalEvents) {
+
+                    if (scope.globalEvents.hasOwnProperty(index)) {
+
+                        event = scope.globalEvents[index];
+
+                        if (eventManager.eventList.hasOwnProperty(index)) {
+
+                            scope.logger.warn('Event already defined', index, event);
+
+                        } else {
+
+                            scope.logger.debug('Add event', index, event);
+                            eventManager.eventList[index] = event;
+                        }
+                    }
                 }
             }
         },

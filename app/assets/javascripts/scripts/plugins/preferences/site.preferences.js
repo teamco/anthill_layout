@@ -80,41 +80,57 @@ define([
              */
             thirdPartyPlugins: function thirdPartyPlugins() {
 
+                /**
+                 * Get scope
+                 * @type {SiteConfig}
+                 */
+                var scope = this.view.scope;
+
+                /**
+                 * Define toggle plugin
+                 * @param index
+                 * @private
+                 */
                 function _showPluginConfig(index) {
-                    $('.plugin-wrapper').html(
-                        plugins[index].renderer
-                    );
+
+                    var $container = $('.plugin-wrapper'),
+                        plugin = plugins.find(function _findPlugin(o) {
+                            return o.value === index;
+                        });
+
+                    if (!plugin) {
+                        scope.logger.warn('Unable to detect plugin renderer', plugin, index);
+                        return false;
+                    }
+
+                    $container.fadeOut(function _fadeOutPlugin() {
+                        $container.html('').fadeIn().append(
+                            plugin.renderer
+                        );
+                    });
                 }
 
                 /**
                  * Define plugins array
-                 * @type {{googleAnalytics, snapEngage}}
+                 * @type {*[]}
                  */
-                var plugins = {
-                    'Google Analytics': {
+                var plugins = [
+                    {
+                        type: 'text',
+                        value: 'Google Analytics',
                         renderer: this.googleAnalytics()
                     },
-                    'SnapEngage': {
+                    {
+                        type: 'text',
+                        value: 'SnapEngage',
                         renderer: this.snapEngage()
                     }
-                };
-
-                // Define list
-                var pluginList = [];
-
-                for (var index in plugins) {
-                    if (plugins.hasOwnProperty(index)) {
-                        pluginList.push({
-                            type: 'text',
-                            value: index
-                        });
-                    }
-                }
+                ];
 
                 var text = 'Plugins';
                 var $combo = this.renderCombobox(
-                    pluginList,
-                    pluginList[0].value,
+                    plugins,
+                    plugins[0].value,
                     text,
                     'pluginConfig', {
                         type: 'click.showPluginConfig',
@@ -132,7 +148,7 @@ define([
                 return [
                     $template.append($combo),
                     $('<div class="plugin-wrapper" />').append(
-                        plugins['Google Analytics'].renderer
+                        plugins[0].renderer
                     )
                 ];
             }
