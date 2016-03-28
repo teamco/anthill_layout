@@ -9,9 +9,9 @@ define([
     'plugins/preferences/preferences',
     'plugins/preferences/site.preferences/meta.data',
     'plugins/preferences/site.preferences/site.width',
-    'plugins/preferences/site.preferences/google.analytics',
-    'plugins/preferences/site.preferences/snap.engage'
-], function defineSitePreferences(BasePreferencesElement, SiteConfigMetaDataPreferences, SiteConfigWidthPreferences, SiteConfigGoogleAnalyticsPreferences, SiteConfigSnapEngagePreferences) {
+    'services/google.analytics',
+    'services/snap.engage'
+], function defineSitePreferences(BasePreferencesElement, SiteConfigMetaDataPreferences, SiteConfigWidthPreferences, GoogleAnalyticsPreferences, SnapEngagePreferences) {
 
     /**
      * Define prefs
@@ -20,8 +20,8 @@ define([
      * @extends BasePreferencesElement
      * @extends SiteConfigMetaDataPreferences
      * @extends SiteConfigWidthPreferences
-     * @extends SiteConfigGoogleAnalyticsPreferences
-     * @extends SiteConfigSnapEngagePreferences
+     * @extends GoogleAnalyticsPreferences
+     * @extends SnapEngagePreferences
      * @constructor
      */
     var SitePreferences = function SitePreferences() {
@@ -156,7 +156,7 @@ define([
         BasePreferencesElement.prototype,
         SiteConfigMetaDataPreferences.prototype,
         SiteConfigWidthPreferences.prototype,
-        SiteConfigGoogleAnalyticsPreferences.prototype,
-        SiteConfigSnapEngagePreferences.prototype
+        GoogleAnalyticsPreferences.prototype,
+        SnapEngagePreferences.prototype
     );
 });

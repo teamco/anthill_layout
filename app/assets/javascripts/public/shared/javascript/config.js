@@ -1,8 +1,11 @@
 define(function defineConfig() {
     return {
         services: [
-            {name: 'keen.io', load: false},
-            {name: 'raygun.io', load: true}
+            {
+                name: 'raygun.io',
+                apiKey: 'DbFEbP1IlRGv779/A2wo1Q==',
+                load: true
+            }
         ],
         html: {
             container: 'body',

@@ -25,6 +25,8 @@ requirejs.config({
         plugins: '../plugins',
         target: '../../target',
 
+        services: '../../services',
+
         tinyMCE: 'lib/packages/tinymce/tinymce.min',
         pluralize: 'lib/packages/pluralize',
         //totally: 'lib/packages/tota11y.min',

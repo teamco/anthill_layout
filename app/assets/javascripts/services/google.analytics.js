@@ -1,19 +1,19 @@
-define(function defineSiteConfigGoogleAnalyticsPreferences() {
+define(function defineGoogleAnalyticsPreferences() {
 
     /**
-     * Define SiteConfig Google Analytics Preferences
-     * @class SiteConfigGoogleAnalyticsPreferences
+     * Define  Google Analytics Preferences
+     * @class GoogleAnalyticsPreferences
      * @extends Renderer
      * @constructor
      */
-    var SiteConfigGoogleAnalyticsPreferences = function SiteConfigGoogleAnalyticsPreferences() {
+    var GoogleAnalyticsPreferences = function GoogleAnalyticsPreferences() {
     };
 
-    return SiteConfigGoogleAnalyticsPreferences.extend('SiteConfigGoogleAnalyticsPreferences', {
+    return GoogleAnalyticsPreferences.extend('GoogleAnalyticsPreferences', {
 
         /**
          * Render Google Analytics
-         * @memberOf SiteConfigGoogleAnalyticsPreferences
+         * @memberOf GoogleAnalyticsPreferences
          * @returns {*|jQuery}
          */
         googleAnalytics: function googleAnalytics() {

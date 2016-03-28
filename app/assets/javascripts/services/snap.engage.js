@@ -1,20 +1,20 @@
-define(function defineSiteConfigSnapEngagePreferences() {
+define(function defineSnapEngagePreferences() {
 
     /**
-     * Define SiteConfig SnapEngage Preferences
+     * Define  SnapEngage Preferences
      * https://www.snapengage.com
-     * @class SiteConfigSnapEngagePreferences
+     * @class SnapEngagePreferences
      * @extends Renderer
      * @constructor
      */
-    var SiteConfigSnapEngagePreferences = function SiteConfigSnapEngagePreferences() {
+    var SnapEngagePreferences = function SnapEngagePreferences() {
     };
 
-    return SiteConfigSnapEngagePreferences.extend('SiteConfigSnapEngagePreferences', {
+    return SnapEngagePreferences.extend('SnapEngagePreferences', {
 
         /**
          * Render SnapEngage
-         * @memberOf SiteConfigSnapEngagePreferences
+         * @memberOf SnapEngagePreferences
          * @returns {*|jQuery}
          */
         snapEngage: function snapEngage() {

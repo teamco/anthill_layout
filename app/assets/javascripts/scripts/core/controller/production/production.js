@@ -40,47 +40,44 @@ define(function defineProduction() {
         /**
          * Define service loader
          * @memberOf Production
-         * @param {{[directory]: string, name: string, load: boolean}} service
+         * @param {{[path]: string, name: string, load: boolean}} service
          */
         loadService: function loadService(service) {
 
             /**
              * Define scope
-             * @type {Production}
+             * @type {Production|string}
              */
             var prod = this,
-                path = service.directory || 'controller/production/services/';
+                path = service.path || 'services/';
 
-            if (service.load) {
-
-                require(
-                    [path + service.name],
-                    function _loadService(Service) {
-
-                        /**
-                         * Define service
-                         * @property Production
-                         * @type {KeenIO}
-                         */
-                        prod[service.name] = new Service;
-
-                        if (prod.isProduction()) {
-                            prod[service].init();
-                            return false;
-                        }
-
-                        prod.scope.logger.debug(
-                            'Environment are not production type',
-                            prod.getEnvironment(),
-                            Service
-                        );
-                    }
-                );
-
-            } else {
-
+            if (!service.load) {
                 prod.scope.logger.debug('Skip loading service', service);
+                return false;
             }
+
+            require(
+                [path + service.name],
+                function _loadService(Service) {
+
+                    /**
+                     * Define service
+                     * @property Production
+                     */
+                    prod[service.name] = new Service;
+
+                    if (prod.isProduction()) {
+                        prod[service.name].init(service);
+                        return false;
+                    }
+
+                    prod.scope.logger.debug(
+                        'Environment are not production type',
+                        prod.getEnvironment(),
+                        Service
+                    );
+                }
+            );
         }
     });
 });
