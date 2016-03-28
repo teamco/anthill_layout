@@ -42,7 +42,6 @@ define([
         initSortable: function initSortable() {
 
             this.$.sortable({
-
                 containment: this.$container,
                 cursor: 'move',
                 distance: 5,

@@ -112,14 +112,14 @@ define([
         },
 
         /**
-         * Load prefs
+         * Load data prefs
          * @memberOf PageDataController
          * @param config
          * @param load
          * @param event
          * @param {function} [callback]
          */
-        loadPreferences: function loadPreferences(config, load, event, callback) {
+        loadDataPreferences: function loadDataPreferences(config, load, event, callback) {
 
             this.view.showPreferences(config, load);
 
@@ -139,6 +139,33 @@ define([
             if (_.isFunction(callback)) {
                 callback(event);
             }
+        },
+
+        /**
+         * Locate widget
+         * @memberOf PageDataController
+         * @param {Event} event
+         */
+        locateWidget: function locateWidget(event) {
+
+            /**
+             * Define scope
+             * @type {PageData}
+             */
+            var scope = this.scope;
+
+            event.preventDefault();
+
+            scope.observer.publish(
+                scope.eventmanager.eventList.loadDataPreferences, [
+                    {uuid: this.uuid},
+                    false,
+                    event,
+                    scope.controller.locatePageData.bind(
+                        scope.controller
+                    )
+                ]
+            );
         },
 
         /**

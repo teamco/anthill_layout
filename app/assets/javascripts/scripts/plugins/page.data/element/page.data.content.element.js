@@ -40,8 +40,7 @@ define([
          * @memberOf PageDataContentElement
          */
         getTemplate: function getTemplate(data) {
-            $('<a class="widget ' + data.model.getConfig('preferences').resource.toClassName() + '" />').
-                appendTo(this.$);
+            $('<a class="widget ' + data.model.getConfig('preferences').resource.toClassName() + '" />').appendTo(this.$);
         },
 
         /**
@@ -58,26 +57,32 @@ define([
             var title = data.model.getItemTitle();
 
             /**
+             * Get prefs
+             * @type {{description: string, resource: string}}
+             */
+            var prefs = data.model.getConfig('preferences');
+
+            /**
              * Define data
              * @memberOf PageDataContentElement
              * @type {{name: string, description: string}}
              */
             this.data = {
                 name: title,
-                description: data.model.getConfig('preferences').description
+                description: prefs.description
             };
 
             /**
              * Get description
              * @type {string}
              */
-            var description = data.model.getConfig('preferences').description || '';
+            var description = prefs.description || '';
 
             this.$.attr({
                 title: title
             }).addClass(
                 this.view.controller.getResourceClassName(
-                    data.model.getConfig('preferences').resource
+                    prefs.resource
                 )
             );
 
@@ -95,42 +100,15 @@ define([
          */
         bindLocate: function bindLocate(data) {
 
-            /**
-             * Locate widget
-             * @param {Event} event
-             * @private
-             */
-            function _locatePrefs(event) {
+            // Get location event
+            var locateOn = 'mouseenter.prefs mouseleave.prefs';
 
-                event.preventDefault();
-
-                scope.observer.publish(
-                    scope.eventmanager.eventList.loadPreferences, [
-                        {uuid: config.uuid},
-                        false,
-                        event,
-                        scope.controller.locatePageData.bind(
-                            scope.controller
-                        )
-                    ]
-                );
-            }
-
-            /**
-             * Get config
-             * @type {*}
-             */
-            var config = data.model.getConfig();
-
-            /**
-             * Define scope
-             * @type {PageData}
-             */
-            var scope = this.view.scope;
-
-            this.$.off('mouseenter.prefs mouseleave.prefs').on(
-                'mouseenter.prefs mouseleave.prefs',
-                _locatePrefs.bind(this)
+            this.$.off(locateOn).on(
+                locateOn,
+                this.view.controller.locateWidget.bind({
+                    scope: this.view.scope,
+                    uuid: data.model.getUUID()
+                })
             );
         },
 
@@ -151,7 +129,7 @@ define([
                 event.preventDefault();
 
                 scope.observer.publish(
-                    scope.eventmanager.eventList.loadPreferences,
+                    scope.eventmanager.eventList.loadDataPreferences,
                     [config, true]
                 );
             }

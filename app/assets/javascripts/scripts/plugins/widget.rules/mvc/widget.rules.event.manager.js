@@ -20,18 +20,18 @@ define([
 
         /**
          * Define events
-         * @memberOf WidgetRulesEventManager
+         * @property WidgetRulesEventManager
          * @type {{}}
          */
         this.events = {};
 
         /**
          * Define event list
-         * @memberOf WidgetRulesEventManager
+         * @property WidgetRulesEventManager
          * @type {{
          *      updateTranslations: string,
          *      loadModuleContent: string,
-         *      loadRules: string,
+         *      loadDataRules: string,
          *      storeItem: string,
          *      setActiveContent: string
          * }}
@@ -39,13 +39,13 @@ define([
         this.eventList = {
             updateTranslations: 'update.translations',
             loadModuleContent: 'load.module.content',
-            loadRules: 'load.rules',
+            loadDataRules: 'load.data.rules',
             storeItem: 'store.item',
             setActiveContent: 'set.active.content'
         };
     };
 
-    return WidgetRulesEventManager.extend('WidgetRulesEventManager', {
-
-    }, BaseEvent.prototype);
+    return WidgetRulesEventManager.extend(
+        'WidgetRulesEventManager', {}, BaseEvent.prototype
+    );
 });

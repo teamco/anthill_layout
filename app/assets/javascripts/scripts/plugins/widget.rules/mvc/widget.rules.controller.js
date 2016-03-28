@@ -125,7 +125,7 @@ define([
          * @param [event]
          * @param {function} [callback]
          */
-        loadRules: function loadRules(config, load, event, callback) {
+        loadDataRules: function loadDataRules(config, load, event, callback) {
 
             this.observer.publish(
                 this.eventmanager.eventList.setActiveContent,
@@ -150,6 +150,33 @@ define([
             if (_.isFunction(callback)) {
                 callback(event);
             }
+        },
+
+        /**
+         * Locate widget
+         * @memberOf WidgetRulesController
+         * @param {Event} event
+         */
+        locateWidget: function locateWidget(event) {
+
+            event.preventDefault();
+
+            /**
+             * Define scope
+             * @type {WidgetRules}
+             */
+            var scope = this.scope;
+
+            scope.observer.publish(
+                scope.eventmanager.eventList.loadDataRules, [
+                    {uuid: this.uuid},
+                    false,
+                    event,
+                    scope.controller.locateWidgetRules.bind(
+                        scope.controller
+                    )
+                ]
+            );
         },
 
         /**

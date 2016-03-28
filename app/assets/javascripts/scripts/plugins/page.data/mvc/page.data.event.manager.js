@@ -31,7 +31,7 @@ define([
          * @type {{
          *      updateTranslations: string,
          *      loadModuleContent: string,
-         *      loadPreferences: string,
+         *      loadDataPreferences: string,
          *      storeItem: string,
          *      setActiveContent: string
          * }}
@@ -39,13 +39,13 @@ define([
         this.eventList = {
             updateTranslations: 'update.translations',
             loadModuleContent: 'load.module.content',
-            loadPreferences: 'load.preferences',
+            loadDataPreferences: 'load.data.preferences',
             storeItem: 'store.item',
             setActiveContent: 'set.active.content'
         };
     };
 
-    return PageDataEventManager.extend('PageDataEventManager', {
-
-    }, BaseEvent.prototype);
+    return PageDataEventManager.extend(
+        'PageDataEventManager', {}, BaseEvent.prototype
+    );
 });

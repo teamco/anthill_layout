@@ -455,7 +455,8 @@ define([
                          */
                         var preferences = widget.model.getConfig('preferences');
 
-                        var thumbnail = preferences.thumbnail || '',
+                        var locateOn = 'mouseenter.widgetPrefs mouseleave.widgetPrefs click.widgetPrefs',
+                            thumbnail = preferences.thumbnail || '',
                             css = thumbnail.length > 0 ? {backgroundImage: 'url("' + thumbnail + '")'} : {};
 
                         /**
@@ -475,9 +476,7 @@ define([
                         ).attr({
                             rel: uuid,
                             title: title
-                        }).css(css).on('mouseenter.widgetPrefs mouseleave.widgetPrefs click.widgetPrefs',
-                            this.showWidgetPrefs.bind(this)
-                        );
+                        }).css(css).off(locateOn).on(locateOn, this.showWidgetPrefs.bind(this));
 
                         this.renderTooltip({
                             title: title,
@@ -647,25 +646,6 @@ define([
             }
 
             /**
-             * Trigger locate element
-             * @param event
-             * @private
-             */
-            function _locateElement(event) {
-
-                pageData.observer.publish(
-                    pageData.eventmanager.eventList.loadPreferences, [
-                        {uuid: uuid},
-                        false,
-                        event,
-                        pageData.controller.locatePageData.bind(
-                            pageData.controller
-                        )
-                    ]
-                );
-            }
-
-            /**
              * Open panel
              * @param callback
              * @private
@@ -695,7 +675,12 @@ define([
             }
 
             if (e.type === 'mouseenter' || e.type === 'mouseleave') {
-                _openPanel(_locateElement);
+                _openPanel(
+                    pageData.view.controller.locateWidget.bind({
+                        scope: pageData,
+                        uuid: uuid
+                    })
+                );
             }
         }
 

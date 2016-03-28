@@ -17,6 +17,7 @@ define([
      * @constructor
      * @class WidgetRulesContentElement
      * @extends BaseElement
+     * @extends Renderer
      */
     var WidgetRulesContentElement = function WidgetRulesContentElement(view, opts) {
 
@@ -57,10 +58,16 @@ define([
             var title = data.model.getItemTitle();
 
             /**
+             * Get prefs
+             * @type {{description: string, resource: string}}
+             */
+            var prefs = data.model.getConfig('preferences');
+
+            /**
              * Get description
              * @type {string}
              */
-            var description = data.model.getConfig('preferences').description || '';
+            var description = prefs.description || '';
 
             /**
              * Define data
@@ -76,7 +83,7 @@ define([
                 title: title
             }).addClass(
                 this.view.controller.getResourceClassName(
-                    data.model.getConfig('preferences').resource
+                    prefs.resource
                 )
             );
 
@@ -95,39 +102,20 @@ define([
         bindLocate: function bindLocate(data) {
 
             /**
-             * Locate widget
-             * @param {Event} event
-             * @private
-             */
-            function _locateRules(event) {
-                event.preventDefault();
-                scope.observer.publish(
-                    scope.eventmanager.eventList.loadRules, [
-                        {uuid: config.uuid},
-                        false,
-                        event,
-                        scope.controller.locateWidgetRules.bind(
-                            scope.controller
-                        )
-                    ]
-                );
-            }
-
-            /**
-             * Get config
-             * @type {*}
-             */
-            var config = data.model.getConfig();
-
-            /**
              * Define scope
              * @type {WidgetRules}
              */
             var scope = this.view.scope;
 
-            this.$.off('mouseenter.rules mouseleave.rules').on(
-                'mouseenter.rules mouseleave.rules',
-                _locateRules.bind(this)
+            // Get location event
+            var locateOn = 'mouseenter.rules mouseleave.rules';
+
+            this.$.off(locateOn).on(
+                locateOn,
+                this.view.controller.locateWidget.bind({
+                    scope: this.view.scope,
+                    uuid: data.model.getUUID()
+                })
             );
         },
 
@@ -160,7 +148,7 @@ define([
             function _clickRules(e) {
                 e.preventDefault();
                 scope.observer.publish(
-                    scope.eventmanager.eventList.loadRules,
+                    scope.eventmanager.eventList.loadDataRules,
                     [config, true, e, _loadStoredRules.bind(this)]
                 );
             }
