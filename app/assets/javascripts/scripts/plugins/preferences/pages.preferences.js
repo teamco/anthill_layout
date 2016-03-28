@@ -277,7 +277,7 @@ define([
              * Define layout container
              * @type {*|jQuery}
              */
-            var $ul = $('<ul class="default layout-prefs" />');
+            var $ul = $('<ul class="page-layout-prefs" />');
 
             /**
              * Define dom prefs
@@ -497,7 +497,7 @@ define([
              * Define widgets container
              * @type {*|jQuery}
              */
-            var $ul = $('<ul class="default" />').addClass('widgets-prefs'),
+            var $ul = $('<ul class="default widgets-prefs" />'),
                 cname = 'Widgets: ' + Object.keys(widgets).length + ' items';
 
             return [
@@ -572,7 +572,7 @@ define([
                     }
 
                     nodes.push(
-                        $('<li />').addClass([
+                        $('<li class="page-widget-prefs" />').addClass([
                             [page.name.toClassName(), index].join('-'),
                             node.type,
                             node.visible ? '' : 'hidden'
