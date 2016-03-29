@@ -331,7 +331,7 @@ define(
                  * Create new page
                  * @memberOf WorkspaceDataController
                  */
-                approveCreatePage: function approveCreatePage(e) {
+                approveCreatePage: function approveCreatePage() {
 
                     /**
                      * Get workspace
@@ -362,8 +362,7 @@ define(
                     var panel = this.getDesignTimePanel();
 
                     panel.observer.publish(
-                        panel.eventmanager.eventList.showContent,
-                        panel.active
+                        panel.eventmanager.eventList.refreshModulesContent
                     );
                 },
 

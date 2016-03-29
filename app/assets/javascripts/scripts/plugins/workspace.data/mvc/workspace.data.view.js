@@ -118,7 +118,7 @@ define(
                         var $item = new WorkspaceDataContentElement(this, {
                             style: 'page content' + current + show,
                             uuid: [
-                                data[i].model.getConfig('uuid'),
+                                data[i].model.getUUID(),
                                 'workspace-data-view'
                             ].join('-'),
                             $container: this.get$item().$,

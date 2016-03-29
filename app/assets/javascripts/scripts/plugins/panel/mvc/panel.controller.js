@@ -92,7 +92,7 @@ define([
 
                 this.observer.publish(
                     this.eventmanager.eventList.showContent,
-                    [true, this.controller.getActiveResource()]
+                    [this.controller.getActiveResource(), true]
                 );
             }
         },
@@ -241,10 +241,11 @@ define([
          * Show content
          * @memberOf PanelController
          * @param {string} [resource]
+         * @param {boolean} [force]
          */
-        showContent: function showContent(resource) {
+        showContent: function showContent(resource, force) {
 
-            if (this.controller.isActive(resource) && this.controller.isOpened()) {
+            if (!force && this.controller.isActive(resource) && this.controller.isOpened()) {
                 return false;
             }
 
