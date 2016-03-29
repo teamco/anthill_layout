@@ -208,19 +208,25 @@ define(
                 },
 
                 /**
-                 * Locate page data element
+                 * Locate page element
                  * @memberOf WorkspaceDataController
-                 * @param e
+                 * @param {Event} event
                  */
-                locateWorkspaceData: function locateWorkspaceData(e) {
+                locatePageElement: function locatePageElement(event) {
+
+                    /**
+                     * Get page
+                     * @type {Page}
+                     */
+                    var page = this.scope.activeContent;
 
                     /**
                      * Define $item
                      * @type {PluginElement}
                      */
-                    var $item = this.scope.activeContent.view.get$item();
+                    var $item = page.view.get$item();
 
-                    this.locateElement($item, e);
+                    $item.locate$element(event);
                 },
 
                 /**

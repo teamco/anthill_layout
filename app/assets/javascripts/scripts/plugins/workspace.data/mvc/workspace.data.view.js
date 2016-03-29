@@ -229,6 +229,13 @@ define(
                         style: 'workspace-data-prefs preferences',
                         title: 'Page preferences',
                         buttons: {
+                            locate: {
+                                text: 'Locate',
+                                type: 'default',
+                                events: {
+                                    click: 'locatePageElement'
+                                }
+                            },
                             destroyPageWidgets: {
                                 text: 'Destroy widgets',
                                 type: 'danger',

@@ -40,7 +40,7 @@ define(['jquery'], function defineBasePreferencesElement($) {
                     text: 'Locate',
                     type: 'default',
                     events: {
-                        click: 'locateWidget'
+                        click: 'locateElementItem'
                     }
                 },
                 approve: {

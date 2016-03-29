@@ -128,11 +128,11 @@ define([
         },
 
         /**
-         * Locate widget
+         * Locate element item
          * @memberOf PluginController
          * @param {Event} event
          */
-        locateWidget: function locateWidget(event) {
+        locateElementItem: function locateElementItem(event) {
 
             event.preventDefault();
 
@@ -240,7 +240,7 @@ define([
              */
             var $item = active.controller.getContainment().view.get$item();
 
-            this.view.get$item().locateElement($item, e);
+            this.view.get$item().locate$element(e, $item);
         },
 
         /**

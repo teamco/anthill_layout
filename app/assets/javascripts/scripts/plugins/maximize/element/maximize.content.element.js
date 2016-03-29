@@ -100,7 +100,7 @@ define([
 
             this.$.off(locateOn).on(
                 locateOn,
-                scope.controller.locateWidget.bind({
+                scope.controller.locateElementItem.bind({
                     scope: scope,
                     uuid: data.model.getUUID()
                 })

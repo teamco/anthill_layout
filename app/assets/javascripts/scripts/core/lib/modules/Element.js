@@ -108,7 +108,7 @@ define([
         },
 
         /**
-         * Locate $element by uuid
+         * Get $element by uuid
          * @param {string} uuid
          * @returns {*}
          */
@@ -772,17 +772,6 @@ define([
         },
 
         /**
-         * Locate element
-         * @memberOf BaseElement
-         */
-        locate: function locate() {
-
-            this.$.hasClass('shadow') ?
-                this.$.removeClass('shadow') :
-                this.$.addClass('shadow');
-        },
-
-        /**
          * Get $items
          * @memberOf BaseElement
          * @returns {*|jQuery|HTMLElement}
@@ -1097,14 +1086,14 @@ define([
         /**
          * Locate element
          * @memberOf BaseElement
-         * @param {BaseElement} $element
-         * @param {Event} e
+         * @param {BaseElement} [$element]
+         * @param {Event} event
          * @returns {boolean}
          */
-        locateElement: function locateElement($element, e) {
+        locate$element: function locate$element(event, $element) {
 
             if (!$element) {
-                return false;
+                $element = this;
             }
 
             /**
@@ -1118,7 +1107,7 @@ define([
             $element.$.parent().children().removeClass('select');
             $element.$.addClass('select');
 
-            if (e.type === 'mouseleave' || e.type === 'click') {
+            if (event.type === 'mouseleave' || event.type === 'click') {
                 setTimeout(_hideBorder, 300);
             }
         }

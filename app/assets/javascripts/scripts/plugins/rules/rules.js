@@ -31,7 +31,7 @@ define(function defineBaseRules() {
                     text: 'Locate',
                     type: 'default',
                     events: {
-                        click: 'locateWidget'
+                        click: 'locateElementItem'
                     }
                 },
                 approve: {

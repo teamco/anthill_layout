@@ -511,7 +511,7 @@ define([
          * @param {string} type
          * @returns {*}
          */
-        locateElement: function locateElement(source, type) {
+        locateDOMElement: function locateDOMElement(source, type) {
             for (var i = 0, l = source.length; i < l; i++) {
                 if ((source[i].tagName + '').toLowerCase() === type) {
                     return source[i];

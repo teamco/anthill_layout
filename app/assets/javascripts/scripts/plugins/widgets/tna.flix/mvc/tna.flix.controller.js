@@ -58,7 +58,7 @@ define([
 
             if (embed.match(/<iframe/)) {
 
-                return this.scope.view.locateElement(
+                return this.scope.view.locateDOMElement(
                     $(embed), 'iframe'
                 ).src;
 

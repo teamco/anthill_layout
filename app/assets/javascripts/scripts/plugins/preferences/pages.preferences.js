@@ -676,7 +676,7 @@ define([
 
             if (e.type === 'mouseenter' || e.type === 'mouseleave') {
                 _openPanel(
-                    pageData.view.controller.locateWidget.bind({
+                    pageData.view.controller.locateElementItem.bind({
                         scope: pageData,
                         uuid: uuid
                     })
