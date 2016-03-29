@@ -119,7 +119,7 @@ define(
                      * Define title
                      * @type {*|jQuery}
                      */
-                    var $title = $('<li />').append(
+                    var $title = $('<li class="page-title-prefs" />').append(
                         this.renderTextField({
                             name: 'title',
                             text: 'Page title',
@@ -127,7 +127,7 @@ define(
                             disabled: false,
                             visible: true
                         })
-                    ).addClass('page-title');
+                    );
 
                     var text = 'Clone from',
                         $cloneTemplate = $([
@@ -153,10 +153,7 @@ define(
                         )
                     );
 
-                    return $ul.append([
-                        $clone,
-                        $title
-                    ]);
+                    return $ul.append([$clone, $title]);
                 }
             },
             PluginElement.prototype

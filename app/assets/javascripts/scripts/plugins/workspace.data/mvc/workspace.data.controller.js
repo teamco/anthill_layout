@@ -160,8 +160,13 @@ define(
                      * Get element uuid
                      * @type {string}
                      */
-                    var uuid = page.model.getUUID() + '-workspace-data-view',
-                        $item = this.getView().elements.items[uuid];
+                    var uuid = page.model.getUUID() + '-workspace-data-view';
+
+                    /**
+                     * Get $item
+                     * @type {BaseElement}
+                     */
+                    var $item = this.getView().elements.items[uuid];
 
                     $item.updateCounter(page);
                     $item.updateShowInTabs(
@@ -245,7 +250,7 @@ define(
 
                     /**
                      * Get workspace
-                     * @type {Workspace}
+                     * @type {Workspace|*}
                      */
                     var workspace = this.controller.getWorkspace(),
                         pages = workspace.model.getItems(),
@@ -358,7 +363,7 @@ define(
 
                     panel.observer.publish(
                         panel.eventmanager.eventList.showContent,
-                        [true, panel.active]
+                        panel.active
                     );
                 },
 
