@@ -1,67 +1,56 @@
 define(function defineRaygunIO() {
 
     /**
-     * Define RaygunIO
-     * @class RaygunIO
+     * Define RaygunIO Preferences
+     * @class RaygunIOPreferences
+     * @extends Renderer
      * @constructor
      */
-    var RaygunIO = function RaygunIO() {
-
-        /**
-         * Define CDN library path
-         * @property RaygunIO
-         * @type {string}
-         */
-        this.path = '//cdn.raygun.io/raygun4js/raygun.min.js';
-
-        /**
-         * Define API Key
-         * @property RaygunIO
-         * @type {string}
-         */
-        this.apiKey = '';
+    var RaygunIOPreferences = function RaygunIOPreferences() {
     };
 
-    return RaygunIO.extend('RaygunIO', {
+    return RaygunIOPreferences.extend('RaygunIOPreferences', {
 
         /**
-         * Define init
-         * @memberOf RaygunIO
-         * @param {{apiKey: string}} service
+         * Render RaygunIO
+         * @memberOf RaygunIOPreferences
+         * @returns {*|jQuery}
          */
-        init: function init(service) {
-
-            // Get scope
-            var scope = this;
-
-            this.setApiKey(service.apiKey);
-
-            require([this.path], function _loadRaygun() {
-                Raygun.init(scope.getApiKey()).attach();
-            });
-        },
-
-        /**
-         * Define API key getter
-         * @memberOf RaygunIO
-         * @returns {string}
-         */
-        getApiKey: function getApiKey() {
-            return this.apiKey;
-        },
-
-        /**
-         * Define API key setter
-         * @memberOf RaygunIO
-         * @param {string} key
-         */
-        setApiKey: function setApiKey(key) {
+        raygunIO: function raygunIO() {
 
             /**
-             * Update API key
-             * @property RaygunIO
+             * Get workspace
+             * @type {*|Workspace}
              */
-            this.apiKey = key;
+            var workspace = this.view.controller.getWorkspace();
+
+            /**
+             * Get workspace prefs
+             * @type {{raygunIOApiKey, activateRaygunIO}}
+             */
+            var preferences = workspace.model.getConfig('preferences');
+
+            var $textfield = this.renderTextField({
+                name: 'raygunIOApiKey',
+                text: 'Raygun.IO API Key',
+                placeholder: 'Paste Raygun.IO API Key here',
+                disabled: false,
+                visible: true,
+                value: preferences.raygunIOApiKey || 'DbFEbP1IlRGv779/A2wo1Q=='
+            });
+
+            var $checkbox = this.renderCheckbox({
+                name: 'activateRaygunIO',
+                text: 'Activate',
+                checked: preferences.activateRaygunIO,
+                value: preferences.activateRaygunIO,
+                disabled: false,
+                visible: true
+            });
+
+            return $('<div class="workspace-raygun-io-prefs" />').append(
+                $checkbox, $textfield
+            );
         }
     });
 });

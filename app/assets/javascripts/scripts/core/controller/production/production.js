@@ -27,57 +27,7 @@ define(function defineProduction() {
          * @memberOf Production
          */
         loadProduction: function loadProduction() {
-
-            var services = this.model.getConfig('services'),
-                i = 0, l = services.length, service;
-
-            for (; i < l; i++) {
-                this.logger.debug('Load service', services[i]);
-                this.controller.loadService(services[i]);
-            }
-        },
-
-        /**
-         * Define service loader
-         * @memberOf Production
-         * @param {{[path]: string, name: string, load: boolean}} service
-         */
-        loadService: function loadService(service) {
-
-            /**
-             * Define scope
-             * @type {Production|string}
-             */
-            var prod = this,
-                path = service.path || 'services/';
-
-            if (!service.load) {
-                prod.scope.logger.debug('Skip loading service', service);
-                return false;
-            }
-
-            require(
-                [path + service.name],
-                function _loadService(Service) {
-
-                    /**
-                     * Define service
-                     * @property Production
-                     */
-                    prod[service.name] = new Service;
-
-                    if (prod.isProduction()) {
-                        prod[service.name].init(service);
-                        return false;
-                    }
-
-                    prod.scope.logger.debug(
-                        'Environment are not production type',
-                        prod.getEnvironment(),
-                        Service
-                    );
-                }
-            );
+            // TODO
         }
     });
 });

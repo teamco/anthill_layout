@@ -10,8 +10,9 @@ define([
     'plugins/preferences/site.preferences/meta.data',
     'plugins/preferences/site.preferences/site.width',
     'services/google.analytics',
-    'services/snap.engage'
-], function defineSitePreferences(BasePreferencesElement, SiteConfigMetaDataPreferences, SiteConfigWidthPreferences, GoogleAnalyticsPreferences, SnapEngagePreferences) {
+    'services/snap.engage',
+    'services/raygun.io'
+], function defineSitePreferences(BasePreferencesElement, SiteConfigMetaDataPreferences, SiteConfigWidthPreferences, GoogleAnalyticsPreferences, SnapEngagePreferences, RaygunIOPreferences) {
 
     /**
      * Define prefs
@@ -22,6 +23,7 @@ define([
      * @extends SiteConfigWidthPreferences
      * @extends GoogleAnalyticsPreferences
      * @extends SnapEngagePreferences
+     * @extends RaygunIOPreferences
      * @constructor
      */
     var SitePreferences = function SitePreferences() {
@@ -122,6 +124,11 @@ define([
                     },
                     {
                         type: 'text',
+                        value: 'RaygunIO',
+                        renderer: this.raygunIO()
+                    },
+                    {
+                        type: 'text',
                         value: 'SnapEngage',
                         renderer: this.snapEngage()
                     }
@@ -157,6 +164,7 @@ define([
         SiteConfigMetaDataPreferences.prototype,
         SiteConfigWidthPreferences.prototype,
         GoogleAnalyticsPreferences.prototype,
-        SnapEngagePreferences.prototype
+        SnapEngagePreferences.prototype,
+        RaygunIOPreferences.prototype
     );
 });

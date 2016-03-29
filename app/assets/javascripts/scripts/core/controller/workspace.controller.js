@@ -11,7 +11,8 @@ define(
         'modules/Preferences',
         'modules/Router',
         'controller/workspace/workspace.page',
-        'controller/workspace/workspace.seo'
+        'controller/workspace/workspace.seo',
+        'controller/workspace/workspace.services'
     ],
 
     /**
@@ -23,7 +24,7 @@ define(
      * @param {WorkspaceSEO} WorkspaceSEO
      * @returns {*}
      */
-    function defineWorkspaceController(BaseController, BasePreferences, Router, WorkspacePage, WorkspaceSEO) {
+    function defineWorkspaceController(BaseController, BasePreferences, Router, WorkspacePage, WorkspaceSEO, WorkspaceServices) {
 
         /**
          * Define workspace controller
@@ -33,6 +34,7 @@ define(
          * @extends Router
          * @extends WorkspacePage
          * @extends WorkspaceSEO
+         * @extends WorkspaceServices
          * @constructor
          */
         var WorkspaceController = function WorkspaceController() {
@@ -80,7 +82,7 @@ define(
                         [index, value]
                     );
                 },
-                
+
                 /**
                  * Update site width
                  * @memberOf WorkspaceController
@@ -91,15 +93,15 @@ define(
                      * Define element
                      * @type {WorkspaceElement}
                      */
-                    var $workspace = this.view.elements.$workspace,
-                        preferences = this.model.getConfig('preferences'),
+                    var $workspace = this.view.get$item();
+
+                    var preferences = this.model.getConfig('preferences'),
                         width = 0;
 
                     if (preferences.staticWidth) {
 
                         // Get site widths
                         width = parseInt(preferences.siteWidthSlider, 10) || width;
-
                         $workspace.updateWidth(width);
 
                     } else {
@@ -113,7 +115,8 @@ define(
             BasePreferences.prototype,
             Router.prototype,
             WorkspacePage.prototype,
-            WorkspaceSEO.prototype
+            WorkspaceSEO.prototype,
+            WorkspaceServices.prototype
         );
     }
 );
