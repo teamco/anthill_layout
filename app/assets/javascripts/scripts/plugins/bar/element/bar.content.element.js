@@ -74,8 +74,8 @@ define([
             this.$.on(
                 'click.toggle',
                 function clickToggle() {
-                    panel.view.controller.isOpened() ?
-                        publish(event.closePanel, resource) :
+                    panel.view.controller.isOpened(resource) ?
+                        publish(event.closePanel, [resource, true]) :
                         publish(event.openPanel, resource);
                 }
             );

@@ -123,20 +123,20 @@ define([
          * @memberOf ImageController
          * @param e
          */
-        addImageRule: function addImageRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), this.scope.name]
-            );
-        }
+        // addImageRule: function addImageRule(e) {
+        //
+        //     /**
+        //      * Define $button
+        //      * @type {*|jQuery|HTMLElement}
+        //      */
+        //     var $button = $(e.target),
+        //         scope = this.scope;
+        //
+        //     scope.observer.publish(
+        //         scope.eventmanager.eventList.publishRule,
+        //         [$button.attr('value'), this.scope.name]
+        //     );
+        // }
 
     }, PluginBase.prototype, WidgetContentController.prototype);
 });

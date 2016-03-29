@@ -13,6 +13,25 @@ define(function defineWorkspaceSEO() {
         'WorkspaceServices', {
 
             /**
+             * Check if service should be loaded
+             * @memberOf WorkspaceController
+             */
+            isServiceActivated: function isServiceActivated(code, activate) {
+
+                if (!(typeof code === 'string' && code.length)) {
+                    this.scope.logger.debug('Unable to fetch Code', code);
+                    return false;
+                }
+
+                if (!activate) {
+                    this.scope.logger.debug('Code does not activated', code);
+                    return false;
+                }
+
+                return true;
+            },
+
+            /**
              * Load SnapEngage Code
              * @memberOf WorkspaceController
              */
@@ -33,13 +52,7 @@ define(function defineWorkspaceSEO() {
                 var snapEngageCode = preferences.snapEngageCode,
                     activate = preferences.activateSnapEngage;
 
-                if (!(typeof(snapEngageCode) === 'string' && snapEngageCode.length)) {
-                    this.logger.debug('Unable to fetch SnapEngage Code', snapEngageCode);
-                    return false;
-                }
-
-                if (!activate) {
-                    this.logger.debug('SnapEngage Code not activated', snapEngageCode);
+                if (!this.controller.isServiceActivated(snapEngageCode, activate)) {
                     $('[id^=SnapABug]').remove();
                     return false;
                 }
@@ -88,9 +101,10 @@ define(function defineWorkspaceSEO() {
                  * Get tracking id
                  * @type {string}
                  */
-                var trackingId = preferences.googleAnalyticsTrackingId;
+                var trackingId = preferences.googleAnalyticsTrackingId,
+                    activate = preferences.activateGoogleAnalytics;
 
-                if (typeof(trackingId) === 'string' && trackingId.length) {
+                if (this.controller.isServiceActivated(trackingId, activate)) {
 
                     window._gaq = window._gaq || [];
                     window._gaq.push(['_setAccount', trackingId]);
@@ -113,6 +127,8 @@ define(function defineWorkspaceSEO() {
              */
             loadRaygunIOApiKey: function loadRaygunIOApiKey() {
 
+                this.logger.debug('Load Raygun.IO', arguments);
+
                 /**
                  * Define CDN library path
                  * @type {string}
@@ -121,7 +137,7 @@ define(function defineWorkspaceSEO() {
 
                 /**
                  * Get prefs
-                 * @type {{googleAnalyticsTrackingId}}
+                 * @type {{raygunIOApiKey, activateRaygunIO}}
                  */
                 var preferences = this.model.getConfig('preferences');
 
@@ -129,11 +145,15 @@ define(function defineWorkspaceSEO() {
                  * Define API Key
                  * @type {string}
                  */
-                var apiKey = preferences.raygunIOApiKey || '';
+                var apiKey = preferences.raygunIOApiKey || '',
+                    activate = preferences.activateRaygunIO;
 
-                require([path], function _loadRaygun() {
-                    Raygun.init(apiKey).attach();
-                });
+                if (this.controller.isServiceActivated(apiKey, activate)) {
+
+                    require([path], function _loadRaygun() {
+                        Raygun.init(apiKey).attach();
+                    });
+                }
             }
         }
     );

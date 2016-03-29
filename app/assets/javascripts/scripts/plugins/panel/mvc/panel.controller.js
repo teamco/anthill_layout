@@ -65,10 +65,11 @@ define([
         /**
          * Check if opened
          * @memberOf PanelController
+         * @param {string} [resource]
          * @returns {boolean|*}
          */
-        isOpened: function isOpened() {
-            return this.scope.opened;
+        isOpened: function isOpened(resource) {
+            return this.scope.opened[resource || this.getActiveResource()];
         },
 
         /**
@@ -78,16 +79,7 @@ define([
          * @returns {boolean}
          */
         isActive: function isActive(resource) {
-            return this.scope.active === resource;
-        },
-
-        /**
-         * Check if panel not active
-         * @memberOf PanelController
-         * @returns {boolean}
-         */
-        isNotActive: function isNotActive() {
-            return !!this.scope.active;
+            return this.getActiveResource() === resource;
         },
 
         /**
@@ -115,20 +107,34 @@ define([
         },
 
         /**
+         * Set active resource
+         * @memberOf PanelController
+         * @returns {string}
+         */
+        setActiveResource: function setActiveResource(resource) {
+            return this.scope.active = resource;
+        },
+
+        /**
          * Update opened
          * @memberOf PanelController
          * @param {String} resource
-         * @param {Boolean} opened
          */
-        setBehavior: function setBehavior(resource, opened) {
+        setBehavior: function setBehavior(resource) {
+
+            if (!resource) {
+                return false;
+            }
 
             /**
              * Define $panel
              * @type {PanelElement}
              */
-            var $panel = this.scope.view.elements.$panel;
+            var $panel = this.scope.view.get$item();
 
-            if (typeof(this.scope.active) === 'string') {
+            this.scope.opened[this.getActiveResource()] = false;
+
+            if (this.getActiveResource()) {
                 $panel.hideActiveModule();
             }
 
@@ -136,13 +142,13 @@ define([
              * Update opened instance
              * @type {boolean}
              */
-            this.scope.opened = !!opened;
+            this.scope.opened[resource] = true;
 
             /**
              * Define active panel
              * @type {String}
              */
-            this.scope.active = resource;
+            this.setActiveResource(resource);
 
             $panel.showActiveModule();
         },
@@ -151,8 +157,9 @@ define([
          * Close panel
          * @memberOf PanelController
          * @param {string} resource
+         * @param {boolean} [close]
          */
-        closePanel: function closePanel(resource) {
+        closePanel: function closePanel(resource, close) {
 
             if (!resource) {
                 return false;
@@ -161,9 +168,14 @@ define([
             var elements = this.view.elements,
                 $bar = elements.items['$bar-content'];
 
-            if (this.active === resource) {
+            if (this.controller.isActive(resource)) {
 
-                elements.$panel.toggleModule(resource, false);
+                if (this.controller.isOpened(resource) && close) {
+
+                    $bar.deactivateItems();
+                    this.view.get$item().hideActiveModule();
+                    return false;
+                }
 
             } else {
 
@@ -173,7 +185,6 @@ define([
                 );
             }
 
-            $bar.unselectItems();
             $bar.selectItem(resource);
         },
 
@@ -183,10 +194,6 @@ define([
          */
         closePanels: function closePanels() {
 
-            /**
-             * Get panels
-             * @type {{runTime, designTime}|object}
-             */
             var panels = this.root().panels,
                 index, panel;
 
@@ -194,11 +201,15 @@ define([
 
                 if (panels.hasOwnProperty(index)) {
 
+                    /**
+                     * Get panel
+                     * @type {Panel}
+                     */
                     panel = panels[index];
 
                     panel.observer.publish(
                         panel.eventmanager.eventList.closePanel,
-                        panel.active
+                        [panel.active, false]
                     );
                 }
             }
@@ -213,7 +224,7 @@ define([
          */
         openPanel: function openPanel(resource, event, callback) {
 
-            this.view.elements.$panel.toggleModule(resource, true);
+            this.view.get$item().toggleModule(resource);
             this.controller.closePanels();
 
             if (_.isFunction(callback)) {
@@ -224,10 +235,13 @@ define([
         /**
          * Show content
          * @memberOf PanelController
-         * @param {Boolean} opened
          * @param {string} [resource]
          */
-        showContent: function showContent(opened, resource) {
+        showContent: function showContent(resource) {
+
+            if (this.controller.isActive(resource) && this.controller.isOpened()) {
+                return false;
+            }
 
             /**
              * Define module index
@@ -235,23 +249,21 @@ define([
              */
             var index = this.model.getModuleIndex(resource);
 
-            if (opened) {
+            /**
+             * Define module instance
+             * @type {*}
+             */
+            var module = this.controller.activateModule(index);
 
-                /**
-                 * Define module instance
-                 * @type {*}
-                 */
-                var module = this.controller.activateModule(opened, index);
+            this.view.renderContent(module, true);
 
-                this.view.renderContent(module, true);
+            module.view.render();
 
-                module.view.render();
+            module.observer.publish(
+                module.eventmanager.eventList.loadModuleContent
+            );
 
-                module.observer.publish(
-                    module.eventmanager.eventList.loadModuleContent,
-                    opened
-                );
-            }
+            this.controller.setBehavior(resource);
         },
 
         /**
@@ -270,11 +282,10 @@ define([
         /**
          * Activate module
          * @memberOf PanelController
-         * @param {Boolean} opened
-         * @param {Number} index
+         * @param {number} index
          * @returns {*}
          */
-        activateModule: function activateModule(opened, index) {
+        activateModule: function activateModule(index) {
 
             /**
              * Define module config

@@ -27,19 +27,20 @@ define([
 
         /**
          * Define containment
-         * @memberOf Panel
+         * @property Panel
          */
         this.containment = containment;
 
         /**
          * Define opened
-         * @memberOf Panel
-         * @type {boolean}
+         * @property Panel
+         * @type {object}
          */
-        this.opened = false;
+        this.opened = {};
 
         /**
          * Define active module
+         * @property Panel
          * @type {string}
          */
         this.active = undefined;
@@ -98,7 +99,7 @@ define([
 
         /**
          * Define MVC
-         * @memberOf Panel
+         * @property Panel
          * @type {MVC}
          */
         this.mvc = new MVC({

@@ -117,17 +117,14 @@ define([
         /**
          * Load module content
          * @memberOf PluginController
-         * @param {boolean} opened
          * @param {boolean} [force]
          */
-        loadModuleContent: function loadModuleContent(opened, force) {
+        loadModuleContent: function loadModuleContent(force) {
 
-            if (opened) {
-                this.view.renderContent(
-                    this.controller.getModuleData(),
-                    force
-                );
-            }
+            this.view.renderContent(
+                this.controller.getModuleData(),
+                force
+            );
         },
 
         /**

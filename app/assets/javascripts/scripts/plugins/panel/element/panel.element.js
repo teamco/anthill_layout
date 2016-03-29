@@ -63,29 +63,19 @@ define([
         /**
          * Toggle open/close
          * @param {string} resource
-         * @param {boolean} opened
          * @memberOf PanelElement
          * @returns {boolean}
          */
-        toggleModule: function toggleModule(resource, opened) {
+        toggleModule: function toggleModule(resource) {
 
             // Define locals
             var view = this.view,
-                scope = view.scope,
-                controller = view.controller;
-
-            if (controller.isOpened() === opened && scope.active === resource) {
-
-                scope.logger.debug('No change');
-                return false;
-            }
+                scope = view.scope;
 
             scope.observer.publish(
                 scope.eventmanager.eventList.showContent,
-                [opened, resource]
+                resource
             );
-
-            controller.setBehavior(resource, opened);
         },
 
         /**
@@ -94,12 +84,12 @@ define([
          */
         setPanelHeader: function setPanelHeader() {
 
-            var tpl = '<li class="nav-header"></li>',
+            var $tpl = $('<li class="nav-header" />'),
                 header = this.header;
 
             if (header && header.visible) {
 
-                $(tpl).appendTo(this.$.find('ul:first'));
+                $tpl.appendTo(this.$.find('ul:first'));
 
                 this.setLongHeader();
                 this.setShortHeader();
@@ -112,11 +102,10 @@ define([
          */
         setLongHeader: function getLongHeaderWrapper() {
 
-            var tpl = '<div class="profile-element text-center"><h1 class="logo-element"></h1></div>',
+            var $tpl = $('<div class="profile-element text-center"><h1 class="logo-element"></h1></div>'),
                 title = this.header.title;
 
             if (title && title.long) {
-                var $tpl = $(tpl);
                 $tpl.find('.logo-element').text(title.long);
                 $tpl.appendTo(this.$.find('.nav-header'));
             }
@@ -128,11 +117,10 @@ define([
          */
         setShortHeader: function getShortHeaderWrapper() {
 
-            var tpl = '<div class="logo-element"></div>',
+            var $tpl = $('<div class="logo-element" />'),
                 title = this.header.title;
 
             if (title && title.short) {
-                var $tpl = $(tpl);
                 $tpl.find('.logo-element').text(title.short);
                 $tpl.appendTo(this.$.find('.nav-header'));
             }
@@ -160,7 +148,7 @@ define([
          * @returns {string}
          */
         getContentItemIndex: function getContentItemIndex() {
-            return ['$', this.view.scope.active, '-content'].join('');
+            return ['$', this.view.controller.getActiveResource(), '-content'].join('');
         }
 
     }, PluginElement.prototype);

@@ -11,12 +11,12 @@ define([
 
     /**
      * Define Panel Content Element
-     * @param view
-     * @param opts
-     * @returns {PanelContentElement}
      * @constructor
      * @class PanelContentElement
      * @extends PluginElement
+     * @param {PanelView} view
+     * @param opts
+     * @returns {PanelContentElement}
      */
     var PanelContentElement = function PanelContentElement(view, opts) {
 
@@ -36,6 +36,7 @@ define([
          * @param {string} resource
          */
         selectItem: function selectItem(resource) {
+            this.unselectItems();
             $('.content.' + resource, this.$).addClass('activated').removeClass('collapsed');
         },
 
@@ -44,9 +45,17 @@ define([
          * @memberOf PanelContentElement
          */
         unselectItems: function unselectItems() {
-            $('ul.panel-bar li', this.$).removeClass('activated').addClass('collapsed');
+            this.deactivateItems().addClass('collapsed');
+        },
+
+        /**
+         * Remove items activation
+         * @memberOf PanelContentElement
+         * @returns {*|jQuery}
+         */
+        deactivateItems: function deactivateItems() {
+            return $('ul.panel-bar li', this.$).removeClass('activated collapsed');
         }
 
     }, PluginElement.prototype);
-
 });
