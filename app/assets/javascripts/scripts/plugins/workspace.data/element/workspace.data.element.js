@@ -69,7 +69,7 @@ define([
 
             scope.observer.publish(
                 scope.eventmanager.eventList.updatePagesOrder,
-                [this.$.sortable('toArray')]
+                [this.$.sortable('toArray', {attribute: 'rel'})]
             );
 
             ui.item.attr(

@@ -388,7 +388,7 @@ define(
                          * Get $item
                          * @type {WorkspaceDataContentElement}
                          */
-                        $item = this.view.elements.items[order[i]];
+                        $item = this.view.elements.items[order[i] + '-workspace-data-view'];
 
                         /**
                          * Get page
