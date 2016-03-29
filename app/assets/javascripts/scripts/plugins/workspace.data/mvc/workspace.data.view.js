@@ -236,6 +236,13 @@ define(
                                     click: 'locatePageElement'
                                 }
                             },
+                            navigate: {
+                                text: 'Navigate',
+                                type: 'warning',
+                                events: {
+                                    click: 'navigateToPage'
+                                }
+                            },
                             destroyPageWidgets: {
                                 text: 'Destroy widgets',
                                 type: 'danger',

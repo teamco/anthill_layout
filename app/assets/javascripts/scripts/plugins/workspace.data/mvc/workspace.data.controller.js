@@ -415,17 +415,37 @@ define(
                 },
 
                 /**
-                 * Switch to active page before rendering widget preferences
+                 * Navigate to page
                  * @memberOf WorkspaceDataController
                  * @returns {boolean}
                  */
-                switchToActivePage: function switchToActivePage() {
+                navigateToPage: function navigateToPage() {
+
+                    /**
+                     * Get scope
+                     * @type {WorkspaceData}
+                     */
+                    var scope = this.scope;
+
+                    scope.observer.publish(
+                        scope.eventmanager.eventList.switchToActivePage,
+                        scope.activeContent
+                    );
+                },
+
+                /**
+                 * Switch to active page before rendering widget preferences
+                 * @memberOf WorkspaceDataController
+                 * @param {Page} [page]
+                 * @returns {boolean}
+                 */
+                switchToActivePage: function switchToActivePage(page) {
 
                     /**
                      * Get page
                      * @type {Page}
                      */
-                    var page = this.activeContent;
+                    page = page || this.activeContent;
 
                     if (!page) {
                         this.logger.warn('Undefined page');
@@ -450,7 +470,6 @@ define(
                         ]
                     );
                 }
-
             },
             PluginBase.prototype,
             PreferencesController.prototype
