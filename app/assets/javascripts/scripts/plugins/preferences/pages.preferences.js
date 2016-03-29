@@ -13,6 +13,7 @@ define([
     /**
      * Define prefs
      * @class PagesPreferences
+     * @extends PluginElement
      * @extends Renderer
      * @extends BasePreferencesElement
      * @constructor
@@ -621,7 +622,7 @@ define([
              * Define page data
              * @type {*|PageData}
              */
-            var pageData = view.controller.getModuleByName(module);
+            var pageData = panel.controller.getPageData();
 
             /**
              * Get scope
@@ -630,24 +631,8 @@ define([
             var scope = view.scope;
 
             /**
-             * Trigger click prefs
-             * @private
-             */
-            function _triggerPrefs() {
-
-                /**
-                 * Define $item
-                 * @type {PageDataContentElement}
-                 */
-                var $item = pageData.view.elements.items[uuid + '-' + module];
-
-                $item.$.trigger('click.prefs');
-                $('.popover').remove();
-            }
-
-            /**
              * Open panel
-             * @param callback
+             * @param {function} callback
              * @private
              */
             function _openPanel(callback) {
@@ -659,19 +644,14 @@ define([
                 );
 
                 panel.observer.publish(
-                    panel.eventmanager.eventList.closePanel,
-                    module
+                    panel.eventmanager.eventList.openPanel,
+                    [module, e]
                 );
 
                 panel.observer.publish(
                     panel.eventmanager.eventList.openPanel,
                     [module, e, callback]
                 );
-            }
-
-            if (e.type === 'click') {
-                view.elements.$modal.selfDestroy();
-                _openPanel(_triggerPrefs);
             }
 
             if (e.type === 'mouseenter' || e.type === 'mouseleave') {

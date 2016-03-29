@@ -18,8 +18,28 @@ define([
      */
     var PluginController = function PluginController() {
 
+        /**
+         * Get gallery
+         * @memberOf PluginController
+         * @type {function}
+         * @returns {Gallery}
+         */
         this.getGallery = null;
+
+        /**
+         * Get page data
+         * @memberOf PluginController
+         * @type {function}
+         * @returns {PageData}
+         */
         this.getPageData = null;
+
+        /**
+         * Get widget rules
+         * @memberOf PluginController
+         * @type {function}
+         * @returns {WidgetRules}
+         */
         this.getWidgetRules = null;
     };
 
@@ -312,7 +332,7 @@ define([
 
             panel.observer.publish(
                 panel.eventmanager.eventList.showContent,
-                [true, moduleName]
+                [moduleName, true]
             );
         },
 

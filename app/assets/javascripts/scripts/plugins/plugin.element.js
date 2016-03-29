@@ -47,6 +47,7 @@ define(['modules/Element'], function definePluginElement(BaseElement) {
                     clickOn = 'click.' + scope.name.toLowerCase();
 
                 this.$.off(clickOn).on(clickOn, _clickOn);
+                $('.popover').remove();
             },
 
             /**
