@@ -109,6 +109,7 @@ define([
         /**
          * Set active resource
          * @memberOf PanelController
+         * @param {string} [resource]
          * @returns {string}
          */
         setActiveResource: function setActiveResource(resource) {
@@ -174,6 +175,10 @@ define([
 
                     $bar.deactivateItems();
                     this.view.get$item().hideActiveModule();
+
+                    this.controller.setActiveResource();
+                    this.opened[resource] = false;
+
                     return false;
                 }
 
