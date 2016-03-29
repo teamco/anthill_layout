@@ -95,10 +95,16 @@ define(function defineWidgetGeneratorForm() {
             }
 
             /**
-             * Get gallery
-             * @type {Gallery}
+             * Define panel
+             * @type {Panel}
              */
-            var gallery = this.getGalleryModule(),
+            var panel = this.getDesignTimePanel();
+
+            /**
+             * Get gallery
+             * @type {Gallery|*}
+             */
+            var gallery = panel.controller.getGallery(),
                 clone, name;
 
             if (gallery) {

@@ -23,10 +23,16 @@ define(function defineWidgetGeneratorCore() {
         nextWidgetGenerator: function nextWidgetGenerator() {
 
             /**
+             * Define panel
+             * @type {Panel}
+             */
+            var panel = this.getDesignTimePanel();
+
+            /**
              * Get gallery
              * @type {Gallery}
              */
-            var gallery = this.getGalleryModule();
+            var gallery = panel.controller.getGallery();
 
             if (gallery) {
                 this.scope.view.showWidgetGenerator(
@@ -103,7 +109,7 @@ define(function defineWidgetGeneratorCore() {
 
             /**
              * Get $modal
-             * @type {ModalElement}
+             * @type {ModalElement|string}
              */
             var $modal = this.scope.view.get$modal(),
                 msg = this.i18n.t('widget.generated.ok').
@@ -113,10 +119,16 @@ define(function defineWidgetGeneratorCore() {
             $modal.handleNotification(msg, 'success');
 
             /**
+             * Define panel
+             * @type {Panel}
+             */
+            var panel = this.getDesignTimePanel();
+
+            /**
              * Get gallery
              * @type {Gallery}
              */
-            var gallery = this.getGalleryModule();
+            var gallery = panel.controller.getGallery();
 
             if (gallery) {
 

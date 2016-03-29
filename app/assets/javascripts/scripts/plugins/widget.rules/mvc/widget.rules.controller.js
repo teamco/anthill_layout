@@ -37,7 +37,7 @@ define([
          * @memberOf WidgetRulesController
          */
         getModuleData: function getModuleData() {
-            return this.model.getWidgetRules(
+            return this.model.getWidgetRulesItems(
                 this.getPage()
             );
         },
@@ -209,24 +209,6 @@ define([
         preferencesWidgetRules: function preferencesWidgetRules(event) {
 
             /**
-             * Trigger click prefs
-             * @private
-             */
-            function _triggerPrefs() {
-
-                /**
-                 * Define $item
-                 * @type {PageDataContentElement}
-                 */
-                var $item = this.view.elements.items[[
-                    widget.model.getUUID(),
-                    'page-data'
-                ].join('-')];
-
-                $item.$.trigger('click.prefs');
-            }
-
-            /**
              * Define panel
              * @type {Panel}
              */
@@ -236,7 +218,7 @@ define([
              * Define widget rules
              * @type {PageData}
              */
-            var pageData = this.getModuleByName('page-data');
+            var pageData = panel.controller.getPageData();
 
             /**
              * Define active content
@@ -250,12 +232,17 @@ define([
              */
             var widget = content.controller.getContainment();
 
-            panel.observer.publish(
-                panel.eventmanager.eventList.openPanel,
-                ['page-data', event, _triggerPrefs.bind(pageData)]
-            );
+            this.scope.view.get$modal().selfDestroy();
 
-            this.scope.view.elements.$modal.selfDestroy();
+            panel.observer.publish(
+                panel.eventmanager.eventList.openPanel, [
+                    'page-data', event,
+                    this.prepareTriggerShowModalData.bind({
+                        widget: widget,
+                        scope: pageData
+                    })
+                ]
+            );
         }
 
     }, AntHill.prototype, PluginBase.prototype);

@@ -23,10 +23,16 @@ define(function defineWidgetGeneratorExternal() {
         nextWidgetExternal: function nextWidgetExternal() {
 
             /**
+             * Define panel
+             * @type {Panel}
+             */
+            var panel = this.getDesignTimePanel();
+
+            /**
              * Get gallery
              * @type {Gallery}
              */
-            var gallery = this.getGalleryModule();
+            var gallery = panel.controller.getGallery();
 
             if (gallery) {
                 this.scope.view.showWidgetExternal(

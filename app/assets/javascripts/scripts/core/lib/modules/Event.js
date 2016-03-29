@@ -147,7 +147,7 @@ define([
          * @returns {Boolean|String}
          */
         subscribe: function subscribe(opts, internal) {
-            
+
             var base = this.base, event;
             opts = base.define(opts, {}, true);
             internal = base.defineBoolean(internal, false, true);
@@ -267,6 +267,18 @@ define([
             var evt = document.createEvent('Event');
             evt.initEvent(name, false, false);
             window.dispatchEvent(evt);
+        },
+
+        /**
+         * Find events bound on an element
+         * @memberOf BaseEvent
+         * @param {BaseElement} $element
+         * @returns {*}
+         */
+        eventsBound: function eventsBound($element) {
+
+            // Lookup events for this particular Element
+            return $._data($element.$[0], 'events');
         }
 
     }, AntHill.prototype);

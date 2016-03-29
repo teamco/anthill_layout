@@ -17,6 +17,10 @@ define([
      * @constructor
      */
     var PluginController = function PluginController() {
+
+        this.getGallery = null;
+        this.getPageData = null;
+        this.getWidgetRules = null;
     };
 
     PluginController.extend('PluginController', {
@@ -73,52 +77,6 @@ define([
             return panel.model.getPackage(
                 panel.model.getPackageIndex(name)
             );
-        },
-
-        /**
-         * Get widget rules
-         * @memberOf PluginController
-         * @returns {WidgetRules}
-         */
-        getWidgetRules: function getWidgetRules() {
-
-            /**
-             * Define panel
-             * @type {Panel}
-             */
-            var panel = this.getDesignTimePanel();
-
-            return panel.model.getModule(
-                panel.model.getModuleIndex('widget-rules')
-            ).module;
-        },
-
-        /**
-         * Get gallery module
-         * @memberOf PluginController
-         * @return {Gallery}
-         */
-        getGalleryModule: function getGalleryModule() {
-
-            /**
-             * Get panel
-             * @type {Panel}
-             */
-            var panel = this.getDesignTimePanel();
-
-            /**
-             * Get gallery
-             * @type {Gallery}
-             */
-            var gallery = (panel.model.getModule(
-                panel.model.getModuleIndex('gallery')
-            ) || {}).module;
-
-            if (!gallery) {
-                this.logger.warn('Unable to locate gallery module');
-            }
-
-            return gallery;
         },
 
         /**
@@ -194,6 +152,30 @@ define([
                     scope.controller.locateModuleItem.bind(scope)
                 ]
             );
+        },
+
+        /**
+         * Prepare to trigger
+         * @memberOf PluginController
+         */
+        prepareTriggerShowModalData: function prepareTriggerShowModalData() {
+
+            // Get scope
+            var scope = this.scope;
+
+            /**
+             * Fetch uuid
+             * @type {string}
+             */
+            var rulesUuid = this.widget.model.getUUID() + '-' + scope.name.toDash();
+
+            /**
+             * Define $item
+             * @type {PageDataContentElement}
+             */
+            var $item = scope.view.elements.items[rulesUuid];
+
+            $item.triggerShowModalData();
         },
 
         /**

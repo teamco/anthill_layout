@@ -23,10 +23,16 @@ define(function defineWidgetGeneratorEdit() {
         widgetEditor: function widgetEditor(resource) {
 
             /**
+             * Define panel
+             * @type {Panel}
+             */
+            var panel = this.getDesignTimePanel();
+
+            /**
              * Get gallery
              * @type {Gallery}
              */
-            var gallery = this.controller.getGalleryModule(),
+            var gallery = panel.controller.getGallery(),
                 widget;
 
             if (gallery) {
@@ -167,10 +173,16 @@ define(function defineWidgetGeneratorEdit() {
             this._handleSuccessSendWidgetData(data, status, xhr);
 
             /**
+             * Define panel
+             * @type {Panel}
+             */
+            var panel = this.getDesignTimePanel();
+
+            /**
              * Get gallery
              * @type {Gallery}
              */
-            var gallery = this.getGalleryModule();
+            var gallery = panel.controller.getGallery();
 
             if (gallery) {
 

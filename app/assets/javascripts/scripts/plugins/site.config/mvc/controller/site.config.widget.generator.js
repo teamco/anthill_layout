@@ -48,10 +48,16 @@ define([
                 loadWidgetsList: function loadWidgetsList() {
 
                     /**
+                     * Define panel
+                     * @type {Panel}
+                     */
+                    var panel = this.getDesignTimePanel();
+
+                    /**
                      * Get gallery
                      * @type {Gallery}
                      */
-                    var gallery = this.getGalleryModule();
+                    var gallery = panel.controller.getGallery();
 
                     if (gallery) {
                         this.scope.view.showWidgetsList(
@@ -115,11 +121,18 @@ define([
                     }
 
                     /**
+                     * Define panel
+                     * @type {Panel}
+                     */
+                    var panel = this.getDesignTimePanel();
+
+                    /**
                      * Get gallery
                      * @type {Gallery}
                      */
-                    var gallery = controller.getGalleryModule(),
-                        exist = controller.i18n.t('widget.generation.resource.exist'),
+                    var gallery = panel.controller.getGallery();
+
+                    var exist = controller.i18n.t('widget.generation.resource.exist'),
                         abort = controller.i18n.t('widget.generation.ajax.abort');
 
                     if (gallery && data.collector && gallery.model.staticData.isExistResource(data.collector.resource)) {

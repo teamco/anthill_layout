@@ -50,6 +50,19 @@ define(['modules/Element'], function definePluginElement(BaseElement) {
             },
 
             /**
+             * Define trigger click Show Modal Data
+             * @memberOf PluginElement
+             */
+            triggerShowModalData: function triggerShowModalData() {
+
+                // Get scope
+                var scope = this.view.scope,
+                    clickOn = 'click.' + scope.name.toLowerCase();
+
+                this.$.trigger(clickOn);
+            },
+
+            /**
              * Locate widget before
              * @memberOf PluginElement
              * @param data

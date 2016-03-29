@@ -25,14 +25,12 @@ define([
         /**
          * Define scope
          * @property BaseController
-         * @type {undefined}
          */
         this.scope = undefined;
 
         /**
          * Define controller
          * @property BaseController
-         * @type {undefined}
          */
         this.controller = undefined;
     };
@@ -291,9 +289,10 @@ define([
             /**
              * Get Widget
              * @memberOf BaseController
+             * @param {string} [uuid]
              * @returns {*|Widget}
              */
-            getWidget: function getWidget() {
+            getWidget: function getWidget(uuid) {
 
                 /**
                  * Get page
@@ -301,7 +300,9 @@ define([
                  */
                 var page = this.getPage();
 
-                return page.model.getCurrentItem();
+                return this.base.isDefined(uuid) ?
+                    page.model.getItemByUUID(uuid) :
+                    page.model.getCurrentItem();
             },
 
             /**
@@ -338,10 +339,7 @@ define([
              */
             successCreated: function successCreated() {
 
-                this.logger.debug(
-                    'Successfully created',
-                    this
-                );
+                this.logger.debug('Successfully created');
 
                 this.observer.publish(
                     this.eventmanager.eventList.defineGenericGetter

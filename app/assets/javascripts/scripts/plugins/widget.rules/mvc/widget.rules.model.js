@@ -33,7 +33,7 @@ define([
          * @param page
          * @returns {*}
          */
-        getWidgetRules: function getWidgetRules(page) {
+        getWidgetRulesItems: function getWidgetRulesItems(page) {
             return page.model.getItems();
         },
 

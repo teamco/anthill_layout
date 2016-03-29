@@ -20,35 +20,35 @@ define([
         /**
          * Init a new deferred object
          * @property AntHill
-         * @type {*}
+         * @type {object}
          */
         this.deferred = $.Deferred();
 
         /**
          * Init API
          * @property AntHill
-         * @type {*}
+         * @type {BaseAPI}
          */
         this.api = undefined;
 
         /**
          * Init observer
          * @property AntHill
-         * @type {*}
+         * @type {Observer}
          */
         this.observer = undefined;
 
         /**
          * Init event manager
          * @property AntHill
-         * @type {*}
+         * @type {BaseEvent}
          */
         this.eventmanager = undefined;
 
         /**
          * Define permissions
          * @property AntHill
-         * @type {*}
+         * @type {BasePermission}
          */
         this.permission = undefined;
 
@@ -62,21 +62,21 @@ define([
         /**
          * Init model
          * @property AntHill
-         * @type {*}
+         * @type {BaseModel}
          */
         this.model = undefined;
 
         /**
          * Init view
          * @property AntHill
-         * @type {*}
+         * @type {BaseView}
          */
         this.view = undefined;
 
         /**
          * Init controller
          * @property AntHill
-         * @type {*}
+         * @type {BaseController}
          */
         this.controller = undefined;
 

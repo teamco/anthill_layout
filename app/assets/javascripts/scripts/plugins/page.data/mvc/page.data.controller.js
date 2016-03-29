@@ -181,27 +181,6 @@ define([
         rulesPageData: function rulesPageData(event) {
 
             /**
-             * Trigger click rules
-             * @private
-             */
-            function _triggerRules() {
-
-                /**
-                 * Fetch uuid
-                 * @type {string}
-                 */
-                var rulesUuid = widget.model.getUUID() + '-widget-rules';
-
-                /**
-                 * Define $item
-                 * @type {WidgetRulesContentElement}
-                 */
-                var $item = this.view.elements.items[rulesUuid];
-
-                $item.$.trigger('click.rules');
-            }
-
-            /**
              * Define panel
              * @type {Panel}
              */
@@ -211,7 +190,7 @@ define([
              * Define widget rules
              * @type {WidgetRules}
              */
-            var widgetRules = this.getWidgetRules();
+            var widgetRules = panel.controller.getWidgetRules();
 
             /**
              * Define active content
@@ -225,12 +204,17 @@ define([
              */
             var widget = content.controller.getContainment();
 
-            panel.observer.publish(
-                panel.eventmanager.eventList.openPanel,
-                ['widget-rules', event, _triggerRules.bind(widgetRules)]
-            );
+            this.scope.view.get$modal().selfDestroy();
 
-            this.scope.view.elements.$modal.selfDestroy();
+            panel.observer.publish(
+                panel.eventmanager.eventList.openPanel, [
+                    'widget-rules', event,
+                    this.prepareTriggerShowModalData.bind({
+                        widget: widget,
+                        scope: widgetRules
+                    })
+                ]
+            );
         },
 
         /**
