@@ -28,6 +28,8 @@ define([
          *      value, min, max, step,
          *      [disabled]: boolean,
          *      [monitor],
+         *      [visible],
+         *      [unit],
          *      [validate]: {mask: RegExp, blank: boolean}
          * }} opts
          * @returns {*[]}
@@ -83,10 +85,6 @@ define([
                 _triggerCallback();
             }
 
-            /**
-             * Create UUID
-             * @type {String}
-             */
             var uuid = this.base.lib.generator.UUID() + '-input',
                 disabled = this.base.defineBoolean(opts.disabled, false, true),
                 $input = $('<input />').attr({
@@ -104,26 +102,23 @@ define([
             this.checkVisibility($input, opts.visible);
             this.validateByMask($input, opts);
 
-            /**
-             * Render number field
-             * @type {NumberFieldRenderer}
-             */
-            var numberField = this.renderNumberField({
-                value: opts.value,
-                disabled: disabled,
-                visible: true,
-                monitor: {
-                    events: ['keyup.range', 'blur.range'],
-                    callback: _updateRangeField
-                }
-            });
+            var $numberField = this.renderNumberField({
+                    value: opts.value,
+                    disabled: disabled,
+                    visible: true,
+                    monitor: {
+                        events: ['keyup.range', 'blur.range'],
+                        callback: _updateRangeField
+                    }
+                }),
+                $numberInput = $numberField.find('input');
 
             // Update number field
             $input.on(
                 'input.range change.range keyup.range blur.range',
                 function _updateNumberField() {
 
-                    numberField.find('input').val(
+                    $numberInput.val(
                         _validateValue($input, $input.val())
                     );
 
@@ -134,7 +129,7 @@ define([
             $input.val(opts.value);
 
             var $unit = $('<div />').append([
-                numberField[1],
+                $numberInput,
                 opts.unit || ''
             ]);
 

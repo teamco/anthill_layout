@@ -103,12 +103,17 @@ define([
 
             /**
              * Get scope
-             * @type {Image}
+             * @type {Image|*}
              */
             var scope = this.scope,
                 $referrer = scope.referrer,
-                $modal = $referrer.view.get$modal(),
-                $preferences = scope.view.elements.$preferences;
+                $modal = $referrer.view.get$modal();
+
+            /**
+             * Get prefs
+             * @type {ImagePreferencesElement}
+             */
+            var $preferences = scope.view.elements.$preferences;
 
             if ($preferences) {
                 $preferences.updatePreviewImage(

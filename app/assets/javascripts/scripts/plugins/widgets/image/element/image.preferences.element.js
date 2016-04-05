@@ -65,10 +65,6 @@ define([
              */
             updatePreviewImage: function updatePreviewImage($modal, event) {
 
-                /**
-                 * Get preview image
-                 * @type {*|jQuery|HTMLElement}
-                 */
                 var $img = $('img.image-preview', $modal.$),
                     target = event.target,
                     view = this.view,
