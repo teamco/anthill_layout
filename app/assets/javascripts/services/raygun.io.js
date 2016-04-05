@@ -49,7 +49,7 @@ define(function defineRaygunIO() {
             });
 
             return $('<div class="workspace-raygun-io-prefs" />').append(
-                $checkbox, $textfield
+                $textfield, $checkbox
             );
         }
     });

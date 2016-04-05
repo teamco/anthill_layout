@@ -57,7 +57,7 @@ define(function defineGoogleAnalyticsPreferences() {
             });
 
             return $('<div class="workspace-google-analytics-prefs" />').append(
-                $checkbox, $textfield
+                $textfield, $checkbox
             );
         }
     });

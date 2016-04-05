@@ -86,6 +86,7 @@
 .modal.preferences .ui-slider .ui-slider-tick.label {
     font-size: 11px;
     top: 13px;
+    color: #333;
 }
 
 .modal textarea {
@@ -97,7 +98,12 @@
 
 .modal .input-group-addon:first-child {
     min-width: 150px;
+    font-weight: 500;
     text-transform: capitalize;
+}
+
+.modal .text .input-group-addon:first-child {
+    text-align: left;
 }
 
 .modal .checkbox,

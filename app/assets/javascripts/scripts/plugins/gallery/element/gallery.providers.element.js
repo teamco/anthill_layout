@@ -61,14 +61,17 @@ define([
          * @memberOf GalleryProvidersElement
          * @param data
          * @param currentProvider
-         * @returns {GalleryProvidersElement}
+         * @returns {boolean|GalleryProvidersElement}
          */
         renderData: function renderData(data, currentProvider) {
 
             if (!currentProvider) {
+
                 this.view.scope.logger.warn(
                     'Undefined current provider'
                 );
+
+                this.view.get$container().$.addClass('no-provider');
                 return false;
             }
 

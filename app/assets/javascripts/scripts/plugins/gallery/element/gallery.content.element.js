@@ -107,7 +107,7 @@ define([
 
             /**
              * Define content element
-             * @type {GalleryContentElement}
+             * @type {GalleryContentElement|string}
              */
             var element = this,
                 external = element.data.is_external ? 'External' : 'Core';

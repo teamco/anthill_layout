@@ -262,7 +262,7 @@ define(
                      */
                     var scope = this.scope;
 
-                    if (!this.model.getConfig('sendLog')) {
+                    if (xhr.status.match(/401/) || !this.model.getConfig('sendLog')) {
                         scope.logger.warn('Unable to send log');
                         return false;
                     }

@@ -53,6 +53,8 @@ define(function defineWorkspaceSEO() {
                     activate = preferences.activateSnapEngage;
 
                 if (!this.controller.isServiceActivated(snapEngageCode, activate)) {
+
+                    this.logger.debug('Remove SnapEngage', snapEngageCode);
                     $('[id^=SnapABug]').remove();
                     return false;
                 }

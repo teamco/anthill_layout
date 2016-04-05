@@ -3,7 +3,11 @@ div.gallery-content {
 }
 
 div.gallery-content .scroll-cover {
-    top: 77px;
+    top: 73px;
+}
+
+div.gallery-content.no-provider .scroll-cover {
+    top: 30px;
 }
 
 div.gallery ul {
@@ -16,19 +20,15 @@ ul.gallery .content > a {
 
 div.gallery-providers {
     position: relative;
-    top: -7px;
+    top: -8px;
     background-color: #fff;
     border-bottom: 1px solid #ccc;
+    border-top: 1px solid #ccc;
 }
 
 .gallery-providers.nav > li > a {
     color: #999;
     background-color: #fff;
-}
-
-.navbar-default .gallery-providers.nav > li > a:hover,
-.navbar-default .gallery-providers.nav > li > a:focus {
-    background-color: rgba(47, 64, 80, 0.8);
 }
 
 .gallery-providers span.caret {

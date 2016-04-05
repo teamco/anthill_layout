@@ -50,7 +50,7 @@ define(function defineSnapEngagePreferences() {
             });
 
             return $('<div class="workspace-snap-engage-prefs" />').append(
-                $checkbox, $textarea
+                $textarea, $checkbox
             );
         }
     });

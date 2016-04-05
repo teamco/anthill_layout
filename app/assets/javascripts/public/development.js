@@ -81,7 +81,6 @@
             require([
                 'pluralize',
                 'jquery.ui',
-                'jquery.metismenu',
                 'jquery.slimscroll',
                 'bootstrap',
                 '_'

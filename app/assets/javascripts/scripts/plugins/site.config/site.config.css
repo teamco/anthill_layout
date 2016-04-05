@@ -65,8 +65,10 @@ ul.site-config .content.widget-generator > a {
 }
 
 .modal.widget-generator-new .thumbnail > img {
-    float: left;
+    position: absolute;
     margin-right: 2%;
+    right: 0;
+    top: 0;
 }
 
 .modal.widget-generator-new .thumbnail > span {
@@ -80,6 +82,11 @@ ul.site-config .content.widget-generator > a {
     min-width: initial;
 }
 
+.modal.widget-generator-new .from-scratch input {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
 .modal.widget-generator-new .clone-from {
     margin-left: 48%;
 }
@@ -87,7 +94,7 @@ ul.site-config .content.widget-generator > a {
 .modal.widget-generator-new .nav > li > a,
 .modal.site-config .nav.plugin-config > li > a,
 .modal.activate .nav > li > a {
-    padding: 7px 10px;
+    padding: 6px 10px;
     border-radius: 0 5px 5px 0;
     min-width: 280px;
     border: 1px solid #dfdfdf;
@@ -130,4 +137,9 @@ ul.site-config .content.widget-generator > a {
     overflow-x: auto;
     margin-right: 30px;
     padding-right: 0;
+}
+
+.modal .thumbnail {
+    background-color: #f2f2f2;
+    position: relative;
 }

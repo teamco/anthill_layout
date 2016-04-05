@@ -50,7 +50,6 @@ requirejs.config({
         'jquery.pseudo': 'lib/jquery/jquery.pseudo',
         'jquery.zoomooz': 'lib/jquery/jquery.zoomooz.min',
 
-        'jquery.metismenu': 'lib/jquery/metisMenu.min',
         'jquery.slimscroll': 'lib/jquery/jquery.slimscroll.min',
 
         // create alias to plugins (not needed if plugins are on the baseUrl)

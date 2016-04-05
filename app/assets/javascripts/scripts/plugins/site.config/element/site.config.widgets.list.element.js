@@ -308,7 +308,7 @@ define([
                 };
             }
 
-            $div.append(renderer(opts));
+            $div.prepend(renderer(opts));
 
             return $div;
         },
@@ -700,7 +700,7 @@ define([
              * Define checkbox
              * @type {*|jQuery}
              */
-            var $checkbox = $('<div class="checkbox" />').append(
+            var $checkbox = $('<div class="checkbox from-scratch" />').append(
                 this.renderCheckbox({
                     name: name,
                     text: 'Make from ' + name,
