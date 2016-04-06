@@ -16,6 +16,77 @@ define([
      * @constructor
      */
     var WidgetModel = function WidgetModel() {
+
+        /**
+         * Define preferences
+         * @property WidgetModel
+         * @type {{
+         *      title: {type: string, disabled: boolean, value: undefined, visible: boolean},
+         *      description: {type: string, disabled: boolean, value: undefined, visible: boolean},
+         *      widgetUrl: {type: string, disabled: boolean, value: undefined, visible: boolean},
+         *      onClickOpenUrl: {type: string, disabled: boolean, value: undefined, visible: boolean},
+         *      customClassName: {type: string, disabled: boolean, value: undefined, visible: boolean},
+         *      statistics: {type: string, disabled: boolean, value: undefined, visible: boolean},
+         *      hideContentOnDrag: {type: string, disabled: boolean, value: undefined, visible: boolean},
+         *      hideContentOnResize: {type: string, disabled: boolean, value: undefined, visible: boolean}
+         * }}
+         */
+        this.preferences = {
+            title: {
+                type: 'text',
+                disabled: false,
+                value: undefined,
+                visible: true
+            },
+            description: {
+                type: 'textarea',
+                disabled: false,
+                value: undefined,
+                visible: true
+            },
+            widgetUrl: {
+                type: 'textarea',
+                disabled: true,
+                value: undefined,
+                visible: true
+            },
+            onClickOpenUrl: {
+                type: 'textarea',
+                disabled: false,
+                value: undefined,
+                visible: true
+            },
+            customClassName: {
+                type: 'text',
+                disabled: false,
+                value: undefined,
+                visible: true
+            },
+            statistics: {
+                type: 'checkbox',
+                disabled: false,
+                checked: false,
+                visible: true
+            },
+            hideContentOnDrag: {
+                type: 'checkbox',
+                disabled: false,
+                checked: false,
+                visible: true
+            },
+            hideContentOnResize: {
+                type: 'checkbox',
+                disabled: false,
+                checked: false,
+                visible: true
+            },
+            pageContainment: {
+                type: 'checkbox',
+                disabled: false,
+                checked: false,
+                visible: true
+            }
+        };
     };
 
     return WidgetModel.extend('WidgetModel', {

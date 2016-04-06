@@ -7,6 +7,7 @@ define(function defineSiteConfigPublish() {
     /**
      * Define SiteConfig Publish
      * @class SiteConfigPublish
+     * @extends BaseController
      * @constructor
      */
     var SiteConfigPublish = function SiteConfigPublish() {

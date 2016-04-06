@@ -128,73 +128,8 @@ define([
              */
             var widget = scope.controller.getContainment();
 
-            /**
-             * Define widget default prefs
-             * @type {{
-             *      title: {type: string, disabled: boolean, value},
-             *      description: {type: string, disabled: boolean, value},
-             *      widgetUrl: {type: string, disabled: boolean, value},
-             *      onClickOpenUrl: {type: string, disabled: boolean, value},
-             *      customClassName: {type: string, disabled: boolean, value},
-             *      statistics: {type: string, disabled: boolean, checked: boolean}
-             * }}
-             */
-            var defaultPrefs = {
-                title: {
-                    type: 'text',
-                    disabled: false,
-                    value: undefined,
-                    visible: true
-                },
-                description: {
-                    type: 'textarea',
-                    disabled: false,
-                    value: undefined,
-                    visible: true
-                },
-                widgetUrl: {
-                    type: 'textarea',
-                    disabled: true,
-                    value: undefined,
-                    visible: true
-                },
-                onClickOpenUrl: {
-                    type: 'textarea',
-                    disabled: false,
-                    value: undefined,
-                    visible: true
-                },
-                customClassName: {
-                    type: 'text',
-                    disabled: false,
-                    value: undefined,
-                    visible: true
-                },
-                statistics: {
-                    type: 'checkbox',
-                    disabled: false,
-                    checked: false,
-                    visible: true
-                },
-                hideContentOnDrag: {
-                    type: 'checkbox',
-                    disabled: false,
-                    checked: false,
-                    visible: true
-                },
-                hideContentOnResize: {
-                    type: 'checkbox',
-                    disabled: false,
-                    checked: false,
-                    visible: true
-                },
-                pageContainment: {
-                    type: 'checkbox',
-                    disabled: false,
-                    checked: false,
-                    visible: true
-                }
-            };
+            // Get default prefs
+            var defaultPrefs = widget.controller.getPreferences();
 
             var $tabs = this.renderTabs(),
                 $container = this.renderTabItemsContent(),

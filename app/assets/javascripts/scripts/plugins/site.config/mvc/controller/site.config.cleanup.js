@@ -7,6 +7,7 @@ define(function defineSiteConfigCleanup() {
     /**
      * Define SiteConfig Cleanup
      * @class SiteConfigCleanup
+     * @extends BaseController
      * @constructor
      */
     var SiteConfigCleanup = function SiteConfigCleanup() {

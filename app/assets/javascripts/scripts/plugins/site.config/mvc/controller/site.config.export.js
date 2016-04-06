@@ -7,6 +7,7 @@ define(function defineSiteConfigExport() {
     /**
      * Define site Export
      * @class SiteConfigExport
+     * @extends BaseController
      * @constructor
      */
     var SiteConfigExport = function SiteConfigExport() {
@@ -20,10 +21,6 @@ define(function defineSiteConfigExport() {
          */
         exportSiteData: function exportSiteData() {
 
-            /**
-             * Get root
-             * @type {Application}
-             */
             var root = this.controller.root(),
                 setting = root.model.setting,
                 ns = setting.getNameSpace();

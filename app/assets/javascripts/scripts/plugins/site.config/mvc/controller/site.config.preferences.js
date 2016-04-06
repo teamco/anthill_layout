@@ -7,10 +7,10 @@ define(function defineSiteConfigPreferences() {
     /**
      * Define SiteConfig Preferences
      * @class SiteConfigPreferences
+     * @extends BaseController
      * @constructor
      */
     var SiteConfigPreferences = function SiteConfigPreferences() {
-
     };
 
     return SiteConfigPreferences.extend('SiteConfigPreferences', {
@@ -25,15 +25,6 @@ define(function defineSiteConfigPreferences() {
                 data,
                 this.model.getSiteWidthRange()
             );
-        },
-
-        /**
-         * Get Prefs
-         * @memberOf SiteConfigPreferences
-         * @returns {SiteConfigModel.preferences}
-         */
-        getPreferences: function getPreferences() {
-            return this.model.preferences;
         },
 
         /**

@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @memberOf AnimotoModel
+         * @property AnimotoModel
          * @type {{
          *      animotoEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
@@ -37,7 +37,7 @@ define([
 
         /**
          * Define rules
-         * @memberOf AnimotoModel
+         * @property AnimotoModel
          * @type {{}}
          */
         this.rules = {};

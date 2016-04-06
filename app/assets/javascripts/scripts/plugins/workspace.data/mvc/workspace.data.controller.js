@@ -57,15 +57,6 @@ define(
                 },
 
                 /**
-                 * Get Prefs
-                 * @memberOf WorkspaceDataController
-                 * @returns {WorkspaceDataModel.preferences}
-                 */
-                getPreferences: function getPreferences() {
-                    return this.model.preferences;
-                },
-
-                /**
                  * Define preferences
                  * @memberOf WorkspaceDataController
                  * @param {string} uuid

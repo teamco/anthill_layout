@@ -197,12 +197,12 @@
     transition: all 0.5s ease;
 }
 
-.panel-container.panel-right.navbar-default .panel-content .scroll-cover li.content {
+.panel-container.navbar-default .panel-content .scroll-cover li.content {
     border: none;
     border-radius: 10px;
     margin: 0 2px 2px 0;
 }
 
-.panel-container.panel-right.navbar-default .panel-content .scroll-cover li.content:hover {
+.panel-container.navbar-default .panel-content .scroll-cover li.content:hover {
     background-color: #efefef;
 }

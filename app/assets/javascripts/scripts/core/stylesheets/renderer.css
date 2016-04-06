@@ -38,6 +38,7 @@
 
 .range > div input[type="number"] {
     height: 24px;
+    width: 50px;
     font-size: 12px;
     padding: 0 5px;
     text-align: center;

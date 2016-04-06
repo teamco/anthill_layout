@@ -7,10 +7,10 @@ define(function defineSiteConfigImport() {
     /**
      * Define site import
      * @class SiteConfigImport
+     * @extends BaseController
      * @constructor
      */
     var SiteConfigImport = function SiteConfigImport() {
-
     };
 
     return SiteConfigImport.extend('SiteConfigImport', {
@@ -37,7 +37,7 @@ define(function defineSiteConfigImport() {
 
             /**
              * Get view elements
-             * @type {SiteConfigView.elements}
+             * @type {SiteConfigView.elements|{$import}}
              */
             var elements = scope.view.elements;
 
@@ -65,7 +65,7 @@ define(function defineSiteConfigImport() {
          * Ready to import site data
          * @memberOf SiteConfigImport
          * @param {object} json
-         * @param {FileList} file
+         * @param {File} file
          */
         readyToImportSiteData: function readyToImportSiteData(json, file) {
             this.view.showApproveImportData(json, file);
