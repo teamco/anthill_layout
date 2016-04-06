@@ -15,7 +15,7 @@ body.modal-open {
 .modal .modal-body {
     overflow-x: hidden;
     overflow-y: auto;
-    max-height: 550px;
+    max-height: 500px;
 }
 
 .modal .ui-draggable-handle {
