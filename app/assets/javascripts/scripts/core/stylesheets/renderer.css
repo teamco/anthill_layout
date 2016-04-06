@@ -54,11 +54,6 @@
     background-color: antiquewhite;
 }
 
-textarea {
-    max-height: 160px;
-    min-height: 80px;
-}
-
 .import-area {
     border: 1px dashed #bbb;
     -moz-border-radius: 5px;
@@ -118,10 +113,11 @@ div.source {
     border-top-right-radius: 0;
     height: 40px;
     min-height: 40px;
+    max-height: 160px;
     transition: all 0.5s ease;
 }
 
 .textarea.input-group-addon + textarea:focus {
-    height: 80px;
-    min-height: 80px;
+    height: 100px;
+    min-height: 100px;
 }
