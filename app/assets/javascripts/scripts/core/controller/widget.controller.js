@@ -113,6 +113,15 @@ define(
                 },
 
                 /**
+                 * Get widget interaction prefs
+                 * @memberOf WidgetController
+                 * @returns {WidgetModel.interactions}
+                 */
+                getInteractionPreferences: function getInteractionPreferences() {
+                    return this.model.interactions;      
+                },
+
+                /**
                  * Get page jquery object
                  * @memberOf WidgetController
                  * @returns {*|jQuery}

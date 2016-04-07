@@ -45,102 +45,21 @@ define([
             ws.base.isUrl();
 
             /**
-             * Define default widget prefs
-             * @type {{
-             *      uuid: {type: string, disabled: boolean, value},
-             *      title: {type: string, disabled: boolean, value},
-             *      siteDescription: {type: string, disabled: boolean, value},
-             *      siteKeywords: {type: string, disabled: boolean, value},
-             *      pageUrl: {type: string, disabled: boolean, value},
-             *      pageOpenUrlInDialog: {type: string, disabled: boolean, value},
-             *      pageHeader: {type: string, disabled: boolean, value},
-             *      pageFooter: {type: string, disabled: boolean, value},
-             *      animateSwipe: {type: string, disabled: boolean, value}
-             *      showInTabs: {type: string, disabled: boolean, value}
-             * }}
+             * Get page
+             * @type {Page}
              */
-            var defaultPrefs = {
-                uuid: {
-                    type: 'text',
-                    disabled: true,
-                    value: opts.page.model.getUUID(),
-                    visible: true
-                },
-                title: {
-                    type: 'text',
-                    disabled: false,
-                    value: undefined,
-                    visible: true
-                },
-                siteDescription: {
-                    type: 'textarea',
-                    disabled: false,
-                    value: undefined,
-                    visible: true
-                },
-                siteKeywords: {
-                    type: 'textarea',
-                    disabled: false,
-                    value: undefined,
-                    visible: true
-                },
-                pageUrl: {
-                    type: 'text',
-                    disabled: false,
-                    value: undefined,
-                    visible: true,
-                    monitor: {
-                        events: ['blur', 'keydown'],
-                        callback: this.toggleOpenUrlInDialog.bind(this)
-                    },
-                    validate: {
-                        mask: ws.base.isUrl.regex,
-                        blank: true
-                    }
-                },
-                pageOpenUrlInDialog: {
-                    type: 'checkbox',
-                    disabled: !(pagePrefs.pageUrl && pagePrefs.pageUrl.length),
-                    value: false,
-                    visible: true
-                },
-                pageHeader: {
-                    type: 'checkbox',
-                    disabled: false,
-                    value: false,
-                    visible: true
-                },
-                pageFooter: {
-                    type: 'checkbox',
-                    disabled: false,
-                    value: false,
-                    visible: true
-                },
-                animateSwipe: {
-                    type: 'checkbox',
-                    disabled: false,
-                    value: config.animateSwipe,
-                    visible: true
-                },
-                showInTabs: {
-                    type: 'checkbox',
-                    disabled: false,
-                    value: config.showInTabs,
-                    visible: true
-                },
-                lazyLoading: {
-                    type: 'checkbox',
-                    disabled: false,
-                    value: false,
-                    visible: true
-                },
-                outlineContainment: {
-                    type: 'checkbox',
-                    disabled: false,
-                    value: false,
-                    visible: true
-                }
-            };
+            var page = opts.page;
+
+            // Get default prefs
+            var defaultPrefs = page.controller.getPreferences();
+
+            defaultPrefs.pageUrl.monitor.callback = this.toggleOpenUrlInDialog.bind(this);
+            defaultPrefs.pageUrl.validate.mask = ws.base.isUrl.regex;
+
+            defaultPrefs.uuid.value = page.model.getUUID();
+            defaultPrefs.pageOpenUrlInDialog.disabled = !(pagePrefs.pageUrl && pagePrefs.pageUrl.length);
+            defaultPrefs.animateSwipe.value = config.animateSwipe;
+            defaultPrefs.showInTabs.value = config.showInTabs;
 
             /**
              * Define dom nodes

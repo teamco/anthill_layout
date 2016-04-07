@@ -3,12 +3,6 @@
     overflow: visible;
 }
 
-.modal.rules .open > .dropdown-menu {
-    max-height: 300px;
-    overflow-x: hidden;
-    overflow-y: auto;
-}
-
 .modal.rules .input-group-addon {
     min-width: 150px;
     padding: 10px;

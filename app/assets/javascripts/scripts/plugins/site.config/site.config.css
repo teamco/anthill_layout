@@ -1,7 +1,3 @@
-div.site-config-content {
-    margin-top: 228px;
-}
-
 ul.site-config .content > a {
     cursor: context-menu;
 }
@@ -69,6 +65,8 @@ ul.site-config .content.widget-generator > a {
     margin-right: 2%;
     right: 0;
     top: 0;
+    max-width: 64px;
+    max-height: 64px;
 }
 
 .modal.widget-generator-new .thumbnail > span {

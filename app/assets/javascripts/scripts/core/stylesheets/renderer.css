@@ -51,6 +51,12 @@
     margin-top: -5px;
 }
 
+.open > .dropdown-menu {
+    max-height: 300px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
 .dropdown-menu .selected > a {
     background-color: antiquewhite;
 }
