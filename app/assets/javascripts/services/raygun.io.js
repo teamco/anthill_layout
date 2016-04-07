@@ -16,7 +16,7 @@ define(function defineRaygunIO() {
          * @memberOf RaygunIOPreferences
          * @returns {*|jQuery}
          */
-        raygunIO: function raygunIO() {
+        renderRaygunIO: function renderRaygunIO() {
 
             /**
              * Get workspace

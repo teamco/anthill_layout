@@ -19,7 +19,6 @@ define([
 
         /**
          * Define preferences
-         * @property WidgetModel
          * @type {{
          *      title: {type: string, disabled: boolean, value: undefined, visible: boolean},
          *      description: {type: string, disabled: boolean, value: undefined, visible: boolean},
@@ -31,7 +30,7 @@ define([
          *      hideContentOnResize: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
          */
-        this.preferences = {
+        var defaults = {
             title: {
                 type: 'text',
                 disabled: false,
@@ -90,7 +89,6 @@ define([
 
         /**
          * Define prefs interactions
-         * @property WidgetModel
          * @type {{
          *      overlapping: {type: string, disabled: boolean, checked: boolean, visible: boolean},
          *      alwaysOnTop: {type: string, disabled: boolean, checked: boolean, visible: boolean},
@@ -116,7 +114,7 @@ define([
          *      setStickToBottomRight: {type: string, disabled: boolean, group: string, events: string[], checked: boolean, visible: boolean}
          * }}
          */
-        this.interactions = {
+        var interactions = {
             overlapping: {
                 type: 'checkbox',
                 disabled: false,
@@ -293,7 +291,52 @@ define([
                 checked: false,
                 visible: true
             }
-        }
+        };
+
+        /**
+         * Define widget prefs
+         * @property WidgetModel
+         * @type {{
+         *      defaults: {
+         *          title: {type: string, disabled: boolean, value: undefined, visible: boolean},
+         *          description: {type: string, disabled: boolean, value: undefined, visible: boolean},
+         *          widgetUrl: {type: string, disabled: boolean, value: undefined, visible: boolean},
+         *          onClickOpenUrl: {type: string, disabled: boolean, value: undefined, visible: boolean},
+         *          customClassName: {type: string, disabled: boolean, value: undefined, visible: boolean},
+         *          statistics: {type: string, disabled: boolean, value: undefined, visible: boolean},
+         *          hideContentOnDrag: {type: string, disabled: boolean, value: undefined, visible: boolean},
+         *          hideContentOnResize: {type: string, disabled: boolean, value: undefined, visible: boolean}
+         *      },
+         *      interactions: {
+         *          overlapping: {type: string, disabled: boolean, checked: boolean, visible: boolean},
+         *          alwaysOnTop: {type: string, disabled: boolean, checked: boolean, visible: boolean},
+         *          setLayerUp: {type: string, disabled: boolean, group: string, events: string[], checked: boolean, visible: boolean},
+         *          setLayerDown: {type: string, disabled: boolean, group: string, events: string[], checked: boolean, visible: boolean},
+         *          stretchWidth: {type: string, disabled: boolean, checked: boolean, visible: boolean},
+         *          stretchHeight: {type: string, disabled: boolean, checked: boolean, visible: boolean},
+         *          maximizable: {type: string, disabled: boolean, checked: boolean, visible: boolean},
+         *          zoomable: {type: string, disabled: boolean, checked: boolean, visible: boolean},
+         *          draggable: {type: string, disabled: boolean, checked: boolean, visible: boolean},
+         *          resizable: {type: string, disabled: boolean, checked: boolean, visible: boolean},
+         *          freeze: {type: string, disabled: boolean, checked: boolean, visible: boolean},
+         *          expandable: {type: string, disabled: boolean, checked: boolean, visible: boolean},
+         *          unsetStick: {type: string, disabled: boolean, group: string, events: string[], checked: boolean, visible: boolean},
+         *          setStickToCenterLeft: {type: string, disabled: boolean, group: string, events: string[], checked: boolean, visible: boolean},
+         *          setStickToCenterTop: {type: string, disabled: boolean, group: string, events: string[], checked: boolean, visible: boolean},
+         *          setStickToCenter: {type: string, disabled: boolean, group: string, events: string[], checked: boolean, visible: boolean},
+         *          setStickToCenterBottom: {type: string, disabled: boolean, group: string, events: string[], checked: boolean, visible: boolean},
+         *          setStickToCenterRight: {type: string, disabled: boolean, group: string, events: string[], checked: boolean, visible: boolean},
+         *          setStickToTopLeft: {type: string, disabled: boolean, group: string, events: string[], checked: boolean, visible: boolean},
+         *          setStickToBottomLeft: {type: string, disabled: boolean, group: string, events: string[], checked: boolean, visible: boolean},
+         *          setStickToTopRight: {type: string, disabled: boolean, group: string, events: string[], checked: boolean, visible: boolean},
+         *          setStickToBottomRight: {type: string, disabled: boolean, group: string, events: string[], checked: boolean, visible: boolean}
+         *      }
+         * }}
+         */
+        this.preferences = {
+            defaults: defaults,
+            interactions: interactions
+        };
     };
 
     return WidgetModel.extend('WidgetModel', {

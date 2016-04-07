@@ -129,7 +129,7 @@ define([
             var widget = scope.controller.getContainment();
 
             // Get default prefs
-            var defaultPrefs = widget.controller.getPreferences();
+            var defaultPrefs = widget.controller.getPreferences().defaults;
 
             var $tabs = this.renderTabs(),
                 $container = this.renderTabItemsContent(),
@@ -221,8 +221,8 @@ define([
                 resizable = resizablePermission ?
                     !!preferences.resizable : false;
 
-            
-            var interactions = widget.controller.getInteractionPreferences();
+            // Get interaction prefs
+            var interactions = widget.controller.getPreferences().interactions;
 
             interactions.overlapping.checked = preferences.overlapping;
 

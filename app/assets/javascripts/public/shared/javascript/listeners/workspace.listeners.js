@@ -13,14 +13,22 @@ define([
     /**
      * Define global events
      * @memberOf Workspace
-     * @type {{createDesignTimePanel: string, createRunTimePanel: string}}
+     * @type {{
+     *      createDesignTimePanel: string,
+     *      createRunTimePanel: string,
+     *      loadGoogleAnalyticsTrackingId: string,
+     *      loadSnapEngageCode: string,
+     *      loadRaygunIOApiKey: string,
+     *      loadGithubGistEmbedCode: string,
+     * }}
      */
     Workspace.prototype.globalEvents = {
         createDesignTimePanel: 'create.design.time.panel',
         createRunTimePanel: 'create.run.time.panel',
         loadGoogleAnalyticsTrackingId: 'load.google.analytics.tracking.id',
         loadSnapEngageCode: 'load.snap.engage.code',
-        loadRaygunIOApiKey: 'load.raygun.io.api.key'
+        loadRaygunIOApiKey: 'load.raygun.io.api.key',
+        loadGithubGistEmbedCode: 'load.github.gist.embed.code'
     };
 
     /**

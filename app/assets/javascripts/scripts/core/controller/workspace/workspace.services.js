@@ -156,6 +156,32 @@ define(function defineWorkspaceSEO() {
                         Raygun.init(apiKey).attach();
                     });
                 }
+            },
+
+            /**
+             * Load Github Gist Embed code
+             * @memberOf WorkspaceController
+             */
+            loadGithubGistEmbedCode: function loadGithubGistEmbedCode() {
+
+                this.logger.debug('Load Gist Embed code', arguments);
+
+                /**
+                 * Get prefs
+                 * @type {{githubGistEmbedCode, activateGithubGistEmbedCode}}
+                 */
+                var preferences = this.model.getConfig('preferences');
+
+                /**
+                 * Define embed code
+                 * @type {string}
+                 */
+                var embedCode = preferences.githubGistEmbedCode || '',
+                    activate = preferences.activateGithubGistEmbedCode;
+
+                if (this.controller.isServiceActivated(embedCode, activate)) {
+                    require([$(embedCode).attr('src')]);
+                }
             }
         }
     );

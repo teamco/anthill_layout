@@ -17,7 +17,7 @@ define(function defineSnapEngagePreferences() {
          * @memberOf SnapEngagePreferences
          * @returns {*|jQuery}
          */
-        snapEngage: function snapEngage() {
+        renderSnapEngage: function renderSnapEngage() {
 
             /**
              * Get workspace

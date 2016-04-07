@@ -11,8 +11,9 @@ define([
     'plugins/preferences/site.preferences/site.width',
     'services/google.analytics',
     'services/snap.engage',
-    'services/raygun.io'
-], function defineSitePreferences(BasePreferencesElement, SiteConfigMetaDataPreferences, SiteConfigWidthPreferences, GoogleAnalyticsPreferences, SnapEngagePreferences, RaygunIOPreferences) {
+    'services/raygun.io',
+    'services/github.gist'
+], function defineSitePreferences(BasePreferencesElement, SiteConfigMetaDataPreferences, SiteConfigWidthPreferences, GoogleAnalyticsPreferences, SnapEngagePreferences, RaygunIOPreferences, GithubGistPreferences) {
 
     /**
      * Define prefs
@@ -24,6 +25,7 @@ define([
      * @extends GoogleAnalyticsPreferences
      * @extends SnapEngagePreferences
      * @extends RaygunIOPreferences
+     * @extends GithubGistPreferences
      * @constructor
      */
     var SitePreferences = function SitePreferences() {
@@ -120,17 +122,22 @@ define([
                     {
                         type: 'text',
                         value: 'Google Analytics',
-                        renderer: this.googleAnalytics()
+                        renderer: this.renderGoogleAnalytics()
                     },
                     {
                         type: 'text',
                         value: 'RaygunIO',
-                        renderer: this.raygunIO()
+                        renderer: this.renderRaygunIO()
                     },
                     {
                         type: 'text',
                         value: 'SnapEngage',
-                        renderer: this.snapEngage()
+                        renderer: this.renderSnapEngage()
+                    },
+                    {
+                        type: 'text',
+                        value: 'GitHub Gist',
+                        renderer: this.renderGithubGist()
                     }
                 ];
 
@@ -165,6 +172,7 @@ define([
         SiteConfigWidthPreferences.prototype,
         GoogleAnalyticsPreferences.prototype,
         SnapEngagePreferences.prototype,
-        RaygunIOPreferences.prototype
+        RaygunIOPreferences.prototype,
+        GithubGistPreferences.prototype
     );
 });

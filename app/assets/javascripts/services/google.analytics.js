@@ -16,7 +16,7 @@ define(function defineGoogleAnalyticsPreferences() {
          * @memberOf GoogleAnalyticsPreferences
          * @returns {*|jQuery}
          */
-        googleAnalytics: function googleAnalytics() {
+        renderGoogleAnalytics: function renderGoogleAnalytics() {
 
             /**
              * Get workspace
