@@ -32,9 +32,9 @@ define([
         return this;
     };
 
-    return EmptyPreferencesElement.extend('EmptyPreferencesElement', {
-
-
-    }, PluginElement.prototype, WidgetPreferences.prototype);
-
+    return EmptyPreferencesElement.extend(
+        'EmptyPreferencesElement', {}, 
+        PluginElement.prototype, 
+        WidgetPreferences.prototype
+    );
 });

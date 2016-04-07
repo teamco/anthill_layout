@@ -164,6 +164,11 @@ module WidgetLib
 
     def generate_css(thumbnail)
 
+      if thumbnail.nil?
+        puts '+++ Unable to get thumbnail'
+        return false
+      end
+
       Dir.mkdir "#{css_path}/widgets" unless File.exists? "#{css_path}/widgets"
       Dir.mkdir "#{css_path}/images" unless File.exists? "#{css_path}/images"
 

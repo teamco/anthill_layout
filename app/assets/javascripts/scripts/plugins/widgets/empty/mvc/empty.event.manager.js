@@ -22,7 +22,8 @@ define([
         this.updateEventList({});
     };
 
-    return EmptyEventManager.extend('EmptyEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+    return EmptyEventManager.extend(
+        'EmptyEventManager', {},
+        WidgetContentEventManager.prototype
+    );
 });

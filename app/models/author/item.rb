@@ -5,4 +5,9 @@ class Author::Item < ActiveRecord::Base
   has_one :author_site_version, class_name: 'Author::SiteVersion'
   has_one :author_widget, class_name: 'Author::Widget'
   has_one :author_widget_category, class_name: 'Author::WidgetCategory'
+
+  def self.create_and_get
+    create(user_id: User.current.id)
+  end
+
 end

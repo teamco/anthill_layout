@@ -75,17 +75,17 @@ class Author::SiteStorage < ActiveRecord::Base
     author_site_versions.where(version: version).first
   end
 
-  def self.create_data(params)
+  def self.build_data(params)
     uuid = UUID.new
     site = User.current.author_site_storages.build(params)
     site[:uuid] = uuid.generate
-    site[:item_id] = Author::Item.create(user_id: User.current.id).id
+    site[:item_id] = Author::Item.create_and_get.id
 
     versions = site.author_site_versions
     versions.build(
         version: versions.length + 1,
         activated: true,
-        item_id: Author::Item.create(user_id: User.current.id).id
+        item_id: Author::Item.create_and_get.id
     )
 
     site.users << User.current

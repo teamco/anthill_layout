@@ -36,8 +36,9 @@ define([
         return this;
     };
 
-    return EmptyRulesElement.extend('EmptyRulesElement', {
-
-    }, PluginElement.prototype, BaseWidgetRules.prototype);
-
+    return EmptyRulesElement.extend(
+        'EmptyRulesElement', {}, 
+        PluginElement.prototype, 
+        BaseWidgetRules.prototype
+    );
 });

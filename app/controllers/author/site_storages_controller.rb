@@ -45,7 +45,7 @@ class Author::SiteStoragesController < Author::AuthorController
 
   # GET /author/site_storages/1/edit
   def edit
-    @widget_categories = WidgetCategory.order(:name_value)
+    @widget_categories = WidgetCategory.order(:name_value).includes(:author_widgets)
     render '/partials/form', locals: {title: 'key'}
   end
 
@@ -53,7 +53,7 @@ class Author::SiteStoragesController < Author::AuthorController
   # POST /author/site_storages.json
   def create
 
-    @author_site_storage = SiteStorage.create_data(author_site_storage_params)
+    @author_site_storage = SiteStorage.build_data(author_site_storage_params)
 
     target = get_target_url(@author_site_storage.key)
     FileUtils.cp_r "#{Rails.root}/lib/tasks/site/default", target
@@ -88,7 +88,7 @@ class Author::SiteStoragesController < Author::AuthorController
       params[:author_site_storage][:publish] = 'false'
       params[:author_site_storage].delete :content
     else
-      version = @author_site_storage.author_site_versions.find(params[:author_site_storage][:activated_version])
+      version = @author_site_storage.author_site_versions.where(params[:author_site_storage][:activated_version]).first
       params[:author_site_storage].delete :activated_version
     end
 
@@ -226,7 +226,7 @@ class Author::SiteStoragesController < Author::AuthorController
   def update_widget_connections
 
     widget_ids = params[:author_site_storage][:author_site_storage_widget_ids]
-    widgets = Widget.find(widget_ids.reject(&:blank?)) rescue []
+    widgets = Widget.where(widget_ids.reject(&:blank?)) rescue []
 
     @author_site_storage.author_site_storage_widgets.delete_all
     @author_site_storage.author_widgets << widgets unless widgets.blank?

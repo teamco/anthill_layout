@@ -1,3 +1,5 @@
+require 'uuid'
+
 class Author::Widget < ActiveRecord::Base
 
   belongs_to :author_widget_category,
@@ -68,6 +70,18 @@ class Author::Widget < ActiveRecord::Base
           where('visible=true AND (public=true OR user_id=?) AND widget_category_id=?', user.id, category.id).
           order(name: :asc)
     end
+  end
+
+  def self.build_data(params, category)
+
+    uuid = UUID.new
+
+    widget = new(params)
+    widget.uuid = uuid.generate
+    widget.widget_category_id = category.id
+    widget.item_id = Author::Item.create_and_get.id
+
+    widget
   end
 
 end

@@ -19,5 +19,8 @@ define([
     var EmptyPermission = function EmptyPermission() {
     };
 
-    return EmptyPermission.extend('EmptyPermission', {}, BasePermission.prototype);
+    return EmptyPermission.extend(
+        'EmptyPermission', {}, 
+        BasePermission.prototype
+    );
 });

@@ -41,5 +41,4 @@ define([
         }
 
     }, PluginElement.prototype);
-
 });

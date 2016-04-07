@@ -61,10 +61,15 @@ class BaseImage
   end
 
   def to_img(data_uri)
-    uri = URI::Data.new(data_uri)
-    image = ImageList.new
-    image.from_blob(uri.data)
-    data_uri(image)
+    begin
+      uri = URI::Data.new(data_uri)
+      puts "Image URI: #{uri.inspect}"
+      image = ImageList.new
+      image.from_blob(uri.data)
+      data_uri(image)
+    rescue
+      puts "Image not in Base64 format: #{data_uri.inspect}"
+    end
   end
 
 end

@@ -77,15 +77,11 @@ class Author::WidgetsController < Author::AuthorController
   # POST /author/widgets.json
   def create
 
-    @author_widget = current_user.author_widgets.build(author_widget_params) unless @category.nil?
+    @author_widget = Widget.build_data(author_widget_params, @category) unless @category.nil?
 
     if @author_widget.nil?
       respond_to { |format| error_handler_on_create(format) }
     else
-
-      uuid = UUID.new
-      @author_widget.uuid = uuid.generate
-      @author_widget.widget_category_id = @category.id
 
       respond_to do |format|
         if generate_widget and @author_widget.save
@@ -106,6 +102,7 @@ class Author::WidgetsController < Author::AuthorController
           end
         else
           error_handler_on_create(format)
+          @author_widget.author_item.destroy
         end
       end
     end
@@ -304,7 +301,15 @@ class Author::WidgetsController < Author::AuthorController
       @widget_lib.set_clone(@clone_from)
       @widget_lib.do_it
       logger.info '>>>>> Generate Css'
-      @widget_lib.generate_css(uri? ? to_base64 : to_image)
+
+      if uri?
+        logger.info '>>>>> URI not live' unless live?
+        thumbnail = to_image
+      else
+        thumbnail = to_base64
+      end
+
+      @widget_lib.generate_css(thumbnail)
       generate = true
     rescue
       logger.info '>>>>> Rescue: Remove widget'
@@ -317,7 +322,7 @@ class Author::WidgetsController < Author::AuthorController
 
   def uri?
     uri = URI.parse(@author_widget.thumbnail)
-    %w( http https ).include?(uri.scheme) && live?
+    %w( http https ).include?(uri.scheme)
   end
 
   def live?
@@ -351,7 +356,6 @@ class Author::WidgetsController < Author::AuthorController
   def to_image
     logger.info 'Start to->image'
     @create_status = BaseLib.img.to_img(@author_widget.thumbnail)
-    @create_status
   end
 
   def set_author_widget_category
@@ -372,7 +376,7 @@ class Author::WidgetsController < Author::AuthorController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def author_widget_params
-    params.require(:author_widget).permit(:name, :description, :thumbnail, :width, :height, :resource, :visible, :widget_category_id)
+    params.require(:author_widget).permit(:name, :description, :thumbnail, :width, :height, :resource, :widget_category_id)
   end
 
   def error_handler_on_create(format)

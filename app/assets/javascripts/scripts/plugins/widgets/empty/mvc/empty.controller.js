@@ -27,8 +27,7 @@ define([
          * @memberOf EmptyController
          */
         setEmbeddedContent: function setEmbeddedContent() {
-
-            this.view.elements.$empty.renderEmbeddedContent();
+            this.view.get$item().renderEmbeddedContent();
         },
 
         /**
@@ -42,12 +41,17 @@ define([
              * Define $button
              * @type {*|jQuery|HTMLElement}
              */
-            var $button = $(e.target),
-                scope = this.scope;
+            var $button = $(e.target);
+
+            /**
+             * Get scope
+             * @type {Empty|{name: string}}
+             */
+            var scope = this.scope;
 
             scope.observer.publish(
                 scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), this.scope.name]
+                [$button.attr('value'), scope.name]
             );
         }
 

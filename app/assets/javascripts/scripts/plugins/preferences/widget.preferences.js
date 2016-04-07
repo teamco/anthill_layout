@@ -252,44 +252,42 @@ define([
         renderLayoutInteractions: function renderLayoutInteractions() {
 
             /**
+             * Render layout
+             * @private
+             * @param {string} side
+             * @param value
+             * @returns {*|jQuery}
+             */
+            function _renderPrefs(side, value) {
+
+                return {
+                    type: 'text',
+                    name: side.toLowerCase(),
+                    text: side,
+                    placeholder: side,
+                    value: value,
+                    disabled: true,
+                    visible: true
+                };
+            }
+
+            /**
              * Define controller
              * @type {*}
              */
             var controller = this.view.controller;
 
-            /**
-             * Define dom prefs
-             */
+            // Define dom prefs
             var column = controller.getDOMPreferences('column'),
                 row = controller.getDOMPreferences('row'),
                 width = controller.getDOMPreferences('relWidth'),
                 height = controller.getDOMPreferences('relHeight');
 
             return {
-                column: this.renderPrefs('Column', column),
-                width: this.renderPrefs('Width', width),
-                row: this.renderPrefs('Row', row),
-                height: this.renderPrefs('Height', height)
-            };
-        },
-
-        /**
-         * Render move
-         * @memberOf WidgetPreferences
-         * @param {string} side
-         * @param value
-         * @returns {*|jQuery}
-         */
-        renderPrefs: function renderPrefs(side, value) {
-
-            return {
-                type: 'text',
-                name: side.toLowerCase(),
-                text: side,
-                placeholder: side,
-                value: value,
-                disabled: true,
-                visible: true
+                column: _renderPrefs('Column', column),
+                width: _renderPrefs('Width', width),
+                row: _renderPrefs('Row', row),
+                height: _renderPrefs('Height', height)
             };
         }
 

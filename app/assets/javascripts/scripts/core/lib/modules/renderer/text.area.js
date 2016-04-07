@@ -26,6 +26,8 @@ define(function defineTextAreaRenderer() {
          *      [style]: string,
          *      [monitor],
          *      [disabled]: boolean,
+         *      [readonly]: boolean,
+         *      [visible]: boolean,
          *      [validate]: {mask: RegExp, blank: boolean}
          * }} opts
          * @extends AntHill
