@@ -36,7 +36,7 @@ define(function defineBasePreferences() {
             var $inputs = $modal.collectInputFields(),
                 scope = this.scope,
                 containment = this.getContainment(),
-                cname = scope.name.toLowerCase();
+                cname = scope.name.toDash();
 
             if ($inputs.hasClass('validate')) {
                 scope.logger.warn('Fix incorrect data before submit');
