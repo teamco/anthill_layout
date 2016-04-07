@@ -124,7 +124,7 @@ define([
                      * Define panel
                      * @type {Panel}
                      */
-                    var panel = this.getDesignTimePanel();
+                    var panel = controller.getDesignTimePanel();
 
                     /**
                      * Get gallery

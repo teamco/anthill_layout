@@ -87,10 +87,10 @@ define(function defineWidgetGeneratorForm() {
                 data = inputs[i];
                 collector[data.name] = data.value;
                 $(data).blur();
-                if (data.value.length === 0) empty++;
+                if (!data.value.length) empty++;
             }
 
-            if (collector['clone'].length === 0 && collector['scratch'] === 'true') {
+            if (!collector['clone'].length && collector['scratch'] === 'true') {
                 empty--;
             }
 
@@ -121,14 +121,14 @@ define(function defineWidgetGeneratorForm() {
                  */
                 var resource = scope.view.elements.$widgetgenerator.getResource();
 
-                if (collector.clone.length > 0) {
+                if (collector.clone.length) {
 
                     resource = (gallery.model.staticData.getWidgetData(
                         'name', collector.clone
                     ) || {}).resource;
                 }
 
-                if (_.isUndefined(resource) || resource.length === 0) {
+                if (_.isUndefined(resource) || !resource.length) {
 
                     scope.logger.warn('Undefined resource', collector);
                     return false;

@@ -250,8 +250,22 @@ define(function defineGalleryWidgets() {
         addDefaultData: function addDefaultData(data) {
 
             /**
+             * Get scope
+             * @type {GalleryModel}
+             */
+            var scope = this.galleryModel.scope;
+
+            if (typeof data === 'string') {
+                scope.logger.warn('Unable to update gallery', data);
+                return false;
+            }
+
+            /**
              * Define widget instance
              * @type {{
+             *      id: string,
+             *      uuid: string,
+             *      url: string,
              *      name: string,
              *      description: string,
              *      thumbnail: string,
@@ -282,7 +296,7 @@ define(function defineGalleryWidgets() {
             // Update data
             this.defaultData.push(widget);
 
-            this.galleryModel.scope.logger.debug('Update gallery model', widget);
+            scope.logger.debug('Update gallery model', widget);
         },
 
         /**

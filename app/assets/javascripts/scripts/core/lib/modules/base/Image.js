@@ -17,6 +17,49 @@ define(function defineLibImage() {
     LibImage.extend('LibImage', {
 
         /**
+         * Converts an image to a base64 string.
+         * If you want to use the outputFormat or quality param
+         * I strongly recommend you read the docs
+         * @ mozilla for `canvas.toDataURL()`
+         *
+         * @memberOf LibImage
+         * @param    {String}   url
+         * @param    {Function} callback
+         * @param    {String}   [outputFormat='image/png']
+         * @param    {float}    [quality=0.0 to 1.0]
+         * @url      https://gist.github.com/HaNdTriX/7704632/
+         * @docs     https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement#Methods
+         * @author   HaNdTriX
+         * @example
+         *  toDataURL('http://goo.gl/AOxHAL', function(err, base64Img){
+         * 	    console.log('IMAGE:',base64Img);
+         * 	})
+         */
+        toDataURL: function toDataURL(url, callback, outputFormat, quality) {
+            var canvas = document.createElement('canvas'),
+                ctx = canvas.getContext('2d'),
+                img = new Image();
+            img.crossOrigin = 'Anonymous';
+            img.onload = function () {
+                var dataURL;
+                canvas.height = this.height;
+                canvas.width = this.width;
+                try {
+                    ctx.drawImage(this, 0, 0);
+                    dataURL = canvas.toDataURL(outputFormat, quality);
+                    callback(null, dataURL);
+                } catch (e) {
+                    callback(e, null);
+                }
+                canvas = img = null;
+            };
+            img.onerror = function () {
+                callback(new Error('Could not load image'), null);
+            };
+            img.src = url;
+        },
+
+        /**
          * Resize thumbnail
          * @memberOf LibImage
          * @param domElement
