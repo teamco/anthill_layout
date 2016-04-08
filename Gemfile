@@ -14,6 +14,8 @@ gem 'keen'
 gem 'will_paginate'
 # gem 'websocket-rails'
 
+gem 'ruby-readability'
+
 gem 'pg'
 
 group :test do

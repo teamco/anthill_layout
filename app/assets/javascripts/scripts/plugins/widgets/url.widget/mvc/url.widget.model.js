@@ -31,13 +31,14 @@ define([
             urlwidgetUrlResource: {
                 type: 'textarea',
                 disabled: false,
-                value: 'https://github.com/mozilla/readability',
+                value: 'http://www.w3schools.com',
                 visible: true
             },
             urlwidgetShowInIframe: {
                 type: 'checkbox',
                 disabled: false,
-                checked: false,
+                checked: true,
+                value: true,
                 visible: true
             }
         };

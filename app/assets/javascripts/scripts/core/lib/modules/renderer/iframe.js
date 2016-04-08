@@ -32,7 +32,7 @@ define(function defineIframeRenderer() {
                     frameborder: 0,
                     width: '100%',
                     height: '100%',
-                    scrolling: 'no',
+                    scrolling: opts.scrolling || 'no',
                     allowtransparency: true
                 };
 

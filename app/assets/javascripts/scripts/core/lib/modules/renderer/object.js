@@ -8,6 +8,7 @@ define([], function defineObjectRenderer() {
      * Define ObjectRenderer
      * @class ObjectRenderer
      * @extends LabelRenderer
+     * @extends EmbedRenderer
      * @constructor
      */
     var ObjectRenderer = function ObjectRenderer() {

@@ -19,7 +19,7 @@ define([], function defineEmbedRenderer() {
          * Render embed
          * @memberOf EmbedRenderer
          * @param {string} embed
-         * @param {object} opts
+         * @param {object} [opts]
          * @returns {*|jQuery}
          */
         renderEmbed: function renderEmbed(embed, opts) {

@@ -42,6 +42,10 @@ define([
 
             if (isIframe) {
 
+                this.$.append(
+                    this.renderIframe(url, {scrolling: 'yes'})
+                );
+
                 return false;
             }
 
