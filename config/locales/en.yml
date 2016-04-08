@@ -77,3 +77,4 @@ en:
   password: "password"
   open_as: "Open as"
   options: "Options"
+  readability_false: "Unable to recognize URL"

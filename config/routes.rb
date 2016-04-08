@@ -65,6 +65,8 @@ Rails.application.routes.draw do
   put '/fetch_external_widget', to: 'author/widgets#external_fetch'
   post '/external_widgets', to: 'author/widgets#external_widgets'
 
+  get '/readability_content/:url', to: 'author/widgets#readability_content'
+
   get 'author/site_storages/publish/:key', to: 'author/site_storages#publish'
   put 'author/site_storages/publish/:key', to: 'author/site_storages#publish', as: 'publish_site'
 

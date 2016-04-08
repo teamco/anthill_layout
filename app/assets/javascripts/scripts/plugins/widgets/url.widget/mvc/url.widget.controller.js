@@ -38,6 +38,53 @@ define([
         },
 
         /**
+         * Fetch readability content
+         * @memberOf UrlWidgetController
+         * @param {string} url
+         */
+        fetchReadability: function fetchReadability(url) {
+
+            /**
+             * Get scope
+             * @type {UrlWidget|string}
+             */
+            var scope = this.scope,
+                encodedUrl = scope.base.lib.string.base64.encode(url);
+
+            if (scope.cachedContent && scope.cachedContent.length) {
+                scope.view.get$item().updateEmbeddedContent(scope.cachedContent);
+                return false;
+            }
+
+            $.get('/readability_content/' + encodedUrl, function _getCallback(content){
+                scope.controller.setCachedContent(content);
+                scope.view.get$item().updateEmbeddedContent(content);
+            });
+        },
+
+        /**
+         * Get cached content
+         * @memberOf UrlWidgetController
+         * @returns {string}
+         */
+        getCachedContent: function getCachedContent() {
+            return this.scope.cachedContent;
+        },
+
+        /**
+         * Update cached content
+         * @param {string} content
+         */
+        setCachedContent: function setCachedContent(content) {
+
+            /**
+             * Update cached content
+             * @type {string}
+             */
+            this.scope.cachedContent = content;
+        },
+
+        /**
          * Add UrlWidget rule
          * @memberOf UrlWidgetController
          * @param e

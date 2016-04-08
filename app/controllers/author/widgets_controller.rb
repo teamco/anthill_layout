@@ -1,18 +1,21 @@
 require 'rmagick'
 require 'fileutils'
+require 'open-uri'
+# require 'readability'
+require 'uri'
+require 'uuid'
+require 'json'
+require 'mechanize'
+require 'pismo'
+
+require "#{Rails.root}/lib/tasks/widget_generator.rb"
+require "#{Rails.root}/lib/base_lib.rb"
+require "#{Rails.root}/lib/proxy_connection.rb"
 
 class Author::WidgetsController < Author::AuthorController
 
   include Author
   include Magick
-
-  require "#{Rails.root}/lib/tasks/widget_generator.rb"
-  require "#{Rails.root}/lib/base_lib.rb"
-  require "#{Rails.root}/lib/proxy_connection.rb"
-  require 'open-uri'
-  require 'uri'
-  require 'uuid'
-  require 'json'
 
   before_action :authenticate_user!, except: [:show]
   before_action :fetch_widgets_data, only: [:index, :all]
@@ -105,6 +108,21 @@ class Author::WidgetsController < Author::AuthorController
           @author_widget.author_item.destroy
         end
       end
+    end
+  end
+
+  def readability_content
+    url = Base64.decode64(params[:url]) rescue ''
+    # source = open(url).read if url =~ URI::regexp
+    # html_content = Readability::Document.new(source).content
+
+    html_content = url.empty? ?
+        t('readability_false') :
+        Pismo::Document.new(url).html_body
+
+    logger.info ">>> Content to parse: #{html_content.inspect}"
+    respond_to do |format|
+      format.html { render text: html_content }
     end
   end
 

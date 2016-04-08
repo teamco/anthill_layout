@@ -267,6 +267,16 @@ define(
                         return false;
                     }
 
+                    if (this.isDevelopmentMode()) {
+                        scope.logger.warn('Don\'t send log in development mode');
+                        return false;
+                    }
+
+                    if (!this.model.getConfig('logger/handle')) {
+                        scope.logger.warn('Skip to send log, prevented in config');
+                        return false;
+                    }
+
                     var opts = {
                         dataType: 'json',
                         url: '/error_logs/handle_js',

@@ -41,7 +41,7 @@ class ErrorLog < ActiveRecord::Base
             name: log['type'],
             message: log['message'],
             exception: log['exception'],
-            backtrace: log['backtrace'].
+            backtrace: (log['backtrace'] || '').
                 gsub(/<pre><code>/, '').
                 gsub(/<\/code><\/pre>/, '').
                 gsub(/\n/, ',').split(',').

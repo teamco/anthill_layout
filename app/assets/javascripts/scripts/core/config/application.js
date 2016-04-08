@@ -78,6 +78,7 @@ define([
             loading: false,
             limit: true,
             logger: {
+                handle: false,
                 show: true,
                 namespaces: false,
                 type: {

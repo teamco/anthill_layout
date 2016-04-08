@@ -15,8 +15,8 @@ gem 'will_paginate'
 # gem 'websocket-rails'
 
 gem 'ruby-readability'
-
-gem 'pg'
+gem 'pismo'
+gem 'mechanize'
 
 group :test do
   gem 'sqlite3'
@@ -47,6 +47,7 @@ group :test, :development do
   gem 'guard-livereload', '~> 2.4', require: false
 end
 
+
 group :console do
   gem 'web-console'#, '~> 2.0'
   gem 'rails-console-tweaks'
@@ -63,7 +64,7 @@ end
 group :production do
   ruby  '2.3.0'
   gem 'rails_12factor'
-  # gem 'pg'
+  gem 'pg'
 end
 
 gem 'rack-attack'

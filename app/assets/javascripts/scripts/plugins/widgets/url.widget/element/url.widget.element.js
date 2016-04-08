@@ -40,28 +40,21 @@ define([
          */
         renderEmbeddedContent: function renderEmbeddedContent(url, isIframe) {
 
-            if (isIframe) {
+            // Define $content instance
+            var $content = isIframe ?
+                this.renderIframe(url, {scrolling: 'yes'}) :
+                this.view.controller.fetchReadability(url);
 
-                this.$.append(
-                    this.renderIframe(url, {scrolling: 'yes'})
-                );
+            this.updateEmbeddedContent($content);
+        },
 
-                return false;
-            }
-
-            require(['lib/packages/readability'], function _loadReader(){
-
-                var loc = new window.URL(url);
-                var uri = {
-                    spec: loc.href,
-                    host: loc.host,
-                    prePath: loc.protocol + "//" + loc.host,
-                    scheme: loc.protocol.substr(0, loc.protocol.indexOf(":")),
-                    pathBase: loc.protocol + "//" + loc.host + loc.pathname.substr(0, loc.pathname.lastIndexOf("/") + 1)
-                };
-                var article = new Readability(uri, document.cloneNode(true)).parse();
-                debugger
-            });
+        /**
+         * Update Embedded content
+         * @memberOf UrlWidgetElement
+         * @param {string} content
+         */
+        updateEmbeddedContent: function updateEmbeddedContent(content) {
+            this.$.html(content);
         }
 
     }, PluginElement.prototype);

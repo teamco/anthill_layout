@@ -39,6 +39,13 @@ define([
         this.referrer = undefined;
 
         /**
+         * Define cachedd content
+         * @property UrlWidget
+         * @type {string}
+         */
+        this.cachedContent = undefined;
+
+        /**
          * Define defaults
          * @type {{
          *      plugin: boolean,

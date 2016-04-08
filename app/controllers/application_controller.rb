@@ -3,16 +3,20 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  before_action :set_current_user
-  before_action :update_user_log
-
   layout :layout_by_resource
 
-  rescue_from ActiveRecord::RecordNotFound, with: :error
-  rescue_from ArgumentError, with: :error
-  rescue_from Exception, with: :error
-  rescue_from OAuth::Unauthorized, with: :error
-  rescue_from ActionController::RoutingError, with: :not_found
+  before_action :set_current_user
+
+  unless Rails.env.development?
+
+    before_action :update_user_log
+
+    rescue_from ActiveRecord::RecordNotFound, with: :error
+    rescue_from ArgumentError, with: :error
+    rescue_from Exception, with: :error
+    rescue_from OAuth::Unauthorized, with: :error
+    rescue_from ActionController::RoutingError, with: :not_found
+  end
 
   def raise_not_found
     raise ActionController::RoutingError.new("No route matches #{params[:unmatched_route]}")
