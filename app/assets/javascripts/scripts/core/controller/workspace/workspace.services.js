@@ -32,6 +32,41 @@ define(function defineWorkspaceSEO() {
             },
 
             /**
+             * Load inject script code
+             * @memberOf WorkspaceController
+             */
+            loadInjectScriptEmbedCode: function loadInjectScriptEmbedCode() {
+
+                this.logger.debug('Load inject script code', arguments);
+
+                /**
+                 * Get prefs
+                 * @type {{injectScriptEmbedCode, activateInjectScriptEmbedCode}}
+                 */
+                var preferences = this.model.getConfig('preferences');
+
+                /**
+                 * Get Inject Script Code
+                 * @type {string}
+                 */
+                var injectScriptCode = preferences.injectScriptEmbedCode,
+                    activate = preferences.activateInjectScriptEmbedCode;
+
+                if (!this.controller.isServiceActivated(injectScriptCode, activate)) {
+                    return false;
+                }
+
+                /**
+                 * Define function
+                 * @type {Function}
+                 */
+                var mainScript = new window.Function(injectScriptCode);
+
+                // Run script
+                mainScript();
+            },
+
+            /**
              * Load SnapEngage Code
              * @memberOf WorkspaceController
              */

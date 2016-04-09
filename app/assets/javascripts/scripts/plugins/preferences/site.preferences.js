@@ -12,8 +12,9 @@ define([
     'services/google.analytics',
     'services/snap.engage',
     'services/raygun.io',
-    'services/github.gist'
-], function defineSitePreferences(BasePreferencesElement, SiteConfigMetaDataPreferences, SiteConfigWidthPreferences, GoogleAnalyticsPreferences, SnapEngagePreferences, RaygunIOPreferences, GithubGistPreferences) {
+    'services/github.gist',
+    'services/inject.script'
+], function defineSitePreferences(BasePreferencesElement, SiteConfigMetaDataPreferences, SiteConfigWidthPreferences, GoogleAnalyticsPreferences, SnapEngagePreferences, RaygunIOPreferences, GithubGistPreferences, InjectScriptPreferences) {
 
     /**
      * Define prefs
@@ -26,6 +27,7 @@ define([
      * @extends SnapEngagePreferences
      * @extends RaygunIOPreferences
      * @extends GithubGistPreferences
+     * @extends InjectScriptPreferences
      * @constructor
      */
     var SitePreferences = function SitePreferences() {
@@ -138,6 +140,11 @@ define([
                         type: 'text',
                         value: 'GitHub Gist',
                         renderer: this.renderGithubGist()
+                    },
+                    {
+                        type: 'text',
+                        value: 'Inject Script',
+                        renderer: this.renderInjectScript()
                     }
                 ];
 
@@ -146,7 +153,7 @@ define([
                     plugins,
                     plugins[0].value,
                     text,
-                    'pluginConfig', {
+                    'workspaceServicesPrefs', {
                         type: 'click.showPluginConfig',
                         callback: _showPluginConfig
                     },
@@ -173,6 +180,7 @@ define([
         GoogleAnalyticsPreferences.prototype,
         SnapEngagePreferences.prototype,
         RaygunIOPreferences.prototype,
-        GithubGistPreferences.prototype
+        GithubGistPreferences.prototype,
+        InjectScriptPreferences.prototype
     );
 });

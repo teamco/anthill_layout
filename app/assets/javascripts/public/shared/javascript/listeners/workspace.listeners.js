@@ -20,6 +20,7 @@ define([
      *      loadSnapEngageCode: string,
      *      loadRaygunIOApiKey: string,
      *      loadGithubGistEmbedCode: string,
+     *      loadInjectScriptEmbedCode: string
      * }}
      */
     Workspace.prototype.globalEvents = {
@@ -28,7 +29,8 @@ define([
         loadGoogleAnalyticsTrackingId: 'load.google.analytics.tracking.id',
         loadSnapEngageCode: 'load.snap.engage.code',
         loadRaygunIOApiKey: 'load.raygun.io.api.key',
-        loadGithubGistEmbedCode: 'load.github.gist.embed.code'
+        loadGithubGistEmbedCode: 'load.github.gist.embed.code',
+        loadInjectScriptEmbedCode: 'load.inject.script.embed.code'
     };
 
     /**

@@ -98,7 +98,7 @@ ul.site-config .content.widget-generator > a {
 }
 
 .modal.widget-generator-new .nav > li > a,
-.modal.site-config .nav.plugin-config > li > a,
+.modal.site-config .nav.workspace-services-prefs > li > a,
 .modal.activate .nav > li > a {
     padding: 6px 10px;
     border-radius: 0 5px 5px 0;
@@ -107,7 +107,7 @@ ul.site-config .content.widget-generator > a {
     border-left: none;
 }
 
-.modal.site-config .nav.plugin-config > li > a .caret,
+.modal.site-config .nav.workspace-services-prefs > li > a .caret,
 .modal.widget-generator-new .nav > li > a .caret,
 .modal.activate .nav > li > a .caret {
     margin-top: 8px;
@@ -116,6 +116,7 @@ ul.site-config .content.widget-generator > a {
 .modal-open .modal.widget-generator-new,
 .modal-open .modal.site-config,
 .modal-open .modal.activate,
+.modal.site-config .modal-body,
 .modal.widget-generator-new .modal-body,
 .modal.activate .modal-body {
     overflow: visible;

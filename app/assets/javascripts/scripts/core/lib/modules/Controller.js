@@ -509,12 +509,18 @@ define([
             /**
              * Get Custom publisher
              * @memberOf BaseController
-             * @returns {string}
+             * @returns {string|boolean}
              */
             getCustomPublisher: function getCustomPublisher(name) {
 
                 // Get event
-                var event = this.scope.eventmanager.eventList['load' + name.capitalize()];
+                var eventName = 'load' + name.capitalize(),
+                    event = this.scope.eventmanager.eventList[eventName];
+
+                if (!event) {
+                    this.scope.logger.warn('Undefined custom event', name, eventName);
+                    return false;
+                }
 
                 // Define custom event
                 var publishCustomEvent = event ? [
