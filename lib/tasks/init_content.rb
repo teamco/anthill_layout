@@ -144,7 +144,7 @@ module WidgetLib
       File.delete(combined) if File.exist? combined if force
       system("cat #{widget.css_path}/widgets/*.css > #{combined}")
       puts '--- Delete uncombined CSS'
-      FileUtils.rm_rf("#{widget.css_path}/widgets")
+      FileUtils.rm_rf("#{widget.css_path}/widgets") if force
     end
 
     def update_data
