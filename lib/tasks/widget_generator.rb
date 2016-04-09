@@ -18,6 +18,7 @@ module WidgetLib
       @cname = cname || STDIN.gets.chomp.strip
       raise ScriptError.new("Wrong class name: #{@cname}") if cname.empty?
       @class_name = camel_case ''
+      @thumbnail = ''
       set_file_name((camel_case '.').downcase)
     end
 
@@ -33,6 +34,7 @@ module WidgetLib
 
       puts ">>> Expected class name: #{@class_name}"
       puts ">>> Expected directory name: #{@file_name}"
+      puts ">>> Expected thumbnail path: #{@thumbnail}"
       puts ">>> Clone from: #{@clone}"
 
       puts 'To continue press [y/n]:'
@@ -96,6 +98,7 @@ module WidgetLib
           write_file src_pattern, @class_name.downcase
         end
 
+        generate_css(@thumbnail)
       end
 
     end

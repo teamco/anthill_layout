@@ -1,4 +1,5 @@
 require "#{Rails.root}/lib/tasks/widget_generator.rb"
+require "#{Rails.root}/lib/tasks/init_content.rb"
 
 namespace :widget do
 
@@ -8,12 +9,14 @@ namespace :widget do
   task generator: :environment do
     widget = WidgetLib::Generate.new
     widget.do_create
+
+    puts ">>> update\n\n"
+    Rake::Task['widget:update'].execute
   end
 
   desc 'Load content'
   task load: :environment do
 
-    require "#{Rails.root}/lib/tasks/init_content.rb"
 
     content.init
     content.load_json
@@ -22,17 +25,12 @@ namespace :widget do
 
   desc 'Destroy widget'
   task destroy: :environment do
-
-    require "#{Rails.root}/lib/tasks/init_content.rb"
     content.destroy_data
   end
 
   desc 'Update JSON'
   task update: :environment do
-
-    require "#{Rails.root}/lib/tasks/init_content.rb"
-
     content.update_data
-    content.combine_css
+    content.combine_css(false)
   end
 end
