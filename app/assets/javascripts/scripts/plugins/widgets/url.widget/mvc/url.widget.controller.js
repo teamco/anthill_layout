@@ -52,14 +52,16 @@ define([
                 encodedUrl = scope.base.lib.string.base64.encode(url);
 
             if (scope.cachedContent && scope.cachedContent.length) {
-                scope.view.get$item().updateEmbeddedContent(scope.cachedContent);
-                return false;
+                return scope.controller.getCachedContent();
             }
 
-            $.get('/readability_content/' + encodedUrl, function _getCallback(content){
-                scope.controller.setCachedContent(content);
-                scope.view.get$item().updateEmbeddedContent(content);
-            });
+            $.get(
+                '/readability_content/' + encodedUrl,
+                function _getCallback(content) {
+                    scope.controller.setCachedContent(content);
+                    scope.view.get$item().updateEmbeddedContent(content);
+                }
+            );
         },
 
         /**

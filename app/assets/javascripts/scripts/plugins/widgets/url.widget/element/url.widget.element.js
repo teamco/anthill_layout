@@ -54,7 +54,14 @@ define([
          * @param {string} content
          */
         updateEmbeddedContent: function updateEmbeddedContent(content) {
-            this.$.html(content);
+
+            // Define $content
+            var $content = $(content);
+
+            // Remove unnecessary scripts, links and css
+            $('script, style, link', $content).remove();
+
+            this.$.empty().append($content);
         }
 
     }, PluginElement.prototype);
