@@ -41,7 +41,7 @@ define([
 
             this.setHtml([
                 '<a href="http://orphus.ru" id="orphus" target="_blank">',
-                '<img alt="Orphus system" src="/assets/scripts/plugins/widgets/orphus/images/orphus.gif" border="0" width="121" height="21" />',
+                '<img alt="Orphus system" src="/assets/scripts/plugins/widgets/orphus/images/orphus.gif" />',
                 '</a>'
             ].join(''));
 

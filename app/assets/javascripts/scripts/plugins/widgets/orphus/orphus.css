@@ -1,5 +1,11 @@
 .widget .content .orphus {
     height: 100%;
     width: 100%;
-    overflow: auto;
+    overflow: hidden;
+}
+
+.widget .content .orphus img {
+    border: none;
+    width: 121px;
+    height: 21px;
 }
