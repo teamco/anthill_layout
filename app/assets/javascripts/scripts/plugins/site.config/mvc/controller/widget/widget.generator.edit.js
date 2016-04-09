@@ -26,7 +26,7 @@ define(function defineWidgetGeneratorEdit() {
              * Define panel
              * @type {Panel}
              */
-            var panel = this.getDesignTimePanel();
+            var panel = this.controller.getDesignTimePanel();
 
             /**
              * Get gallery

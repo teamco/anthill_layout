@@ -7,10 +7,10 @@ define(['tinyMCE'], function defineTextEditorRenderer(tinyMCE) {
      * Define TextEditorRenderer
      * @class TextEditorRenderer
      * @extends LabelRenderer
+     * @extends BaseElement
      * @constructor
      */
     var TextEditorRenderer = function TextEditorRenderer() {
-
     };
 
     return TextEditorRenderer.extend('TextEditorRenderer', {

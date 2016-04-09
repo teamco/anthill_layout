@@ -322,13 +322,14 @@ class Author::WidgetsController < Author::AuthorController
 
       if uri?
         logger.info '>>>>> URI not live' unless live?
-        thumbnail = to_image
-      else
         thumbnail = to_base64
+      else
+        thumbnail = to_image
       end
 
       @widget_lib.generate_css(thumbnail)
       generate = true
+
     rescue
       logger.info '>>>>> Rescue: Remove widget'
       @widget_lib.remove_widget_dir

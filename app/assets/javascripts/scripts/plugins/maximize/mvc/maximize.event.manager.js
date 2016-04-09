@@ -30,7 +30,7 @@ define([
          * @property MaximizeEventManager
          * @type {{
          *      updateTranslations: string,
-         *      loadContent: string,
+         *      loadModuleContent: string,
          *      storeItem: string,
          *      setActiveContent: string,
          *      prepareActiveComponent: string,

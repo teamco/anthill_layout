@@ -39,7 +39,9 @@ define([
          */
         renderEmbeddedContent: function renderEmbeddedContent(html) {
 
-            this.setHtml(html);
+            this.setHtml(
+                html.replace(/\n/g, '<br />')
+            );
 
             if (!this.base.isBlank(html)) {
                 this.view.controller.clearParentThumbnail();

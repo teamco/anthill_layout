@@ -142,8 +142,9 @@ define([
                 require([
                     'plugins/panel/panel',
                     'plugins/bar/bar',
-                    'plugins/maximize/maximize'
-                ], function definePanel(Panel, Bar, Maximize) {
+                    'plugins/maximize/maximize',
+                    'plugins/dashboard/dashboard'
+                ], function definePanel(Panel, Bar, Maximize, Dashboard) {
 
                     /**
                      * Init panel plugin
@@ -160,7 +161,7 @@ define([
                                 }
                             }
                         },
-                        modules: [Maximize],
+                        modules: [Maximize, Dashboard],
                         packages: [Bar]
                     }, app);
 

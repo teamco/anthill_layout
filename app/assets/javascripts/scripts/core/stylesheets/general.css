@@ -126,3 +126,7 @@ html, body, .application,
 .fa.page-tabs:before {
     content: "\f02c";
 }
+
+.fa.dashboard:before {
+    content: "\f015";
+}

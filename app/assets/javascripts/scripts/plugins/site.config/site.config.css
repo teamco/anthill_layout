@@ -64,7 +64,7 @@ ul.site-config .content.widget-generator > a {
     position: absolute;
     margin-right: 2%;
     right: 0;
-    top: 0;
+    top: 5px;
     max-width: 64px;
     max-height: 64px;
 }
@@ -78,6 +78,14 @@ ul.site-config .content.widget-generator > a {
 .modal.widget-generator-new .thumbnail > textarea {
     width: 85%;
     min-width: initial;
+}
+
+.modal.widget-generator-new .thumbnail > textarea {
+    margin-bottom: 20px;
+}
+
+.modal.widget-generator-new .thumbnail > span.validate {
+    left: 5px;
 }
 
 .modal.widget-generator-new .from-scratch input {
