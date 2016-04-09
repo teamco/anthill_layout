@@ -8,6 +8,7 @@ define(function defineTextAreaRenderer() {
      * Define TextAreaRenderer
      * @class TextAreaRenderer
      * @extends LabelRenderer
+     * @extends BaseElement
      * @constructor
      */
     var TextAreaRenderer = function TextAreaRenderer() {
@@ -60,7 +61,12 @@ define(function defineTextAreaRenderer() {
             this.validateByMask($input, opts);
 
             return [
-                this.renderLabel(uuid, opts.text, 'textarea', opts.visible),
+                this.renderLabel(
+                    uuid.replace(/-textarea/, '-label'),
+                    opts.text,
+                    'textarea',
+                    opts.visible
+                ),
                 $input
             ];
         }

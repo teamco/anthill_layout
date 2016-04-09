@@ -7,6 +7,7 @@ define(['tinyMCE'], function defineTextEditorRenderer(tinyMCE) {
      * Define TextEditorRenderer
      * @class TextEditorRenderer
      * @extends LabelRenderer
+     * @extends TextAreaRenderer
      * @extends BaseElement
      * @constructor
      */
@@ -24,10 +25,12 @@ define(['tinyMCE'], function defineTextEditorRenderer(tinyMCE) {
          *      [placeholder]: string,
          *      value,
          *      [monitor],
+         *      [visible],
+         *      [mask],
          *      [disabled]: boolean,
          *      [validate]: {mask: RegExp, blank: boolean}
          * }} opts
-         * @returns {*[]}
+         * @returns {*}
          */
         renderTextEditor: function renderTextEditor(opts) {
 
@@ -35,8 +38,14 @@ define(['tinyMCE'], function defineTextEditorRenderer(tinyMCE) {
              * Create UUID
              * @type {String}
              */
-            var uuid = this.base.lib.generator.UUID() + '-textarea',
+            var uuid = this.base.lib.generator.UUID() + '-tinymce-content',
                 $input;
+
+            /**
+             * Get $element
+             * @type {TextEditorRenderer}
+             */
+            var scope = this;
 
             if (this.base.defineBoolean(opts.disabled, false, true)) {
 
@@ -44,11 +53,13 @@ define(['tinyMCE'], function defineTextEditorRenderer(tinyMCE) {
                  * Define $input
                  * @type {*|jQuery}
                  */
-                $input = $('<p />').attr({
+                $input = this.renderTextArea({
                     name: opts.name,
-                    id: uuid,
-                    title: opts.value
-                }).addClass('textarea').text(opts.value);
+                    text: opts.text,
+                    value: opts.value,
+                    disabled: opts.disabled,
+                    visible: opts.visible
+                });
 
             } else {
 
@@ -56,35 +67,35 @@ define(['tinyMCE'], function defineTextEditorRenderer(tinyMCE) {
                  * Define $input
                  * @type {*|jQuery}
                  */
-                $input = $('<textarea />').attr({
+                $input = this.renderTextArea({
                     name: opts.name,
-                    id: uuid,
+                    text: opts.text,
+                    style: 'editor',
+                    value: opts.value,
                     placeholder: opts.placeholder,
-                    title: opts.value
-                }).addClass('editor').val(opts.value);
+                    disabled: opts.disabled,
+                    visible: opts.visible,
+                    monitor: {
+                        events: ['focus.tinymce'],
+                        callback: function _initTinyMCE() {
+                            tinyMCE.init({
+                                selector: '#' + this.id,
+                                init_instance_callback: scope.afterInitTinyMce.bind(scope),
+                                setup: function setup(editor) {
+                                    scope.initMonitor(editor, opts.monitor);
+                                }
+                            });
+                        }
+                    }
+                });
             }
 
-            $input.on('focus.tinymce', function init() {
+            var $textarea = $input[1];
 
-                tinyMCE.init({
-                    selector: 'textarea#' + uuid,
-                    init_instance_callback: this.afterInitTinyMce.bind(this),
-                    setup: function setup(editor) {
+            scope.checkVisibility($textarea, opts.visible);
+            scope.validateByMask($textarea, opts);
 
-                        this.initMonitor(editor, opts.monitor);
-
-                    }.bind(this)
-                });
-
-            }.bind(this));
-
-            this.checkVisibility($input, opts.visible);
-            this.validateByMask($input, opts);
-
-            return [
-                this.renderLabel(uuid, opts.text, 'textarea', opts.visible),
-                $input
-            ];
+            return $input;
         },
 
         /**

@@ -35,9 +35,10 @@ define([
         /**
          * Render Embedded content
          * @memberOf TinymceElement
+         * @param {string} html
          */
-        renderEmbeddedContent: function renderEmbeddedContent() {
-            // TODO
+        renderEmbeddedContent: function renderEmbeddedContent(html) {
+            this.setHtml(html);
         }
 
     }, PluginElement.prototype);

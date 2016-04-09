@@ -27,7 +27,9 @@ define([
          * @memberOf TinymceController
          */
         setEmbeddedContent: function setEmbeddedContent() {
-            this.view.get$item().renderEmbeddedContent();
+            this.view.get$item().renderEmbeddedContent(
+                this.model.getPrefs('tinymceContent')
+            );
         },
 
         /**
