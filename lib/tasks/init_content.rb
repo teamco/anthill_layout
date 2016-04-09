@@ -132,15 +132,19 @@ module WidgetLib
 
       end
 
+      combine_css
       puts ">>> Finish Add widgets: #{Author::Widget.all.size}"
 
+    end
+
+    def combine_css
+      widget = WidgetLib::Generate.new
       puts '--- Combine CSS'
       combined = "#{widget.css_path}/combined.css"
       File.delete(combined) if File.exist? combined
       system("cat #{widget.css_path}/widgets/*.css > #{combined}")
       puts '--- Delete uncombined CSS'
       FileUtils.rm_rf("#{widget.css_path}/widgets")
-
     end
 
     def update_data
