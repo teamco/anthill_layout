@@ -71,18 +71,19 @@
 
         require(['../scripts/core/config/main'], function defineDelegator() {
 
-            if (isConsumption) {
-
-                _setup();
-
-                return false;
-            }
+            // if (isConsumption) {
+            //
+            //     _setup();
+            //
+            //     return false;
+            // }
 
             require([
-                'modernizr',
-                'totally',
                 'pluralize',
-                'jquery.ui'
+                'jquery.ui',
+                'jquery.slimscroll',
+                'bootstrap',
+                '_'
             ], _setup);
         });
     }

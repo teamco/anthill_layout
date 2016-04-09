@@ -160,7 +160,7 @@ define([
              */
             var ws = this.controller.getWorkspace();
 
-            this.view.elements.$pagetabs.renderEmbeddedContent(
+            this.view.get$item().renderEmbeddedContent(
                 ws.model.getItems()
             );
 
@@ -174,7 +174,7 @@ define([
          * @memberOf PageTabsController
          */
         setActivePageTab: function setActivePageTab() {
-            this.view.elements.$pagetabs.setPageTabAsCurrent(
+            this.view.get$item().setPageTabAsCurrent(
                 this.controller.getPage()
             );
         },
@@ -229,8 +229,13 @@ define([
              * Define $button
              * @type {*|jQuery|HTMLElement}
              */
-            var $button = $(e.target),
-                scope = this.scope;
+            var $button = $(e.target);
+
+            /**
+             * Get page tab
+             * @type {PageTabs}
+             */
+            var scope = this.scope;
 
             scope.observer.publish(
                 scope.eventmanager.eventList.publishRule,
