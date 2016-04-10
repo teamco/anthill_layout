@@ -35,13 +35,13 @@ define(function defineWorkspaceSEO() {
              * Load inject script code
              * @memberOf WorkspaceController
              */
-            loadInjectScriptEmbedCode: function loadInjectScriptEmbedCode() {
+            loadActivateInjectScript: function loadActivateInjectScript() {
 
                 this.logger.debug('Load inject script code', arguments);
 
                 /**
                  * Get prefs
-                 * @type {{injectScriptEmbedCode, activateInjectScriptEmbedCode}}
+                 * @type {{injectScriptEmbedCode, activateInjectScript}}
                  */
                 var preferences = this.model.getConfig('preferences');
 
@@ -50,7 +50,7 @@ define(function defineWorkspaceSEO() {
                  * @type {string}
                  */
                 var injectScriptCode = preferences.injectScriptEmbedCode,
-                    activate = preferences.activateInjectScriptEmbedCode;
+                    activate = preferences.activateInjectScript;
 
                 if (!this.controller.isServiceActivated(injectScriptCode, activate)) {
                     return false;
@@ -70,7 +70,7 @@ define(function defineWorkspaceSEO() {
              * Load SnapEngage Code
              * @memberOf WorkspaceController
              */
-            loadSnapEngageCode: function loadSnapEngageCode() {
+            loadActivateSnapEngage: function loadActivateSnapEngage() {
 
                 this.logger.debug('Load SnapEngage Code', arguments);
 
@@ -124,7 +124,7 @@ define(function defineWorkspaceSEO() {
              * Load Google Analytics Tracking Id
              * @memberOf WorkspaceController
              */
-            loadGoogleAnalyticsTrackingId: function loadGoogleAnalyticsTrackingId() {
+            loadActivateGoogleAnalytics: function loadActivateGoogleAnalytics() {
 
                 this.logger.debug('Load Google Analytics Tracking Id', arguments);
 
@@ -162,7 +162,7 @@ define(function defineWorkspaceSEO() {
              * Load Raygun.IO Api Key
              * @memberOf WorkspaceController
              */
-            loadRaygunIOApiKey: function loadRaygunIOApiKey() {
+            loadActivateRaygunIO: function loadActivateRaygunIO() {
 
                 this.logger.debug('Load Raygun.IO', arguments);
 
@@ -197,13 +197,13 @@ define(function defineWorkspaceSEO() {
              * Load Github Gist Embed code
              * @memberOf WorkspaceController
              */
-            loadGithubGistEmbedCode: function loadGithubGistEmbedCode() {
+            loadActivateGithubGist: function loadActivateGithubGist() {
 
                 this.logger.debug('Load Gist Embed code', arguments);
 
                 /**
                  * Get prefs
-                 * @type {{githubGistEmbedCode, activateGithubGistEmbedCode}}
+                 * @type {{githubGistEmbedCode, activateGithubGist}}
                  */
                 var preferences = this.model.getConfig('preferences');
 
@@ -212,7 +212,7 @@ define(function defineWorkspaceSEO() {
                  * @type {string}
                  */
                 var embedCode = preferences.githubGistEmbedCode || '',
-                    activate = preferences.activateGithubGistEmbedCode;
+                    activate = preferences.activateGithubGist;
 
                 if (this.controller.isServiceActivated(embedCode, activate)) {
                     require([$(embedCode).attr('src')]);

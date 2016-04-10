@@ -518,7 +518,7 @@ define([
                     event = this.scope.eventmanager.eventList[eventName];
 
                 if (!event) {
-                    this.scope.logger.warn('Undefined custom event', name, eventName);
+                    this.scope.logger.debug('Undefined custom event', name, eventName);
                     return false;
                 }
 

@@ -16,21 +16,21 @@ define([
      * @type {{
      *      createDesignTimePanel: string,
      *      createRunTimePanel: string,
-     *      loadGoogleAnalyticsTrackingId: string,
-     *      loadSnapEngageCode: string,
-     *      loadRaygunIOApiKey: string,
-     *      loadGithubGistEmbedCode: string,
-     *      loadInjectScriptEmbedCode: string
+     *      loadActivateGoogleAnalytics: string,
+     *      loadActivateSnapEngage: string,
+     *      loadActivateRaygunIO: string,
+     *      loadGithubGist: string,
+     *      loadInjectScript: string
      * }}
      */
     Workspace.prototype.globalEvents = {
         createDesignTimePanel: 'create.design.time.panel',
         createRunTimePanel: 'create.run.time.panel',
-        loadGoogleAnalyticsTrackingId: 'load.google.analytics.tracking.id',
-        loadSnapEngageCode: 'load.snap.engage.code',
-        loadRaygunIOApiKey: 'load.raygun.io.api.key',
-        loadGithubGistEmbedCode: 'load.github.gist.embed.code',
-        loadInjectScriptEmbedCode: 'load.inject.script.embed.code'
+        loadActivateGoogleAnalytics: 'load.activate.google.analytics',
+        loadActivateSnapEngage: 'load.activate.snap.engage',
+        loadActivateRaygunIO: 'load.activate.raygun.io',
+        loadActivateGithubGist: 'load.activate.github.gist',
+        loadActivateInjectScript: 'load.activate.inject.script'
     };
 
     /**

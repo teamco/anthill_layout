@@ -26,7 +26,7 @@ define(function defineGistPreferences() {
 
             /**
              * Get workspace prefs
-             * @type {{githubGistEmbedCode, activateGithubGistEmbedCode}}
+             * @type {{githubGistEmbedCode, activateGithubGist}}
              */
             var preferences = workspace.model.getConfig('preferences');
 
@@ -40,10 +40,10 @@ define(function defineGistPreferences() {
             });
 
             var $checkbox = this.renderCheckbox({
-                name: 'activateGithubGistEmbedCode',
+                name: 'activateGithubGist',
                 text: 'Activate',
-                checked: preferences.activateGithubGistEmbedCode,
-                value: preferences.activateGithubGistEmbedCode,
+                checked: preferences.activateGithubGist,
+                value: preferences.activateGithubGist,
                 disabled: false,
                 visible: true
             });

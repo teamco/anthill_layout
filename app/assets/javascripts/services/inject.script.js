@@ -26,7 +26,7 @@ define(function defineScriptPreferences() {
 
             /**
              * Get workspace prefs
-             * @type {{injectScriptEmbedCode, activateInjectScriptEmbedCode}}
+             * @type {{injectScriptEmbedCode, activateInjectScript}}
              */
             var preferences = workspace.model.getConfig('preferences');
 
@@ -40,10 +40,10 @@ define(function defineScriptPreferences() {
             });
 
             var $checkbox = this.renderCheckbox({
-                name: 'activateInjectScriptEmbedCode',
+                name: 'activateInjectScript',
                 text: 'Activate',
-                checked: preferences.activateInjectScriptEmbedCode,
-                value: preferences.activateInjectScriptEmbedCode,
+                checked: preferences.activateInjectScript,
+                value: preferences.activateInjectScript,
                 disabled: false,
                 visible: true
             });
