@@ -110,8 +110,12 @@ define([
                 var $tbody = $table.find('tbody');
 
                 for (; i < l; i++) {
-                    if(data[i].resource==='external.resource')debugger
-                    data[i].thumbnail = '/assets/scripts/plugins/stylesheets/images/' + data[i].resource + '.png';
+
+                    data[i].thumbnail = data[i].is_external ?
+                        data[i].external_resource :
+                        '/assets/scripts/plugins/stylesheets/';
+
+                    data[i].thumbnail += 'images/' + data[i].resource + '.png';
 
                     // Append rows
                     $tbody.append(
