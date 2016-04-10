@@ -36,23 +36,41 @@ define([
          * Render Embedded content
          * @memberOf OrphusElement
          * @param {string} main
+         * @returns {boolean}
          */
         renderEmbeddedContent: function renderEmbeddedContent(main) {
 
+            /**
+             * Get scope
+             * @type {Orphus}
+             */
+            var scope = this.view.scope;
+
             this.setHtml([
                 '<a href="http://orphus.ru" id="orphus" target="_blank">',
-                '<img alt="Orphus system" src="/assets/scripts/plugins/widgets/orphus/images/orphus.gif" />',
+                '<img alt="Orphus system" src="/assets/scripts/plugins/widgets/orphus/lib/orphus.gif" />',
                 '</a>'
             ].join(''));
 
-            /**
-             * Define function
-             * @type {Function}
-             */
-            var mainScript = new window.Function(main);
+            if (main) {
 
-            // Run script
-            mainScript();
+                /**
+                 * Define function
+                 * @type {Function}
+                 */
+                var mainScript = new window.Function(main);
+
+                // Run script
+                mainScript();
+
+                scope.logger.debug('Load orphus', main);
+
+                return false;
+            }
+
+            require(['plugins/widgets/orphus/lib/orphus'], function _loadDefaultScript() {
+                scope.logger.debug('Load default orphus script', main);
+            });
         }
 
     }, PluginElement.prototype);
