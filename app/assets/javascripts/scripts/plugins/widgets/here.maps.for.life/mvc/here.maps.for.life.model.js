@@ -25,7 +25,95 @@ define([
          * @type {{}}
          */
         this.preferences = {
-            // Preferences
+            heremapsforlifeAppId: {
+                type: 'text',
+                disabled: false,
+                value: 'SjmKip4mygk3QhmWerKm',
+                visible: true
+            },
+            heremapsforlifeAppCode: {
+                type: 'text',
+                disabled: false,
+                value: 'l1Y3ajdv_7K9KMgrvT6iHA',
+                visible: true
+            },
+            heremapsforlifeSpecifiedLocation: {
+                type: 'checkbox',
+                disabled: false,
+                value: true,
+                checked: true,
+                visible: true,
+                monitor: {
+                    events: ['click.toggle'],
+                    callback: 'toggleSpecifiedLocation'
+                }
+            },
+            heremapsforlifeViewBounds: {
+                type: 'checkbox',
+                disabled: true,
+                value: false,
+                visible: true,
+                monitor: {
+                    events: ['click.toggle'],
+                    callback: 'toggleViewBounds'
+                }
+            },
+            heremapsforlifeLatitude: {
+                type: 'text',
+                disabled: false,
+                value: undefined,
+                visible: true
+            },
+            heremapsforlifeLongitude: {
+                type: 'text',
+                disabled: false,
+                value: undefined,
+                visible: true
+            },
+            heremapsforlifeBoundNorthWestCorner: {
+                type: 'text',
+                disabled: true,
+                value: undefined,
+                visible: false
+            },
+            heremapsforlifeBoundSouthEastCorner: {
+                type: 'text',
+                disabled: true,
+                value: undefined,
+                visible: false
+            },
+            heremapsforlifeZoom: {
+                type: 'number',
+                disabled: true,
+                value: 11,
+                visible: true
+            },
+            heremapsforlifeVenuesLayer: {
+                type: 'checkbox',
+                disabled: true,
+                value: false,
+                visible: true
+            },
+            heremapsforlifeRestrictMovement: {
+                type: 'checkbox',
+                disabled: true,
+                value: false,
+                visible: true,
+                monitor: {
+                    events: ['click.toggle'],
+                    callback: 'toggleViewBounds'
+                }
+            },
+            heremapsforlifeMarker: {
+                type: 'checkbox',
+                disabled: true,
+                value: false,
+                visible: true,
+                monitor: {
+                    events: ['click.toggle'],
+                    callback: 'toggleSpecifiedLocation'
+                }
+            },
         };
 
         /**

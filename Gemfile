@@ -12,7 +12,7 @@ gem 'rake'
 # gem 'requirejs-rails'
 gem 'keen'
 gem 'will_paginate'
-# gem 'websocket-rails'
+gem 'websocket-rails'
 
 gem 'ruby-readability'
 gem 'pismo'
