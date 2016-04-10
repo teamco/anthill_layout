@@ -32,7 +32,8 @@ define([
          *      name: string,
          *      resource: string,
          *      description: string,
-         *      is_external: boolean
+         *      is_external: boolean,
+         *      external_resource: string
          * }}
          */
         this.data = opts.data;
@@ -67,7 +68,13 @@ define([
                 resource: this.data.resource
             });
 
-            if (!this.data.is_external) {
+            if (this.data.is_external) {
+
+                $('a', this.$).attr({
+                    style: 'background-image: url("' + this.fetchExternalResourceThumbnail(this.data) + '");'
+                });
+
+            } else {
 
                 this.$.addClass(
                     this.view.controller.getResourceClassName(

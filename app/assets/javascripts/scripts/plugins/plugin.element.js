@@ -86,6 +86,23 @@ define(['modules/Element'], function definePluginElement(BaseElement) {
                         uuid: data.model.getUUID()
                     })
                 );
+            },
+
+            /**
+             * Fetch External Resource Thumbnail
+             * @memberOf PluginElement
+             * @param {{is_external: boolean, external_resource: string, resource: string}} item
+             * @returns {string}
+             */
+            fetchExternalResourceThumbnail: function fetchExternalResourceThumbnail(item) {
+
+                var thumbnail = item.is_external ?
+                    item.external_resource :
+                    '/assets/scripts/plugins/stylesheets/';
+
+                thumbnail += 'images/' + item.resource + '.png';
+
+                return thumbnail;
             }
 
         }, BaseElement.prototype

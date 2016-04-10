@@ -111,11 +111,7 @@ define([
 
                 for (; i < l; i++) {
 
-                    data[i].thumbnail = data[i].is_external ?
-                        data[i].external_resource :
-                        '/assets/scripts/plugins/stylesheets/';
-
-                    data[i].thumbnail += 'images/' + data[i].resource + '.png';
+                    data[i].thumbnail = this.fetchExternalResourceThumbnail(data[i]);
 
                     // Append rows
                     $tbody.append(
