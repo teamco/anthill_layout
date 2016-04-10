@@ -5,7 +5,7 @@
             <p title="<%= item.description %>"><%= item.description %></p>
             <span><%= item.width %> x <%= item.height %></span>
         </div>
-        <div class="widget <%= item.resource.gsub(/\./, '-') %>"></div>
+      <div class="widget <%= item.resource.gsub(/\./, '-') %>"<%= fetch_external_thumbnail(item) %>></div>
         <div class="btn-group btn-group-xs small-box-footer animated fadeIn clearfix" role="group" aria-label="Extra-small button group">
             <%= link_to_edit(item, nil, 'btn btn-primary') %>
             <%= link_to_destroy(item, item.name) %>
