@@ -81,7 +81,7 @@ define([
                             '</', cell, '>'
                         ].join('');
 
-                        html.push(tr.join(''));
+                        html[key] = tr.join('');
                     }
                 }
 

@@ -203,6 +203,7 @@ define([
                     buttons: {
                         approve: {
                             text: this.i18n.t('site.data.save'),
+                            type: 'primary',
                             events: {
                                 click: 'updateWidget'
                             }

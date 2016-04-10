@@ -131,7 +131,6 @@ define(function defineWidgetGeneratorCore() {
             var gallery = panel.controller.getGallery();
 
             if (gallery) {
-
                 gallery.model.staticData.addDefaultData(data);
             }
 
