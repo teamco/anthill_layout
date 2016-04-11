@@ -95,6 +95,12 @@ define([
                 value: false,
                 visible: true
             },
+            setAsHomePage: {
+                type: 'checkbox',
+                disabled: false,
+                value: false,
+                visible: true
+            },
             pageHeader: {
                 type: 'checkbox',
                 disabled: false,
@@ -117,6 +123,12 @@ define([
                 type: 'checkbox',
                 disabled: false,
                 value: undefined,
+                visible: true
+            },
+            public: {
+                type: 'checkbox',
+                disabled: false,
+                value: false,
                 visible: true
             },
             lazyLoading: {

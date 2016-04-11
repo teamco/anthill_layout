@@ -50,7 +50,7 @@ define([
             },
             heremapsforlifeViewBounds: {
                 type: 'checkbox',
-                disabled: true,
+                disabled: false,
                 value: false,
                 visible: true,
                 monitor: {
@@ -58,45 +58,15 @@ define([
                     callback: 'toggleViewBounds'
                 }
             },
-            heremapsforlifeLatitude: {
-                type: 'text',
-                disabled: false,
-                value: undefined,
-                visible: true
-            },
-            heremapsforlifeLongitude: {
-                type: 'text',
-                disabled: false,
-                value: undefined,
-                visible: true
-            },
-            heremapsforlifeBoundNorthWestCorner: {
-                type: 'text',
-                disabled: true,
-                value: undefined,
-                visible: false
-            },
-            heremapsforlifeBoundSouthEastCorner: {
-                type: 'text',
-                disabled: true,
-                value: undefined,
-                visible: false
-            },
-            heremapsforlifeZoom: {
-                type: 'number',
-                disabled: true,
-                value: 11,
-                visible: true
-            },
             heremapsforlifeVenuesLayer: {
                 type: 'checkbox',
-                disabled: true,
+                disabled: false,
                 value: false,
                 visible: true
             },
             heremapsforlifeRestrictMovement: {
                 type: 'checkbox',
-                disabled: true,
+                disabled: false,
                 value: false,
                 visible: true,
                 monitor: {
@@ -114,6 +84,31 @@ define([
                     callback: 'toggleSpecifiedLocation'
                 }
             },
+            heremapsforlifeDraggableMarker: {
+                type: 'checkbox',
+                disabled: false,
+                value: false,
+                visible: true
+            },
+            heremapsforlifeLatitudeLongitude: {
+                type: 'text',
+                disabled: false,
+                value: undefined,
+                visible: true,
+                placeholder: 'Map at a specified location: Latitude,Longitude'
+            },
+            heremapsforlifeBoundNorthWestSouthEastCorners: {
+                type: 'text',
+                disabled: true,
+                value: undefined,
+                visible: false
+            },
+            heremapsforlifeZoom: {
+                type: 'number',
+                disabled: false,
+                value: 11,
+                visible: true
+            }
         };
 
         /**

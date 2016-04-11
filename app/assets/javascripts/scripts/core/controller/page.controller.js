@@ -42,7 +42,7 @@ define(
                  * Define set as ready state
                  * @memberOf PageController
                  */
-                setAsReady: function setAsReady() {debugger
+                setAsReady: function setAsReady() {
                     this.logger.debug('Page is ready to use');
                     this.controller.store();
                 },
@@ -106,7 +106,7 @@ define(
                     var pageMatch = this.isPageMatch2Hash();
 
                     if (pageMatch) {
-                        if (pageMatch[1] === this.model.getItemTitle()) {
+                        if (pageMatch[1] === this.model.getItemTitle().toClassName()) {
                             return this.scope;
                         }
                     }

@@ -28,7 +28,7 @@ define(function defineWorkspacePage() {
 
                 /**
                  * Get $pages
-                 * @type {WorkspaceContentElement}
+                 * @type {WorkspaceContentElement|number}
                  */
                 var $pages = this.view.elements.$pages,
                     counter = this.model.getConfig('page/counter');
@@ -63,7 +63,7 @@ define(function defineWorkspacePage() {
 
                 /**
                  * Get all pages
-                 * @type {object}
+                 * @type {object|*}
                  */
                 var pages = this.model.getItems(),
                     index, page;
@@ -229,15 +229,21 @@ define(function defineWorkspacePage() {
             /**
              * Check if load page content
              * @memberOf WorkspacePage
-             * @returns {Page}
+             * @returns {Page|boolean}
              */
             isLoadPageContent: function isLoadPageContent() {
+
+                /**
+                 * Get scope
+                 * @type {Workspace}
+                 */
+                var scope = this.scope;
 
                 /**
                  * Get current page from hash
                  * @type {Page}
                  */
-                var page = this.getPageByHashLocation(this.scope);
+                var page = this.getPageByHashLocation(scope);
 
                 if (page.controller.isCurrent() ||
                     page.controller.isLazyLoaded()) {
