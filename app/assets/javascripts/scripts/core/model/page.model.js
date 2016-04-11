@@ -49,7 +49,8 @@ define([
          *      animateSwipe: {type: string, disabled: boolean, value},
          *      showInTabs: {type: string, disabled: boolean, value},
          *      lazyLoading: {type: string, disabled: boolean, value},
-         *      outlineContainment: {type: string, disabled: boolean, value}
+         *      outlineContainment: {type: string, disabled: boolean, value},
+         *      showInMobile: {type: string, disabled: boolean, value}
          * }}
          */
         this.preferences = {

@@ -27,7 +27,9 @@ define([
          *      customClassName: {type: string, disabled: boolean, value: undefined, visible: boolean},
          *      statistics: {type: string, disabled: boolean, value: undefined, visible: boolean},
          *      hideContentOnDrag: {type: string, disabled: boolean, value: undefined, visible: boolean},
-         *      hideContentOnResize: {type: string, disabled: boolean, value: undefined, visible: boolean}
+         *      hideContentOnResize: {type: string, disabled: boolean, value: undefined, visible: boolean},
+         *      pageContainment: {type: string, disabled: boolean, value: undefined, visible: boolean},
+         *      showInMobile: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
          */
         var defaults = {
@@ -311,7 +313,9 @@ define([
          *          customClassName: {type: string, disabled: boolean, value: undefined, visible: boolean},
          *          statistics: {type: string, disabled: boolean, value: undefined, visible: boolean},
          *          hideContentOnDrag: {type: string, disabled: boolean, value: undefined, visible: boolean},
-         *          hideContentOnResize: {type: string, disabled: boolean, value: undefined, visible: boolean}
+         *          hideContentOnResize: {type: string, disabled: boolean, value: undefined, visible: boolean},
+         *          pageContainment: {type: string, disabled: boolean, value: undefined, visible: boolean},
+         *          showInMobile: {type: string, disabled: boolean, value: undefined, visible: boolean}
          *      },
          *      interactions: {
          *          overlapping: {type: string, disabled: boolean, checked: boolean, visible: boolean},
