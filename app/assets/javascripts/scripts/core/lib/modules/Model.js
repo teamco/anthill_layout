@@ -163,6 +163,30 @@ define([
             },
 
             /**
+             * Get first item
+             * @memberOf BaseModel
+             * @returns {*}
+             */
+            getFirstItem: function getFirstItem() {
+
+                var items = this.getItems(),
+                    index, item;
+
+                for (index in items) {
+
+                    if (items.hasOwnProperty(index)) {
+                        
+                        // Get item
+                        item = items[index];
+
+                        if (item.model.getConfig('order') === 1) {
+                            return item;
+                        }
+                    }
+                }
+            },
+
+            /**
              * Find item in a whole project
              * @memberOf BaseModel
              * @param {*} root

@@ -433,7 +433,7 @@ define([
              * Get inputs
              * @type {*|jQuery|HTMLElement}
              */
-            var $inputs = $('input:not(:disabled), textarea, .dropdown + input', this.$);
+            var $inputs = $('input:not(:disabled), textarea, .dropdown + input.store', this.$);
 
             /**
              * Get tinyMCE instance

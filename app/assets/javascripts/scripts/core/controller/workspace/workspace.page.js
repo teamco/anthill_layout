@@ -49,10 +49,62 @@ define(function defineWorkspacePage() {
                 var scope = this.scope,
                     page = this.getPageByHashLocation(scope);
 
-                scope.observer.publish(
-                    scope.eventmanager.eventList.switchToPage,
-                    page
-                );
+                if (window.location.hash.length) {
+
+                    scope.observer.publish(
+                        scope.eventmanager.eventList.switchToPage,
+                        page
+                    );
+
+                } else {
+
+                    /**
+                     * Get home page
+                     * @type {Page}
+                     */
+                    page = this.getHomePage();
+
+                    if (!page) {
+
+                        /**
+                         * Get first page
+                         * @type {Page}
+                         */
+                        page = this.model.getFirstItem();
+                    }
+
+                    scope.observer.publish(
+                        scope.eventmanager.eventList.switchToPage,
+                        page
+                    );
+                }
+            },
+
+            /**
+             * Get page defined as Home page
+             * @memberOf WorkspacePage
+             * @returns {Page}
+             */
+            getHomePage: function getHomePage() {
+
+                var items = this.model.getItems(),
+                    index, page;
+
+                for (index in items) {
+
+                    if (items.hasOwnProperty(index)) {
+
+                        /**
+                         * Get page
+                         * @type {Page}
+                         */
+                        page = items[index];
+
+                        if (page.model.getConfig('preferences').setAsHomePage) {
+                            return page;
+                        }
+                    }
+                }
             },
 
             /**

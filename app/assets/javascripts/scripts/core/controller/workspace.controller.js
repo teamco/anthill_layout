@@ -49,11 +49,15 @@ define(
                  */
                 bindHashChange: function bindHashChange() {
 
+                    /**
+                     * Get controller
+                     * @type {WorkspaceController}
+                     */
+                    var controller = this.controller;
+
                     $(window).on(
                         'hashchange',
-                        this.controller.switchPageOnHashChange.bind(
-                            this.controller
-                        )
+                        controller.switchPageOnHashChange.bind(controller)
                     );
                 },
 

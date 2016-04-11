@@ -28,11 +28,15 @@ define([], function defineComboBoxRenderer() {
          * @param {{type: string, callback: function}} [event]
          * @param {boolean} [visible]
          * @param {boolean} [placeholder]
+         * @param {boolean} [store]
          */
-        renderCombobox: function renderCombobox(data, selected, name, index, event, visible, placeholder) {
+        renderCombobox: function renderCombobox(data, selected, name, index, event, visible, placeholder, store) {
 
             // Init placeholder
             placeholder = _.isUndefined(placeholder) ? false : !!placeholder;
+
+            // Init store
+            store = _.isUndefined(store) ? true : !!placeholder;
 
             /**
              * Define active content
@@ -40,26 +44,26 @@ define([], function defineComboBoxRenderer() {
              */
             var activeContent = this.view.scope.activeContent;
 
+            var $input = $('<input class="hidden' + (store ? ' store' : '') + '" />').attr({
+                name: index,
+                disabled: true,
+                type: 'text',
+                value: selected
+            });
+
             /**
              * Define container
              * @type {*|jQuery}
              */
-            var $combo = $([
-                '<ul class="nav"><li role="presentation" class="dropdown">',
-                '<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">',
-                '<span class="caret pull-right"></span></a>',
-                '<ul class="dropdown-menu"></ul>',
-                '</li></ul>'
-            ].join('')).
-                addClass((activeContent ? [index, activeContent.name].join('') : index).toDash()).
-                attr({id: this.base.lib.generator.UUID() + '-combobox'}).
-                append($('<input class="hidden" />').attr({
-                    name: index,
-                    disabled: true,
-                    type: 'text',
-                    value: selected
-                })
-            );
+            var style = (activeContent ? [index, activeContent.name].join('') : index).toDash(),
+                id = this.base.lib.generator.UUID() + '-combobox',
+                $combo = $([
+                    '<ul class="nav"><li role="presentation" class="dropdown">',
+                    '<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">',
+                    '<span class="caret pull-right"></span></a>',
+                    '<ul class="dropdown-menu"></ul>',
+                    '</li></ul>'
+                ].join('')).addClass(style).attr({id: id}).append($input);
 
             /**
              * Update placeholder

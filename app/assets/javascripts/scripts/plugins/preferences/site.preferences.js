@@ -153,11 +153,11 @@ define([
                     plugins,
                     plugins[0].value,
                     text,
-                    'workspaceServicesPrefs', {
+                    'workspaceServices', {
                         type: 'click.showPluginConfig',
                         callback: _showPluginConfig
                     },
-                    true
+                    true, false, false
                 );
 
                 var $template = $([
