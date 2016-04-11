@@ -142,6 +142,12 @@ define([
                 disabled: false,
                 value: false,
                 visible: true
+            },
+            showInMobile: {
+                type: 'checkbox',
+                disabled: false,
+                value: false,
+                visible: true
             }
         };
     };
