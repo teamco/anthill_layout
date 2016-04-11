@@ -31,7 +31,7 @@ class Author::SiteVersion < ActiveRecord::Base
   end
 
   def deactivate_other
-    self.class.where('id!=?', self.id).update_all(activated: false)
+    self.class.where.not(id: id).update_all(activated: false)
     self
   end
 

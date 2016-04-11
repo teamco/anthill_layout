@@ -34,4 +34,8 @@ module Author::SiteStoragesHelper
     ].join.html_safe
   end
 
+  def is_widget_selected?(item)
+    @author_site_storage.author_widget_ids.include?(item.id)
+  end
+
 end

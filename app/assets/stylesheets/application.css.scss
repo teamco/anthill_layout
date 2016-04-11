@@ -329,6 +329,10 @@ body.mini-navbar .logo-element {
   opacity: 0.8;
 }
 
+.admin-dashboard .site-widgets .input-group-addon.selected {
+  background-color: #5cffd6;
+}
+
 .admin-dashboard .site-widgets .input-group-addon:hover {
   opacity: 1.0;
 }

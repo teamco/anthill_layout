@@ -5,14 +5,13 @@ source 'https://rubygems.org'
 
 gem 'rails', '>= 4.2.5'
 
-gem 'puma'
 gem 'embedly'
 gem 'bullet'
 gem 'rake'
 # gem 'requirejs-rails'
 gem 'keen'
 gem 'will_paginate'
-gem 'websocket-rails'
+# gem 'websocket-rails'
 
 gem 'ruby-readability'
 gem 'pismo'
@@ -27,7 +26,6 @@ group :development do
 end
 
 group :test, :development do
-  gem 'byebug'
   gem 'xilence'
   gem 'meta_request'
   gem 'pry-rails'
@@ -45,11 +43,15 @@ group :test, :development do
   gem 'rubycritic', require: false
   gem 'guard'
   gem 'guard-livereload', '~> 2.4', require: false
+  gem 'byebug'
 end
 
+group :debug do
+  gem 'thin'
+end
 
 group :console do
-  gem 'web-console'#, '~> 2.0'
+  gem 'web-console' #, '~> 2.0'
   gem 'rails-console-tweaks'
   gem 'awesome_print', require: 'ap'
   gem 'hirb'
@@ -62,9 +64,13 @@ group :doc do
 end
 
 group :production do
-  ruby  '2.3.0'
+  ruby '2.3.0'
   gem 'rails_12factor'
   gem 'pg'
+end
+
+group :test, :production, :development do
+  gem 'puma'
 end
 
 gem 'rack-attack'

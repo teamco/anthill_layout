@@ -36,8 +36,8 @@ class Author::SiteStorage < ActiveRecord::Base
 
   accepts_nested_attributes_for :author_site_storage_widgets, allow_destroy: true
   accepts_nested_attributes_for :author_site_versions, allow_destroy: true
-  accepts_nested_attributes_for :author_site_type
   accepts_nested_attributes_for :author_item, allow_destroy: true
+  accepts_nested_attributes_for :author_site_type
 
   validates :key,
             presence: true,

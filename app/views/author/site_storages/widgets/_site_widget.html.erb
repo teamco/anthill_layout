@@ -1,16 +1,17 @@
 <div class="site-widgets input-group<%= item.is_external? ? ' external' : '' -%>">
-    <%= label_tag dom_id(item),
-                  nil, {
-                          class: "input-group-addon widget #{item.resource.gsub(/\./, '-')}",
-                          title: "#{item.name}\n#{item.description}"
-                  } do -%>
-        <%= check_box_tag 'author_site_storage[author_site_storage_widget_ids][]',
-                          item.id,
-                          @author_site_storage.author_widget_ids.include?(item.id), {
-                                  id: dom_id(item),
-                                  class: 'form-control',
-                                  onclick: 'uc(this)'
-                          } -%>
-        <span><%= item.name %></span>
-    <% end %>
+
+  <%= label_tag dom_id(item),
+                nil, {
+                    class: "input-group-addon widget #{item.resource.gsub(/\./, '-')}#{is_widget_selected?(item) ? ' selected' : ''}",
+                    title: "#{item.name}\n#{item.description}"
+                } do -%>
+      <%= check_box_tag 'author_site_storage[author_site_storage_widget_ids][]',
+                        item.id,
+                        is_widget_selected?(item), {
+                            id: dom_id(item),
+                            class: 'form-control',
+                            onclick: 'uc(this)'
+                        } -%>
+      <span><%= item.name %></span>
+  <% end %>
 </div>

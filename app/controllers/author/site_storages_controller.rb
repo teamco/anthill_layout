@@ -88,7 +88,7 @@ class Author::SiteStoragesController < Author::AuthorController
       params[:author_site_storage][:publish] = 'false'
       params[:author_site_storage].delete :content
     else
-      version = @author_site_storage.author_site_versions.where(params[:author_site_storage][:activated_version]).first
+      version = @author_site_storage.author_site_versions.where(id: params[:author_site_storage][:activated_version]).first
       params[:author_site_storage].delete :activated_version
     end
 
@@ -183,17 +183,21 @@ class Author::SiteStoragesController < Author::AuthorController
 
   def activate_site_version(version=nil)
     activated = @author_site_storage.get_activated
+    @activated = version
 
-    puts t('undefined_activation') if activated.nil?
+    logger.info ">>>>>>> #{t('undefined_activation')}" if activated.nil?
 
     if version.nil?
       puts t('undefined_version')
       version = @author_site_storage.author_site_versions.last
     end
 
-    @activated = version.is_current?(activated) ?
-        activated :
-        version.deactivate_other
+    unless version.is_current?(activated)
+      logger.info '>>>>>>> Deactivate other'
+      version.deactivate_other
+      logger.info ">>>>>>> Activate: #{version.inspect}"
+      version.activate
+    end
   end
 
   def deactivate_site_version(version=nil)
@@ -226,9 +230,10 @@ class Author::SiteStoragesController < Author::AuthorController
   def update_widget_connections
 
     widget_ids = params[:author_site_storage][:author_site_storage_widget_ids]
-    widgets = Widget.where(widget_ids.reject(&:blank?)) rescue []
+    widgets = Widget.where(id: widget_ids.reject(&:blank?)) rescue []
 
-    @author_site_storage.author_site_storage_widgets.delete_all
+    connected_widgets = @author_site_storage.author_site_storage_widgets
+    connected_widgets.delete_all unless connected_widgets.size == 0
     @author_site_storage.author_widgets << widgets unless widgets.blank?
     @author_site_storage.author_item.touch
     params[:author_site_storage].delete :author_site_storage_widget_ids
@@ -289,7 +294,11 @@ class Author::SiteStoragesController < Author::AuthorController
         :publish,
         :public,
         :activated_version,
-        author_item_attributes: [],
+        author_item_attributes: [
+            :public,
+            :visible,
+            :id
+        ],
         author_site_storage_widget_ids: [],
         author_site_versions_attributes: [
             :id,
