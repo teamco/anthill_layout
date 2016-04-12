@@ -37,7 +37,7 @@ define(function defineBasePreferences() {
             var scope = this.scope;
 
             if (!$modal) {
-                scope.logger.debug('Unable to get Modal dialog');
+                scope.logger.warn('Unable to get Modal dialog');
                 return false;
             }
 
