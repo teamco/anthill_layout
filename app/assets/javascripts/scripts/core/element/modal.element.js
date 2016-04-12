@@ -21,6 +21,7 @@ define([
      * @class ModalElement
      * @extends AntHill
      * @extends BaseElement
+     * @extends TabsRenderer
      */
     var ModalElement = function ModalElement(view, opts) {
 
@@ -194,6 +195,11 @@ define([
             this.buttons = opts.buttons || {};
         },
 
+        /**
+         * Get template
+         * @memberOf ModalElement
+         * @returns {*|jQuery|HTMLElement}
+         */
         getTemplate: function getTemplate() {
             return $([
                 '<div class="modal modal-notification" tabindex="-1" role="dialog" aria-labelledby="modalLabel">',
@@ -248,6 +254,7 @@ define([
 
             this.setButtons();
             this.setFocus();
+            this.bindTabsScroll(this.$);
         },
 
         /**

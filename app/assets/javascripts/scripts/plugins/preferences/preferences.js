@@ -59,21 +59,6 @@ define(['jquery'], function defineBasePreferencesElement($) {
                 }
             }, opts.buttons || {});
 
-            /**
-             * Define current page
-             * @type {Page}
-             */
-            var current = this.controller.getPage();
-
-            /**
-             * Define page
-             * @type {Page}
-             */
-            var page = opts.current ? current : this.scope.base.define(
-                this.controller.getPage(opts.config.uuid),
-                current
-            );
-
             this.modalDialog({
                 style: opts.style,
                 type: opts.type || 'info',

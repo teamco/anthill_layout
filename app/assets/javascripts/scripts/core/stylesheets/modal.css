@@ -50,3 +50,8 @@ body.modal-open {
     overflow: hidden;
     color: #333;
 }
+
+.modal-dialog ul.nav-tabs {
+    white-space: nowrap;
+    display: flex;
+}

@@ -160,7 +160,7 @@ define([
                 )
             });
 
-            text = 'Interactions';
+            text = 'InteractionsInteractions';
             this.addTabItem($tabs, {
                 uuid: 'widget-interactions',
                 text: text,
@@ -170,7 +170,7 @@ define([
                 )
             });
 
-            text = 'Layout';
+            text = 'Layout Layout';
             this.addTabItem($tabs, {
                 uuid: 'layout',
                 text: text,
@@ -180,7 +180,29 @@ define([
                 )
             });
 
-            text = 'Source';
+            text = 'Source Source';
+            this.addTabItem($tabs, {
+                uuid: 'source',
+                text: text,
+                $container: $container,
+                content: this.renderSource(
+                    this.view.get$item().$.parent().html(),
+                    'xml', {
+                        visible: true
+                    }
+                )
+            });text = 'Source1';
+            this.addTabItem($tabs, {
+                uuid: 'source',
+                text: text,
+                $container: $container,
+                content: this.renderSource(
+                    this.view.get$item().$.parent().html(),
+                    'xml', {
+                        visible: true
+                    }
+                )
+            });text = 'Source 3';
             this.addTabItem($tabs, {
                 uuid: 'source',
                 text: text,

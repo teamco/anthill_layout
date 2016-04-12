@@ -128,3 +128,37 @@ div.source {
     height: 100px;
     min-height: 100px;
 }
+
+.tabs-wrapper {
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid #ddd;
+}
+
+.nav-tabs {
+    border-bottom: none !important;
+    position: relative;
+}
+
+.scroller {
+    text-align: center;
+    cursor: pointer;
+    display: none;
+    padding: 14px 7px 7px;
+    background-color: #fff;
+    position: absolute;
+    z-index: 1;
+    opacity: 0.8;
+}
+
+.scroller:hover {
+    opacity: 1;
+}
+
+.scroller-right {
+    right: 0;
+}
+
+.scroller-left {
+    left: 0;
+}
