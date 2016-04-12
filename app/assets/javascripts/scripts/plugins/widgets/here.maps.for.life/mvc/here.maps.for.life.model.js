@@ -40,8 +40,7 @@ define([
             heremapsforlifeSpecifiedLocation: {
                 type: 'checkbox',
                 disabled: false,
-                value: true,
-                checked: true,
+                value: false,
                 visible: true,
                 monitor: {
                     events: ['click.toggle'],
@@ -76,7 +75,7 @@ define([
             },
             heremapsforlifeMarker: {
                 type: 'checkbox',
-                disabled: true,
+                disabled: false,
                 value: false,
                 visible: true,
                 monitor: {
@@ -90,11 +89,17 @@ define([
                 value: false,
                 visible: true
             },
+            heremapsforlifeZoom: {
+                type: 'number',
+                disabled: false,
+                value: 11,
+                visible: true
+            },
             heremapsforlifeLatitudeLongitude: {
                 type: 'text',
                 disabled: false,
                 value: undefined,
-                visible: true,
+                visible: false,
                 placeholder: 'Map at a specified location: Latitude,Longitude'
             },
             heremapsforlifeBoundNorthWestSouthEastCorners: {
@@ -102,12 +107,6 @@ define([
                 disabled: true,
                 value: undefined,
                 visible: false
-            },
-            heremapsforlifeZoom: {
-                type: 'number',
-                disabled: false,
-                value: 11,
-                visible: true
             }
         };
 

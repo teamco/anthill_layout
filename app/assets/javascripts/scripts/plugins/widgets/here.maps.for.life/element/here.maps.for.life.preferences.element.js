@@ -33,8 +33,24 @@ define([
     };
 
     return HereMapsForLifePreferencesElement.extend(
-        'HereMapsForLifePreferencesElement', {}, 
-        PluginElement.prototype, 
+        'HereMapsForLifePreferencesElement', {
+
+            showLatitudeLongitude: function showLatitudeLongitude(pageData) {
+
+                /**
+                 * Get modal
+                 * @type {ModalElement}
+                 */
+                var $modal = pageData.view.get$modal();
+
+                var $ll = $('input[name="heremapsforlifeLatitudeLongitude"]', $modal.$),
+                    $wrapper = $ll.closest('.here-maps-for-life-prefs'),
+                    isVisible = $ll.is(':visible');
+
+                $wrapper[(isVisible ? 'add' : 'remove') + 'Class']('hidden').find('div > *')[(isVisible ? 'add' : 'remove') + 'Class']('hide')[(isVisible ? 'hide' : 'show')]();
+            }
+        },
+        PluginElement.prototype,
         WidgetPreferences.prototype
     );
 });

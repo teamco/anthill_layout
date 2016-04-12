@@ -30,6 +30,24 @@ define([
             this.view.get$item().renderEmbeddedContent();
         },
 
+        toggleViewBounds: function toggleViewBounds() {
+            debugger
+        },
+
+        toggleSpecifiedLocation: function toggleSpecifiedLocation() {
+
+            /**
+             * Get modal
+             * @type {PageData}
+             */
+            var referrer = this.scope.referrer;
+
+            if (referrer ) {
+
+                var $latitudeLongitude = this.getView().elements.$preferences.showLatitudeLongitude(referrer);
+            }
+        },
+
         /**
          * Add HereMapsForLife rule
          * @memberOf HereMapsForLifeController
