@@ -29,7 +29,6 @@
                 'lz-string',
                 'jquery.ujs',
                 'jquery.resizestop',
-                'jquery.pseudo',
                 'jquery.zoomooz',
 
                 'extends/function',
@@ -71,17 +70,8 @@
 
         require(['../scripts/core/config/main'], function defineDelegator() {
 
-            if (isConsumption) {
-
-                _setup();
-
-                return false;
-            }
-
             require([
-                'pluralize',
                 'jquery.ui',
-                'jquery.slimscroll',
                 'bootstrap',
                 '_'
             ], _setup);

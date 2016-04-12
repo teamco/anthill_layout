@@ -28,8 +28,6 @@ requirejs.config({
         services: '../../services',
 
         tinyMCE: 'lib/packages/tinymce/tinymce.min',
-        pluralize: 'lib/packages/pluralize',
-        //totally: 'lib/packages/tota11y.min',
         moment: 'lib/packages/moment',
 
         modernizr: 'lib/modernizr',
@@ -47,10 +45,7 @@ requirejs.config({
         'jquery.timeago': 'lib/jquery/jquery.timeago',
         'jquery.ui': 'lib/jquery/jquery-ui-1.12.0-rc.1.min',
         'jquery.resizestop': 'lib/jquery/jquery.resizestop',
-        'jquery.pseudo': 'lib/jquery/jquery.pseudo',
         'jquery.zoomooz': 'lib/jquery/jquery.zoomooz.min',
-
-        'jquery.slimscroll': 'lib/jquery/jquery.slimscroll.min',
 
         // create alias to plugins (not needed if plugins are on the baseUrl)
         // https://github.com/millermedeiros/requirejs-plugins
@@ -86,16 +81,10 @@ requirejs.config({
         'jquery.ujs': {deps: ['jquery']},
         'jquery.ui': {deps: ['jquery']},
         'jquery.resizestop': {deps: ['jquery']},
-        'jquery.pseudo': {deps: ['jquery']},
-        'jquery.metismenu': {deps: ['jquery']},
-        'jquery.slimscroll': {deps: ['jquery']},
         'jquery.zoomooz': {deps: ['jquery']},
         'extends/function': {deps: ['jquery']},
         'extends/string': {deps: ['jquery']},
         'extends/array': {deps: ['jquery']},
-        'lib/jquery/jquery.knob': {deps: ['jquery']},
-
-        'lib/jquery/jquery.nicescroll': {deps: ['jquery']},
 
         'lib/modules/MVC': {
             deps: [

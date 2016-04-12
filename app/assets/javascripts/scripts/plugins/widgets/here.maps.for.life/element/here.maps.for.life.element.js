@@ -74,14 +74,9 @@ define([
             this.createLinkCss({href: lib.css});
 
             require([lib.js[0]], function _loadCore() {
-                require([lib.js[1]], function _loadService() {
-                    require([lib.js[2]], function _loadUi() {
-                        require([lib.js[3]], function _loadEvents() {
-
-                            // Initial config
-                            element.mapInitialSetup(opts);
-                        })
-                    })
+                require([lib.js[1], lib.js[2], lib.js[3]], function _loadServices() {
+                    // Initial config
+                    element.mapInitialSetup(opts);
                 })
             });
         },
