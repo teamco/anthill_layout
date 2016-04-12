@@ -46,47 +46,49 @@ define([
             });
         },
 
-        toggleViewBounds: function toggleViewBounds() {
-
-            /**
-             * Get modal
-             * @type {PageData}
-             */
-            var referrer = this.scope.referrer;
-
-            if (referrer) {
-
-                this.getView().elements.$preferences.showBoundNorthWestSouthEastCorners(referrer);
-            }
+        /**
+         * Toggle view bounds
+         * @memberOf HereMapsForLifeController
+         * @param {Event} event
+         */
+        toggleViewBounds: function toggleViewBounds(event) {
+            this.toggleInteraction('showBoundNorthWestSouthEastCorners', event);
         },
 
-        toggleSpecifiedLocation: function toggleSpecifiedLocation() {
-
-            /**
-             * Get modal
-             * @type {PageData}
-             */
-            var referrer = this.scope.referrer;
-
-            if (referrer) {
-
-                this.getView().elements.$preferences.showLatitudeLongitude(referrer);
-            }
+        /**
+         * Toggle Specified Location
+         * @memberOf HereMapsForLifeController
+         * @param {Event} event
+         */
+        toggleSpecifiedLocation: function toggleSpecifiedLocation(event) {
+            this.toggleInteraction('showLatitudeLongitude', event);
         },
-        toggleBoundsRestrict: function toggleBoundsRestrict() {
 
-            /**
-             * Get modal
-             * @type {PageData}
-             */
-            var referrer = this.scope.referrer;
-
-            if (referrer) {
-
-                this.getView().elements.$preferences.showBoundsRestrict(referrer);
-            }
+        /**
+         * Toggle Bounds Restrict
+         * @memberOf HereMapsForLifeController
+         * @param {Event} event
+         */
+        toggleBoundsRestrict: function toggleBoundsRestrict(event) {
+            this.toggleInteraction('showBoundsRestrict', event);
         },
-        toggleSpecifiedLocationMarker: function toggleSpecifiedLocationMarker() {
+
+        /**
+         * Toggle Specified Location Marker
+         * @memberOf HereMapsForLifeController
+         * @param {Event} event
+         */
+        toggleSpecifiedLocationMarker: function toggleSpecifiedLocationMarker(event) {
+            this.toggleInteraction('showSpecifiedLocationMarker', event);
+        },
+
+        /**
+         * Toggle Interaction
+         * @memberOf HereMapsForLifeController
+         * @param {string} fn
+         * @param {Event} event
+         */
+        toggleInteraction: function toggleInteraction(fn, event) {
 
             /**
              * Get modal
@@ -94,9 +96,8 @@ define([
              */
             var referrer = this.scope.referrer;
 
-            if (referrer) {
-
-                this.getView().elements.$preferences.showSpecifiedLocationMarker(referrer);
+            if (referrer && fn) {
+                this.getView().elements.$preferences[fn](referrer, event);
             }
         },
 

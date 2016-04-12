@@ -154,7 +154,13 @@ define([
                  */
                 item = items[index];
 
+                /**
+                 * Get rules
+                 * @type {{publish}}
+                 */
                 rules = item.model.getConfig('rules');
+
+                // Get uuid
                 uuid = item.controller.getContent().model.getUUID();
 
                 if (rules.hasOwnProperty('publish') &&
@@ -496,6 +502,7 @@ define([
          * Register rule
          * @memberOf WidgetContentControllerRules
          * @param scope
+         * @param event
          * @param subscribeEM
          * @param subscribersCounter
          * @returns {boolean}
@@ -547,7 +554,7 @@ define([
             );
 
             if (!subscribeEM[sUUID][eventList[ename]]) {
-                
+
                 /**
                  * Subscribe to event
                  * @type {Array}

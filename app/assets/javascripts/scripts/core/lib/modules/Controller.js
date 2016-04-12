@@ -55,6 +55,36 @@ define([
             },
 
             /**
+             * Success Create Element
+             * @memberOf BaseController
+             * @param {BaseElement} $element
+             */
+            successCreateElement: function successCreateElement($element) {
+                this.logger.debug('Success build element', $element);
+            },
+
+            /**
+             * Success Build Element
+             * @memberOf BaseController
+             * @param {BaseElement} $element
+             */
+            successBuildElement: function successBuildElement($element) {
+                this.logger.debug('Success build element', $element);
+            },
+
+            /**
+             * Success Destroy Element
+             * @memberOf BaseController
+             * @param {BaseElement|{name}} $element
+             */
+            successDestroyElement: function successDestroyElement($element) {
+                this.logger.debug(
+                    this.i18n.t('element.overwritten').replace(/\{0}/, $element.name),
+                    $element
+                );
+            },
+
+            /**
              * Get cache
              * @memberOf BaseController
              * @param {string} [uuid]

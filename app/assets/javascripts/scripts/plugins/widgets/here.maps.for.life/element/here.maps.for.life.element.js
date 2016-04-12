@@ -214,12 +214,12 @@ define([
          */
         addMarkerToMap: function addMarkerToMap(map, behavior, opts) {
 
-            var locations = (opts.location_marker || '').split(','),
-                l = locations.length, i = 0, marker, location;
+            var locations = (opts.location_marker || '').split('],'),
+                l = locations.length, i = 0, marker, sl;
 
             for (; i < l; i++) {
-                location = (locations[i] || '').split(',');
-                marker = new H.map.Marker({lat: location[0], lng: location[1]});
+                sl = locations[i].match(/\d+.\d+/g);
+                marker = new H.map.Marker({lat: sl[0], lng: sl[1]});
                 this.setMarkerAsDraggable(map, behavior, marker, opts);
                 map.addObject(marker);
             }
@@ -294,6 +294,82 @@ define([
             var bounds = (opts.nwse_corners || '').split(',');
             var bbox = new H.geo.Rect(bounds[0], bounds[1], bounds[2], bounds[3]);
             map.setViewBounds(bbox);
+        },
+
+        /**
+         * Shows how to add venue objects to the map, change default styling
+         * and change a floor level for all venues.
+         * @see http://developer.here.com/rest-apis/documentation/venue-maps
+         * @memberOf HereMapsForLifeElement
+         * @param {H.Map} map                                   A HERE Map instance within the application
+         * @param {H.service.Platform} platform                 Platform instance within the application
+         */
+        addVenueLayer: function addVenueLayer(map, platform) {
+
+            /**
+             * Changes the default style for H&M shops
+             * @param {H.service.venues.Space}
+             * @private
+             */
+            function _onSpaceCreated(space) {
+                // getData for spaces contains data from the Venue Interaction Tile API,
+                // see https://developer.here.com/rest-apis/documentation/venue-maps/topics/resource-type-venue-interaction-tile.html
+                if (space.getData().preview === 'H&M') {
+                    space.setStyle({
+                        fillColor: 'rgba(0,255,0,0.3)'
+                    });
+                }
+            }
+
+            /**
+             * Custom helper function for adding buttons
+             * Template function for displaying controls with a heading and buttons
+             * @param title
+             * @param buttons
+             * @private
+             */
+            function _renderControls(title, buttons) {
+
+                var containerNode = document.createElement('div');
+
+                containerNode.innerHTML = '<h4 class="title">' + title + '</h4><div class="btn-group"></div>';
+                containerNode.setAttribute('class', 'template');
+
+                Object.keys(buttons).forEach(function (label) {
+                    var input = document.createElement('input');
+                    input.value = label;
+                    input.type = 'button';
+                    input.onclick = buttons[label];
+                    input.className = "btn btn-sm btn-default";
+                    containerNode.lastChild.appendChild(input);
+                });
+
+                map.getElement().appendChild(containerNode);
+            }
+
+            // Create a tile layer, which will display venues
+            var customVenueLayer = platform.getVenueService().createTileLayer({
+                // Provide a callback that will be called for each newly created space
+                onSpaceCreated: _onSpaceCreated
+            });
+
+            // Get TileProvider from Venue Layer
+            var venueProvider = customVenueLayer.getProvider();
+            // Add venues layer to the map
+            map.addLayer(customVenueLayer);
+
+            // Use the custom function (i.e. not a part of the API)
+            // to render buttons with corresponding click callbacks
+            _renderControls('Change floor', {
+                '+1 Level': function () {
+                    // Increase global floor level on the venue provider
+                    venueProvider.setCurrentLevel(venueProvider.getCurrentLevel() + 1);
+                },
+                '-1 Level': function () {
+                    // Decrease global floor level on the venue provider
+                    venueProvider.setCurrentLevel(venueProvider.getCurrentLevel() - 1);
+                }
+            });
         }
 
     }, PluginElement.prototype);

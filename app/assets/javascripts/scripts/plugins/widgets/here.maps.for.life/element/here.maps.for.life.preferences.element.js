@@ -39,11 +39,11 @@ define([
              * Latitude Longitude
              * @memberOf HereMapsForLifePreferencesElement
              * @param {PageData} pageData
+             * @param {Event} event
              */
-            showLatitudeLongitude: function showLatitudeLongitude(pageData) {
-
+            showLatitudeLongitude: function showLatitudeLongitude(pageData, event) {
                 this.toggleWrapperElements(
-                    pageData,
+                    pageData, event,
                     'heremapsforlifeLatitudeLongitude'
                 );
             },
@@ -52,11 +52,12 @@ define([
              * NorthWest SouthEast Corners
              * @memberOf HereMapsForLifePreferencesElement
              * @param {PageData} pageData
+             * @param {Event} event
              */
-            showBoundNorthWestSouthEastCorners: function showBoundNorthWestSouthEastCorners(pageData) {
+            showBoundNorthWestSouthEastCorners: function showBoundNorthWestSouthEastCorners(pageData, event) {
 
                 this.toggleWrapperElements(
-                    pageData,
+                    pageData, event,
                     'heremapsforlifeNWSECorners'
                 );
             },
@@ -65,11 +66,12 @@ define([
              * Location Marker
              * @memberOf HereMapsForLifePreferencesElement
              * @param {PageData} pageData
+             * @param {Event} event
              */
-            showSpecifiedLocationMarker: function showSpecifiedLocationMarker(pageData) {
+            showSpecifiedLocationMarker: function showSpecifiedLocationMarker(pageData, event) {
 
                 this.toggleWrapperElements(
-                    pageData,
+                    pageData, event,
                     'heremapsforlifeLocationMarker'
                 );
             },
@@ -78,11 +80,12 @@ define([
              * Bounds Restrict
              * @memberOf HereMapsForLifePreferencesElement
              * @param {PageData} pageData
+             * @param {Event} event
              */
-            showBoundsRestrict: function showBoundsRestrict(pageData) {
+            showBoundsRestrict: function showBoundsRestrict(pageData, event) {
 
                 this.toggleWrapperElements(
-                    pageData,
+                    pageData, event,
                     'heremapsforlifeRestrictBounds'
                 );
             },
@@ -92,8 +95,9 @@ define([
              * @memberOf HereMapsForLifePreferencesElement
              * @param {PageData} pageData
              * @param {string} name
+             * @param {Event} event
              */
-            toggleWrapperElements: function toggleWrapperElements(pageData, name) {
+            toggleWrapperElements: function toggleWrapperElements(pageData, event, name) {
 
                 /**
                  * Get modal
@@ -103,7 +107,7 @@ define([
 
                 var $ll = $('input[name="' + name + '"]', $modal.$),
                     $wrapper = $ll.closest('.here-maps-for-life-prefs'),
-                    isVisible = $ll.is(':visible');
+                    isVisible = $ll.is(':visible') && !$(event.target).prop('checked');
 
                 $wrapper[(isVisible ? 'add' : 'remove') + 'Class']('hidden').find('div > *')
                     [(isVisible ? 'add' : 'remove') + 'Class']('hide')

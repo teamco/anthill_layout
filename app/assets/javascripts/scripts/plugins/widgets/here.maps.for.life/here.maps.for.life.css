@@ -1,5 +1,14 @@
 .widget .content .here-maps-for-life {
     height: 100%;
     width: 100%;
-    overflow: auto;
+    overflow: hidden;
+}
+
+.widget .content .here-maps-for-life .template {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #fff;
+    padding: 10px;
+    text-align: center;
 }

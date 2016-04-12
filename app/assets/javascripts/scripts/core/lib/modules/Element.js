@@ -104,6 +104,13 @@ define([
 
             this.view.controller.updateCache(this.id, this);
 
+            // Get scope
+            var scope = this.view.scope;
+            scope.observer.publish(
+                scope.eventmanager.eventList.successCreateElement,
+                this
+            );
+
             return this;
         },
 
@@ -276,10 +283,13 @@ define([
 
             if (this.base.defineBoolean(destroy, false, true)) {
 
-                this.view.scope.logger.debug(
-                    this.i18n.t('element.overwritten').replace(/\{0}/, this.name)
+                // Get scope
+                var scope = this.view.scope;
+                scope.observer.publish(
+                    scope.eventmanager.eventList.successDestroyElement,
+                    this
                 );
-
+                
                 $('.' + this.$.attr('class').replace(/ /g, '.'), this.$container).remove();
             }
         },
@@ -319,6 +329,13 @@ define([
 
             this.bindEvents();
 
+            // Get scope
+            var scope = this.view.scope;
+            scope.observer.publish(
+                scope.eventmanager.eventList.successBuildElement,
+                this
+            );
+            
             return this;
         },
 
