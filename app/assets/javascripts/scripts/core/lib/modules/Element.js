@@ -431,7 +431,7 @@ define([
          * Create link css
          * @memberOf BaseElement
          * @param opts
-         * @returns {HTMLElement} link
+         * @returns {HTMLElement|boolean} link
          */
         createLinkCss: function createLinkCss(opts) {
 
@@ -462,6 +462,12 @@ define([
             link.media = opts.media || defaults.media;
             link.href = opts.href;
 
+            if ($('link[href="' + link.href + '"]').length) {
+
+                this.view.scope.logger.warn('Link already exist');
+                return link;
+            }
+            
             document.getElementsByTagName("head")[0].appendChild(link);
 
             return link;

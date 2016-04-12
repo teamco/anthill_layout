@@ -207,13 +207,6 @@ define(function defineWidgetSubscribe() {
                 [subscribers, true]
             );
 
-            scope.referrer.observer.publish(
-                scope.referrer.eventmanager.eventList.setActiveContent,
-                scope.controller.getContainment().model.getUUID()
-            );
-
-            scope.referrer.controller.approveUpdatePreferences();
-
             return false;
         },
 
@@ -232,8 +225,8 @@ define(function defineWidgetSubscribe() {
 
             scope.base.waitFor(
                 function condition() {
-                    return typeof scope.view.get$item() !== 'undefined' &&
-                        typeof(scope.referrer) !== 'undefined';
+                    return scope.base.isDefined(scope.view.get$item()) &&
+                        scope.base.isDefined(content.referrer);
                 },
 
                 function callback() {
@@ -243,13 +236,6 @@ define(function defineWidgetSubscribe() {
                     scope.observer.publish(
                         scope.eventmanager.eventList.setEmbeddedContent
                     );
-
-                    scope.referrer.observer.publish(
-                        scope.referrer.eventmanager.eventList.setActiveContent,
-                        scope.controller.getContainment().model.getUUID()
-                    );
-
-                    scope.referrer.controller.approveUpdatePreferences();
                 },
 
                 function fallback() {
@@ -258,36 +244,6 @@ define(function defineWidgetSubscribe() {
             );
 
             return false;
-        },
-
-        /**
-         * Transfer stats
-         * @memberOf WidgetSubscribe
-         * @param {string} uuid
-         * @param $element
-         */
-        transferStatsSimulate: function transferStatsSimulate(uuid, $element) {
-
-            /**
-             * Define scope
-             * @type {Widget}
-             */
-            var scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.collectStats,
-                [uuid, $element]
-            );
-        },
-
-        /**
-         * Switch to page
-         * @memberOf WidgetSubscribe
-         * @param {PageTabsItemElement} $page
-         * @param {Event} e
-         */
-        switchToPageSimulate: function switchToPageSimulate($page, e) {
-            debugger
         }
     });
 });

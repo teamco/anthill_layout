@@ -546,16 +546,8 @@ define([
                 subscribeEM[sUUID], {}, true
             );
 
-            if (subscribeEM[sUUID][eventList[ename]]) {
-
-                scope.logger.warn(
-                    'Duplicate event',
-                    subscribeEM[sUUID],
-                    eventList[ename]
-                );
-
-            } else {
-
+            if (!subscribeEM[sUUID][eventList[ename]]) {
+                
                 /**
                  * Subscribe to event
                  * @type {Array}

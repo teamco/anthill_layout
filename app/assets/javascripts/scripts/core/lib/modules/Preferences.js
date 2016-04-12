@@ -33,8 +33,15 @@ define(function defineBasePreferences() {
          */
         updatePreferences: function updatePreferences($modal, render) {
 
+            // Get scope
+            var scope = this.scope;
+
+            if (!$modal) {
+                scope.logger.debug('Unable to get Modal dialog');
+                return false;
+            }
+
             var $inputs = $modal.collectInputFields(),
-                scope = this.scope,
                 containment = this.getContainment(),
                 cname = scope.name.toDash();
 

@@ -27,11 +27,37 @@ define([
          * @memberOf HereMapsForLifeController
          */
         setEmbeddedContent: function setEmbeddedContent() {
-            this.view.get$item().renderEmbeddedContent();
+
+            this.view.get$item().renderEmbeddedContent({
+                api_id: this.model.getPrefs('heremapsforlifeAppId'),
+                app_code: this.model.getPrefs('heremapsforlifeAppCode'),
+                location: this.model.getPrefs('heremapsforlifeSpecifiedLocation'),
+                bounds: this.model.getPrefs('heremapsforlifeViewBounds'),
+                venues_layers: this.model.getPrefs('heremapsforlifeVenuesLayer'),
+                restrict_movement: this.model.getPrefs('heremapsforlifeRestrictMovement'),
+                marker: this.model.getPrefs('heremapsforlifeMarker'),
+                draggable_marker: this.model.getPrefs('heremapsforlifeDraggableMarker'),
+                terrain_map: this.model.getPrefs('heremapsforlifeTerrainMap'),
+                zoom: this.model.getPrefs('heremapsforlifeZoom'),
+                latitude_longitude: this.model.getPrefs('heremapsforlifeLatitudeLongitude'),
+                location_marker: this.model.getPrefs('heremapsforlifeLocationMarker'),
+                nwse_corners: this.model.getPrefs('heremapsforlifeNWSECorners'),
+                restrict_bounds: this.model.getPrefs('heremapsforlifeRestrictBounds')
+            });
         },
 
         toggleViewBounds: function toggleViewBounds() {
-            debugger
+
+            /**
+             * Get modal
+             * @type {PageData}
+             */
+            var referrer = this.scope.referrer;
+
+            if (referrer) {
+
+                this.getView().elements.$preferences.showBoundNorthWestSouthEastCorners(referrer);
+            }
         },
 
         toggleSpecifiedLocation: function toggleSpecifiedLocation() {
@@ -42,9 +68,35 @@ define([
              */
             var referrer = this.scope.referrer;
 
-            if (referrer ) {
+            if (referrer) {
 
-                var $latitudeLongitude = this.getView().elements.$preferences.showLatitudeLongitude(referrer);
+                this.getView().elements.$preferences.showLatitudeLongitude(referrer);
+            }
+        },
+        toggleBoundsRestrict: function toggleBoundsRestrict() {
+
+            /**
+             * Get modal
+             * @type {PageData}
+             */
+            var referrer = this.scope.referrer;
+
+            if (referrer) {
+
+                this.getView().elements.$preferences.showBoundsRestrict(referrer);
+            }
+        },
+        toggleSpecifiedLocationMarker: function toggleSpecifiedLocationMarker() {
+
+            /**
+             * Get modal
+             * @type {PageData}
+             */
+            var referrer = this.scope.referrer;
+
+            if (referrer) {
+
+                this.getView().elements.$preferences.showSpecifiedLocationMarker(referrer);
             }
         },
 

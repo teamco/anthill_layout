@@ -53,7 +53,8 @@ define([
          *              bottom: number,
          *              left: number
          *          }
-         *      }
+         *      },
+         *      lib: {css, js}
          * }}
          */
         var DEFAULTS = {
@@ -68,6 +69,15 @@ define([
                     bottom: 0,
                     left: 0
                 }
+            },
+            lib: {
+                css: 'https://js.api.here.com/v3/3.0/mapsjs-ui.css',
+                js: [
+                    'https://js.api.here.com/v3/3.0/mapsjs-core.js',
+                    'https://js.api.here.com/v3/3.0/mapsjs-service.js',
+                    'https://js.api.here.com/v3/3.0/mapsjs-ui.js',
+                    'https://js.api.here.com/v3/3.0/mapsjs-mapevents.js'
+                ]
             }
         };
 

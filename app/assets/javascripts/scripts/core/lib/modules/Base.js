@@ -345,10 +345,14 @@ define([
          * @param {function} conditionFn
          * @param {function} callbackFn
          * @param {function} [fallbackFn]
+         * @param {number} [timeout]
          */
-        waitFor: function waitFor(conditionFn, callbackFn, fallbackFn) {
+        waitFor: function waitFor(conditionFn, callbackFn, fallbackFn, timeout) {
 
-            var timeout = 100, wait;
+            // Init timeout
+            timeout = timeout || 100;
+
+            var wait;
 
             /**
              * Define poll

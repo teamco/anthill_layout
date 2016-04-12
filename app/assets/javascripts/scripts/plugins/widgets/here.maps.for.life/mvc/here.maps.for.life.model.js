@@ -22,7 +22,22 @@ define([
         /**
          * Define preferences
          * @property HereMapsForLifeModel
-         * @type {{}}
+         * @type {{
+         *      heremapsforlifeAppId: {type: string, disabled: boolean, value: string, visible: boolean}, 
+         *      heremapsforlifeAppCode: {type: string, disabled: boolean, value: string, visible: boolean}, 
+         *      heremapsforlifeSpecifiedLocation: {type: string, disabled: boolean, value: boolean, visible: boolean, monitor: {events: string[], callback: string}}, 
+         *      heremapsforlifeViewBounds: {type: string, disabled: boolean, value: boolean, visible: boolean, monitor: {events: string[], callback: string}}, 
+         *      heremapsforlifeVenuesLayer: {type: string, disabled: boolean, value: boolean, visible: boolean}, 
+         *      heremapsforlifeRestrictMovement: {type: string, disabled: boolean, value: boolean, visible: boolean, monitor: {events: string[], callback: string}}, 
+         *      heremapsforlifeMarker: {type: string, disabled: boolean, value: boolean, visible: boolean, monitor: {events: string[], callback: string}}, 
+         *      heremapsforlifeDraggableMarker: {type: string, disabled: boolean, value: boolean, visible: boolean}, 
+         *      heremapsforlifeTerrainMap: {type: string, disabled: boolean, value: boolean, visible: boolean}, 
+         *      heremapsforlifeZoom: {type: string, disabled: boolean, value: number, visible: boolean}, 
+         *      heremapsforlifeLatitudeLongitude: {type: string, disabled: boolean, value: undefined, visible: boolean, placeholder: string}, 
+         *      heremapsforlifeLocationMarker: {type: string, disabled: boolean, value: undefined, visible: boolean, placeholder: string}, 
+         *      heremapsforlifeNWSECorners: {type: string, disabled: boolean, value: undefined, visible: boolean, placeholder: string}, 
+         *      heremapsforlifeRestrictBounds: {type: string, disabled: boolean, value: undefined, visible: boolean, placeholder: string}
+         * }}
          */
         this.preferences = {
             heremapsforlifeAppId: {
@@ -70,7 +85,7 @@ define([
                 visible: true,
                 monitor: {
                     events: ['click.toggle'],
-                    callback: 'toggleViewBounds'
+                    callback: 'toggleBoundsRestrict'
                 }
             },
             heremapsforlifeMarker: {
@@ -80,10 +95,16 @@ define([
                 visible: true,
                 monitor: {
                     events: ['click.toggle'],
-                    callback: 'toggleSpecifiedLocation'
+                    callback: 'toggleSpecifiedLocationMarker'
                 }
             },
             heremapsforlifeDraggableMarker: {
+                type: 'checkbox',
+                disabled: false,
+                value: false,
+                visible: true
+            },
+            heremapsforlifeTerrainMap: {
                 type: 'checkbox',
                 disabled: false,
                 value: false,
@@ -102,11 +123,26 @@ define([
                 visible: false,
                 placeholder: 'Map at a specified location: Latitude,Longitude'
             },
-            heremapsforlifeBoundNorthWestSouthEastCorners: {
+            heremapsforlifeLocationMarker: {
                 type: 'text',
-                disabled: true,
+                disabled: false,
                 value: undefined,
-                visible: false
+                visible: false,
+                placeholder: 'Marker on the Map: [Latitude,Longitude],[...],..'
+            },
+            heremapsforlifeNWSECorners: {
+                type: 'text',
+                disabled: false,
+                value: undefined,
+                visible: false,
+                placeholder: 'Map using View Bounds: North,West,South,East corners'
+            },
+            heremapsforlifeRestrictBounds: {
+                type: 'text',
+                disabled: false,
+                value: undefined,
+                visible: false,
+                placeholder: 'Restrict Map Movement: North,West,South,East corners'
             }
         };
 
