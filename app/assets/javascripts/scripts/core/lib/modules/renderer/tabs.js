@@ -139,7 +139,6 @@ define(function defineTabsRenderer() {
 
             var $left = $('.scroller-left', $container),
                 $right = $('.scroller-right', $container),
-                maxWidth = element.widthOfTabs($container),
                 width = $container.outerWidth(),
                 leftOffset = element.getTabsLeftPos($container);
 
