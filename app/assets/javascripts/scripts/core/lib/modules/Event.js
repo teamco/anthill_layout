@@ -43,6 +43,13 @@ define([
     return BaseEvent.extend('BaseEvent', {
 
         /**
+         * Define event to unsubscribe
+         * @property BaseEvent
+         * @type {{}}
+         */
+        unSubscribe: {},
+
+        /**
          * Check if event was available in event list
          * @memberOf BaseEvent
          * @param {string} event
@@ -79,8 +86,7 @@ define([
 
             if (typeof(root.controller.getContent) === 'function') {
 
-                child = root.controller.getContent().
-                    observer.getEventName(uuid);
+                child = root.controller.getContent().observer.getEventName(uuid);
 
                 if (child) {
                     return root;
@@ -130,9 +136,9 @@ define([
                 base = this.base;
 
             opts = base.define(opts, {}, true);
-            if (base.lib.hash.isHashEmpty(opts)) {
-                return false;
-            }
+
+            if (base.lib.hash.isHashEmpty(opts)) return false;
+
             observer.addEvent(opts.eventName);
             events[observer.onEvent(opts)] = opts.eventName;
 
@@ -140,13 +146,39 @@ define([
         },
 
         /**
+         * Remove event listener
+         * @memberOf BaseEvent
+         * @param {{eventName, eventUUID, scope}} opts
+         * @returns {*}
+         */
+        removeListener: function removeListener(opts) {
+
+            var scope = this.scope,
+                observer = opts.scope.observer,
+                events = opts.scope.eventmanager.events;
+
+            if (!opts.eventUUID) {
+                scope.logger.debug('Event not subscribed', opts);
+                return false;
+            }
+
+            observer.unRegister(opts.eventName, opts.eventUUID);
+            delete events[opts.eventUUID];
+            delete scope.eventmanager.unSubscribe[opts.eventName];
+        },
+
+        isSubscribed: function isSubscribed() {
+            // TODO
+        },
+
+        /**
          * Subscribe event
          * @memberOf BaseEvent
          * @param {{event, callback, [params], [eventName], [scope]}} opts
-         * @param {Boolean} internal
-         * @returns {Boolean|String}
+         * @param {boolean} internal
+         * @returns {boolean|string}
          */
-        subscribe: function subscribe(opts, internal) {
+        subscribe: function subscribe(opts, internal, unsubscribe) {
 
             var base = this.base, event;
             opts = base.define(opts, {}, true);
@@ -192,9 +224,9 @@ define([
         /**
          * Bind element events
          * @memberOf BaseEvent
-         * @param {String|Array} events
-         * @param {String} on
-         * @returns {Boolean}
+         * @param {string|Array} events
+         * @param {string} on
+         * @returns {boolean}
          */
         onEvent: function onEvent(events, on) {
             var scope = this.scope,
@@ -210,11 +242,11 @@ define([
                     method = controller[events[i]];
 
                 if (scope.controller.checkCondition({
-                    condition: !scope.base.isFunction(method),
-                    msg: 'Undefined method',
-                    type: 'warn',
-                    args: [controller, event, on]
-                })) {
+                        condition: !scope.base.isFunction(method),
+                        msg: 'Undefined method',
+                        type: 'warn',
+                        args: [controller, event, on]
+                    })) {
                     continue;
                 }
 

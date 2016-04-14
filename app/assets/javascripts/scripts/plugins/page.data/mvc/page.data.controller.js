@@ -303,11 +303,24 @@ define([
          */
         bindParallaxEffectToggle: function bindParallaxEffectToggle(content) {
 
-            var scope = this.scope;
+            var scope = this.scope,
+                eventName = content.eventmanager.eventList.successBuildElement;
 
             scope.logger.debug('Bind ParallaxEffect Toggle', content);
-            scope.eventmanager.subscribe({
-                event: content.eventmanager.eventList.successBuildElement,
+
+            // Remove before subscribe
+            scope.eventmanager.removeListener({
+                scope: content,
+                eventName: eventName,
+                eventUUID: scope.eventmanager.unSubscribe[eventName]
+            });
+
+            /**
+             * Fetch event uuid
+             * @type {String}
+             */
+            var eventUUID = scope.eventmanager.subscribe({
+                event: eventName,
 
                 /**
                  * successBuildElement
@@ -324,6 +337,9 @@ define([
                     content.view.elements.$preferences.toggleParallaxPrefs();
                 }
             }, true);
+
+            // Store event
+            scope.eventmanager.unSubscribe[eventName] = eventUUID;
         }
 
     }, AntHill.prototype, PluginBase.prototype);

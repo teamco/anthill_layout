@@ -19,6 +19,13 @@ define([
     var Observer = function Observer() {
 
         /**
+         * Define scope
+         * @property Observer
+         * @type {{}}
+         */
+        this.scope = undefined;
+
+        /**
          * Define listeners
          * @property Observer
          * @type {{}}
@@ -39,8 +46,8 @@ define([
         /**
          * Get event UUID
          * @memberOf Observer
-         * @param {String} eventName
-         * @returns {Array}
+         * @param {string} eventName
+         * @returns {[]}
          */
         getEventUUID: function getEventUUID(eventName) {
             var index, uuid = [];
@@ -62,7 +69,7 @@ define([
         /**
          * Get event name
          * @memberOf Observer
-         * @param {String} eventUUID
+         * @param {string} eventUUID
          * @return {{}}
          */
         getEventName: function getEventName(eventUUID) {
@@ -82,7 +89,7 @@ define([
          * @param {Function} fnCallback
          * @param {Number} [msTimeout]
          * @param {*} [thisScope]
-         * @param {Array} [args]
+         * @param {[]} [args]
          * @return {*}
          */
         defer: function defer(msTimeout, fnCallback, thisScope, args) {
@@ -102,7 +109,7 @@ define([
         /**
          * Add event
          * @memberOf Observer
-         * @param {String} eventName
+         * @param {string} eventName
          * @return {{}}
          */
         addEvent: function addEvent(eventName) {
@@ -114,9 +121,9 @@ define([
         /**
          * Remove event
          * @memberOf Observer
-         * @param {String} eventName
+         * @param {string} eventName
          */
-        removeEvent: function removeEvent(eventName) {
+        removeEvent: function removeEvent(eventName, eventUuid) {
             delete this.listeners[eventName];
         },
 
@@ -124,7 +131,7 @@ define([
          * On event
          * @memberOf Observer
          * @param {{eventUUID, params, state, priority, eventName}} opts
-         * @return {String}
+         * @return {string}
          */
         onEvent: function onEvent(opts) {
 
@@ -144,7 +151,7 @@ define([
 
             /**
              * Define array of events
-             * @type {Array}
+             * @type {[]}
              */
             this.listeners[opts.eventName] = base.define(
                 this.listeners[opts.eventName],
@@ -227,9 +234,9 @@ define([
         /**
          * Un event
          * @memberOf Observer
-         * @param {String} eventName
-         * @param {String} eventUUID
-         * @return {Boolean}
+         * @param {string} eventName
+         * @param {string} eventUUID
+         * @return {boolean}
          */
         unEvent: function unEvent(eventName, eventUUID) {
 
@@ -281,7 +288,7 @@ define([
 
             /**
              * Get events
-             * @type {undefined|Array}
+             * @type {undefined|[]}
              */
             var events = this.listeners[eventName];
 
@@ -297,9 +304,9 @@ define([
         /**
          * Fire event
          * @memberOf Observer
-         * @param {Array} events
-         * @param {Array} [args]
-         * @return {Boolean}
+         * @param {[]} events
+         * @param {[]} [args]
+         * @return {boolean}
          */
         fireEvent: function fireEvent(events, args) {
 
@@ -322,6 +329,8 @@ define([
          *      state: *,                   Private internal hash
          *      callback: Function,         Callback fn
          *      scope: *,                   Override default scope
+         *      eventName: string,
+         *      eventUUID: string,
          *      params: {
          *          single: boolean,        Single run auto unbind
          *          buffer: number,         Single run in timeout range in ms
@@ -329,7 +338,7 @@ define([
          *          delay: number           Run after timeout in ms
          *      }
          * }} opts
-         * @param {Array} [args]            Callback params
+         * @param {[]} [args]            Callback params
          * @return
          */
         executeEvent: function executeEvent(scope, opts, args) {
@@ -408,10 +417,8 @@ define([
 
                         /**
                          * If we are reached trigger time (when no new event was occurred
-                         * within timeout) then we can continue to executing callback
-                         * function.
-                         * Else, rerunning this function with defer based on last call at
-                         * time.
+                         * within timeout) then we can continue to executing callback function.
+                         * Else, rerunning this function with defer based on last call at time.
                          */
                         if (triggerTime > currentTime) {
                             this.defer(triggerTime - currentTime, executeCallback, this);

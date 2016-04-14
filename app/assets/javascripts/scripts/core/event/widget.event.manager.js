@@ -190,6 +190,6 @@ define([
             scrollSpeedParallaxBehavior: 'scroll.speed.parallax.behavior',
             commentableContent: 'commentable.content'
         }
-
+        
     }, BaseEvent.prototype);
 });

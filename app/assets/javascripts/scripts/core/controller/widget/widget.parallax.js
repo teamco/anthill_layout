@@ -53,11 +53,23 @@ define(function defineWidgetParallax() {
             var lastScrollTop = 0,
                 viewPortHeight = $page.getHeight(),
                 $element = this.controller.getView().get$item(),
-                elementHeight = $element.getHeight;
+                elementHeight = $element.getHeight,
+                eventName = root.eventmanager.eventList.scrollPublisher;
 
-            root.eventmanager.subscribe({
+            // Remove before subscribe
+            this.eventmanager.removeListener({
+                scope: root,
+                eventName: eventName,
+                eventUUID: this.eventmanager.unSubscribe[eventName]
+            });
+
+            /**
+             * Fetch event uuid
+             * @type {String}
+             */
+            var eventUUID = root.eventmanager.subscribe({
                 event: {
-                    eventName: root.eventmanager.eventList.scrollPublisher,
+                    eventName: eventName,
                     scope: this
                 },
                 callback: function _scrollWidgetCallback(event) {
@@ -84,6 +96,9 @@ define(function defineWidgetParallax() {
                     });
                 }
             }, true);
+
+            // Store event
+            this.eventmanager.unSubscribe[eventName] = eventUUID;
         },
 
         /**
@@ -122,7 +137,7 @@ define(function defineWidgetParallax() {
                         opts.scrollTop * speedY,
                         opts.scrollTop
                     );
-                    
+
                     return false;
                 }
 
