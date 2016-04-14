@@ -331,9 +331,11 @@ define([
 
             var $allowed = e ? $(e.target) : $('input[name="allowParallax"]', this.$);
 
-            $allowed.prop('checked', !!$allowed.attr('checked'));
+            if (!e && !$allowed.prop('checked') && !!$allowed.attr('checked')) {
+                $allowed.prop('checked', true);
+            }
 
-            if ($allowed.attr('checked')) {
+            if ($allowed.prop('checked')) {
                 this.enableComboBox($combos);
                 this.toggleDisableField($fields, false);
             } else {

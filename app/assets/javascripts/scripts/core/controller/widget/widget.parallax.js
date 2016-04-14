@@ -14,10 +14,20 @@ define(function defineWidgetParallax() {
         /**
          * Subscribe to scroll
          * @memberOf WidgetParallax
-         * @param {number} speed
+         * @param {string} speed
          */
         scrollSpeedParallaxBehavior: function scrollSpeedParallaxBehavior(speed) {
 
+            /**
+             * Get prefs
+             * @type {{allowParallax: boolean, orientation: string, reactionTo: string}}
+             */
+            var prefs = this.model.getConfig('preferences');
+
+            if (!prefs.allowParallax) {
+                this.logger.debug('Parallax does not allowed', speed);
+                return false;
+            }
 
             this.logger.debug('Set scroll speed parallax', speed);
 
@@ -64,8 +74,10 @@ define(function defineWidgetParallax() {
                         $element: $element,
                         elementHeight: elementHeight,
                         event: event,
-                        speed: parseFloat(speed),
+                        orientation: prefs.orientation,
+                        speed: speed.split(','),
                         direction: direction,
+                        reactionTo: prefs.reactionTo,
                         scrollTop: scrollTop,
                         offsetTop: $element.$.position().top,
                         viewPortHeight: viewPortHeight
@@ -81,7 +93,9 @@ define(function defineWidgetParallax() {
          *      $element: WidgetElement,
          *      elementHeight,
          *      event: Event,
-         *      speed: number,
+         *      speed: [],
+         *      orientation: string,
+         *      reactionTo: string,
          *      direction: string,
          *      scrollTop: number,
          *      offsetTop: number,
@@ -89,7 +103,35 @@ define(function defineWidgetParallax() {
          * }} opts
          */
         scrollParallax: function scrollParallax(opts) {
-            opts.$element.translateY(opts.scrollTop * opts.speed);
+
+            // Get scroll orientation
+            var orientation = 'Y';
+
+            if (opts.orientation === 'Horizontal') orientation = 'X';
+
+            // Get speed Y
+            var speedX = parseFloat(opts.speed[0]);
+
+            if (opts.reactionTo === 'Scroll') {
+
+                if (opts.orientation === 'Both') {
+
+                    var speedY = opts.speed[1] ? parseFloat(opts.speed[1]) : speedX;
+                    opts.$element.translateXY(
+                        opts.scrollTop * speedX,
+                        opts.scrollTop * speedY,
+                        opts.scrollTop
+                    );
+                    
+                    return false;
+                }
+
+                opts.$element['translate' + orientation](opts.scrollTop * speedX, opts.scrollTop);
+            }
+
+            if (opts.reactionTo === 'Mouse move') {
+                // TODO
+            }
         }
     });
 });

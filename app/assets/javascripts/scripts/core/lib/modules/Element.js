@@ -1133,6 +1133,15 @@ define([
             if (event.type === 'mouseleave' || event.type === 'click') {
                 setTimeout(_hideBorder, 300);
             }
+        },
+
+        /**
+         * isModal element
+         * @memberOf BaseElement
+         * @returns {boolean}
+         */
+        isModal: function isModal() {
+            return this.name === 'ModalElement';
         }
 
     }, AntHill.prototype, Renderer.prototype);

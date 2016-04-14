@@ -322,9 +322,10 @@ define([
                 }
             },
             scrollSpeed: {
-                type: 'number',
+                type: 'text',
                 disabled: true,
                 value: 1,
+                placeholder: 'Enter range: Horizontal,Vertical',
                 visible: true
             },
             moveRange: {
@@ -362,6 +363,10 @@ define([
                     {
                         type: 'text',
                         value: 'Horizontal'
+                    },
+                    {
+                        type: 'text',
+                        value: 'Both'
                     }
                 ],
                 value: 'Vertical',

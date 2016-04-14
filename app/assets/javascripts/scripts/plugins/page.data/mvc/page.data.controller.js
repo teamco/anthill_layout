@@ -311,11 +311,16 @@ define([
 
                 /**
                  * successBuildElement
-                 * @param {ModalElement} $modal
+                 * @param {ModalElement} $element
                  * @private
                  */
-                callback: function _buildCallback($modal) {
-                    this.logger.debug('After build element callback', $modal, content);
+                callback: function _buildCallback($element) {
+
+                    if (!$element.isModal()) {
+                        return false;
+                    }
+
+                    this.logger.debug('After build element callback', $element, content);
                     content.view.elements.$preferences.toggleParallaxPrefs();
                 }
             }, true);

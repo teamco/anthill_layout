@@ -577,9 +577,26 @@ define([
          * Translate x
          * @memberOf WidgetElement
          * @param {number} x
+         * @param {number} y
+         * @param {number} delta
          */
-        translateX: function translateX(x) {
-            var translateX = 'translateX(' + x + 'px)';
+        translateXY: function translateX(x, y, delta) {
+            var translateX = 'translate(' + x + 'px, ' + (delta + y) + 'px)';
+            this.$.css({
+                transform: translateX,
+                msTransform: translateX,
+                webkitTransform: translateX
+            })
+        },
+
+        /**
+         * Translate x
+         * @memberOf WidgetElement
+         * @param {number} x
+         * @param {number} delta
+         */
+        translateX: function translateX(x, delta) {
+            var translateX = 'translate(' + x + 'px, ' + delta + 'px)';
             this.$.css({
                 transform: translateX,
                 msTransform: translateX,
@@ -593,7 +610,7 @@ define([
          * @param {number} y
          */
         translateY: function translateY(y) {
-            var translateY = 'translateY(' + y + 'px)';
+            var translateY = 'translate(0, ' + y + 'px)';
             this.$.css({
                 transform: translateY,
                 msTransform: translateY,
