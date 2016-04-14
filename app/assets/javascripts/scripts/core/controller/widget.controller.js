@@ -124,9 +124,9 @@ define(
                 },
 
                 /**
-                 * Get page jquery object
+                 * Get PageElement
                  * @memberOf WidgetController
-                 * @returns {*|jQuery}
+                 * @returns {PageElement}
                  */
                 get$page: function get$page() {
                     return this.getContainment().view.elements.$page;

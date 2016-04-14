@@ -170,6 +170,16 @@ define([
                 )
             });
 
+            text = 'Parallax';
+            this.addTabItem($tabs, {
+                uuid: 'widget-parallax',
+                text: text,
+                $container: $container,
+                content: this.renderPrefsForm(
+                    this.renderWidgetParallax(widget), text
+                )
+            });
+
             text = 'Layout';
             this.addTabItem($tabs, {
                 uuid: 'layout',
@@ -231,7 +241,7 @@ define([
 
             interactions.zoomable.disabled = !zoomablePermission;
             interactions.zoomable.checked = zoomable;
-            
+
             interactions.draggable.disabled = !draggablePermission;
             interactions.draggable.checked = draggable;
 
@@ -240,6 +250,23 @@ define([
 
             return this.mergeWidgetPrefs(
                 interactions,
+                preferences
+            );
+        },
+
+        /**
+         * Render widget parallax
+         * @memberOf WidgetPreferences
+         * @param {Widget} widget
+         * @returns {*}
+         */
+        renderWidgetParallax: function renderWidgetParallax(widget) {
+
+            // Get parallax prefs
+            var parallax = widget.controller.getPreferences().parallax;
+
+            return this.mergeWidgetPrefs(
+                parallax,
                 widget.model.getConfig('preferences')
             );
         },
@@ -289,6 +316,26 @@ define([
                 row: _renderPrefs('Row', row),
                 height: _renderPrefs('Height', height)
             };
+        },
+
+        /**
+         * Toggle parallax prefs
+         * @memberOf WidgetPreferences
+         * @param {Event} e
+         * @returns {*}
+         */
+        toggleParallaxPrefs: function toggleParallaxPrefs(e) {
+
+            var $combos = $('.parallax-prefs.combobox', this.$),
+                $fields = $('.parallax-prefs.number input, .parallax-prefs.text input', this.$);
+
+            if ($(e.target).is(':checked')) {
+                this.enableComboBox($combos);
+                this.toggleDisableField($fields, false);
+            } else {
+                this.disableComboBox($combos);
+                this.toggleDisableField($fields, true);
+            }
         }
 
     }, BasePreferencesElement.prototype);

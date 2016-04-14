@@ -25,7 +25,6 @@ define([
          *      widgetUrl: {type: string, disabled: boolean, value: undefined, visible: boolean},
          *      onClickOpenUrl: {type: string, disabled: boolean, value: undefined, visible: boolean},
          *      customClassName: {type: string, disabled: boolean, value: undefined, visible: boolean},
-         *      scrollSpeed: {type: string, disabled: boolean, value: undefined, visible: boolean},
          *      statistics: {type: string, disabled: boolean, value: undefined, visible: boolean},
          *      hideContentOnDrag: {type: string, disabled: boolean, value: undefined, visible: boolean},
          *      hideContentOnResize: {type: string, disabled: boolean, value: undefined, visible: boolean},
@@ -62,12 +61,6 @@ define([
                 type: 'text',
                 disabled: false,
                 value: undefined,
-                visible: true
-            },
-            scrollSpeed: {
-                type: 'number',
-                disabled: false,
-                value: 1,
                 visible: true
             },
             statistics: {
@@ -309,6 +302,75 @@ define([
         };
 
         /**
+         * Define parallax tab
+         * @type {{
+         *      allowParallax: {type: string, disabled: boolean, checked: boolean, visible: boolean},
+         *      scrollSpeed: {type: string, disabled: boolean, value: number, visible: boolean},
+         *      reactionTo: {type: string, disabled: boolean, list: *[], value: string, visible: boolean},
+         *      orientation: {type: string, disabled: boolean, list: *[], value: string, visible: boolean}
+         * }}
+         */
+        var parallax = {
+            allowParallax: {
+                type: 'checkbox',
+                disabled: false,
+                checked: false,
+                visible: true,
+                monitor: {
+                    events: ['click.parallax'],
+                    callback: 'allowParallaxPreferences'
+                }
+            },
+            scrollSpeed: {
+                type: 'number',
+                disabled: true,
+                value: 1,
+                visible: true
+            },
+            moveRange: {
+                type: 'text',
+                disabled: true,
+                value: undefined,
+                placeholder: 'Enter range: Min,Max',
+                visible: true
+            },
+            reactionTo: {
+                type: 'combobox',
+                disabled: true,
+                list: [
+                    {
+                        type: 'text',
+                        value: 'Scroll'
+                    },
+                    {
+                        type: 'text',
+                        value: 'Mouse move'
+                    }
+                ],
+                value: 'Scroll',
+                visible: true,
+                label: true
+            },
+            orientation: {
+                type: 'combobox',
+                disabled: true,
+                list: [
+                    {
+                        type: 'text',
+                        value: 'Vertical'
+                    },
+                    {
+                        type: 'text',
+                        value: 'Horizontal'
+                    }
+                ],
+                value: 'Vertical',
+                visible: true,
+                label: true
+            }
+        };
+
+        /**
          * Define widget prefs
          * @property WidgetModel
          * @type {{
@@ -348,12 +410,19 @@ define([
          *          setStickToBottomLeft: {type: string, disabled: boolean, group: string, events: string[], checked: boolean, visible: boolean},
          *          setStickToTopRight: {type: string, disabled: boolean, group: string, events: string[], checked: boolean, visible: boolean},
          *          setStickToBottomRight: {type: string, disabled: boolean, group: string, events: string[], checked: boolean, visible: boolean}
+         *      },
+         *      parallax: {
+         *          allowParallax: {type: string, disabled: boolean, checked: boolean, visible: boolean},
+         *          scrollSpeed: {type: string, disabled: boolean, value: number, visible: boolean},
+         *          reactionTo: {type: string, disabled: boolean, list: *[], value: string, visible: boolean},
+         *          orientation: {type: string, disabled: boolean, list: *[], value: string, visible: boolean}
          *      }
          * }}
          */
         this.preferences = {
             defaults: defaults,
-            interactions: interactions
+            interactions: interactions,
+            parallax: parallax
         };
     };
 

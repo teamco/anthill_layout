@@ -159,3 +159,20 @@
     background-size: 48px;
     cursor: pointer;
 }
+
+.modal-open .modal.widget-prefs,
+.modal.widget-prefs .modal-body {
+    overflow: visible;
+}
+
+.modal .tab-content .nav > li > a {
+    padding: 7px 10px;
+    border-radius: 0 5px 5px 0;
+    min-width: 300px;
+    margin-right: 10px;
+    border: 1px solid #dfdfdf;
+}
+
+.modal .tab-content .nav > li > a .caret {
+    margin-top: 8px;
+}

@@ -122,7 +122,7 @@ define([
                 ButtonElement, {
                     addWidgetRule: {
                         text: 'Publish',
-                        type: 'info',
+                        type: 'warning',
                         $container: this.$.find('.input-group:last'),
                         events: {
                             click: 'addWidgetRule'
@@ -193,7 +193,7 @@ define([
                 ButtonElement, {
                     addContentRule: {
                         text: 'Publish',
-                        type: 'info',
+                        type: 'warning',
                         $container: this.$.find('.input-group:last'),
                         events: {
                             click: [

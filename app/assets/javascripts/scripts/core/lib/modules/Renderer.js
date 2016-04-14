@@ -88,17 +88,18 @@ define([
                 /**
                  * Get validated callback
                  * @param {function} fn
+                 * @param {BaseController} controller
                  * @returns {function|undefined}
                  * @private
                  */
-                function _validateCallback(fn) {
+                function _validateCallback(fn, controller) {
 
                     if (typeof fn === 'function') {
                         return fn;
                     }
 
                     controller.scope.logger.warn(
-                        'Undefined callback', fn
+                        'Undefined callback', fn, controller
                     );
                 }
 
@@ -108,18 +109,23 @@ define([
                      * Get callback
                      * @type {function|string}
                      */
-                    var callback = monitor.callback,
-                        controller = this.view.controller;
+                    var callback = monitor.callback;
+
+                    /**
+                     * Get controller
+                     * @type {BaseController}
+                     */
+                    var controller = this.view.controller;
 
                     if (typeof callback === 'string') {
 
-                        if (_validateCallback(controller[callback])) {
+                        if (_validateCallback(controller[callback], controller)) {
 
                             callback = controller[callback].bind(controller);
                         }
                     }
 
-                    if (_validateCallback(callback)) {
+                    if (_validateCallback(callback, controller)) {
 
                         $input.on(
                             monitor.events.join(' '),
@@ -136,10 +142,17 @@ define([
              * @param {boolean} visible
              */
             checkVisibility: function checkVisibility($input, visible) {
+                if (!visible) $input.hide();
+            },
 
-                if (!visible) {
-                    $input.hide();
-                }
+            /**
+             * Toggle disable
+             * @memberOf Renderer
+             * @param $input
+             * @param {boolean} disabled
+             */
+            toggleDisableField: function toggleDisableField($input, disabled) {
+                $input.attr({disabled: disabled});
             }
         },
         AntHill.prototype,

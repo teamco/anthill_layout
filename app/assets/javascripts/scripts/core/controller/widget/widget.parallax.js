@@ -18,6 +18,7 @@ define(function defineWidgetParallax() {
          */
         scrollSpeedParallaxBehavior: function scrollSpeedParallaxBehavior(speed) {
 
+
             this.logger.debug('Set scroll speed parallax', speed);
 
             /**
@@ -32,8 +33,17 @@ define(function defineWidgetParallax() {
              */
             var $rootElement = root.view.get$item();
 
-            // Init scroll top
-            var lastScrollTop = 0;
+            /**
+             * Get $page
+             * @type {PageElement}
+             */
+            var $page = this.controller.get$page();
+
+            // Init vars
+            var lastScrollTop = 0,
+                viewPortHeight = $page.getHeight(),
+                $element = this.controller.getView().get$item(),
+                elementHeight = $element.getHeight;
 
             root.eventmanager.subscribe({
                 event: {
@@ -50,13 +60,16 @@ define(function defineWidgetParallax() {
                     lastScrollTop = scrollTop;
 
                     this.logger.debug('Scroll speed parallax callback', event);
-                    this.controller.scrollParallax(
-                        event,
-                        parseInt(speed, 10),
-                        scrollTop,
-                        this.view.get$item().$.position().top,
-                        direction
-                    );
+                    this.controller.scrollParallax({
+                        $element: $element,
+                        elementHeight: elementHeight,
+                        event: event,
+                        speed: parseFloat(speed),
+                        direction: direction,
+                        scrollTop: scrollTop,
+                        offsetTop: $element.$.position().top,
+                        viewPortHeight: viewPortHeight
+                    });
                 }
             }, true);
         },
@@ -64,26 +77,34 @@ define(function defineWidgetParallax() {
         /**
          * Scroll parallax callback
          * @memberOf WidgetParallax
-         * @param {Event} event
-         * @param {number} speed
-         * @param {number} scrollTop
-         * @param {number} fgOffset
-         * @param {string} direction
+         * @param {{
+         *      $element: WidgetElement,
+         *      elementHeight,
+         *      event: Event,
+         *      speed: number,
+         *      direction: string,
+         *      scrollTop: number,
+         *      offsetTop: number,
+         *      viewPortHeight
+         * }} opts
          */
-        scrollParallax: function scrollParallax(event, speed, scrollTop, fgOffset, direction) {
+        scrollParallax: function scrollParallax(opts) {
+            this.translateY(opts.$element, opts.scrollTop * opts.speed);
+        },
 
-            var $element = this.getView().get$item();
-
-            if (!speed) {
-                return false;
-            }
-            var multiply = direction === 'up' ? 1 : -1;
-
-            var yPos = fgOffset;// + multiply * (scrollTop / 40);
-
-            console.log('d:' + direction, 'o:' + fgOffset, 't:' + scrollTop)
-
-            $element.$.css('top', yPos);
+        /**
+         * Translate Y
+         * @memberOf WidgetParallax
+         * @param $element
+         * @param y
+         */
+        translateY: function translateY($element, y) {
+            var translateY = 'translateY(' + y + 'px)';
+            $element.$.css({
+                transform: translateY,
+                msTransform: translateY,
+                webkitTransform: translateY
+            })
         }
     });
 });

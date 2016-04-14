@@ -233,7 +233,10 @@ define(['jquery'], function defineBasePreferencesElement($) {
                     index,
                     undefined,
                     node.visible,
-                    node.placeholder
+                    node.disabled,
+                    node.placeholder,
+                    node.store,
+                    node.label
                 );
             }
 

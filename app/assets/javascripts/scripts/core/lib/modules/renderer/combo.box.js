@@ -27,16 +27,24 @@ define([], function defineComboBoxRenderer() {
          * @param {string} index
          * @param {{type: string, callback: function}} [event]
          * @param {boolean} [visible]
+         * @param {boolean} [disabled]
          * @param {boolean} [placeholder]
          * @param {boolean} [store]
+         * @param {boolean} [label]
          */
-        renderCombobox: function renderCombobox(data, selected, name, index, event, visible, placeholder, store) {
+        renderCombobox: function renderCombobox(data, selected, name, index, event, visible, disabled, placeholder, store, label) {
 
             // Init placeholder
             placeholder = _.isUndefined(placeholder) ? false : !!placeholder;
 
+            // Init disabled
+            disabled = _.isUndefined(disabled) ? false : !!disabled;
+
             // Init store
-            store = _.isUndefined(store) ? true : !!placeholder;
+            store = _.isUndefined(store) ? true : !!store;
+
+            // Init label
+            label = _.isUndefined(label) ? false : !!label;
 
             /**
              * Define active content
@@ -59,7 +67,7 @@ define([], function defineComboBoxRenderer() {
                 id = this.base.lib.generator.UUID() + '-combobox',
                 $combo = $([
                     '<ul class="nav"><li role="presentation" class="dropdown">',
-                    '<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">',
+                    '<a class="dropdown-toggle', disabled ? ' disabled' : '', '" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">',
                     '<span class="caret pull-right"></span></a>',
                     '<ul class="dropdown-menu"></ul>',
                     '</li></ul>'
@@ -131,9 +139,13 @@ define([], function defineComboBoxRenderer() {
                     $li.append(
                         this.renderTextField({
                             name: field.name,
+                            text: field.text.trim(),
                             placeholder: field.placeholder,
                             value: field.value,
-                            disabled: field.disabled
+                            disabled: field.disabled,
+                            visible: field.visible,
+                            validate: field.validate,
+                            monitor: field.monitor
                         })
                     );
                 }
@@ -183,7 +195,19 @@ define([], function defineComboBoxRenderer() {
                 );
             }
 
-            return $combo;
+            // Define label
+            var $label = $([
+                '<div class="input-group">',
+                '<span class="input-group-addon">', index.humanize(), '</span>',
+                '</div>'
+            ].join(''));
+
+            if (disabled) {
+                this.disableComboBox($combo);
+            }
+
+            return label ?
+                $label.append($combo) : $combo;
         },
 
         /**

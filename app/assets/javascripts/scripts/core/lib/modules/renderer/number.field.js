@@ -25,6 +25,7 @@ define(function defineNumberFieldRenderer() {
          *      value,
          *      [disabled]: boolean,
          *      [monitor],
+         *      [visible],
          *      [validate]: {mask: RegExp, blank: boolean}
          * }} opts
          * @returns {*[]}

@@ -254,9 +254,19 @@ define([
             },
 
             /**
+             * Allow parallax prefs
+             * @memberOf WidgetContentController
+             * @param {Event} e
+             */
+            allowParallaxPreferences: function allowParallaxPreferences(e) {
+                this.scope.logger.debug('Toggle parallax prefs', e);
+                this.getView().elements.$preferences.toggleParallaxPrefs(e);
+            },
+
+            /**
              * Provide statistics before transfer
              * @memberOf WidgetContentController
-             * @param e
+             * @param {Event} e
              */
             provideStats: function provideStats(e) {
 

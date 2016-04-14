@@ -25,7 +25,8 @@ define(function defineCheckBoxRenderer() {
          *      value,
          *      [checked]: boolean,
          *      [disabled]: boolean,
-         *      [monitor]
+         *      [monitor],
+         *      [visible]
          * }} opts
          * @returns {*}
          */

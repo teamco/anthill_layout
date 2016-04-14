@@ -827,8 +827,7 @@ define([
             store: function store(node, data, counter) {
 
                 if (this.isConsumptionMode()) {
-
-                    this.scope.logger.warn('Unable to save layout in consumption mode');
+                    this.scope.logger.debug('Unable to save layout in consumption mode');
                     return false;
                 }
 
