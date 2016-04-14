@@ -25,6 +25,7 @@ define([
          *      widgetUrl: {type: string, disabled: boolean, value: undefined, visible: boolean},
          *      onClickOpenUrl: {type: string, disabled: boolean, value: undefined, visible: boolean},
          *      customClassName: {type: string, disabled: boolean, value: undefined, visible: boolean},
+         *      scrollSpeed: {type: string, disabled: boolean, value: undefined, visible: boolean},
          *      statistics: {type: string, disabled: boolean, value: undefined, visible: boolean},
          *      hideContentOnDrag: {type: string, disabled: boolean, value: undefined, visible: boolean},
          *      hideContentOnResize: {type: string, disabled: boolean, value: undefined, visible: boolean},
@@ -61,6 +62,12 @@ define([
                 type: 'text',
                 disabled: false,
                 value: undefined,
+                visible: true
+            },
+            scrollSpeed: {
+                type: 'number',
+                disabled: false,
+                value: 1,
                 visible: true
             },
             statistics: {
@@ -311,6 +318,7 @@ define([
          *          widgetUrl: {type: string, disabled: boolean, value: undefined, visible: boolean},
          *          onClickOpenUrl: {type: string, disabled: boolean, value: undefined, visible: boolean},
          *          customClassName: {type: string, disabled: boolean, value: undefined, visible: boolean},
+         *          scrollSpeed: {type: string, disabled: boolean, value: undefined, visible: boolean},
          *          statistics: {type: string, disabled: boolean, value: undefined, visible: boolean},
          *          hideContentOnDrag: {type: string, disabled: boolean, value: undefined, visible: boolean},
          *          hideContentOnResize: {type: string, disabled: boolean, value: undefined, visible: boolean},
@@ -382,6 +390,10 @@ define([
          */
         updateDOM: function updateDOM(hash) {
 
+            /**
+             * Get scope
+             * @type {Widget}
+             */
             var scope = this.scope;
 
             scope.logger.debug('Update DOM', hash);
@@ -710,7 +722,7 @@ define([
          * @param {boolean} overlapping
          */
         setOverlapping: function setOverlapping(overlapping) {
-            this.scope.config.preferences.overlapping = overlapping;
+            this._setItemInfoPreferences('overlapping', overlapping);
         },
 
         /**
@@ -899,6 +911,27 @@ define([
             scope.observer.publish(
                 scope.eventmanager.eventList.customClassName,
                 [name, currentClassName]
+            );
+        },
+
+        /**
+         * Set scroll speed behavior
+         * @memberOf WidgetModel
+         * @param {number} speed
+         */
+        setScrollSpeed: function setScrollSpeed(speed) {
+
+            this._setItemInfoPreferences('scrollSpeed', speed);
+
+            /**
+             * Get scope
+             * @type {Widget}
+             */
+            var scope = this.scope;
+
+            scope.observer.publish(
+                scope.eventmanager.eventList.scrollSpeedParallaxBehavior,
+                speed
             );
         },
 

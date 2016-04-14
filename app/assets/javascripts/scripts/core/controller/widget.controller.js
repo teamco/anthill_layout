@@ -16,7 +16,8 @@ define(
         'controller/widget/widget.stretch',
         'controller/widget/widget.stick',
         'controller/widget/widget.layer',
-        'controller/widget/widget.content'
+        'controller/widget/widget.content',
+        'controller/widget/widget.parallax'
     ],
 
     /**
@@ -25,6 +26,7 @@ define(
      * @param {BaseController} BaseController
      * @param {WidgetInteractions} WidgetInteractions
      * @param {WidgetContent} WidgetContent
+     * @param {WidgetParallax} WidgetParallax
      * @param {WidgetStretch} WidgetStretch
      * @param {WidgetStick} WidgetStick
      * @param {WidgetLayer} WidgetLayer
@@ -32,7 +34,7 @@ define(
      * @param {WidgetZoom} WidgetZoom
      * @returns {*}
      */
-    function defineWidgetController(AntHill, BaseController, WidgetInteractions, WidgetMaximize, WidgetZoom, WidgetStretch, WidgetStick, WidgetLayer, WidgetContent) {
+    function defineWidgetController(AntHill, BaseController, WidgetInteractions, WidgetMaximize, WidgetZoom, WidgetStretch, WidgetStick, WidgetLayer, WidgetContent, WidgetParallax) {
 
         /**
          * Define widget controller
@@ -297,6 +299,7 @@ define(
             AntHill.prototype,
             BaseController.prototype,
             WidgetContent.prototype,
+            WidgetParallax.prototype,
             WidgetMaximize.prototype,
             WidgetZoom.prototype,
             WidgetStretch.prototype,

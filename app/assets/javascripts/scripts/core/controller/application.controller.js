@@ -174,28 +174,64 @@ define(
                  */
                 initResizeWindow: function initResizeWindow() {
 
-                    this.logger.debug('Init window resize');
+                    /**
+                     * Get scope
+                     * @type {Application}
+                     */
+                    var scope = this;
+
+                    scope.logger.debug('Init window resize');
+
+                    $(window).on('resizestop', function _resizeStop(e) {
+                        scope.observer.publish(
+                            scope.eventmanager.eventList.resizeWindowPublisher, e
+                        );
+                    });
+                },
+
+                /**
+                 * Init scroll
+                 * @memberOf ApplicationController
+                 */
+                initScrollBehavior: function initScrollBehavior() {
 
                     /**
-                     * Define resize callback
-                     * @type {Function}
+                     * Get scope
+                     * @type {Application}
                      */
-                    var callback = this.controller.resizeWindowPublisher.bind(this);
+                    var scope = this;
 
-                    $(window).on('resizestop', callback);
+                    scope.logger.debug('Init scroll');
+
+                    scope.view.get$item().$.on(
+                        'scroll.parallax resize.parallax',
+                        function _scroll(e) {
+                            scope.observer.publish(
+                                scope.eventmanager.eventList.scrollPublisher, e
+                            );
+                        }
+                    );
+                },
+
+                /**
+                 * Scroll publisher
+                 * @memberOf ApplicationController
+                 * @param {Event} e
+                 */
+                scrollPublisher: function scrollPublisher(e) {
+                    this.logger.debug('Scroll publisher', e);
                 },
 
                 /**
                  * Resize window publisher
                  * @memberOf ApplicationController
-                 * @param e
+                 * @param {Event} e
                  */
                 resizeWindowPublisher: function resizeWindowPublisher(e) {
 
                     if (e.target === window && this.model.getConfig('isResized')) {
                         this.observer.publish(
-                            this.eventmanager.eventList.resizeWindow,
-                            e
+                            this.eventmanager.eventList.resizeWindow, e
                         );
                     }
                 },
@@ -203,7 +239,7 @@ define(
                 /**
                  * Resize window callback
                  * @memberOf ApplicationController
-                 * @param e
+                 * @param {Event} e
                  */
                 resizeWindow: function resizeWindow(e) {
                     this.logger.debug('Start resize window', e);

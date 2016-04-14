@@ -103,6 +103,7 @@ requirejs.config({
         'config/routes': {deps: ['extends/function']},
 
         'controller/behavior/behavior.error.handler': {deps: ['extends/function']},
+        'controller/behavior/behavior.fix.vulnerabilities': {deps: ['extends/function']},
 
         'controller/layout/layout.empty.rows': {deps: ['extends/function']},
         'controller/layout/layout.empty.columns': {deps: ['extends/function']},
@@ -116,6 +117,8 @@ requirejs.config({
         'controller/widget/widget.expand': {deps: ['extends/function']},
         'controller/widget/widget.scroll': {deps: ['extends/function']},
         'controller/widget/widget.comment': {deps: ['extends/function']},
+        'controller/widget/widget.zoom': {deps: ['extends/function']},
+        'controller/widget/widget.parallax': {deps: ['extends/function']},
 
         'controller/page/page.layer': {deps: ['extends/function']},
         'controller/page/page.layout': {deps: ['extends/function']},
@@ -124,12 +127,15 @@ requirejs.config({
 
         'controller/workspace/workspace.page': {deps: ['extends/function']},
         'controller/workspace/workspace.seo': {deps: ['extends/function']},
+        'controller/workspace/workspace.services': {deps: ['extends/function']},
 
         'controller/behavior/behavior.crud': {deps: ['extends/function']},
         'controller/behavior/behavior.window.resize': {deps: ['extends/function']},
 
         'controller/widget/widget.map': {deps: ['extends/function']},
         'controller/widget/widget.wireframe': {deps: ['extends/function']},
+
+        'controller/production/production': {deps: ['extends/function']},
 
         'view/application.view': {deps: ['modules/i18n']},
 
@@ -144,6 +150,7 @@ requirejs.config({
         'modules/Interactions': {deps: ['extends/function']},
         'modules/Element': {deps: ['extends/function']},
         'modules/Preferences': {deps: ['extends/function']},
-        'modules/Router': {deps: ['extends/function']}
+        'modules/Router': {deps: ['extends/function']},
+        'modules/i18n': {deps: ['extends/function']}
     }
 });

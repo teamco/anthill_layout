@@ -173,7 +173,8 @@ define([
             this.eventmanager.eventList.initResizeWindow,
             this.eventmanager.eventList.successCreated,
             this.eventmanager.eventList.loadApplication,
-            this.eventmanager.eventList.defineGlobalInstance
+            this.eventmanager.eventList.defineGlobalInstance,
+            this.eventmanager.eventList.initScrollBehavior
         );
     };
 

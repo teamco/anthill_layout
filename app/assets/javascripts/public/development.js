@@ -14,8 +14,7 @@
             version = parseInt(dataset.version || 0, 10) || 1,
             user = dataset.user,
             mode = dataset.mode,
-            environment = dataset.environment,
-            isConsumption = mode === 'consumption';
+            environment = dataset.environment;
 
         /**
          * Define Setup
@@ -25,6 +24,10 @@
         function _setup() {
 
             require([
+
+                'jquery.ui',
+                'bootstrap',
+                '_',
 
                 'lz-string',
                 'jquery.ujs',
@@ -68,14 +71,7 @@
             });
         }
 
-        require(['../scripts/core/config/main'], function defineDelegator() {
-
-            require([
-                'jquery.ui',
-                'bootstrap',
-                '_'
-            ], _setup);
-        });
+        require(['../scripts/core/config/main'], _setup);
     }
 
     _loadPublic();

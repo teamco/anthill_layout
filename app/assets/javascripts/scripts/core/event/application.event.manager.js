@@ -46,8 +46,11 @@ define([
          *      afterUpdateStorage: string,
          *      setRoutes: string,
          *      initResizeWindow: string,
+         *      resizeWindowPublisher: string,
          *      resizeWindow: {eventName: string, params: {buffer: number}},
          *      resizeWindowHooks: string,
+         *      initScrollBehavior: string,
+         *      scrollPublisher: string,
          *      createWorkspace: string,
          *      destroyWorkspace: string,
          *      destroyWorkspaces: string,
@@ -71,12 +74,21 @@ define([
             updateStorageVersion: 'update.storage.version',
             afterUpdateStorage: 'after.update.storage',
             setRoutes: 'set.routes',
+
             initResizeWindow: {
                 eventName: 'init.resize.window',
                 params: { single: true }
             },
             resizeWindow: 'resize.window',
+            resizeWindowPublisher: 'resize.window.publisher',
             resizeWindowHooks: 'resize.window.hooks',
+
+            initScrollBehavior: {
+                eventName: 'init.scroll.behavior',
+                params: { single: true }
+            },
+            scrollPublisher: 'scroll.publisher',
+
             createWorkspace: 'create.workspace',
             destroyWorkspace: 'destroy.workspace',
             destroyWorkspaces: 'destroy.workspaces',

@@ -20,7 +20,7 @@ define([
 
         /**
          * Define events
-         * @memberOf WidgetEventManager
+         * @property WidgetEventManager
          * @type {{}}
          */
         this.events = {};
@@ -30,7 +30,7 @@ define([
 
         /**
          * Define event list
-         * @memberOf WidgetEventManager
+         * @property WidgetEventManager
          * @type {{
          *      initDraggable: string,
          *      enableDraggable: string,
@@ -93,6 +93,7 @@ define([
          *      expandContent: string,
          *      collapseContent: string,
          *      scrollContent: string,
+         *      scrollSpeedParallaxBehavior: string,
          *      commentableContent: string
          * }}
          */
@@ -186,6 +187,7 @@ define([
             expandContent: 'expand.content',
             collapseContent: 'collapse.content',
             scrollContent: 'scroll.content',
+            scrollSpeedParallaxBehavior: 'scroll.speed.parallax.behavior',
             commentableContent: 'commentable.content'
         }
 
