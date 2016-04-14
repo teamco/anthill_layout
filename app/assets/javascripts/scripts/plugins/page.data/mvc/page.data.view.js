@@ -132,61 +132,54 @@ define([
                  */
                 var content = scope.activeContent;
 
-                if (!content) {
+                if (!content || !load) {
                     scope.logger.warn('Undefined content');
                     return false;
                 }
 
-                if (load) {
+                this.controller.bindParallaxEffectToggle(content);
 
-                    /**
-                     * Define $html
-                     * @type {PluginElement}
-                     */
-                    var $html = content.view.renderPreferences();
+                /**
+                 * Define $html
+                 * @type {PluginElement}
+                 */
+                var $html = content.view.renderPreferences();
 
-                    if (!$html) {
-
-                        scope.logger.warn('Wait for loading preferences');
-                        return false;
-                    }
-
-                    this.openPreferences({
-                        config: config,
-                        $html: $html.$,
-                        style: [
-                            config.preferences.resource.toClassName(),
-                            'widget-prefs preferences'
-                        ].join(' '),
-                        title: 'Widget preferences',
-                        buttons: {
-                            remove: {
-                                text: 'Remove',
-                                type: 'danger',
-                                events: {
-                                    click: 'removeWidget'
-                                }
-                            },
-                            rules: {
-                                text: 'Rules',
-                                type: 'info',
-                                events: {
-                                    click: 'rules' + scope.name
-                                }
-                            },
-                            reject: {
-                                text: 'Cancel',
-                                events: {
-                                    click: [
-                                        'rejectModalEvent',
-                                        'restoreWidgetsLayerIndex',
-                                        'restoreWidgetSticker'
-                                    ]
-                                }
+                this.openPreferences({
+                    config: config,
+                    $html: $html.$,
+                    style: [
+                        config.preferences.resource.toClassName(),
+                        'widget-prefs preferences'
+                    ].join(' '),
+                    title: 'Widget preferences',
+                    buttons: {
+                        remove: {
+                            text: 'Remove',
+                            type: 'danger',
+                            events: {
+                                click: 'removeWidget'
+                            }
+                        },
+                        rules: {
+                            text: 'Rules',
+                            type: 'info',
+                            events: {
+                                click: 'rules' + scope.name
+                            }
+                        },
+                        reject: {
+                            text: 'Cancel',
+                            events: {
+                                click: [
+                                    'rejectModalEvent',
+                                    'restoreWidgetsLayerIndex',
+                                    'restoreWidgetSticker'
+                                ]
                             }
                         }
-                    });
-                }
+                    }
+                });
             },
 
             /**

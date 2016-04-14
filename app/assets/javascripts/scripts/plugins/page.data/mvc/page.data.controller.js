@@ -294,6 +294,31 @@ define([
             page.api.destroyWidget(
                 content.controller.getContainment()
             );
+        },
+
+        /**
+         * Bind ParallaxEffect Toggle
+         * @memberOf PageDataController
+         * @param content
+         */
+        bindParallaxEffectToggle: function bindParallaxEffectToggle(content) {
+
+            var scope = this.scope;
+
+            scope.logger.debug('Bind ParallaxEffect Toggle', content);
+            scope.eventmanager.subscribe({
+                event: content.eventmanager.eventList.successBuildElement,
+
+                /**
+                 * successBuildElement
+                 * @param {ModalElement} $modal
+                 * @private
+                 */
+                callback: function _buildCallback($modal) {
+                    this.logger.debug('After build element callback', $modal, content);
+                    content.view.elements.$preferences.toggleParallaxPrefs();
+                }
+            }, true);
         }
 
     }, AntHill.prototype, PluginBase.prototype);

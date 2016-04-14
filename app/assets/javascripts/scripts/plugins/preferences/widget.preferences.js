@@ -321,7 +321,7 @@ define([
         /**
          * Toggle parallax prefs
          * @memberOf WidgetPreferences
-         * @param {Event} e
+         * @param {Event} [e]
          * @returns {*}
          */
         toggleParallaxPrefs: function toggleParallaxPrefs(e) {
@@ -329,7 +329,11 @@ define([
             var $combos = $('.parallax-prefs.combobox', this.$),
                 $fields = $('.parallax-prefs.number input, .parallax-prefs.text input', this.$);
 
-            if ($(e.target).is(':checked')) {
+            var $allowed = e ? $(e.target) : $('input[name="allowParallax"]', this.$);
+
+            $allowed.prop('checked', !!$allowed.attr('checked'));
+
+            if ($allowed.attr('checked')) {
                 this.enableComboBox($combos);
                 this.toggleDisableField($fields, false);
             } else {

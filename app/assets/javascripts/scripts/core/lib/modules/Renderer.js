@@ -117,20 +117,16 @@ define([
                      */
                     var controller = this.view.controller;
 
-                    if (typeof callback === 'string') {
-
-                        if (_validateCallback(controller[callback], controller)) {
-
-                            callback = controller[callback].bind(controller);
-                        }
+                    if (typeof callback === 'string' && _validateCallback(controller[callback], controller)) {
+                        callback = controller[callback].bind(controller);
                     }
 
                     if (_validateCallback(callback, controller)) {
+                        $input.on(monitor.events.join(' '), callback);
+                    }
 
-                        $input.on(
-                            monitor.events.join(' '),
-                            callback
-                        );
+                    if ($input[0].type === 'checkbox' && $input.prop('checked')) {
+                        $input.trigger(monitor.events.join(' '));
                     }
                 }
             },

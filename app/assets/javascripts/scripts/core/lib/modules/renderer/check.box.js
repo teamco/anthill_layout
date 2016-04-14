@@ -52,10 +52,7 @@ define(function defineCheckBoxRenderer() {
                 disabled: this.base.defineBoolean(opts.disabled, false, true)
             }).val(opts.value);
 
-            $input.prop(
-                'checked',
-                checked
-            );
+            $input.prop('checked', checked);
 
             this.initMonitor($input, opts.monitor);
             this.checkVisibility($input, opts.visible);

@@ -30,7 +30,7 @@ define(['jquery'], function defineBasePreferencesElement($) {
          * @param opts
          */
         openPreferences: function openPreferences(opts) {
-
+            
             /**
              * Define buttons
              * @type {*}

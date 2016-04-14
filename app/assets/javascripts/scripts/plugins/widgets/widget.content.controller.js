@@ -259,8 +259,16 @@ define([
              * @param {Event} e
              */
             allowParallaxPreferences: function allowParallaxPreferences(e) {
-                this.scope.logger.debug('Toggle parallax prefs', e);
-                this.getView().elements.$preferences.toggleParallaxPrefs(e);
+
+                // Get scope
+                var scope = this.scope,
+                    $preferences = scope.view.elements.$preferences;
+
+                scope.logger.debug('Toggle parallax prefs', e);
+
+                if ($preferences) {
+                    $preferences.toggleParallaxPrefs(e);
+                }
             },
 
             /**

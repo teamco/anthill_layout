@@ -75,7 +75,7 @@ define(function defineTabsRenderer() {
          * Render Tab item
          * @memberOf TabsRenderer
          * @param $tabs
-         * @param {*} item
+         * @param {{uuid, $container, text, content, dataToggle}} item
          * @param {boolean} [active]
          */
         addTabItem: function addTabItem($tabs, item, active) {

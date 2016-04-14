@@ -89,22 +89,7 @@ define(function defineWidgetParallax() {
          * }} opts
          */
         scrollParallax: function scrollParallax(opts) {
-            this.translateY(opts.$element, opts.scrollTop * opts.speed);
-        },
-
-        /**
-         * Translate Y
-         * @memberOf WidgetParallax
-         * @param $element
-         * @param y
-         */
-        translateY: function translateY($element, y) {
-            var translateY = 'translateY(' + y + 'px)';
-            $element.$.css({
-                transform: translateY,
-                msTransform: translateY,
-                webkitTransform: translateY
-            })
+            opts.$element.translateY(opts.scrollTop * opts.speed);
         }
     });
 });

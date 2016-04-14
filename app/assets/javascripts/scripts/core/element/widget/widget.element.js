@@ -571,6 +571,34 @@ define([
 
             $('body').zoomTo({targetsize: 1.0});
             this.$.removeClass('zoomTarget');
+        },
+
+        /**
+         * Translate x
+         * @memberOf WidgetElement
+         * @param {number} x
+         */
+        translateX: function translateX(x) {
+            var translateX = 'translateX(' + x + 'px)';
+            this.$.css({
+                transform: translateX,
+                msTransform: translateX,
+                webkitTransform: translateX
+            })
+        },
+
+        /**
+         * Translate Y
+         * @memberOf WidgetElement
+         * @param {number} y
+         */
+        translateY: function translateY(y) {
+            var translateY = 'translateY(' + y + 'px)';
+            this.$.css({
+                transform: translateY,
+                msTransform: translateY,
+                webkitTransform: translateY
+            })
         }
 
     }, BaseElement.prototype);
