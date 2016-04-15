@@ -103,7 +103,6 @@ define([
 
             this.view.controller.clearParentThumbnail();
             this.updateFilters(opts);
-            this.handleFlipImage(opts);
         },
 
         /**
@@ -136,13 +135,6 @@ define([
                             );
                     }
                 }
-            }
-        },
-
-        handleFlipImage: function handleFlipImage(opts) {
-
-            if (opts.flipH) {
-                this.$.addClass('flip');
             }
         },
 
@@ -212,6 +204,40 @@ define([
             $image.setHtml($image.$img);
 
             return false;
+        },
+
+        /**
+         * Update ScaleX
+         * @memberOf ImageElement
+         * @param $img
+         * @param scale
+         */
+        updateScaleHorizontal: function updateScaleHorizontal($img, scale) {
+
+            // Get css
+            var css = this.base.lib.css;
+
+            css.defineCss(
+                'transform', $img, 'scaleX({0})'.replace(/\{0}/, scale)
+            );
+            css.resetMatrix($img);
+        },
+
+        /**
+         * Update ScaleY
+         * @memberOf ImageElement
+         * @param $img
+         * @param scale
+         */
+        updateScaleVertical: function updateScaleVertical($img, scale) {
+
+            // Get css
+            var css = this.base.lib.css;
+
+            css.defineCss(
+                'transform', $img, 'scaleY({0})'.replace(/\{0}/, scale)
+            );
+            css.resetMatrix($img);
         },
 
         /**

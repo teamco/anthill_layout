@@ -86,17 +86,33 @@ define([
                 checked: false,
                 visible: true
             },
-            imageFlipHorizontal: {
-                type: 'checkbox',
-                disabled: false,
-                checked: false,
-                visible: true
+            imageScaleHorizontal: {
+                type: 'range',
+                disabled: true,
+                visible: true,
+                value: 1,
+                min: -100,
+                max: 100,
+                step: 1,
+                unit: '',
+                monitor: {
+                    events: ['update.preview'],
+                    callback: 'updatePreview'
+                }
             },
-            imageFlipVertical: {
-                type: 'checkbox',
-                disabled: false,
-                checked: false,
-                visible: true
+            imageScaleVertical: {
+                type: 'range',
+                disabled: true,
+                visible: true,
+                value: 1,
+                min: -100,
+                max: 100,
+                step: 1,
+                unit: '',
+                monitor: {
+                    events: ['update.preview'],
+                    callback: 'updatePreview'
+                }
             },
             imageBlur: {
                 type: 'range',
@@ -362,21 +378,21 @@ define([
             },
 
             /**
-             * Set image flip h
+             * Set image scale h
              * @memberOf ImageModel
-             * @param {boolean} flip
+             * @param {boolean} scale
              */
-            setImageFlipHorizontal: function setImageFlipHorizontal(flip) {
-                this.setPrefs('imageFlipHorizontal', flip);
+            setImageScaleHorizontal: function setImageScaleHorizontal(scale) {
+                this.setPrefs('imageScaleHorizontal', scale);
             },
 
             /**
-             * Set image flip v
+             * Set image scale v
              * @memberOf ImageModel
-             * @param {boolean} flip
+             * @param {boolean} scale
              */
-            setImageFlipVertical: function setImageFlipVertical(flip) {
-                this.setPrefs('imageFlipVertical', flip);
+            setImageScaleVertical: function setImageScaleVertical(scale) {
+                this.setPrefs('imageScaleVertical', scale);
             },
 
             /**
