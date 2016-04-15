@@ -86,6 +86,18 @@ define([
                 checked: false,
                 visible: true
             },
+            imageFlipHorizontal: {
+                type: 'checkbox',
+                disabled: false,
+                checked: false,
+                visible: true
+            },
+            imageFlipVertical: {
+                type: 'checkbox',
+                disabled: false,
+                checked: false,
+                visible: true
+            },
             imageBlur: {
                 type: 'range',
                 disabled: true,
@@ -347,6 +359,24 @@ define([
              */
             setImageSplitContent: function setImageSplitContent(split) {
                 this.setPrefs('imageSplitContent', split);
+            },
+
+            /**
+             * Set image flip h
+             * @memberOf ImageModel
+             * @param {boolean} flip
+             */
+            setImageFlipHorizontal: function setImageFlipHorizontal(flip) {
+                this.setPrefs('imageFlipHorizontal', flip);
+            },
+
+            /**
+             * Set image flip v
+             * @memberOf ImageModel
+             * @param {boolean} flip
+             */
+            setImageFlipVertical: function setImageFlipVertical(flip) {
+                this.setPrefs('imageFlipVertical', flip);
             },
 
             /**

@@ -45,12 +45,14 @@ define([
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
-            this.view.elements.$image.renderEmbeddedContent({
+            this.view.get$item().renderEmbeddedContent({
                 url: this.model.getPrefs('imageUrl'),
                 text: this.model.getPrefs('imageText'),
                 repeatX: this.model.getPrefs('imageRepeatX'),
                 repeatY: this.model.getPrefs('imageRepeatY'),
                 stretch: this.model.getPrefs('imageStretch'),
+                flipH: this.model.getPrefs('imageFlipHorizontal'),
+                flipV: this.model.getPrefs('imageFlipVertical'),
                 updateBlur: this.model.getPrefs('imageBlur'),
                 updateBrightness: this.model.getPrefs('imageBrightness'),
                 updateContrast: this.model.getPrefs('imageContrast'),
@@ -83,7 +85,7 @@ define([
                 )
             );
 
-            this.view.elements.$image.renderSplitEmbeddedContent({
+            this.view.get$item().renderSplitEmbeddedContent({
                 url: this.model.getPrefs('imageUrl'),
                 text: this.model.getPrefs('imageText'),
                 repeatX: this.model.getPrefs('imageRepeatX'),
@@ -97,7 +99,7 @@ define([
         /**
          * Update preview
          * @memberOf ImageController
-         * @param event
+         * @param {Event} event
          */
         updatePreview: function updatePreview(event) {
 

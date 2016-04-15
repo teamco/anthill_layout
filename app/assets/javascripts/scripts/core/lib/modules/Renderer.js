@@ -124,10 +124,6 @@ define([
                     if (_validateCallback(callback, controller)) {
                         $input.on(monitor.events.join(' '), callback);
                     }
-
-                    if ($input[0].type === 'checkbox' && $input.prop('checked')) {
-                        $input.trigger(monitor.events.join(' '));
-                    }
                 }
             },
 

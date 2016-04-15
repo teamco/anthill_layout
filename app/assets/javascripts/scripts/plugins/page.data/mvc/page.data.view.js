@@ -137,8 +137,6 @@ define([
                     return false;
                 }
 
-                this.controller.bindParallaxEffectToggle(content);
-
                 /**
                  * Define $html
                  * @type {PluginElement}

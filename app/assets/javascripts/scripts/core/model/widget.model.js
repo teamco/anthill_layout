@@ -315,46 +315,18 @@ define([
                 type: 'checkbox',
                 disabled: false,
                 checked: false,
-                visible: true,
-                monitor: {
-                    events: ['click.parallax'],
-                    callback: 'allowParallaxPreferences'
-                }
+                visible: true
             },
             scrollSpeed: {
                 type: 'text',
-                disabled: true,
+                disabled: false,
                 value: 1,
-                placeholder: 'Enter range: Horizontal,Vertical',
+                placeholder: 'Horizontal,Vertical',
                 visible: true
-            },
-            moveRange: {
-                type: 'text',
-                disabled: true,
-                value: undefined,
-                placeholder: 'Enter range: Min,Max',
-                visible: true
-            },
-            reactionTo: {
-                type: 'combobox',
-                disabled: true,
-                list: [
-                    {
-                        type: 'text',
-                        value: 'Scroll'
-                    },
-                    {
-                        type: 'text',
-                        value: 'Mouse move'
-                    }
-                ],
-                value: 'Scroll',
-                visible: true,
-                label: true
             },
             orientation: {
                 type: 'combobox',
-                disabled: true,
+                disabled: false,
                 list: [
                     {
                         type: 'text',
@@ -372,6 +344,30 @@ define([
                 value: 'Vertical',
                 visible: true,
                 label: true
+            },
+            reactionTo: {
+                type: 'combobox',
+                disabled: false,
+                list: [
+                    {
+                        type: 'text',
+                        value: 'Scroll'
+                    },
+                    {
+                        type: 'text',
+                        value: 'Mouse move'
+                    }
+                ],
+                value: 'Scroll',
+                visible: true,
+                label: true
+            },
+            moveRange: {
+                type: 'text',
+                disabled: false,
+                value: undefined,
+                placeholder: 'Enter range: Min,Max',
+                visible: true
             }
         };
 

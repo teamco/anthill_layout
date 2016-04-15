@@ -50,11 +50,7 @@ define([
                 // Update image
                 var $url = $('textarea[name="imageUrl"]', $container);
 
-                this.updatePreviewImage(
-                    this, {
-                        target: $url[0]
-                    }
-                );
+                this.updatePreviewImage(this, {target: $url[0]});
             },
 
             /**

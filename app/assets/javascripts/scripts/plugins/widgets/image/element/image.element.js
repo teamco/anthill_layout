@@ -103,6 +103,7 @@ define([
 
             this.view.controller.clearParentThumbnail();
             this.updateFilters(opts);
+            this.handleFlipImage(opts);
         },
 
         /**
@@ -135,6 +136,13 @@ define([
                             );
                     }
                 }
+            }
+        },
+
+        handleFlipImage: function handleFlipImage(opts) {
+
+            if (opts.flipH) {
+                this.$.addClass('flip');
             }
         },
 

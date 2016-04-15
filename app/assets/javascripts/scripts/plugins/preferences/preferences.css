@@ -160,11 +160,6 @@
     cursor: pointer;
 }
 
-.modal-open .modal.widget-prefs,
-.modal.widget-prefs .modal-body {
-    overflow: visible;
-}
-
 .modal .tab-content .nav > li > a {
     padding: 7px 10px;
     border-radius: 0 5px 5px 0;

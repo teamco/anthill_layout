@@ -316,32 +316,6 @@ define([
                 row: _renderPrefs('Row', row),
                 height: _renderPrefs('Height', height)
             };
-        },
-
-        /**
-         * Toggle parallax prefs
-         * @memberOf WidgetPreferences
-         * @param {Event} [e]
-         * @returns {*}
-         */
-        toggleParallaxPrefs: function toggleParallaxPrefs(e) {
-
-            var $combos = $('.parallax-prefs.combobox', this.$),
-                $fields = $('.parallax-prefs.number input, .parallax-prefs.text input', this.$);
-
-            var $allowed = e ? $(e.target) : $('input[name="allowParallax"]', this.$);
-
-            if (!e && !$allowed.prop('checked') && !!$allowed.attr('checked')) {
-                $allowed.prop('checked', true);
-            }
-
-            if ($allowed.prop('checked')) {
-                this.enableComboBox($combos);
-                this.toggleDisableField($fields, false);
-            } else {
-                this.disableComboBox($combos);
-                this.toggleDisableField($fields, true);
-            }
         }
 
     }, BasePreferencesElement.prototype);
