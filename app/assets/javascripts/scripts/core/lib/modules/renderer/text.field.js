@@ -49,7 +49,7 @@ define(function defineTextFieldRenderer() {
             var $input = $('<input class="form-control" />').addClass(opts.type).attr({
                 name: opts.name,
                 type: 'text',
-                placeholder: opts.placeholder,
+                placeholder: opts.placeholder || 'Enter ' + opts.text,
                 title: opts.value,
                 'aria-describedby': uuid,
                 readonly: this.base.defineBoolean(opts.readonly, false, true),

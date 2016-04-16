@@ -13,8 +13,9 @@ define([
     'services/snap.engage',
     'services/raygun.io',
     'services/github.gist',
-    'services/inject.script'
-], function defineSitePreferences(BasePreferencesElement, SiteConfigMetaDataPreferences, SiteConfigWidthPreferences, GoogleAnalyticsPreferences, SnapEngagePreferences, RaygunIOPreferences, GithubGistPreferences, InjectScriptPreferences) {
+    'services/inject.script',
+    'services/bigmir.net'
+], function defineSitePreferences(BasePreferencesElement, SiteConfigMetaDataPreferences, SiteConfigWidthPreferences, GoogleAnalyticsPreferences, SnapEngagePreferences, RaygunIOPreferences, GithubGistPreferences, InjectScriptPreferences, BigmirNetPreferences) {
 
     /**
      * Define prefs
@@ -28,6 +29,7 @@ define([
      * @extends RaygunIOPreferences
      * @extends GithubGistPreferences
      * @extends InjectScriptPreferences
+     * @extends BigmirNetPreferences
      * @constructor
      */
     var SitePreferences = function SitePreferences() {
@@ -145,19 +147,24 @@ define([
                         type: 'text',
                         value: 'Inject Script',
                         renderer: this.renderInjectScript()
+                    },
+                    {
+                        type: 'text',
+                        value: 'Bigmir.net',
+                        renderer: this.renderBigmirNet()
                     }
                 ];
 
                 var text = 'Plugins';
                 var $combo = this.renderCombobox(
-                    plugins,
+                    plugins.sortByValue('value', 'string'),
                     plugins[0].value,
                     text,
                     'workspaceServices', {
                         type: 'click.showPluginConfig',
                         callback: _showPluginConfig
                     },
-                    true, false, false
+                    true, false, false, false
                 );
 
                 var $template = $([
@@ -181,6 +188,7 @@ define([
         SnapEngagePreferences.prototype,
         RaygunIOPreferences.prototype,
         GithubGistPreferences.prototype,
-        InjectScriptPreferences.prototype
+        InjectScriptPreferences.prototype,
+        BigmirNetPreferences.prototype
     );
 });

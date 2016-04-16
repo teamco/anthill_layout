@@ -36,27 +36,37 @@ define(function defineLibImage() {
          * 	})
          */
         toDataURL: function toDataURL(url, callback, outputFormat, quality) {
-            var canvas = document.createElement('canvas'),
-                ctx = canvas.getContext('2d'),
-                img = new Image();
-            img.crossOrigin = 'Anonymous';
-            img.onload = function () {
-                var dataURL;
-                canvas.height = this.height;
-                canvas.width = this.width;
-                try {
+            
+            try {
+                var img = new Image();
+                img.crossOrigin = 'Anonymous';
+                img.onload = function _onloadCanvas() {
+                    var canvas = document.createElement('canvas');
+                    var ctx = canvas.getContext('2d');
+                    var dataURL;
+                    canvas.height = this.height;
+                    canvas.width = this.width;
                     ctx.drawImage(this, 0, 0);
                     dataURL = canvas.toDataURL(outputFormat, quality);
-                    callback(null, dataURL);
-                } catch (e) {
-                    callback(e, null);
-                }
-                canvas = img = null;
-            };
-            img.onerror = function () {
-                callback(new Error('Could not load image'), null);
-            };
-            img.src = url;
+                    callback(dataURL);
+                    canvas = null;
+                };
+                img.src = url;
+
+            } catch(e) {
+
+                var xhr = new XMLHttpRequest();
+                xhr.responseType = 'blob';
+                xhr.onload = function _onloadXhr() {
+                    var reader  = new FileReader();
+                    reader.onloadend = function _onloadEnd() {
+                        callback(reader.result);
+                    };
+                    reader.readAsDataURL(xhr.response);
+                };
+                xhr.open('GET', url);
+                xhr.send();
+            }
         },
 
         /**

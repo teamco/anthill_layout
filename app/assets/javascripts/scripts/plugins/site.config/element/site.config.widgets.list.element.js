@@ -258,13 +258,9 @@ define([
                             if ($element.base.isUrl(value)) {
                                 $element.base.lib.image.toDataURL(
                                     value,
-                                    function (err, base64Img) {
+                                    function _base64Callback(base64Img) {
                                         //_resize(base64Img);
-                                        $input.val(
-                                            base64Img ?
-                                                base64Img :
-                                                value
-                                        )
+                                        $input.val(base64Img ? base64Img : value)
                                     }
                                 );
                             }
@@ -279,12 +275,8 @@ define([
                             $element.base.lib.image.resizeDataURL(
                                 data,
                                 64, 64,
-                                function (err, base64Img) {
-                                    $input.val(
-                                        base64Img ?
-                                            base64Img :
-                                            value
-                                    );
+                                function (base64Img) {
+                                    $input.val(base64Img ? base64Img : value);
                                 }
                             );
                         }

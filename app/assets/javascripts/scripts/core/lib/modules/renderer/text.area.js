@@ -50,7 +50,7 @@ define(function defineTextAreaRenderer() {
             $input = $('<textarea class="form-control" />').attr({
                 name: opts.name,
                 id: uuid,
-                placeholder: opts.placeholder,
+                placeholder: opts.placeholder || 'Enter ' + opts.text,
                 disabled: this.base.defineBoolean(opts.disabled, false, true),
                 readonly: this.base.defineBoolean(opts.readonly, false, true),
                 title: opts.value

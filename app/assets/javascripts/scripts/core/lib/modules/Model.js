@@ -523,6 +523,11 @@ define([
                 // Get scope
                 var scope = this.scope;
 
+                if (!scope.model.getConfig('preferences')) {
+                    scope.logger.warn('Root hasn\'t preferences, check field type');
+                    return false;
+                }
+
                 // Update config
                 scope.config.preferences[index] = value;
 

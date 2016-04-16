@@ -28,14 +28,14 @@ define([], function defineComboBoxRenderer() {
          * @param {{type: string, callback: function}} [event]
          * @param {boolean} [visible]
          * @param {boolean} [disabled]
-         * @param {boolean} [placeholder]
+         * @param {string} [placeholder]
          * @param {boolean} [store]
          * @param {boolean} [label]
          */
         renderCombobox: function renderCombobox(data, selected, name, index, event, visible, disabled, placeholder, store, label) {
 
             // Init placeholder
-            placeholder = _.isUndefined(placeholder) ? false : !!placeholder;
+            placeholder = _.isUndefined(placeholder) ? false : placeholder;
 
             // Init disabled
             disabled = _.isUndefined(disabled) ? false : !!disabled;

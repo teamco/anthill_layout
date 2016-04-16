@@ -11,7 +11,6 @@ define(['config/workspace'], function defineWorkspaceListeners(Workspace) {
      * Define Workspace Local listeners
      * @memberOf Workspace
      * @type {{
-     *      successCreated: {name: string, callback: Function},
      *      successRendered: {name: string, callback: Function},
      *      createPage: {name: string, callback: Function},
      *      afterLoadingItems: {name: string, callback: Function},
@@ -19,12 +18,6 @@ define(['config/workspace'], function defineWorkspaceListeners(Workspace) {
      * }}
      */
     Workspace.prototype.localListeners = {
-
-        successCreated: {
-            name: "success.created",
-            callback: function successCreatedCallback() {
-            }
-        },
 
         successRendered: {
             name: "success.rendered",
