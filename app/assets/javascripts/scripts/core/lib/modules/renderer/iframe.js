@@ -24,6 +24,11 @@ define(function defineIframeRenderer() {
          */
         renderIframe: function renderIframe(src, opts) {
 
+            if (!src) {
+                // Initial state
+                return false;
+            }
+
             opts = opts || {};
 
             var iframe = '<iframe webkitAllowFullScreen mozallowfullscreen allowfullscreen />',
