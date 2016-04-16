@@ -14,8 +14,9 @@ define([
     'services/raygun.io',
     'services/github.gist',
     'services/inject.script',
-    'services/bigmir.net'
-], function defineSitePreferences(BasePreferencesElement, SiteConfigMetaDataPreferences, SiteConfigWidthPreferences, GoogleAnalyticsPreferences, SnapEngagePreferences, RaygunIOPreferences, GithubGistPreferences, InjectScriptPreferences, BigmirNetPreferences) {
+    'services/bigmir.net',
+    'services/yahoo.flurry'
+], function defineSitePreferences(BasePreferencesElement, SiteConfigMetaDataPreferences, SiteConfigWidthPreferences, GoogleAnalyticsPreferences, SnapEngagePreferences, RaygunIOPreferences, GithubGistPreferences, InjectScriptPreferences, BigmirNetPreferences, YahooFlurryPreferences) {
 
     /**
      * Define prefs
@@ -30,6 +31,7 @@ define([
      * @extends GithubGistPreferences
      * @extends InjectScriptPreferences
      * @extends BigmirNetPreferences
+     * @extends YahooFlurryPreferences
      * @constructor
      */
     var SitePreferences = function SitePreferences() {
@@ -152,13 +154,20 @@ define([
                         type: 'text',
                         value: 'Bigmir.net',
                         renderer: this.renderBigmirNet()
+                    },
+                    {
+                        type: 'text',
+                        value: 'Yahoo Flurry',
+                        renderer: this.renderYahooFlurry()
                     }
                 ];
+
+                var defaultValue = plugins[0].value;
 
                 var text = 'Plugins';
                 var $combo = this.renderCombobox(
                     plugins.sortByValue('value', 'string'),
-                    plugins[0].value,
+                    defaultValue,
                     text,
                     'workspaceServices', {
                         type: 'click.showPluginConfig',
@@ -176,7 +185,7 @@ define([
                 return [
                     $template.append($combo),
                     $('<div class="plugin-wrapper" />').append(
-                        plugins[0].renderer
+                        defaultValue.renderer
                     )
                 ];
             }
@@ -189,6 +198,7 @@ define([
         RaygunIOPreferences.prototype,
         GithubGistPreferences.prototype,
         InjectScriptPreferences.prototype,
-        BigmirNetPreferences.prototype
+        BigmirNetPreferences.prototype,
+        YahooFlurryPreferences.prototype
     );
 });

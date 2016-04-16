@@ -20,7 +20,8 @@ define([
      *      loadActivateSnapEngage: string,
      *      loadActivateRaygunIO: string,
      *      loadGithubGist: string,
-     *      loadActivateBigMirNet: string
+     *      loadActivateBigmirNet: string,
+     *      loadActivateYahooFlurry: string
      * }}
      */
     Workspace.prototype.globalEvents = {
@@ -31,7 +32,8 @@ define([
         loadActivateRaygunIO: 'load.activate.raygun.io',
         loadActivateGithubGist: 'load.activate.github.gist',
         loadActivateInjectScript: 'load.activate.inject.script',
-        loadActivateBigMirNet: 'load.activate.bigmir.net'
+        loadActivateBigmirNet: 'load.activate.bigmir.net',
+        loadActivateYahooFlurry: 'load.activate.yahoo.flurry'
     };
 
     /**

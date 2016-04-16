@@ -51,6 +51,48 @@ define(function defineScriptPreferences() {
             return $('<div class="workspace-inject-script-prefs" />').append(
                 $textarea, $checkbox
             );
+        },
+
+        /**
+         * Load inject script code
+         * @memberOf InjectScriptPreferences
+         */
+        loadActivateInjectScript: function loadActivateInjectScript() {
+
+            this.logger.debug('Load inject script code', arguments);
+
+            /**
+             * Get prefs
+             * @type {{injectScriptEmbedCode, activateInjectScript}}
+             */
+            var preferences = this.model.getConfig('preferences');
+
+            /**
+             * Get Inject Script Code
+             * @type {string}
+             */
+            var injectScriptCode = preferences.injectScriptEmbedCode,
+                activate = preferences.activateInjectScript;
+
+            if (!this.controller.isServiceActivated(injectScriptCode, activate)) {
+                return false;
+            }
+
+            try {
+
+                /**
+                 * Define function
+                 * @type {Function}
+                 */
+                var mainScript = new window.Function(injectScriptCode);
+
+                // Run script
+                mainScript();
+
+            } catch (e) {
+
+                this.logger.warn('Unable to execute script', injectScriptCode, e);
+            }
         }
     });
 });

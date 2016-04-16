@@ -51,6 +51,41 @@ define(function defineRaygunIO() {
             return $('<div class="workspace-raygun-io-prefs" />').append(
                 $textfield, $checkbox
             );
+        },
+
+        /**
+         * Load Raygun.IO Api Key
+         * @memberOf RaygunIOPreferences
+         */
+        loadActivateRaygunIO: function loadActivateRaygunIO() {
+
+            this.logger.debug('Load Raygun.IO', arguments);
+
+            /**
+             * Define CDN library path
+             * @type {string}
+             */
+            var path = '//cdn.raygun.io/raygun4js/raygun.min.js';
+
+            /**
+             * Get prefs
+             * @type {{raygunIOApiKey, activateRaygunIO}}
+             */
+            var preferences = this.model.getConfig('preferences');
+
+            /**
+             * Define API Key
+             * @type {string}
+             */
+            var apiKey = preferences.raygunIOApiKey || '',
+                activate = preferences.activateRaygunIO;
+
+            if (this.controller.isServiceActivated(apiKey, activate)) {
+
+                require([path], function _loadRaygun() {
+                    Raygun.init(apiKey).attach();
+                });
+            }
         }
     });
 });

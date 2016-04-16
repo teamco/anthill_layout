@@ -31,13 +31,12 @@ define(function defineGoogleAnalyticsPreferences() {
             var preferences = workspace.model.getConfig('preferences');
 
             /**
-             * Render slider input
+             * Render input
              * @type {*[]}
              */
             var $textfield = this.renderTextField({
                 name: 'googleAnalyticsTrackingId',
                 text: 'Tracking ID',
-                placeholder: 'Paste Tracking ID here',
                 disabled: false,
                 visible: true,
                 value: preferences.googleAnalyticsTrackingId || '',
@@ -59,6 +58,44 @@ define(function defineGoogleAnalyticsPreferences() {
             return $('<div class="workspace-google-analytics-prefs" />').append(
                 $textfield, $checkbox
             );
+        },
+
+        /**
+         * Load Google Analytics Tracking Id
+         * @memberOf GoogleAnalyticsPreferences
+         */
+        loadActivateGoogleAnalytics: function loadActivateGoogleAnalytics() {
+
+            this.logger.debug('Load Google Analytics Tracking Id', arguments);
+
+            /**
+             * Get prefs
+             * @type {{googleAnalyticsTrackingId}}
+             */
+            var preferences = this.model.getConfig('preferences');
+
+            /**
+             * Get tracking id
+             * @type {string}
+             */
+            var trackingId = preferences.googleAnalyticsTrackingId,
+                activate = preferences.activateGoogleAnalytics;
+
+            if (this.controller.isServiceActivated(trackingId, activate)) {
+
+                window._gaq = window._gaq || [];
+                window._gaq.push(['_setAccount', trackingId]);
+                window._gaq.push(['_trackPageview']);
+
+                (function () {
+                    var ga = document.createElement('script');
+                    ga.type = 'text/javascript';
+                    ga.async = true;
+                    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                    var s = document.getElementsByTagName('script')[0];
+                    s.parentNode.insertBefore(ga, s);
+                })();
+            }
         }
     });
 });
