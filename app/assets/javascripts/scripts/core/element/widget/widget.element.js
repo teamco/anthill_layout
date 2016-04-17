@@ -495,6 +495,38 @@ define([
         },
 
         /**
+         * Freeze position
+         * @memberOf WidgetElement
+         * @param {boolean} freeze
+         */
+        freezePosition: function freezePosition(freeze) {
+
+            /**
+             * Get scope
+             * @type {Widget}
+             */
+            var scope = this.view.scope;
+
+            var offset = this.$.offset(),
+                left = scope.dom.left,
+                top = scope.dom.top,
+                position = 'absolute';
+
+            if (freeze) {
+
+                left = offset.left;
+                top = offset.top;
+                position = 'fixed';
+            }
+
+            this.$.css({
+                left: left,
+                top: top,
+                position: position
+            });
+        },
+
+        /**
          * Bind stats
          * @memberOf WidgetElement
          */

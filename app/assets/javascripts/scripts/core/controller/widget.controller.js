@@ -120,7 +120,7 @@ define(
                  * @returns {WidgetModel.interactions}
                  */
                 getInteractionPreferences: function getInteractionPreferences() {
-                    return this.model.interactions;      
+                    return this.model.interactions;
                 },
 
                 /**
@@ -202,6 +202,22 @@ define(
                     if (name && name.length > 0) {
                         $widget.$.addClass(name);
                     }
+                },
+
+                /**
+                 * Toggle freeze
+                 * @memberOf WidgetController
+                 * @param {boolean} freeze
+                 */
+                toggleFreeze: function toggleFreeze(freeze) {
+
+                    /**
+                     * Get $widget
+                     * @type {WidgetElement}
+                     */
+                    var $widget = this.view.get$item();
+
+                    $widget.freezePosition(freeze);
                 },
 
                 /**

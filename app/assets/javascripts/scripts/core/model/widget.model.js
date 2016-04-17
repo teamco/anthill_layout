@@ -891,7 +891,19 @@ define([
          * @param {boolean} freeze
          */
         setFreeze: function setFreeze(freeze) {
+
             this._setItemInfoPreferences('freeze', freeze);
+
+            /**
+             * Get scope
+             * @type {Widget}
+             */
+            var scope = this.scope;
+
+            scope.observer.publish(
+                scope.eventmanager.eventList.toggleFreeze,
+                freeze
+            );
         },
 
         /**

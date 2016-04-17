@@ -90,6 +90,7 @@ define([
          *      setStickToBottomRight: string,
          *      restoreWidgetSticker: string,
          *      toggleContentExpander: string,
+         *      toggleFreeze: string,
          *      expandContent: string,
          *      collapseContent: string,
          *      scrollContent: string,
@@ -183,6 +184,7 @@ define([
 
             restoreWidgetSticker: 'restore.widget.sticker',
 
+            toggleFreeze: 'toggle.freeze',
             toggleContentExpander: 'toggle.content.expander',
             expandContent: 'expand.content',
             collapseContent: 'collapse.content',
