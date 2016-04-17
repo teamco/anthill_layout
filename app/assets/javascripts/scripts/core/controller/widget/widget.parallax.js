@@ -24,13 +24,6 @@ define(function defineWidgetParallax() {
              */
             var prefs = this.model.getConfig('preferences');
 
-            if (!prefs.allowParallax) {
-                this.logger.debug('Parallax does not allowed', speed);
-                return false;
-            }
-
-            this.logger.debug('Set scroll speed parallax', speed);
-
             /**
              * Get root
              * @type {Application}
@@ -58,6 +51,13 @@ define(function defineWidgetParallax() {
 
             // Detach event
             this.eventmanager.detachEventUnSubscribe(root, eventName);
+
+            if (!prefs.allowParallax) {
+                this.logger.debug('Parallax does not allowed', speed);
+                return false;
+            }
+
+            this.logger.debug('Set scroll speed parallax', speed);
 
             /**
              * Fetch event uuid

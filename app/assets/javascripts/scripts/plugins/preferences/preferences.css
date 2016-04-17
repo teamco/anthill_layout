@@ -156,8 +156,15 @@
     height: 60px;
     background-color: transparent;
     background-repeat: no-repeat;
+    background-position: center;
     background-size: 48px;
     cursor: pointer;
+    margin-right: 2px;
+    border-radius: 10px;
+}
+
+.modal .widget:hover {
+    background-color: #f1f1f1;
 }
 
 .modal .tab-content .nav > li > a {
