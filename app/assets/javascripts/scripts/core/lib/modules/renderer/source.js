@@ -30,20 +30,26 @@ define(function defineSourceRenderer() {
             var $source = $('<div class="source"><pre><code class="hljs"></code></pre></div>'),
                 $code = $source.find('code');
 
-            require([
-                'lib/packages/highlight/vkbeautify',
-                'lib/packages/highlight/highlight.pack'
-            ], function () {
-                $code.text(vkbeautify.xml(src));
-                hljs.highlightBlock($code.get(0));
-            });
+            try {
+                require([
+                    'lib/packages/highlight/vkbeautify',
+                    'lib/packages/highlight/highlight.pack'
+                ], function () {
+                    $code.text(vkbeautify.xml(src));
+                    hljs.highlightBlock($code.get(0));
+                });
 
-            this.createLinkCss({
-                href: '../../assets/scripts/core/lib/packages/highlight/styles/agate.css'
-            });
+                this.createLinkCss({
+                    href: '../../assets/scripts/core/lib/packages/highlight/styles/agate.css'
+                });
 
-            this.initMonitor($source, opts.monitor);
-            this.checkVisibility($source, opts.visible);
+                this.initMonitor($source, opts.monitor);
+                this.checkVisibility($source, opts.visible);
+
+            } catch(e) {
+
+                this.view.scope.logger.warn('Unable to render source', e);
+            }
 
             return $source;
         }

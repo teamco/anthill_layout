@@ -195,10 +195,12 @@ define([], function defineComboBoxRenderer() {
                 );
             }
 
+            var labelPattern = new RegExp(this.view.scope.name.toLowerCase());
+
             // Define label
             var $label = $([
                 '<div class="input-group">',
-                '<span class="input-group-addon">', index.humanize(), '</span>',
+                '<span class="input-group-addon">', (index.replace(labelPattern, '').humanize()), '</span>',
                 '</div>'
             ].join(''));
 
