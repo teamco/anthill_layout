@@ -64,7 +64,7 @@ define([
                     latLng: {lat: center[0], lng: center[1]},   // center of map in latitude/longitude
                     mtype: 'map',                               // map type (map, sat, hyb); defaults to map
                     bestFitMargin: 0,                           // margin offset from map viewport when applying a bestfit on shapes
-                    zoomOnDoubleClick: zoomDblClick             // enable map to be zoomed in when double-clicking
+                    zoomOnDoubleClick: !!zoomDblClick           // enable map to be zoomed in when double-clicking
                 };
 
                 // construct an instance of MQA.TileMap with the options object
