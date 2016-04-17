@@ -56,12 +56,8 @@ define(function defineWidgetParallax() {
                 elementHeight = $element.getHeight,
                 eventName = root.eventmanager.eventList.scrollPublisher;
 
-            // Remove before subscribe
-            this.eventmanager.removeListener({
-                scope: root,
-                eventName: eventName,
-                eventUUID: this.eventmanager.unSubscribe[eventName]
-            });
+            // Detach event
+            this.eventmanager.detachEventUnSubscribe(root, eventName);
 
             /**
              * Fetch event uuid
@@ -98,7 +94,7 @@ define(function defineWidgetParallax() {
             }, true);
 
             // Store event
-            this.eventmanager.unSubscribe[eventName] = eventUUID;
+            this.eventmanager.defineEventUnSubscribe(eventName, eventUUID);
         },
 
         /**

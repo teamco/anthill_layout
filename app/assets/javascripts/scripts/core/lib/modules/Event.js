@@ -38,16 +38,50 @@ define([
          * @type {undefined}
          */
         this.scope = undefined;
-    };
-
-    return BaseEvent.extend('BaseEvent', {
 
         /**
          * Define event to unsubscribe
          * @property BaseEvent
          * @type {{}}
          */
-        unSubscribe: {},
+        this.unSubscribe = {}
+
+    };
+
+    return BaseEvent.extend('BaseEvent', {
+
+        /**
+         * Define event as unSubscribe ready
+         * @memberOf BaseEvent
+         * @param {string} eventName
+         * @param {string} eventUUID
+         */
+        defineEventUnSubscribe: function defineEventUnSubscribe(eventName, eventUUID) {
+
+            // Init unSubscribe
+            this.unSubscribe = this.unSubscribe || {};
+            this.unSubscribe[eventName] = eventUUID;
+        },
+
+        /**
+         * Detach event as unsubscribe ready
+         * @memberOf BaseEvent
+         * @param scope
+         * @param {string} eventName
+         */
+        detachEventUnSubscribe: function detachEventUnSubscribe(scope, eventName) {
+
+            if (!this.unSubscribe) {
+                return false;
+            }
+
+            // Remove before subscribe
+            this.removeListener({
+                scope: scope,
+                eventName: eventName,
+                eventUUID: this.unSubscribe[eventName]
+            });
+        },
 
         /**
          * Check if event was available in event list
@@ -178,7 +212,7 @@ define([
          * @param {boolean} internal
          * @returns {boolean|string}
          */
-        subscribe: function subscribe(opts, internal, unsubscribe) {
+        subscribe: function subscribe(opts, internal) {
 
             var base = this.base, event;
             opts = base.define(opts, {}, true);
