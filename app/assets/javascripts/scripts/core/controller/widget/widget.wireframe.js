@@ -104,16 +104,17 @@ define([
          */
         getWireFrame: function getWireFrame() {
 
-            /**
-             * Define uuid
-             * @type {string}
-             */
-            var uuid = '#' + this.selector;
-
-            return $(
-                uuid,
+            var $wireFrame = $(
+                '#' + this.selector,
                 this.widget.controller.get$page().$
             );
+
+            // Check if widget frozen
+            var frozen = this.widget.model.getConfig('preferences').freeze;
+
+            $wireFrame[(frozen ? 'add' : 'remove') + 'Class']('frozen');
+
+            return $wireFrame;
         },
 
         /**
@@ -144,6 +145,7 @@ define([
             this.$ = this.getWireFrame();
 
             if (this.$.length === 0) {
+
                 $('#' + this.selector).remove();
                 this.$ = $('<div />').css(opts.style).attr({
                     id: this.selector
@@ -164,7 +166,8 @@ define([
 
             opts = this.base.define(opts, {}, true);
 
-            this.defineHolder(opts).show();
+            this.defineHolder(opts);
+            this.getWireFrame().show();
             this.$.css(opts.style);
         }
 

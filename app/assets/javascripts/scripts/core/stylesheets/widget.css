@@ -143,6 +143,10 @@
     opacity: 0.05;
 }
 
+#next-widget-position.frozen {
+    position: fixed;
+}
+
 .page .widget .content {
     cursor: default;
     height: 100%;
