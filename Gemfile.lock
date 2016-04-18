@@ -77,7 +77,6 @@ GEM
       uniform_notifier (~> 1.9.0)
     byebug (8.2.4)
     callsite (0.0.11)
-    cancan (1.6.10)
     capistrano (3.4.1)
       i18n
       rake (>= 10.0.0)
@@ -470,7 +469,6 @@ DEPENDENCIES
   brakeman
   bullet
   byebug
-  cancan
   capistrano-rails
   coffee-rails (>= 4.0.0)
   data-confirm-modal!

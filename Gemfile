@@ -115,5 +115,5 @@ gem 'omniauth-github'
 gem 'omniauth-bitbucket'
 gem 'omniauth-aliexpress', git: 'https://github.com/pinglamb/omniauth-aliexpress'
 
-gem 'cancan'
+# gem 'cancan'
 
