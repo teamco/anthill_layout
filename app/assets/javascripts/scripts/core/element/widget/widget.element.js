@@ -527,6 +527,15 @@ define([
         },
 
         /**
+         * Animate parallax
+         * @memberOf WidgetElement
+         * @param {boolean} animate
+         */
+        animateParallax: function animateParallax(animate) {
+            this.$[(animate ? 'add' : 'remove') + 'Class']('animateParallax');
+        },
+
+        /**
          * Bind stats
          * @memberOf WidgetElement
          */

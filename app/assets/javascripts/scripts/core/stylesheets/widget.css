@@ -207,3 +207,10 @@
     margin: 1%;
     background: rgba(255, 255, 255, 0.8);
 }
+
+.page .widget.animateParallax {
+    -webkit-transition: 0s ease-in-out;
+    -moz-transition: 0s ease-in-out;
+    -o-transition: 0s ease-in-out;
+    transition: 0s ease-in-out;
+}

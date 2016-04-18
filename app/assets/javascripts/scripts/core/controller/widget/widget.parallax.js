@@ -54,10 +54,12 @@ define(function defineWidgetParallax() {
 
             if (!prefs.allowParallax) {
                 this.logger.debug('Parallax does not allowed', speed);
+                this.view.get$item().animateParallax(false);
                 return false;
             }
 
             this.logger.debug('Set scroll speed parallax', speed);
+            this.view.get$item().animateParallax(true);
 
             /**
              * Fetch event uuid
@@ -69,6 +71,8 @@ define(function defineWidgetParallax() {
                     scope: this
                 },
                 callback: function _scrollWidgetCallback(event) {
+
+                    event.preventDefault();
 
                     // Get scroll top
                     var scrollTop = $rootElement.$[0].scrollTop,
