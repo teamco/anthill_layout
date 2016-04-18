@@ -9,42 +9,39 @@ gem 'embedly'
 gem 'bullet'
 gem 'rake'
 # gem 'requirejs-rails'
-gem 'keen'
+# gem 'keen'
 gem 'will_paginate'
-# gem 'websocket-rails'
 
-gem 'ruby-readability'
+# gem 'websocket-rails'
+# gem 'ruby-readability'
+
 gem 'pismo'
 gem 'mechanize'
 gem 'informant-rails'
-
-group :test do
-  gem 'sqlite3'
-end
 
 group :development do
   gem 'mysql2' #, '~> 0.3.20'
 end
 
 group :test, :development do
-  gem 'xilence'
-  gem 'meta_request'
-  gem 'pry-rails'
-  gem 'prmd'
-  gem 'ruby-debug-ide', '>= 0.4.25'
-  gem 'debase', '>= 0.1.3.beta1'
-  gem 'spring'
-  gem 'wirble'
-  gem 'capistrano-rails'
-  gem 'rails_best_practices'
-  gem 'request-log-analyzer'
-  gem 'traceroute'
+  gem 'xilence', require: false
+  gem 'meta_request', require: false
+  gem 'pry-rails', require: false
+  gem 'prmd', require: false
+  gem 'ruby-debug-ide', '>= 0.4.25', require: false
+  gem 'debase', '>= 0.1.3.beta1', require: false
+  gem 'spring', require: false
+  gem 'wirble', require: false
+  gem 'capistrano-rails', require: false
+  gem 'rails_best_practices', require: false
+  gem 'request-log-analyzer', require: false
+  gem 'traceroute', require: false
   gem 'brakeman', require: false
   gem 'rubocop', require: false
   gem 'rubycritic', require: false
-  gem 'guard'
-  gem 'guard-livereload', '~> 2.4', require: false
-  gem 'byebug'
+  # gem 'guard', require: false
+  # gem 'guard-livereload', '~> 2.4', require: false
+  gem 'byebug', require: false
 end
 
 group :debug do
