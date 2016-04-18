@@ -7,6 +7,7 @@ define(function defineToolTipRenderer() {
     /**
      * Define ToolTipRenderer
      * @class ToolTipRenderer
+     * @extends BaseElement
      * @constructor
      */
     var ToolTipRenderer = function ToolTipRenderer() {
@@ -60,6 +61,11 @@ define(function defineToolTipRenderer() {
                     config.content += $image[0];
                 }
 
+                if (!$selector.popover) {
+                    this.view.scope.logger.warn('Undefined popover');
+                    return false;
+                }
+
                 $selector.attr({
 
                     'data-toggle': 'popover',
@@ -68,6 +74,11 @@ define(function defineToolTipRenderer() {
                 }).popover(config);
 
             } else {
+
+                if (!$selector.tooltip) {
+                    this.view.scope.logger.warn('Undefined tooltip');
+                    return false;
+                }
 
                 $selector.tooltip(config);
             }

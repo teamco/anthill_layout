@@ -289,7 +289,7 @@ define([
                     scope.eventmanager.eventList.successDestroyElement,
                     this
                 );
-                
+
                 $('.' + this.$.attr('class').replace(/ /g, '.'), this.$container).remove();
             }
         },
@@ -335,7 +335,7 @@ define([
                 scope.eventmanager.eventList.successBuildElement,
                 this
             );
-            
+
             return this;
         },
 
@@ -415,7 +415,7 @@ define([
         /**
          * Define create script
          * @param opts
-         * @param {HTMLElement} container
+         * @param {HTMLElement} [container]
          * @param {string} [code]
          */
         createScript: function createScript(opts, container, code) {
@@ -484,7 +484,7 @@ define([
                 this.view.scope.logger.warn('Link already exist');
                 return link;
             }
-            
+
             document.getElementsByTagName("head")[0].appendChild(link);
 
             return link;
@@ -1022,20 +1022,10 @@ define([
          */
         getFooter: function getFooter() {
 
-            var counter = $.map(
-                this.view.elements.items,
-                function (item) {
-                    if (!item.$.hasClass('hide')) {
-                        return item;
-                    }
-                }
-            );
+            var counter = Object.keys(this.view.elements.items || {}).length.toString(),
+                $template = '<p class="text-center"><span class="badge" title="{0}">{0}</span>{1}</p>';
 
-            var $template = '<p class="text-center"><span class="badge" title="{0}">{0}</span>{1}</p>';
-
-            return $template.replace(
-                /\{0}/g, counter.length.toString()
-            ).replace(
+            return $template.replace(/\{0}/g, counter).replace(
                 /\{1}/g, this.i18n.t('panel.items')
             );
         },

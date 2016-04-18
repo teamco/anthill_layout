@@ -219,6 +219,11 @@ define([
          */
         initBootstrapModal: function initBootstrapModal() {
 
+            if (!this.$['modal']) {
+                this.view.scope.logger.warn('Undefined modal');
+                return false;
+            }
+
             this.$['modal']();
             this.$.css(this.css);
 

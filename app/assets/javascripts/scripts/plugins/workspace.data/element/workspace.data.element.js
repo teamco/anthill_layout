@@ -41,6 +41,12 @@ define([
          */
         initSortable: function initSortable() {
 
+            if (!this.$.sortable) {
+
+                this.view.scope.logger.warn('Undefined sortable plugin');
+                return false;
+            }
+
             this.$.sortable({
                 containment: this.$container,
                 cursor: 'move',

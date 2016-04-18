@@ -31,6 +31,11 @@ define(function defineSliderRenderer() {
                 return false;
             }
 
+            if (!$container.slider) {
+                this.view.scope.logger.warn('Undefined slider');
+                return false;
+            }
+
             $container.slider(opts);
 
             var labels = opts.labels || [],
