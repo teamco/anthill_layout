@@ -8,6 +8,12 @@ class ApplicationController < ActionController::Base
   before_action :set_current_user
   before_action :update_user_log
 
+  rescue_from ActiveRecord::RecordNotFound, with: :error
+  rescue_from ArgumentError, with: :error
+  rescue_from Exception, with: :error
+  rescue_from OAuth::Unauthorized, with: :error
+  rescue_from ActionController::RoutingError, with: :not_found
+
   def raise_not_found
     raise ActionController::RoutingError.new("No route matches #{params[:unmatched_route]}")
   end
@@ -15,9 +21,11 @@ class ApplicationController < ActionController::Base
   def handle_error(e, status, template)
     puts ">>> Error: #{e.inspect}"
     logger.info ">>> Error: #{e.inspect}"
-    log = ErrorLog.handle_error(current_user, e, @user_log)
     super if self.methods.include? 'super'
-    redirect_to error_log_path(log)
+    unless request.domain == 'localhost'
+      log = ErrorLog.handle_error(current_user, e, @user_log)
+      redirect_to error_log_path(log)
+    end
   end
 
   protected
@@ -49,16 +57,13 @@ class ApplicationController < ActionController::Base
   end
 
   def update_user_log
-
-    return if request.domain == 'localhost'
-
-    rescue_from ActiveRecord::RecordNotFound, with: :error
-    rescue_from ArgumentError, with: :error
-    rescue_from Exception, with: :error
-    rescue_from OAuth::Unauthorized, with: :error
-    rescue_from ActionController::RoutingError, with: :not_found
-
-    @user_log = UserLog.handle_log(request, response, controller_name, action_name, current_user)
+    @user_log = UserLog.handle_log(
+        request,
+        response,
+        controller_name,
+        action_name,
+        current_user
+    ) unless request.domain == 'localhost'
   end
 
 end
