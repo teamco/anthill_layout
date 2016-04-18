@@ -1,0 +1,2 @@
+PumaWorkerKiller.start
+PumaWorkerKiller.enable_rolling_restart

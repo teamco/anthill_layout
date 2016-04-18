@@ -48,8 +48,8 @@ group :test, :development do
 end
 
 group :debug do
+  # gem 'thin'
 end
-gem 'thin'
 
 gem 'derailed', group: :development
 gem 'stackprof', group: :development
@@ -74,7 +74,8 @@ group :production do
 end
 
 group :test, :production, :development do
-  # gem 'puma'
+  gem 'puma'
+  gem 'puma_worker_killer'
 end
 
 gem 'rack-attack'
