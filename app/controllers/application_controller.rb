@@ -6,17 +6,7 @@ class ApplicationController < ActionController::Base
   layout :layout_by_resource
 
   before_action :set_current_user
-
-  unless Rails.env.development?
-
-    before_action :update_user_log
-
-    rescue_from ActiveRecord::RecordNotFound, with: :error
-    rescue_from ArgumentError, with: :error
-    rescue_from Exception, with: :error
-    rescue_from OAuth::Unauthorized, with: :error
-    rescue_from ActionController::RoutingError, with: :not_found
-  end
+  before_action :update_user_log
 
   def raise_not_found
     raise ActionController::RoutingError.new("No route matches #{params[:unmatched_route]}")
@@ -59,6 +49,15 @@ class ApplicationController < ActionController::Base
   end
 
   def update_user_log
+
+    return if request.domain == 'localhost'
+
+    rescue_from ActiveRecord::RecordNotFound, with: :error
+    rescue_from ArgumentError, with: :error
+    rescue_from Exception, with: :error
+    rescue_from OAuth::Unauthorized, with: :error
+    rescue_from ActionController::RoutingError, with: :not_found
+
     @user_log = UserLog.handle_log(request, response, controller_name, action_name, current_user)
   end
 
