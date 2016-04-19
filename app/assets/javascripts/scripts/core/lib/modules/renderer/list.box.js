@@ -89,9 +89,10 @@ define(function defineListBoxRenderer() {
                 if (opts.value === data.resource) {
                     $button.trigger('click.list');
                 }
+
+                this.initMonitor($button, opts.monitor);
             }
 
-            this.initMonitor($input, opts.monitor);
             this.checkVisibility($input, false);
 
             return [

@@ -30,6 +30,10 @@ define([
             this.view.get$item().renderEmbeddedContent();
         },
 
+        fetchMetamorphicPreferences: function fetchMetamorphicPreferences(e) {
+debugger
+        },
+
         /**
          * Fetch gallery widgets
          * @param {{metamorphicType}} prefs
@@ -40,7 +44,7 @@ define([
 
             /**
              * Get scope
-             * @type {Metamorphic}
+             * @type {Metamorphic|{name}}
              */
             var scope = this.scope;
 

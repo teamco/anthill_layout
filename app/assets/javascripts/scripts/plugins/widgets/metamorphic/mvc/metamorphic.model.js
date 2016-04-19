@@ -36,7 +36,11 @@ define([
                 disabled: false,
                 list: [],
                 visible: true,
-                label: true
+                label: true,
+                monitor: {
+                    events: ['click.fetchPrefs'],
+                    callback: 'fetchMetamorphicPreferences'
+                }
             }
         };
 

@@ -163,7 +163,7 @@ define([
                  * @type {string}
                  */
                 var path = [
-                    '../../scripts/plugins/widgets',
+                    'plugins/widgets',
                     ('/' + resource).repeat(2)
                 ].join('');
 

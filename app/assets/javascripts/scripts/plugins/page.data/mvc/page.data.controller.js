@@ -143,7 +143,7 @@ define([
 
             /**
              * Define scope
-             * @type {PageData}
+             * @type {PageData|{name}}
              */
             var scope = this.scope,
                 content = scope.activeContent;
