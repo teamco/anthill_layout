@@ -15,8 +15,9 @@ define([
     'services/github.gist',
     'services/inject.script',
     'services/bigmir.net',
-    'services/yahoo.flurry'
-], function defineSitePreferences(BasePreferencesElement, SiteConfigMetaDataPreferences, SiteConfigWidthPreferences, GoogleAnalyticsPreferences, SnapEngagePreferences, RaygunIOPreferences, GithubGistPreferences, InjectScriptPreferences, BigmirNetPreferences, YahooFlurryPreferences) {
+    'services/yahoo.flurry',
+    'services/rollbar.notifier'
+], function defineSitePreferences(BasePreferencesElement, SiteConfigMetaDataPreferences, SiteConfigWidthPreferences, GoogleAnalyticsPreferences, SnapEngagePreferences, RaygunIOPreferences, GithubGistPreferences, InjectScriptPreferences, BigmirNetPreferences, YahooFlurryPreferences, RollbarNotifierPreferences) {
 
     /**
      * Define prefs
@@ -32,6 +33,7 @@ define([
      * @extends InjectScriptPreferences
      * @extends BigmirNetPreferences
      * @extends YahooFlurryPreferences
+     * @extends RollbarNotifierPreferences
      * @constructor
      */
     var SitePreferences = function SitePreferences() {
@@ -159,6 +161,11 @@ define([
                         type: 'text',
                         value: 'Yahoo Flurry',
                         renderer: this.renderYahooFlurry()
+                    },
+                    {
+                        type: 'text',
+                        value: 'Rollbar Notifier',
+                        renderer: this.renderRollbarNotifier()
                     }
                 ];
 
@@ -199,6 +206,7 @@ define([
         GithubGistPreferences.prototype,
         InjectScriptPreferences.prototype,
         BigmirNetPreferences.prototype,
-        YahooFlurryPreferences.prototype
+        YahooFlurryPreferences.prototype,
+        RollbarNotifierPreferences.prototype
     );
 });
