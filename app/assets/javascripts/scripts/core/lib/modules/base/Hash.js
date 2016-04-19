@@ -5,7 +5,7 @@
  * Time: 9:24 PM
  * To change this template use File | Settings | File Templates.
  */
-define([], function defineLibHash() {
+define(function defineLibHash() {
 
     /**
      * Define Hash lib

@@ -6,7 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 
-define([], function defineEnUs() {
+define(function defineEnUs() {
 
     return {
         'reached.maximum.limit': 'Reached maximum limit',

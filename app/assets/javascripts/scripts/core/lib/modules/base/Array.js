@@ -5,7 +5,7 @@
  * Time: 9:24 PM
  * To change this template use File | Settings | File Templates.
  */
-define([], function defineLibArray() {
+define(function defineLibArray() {
 
     /**
      * Define LibArray

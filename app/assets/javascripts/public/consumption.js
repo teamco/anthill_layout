@@ -26,6 +26,9 @@
 
             require([
 
+                'bootstrap',
+                '_',
+
                 'lz-string',
                 'jquery.ujs',
                 'jquery.resizestop',
@@ -68,14 +71,7 @@
             });
         }
 
-        require(['../scripts/core/config/main'], function defineDelegator() {
-
-            require([
-                'jquery.ui',
-                'bootstrap',
-                '_'
-            ], _setup);
-        });
+        require(['../scripts/core/config/main'], _setup);
     }
 
     _loadPublic();

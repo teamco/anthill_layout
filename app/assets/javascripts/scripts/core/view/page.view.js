@@ -12,8 +12,8 @@ define([
     'element/footer.element',
     'element/modal.element',
     'element/page/page.element',
-    'element/page/page.element.content',
-    'element/page/page.element.delta.scroll'
+    'element/page/page.content.element',
+    'element/page/page.delta.scroll.element'
 ], function definePageView(BaseView, Header, Footer, Modal, Page, Content, DeltaScroll) {
 
     /**

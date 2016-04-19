@@ -11,7 +11,7 @@ define([
     'element/workspace/workspace.element',
     'element/header.element',
     'element/footer.element',
-    'element/workspace/workspace.element.content'
+    'element/workspace/workspace.content.element'
 ], function defineWorkspaceView(BaseView, WorkspaceElement, Header, Footer, WorkspaceContentElement) {
 
     /**
