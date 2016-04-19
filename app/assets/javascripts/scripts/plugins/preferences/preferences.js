@@ -15,6 +15,7 @@ define(['jquery'], function defineBasePreferencesElement($) {
      * @extends ComboBoxRenderer
      * @extends NumberFieldRenderer
      * @extends RangeRenderer
+     * @extends ListBoxRenderer
      * @extends ModalElement
      * @extends EventLinkRenderer
      * @constructor
@@ -208,6 +209,23 @@ define(['jquery'], function defineBasePreferencesElement($) {
                     text: text.trim(),
                     placeholder: placeholder,
                     value: node.value,
+                    disabled: node.disabled,
+                    visible: node.visible,
+                    monitor: node.monitor
+                });
+            }
+
+            if (node.type === 'listbox') {
+
+                /**
+                 * Get text field
+                 * @type {*[]}
+                 */
+                $element = this.renderListBox({
+                    name: index,
+                    text: text.trim(),
+                    value: node.value,
+                    list: node.list,
                     disabled: node.disabled,
                     visible: node.visible,
                     monitor: node.monitor

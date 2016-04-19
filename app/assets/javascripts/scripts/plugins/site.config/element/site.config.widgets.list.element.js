@@ -359,7 +359,7 @@ define([
                                     events: ['blur.resource'],
                                     callback: function updateResource(e) {
                                         $('input[name="resource"]').val(
-                                            e.target.value.toRecource()
+                                            e.target.value.toResource()
                                         );
                                     }
                                 }

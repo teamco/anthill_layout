@@ -39,7 +39,7 @@
      * @memberOf String
      * @returns {String}
      */
-    String.prototype.toRecource = function toRecource() {
+    String.prototype.toResource = function toResource() {
         return this.toLowerCase().replace(/[\W_]+/g, '.');
     };
 

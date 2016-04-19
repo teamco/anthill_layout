@@ -52,16 +52,22 @@ define([
         /**
          * Render Prefs
          * @memberOf MetamorphicView
-         * @returns {MetamorphicPreferencesElement}
+         * @returns {MetamorphicPreferencesElement|boolean}
          */
         renderPreferences: function renderPreferences() {
+
+            /**
+             * Get prefs
+             * @type {{metamorphicType}}
+             */
+            var prefs = this.controller.getPreferences();
 
             /**
              * Define Metamorphic Preferences Element
              * @type {MetamorphicPreferencesElement}
              */
             this.elements.$preferences = new MetamorphicPreferencesElement(this, {
-                data: this.controller.getPreferences()
+                data: this.controller.fetchGalleryWidgets(prefs)
             });
 
             return this.get$preferences();

@@ -31,6 +31,62 @@ define([
         },
 
         /**
+         * Fetch gallery widgets
+         * @param {{metamorphicType}} prefs
+         * @memberOf MetamorphicController
+         * @returns {*}
+         */
+        fetchGalleryWidgets: function fetchGalleryWidgets(prefs) {
+
+            /**
+             * Get scope
+             * @type {Metamorphic}
+             */
+            var scope = this.scope;
+
+            try {
+
+                /**
+                 * Get page data
+                 * @type {PageData}
+                 */
+                var pageData = scope.referrer;
+
+                /**
+                 * Get gallery
+                 * @type {Gallery}
+                 */
+                var gallery = pageData.controller.getContainment().controller.getGallery();
+
+                var widgetsList = gallery.model.getDataProvider(),
+                    _selfResource = scope.name.toDash().toResource();
+
+                // Get widgets list
+                prefs.metamorphicType.list = $.map(
+                    widgetsList,
+                    function _loadWidget(widget) {
+
+                        if (widget.resource !== _selfResource && !widget.is_external) {
+
+                            return {
+                                resource: widget.resource,
+                                name: widget.name,
+                                description: widget.description,
+                                tooltip: true
+                            }
+                        }
+                    }
+                );
+
+            } catch (e) {
+
+                scope.logger.warn('Unable to fetch gallery widgets', e);
+            }
+
+            return prefs;
+        },
+
+        /**
          * Add Metamorphic rule
          * @memberOf MetamorphicController
          * @param e

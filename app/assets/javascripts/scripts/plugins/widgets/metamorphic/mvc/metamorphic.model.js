@@ -25,7 +25,19 @@ define([
          * @type {{}}
          */
         this.preferences = {
-            // Preferences
+            metamorphicAllowChangeContent: {
+                type: 'checkbox',
+                disabled: false,
+                value: false,
+                visible: true
+            },
+            metamorphicType: {
+                type: 'listbox',
+                disabled: false,
+                list: [],
+                visible: true,
+                label: true
+            }
         };
 
         /**

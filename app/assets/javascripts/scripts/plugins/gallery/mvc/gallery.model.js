@@ -34,7 +34,7 @@ define([
          * Define load static data
          * @memberOf GalleryModel
          */
-        loadStaticData: function loadStaticData(){
+        loadStaticData: function loadStaticData() {
 
             /**
              * Define static data
@@ -84,11 +84,11 @@ define([
         /**
          * Get data provider
          * @memberOf GalleryModel
-         * @param provider
+         * @param [provider]
          * @returns {*}
          */
         getDataProvider: function getDataProvider(provider) {
-            return provider.data;
+            return (provider || this.currentProvider).data;
         },
 
         /**

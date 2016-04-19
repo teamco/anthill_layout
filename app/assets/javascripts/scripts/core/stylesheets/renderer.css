@@ -162,3 +162,11 @@ div.source {
 .scroller-left {
     left: 0;
 }
+
+.listbox {
+    clear: both;
+}
+
+.listbox .widget {
+
+}
