@@ -254,6 +254,111 @@ define([
             },
 
             /**
+             * Check if widget is Metamorphic
+             * @memberOf WidgetContentController
+             * @returns {boolean}
+             */
+            isMetamorphic: function isMetamorphic() {
+
+                /**
+                 * Check metamorphism
+                 * @param $element
+                 * @returns {boolean}
+                 * @private
+                 */
+                function _checkMetamorphic($element) {
+                    return $element.hasClass('metamorphic');
+                }
+
+                return _checkMetamorphic(this.getView().get$container().$) && !_checkMetamorphic(this.getView().get$item().$);
+            },
+
+            /**
+             * Fetch gallery widgets
+             * @param {{metamorphicType}} prefs
+             * @memberOf WidgetContentController
+             * @returns {*}
+             */
+            fetchGalleryWidgets: function fetchGalleryWidgets(prefs) {
+
+                /**
+                 * Get scope
+                 * @type {Metamorphic|{name}}
+                 */
+                var scope = this.scope;
+
+                try {
+
+                    /**
+                     * Get page data
+                     * @type {PageData}
+                     */
+                    var pageData = scope.referrer;
+
+                    /**
+                     * Get gallery
+                     * @type {Gallery}
+                     */
+                    var gallery = pageData.controller.getContainment().controller.getGallery();
+
+                    var widgetsList = gallery.model.getDataProvider(),
+                        _selfResource = scope.name.toDash().toResource();
+
+                    // Get widgets list
+                    prefs.metamorphicType.list = $.map(
+                        widgetsList,
+                        function _loadWidget(widget) {
+
+                            if (widget.resource !== 'metamorphic' && !widget.is_external) {
+
+                                return {
+                                    resource: widget.resource,
+                                    name: widget.name,
+                                    description: widget.description,
+                                    tooltip: true
+                                }
+                            }
+                        }
+                    );
+
+                } catch (e) {
+
+                    scope.logger.warn('Unable to fetch gallery widgets', e);
+                }
+
+                return prefs;
+            },
+
+            /**
+             * Fetch metamorphic widget prefs
+             * @memberOf WidgetContentController
+             * @param {string} resource
+             */
+            fetchMetamorphicPreferences: function fetchMetamorphicPreferences(resource) {
+
+                /**
+                 * Get widget
+                 * @type {Widget}
+                 */
+                var widget = this.controller.getContainment();
+
+                if (!this.model.getPrefs('metamorphicAllowChangeContent')) {
+
+                    this.logger.debug('Metamorphic not allowed', resource);
+
+                    if (this.controller.isMetamorphic()) {
+                        widget.controller.fetchInternalContent('metamorphic');
+                    }
+
+                    return false;
+                }
+
+                this.logger.debug('Fetch metamorphic content', resource);
+                
+                widget.controller.fetchInternalContent(resource);
+            },
+
+            /**
              * Provide statistics before transfer
              * @memberOf WidgetContentController
              * @param {Event} e

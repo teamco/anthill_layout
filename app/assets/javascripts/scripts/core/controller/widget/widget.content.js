@@ -124,7 +124,7 @@ define([
                     '.js'
                 ].join('');
 
-                require([path], function getDependencies(Content) {
+                require([path], function _getDependencies(Content) {
 
                     widget.observer.publish(
                         widget.eventmanager.eventList.setContent,
@@ -136,6 +136,17 @@ define([
 
                     widget.logger.debug('Content finish loading');
                 });
+            },
+
+            /**
+             * Destroy widget content
+             * @memberOf WidgetContent
+             */
+            destroyContent: function destroyContent() {
+                
+                // Delete content
+                delete this.scope.content;
+                this.getView().elements.$content.cleanMetamorphicContent();
             },
 
             /**
@@ -167,7 +178,9 @@ define([
                     ('/' + resource).repeat(2)
                 ].join('');
 
-                require([path], function getDependencies(Content) {
+                require([path], function _getDependencies(Content) {
+
+                    widget.controller.destroyContent();
 
                     widget.observer.publish(
                         widget.eventmanager.eventList.setContent,

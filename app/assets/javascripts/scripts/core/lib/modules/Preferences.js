@@ -115,11 +115,20 @@ define(function defineBasePreferences() {
 
             $inputs.each(function each(index, input) {
 
+                // Get input class name
+                var inputClass= $(input).closest('[class*="-prefs"]').attr('class') || '';
+
                 /**
                  * Check if prefs in content
                  * @type {boolean}
                  */
-                var isContentPrefs = ($(input).closest('[class*="-prefs"]').attr('class') || '').indexOf(cname) !== -1;
+                var isContentPrefs = inputClass.indexOf(cname) !== -1;
+
+                if (!isContentPrefs) {
+
+                    // Check metamorphic
+                    isContentPrefs = inputClass.indexOf('metamorphic') !== -1;
+                }
 
                 var event = isContentPrefs ?
                     scope.eventmanager.eventList.transferContentPreferences :

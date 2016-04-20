@@ -24,25 +24,7 @@ define([
          * @property MetamorphicModel
          * @type {{}}
          */
-        this.preferences = {
-            metamorphicAllowChangeContent: {
-                type: 'checkbox',
-                disabled: false,
-                value: false,
-                visible: true
-            },
-            metamorphicType: {
-                type: 'listbox',
-                disabled: false,
-                list: [],
-                visible: true,
-                label: true,
-                monitor: {
-                    events: ['click.fetchPrefs'],
-                    callback: 'fetchMetamorphicPreferences'
-                }
-            }
-        };
+        this.preferences = {};
 
         /**
          * Define rules
@@ -50,11 +32,20 @@ define([
          * @type {{}}
          */
         this.rules = {};
+
+        if (!Object.keys(this.preferences).length) {
+
+            /**
+             * Fetch prefs
+             * @type {*|{metamorphicAllowChangeContent, metamorphicType}|{}}
+             */
+            this.preferences = this.getMetamorphicPreferences(false);
+        }
     };
 
-    return MetamorphicModel.extend('MetamorphicModel', {
-
-        // Setter
-
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    return MetamorphicModel.extend(
+        'MetamorphicModel', {},
+        BaseModel.prototype,
+        WidgetContentModel.prototype
+    );
 });

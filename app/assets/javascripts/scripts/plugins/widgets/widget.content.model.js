@@ -162,6 +162,79 @@ define([], function defineWidgetContentModel() {
                     }
                 }
             }
+        },
+
+        /**
+         * Define type setter
+         * @memberOf WidgetContentModel
+         * @param {string} type
+         */
+        setMetamorphicType: function setMetamorphicType(type) {
+
+            /**
+             * Get scope
+             * @type {WidgetContent|{name}}
+             */
+            var scope = this.scope;
+
+            var isMetamorphic = true,
+                widget = scope.controller.getContainment();
+
+            if (scope.name.toLowerCase() !== 'metamorphic') {
+                isMetamorphic = scope.view.get$container().$.hasClass('metamorphic');
+            }
+            
+            isMetamorphic ?
+                this.setPrefs('metamorphicType', type):
+                widget.model._setItemInfoPreferences('metamorphicType', type);
+
+            scope.observer.publish(
+                scope.eventmanager.eventList.fetchMetamorphicPreferences,
+                type
+            );
+        },
+
+        /**
+         * Get Metamorphic Preferences
+         * @memberOf WidgetContentModel
+         * @param {boolean} force
+         * @returns {{}}
+         */
+        getMetamorphicPreferences: function getMetamorphicPreferences(force) {
+
+            var allowed = false, type;
+
+            if (force) {
+
+                /**
+                 * Get widget
+                 * @type {Widget}
+                 */
+                var widget = this.scope.controller.getContainment();
+
+                // Get prefs
+                var prefs = widget.model.getConfig('preferences');
+
+                allowed = prefs.metamorphicAllowChangeContent;
+                type = prefs.metamorphicType;
+            }
+
+            return {
+                metamorphicAllowChangeContent: {
+                    type: 'checkbox',
+                    disabled: false,
+                    value: allowed,
+                    visible: true
+                },
+                metamorphicType: {
+                    type: 'listbox',
+                    disabled: false,
+                    list: [],
+                    visible: true,
+                    label: true,
+                    value: type
+                }
+            }
         }
     });
 });

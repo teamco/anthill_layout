@@ -37,7 +37,7 @@ define([
         /**
          * Set background image
          * @memberOf WidgetContentElement
-         * @param {{url: string|*}} opts
+         * @param {{resource: string}} opts
          */
         setBackgroundImage: function setBackgroundImage(opts) {
             this.$.addClass(
@@ -52,6 +52,19 @@ define([
         setPadding: function setPadding() {
             var padding = this.view.controller.getLocalPadding();
             this.$.css(padding);
+        },
+
+        /**
+         * Clean Metamorphic Content
+         * @memberOf WidgetContentElement
+         */
+        cleanMetamorphicContent: function cleanMetamorphicContent() {
+
+            if (!this.$.hasClass('metamorphic')) {
+                return false;
+            }
+
+            $('> *', this.$).not(':hidden').remove();
         }
 
     }, BaseElement.prototype);

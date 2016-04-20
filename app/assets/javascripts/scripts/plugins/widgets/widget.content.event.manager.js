@@ -49,7 +49,8 @@ define([
          *      transferRules: string,
          *      transferEvents: string,
          *      executeOnWidgetEvent: string,
-         *      executeOnWidgetContentOnLoadEvent: string
+         *      executeOnWidgetContentOnLoadEvent: string,
+         *      fetchMetamorphicPreferences: string
          * }}
          */
         eventList: {
@@ -68,7 +69,8 @@ define([
             transferRules: 'transfer.rules',
             transferEvents: 'transfer.events',
             executeOnWidgetEvent: 'execute.on.widget.event',
-            executeOnWidgetContentOnLoadEvent: 'execute.on.widget.content.on.load.event'
+            executeOnWidgetContentOnLoadEvent: 'execute.on.widget.content.on.load.event',
+            fetchMetamorphicPreferences: 'fetch.metamorphic.preferences'
         },
 
         /**

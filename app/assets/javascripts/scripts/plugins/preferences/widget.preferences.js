@@ -150,6 +150,21 @@ define([
                 )
             }, true);
 
+            if (widget.content.controller.isMetamorphic()) {
+
+                text = 'Metamorphic';
+                this.addTabItem($tabs, {
+                    uuid: text.toLowerCase(),
+                    text: text,
+                    $container: $container,
+                    content: this.renderPrefsForm(
+                        widget.content.controller.fetchGalleryWidgets(
+                            widget.content.model.getMetamorphicPreferences(true)
+                        ), text
+                    )
+                });
+            }
+
             text = scope.name.humanize();
             this.addTabItem($tabs, {
                 uuid: 'content',

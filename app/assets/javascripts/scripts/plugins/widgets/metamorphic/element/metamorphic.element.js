@@ -37,7 +37,9 @@ define([
          * @memberOf MetamorphicElement
          */
         renderEmbeddedContent: function renderEmbeddedContent() {
-            // TODO
+
+            // Hide element
+            this.hide();
         }
 
     }, PluginElement.prototype);
