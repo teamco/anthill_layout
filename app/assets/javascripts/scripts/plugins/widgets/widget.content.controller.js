@@ -261,16 +261,15 @@ define([
             isMetamorphic: function isMetamorphic() {
 
                 /**
-                 * Check metamorphism
-                 * @param $element
-                 * @returns {boolean}
-                 * @private
+                 * Get view
+                 * @type {BaseView}
                  */
-                function _checkMetamorphic($element) {
-                    return $element.hasClass('metamorphic');
-                }
+                var view = this.getView();
 
-                return _checkMetamorphic(this.getView().get$container().$) && !_checkMetamorphic(this.getView().get$item().$);
+                var $container = view.get$container(),
+                    $element = view.get$item();
+
+                return $container.isMetamorphicElement() && !$element.isMetamorphicElement();
             },
 
             /**
@@ -354,7 +353,7 @@ define([
                 }
 
                 this.logger.debug('Fetch metamorphic content', resource);
-                
+
                 widget.controller.fetchInternalContent(resource);
             },
 

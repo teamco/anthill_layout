@@ -181,11 +181,11 @@ define([], function defineWidgetContentModel() {
                 widget = scope.controller.getContainment();
 
             if (scope.name.toLowerCase() !== 'metamorphic') {
-                isMetamorphic = scope.view.get$container().$.hasClass('metamorphic');
+                isMetamorphic = scope.view.get$container().isMetamorphicElement();
             }
-            
+
             isMetamorphic ?
-                this.setPrefs('metamorphicType', type):
+                this.setPrefs('metamorphicType', type) :
                 widget.model._setItemInfoPreferences('metamorphicType', type);
 
             scope.observer.publish(

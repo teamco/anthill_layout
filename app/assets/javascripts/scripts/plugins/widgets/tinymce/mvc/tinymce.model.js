@@ -22,7 +22,9 @@ define([
         /**
          * Define preferences
          * @property TinymceModel
-         * @type {{}}
+         * @type {{
+         *      tinymceContent: {type: string, disabled: boolean, value: string, visible: boolean}
+         * }}
          */
         this.preferences = {
             tinymceContent: {

@@ -1132,6 +1132,15 @@ define([
          */
         isModal: function isModal() {
             return this.name === 'ModalElement';
+        },
+
+        /**
+         * Check if metamorphic element
+         * @memberOf BaseElement
+         * @returns {boolean}
+         */
+        isMetamorphicElement: function isMetamorphicElement() {
+            return this.$.hasClass('metamorphic');
         }
 
     }, AntHill.prototype, Renderer.prototype);

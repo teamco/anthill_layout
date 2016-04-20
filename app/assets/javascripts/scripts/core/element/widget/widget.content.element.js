@@ -60,7 +60,7 @@ define([
          */
         cleanMetamorphicContent: function cleanMetamorphicContent() {
 
-            if (!this.$.hasClass('metamorphic')) {
+            if (!this.isMetamorphicElement()) {
                 return false;
             }
 
