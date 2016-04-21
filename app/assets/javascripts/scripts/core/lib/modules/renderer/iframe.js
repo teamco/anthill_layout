@@ -18,13 +18,14 @@ define(function defineIframeRenderer() {
         /**
          * Render iframe
          * @memberOf IframeRenderer
-         * @param {string} src
+         * @param {string|boolean} src
          * @param {object} [opts]
          * @returns {*|jQuery}
          */
         renderIframe: function renderIframe(src, opts) {
 
-            if (!src) {
+            if (_.isUndefined(src)) {
+
                 // Initial state
                 return false;
             }
@@ -33,7 +34,7 @@ define(function defineIframeRenderer() {
 
             var iframe = '<iframe webkitAllowFullScreen mozallowfullscreen allowfullscreen />',
                 attrs = {
-                    src: src.replace(/(http|https):/, ''),
+                    src: src ? src.replace(/(http|https):/, '') : undefined,
                     frameborder: 0,
                     width: '100%',
                     height: '100%',
