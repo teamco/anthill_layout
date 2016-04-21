@@ -161,7 +161,7 @@ define(function defineTabsRenderer() {
 
             $left.off().on('click.left', function _scrollLeft() {
                 element.scrollToTab(
-                    element.scrollTabsLeft($tabs, this),
+                    element.scrollTabsLeft($tabs),
                     $tabs, 0
                 );
             });
@@ -209,25 +209,8 @@ define(function defineTabsRenderer() {
          * @param scroller
          * @returns {number}
          */
-        scrollTabsLeft: function scrollTabsLeft($tabs, scroller) {
-            var cr, nr, ct, nt, sr, delta, offset,
-                $lis = $('li', $tabs), i = 0, l = $lis.length;
-            for (; i < l; i++) {
-                ct = $lis[i];
-                nt = $lis[i + 1];
-                sr = scroller.getBoundingClientRect().width;
-                offset = Math.abs(this.getTabsLeftPos());
-                cr = $(ct).position();
-                delta = cr.left - sr - offset;
-                if (nt) {
-                    nr = $(nt).position();
-                    if (delta < 0 && nr.left - sr - offset >= 0) {
-                        return Math.abs(delta) - ($(ct).prev().length ? 0 : sr);
-                    }
-                } else if (l === 1) {
-                    return Math.abs(delta) - sr;
-                }
-            }
+        scrollTabsLeft: function scrollTabsLeft($tabs) {
+            return Math.abs($tabs.position().left);
         },
 
         /**
