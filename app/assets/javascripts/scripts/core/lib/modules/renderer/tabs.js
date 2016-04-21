@@ -101,20 +101,6 @@ define(function defineTabsRenderer() {
         },
 
         /**
-         * Calculate width of tabs
-         * @memberOf TabsRenderer
-         * @param $container
-         * @returns {number}
-         */
-        widthOfTabs: function widthOfTabs($container) {
-            var itemsWidth = 0;
-            $('.nav-tabs li', $container).each(function _eachTab() {
-                itemsWidth += $(this).outerWidth();
-            });
-            return itemsWidth;
-        },
-
-        /**
          * Get tabs left position
          * @memberOf TabsRenderer
          * @param $container
@@ -143,7 +129,7 @@ define(function defineTabsRenderer() {
                 leftOffset = element.getTabsLeftPos($container);
 
             var leftFade = leftOffset < 0,
-                $rightLast = $('ul li:last', $container),
+                $rightLast = $('ul li[role="presentation"]:last', $container),
                 rightFade = Math.abs(leftOffset) + width < $rightLast.outerWidth() + $rightLast.position().left;
 
             $right['fade' + (rightFade ? 'In' : 'Out')]();
@@ -187,7 +173,7 @@ define(function defineTabsRenderer() {
                 );
             });
 
-            element.reAdjustTabs($container);
+            element.reAdjustTabs($container.find('.tabs-wrapper'));
         },
 
         /**
