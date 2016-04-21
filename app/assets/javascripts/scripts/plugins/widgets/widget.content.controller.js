@@ -300,8 +300,7 @@ define([
                      */
                     var gallery = pageData.controller.getContainment().controller.getGallery();
 
-                    var widgetsList = gallery.model.getDataProvider(),
-                        _selfResource = scope.name.toDash().toResource();
+                    var widgetsList = gallery.model.getDataProvider();
 
                     // Get widgets list
                     prefs.metamorphicType.list = $.map(
@@ -341,14 +340,11 @@ define([
                  */
                 var widget = this.controller.getContainment();
 
+                if (resource === 'metamorphic') {
+                    return false;
+                }
+
                 if (!this.model.getPrefs('metamorphicAllowChangeContent')) {
-
-                    this.logger.debug('Metamorphic not allowed', resource);
-
-                    if (this.controller.isMetamorphic()) {
-                        widget.controller.fetchInternalContent('metamorphic');
-                    }
-
                     return false;
                 }
 

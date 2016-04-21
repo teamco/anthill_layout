@@ -180,6 +180,19 @@ define([], function defineWidgetContentModel() {
             var isMetamorphic = true,
                 widget = scope.controller.getContainment();
 
+            if (!widget.model.getConfig('preferences').metamorphicAllowChangeContent) {
+
+                scope.logger.debug('Metamorphic not allowed', type);
+
+                // Reset content
+                widget.controller.fetchInternalContent('metamorphic');
+
+                // Remove metamorphicType
+                delete widget.config.preferences.metamorphicType;
+
+                return false;
+            }
+
             if (scope.name.toLowerCase() !== 'metamorphic') {
                 isMetamorphic = scope.view.get$container().isMetamorphicElement();
             }
