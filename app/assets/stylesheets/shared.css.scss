@@ -204,6 +204,7 @@ body.loading > .uil-ripple-css {
   transform-origin: 50% 50%;
   width: 200px;
   height: 200px;
+  z-index: 1000;
 }
 
 body.loading > .uil-ripple-css:before {

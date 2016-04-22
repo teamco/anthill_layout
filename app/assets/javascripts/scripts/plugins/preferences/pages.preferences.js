@@ -286,7 +286,7 @@ define([
                     this.renderNumberField({
                         name: 'pageScrollHeight',
                         text: 'Scroll height',
-                        value: pageScrollHeight,
+                        value: parseInt(pageScrollHeight, 10) || 0,
                         visible: true,
                         disabled: false
                     })

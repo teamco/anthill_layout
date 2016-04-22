@@ -61,12 +61,17 @@ define(['config/layout'], function definePageLayout(Layout) {
 
                 $.extend(padding, opts);
 
-                scope.eventmanager.subscribe({
-                    event: scope.eventmanager.eventList.successRendered,
-                    callback: function _setPadding() {
-                        scope.view.get$item().setPadding(padding);
-                    }
-                }, true);
+                if (scope.view.get$item()) {
+                    scope.view.get$item().setPadding(padding);
+                } else {
+
+                    scope.eventmanager.subscribe({
+                        event: scope.eventmanager.eventList.successRendered,
+                        callback: function _setPadding() {
+                            scope.view.get$item().setPadding(padding);
+                        }
+                    }, true);
+                }
             },
 
             /**
@@ -86,12 +91,17 @@ define(['config/layout'], function definePageLayout(Layout) {
                 // Get scope
                 var scope = this;
 
-                scope.eventmanager.subscribe({
-                    event: scope.eventmanager.eventList.successRendered,
-                    callback: function _setPageScroll() {
-                        scope.view.get$item().updateDimensions();
-                    }
-                }, true);
+                if (scope.view.get$item()) {
+                    scope.view.get$item().updateDimensions();
+                } else {
+
+                    scope.eventmanager.subscribe({
+                        event: scope.eventmanager.eventList.successRendered,
+                        callback: function _setPageScroll() {
+                            scope.view.get$item().updateDimensions();
+                        }
+                    }, true);
+                }
             },
 
             /**
