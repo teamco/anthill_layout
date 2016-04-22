@@ -622,7 +622,7 @@ define([
          * @param {number} delta
          */
         translateXY: function translateX(x, y, delta) {
-            var translateX = 'translate(' + x + 'px, ' + (delta + y) + 'px)';
+            var translateX = 'translate3d(' + x + 'px, ' + (delta + y) + 'px, 0)';
             this.$.css({
                 transform: translateX,
                 msTransform: translateX,
@@ -637,7 +637,7 @@ define([
          * @param {number} delta
          */
         translateX: function translateX(x, delta) {
-            var translateX = 'translate(' + x + 'px, ' + delta + 'px)';
+            var translateX = 'translate3d(' + x + 'px, ' + delta + 'px, 0)';
             this.$.css({
                 transform: translateX,
                 msTransform: translateX,
@@ -651,7 +651,7 @@ define([
          * @param {number} y
          */
         translateY: function translateY(y) {
-            var translateY = 'translate(0, ' + y + 'px)';
+            var translateY = 'translate3d(0, ' + y + 'px, 0, 0)';
             this.$.css({
                 transform: translateY,
                 msTransform: translateY,

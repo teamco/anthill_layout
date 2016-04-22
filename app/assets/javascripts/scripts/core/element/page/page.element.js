@@ -99,7 +99,14 @@ define([
                 height = $container.height();
             }
 
-            this.setHeight(height + outerHeight);
+            var pageScrollHeight = parseInt(scope.model.getConfig('preferences').pageScrollHeight, 10) || 0,
+                delta = height + outerHeight;
+
+            if (pageScrollHeight > delta) {
+                delta += (pageScrollHeight - delta);
+            }
+
+            this.setHeight(delta);
         },
 
         /**

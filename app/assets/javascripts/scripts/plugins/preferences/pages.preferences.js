@@ -212,6 +212,12 @@ define([
             var staticWidth = workspace.model.getConfig('preferences').staticWidth;
 
             /**
+             * Get page scroll height
+             * @type {string}
+             */
+            var pageScrollHeight = page.model.getConfig('preferences').pageScrollHeight;
+
+            /**
              * Get page width
              * @type {number|string}
              */
@@ -230,17 +236,7 @@ define([
 
             return $ul.append([
 
-                $('<li />').append(
-                    this.renderTextField({
-                        name: 'layout-cell-width',
-                        text: 'Cell size',
-                        value: cellWidth.toFixed(3),
-                        visible: true,
-                        disabled: true
-                    })
-                ).attr('rel', 'layout-cell-width'),
-
-                $('<li />').append(
+                $('<li class="layout-behavior" />').append(
                     $combo.append(
                         this.renderCombobox(
                             [
@@ -264,9 +260,19 @@ define([
                             true
                         )
                     )
-                ).attr('rel', 'layout-behavior'),
+                ),
 
-                $('<li />').append(
+                $('<li class="layout-cell-width" />').append(
+                    this.renderTextField({
+                        name: 'layout-cell-width',
+                        text: 'Cell size',
+                        value: cellWidth.toFixed(3),
+                        visible: true,
+                        disabled: true
+                    })
+                ),
+
+                $('<li class="page-width" />').append(
                     this.renderTextField({
                         name: 'page-width',
                         text: 'Page width',
@@ -274,19 +280,29 @@ define([
                         visible: true,
                         disabled: true
                     })
-                ).attr('rel', 'page-width').addClass('page-width'),
+                ),
 
-                $('<li />').append(
-                    this.renderTextField({
+                $('<li class="page-scroll-height" />').append(
+                    this.renderNumberField({
+                        name: 'pageScrollHeight',
+                        text: 'Scroll height',
+                        value: pageScrollHeight,
+                        visible: true,
+                        disabled: false
+                    })
+                ),
+
+                $('<li class="page-layout-columns" />').append(
+                    this.renderNumberField({
                         name: 'layoutColumns',
                         text: 'Columns',
                         value: layout.config.grid.columns,
                         visible: true,
-                        disabled: false
+                        disabled: true
                     })
-                ).attr('rel', 'layout-columns').addClass('page-layout-columns'),
+                ),
 
-                $('<li />').append(
+                $('<li class="page-padding" />').append(
                     this.renderNumberField({
                         name: 'pagePaddingTop',
                         text: 'Padding top',
@@ -294,9 +310,9 @@ define([
                         visible: true,
                         disabled: false
                     })
-                ).attr('rel', 'page-padding-top').addClass('page-padding'),
+                ),
 
-                $('<li />').append(
+                $('<li class="page-padding" />').append(
                     this.renderNumberField({
                         name: 'pagePaddingLeft',
                         text: 'Padding left',
@@ -304,9 +320,9 @@ define([
                         visible: true,
                         disabled: false
                     })
-                ).attr('rel', 'page-padding-left').addClass('page-padding'),
+                ),
 
-                $('<li />').append(
+                $('<li class="page-padding" />').append(
                     this.renderNumberField({
                         name: 'pagePaddingBottom',
                         text: 'Padding bottom',
@@ -314,9 +330,9 @@ define([
                         visible: true,
                         disabled: false
                     })
-                ).attr('rel', 'page-padding-bottom').addClass('page-padding'),
+                ),
 
-                $('<li />').append(
+                $('<li class="page-padding" />').append(
                     this.renderNumberField({
                         name: 'pagePaddingRight',
                         text: 'Padding right',
@@ -324,7 +340,7 @@ define([
                         visible: true,
                         disabled: false
                     })
-                ).attr('rel', 'page-padding-right').addClass('page-padding')
+                )
             ]);
         },
 

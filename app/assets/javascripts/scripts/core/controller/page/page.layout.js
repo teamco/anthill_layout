@@ -53,16 +53,19 @@ define(['config/layout'], function definePageLayout(Layout) {
              */
             updatePadding: function updatePadding(opts) {
 
+                // Get scope
+                var scope = this;
+
                 // Get padding
-                var padding = this.model.getConfig('html/padding');
+                var padding = scope.model.getConfig('html/padding');
 
                 $.extend(padding, opts);
 
-                this.eventmanager.subscribe({
-                    event: this.eventmanager.eventList.successRendered,
+                scope.eventmanager.subscribe({
+                    event: scope.eventmanager.eventList.successRendered,
                     callback: function _setPadding() {
-                        this.view.get$item().setPadding(padding);
-                    }.bind(this)
+                        scope.view.get$item().setPadding(padding);
+                    }
                 }, true);
             },
 
@@ -72,6 +75,23 @@ define(['config/layout'], function definePageLayout(Layout) {
              */
             updateHeight: function updateHeight() {
                 this.view.get$item().updateDimensions();
+            },
+
+            /**
+             * Update page scroll height
+             * @memberOf PageLayout
+             */
+            updatePageScrollHeight: function updatePageScrollHeight() {
+
+                // Get scope
+                var scope = this;
+
+                scope.eventmanager.subscribe({
+                    event: scope.eventmanager.eventList.successRendered,
+                    callback: function _setPageScroll() {
+                        scope.view.get$item().updateDimensions();
+                    }
+                }, true);
             },
 
             /**

@@ -209,6 +209,27 @@ define([
         },
 
         /**
+         * Define page scroll height
+         * @memberOf PageModel
+         * @param {string} height
+         */
+        setPageScrollHeight: function setPageScrollHeight(height) {
+
+            this._setItemInfoPreferences('pageScrollHeight', height);
+
+            /**
+             * Get scope
+             * @type {Page}
+             */
+            var scope = this.scope;
+
+            scope.observer.publish(
+                scope.eventmanager.eventList.updatePageScrollHeight,
+                height
+            );
+        },
+
+        /**
          * Set global widgets overlapping
          * @memberOf PageModel
          * @param {boolean} overlapping

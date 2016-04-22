@@ -60,7 +60,8 @@ define([
          *      loadPreferences: string,
          *      transferPreferences: string,
          *      transferContentPreferences: string,
-         *      afterUpdatePreferences: string
+         *      afterUpdatePreferences: string,
+         *      updatePageScrollHeight: string
          * }}
          */
         eventList: {
@@ -90,6 +91,7 @@ define([
             updateHashOnReduce: 'update.hash.on.reduce',
 
             updateHeight: 'update.height',
+            updatePageScrollHeight: 'update.page.scroll.height',
 
             updateSiteDescription: 'update.site.description',
             updateSiteKeywords: 'update.site.keywords',
