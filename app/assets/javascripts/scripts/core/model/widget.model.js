@@ -25,6 +25,8 @@ define([
          *      widgetUrl: {type: string, disabled: boolean, value: undefined, visible: boolean},
          *      onClickOpenUrl: {type: string, disabled: boolean, value: undefined, visible: boolean},
          *      customClassName: {type: string, disabled: boolean, value: undefined, visible: boolean},
+         *      header: {type: string, disabled: boolean, value: undefined, visible: boolean},
+         *      footer: {type: string, disabled: boolean, value: undefined, visible: boolean},
          *      statistics: {type: string, disabled: boolean, value: undefined, visible: boolean},
          *      hideContentOnDrag: {type: string, disabled: boolean, value: undefined, visible: boolean},
          *      hideContentOnResize: {type: string, disabled: boolean, value: undefined, visible: boolean},
@@ -61,6 +63,18 @@ define([
                 type: 'text',
                 disabled: false,
                 value: undefined,
+                visible: true
+            },
+            header: {
+                type: 'checkbox',
+                disabled: false,
+                checked: false,
+                visible: true
+            },
+            footer: {
+                type: 'checkbox',
+                disabled: false,
+                checked: false,
                 visible: true
             },
             statistics: {
