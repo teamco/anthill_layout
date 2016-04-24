@@ -12,7 +12,8 @@ define(
         'controller/behavior/behavior.error.handler',
         'controller/behavior/behavior.fix.vulnerabilities',
         'controller/production/production',
-        'config/routes'
+        'config/routes',
+        'modules/Router'
     ],
     /**
      * Define Application controller
@@ -22,9 +23,10 @@ define(
      * @param {BehaviorFixVulnerabilities} BehaviorFixVulnerabilities
      * @param {Production} Production
      * @param {Routes} Routes
+     * @param {Router} Router
      * @returns {ApplicationController}
      */
-    function defineApplicationController(AntHill, BaseController, BehaviorErrorHandler, BehaviorFixVulnerabilities, Production, Routes) {
+    function defineApplicationController(AntHill, BaseController, BehaviorErrorHandler, BehaviorFixVulnerabilities, Production, Routes, Router) {
 
         /**
          * Define application controller
@@ -35,6 +37,7 @@ define(
          * @extends BehaviorFixVulnerabilities
          * @extends Production
          * @extends Routes
+         * @extends Router
          * @constructor
          */
         var ApplicationController = function ApplicationController() {
@@ -387,7 +390,8 @@ define(
             Production.prototype,
             BehaviorErrorHandler.prototype,
             BehaviorFixVulnerabilities.prototype,
-            Routes.prototype
+            Routes.prototype,
+            Router.prototype
         );
     }
 );

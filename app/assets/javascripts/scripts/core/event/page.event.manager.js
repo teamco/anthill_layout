@@ -61,7 +61,8 @@ define([
          *      transferPreferences: string,
          *      transferContentPreferences: string,
          *      afterUpdatePreferences: string,
-         *      updatePageScrollHeight: string
+         *      updatePageScrollHeight: string,
+         *      showWidgetContent: string
          * }}
          */
         eventList: {
@@ -107,7 +108,9 @@ define([
             loadPreferences: 'load.preferences',
             transferContentPreferences: 'transfer.content.preferences',
             transferPreferences: 'transfer.preferences',
-            afterUpdatePreferences: 'after.update.preferences'
+            afterUpdatePreferences: 'after.update.preferences',
+
+            showWidgetContent: 'show.widget.content'
         }
 
     }, BaseEvent.prototype);

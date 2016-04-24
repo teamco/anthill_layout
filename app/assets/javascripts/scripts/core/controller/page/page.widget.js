@@ -269,6 +269,17 @@ define([
                         true
                     );
                 }
+            },
+
+            /**
+             * Show widget content
+             * @param {Widget|[Widget, string]} item
+             * @memberOf PageWidget
+             */
+            showWidgetContent: function showWidgetContent(item) {
+
+                // TODO
+                // this.controller.togglePanels(false);
             }
         },
         PageWidgetCopy.prototype

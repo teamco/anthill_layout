@@ -394,7 +394,10 @@ define([
                     true
                 );
 
-                return $.trim(title).length > 0 ?
+                var resource = preferences.resource,
+                    isDefault = resource ? resource.humanize().toLowerCase() === title.toLowerCase() : false;
+
+                return $.trim(title).length > 0 && !isDefault ?
                     title : uuid;
             },
 

@@ -149,33 +149,40 @@ define(function defineWorkspacePage() {
 
                 /**
                  * Get widget
-                 * @type {Widget|*}
+                 * @type {Widget|string}
                  */
-                var widget = this.controller.getWidgetByHashLocation(page);
+                var item = this.controller.getWidgetByHashLocation(page);
 
                 var wurl = '',
                     purl = page ?
                         this.controller.getItemIdentity(page) : '';
 
-                if (widget) {
+                if (item) {
 
-                    wurl = '/' + page.controller.getItemIdentity(widget);
+                    if (this.controller.isWidget(item)) {
 
-                    widget.observer.publish(
-                        widget.eventmanager.eventList.enlargeWidget,
-                        true
-                    );
-                }
+                        wurl = '/' + page.controller.getItemIdentity(widget);
 
-                if (!widget && this.controller.isWidget(page.maximized)) {
+                        item.observer.publish(
+                            item.eventmanager.eventList.enlargeWidget,
+                            true
+                        );
+                    }
+
+                } else if (!item && this.controller.isWidget(page.maximized)) {
 
                     // Define widget
-                    widget = page.maximized;
+                    item = page.maximized;
 
-                    widget.observer.publish(
-                        widget.eventmanager.eventList.reduceWidget
+                    item.observer.publish(
+                        item.eventmanager.eventList.reduceWidget
                     );
                 }
+
+                page.observer.publish(
+                    page.eventmanager.eventList.showWidgetContent,
+                    item
+                );
 
                 this.controller.setHashLocation(
                     ''.concat(purl, wurl)

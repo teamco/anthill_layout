@@ -55,6 +55,54 @@ define([
     };
 
     /**
+     * Get DesignTime panel
+     * @memberOf WorkspaceController
+     */
+    WorkspaceController.prototype.getDesignTimePanel = function getDesignTimePanel() {
+        return this.getPanels().designTime;
+    };
+
+    /**
+     * Get RunTime panel
+     * @memberOf WorkspaceController
+     */
+    WorkspaceController.prototype.getRunTimePanel = function getRunTimePanel() {
+        return this.getPanels().runTime;
+    };
+
+    /**
+     * Get panels
+     * @memberOf WorkspaceController
+     */
+    WorkspaceController.prototype.getPanels = function getPanels() {
+        return this.getContainment().panels || {};
+    };
+
+    /**
+     * Toggle panels
+     * @memberOf WorkspaceController
+     * @param {boolean} show
+     */
+    WorkspaceController.prototype.togglePanels = function togglePanels(show) {
+
+        var index, panel,
+            panels = this.getPanels();
+
+        for (index in panels) {
+
+            if (panels.hasOwnProperty(index)) {
+
+                /**
+                 * Get panel
+                 * @type {Panel}
+                 */
+                panel = panels[index];
+                panel.view.get$item()[show ? 'show' : 'hide']();
+            }
+        }
+    };
+
+    /**
      * Define Workspace Global listeners
      * @memberOf Workspace
      * @type {{
@@ -132,6 +180,16 @@ define([
                     }, app);
 
                     app.panels.designTime.view.render();
+
+                    /**
+                     * Match regex
+                     * @type {Array|{index: number, input: string}}
+                     */
+                    var widgetMatch = app.controller.isWidgetMatch2Hash();
+
+                    if (widgetMatch && widgetMatch[2] === 'content') {
+                        app.panels.designTime.view.get$item().hide();
+                    }
                 });
             }
         },
@@ -173,6 +231,16 @@ define([
                     }, app);
 
                     app.panels.runTime.view.render();
+
+                    /**
+                     * Match regex
+                     * @type {Array|{index: number, input: string}}
+                     */
+                    var widgetMatch = app.controller.isWidgetMatch2Hash();
+
+                    if (widgetMatch && widgetMatch[2] === 'content') {
+                        app.panels.runTime.view.get$item().hide();
+                    }
                 });
             }
         }

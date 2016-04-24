@@ -22,6 +22,7 @@ define(
      * @param {Router} Router
      * @param {WorkspacePage} WorkspacePage
      * @param {WorkspaceSEO} WorkspaceSEO
+     * @param {WorkspaceServices} WorkspaceServices
      * @returns {*}
      */
     function defineWorkspaceController(BaseController, BasePreferences, Router, WorkspacePage, WorkspaceSEO, WorkspaceServices) {

@@ -12,15 +12,15 @@ define([
     /**
      * Define WorkspaceServices
      * @class WorkspaceServices
-     * @extends BaseController
-     * @extends GoogleAnalyticsPreferences
-     * @extends SnapEngagePreferences
-     * @extends RaygunIOPreferences
-     * @extends GithubGistPreferences
-     * @extends InjectScriptPreferences
-     * @extends BigmirNetPreferences
-     * @extends YahooFlurryPreferences
-     * @extends RollbarNotifierPreferences
+     * @extends {BaseController} BaseController
+     * @extends {GoogleAnalyticsPreferences} GoogleAnalyticsPreferences
+     * @extends {SnapEngagePreferences} SnapEngagePreferences
+     * @extends {RaygunIOPreferences} RaygunIOPreferences
+     * @extends {GithubGistPreferences} GithubGistPreferences
+     * @extends {InjectScriptPreferences} InjectScriptPreferences
+     * @extends {BigmirNetPreferences} BigmirNetPreferences
+     * @extends {YahooFlurryPreferences} YahooFlurryPreferences
+     * @extends {RollbarNotifierPreferences} RollbarNotifierPreferences
      * @constructor
      */
     var WorkspaceServices = function WorkspaceServices() {

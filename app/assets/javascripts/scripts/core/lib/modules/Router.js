@@ -74,7 +74,22 @@ define(function defineRouter() {
          * @returns {Array|{index: number, input: string}}
          */
         isWidgetMatch2Hash: function isWidgetMatch2Hash() {
-            return this.getHashLocation().match(/#\/([^+]*)\/([^+]*):?/i);
+
+            var widgetMatcher = this.getHashLocation().match(/#\/([^+]*)\/([^+]*):?/i),
+                matcher = [];
+
+            if (!widgetMatcher) {
+                return widgetMatcher;
+            }
+
+            matcher[0] = widgetMatcher[0];
+            matcher[1] = widgetMatcher[1].replace(new RegExp(this.isPageMatch2Hash()[1] + '/'), '');
+
+            if (widgetMatcher[2]) {
+                matcher[2] = widgetMatcher[2];
+            }
+
+            return matcher;
         },
 
         /**
@@ -148,11 +163,13 @@ define(function defineRouter() {
              * @type {*|Widget}
              */
             var widget = widgetMatch ?
-                (page.model.getItemByTitle(widgetMatch[2]) ||
-                page.model.getItemByUUID(widgetMatch[2])) :
+                (page.model.getItemByTitle(widgetMatch[1]) ||
+                page.model.getItemByUUID(widgetMatch[1])) :
                 null;
 
-            return widget;
+            return widgetMatch ?
+                widgetMatch[2] === 'content' ?
+                    [widget, 'content'] : widget : null;
         },
 
         /**
