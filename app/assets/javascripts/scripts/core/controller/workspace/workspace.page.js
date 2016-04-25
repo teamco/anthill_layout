@@ -153,18 +153,45 @@ define(function defineWorkspacePage() {
                  */
                 var item = this.controller.getWidgetByHashLocation(page);
 
-                var wurl = '',
+                var widget, content = '',
+                    showContent, wurl = '',
                     purl = page ?
                         this.controller.getItemIdentity(page) : '';
 
                 if (item) {
 
-                    if (this.controller.isWidget(item)) {
+                    // Define content
+                    content = 'content';
+
+                    // Check show content
+                    showContent = item[1] === content;
+
+                    /**
+                     * Get widget
+                     * @type {Widget}
+                     */
+                    widget = item;
+
+                    if (showContent) {
+
+                        page.observer.publish(
+                            page.eventmanager.eventList.showWidgetContent,
+                            item[0]
+                        );
+
+                        /**
+                         * Get widget
+                         * @type {Widget}
+                         */
+                        widget = item[0];
+                    }
+
+                    if (this.controller.isWidget(widget)) {
 
                         wurl = '/' + page.controller.getItemIdentity(widget);
 
-                        item.observer.publish(
-                            item.eventmanager.eventList.enlargeWidget,
+                        widget.observer.publish(
+                            widget.eventmanager.eventList.enlargeWidget,
                             true
                         );
                     }
@@ -172,20 +199,15 @@ define(function defineWorkspacePage() {
                 } else if (!item && this.controller.isWidget(page.maximized)) {
 
                     // Define widget
-                    item = page.maximized;
+                    widget = page.maximized;
 
-                    item.observer.publish(
-                        item.eventmanager.eventList.reduceWidget
+                    widget.observer.publish(
+                        widget.eventmanager.eventList.reduceWidget
                     );
                 }
 
-                page.observer.publish(
-                    page.eventmanager.eventList.showWidgetContent,
-                    item
-                );
-
                 this.controller.setHashLocation(
-                    ''.concat(purl, wurl)
+                    ''.concat(purl, wurl, '/', content)
                 );
             },
 

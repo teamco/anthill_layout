@@ -1,3 +1,14 @@
+.show-content .page .widget,
+.show-content .page .widget:after {
+    display: none;
+}
+
+.show-content .page .widget.active-content {
+    width: 100% !important;
+    height: 100% !important;
+    display: block;
+}
+
 .page .widget {
     position: absolute;
     cursor: move;

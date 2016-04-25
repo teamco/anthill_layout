@@ -278,8 +278,27 @@ define([
              */
             showWidgetContent: function showWidgetContent(item) {
 
-                // TODO
-                // this.controller.togglePanels(false);
+                if (!item) {
+                    this.logger.warn('Undefined item content');
+                    return false;
+                }
+
+                /**
+                 * Get workspace
+                 * @type {Workspace}
+                 */
+                var ws = this.controller.getContainment();
+
+                /**
+                 * Get root element
+                 * @type {ApplicationElement}
+                 */
+                var rootElement = this.controller.root().view.get$item();
+
+                ws.controller.togglePanels(false);
+
+                rootElement.$.addClass('show-content');
+                item.view.get$item().$.addClass('active-content');
             }
         },
         PageWidgetCopy.prototype

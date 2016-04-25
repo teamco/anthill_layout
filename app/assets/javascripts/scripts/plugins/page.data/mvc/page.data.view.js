@@ -159,6 +159,13 @@ define([
                                 click: 'removeWidget'
                             }
                         },
+                        content: {
+                            text: 'Show content',
+                            type: 'info',
+                            events: {
+                                click: 'show' + scope.name + 'Content'
+                            }
+                        },
                         rules: {
                             text: 'Rules',
                             type: 'info',
