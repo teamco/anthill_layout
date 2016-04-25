@@ -152,18 +152,18 @@ define([
                     ].join(' '),
                     title: 'Widget preferences',
                     buttons: {
+                        content: {
+                            text: 'Show content',
+                            type: 'success',
+                            events: {
+                                click: 'showWidgetContent'
+                            }
+                        },
                         remove: {
                             text: 'Remove',
                             type: 'danger',
                             events: {
                                 click: 'removeWidget'
-                            }
-                        },
-                        content: {
-                            text: 'Show content',
-                            type: 'info',
-                            events: {
-                                click: 'show' + scope.name + 'Content'
                             }
                         },
                         rules: {
