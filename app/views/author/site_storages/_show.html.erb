@@ -2,17 +2,17 @@
 <%= stylesheet_link_tag 'general', media: 'all' %>
 <%= stylesheet_link_tag("public/#{key}/css/general") %>
 <%= javascript_include_tag(
-            'scripts/core/lib/require',
-            'data-resource': key,
-            'data-user': current_user.nil? ? 'guest' : current_user.email,
-            'data-version': storage[:version],
-            'data-mode': storage[:mode],
-            'data-environment': Rails.env,
-            'data-uuid': storage[:uuid],
-            'data-main': storage[:mode] == 'consumption' ?
-                    javascript_path('target/production') :
-                    javascript_path("public/#{storage[:mode]}"),
-            'id': 'require-init'
+        'scripts/core/lib/require',
+        'data-resource': key,
+        'data-user': current_user.nil? ? 'guest' : current_user.email,
+        'data-version': storage[:version],
+        'data-mode': storage[:mode],
+        'data-environment': Rails.env,
+        'data-uuid': storage[:uuid],
+        'data-main': storage[:mode] == 'consumption' ?
+            javascript_path('target/production') :
+            javascript_path("public/#{storage[:mode]}"),
+        'id': 'require-init'
     ) %>
 
 <%= javascript_tag defer: 'defer', id: 'preload' do -%>

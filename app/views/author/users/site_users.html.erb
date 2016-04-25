@@ -1,18 +1,18 @@
 <div class="panel panel-default">
-    <div class="panel-heading">
-        <h3 class="panel-title">
-            <%= "Site \"#{@storage.key}\" #{controller_name.singularize.humanize}" %>
-            <span class="badge"><%= @users_all.length %></span>
-        </h3>
-    </div>
-    <table id="<%= controller_name %>" class="table">
-        <%= user_th %>
-        <% creator = @storage.creator %>
-        <% @users.each do |user| %>
-            <%= user_td(user, creator) %>
-        <% end %>
-    </table>
-    <div class="panel-footer text-center">
-        <%= will_paginate @users %>
-    </div>
+  <div class="panel-heading">
+    <h3 class="panel-title">
+      <%= "Site \"#{@storage.key}\" #{controller_name.singularize.humanize}" %>
+      <span class="badge"><%= @users_all.length %></span>
+    </h3>
+  </div>
+  <table id="<%= controller_name %>" class="table">
+    <%= user_th %>
+    <% creator = @storage.creator %>
+    <% @users.each do |user| %>
+        <%= user_td(user, creator) %>
+    <% end %>
+  </table>
+  <div class="panel-footer text-center">
+    <%= will_paginate @users %>
+  </div>
 </div>

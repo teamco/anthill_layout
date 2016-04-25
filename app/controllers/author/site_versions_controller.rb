@@ -85,13 +85,11 @@ class Author::SiteVersionsController < Author::AuthorController
   end
 
   def publish
-    logger.info ">>>>>>>> 1"
     published = @author_site_version.published
-    logger.info ">>>>>>>> 2"
     if @author_site_version.publish
       @author_site_version.author_item.touch
       respond_to do |format|
-        format.html { redirect_to author_site_version_path, notice: t('success_update') }
+        format.html { redirect_to author_site_storage_site_versions_path(@author_site_version.author_site_storage), notice: t('success_update') }
         format.json if request.xhr?
       end
     else

@@ -1,36 +1,36 @@
 <div class="row border-bottom">
-    <nav class="navbar navbar-static-top lazur-bg" role="navigation">
-        <div class="navbar-header">
-            <a class="navbar-minimalize minimalize-styl-2 btn btn-info">
-                <i class="fa fa-bars"></i>
-            </a>
-        </div>
-        <ul class="nav navbar-top-links navbar-right">
-            <li class="dropdown user user-menu">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    <%= image_tag user_image_url, class: 'user-image', alt: user_name %>
-                    <span class="text-white"><%= user_name %></span>
-                </a>
-                <ul class="dropdown-menu animated bounceIn">
-                    <!-- User image -->
-                    <li class="user-header">
-                        <%= image_tag user_image_url, class: 'img-circle', alt: user_name %>
-                        <p>
-                            <%= user_name %><br/>
-                            <small>Member since <%= current_user.created_at.to_formatted_s(:long) %></small>
-                        </p>
-                    </li>
-                    <!-- Menu Footer-->
-                    <li class="user-footer">
-                        <div class="pull-left">
-                            <a href="#" class="btn btn-default btn-flat">Profile</a>
-                        </div>
-                        <div class="pull-right">
-                            <%= do_logout %>
-                        </div>
-                    </li>
-                </ul>
-            </li>
+  <nav class="navbar navbar-static-top lazur-bg" role="navigation">
+    <div class="navbar-header">
+      <a class="navbar-minimalize minimalize-styl-2 btn btn-info">
+        <i class="fa fa-bars"></i>
+      </a>
+    </div>
+    <ul class="nav navbar-top-links navbar-right">
+      <li class="dropdown user user-menu">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+          <%= image_tag user_image_url, class: 'user-image', alt: user_name %>
+          <span class="text-white"><%= user_name %></span>
+        </a>
+        <ul class="dropdown-menu animated bounceIn">
+          <!-- User image -->
+          <li class="user-header">
+            <%= image_tag user_image_url, class: 'img-circle', alt: user_name %>
+            <p>
+              <%= user_name %><br/>
+              <small>Member since <%= current_user.created_at.to_formatted_s(:long) %></small>
+            </p>
+          </li>
+          <!-- Menu Footer-->
+          <li class="user-footer">
+            <div class="pull-left">
+              <a href="#" class="btn btn-default btn-flat">Profile</a>
+            </div>
+            <div class="pull-right">
+              <%= do_logout %>
+            </div>
+          </li>
         </ul>
-    </nav>
+      </li>
+    </ul>
+  </nav>
 </div>

@@ -1,15 +1,15 @@
 <div class="panel panel-default">
-    <div class="panel-heading">
-        <h3 class="panel-title">
-            <%= controller_name.singularize.humanize %>
-            <span class="badge"><%= @user_log.id %></span>
-        </h3>
-    </div>
-    <table id="<%= controller_name %>" class="table">
-        <%= user_log_th %>
-        <%= user_log_td(@user_log, '<span class="toggle-trace glyphicon glyphicon-plus"></span>') %>
-        <%= user_log_trace(@user_log, ' class=hide') %>
-    </table>
-    <%= load_pretty_print(false) %>
-    <%= bind_events(%w(.user-params .user-session), true) %>
+  <div class="panel-heading">
+    <h3 class="panel-title">
+      <%= controller_name.singularize.humanize %>
+      <span class="badge"><%= @user_log.id %></span>
+    </h3>
+  </div>
+  <table id="<%= controller_name %>" class="table">
+    <%= user_log_th %>
+    <%= user_log_td(@user_log, '<span class="toggle-trace glyphicon glyphicon-plus"></span>') %>
+    <%= user_log_trace(@user_log, ' class=hide') %>
+  </table>
+  <%= load_pretty_print(false) %>
+  <%= bind_events(%w(.user-params .user-session), true) %>
 </div>

@@ -8,8 +8,8 @@
     <%= render_checkbox(f, :published) -%>
     <%= image_tag(item.screenshot, alt: item.author_site_storage.try(:key)) unless item.screenshot.nil? %>
     <div class="panel-footer m-20">
-        <%= cancel_button -%>
-        <%= render_submit(f) -%>
+      <%= cancel_button -%>
+      <%= render_submit(f) -%>
     </div>
 
 <% end %>

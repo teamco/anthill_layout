@@ -1,16 +1,16 @@
 <div class="panel panel-default <%= controller_name %>">
-    <div class="panel-heading">
-        <h3 class="panel-title">
-            <%= t('sites_management') %>
-            <span class="badge"><%= @author_site_storages.length %></span>
-        </h3>
+  <div class="panel-heading">
+    <h3 class="panel-title">
+      <%= t('sites_management') %>
+      <span class="badge"><%= @author_site_storages.length %></span>
+    </h3>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-lg-3 col-sm-6 col-xs-12">
+        <%= render 'author/author/ibox_new' %>
+      </div>
+      <% render_loop(@author_site_storages, 'sites') %>
     </div>
-    <div class="panel-body">
-        <div class="row">
-            <div class="col-lg-3 col-sm-6 col-xs-12">
-                <%= render 'author/author/ibox_new' %>
-            </div>
-            <% render_loop(@author_site_storages, 'sites') %>
-        </div>
-    </div>
+  </div>
 </div>

@@ -8,16 +8,16 @@
     <%= render 'author/author/item', f: f -%>
 
     <%= render_collection_field(f, 'Type', {
-                                         id: :site_type_id,
-                                         collection: types,
-                                         index: :id,
-                                         value: :name
-                                 }) -%>
+        id: :site_type_id,
+        collection: types,
+        index: :id,
+        value: :name
+    }) -%>
 
     <%= render_activated_version(f) -%>
     <%= render 'author/site_storages/widgets/select_widgets' unless is_action?('new') %>
     <div class="panel-footer m-20">
-        <%= cancel_button -%>
-        <%= render_submit(f) -%>
+      <%= cancel_button -%>
+      <%= render_submit(f) -%>
     </div>
 <% end -%>

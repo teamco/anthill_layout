@@ -1,25 +1,25 @@
 <div class="panel panel-default">
-    <div class="panel-heading">
-        <h3 class="panel-title"><%= t('widget_management') %></h3>
+  <div class="panel-heading">
+    <h3 class="panel-title"><%= t('widget_management') %></h3>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-lg-3 col-sm-6 col-xs-12">
+        <%= render 'author/author/ibox_index',
+                   item_box: 'bg-yellow',
+                   item_title: t('widgets'),
+                   item_path: author_widgets_path,
+                   item_info: @author[:widgets],
+                   item_icon: 'glyphicon-dashboard' %>
+      </div>
+      <div class="col-lg-3 col-sm-6 col-xs-12">
+        <%= render 'author/author/ibox_index',
+                   item_box: 'bg-yellow',
+                   item_title: t('widget_categories'),
+                   item_path: author_widget_categories_path,
+                   item_info: @author[:widget_categories],
+                   item_icon: 'glyphicon-edit' %>
+      </div>
     </div>
-    <div class="panel-body">
-        <div class="row">
-            <div class="col-lg-3 col-sm-6 col-xs-12">
-                <%= render 'author/author/ibox_index',
-                           item_box: 'bg-yellow',
-                           item_title: t('widgets'),
-                           item_path: author_widgets_path,
-                           item_info: @author[:widgets],
-                           item_icon: 'glyphicon-dashboard' %>
-            </div>
-            <div class="col-lg-3 col-sm-6 col-xs-12">
-                <%= render 'author/author/ibox_index',
-                           item_box: 'bg-yellow',
-                           item_title: t('widget_categories'),
-                           item_path: author_widget_categories_path,
-                           item_info: @author[:widget_categories],
-                           item_icon: 'glyphicon-edit' %>
-            </div>
-        </div>
-    </div>
+  </div>
 </div>

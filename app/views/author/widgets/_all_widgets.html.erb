@@ -1,13 +1,13 @@
 <div class="panel panel-default">
-    <div class="panel-heading">
-        <h3 class="panel-title">
-            <span class="pull-left"><%= @partial[:title] %></span>
-            <span class="badge"><%= @partial[:all] %></span>
-        </h3>
+  <div class="panel-heading">
+    <h3 class="panel-title">
+      <span class="pull-left"><%= @partial[:title] %></span>
+      <span class="badge"><%= @partial[:all] %></span>
+    </h3>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <% render_loop(@partial[:collection], 'category_widgets') %>
     </div>
-    <div class="panel-body">
-        <div class="row">
-            <% render_loop(@partial[:collection], 'category_widgets') %>
-        </div>
-    </div>
+  </div>
 </div>

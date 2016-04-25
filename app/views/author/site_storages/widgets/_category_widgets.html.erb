@@ -1,17 +1,17 @@
 <% check_widgets_ids = item.author_widget_ids + @author_site_storage.author_widget_ids %>
 <% duplicated_ids = check_widgets_ids.select { |element| check_widgets_ids.count(element) > 1 }.uniq.length %>
 <div class="panel panel-warning">
-    <div class="panel-heading">
-        <button type="button" class="pull-left glyphicon glyphicon-minus" data-toggle="collapse" data-target="#toggle-widgets-<%= item.id %>"></button>
-        <h3 class="panel-title">
-            <span class="pull-left category-title" onclick="sc(this)"><%= item.name_value %></span>
-            <span class="badge selected" title="<%= t('selected') %>"><%= duplicated_ids %></span>/
-            <span class="badge" title="<%= t('total') %>"><%= item.author_widgets.length %></span>
-        </h3>
+  <div class="panel-heading">
+    <button type="button" class="pull-left glyphicon glyphicon-minus" data-toggle="collapse" data-target="#toggle-widgets-<%= item.id %>"></button>
+    <h3 class="panel-title">
+      <span class="pull-left category-title" onclick="sc(this)"><%= item.name_value %></span>
+      <span class="badge selected" title="<%= t('selected') %>"><%= duplicated_ids %></span>/
+      <span class="badge" title="<%= t('total') %>"><%= item.author_widgets.length %></span>
+    </h3>
+  </div>
+  <div class="panel-body">
+    <div class="site-widgets-wrapper collapse in row" id="toggle-widgets-<%= item.id %>" aria-expanded="true">
+      <% render_loop(item.author_widgets.order(:name), 'author/site_storages/widgets/site_widget') %>
     </div>
-    <div class="panel-body">
-        <div class="site-widgets-wrapper collapse in row" id="toggle-widgets-<%= item.id %>" aria-expanded="true">
-            <% render_loop(item.author_widgets.order(:name), 'author/site_storages/widgets/site_widget') %>
-        </div>
-    </div>
+  </div>
 </div>

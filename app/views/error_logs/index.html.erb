@@ -1,20 +1,20 @@
 <div class="panel panel-danger">
-    <div class="panel-heading">
-        <h3 class="panel-title">
-            <%= controller_name.singularize.humanize %>
-            <span class="badge"><%= @error_logs_all.length %></span>
-        </h3>
-    </div>
-    <table id="<%= controller_name %>" class="table">
-        <%= error_log_th %>
-        <% @error_logs.each do |error_log| %>
-            <%= error_log_td(error_log, '<span class="toggle-trace glyphicon glyphicon-plus"></span>') %>
-            <%= error_log_trace(error_log, ' class=hide') %>
-        <% end %>
-    </table>
-    <%= load_pretty_print(false) %>
-    <%= bind_events %>
-    <div class="panel-footer text-center">
-        <%= will_paginate @error_logs %>
-    </div>
+  <div class="panel-heading">
+    <h3 class="panel-title">
+      <%= controller_name.singularize.humanize %>
+      <span class="badge"><%= @error_logs_all.length %></span>
+    </h3>
+  </div>
+  <table id="<%= controller_name %>" class="table">
+    <%= error_log_th %>
+    <% @error_logs.each do |error_log| %>
+        <%= error_log_td(error_log, '<span class="toggle-trace glyphicon glyphicon-plus"></span>') %>
+        <%= error_log_trace(error_log, ' class=hide') %>
+    <% end %>
+  </table>
+  <%= load_pretty_print(false) %>
+  <%= bind_events %>
+  <div class="panel-footer text-center">
+    <%= will_paginate @error_logs %>
+  </div>
 </div>

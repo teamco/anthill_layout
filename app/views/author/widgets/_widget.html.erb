@@ -1,14 +1,14 @@
 <div class="col-lg-3 col-sm-6 col-xs-12">
-    <div class="small-box bg-gray">
-        <div class="inner">
-            <h2 title="<%= item.name %>"><%= item.name %></h2>
-            <p title="<%= item.description %>"><%= item.description %></p>
-            <span><%= item.width %> x <%= item.height %></span>
-        </div>
-      <div class="widget <%= item.resource.gsub(/\./, '-') %>"<%= fetch_external_thumbnail(item) %>></div>
-        <div class="btn-group btn-group-xs small-box-footer animated fadeIn clearfix" role="group" aria-label="Extra-small button group">
-            <%= link_to_edit(item, nil, 'btn btn-primary') %>
-            <%= link_to_destroy(item, item.name) %>
-        </div>
+  <div class="small-box bg-gray">
+    <div class="inner">
+      <h2 title="<%= item.name %>"><%= item.name %></h2>
+      <p title="<%= item.description %>"><%= item.description %></p>
+      <span><%= item.width %> x <%= item.height %></span>
     </div>
+    <div class="widget <%= item.resource.gsub(/\./, '-') %>"<%= fetch_external_thumbnail(item) %>></div>
+    <div class="btn-group btn-group-xs small-box-footer animated fadeIn clearfix" role="group" aria-label="Extra-small button group">
+      <%= link_to_edit(item, nil, 'btn btn-primary') %>
+      <%= link_to_destroy(item, item.name) %>
+    </div>
+  </div>
 </div>

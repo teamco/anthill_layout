@@ -1,36 +1,36 @@
 <div class="col-lg-3"></div>
 <div class="col-lg-6">
-    <div class="panel panel-default forgot-password">
-        <div class="panel-heading"><%= t('sign_up_title') %></div>
-        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-            <div class="panel-body">
-                <%= devise_error_messages! %>
-                <div class="input-group">
-                    <%= f.label :email, class: 'input-group-addon long text-left' %>
-                    <%= f.email_field :email, autofocus: true, class: 'form-control' %>
-                </div>
-                <div class="input-group">
-                    <% if @validatable %>
-                        <em>(<%= @minimum_password_length %> characters minimum)</em><br />
-                    <% end %>
-                    <%= f.label :password, class: 'input-group-addon long text-left' %>
-                    <%= f.password_field :password, autocomplete: 'off', class: 'form-control' %>
-                </div>
-                <div class="input-group">
-                    <%= f.label :password_confirmation, class: 'input-group-addon long text-left' %>
-                    <%= f.password_field :password_confirmation, autocomplete: 'off', class: 'form-control' %>
-                </div>
+  <div class="panel panel-default forgot-password">
+    <div class="panel-heading"><%= t('sign_up_title') %></div>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <div class="panel-body">
+          <%= devise_error_messages! %>
+          <div class="input-group">
+            <%= f.label :email, class: 'input-group-addon long text-left' %>
+            <%= f.email_field :email, autofocus: true, class: 'form-control' %>
+          </div>
+          <div class="input-group">
+            <% if @validatable %>
+                <em>(<%= @minimum_password_length %> characters minimum)</em><br/>
+            <% end %>
+            <%= f.label :password, class: 'input-group-addon long text-left' %>
+            <%= f.password_field :password, autocomplete: 'off', class: 'form-control' %>
+          </div>
+          <div class="input-group">
+            <%= f.label :password_confirmation, class: 'input-group-addon long text-left' %>
+            <%= f.password_field :password_confirmation, autocomplete: 'off', class: 'form-control' %>
+          </div>
+        </div>
+        <div class="panel-footer">
+          <div class="row">
+            <div class="col-lg-6">
+              <%= f.submit t('sign_up_title'), class: 'btn btn-default' %>
             </div>
-            <div class="panel-footer">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <%= f.submit t('sign_up_title'), class: 'btn btn-default' %>
-                    </div>
-                    <div class="col-lg-6 pull-right">
-                        <%= render 'devise/shared/links' %>
-                    </div>
-                </div>
+            <div class="col-lg-6 pull-right">
+              <%= render 'devise/shared/links' %>
             </div>
-        <% end %>
-    </div>
+          </div>
+        </div>
+    <% end %>
+  </div>
 </div>
