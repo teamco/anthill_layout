@@ -352,42 +352,7 @@ define([
                  */
                 setItem: function setItem(key, value) {
 
-                    /**
-                     * Get setting
-                     * @type {Setting}
-                     */
-                    var setting = this.setting;
-
-                    /**
-                     * Get scope
-                     * @type {Application}
-                     */
-                    var scope = setting.scope;
-
-                    /**
-                     * Get create update site route
-                     * @type {string[]}
-                     */
-                    var route = scope.config.routes.updateSiteContent,
-                        opts = {
-
-                            dataType: 'json',
-
-                            url: route[0] + key,
-                            method: route[1],
-
-                            data: scope.controller.prepareXhrData({
-                                author_site_storage: {
-                                    content: value
-                                },
-                                activate: this.setting.activate
-                            })
-                        };
-
-                    setting.makeScreenshot(true, document.body, function (imgSrc) {
-
-                        opts.data.screenshot = imgSrc;
-
+                    function _send(opts) {
                         $.ajax(opts).done(
                             function done(data, type, xhr) {
 
@@ -406,6 +371,50 @@ define([
                                 );
                             }
                         );
+                    }
+
+                    /**
+                     * Get setting
+                     * @type {Setting}
+                     */
+                    var setting = this.setting;
+
+                    /**
+                     * Get scope
+                     * @type {Application}
+                     */
+                    var scope = setting.scope;
+
+                    /**
+                     * Get create update site route
+                     * @type {string[]}
+                     */
+                    var route = scope.config.routes.updateSiteContent;
+
+                    // Define opts
+                    var opts = {
+
+                        dataType: 'json',
+
+                        url: route[0] + key,
+                        method: route[1],
+
+                        data: scope.controller.prepareXhrData({
+                            author_site_storage: {
+                                content: value
+                            },
+                            activate: this.setting.activate
+                        })
+                    };
+
+                    if (scope.controller.isDevelopmentMode()) {
+                        _send(opts);
+                        return false;
+                    }
+
+                    setting.makeScreenshot(true, document.body, function (imgSrc) {
+                        opts.data.screenshot = imgSrc;
+                        _send(opts);
                     });
                 },
 

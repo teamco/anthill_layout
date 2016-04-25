@@ -6,7 +6,7 @@ class Author::SiteStoragesController < Author::AuthorController
 
   before_action :authenticate_user!, except: [:show]
   before_action :set_author_site_storage,
-                only: [:show, :edit, :update, :activate, :destroy, :publish]
+                only: [:show, :edit, :update, :activate, :destroy]
 
   layout :resolve_layout
 
@@ -78,15 +78,14 @@ class Author::SiteStoragesController < Author::AuthorController
   # PATCH/PUT /author/site_storages/1
   # PATCH/PUT /author/site_storages/1.json
   def update
-
     if request.xhr?
       version = @author_site_storage.build_new_version(
           params[:author_site_storage][:content],
           params[:activate],
           params[:screenshot]
       )
-      params[:author_site_storage][:publish] = false
-      params[:author_site_storage].delete :content
+      # params[:author_site_storage][:publish] = false
+      # params[:author_site_storage].delete :content
     else
       version = @author_site_storage.author_site_versions.where(id: params[:author_site_storage][:activated_version]).first
       params[:author_site_storage].delete :activated_version
@@ -121,19 +120,6 @@ class Author::SiteStoragesController < Author::AuthorController
           format.json { render :index, status: :ok, location: @author_site_storage }
         end
       end
-    end
-  end
-
-  def publish
-    published = @author_site_storage.publish
-    if @author_site_storage.update({publish: !published})
-      respond_to do |format|
-        format.html { redirect_to author_site_storages_path, notice: t('success_update') }
-        format.json if request.xhr?
-      end
-    else
-      format.json { render json: @author_site_storage.errors, status: :unprocessable_entity } if request.xhr?
-      format.html { redirect_to author_site_storages_path, status: :unprocessable_entity }
     end
   end
 
@@ -291,8 +277,8 @@ class Author::SiteStoragesController < Author::AuthorController
     params.require(:author_site_storage).permit(
         :key,
         :site_type_id,
-        :publish,
         :public,
+        :content,
         :activated_version,
         author_item_attributes: [
             :public,
@@ -303,7 +289,8 @@ class Author::SiteStoragesController < Author::AuthorController
         author_site_versions_attributes: [
             :id,
             :version,
-            :activated
+            :activated,
+            :published
         ],
         author_site_types_attributes: [
             :name

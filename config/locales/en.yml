@@ -43,6 +43,7 @@ en:
   undefined_version: "Undefined site version"
   deactivate_nonactive_version: "Trying deactivate nonactive site version"
   publish: "Publish"
+  publish_activated: "Publish activated"
   preview: "Preview"
   test: "Test"
   authoring: "Authoring"

@@ -35,6 +35,11 @@ class Author::SiteVersion < ActiveRecord::Base
     self
   end
 
+  def publish
+    self.class.update_all(published: false)
+    update({published: true})
+  end
+
   private
 
   def handle_activation(activate)

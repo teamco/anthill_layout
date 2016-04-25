@@ -67,8 +67,8 @@ Rails.application.routes.draw do
 
   get '/readability_content/:url', to: 'author/widgets#readability_content'
 
-  get 'author/site_storages/publish/:key', to: 'author/site_storages#publish'
-  put 'author/site_storages/publish/:key', to: 'author/site_storages#publish', as: 'publish_site'
+  get 'author/site_versions/publish/:id', to: 'author/site_versions#publish'
+  put 'author/site_versions/publish/:id', to: 'author/site_versions#publish', as: 'publish_site'
 
   get '/sites/:key', to: 'author/site_storages#show', as: 'preview'
   get '/sites/:key/:mode', to: 'author/site_storages#show', as: 'mode'

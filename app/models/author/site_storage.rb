@@ -39,6 +39,8 @@ class Author::SiteStorage < ActiveRecord::Base
   accepts_nested_attributes_for :author_item, allow_destroy: true
   accepts_nested_attributes_for :author_site_type
 
+  attr_accessor :content
+
   validates :key,
             presence: true,
             uniqueness: true,
@@ -53,7 +55,7 @@ class Author::SiteStorage < ActiveRecord::Base
         key: key,
         mode: author_site_type.name,
         uuid: uuid,
-        published: publish,
+        published: get_published,
     }
   end
 
@@ -64,7 +66,11 @@ class Author::SiteStorage < ActiveRecord::Base
   end
 
   def get_versions
-    author_site_versions.joins(:author_item).order('author_items.created_at DESC')
+    author_site_versions.includes(:author_item).order('author_items.created_at DESC')
+  end
+
+  def get_published
+    author_site_versions.where(published: true).first
   end
 
   def get_activated
@@ -83,7 +89,7 @@ class Author::SiteStorage < ActiveRecord::Base
 
     versions = site.author_site_versions
     versions.build(
-        version: versions.length + 1,
+        version: versions.last.version + 1,
         activated: true,
         item_id: Author::Item.create_and_get.id
     )
@@ -96,7 +102,7 @@ class Author::SiteStorage < ActiveRecord::Base
 
     versions = self.author_site_versions
     site_version = {
-        version: versions.length + 1,
+        version: versions.last.version + 1,
         content: content,
         activated: activate == 'true',
         screenshot: screenshot

@@ -1,10 +1,10 @@
 <div class="col-lg-3 col-sm-6 col-xs-12">
-    <%= render 'author/author/ibox_edit',
-               item_type: 'edit',
-               item_box: item.publish ? 'bg-green' : 'bg-gray',
-               item: item,
-               item_title: "#{item.key} (#{item.author_site_storage_widgets.length})",
-               item_info: item.get_activated.try(:version) || '?',
-               item_icon: 'glyphicon-globe',
-               item_menu: 'menu' %>
+  <%= render 'author/author/ibox_edit',
+             item_type: 'edit',
+             item_box: is_last_published?(item) ? 'bg-green' : 'bg-gray',
+             item: item,
+             item_title: "#{item.key} (#{item.author_site_storage_widgets.length})",
+             item_info: "#{published(item)}/#{activated(item)}",
+             item_icon: 'glyphicon-globe',
+             item_menu: 'menu' %>
 </div>

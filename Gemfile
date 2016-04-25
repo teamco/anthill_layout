@@ -81,7 +81,7 @@ gem 'rack-attack'
 gem 'jquery-rails', '>= 4.0.0'
 gem 'rmagick'
 # gem 'font-awesome-less'
-gem 'font-awesome-sass'
+gem 'font-awesome-sass', git: 'https://github.com/teamco/font-awesome-sass.git'
 
 gem 'i18n', '>= 0.7.0.beta1'
 gem 'uuid'

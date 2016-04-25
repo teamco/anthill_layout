@@ -3,7 +3,7 @@ class Author::SiteVersionsController < Author::AuthorController
   include Author
 
   before_action :authenticate_user!, except: [:show]
-  before_action :set_author_site_version, only: [:show, :edit, :update, :destroy]
+  before_action :set_author_site_version, only: [:show, :edit, :update, :destroy, :publish]
 
   layout 'author'
 
@@ -84,10 +84,26 @@ class Author::SiteVersionsController < Author::AuthorController
     end
   end
 
+  def publish
+    logger.info ">>>>>>>> 1"
+    published = @author_site_version.published
+    logger.info ">>>>>>>> 2"
+    if @author_site_version.publish
+      @author_site_version.author_item.touch
+      respond_to do |format|
+        format.html { redirect_to author_site_version_path, notice: t('success_update') }
+        format.json if request.xhr?
+      end
+    else
+      format.json { render json: @author_site_version.errors, status: :unprocessable_entity } if request.xhr?
+      format.html { redirect_to author_site_version_path, status: :unprocessable_entity }
+    end unless published
+  end
+
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_author_site_version
-    @author_site_version = SiteVersion.find(params[:id])
+    @author_site_version = SiteVersion.where(id: params[:id]).first
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

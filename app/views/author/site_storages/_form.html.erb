@@ -4,7 +4,6 @@
     <%= render_text_field(f, :key) if is_action?('new') %>
     <%= render_field_tag(:text_area_tag, :content, content, true) unless is_action?('new') -%>
     <%= render_json(content, '.json-view') unless content.nil? %>
-    <%= render_checkbox(f, :publish) -%>
 
     <%= render 'author/author/item', f: f -%>
 
