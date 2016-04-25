@@ -312,8 +312,6 @@ define([
                  */
                 var scope = this.scope;
 
-                scope.logger.debug('showWidgetContent', e);
-
                 // Get widget content
                 var content = scope.activeContent;
 
@@ -343,6 +341,8 @@ define([
                     this.getItemIdentity(widget),
                     'content'
                 ].join('/');
+
+                scope.logger.debug('showWidgetContent', page, widget, content, url, e);
 
                 scope.observer.publish(
                     scope.eventmanager.eventList.openUrlOnEvent, [
