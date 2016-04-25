@@ -44,7 +44,7 @@ define([
 
             var $element = this;
 
-            require([api], function defineGooglePlusApi() {
+            require([api], function _defineGooglePlusApi() {
 
                 // Render embedded post
                 // https://developers.google.com/+/web/embedded-post/

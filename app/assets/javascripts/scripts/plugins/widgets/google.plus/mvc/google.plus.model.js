@@ -37,7 +37,7 @@ define([
             googlePlusUrl: {
                 type: 'text',
                 disabled: false,
-                value: undefined,
+                value: 'https://plus.google.com/110174288943220639247/posts/cfjDgZ7zK8o',
                 visible: true
             }
         };
