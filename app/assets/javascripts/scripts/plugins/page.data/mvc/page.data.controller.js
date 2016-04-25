@@ -334,10 +334,13 @@ define([
                  */
                 var page = widget.controller.getContainment();
 
+                // Destroy properties dialog
+                scope.view.elements.$modal.selfDestroy();
+
                 var url = [
                     window.location.origin + window.location.pathname + '#',
-                    page.model.getUUID(),
-                    widget.model.getUUID(),
+                    this.getItemIdentity(page),
+                    this.getItemIdentity(widget),
                     'content'
                 ].join('/');
 
