@@ -62,6 +62,9 @@ define(function defineTextFieldRenderer() {
              * @private
              */
             function _checkEmpty(value) {
+                if (typeof opts.validate.blank === 'undefined') {
+                    return true;
+                }
                 return opts.validate.blank ?
                     true : !!$.trim(value).length;
             }
@@ -102,8 +105,7 @@ define(function defineTextFieldRenderer() {
 
                 _showError();
 
-                if (!$.trim(value).length && _checkEmpty(value)) return _hideError();
-                if (_checkMask(value)) _hideError();
+                if (_checkMask(value) && _checkEmpty(value)) _hideError();
             });
         }
     });

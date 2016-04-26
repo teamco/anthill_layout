@@ -25,7 +25,82 @@ define([
          * @type {{}}
          */
         this.preferences = {
-            // Preferences
+            paypalbuttonMerchant: {
+                type: 'text',
+                disabled: false,
+                value: undefined,
+                placeholder: 'Email address or merchant ID',
+                visible: true,
+                validate: {
+                    blank: false
+                }
+            },
+            paypalbuttonName: {
+                type: 'text',
+                disabled: false,
+                value: undefined,
+                placeholder: 'My Product',
+                visible: true
+            },
+            paypalbuttonTypeOfPeriod: {
+                type: 'combobox',
+                disabled: false,
+                list: [
+                    {
+                        type: 'text',
+                        value: 'Days'
+                    },
+                    {
+                        type: 'text',
+                        value: 'Weeks'
+                    },
+                    {
+                        type: 'text',
+                        value: 'Months'
+                    },
+                    {
+                        type: 'text',
+                        value: 'Years'
+                    }
+                ],
+                value: 'Days',
+                visible: true,
+                label: true
+            },
+            paypalbuttonAmount: {
+                type: 'text',
+                disabled: false,
+                value: undefined,
+                placeholder: '5.00',
+                visible: true
+            },
+            paypalbuttonCurrency: {
+                type: 'text',
+                disabled: false,
+                value: undefined,
+                placeholder: 'USD',
+                visible: true
+            },
+            paypalbuttonRecurrences: {
+                type: 'text',
+                disabled: false,
+                value: undefined,
+                placeholder: '2',
+                visible: true
+            },
+            paypalbuttonCallbackUrl: {
+                type: 'text',
+                disabled: false,
+                value: undefined,
+                placeholder: 'http://mysite.com/callback',
+                visible: true
+            },
+            paypalbuttonEnvironmentSandbox: {
+                type: 'checkbox',
+                disabled: false,
+                value: false,
+                visible: true
+            }
         };
 
         /**
@@ -36,9 +111,9 @@ define([
         this.rules = {};
     };
 
-    return PaypalButtonModel.extend('PaypalButtonModel', {
-
-        // Setter
-
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    return PaypalButtonModel.extend(
+        'PaypalButtonModel', {},
+        BaseModel.prototype,
+        WidgetContentModel.prototype
+    );
 });

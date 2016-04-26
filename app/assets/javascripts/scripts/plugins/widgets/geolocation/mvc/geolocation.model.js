@@ -93,7 +93,8 @@ define([
                     }
                 ],
                 value: 'Roadmap',
-                visible: true
+                visible: true,
+                label: true
             },
             geolocationGpsSensor: {
                 type: 'checkbox',
