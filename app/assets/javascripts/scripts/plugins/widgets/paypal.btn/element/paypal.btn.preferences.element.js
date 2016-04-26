@@ -8,19 +8,19 @@
 define([
     'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function definePaypalButtonPreferencesElement(PluginElement, WidgetPreferences) {
+], function definePaypalBtnPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
-     * Define PaypalButton Preferences Element
+     * Define PaypalBtn Preferences Element
      * @constructor
-     * @class PaypalButtonPreferencesElement
-     * @param {PaypalButtonView} view
+     * @class PaypalBtnPreferencesElement
+     * @param {PaypalBtnView} view
      * @param opts
      * @extends PluginElement
      * @extends WidgetPreferences
-     * @returns {PaypalButtonPreferencesElement}
+     * @returns {PaypalBtnPreferencesElement}
      */
-    var PaypalButtonPreferencesElement = function PaypalButtonPreferencesElement(view, opts) {
+    var PaypalBtnPreferencesElement = function PaypalBtnPreferencesElement(view, opts) {
 
         this._config(view, opts, $('<div />')).build({
             $container: opts.$container,
@@ -32,8 +32,8 @@ define([
         return this;
     };
 
-    return PaypalButtonPreferencesElement.extend(
-        'PaypalButtonPreferencesElement', {}, 
+    return PaypalBtnPreferencesElement.extend(
+        'PaypalBtnPreferencesElement', {}, 
         PluginElement.prototype, 
         WidgetPreferences.prototype
     );

@@ -8,6 +8,7 @@ define(function defineTextAreaRenderer() {
      * Define TextAreaRenderer
      * @class TextAreaRenderer
      * @extends LabelRenderer
+     * @extends ToolTipRenderer
      * @extends BaseElement
      * @constructor
      */
@@ -23,6 +24,7 @@ define(function defineTextAreaRenderer() {
          *      text: string,
          *      name: string,
          *      [placeholder]: string,
+         *      [tooltip]: string,
          *      value,
          *      [style]: string,
          *      [monitor],
@@ -59,6 +61,20 @@ define(function defineTextAreaRenderer() {
             this.initMonitor($input, opts.monitor);
             this.checkVisibility($input, opts.visible);
             this.validateByMask($input, opts);
+
+            /**
+             * Get tooltip
+             * @type {string|*}
+             */
+            var tooltip = opts.tooltip;
+
+            if (tooltip) {
+                this.renderTooltip({
+                    title: opts.text.humanize(),
+                    description: opts.tooltip,
+                    selector: $input
+                });
+            }
 
             return [
                 this.renderLabel(

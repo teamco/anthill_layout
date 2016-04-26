@@ -10,35 +10,35 @@ define([
     'modules/View',
     'element/header.element',
     'element/footer.element',
-    'plugins/widgets/paypal.button/element/paypal.button.element',
-    'plugins/widgets/paypal.button/element/paypal.button.preferences.element',
-    'plugins/widgets/paypal.button/element/paypal.button.rules.element'
-], function definePaypalButtonView(BaseView, Header, Footer, PaypalButtonElement, PaypalButtonPreferencesElement, PaypalButtonRulesElement) {
+    'plugins/widgets/paypal.btn/element/paypal.btn.element',
+    'plugins/widgets/paypal.btn/element/paypal.btn.preferences.element',
+    'plugins/widgets/paypal.btn/element/paypal.btn.rules.element'
+], function definePaypalBtnView(BaseView, Header, Footer, PaypalBtnElement, PaypalBtnPreferencesElement, PaypalBtnRulesElement) {
 
     /**
      * Define view
-     * @class PaypalButtonView
+     * @class PaypalBtnView
      * @extends BaseView
      * @constructor
      */
-    var PaypalButtonView = function PaypalButtonView() {
+    var PaypalBtnView = function PaypalBtnView() {
     };
 
-    return PaypalButtonView.extend('PaypalButtonView', {
+    return PaypalBtnView.extend('PaypalBtnView', {
 
         /**
-         * Render PaypalButton element
-         * @memberOf PaypalButtonView
+         * Render PaypalBtn element
+         * @memberOf PaypalBtnView
          */
-        renderPaypalButton: function renderPaypalButton() {
+        renderPaypalBtn: function renderPaypalBtn() {
 
             this.header(Header, this.get$container());
 
             /**
-             * Define $paypalbutton
-             * @type {PaypalButtonElement}
+             * Define $paypalbtn
+             * @type {PaypalBtnElement}
              */
-            this.elements.$paypalbutton = new PaypalButtonElement(this, {
+            this.elements.$paypalbtn = new PaypalBtnElement(this, {
                 $container: this.get$container().$
             });
 
@@ -51,16 +51,16 @@ define([
 
         /**
          * Render Prefs
-         * @memberOf PaypalButtonView
-         * @returns {PaypalButtonPreferencesElement}
+         * @memberOf PaypalBtnView
+         * @returns {PaypalBtnPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
 
             /**
-             * Define PaypalButton Preferences Element
-             * @type {PaypalButtonPreferencesElement}
+             * Define PaypalBtn Preferences Element
+             * @type {PaypalBtnPreferencesElement}
              */
-            this.elements.$preferences = new PaypalButtonPreferencesElement(this, {
+            this.elements.$preferences = new PaypalBtnPreferencesElement(this, {
                 data: this.controller.getPreferences()
             });
 
@@ -69,18 +69,18 @@ define([
 
         /**
          * Render Rules
-         * @memberOf PaypalButtonView
+         * @memberOf PaypalBtnView
          * @param widgetRules
          * @param contentRules
-         * @returns {PaypalButtonRulesElement}
+         * @returns {PaypalBtnRulesElement}
          */
         renderRules: function renderRules(widgetRules, contentRules) {
 
             /**
-             * Define PaypalButton Rules Element
-             * @type {PaypalButtonRulesElement}
+             * Define PaypalBtn Rules Element
+             * @type {PaypalBtnRulesElement}
              */
-            this.elements.$rules = new PaypalButtonRulesElement(this, {
+            this.elements.$rules = new PaypalBtnRulesElement(this, {
                 data: this.controller.getRules(),
                 rules: {
                     widget: widgetRules,
@@ -92,14 +92,14 @@ define([
         },
 
         /**
-         * Render PaypalButton
-         * @memberOf PaypalButtonView
+         * Render PaypalBtn
+         * @memberOf PaypalBtnView
          */
         render: function render() {
 
             this.scope.observer.publish(
                 this.scope.eventmanager.eventList.successRendered,
-                this.renderPaypalButton.bind(this)
+                this.renderPaypalBtn.bind(this)
             );
         }
 

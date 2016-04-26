@@ -8,19 +8,19 @@
 
 define([
     'modules/Permission'
-], function definePaypalButtonPermission(BasePermission) {
+], function definePaypalBtnPermission(BasePermission) {
 
     /**
      * Define Permissions
-     * @class PaypalButtonPermission
+     * @class PaypalBtnPermission
      * @constructor
      * @extends BasePermission
      */
-    var PaypalButtonPermission = function PaypalButtonPermission() {
+    var PaypalBtnPermission = function PaypalBtnPermission() {
     };
 
-    return PaypalButtonPermission.extend(
-        'PaypalButtonPermission', {}, 
+    return PaypalBtnPermission.extend(
+        'PaypalBtnPermission', {}, 
         BasePermission.prototype
     );
 });

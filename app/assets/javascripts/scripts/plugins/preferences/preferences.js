@@ -101,6 +101,7 @@ define(['jquery'], function defineBasePreferencesElement($) {
                     disabled: node.disabled,
                     events: node.events,
                     visible: node.visible,
+                    tooltip: node.tooltip,
                     checked: node.checked,
                     monitor: node.monitor
                 });
@@ -120,6 +121,7 @@ define(['jquery'], function defineBasePreferencesElement($) {
                     disabled: node.disabled,
                     visible: node.visible,
                     validate: node.validate,
+                    tooltip: node.tooltip,
                     monitor: node.monitor
                 });
             }
@@ -138,6 +140,7 @@ define(['jquery'], function defineBasePreferencesElement($) {
                     disabled: node.disabled,
                     visible: node.visible,
                     validate: node.validate,
+                    tooltip: node.tooltip,
                     monitor: node.monitor
                 });
             }
@@ -155,6 +158,7 @@ define(['jquery'], function defineBasePreferencesElement($) {
                     value: node.value,
                     disabled: node.disabled,
                     visible: node.visible,
+                    tooltip: node.tooltip,
                     validate: node.validate,
                     monitor: node.monitor
                 });
@@ -177,6 +181,7 @@ define(['jquery'], function defineBasePreferencesElement($) {
                     disabled: node.disabled,
                     visible: node.visible,
                     validate: node.validate,
+                    tooltip: node.tooltip,
                     monitor: node.monitor
                 });
             }
@@ -193,6 +198,7 @@ define(['jquery'], function defineBasePreferencesElement($) {
                     checked: node.value,
                     value: node.value,
                     disabled: node.disabled,
+                    tooltip: node.tooltip,
                     visible: node.visible,
                     monitor: node.monitor
                 });
@@ -210,6 +216,7 @@ define(['jquery'], function defineBasePreferencesElement($) {
                     placeholder: placeholder,
                     value: node.value,
                     disabled: node.disabled,
+                    tooltip: node.tooltip,
                     visible: node.visible,
                     monitor: node.monitor
                 });
@@ -228,6 +235,7 @@ define(['jquery'], function defineBasePreferencesElement($) {
                     list: node.list,
                     disabled: node.disabled,
                     visible: node.visible,
+                    tooltip: node.tooltip,
                     monitor: node.monitor
                 });
             }

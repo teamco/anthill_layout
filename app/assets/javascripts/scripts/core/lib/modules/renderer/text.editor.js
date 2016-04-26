@@ -8,6 +8,7 @@ define(['tinyMCE'], function defineTextEditorRenderer(tinyMCE) {
      * @class TextEditorRenderer
      * @extends LabelRenderer
      * @extends TextAreaRenderer
+     * @extends ToolTipRenderer
      * @extends BaseElement
      * @constructor
      */
@@ -23,6 +24,7 @@ define(['tinyMCE'], function defineTextEditorRenderer(tinyMCE) {
          *      text: string,
          *      name: string,
          *      [placeholder]: string,
+         *      [tooltip]: string,
          *      value,
          *      [monitor],
          *      [visible],
@@ -94,6 +96,20 @@ define(['tinyMCE'], function defineTextEditorRenderer(tinyMCE) {
 
             scope.checkVisibility($textarea, opts.visible);
             scope.validateByMask($textarea, opts);
+
+            /**
+             * Get tooltip
+             * @type {string|*}
+             */
+            var tooltip = opts.tooltip;
+
+            if (tooltip) {
+                this.renderTooltip({
+                    title: opts.text.humanize(),
+                    description: opts.tooltip,
+                    selector: $input
+                });
+            }
 
             return $input;
         },

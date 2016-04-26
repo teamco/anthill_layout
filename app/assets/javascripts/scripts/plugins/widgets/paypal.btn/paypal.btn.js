@@ -8,32 +8,32 @@
 define([
     'config/anthill',
     'modules/MVC',
-    'plugins/widgets/paypal.button/mvc/paypal.button.controller',
-    'plugins/widgets/paypal.button/mvc/paypal.button.model',
-    'plugins/widgets/paypal.button/mvc/paypal.button.view',
-    'plugins/widgets/paypal.button/mvc/paypal.button.event.manager',
-    'plugins/widgets/paypal.button/mvc/paypal.button.permission'
-], function definePaypalButton(AntHill, MVC, Controller, Model, View, EventManager, Permission) {
+    'plugins/widgets/paypal.btn/mvc/paypal.btn.controller',
+    'plugins/widgets/paypal.btn/mvc/paypal.btn.model',
+    'plugins/widgets/paypal.btn/mvc/paypal.btn.view',
+    'plugins/widgets/paypal.btn/mvc/paypal.btn.event.manager',
+    'plugins/widgets/paypal.btn/mvc/paypal.btn.permission'
+], function definePaypalBtn(AntHill, MVC, Controller, Model, View, EventManager, Permission) {
 
     /**
-     * Define PaypalButton
+     * Define PaypalBtn
      * @param containment
      * @param [opts]
      * @constructor
-     * @class PaypalButton
+     * @class PaypalBtn
      * @extends AntHill
      */
-    var PaypalButton = function PaypalButton(containment, opts) {
+    var PaypalBtn = function PaypalBtn(containment, opts) {
 
         /**
          * Define containment
-         * @property PaypalButton
+         * @property PaypalBtn
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @property PaypalButton
+         * @property PaypalBtn
          * @type {*}
          */
         this.referrer = undefined;
@@ -73,7 +73,7 @@ define([
 
         /**
          * Define MVC
-         * @property PaypalButton
+         * @property PaypalBtn
          * @type {MVC}
          */
         this.mvc = new MVC({
@@ -98,5 +98,5 @@ define([
         );
     };
 
-    return PaypalButton.extend('PaypalButton', {}, AntHill.prototype);
+    return PaypalBtn.extend('PaypalBtn', {}, AntHill.prototype);
 });

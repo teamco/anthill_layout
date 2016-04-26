@@ -8,6 +8,7 @@ define(function defineNumberFieldRenderer() {
      * Define NumberFieldRenderer
      * @class NumberFieldRenderer
      * @extends LabelRenderer
+     * @extends ToolTipRenderer
      * @constructor
      */
     var NumberFieldRenderer = function NumberFieldRenderer() {
@@ -22,6 +23,7 @@ define(function defineNumberFieldRenderer() {
          *      [text]: string,
          *      name: string,
          *      [placeholder]: string,
+         *      [tooltip]: string,
          *      value,
          *      [disabled]: boolean,
          *      [monitor],
@@ -61,6 +63,20 @@ define(function defineNumberFieldRenderer() {
             this.validateByMask($input, opts);
 
             $template.append($input);
+
+            /**
+             * Get tooltip
+             * @type {string|*}
+             */
+            var tooltip = opts.tooltip;
+
+            if (tooltip) {
+                this.renderTooltip({
+                    title: opts.text.humanize(),
+                    description: opts.tooltip,
+                    selector: $input
+                });
+            }
 
             return $template;
         }

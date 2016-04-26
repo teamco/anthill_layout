@@ -8,19 +8,19 @@
 define([
     'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function definePaypalButtonRulesElement(PluginElement, BaseWidgetRules) {
+], function definePaypalBtnRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
-     * Define PaypalButton Rules Element
+     * Define PaypalBtn Rules Element
      * @param view
      * @param opts
-     * @returns {PaypalButtonRulesElement}
+     * @returns {PaypalBtnRulesElement}
      * @constructor
-     * @class PaypalButtonRulesElement
+     * @class PaypalBtnRulesElement
      * @extends PluginElement
      * @extends BaseWidgetRules
      */
-    var PaypalButtonRulesElement = function PaypalButtonRulesElement(view, opts) {
+    var PaypalBtnRulesElement = function PaypalBtnRulesElement(view, opts) {
 
         this._config(view, opts, $('<div />')).build({
             $container: opts.$container,
@@ -36,8 +36,8 @@ define([
         return this;
     };
 
-    return PaypalButtonRulesElement.extend(
-        'PaypalButtonRulesElement', {}, 
+    return PaypalBtnRulesElement.extend(
+        'PaypalBtnRulesElement', {}, 
         PluginElement.prototype, 
         BaseWidgetRules.prototype
     );

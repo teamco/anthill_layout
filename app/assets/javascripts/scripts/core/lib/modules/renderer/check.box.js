@@ -8,6 +8,7 @@ define(function defineCheckBoxRenderer() {
      * Define CheckBoxRenderer
      * @class CheckBoxRenderer
      * @extends LabelRenderer
+     * @extends ToolTipRenderer
      * @extends AntHill
      * @constructor
      */
@@ -26,6 +27,7 @@ define(function defineCheckBoxRenderer() {
          *      [checked]: boolean,
          *      [disabled]: boolean,
          *      [monitor],
+         *      [tooltip],
          *      [visible]
          * }} opts
          * @returns {*}
@@ -65,6 +67,20 @@ define(function defineCheckBoxRenderer() {
             ].join(''));
 
             $template.find('.input-group-addon').append($input);
+
+            /**
+             * Get tooltip
+             * @type {string|*}
+             */
+            var tooltip = opts.tooltip;
+
+            if (tooltip) {
+                this.renderTooltip({
+                    title: opts.text.humanize(),
+                    description: opts.tooltip,
+                    selector: $template
+                });
+            }
 
             return $template;
         }

@@ -8,6 +8,7 @@ define(function defineTextFieldRenderer() {
      * Define TextFieldRenderer
      * @class TextFieldRenderer
      * @extends LabelRenderer
+     * @extends ToolTipRenderer
      * @extends AntHill
      * @constructor
      */
@@ -23,6 +24,7 @@ define(function defineTextFieldRenderer() {
          *      [text]: string,
          *      name: string,
          *      [placeholder]: string,
+         *      [tooltip]: string,
          *      value,
          *      [type]: string,
          *      [style]: string,
@@ -60,6 +62,20 @@ define(function defineTextFieldRenderer() {
                 $template = $('<div class="input-group" />').append(
                     this.renderLabel(uuid, opts.text, labelClass, opts.visible)
                 );
+
+            /**
+             * Get tooltip
+             * @type {string|*}
+             */
+            var tooltip = opts.tooltip;
+
+            if (tooltip) {
+                this.renderTooltip({
+                    title: opts.text.humanize(),
+                    description: opts.tooltip,
+                    selector: $input
+                });
+            }
 
             this.initMonitor($input, opts.monitor);
             this.checkVisibility($input, opts.visible);

@@ -8,22 +8,22 @@
 
 define([
     'plugins/widgets/widget.content.event.manager'
-], function definePaypalButtonEventManager(WidgetContentEventManager) {
+], function definePaypalBtnEventManager(WidgetContentEventManager) {
 
     /**
-     * Define PaypalButton event manager
-     * @class PaypalButtonEventManager
+     * Define PaypalBtn event manager
+     * @class PaypalBtnEventManager
      * @constructor
      * @extends BaseEvent
      * @extends WidgetContentEventManager
      */
-    var PaypalButtonEventManager = function PaypalButtonEventManager() {
+    var PaypalBtnEventManager = function PaypalBtnEventManager() {
 
         this.updateEventList({});
     };
 
-    return PaypalButtonEventManager.extend(
-        'PaypalButtonEventManager', {},
+    return PaypalBtnEventManager.extend(
+        'PaypalBtnEventManager', {},
         WidgetContentEventManager.prototype
     );
 });
