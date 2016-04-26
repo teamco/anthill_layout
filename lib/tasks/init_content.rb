@@ -137,6 +137,37 @@ module WidgetLib
 
     end
 
+    def add_last_added
+      puts "\n>>> Start Add last widget to model"
+      last = JSON.parse(@widgets.to_json).last
+      uuid = UUID.new
+
+      category = Author::WidgetCategory.find_by_name_index(last['type'])
+
+      puts "#{last['name']} (#{category.name_value})" unless category.nil?
+
+      hash = {
+          name: last['name'],
+          uuid: uuid.generate,
+          description: last['description'],
+          thumbnail: last['thumbnail'],
+          width: last['dimensions']['width'],
+          height: last['dimensions']['height'],
+          widget_category_id: category.id,
+          resource: last['resource'],
+          is_external: last['is_external'],
+          external_resource: last['external_resource']
+      }
+
+      item = Author::Item.new(public: true, visible: last['visible'].nil? ? true : last['visible'], user_id: 1)
+      item.build_author_widget(hash)
+      item.save!
+
+      puts "Model item: #{item.author_widget.name}"
+      puts ">>> Finish Add widget: #{Author::Widget.last.inspect}"
+
+    end
+
     def combine_css(force=true)
       widget = WidgetLib::Generate.new
       puts '--- Combine CSS'

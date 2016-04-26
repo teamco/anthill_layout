@@ -171,17 +171,13 @@ class Author::SiteStoragesController < Author::AuthorController
     activated = @author_site_storage.get_activated
     @activated = version
 
-    logger.info ">>>>>>> #{t('undefined_activation')}" if activated.nil?
-
     if version.nil?
       puts t('undefined_version')
       version = @author_site_storage.author_site_versions.last
     end
 
     unless version.is_current?(activated)
-      logger.info '>>>>>>> Deactivate other'
       version.deactivate_other
-      logger.info ">>>>>>> Activate: #{version.inspect}"
       version.activate
     end
   end

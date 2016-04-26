@@ -1,0 +1,44 @@
+/**
+ * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 11/4/12
+ * Time: 11:06 PM
+ * To change this template use File | Settings | File Templates.
+ */
+define([
+    'modules/Model',
+    'plugins/widgets/widget.content.model'
+], function definePaypalButtonModel(BaseModel, WidgetContentModel) {
+
+    /**
+     * Define PaypalButton model
+     * @extends BaseModel
+     * @extends WidgetContentModel
+     * @class PaypalButtonModel
+     * @constructor
+     */
+    var PaypalButtonModel = function PaypalButtonModel() {
+
+        /**
+         * Define preferences
+         * @property PaypalButtonModel
+         * @type {{}}
+         */
+        this.preferences = {
+            // Preferences
+        };
+
+        /**
+         * Define rules
+         * @property PaypalButtonModel
+         * @type {{}}
+         */
+        this.rules = {};
+    };
+
+    return PaypalButtonModel.extend('PaypalButtonModel', {
+
+        // Setter
+
+    }, BaseModel.prototype, WidgetContentModel.prototype);
+});

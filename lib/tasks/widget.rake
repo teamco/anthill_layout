@@ -9,24 +9,22 @@ namespace :widget do
   task generator: :environment do
     widget = WidgetLib::Generate.new
     widget.do_create
-
     puts ">>> update\n\n"
     Rake::Task['widget:update'].execute
   end
 
   desc 'Load content'
   task load: :environment do
-
-
     content.init
     content.load_json
     content.add_data(false)
   end
 
+  desc 'Add last widget data'
+  task(add: :environment) { content.add_last_added }
+
   desc 'Destroy widget'
-  task destroy: :environment do
-    content.destroy_data
-  end
+  task(destroy: :environment) { content.destroy_data }
 
   desc 'Update JSON'
   task update: :environment do
