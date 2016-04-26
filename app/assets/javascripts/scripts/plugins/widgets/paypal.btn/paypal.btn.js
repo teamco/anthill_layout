@@ -4,7 +4,7 @@
  * Date: 2/23/14
  * Time: 11:02 AM
  */
-
+// https://paypal.github.io/JavaScriptButtons/#addbutton
 define([
     'config/anthill',
     'modules/MVC',
