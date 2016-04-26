@@ -21,7 +21,7 @@ namespace :widget do
   end
 
   desc 'Add last widget data'
-  task(add: :environment) { content.add_last_added }
+  task(add_last: :environment) { content.add_last_added }
 
   desc 'Destroy widget'
   task(destroy: :environment) { content.destroy_data }

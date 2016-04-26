@@ -138,7 +138,12 @@ module WidgetLib
     end
 
     def add_last_added
+
+      set_routes
+      load_json
+
       puts "\n>>> Start Add last widget to model"
+
       last = JSON.parse(@widgets.to_json).last
       uuid = UUID.new
 
