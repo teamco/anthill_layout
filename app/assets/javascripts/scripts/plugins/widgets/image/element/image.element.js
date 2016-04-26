@@ -115,6 +115,10 @@ define([
             // Get image
             var $img = $('img', this.$);
 
+            if (!$img.length) {
+                return false;
+            }
+
             for (var index in opts) {
 
                 if (opts.hasOwnProperty(index)) {

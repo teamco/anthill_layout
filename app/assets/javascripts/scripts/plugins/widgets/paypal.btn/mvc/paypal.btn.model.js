@@ -22,7 +22,21 @@ define([
         /**
          * Define preferences
          * @property PaypalBtnModel
-         * @type {{}}
+         * @type {{
+         *      paypalbtnType: {type: string, disabled: boolean, list: *[], value: string, visible: boolean, label: boolean}, 
+         *      paypalbtnMerchant: {type: string, disabled: boolean, value: undefined, placeholder: string, tooltip: string, visible: boolean, validate: {blank: boolean}}, 
+         *      paypalbtnName: {type: string, disabled: boolean, value: undefined, placeholder: string, tooltip: string, visible: boolean, validate: {blank: boolean}}, 
+         *      paypalbtnQuantity: {type: string, disabled: boolean, value: undefined, placeholder: string, tooltip: string, visible: boolean, validate: {mask: RegExp}}, 
+         *      paypalbtnTypeOfPeriod: {type: string, disabled: boolean, list: *[], value: string, visible: boolean, label: boolean}, 
+         *      paypalbtnAmount: {type: string, disabled: boolean, value: undefined, placeholder: string, tooltip: string, visible: boolean, validate: {blank: boolean}}, 
+         *      paypalbtnCurrency: {type: string, disabled: boolean, value: undefined, placeholder: string, tooltip: string, visible: boolean}, 
+         *      paypalbtnShipping: {type: string, disabled: boolean, value: undefined, placeholder: string, tooltip: string, visible: boolean}, 
+         *      paypalbtnTax: {type: string, disabled: boolean, value: undefined, placeholder: string, tooltip: string, visible: boolean}, 
+         *      paypalbtnRecurrences: {type: string, disabled: boolean, value: undefined, placeholder: string, visible: boolean}, 
+         *      paypalbtnCallbackUrl: {type: string, disabled: boolean, value: undefined, placeholder: string, tooltip: string, visible: boolean}, 
+         *      paypalbtnReturnUrl: {type: string, disabled: boolean, value: undefined, placeholder: string, tooltip: string, visible: boolean}, 
+         *      paypalbtnSandboxEnvironment: {type: string, disabled: boolean, value: boolean, tooltip: string, visible: boolean}
+         * }}
          */
         this.preferences = {
             paypalbtnType: {
