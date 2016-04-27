@@ -34,7 +34,7 @@ define([
             coubLink: {
                 type: 'text',
                 disabled: false,
-                value: undefined,
+                value: 'http://coub.com/view/7pcrx',
                 visible: true
             },
             coubAutoStart: {
