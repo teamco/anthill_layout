@@ -22,11 +22,11 @@ define([
         /**
          * Define preferences
          * @property LiveAmchartsModel
-         * @type {{}}
+         * @type {{liveamchartsEmbedCode: {type: string, disabled: boolean, value: string, visible: boolean}}}
          */
         this.preferences = {
             liveamchartsEmbedCode: {
-                type: 'text',
+                type: 'textarea',
                 disabled: false,
                 value: '<iframe width="600" height="400" src="https://live.amcharts.com/zOTk5/embed/" frameborder="0"></iframe>',
                 visible: true
