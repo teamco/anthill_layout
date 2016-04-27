@@ -11,7 +11,7 @@
           <%= t('edit_site_version') %>
       <% end %>
     </li>
-    <li><%= link_to_icon(publish_site_path(item), t('publish'), 'fa-bolt') %></li>
+    <li><%= link_to_icon(publish_site_path(item), t('publish'), 'fa fa-bolt') %></li>
     <li><%= link_to_icon(edit_author_site_storage_path(item.author_site_storage), t('edit_site'), 'glyphicon-globe') %></li>
     <li>
       <% activation_link = send("author_site_storage_site_version_#{item.activated? ? '' : 'de'}activate_path", item.author_site_storage, item) %>

@@ -7,34 +7,34 @@
 
 define([
     'plugins/plugin.element'
-], function defineSportliveElement(PluginElement) {
+], function defineVideopressElement(PluginElement) {
 
     /**
-     * Define Sportlive Element
+     * Define Videopress Element
      * @param view
      * @param opts
-     * @returns {SportliveElement}
+     * @returns {VideopressElement}
      * @constructor
-     * @class SportliveElement
+     * @class VideopressElement
      * @extends PluginElement
      */
-    var SportliveElement = function SportliveElement(view, opts) {
+    var VideopressElement = function VideopressElement(view, opts) {
 
         this._config(view, opts, $('<div />')).build({
             $container: opts.$container,
             destroy: true
         });
 
-        this.addCSS('sportlive', {resource: '/widgets'});
+        this.addCSS('videopress', {resource: '/widgets'});
 
         return this;
     };
 
-    return SportliveElement.extend('SportliveElement', {
+    return VideopressElement.extend('VideopressElement', {
 
         /**
          * Render Embedded content
-         * @memberOf SportliveElement
+         * @memberOf VideopressElement
          * @param {string} embed
          */
         renderEmbeddedContent: function renderEmbeddedContent(embed) {
@@ -44,11 +44,17 @@ define([
                 return false;
             }
 
-            this.$.append(
-                this.renderIframe(
-                    $(embed).attr('src')
-                )
-            )
+            var $element = this,
+                $embed = $(embed);
+
+            require([$embed[1].src], function _loadScript() {
+
+                $element.$.append(
+                    $element.renderIframe(
+                        $embed[0].src
+                    )
+                );
+            });
         }
 
     }, PluginElement.prototype);
