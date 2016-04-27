@@ -39,19 +39,6 @@ define([
          */
         renderEmbeddedContent: function renderEmbeddedContent(opts) {
 
-            /**
-             * Get element
-             * @type {PaypalBtnElement}
-             */
-            var $element = this;
-            var $btn;
-
-            /**
-             * Get scope
-             * @type {PaypalBtn}
-             */
-            var scope = $element.view.scope;
-
             // Remove previous form
             $('.paypal-button', this.$).remove();
 
@@ -76,23 +63,7 @@ define([
                 'data-period': opts['data-period'][0].toUpperCase(),
                 'data-recurrence': opts['data-recurrence'],
                 'data-env': opts['data-env']
-            });
-
-            this.base.waitFor(
-                function condition() {
-                    $btn = $('form.paypal-button:last', 'body');
-                    return $btn.length > 0;
-                },
-
-                function callback() {
-                    scope.logger.debug('Move button to container');
-                    $btn.appendTo($element.$);
-                },
-
-                function fallback() {
-                    scope.logger.warn('Timeout. Unable to detect paypal button');
-                }
-            );
+            }, this.$[0]);
         }
 
     }, PluginElement.prototype);
