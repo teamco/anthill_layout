@@ -30,7 +30,7 @@ define([
             animotoEmbedCode: {
                 type: 'textarea',
                 disabled: false,
-                value: undefined,
+                value: '<iframe id="vp1mbx6U" title="Video Player" width="432" height="243" frameborder="0" src="https://s3.amazonaws.com/embed.animoto.com/play.html?w=swf/production/vp1&e=1461759555&f=mbx6UfXcwzRhyxGbQ0vARA&d=0&m=b&r=360p&volume=100&start_res=360p&i=m&asset_domain=s3-p.animoto.com&animoto_domain=animoto.com&options=" allowfullscreen></iframe><p><a href="https://animoto.com/play/mbx6UfXcwzRhyxGbQ0vARA">Алиса. Творчество</a></p>',
                 visible: true
             }
         };

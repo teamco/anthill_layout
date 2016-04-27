@@ -7,38 +7,42 @@
 
 define([
     'plugins/plugin.element'
-], function defineSpeakerDeckElement(PluginElement) {
+], function defineAnimatronElement(PluginElement) {
 
     /**
-     * Define SpeakerDeck Element
+     * Define Animatron Element
      * @param view
      * @param opts
-     * @returns {SpeakerDeckElement}
+     * @returns {AnimatronElement}
      * @constructor
-     * @class SpeakerDeckElement
+     * @class AnimatronElement
      * @extends PluginElement
      */
-    var SpeakerDeckElement = function SpeakerDeckElement(view, opts) {
+    var AnimatronElement = function AnimatronElement(view, opts) {
 
         this._config(view, opts, $('<div />')).build({
             $container: opts.$container,
             destroy: true
         });
 
-        this.addCSS('speaker.deck', {resource: '/widgets'});
+        this.addCSS('animatron', {resource: '/widgets'});
 
         return this;
     };
 
-    return SpeakerDeckElement.extend('SpeakerDeckElement', {
+    return AnimatronElement.extend('AnimatronElement', {
 
         /**
          * Render Embedded content
-         * @memberOf SpeakerDeckElement
+         * @memberOf AnimatronElement
          * @param {string} embed
          */
         renderEmbeddedContent: function renderEmbeddedContent(embed) {
-            this.addContent(embed);
+            this.addContent(
+                this.renderIframe(
+                    $(embed).attr('src')
+                )
+            );
         }
 
     }, PluginElement.prototype);

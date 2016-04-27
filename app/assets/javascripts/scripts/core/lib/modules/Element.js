@@ -1141,6 +1141,20 @@ define([
          */
         isMetamorphicElement: function isMetamorphicElement() {
             return this.$.hasClass('metamorphic');
+        },
+
+        /**
+         * Define add content if defined
+         * @memberOf BaseElement
+         */
+        addContent: function addContent(embed) {
+
+            if (!embed) {
+                this.$.empty();
+                return false;
+            }
+
+            this.$.append(embed);
         }
 
     }, AntHill.prototype, Renderer.prototype);
