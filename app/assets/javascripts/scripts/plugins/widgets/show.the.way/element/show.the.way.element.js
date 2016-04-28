@@ -38,7 +38,13 @@ define([
          * @param {string} embed
          */
         renderEmbeddedContent: function renderEmbeddedContent(embed) {
-            this.addContent(embed);
+
+            // Define $embed
+            var $embed = $(embed);
+
+            this.addContent($embed[0]);
+
+            require([$embed[1].src]);
         }
 
     }, PluginElement.prototype);
