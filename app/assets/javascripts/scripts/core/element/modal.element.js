@@ -219,8 +219,14 @@ define([
          */
         initBootstrapModal: function initBootstrapModal() {
 
+            /**
+             * Get view
+             * @type {BaseView}
+             */
+            var view = this.view;
+
             if (!this.$['modal']) {
-                this.view.scope.logger.warn('Undefined modal');
+                view.scope.logger.warn('Undefined modal');
                 return false;
             }
 
@@ -244,17 +250,25 @@ define([
 
                 if (typeof this.$.draggable !== 'function') {
 
-                    if (this.view.controller.isConsumptionMode()) {
+                    if (view.controller.isConsumptionMode()) {
                         return false;
                     }
 
-                    this.view.scope.logger.warn('Unable to define draggable', this);
+                    view.scope.logger.warn('Unable to define draggable', this);
                     return false;
                 }
 
                 this.$.draggable({
                     handle: this._get$Header()
                 });
+            }
+
+            if (this.autoclose) {
+
+                $('.modal-backdrop.in').on(
+                    'click.autoclose',
+                    view.controller.rejectModalEvent.bind(view)
+                );
             }
 
             this.setButtons();

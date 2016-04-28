@@ -114,6 +114,7 @@ define([
                 text: xhr.statusText,
                 html: (responseJSON || {}).error,
                 cover: true,
+                autoclose: true,
                 buttons: buttons
             });
 
