@@ -6,8 +6,9 @@ define([
     'services/inject.script',
     'services/bigmir.net',
     'services/yahoo.flurry',
-    'services/rollbar.notifier'
-], function defineWorkspaceSEO(GoogleAnalyticsPreferences, SnapEngagePreferences, RaygunIOPreferences, GithubGistPreferences, InjectScriptPreferences, BigmirNetPreferences, YahooFlurryPreferences, RollbarNotifierPreferences) {
+    'services/rollbar.notifier',
+    'services/rapid.engage'
+], function defineWorkspaceSEO(GoogleAnalyticsPreferences, SnapEngagePreferences, RaygunIOPreferences, GithubGistPreferences, InjectScriptPreferences, BigmirNetPreferences, YahooFlurryPreferences, RollbarNotifierPreferences, RapidEngagePreferences) {
 
     /**
      * Define WorkspaceServices
@@ -21,6 +22,7 @@ define([
      * @extends {BigmirNetPreferences} BigmirNetPreferences
      * @extends {YahooFlurryPreferences} YahooFlurryPreferences
      * @extends {RollbarNotifierPreferences} RollbarNotifierPreferences
+     * @extends {RapidEngagePreferences} RapidEngagePreferences
      * @constructor
      */
     var WorkspaceServices = function WorkspaceServices() {
@@ -55,6 +57,7 @@ define([
         InjectScriptPreferences.prototype,
         BigmirNetPreferences.prototype,
         YahooFlurryPreferences.prototype,
-        RollbarNotifierPreferences.prototype
+        RollbarNotifierPreferences.prototype,
+        RapidEngagePreferences.prototype
     );
 });

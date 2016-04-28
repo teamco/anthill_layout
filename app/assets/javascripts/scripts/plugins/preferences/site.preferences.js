@@ -16,8 +16,9 @@ define([
     'services/inject.script',
     'services/bigmir.net',
     'services/yahoo.flurry',
-    'services/rollbar.notifier'
-], function defineSitePreferences(BasePreferencesElement, SiteConfigMetaDataPreferences, SiteConfigWidthPreferences, GoogleAnalyticsPreferences, SnapEngagePreferences, RaygunIOPreferences, GithubGistPreferences, InjectScriptPreferences, BigmirNetPreferences, YahooFlurryPreferences, RollbarNotifierPreferences) {
+    'services/rollbar.notifier',
+    'services/rapid.engage'
+], function defineSitePreferences(BasePreferencesElement, SiteConfigMetaDataPreferences, SiteConfigWidthPreferences, GoogleAnalyticsPreferences, SnapEngagePreferences, RaygunIOPreferences, GithubGistPreferences, InjectScriptPreferences, BigmirNetPreferences, YahooFlurryPreferences, RollbarNotifierPreferences, RapidEngagePreferences) {
 
     /**
      * Define prefs
@@ -34,6 +35,7 @@ define([
      * @extends BigmirNetPreferences
      * @extends YahooFlurryPreferences
      * @extends RollbarNotifierPreferences
+     * @extends RapidEngagePreferences
      * @constructor
      */
     var SitePreferences = function SitePreferences() {
@@ -166,6 +168,11 @@ define([
                         type: 'text',
                         value: 'Rollbar Notifier',
                         renderer: this.renderRollbarNotifier()
+                    },
+                    {
+                        type: 'text',
+                        value: 'RapidEngage',
+                        renderer: this.renderRapidEngage()
                     }
                 ];
 
@@ -207,6 +214,7 @@ define([
         InjectScriptPreferences.prototype,
         BigmirNetPreferences.prototype,
         YahooFlurryPreferences.prototype,
-        RollbarNotifierPreferences.prototype
+        RollbarNotifierPreferences.prototype,
+        RapidEngagePreferences.prototype
     );
 });
