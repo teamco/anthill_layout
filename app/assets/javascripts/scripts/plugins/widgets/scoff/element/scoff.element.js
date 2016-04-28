@@ -40,8 +40,10 @@ define([
         renderEmbeddedContent: function renderEmbeddedContent(embed) {
 
             // Get player id
-            var playerId = this.id + '-player',
-                $embed = $(embed.replace(/videoElement/, playerId));
+            var playerId = this.id + '-player';
+
+            // Replace default id
+            embed = embed.replace(/videoElement/g, playerId);
 
             /**
              * Get element
@@ -53,11 +55,14 @@ define([
 
             try {
 
-                require([$embed[0].src], function _loadScript() {
-                    $element.addContent($embed[2]);
-                });
+                require(
+                    ['http://jwpsrv.com/library/97CHiO2IEeOGQyIACtqXBA.js'],
+                    function _loadScript() {
+                        $element.addContent($(embed)[2]);
+                    }
+                );
 
-            } catch(e) {
+            } catch (e) {
 
                 $element.view.scope.logger.warn('Unable to load embed code', e);
             }
