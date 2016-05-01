@@ -79,6 +79,18 @@ define(function defineLibFile() {
             reader.readAsArrayBuffer(file);
         },
 
+        // From http://stackoverflow.com/questions/14967647/ (continues on next line)
+        // encode-decode-image-with-base64-breaks-image (2013-04-21)
+        fixBinary: function fixBinary(bin) {
+            var length = bin.length;
+            var buf = new ArrayBuffer(length);
+            var arr = new Uint8Array(buf);
+            for (var i = 0; i < length; i++) {
+                arr[i] = bin.charCodeAt(i);
+            }
+            return buf;
+        },
+
         /**
          * Create Blob URL
          * @memberOf LibFile
