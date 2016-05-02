@@ -7,22 +7,24 @@ define([
     'services/bigmir.net',
     'services/yahoo.flurry',
     'services/rollbar.notifier',
-    'services/rapid.engage'
-], function defineWorkspaceSEO(GoogleAnalyticsPreferences, SnapEngagePreferences, RaygunIOPreferences, GithubGistPreferences, InjectScriptPreferences, BigmirNetPreferences, YahooFlurryPreferences, RollbarNotifierPreferences, RapidEngagePreferences) {
+    'services/rapid.engage',
+    'services/doorbell'
+], function defineWorkspaceSEO(GoogleAnalyticsPreferences, SnapEngagePreferences, RaygunIOPreferences, GithubGistPreferences, InjectScriptPreferences, BigmirNetPreferences, YahooFlurryPreferences, RollbarNotifierPreferences, RapidEngagePreferences, DoorbellPreferences) {
 
     /**
      * Define WorkspaceServices
      * @class WorkspaceServices
-     * @extends {BaseController} BaseController
-     * @extends {GoogleAnalyticsPreferences} GoogleAnalyticsPreferences
-     * @extends {SnapEngagePreferences} SnapEngagePreferences
-     * @extends {RaygunIOPreferences} RaygunIOPreferences
-     * @extends {GithubGistPreferences} GithubGistPreferences
-     * @extends {InjectScriptPreferences} InjectScriptPreferences
-     * @extends {BigmirNetPreferences} BigmirNetPreferences
-     * @extends {YahooFlurryPreferences} YahooFlurryPreferences
-     * @extends {RollbarNotifierPreferences} RollbarNotifierPreferences
-     * @extends {RapidEngagePreferences} RapidEngagePreferences
+     * @extends BaseController
+     * @extends GoogleAnalyticsPreferences
+     * @extends SnapEngagePreferences
+     * @extends RaygunIOPreferences
+     * @extends GithubGistPreferences
+     * @extends InjectScriptPreferences
+     * @extends BigmirNetPreferences
+     * @extends YahooFlurryPreferences
+     * @extends RollbarNotifierPreferences
+     * @extends RapidEngagePreferences
+     * @extends DoorbellPreferences
      * @constructor
      */
     var WorkspaceServices = function WorkspaceServices() {
@@ -58,6 +60,7 @@ define([
         BigmirNetPreferences.prototype,
         YahooFlurryPreferences.prototype,
         RollbarNotifierPreferences.prototype,
-        RapidEngagePreferences.prototype
+        RapidEngagePreferences.prototype,
+        DoorbellPreferences.prototype
     );
 });

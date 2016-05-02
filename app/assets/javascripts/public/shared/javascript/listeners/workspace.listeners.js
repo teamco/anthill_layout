@@ -23,7 +23,8 @@ define([
      *      loadActivateBigmirNet: string,
      *      loadActivateYahooFlurry: string,
      *      loadActivateRollbarNotifier: string,
-     *      loadActivateRapidEngage: string
+     *      loadActivateRapidEngage: string,
+     *      loadActivateDoorbell: string
      * }}
      */
     Workspace.prototype.globalEvents = {
@@ -37,7 +38,8 @@ define([
         loadActivateBigmirNet: 'load.activate.bigmir.net',
         loadActivateYahooFlurry: 'load.activate.yahoo.flurry',
         loadActivateRollbarNotifier: 'load.activate.rollbar.notifier',
-        loadActivateRapidEngage: 'load.activate.rapid.engage'
+        loadActivateRapidEngage: 'load.activate.rapid.engage',
+        loadActivateDoorbell: 'load.activate.doorbell'
     };
 
     /**
