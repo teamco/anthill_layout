@@ -7,6 +7,7 @@ require 'uuid'
 require 'json'
 require 'mechanize'
 require 'pismo'
+require 'net/http'
 
 require "#{Rails.root}/lib/tasks/widget_generator.rb"
 require "#{Rails.root}/lib/base_lib.rb"
@@ -226,6 +227,13 @@ class Author::WidgetsController < Author::AuthorController
     respond_to do |format|
       format.html { redirect_to author_widgets_url, notice: t('widget_destroy_success') }
       format.json { head :no_content }
+    end
+  end
+
+  def fetch_embedded_content
+    iframely = Iframely::Requester.new api_key: params[:api_key]
+    respond_to do |format|
+      format.json { render json: iframely.get_iframely_json(params[:url]) }
     end
   end
 

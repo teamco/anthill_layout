@@ -80,6 +80,8 @@ Rails.application.routes.draw do
 
   get '/embedly', to: 'public/embedly#show'
 
+  get '/widget/fetch_embedded_content', to: 'author/widgets#fetch_embedded_content'
+
   root 'author/author#index'
 
   get '*unmatched_route', to: 'application#raise_not_found'

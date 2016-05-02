@@ -22,19 +22,22 @@ define([
         /**
          * Define preferences
          * @property IframelyModel
-         * @type {{}}
+         * @type {{
+         *      iframelyApiKey: {type: string, disabled: boolean, value: string, visible: boolean},
+         *      iframelyUrl: {type: string, disabled: boolean, value: string, visible: boolean}
+         * }}
          */
         this.preferences = {
             iframelyApiKey: {
                 type: 'text',
-                disabled: true,
+                disabled: false,
                 value: '5091335a2cdc457dcc7ad4',
                 visible: true
             },
             iframelyUrl: {
                 type: 'text',
                 disabled: false,
-                value: '<div class="showtheway"><a href="https://showtheway.io/to/32.178195,34.90761?name=Kefar%20Sava" target="_blank" title="Show the Way to Kefar Sava with your favorite navigation application">Show the Way</a></div><script src="https://showtheway.io/w.js" async="async" type="text/javascript"></script>',
+                value: 'https://www.youtube.com/watch?v=cegdR0GiJl4',
                 visible: true
             }
         };
@@ -47,9 +50,9 @@ define([
         this.rules = {};
     };
 
-    return IframelyModel.extend('IframelyModel', {
-
-        // Setter
-
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    return IframelyModel.extend(
+        'IframelyModel', {},
+        BaseModel.prototype,
+        WidgetContentModel.prototype
+    );
 });

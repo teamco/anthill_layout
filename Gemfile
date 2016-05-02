@@ -16,6 +16,7 @@ gem 'will_paginate'
 # gem 'ruby-readability'
 
 gem 'pismo'
+gem 'iframely'
 gem 'mechanize'
 gem 'informant-rails'
 

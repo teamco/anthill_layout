@@ -179,6 +179,9 @@ GEM
       domain_name (~> 0.5)
     i18n (0.7.0)
     ice_nine (0.11.2)
+    iframely (0.1.0)
+      faraday
+      hashie
     informant-rails (0.9.0)
       rails (>= 3.0.0)
     interactive_editor (0.0.10)
@@ -492,6 +495,7 @@ DEPENDENCIES
   gravtastic
   hirb
   i18n (>= 0.7.0.beta1)
+  iframely
   informant-rails
   interactive_editor
   jbuilder (>= 2.0)

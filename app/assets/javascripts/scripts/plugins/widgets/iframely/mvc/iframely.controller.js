@@ -27,7 +27,10 @@ define([
          * @memberOf IframelyController
          */
         setEmbeddedContent: function setEmbeddedContent() {
-            this.view.get$item().renderEmbeddedContent();
+            this.view.get$item().renderEmbeddedContent(
+                this.model.getPrefs('iframelyApiKey'),
+                this.model.getPrefs('iframelyUrl')
+            );
         },
 
         /**

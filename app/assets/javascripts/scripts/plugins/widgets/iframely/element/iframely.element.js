@@ -35,9 +35,42 @@ define([
         /**
          * Render Embedded content
          * @memberOf IframelyElement
+         * @para, {string} api
+         * @para, {string} url
          */
-        renderEmbeddedContent: function renderEmbeddedContent() {
-            // TODO
+        renderEmbeddedContent: function renderEmbeddedContent(api, url) {
+
+            /**
+             * Get element
+             * @type {IframelyElement}
+             */
+            var $element = this;
+
+            /**
+             * Get scope
+             * @type {Iframely}
+             */
+            var scope = $element.view.scope;
+
+            if (!api) {
+
+                scope.logger.warn('Undefined API Key', arguments);
+                return false;
+            }
+
+
+            $.get(
+                '/widget/fetch_embedded_content/?url=' + encodeURIComponent(url) + '&api_key=' + api,
+
+                /**
+                 * Define iframely API callback
+                 * @param json
+                 * @private
+                 */
+                function _getContent(json) {
+                    $element.addContent(json.html);
+                }
+            );
         }
 
     }, PluginElement.prototype);
