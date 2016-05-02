@@ -27,7 +27,11 @@ define([
          * @memberOf SkypeController
          */
         setEmbeddedContent: function setEmbeddedContent() {
-            this.view.get$item().renderEmbeddedContent();
+            this.view.get$item().renderEmbeddedContent(
+                this.model.getPrefs('skypeBootstrap'),
+                this.model.getPrefs('skypeApiKey'),
+                this.model.getPrefs('skypeUiKey')
+            );
         },
 
         /**

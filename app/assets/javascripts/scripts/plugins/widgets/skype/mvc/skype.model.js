@@ -22,10 +22,31 @@ define([
         /**
          * Define preferences
          * @property SkypeModel
-         * @type {{}}
+         * @type {{
+         *      skypeBootstrap: {type: string, disabled: boolean, value: string, visible: boolean},
+         *      skypeApiKey: {type: string, disabled: boolean, value: string, visible: boolean},
+         *      skypeUiKey: {type: string, disabled: boolean, value: string, visible: boolean}
+         * }}
          */
         this.preferences = {
-            // Preferences
+            skypeBootstrap: {
+                type: 'text',
+                disabled: true,
+                value: 'https://swx.cdn.skype.com/shared/v/1.2.15/SkypeBootstrap.min.js',
+                visible: true
+            },
+            skypeApiKey: {
+                type: 'text',
+                disabled: false,
+                value: 'a42fcebd-5b43-4b89-a065-74450fb91255',
+                visible: true
+            },
+            skypeUiKey: {
+                type: 'text',
+                disabled: false,
+                value: '9c967f6b-a846-4df2-b43d-5167e47d81e1',
+                visible: true
+            }
         };
 
         /**
@@ -36,9 +57,9 @@ define([
         this.rules = {};
     };
 
-    return SkypeModel.extend('SkypeModel', {
-
-        // Setter
-
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    return SkypeModel.extend(
+        'SkypeModel', {},
+        BaseModel.prototype,
+        WidgetContentModel.prototype
+    );
 });
