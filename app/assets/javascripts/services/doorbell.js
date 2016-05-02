@@ -74,7 +74,7 @@ define(function defineDoorbellPreferences() {
             var preferences = this.model.getConfig('preferences');
 
             /**
-             * Get tracking id
+             * Get App Key
              * @type {string|boolean}
              */
             var appKey = preferences.doorbellAppKey,

@@ -24,7 +24,8 @@ define([
      *      loadActivateYahooFlurry: string,
      *      loadActivateRollbarNotifier: string,
      *      loadActivateRapidEngage: string,
-     *      loadActivateDoorbell: string
+     *      loadActivateDoorbell: string,
+     *      loadActivateWoopra: string
      * }}
      */
     Workspace.prototype.globalEvents = {
@@ -39,7 +40,8 @@ define([
         loadActivateYahooFlurry: 'load.activate.yahoo.flurry',
         loadActivateRollbarNotifier: 'load.activate.rollbar.notifier',
         loadActivateRapidEngage: 'load.activate.rapid.engage',
-        loadActivateDoorbell: 'load.activate.doorbell'
+        loadActivateDoorbell: 'load.activate.doorbell',
+        loadActivateWoopra: 'load.activate.woopra'
     };
 
     /**

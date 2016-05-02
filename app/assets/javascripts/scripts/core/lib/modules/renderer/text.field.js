@@ -32,7 +32,7 @@ define(function defineTextFieldRenderer() {
          *      [monitor],
          *      [readonly],
          *      [visible],
-         *      [validate]: {mask: RegExp, blank: boolean}
+         *      [validate]: {[mask]: RegExp, blank: boolean}
          * }} opts
          * @returns {*[]}
          */

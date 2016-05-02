@@ -18,8 +18,9 @@ define([
     'services/yahoo.flurry',
     'services/rollbar.notifier',
     'services/rapid.engage',
-    'services/doorbell'
-], function defineSitePreferences(BasePreferencesElement, SiteConfigMetaDataPreferences, SiteConfigWidthPreferences, GoogleAnalyticsPreferences, SnapEngagePreferences, RaygunIOPreferences, GithubGistPreferences, InjectScriptPreferences, BigmirNetPreferences, YahooFlurryPreferences, RollbarNotifierPreferences, RapidEngagePreferences, DoorbellPreferences) {
+    'services/doorbell',
+    'services/woopra'
+], function defineSitePreferences(BasePreferencesElement, SiteConfigMetaDataPreferences, SiteConfigWidthPreferences, GoogleAnalyticsPreferences, SnapEngagePreferences, RaygunIOPreferences, GithubGistPreferences, InjectScriptPreferences, BigmirNetPreferences, YahooFlurryPreferences, RollbarNotifierPreferences, RapidEngagePreferences, DoorbellPreferences, WoopraPreferences) {
 
     /**
      * Define prefs
@@ -38,6 +39,7 @@ define([
      * @extends RollbarNotifierPreferences
      * @extends RapidEngagePreferences
      * @extends DoorbellPreferences
+     * @extends WoopraPreferences
      * @constructor
      */
     var SitePreferences = function SitePreferences() {
@@ -180,6 +182,11 @@ define([
                         type: 'text',
                         value: 'Doorbell.io',
                         renderer: this.renderDoorbell()
+                    },
+                    {
+                        type: 'text',
+                        value: 'Woopra',
+                        renderer: this.renderWoopra()
                     }
                 ];
 
@@ -224,6 +231,7 @@ define([
         RollbarNotifierPreferences.prototype,
         RapidEngagePreferences.prototype,
         RapidEngagePreferences.prototype,
-        DoorbellPreferences.prototype
+        DoorbellPreferences.prototype,
+        WoopraPreferences.prototype
     );
 });
