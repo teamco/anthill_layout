@@ -1,0 +1,25 @@
+<html>
+<head>
+    <title>SomeDummySite</title>
+</head>
+<body>
+    <script>
+        // redirect to Org ID if there is no token in the URL
+        if (!location.hash) {
+            location.assign('https://login.windows.net/common/oauth2/authorize?response_type=token' +
+                '&client_id=d1763d46-5e84-413f-97f0-faa9c49a8e41' +
+                '&redirect_uri=' + location.href +
+                '&resource=https://webdir.online.lync.com');
+        }
+
+        // show the UI if the user has signed in
+        if (/^#access_token=/.test(location.hash)) {
+            location.assign('/UI/?auto=1&ss=0' +
+                '&cors=1' +
+                '&client_id=d1763d46-5e84-413f-97f0-faa9c49a8e41' +
+                '&origins=https://webdir.online.lync.com/autodiscover/autodiscoverservice.svc/root'); 
+               
+        }
+    </script>
+</body>
+</html>

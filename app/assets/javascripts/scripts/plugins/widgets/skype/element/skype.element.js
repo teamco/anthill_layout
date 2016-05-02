@@ -59,8 +59,9 @@ define([
                 // Implements the Skype object model via https://swx.cdn.skype.com/shared/v/1.2.15/SkypeBootstrap.min.js
                 // Call the application object
                 var config = {
-                    apiKey: api, // SDK
-                    apiKeyCC: ui // SDK+UI
+                    apiKey: api,                        // SDK
+                    apiKeyCC: ui,                       // SDK+UI
+                    version: 'BuildConference/1.0.0'    // This helps to identify telemetry
                 };
 
                 Skype.initialize({apiKey: config.apiKey}, function (api) {
