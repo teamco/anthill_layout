@@ -31,7 +31,7 @@ define(function defineTextAreaRenderer() {
          *      [disabled]: boolean,
          *      [readonly]: boolean,
          *      [visible]: boolean,
-         *      [validate]: {mask: RegExp, blank: boolean}
+         *      [validate]: {[mask]: RegExp, blank: boolean}
          * }} opts
          * @extends AntHill
          * @returns {*[]}

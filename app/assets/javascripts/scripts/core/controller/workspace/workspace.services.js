@@ -9,8 +9,9 @@ define([
     'services/rollbar.notifier',
     'services/rapid.engage',
     'services/doorbell',
-    'services/woopra'
-], function defineWorkspaceSEO(GoogleAnalyticsPreferences, SnapEngagePreferences, RaygunIOPreferences, GithubGistPreferences, InjectScriptPreferences, BigmirNetPreferences, YahooFlurryPreferences, RollbarNotifierPreferences, RapidEngagePreferences, DoorbellPreferences, WoopraPreferences) {
+    'services/woopra',
+    'services/virtual.spirits'
+], function defineWorkspaceSEO(GoogleAnalyticsPreferences, SnapEngagePreferences, RaygunIOPreferences, GithubGistPreferences, InjectScriptPreferences, BigmirNetPreferences, YahooFlurryPreferences, RollbarNotifierPreferences, RapidEngagePreferences, DoorbellPreferences, WoopraPreferences, VirtualSpiritsPreferences) {
 
     /**
      * Define WorkspaceServices
@@ -27,6 +28,7 @@ define([
      * @extends RapidEngagePreferences
      * @extends DoorbellPreferences
      * @extends WoopraPreferences
+     * @extends VirtualSpiritsPreferences
      * @constructor
      */
     var WorkspaceServices = function WorkspaceServices() {
@@ -64,6 +66,7 @@ define([
         RollbarNotifierPreferences.prototype,
         RapidEngagePreferences.prototype,
         DoorbellPreferences.prototype,
-        WoopraPreferences.prototype
+        WoopraPreferences.prototype,
+        VirtualSpiritsPreferences.prototype
     );
 });

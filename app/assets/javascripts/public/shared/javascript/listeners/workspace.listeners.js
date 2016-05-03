@@ -25,7 +25,8 @@ define([
      *      loadActivateRollbarNotifier: string,
      *      loadActivateRapidEngage: string,
      *      loadActivateDoorbell: string,
-     *      loadActivateWoopra: string
+     *      loadActivateWoopra: string,
+     *      loadActivateVirtualSpirits: string
      * }}
      */
     Workspace.prototype.globalEvents = {
@@ -41,7 +42,8 @@ define([
         loadActivateRollbarNotifier: 'load.activate.rollbar.notifier',
         loadActivateRapidEngage: 'load.activate.rapid.engage',
         loadActivateDoorbell: 'load.activate.doorbell',
-        loadActivateWoopra: 'load.activate.woopra'
+        loadActivateWoopra: 'load.activate.woopra',
+        loadActivateVirtualSpirits: 'load.activate.virtual.spirits'
     };
 
     /**
