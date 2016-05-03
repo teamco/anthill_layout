@@ -21,7 +21,7 @@ define(['config/widget'], function defineWidgetPermissions(Widget) {
         development: {
             maximizable: true,
             zoomable: true,
-            draggable: false,
+            draggable: true,
             resizable: true,
             store: true
         },

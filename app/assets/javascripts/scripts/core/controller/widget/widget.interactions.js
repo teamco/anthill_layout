@@ -440,9 +440,10 @@ define([
                 var type = types[i];
 
                 // Get interaction
-                var interaction = this.interactions[type];
+                var interaction = this.interactions[type],
+                    checkInteraction = this.controller['is' + type.capitalize()];
 
-                if (interaction) {
+                if (interaction) if (checkInteraction && checkInteraction.bind(this.controller)()) {
 
                     // Update interaction
                     interaction.$scope[type](
