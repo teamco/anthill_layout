@@ -38,10 +38,16 @@ define(function defineSiteConfigActivate() {
             var scope = this.scope;
 
             /**
+             * Define root
+             * @type {Application}
+             */
+            var root = this.root();
+
+            /**
              * Get root config
              * @type {{activate: boolean, mode: string, appName: string}}
              */
-            var config = this.root().model.getConfig();
+            var config = root.model.getConfig();
 
             /**
              * Define $modal
@@ -68,8 +74,18 @@ define(function defineSiteConfigActivate() {
             }
 
             $.ajax(opts).done(function (data, type, xhr) {
+
                 scope.logger.debug(data.notice, arguments);
                 $modal.selfDestroy();
+
+                root.observer.publish(
+                    root.eventmanager.eventList.updateStorageVersion,
+                    [data.version, data.activated]
+                );
+
+                root.observer.publish(
+                    root.eventmanager.eventList.afterUpdateStorage
+                );
             });
         }
     });
