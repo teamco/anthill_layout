@@ -6,6 +6,7 @@
         'data-resource': key,
         'data-user': current_user.nil? ? 'guest' : current_user.email,
         'data-version': storage[:version],
+        'data-activated': storage[:activated],
         'data-mode': storage[:mode],
         'data-environment': Rails.env,
         'data-uuid': storage[:uuid],

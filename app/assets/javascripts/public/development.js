@@ -14,6 +14,7 @@
             version = parseInt(dataset.version || 0, 10) || 1,
             user = dataset.user,
             mode = dataset.mode,
+            activated = dataset.activated,
             environment = dataset.environment;
 
         /**
@@ -57,6 +58,7 @@
                         user: user,
                         uuid: uuid,
                         version: version,
+                        activate: activated === 'true',
                         environment: environment,
                         appName: site,
                         mode: mode

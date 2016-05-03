@@ -27,11 +27,15 @@ class Author::SiteStoragesController < Author::AuthorController
       @storage[:mode] = mode.name unless mode.nil?
 
       activated = @author_site_storage.get_activated
+      @storage[:activated] = true
 
-      unless activated.nil?
-        @storage[:version] = activated.version
-        @storage[:content] = activated.content
+      if activated.nil?
+        @storage[:activated] = false
+        activated = @author_site_storage.author_site_versions.last
       end
+
+      @storage[:version] = activated.version
+      @storage[:content] = activated.content
 
     end unless @author_site_storage.nil?
   end
