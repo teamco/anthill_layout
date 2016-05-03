@@ -40,8 +40,9 @@ define([
              * @type {SiteConfig}
              */
             var scope = this.view.scope,
-                root = scope.controller.root(),
-                storage = root.model.setting.storage,
+                root = scope.controller.root();
+
+            var storage = root.model.setting.storage,
                 modes = [];
 
             for (var index in storage) {

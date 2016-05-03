@@ -9,18 +9,19 @@ define(['config/layout'], function defineLayoutPermissions(Layout) {
 
     /**
      * Define Layout global permission
+     * @property Layout
      * @type {{
-     *      development: {},
-     *      authorize: {},
-     *      consumption: {},
-     *      test: {}
+     *      development: {store: boolean},
+     *      authorize: {store: boolean},
+     *      consumption: {store: boolean},
+     *      test: {store: boolean}
      * }}
      */
     Layout.prototype.globalPermissions = {
-        development: {},
-        authorize: {},
-        consumption: {},
-        test: {}
+        development: {store: true},
+        authorize: {store: true},
+        consumption: {store: false},
+        test: {store: false}
     };
 
     return Layout;

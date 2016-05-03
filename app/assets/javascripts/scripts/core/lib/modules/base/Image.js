@@ -87,7 +87,7 @@ define(function defineLibImage() {
             //resize by ratio
             ratio = ratio || 0.43895525; //from 0 to 1
 
-            require(['html2canvas'], function () {
+            require(['html2canvas'], function (html2canvas) {
                 html2canvas(
                     domElement || document.body, {
                         onrendered: function (response) {

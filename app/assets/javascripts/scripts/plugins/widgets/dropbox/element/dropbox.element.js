@@ -74,8 +74,9 @@ define([
              * Define dropbox element
              * @type {DropboxElement}
              */
-            var $element = this,
-                view = $element.view,
+            var $element = this;
+
+            var view = $element.view,
                 controller = view.controller;
 
             controller.clearParentThumbnail();
@@ -89,7 +90,7 @@ define([
                  */
                 var $button = Dropbox.createChooseButton({
 
-                    success: function(data) {
+                    success: function (data) {
 
                         /**
                          * Get response data

@@ -678,7 +678,7 @@ define([
 
             /**
              * Define capability
-             * @memberOf BasePermission.capability
+             * @property BasePermission
              * @type {{}}
              */
             permission.capability = {};

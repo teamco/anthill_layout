@@ -9,18 +9,19 @@ define(['config/application'], function defineApplicationPermissions(Application
 
     /**
      * Define Application global permission
+     * @property Application
      * @type {{
-     *      development: {},
-     *      authorize: {},
-     *      consumption: {},
-     *      test: {}
+     *      development: {store: boolean},
+     *      authorize: {store: boolean},
+     *      consumption: {store: boolean},
+     *      test: {store: boolean}
      * }}
      */
     Application.prototype.globalPermissions = {
-        development: {},
-        authorize: {},
-        consumption: {},
-        test: {}
+        development: {store: true},
+        authorize: {store: true},
+        consumption: {store: false},
+        test: {store: false}
     };
 
     return Application;

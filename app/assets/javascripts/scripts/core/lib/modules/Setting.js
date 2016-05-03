@@ -97,7 +97,7 @@ define([
          * @memberOf Setting
          * @param {boolean} state
          */
-        setInititalState: function setInititalState(state) {
+        setInitialState: function setInitialState(state) {
 
             /**
              * Change state
@@ -112,7 +112,7 @@ define([
          * @memberOf Setting
          * @returns {boolean}
          */
-        getInititalState: function getInititalState() {
+        getInitialState: function getInitialState() {
             return this.initial;
         },
 
@@ -131,7 +131,7 @@ define([
          */
         init: function init() {
 
-            this.setInititalState(true);
+            this.setInitialState(true);
 
             /**
              * Load storage
@@ -158,7 +158,7 @@ define([
                 this.save(storage);
             }
 
-            this.setInititalState(false);
+            this.setInitialState(false);
         },
 
         /**
@@ -182,7 +182,7 @@ define([
              */
             var storage = this.storage[this.mode];
 
-            if (this.getInititalState() || this.scope.model.getConfig('loading')) {
+            if (this.getInitialState() || this.scope.model.getConfig('loading')) {
                 storage = this.cache;
             }
 
@@ -354,7 +354,7 @@ define([
 
                     function _send(opts) {
                         $.ajax(opts).done(
-                            function done(data, type, xhr) {
+                            function _done(data, type, xhr) {
 
                                 setting.cache.setItem(key, value);
                                 setting.activateOnSave(false);

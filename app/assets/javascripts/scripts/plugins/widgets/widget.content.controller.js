@@ -74,6 +74,9 @@ define([
                 observer.batchPublish(
                     eventList.executeOnWidgetContentOnLoadEvent
                 );
+
+                // Allow to store prefs via parent controller
+                this.permission.setCapability('store', true);
             },
 
             /**

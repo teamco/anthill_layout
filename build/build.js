@@ -32,7 +32,7 @@
 
         _: 'lib/_/underscore-min',
 
-        html2canvas: 'lib/packages/html2canvas',
+        html2canvas: 'lib/packages/html2canvas.min',
 
         'lz-string': 'lib/lz-string',
         jquery: 'lib/jquery/jquery-2.2.2.min',

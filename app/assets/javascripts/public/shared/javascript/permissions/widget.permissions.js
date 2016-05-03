@@ -9,6 +9,7 @@ define(['config/widget'], function defineWidgetPermissions(Widget) {
 
     /**
      * Define Widget global permission
+     * @property Widget
      * @type {{
      *      development: {maximizable: boolean, zoomable: boolean, draggable: boolean, resizable: boolean},
      *      authorize: {maximizable: boolean, zoomable: boolean, draggable: boolean, resizable: boolean},
@@ -20,26 +21,30 @@ define(['config/widget'], function defineWidgetPermissions(Widget) {
         development: {
             maximizable: true,
             zoomable: true,
-            draggable: true,
-            resizable: true
+            draggable: false,
+            resizable: true,
+            store: true
         },
         authorize: {
             maximizable: true,
             zoomable: true,
             draggable: true,
-            resizable: true
+            resizable: true,
+            store: true
         },
         consumption: {
             maximizable: true,
             zoomable: true,
             draggable: false,
-            resizable: false
+            resizable: false,
+            store: false
         },
         test: {
             maximizable: true,
             zoomable: true,
             draggable: true,
-            resizable: true
+            resizable: true,
+            store: false
         }
     };
 

@@ -14,6 +14,7 @@ define([
      * Define Permissions
      * @class Permission
      * @extends AntHill
+     * @extends BaseController
      * @constructor
      */
     var BasePermission = function BasePermission() {
@@ -24,6 +25,14 @@ define([
          * @type {undefined}
          */
         this.scope = undefined;
+
+        /**
+         * Define capability
+         * @property BasePermission
+         * @type {{}}
+         */
+        this.capability = {};
+
     };
 
     return BasePermission.extend('BasePermission', {
@@ -73,7 +82,15 @@ define([
          * @returns {*}
          */
         setCapability: function setCapability(key, value) {
+
+            /**
+             * Define capability
+             * @property BasePermission
+             * @type {{}}
+             */
+            this.capability = this.capability || {} ;
             this.capability[key] = this.base.defineBoolean(value, false, true);
+
             return this.getCapability(key);
         },
 

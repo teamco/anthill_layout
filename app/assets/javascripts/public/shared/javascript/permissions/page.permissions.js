@@ -9,18 +9,19 @@ define(['config/page'], function definePagePermissions(Page) {
 
     /**
      * Define Page global permission
+     * @property Page
      * @type {{
-     *      development: {},
-     *      authorize: {},
-     *      consumption: {},
-     *      test: {}
+     *      development: {store: boolean},
+     *      authorize: {store: boolean},
+     *      consumption: {store: boolean},
+     *      test: {store: boolean}
      * }}
      */
     Page.prototype.globalPermissions = {
-        development: {},
-        authorize: {},
-        consumption: {},
-        test: {}
+        development: {store: true},
+        authorize: {store: true},
+        consumption: {store: false},
+        test: {store: false}
     };
 
     return Page;

@@ -27,14 +27,14 @@ define([
 
         /**
          * Define containment
-         * @memberOf Image
+         * @property Image
          * @type {Widget}
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @memberOf Image
+         * @property Image
          * @type {*}
          */
         this.referrer = undefined;
@@ -74,7 +74,7 @@ define([
 
         /**
          * Define MVC
-         * @memberOf Image
+         * @property Image
          * @type {MVC}
          */
         this.mvc = new MVC({
@@ -99,7 +99,5 @@ define([
         );
     };
 
-    return Image.extend('Image', {
-
-    }, AntHill.prototype);
+    return Image.extend('Image', {}, AntHill.prototype);
 });
