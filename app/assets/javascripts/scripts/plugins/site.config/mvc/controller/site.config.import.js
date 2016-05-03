@@ -52,7 +52,8 @@ define(function defineSiteConfigImport() {
             }
 
             this.root().model.setting.importData(
-                elements.$import.data
+                elements.$import.data,
+                true
             );
 
             $modal.$buttons.reload.enable();

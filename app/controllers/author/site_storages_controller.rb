@@ -84,8 +84,6 @@ class Author::SiteStoragesController < Author::AuthorController
           params[:activate],
           params[:screenshot]
       )
-      # params[:author_site_storage][:publish] = false
-      # params[:author_site_storage].delete :content
     else
       version = @author_site_storage.author_site_versions.where(id: params[:author_site_storage][:activated_version]).first
       params[:author_site_storage].delete :activated_version
@@ -123,38 +121,6 @@ class Author::SiteStoragesController < Author::AuthorController
     end
   end
 
-  def activate
-
-    respond_to do |format|
-      if update_activation
-        notice = t('success_activation')
-        if request.xhr?
-          data = {
-              storage: {
-                  key: @author_site_storage.key,
-                  content: @version.content
-              },
-              version: @version.version,
-              activated: @version.activated,
-              mode: @author_site_storage.author_site_type.name,
-              notice: notice
-          }
-          format.json {
-            render json: data, status: :ok
-          }
-        else
-          format.html { redirect_to author_site_storages_path, notice: notice }
-          format.json { render :index, status: :ok, location: @author_site_storage }
-        end
-      else
-        format.html { render :form }
-        format.json { render json: @author_site_storage.errors, status: :unprocessable_entity }
-      end
-
-    end
-
-  end
-
   # DELETE /author/site_storages/1
   # DELETE /author/site_storages/1.json
   def destroy
@@ -176,10 +142,7 @@ class Author::SiteStoragesController < Author::AuthorController
       version = @author_site_storage.author_site_versions.last
     end
 
-    unless version.is_current?(activated)
-      version.deactivate_other
-      version.activate
-    end
+    version.deactivate unless version.is_current?(activated)
   end
 
   def deactivate_site_version(version=nil)

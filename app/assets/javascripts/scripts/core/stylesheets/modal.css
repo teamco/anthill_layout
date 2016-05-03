@@ -56,3 +56,8 @@ body.modal-open {
     white-space: nowrap;
     display: flex;
 }
+
+.modal .modal-body > span {
+    margin-bottom: 1rem;
+    display: inline-block;
+}

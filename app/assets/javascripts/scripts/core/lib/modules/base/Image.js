@@ -109,7 +109,7 @@ define(function defineLibImage() {
                                     Math.round(W * ratio),
                                     Math.round(H * ratio)
                                 );
-
+                                
                                 callback(canvas.toDataURL());
                             };
 

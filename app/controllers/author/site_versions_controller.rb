@@ -98,6 +98,34 @@ class Author::SiteVersionsController < Author::AuthorController
     end unless published
   end
 
+  def activate
+    site_storage = current_user.author_site_storages.where(key: params[:key]).first
+    if site_storage.nil?
+      result = {json: {error: 'Undefined storage'}, status: :unprocessable_entity}
+    else
+      version = site_storage.get_versions.where(version: params[:version]).first
+      version.deactivate_other
+      if version.activate
+        version.author_item.touch
+        notice = t('success_activation')
+        data = {
+            storage: {
+                key: site_storage.key,
+                content: version.content
+            },
+            version: version.version,
+            activated: version.activated,
+            mode: site_storage.author_site_type.name,
+            notice: notice
+        }
+        result = {json: data, status: :ok}
+      else
+        result = {json: {error: 'Undefined storage'}, status: :unprocessable_entity}
+      end
+    end
+    respond_to { |format| format.json { render result} }
+  end
+
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_author_site_version

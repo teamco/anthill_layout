@@ -115,11 +115,12 @@ define(
                  * Update storage version
                  * @memberOf ApplicationController
                  * @param {number} version
+                 * @param {boolean} activated
                  */
-                updateStorageVersion: function updateStorageVersion(version) {
+                updateStorageVersion: function updateStorageVersion(version, activated) {
                     this.logger.debug('Update storage version', version);
                     this.model.setConfig('version', version);
-                    this.model.setConfig('activate', true);
+                    this.model.setConfig('activate', activated);
                 },
 
                 /**

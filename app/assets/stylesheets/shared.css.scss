@@ -10,7 +10,7 @@ body {
   font-weight: 400;
 }
 
-body.loading:after {
+.loading:after {
   content: " ";
   position: absolute;
   z-index: 1000;
@@ -194,7 +194,7 @@ body.loading:after {
   display: none;
 }
 
-body.loading > .uil-ripple-css {
+.loading > .uil-ripple-css {
   display: block;
   background: none;
   position: absolute;
@@ -207,7 +207,7 @@ body.loading > .uil-ripple-css {
   z-index: 1000;
 }
 
-body.loading > .uil-ripple-css:before {
+.loading > .uil-ripple-css:before {
   content: " ";
   position: absolute;
   top: 50%;
@@ -225,7 +225,7 @@ body.loading > .uil-ripple-css:before {
   border: 12px solid #afafb7;
 }
 
-body.loading > .uil-ripple-css:after {
+.loading > .uil-ripple-css:after {
   content: " ";
   position: absolute;
   top: 50%;

@@ -18,11 +18,11 @@ define([
      */
     var SiteConfigActivateElement = function SiteConfigActivateElement(view, opts) {
 
-        this._config(view, opts, $('<div class="site-mode" />')).build({
+        this._config(view, opts, $('<div class="site-version" />')).build({
             $container: opts.$container
         });
 
-        this.renderContent();
+        this.fetchScreenshot(opts.callback);
 
         return this;
     };
@@ -30,49 +30,42 @@ define([
     return SiteConfigActivateElement.extend('SiteConfigActivateElement', {
 
         /**
-         * Render content
+         * Define fetch screenshot
          * @memberOf SiteConfigActivateElement
+         * @param {function} callback
          */
-        renderContent: function renderContent() {
+        fetchScreenshot: function fetchScreenshot(callback) {
 
             /**
-             * Get scope
-             * @type {SiteConfig}
+             * Get element
+             * @type {SiteConfigActivateElement}
              */
-            var scope = this.view.scope,
-                root = scope.controller.root();
-
-            var storage = root.model.setting.storage,
-                modes = [];
-
-            for (var index in storage) {
-                if (storage.hasOwnProperty(index)) {
-                    modes.push({
-                        type: 'text',
-                        key: index,
-                        value: index
-                    });
-                }
-            }
+            var $element = this;
 
             /**
              * Define combo
              * @type {*|jQuery}
              */
-            var $combo = $('<div class="input-group input-group-sm" />').append(
-                this.renderLabel(undefined, 'Mode', '', true),
-                this.renderCombobox(
-                    modes,
-                    root.model.getConfig('mode'),
-                    'Mode',
-                    'author_site_type[name]',
-                    undefined,
-                    true,
-                    true
-                )
+            this.base.lib.image.resizeThumbnail(
+                document.body, function _fetchScreenshot(img) {
+
+                    $element.addContent(
+                        $('<img class="activate-thumbnail"/>').attr({
+                            src: img,
+                            alt: 'Screenshot'
+                        })
+                    );
+
+                    $element.$.removeClass('loading');
+
+                    callback();
+                }
             );
 
-            this.$.append($combo);
+            // Hide popovers before send screenshot
+            $('.popover').remove();
+
+            this.addContent('<div class="uil-ripple-css" />').$.addClass('loading');
         }
 
     }, PluginElement.prototype);

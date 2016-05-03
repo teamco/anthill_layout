@@ -150,3 +150,13 @@ ul.site-config .content.widget-generator > a {
     background-color: #f2f2f2;
     position: relative;
 }
+
+.modal .site-version {
+    width: 570px;
+    height: 325px;
+}
+
+.modal .site-version > img {
+    width: 100%;
+    height: 100%;
+}

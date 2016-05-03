@@ -23,15 +23,18 @@ define([
             /**
              * Render activate element
              * @memberOf SiteConfigView
+             * @param {function} callback
              * @returns {SiteConfigActivateElement}
              */
-            renderActivate: function renderActivate() {
+            renderActivate: function renderActivate(callback) {
 
                 /**
                  * Define SiteConfig Activate Element
                  * @type {SiteConfigActivateElement}
                  */
-                this.elements.$activate = new SiteConfigActivateElement(this, {});
+                this.elements.$activate = new SiteConfigActivateElement(this, {
+                    callback: callback
+                });
 
                 return this.elements.$activate;
             },
@@ -43,38 +46,80 @@ define([
             activateConfirmation: function activateConfirmation() {
 
                 /**
-                 * Get root
-                 * @type {Application}
+                 * Define show modal callback
+                 * @private
                  */
-                var root = this.controller.root();
+                function _showModal() {
 
-                this.modalDialog({
-                    style: 'activate',
-                    type: 'warning',
-                    title: 'Activate',
-                    text: [
-                        'Are you sure want to activate current version: ',
-                        root.model.getConfig('version'), '?'
-                    ].join(''),
-                    html: this.renderActivate().$,
-                    cover: true,
-                    autoclose: true,
-                    buttons: {
-                        approve: {
-                            text: this.i18n.t('site.data.confirm'),
+                    // Define buttons
+                    var buttons = {};
+
+                    // Define modal type
+                    var type = 'info';
+
+                    // Get config
+                    var config = root.model.getConfig();
+
+                    // Define title
+                    var title = 'Version already activated: ';
+
+                    if (!config.activate) {
+
+                        /**
+                         * Define approve button if site should be activated
+                         * @type {{text: (*|string), type: string, events: {click: string}}}
+                         */
+                        buttons.approve = {
+                            text: view.i18n.t('site.data.activate'),
                             type: 'success',
                             events: {
                                 click: 'approveActivate'
                             }
-                        },
-                        reject: {
-                            text: this.i18n.t('site.data.cancel'),
-                            events: {
-                                click: 'rejectModalEvent'
-                            }
-                        }
+                        };
+
+                        type = 'warning';
+                        title = 'Activate version: ';
                     }
-                });
+
+                    /**
+                     * Define buttons
+                     * @type {{reject: {text: (*|string), events: {click: string}}}}
+                     */
+                    buttons.reject = {
+                        text: view.i18n.t('site.data.cancel'),
+                        events: {
+                            click: 'rejectModalEvent'
+                        }
+                    };
+
+                    view.modalDialog({
+                        style: 'activate',
+                        type: type,
+                        title: title + config.version,
+                        html: activate.$,
+                        cover: true,
+                        autoclose: true,
+                        buttons: buttons
+                    });
+                }
+
+                /**
+                 * Get view
+                 * @type {SiteConfigActivateView}
+                 */
+                var view = this;
+
+                /**
+                 * Get root
+                 * @type {Application}
+                 */
+                var root = view.controller.root();
+
+                /**
+                 * Get activate
+                 * @type {SiteConfigActivateElement}
+                 */
+                var activate = view.renderActivate(_showModal);
             }
         }
     );

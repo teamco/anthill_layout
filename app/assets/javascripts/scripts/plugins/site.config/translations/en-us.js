@@ -9,6 +9,7 @@
 define(function defineEnUs() {
     return {
         'site.data.confirm': 'Confirm',
+        'site.data.activate': 'Activate',
         'site.data.back': 'Back',
         'site.data.save': 'Save',
         'site.data.config': 'Site Config',

@@ -74,7 +74,7 @@ Rails.application.routes.draw do
   get '/sites/:key/:mode', to: 'author/site_storages#show', as: 'mode'
 
   put '/sites/:key', to: 'author/site_storages#update'
-  put '/sites/activate/:key', to: 'author/site_storages#activate'
+  put '/sites/activate/:key/:version', to: 'author/site_versions#activate'
 
   get '/author', to: 'author/author#index'
 

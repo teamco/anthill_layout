@@ -834,7 +834,7 @@ define([
                 return false;
             }
 
-            $container ? $container.html(html) : this.$.html(html);
+            $container ? $container.append(html) : this.addContent(html);
         },
 
         /**
@@ -850,7 +850,10 @@ define([
                 return false;
             }
 
-            $container ? $container.text(text) : this.$.text(text);
+            // Define text holder
+            var $text = $('<span />').text(text);
+            
+            $container ? $container.html($text) : this.addContent($text);
         },
 
         /**
@@ -1155,6 +1158,8 @@ define([
             }
 
             this.$.append(embed);
+
+            return this;
         }
 
     }, AntHill.prototype, Renderer.prototype);

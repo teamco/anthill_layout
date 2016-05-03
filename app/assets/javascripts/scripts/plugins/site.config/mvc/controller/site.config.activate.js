@@ -39,7 +39,7 @@ define(function defineSiteConfigActivate() {
 
             /**
              * Get root config
-             * @type {{activate: boolean, mode: string}}
+             * @type {{activate: boolean, mode: string, appName: string}}
              */
             var config = this.root().model.getConfig();
 
@@ -54,46 +54,20 @@ define(function defineSiteConfigActivate() {
                 return false;
             }
 
-            /**
-             * Get modal inputs
-             * @type {string|*}
-             */
-            var inputs = $modal.collectInputFields(),
-                data = this.prepareXhrData({
-                    author_site_version: {
-                        version: config.version
-                    }
-                });
-
-            for (var i = 0, l = inputs.length; i < l; i++) {
-
-                var input = inputs[i],
-                    name = input.name,
-                    value = input.value;
-
-                var regex = name.match(/(\w+)\[(\w+)]/);
-
-                if (regex[1] && regex[2]) {
-                    data[regex[1]] = data[regex[1]] || {};
-                    data[regex[1]][regex[2]] = value;
-                }
-            }
-
-            /**
-             * Get create update site route
-             * @type {Array}
-             */
             var route = scope.config.routes.activateSiteStorage,
-                key = config.appName,
                 opts = {
                     dataType: 'json',
-                    url: route[0] + key,
+                    url: [route[0], config.appName, config.version].join('/'),
                     method: route[1],
-                    data: data
+                    data: this.prepareXhrData()
                 };
 
-            $.ajax(opts).done(function (data, type, xhr) {
+            if (config.activate) {
+                scope.logger.warn('Version already activated');
+                return false;
+            }
 
+            $.ajax(opts).done(function (data, type, xhr) {
                 scope.logger.debug(data.notice, arguments);
                 $modal.selfDestroy();
             });

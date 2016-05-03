@@ -193,10 +193,11 @@ define([
          * Import data
          * @memberOf Setting
          * @param data
+         * @param {boolean} activate
          */
-        importData: function importData(data) {
+        importData: function importData(data, activate) {
 
-            this.activateOnSave(true);
+            this.activateOnSave(activate);
             this.updateData(data);
         },
 
@@ -264,7 +265,7 @@ define([
              */
             opts.token = this.token;
 
-            this.importData(opts);
+            this.importData(opts, false);
 
             this.scope.logger.debug('Save', opts);
         },
@@ -363,7 +364,7 @@ define([
 
                                 scope.observer.publish(
                                     scope.eventmanager.eventList.updateStorageVersion,
-                                    data.version
+                                    [data.version, data.activated]
                                 );
 
                                 scope.observer.publish(
@@ -407,15 +408,14 @@ define([
                         })
                     };
 
-                    if (scope.controller.isDevelopmentMode()) {
-                        _send(opts);
-                        return false;
-                    }
-
-                    setting.makeScreenshot(true, document.body, function (imgSrc) {
-                        opts.data.screenshot = imgSrc;
-                        _send(opts);
-                    });
+                    setting.makeScreenshot(
+                        !scope.controller.isDevelopmentMode(),
+                        document.body,
+                        function _makeScreenshot(imgSrc) {
+                            opts.data.screenshot = imgSrc;
+                            _send(opts);
+                        }
+                    );
                 },
 
                 /**
@@ -450,7 +450,6 @@ define([
          * @param {function} callback
          */
         makeScreenshot: function makeScreenshot(make, domElement, callback) {
-
             make ?
                 this.base.lib.image.resizeThumbnail(domElement, callback) :
                 callback();
