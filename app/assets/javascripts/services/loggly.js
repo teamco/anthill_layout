@@ -34,9 +34,9 @@ define(function defineLogglyPreferences() {
              * Render input
              * @type {*[]}
              */
-            var $textfield = this.renderTextField({
+            var $textfield = this.renderTextArea({
                 name: 'logglyEmbedCode',
-                text: 'App Key',
+                text: 'Embed Code',
                 disabled: false,
                 visible: true,
                 value: preferences.logglyEmbedCode,
@@ -85,7 +85,7 @@ define(function defineLogglyPreferences() {
                 // Fetch key
                 var matcher = embedCode.match(/[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89aAbB][a-f0-9]{3}-[a-f0-9]{12}/);
 
-                if (matcher) {
+                if (!matcher) {
                     this.logger.warn('Unable to fetch Loggly key');
                     return false;
                 }

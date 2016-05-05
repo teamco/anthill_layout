@@ -213,7 +213,7 @@ define([
                         type: 'text',
                         value: 'Loggly',
                         tooltip: 'The world\'s most popular cloud log management service delivers application intelligence. No Software. No Downloads. No Sweat. Free Trial!',
-                        renderer: this.renderVirtualSpirits()
+                        renderer: this.renderLoggly()
                     }
                 ];
 
