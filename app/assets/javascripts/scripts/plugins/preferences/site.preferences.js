@@ -20,8 +20,9 @@ define([
     'services/rapid.engage',
     'services/doorbell',
     'services/woopra',
-    'services/virtual.spirits'
-], function defineSitePreferences(BasePreferencesElement, SiteConfigMetaDataPreferences, SiteConfigWidthPreferences, GoogleAnalyticsPreferences, SnapEngagePreferences, RaygunIOPreferences, GithubGistPreferences, InjectScriptPreferences, BigmirNetPreferences, YahooFlurryPreferences, RollbarNotifierPreferences, RapidEngagePreferences, DoorbellPreferences, WoopraPreferences, VirtualSpiritsPreferences) {
+    'services/virtual.spirits',
+    'services/loggly'
+], function defineSitePreferences(BasePreferencesElement, SiteConfigMetaDataPreferences, SiteConfigWidthPreferences, GoogleAnalyticsPreferences, SnapEngagePreferences, RaygunIOPreferences, GithubGistPreferences, InjectScriptPreferences, BigmirNetPreferences, YahooFlurryPreferences, RollbarNotifierPreferences, RapidEngagePreferences, DoorbellPreferences, WoopraPreferences, VirtualSpiritsPreferences, LogglyPreferences) {
 
     /**
      * Define prefs
@@ -42,6 +43,7 @@ define([
      * @extends DoorbellPreferences
      * @extends WoopraPreferences
      * @extends VirtualSpiritsPreferences
+     * @extends LogglyPreferences
      * @constructor
      */
     var SitePreferences = function SitePreferences() {
@@ -138,61 +140,79 @@ define([
                     {
                         type: 'text',
                         value: 'Google Analytics',
+                        tooltip: 'Get the data you need to make intelligent marketing and business decisions with Google Analytics. Available for websites, apps, and enterprise businesses.',
                         renderer: this.renderGoogleAnalytics()
                     },
                     {
                         type: 'text',
                         value: 'RaygunIO',
+                        tooltip: 'Raygun gives developers meaningful insights into problems affecting their applications. Discover issues - Understand the problem - Fix things faster.',
                         renderer: this.renderRaygunIO()
                     },
                     {
                         type: 'text',
                         value: 'SnapEngage',
+                        tooltip: 'Highly customizable live chat software for sales and support teams. SnapEngage Live Chat converts passive website visitors to loyal customers.',
                         renderer: this.renderSnapEngage()
                     },
                     {
                         type: 'text',
                         value: 'GitHub Gist',
+                        tooltip: 'Gists are a great way to share your work. You can share single files, parts of files, or full applications.',
                         renderer: this.renderGithubGist()
                     },
                     {
                         type: 'text',
                         value: 'Inject Script',
+                        tooltip: 'Javascript Code Injection',
                         renderer: this.renderInjectScript()
                     },
                     {
                         type: 'text',
                         value: 'Bigmir.net',
+                        tooltip: 'Новости и поиск в Интернете, почта, переводчик, спорт, работа, знакомства, погода, авто, евро 2012, игры, шоу-бизнес и другое на портале bigmir)net.',
                         renderer: this.renderBigmirNet()
                     },
                     {
                         type: 'text',
                         value: 'Yahoo Flurry',
+                        tooltip: 'Flurry\'s mission is to optimize the mobile experience through better apps and more personal ads.',
                         renderer: this.renderYahooFlurry()
                     },
                     {
                         type: 'text',
                         value: 'Rollbar Notifier',
+                        tooltip: 'Rollbar has helped us prevent production issues before they begin. It is an integral and reliable part of our application monitoring.',
                         renderer: this.renderRollbarNotifier()
                     },
                     {
                         type: 'text',
                         value: 'RapidEngage',
+                        tooltip: 'RapidEngage Layers can help you increase website engagement, pageviews, and conversion.',
                         renderer: this.renderRapidEngage()
                     },
                     {
                         type: 'text',
                         value: 'Doorbell.io',
+                        tooltip: 'Easily gather in-app user feedback, on websites, iOS apps, and Android apps.',
                         renderer: this.renderDoorbell()
                     },
                     {
                         type: 'text',
                         value: 'Woopra',
+                        tooltip: 'Track your customers\' web and mobile activity, forms, emails, support tickets and more, all in one place with customer analytics.',
                         renderer: this.renderWoopra()
                     },
                     {
                         type: 'text',
                         value: 'Virtual Spirits',
+                        tooltip: 'Automatic chat & Live chat software helps you to simply convert visitors into leads and customers. reach out to visitors 24/7 and find new customers.',
+                        renderer: this.renderVirtualSpirits()
+                    },
+                    {
+                        type: 'text',
+                        value: 'Loggly',
+                        tooltip: 'The world\'s most popular cloud log management service delivers application intelligence. No Software. No Downloads. No Sweat. Free Trial!',
                         renderer: this.renderVirtualSpirits()
                     }
                 ];
@@ -240,6 +260,7 @@ define([
         RapidEngagePreferences.prototype,
         DoorbellPreferences.prototype,
         WoopraPreferences.prototype,
-        VirtualSpiritsPreferences.prototype
+        VirtualSpiritsPreferences.prototype,
+        LogglyPreferences.prototype
     );
 });

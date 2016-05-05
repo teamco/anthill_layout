@@ -26,7 +26,8 @@ define([
      *      loadActivateRapidEngage: string,
      *      loadActivateDoorbell: string,
      *      loadActivateWoopra: string,
-     *      loadActivateVirtualSpirits: string
+     *      loadActivateVirtualSpirits: string,
+     *      loadActivateLoggly: string
      * }}
      */
     Workspace.prototype.globalEvents = {
@@ -43,7 +44,8 @@ define([
         loadActivateRapidEngage: 'load.activate.rapid.engage',
         loadActivateDoorbell: 'load.activate.doorbell',
         loadActivateWoopra: 'load.activate.woopra',
-        loadActivateVirtualSpirits: 'load.activate.virtual.spirits'
+        loadActivateVirtualSpirits: 'load.activate.virtual.spirits',
+        loadActivateLoggly: 'load.activate.loggly'
     };
 
     /**
