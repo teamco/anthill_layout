@@ -1,14 +1,34 @@
-<ul class="nav nav-pills menu btn-group pull-right">
+<ul class="nav nav-pills menu btn-group pull-left">
   <li class="dropdown">
     <button class="btn btn-default btn-xs dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       <span class="glyphicon glyphicon-cog"></span>
       <span class="caret"></span>
     </button>
-    <ul class="dropdown-menu pull-right">
-      <li><%= link_to_icon(publish_site_path(item), t('export'), 'glyphicon-download-alt') %></li>
-      <li><%= link_to_icon(publish_site_path(item.get_activated), t('publish_activated'), 'glyphicon-ok-circle') %></li>
+    <ul class="dropdown-menu">
+      <li><%#= link_to_icon(publish_site_path(item), t('export'), 'glyphicon-download-alt') %></li>
+      <li class="dropdown-submenu">
+        <a tabindex="-1" title="<%= t('open_as') %>">
+          <i class="glyphicon glyphicon-ok-circle"></i>
+          <%= t('publish') %>
+        </a>
+        <ul class="dropdown-menu">
+          <li><%= link_to_icon(publish_site_path(item, item.get_activated_version), t('publish_activated'), 'glyphicon-ok-circle') unless item.get_activated_version.nil? %></li>
+          <li><%= link_to_icon(publish_site_path(item, item.get_last_version), t('publish_last'), 'glyphicon-ok-circle') %></li>
+        </ul>
+      </li>
+      <li class="dropdown-submenu">
+        <a tabindex="-1" title="<%= t('open_as') %>">
+          <i class="fa fa-code-fork"></i>
+          <%= t('sites_versions') %>
+        </a>
+        <ul class="dropdown-menu">
+          <li><%= link_to_icon(author_site_storage_site_versions_path(item), t('sites_all_versions'), 'fa fa-code-fork') %></li>
+          <li><%= link_to_icon(edit_author_site_storage_site_version_path(item, item.get_last_version), t('sites_latest_version'), 'fa fa-code-fork') %></li>
+          <li><%= link_to_icon(edit_author_site_storage_site_version_path(item, item.get_activated_version), t('sites_activated_version'), 'fa fa-code-fork') unless item.get_activated_version.nil? %></li>
+          <li><%= link_to_icon(edit_author_site_storage_site_version_path(item, item.get_published_version), t('sites_published_version'), 'fa fa-code-fork') unless item.get_published_version.nil? %></li>
+        </ul>
+      </li>
       <li role="separator" class="divider"></li>
-      <li><%= link_to_icon(author_site_storage_site_versions_path(item), t('sites_versions'), 'fa fa-code-fork') %></li>
       <li><%= link_to_icon(author_site_storage_widgets_path(item), t('widgets'), 'glyphicon-th-large') %></li>
       <li><%= link_to_icon(author_site_storage_users_path(item), t('users'), 'glyphicon-user') %></li>
       <li role="separator" class="divider"></li>
@@ -17,11 +37,11 @@
           <i class="fa fa-laptop"></i>
           <%= t('open_as') %>
         </a>
-        <ul class="dropdown-menu pull-right">
-          <li><%= link_to_icon(mode_path(item, :development), t('development'), 'glyphicon-wrench', '_blank') %></li>
-          <li><%= link_to_icon(mode_path(item, :consumption), t('consumption'), 'glyphicon-globe', '_blank') %></li>
-          <li><%= link_to_icon(mode_path(item, :authoring), t('authoring'), 'glyphicon-thumbs-up', '_blank') %></li>
-          <li><%= link_to_icon(mode_path(item, :test), t('test'), 'glyphicon-screenshot', '_blank') %></li>
+        <ul class="dropdown-menu">
+          <li><%= link_to_icon(author_site_storage_site_type_path(item, get_development.id), t('development'), 'glyphicon-wrench', '_blank') %></li>
+          <li><%= link_to_icon(author_site_storage_site_type_path(item, get_consumption.id), t('consumption'), 'glyphicon-globe', '_blank') %></li>
+          <li><%= link_to_icon(author_site_storage_site_type_path(item, get_authoring.id), t('authoring'), 'glyphicon-thumbs-up', '_blank') %></li>
+          <li><%= link_to_icon(author_site_storage_site_type_path(item, get_test.id), t('test'), 'glyphicon-screenshot', '_blank') %></li>
           <li><%= link_to_icon(preview_path(item), t('preview'), 'glyphicon-eye-open', '_blank') %></li>
         </ul>
       </li>

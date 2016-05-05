@@ -12,12 +12,12 @@
     <i class="glyphicon <%= item_icon %>"></i>
   </div>
   <div class="small-box-footer clearfix">
+    <%= (render "author/#{controller_name}/#{item_menu}", item: item) unless item_menu.nil? %>
     <% if item_actions.nil? || item_actions %>
-        <div class="pull-left btn-group btn-group-xs animated fadeIn" role="group" aria-label="Extra-small button group">
+        <div class="pull-right btn-group btn-group-xs animated fadeIn" role="group" aria-label="Extra-small button group">
           <%= link_to_edit(item, item_edit_path) %>
           <%= link_to_destroy(item, item_title, item_destroy_path) %>
         </div>
     <% end %>
-    <%= (render "author/#{controller_name}/#{item_menu}", item: item) unless item_menu.nil? %>
   </div>
 </div>

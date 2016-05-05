@@ -32,6 +32,12 @@ Rails.application.routes.draw do
       resources :site_versions do
         put 'activate', to: 'site_storages#activate_site_version'
         put 'deactivate', to: 'site_storages#deactivate_site_version'
+        resources :site_types do
+          get '', to: 'site_storages#show_version'
+        end
+      end
+      resources :site_types do
+        get '', to: 'site_storages#show'
       end
       resources :widgets
       get 'users', to: 'users#site_users'
@@ -67,11 +73,12 @@ Rails.application.routes.draw do
 
   get '/readability_content/:url', to: 'author/widgets#readability_content'
 
-  get 'author/site_versions/publish/:id', to: 'author/site_versions#publish'
-  put 'author/site_versions/publish/:id', to: 'author/site_versions#publish', as: 'publish_site'
+  get '/author/site_versions/publish/:id', to: 'author/site_versions#publish'
+  put '/author/site_storages/:key/site_versions/:id/publish', to: 'author/site_versions#publish', as: 'publish_site'
 
   get '/sites/:key', to: 'author/site_storages#show', as: 'preview'
   get '/sites/:key/:mode', to: 'author/site_storages#show', as: 'mode'
+  get '/sites/:key/:version/:mode', to: 'author/site_storages#show', as: 'version'
 
   put '/sites/:key', to: 'author/site_storages#update'
   put '/sites/activate/:key/:version', to: 'author/site_versions#activate'

@@ -3,8 +3,8 @@
              item_type: 'edit',
              item_box: is_last_published?(item) ? 'bg-green' : 'bg-gray',
              item: item,
-             item_title: "#{item.key} (#{item.author_site_storage_widgets.length})",
-             item_info: "#{published(item)}/#{activated(item)}",
+             item_info: "#{item.key} (#{item.author_site_storage_widgets.length})",
+             item_title: "#{published(item)}/#{activated(item)} (#{item.author_site_versions.length})",
              item_icon: 'glyphicon-globe',
              item_menu: 'menu' %>
 </div>

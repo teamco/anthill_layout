@@ -39,11 +39,11 @@ module Author::SiteStoragesHelper
   end
 
   def published(item)
-    item.get_published.version rescue '?'
+    item.get_published_version.version rescue '?'
   end
 
   def activated(item)
-    item.get_activated.version rescue '?'
+    item.get_activated_version.version rescue '?'
   end
 
   def is_last_published?(item)

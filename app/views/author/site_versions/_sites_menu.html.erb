@@ -1,9 +1,9 @@
-<div class="menu btn-group pull-right">
+<div class="menu btn-group pull-left">
   <button class="btn btn-default btn-xs dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     <span class="glyphicon glyphicon-cog"></span>
     <span class="caret"></span>
   </button>
-  <ul class="dropdown-menu pull-right">
+  <ul class="dropdown-menu">
     <li><%= link_to_icon(
                 author_site_storage_site_versions_path(item.author_site_storage),
                 t('show_all_versions', site: item.author_site_storage.key),

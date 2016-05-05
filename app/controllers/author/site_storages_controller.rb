@@ -6,7 +6,7 @@ class Author::SiteStoragesController < Author::AuthorController
 
   before_action :authenticate_user!, except: [:show]
   before_action :set_author_site_storage,
-                only: [:show, :edit, :update, :activate, :destroy]
+                only: [:show, :edit, :update, :activate, :destroy, :show_version]
 
   layout :resolve_layout
 
@@ -19,25 +19,41 @@ class Author::SiteStoragesController < Author::AuthorController
   # GET /author/site_storages/1
   # GET /author/site_storages/1.json
   def show
+
     @storage = {}
+
     if File.exist?(@target_path)
       @storage = @author_site_storage.get_storage_data
 
-      mode = SiteType.find_by_name(params[:mode])
-      @storage[:mode] = mode.name unless mode.nil?
+      args = params[:mode].nil? ?
+          {id: params[:site_type_id]} :
+          {name: params[:mode]}
 
-      activated = @author_site_storage.get_activated
-      @storage[:activated] = true
+      @storage[:mode] = 'development'
 
-      if activated.nil?
-        @storage[:activated] = false
-        activated = @author_site_storage.author_site_versions.last
-      end
+      mode = SiteType.where(args)
+      @storage[:mode] = mode.first.name unless mode.nil?
 
-      @storage[:version] = activated.version
+      activated = @versions[:activated]
+      activated = @versions[:last] if activated.nil?
+
+      @storage[:activated] = activated.activated
+      @storage[:show] = activated.version
+      @storage[:version] = @versions[:last].version
       @storage[:content] = activated.content
 
+      if @versions[:published].nil?
+        @storage[:content] = nil
+      else
+        @storage[:activated] = @versions[:published].activated
+        @storage[:show] = @versions[:published].version
+        @storage[:content] = @versions[:published].content
+        @storage[:published] = @versions[:published].version
+      end if @storage[:mode] == 'consumption'
+
     end unless @author_site_storage.nil?
+
+    redirect_to "/sites/#{@storage[:key]}/#{@storage[:mode]}" unless params[:site_type_id].nil?
   end
 
   # GET /author/site_storages/new
@@ -138,7 +154,7 @@ class Author::SiteStoragesController < Author::AuthorController
   end
 
   def activate_site_version(version=nil)
-    activated = @author_site_storage.get_activated
+    activated = @author_site_storage.get_activated_version
     @activated = version
 
     if version.nil?
@@ -150,13 +166,17 @@ class Author::SiteStoragesController < Author::AuthorController
   end
 
   def deactivate_site_version(version=nil)
-    activated = @author_site_storage.get_activated
+    activated = @author_site_storage.get_activated_version
 
     puts t('undefined_activation') if activated.nil?
     puts t('undefined_version') if version.nil?
     puts t('deactivate_nonactive_version') if version != activated
 
     version.deactivate
+  end
+
+  def show_version
+    @author_site_storage.get_version(params[:version])
   end
 
   private
@@ -224,13 +244,15 @@ class Author::SiteStoragesController < Author::AuthorController
   # Use callbacks to share common setup or constraints between actions.
   def set_author_site_storage
     @author_site_types = SiteType.order(:name)
-    @author_site_storage = SiteStorage.where(key: params[:key]).first ||
-        SiteStorage.where(key: params[:id]).first
+    key = params[:key] || params[:id] || params[:site_storage_id]
+    @author_site_storage = SiteStorage.where(key: key).first
 
     versions = @author_site_storage.author_site_versions
     @versions = {
         all: versions,
-        activated: versions.where(activated: true).first
+        last: @author_site_storage.get_last_version,
+        activated: @author_site_storage.get_activated_version,
+        published: @author_site_storage.get_published_version
     }
     @target_path = get_target_url(@author_site_storage.key) unless @author_site_storage.nil?
   end

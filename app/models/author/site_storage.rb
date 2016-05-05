@@ -55,7 +55,7 @@ class Author::SiteStorage < ActiveRecord::Base
         key: key,
         mode: author_site_type.name,
         uuid: uuid,
-        published: get_published,
+        published: get_published_version,
     }
   end
 
@@ -69,11 +69,15 @@ class Author::SiteStorage < ActiveRecord::Base
     author_site_versions.includes(:author_item).order('author_items.created_at DESC')
   end
 
-  def get_published
+  def get_last_version
+    author_site_versions.last
+  end
+
+  def get_published_version
     author_site_versions.where(published: true).first
   end
 
-  def get_activated
+  def get_activated_version
     author_site_versions.where(activated: true).first
   end
 

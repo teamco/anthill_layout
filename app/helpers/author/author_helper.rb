@@ -1,5 +1,29 @@
 module Author::AuthorHelper
 
+  def is_development?(mode)
+    mode == 'development'
+  end
+
+  def is_consumption?(mode)
+    mode == 'consumption'
+  end
+
+  def get_development
+    get_site_type('development')
+  end
+
+  def get_consumption
+    get_site_type('consumption')
+  end
+
+  def get_authoring
+    get_site_type('authorize')
+  end
+
+  def get_test
+    get_site_type('test')
+  end
+
   def is_action?(action)
     action_name == action
   end
@@ -197,6 +221,12 @@ module Author::AuthorHelper
                        '}});',
                        "#{'$table.find(\'td>span\').trigger(\'click.toggleTr\')' unless force.nil? }"
                    ].join
+  end
+
+  private
+
+  def get_site_type(mode)
+    Author::SiteType.where(name: mode).first
   end
 
 end

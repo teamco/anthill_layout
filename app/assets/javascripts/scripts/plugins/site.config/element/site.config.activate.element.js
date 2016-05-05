@@ -42,6 +42,9 @@ define([
              */
             var $element = this;
 
+            // Hide popovers before send screenshot
+            $('.popover').remove();
+
             /**
              * Define combo
              * @type {*|jQuery}
@@ -61,9 +64,6 @@ define([
                     callback();
                 }
             );
-
-            // Hide popovers before send screenshot
-            $('.popover').remove();
 
             this.addContent('<div class="uil-ripple-css" />').$.addClass('loading');
         }

@@ -1,5 +1,5 @@
 <%= form_for(item) do |f| -%>
-    <% content = item.get_activated.content rescue nil %>
+    <% content = item.get_activated_version.content rescue nil %>
     <%= render_notification(item) -%>
     <%= render_text_field(f, :key) if is_action?('new') %>
     <%= render_field_tag(:text_area_tag, :content, content, true) unless is_action?('new') -%>

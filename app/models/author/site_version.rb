@@ -20,6 +20,18 @@ class Author::SiteVersion < ActiveRecord::Base
     activated.version == version unless activated.nil?
   end
 
+  def self.get_last(site_key)
+    User.current.author_site_storages.where(key: site_key).first.author_site_versions.last
+  end
+
+  def self.get_activated(site_key)
+    User.current.author_site_storages.where(key: site_key).first.author_site_versions.where(activated: true).first
+  end
+
+  def self.get_published(site_key)
+    User.current.author_site_storages.where(key: site_key).first.author_site_versions.where(published: true).first
+  end
+
   def deactivate
     handle_activation(false)
     self
@@ -36,8 +48,12 @@ class Author::SiteVersion < ActiveRecord::Base
   end
 
   def publish
-    self.class.update_all(published: false)
+    unpublish_other
     update({published: true})
+  end
+
+  def unpublish_other
+    self.class.where.not(id: id).update_all(published: false)
   end
 
   private

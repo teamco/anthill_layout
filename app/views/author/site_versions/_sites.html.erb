@@ -3,7 +3,7 @@
              item_type: 'edit',
              item_box: item.activated? ? 'bg-aqua' : 'bg-gray',
              item: item,
-             item_title: "#{item.activated? ? item.version : '?'} (#{item.author_site_storage.author_site_versions.length})",
+             item_title: "#{published(item)}/#{activated(item)} (#{item.author_site_storage.author_site_versions.length})",
              item_info: item.author_site_storage.key,
              item_icon: 'fa fa-code-fork',
              item_actions: item.activated?,

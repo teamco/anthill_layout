@@ -18,7 +18,7 @@ class Author::SiteVersionsController < Author::AuthorController
           name: 'sites',
           all_versions: versions.length,
           collection: versions.group(:site_storage_id).map do |v|
-            version = v.author_site_storage.get_activated
+            version = v.author_site_storage.get_activated_version
             version = v if version.nil?
             version
           end
@@ -43,6 +43,21 @@ class Author::SiteVersionsController < Author::AuthorController
     render '/partials/form', locals: {title: 'version'}
   end
 
+  def edit_last
+    @author_site_version = SiteVersion.get_last(params[:site_storage_id])
+    render '/partials/form', locals: {title: 'version'}
+  end
+
+  def edit_activated
+    @author_site_version = SiteVersion.get_activated(params[:site_storage_id])
+    render '/partials/form', locals: {title: 'version'}
+  end
+
+  def edit_published
+    @author_site_version = SiteVersion.get_published(params[:site_storage_id])
+    render '/partials/form', locals: {title: 'version'}
+  end
+
   # POST /author/site_versions
   # POST /author/site_versions.json
   def create
@@ -64,6 +79,7 @@ class Author::SiteVersionsController < Author::AuthorController
   def update
     author_site_version_params[:user_id] = current_user.id
     respond_to do |format|
+      @author_site_version.unpublish_other if params[:author_site_version][:published]
       if @author_site_version.update(author_site_version_params)
         format.html { redirect_to author_site_versions_path, notice: 'Site version was successfully updated.' }
         format.json { render :index, status: :ok, location: @author_site_version }
@@ -123,7 +139,7 @@ class Author::SiteVersionsController < Author::AuthorController
         result = {json: {error: 'Undefined storage'}, status: :unprocessable_entity}
       end
     end
-    respond_to { |format| format.json { render result} }
+    respond_to { |format| format.json { render result } }
   end
 
   private
@@ -135,7 +151,9 @@ class Author::SiteVersionsController < Author::AuthorController
   # Never trust parameters from the scary internet, only allow the white list through.
   def author_site_version_params
     params.require(:author_site_version).permit(
-        :activated
+        :activated,
+        :content,
+        :published
     )
   end
 end
