@@ -92,7 +92,7 @@ define(function defineLogglyPreferences() {
 
                 require(['http://cloudfront.loggly.com/js/loggly.tracker-2.1.min.js'], function _loadLoggly() {
 
-                    var _LTracker = _LTracker || [];
+                    var _LTracker = window._LTracker || [];
                     _LTracker.push({
                         'logglyKey': matcher[0],
                         'sendConsoleErrors': true,

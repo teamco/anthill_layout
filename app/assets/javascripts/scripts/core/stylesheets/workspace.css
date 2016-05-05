@@ -68,9 +68,10 @@
 
 .workspace, .page {
     display: block;
-}
-
-body.development .workspace .page {
     border-right: 1px dotted #ccc;
     border-left: 1px dotted #ccc;
+}
+
+body.consumption .workspace .page {
+    border: none;
 }
