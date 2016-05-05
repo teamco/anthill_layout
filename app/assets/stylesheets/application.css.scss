@@ -285,6 +285,7 @@ body.mini-navbar .logo-element {
 
 .admin-dashboard a > i {
   margin-right: 5px;
+  min-width: 12px;
 }
 
 .admin-dashboard .panel.form .panel-footer.m-20 {
@@ -439,14 +440,15 @@ body.mini-navbar .logo-element {
 .dropdown-submenu > a:after {
   display: block;
   content: " ";
-  float: right;
   width: 0;
   height: 0;
   border-color: transparent;
   border-style: solid;
   border-width: 5px 0 5px 5px;
   border-left-color: #ccc;
-  margin-top: 5px;
+  position: absolute;
+  right: 5px;
+  top: 12px;
   margin-right: 0;
 }
 
@@ -468,4 +470,27 @@ body.mini-navbar .logo-element {
 
 .input-group-addon.glyphicon {
   top: 0;
+}
+
+.separate .menu {
+  margin-right: 10px;
+}
+
+.menu .thumbnail-preview {
+  max-width: 150px;
+  max-height: 150px;
+  margin-top: 10px;
+  border: 1px solid #dedede;
+  border-radius: 3px;
+}
+
+#favorites,
+#versions {
+  margin-top: 10px;
+}
+
+#favorites .row,
+#versions .row {
+  width: 100%;
+  margin-left: 0;
 }

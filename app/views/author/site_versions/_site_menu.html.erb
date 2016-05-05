@@ -1,22 +1,23 @@
-<div class="menu btn-group pull-right">
-  <button class="btn btn-<%= item.published ? 'success' : 'warning' %> btn-xs dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+<div class="menu btn-group">
+  <% style = 'default' %>
+  <% style = 'warning' if @partial[:latest] == item %>
+  <% style = 'success' if item.published %>
+  <% style = 'info' if item.activated %>
+  <button class="btn btn-<%= style %> btn-xs dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     <span class="glyphicon glyphicon-cog"></span>
     <%= t('options') %>
     <span class="caret"></span>
   </button>
-  <ul class="dropdown-menu pull-right">
-    <li><%= link_to_icon(edit_author_site_storage_site_version_path(item.author_site_storage, item), t('edit_site'), 'glyphicon-globe') %></li>
+  <ul class="dropdown-menu pull-left">
+    <li><%= image_tag(item.screenshot, alt: item.author_site_storage.try(:key), class: 'thumbnail-preview') unless item.screenshot.nil? %></li>
     <li>
       <%= link_to(edit_author_site_storage_site_version_path(item.author_site_storage, item)) do %>
-          <i class="fa fa-code-fork"></i>
-          <%= t('edit_site_version') %>
+          <i class="fa fa-code-fork"></i><%= t('edit_site_version') %>
       <% end %>
     </li>
-    <li><%= link_to_icon(publish_site_path(item.author_site_storage, item), t('publish'), 'fa fa-bolt') %></li>
     <li class="dropdown-submenu">
       <a tabindex="-1" title="<%= t('open_as') %>">
-        <i class="fa fa-code-fork"></i>
-        <%= t('site_current_version') %>
+        <i class="fa fa-code-fork"></i><%= t('site_current_version') %>
       </a>
       <ul class="dropdown-menu">
         <li><%= link_to_icon(author_site_storage_site_version_site_type_path(item.author_site_storage, item.version, 'development'), t('development'), 'glyphicon-globe') %></li>
@@ -30,6 +31,7 @@
                        "glyphicon-thumbs-#{item.activated? ? 'down' : 'up'}",
                        nil, :put) %>
     </li>
+    <li><%= link_to_icon(publish_path(item.author_site_storage, item), t('publish'), 'fa fa-bolt', nil, :put) %></li>
     <li><%= link_to_destroy(item, item.version) %></li>
   </ul>
 </div>

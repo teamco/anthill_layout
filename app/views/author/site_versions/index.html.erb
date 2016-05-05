@@ -2,12 +2,36 @@
   <div class="panel-heading">
     <h3 class="panel-title">
       <%= controller_name.humanize %>
-      <span class="badge"><%= @partial[:all_versions] %></span>
+      <span class="badge"><%= @partial[:all_versions].length %></span>
     </h3>
   </div>
   <div class="panel-body">
-    <div class="row">
-      <% render_loop(@partial[:collection], @partial[:name]) %>
+    <ul class="nav nav-tabs">
+      <% if @partial[:scope] == 'list' %>
+          <li><a data-toggle="tab" href="#favorites">Favorites</a></li>
+      <% end %>
+      <li class="active"><a data-toggle="tab" href="#versions">All Versions</a></li>
+    </ul>
+    <div class="tab-content">
+      <% if @partial[:scope] == 'list' %>
+          <div id="favorites" class="tab-pane fade">
+            <div class="row">
+              <% unless @partial[:favorites].nil? %>
+                  <div class="panel panel-default">
+                    <table id="<%= controller_name %>_favorites" class="table">
+                      <%= version_th %>
+                      <%= version_td([@partial[:favorites]]) %>
+                    </table>
+                  </div>
+              <% end %>
+            </div>
+          </div>
+      <% end %>
+      <div id="versions" class="tab-pane fade in active">
+        <div class="row">
+          <% render_loop(@partial[:collection], @partial[:name]) %>
+        </div>
+      </div>
     </div>
   </div>
 </div>

@@ -38,14 +38,6 @@ module Author::SiteStoragesHelper
     @author_site_storage.author_widget_ids.include?(item.id)
   end
 
-  def published(item)
-    item.get_published_version.version rescue '?'
-  end
-
-  def activated(item)
-    item.get_activated_version.version rescue '?'
-  end
-
   def is_last_published?(item)
     av = activated(item)
     pv = published(item)

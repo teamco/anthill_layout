@@ -42,8 +42,8 @@ module Author::AuthorHelper
   def link_to_destroy(item, name, destroy_path=nil, style='btn btn-danger')
     title = controller_name.humanize.singularize.downcase
     link_to (destroy_path.nil? ?
-                send("author_#{controller_name.singularize}_path", item) :
-                destroy_path),
+        send("author_#{controller_name.singularize}_path", item) :
+        destroy_path),
             class: style,
             method: :delete,
             data: {confirm: "#{t('delete_confirm', item: title, name: name)}"} do
@@ -51,11 +51,12 @@ module Author::AuthorHelper
     end
   end
 
-  def link_to_edit(item, edit_path=nil, style='btn btn-default')
+  def link_to_edit(item, edit_path=nil, style='btn btn-default', method=:get)
     link_to (edit_path.nil? ?
-                send("edit_author_#{controller_name.singularize}_path", item) :
-                edit_path),
+        send("edit_author_#{controller_name.singularize}_path", item) :
+        edit_path),
             title: t('edit'),
+            method: method,
             class: style do
               "<i class=\"glyphicon glyphicon-pencil\"></i>#{t('edit')}".html_safe
             end
@@ -161,11 +162,11 @@ module Author::AuthorHelper
     content_tag(:div, class: 'input-group') do
       concat f.label name, class: 'input-group-addon text-left'
       concat f.send(type, name, {
-                            disabled: disabled,
-                            autofocus: autofocus,
-                            class: 'form-control',
-                            placeholder: "Enter #{name.to_s.humanize}"
-                        })
+          disabled: disabled,
+          autofocus: autofocus,
+          class: 'form-control',
+          placeholder: "Enter #{name.to_s.humanize}"
+      })
     end
   end
 
@@ -221,6 +222,14 @@ module Author::AuthorHelper
                        '}});',
                        "#{'$table.find(\'td>span\').trigger(\'click.toggleTr\')' unless force.nil? }"
                    ].join
+  end
+
+  def published(item)
+    item.get_published_version.version rescue '?'
+  end
+
+  def activated(item)
+    item.get_activated_version.version rescue '?'
   end
 
   private

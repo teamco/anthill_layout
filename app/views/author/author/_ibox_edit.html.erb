@@ -1,3 +1,4 @@
+<% item_title = (defined? item_title).nil? ? nil : item_title %>
 <% item_info = (defined? item_info).nil? ? nil : item_info %>
 <% item_menu = (defined? item_menu).nil? ? nil : item_menu %>
 <% item_actions = (defined? item_actions).nil? ? nil : item_actions %>
@@ -16,7 +17,7 @@
     <% if item_actions.nil? || item_actions %>
         <div class="pull-right btn-group btn-group-xs animated fadeIn" role="group" aria-label="Extra-small button group">
           <%= link_to_edit(item, item_edit_path) %>
-          <%= link_to_destroy(item, item_title, item_destroy_path) %>
+          <%= link_to_destroy(item, item_info, item_destroy_path) %>
         </div>
     <% end %>
   </div>

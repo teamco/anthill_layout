@@ -16,7 +16,8 @@ class Author::SiteVersionsController < Author::AuthorController
       versions = SiteVersion.fetch_data(current_user)
       @partial = {
           name: 'sites',
-          all_versions: versions.length,
+          scope: 'sites',
+          all_versions: versions,
           collection: versions.group(:site_storage_id).map do |v|
             version = v.author_site_storage.get_activated_version
             version = v if version.nil?
@@ -25,9 +26,17 @@ class Author::SiteVersionsController < Author::AuthorController
       }
     else
       all_versions = site_storage.get_versions
+      latest = SiteVersion.get_last(site_storage.key)
       @partial = {
           name: 'site',
-          all_versions: all_versions.length,
+          scope: 'list',
+          favorites: [
+              SiteVersion.get_published(site_storage.key),
+              SiteVersion.get_activated(site_storage.key),
+              latest
+          ],
+          latest: latest,
+          all_versions: all_versions,
           collection: [all_versions.paginate(page: params[:page], per_page: 15)]
       }
     end
@@ -102,16 +111,18 @@ class Author::SiteVersionsController < Author::AuthorController
 
   def publish
     published = @author_site_version.published
-    if @author_site_version.publish
-      @author_site_version.author_item.touch
-      respond_to do |format|
+    respond_to do |format|
+      if @author_site_version.publish
+        @author_site_version.author_item.touch
         format.html { redirect_to author_site_storage_site_versions_path(@author_site_version.author_site_storage), notice: t('success_update') }
         format.json if request.xhr?
-      end
-    else
-      format.json { render json: @author_site_version.errors, status: :unprocessable_entity } if request.xhr?
-      format.html { redirect_to author_site_version_path, status: :unprocessable_entity }
-    end unless published
+      else
+        format.json { render json: @author_site_version.errors, status: :unprocessable_entity } if request.xhr?
+        format.html { redirect_to author_site_version_path, status: :unprocessable_entity }
+      end unless published
+      format.html { redirect_to author_site_storage_site_versions_path(@author_site_version.author_site_storage), notice: t('success_update') }
+      format.json if request.xhr?
+    end
   end
 
   def activate
@@ -143,6 +154,7 @@ class Author::SiteVersionsController < Author::AuthorController
   end
 
   private
+
   # Use callbacks to share common setup or constraints between actions.
   def set_author_site_version
     @author_site_version = SiteVersion.where(id: params[:id]).first
