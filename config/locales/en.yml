@@ -83,6 +83,6 @@ en:
   no_data_in_collection: "No %{items} in collection"
   site_widgets_management: "Site \"%{site}\" widgets management"
   password: "password"
-  open_as: "Open as"
+  open_activated_as: "Open activated as"
   options: "Options"
   readability_false: "Unable to recognize URL"

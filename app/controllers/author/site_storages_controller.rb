@@ -34,13 +34,14 @@ class Author::SiteStoragesController < Author::AuthorController
       mode = SiteType.where(args)
       @storage[:mode] = mode.first.name unless mode.nil?
 
-      activated = @versions[:activated]
-      activated = @versions[:last] if activated.nil?
+      current = @versions[:current]
+      current = @versions[:last] if current.nil?
 
-      @storage[:activated] = activated.activated
-      @storage[:show] = activated.version
+      @storage[:activated] = current.activated
+      @storage[:show] = current.version
       @storage[:version] = @versions[:last].version
-      @storage[:content] = activated.content
+      @storage[:content] = current.content
+      @storage[:published] = current.published
 
       if @versions[:published].nil?
         @storage[:content] = nil
@@ -48,12 +49,10 @@ class Author::SiteStoragesController < Author::AuthorController
         @storage[:activated] = @versions[:published].activated
         @storage[:show] = @versions[:published].version
         @storage[:content] = @versions[:published].content
-        @storage[:published] = @versions[:published].version
+        @storage[:published] = @versions[:published].published
       end if @storage[:mode] == 'consumption'
 
     end unless @author_site_storage.nil?
-
-    redirect_to "/sites/#{@storage[:key]}/#{@storage[:mode]}" unless params[:site_type_id].nil?
   end
 
   # GET /author/site_storages/new
@@ -175,10 +174,6 @@ class Author::SiteStoragesController < Author::AuthorController
     version.deactivate
   end
 
-  def show_version
-    @author_site_storage.get_version(params[:version])
-  end
-
   private
 
   def resolve_layout
@@ -248,10 +243,16 @@ class Author::SiteStoragesController < Author::AuthorController
     @author_site_storage = SiteStorage.where(key: key).first
 
     versions = @author_site_storage.author_site_versions
+    activated = @author_site_storage.get_activated_version
+    current = params[:version].nil? ?
+        activated :
+        versions.where(version: params[:version]).first
+
     @versions = {
         all: versions,
+        current: current,
+        activated: activated,
         last: @author_site_storage.get_last_version,
-        activated: @author_site_storage.get_activated_version,
         published: @author_site_storage.get_published_version
     }
     @target_path = get_target_url(@author_site_storage.key) unless @author_site_storage.nil?
