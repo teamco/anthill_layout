@@ -572,6 +572,7 @@ define([
                 });
 
                 subscribeEM[sUUID][eventList[ename]] = eventUUIDs;
+                scope.logger.debug('Subscribed event', eventUUIDs, subscribeEM[sUUID][eventList[ename]]);
             }
         },
 
@@ -587,6 +588,10 @@ define([
              * @type {*|jQuery|HTMLElement}
              */
             var $button = $(e.target);
+
+            if ($button.prop('tagName') !== 'BUTTON') {
+                $button = $button.closest('button');
+            }
 
             var scope = this.scope;
 

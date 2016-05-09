@@ -30,8 +30,6 @@ Rails.application.routes.draw do
 
     resources :site_storages do
       resources :site_versions do
-        put 'activate', to: 'site_storages#activate_site_version'
-        put 'deactivate', to: 'site_storages#deactivate_site_version'
         # put 'publish', to: 'site_versions#publish'
         resources :site_types do
           get '', to: 'site_storages#show_version'
@@ -45,7 +43,10 @@ Rails.application.routes.draw do
     end
 
     resources :site_versions do
-      resources :site_storages
+      resources :site_storages do
+        put 'activate', to: 'site_versions#activate'
+        put 'deactivate', to: 'site_versions#deactivate'
+      end
     end
 
     resources :widget_categories do

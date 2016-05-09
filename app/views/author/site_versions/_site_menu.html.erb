@@ -28,7 +28,7 @@
     </li>
     <li><%= link_to_icon(edit_author_site_storage_site_version_path(item.author_site_storage, item), t('edit_site'), 'glyphicon-globe') %></li>
     <li>
-      <% activation_link = send("author_site_storage_site_version_#{item.activated? ? 'de' : ''}activate_path", item.author_site_storage, item) %>
+      <% activation_link = send("author_site_version_site_storage_#{item.activated? ? 'de' : ''}activate_path", item, item.author_site_storage) %>
       <%= link_to_icon(activation_link, t("site_version_#{item.activated? ? 'de' : ''}activate"),
                        "glyphicon-thumbs-#{item.activated? ? 'down' : 'up'}",
                        nil, :put) %>

@@ -126,13 +126,26 @@ class Author::SiteVersionsController < Author::AuthorController
   end
 
   def activate
-    site_storage = current_user.author_site_storages.where(key: params[:key]).first
+    handle_version_activation(true)
+  end
+
+  def deactivate
+    handle_version_activation(false)
+  end
+
+  private
+
+  def handle_version_activation(should_activate)
+    site_storage = current_user.author_site_storages.where(key: params[:key] || params[:site_storage_id]).first
     if site_storage.nil?
       result = {json: {error: 'Undefined storage'}, status: :unprocessable_entity}
     else
-      version = site_storage.get_versions.where(version: params[:version]).first
+      version_params= request.xhr? ?
+          {version: params[:version]} :
+          {id: params[:site_version_id]}
+      version = site_storage.get_versions.where(version_params).first
       version.deactivate_other
-      if version.activate
+      if version.send("#{should_activate ? '' : 'de'}activate")
         version.author_item.touch
         notice = t('success_activation')
         data = {
@@ -150,10 +163,10 @@ class Author::SiteVersionsController < Author::AuthorController
         result = {json: {error: 'Undefined storage'}, status: :unprocessable_entity}
       end
     end
-    respond_to { |format| format.json { render result } }
+    respond_to { |format| format.json { render result } } if request.xhr?
+    redirect_to author_site_storage_site_versions_path(version.author_site_storage),
+                notice: t('success_update') unless request.xhr?
   end
-
-  private
 
   # Use callbacks to share common setup or constraints between actions.
   def set_author_site_version
