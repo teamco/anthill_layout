@@ -11,7 +11,7 @@
             dataset = script.dataset || {},
             site = dataset.resource,
             uuid = dataset.uuid,
-            version = parseInt(dataset.version || 0, 10) || 1,
+            version = parseInt(dataset.current || 0, 10) || 1,
             user = dataset.user,
             mode = dataset.mode,
             activated = dataset.activated,
@@ -52,7 +52,7 @@
                 require([
                     'config/application',
                     'public/' + site + '/javascript/config'
-                ], function loadApplication(Application, config) {
+                ], function _initApplication(Application, config) {
 
                     $.extend(true, config, {
                         user: user,
