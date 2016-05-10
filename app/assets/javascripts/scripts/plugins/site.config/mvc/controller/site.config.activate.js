@@ -28,8 +28,9 @@ define(function defineSiteConfigActivate() {
         /**
          * Define approve activate storage
          * @memberOf SiteConfigActivate
+         * @param {function} [callback]
          */
-        approveActivate: function approveActivate() {
+        approveActivate: function approveActivate(callback) {
 
             /**
              * Get scope
@@ -55,11 +56,7 @@ define(function defineSiteConfigActivate() {
              */
             var $modal = scope.view.elements.$modal;
 
-            if (!scope.base.isDefined($modal)) {
-                scope.logger.warn('Undefined $modal');
-                return false;
-            }
-
+            // Get variables
             var route = scope.config.routes.activateSiteStorage,
                 opts = {
                     dataType: 'json',
@@ -73,20 +70,31 @@ define(function defineSiteConfigActivate() {
                 return false;
             }
 
-            $.ajax(opts).done(function (data, type, xhr) {
+            $.ajax(opts).done(
+                function _done(data, type, xhr) {
 
-                scope.logger.debug(data.notice, arguments);
-                $modal.selfDestroy();
+                    scope.logger.debug(data.notice, arguments);
 
-                root.observer.publish(
-                    root.eventmanager.eventList.updateStorageVersion,
-                    [data.version, data.activated]
-                );
+                    if (scope.base.isDefined($modal)) {
+                        $modal.selfDestroy();
+                    }
 
-                root.observer.publish(
-                    root.eventmanager.eventList.afterUpdateStorage
-                );
-            });
+                    root.observer.publish(
+                        root.eventmanager.eventList.updateStorageVersion,
+                        [data.version, data.activated]
+                    );
+
+                    root.observer.publish(
+                        root.eventmanager.eventList.afterUpdateStorage
+                    );
+
+                    if (_.isFunction(callback)) {
+
+                        scope.logger.debug('Execute activation callback', callback);
+                        callback();
+                    }
+                }
+            );
         }
     });
 });

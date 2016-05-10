@@ -1,7 +1,6 @@
 /**
  * Created by teamco on 11/4/14.
  */
-
 define(function defineSiteConfigCleanup() {
 
     /**
@@ -11,7 +10,6 @@ define(function defineSiteConfigCleanup() {
      * @constructor
      */
     var SiteConfigCleanup = function SiteConfigCleanup() {
-
     };
 
     return SiteConfigCleanup.extend('SiteConfigCleanup', {
@@ -22,16 +20,26 @@ define(function defineSiteConfigCleanup() {
          */
         cleanUpLocalStorage: function cleanUpLocalStorage() {
 
-            this.view.cleanUpConfirmation();
+            /**
+             * Get scope
+             * @type {SiteConfigCleanup}
+             */
+            var scope = this;
 
-            this.eventmanager.subscribePublishOn(
-                this.controller.root(),
-                function afterUpdateStorageCallback() {
+            scope.view.cleanUpConfirmation();
 
-                    // Reload without cache
-                    document.location.reload(true);
-                    
-                }.bind(this)
+            scope.eventmanager.subscribePublishOn(
+                scope.controller.root(),
+                function _afterUpdateStorageCallback() {
+
+                    scope.controller.approveActivate(
+                        function _reloadSite() {
+
+                            // Reload without cache
+                            document.location.reload(true);
+                        }
+                    );
+                }
             );
         },
 
