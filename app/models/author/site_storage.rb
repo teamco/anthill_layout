@@ -66,7 +66,7 @@ class Author::SiteStorage < ActiveRecord::Base
   end
 
   def get_versions
-    author_site_versions.includes(:author_item).order('author_items.created_at DESC')
+    author_site_versions.joins(:author_item).includes(:user, :author_site_storage).order('author_items.created_at DESC')
   end
 
   def get_last_version
@@ -74,15 +74,15 @@ class Author::SiteStorage < ActiveRecord::Base
   end
 
   def get_published_version
-    author_site_versions.where(published: true).first
+    author_site_versions.where(published: true).includes(:author_site_storage).first
   end
 
   def get_activated_version
-    author_site_versions.where(activated: true).first
+    author_site_versions.where(activated: true).includes(:author_site_storage).first
   end
 
   def get_version(version)
-    author_site_versions.where(version: version).first
+    author_site_versions.where(version: version).includes(:author_site_storage).first
   end
 
   def self.build_data(params)

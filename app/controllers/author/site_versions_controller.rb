@@ -25,7 +25,7 @@ class Author::SiteVersionsController < Author::AuthorController
           end
       }
     else
-      all_versions = site_storage.get_versions
+      versions = site_storage.get_versions
       latest = SiteVersion.get_last(site_storage.key)
       @partial = {
           name: 'site',
@@ -36,10 +36,17 @@ class Author::SiteVersionsController < Author::AuthorController
               latest
           ],
           latest: latest,
-          all_versions: all_versions,
-          collection: [all_versions.paginate(page: params[:page], per_page: 15)]
+          all_versions: versions,
+          collection: [versions.paginate(page: params[:page], per_page: 15)]
       }
     end
+
+    @partial[:site_types] = {
+      development: SiteType.where(name: 'development'),
+      authorize: SiteType.where(name: 'authorize'),
+      consumption: SiteType.where(name: 'consumption'),
+      test: SiteType.where(name: 'test')
+    }
   end
 
   # GET /author/site_versions/1

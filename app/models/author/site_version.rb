@@ -12,6 +12,7 @@ class Author::SiteVersion < ActiveRecord::Base
 
   def self.fetch_data(user)
     joins(:author_item).
+        includes(:author_site_storage).
         where('visible=true AND (public=true OR user_id=?)', user.id).
         order('author_items.updated_at DESC')
   end
@@ -21,15 +22,21 @@ class Author::SiteVersion < ActiveRecord::Base
   end
 
   def self.get_last(site_key)
-    User.current.author_site_storages.where(key: site_key).first.author_site_versions.last
+    User.current.author_site_storages.where(key: site_key).
+        includes(:author_item).
+        first.author_site_versions.last
   end
 
   def self.get_activated(site_key)
-    User.current.author_site_storages.where(key: site_key).first.author_site_versions.where(activated: true).first
+    User.current.author_site_storages.where(key: site_key).
+        includes(:author_item).
+        first.author_site_versions.where(activated: true).first
   end
 
   def self.get_published(site_key)
-    User.current.author_site_storages.where(key: site_key).first.author_site_versions.where(published: true).first
+    User.current.author_site_storages.where(key: site_key).
+        includes(:author_item).
+        first.author_site_versions.where(published: true).first
   end
 
   def deactivate
