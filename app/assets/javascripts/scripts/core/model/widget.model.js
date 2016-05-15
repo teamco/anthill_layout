@@ -376,6 +376,37 @@ define([
                 visible: true,
                 label: true
             },
+            onFinish: {
+                type: 'combobox',
+                disabled: false,
+                list: [
+                    {
+                        type: 'text',
+                        value: 'Hide'
+                    },
+                    {
+                        type: 'text',
+                        value: 'Fade Out'
+                    },
+                    {
+                        type: 'text',
+                        value: 'Horizontal'
+                    },
+                    {
+                        type: 'text',
+                        value: 'Vertical'
+                    }
+                ],
+                value: 'Fade Out',
+                visible: true,
+                label: true
+            },
+            onFinishDuration: {
+                type: 'number',
+                disabled: false,
+                value: undefined,
+                visible: true
+            },
             moveRange: {
                 type: 'text',
                 disabled: false,

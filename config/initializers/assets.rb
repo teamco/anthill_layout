@@ -4,6 +4,7 @@ Rails.application.config.assets.precompile += %w( scripts/core/lib/packages/pret
 Rails.application.config.assets.precompile += %w( author.js )
 Rails.application.config.assets.precompile += %w( general.css )
 Rails.application.config.assets.precompile += ['images/*']
+Rails.application.config.assets.precompile += ['images/demo/*']
 Rails.application.config.assets.precompile += ['target/*']
 Rails.application.config.assets.precompile += ['public/*']
 Rails.application.config.assets.precompile += ['scripts/*']

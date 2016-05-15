@@ -22,21 +22,15 @@ class Author::SiteVersion < ActiveRecord::Base
   end
 
   def self.get_last(site_key)
-    User.current.author_site_storages.where(key: site_key).
-        includes(:author_item).
-        first.author_site_versions.last
+    self.get_storage_versions(site_key).last
   end
 
   def self.get_activated(site_key)
-    User.current.author_site_storages.where(key: site_key).
-        includes(:author_item).
-        first.author_site_versions.where(activated: true).first
+    self.get_storage_versions(site_key).where(activated: true).first
   end
 
   def self.get_published(site_key)
-    User.current.author_site_storages.where(key: site_key).
-        includes(:author_item).
-        first.author_site_versions.where(published: true).first
+    self.get_storage_versions(site_key).where(published: true).first
   end
 
   def deactivate
@@ -64,6 +58,12 @@ class Author::SiteVersion < ActiveRecord::Base
   end
 
   private
+
+  def self.get_storage_versions(site_key)
+    User.current.author_site_storages.where(key: site_key).
+        includes(:author_item).
+        first.author_site_versions
+  end
 
   def handle_activation(activate)
     self.update(activated: activate)

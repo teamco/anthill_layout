@@ -92,8 +92,9 @@ class Author::SiteStorage < ActiveRecord::Base
     site[:item_id] = Author::Item.create_and_get.id
 
     versions = site.author_site_versions
+    version = versions.last
     versions.build(
-        version: versions.last.version + 1,
+        version: version.nil? ? 1 : version.version + 1,
         activated: true,
         item_id: Author::Item.create_and_get.id
     )

@@ -13,7 +13,7 @@ module Author::SiteVersionsHelper
         "<td>#{site_version.author_item.user.original_email}</td>",
         "<td>#{site_version.author_item.created_at.strftime('%Y %b %d %I:%M:%S %p')}</td>",
         '</tr>'
-    ] }.join.html_safe
+    ] unless site_version.nil? }.join.html_safe
   end
 
   def version_type(version)
