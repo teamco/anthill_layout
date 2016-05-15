@@ -1,6 +1,6 @@
 <% if @storage[:version].nil? %>
     <p class="undefined-site"><%= t('undefined_version') %></p>
-<% elsif @storage[:content].nil? %>
+<% elsif @storage[:content].nil? && is_consumption?(@storage[:mode]) %>
     <p class="undefined-site"><%= t('not_published') %></p>
 <% else %>
     <%= render 'show', storage: @storage, current_user: current_user %>
