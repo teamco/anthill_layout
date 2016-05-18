@@ -59,7 +59,7 @@ define([
                 //     "icon": "4.jpg"
                 // },
                 {
-                    "name": "Pavel Maliy",
+                    "name": "Vladime Tkcah",
                     "fairPlayPoints": "84",
                     "icon": "5.jpg"
                 },
