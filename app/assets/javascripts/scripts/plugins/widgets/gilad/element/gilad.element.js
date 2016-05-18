@@ -106,7 +106,7 @@ define([
                     '<div>',
                     '<strong>Name: </strong>' + stadiums[i]['Name'],
                     '<br /><strong>Location: </strong>' + stadiums[i]['Location'],
-                    '<br /><strong>Game creator: </strong>' + stadiums[i]['creator'],
+                    '<br /><strong>Facilitator: </strong>' + stadiums[i]['creator'],
                     '<br /><strong>Average Rank: </strong>' + stadiums[i]['Average Rank'],
                     '<br /><strong>Participants: </strong>' + stadiums[i]['Participants'],
                     '</div>',
