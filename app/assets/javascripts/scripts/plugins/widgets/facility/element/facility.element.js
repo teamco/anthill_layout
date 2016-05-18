@@ -49,6 +49,10 @@ define([
                 ],
                 Fun: [
                     ["Photography", 0]
+                ],
+                Personal: [
+                    ["Color", "Yellow"],
+                    ["Number", 11]
                 ]
             };
 
