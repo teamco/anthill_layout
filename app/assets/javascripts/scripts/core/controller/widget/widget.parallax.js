@@ -20,7 +20,7 @@ define(function defineWidgetParallax() {
 
             /**
              * Get prefs
-             * @type {{allowParallax: boolean, orientation: string, reactionTo: string}}
+             * @type {{allowParallax: boolean, orientation: string, reactionTo: string, moveRange: string}}
              */
             var prefs = this.model.getConfig('preferences');
 
@@ -87,6 +87,7 @@ define(function defineWidgetParallax() {
                         elementHeight: elementHeight,
                         event: event,
                         orientation: prefs.orientation,
+                        moveRange: prefs.moveRange,
                         speed: speed.split(','),
                         direction: direction,
                         reactionTo: prefs.reactionTo,
@@ -95,6 +96,7 @@ define(function defineWidgetParallax() {
                         viewPortHeight: viewPortHeight
                     });
                 }
+
             }, true);
 
             // Store event
@@ -110,6 +112,7 @@ define(function defineWidgetParallax() {
          *      event: Event,
          *      speed: [],
          *      orientation: string,
+         *      moveRange: string,
          *      reactionTo: string,
          *      direction: string,
          *      scrollTop: number,
@@ -129,6 +132,28 @@ define(function defineWidgetParallax() {
 
             if (opts.reactionTo === 'Scroll') {
 
+                if (opts.moveRange) {
+
+                    var range = opts.moveRange.split(','),
+                        minR = parseFloat(range[0]),
+                        maxR = parseFloat(range[1]),
+                        behavior = 'left';
+
+                    if (orientation === 'Y') {
+                        behavior = 'top';
+                    }
+
+                    var dom = opts.$element.view.scope.dom[behavior],
+                        position = opts.$element.$.position()[behavior],
+                        opacity = 1;
+
+                    if (dom + maxR < position || dom - minR > position) {
+                        opacity = 0;
+                    }
+
+                    opts.$element.$.stop().animate({opacity: opacity}, 100);
+                }
+
                 if (opts.orientation === 'Both') {
 
                     var speedY = opts.speed[1] ? parseFloat(opts.speed[1]) : speedX;
@@ -147,6 +172,7 @@ define(function defineWidgetParallax() {
             if (opts.reactionTo === 'Mouse move') {
                 // TODO
             }
+
         }
     });
 });

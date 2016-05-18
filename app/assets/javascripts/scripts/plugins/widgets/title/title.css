@@ -1,0 +1,11 @@
+@import url('https://fonts.googleapis.com/css?family=Arizonia');
+
+.widget .content .title {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    font-family: 'Arizonia', cursive;
+    font-size: 60px;
+    color: #333;
+    text-shadow: 1px 1px 5px lightgreen;
+}

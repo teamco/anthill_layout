@@ -7,3 +7,25 @@ body {
     margin: 0;
     border: none;
 }
+
+.gate1,
+.gate2,
+.player3,
+.player5,
+.keeper1,
+.keeper2 {
+    z-index: 1 !important;
+}
+
+.grass1 {
+    z-index: 72 !important;
+}
+
+.ball {
+    z-index: 71 !important;
+}
+
+.grass2,
+.player1 {
+    z-index: 2 !important;
+}
