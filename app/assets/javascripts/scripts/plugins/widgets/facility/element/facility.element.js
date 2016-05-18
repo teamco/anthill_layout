@@ -41,7 +41,6 @@ define([
             var profile = {
                 Me: [
                     ["Color", "Yellow"],
-                    ["Number", 10],
                     ["Role", "Diffender"]
                 ],
                 Equipment: [
