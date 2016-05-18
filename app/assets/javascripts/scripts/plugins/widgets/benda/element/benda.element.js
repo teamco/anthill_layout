@@ -39,7 +39,8 @@ define([
         renderEmbeddedContent: function renderEmbeddedContent() {
 
             var profile = {
-                "Name": "John Doe",
+                "Name": "Israel ziv",
+                "Nickname": "ronaldo"
                 "FairPlay Points": "48",
                 "Rank": "341",
                 "Position": "Defender/Middle Center/Left",
