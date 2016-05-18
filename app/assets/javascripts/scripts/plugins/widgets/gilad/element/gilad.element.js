@@ -43,8 +43,8 @@ define([
                     "id": "0",
                     "Name": "Fairness Game",
                     "Location": "She'erit Yisra'el St, Tel Aviv-Yafo, 61084",
-                    "creator": "Yossi",
-                    "Average Rank": "8",
+                    "Facilitator": "Yossi",
+                    "Level": "Easy",
                     "Participants": "4",
                     "thumb": "http://www.neighborhoodnotes.com/uploads/images/posts/0/8/8231/8DCA90C3-1D09-3519-AD0902D07EC04F0E.jpg"
                 },
@@ -52,8 +52,8 @@ define([
                     "id": "5",
                     "Name": "Volunteers game",
                     "Location": "Eyal's home, Beit Jann, 32.964672, 35.373207",
-                    "creator": "Eyal",
-                    "Average Rank": "8",
+                    "Facilitator": "Eyal",
+                    "Level": "Medium",
                     "Participants": "5",
                     "thumb": "http://myhero.com/images/g1/hero105394/HondurasSoccer5.jpg"
                 },
@@ -61,8 +61,8 @@ define([
                     "id": "1",
                     "Name": "The neighborhood game",
                     "Location": "Al-Kurum St 6 Nazareth",
-                    "creator": "Jawad",
-                    "Average Rank": "8",
+                    "Facilitator": "Jawad",
+                    "Level": "Hard",
                     "Participants": "6",
                     "thumb": "http://www.stevecurtiskc.com/wp-content/uploads/2016/01/IMG_1997w.jpg"
                 },
@@ -70,8 +70,8 @@ define([
                     "id": "2",
                     "Name": "FairnessGame",
                     "Location": "She'erit Yisra'el St, Tel Aviv-Yafo, 61084",
-                    "creator": "David",
-                    "Average Rank": "7",
+                    "Facilitator": "David",
+                    "Level": "Medium",
                     "Participants": "6",
                     "thumb": "http://oaklandvoices.us/wp-content/uploads/2013/01/Healthy-of-the-Hood-2-Healthy-015.jpg"
                 },
@@ -79,8 +79,8 @@ define([
                     "id": "3",
                     "Name": "Championship game",
                     "Location": "Midron Yaffo Park, Tel Aviv-Yafo, 32.047827, 34.747473",
-                    "creator": "George",
-                    "Average Rank": "8",
+                    "Facilitator": "George",
+                    "Lebel": "Hard",
                     "Participants": "7",
                     "thumb": "http://oaklandvoices.us/wp-content/uploads/2013/01/Healthy-of-the-Hood-2-Healthy-033.jpg"
                 },
@@ -88,8 +88,8 @@ define([
                     "id": "4",
                     "Name": "Peace team",
                     "Location": "Histadrut, Akko, 32.926697, 35.072156",
-                    "creator": "Muhammad",
-                    "Average Rank": "7",
+                    "Facilitator": "Muhammad",
+                    "Level": "Easy",
                     "Participants": "4",
                     "thumb": "http://richmondsfblog.com/wp-content/uploads/2015/11/fields1.jpg"
                 }
