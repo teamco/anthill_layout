@@ -42,7 +42,7 @@ define([
                 {
                     "id": "0",
                     "Name": "Fairness Game",
-                    "Location": "She'erit Yisra'el St, Tel Aviv-Yafo, 61084",
+                    "Location": "HaPardes St, Hod Hasharon, 32.145354, 34.884419",
                     "Facilitator": "Yossi",
                     "Level": "Easy",
                     "Participants": "4",
@@ -51,7 +51,7 @@ define([
                 {
                     "id": "5",
                     "Name": "Volunteers game",
-                    "Location": "Eyal's home, Beit Jann, 32.964672, 35.373207",
+                    "Location": "Herzliya Park, Herzliya",
                     "Facilitator": "Eyal",
                     "Level": "Medium",
                     "Participants": "5",
@@ -60,7 +60,7 @@ define([
                 {
                     "id": "1",
                     "Name": "The neighborhood game",
-                    "Location": "Al-Kurum St 6 Nazareth",
+                    "Location": "Apollonia National Park, Herzliya",
                     "Facilitator": "Jawad",
                     "Level": "Hard",
                     "Participants": "6",
@@ -69,7 +69,7 @@ define([
                 {
                     "id": "2",
                     "Name": "FairnessGame",
-                    "Location": "She'erit Yisra'el St, Tel Aviv-Yafo, 61084",
+                    "Location": "Netiv Hahesed, Petah Tikva, 32.116642, 34.870763",
                     "Facilitator": "David",
                     "Level": "Medium",
                     "Participants": "6",
@@ -78,7 +78,7 @@ define([
                 {
                     "id": "3",
                     "Name": "Championship game",
-                    "Location": "Midron Yaffo Park, Tel Aviv-Yafo, 32.047827, 34.747473",
+                    "Location": "Jaljulya Country Club, Jaljulya",
                     "Facilitator": "George",
                     "Lebel": "Hard",
                     "Participants": "7",
@@ -87,7 +87,7 @@ define([
                 {
                     "id": "4",
                     "Name": "Peace team",
-                    "Location": "Histadrut, Akko, 32.926697, 35.072156",
+                    "Location": "Kfar Saba Park, Kfar Saba",
                     "Facilitator": "Muhammad",
                     "Level": "Easy",
                     "Participants": "4",
