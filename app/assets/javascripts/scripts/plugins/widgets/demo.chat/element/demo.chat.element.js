@@ -109,8 +109,6 @@ define([
                 '<li class="left clearfix"><span class="chat-img pull-left">',
                 '<img src="/assets/demo/participants/2.jpg" alt="User Avatar" class="img-circle" />',
                 '</span>',
-                
-                </div></li></ul></div>',
                 '<div class="panel-footer">',
                 '<div class="input-group">',
                 '<input id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." />',
