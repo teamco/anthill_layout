@@ -17,7 +17,7 @@ body:before {
 }
 
 .application {
-    overflow: auto !important;
+    /*overflow: auto !important;*/
 }
 
 .application .application-header {
