@@ -39,17 +39,17 @@ define([
         renderEmbeddedContent: function renderEmbeddedContent() {
             var data = [
                 {
-                    "name": "John",
+                    "name": "Naseem Hamed",
                     "fairPlayPoints": "4345",
                     "icon": "1.jpg"
                 },
                 {
-                    "name": "Basma",
+                    "name": "Eyal ben david",
                     "fairPlayPoints": "51",
                     "icon": "2.jpg"
                 },
                 {
-                    "name": "Anissa",
+                    "name": "Arkan Shalaban",
                     "fairPlayPoints": "602",
                     "icon": "3.jpg"
                 },
