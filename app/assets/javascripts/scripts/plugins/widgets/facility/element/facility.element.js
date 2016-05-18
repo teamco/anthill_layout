@@ -39,20 +39,21 @@ define([
         renderEmbeddedContent: function renderEmbeddedContent() {
 
             var profile = {
+                Me: [
+                    ["Color", "Yellow"],
+                    ["Number", 10],
+                    ["Role", "Diffender"]
+                ],
                 Equipment: [
                     ["Ball", 3],
                     ["Shirts", 8],
                     ["Water", 20]
                 ],
-                Personal: [
-                    ["Color", "Red/Green"],
-                    ["Number", 11]
-                ],
                 Logistics: [
                     ["Car", 3]
                 ],
                 Fun: [
-                    ["Photography", 0]
+                    ["Photography", 1]
                 ]
             };
 
