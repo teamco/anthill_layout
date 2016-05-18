@@ -44,6 +44,10 @@ define([
                     ["Shirts", 8],
                     ["Water", 20]
                 ],
+                Personal: [
+                    ["Color", "Red/Green"],
+                    ["Number", 11]
+                ],
                 Logistics: [
                     ["Car", 3]
                 ],
