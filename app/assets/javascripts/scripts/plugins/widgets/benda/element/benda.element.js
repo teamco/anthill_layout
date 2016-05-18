@@ -39,7 +39,7 @@ define([
         renderEmbeddedContent: function renderEmbeddedContent() {
 
             var profile = {
-                "Name": Pavel Maliy",
+                "Name": "Pavel Maliy",
                 "Nickname": "Super Pavel",
                 "FairPlay Points": "48",
                 "Rank": "341",
