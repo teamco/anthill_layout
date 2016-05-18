@@ -40,12 +40,12 @@ define([
             var data = [
                 {
                     "name": "Naseem Hamed",
-                    "fairPlayPoints": "4345",
+                    "fairPlayPoints": "434",
                     "icon": "1.jpg"
                 },
                 {
                     "name": "Eyal ben david",
-                    "fairPlayPoints": "51",
+                    "fairPlayPoints": "151",
                     "icon": "2.jpg"
                 },
                 {
@@ -59,12 +59,12 @@ define([
                 //     "icon": "4.jpg"
                 // },
                 {
-                    "name": "Yossi",
+                    "name": "Pavel Maliy",
                     "fairPlayPoints": "84",
                     "icon": "5.jpg"
                 },
                 {
-                    "name": "Nissim",
+                    "name": "Gilad Keinan",
                     "fairPlayPoints": "92",
                     "icon": "6.jpg"
                 }
