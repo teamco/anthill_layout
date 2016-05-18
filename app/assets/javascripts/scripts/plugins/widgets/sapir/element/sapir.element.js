@@ -53,7 +53,7 @@ define([
                 '<div>',
                 '<strong>Name: </strong>' + stadium['Name'],
                 '<br /><strong>Location: </strong>' + stadium['Location'],
-                '<br /><strong>Game creator: </strong>' + stadium['creator'],
+                '<br /><strong>Facilitator: </strong>' + stadium['creator'],
                 '<br /><strong>Average Rank: </strong>' + stadium['Average Rank'],
                 '<br /><strong>Participants: </strong>' + stadium['Participants'],
                 '</div>',
