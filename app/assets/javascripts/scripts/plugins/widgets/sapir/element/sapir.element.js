@@ -42,7 +42,7 @@ define([
                 "Name": "Volunteers game",
                 "Location": "Eyal's home, Beit Jann, 32.964672, 35.373207",
                 "creator": "Eyal",
-                "Average Rank": "8",
+                "Level": "Hard",
                 "Participants": "5",
                 "thumb": "http://myhero.com/images/g1/hero105394/HondurasSoccer5.jpg"
             };
