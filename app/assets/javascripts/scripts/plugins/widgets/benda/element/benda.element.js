@@ -40,7 +40,7 @@ define([
 
             var profile = {
                 "Name": "Israel ziv",
-                "Nickname": "ronaldo"
+                "Nickname": "ronaldo",
                 "FairPlay Points": "48",
                 "Rank": "341",
                 "Position": "Defender/Middle Center/Left",
