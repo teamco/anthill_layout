@@ -37,7 +37,12 @@ define([
          * @memberOf PavelElement
          */
         renderEmbeddedContent: function renderEmbeddedContent() {
-            // TODO
+            this.$.append([
+                '<ul class="list-group">',
+                '<li class="list-group-item">My Location</li>',
+                '<li class="list-group-item">Choose location</li>',
+                '</ul>'
+            ].join(''))
         }
 
     }, PluginElement.prototype);

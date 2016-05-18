@@ -37,7 +37,28 @@ define([
          * @memberOf SapirElement
          */
         renderEmbeddedContent: function renderEmbeddedContent() {
-            // TODO
+            var stadium = {
+                "id": "5",
+                "Name": "Volunteers game",
+                "Location": "Eyal's home, Beit Jann, 32.964672, 35.373207",
+                "creator": "Eyal",
+                "Average Rank": "8",
+                "Participants": "5",
+                "thumb": "http://myhero.com/images/g1/hero105394/HondurasSoccer5.jpg"
+            };
+
+            this.$.append([
+                '<ul class="current-game"><li><img src="', stadium['thumb'],
+                '"></li><li>',
+                '<div>',
+                '<strong>Name: </strong>' + stadium['Name'],
+                '<br /><strong>Location: </strong>' + stadium['Location'],
+                '<br /><strong>Game creator: </strong>' + stadium['creator'],
+                '<br /><strong>Average Rank: </strong>' + stadium['Average Rank'],
+                '<br /><strong>Participants: </strong>' + stadium['Participants'],
+                '</div>',
+                '</li></ul>'
+            ].join(''));
         }
 
     }, PluginElement.prototype);

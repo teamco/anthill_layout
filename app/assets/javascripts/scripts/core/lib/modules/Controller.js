@@ -654,9 +654,10 @@ define([
              * Open url in new window or in dialog
              * @memberOf BaseController
              * @param {string} url
+             * @param {boolean} selfWindow
              * @param {boolean} isDialog
              */
-            openUrlOnEvent: function openUrlOnEvent(url, isDialog) {
+            openUrlOnEvent: function openUrlOnEvent(url, selfWindow, isDialog) {
 
                 // Workaround to multiple clicks
                 this.openUrlEventHandler += 1;
@@ -676,12 +677,19 @@ define([
 
                 this.logger.debug('Open url in new window', url);
 
-                /**
-                 * Define opened window instance
-                 * @property AntHill
-                 * @type {Window}
-                 */
-                this.openedWindow = window.open(url);
+                if (selfWindow) {
+
+                    window.location.href = url;
+
+                } else {
+
+                    /**
+                     * Define opened window instance
+                     * @property AntHill
+                     * @type {Window}
+                     */
+                    this.openedWindow = window.open(url);
+                }
             },
 
             /**

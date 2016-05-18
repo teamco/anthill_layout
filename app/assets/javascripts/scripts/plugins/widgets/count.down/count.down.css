@@ -1,0 +1,10 @@
+.widget .content .count-down {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    font-size: 40px;
+}
+
+.widget .content .count-down span {
+    color: red;
+}

@@ -3,3 +3,12 @@
     width: 100%;
     overflow: hidden;
 }
+
+.widget .content .benda .input-group-addon {
+    width: 160px !important;
+    text-align: left !important;
+}
+
+.widget .content .benda input {
+    width: 400px !important;
+}

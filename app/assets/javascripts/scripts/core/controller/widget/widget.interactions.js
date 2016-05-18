@@ -386,11 +386,6 @@ define([
          */
         setOnClickUrl: function setOnClickUrl(url) {
 
-            if (!this.base.isUrl(url) && url.length > 0) {
-                this.logger.warn('None valid url', url);
-                return false;
-            }
-
             if (url.length > 0) {
                 this.view.get$item().bindOnClickOpenUrl(url);
             }

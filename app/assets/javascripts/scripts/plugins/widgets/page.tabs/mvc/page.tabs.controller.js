@@ -194,6 +194,7 @@ define([
                 this.observer.publish(
                     this.eventmanager.eventList.openUrlOnEvent, [
                         $page.pageUrl,
+                        true,
                         $page.pageTab.model.getConfig('preferences').pageOpenUrlInDialog
                     ]
                 );

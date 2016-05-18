@@ -1,10 +1,26 @@
 body {
-    background-color: #fff;
+    background-color: rgba(255, 255, 255, 0.6);
 }
 
-.application .page-header {
+body:before {
+    content: " ";
+    position: absolute;
+    background-image: url("/assets/demo/background.jpg");
+    background-position: top left;
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 0.05;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.application .application-header {
     padding: 0;
     margin: 0;
+    background-color: darkgray;
+    height: 55px;
     border: none;
 }
 
@@ -28,4 +44,21 @@ body {
 .grass2,
 .player1 {
     z-index: 2 !important;
+}
+
+.avatar_profile img {
+    border: 1px solid #999 !important;
+}
+
+.mytabs a {
+    color: #fff;
+}
+
+.mytabs a.active,
+.mytabs a:hover {
+    color: #333 !important;
+}
+
+.application .page .page-header {
+    display: none !important;
 }

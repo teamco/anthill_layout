@@ -5,7 +5,7 @@
     width: 100%;
     overflow: hidden;
     font-family: 'Arizonia', cursive;
-    font-size: 60px;
-    color: #333;
-    text-shadow: 1px 1px 5px lightgreen;
+    font-size: 40px;
+    color: #fff;
+    font-weight: bold;
 }

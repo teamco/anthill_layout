@@ -37,7 +37,28 @@ define([
          * @memberOf BendaElement
          */
         renderEmbeddedContent: function renderEmbeddedContent() {
-            // TODO
+
+            var profile = {
+                "Name": "John Doe",
+                "FairPlay Points": "48",
+                "Rank": "341",
+                "Position": "Defender/Middle Center/Left",
+                "Foot": "Left",
+                "Age": "14 Years old"
+            };
+
+            for (var index in profile) {
+
+                if (profile.hasOwnProperty(index)) {
+
+                    this.$.append([
+                        '<div class="input-group input-group-lg">',
+                        '<span class="input-group-addon">', index, '</span>',
+                        '<input type="text" value="', profile[index], '" class="form-control" placeholder="', index, '" aria-describedby="sizing-addon1">',
+                        '</div>'
+                    ].join(''))
+                }
+            }
         }
 
     }, PluginElement.prototype);

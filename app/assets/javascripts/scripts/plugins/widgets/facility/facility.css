@@ -1,0 +1,19 @@
+.widget .content .facility {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+.widget .content .facility .input-group-addon {
+    width: 150px !important;
+    border-right: 1px solid #ccc !important;
+    border-radius: 4px !important;
+}
+
+.widget .content .facility img {
+    height: 64px;
+    width: 64px;
+    margin-left: 20px;
+    margin-right: 10px;
+    margin-bottom: 20px;
+}

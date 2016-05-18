@@ -489,7 +489,7 @@ define([
             this.$.on('click.openUrl', function openUrl() {
                 scope.observer.publish(
                     scope.eventmanager.eventList.openUrlOnEvent,
-                    [url, false]
+                    [url, false, false]
                 )
             });
         },

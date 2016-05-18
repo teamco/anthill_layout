@@ -346,7 +346,7 @@ define([
 
                 scope.observer.publish(
                     scope.eventmanager.eventList.openUrlOnEvent, [
-                        url, false
+                        url, true, false
                     ]
                 );
             }
