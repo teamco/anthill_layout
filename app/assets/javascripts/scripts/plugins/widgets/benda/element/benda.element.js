@@ -39,8 +39,8 @@ define([
         renderEmbeddedContent: function renderEmbeddedContent() {
 
             var profile = {
-                "Name": "Israel ziv",
-                "Nickname": "ronaldo",
+                "Name": Pavel Maliy",
+                "Nickname": "Super Pavel",
                 "FairPlay Points": "48",
                 "Rank": "341",
                 "Position": "Defender/Middle Center/Left",
