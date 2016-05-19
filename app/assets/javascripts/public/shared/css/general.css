@@ -71,3 +71,13 @@ body:before {
     font-size: 60px !important;
     font-family: Tahoma !important;
 }
+
+.page .widget.profile {
+    overflow: visible !important;
+    z-index: 10 !important;
+}
+
+.page .widget.profile > *,
+.widget .content .benda {
+    overflow: visible !important;
+}
