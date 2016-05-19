@@ -43,8 +43,7 @@ define([
        ' <div class="col-md-5">'+
             '<div class="panel panel-primary">'+
                 '<div class="panel-heading">'+
-                   ' <span class="glyphicon glyphicon-comment"></span> Chat'+
-               ' </div>'+
+                   ' <span class="glyphicon glyphicon-comment"></span> Chat</div>'+
            ' <div class="panel-body">'+
                ' <div class="panel-body">'+
                     '<ul class="chat">'+
@@ -98,8 +97,7 @@ define([
                     '<div class="input-group">'+
                         '<input id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." />'+
                         '<span class="input-group-btn">'+
-                            '<button class="btn btn-warning btn-sm" id="btn-chat">'+
-                               ' Send</button>'+
+                            '<button class="btn btn-warning btn-sm" id="btn-chat">Send</button>'+
                        ' </span>'+
                   '  </div>'+
                ' </div>'+
