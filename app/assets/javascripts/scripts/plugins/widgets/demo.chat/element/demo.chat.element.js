@@ -127,7 +127,7 @@ define([
                                   '  <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>10 mins ago</small>'+
                                   '  <strong class="pull-right primary-font">wonder woman</strong>'+
                                ' </div>'+
-                               ' <p>Hello meet you shortly.</p>'+
+                               ' <p>Hello everyone.</p>'+
                            ' </div>'+
                        ' </li>'+
                     '</ul>'+
