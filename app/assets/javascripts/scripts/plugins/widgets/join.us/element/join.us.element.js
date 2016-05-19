@@ -45,6 +45,7 @@ define([
             this.$.off().on(
                 'click.join',
                 function () {
+                    $('.application').scrollTop(0, 0);
                     window.location.hash = '#/summary'
                 }
             );
