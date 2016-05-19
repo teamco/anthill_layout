@@ -37,9 +37,9 @@ define([
          * @memberOf DemoChatElement
          */
         renderEmbeddedContent: function renderEmbeddedContent() {
-            this.addContent([
+            this.addContent(
              '<divclass="container"><divclass="row"><divclass="col-md-5"><divclass="panel panel-primary"><divclass="panel-heading"><spanclass="glyphicon glyphicon-comment"></span>Chat</div><divclass="panel-body"><ulclass="chat"><liclass="left clearfix"><spanclass="chat-img pull-left"><imgsrc="/assets/demo/participants/1.jpg"alt="User Avatar"class="img-circle"/></span><divclass="chat-body clearfix"><divclass="header"><strongclass="primary-font">ronaldo7</strong><smallclass="pull-right text-muted"><spanclass="glyphicon glyphicon-time"></span>30minsago</small></div><p>Hello,Pleasejointhisgame..</p></div></li><liclass="right clearfix"><spanclass="chat-img pull-right"><imgsrc="/assets/demo/participants/2.jpg"alt="User Avatar"class="img-circle"/></span><divclass="chat-body clearfix"><divclass="header"><smallclass=" text-muted"><spanclass="glyphicon glyphicon-time"></span>21minsago</small><strongclass="pull-right primary-font">Mesi</strong></div><p>Hironaldo7.Nicetomeetyou.waitingtostarttoplay.</p></div></li><liclass="left clearfix"><spanclass="chat-img pull-left"><imgsrc="/assets/demo/participants/1.jpg"alt="User Avatar"class="img-circle"/></span><divclass="chat-body clearfix"><divclass="header"><strongclass="primary-font">ronaldo7</strong><smallclass="pull-right text-muted"><spanclass="glyphicon glyphicon-time"></span>16minsago</small></div><p>Welcomemesi.</p></div></li><liclass="right clearfix"><spanclass="chat-img pull-right"><imgsrc="/assets/demo/participants/3.jpg"alt="User Avatar"class="img-circle"/></span><divclass="chat-body clearfix"><divclass="header"><smallclass=" text-muted"><spanclass="glyphicon glyphicon-time"></span>10minsago</small><strongclass="pull-right primary-font">wonderwoman</strong></div><p>Hellomeetyoushortly.</p></div></li></ul></div><divclass="panel-footer"><divclass="input-group"><inputid="btn-input"type="text"class="form-control input-sm"placeholder="Type your message here..."/><spanclass="input-group-btn"><buttonclass="btn btn-warning btn-sm"id="btn-chat">Send</button></span></div></div></div></div></div></div>'
-            ].join(''))
+            );
         }
 
     }, PluginElement.prototype);
