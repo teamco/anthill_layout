@@ -45,7 +45,7 @@ define([
             this.$.off().on(
                 'click.join',
                 function() {
-                    window.location.hash = '#/facility'
+                    window.location.hash = '#/summary'
                 }
             );
         }
