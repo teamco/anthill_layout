@@ -66,3 +66,7 @@ body:before {
 .application .page .page-header {
     display: none !important;
 }
+
+.score {
+    font-size: 40px;
+}
