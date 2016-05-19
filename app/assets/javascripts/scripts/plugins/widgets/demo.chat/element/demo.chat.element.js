@@ -53,11 +53,7 @@ define([
         entryMe = entryMe.replace('{time}','1 mins ago');
         entryMe = entryMe.replace('{content}',txt);
         $('.chat').append(entryMe);
-
         setTimeout(window.controller.response, 5000);
-
-
-
     },
 
     response: function () {
