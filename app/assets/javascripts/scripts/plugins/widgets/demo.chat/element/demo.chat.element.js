@@ -42,18 +42,21 @@ define([
                     onSendPressed: function () {
                         var btn = $('#btn-input');
                         var txt = btn.val();
-                        btn.val('');
+
                         if (txt.indexOf('shit') > -1 || txt.indexOf('hate') > -1) {
-                            alert('You use inappropriate language. The text wasn\'t send');
+                            btn.val('You use inappropriate language. The text wasn\'t sent').addClass('red');
+                            setTimeout(function () {
+                                btn.val('');
+                            }, 2000);
                             return;
                         }
-
+                        btn.removeClass('red');
                         var entryMe = '<li class="left clearfix"><span class="chat-img pull-right"><img src="/assets/demo/participants/4.jpg" width="64" height="64" alt="User Avatar" class="img-circle" /></span><div class="chat-body clearfix"><div class="header"><strong class="primary-font">{name}</strong> <small class="pull-right text-muted"><span class="glyphicon glyphicon-time"></span>{time}</small></div><p>{content}</p></div></li>'
                         entryMe = entryMe.replace('{name}', 'Super Pavel');
                         entryMe = entryMe.replace('{time}', '1 mins ago');
                         entryMe = entryMe.replace('{content}', txt);
                         $('.chat').append(entryMe);
-                        setTimeout(window.controller.response, 5000);
+                        setTimeout(window.controller.response, 3000);
                     },
 
                     response: function () {
@@ -65,7 +68,7 @@ define([
                     },
 
                     translate: function () {
-                        var ar = ['مرحبا، يرجى الانضمام إلى هذه اللعبة ..','مرحبا ronaldo7. تشرفت بمقابلتك. الانتظار لبدء اللعب','أهلا بك mesi','مرحبا مقابلتك قريبا.','اراك قريبا','سعيد لمقابلتك','مرحبا pavel، العظيم أن تنضم إلى لعبة.','مرحبا','مرحبا'], i;
+                        var ar = ['مرحبا، يرجى الانضمام إلى هذه اللعبة ..', 'مرحبا ronaldo7. تشرفت بمقابلتك. الانتظار لبدء اللعب', 'أهلا بك mesi', 'مرحبا مقابلتك قريبا.', 'اراك قريبا', 'سعيد لمقابلتك', 'مرحبا pavel، العظيم أن تنضم إلى لعبة.', 'مرحبا', 'مرحبا'], i;
                         var children = $('.chat').children();
                         for (i = 0; i < children.length; i++) {
                             var chatRow = children[i];
