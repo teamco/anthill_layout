@@ -39,17 +39,17 @@ define([
         renderEmbeddedContent: function renderEmbeddedContent() {
             var data = [
                 {
-                    "name": "Naseem Hamed",
+                    "name": "ronaldo7",
                     "fairPlayPoints": "434",
                     "icon": "1.jpg"
                 },
                 {
-                    "name": "Eyal ben david",
+                    "name": "Mesi",
                     "fairPlayPoints": "151",
                     "icon": "2.jpg"
                 },
                 {
-                    "name": "Arkan Shalaban",
+                    "name": "Wonder woman",
                     "fairPlayPoints": "602",
                     "icon": "3.jpg"
                 },
@@ -59,12 +59,12 @@ define([
                 //     "icon": "4.jpg"
                 // },
                 {
-                    "name": "Vladimir Tkach",
+                    "name": "Vova",
                     "fairPlayPoints": "84",
                     "icon": "5.jpg"
                 },
                 {
-                    "name": "Gilad",
+                    "name": "Mr G",
                     "fairPlayPoints": "92",
                     "icon": "6.jpg"
                 }
