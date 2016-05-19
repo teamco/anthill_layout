@@ -62,7 +62,7 @@ define([
                 }
             }
             
-            this.$.addContent(
+            this.addContent(
                 '<div class="dropdown">'+
                   '<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">'+
                     'Language'+
