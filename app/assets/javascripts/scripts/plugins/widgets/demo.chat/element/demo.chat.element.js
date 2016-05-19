@@ -36,11 +36,79 @@ define([
          * Render Embedded content
          * @memberOf DemoChatElement
          */
-        renderEmbeddedContent: function renderEmbeddedContent() {
-            this.addContent(
-             '<divclass="container"><divclass="row"><divclass="col-md-5"><divclass="panel panel-primary"><divclass="panel-heading"><spanclass="glyphicon glyphicon-comment"></span>Chat</div><divclass="btn-group pull-right">,<ulclass="dropdown-menu slidedown">,<li><ahref="http://www.jquery2dotnet.com"><spanclass="glyphicon glyphicon-refresh">,</span>Refresh</a></li>,<li><ahref="http://www.jquery2dotnet.com"><spanclass="glyphicon glyphicon-ok-sign">,</span>Available</a></li>,<li><ahref="http://www.jquery2dotnet.com"><spanclass="glyphicon glyphicon-remove">,</span>Busy</a></li>,<li><ahref="http://www.jquery2dotnet.com"><spanclass="glyphicon glyphicon-time"></span>,Away</a></li>,<liclass="divider"></li>,<li><ahref="http://www.jquery2dotnet.com"><spanclass="glyphicon glyphicon-off"></span>,SignOut</a></li>,</ul></div></div>,<divclass="panel-body">,<divclass="panel-body"><ulclass="chat"><liclass="left clearfix"><spanclass="chat-img pull-left"><imgsrc="/assets/demo/participants/1.jpg"alt="User Avatar"class="img-circle"/></span><divclass="chat-body clearfix"><divclass="header"><strongclass="primary-font">ronaldo7</strong><smallclass="pull-right text-muted"><spanclass="glyphicon glyphicon-time"></span>30minsago</small></div><p>Hello,Pleasejointhisgame..</p></div></li><liclass="right clearfix"><spanclass="chat-img pull-right"><imgsrc="/assets/demo/participants/2.jpg"alt="User Avatar"class="img-circle"/></span><divclass="chat-body clearfix"><divclass="header"><smallclass=" text-muted"><spanclass="glyphicon glyphicon-time"></span>21minsago</small><strongclass="pull-right primary-font">Mesi</strong></div><p>Hironaldo7.Nicetomeetyou.waitingtostarttoplay.</p></div></li><liclass="left clearfix"><spanclass="chat-img pull-left"><imgsrc="/assets/demo/participants/1.jpg"alt="User Avatar"class="img-circle"/></span><divclass="chat-body clearfix"><divclass="header"><strongclass="primary-font">ronaldo7</strong><smallclass="pull-right text-muted"><spanclass="glyphicon glyphicon-time"></span>16minsago</small></div><p>Welcomemesi.</p></div></li><liclass="right clearfix"><spanclass="chat-img pull-right"><imgsrc="/assets/demo/participants/3.jpg"alt="User Avatar"class="img-circle"/></span><divclass="chat-body clearfix"><divclass="header"><smallclass=" text-muted"><spanclass="glyphicon glyphicon-time"></span>10minsago</small><strongclass="pull-right primary-font">wonderwoman</strong></div><p>Hellomeetyoushortly.</p></div></li></ul></div><divclass="panel-footer"><divclass="input-group"><inputid="btn-input"type="text"class="form-control input-sm"placeholder="Type your message here..."/><spanclass="input-group-btn"><buttonclass="btn btn-warning btn-sm"id="btn-chat">Send</button></span></div></div></div></div></div></div>'
-            );
-        }
+       renderEmbeddedContent: function renderEmbeddedContent() {
+            this.addContent([
+'<div class="container">'+
+  '  <div class="row">'+
+       ' <div class="col-md-5">'+
+            '<div class="panel panel-primary">'+
+                '<div class="panel-heading">'+
+                   ' <span class="glyphicon glyphicon-comment"></span> Chat'+
+               ' </div>'+
+           ' <div class="panel-body">'+
+               ' <div class="panel-body">'+
+                    '<ul class="chat">'+
+                        '<li class="left clearfix"><span class="chat-img pull-left">'+
+                            '<img src="/assets/demo/participants/1.jpg" alt="User Avatar" class="img-circle" />'+
+                      '  </span>'+
+                            '<div class="chat-body clearfix">'+
+                                '<div class="header">'+
+                                   '<strong class="primary-font">ronaldo7</strong> <small class="pull-right text-muted">'+
+                                    '<span class="glyphicon glyphicon-time"></span>30 mins ago</small>'+
+                               ' </div>'+
+                               ' <p>Hello, Please join this game.. </p>'+
+                           ' </div>'+
+                       ' </li>'+
+                        '<li class="right clearfix"><span class="chat-img pull-right">'+
+                           '<img src="/assets/demo/participants/2.jpg" alt="User Avatar" class="img-circle" />'+
+                        '</span>'+
+                           ' <div class="chat-body clearfix">'+
+                               ' <div class="header">'+
+                                   ' <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>21 mins ago</small>'+
+                                    '<strong class="pull-right primary-font">Mesi</strong>'+
+                               ' </div>'+
+                                '<p>Hi ronaldo7. Nice to meet you. waiting to start to play.</p>'+
+                           ' </div>'+
+                       ' </li>'+
+                       ' <li class="left clearfix"><span class="chat-img pull-left">'+
+                          '  <img src="/assets/demo/participants/1.jpg" alt="User Avatar" class="img-circle" />'+
+                        '</span>'+
+                            '<div class="chat-body clearfix">'+
+                               ' <div class="header">'+
+                                    '<strong class="primary-font">ronaldo7</strong> <small class="pull-right text-muted">'+
+                                    <span class="glyphicon glyphicon-time"></span>16 mins ago</small>'+
+                               ' </div>'+
+                              '  <p>Welcome mesi.</p>'+
+                           ' </div>'+
+                       ' </li>'+
+                       ' <li class="right clearfix"><span class="chat-img pull-right">'+
+                          '  <img src="/assets/demo/participants/3.jpg" alt="User Avatar" class="img-circle" />'+
+                       ' </span>'+
+                           ' <div class="chat-body clearfix">'+
+                              '  <div class="header">'+
+                                  '  <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>10 mins ago</small>'+
+                                  '  <strong class="pull-right primary-font">wonder woman</strong>'+
+                               ' </div>'+
+                               ' <p>Hello meet you shortly.</p>'+
+                           ' </div>'+
+                       ' </li>'+
+                    '</ul>'+
+               ' </div>'+
+                '<div class="panel-footer">
+                    <div class="input-group">
+                        <input id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." />
+                        <span class="input-group-btn">
+                            <button class="btn btn-warning btn-sm" id="btn-chat">
+                                Send</button>
+                        </span>
+                    </div>
+                </div>'+
+           ' </div>'+
+      '  </div>'+
+  '  </div>'+
+'</div>' 
+].join(''))
+		}
 
     }, PluginElement.prototype);
 });
