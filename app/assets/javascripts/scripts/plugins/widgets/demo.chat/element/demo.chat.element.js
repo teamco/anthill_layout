@@ -37,6 +37,49 @@ define([
          * @memberOf DemoChatElement
          */
        renderEmbeddedContent: function renderEmbeddedContent() {
+       	(function () {
+    window.controller = {
+    onSendPressed : function() {
+        var btn = $('#btn-input');
+        var txt = btn.val();
+        btn.val('');
+        if(txt.indexOf('shit') > -1 || txt.indexOf('hate') > -1) {
+            alert('You use inappropriate language. The text wasn\'t send');
+            return;
+        }
+
+        var entryMe = '<li class="left clearfix"><span class="chat-img pull-right"><img src="/assets/demo/participants/4.jpg" alt="User Avatar" class="img-circle" /></span><div class="chat-body clearfix"><div class="header"><strong class="primary-font">{name}</strong> <small class="pull-right text-muted"><span class="glyphicon glyphicon-time"></span>{time}</small></div><p>{content}</p></div></li>'
+        entryMe = entryMe.replace('{name}','Super Pavel');
+        entryMe = entryMe.replace('{time}','1 mins ago');
+        entryMe = entryMe.replace('{content}',txt);
+        $('.chat').append(entryMe);
+
+        setTimeout(window.controller.response, 5000);
+
+
+
+    },
+
+    response: function () {
+        var entryOther = '<li class="left clearfix"><span class="chat-img pull-left"><img src="/assets/demo/participants/1.jpg" alt="User Avatar" class="img-circle" /></span><div class="chat-body clearfix"><div class="header"><strong class="primary-font">{name}</strong> <small class="pull-right text-muted"><span class="glyphicon glyphicon-time"></span>{time}</small></div><p>{content}</p></div></li>'
+               entryOther = entryOther.replace('{name}','ronaldo7');
+               entryOther = entryOther.replace('{time}','1 sec ago');
+               entryOther = entryOther.replace('{content}','hello pavel, Great that you join the game.');
+               $('.chat').append(entryOther);
+    } ,
+
+    translate: function() {
+        var ar = ['سعيد لمقابلتك','سعيد لمقابلتك','سعيد لمقابلتك','سعيد لمقابلتك','سعيد لمقابلتك','سعيد لمقابلتك','سعيد لمقابلتك','سعيد لمقابلتك'], chatRow, i;
+        var children = $('.chat').children();
+        for (i in children) {
+          chatRow = children[i];
+            $(chatRow).find('p').text(ar[i]);
+        }
+     }
+    }
+})
+();
+
             this.addContent([
 		'<div class="container">'+
   '  <div class="row">'+
