@@ -44,7 +44,7 @@ define([
 
             this.$.off().on(
                 'click.join',
-                function() {
+                function () {
                     window.location.hash = '#/summary'
                 }
             );
