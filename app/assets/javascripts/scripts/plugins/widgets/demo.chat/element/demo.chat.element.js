@@ -48,7 +48,7 @@ define([
             return;
         }
 
-        var entryMe = '<li class="left clearfix"><span class="chat-img pull-right"><img src="/assets/demo/participants/4.jpg" alt="User Avatar" class="img-circle" /></span><div class="chat-body clearfix"><div class="header"><strong class="primary-font">{name}</strong> <small class="pull-right text-muted"><span class="glyphicon glyphicon-time"></span>{time}</small></div><p>{content}</p></div></li>'
+        var entryMe = '<li class="left clearfix"><span class="chat-img pull-right"><img src="/assets/demo/participants/4.jpg" width="64" height="64" alt="User Avatar" class="img-circle" /></span><div class="chat-body clearfix"><div class="header"><strong class="primary-font">{name}</strong> <small class="pull-right text-muted"><span class="glyphicon glyphicon-time"></span>{time}</small></div><p>{content}</p></div></li>'
         entryMe = entryMe.replace('{name}','Super Pavel');
         entryMe = entryMe.replace('{time}','1 mins ago');
         entryMe = entryMe.replace('{content}',txt);
@@ -61,7 +61,7 @@ define([
     },
 
     response: function () {
-        var entryOther = '<li class="left clearfix"><span class="chat-img pull-left"><img src="/assets/demo/participants/1.jpg" alt="User Avatar" class="img-circle" /></span><div class="chat-body clearfix"><div class="header"><strong class="primary-font">{name}</strong> <small class="pull-right text-muted"><span class="glyphicon glyphicon-time"></span>{time}</small></div><p>{content}</p></div></li>'
+        var entryOther = '<li class="left clearfix"><span class="chat-img pull-left"><img src="/assets/demo/participants/1.jpg" width="64" height="64" alt="User Avatar" class="img-circle" /></span><div class="chat-body clearfix"><div class="header"><strong class="primary-font">{name}</strong> <small class="pull-right text-muted"><span class="glyphicon glyphicon-time"></span>{time}</small></div><p>{content}</p></div></li>'
                entryOther = entryOther.replace('{name}','ronaldo7');
                entryOther = entryOther.replace('{time}','1 sec ago');
                entryOther = entryOther.replace('{content}','hello pavel, Great that you join the game.');
@@ -91,7 +91,7 @@ define([
                ' <div class="panel-body">'+
                     '<ul class="chat">'+
                         '<li class="left clearfix"><span class="chat-img pull-left">'+
-                            '<img src="/assets/demo/participants/1.jpg" alt="User Avatar" class="img-circle" />'+
+                            '<img src="/assets/demo/participants/1.jpg" width="64" height="64" alt="User Avatar" class="img-circle" />'+
                       '  </span>'+
                             '<div class="chat-body clearfix">'+
                                 '<div class="header">'+
@@ -102,7 +102,7 @@ define([
                            ' </div>'+
                        ' </li>'+
                         '<li class="right clearfix"><span class="chat-img pull-right">'+
-                           '<img src="/assets/demo/participants/2.jpg" alt="User Avatar" class="img-circle" />'+
+                           '<img src="/assets/demo/participants/2.jpg" width="64" height="64" alt="User Avatar" class="img-circle" />'+
                         '</span>'+
                            ' <div class="chat-body clearfix">'+
                                ' <div class="header">'+
@@ -113,7 +113,7 @@ define([
                            ' </div>'+
                        ' </li>'+
                        ' <li class="left clearfix"><span class="chat-img pull-left">'+
-                          '  <img src="/assets/demo/participants/1.jpg" alt="User Avatar" class="img-circle" />'+
+                          '  <img src="/assets/demo/participants/1.jpg" width="64" height="64" alt="User Avatar" class="img-circle" />'+
                         '</span>'+
                             '<div class="chat-body clearfix">'+
                                ' <div class="header">'+
@@ -124,7 +124,7 @@ define([
                            ' </div>'+
                        ' </li>'+
                        ' <li class="right clearfix"><span class="chat-img pull-right">'+
-                          '  <img src="/assets/demo/participants/3.jpg" alt="User Avatar" class="img-circle" />'+
+                          '  <img src="/assets/demo/participants/3.jpg" width="64" height="64" alt="User Avatar" class="img-circle" />'+
                        ' </span>'+
                            ' <div class="chat-body clearfix">'+
                               '  <div class="header">'+
