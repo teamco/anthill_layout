@@ -40,7 +40,7 @@ define([
             this.addContent([
 		'<div class="container">'+
   '  <div class="row">'+
-       ' <div class="col-md-5">'+
+       ' <div class="col-md-">'+
             '<div class="panel panel-primary">'+
                 '<div class="panel-heading">'+
                    ' <span class="glyphicon glyphicon-comment"></span> Chat</div>'+
