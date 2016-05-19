@@ -68,9 +68,9 @@ define([
                     'Preferred Language'+
                   '</button>'+
                   '<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">'+
-                    '<li><a class="dropdown-item" href="#">English</a></li>'+
-                    '<li><a class="dropdown-item" href="#">Hebrew</a></li>'+
-                    '<li><a class="dropdown-item" href="#">Arabic</a></li>'+
+                    '<li><a class="dropdown-item">English</a></li>'+
+                    '<li><a class="dropdown-item">Hebrew</a></li>'+
+                    '<li><a class="dropdown-item">Arabic</a></li>'+
                   '</ul>'+
                 '</div>'
             );
