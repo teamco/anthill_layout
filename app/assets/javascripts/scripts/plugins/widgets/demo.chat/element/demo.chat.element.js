@@ -51,7 +51,7 @@ define([
                             return;
                         }
                         btn.removeClass('red');
-                        var entryMe = '<li class="left clearfix"><span class="chat-img pull-right"><img src="/assets/demo/participants/4.jpg" width="64" height="64" alt="User Avatar" class="img-circle" /></span><div class="chat-body clearfix"><div class="header"><strong class="primary-font">{name}</strong> <small class="pull-right text-muted"><span class="glyphicon glyphicon-time"></span>{time}</small></div><p>{content}</p></div></li>'
+                        var entryMe = '<li class="left clearfix"><span class="chat-img pull-right"><img src="/assets/demo/participants/4.jpg" width="64" height="64" alt="User Avatar" class="img-circle" /></span><div class="chat-body clearfix"><div class="header"><strong class="primary-font">{name}</strong> <small class="pull-left text-muted"><span class="glyphicon glyphicon-time"></span>{time}</small></div><p>{content}</p></div></li>'
                         entryMe = entryMe.replace('{name}', 'Super Pavel');
                         entryMe = entryMe.replace('{time}', '1 mins ago');
                         entryMe = entryMe.replace('{content}', txt);
