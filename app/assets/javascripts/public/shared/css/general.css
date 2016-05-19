@@ -67,6 +67,7 @@ body:before {
     display: none !important;
 }
 
-.score {
-    font-size: 40px;
+.score .title {
+    font-size: 60px !important;
+    font-family: Tahoma !important;
 }
