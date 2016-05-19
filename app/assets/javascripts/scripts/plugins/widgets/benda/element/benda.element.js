@@ -63,16 +63,16 @@ define([
             }
             
             this.$.addContent(
-                <div class="dropdown">
-                  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Language
-                  </button>
-                  <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                    <a class="dropdown-item" href="#">English</a>
-                    <a class="dropdown-item" href="#">Hebrew</a>
-                    <a class="dropdown-item" href="#">Arabic</a>
-                  </div>
-                </div>
+                '<div class="dropdown">'+
+                  '<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">'+
+                    'Language'+
+                  '</button>'+
+                  '<div class="dropdown-menu" aria-labelledby="dropdownMenu1">'+
+                    '<a class="dropdown-item" href="#">English</a>'+
+                    '<a class="dropdown-item" href="#">Hebrew</a>'+
+                    '<a class="dropdown-item" href="#">Arabic</a>'+
+                  '</div>'+
+                '</div>'
             );
         }
 
