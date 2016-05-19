@@ -76,7 +76,7 @@ define([
                             '<div class="chat-body clearfix">'+
                                ' <div class="header">'+
                                     '<strong class="primary-font">ronaldo7</strong> <small class="pull-right text-muted">'+
-                                    <span class="glyphicon glyphicon-time"></span>16 mins ago</small>'+
+                                    '<span class="glyphicon glyphicon-time"></span>16 mins ago</small>'+
                                ' </div>'+
                               '  <p>Welcome mesi.</p>'+
                            ' </div>'+
