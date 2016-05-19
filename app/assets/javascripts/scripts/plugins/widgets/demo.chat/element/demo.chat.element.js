@@ -60,7 +60,7 @@ define([
                     },
 
                     response: function () {
-                        var entryOther = '<li class="left clearfix"><span class="chat-img pull-left"><img src="/assets/demo/participants/1.jpg" width="64" height="64" alt="User Avatar" class="img-circle" /></span><div class="chat-body clearfix"><div class="header"><strong class="primary-font">{name}</strong> <small class="pull-right text-muted"><span class="glyphicon glyphicon-time"></span>{time}</small></div><p>{content}</p></div></li>'
+                        var entryOther = '<li class="right clearfix"><span class="chat-img pull-left"><img src="/assets/demo/participants/1.jpg" width="64" height="64" alt="User Avatar" class="img-circle" /></span><div class="chat-body clearfix"><div class="header"><strong class="primary-font">{name}</strong> <small class="pull-right text-muted"><span class="glyphicon glyphicon-time"></span>{time}</small></div><p>{content}</p></div></li>'
                         entryOther = entryOther.replace('{name}', 'ronaldo7');
                         entryOther = entryOther.replace('{time}', '1 sec ago');
                         entryOther = entryOther.replace('{content}', 'hello pavel, Great that you join the game.');
