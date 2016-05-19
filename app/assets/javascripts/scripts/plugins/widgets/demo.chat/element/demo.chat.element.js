@@ -67,7 +67,7 @@ define([
                     translate: function () {
                         var ar = ['مرحبا، يرجى الانضمام إلى هذه اللعبة ..','مرحبا ronaldo7. تشرفت بمقابلتك. الانتظار لبدء اللعب','أهلا بك mesi','مرحبا مقابلتك قريبا.','اراك قريبا','سعيد لمقابلتك','مرحبا pavel، العظيم أن تنضم إلى لعبة.','مرحبا','مرحبا'], i;
                         var children = $('.chat').children();
-                        for (var i = 0; i < children.length; i++) {
+                        for (i = 0; i < children.length; i++) {
                             var chatRow = children[i];
                             $(chatRow).find('p').text(ar[i]);
                         }
