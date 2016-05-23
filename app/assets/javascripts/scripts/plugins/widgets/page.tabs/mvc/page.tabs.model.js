@@ -33,12 +33,6 @@ define([
                 disabled: false,
                 value: true,
                 visible: true
-            },
-            pagetabsText: {
-                type: 'text',
-                disabled: false,
-                value: '',
-                visible: true
             }
         };
 
