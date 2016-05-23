@@ -436,7 +436,7 @@ define([
              * Define timeout
              * @type {number}
              */
-            var timeout = 30000;
+            var timeout = 3000;
 
             /**
              * Get publisher uuid
@@ -444,7 +444,7 @@ define([
              */
             var puuid = opts.widgetPublisher.model.getUUID();
 
-            if (this.scope[puuid] * interval > timeout) {
+            if (this.scope[puuid] > timeout) {
 
                 this.scope.logger.warn(
                     'Timeout on loading scope rules',

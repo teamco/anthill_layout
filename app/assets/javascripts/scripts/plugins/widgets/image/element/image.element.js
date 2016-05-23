@@ -90,6 +90,7 @@ define([
                     });
                 }
 
+                this.empty();
                 this.setHtml(this.$img);
 
             } else {

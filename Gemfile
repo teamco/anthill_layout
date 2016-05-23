@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 # case RUBY_PLATFORM
 #   when /darwin|linux/
 
-gem 'rails', '>= 4.2.5'
+gem 'rails', '>= 5.0.0.rc1'
 
 gem 'embedly'
 gem 'bullet'
@@ -66,7 +66,7 @@ group :doc do
 end
 
 group :production do
-  ruby '2.3.0'
+  ruby '2.3.1'
   gem 'rails_12factor'
   gem 'pg'
 end
