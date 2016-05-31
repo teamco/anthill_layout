@@ -10,11 +10,12 @@ class Author::SiteVersionsController < Author::AuthorController
   # GET /author/site_versions
   # GET /author/site_versions.json
   def index
+
     site_storage = current_user.author_site_storages.where(key: params[:site_storage_id]).first
 
     if site_storage.nil?
       versions = SiteVersion.fetch_data(current_user)
-      @partial = {
+      partial = {
           name: 'sites',
           scope: 'sites',
           all_versions: versions,
@@ -27,7 +28,7 @@ class Author::SiteVersionsController < Author::AuthorController
     else
       versions = site_storage.get_versions
       latest = SiteVersion.get_last(site_storage.key)
-      @partial = {
+      partial = {
           name: 'site',
           scope: 'list',
           favorites: [
@@ -41,12 +42,11 @@ class Author::SiteVersionsController < Author::AuthorController
       }
     end
 
-    @partial[:site_types] = {
-      development: SiteType.where(name: 'development'),
-      authorize: SiteType.where(name: 'authorize'),
-      consumption: SiteType.where(name: 'consumption'),
-      test: SiteType.where(name: 'test')
-    }
+    partial[:site_types] = {}
+    @partial = partial
+
+    SiteType.all.order(:name).each { |type| @partial[:site_types][type.name.to_sym] = type.name }
+
   end
 
   # GET /author/site_versions/1

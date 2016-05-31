@@ -34,6 +34,12 @@ define([], function defineComboBoxRenderer() {
          */
         renderCombobox: function renderCombobox(data, selected, name, index, event, visible, disabled, placeholder, store, label) {
 
+            /**
+             * Define element
+             * @type {ComboBoxRenderer}
+             */
+            var element = this;
+
             // Init placeholder
             placeholder = _.isUndefined(placeholder) ? false : placeholder;
 
@@ -46,11 +52,14 @@ define([], function defineComboBoxRenderer() {
             // Init label
             label = _.isUndefined(label) ? false : !!label;
 
+            // Set default event
+            event = event || {};
+
             /**
              * Define active content
              * @type {{name}|Page|WidgetContent}
              */
-            var activeContent = this.view.scope.activeContent;
+            var activeContent = element.view.scope.activeContent;
 
             var $input = $('<input class="hidden' + (store ? ' store' : '') + '" />').attr({
                 name: index,
@@ -64,7 +73,7 @@ define([], function defineComboBoxRenderer() {
              * @type {*|jQuery}
              */
             var style = (activeContent ? [index, activeContent.name].join('') : index).toDash(),
-                id = this.base.lib.generator.UUID() + '-combobox',
+                id = element.base.lib.generator.UUID() + '-combobox',
                 $combo = $([
                     '<ul class="nav"><li role="presentation" class="dropdown">',
                     '<a class="dropdown-toggle', disabled ? ' disabled' : '', '" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">',
@@ -137,7 +146,7 @@ define([], function defineComboBoxRenderer() {
 
                 if (field.type === 'field') {
                     $li.append(
-                        this.renderTextField({
+                        element.renderTextField({
                             name: field.name,
                             text: field.text.trim(),
                             placeholder: field.placeholder,
@@ -156,14 +165,24 @@ define([], function defineComboBoxRenderer() {
 
                 $li.on('click.comboBoxInternal', _store);
 
-                if (!_.isUndefined(event)) {
-                    if (_.isFunction(event.callback)) {
-                        $li.on(event.type, function comboBoxEvent(e) {
+                if (_.isFunction(event.callback)) {
+
+                    $li.on(
+                        event.type,
+
+                        /**
+                         * Define event callback
+                         * @param e
+                         * @private
+                         */
+                        function _comboBoxEvent(e) {
+
+                            // Execute callback with value as parameter
                             event.callback(
                                 $(e.target).parent().attr('rel')
                             );
-                        });
-                    }
+                        }
+                    );
                 }
 
                 $li.attr({
@@ -178,7 +197,7 @@ define([], function defineComboBoxRenderer() {
                 var tooltip = data[i].tooltip;
 
                 if (tooltip) {
-                    this.renderTooltip({
+                    element.renderTooltip({
                         title: field.value,
                         description: tooltip,
                         selector: $li
@@ -190,12 +209,12 @@ define([], function defineComboBoxRenderer() {
 
                 _updatePlaceholder(
                     placeholder ?
-                        this.i18n.t('combobox.placeholder', [name]) :
+                        element.i18n.t('combobox.placeholder', [name]) :
                         $('li:first', $ul).text()
                 );
             }
 
-            var labelPattern = new RegExp(this.view.scope.name.toLowerCase());
+            var labelPattern = new RegExp(element.view.scope.name.toLowerCase());
 
             // Define label
             var $label = $([
@@ -205,7 +224,7 @@ define([], function defineComboBoxRenderer() {
             ].join(''));
 
             if (disabled) {
-                this.disableComboBox($combo);
+                element.disableComboBox($combo);
             }
 
             return label ?

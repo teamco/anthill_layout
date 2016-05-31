@@ -101,7 +101,7 @@ define([
          */
         showPosition: function showPosition() {
             this.scope.observer.publish(
-                this.scope.eventmanager.eventList.setEmbeddedContent
+                this.scope.eventmanager.eventList.analyzeEmbeddedContent
             );
         },
 

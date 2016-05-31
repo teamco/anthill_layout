@@ -87,6 +87,67 @@ define(
                  */
                 renderWizard: function renderWizard(workspace) {
 
+                    /**
+                     * Define element
+                     * @type {WorkspaceDataAddPageElement}
+                     */
+                    var element = this;
+
+                    /**
+                     * Define _selectPageItems
+                     * @param {string} puuid
+                     * @private
+                     */
+                    function _selectPageItems(puuid) {
+
+                        /**
+                         * Fetch page
+                         * @type {Page}
+                         */
+                        var page = workspace.model.getItemByUUID(puuid);
+
+                        // Clean container
+                        $items.empty();
+
+                        if (!page) {
+                            element.view.scope.logger.debug('Empty page selected');
+                            return false;
+                        }
+
+                        var items = page.model.getItems(),
+                            index;
+
+                        var list = [];
+
+                        for (index in items) if (items.hasOwnProperty(index)) {
+                            list.push(
+                                $.extend(
+                                    {uuid: items[index].model.getUUID()},
+                                    items[index].model.getConfig('preferences')
+                                )
+                            );
+                        }
+
+                        $items.append(
+                            element.renderListBox({
+                                name: index,
+                                text: text.trim(),
+                                list: list,
+                                disabled: false,
+                                visible: true,
+                                tooltip: true,
+                                label: true,
+                                multiple: true,
+                                monitor: {
+                                    events: ['select.preview'],
+                                    callback: function _updateSelected() {
+                                        debugger
+                                    }
+                                }
+                            })
+                        );
+                    }
+
                     var $ul = $('<ul />');
 
                     var items = workspace.model.getItems();
@@ -110,6 +171,7 @@ define(
                         };
                     });
 
+                    // Add empty page
                     clonePages.unshift({
                         type: 'text',
                         value: 'Empty page'
@@ -120,7 +182,7 @@ define(
                      * @type {*|jQuery}
                      */
                     var $title = $('<li class="page-title-prefs" />').append(
-                        this.renderTextField({
+                        element.renderTextField({
                             name: 'title',
                             text: 'Page title',
                             placeholder: 'Enter title',
@@ -142,18 +204,22 @@ define(
                      */
                     var $clone = $('<li />').append(
                         $cloneTemplate.append(
-                            this.renderCombobox(
+                            element.renderCombobox(
                                 clonePages,
                                 clonePages[0].value,
                                 text,
-                                'cloneItemContent',
-                                undefined,
+                                'cloneItemContent', {
+                                    type: 'click.selectItems',
+                                    callback: _selectPageItems
+                                },
                                 true
                             )
                         )
                     );
 
-                    return $ul.append([$clone, $title]);
+                    var $items = $('<div class="page-items-prefs" />');
+
+                    return $ul.append([$clone, $title, $items]);
                 }
             },
             PluginElement.prototype

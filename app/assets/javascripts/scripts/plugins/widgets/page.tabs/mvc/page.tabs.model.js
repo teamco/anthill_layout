@@ -33,6 +33,12 @@ define([
                 disabled: false,
                 value: true,
                 visible: true
+            },
+            pagetabsSwipe1: {
+                type: 'text',
+                disabled: false,
+                value: 'Amir',
+                visible: true
             }
         };
 

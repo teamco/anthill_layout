@@ -36,7 +36,7 @@ en:
   sites_published_version: "Published version"
   site_version_activate: "Activate"
   site_version_deactivate: "Deactivate"
-  site_current_version: "Show version as"
+  site_current_version: "Show version"
   site_types: "Site types"
   version: "Version"
   edit: "Edit"

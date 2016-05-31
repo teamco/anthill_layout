@@ -34,7 +34,7 @@ define([
              */
             var event = this.model.getPrefs('imageSplitContent') ?
                 this.eventmanager.eventList.splitEmbeddedContent :
-                this.eventmanager.eventList.setEmbeddedContent;
+                this.eventmanager.eventList.analyzeEmbeddedContent;
 
             this.observer.publish(event);
         },

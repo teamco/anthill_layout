@@ -1,5 +1,5 @@
 /**
- * Created by i061485 on 26/03/2016.
+ * Created by teamco on 26/03/2016.
  */
 define(function defineSiteConfigWidthPreferences(){
 

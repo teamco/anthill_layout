@@ -47,7 +47,7 @@ define([
             this.footer(Footer, this.get$container());
 
             this.scope.observer.publish(
-                this.scope.eventmanager.eventList.setEmbeddedContent
+                this.scope.eventmanager.eventList.analyzeEmbeddedContent
             );
         },
 

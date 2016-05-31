@@ -181,7 +181,7 @@ module WidgetLib
 
       File.open("#{path}", 'w') do |f|
         pattern = @file_name.gsub(/\./, '-')
-        f.write(".widget.#{pattern}{background-image:url('images/#{@file_name}.png');}")
+        f.write(".widget.#{pattern}{background-image:url('/assets/scripts/plugins/stylesheets/images/#{@file_name}.png');}")
       end
 
       puts "--- Create image from Base64: #{@file_name}.png"

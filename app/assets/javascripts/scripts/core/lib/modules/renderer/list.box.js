@@ -30,6 +30,7 @@ define(function defineListBoxRenderer() {
          *      [disabled]: boolean,
          *      [monitor],
          *      [readonly],
+         *      [multiple],
          *      [visible]
          * }} opts
          * @returns {*[]}
@@ -46,12 +47,39 @@ define(function defineListBoxRenderer() {
                 var button = e.target,
                     input = button.parentNode.nextSibling;
 
-                if (input) {
-                    input.value = button.getAttribute('data-resource');
-                }
+                var $button = $(button);
 
-                $('button', button.parentNode).removeClass('btn-info').addClass('btn-default');
-                $(button).removeClass('btn-default').addClass('btn-info')
+                if (input) {
+
+                    if (opts.multiple) {
+
+                        input.value = input.value || '[]';
+
+                        // Fetch value
+                        var value = JSON.parse(input.value),
+                            uuid = button.getAttribute('data-uuid');
+
+                        if ($button.hasClass('btn-info')) {
+
+                            value.splice(value.indexOf(uuid), 1);
+                            $button.removeClass('btn-info').addClass('btn-default');
+
+                        } else {
+
+                            value.push(uuid);
+                            $button.addClass('btn-info');
+                        }
+
+                        input.value = JSON.stringify(value);
+
+                    } else {
+
+                        input.value = button.getAttribute('data-resource');
+
+                        $('button', button.parentNode).removeClass('btn-info').addClass('btn-default');
+                        $button.removeClass('btn-default').addClass('btn-info');
+                    }
+                }
             }
 
             /**
@@ -64,6 +92,9 @@ define(function defineListBoxRenderer() {
                 value: opts.value
             });
 
+            // Define opts.multiple
+            opts.multiple = _.isUndefined(opts.multiple) ? false : !!opts.multiple;
+
             var i = 0, l = opts.list.length,
                 $list = $('<div />'),
                 data, $button;
@@ -73,7 +104,8 @@ define(function defineListBoxRenderer() {
                 $button = $('<button class="widget btn btn-default ' + data.resource.toClassName() + '" />');
                 $button.attr({
                     type: 'button',
-                    'data-resource': data.resource
+                    'data-resource': data.resource,
+                    'data-uuid': data.uuid
                 }).on('click.list', _onClick);
 
                 if (data.tooltip) {

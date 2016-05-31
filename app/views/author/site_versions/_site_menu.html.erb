@@ -20,10 +20,9 @@
         <i class="fa fa-code-fork"></i><%= t('site_current_version') %>
       </a>
       <ul class="dropdown-menu">
-        <li><%= link_to_icon(version_path(item.author_site_storage, @partial[:site_types][:development].name, item.version), @partial[:site_types][:development].name.capitalize, 'glyphicon-globe', '_blank') %></li>
-        <li><%= link_to_icon(version_path(item.author_site_storage, @partial[:site_types][:consumption].name, item.version), @partial[:site_types][:consumption].name.capitalize, 'glyphicon-globe', '_blank') %></li>
-        <li><%= link_to_icon(version_path(item.author_site_storage, @partial[:site_types][:authorize].name, item.version), @partial[:site_types][:authorize].name.capitalize, 'glyphicon-globe', '_blank') %></li>
-        <li><%= link_to_icon(version_path(item.author_site_storage, @partial[:site_types][:test].name, item.version), @partial[:site_types][:test].name.capitalize, 'glyphicon-globe', '_blank') %></li>
+        <% @partial[:site_types].each do |type| %>
+            <li><%= link_to_icon(version_path(item.author_site_storage, type[1], item.version), type[1].capitalize, 'glyphicon-globe', '_blank') %></li>
+        <% end %>
       </ul>
     </li>
     <li><%= link_to_icon(edit_author_site_storage_site_version_path(item.author_site_storage, item), t('edit_site'), 'glyphicon-globe') %></li>

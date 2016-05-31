@@ -242,6 +242,8 @@ class Author::SiteStoragesController < Author::AuthorController
     key = params[:key] || params[:id] || params[:site_storage_id]
     @author_site_storage = SiteStorage.where(key: key).first
 
+    return if @author_site_storage.nil?
+
     versions = @author_site_storage.author_site_versions
     activated = @author_site_storage.get_activated_version
     current = params[:version].nil? ?

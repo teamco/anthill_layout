@@ -387,6 +387,61 @@ define([
             },
 
             /**
+             * Check if Content Mimicry
+             * @memberOf WidgetContentController
+             */
+            isContentMimicry: function isContentMimicry() {
+
+                /**
+                 * Get widget
+                 * @type {Widget}
+                 */
+                var widget = this.getContainment();
+
+                // Fetch subscribe
+                var subscribe = widget.model.getConfig('rules').subscribe || {},
+                    index, inner,
+                    event = this.scope.eventmanager.eventList.setEmbeddedContent;
+
+                for (index in subscribe) {
+
+                    if (subscribe.hasOwnProperty(index)) {
+
+                        for (inner in subscribe[index]) {
+
+                            if (subscribe[index].hasOwnProperty(inner)) {
+
+                                if (subscribe[index][inner].indexOf(event) > -1) {
+
+                                    return index;
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+
+            /**
+             * Define embedded content analyzer
+             * @memberOf WidgetContentController
+             */
+            analyzeEmbeddedContent: function analyzeEmbeddedContent() {
+
+                // Fetch mimicry content
+                var mimicry = this.controller.isContentMimicry();
+
+                if (mimicry) {
+
+                    this.logger.debug('Skip rendering real content, mimicry', mimicry);
+                    return false;
+                }
+
+                this.observer.publish(
+                    this.eventmanager.eventList.setEmbeddedContent
+                );
+            },
+
+            /**
              * Transfer stats
              * @memberOf WidgetContentController
              * @param {string} uuid

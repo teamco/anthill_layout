@@ -393,28 +393,21 @@ define([
                                 return this.controller._registerScopeRule(scope, opts);
                             }
 
-                            /**
-                             * Get publisher uuid
-                             * @type {String}
-                             */
-                            var puuid = widgetPublisher.model.getUUID(),
-                                interval = 100;
+                            // Define content scope
+                            var content = this;
 
-                            this[puuid] = setInterval(
-                                function () {
+                            this.base.waitFor(
+                                function condition() {
+                                    return opts.widgetPublisher.controller.getContent();
+                                },
 
-                                    this.scope.controller._getContentScope(
-                                        this.interval,
-                                        this.opts
-                                    );
+                                function callback() {
+                                    content.controller._getContentScope.bind(content)(opts)
+                                },
 
-                                }.bind({
-                                    scope: this,
-                                    interval: interval,
-                                    opts: opts
-                                }),
-
-                                interval
+                                function fallback() {
+                                    content.logger.warn('Timeout. Unable to register rules');
+                                }
                             );
                         }
                     }
@@ -425,34 +418,11 @@ define([
         /**
          * Get content scope via interval
          * @memberOf WidgetContentControllerRules
-         * @param interval
          * @param opts
          * @returns {boolean}
          * @private
          */
-        _getContentScope: function _getContentScope(interval, opts) {
-
-            /**
-             * Define timeout
-             * @type {number}
-             */
-            var timeout = 3000;
-
-            /**
-             * Get publisher uuid
-             * @type {String}
-             */
-            var puuid = opts.widgetPublisher.model.getUUID();
-
-            if (this.scope[puuid] > timeout) {
-
-                this.scope.logger.warn(
-                    'Timeout on loading scope rules',
-                    opts.widgetPublisher
-                );
-
-                return false;
-            }
+        _getContentScope: function _getContentScope(opts) {
 
             /**
              * Define scope
@@ -460,18 +430,9 @@ define([
              */
             var scope = opts.widgetPublisher.controller.getContent();
 
-            this.scope.logger.debug(
-                'Wait until scope will be available',
-                scope
-            );
+            this.logger.info('Scope available', scope);
 
-            if (scope) {
-
-                this.scope.logger.info('Scope available', scope);
-                clearInterval(this.scope[puuid]);
-
-                this._registerScopeRule(scope, opts);
-            }
+            this.controller._registerScopeRule(scope, opts);
         },
 
         /**

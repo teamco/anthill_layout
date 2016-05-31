@@ -12,9 +12,7 @@ gem 'rake'
 # gem 'keen'
 gem 'will_paginate'
 
-# gem 'websocket-rails'
-# gem 'ruby-readability'
-
+gem 'puma'
 gem 'pismo'
 gem 'iframely'
 gem 'mechanize'
@@ -29,8 +27,8 @@ group :test, :development do
   gem 'meta_request', require: false
   gem 'pry-rails', require: false
   gem 'prmd', require: false
-  gem 'ruby-debug-ide', '>= 0.4.25', require: false
-  gem 'debase', '>= 0.1.3.beta1', require: false
+  gem 'ruby-debug-ide', '>=0.6.1.beta2', require: false
+  gem 'debase', '>=0.2.2.beta7', require: false
   gem 'spring', require: false
   gem 'wirble', require: false
   gem 'capistrano-rails', require: false
@@ -45,10 +43,6 @@ group :test, :development do
   gem 'byebug', require: false
 end
 
-group :debug do
-  # gem 'thin'
-end
-
 gem 'derailed', group: :development
 gem 'stackprof', group: :development
 
@@ -61,43 +55,38 @@ group :console do
 end
 
 group :doc do
-  gem 'jsduck'
+  gem 'jsduck', require: false
   gem 'sdoc', '>= 0.4.0'
 end
 
 group :production do
   ruby '2.3.1'
   gem 'rails_12factor'
-  gem 'pg'
-end
-
-group :test, :production, :development do
-  gem 'puma'
-  gem 'puma_worker_killer'
+  gem 'pg', '>=0.19.0.pre20160409114042'
 end
 
 gem 'rack-attack'
 
 # Use jquery as the JavaScript library
-gem 'jquery-rails', '>= 4.0.0'
+gem 'jquery-rails'
 gem 'rmagick'
 # gem 'font-awesome-less'
 gem 'font-awesome-sass'#, git: 'https://github.com/teamco/font-awesome-sass.git'
 
-gem 'i18n', '>= 0.7.0.beta1'
+gem 'i18n'
 gem 'uuid'
 gem 'tzinfo-data'
 gem 'tzinfo'
 gem 'data_uri'
 
-gem 'sass-rails', '>= 4.0.3'
-gem 'uglifier', '>= 1.3.0'
-gem 'coffee-rails', '>= 4.0.0'
+gem 'sass-rails', '>=6.0.0.beta1'
+gem 'uglifier'
+gem 'coffee-rails'
 
 # gem 'turbolinks'
 gem 'data-confirm-modal', git: 'https://github.com/ifad/data-confirm-modal'
 
-gem 'jbuilder', '>= 2.0'
+gem 'jbuilder'
 gem 'therubyracer'
 
 gem 'gravtastic'
