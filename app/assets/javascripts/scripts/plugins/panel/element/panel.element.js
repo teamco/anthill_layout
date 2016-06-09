@@ -87,12 +87,18 @@ define([
             var $tpl = $('<li class="nav-header" />'),
                 header = this.header;
 
-            if (header && header.visible) {
+            if (header && this.base.defineBoolean(header.visible, true)) {
 
                 $tpl.appendTo(this.$.find('ul:first'));
 
                 this.setLongHeader();
                 this.setShortHeader();
+
+                this.$.removeClass('no-title');
+
+            } else {
+
+                this.$.addClass('no-title');
             }
         },
 

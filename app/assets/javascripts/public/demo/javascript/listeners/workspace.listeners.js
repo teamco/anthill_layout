@@ -178,7 +178,7 @@ define([
                         config: {
                             renderAt: 'right',
                             header: {
-                                visible: true,
+                                visible: false,
                                 title: {
                                     short: 'DT',
                                     long: 'Designtime'
@@ -229,7 +229,7 @@ define([
                         config: {
                             renderAt: 'left',
                             header: {
-                                visible: true,
+                                visible: false,
                                 title: {
                                     short: 'RT',
                                     long: 'Runtime'

@@ -27,5 +27,8 @@ define([
         return this;
     };
 
-    return PanelContentContainerElement.extend('PanelContentContainerElement', {}, PluginElement.prototype);
+    return PanelContentContainerElement.extend(
+        'PanelContentContainerElement', {},
+        PluginElement.prototype
+    );
 });
