@@ -77,3 +77,9 @@
     margin-bottom: 10px;
     clear: both;
 }
+
+.modal.rules .content-rules {
+    max-height: 300px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}

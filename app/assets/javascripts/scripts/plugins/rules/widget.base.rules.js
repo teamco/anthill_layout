@@ -303,7 +303,7 @@ define([
 
             if (render) {
 
-                this.$.append(
+                this.$.find('div.content-rules').append(
                     $('<fieldset />').append([
                         $('<legend />').text(title).on('click.toggle', this.toggleFieldset.bind(this)).attr({
                             title: title
@@ -332,6 +332,8 @@ define([
 
             this.renderWidgetRules(widgetRules);
             this.renderContentRules(contentRules);
+
+            this.$.append('<div class="content-rules" />');
 
             this.renderSubscribeRules(data.subscribe);
         },
@@ -366,7 +368,7 @@ define([
                  */
                 var title = 'Published events';
 
-                $container.append(
+                $container.find('div.content-rules').append(
                     $('<fieldset />').append([
                         $('<legend />').text(title).on('click.toggle', this.toggleFieldset.bind(this)).attr({
                             title: title

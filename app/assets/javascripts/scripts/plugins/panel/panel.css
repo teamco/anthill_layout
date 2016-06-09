@@ -26,6 +26,10 @@
     padding-top: 60px;
 }
 
+.panel-container.no-title .panel-content {
+    padding-top: 0;
+}
+
 .panel-container.panel-right {
     right: 0;
     border-left-width: 1px;
@@ -209,6 +213,10 @@
 
 .panel-container.navbar-default .panel-content .content-container {
     margin-top: 205px;
+}
+
+.panel-container.navbar-default.no-title .panel-content .content-container {
+    margin-top: 145px;
 }
 
 .panel-container.navbar-default .panel-content .content-container:first-child {

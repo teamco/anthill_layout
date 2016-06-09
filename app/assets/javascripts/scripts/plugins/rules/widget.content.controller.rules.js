@@ -390,25 +390,28 @@ define([
                             scope = widgetPublisher.controller.getContent();
 
                             if (this.base.isDefined(scope)) {
-                                return this.controller._registerScopeRule(scope, opts);
+
+                                this.controller._registerScopeRule(scope, opts);
+                                
+                            } else {
+
+                                // Define content scope
+                                var content = this;
+
+                                this.base.waitFor(
+                                    function condition() {
+                                        return opts.widgetPublisher.controller.getContent();
+                                    },
+
+                                    function callback() {
+                                        content.controller._getContentScope.bind(content)(opts)
+                                    },
+
+                                    function fallback() {
+                                        content.logger.warn('Timeout. Unable to register rules');
+                                    }
+                                );
                             }
-
-                            // Define content scope
-                            var content = this;
-
-                            this.base.waitFor(
-                                function condition() {
-                                    return opts.widgetPublisher.controller.getContent();
-                                },
-
-                                function callback() {
-                                    content.controller._getContentScope.bind(content)(opts)
-                                },
-
-                                function fallback() {
-                                    content.logger.warn('Timeout. Unable to register rules');
-                                }
-                            );
                         }
                     }
                 }
