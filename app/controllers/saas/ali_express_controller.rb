@@ -1,4 +1,4 @@
-require 'digest/hmac'
+require 'openssl'
 require "#{Rails.root}/lib/saas/aliexpress_coupons.rb"
 
 # http://gw.api.alibaba.com/dev/tools/api_test_intl.html?ns=aliexpress.open&n=api.getOnlineLogisticsInfo&v=1
@@ -45,6 +45,7 @@ class Saas::AliExpressController < ApplicationController
   private
 
   def _aop_signature(app_secret, *args)
-    Digest::HMAC.hexdigest(args.sort.flatten.join.to_s, app_secret.to_s, Digest::SHA1).upcase
+    digest  = OpenSSL::Digest::Digest.new('sha1')
+    OpenSSL::HMAC.hexdigest(digest, app_secret.to_s, args.sort.flatten.join.to_s).upcase
   end
 end

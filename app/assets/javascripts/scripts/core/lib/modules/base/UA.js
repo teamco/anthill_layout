@@ -120,6 +120,41 @@ define(function defineLibString() {
             }
 
             return zoom;
+        },
+
+        /**
+         * Define full screen
+         * @memberOf LibUserAgent
+         * @param fullScreen
+         * @param el
+         */
+        fullScreen: function fullScreen(fullScreen, el) {
+
+            // Define mode
+            var mode = fullScreen ? 'Request' : 'Cancel';
+            var modeMs = fullScreen ? 'Request' : 'exit';
+
+            // Supports most browsers and their versions.
+            var requestMethod = el[mode.toLowerCase() + 'FullScreen'] ||
+                el['webkit' + mode + 'FullScreen'] ||
+                el['moz' + mode + 'FullScreen'] ||
+                el[modeMs + 'Fullscreen'];
+
+            if (requestMethod) {
+
+                // cancel full screen.
+                requestMethod.call(el);
+
+            } else if (typeof window.ActiveXObject !== "undefined") { // Older IE.
+
+                /**
+                 * Define wscript
+                 * @type {ActiveXObject}
+                 */
+                var wscript = new ActiveXObject("WScript.Shell");
+
+                if (wscript) wscript.SendKeys("{F11}");
+            }
         }
     });
 

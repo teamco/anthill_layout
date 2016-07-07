@@ -19,11 +19,11 @@ test:
   database: anthill_test
 
 production:
-#  <<: *default
-#  database: anthill_development
+  <<: *default
+  database: anthill_development
 #heroku:
-  adapter: postgresql
-  encoding: unicode
-  database: ENV['DATABASE_URL']
-  username: ENV['DATABASE_USERNAME']
-  password: ENV['DATABASE_PASSWORDs']
+#  adapter: postgresql
+#  encoding: unicode
+#  database: ENV['DATABASE_URL']
+#  username: ENV['DATABASE_USERNAME']
+#  password: ENV['DATABASE_PASSWORDs']

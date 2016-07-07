@@ -96,6 +96,9 @@ define([
             this.eventmanager.eventList.initWidget,
             opts
         );
+
+        // Update metamorphic containment
+        this.containment.model.setConfig('metamorphic', true);
     };
 
     return Metamorphic.extend('Metamorphic', {}, AntHill.prototype);

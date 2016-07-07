@@ -41,6 +41,7 @@ define([
          *      preferences: {[overlapping]: boolean},
          *      rules: {},
          *      limit: boolean,
+         *      metamorphic: boolean,
          *      order: number,
          *      html: {header: boolean, footer: boolean, frameLess: boolean, style: string, zIndex: number},
          *      type: string,
@@ -57,6 +58,7 @@ define([
             preferences: opts.preferences || {},
             rules: opts.rules || {},
             limit: false,
+            metamorphic: false,
             order: 1,
             html: {
                 header: false,
