@@ -1,15 +1,12 @@
 == README
 
 1. Install <b>rvm</b>: <em>https://rvm.io/</em>
-2. Install latest ruby version:
-   - via <b>rvm</b>: <em>rvm install 2.1.2</em>
-   - or as a <b>global ruby</b>: <em>https://www.ruby-lang.org/en/downloads/</em>
-3. Install <b>rails</b>: <em>gem install rails</em>
-   - for <b>windows</b> install <b>sqlite</b>: <em>http://www.sqlite.org/2014/sqlite-dll-win32-x86-3080500.zip</em>
-   - extract <b>dll</b> to <b>ruby/bin</b> directory (should be in <b>PATH</b>)
-4. Update <b>bundler</b>: <em>bundle install</em>
-5. Update <b>db</b>: <em>rake db:migrate</em>
-6. Run <b>server</b>: <em>rails s thin</em>
-7. Open in <b>browser</b>: <em>http://127.0.0.1:3000/sites</em>
+2. Install latest ruby version
+4. Install <b>MySql</b>
+5. Update <b>bundler</b>: <em>bundle install</em>
+6. Update <b>db</b>: <em>rake setup:init</em>
+7. Update <b>db</b>: <em>rake setup:load</em>
+8. Run <b>server</b>: <em>rails s</em>
+9. Open in <b>browser</b>: <em>http://127.0.0.1:3000/sites</em>
 
 madge --image core.png --format amd --exclude 'lib/packages/tinymce|lib/jquery|lib/require|lib/lz-string|lib/modernizr|lib/packages|lib/modules/base/|lib/extends/' app/assets/javascripts/scripts/core
