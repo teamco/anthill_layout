@@ -2,7 +2,7 @@
  * Created by teamco on 3/19/14.
  */
 
-define(['jquery'], function defineBasePreferencesElement($) {
+define(function defineBasePreferencesElement() {
 
     /**
      * Define BasePreferencesElement

@@ -2,9 +2,7 @@
  * Created by teamco on 7/10/14.
  */
 
-define([
-    'jquery'
-], function defineRangeRenderer($) {
+define(function defineRangeRenderer($) {
 
     /**
      * Define RangeRenderer

@@ -6,9 +6,8 @@
  */
 
 define([
-    'jquery',
     'plugins/plugin.element'
-], function defineCoubElement($, PluginElement) {
+], function defineCoubElement(PluginElement) {
 
     /**
      * Define Coub Element

@@ -6,9 +6,8 @@
  */
 
 define([
-    'jquery',
     'modules/Element'
-], function defineButtonElement($, BaseElement) {
+], function defineButtonElement(BaseElement) {
 
     /**
      * Define Button Element

@@ -51,9 +51,8 @@ define([
         renderEmbeddedContent: function renderEmbeddedContent(opts) {
 
             require([
-                'jquery',
                 'http://openlayers.org/api/OpenLayers.js'
-            ], function defineOpenLayers(jQuery) {
+            ], function defineOpenLayers() {
 
                 require([
                     'http://openweathermap.org/js/OWM.OpenLayers.1.3.4.js'

@@ -7,13 +7,12 @@
  */
 
 define([
-    'jquery',
     'config/anthill',
     'element/modal.element',
     'element/header.element',
     'element/footer.element',
     'element/filter.element'
-], function defineBaseView($, AntHill, ModalElement, Header, Footer, Filter) {
+], function defineBaseView(AntHill, ModalElement, Header, Footer, Filter) {
 
     /**
      * Define base view

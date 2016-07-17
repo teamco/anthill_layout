@@ -7,9 +7,8 @@
  */
 
 define([
-    'jquery',
     'modules/Element'
-], function defineExportElement($, BaseElement) {
+], function defineExportElement(BaseElement) {
 
     /**
      * Define Application export element

@@ -6,9 +6,8 @@
  */
 
 define([
-    'jquery',
     'plugins/plugin.element'
-], function defineEventsElement($, PluginElement) {
+], function defineEventsElement(PluginElement) {
 
     /**
      * Define Events Element

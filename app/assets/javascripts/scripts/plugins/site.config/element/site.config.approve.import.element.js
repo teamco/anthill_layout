@@ -3,9 +3,8 @@
  */
 
 define([
-    'jquery',
     'plugins/plugin.element'
-], function defineSiteConfigApproveImportElement($, PluginElement) {
+], function defineSiteConfigApproveImportElement(PluginElement) {
 
     /**
      * Define SiteConfigApproveImportElement
