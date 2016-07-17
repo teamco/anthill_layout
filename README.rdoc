@@ -2,10 +2,11 @@
 
 1. Install <b>rvm</b>: <em>https://rvm.io/</em>
 2. Install latest ruby version
-4. Install <b>MySql</b>
-5. Update <b>bundler</b>: <em>bundle install</em>
-6. Update <b>db</b>: <em>rake setup:init</em>
-7. Update <b>db</b>: <em>rake setup:load</em>
+3. Install <b>MySql</b>
+4. Update <b>bundler</b>: <em>bundle install</em>
+5. Update <b>db</b>: <em>rake db:migrate</em>
+6. Init models <b>db</b>: <em>rake setup:init</em>
+7. Load default content <b>db</b>: <em>rake setup:load</em>
 8. Run <b>server</b>: <em>rails s</em>
 9. Open in <b>browser</b>: <em>http://127.0.0.1:3000/sites</em>
 
