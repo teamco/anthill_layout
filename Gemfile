@@ -79,7 +79,6 @@ gem 'tzinfo-data'
 gem 'tzinfo'
 gem 'data_uri'
 
-gem 'sass-rails'
 gem 'uglifier'
 gem 'coffee-rails'
 
@@ -106,5 +105,8 @@ gem 'omniauth-github'
 gem 'omniauth-bitbucket'
 gem 'omniauth-aliexpress', git: 'https://github.com/pinglamb/omniauth-aliexpress'
 
+gem 'koala'
+gem 'sprockets'
+gem 'sass-rails'
 # gem 'cancan'
 

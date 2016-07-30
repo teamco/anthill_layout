@@ -55,7 +55,9 @@ class Author::WidgetsController < Author::AuthorController
   def all
     @partial = {
         name: 'all_widgets',
-        collection: @json_data[:site_widgets]
+        title: t('widget_management'),
+        collection: @json_data[:site_widgets],
+        all: @json_data[:widgets_all].length
     }
 
     render :index
