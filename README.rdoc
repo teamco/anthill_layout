@@ -18,8 +18,8 @@ madge -i core.png -f amd -x 'lib/packages/tinymce|lib/jquery*|lib/require|lib/lz
 2. brew install libxml2 libxslt
 3. brew install libiconv
 
-env ARCHFLAGS="-arch x86_64" gem install nokogiri -- --use-system-libraries  -- --with-xml2-include=/usr/local/Cellar/libxml2/2.9.4/include/libxml2 --with-xml2-lib=/usr/local/Cellar/libxml2/2.9.4/lib --with-xslt-lib=/usr/local/lib --with-xslt-include=/usr/local/include --with-iconv-dir=/usr/local/Cellar/libiconv/1.14
+env ARCHFLAGS="-arch x86_64" gem install <b>nokogiri</b> -- --use-system-libraries  -- --with-xml2-include=/usr/local/Cellar/libxml2/2.9.4/include/libxml2 --with-xml2-lib=/usr/local/Cellar/libxml2/2.9.4/lib --with-xslt-lib=/usr/local/lib --with-xslt-include=/usr/local/include --with-iconv-dir=/usr/local/Cellar/libiconv/1.14
 Building native extensions with: '--use-system-libraries -- --with-xml2-include=/usr/local/Cellar/libxml2/2.9.4/include/libxml2 --with-xml2-lib=/usr/local/Cellar/libxml2/2.9.4/lib --with-xslt-lib=/usr/local/lib --with-xslt-include=/usr/local/include --with-iconv-dir=/usr/local/Cellar/libiconv/1.14'
 
-env ARCHFLAGS="-arch x86_64" gem install nokogumbo -- --use-system-libraries  -- --with-xml2-include=/usr/local/Cellar/libxml2/2.9.4/include/libxml2 --with-xml2-lib=/usr/local/Cellar/libxml2/2.9.4/lib --with-xslt-lib=/usr/local/lib --with-xslt-include=/usr/local/include --with-iconv-dir=/usr/local/Cellar/libiconv/1.14
+env ARCHFLAGS="-arch x86_64" gem install <b>nokogumbo</b> -- --use-system-libraries  -- --with-xml2-include=/usr/local/Cellar/libxml2/2.9.4/include/libxml2 --with-xml2-lib=/usr/local/Cellar/libxml2/2.9.4/lib --with-xslt-lib=/usr/local/lib --with-xslt-include=/usr/local/include --with-iconv-dir=/usr/local/Cellar/libiconv/1.14
 Building native extensions with: '--use-system-libraries -- --with-xml2-include=/usr/local/Cellar/libxml2/2.9.4/include/libxml2 --with-xml2-lib=/usr/local/Cellar/libxml2/2.9.4/lib --with-xslt-lib=/usr/local/lib --with-xslt-include=/usr/local/include --with-iconv-dir=/usr/local/Cellar/libiconv/1.14'
