@@ -2,7 +2,7 @@ default: &default
   adapter: mysql2
   pool: 5
   username: root
-  password:
+  password: 09051972
   socket: /tmp/mysql.sock
   host: 127.0.0.1
   port: 3306
