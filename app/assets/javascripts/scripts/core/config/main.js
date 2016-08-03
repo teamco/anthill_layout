@@ -43,7 +43,7 @@ requirejs.config({
         jquery: 'lib/jquery/jquery-2.2.4.min',
         'jquery.ujs': 'lib/jquery/jquery_ujs',
         'jquery.timeago': 'lib/jquery/jquery.timeago',
-        'jquery.ui': 'lib/jquery/jquery-ui-1.12.0-rc.2.min',
+        'jquery.ui': 'lib/jquery/jquery-ui.min',
         'jquery.resizestop': 'lib/jquery/jquery.resizestop',
         'jquery.zoomooz': 'lib/jquery/jquery.zoomooz.min',
 
