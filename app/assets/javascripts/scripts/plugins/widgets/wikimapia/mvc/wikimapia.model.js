@@ -27,7 +27,7 @@ define([
         this.preferences = {
             wikimapiaEmbedCode: {
                 type: 'textarea',
-                disabled: true,
+                disabled: false,
                 value: '<iframe src="http://wikimapia.org/#lat=32.081229&lon=34.814043&z=15&l=&ifr=1&m=b" width="390" height="390" frameborder="0"></iframe>',
                 visible: true
             }
