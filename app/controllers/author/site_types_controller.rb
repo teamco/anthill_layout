@@ -33,6 +33,7 @@ class Author::SiteTypesController < Author::AuthorController
   # POST /author/site_types.json
   def create
     @author_site_type = current_user.author_site_types.build(author_site_type_params)
+    @author_site_type[:item_id] = Author::Item.create_and_get.id
 
     respond_to do |format|
       if @author_site_type.save
@@ -51,6 +52,7 @@ class Author::SiteTypesController < Author::AuthorController
     author_site_type_params[:user_id] = current_user.id
     respond_to do |format|
       if @author_site_type.update(author_site_type_params)
+        @author_site_type.author_item.touch
         format.html { redirect_to author_site_types_path, notice: 'Site type was successfully updated.' }
         format.json { render :show, status: :ok, location: @author_site_type }
       else

@@ -33,7 +33,7 @@ class Author::WidgetCategoriesController < Author::AuthorController
   # POST /author/widget_categories.json
   def create
     @author_widget_category = current_user.author_widget_categories.build(author_widget_category_params)
-
+    @author_widget_category[:item_id] = Author::Item.create_and_get.id
     respond_to do |format|
       if @author_widget_category.save
         format.html { redirect_to author_widget_categories_path, notice: 'Widget category was successfully created.' }
@@ -51,6 +51,7 @@ class Author::WidgetCategoriesController < Author::AuthorController
     author_widget_category_params[:user_id] = current_user.id
     respond_to do |format|
       if @author_widget_category.update(author_widget_category_params)
+        @author_widget_category.author_item.touch
         format.html { redirect_to author_widget_categories_path, notice: 'Widget category was successfully updated.' }
         format.json { render :show, status: :ok, location: @author_widget_category }
       else

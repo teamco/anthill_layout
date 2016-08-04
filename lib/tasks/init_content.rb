@@ -52,6 +52,7 @@ module WidgetLib
           social: 'Social network',
           template: 'Template content',
           tv: 'Live TV',
+          weather: 'Weather',
           xxx: 'Adult'
       }
 
