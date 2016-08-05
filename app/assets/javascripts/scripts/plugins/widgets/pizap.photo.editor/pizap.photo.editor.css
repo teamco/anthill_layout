@@ -1,0 +1,6 @@
+.widget .content .pizap-photo-editor,
+.widget .content .pizap-photo-editor img {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
