@@ -289,7 +289,6 @@ GEM
     parser (2.3.1.2)
       ast (~> 2.2)
     path_expander (1.0.0)
-    pg (0.19.0.pre20160904200247)
     pismo (0.7.4)
       awesome_print
       chronic
@@ -506,7 +505,6 @@ DEPENDENCIES
   omniauth-linkedin-oauth2
   omniauth-twitter
   omniauth-weibo-oauth2
-  pg (>= 0.19.0.pre20160409114042)
   pismo
   prmd
   pry-rails

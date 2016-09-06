@@ -19,7 +19,7 @@ gem 'mechanize'
 gem 'informant-rails'
 
 group :development do
-  gem 'mysql2' #, '~> 0.3.20'
+  gem 'pg', '>=0.19.0.pre20160409114042'
 end
 
 group :test, :development do
@@ -62,7 +62,6 @@ end
 group :production do
   ruby '2.3.1'
   gem 'rails_12factor'
-  gem 'pg', '>=0.19.0.pre20160409114042'
 end
 
 gem 'rack-attack'
