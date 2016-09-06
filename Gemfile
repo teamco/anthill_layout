@@ -17,10 +17,7 @@ gem 'pismo'
 gem 'iframely'
 gem 'mechanize'
 gem 'informant-rails'
-
-group :development do
-  gem 'pg', '>=0.19.0.pre20160409114042'
-end
+gem 'pg', '>=0.19.0.pre20160409114042'
 
 group :test, :development do
   gem 'xilence', require: false
