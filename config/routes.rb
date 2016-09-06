@@ -81,6 +81,7 @@ Rails.application.routes.draw do
   put '/sites/activate/:key/:version', to: 'author/site_versions#activate'
   put '/sites/:key/:id/publish', to: 'author/site_versions#publish', as: 'publish'
 
+
   get '/author', to: 'author/author#index'
 
   get '/embedly', to: 'public/embedly#show'

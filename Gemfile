@@ -109,4 +109,3 @@ gem 'koala'
 gem 'sprockets'
 gem 'sass-rails'
 # gem 'cancan'
-

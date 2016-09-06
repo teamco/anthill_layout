@@ -53,6 +53,9 @@ class Author::SiteStoragesController < Author::AuthorController
       end if @storage[:mode] == 'consumption'
 
     end unless @author_site_storage.nil?
+
+    logger.info "@author_site_storage #{@author_site_storage.inspect}"
+    logger.info "@storage #{@storage.inspect}"
   end
 
   # GET /author/site_storages/new
@@ -158,7 +161,7 @@ class Author::SiteStoragesController < Author::AuthorController
 
     if version.nil?
       puts t('undefined_version')
-      version = @author_site_storage.author_site_versions.last
+      version = @author_site_storage.get_last_version
     end
 
     version.deactivate unless version.is_current?(activated)
@@ -186,7 +189,7 @@ class Author::SiteStoragesController < Author::AuthorController
   end
 
   def update_handler(version)
-    current_version = version || @author_site_storage.author_site_versions.last
+    current_version = version || @author_site_storage.get_last_version
     update_widget_connections unless request.xhr?
     update_version_activation(current_version) if @author_site_storage.update(author_site_storage_params)
   end

@@ -7,6 +7,7 @@ define(function defineSiteConfigCleanup() {
      * Define SiteConfig Cleanup
      * @class SiteConfigCleanup
      * @extends BaseController
+     * @extends Routes
      * @constructor
      */
     var SiteConfigCleanup = function SiteConfigCleanup() {
@@ -32,13 +33,30 @@ define(function defineSiteConfigCleanup() {
                 scope.controller.root(),
                 function _afterUpdateStorageCallback() {
 
-                    scope.controller.approveActivate(
-                        function _reloadSite() {
+                    // Reload without cache
+                    // document.location.reload(true);
 
-                            // Reload without cache
-                            document.location.reload(true);
-                        }
-                    );
+                    /**
+                     * Get root
+                     * @type {Application}
+                     */
+                    var root = scope.controller.root();
+
+                    // Store current location
+                    var currentLocation = window.location.href;
+
+                    var regExp = new RegExp([
+                        ('[' + root.config.appName),
+                        (root.controller.getMode()),
+                        '](\\d+)'
+                    ].join('/'));
+
+                    if (!(regExp && currentLocation.match(regExp))) {
+                        scope.logger.warn('Unable to fetch latest version');
+                        return false;
+                    }
+
+                    window.location.href = currentLocation.replace(regExp, '/' + root.model.getConfig('version'));
                 }
             );
         },
