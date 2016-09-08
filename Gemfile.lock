@@ -65,7 +65,7 @@ GEM
       thread_safe (~> 0.3, >= 0.3.1)
     bcrypt (3.1.11)
     benchmark-ips (2.7.2)
-    brakeman (3.3.5)
+    brakeman (3.4.0)
     builder (3.2.2)
     bullet (5.3.0)
       activesupport (>= 3.0.0)
@@ -405,7 +405,7 @@ GEM
       rdoc (~> 4.0)
     sexp_processor (4.7.0)
     slop (3.6.0)
-    spoon (0.0.4)
+    spoon (0.0.6)
       ffi
     spring (1.7.2)
     sprockets (3.7.0)
@@ -437,7 +437,7 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.2)
-    unicode-display_width (1.1.0)
+    unicode-display_width (1.1.1)
     uniform_notifier (1.10.0)
     uuid (2.3.8)
       macaddr (~> 1.0)

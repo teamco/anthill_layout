@@ -1,5 +1,4 @@
-<% item_info = (defined? item_info).nil? ? 0 : item_info %>
-<div class="small-box <%= item_info > 0 ? item_box : 'bg-gray' %>">
+<div class="small-box <%= item_info.to_i > 0 ? item_box : 'bg-gray' %>">
   <div class="inner">
     <h3><%= item_info %></h3>
     <p><%= item_title %></p>

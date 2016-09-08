@@ -34,6 +34,11 @@ class Author::SiteStorage < ActiveRecord::Base
   has_and_belongs_to_many :users,
                           class_name: 'User'
 
+  scope :of_user, -> (user, visible=true, public=true) {
+    joins(:author_item).
+        where('visible=? AND (public=? OR user_id=?)', visible, public, user.id)
+  }
+
   accepts_nested_attributes_for :author_site_storage_widgets, allow_destroy: true
   accepts_nested_attributes_for :author_site_versions, allow_destroy: true
   accepts_nested_attributes_for :author_item, allow_destroy: true
@@ -59,14 +64,14 @@ class Author::SiteStorage < ActiveRecord::Base
     }
   end
 
-  def self.fetch_data(user)
-    joins(:author_item).
-        where('visible=true AND (public=true OR user_id=?)', user.id).
-        order(:key)
+  def self.fetch_data(user, visible=true, public=true)
+    of_user(user, visible, public).order(:key)
   end
 
   def get_versions
-    author_site_versions.joins(:author_item).includes(:user, :author_site_storage).order('author_items.created_at DESC')
+    author_site_versions.joins(:author_item).
+        includes(:user, :author_site_storage).
+        order('author_items.created_at DESC')
   end
 
   def get_last_version
@@ -103,7 +108,7 @@ class Author::SiteStorage < ActiveRecord::Base
     site
   end
 
-  def build_new_version(content, activate, screenshot=nil)
+  def build_new_version(content, activate, screenshot=nil, public=false, visible=true)
 
     versions = self.author_site_versions
     site_version = {
@@ -114,7 +119,7 @@ class Author::SiteStorage < ActiveRecord::Base
     }
 
     version = versions.build(site_version)
-    version.build_author_item(public: false, visible: true, user_id: User.current.id)
+    version.build_author_item(public: public, visible: visible, user_id: User.current.id)
 
     version
   end

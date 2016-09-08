@@ -10,19 +10,22 @@ class Author::SiteType < ActiveRecord::Base
 
   has_one :user, through: :author_item
 
+  scope :of_user, -> (user, visible=true, public=true) {
+    joins(:author_item).
+        where('visible=? AND (public=? OR user_id=?)', visible, public, user.id)
+  }
+
   validates :name, presence: true
 
   self.select(:name).each do |type|
     define_method("is_#{type.name}?".to_sym) { |mode| mode == type.name }
   end
 
-  def self.fetch_data(user)
-    joins(:author_item).
-        where('visible=true AND (public=true OR user_id=?)', user.id).
-        order(:name)
+  def self.fetch_data(user, visible=true, public=true)
+    of_user(user, visible, public).order(:name)
   end
 
-  def get_sites(user)
-    author_site_storages.where('visible=? AND (public=? OR user_id=?)', true, true, user.id)
+  def get_sites(user, visible=true, public=true)
+    author_site_storages.of_user(user, visible, public)
   end
 end

@@ -10,11 +10,15 @@ class Author::SiteVersion < ActiveRecord::Base
 
   has_one :user, through: :author_item
 
-  def self.fetch_data(user)
+  scope :of_user, -> (user, visible=true, public=true) {
     joins(:author_item).
+        where('visible=? AND (public=? OR user_id=?)', visible, public, user.id)
+  }
+
+  def self.fetch_data(user, visible=true, public=true)
+    of_user(user, visible, public).
         includes(:author_site_storage).
-        where('visible=true AND (public=true OR user_id=?)', user.id).
-        order('author_items.updated_at DESC')
+        order('site_storage_id AND author_items.updated_at DESC')
   end
 
   def is_current?(activated)

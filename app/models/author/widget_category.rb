@@ -13,10 +13,13 @@ class Author::WidgetCategory < ActiveRecord::Base
   validates :name_index, presence: true
   validates :name_value, presence: true
 
-  def self.fetch_data(user)
+  scope :of_user, -> (user, visible=true, public=true) {
     joins(:author_item).
-        where('visible=true AND (public=true OR user_id=?)', user.id).
-        order(:name_value)
+        where('visible=? AND (public=? OR user_id=?)', visible, public, user.id)
+  }
+
+  def self.fetch_data(user, visible=true, public=true)
+    of_user(user, visible, public).order(:name_value)
   end
 
 end

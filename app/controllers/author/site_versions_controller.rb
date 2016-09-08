@@ -11,36 +11,26 @@ class Author::SiteVersionsController < Author::AuthorController
   # GET /author/site_versions.json
   def index
 
-    site_storage = current_user.author_site_storages.where(key: params[:site_storage_id]).first
+    site_storage = current_user.author_site_storages.
+        where(key: params[:site_storage_id]).
+        first unless params[:site_storage_id].nil? || nil
 
-    if site_storage.nil?
-      versions = SiteVersion.fetch_data(current_user)
-      partial = {
-          name: 'sites',
-          scope: 'sites',
-          all_versions: versions,
-          collection: versions.group(:site_storage_id).map do |v|
-            version = v.author_site_storage.get_activated_version
-            version = v if version.nil?
-            version
-          end
-      }
-    else
-      versions = site_storage.get_versions
-      latest = SiteVersion.get_last(site_storage.key)
-      partial = {
-          name: 'site',
-          scope: 'list',
-          favorites: [
-              SiteVersion.get_published(site_storage.key),
-              SiteVersion.get_activated(site_storage.key),
-              latest
-          ],
-          latest: latest,
-          all_versions: versions,
-          collection: [versions.paginate(page: params[:page], per_page: 15)]
-      }
-    end
+    redirect_back fallback_location: root_path if site_storage.nil?
+
+    versions = site_storage.get_versions
+    latest = SiteVersion.get_last(site_storage.key)
+    partial = {
+        name: 'site',
+        scope: 'list',
+        favorites: [
+            SiteVersion.get_published(site_storage.key),
+            SiteVersion.get_activated(site_storage.key),
+            latest
+        ],
+        latest: latest,
+        all_versions: versions,
+        collection: [versions.paginate(page: params[:page], per_page: 15)]
+    }
 
     partial[:site_types] = {}
     @partial = partial
