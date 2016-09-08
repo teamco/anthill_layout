@@ -9,6 +9,10 @@ body.mini-navbar .logo-element {
   line-height: 60px;
 }
 
+.nav-second-level li, .nav-third-level li {
+  white-space: nowrap;
+}
+
 .user-menu > .dropdown-menu {
   margin: 0;
   border-radius: 0;
