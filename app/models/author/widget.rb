@@ -39,14 +39,6 @@ class Author::Widget < ActiveRecord::Base
         where('author_widget_categories.id=?', category.id)
   end
 
-  def fetch_categories(user)
-    Author::WidgetCategory.fetch_data(user)
-  end
-
-  def self.fetch_category(user, category_id)
-    Author::WidgetCategory.fetch_data(user).find(category_id)
-  end
-
   def self.fetch_site_widgets(key, visible=true, public=true)
     user = User.current
     return fetch_data(user) if key.nil?
@@ -63,7 +55,7 @@ class Author::Widget < ActiveRecord::Base
     site.author_widgets.
         of_user(user, visible, public).
         joins(:author_widget_category).
-        where('widget_category_id=?', category.id)
+        where(widget_category_id: category.id)
   end
 
   def self.build_data(params, category)

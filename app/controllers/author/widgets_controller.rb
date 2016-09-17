@@ -243,13 +243,16 @@ class Author::WidgetsController < Author::AuthorController
 
   def fetch_widgets_data
 
-    @category = Widget.fetch_category(current_user, params[:widget_category_id]) unless params[:widget_category_id].nil?
+    @categories = WidgetCategory.fetch_data(current_user)
 
     @json_data ||= {
         user: current_user,
         categories: [],
         widgets: [],
-        widgets_all: Widget.fetch_data(current_user, @category),
+        widgets_all: Widget.fetch_data(
+            current_user,
+            @categories.where(id: params[:widget_category_id]).first
+        ),
         site_widgets: [],
         site_storage: SiteStorage.find_by_key(params[:site_storage_id])
     }
@@ -260,7 +263,7 @@ class Author::WidgetsController < Author::AuthorController
 
     unless @author_widgets.blank?
 
-      @json_data[:categories] = @author_widgets.first.fetch_categories(current_user)
+      @json_data[:categories] = @categories
 
       @json_data[:widgets] = @author_widgets.includes(:author_widget_category).map do |w|
         {
