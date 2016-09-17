@@ -131,6 +131,13 @@ module Author::AuthorHelper
     end unless opts[:collection].nil?
   end
 
+  def render_select_field(f, name, opts)
+    content_tag(:div, class: 'input-group') do
+      concat f.label opts[:id], name, class: 'input-group-addon text-left'
+      concat f.select(opts[:id], opts[:collection], opts[:html] || {}, {class: 'form-control'})
+    end unless opts[:collection].nil?
+  end
+
   def render_submit(f)
     f.submit nil, {class: 'btn btn-warning'}
   end

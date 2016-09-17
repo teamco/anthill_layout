@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160425190104) do
+ActiveRecord::Schema.define(version: 20160917192027) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 20160425190104) do
     t.string  "key"
     t.integer "site_type_id"
     t.integer "item_id"
+    t.integer "layout_type",  default: 0
   end
 
   create_table "author_site_storages_users", id: false, force: :cascade do |t|

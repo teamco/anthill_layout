@@ -87,3 +87,5 @@ en:
   options: "Options"
   readability_false: "Unable to recognize URL"
   search: "Search"
+  layout_type: "Layout"
+  type: "Type"

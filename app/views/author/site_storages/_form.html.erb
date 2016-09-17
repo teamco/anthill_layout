@@ -7,12 +7,17 @@
 
     <%= render 'author/author/item', f: f -%>
 
-    <%= render_collection_field(f, 'Type', {
+    <%= render_collection_field(f, t('type'), {
         id: :site_type_id,
         collection: types,
         index: :id,
         value: :name
     }) -%>
+
+    <%= render_select_field(f, t('layout_type'), {
+        id: :layout_type,
+        collection: Author::SiteStorage.layout_types.keys
+    })%>
 
     <%= render_activated_version(f) -%>
     <%= render 'author/site_storages/widgets/select_widgets' unless is_action?('new') %>

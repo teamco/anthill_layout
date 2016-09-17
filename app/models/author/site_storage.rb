@@ -34,6 +34,8 @@ class Author::SiteStorage < ActiveRecord::Base
   has_and_belongs_to_many :users,
                           class_name: 'User'
 
+  enum layout_type: [:js, :template]
+
   scope :of_user, -> (user, visible=true, public=true) {
     joins(:author_item).
         where('visible=? AND (public=? OR user_id=?)', visible, public, user.id)
