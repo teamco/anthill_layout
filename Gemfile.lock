@@ -54,9 +54,9 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
     addressable (2.4.0)
-    airbrussh (1.1.0)
+    airbrussh (1.1.1)
       sshkit (>= 1.6.1, != 1.7.0)
-    arel (7.1.1)
+    arel (7.1.2)
     ast (2.3.0)
     awesome_print (1.7.0)
     axiom-types (0.1.1)
@@ -67,7 +67,7 @@ GEM
     benchmark-ips (2.7.2)
     brakeman (3.4.0)
     builder (3.2.2)
-    bullet (5.3.0)
+    bullet (5.4.0)
       activesupport (>= 3.0.0)
       uniform_notifier (~> 1.10.0)
     byebug (9.0.5)
@@ -82,7 +82,7 @@ GEM
       capistrano (~> 3.1)
       sshkit (~> 1.2)
     capistrano-harrow (0.5.3)
-    capistrano-rails (1.1.7)
+    capistrano-rails (1.1.8)
       capistrano (~> 3.1)
       capistrano-bundler (~> 1.1)
     chronic (0.10.2)
@@ -106,7 +106,7 @@ GEM
     data_uri (0.1.0)
     debase (0.2.2.beta8)
       debase-ruby_core_source
-    debase-ruby_core_source (0.9.1)
+    debase-ruby_core_source (0.9.2)
     debug_inspector (0.0.2)
     derailed (0.1.0)
       derailed_benchmarks
@@ -143,7 +143,7 @@ GEM
       multipart-post (>= 1.2, < 3)
     fast-stemmer (1.0.2)
     ffi (1.9.14)
-    flay (2.8.0)
+    flay (2.8.1)
       erubis (~> 2.7.0)
       path_expander (~> 1.0)
       ruby_parser (~> 3.0)
@@ -158,7 +158,7 @@ GEM
     globalid (0.3.7)
       activesupport (>= 4.1.0)
     gravtastic (3.2.6)
-    hashie (3.4.4)
+    hashie (3.4.6)
     heapy (0.1.2)
     hirb (0.7.3)
     http-cookie (1.0.2)
@@ -168,7 +168,7 @@ GEM
     iframely (0.1.0)
       faraday
       hashie
-    informant-rails (0.9.1)
+    informant-rails (1.0.0)
       rails (>= 3.0.0)
     interactive_editor (0.0.10)
       spoon (>= 0.0.1)
@@ -187,7 +187,7 @@ GEM
       rkelly-remix (~> 0.0.4)
     json (1.8.3)
     json_schema (0.13.3)
-    jwt (1.5.4)
+    jwt (1.5.6)
     koala (2.4.0)
       addressable
       faraday
@@ -297,7 +297,7 @@ GEM
       sanitize
     pkg-config (1.1.7)
     powerpack (0.1.1)
-    prmd (0.11.11)
+    prmd (0.12.0)
       erubis (~> 2.7)
       json_schema (~> 0.3, >= 0.3.1)
     pry (0.10.4)
@@ -307,6 +307,9 @@ GEM
     pry-rails (0.3.4)
       pry (>= 0.9.10)
     puma (3.6.0)
+    puma_worker_killer (0.0.6)
+      get_process_mem (~> 0.2)
+      puma (>= 2.7, < 4)
     querystring (0.1.0)
     rack (2.0.1)
     rack-attack (5.0.1)
@@ -354,11 +357,11 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     rainbow (2.1.0)
-    rake (11.2.2)
+    rake (11.3.0)
     rdiscount (2.1.8)
     rdoc (4.2.2)
       json (~> 1.4)
-    reek (4.1.0)
+    reek (4.4.1)
       codeclimate-engine-rb (~> 0.3.1)
       parser (~> 2.3.1, >= 2.3.1.2)
       rainbow (~> 2.0)
@@ -369,7 +372,7 @@ GEM
       railties (>= 4.2.0, < 5.1)
     rkelly-remix (0.0.7)
     rmagick (2.16.0)
-    rubocop (0.42.0)
+    rubocop (0.43.0)
       parser (>= 2.3.1.1, < 3.0)
       powerpack (~> 0.1)
       rainbow (>= 1.99.1, < 3.0)
@@ -380,16 +383,16 @@ GEM
     ruby-progressbar (1.8.1)
     ruby_parser (3.8.2)
       sexp_processor (~> 4.1)
-    rubycritic (2.9.3)
+    rubycritic (2.9.4)
       colorize
-      flay (= 2.8.0)
-      flog (= 4.4.0)
+      flay (~> 2.8)
+      flog (~> 4.4)
       launchy (= 2.4.3)
       parser (= 2.3.1.2)
-      reek (= 4.1.0)
+      reek (~> 4.4)
       ruby_parser (~> 3.8)
       virtus (~> 1.0)
-    sanitize (4.2.0)
+    sanitize (4.3.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.4.4)
       nokogumbo (~> 1.4.1)
@@ -415,7 +418,7 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
-    sshkit (1.11.2)
+    sshkit (1.11.3)
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
     stackprof (0.2.9)
@@ -457,7 +460,7 @@ GEM
     websocket-driver (0.6.4)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.2)
-    will_paginate (3.1.0)
+    will_paginate (3.1.1)
     wirble (0.1.3)
     xilence (2.0.5)
       rails (>= 3.2)
@@ -509,6 +512,7 @@ DEPENDENCIES
   prmd
   pry-rails
   puma
+  puma_worker_killer
   rack-attack
   rails (>= 5.0.0)
   rails-console-tweaks
@@ -537,7 +541,7 @@ DEPENDENCIES
   xilence
 
 RUBY VERSION
-   ruby 2.3.0p0
+   ruby 2.3.1p112
 
 BUNDLED WITH
-   1.12.5
+   1.13.1

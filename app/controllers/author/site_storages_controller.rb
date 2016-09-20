@@ -21,41 +21,45 @@ class Author::SiteStoragesController < Author::AuthorController
   def show
 
     @storage = {}
+    @storage[:layout] = :template
 
-    if File.exist?(@target_path)
-      @storage = @author_site_storage.get_storage_data
+    if @author_site_storage.js?
 
-      args = params[:mode].nil? ?
-          {id: params[:site_type_id]} :
-          {name: params[:mode]}
+      if File.exist?(@target_path)
+        @storage = @author_site_storage.get_storage_data unless @author_site_storage.nil?
 
-      @storage[:mode] = 'development'
+        args = params[:mode].nil? ?
+            {id: params[:site_type_id]} :
+            {name: params[:mode]}
 
-      mode = SiteType.where(args)
-      @storage[:mode] = mode.first.name unless mode.nil?
+        @storage[:mode] = :development
 
-      current = @versions[:current]
-      current = @versions[:last] if current.nil?
+        mode = SiteType.where(args)
+        @storage[:mode] = mode.first.name unless mode.nil?
 
-      @storage[:activated] = current.activated
-      @storage[:show] = current.version
-      @storage[:version] = @versions[:last].version
-      @storage[:content] = current.content
-      @storage[:published] = current.published
+        current = @versions[:current]
+        current = @versions[:last] if current.nil?
 
-      if @versions[:published].nil?
-        @storage[:content] = nil
-      else
-        @storage[:activated] = @versions[:published].activated
-        @storage[:show] = @versions[:published].version
-        @storage[:content] = @versions[:published].content
-        @storage[:published] = @versions[:published].published
-      end if @storage[:mode] == 'consumption'
+        @storage[:activated] = current.activated
+        @storage[:show] = current.version
+        @storage[:version] = @versions[:last].version
+        @storage[:content] = current.content
+        @storage[:published] = current.published
+        @storage[:layout] = :js
 
-    end unless @author_site_storage.nil?
+        if @versions[:published].nil?
+          @storage[:content] = nil
+        else
+          @storage[:activated] = @versions[:published].activated
+          @storage[:show] = @versions[:published].version
+          @storage[:content] = @versions[:published].content
+          @storage[:published] = @versions[:published].published
+        end if @storage[:mode] == :consumption
 
-    logger.info "@author_site_storage #{@author_site_storage.inspect}"
-    logger.info "@storage #{@storage.inspect}"
+      end
+
+    end
+
   end
 
   # GET /author/site_storages/new
@@ -269,6 +273,7 @@ class Author::SiteStoragesController < Author::AuthorController
         :key,
         :site_type_id,
         :public,
+        :layout_type,
         :content,
         :activated_version,
         author_item_attributes: [

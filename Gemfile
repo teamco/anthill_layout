@@ -105,3 +105,5 @@ gem 'koala'
 gem 'sprockets'
 gem 'sass-rails'
 # gem 'cancan'
+
+gem 'puma_worker_killer'
