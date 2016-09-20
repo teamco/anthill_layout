@@ -82,7 +82,7 @@ class Author::SiteStoragesController < Author::AuthorController
     @author_site_storage = SiteStorage.build_data(author_site_storage_params)
 
     target = get_target_url(@author_site_storage.key)
-    FileUtils.cp_r "#{Rails.root}/lib/tasks/site/default", target
+    FileUtils.cp_r "#{Rails.root}/lib/tasks/site/default_js", target
 
     respond_to do |format|
       if File.exist?(target)
@@ -91,11 +91,11 @@ class Author::SiteStoragesController < Author::AuthorController
           format.json { render :index, status: :created, location: @author_site_storage }
         else
           FileUtils.rm_r(target)
-          format.html { render :form }
+          format.html { redirect_to author_site_storages_path, notice: :error }
           format.json { render json: @author_site_storage.errors, status: :unprocessable_entity }
         end
       else
-        format.html { render :form }
+        format.html { redirect_to author_site_storages_path, notice: :error }
         format.json { render json: @author_site_storage.errors, status: :not_found }
       end
     end
@@ -119,7 +119,7 @@ class Author::SiteStoragesController < Author::AuthorController
 
     respond_to do |format|
       if @activated.nil?
-        format.html { render :form }
+        format.html { redirect_to author_site_storages_path, notice: :error }
         format.json { render json: @author_site_storage.errors, status: :unprocessable_entity }
       else
         notice = t('success_update')
