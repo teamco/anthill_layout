@@ -21,40 +21,38 @@ class Author::SiteStoragesController < Author::AuthorController
   def show
 
     @storage = {}
-    @storage[:layout] = :template
 
+    if File.exist?(@target_path)
+      @storage = @author_site_storage.get_storage_data unless @author_site_storage.nil?
 
-      if File.exist?(@target_path)
-        @storage = @author_site_storage.get_storage_data unless @author_site_storage.nil?
+      args = params[:mode].nil? ?
+          {id: params[:site_type_id]} :
+          {name: params[:mode]}
 
-        args = params[:mode].nil? ?
-            {id: params[:site_type_id]} :
-            {name: params[:mode]}
-
-        @storage[:mode] = :development
+      @storage[:mode] = :development
         
-        mode = SiteType.where(args)
-        @storage[:mode] = mode.first.name unless mode.nil?
+      mode = SiteType.where(args)
+      @storage[:mode] = mode.first.name unless mode.nil?
 
-        current = @versions[:current]
-        current = @versions[:last] if current.nil?
+      current = @versions[:current]
+      current = @versions[:last] if current.nil?
 
-        @storage[:activated] = current.activated
-        @storage[:show] = current.version
-        @storage[:version] = @versions[:last].version
-        @storage[:content] = current.content
-        @storage[:published] = current.published
+      @storage[:activated] = current.activated
+      @storage[:show] = current.version
+      @storage[:version] = @versions[:last].version
+      @storage[:content] = current.content
+      @storage[:published] = current.published
 
-        if @versions[:published].nil?
-          @storage[:content] = nil
-        else
-          @storage[:activated] = @versions[:published].activated
-          @storage[:show] = @versions[:published].version
-          @storage[:content] = @versions[:published].content
-          @storage[:published] = @versions[:published].published
-        end if @storage[:mode] == :consumption
+      if @versions[:published].nil?
+        @storage[:content] = nil
+      else
+        @storage[:activated] = @versions[:published].activated
+        @storage[:show] = @versions[:published].version
+        @storage[:content] = @versions[:published].content
+        @storage[:published] = @versions[:published].published
+      end if @storage[:mode] == :consumption
 
-      end
+    end
 
   end
 
