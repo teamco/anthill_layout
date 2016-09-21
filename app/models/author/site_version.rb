@@ -17,7 +17,7 @@ class Author::SiteVersion < ActiveRecord::Base
 
   def self.fetch_data(user, visible=true, public=true)
     of_user(user, visible, public).
-        #includes(:author_site_storage).
+        includes(:author_site_storage).
         order('site_storage_id AND author_items.updated_at DESC')
   end
 

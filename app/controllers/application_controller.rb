@@ -19,10 +19,8 @@ class ApplicationController < ActionController::Base
   end
 
   def handle_error(e, status, template)
-    puts ">>> Error: #{e.inspect}"
-    logger.info ">>> Error: #{e.inspect}"
     super if self.methods.include? 'super'
-    unless request.domain == 'localhost'
+    unless is_localhost?
       log = ErrorLog.handle_error(current_user, e, @user_log)
       redirect_to error_log_path(log) and return
     end
@@ -43,11 +41,7 @@ class ApplicationController < ActionController::Base
   end
 
   def layout_by_resource
-    if devise_controller?
-      'author'
-    else
-      'application'
-    end
+    devise_controller? ? 'author' : 'application'
   end
 
   private
@@ -63,7 +57,11 @@ class ApplicationController < ActionController::Base
         controller_name,
         action_name,
         current_user
-    ) unless request.domain == 'localhost'
+    ) unless is_localhost?
+  end
+
+  def is_localhost?
+    request.domain == 'localhost'
   end
 
 end

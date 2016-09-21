@@ -2,12 +2,12 @@
   <div class="panel-heading">
     <h3 class="panel-title">
       <%= controller_name.singularize.humanize %>
-      <span class="badge"><%= @error_log.id %></span>
+      <span class="badge"><%= @error_log.id unless @error_log.nil? %></span>
     </h3>
   </div>
   <table id="<%= controller_name %>" class="table">
     <%= error_log_th %>
-    <%= error_log_td(@error_log) %>
-    <%= error_log_trace(@error_log) %>
+    <%= error_log_td(@error_log) unless @error_log.nil? %>
+    <%= error_log_trace(@error_log) unless @error_log.nil? %>
   </table>
 </div>

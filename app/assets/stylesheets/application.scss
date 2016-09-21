@@ -408,6 +408,12 @@ body.mini-navbar .logo-element {
   margin-bottom: 2px;
 }
 
+.admin-dashboard .backtrace > div {
+  max-height: 500px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
 .admin-dashboard form img {
   margin: 10px 0 20px;
   width: 300px;
