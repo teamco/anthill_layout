@@ -53,7 +53,7 @@ class Author::SiteStoragesController < Author::AuthorController
       end if @storage[:mode] == :consumption
 
     end
-
+logger.info ">>>>>>>>>>>>>>>>>>>>>>>> #{@storage.inspect}"
   end
 
   # GET /author/site_storages/new
