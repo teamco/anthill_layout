@@ -33,7 +33,8 @@ class Author::SiteStoragesController < Author::AuthorController
             {name: params[:mode]}
 
         @storage[:mode] = :development
-
+        @storage[:layout] = :js
+        
         mode = SiteType.where(args)
         @storage[:mode] = mode.first.name unless mode.nil?
 
@@ -45,7 +46,6 @@ class Author::SiteStoragesController < Author::AuthorController
         @storage[:version] = @versions[:last].version
         @storage[:content] = current.content
         @storage[:published] = current.published
-        @storage[:layout] = :js
 
         if @versions[:published].nil?
           @storage[:content] = nil
