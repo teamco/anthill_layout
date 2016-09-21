@@ -1,3 +1,6 @@
+<%= @storage.inspect %>
+<%= @storage[:layout] == 'js' %>
+<%= @storage[:layout] == 'template' %>
 <% if @storage[:layout] == 'js' %>
     <% if @storage[:version].nil? %>
         <p class="undefined-site"><%= t('undefined_version') %></p>
