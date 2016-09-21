@@ -23,7 +23,6 @@ class Author::SiteStoragesController < Author::AuthorController
     @storage = {}
     @storage[:layout] = :template
 
-    if @author_site_storage.js?
 
       if File.exist?(@target_path)
         @storage = @author_site_storage.get_storage_data unless @author_site_storage.nil?
@@ -33,7 +32,6 @@ class Author::SiteStoragesController < Author::AuthorController
             {name: params[:mode]}
 
         @storage[:mode] = :development
-        @storage[:layout] = :js
         
         mode = SiteType.where(args)
         @storage[:mode] = mode.first.name unless mode.nil?
@@ -57,10 +55,6 @@ class Author::SiteStoragesController < Author::AuthorController
         end if @storage[:mode] == :consumption
 
       end
-
-    end
-    
-    render text: logger.info @storage.inspect
 
   end
 
