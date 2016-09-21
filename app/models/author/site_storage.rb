@@ -63,6 +63,7 @@ class Author::SiteStorage < ActiveRecord::Base
         mode: author_site_type.name,
         uuid: uuid,
         published: get_published_version,
+        layout: layout_type
     }
   end
 
