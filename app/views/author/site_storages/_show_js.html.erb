@@ -1,9 +1,6 @@
-<% key = storage[:key] %>
-<%= stylesheet_link_tag 'general', media: 'all' %>
-<%= stylesheet_link_tag("public/#{key}/css/general") %>
 <%= javascript_include_tag(
         'scripts/core/lib/require',
-        'data-resource': key,
+        'data-resource': storage[:key],
         'data-user': current_user.nil? ? 'guest' : current_user.email,
         'data-current': storage[:show],
         'data-published': storage[:published],
@@ -22,7 +19,7 @@
 
 <%= javascript_tag defer: 'defer', id: 'preload' do -%>
     (function(){
-    window.localStorage['<%= key %>'] = '<%= storage[:content] %>';
+    window.localStorage['<%= storage[:key] %>'] = '<%= storage[:content] %>';
     var script = document.getElementById('preload');
     script.parentNode.removeChild(script);
     })();
