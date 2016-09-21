@@ -43,4 +43,8 @@ module Author::SiteStoragesHelper
     pv = published(item)
     av == pv && (av != '?' || pv != '?')
   end
+
+  def render_as(layout=:js, collection, user)
+    render "show_#{layout.to_s}", storage: collection, current_user: user
+  end
 end
