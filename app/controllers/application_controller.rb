@@ -25,6 +25,7 @@ class ApplicationController < ActionController::Base
     unless request.domain == 'localhost'
       log = ErrorLog.handle_error(current_user, e, @user_log)
       redirect_to error_log_path(log)
+      return
     end
   end
 
