@@ -4,10 +4,12 @@
     <% elsif @storage[:content].nil? && is_consumption?(@storage[:mode]) %>
         <p class="undefined-site"><%= t('not_published') %></p>
     <% else %>
+    <%='here js'%>
         <%= render_as :js, @storage, current_user %>
     <% end %>
 <% end %>
 
 <% if @storage[:layout] == 'template' %>
+<%='here tmpl'%>
     <%= render_as :template, @storage, current_user %>
 <% end %>
