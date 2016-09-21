@@ -15,7 +15,7 @@ class Author::SiteVersionsController < Author::AuthorController
         where(key: params[:site_storage_id]).
         first unless params[:site_storage_id].nil? || nil
 
-    redirect_back fallback_location: root_path if site_storage.nil?
+    redirect_back fallback_location: root_path and return if site_storage.nil?
 
     versions = site_storage.get_versions
     latest = SiteVersion.get_last(site_storage.key)
