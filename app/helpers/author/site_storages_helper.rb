@@ -44,9 +44,9 @@ module Author::SiteStoragesHelper
     av == pv && (av != '?' || pv != '?')
   end
 
-  def render_as(layout=:js, collection, user)
-    stylesheet_link_tag 'general', media: 'all' if layout == :js
+  def render_as(layout='js', collection, user)
+    stylesheet_link_tag 'general', media: 'all' if layout == 'js'
     stylesheet_link_tag("public/#{collection[:key]}/css/general")
-    render "show_#{layout.to_s}", storage: collection, current_user: user
+    render "show_#{layout}", storage: collection, current_user: user
   end
 end
