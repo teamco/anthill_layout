@@ -259,7 +259,7 @@ class Author::WidgetsController < Author::AuthorController
 
     @author_widgets = @json_data[:site_storage].nil? ?
         @json_data[:widgets_all] :
-        @json_data[:site_storage].author_widgets
+        @json_data[:site_storage].author_widgets.includes(:author_site_storage_widgets)
 
     unless @author_widgets.blank?
 
