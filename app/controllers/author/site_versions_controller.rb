@@ -12,12 +12,8 @@ class Author::SiteVersionsController < Author::AuthorController
   def index
 
     site_storage = nil
-    site_storage = current_user.author_site_storages.
-        where(key: params[:site_storage_id]).
-        first unless params[:site_storage_id].nil?
-
-    site_storage = SiteStorage.includes(:author_item).
-        where(key: params[:site_storage_id], 'author_items.public': true) if site_storage.nil?
+    site_storage = SiteStorage.fetch_data(current_user).
+        where(key: params[:site_storage_id]).first unless params[:site_storage_id].nil?
 
     redirect_back fallback_location: root_path and return if site_storage.nil?
 
