@@ -64,7 +64,8 @@ class Author::SiteVersion < ActiveRecord::Base
   private
 
   def self.get_storage_versions(site_key)
-    User.current.author_site_storages.where(key: site_key).
+    Author::SiteStorage.fetch_data(User.current).
+        where(key: site_key).
         includes(:author_item).
         first.author_site_versions
   end
