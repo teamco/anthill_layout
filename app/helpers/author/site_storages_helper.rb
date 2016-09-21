@@ -45,6 +45,7 @@ module Author::SiteStoragesHelper
   end
 
   def render_as(layout='js', collection, user)
+        "<div>#{layout}: #{collection.inspect}</div>".html_safe
     stylesheet_link_tag 'general', media: 'all' if layout == 'js'
     stylesheet_link_tag("public/#{collection[:key]}/css/general")
     render "show_#{layout}", storage: collection, current_user: user
