@@ -59,6 +59,8 @@ class Author::SiteStoragesController < Author::AuthorController
       end
 
     end
+    
+    render text: logger.info @storage.inspect
 
   end
 
