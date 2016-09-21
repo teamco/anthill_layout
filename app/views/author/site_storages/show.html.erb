@@ -1,3 +1,4 @@
+<%= logger.info @storage.inspect %>
 <% if @storage[:layout] == :js %>
     <% if @storage[:version].nil? %>
         <p class="undefined-site"><%= t('undefined_version') %></p>
@@ -7,6 +8,5 @@
         <%= render 'show_js', storage: @storage, current_user: current_user %>
     <% end %>
 <% else %>
-<%= logger.info @storage.inspect %>
     <%= render 'show_template', storage: @storage, current_user: current_user %>
 <% end %>
