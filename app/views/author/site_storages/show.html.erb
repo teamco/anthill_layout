@@ -1,4 +1,4 @@
-<%='im here'%>
+<%=@storage[:layout]%>
 <% if @storage[:layout] == 'js' %>
     <% if @storage[:version].nil? %>
         <p class="undefined-site"><%= t('undefined_version') %></p>
@@ -6,11 +6,11 @@
         <p class="undefined-site"><%= t('not_published') %></p>
     <% else %>
     <%='here js'%>
-        <%= render_as :js, @storage, current_user %>
+        <%= render_as @storage[:layout], @storage, current_user %>
     <% end %>
 <% end %>
 
 <% if @storage[:layout] == 'template' %>
 <%='here tmpl'%>
-    <%= render_as :template, @storage, current_user %>
+    <%= render_as @storage[:layout], @storage, current_user %>
 <% end %>
