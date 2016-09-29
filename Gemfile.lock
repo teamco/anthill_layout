@@ -272,7 +272,7 @@ GEM
     parser (2.3.1.2)
       ast (~> 2.2)
     path_expander (1.0.0)
-    pg (0.19.0.pre20160904200247)
+    pg (0.19.0)
     pismo (0.7.4)
       awesome_print
       chronic
@@ -345,7 +345,7 @@ GEM
     rdiscount (2.1.8)
     rdoc (4.2.2)
       json (~> 1.4)
-    reek (4.4.1)
+    reek (4.4.2)
       codeclimate-engine-rb (~> 0.3.1)
       parser (~> 2.3.1, >= 2.3.1.2)
       rainbow (~> 2.0)
