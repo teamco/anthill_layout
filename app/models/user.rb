@@ -30,7 +30,8 @@ class User < ActiveRecord::Base
 
   has_many :author_widgets,
            class_name: 'Author::Widget',
-           dependent: :destroy
+           dependent: :destroy,
+           through: :author_item
 
   has_many :author_site_versions,
            class_name: 'Author::SiteVersion',

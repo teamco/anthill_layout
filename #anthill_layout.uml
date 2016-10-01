@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>RailsDependency</ID>
+  <OriginalElement>#anthill_layout</OriginalElement>
+  <nodes>
+    <node x="1816.5" y="114.0">Author::WidgetCategory</node>
+    <node x="0.0" y="384.17768817204296">Author::Item</node>
+    <node x="1251.0" y="115.17768817204296">Author::Widget</node>
+    <node x="451.0" y="573.5570276497697">Author::SiteType</node>
+    <node x="1877.5" y="0.0">Role</node>
+    <node x="1791.0" y="419.17768817204296">Author::SiteStorageWidget</node>
+    <node x="1311.0" y="689.0570276497696">Author::SiteVersion</node>
+    <node x="0.0" y="1055.0475806451611">Ability</node>
+    <node x="771.0" y="346.54758064516125">Author::SiteStorage</node>
+    <node x="3806.0" y="500.16417050691246">ErrorLog</node>
+    <node x="2182.0" y="219.0475806451612">User</node>
+    <node x="3080.0" y="430.04758064516113">UserLog</node>
+    <node x="1345.5" y="518.177688172043">VulnerabilityStorage</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="Author::WidgetCategory" target="Author::Widget">
+      <point x="-130.0" y="-0.0" />
+      <point x="1791.0" y="195.0" />
+      <point x="230.0" y="-143.25" />
+    </edge>
+    <edge source="Author::Item" target="Author::WidgetCategory">
+      <point x="185.5" y="-73.60000000000002" />
+      <point x="451.0" y="104.67768817204296" />
+      <point x="1711.0" y="104.67768817204296" />
+      <point x="1791.0" y="141.0" />
+      <point x="-130.0" y="-54.0" />
+    </edge>
+    <edge source="UserLog" target="ErrorLog">
+      <point x="323.0" y="-0.0" />
+      <point x="-115.5" y="46.0" />
+    </edge>
+    <edge source="Author::Item" target="Author::SiteStorage">
+      <point x="185.5" y="-0.0" />
+      <point x="451.0" y="425.54758064516125" />
+      <point x="-200.0" y="-79.0" />
+    </edge>
+    <edge source="Role" target="User">
+      <point x="69.0" y="-0.0" />
+      <point x="2102.0" y="37.0" />
+      <point x="-409.0" y="-286.2857142857141" />
+    </edge>
+    <edge source="Author::Item" target="Author::SiteType">
+      <point x="185.5" y="36.799999999999955" />
+      <point x="-120.0" y="-0.0" />
+    </edge>
+    <edge source="Author::Item" target="Author::SiteVersion">
+      <point x="185.5" y="73.60000000000002" />
+      <point x="451.0" y="876.5570276497696" />
+      <point x="-170.0" y="62.5" />
+    </edge>
+    <edge source="Author::Item" target="Author::Widget">
+      <point x="185.5" y="-36.80000000000001" />
+      <point x="451.0" y="181.45833333333337" />
+      <point x="1171.0" y="181.45833333333337" />
+      <point x="-230.0" y="-127.33333333333331" />
+    </edge>
+    <edge source="Author::SiteVersion" target="User">
+      <point x="170.0" y="-0.0" />
+      <point x="2102.0" y="814.0570276497696" />
+      <point x="-409.0" y="286.2857142857142" />
+    </edge>
+    <edge source="Author::Widget" target="Author::WidgetCategory">
+      <point x="230.0" y="-47.75" />
+      <point x="1791.0" y="249.0" />
+      <point x="-130.0" y="54.0" />
+    </edge>
+    <edge source="ErrorLog" target="User">
+      <point x="-115.5" y="-46.0" />
+      <point x="3726.0" y="419.5475806451612" />
+      <point x="3080.0" y="419.5475806451612" />
+      <point x="409.0" y="-167.0" />
+    </edge>
+    <edge source="Author::SiteType" target="Author::SiteStorage">
+      <point x="120.0" y="-35.0" />
+      <point x="-200.0" y="79.0" />
+    </edge>
+    <edge source="Author::SiteStorage" target="VulnerabilityStorage">
+      <point x="200.0" y="-0.0" />
+      <point x="1251.0" y="555.177688172043" />
+      <point x="-135.5" y="-0.0" />
+    </edge>
+    <edge source="Author::SiteType" target="User">
+      <point x="120.0" y="35.0" />
+      <point x="2102.0" y="678.5570276497697" />
+      <point x="-409.0" y="190.8571428571429" />
+    </edge>
+    <edge source="Author::SiteStorage" target="Author::SiteStorageWidget">
+      <point x="200.0" y="-45.14285714285717" />
+      <point x="1251.0" y="507.67768817204296" />
+      <point x="-155.5" y="29.5" />
+    </edge>
+    <edge source="User" target="UserLog">
+      <point x="409.0" y="167.0" />
+      <point x="-323.0" y="-0.0" />
+    </edge>
+    <edge source="Author::WidgetCategory" target="User">
+      <point x="130.0" y="-0.0" />
+      <point x="2102.0" y="195.0" />
+      <point x="-409.0" y="-190.85714285714266" />
+    </edge>
+    <edge source="Author::Widget" target="Author::SiteStorage">
+      <point x="-230.0" y="-0.0" />
+      <point x="200.0" y="-135.42857142857144" />
+    </edge>
+    <edge source="Author::Widget" target="User">
+      <point x="230.0" y="47.75" />
+      <point x="1791.0" y="319.19043778801836" />
+      <point x="2102.0" y="319.19043778801836" />
+      <point x="-409.0" y="-95.42857142857127" />
+    </edge>
+    <edge source="Author::SiteStorage" target="User">
+      <point x="200.0" y="90.28571428571422" />
+      <point x="1251.0" y="647.875" />
+      <point x="-409.0" y="95.42857142857156" />
+    </edge>
+    <edge source="Author::SiteStorage" target="Author::SiteVersion">
+      <point x="200.0" y="135.42857142857144" />
+      <point x="1251.0" y="751.5570276497696" />
+      <point x="-170.0" y="-62.5" />
+    </edge>
+    <edge source="Author::SiteStorage" target="Author::Widget">
+      <point x="200.0" y="-90.28571428571433" />
+      <point x="-230.0" y="127.33333333333331" />
+    </edge>
+    <edge source="Author::Widget" target="Author::SiteStorageWidget">
+      <point x="230.0" y="143.25" />
+      <point x="-155.5" y="-29.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.5134582203598718" x="2018.5" y="542.5000000000001" />
+  <SelectedNodes>
+    <node>VulnerabilityStorage</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Association fields</Category>
+    <Category>Migration fields</Category>
+  </Categories>
+</Diagram>
+
