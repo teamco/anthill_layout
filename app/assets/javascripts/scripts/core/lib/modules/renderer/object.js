@@ -116,12 +116,12 @@ define([], function defineObjectRenderer() {
 
             $.extend(params, opts);
 
-            return $([
+            return [
                 _exportAttributes(attributes),
                 _exportParams(params),
                 data.embed.prop('outerHTML'),
                 '</object>'
-            ].join(''));
+            ].join('');
         }
     });
 });
