@@ -8,22 +8,22 @@
 
 define([
     'plugins/widgets/widget.content.event.manager'
-], function defineEmotionEventManager(WidgetContentEventManager) {
+], function defineTutByEventManager(WidgetContentEventManager) {
 
     /**
-     * Define Emotion event manager
-     * @class EmotionEventManager
+     * Define TutBy event manager
+     * @class TutByEventManager
      * @constructor
      * @extends BaseEvent
      * @extends WidgetContentEventManager
      */
-    var EmotionEventManager = function EmotionEventManager() {
+    var TutByEventManager = function TutByEventManager() {
 
         this.updateEventList({});
     };
 
-    return EmotionEventManager.extend(
-        'EmotionEventManager', {},
+    return TutByEventManager.extend(
+        'TutByEventManager', {},
         WidgetContentEventManager.prototype
     );
 });

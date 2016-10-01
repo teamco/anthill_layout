@@ -8,32 +8,32 @@
 define([
     'config/anthill',
     'modules/MVC',
-    'plugins/widgets/emotion/mvc/emotion.controller',
-    'plugins/widgets/emotion/mvc/emotion.model',
-    'plugins/widgets/emotion/mvc/emotion.view',
-    'plugins/widgets/emotion/mvc/emotion.event.manager',
-    'plugins/widgets/emotion/mvc/emotion.permission'
-], function defineEmotion(AntHill, MVC, Controller, Model, View, EventManager, Permission) {
+    'plugins/widgets/sportbox.ru/mvc/sportbox.ru.controller',
+    'plugins/widgets/sportbox.ru/mvc/sportbox.ru.model',
+    'plugins/widgets/sportbox.ru/mvc/sportbox.ru.view',
+    'plugins/widgets/sportbox.ru/mvc/sportbox.ru.event.manager',
+    'plugins/widgets/sportbox.ru/mvc/sportbox.ru.permission'
+], function defineSportboxRu(AntHill, MVC, Controller, Model, View, EventManager, Permission) {
 
     /**
-     * Define Emotion
+     * Define SportboxRu
      * @param containment
      * @param [opts]
      * @constructor
-     * @class Emotion
+     * @class SportboxRu
      * @extends AntHill
      */
-    var Emotion = function Emotion(containment, opts) {
+    var SportboxRu = function SportboxRu(containment, opts) {
 
         /**
          * Define containment
-         * @property Emotion
+         * @property SportboxRu
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @property Emotion
+         * @property SportboxRu
          * @type {*}
          */
         this.referrer = undefined;
@@ -73,7 +73,7 @@ define([
 
         /**
          * Define MVC
-         * @property Emotion
+         * @property SportboxRu
          * @type {MVC}
          */
         this.mvc = new MVC({
@@ -98,5 +98,5 @@ define([
         );
     };
 
-    return Emotion.extend('Emotion', {}, AntHill.prototype);
+    return SportboxRu.extend('SportboxRu', {}, AntHill.prototype);
 });

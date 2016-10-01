@@ -8,36 +8,36 @@
 define([
     'plugins/plugin.controller',
     'plugins/widgets/widget.content.controller'
-], function defineTitleController(PluginBase, WidgetContentController) {
+], function defineSportboxRuController(PluginBase, WidgetContentController) {
 
     /**
-     * Define Title controller
-     * @class TitleController
+     * Define SportboxRu controller
+     * @class SportboxRuController
      * @extends PluginController
      * @extends WidgetContentController
      * @constructor
      */
-    var TitleController = function TitleController() {
+    var SportboxRuController = function SportboxRuController() {
     };
 
-    return TitleController.extend('TitleController', {
+    return SportboxRuController.extend('SportboxRuController', {
 
         /**
          * Set embedded content
-         * @memberOf TitleController
+         * @memberOf SportboxRuController
          */
         setEmbeddedContent: function setEmbeddedContent() {
             this.view.get$item().renderEmbeddedContent(
-                this.model.getPrefs('titleText')
+                this.model.getPrefs('sportboxEmbedCode')
             );
         },
 
         /**
-         * Add Title rule
-         * @memberOf TitleController
+         * Add SportboxRu rule
+         * @memberOf SportboxRuController
          * @param e
          */
-        addTitleRule: function addTitleRule(e) {
+        addSportboxRuRule: function addSportboxRuRule(e) {
 
             /**
              * Define $button
@@ -47,7 +47,7 @@ define([
 
             /**
              * Get scope
-             * @type {Title|{name: string}}
+             * @type {SportboxRu|{name: string}}
              */
             var scope = this.scope;
 

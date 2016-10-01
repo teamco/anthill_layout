@@ -8,19 +8,19 @@
 define([
     'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineEmotionRulesElement(PluginElement, BaseWidgetRules) {
+], function defineTutByRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
-     * Define Emotion Rules Element
+     * Define TutBy Rules Element
      * @param view
      * @param opts
-     * @returns {EmotionRulesElement}
+     * @returns {TutByRulesElement}
      * @constructor
-     * @class EmotionRulesElement
+     * @class TutByRulesElement
      * @extends PluginElement
      * @extends BaseWidgetRules
      */
-    var EmotionRulesElement = function EmotionRulesElement(view, opts) {
+    var TutByRulesElement = function TutByRulesElement(view, opts) {
 
         this._config(view, opts, $('<div />')).build({
             $container: opts.$container,
@@ -36,8 +36,8 @@ define([
         return this;
     };
 
-    return EmotionRulesElement.extend(
-        'EmotionRulesElement', {}, 
+    return TutByRulesElement.extend(
+        'TutByRulesElement', {}, 
         PluginElement.prototype, 
         BaseWidgetRules.prototype
     );

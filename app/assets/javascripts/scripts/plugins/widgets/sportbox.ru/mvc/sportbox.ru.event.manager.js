@@ -8,22 +8,22 @@
 
 define([
     'plugins/widgets/widget.content.event.manager'
-], function defineTitleEventManager(WidgetContentEventManager) {
+], function defineSportboxRuEventManager(WidgetContentEventManager) {
 
     /**
-     * Define Title event manager
-     * @class TitleEventManager
+     * Define SportboxRu event manager
+     * @class SportboxRuEventManager
      * @constructor
      * @extends BaseEvent
      * @extends WidgetContentEventManager
      */
-    var TitleEventManager = function TitleEventManager() {
+    var SportboxRuEventManager = function SportboxRuEventManager() {
 
         this.updateEventList({});
     };
 
-    return TitleEventManager.extend(
-        'TitleEventManager', {},
+    return SportboxRuEventManager.extend(
+        'SportboxRuEventManager', {},
         WidgetContentEventManager.prototype
     );
 });

@@ -8,34 +8,36 @@
 define([
     'plugins/plugin.controller',
     'plugins/widgets/widget.content.controller'
-], function defineEmotionController(PluginBase, WidgetContentController) {
+], function defineTutByController(PluginBase, WidgetContentController) {
 
     /**
-     * Define Emotion controller
-     * @class EmotionController
+     * Define TutBy controller
+     * @class TutByController
      * @extends PluginController
      * @extends WidgetContentController
      * @constructor
      */
-    var EmotionController = function EmotionController() {
+    var TutByController = function TutByController() {
     };
 
-    return EmotionController.extend('EmotionController', {
+    return TutByController.extend('TutByController', {
 
         /**
          * Set embedded content
-         * @memberOf EmotionController
+         * @memberOf TutByController
          */
         setEmbeddedContent: function setEmbeddedContent() {
-            this.view.get$item().renderEmbeddedContent();
+            this.view.get$item().renderEmbeddedContent(
+                this.model.getPrefs('tutbyEmbedCode')
+            );
         },
 
         /**
-         * Add Emotion rule
-         * @memberOf EmotionController
+         * Add TutBy rule
+         * @memberOf TutByController
          * @param e
          */
-        addEmotionRule: function addEmotionRule(e) {
+        addTutByRule: function addTutByRule(e) {
 
             /**
              * Define $button
@@ -45,7 +47,7 @@ define([
 
             /**
              * Get scope
-             * @type {Emotion|{name: string}}
+             * @type {TutBy|{name: string}}
              */
             var scope = this.scope;
 

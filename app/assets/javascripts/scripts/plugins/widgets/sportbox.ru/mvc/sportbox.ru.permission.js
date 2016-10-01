@@ -8,19 +8,19 @@
 
 define([
     'modules/Permission'
-], function defineTitlePermission(BasePermission) {
+], function defineSportboxRuPermission(BasePermission) {
 
     /**
      * Define Permissions
-     * @class TitlePermission
+     * @class SportboxRuPermission
      * @constructor
      * @extends BasePermission
      */
-    var TitlePermission = function TitlePermission() {
+    var SportboxRuPermission = function SportboxRuPermission() {
     };
 
-    return TitlePermission.extend(
-        'TitlePermission', {}, 
+    return SportboxRuPermission.extend(
+        'SportboxRuPermission', {}, 
         BasePermission.prototype
     );
 });

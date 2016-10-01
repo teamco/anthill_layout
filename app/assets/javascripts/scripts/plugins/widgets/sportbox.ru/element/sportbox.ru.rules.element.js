@@ -8,19 +8,19 @@
 define([
     'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineTitleRulesElement(PluginElement, BaseWidgetRules) {
+], function defineSportboxRuRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
-     * Define Title Rules Element
+     * Define SportboxRu Rules Element
      * @param view
      * @param opts
-     * @returns {TitleRulesElement}
+     * @returns {SportboxRuRulesElement}
      * @constructor
-     * @class TitleRulesElement
+     * @class SportboxRuRulesElement
      * @extends PluginElement
      * @extends BaseWidgetRules
      */
-    var TitleRulesElement = function TitleRulesElement(view, opts) {
+    var SportboxRuRulesElement = function SportboxRuRulesElement(view, opts) {
 
         this._config(view, opts, $('<div />')).build({
             $container: opts.$container,
@@ -36,8 +36,8 @@ define([
         return this;
     };
 
-    return TitleRulesElement.extend(
-        'TitleRulesElement', {}, 
+    return SportboxRuRulesElement.extend(
+        'SportboxRuRulesElement', {}, 
         PluginElement.prototype, 
         BaseWidgetRules.prototype
     );

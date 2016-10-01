@@ -8,40 +8,40 @@
 define([
     'modules/Model',
     'plugins/widgets/widget.content.model'
-], function defineTitleModel(BaseModel, WidgetContentModel) {
+], function defineSportboxRuModel(BaseModel, WidgetContentModel) {
 
     /**
-     * Define Title model
+     * Define SportboxRu model
      * @extends BaseModel
      * @extends WidgetContentModel
-     * @class TitleModel
+     * @class SportboxRuModel
      * @constructor
      */
-    var TitleModel = function TitleModel() {
+    var SportboxRuModel = function SportboxRuModel() {
 
         /**
          * Define preferences
-         * @property TitleModel
-         * @type {{titleText: {type: string, disabled: boolean, value: undefined, visible: boolean}}}
+         * @property SportboxRuModel
+         * @type {{sportboxEmbedCode: {type: string, disabled: boolean, value: string, visible: boolean}}}
          */
         this.preferences = {
-            titleText: {
-                type: 'text',
+            sportboxEmbedCode: {
+                type: 'textarea',
                 disabled: false,
-                value: undefined,
+                value: '<iframe src="http://news.sportbox.ru/vdl/poster/658447" width="450" height="253" scrolling="no" frameborder="0" style="width:100%; max-width:450px;"></iframe>',
                 visible: true
             }
         };
 
         /**
          * Define rules
-         * @property TitleModel
+         * @property SportboxRuModel
          * @type {{}}
          */
         this.rules = {};
     };
 
-    return TitleModel.extend('TitleModel', {
+    return SportboxRuModel.extend('SportboxRuModel', {
 
         // Setter
 

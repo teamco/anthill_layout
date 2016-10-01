@@ -10,35 +10,35 @@ define([
     'modules/View',
     'element/header.element',
     'element/footer.element',
-    'plugins/widgets/emotion/element/emotion.element',
-    'plugins/widgets/emotion/element/emotion.preferences.element',
-    'plugins/widgets/emotion/element/emotion.rules.element'
-], function defineEmotionView(BaseView, Header, Footer, EmotionElement, EmotionPreferencesElement, EmotionRulesElement) {
+    'plugins/widgets/tut.by/element/tut.by.element',
+    'plugins/widgets/tut.by/element/tut.by.preferences.element',
+    'plugins/widgets/tut.by/element/tut.by.rules.element'
+], function defineTutByView(BaseView, Header, Footer, TutByElement, TutByPreferencesElement, TutByRulesElement) {
 
     /**
      * Define view
-     * @class EmotionView
+     * @class TutByView
      * @extends BaseView
      * @constructor
      */
-    var EmotionView = function EmotionView() {
+    var TutByView = function TutByView() {
     };
 
-    return EmotionView.extend('EmotionView', {
+    return TutByView.extend('TutByView', {
 
         /**
-         * Render Emotion element
-         * @memberOf EmotionView
+         * Render TutBy element
+         * @memberOf TutByView
          */
-        renderEmotion: function renderEmotion() {
+        renderTutBy: function renderTutBy() {
 
             this.header(Header, this.get$container());
 
             /**
-             * Define $emotion
-             * @type {EmotionElement}
+             * Define $tutby
+             * @type {TutByElement}
              */
-            this.elements.$emotion = new EmotionElement(this, {
+            this.elements.$tutby = new TutByElement(this, {
                 $container: this.get$container().$
             });
 
@@ -51,16 +51,16 @@ define([
 
         /**
          * Render Prefs
-         * @memberOf EmotionView
-         * @returns {EmotionPreferencesElement}
+         * @memberOf TutByView
+         * @returns {TutByPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
 
             /**
-             * Define Emotion Preferences Element
-             * @type {EmotionPreferencesElement}
+             * Define TutBy Preferences Element
+             * @type {TutByPreferencesElement}
              */
-            this.elements.$preferences = new EmotionPreferencesElement(this, {
+            this.elements.$preferences = new TutByPreferencesElement(this, {
                 data: this.controller.getPreferences()
             });
 
@@ -69,18 +69,18 @@ define([
 
         /**
          * Render Rules
-         * @memberOf EmotionView
+         * @memberOf TutByView
          * @param widgetRules
          * @param contentRules
-         * @returns {EmotionRulesElement}
+         * @returns {TutByRulesElement}
          */
         renderRules: function renderRules(widgetRules, contentRules) {
 
             /**
-             * Define Emotion Rules Element
-             * @type {EmotionRulesElement}
+             * Define TutBy Rules Element
+             * @type {TutByRulesElement}
              */
-            this.elements.$rules = new EmotionRulesElement(this, {
+            this.elements.$rules = new TutByRulesElement(this, {
                 data: this.controller.getRules(),
                 rules: {
                     widget: widgetRules,
@@ -92,14 +92,14 @@ define([
         },
 
         /**
-         * Render Emotion
-         * @memberOf EmotionView
+         * Render TutBy
+         * @memberOf TutByView
          */
         render: function render() {
 
             this.scope.observer.publish(
                 this.scope.eventmanager.eventList.successRendered,
-                this.renderEmotion.bind(this)
+                this.renderTutBy.bind(this)
             );
         }
 

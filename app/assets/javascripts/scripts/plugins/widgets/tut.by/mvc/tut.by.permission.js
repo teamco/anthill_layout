@@ -8,19 +8,19 @@
 
 define([
     'modules/Permission'
-], function defineEmotionPermission(BasePermission) {
+], function defineTutByPermission(BasePermission) {
 
     /**
      * Define Permissions
-     * @class EmotionPermission
+     * @class TutByPermission
      * @constructor
      * @extends BasePermission
      */
-    var EmotionPermission = function EmotionPermission() {
+    var TutByPermission = function TutByPermission() {
     };
 
-    return EmotionPermission.extend(
-        'EmotionPermission', {}, 
+    return TutByPermission.extend(
+        'TutByPermission', {}, 
         BasePermission.prototype
     );
 });

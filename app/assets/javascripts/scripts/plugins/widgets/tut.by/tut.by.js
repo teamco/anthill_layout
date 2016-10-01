@@ -8,32 +8,32 @@
 define([
     'config/anthill',
     'modules/MVC',
-    'plugins/widgets/title/mvc/title.controller',
-    'plugins/widgets/title/mvc/title.model',
-    'plugins/widgets/title/mvc/title.view',
-    'plugins/widgets/title/mvc/title.event.manager',
-    'plugins/widgets/title/mvc/title.permission'
-], function defineTitle(AntHill, MVC, Controller, Model, View, EventManager, Permission) {
+    'plugins/widgets/tut.by/mvc/tut.by.controller',
+    'plugins/widgets/tut.by/mvc/tut.by.model',
+    'plugins/widgets/tut.by/mvc/tut.by.view',
+    'plugins/widgets/tut.by/mvc/tut.by.event.manager',
+    'plugins/widgets/tut.by/mvc/tut.by.permission'
+], function defineTutBy(AntHill, MVC, Controller, Model, View, EventManager, Permission) {
 
     /**
-     * Define Title
+     * Define TutBy
      * @param containment
      * @param [opts]
      * @constructor
-     * @class Title
+     * @class TutBy
      * @extends AntHill
      */
-    var Title = function Title(containment, opts) {
+    var TutBy = function TutBy(containment, opts) {
 
         /**
          * Define containment
-         * @property Title
+         * @property TutBy
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @property Title
+         * @property TutBy
          * @type {*}
          */
         this.referrer = undefined;
@@ -73,7 +73,7 @@ define([
 
         /**
          * Define MVC
-         * @property Title
+         * @property TutBy
          * @type {MVC}
          */
         this.mvc = new MVC({
@@ -98,5 +98,5 @@ define([
         );
     };
 
-    return Title.extend('Title', {}, AntHill.prototype);
+    return TutBy.extend('TutBy', {}, AntHill.prototype);
 });

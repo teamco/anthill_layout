@@ -371,9 +371,13 @@ define([
          */
         setHeader: function setHeader() {
             var $header = this._get$Header();
-            this.base.isDefined(this.title) ?
-                $header.text(this.title) :
+            if (this.base.isDefined(this.title)) {
+                $header.text(this.title).attr({
+                    title: this.title
+                });
+            } else {
                 $header.hide();
+            }
         },
 
         /**

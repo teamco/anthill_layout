@@ -10,35 +10,35 @@ define([
     'modules/View',
     'element/header.element',
     'element/footer.element',
-    'plugins/widgets/title/element/title.element',
-    'plugins/widgets/title/element/title.preferences.element',
-    'plugins/widgets/title/element/title.rules.element'
-], function defineTitleView(BaseView, Header, Footer, TitleElement, TitlePreferencesElement, TitleRulesElement) {
+    'plugins/widgets/sportbox.ru/element/sportbox.ru.element',
+    'plugins/widgets/sportbox.ru/element/sportbox.ru.preferences.element',
+    'plugins/widgets/sportbox.ru/element/sportbox.ru.rules.element'
+], function defineSportboxRuView(BaseView, Header, Footer, SportboxRuElement, SportboxRuPreferencesElement, SportboxRuRulesElement) {
 
     /**
      * Define view
-     * @class TitleView
+     * @class SportboxRuView
      * @extends BaseView
      * @constructor
      */
-    var TitleView = function TitleView() {
+    var SportboxRuView = function SportboxRuView() {
     };
 
-    return TitleView.extend('TitleView', {
+    return SportboxRuView.extend('SportboxRuView', {
 
         /**
-         * Render Title element
-         * @memberOf TitleView
+         * Render SportboxRu element
+         * @memberOf SportboxRuView
          */
-        renderTitle: function renderTitle() {
+        renderSportboxRu: function renderSportboxRu() {
 
             this.header(Header, this.get$container());
 
             /**
-             * Define $title
-             * @type {TitleElement}
+             * Define $sportboxru
+             * @type {SportboxRuElement}
              */
-            this.elements.$title = new TitleElement(this, {
+            this.elements.$sportboxru = new SportboxRuElement(this, {
                 $container: this.get$container().$
             });
 
@@ -51,16 +51,16 @@ define([
 
         /**
          * Render Prefs
-         * @memberOf TitleView
-         * @returns {TitlePreferencesElement}
+         * @memberOf SportboxRuView
+         * @returns {SportboxRuPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
 
             /**
-             * Define Title Preferences Element
-             * @type {TitlePreferencesElement}
+             * Define SportboxRu Preferences Element
+             * @type {SportboxRuPreferencesElement}
              */
-            this.elements.$preferences = new TitlePreferencesElement(this, {
+            this.elements.$preferences = new SportboxRuPreferencesElement(this, {
                 data: this.controller.getPreferences()
             });
 
@@ -69,18 +69,18 @@ define([
 
         /**
          * Render Rules
-         * @memberOf TitleView
+         * @memberOf SportboxRuView
          * @param widgetRules
          * @param contentRules
-         * @returns {TitleRulesElement}
+         * @returns {SportboxRuRulesElement}
          */
         renderRules: function renderRules(widgetRules, contentRules) {
 
             /**
-             * Define Title Rules Element
-             * @type {TitleRulesElement}
+             * Define SportboxRu Rules Element
+             * @type {SportboxRuRulesElement}
              */
-            this.elements.$rules = new TitleRulesElement(this, {
+            this.elements.$rules = new SportboxRuRulesElement(this, {
                 data: this.controller.getRules(),
                 rules: {
                     widget: widgetRules,
@@ -92,14 +92,14 @@ define([
         },
 
         /**
-         * Render Title
-         * @memberOf TitleView
+         * Render SportboxRu
+         * @memberOf SportboxRuView
          */
         render: function render() {
 
             this.scope.observer.publish(
                 this.scope.eventmanager.eventList.successRendered,
-                this.renderTitle.bind(this)
+                this.renderSportboxRu.bind(this)
             );
         }
 

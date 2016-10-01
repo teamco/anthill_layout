@@ -8,19 +8,19 @@
 define([
     'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineEmotionPreferencesElement(PluginElement, WidgetPreferences) {
+], function defineSportboxRuPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
-     * Define Emotion Preferences Element
+     * Define SportboxRu Preferences Element
      * @constructor
-     * @class EmotionPreferencesElement
-     * @param {EmotionView} view
+     * @class SportboxRuPreferencesElement
+     * @param {SportboxRuView} view
      * @param opts
      * @extends PluginElement
      * @extends WidgetPreferences
-     * @returns {EmotionPreferencesElement}
+     * @returns {SportboxRuPreferencesElement}
      */
-    var EmotionPreferencesElement = function EmotionPreferencesElement(view, opts) {
+    var SportboxRuPreferencesElement = function SportboxRuPreferencesElement(view, opts) {
 
         this._config(view, opts, $('<div />')).build({
             $container: opts.$container,
@@ -32,8 +32,8 @@ define([
         return this;
     };
 
-    return EmotionPreferencesElement.extend(
-        'EmotionPreferencesElement', {}, 
+    return SportboxRuPreferencesElement.extend(
+        'SportboxRuPreferencesElement', {}, 
         PluginElement.prototype, 
         WidgetPreferences.prototype
     );

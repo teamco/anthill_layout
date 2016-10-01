@@ -8,19 +8,19 @@
 define([
     'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineTitlePreferencesElement(PluginElement, WidgetPreferences) {
+], function defineTutByPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
-     * Define Title Preferences Element
+     * Define TutBy Preferences Element
      * @constructor
-     * @class TitlePreferencesElement
-     * @param {TitleView} view
+     * @class TutByPreferencesElement
+     * @param {TutByView} view
      * @param opts
      * @extends PluginElement
      * @extends WidgetPreferences
-     * @returns {TitlePreferencesElement}
+     * @returns {TutByPreferencesElement}
      */
-    var TitlePreferencesElement = function TitlePreferencesElement(view, opts) {
+    var TutByPreferencesElement = function TutByPreferencesElement(view, opts) {
 
         this._config(view, opts, $('<div />')).build({
             $container: opts.$container,
@@ -32,8 +32,8 @@ define([
         return this;
     };
 
-    return TitlePreferencesElement.extend(
-        'TitlePreferencesElement', {}, 
+    return TutByPreferencesElement.extend(
+        'TutByPreferencesElement', {}, 
         PluginElement.prototype, 
         WidgetPreferences.prototype
     );

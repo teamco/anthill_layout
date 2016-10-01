@@ -132,9 +132,9 @@
      * @returns {*}
      */
     String.prototype.toHtml = function toHtml() {
-        var tempDiv = document.createElement('div');
-        tempDiv.innerHTML = this;
-        return tempDiv.firstChild;
+        var template = document.createElement('template');
+        template.innerHTML = this;
+        return template.content.firstChild;
     };
 
 }());
