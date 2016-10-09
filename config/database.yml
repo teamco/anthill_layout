@@ -2,8 +2,8 @@ default: &default
   adapter: postgresql
   encoding: unicode
   pool: 5
-  username: 
-  password: 
+  username: <%= ENV['POSTGRESS_USER'] %>
+  password: <%= ENV['POSTGRESS_PWD'] %>
 
 #  adapter: mysql2
 #  pool: 5
