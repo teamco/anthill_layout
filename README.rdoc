@@ -2,7 +2,7 @@
 
 1. Install <b>rvm</b>: <em>https://rvm.io/</em>
 2. Install latest ruby version
-3. Install <b>MySql</b>
+3. Install <b>Postgress</b>
 4. Update <b>bundler</b>: <em>bundle install</em>
 5. Create <b>db</b>: <em>rake db:create</em>
 6. Init models <b>db</b>: <em>rake setup:init</em>
