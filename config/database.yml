@@ -3,7 +3,7 @@ default: &default
   encoding: unicode
   pool: 5
   username: teamco
-  password: TR0ubLe99
+  password: 
 
 #  adapter: mysql2
 #  pool: 5
