@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 # case RUBY_PLATFORM
 #   when /darwin|linux/
-
+ruby '2.3.1'
 gem 'rails', '>= 5.0.0'
 
 gem 'embedly'
