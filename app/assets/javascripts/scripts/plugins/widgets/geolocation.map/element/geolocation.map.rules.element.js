@@ -8,19 +8,19 @@
 define([
     'plugins/plugin.element',
     'plugins/rules/widget.base.rules'
-], function defineGeolocationRulesElement(PluginElement, BaseWidgetRules) {
+], function defineGeolocationMapRulesElement(PluginElement, BaseWidgetRules) {
 
     /**
-     * Define Geolocation Rules Element
+     * Define GeolocationMap Rules Element
      * @param view
      * @param opts
-     * @returns {GeolocationRulesElement}
+     * @returns {GeolocationMapRulesElement}
      * @constructor
-     * @class GeolocationRulesElement
+     * @class GeolocationMapRulesElement
      * @extends PluginElement
      * @extends BaseWidgetRules
      */
-    var GeolocationRulesElement = function GeolocationRulesElement(view, opts) {
+    let GeolocationMapRulesElement = function GeolocationMapRulesElement(view, opts) {
 
         this._config(view, opts, $('<div />')).build({
             $container: opts.$container,
@@ -36,7 +36,7 @@ define([
         return this;
     };
 
-    return GeolocationRulesElement.extend('GeolocationRulesElement', {
+    return GeolocationMapRulesElement.extend('GeolocationMapRulesElement', {
 
     }, PluginElement.prototype, BaseWidgetRules.prototype);
 

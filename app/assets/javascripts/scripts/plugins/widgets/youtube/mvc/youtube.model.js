@@ -30,7 +30,7 @@ define([
             youtubeUrl: {
                 type: 'text',
                 disabled: false,
-                value: undefined,
+                value: 'https://www.youtube.com/watch?v=xcL-oGPxgCg',
                 visible: true
             }
         };

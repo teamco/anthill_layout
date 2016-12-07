@@ -8,32 +8,32 @@
 define([
     'config/anthill',
     'modules/MVC',
-    'plugins/widgets/geolocation/mvc/geolocation.controller',
-    'plugins/widgets/geolocation/mvc/geolocation.model',
-    'plugins/widgets/geolocation/mvc/geolocation.view',
-    'plugins/widgets/geolocation/mvc/geolocation.event.manager',
-    'plugins/widgets/geolocation/mvc/geolocation.permission'
-], function defineGeolocation(AntHill, MVC, Controller, Model, View, EventManager, Permission) {
+    'plugins/widgets/geolocation.map/mvc/geolocation.map.controller',
+    'plugins/widgets/geolocation.map/mvc/geolocation.map.model',
+    'plugins/widgets/geolocation.map/mvc/geolocation.map.view',
+    'plugins/widgets/geolocation.map/mvc/geolocation.map.event.manager',
+    'plugins/widgets/geolocation.map/mvc/geolocation.map.permission'
+], function defineGeolocationMap(AntHill, MVC, Controller, Model, View, EventManager, Permission) {
 
     /**
-     * Define Geolocation
+     * Define GeolocationMap
      * @param containment
      * @param [opts]
      * @constructor
-     * @class Geolocation
+     * @class GeolocationMap
      * @extends AntHill
      */
-    var Geolocation = function Geolocation(containment, opts) {
+    let GeolocationMap = function GeolocationMap(containment, opts) {
 
         /**
          * Define containment
-         * @memberOf Geolocation
+         * @memberOf GeolocationMap
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @memberOf Geolocation
+         * @memberOf GeolocationMap
          * @type {*}
          */
         this.referrer = undefined;
@@ -55,7 +55,7 @@ define([
          *      }
          * }}
          */
-        var DEFAULTS = {
+        let DEFAULTS = {
             plugin: true,
             html: {
                 style: 'default',
@@ -72,7 +72,7 @@ define([
 
         /**
          * Define MVC
-         * @memberOf Geolocation
+         * @memberOf GeolocationMap
          * @type {MVC}
          */
         this.mvc = new MVC({
@@ -97,7 +97,6 @@ define([
         );
     };
 
-    return Geolocation.extend('Geolocation', {
-
+    return GeolocationMap.extend('GeolocationMap', {
     }, AntHill.prototype);
 });

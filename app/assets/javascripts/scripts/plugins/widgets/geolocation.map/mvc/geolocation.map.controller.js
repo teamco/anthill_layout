@@ -13,36 +13,36 @@ define(
     ],
 
     /**
-     * Define geolocation controller
+     * Define geolocation.map controller
      * @param {BaseGeolocation} BaseGeolocation
      * @param {PluginController} PluginController
      * @param {WidgetContentController} WidgetContentController
      * @returns {*}
      */
-    function defineGeolocationController(BaseGeolocation, PluginController, WidgetContentController) {
+    function defineGeolocationMapController(BaseGeolocation, PluginController, WidgetContentController) {
 
         /**
-         * Define geolocation controller
-         * @class GeolocationController
+         * Define geolocation.map controller
+         * @class GeolocationMapController
          * @extends BaseGeolocation
          * @extends PluginController
          * @extends WidgetContentController
          * @constructor
          */
-        var GeolocationController = function GeolocationController() {
+        let GeolocationMapController = function GeolocationMapController() {
         };
 
-        return GeolocationController.extend(
-            'GeolocationController', {
+        return GeolocationMapController.extend(
+            'GeolocationMapController', {
 
                 /**
                  * Set embedded content
-                 * @memberOf GeolocationController
+                 * @memberOf GeolocationMapController
                  */
                 setEmbeddedContent: function setEmbeddedContent() {
 
-                    var latitude = this.model.getPrefs('geolocationLatitude'),
-                        longitude = this.model.getPrefs('geolocationLongitude');
+                    let latitude = this.model.getPrefs('geolocationmapLatitude'),
+                        longitude = this.model.getPrefs('geolocationmapLongitude');
 
                     if (!latitude || !longitude) {
 
@@ -58,35 +58,36 @@ define(
 
                 /**
                  * Set embedded content
-                 * @memberOf GeolocationController
+                 * @memberOf GeolocationMapController
                  * @private
                  */
                 _setEmbeddedContent: function _setEmbeddedContent() {
-                    this.view.elements.$geolocation.renderEmbeddedContent({
-                        latitude: this.model.getPrefs('geolocationLatitude'),
-                        longitude: this.model.getPrefs('geolocationLongitude'),
-                        zoom: this.model.getPrefs('geolocationZoom'),
-                        width: this.model.getPrefs('geolocationWidth'),
-                        height: this.model.getPrefs('geolocationHeight'),
-                        sensor: this.model.getPrefs('geolocationGpsSensor'),
-                        scale: this.model.getPrefs('geolocationScale'),
-                        stretch: this.model.getPrefs('geolocationStretch'),
-                        maptype: this.model.getPrefs('geolocationMapType')
+                    this.view.elements.$geolocationmap.renderEmbeddedContent({
+                        apiKey: this.model.getPrefs('geolocationmapAPIKey'),
+                        latitude: this.model.getPrefs('geolocationmapLatitude'),
+                        longitude: this.model.getPrefs('geolocationmapLongitude'),
+                        zoom: this.model.getPrefs('geolocationmapZoom'),
+                        width: this.model.getPrefs('geolocationmapWidth'),
+                        height: this.model.getPrefs('geolocationmapHeight'),
+                        sensor: this.model.getPrefs('geolocationmapGpsSensor'),
+                        scale: this.model.getPrefs('geolocationmapScale'),
+                        stretch: this.model.getPrefs('geolocationmapStretch'),
+                        maptype: this.model.getPrefs('geolocationmapMapType')
                     });
                 },
 
                 /**
-                 * Add Geolocation rule
-                 * @memberOf GeolocationController
+                 * Add GeolocationMap rule
+                 * @memberOf GeolocationMapController
                  * @param e
                  */
-                addGeolocationRule: function addGeolocationRule(e) {
+                addGeolocationMapRule: function addGeolocationMapRule(e) {
 
                     /**
                      * Define $button
-                     * @type {*|jQuery|HTMLElement}
+                     * @type {*|jQuery|GeolocationMap}
                      */
-                    var $button = $(e.target),
+                    let $button = $(e.target),
                         scope = this.scope;
 
                     scope.observer.publish(
@@ -97,13 +98,13 @@ define(
 
                 /**
                  * Get location
-                 * @memberOf GeolocationController
+                 * @memberOf GeolocationMapController
                  */
                 getLocation: function getLocation() {
                     this.controller.getPosition(
                         function _setLocation(position) {
-                            this.model.setGeolocationLatitude(position.coords.latitude);
-                            this.model.setGeolocationLongitude(position.coords.longitude);
+                            this.model.setGeolocationMapLatitude(position.coords.latitude);
+                            this.model.setGeolocationMapLongitude(position.coords.longitude);
                             this._setEmbeddedContent.bind(this.scope)();
                         }
                     );

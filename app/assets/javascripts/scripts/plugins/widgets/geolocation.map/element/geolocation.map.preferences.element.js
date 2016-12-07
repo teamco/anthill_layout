@@ -8,19 +8,19 @@
 define([
     'plugins/plugin.element',
     'plugins/preferences/widget.preferences'
-], function defineGeolocationPreferencesElement(PluginElement, WidgetPreferences) {
+], function defineGeolocationMapPreferencesElement(PluginElement, WidgetPreferences) {
 
     /**
-     * Define Geolocation Preferences Element
+     * Define GeolocationMap Preferences Element
      * @param view
      * @param opts
-     * @returns {GeolocationPreferencesElement}
+     * @returns {GeolocationMapPreferencesElement}
      * @constructor
-     * @class GeolocationPreferencesElement
+     * @class GeolocationMapPreferencesElement
      * @extends PluginElement
      * @extends WidgetPreferences
      */
-    var GeolocationPreferencesElement = function GeolocationPreferencesElement(view, opts) {
+    let GeolocationMapPreferencesElement = function GeolocationMapPreferencesElement(view, opts) {
 
         this._config(view, opts, $('<div />')).build({
             $container: opts.$container,
@@ -32,7 +32,7 @@ define([
         return this;
     };
 
-    return GeolocationPreferencesElement.extend('GeolocationPreferencesElement', {
+    return GeolocationMapPreferencesElement.extend('GeolocationMapPreferencesElement', {
 
 
     }, PluginElement.prototype, WidgetPreferences.prototype);

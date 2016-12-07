@@ -8,23 +8,23 @@
 
 define([
     'plugins/widgets/widget.content.event.manager'
-], function defineGeolocationEventManager(WidgetContentEventManager) {
+], function defineGeolocationMapEventManager(WidgetContentEventManager) {
 
     /**
-     * Define Geolocation event manager
-     * @class GeolocationEventManager
+     * Define GeolocationMap event manager
+     * @class GeolocationMapEventManager
      * @constructor
      * @extends WidgetContentEventManager
      * @extends BaseEvent
      */
-    var GeolocationEventManager = function GeolocationEventManager() {
+    let GeolocationMapEventManager = function GeolocationMapEventManager() {
 
         this.updateEventList({
             getLocation: 'get.location'
         });
     };
 
-    return GeolocationEventManager.extend('GeolocationEventManager', {
+    return GeolocationMapEventManager.extend('GeolocationMapEventManager', {
 
     }, WidgetContentEventManager.prototype);
 });

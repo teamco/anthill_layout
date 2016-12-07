@@ -10,35 +10,35 @@ define([
     'modules/View',
     'element/header.element',
     'element/footer.element',
-    'plugins/widgets/geolocation/element/geolocation.element',
-    'plugins/widgets/geolocation/element/geolocation.preferences.element',
-    'plugins/widgets/geolocation/element/geolocation.rules.element'
-], function defineGeolocationView(BaseView, Header, Footer, GeolocationElement, GeolocationPreferencesElement, GeolocationRulesElement) {
+    'plugins/widgets/geolocation.map/element/geolocation.map.element',
+    'plugins/widgets/geolocation.map/element/geolocation.map.preferences.element',
+    'plugins/widgets/geolocation.map/element/geolocation.map.rules.element'
+], function defineGeolocationMapView(BaseView, Header, Footer, GeolocationMapElement, GeolocationMapPreferencesElement, GeolocationMapRulesElement) {
 
     /**
      * Define view
-     * @class GeolocationView
+     * @class GeolocationMapView
      * @extends BaseView
      * @constructor
      */
-    var GeolocationView = function GeolocationView() {
+    let GeolocationMapView = function GeolocationMapView() {
     };
 
-    return GeolocationView.extend('GeolocationView', {
+    return GeolocationMapView.extend('GeolocationMapView', {
 
         /**
-         * Render geolocation element
-         * @memberOf GeolocationView
+         * Render geolocation.map element
+         * @memberOf GeolocationMapView
          */
-        renderGeolocation: function renderGeolocation() {
+        renderGeolocationMap: function renderGeolocationMap() {
 
             this.header(Header, this.get$container());
 
             /**
              * Define $geolocation
-             * @type {GeolocationElement}
+             * @type {GeolocationMapElement}
              */
-            this.elements.$geolocation = new GeolocationElement(this, {
+            this.elements.$geolocationmap = new GeolocationMapElement(this, {
                 $container: this.get$container().$
             });
 
@@ -49,16 +49,16 @@ define([
 
         /**
          * Render Prefs
-         * @memberOf GeolocationView
-         * @returns {GeolocationPreferencesElement}
+         * @memberOf GeolocationMapView
+         * @returns {GeolocationMapPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
 
             /**
-             * Define Geolocation Preferences Element
-             * @type {GeolocationPreferencesElement}
+             * Define GeolocationMap Preferences Element
+             * @type {GeolocationMapPreferencesElement}
              */
-            this.elements.$preferences = new GeolocationPreferencesElement(this, {
+            this.elements.$preferences = new GeolocationMapPreferencesElement(this, {
                 data: this.controller.getPreferences()
             });
 
@@ -67,10 +67,10 @@ define([
 
         /**
          * Render Rules
-         * @memberOf GeolocationView
+         * @memberOf GeolocationMapView
          * @param widgetRules
          * @param contentRules
-         * @returns {GeolocationRulesElement}
+         * @returns {GeolocationMapRulesElement}
          */
         renderRules: function renderRules(widgetRules, contentRules) {
 
@@ -78,13 +78,13 @@ define([
              * Define data
              * @type {*|{}}
              */
-            var data = this.controller.getRules();
+            let data = this.controller.getRules();
 
             /**
-             * Define Geolocation Rules Element
-             * @type {GeolocationRulesElement}
+             * Define GeolocationMap Rules Element
+             * @type {GeolocationMapRulesElement}
              */
-            this.elements.$rules = new GeolocationRulesElement(this, {
+            this.elements.$rules = new GeolocationMapRulesElement(this, {
                 data: data,
                 rules: {
                     widget: widgetRules,
@@ -97,7 +97,7 @@ define([
 
         /**
          * Show position
-         * @memberOf GeolocationView
+         * @memberOf GeolocationMapView
          */
         showPosition: function showPosition() {
             this.scope.observer.publish(
@@ -106,14 +106,14 @@ define([
         },
 
         /**
-         * Render geolocation
-         * @memberOf GeolocationView
+         * Render geolocation.map
+         * @memberOf GeolocationMapView
          */
         render: function render() {
 
             this.scope.observer.publish(
                 this.scope.eventmanager.eventList.successRendered,
-                this.renderGeolocation.bind(this)
+                this.renderGeolocationMap.bind(this)
             );
         }
 

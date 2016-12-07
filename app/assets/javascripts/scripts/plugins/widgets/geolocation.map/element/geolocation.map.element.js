@@ -7,40 +7,41 @@
 
 define([
     'plugins/plugin.element'
-], function defineGeolocationElement(PluginElement) {
+], function defineGeolocationMapElement(PluginElement) {
 
     /**
-     * Define Geolocation Element
+     * Define GeolocationMap Element
      * @param view
      * @param opts
-     * @returns {GeolocationElement}
+     * @returns {GeolocationMapElement}
      * @constructor
-     * @class GeolocationElement
+     * @class GeolocationMapElement
      * @extends PluginElement
      */
-    var GeolocationElement = function GeolocationElement(view, opts) {
+    let GeolocationMapElement = function GeolocationMapElement(view, opts) {
 
         this._config(view, opts, $('<div />')).build({
             $container: opts.$container,
             destroy: true
         });
 
-        this.addCSS('geolocation', {resource: '/widgets'});
+        this.addCSS('geolocation.map', {resource: '/widgets'});
 
         return this;
     };
 
-    return GeolocationElement.extend('GeolocationElement', {
+    return GeolocationMapElement.extend('GeolocationMapElement', {
 
         /**
          * Render Embedded content
-         * @memberOf GeolocationElement
+         * @memberOf GeolocationMapElement
          * @param {{
          *      latitude: number,
          *      longitude: number,
          *      zoom: number,
          *      width: number,
          *      height: number,
+         *      apiKey: string,
          *      maptype: string,
          *      sensor: boolean,
          *      scale: boolean,
@@ -50,15 +51,16 @@ define([
          */
         renderEmbeddedContent: function renderEmbeddedContent(opts) {
 
-            var url = [
-                'http://maps.googleapis.com/maps/api/staticmap',
+            let url = [
+                'https://maps.googleapis.com/maps/api/staticmap',
                 '?center=', opts.latitude, ',', opts.longitude,
                 '&markers=color:blue|label:S|', opts.latitude, ',', opts.longitude,
                 '&maptype=', opts.maptype.toLowerCase(),
                 '&zoom=', opts.zoom,
                 '&scale=', (opts.scale ? 2 : 1),
                 '&size=', opts.width, 'x', opts.height,
-                '&sensor=', opts.sensor
+                '&sensor=', opts.sensor,
+                '&key=', opts.apiKey
             ].join('');
 
             this.$.append(
