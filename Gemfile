@@ -2,7 +2,6 @@ source 'https://rubygems.org'
 
 # case RUBY_PLATFORM
 #   when /darwin|linux/
-ruby '2.3.1'
 gem 'rails', '>= 5.0.0'
 
 gem 'embedly'
@@ -57,7 +56,6 @@ group :doc do
 end
 
 group :production do
-  ruby '2.3.1'
   gem 'rails_12factor'
 end
 
