@@ -14,8 +14,7 @@
             version = parseInt(dataset.version || 0, 10) || 1,
             user = dataset.user,
             mode = dataset.mode,
-            environment = dataset.environment,
-            isConsumption = mode === 'consumption';
+            environment = dataset.environment;
 
         /**
          * Define Setup
@@ -59,7 +58,8 @@
                         version: version,
                         environment: environment,
                         appName: site,
-                        mode: mode
+                        mode: mode,
+                        isConsumption: mode === 'consumption'
                     });
 
                     /**

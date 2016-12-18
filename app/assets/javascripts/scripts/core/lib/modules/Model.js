@@ -463,13 +463,22 @@ define([
              * @memberOf BaseModel
              * @returns {string}
              */
-            getItemNameSpace: function getItemNameSpace() {
-                this.scope.logger.debug('Get item namespace', this.item);
+            getItemName: function getItemName() {
+                this.scope.logger.debug('Get item name', this.item);
                 if (this.hasOwnProperty('item') && _.isFunction(this.item)) {
-                    return this.item.prototype.name.toLowerCase();
+                    return this.item.prototype.name;
                 }
 
                 this.scope.logger.debug('Undefined item');
+            },
+
+            /**
+             * Get Item constructor namespace
+             * @memberOf BaseModel
+             * @returns {string}
+             */
+            getItemNameSpace: function getItemNameSpace() {
+                return this.getItemName().toLowerCase();
             },
 
             /**
@@ -712,7 +721,7 @@ define([
                         node = base.define(collector[index], {}, true);
 
                         // Create item
-                        scope.api['create' + this.item.name](
+                        scope.api['create' + this.getItemName()](
                             node, true, true
                         );
 

@@ -20,7 +20,7 @@
 
         modules: 'lib/modules',
         plugins: '../plugins',
-        target: '../../target',
+        target: '../../public',
 
         services: '../../services',
 
@@ -35,10 +35,10 @@
         html2canvas: 'lib/packages/html2canvas.min',
 
         'lz-string': 'lib/lz-string',
-        jquery: 'lib/jquery/jquery-2.2.2.min',
+        jquery: 'lib/jquery/jquery-3.1.1.min',
         'jquery.ujs': 'lib/jquery/jquery_ujs',
         'jquery.timeago': 'lib/jquery/jquery.timeago',
-        'jquery.ui': 'lib/jquery/jquery-ui-1.12.0-rc.1.min',
+        'jquery.ui': 'lib/jquery/jquery-ui.min',
         'jquery.resizestop': 'lib/jquery/jquery.resizestop',
         'jquery.zoomooz': 'lib/jquery/jquery.zoomooz.min',
 
@@ -284,8 +284,8 @@
     },
 
     baseUrl: "../app/assets/javascripts/scripts/core",
-    out: "../app/assets/javascripts/target/production.js",
-    name: "../../public/consumption",
+    out: "../app/assets/javascripts/public/consumption.js",
+    name: "../../public/consumption.build",
     optimize: 'uglify2',
     optimizeCss: "standard",
     preserveLicenseComments: false,

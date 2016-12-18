@@ -9,11 +9,7 @@
         'data-mode': storage[:mode],
         'data-environment': Rails.env,
         'data-uuid': storage[:uuid],
-        'data-main': storage[:mode] == 'consumption' ?
-            # javascript_path('target/production') :
-            javascript_path('public/development') :
-            javascript_path('public/development'),
-            # javascript_path("public/#{storage[:mode]}"),
+        'data-main': javascript_path("public/#{storage[:mode]}"),
         'id': 'require-init'
     ) %>
 

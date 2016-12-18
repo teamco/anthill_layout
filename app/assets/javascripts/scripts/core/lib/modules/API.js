@@ -91,7 +91,7 @@ define([
         _createItem: function _createItem(item, args, render, silent, where) {
 
             var scope = this.scope,
-                cname = item.name;
+                cname = scope.model.getItemNameSpace();
 
             /**
              * Define silent
@@ -99,23 +99,42 @@ define([
              */
             scope.silent = this.base.defineBoolean(silent, false, true);
 
-            scope.observer.publish(
-                scope.eventmanager.eventList['create' + cname],
-                [args, scope.silent]
-            );
-
-            if (scope.controller.checkCondition({
-                condition: scope[cname.toLowerCase()].model.getConfig('limit'),
-                type: 'warn',
-                msg: this.i18n.t('reached.maximum.limit'),
-                args: [cname, scope.model.getConfig(cname.toLowerCase())]
-            })) {
+            if (this._isLiimitReached()) {
                 return false;
             }
 
+            scope.observer.publish(
+                scope.eventmanager.eventList['create' + scope.model.getItemName()],
+                [args, scope.silent]
+            );
+
             this._renderItem(item, render, silent, where);
 
-            return scope[cname.toLowerCase()];
+            return scope[cname];
+        },
+
+        /**
+         * Check if items limit was reached
+         * @memberOf BaseAPI
+         * @returns {boolean}
+         * @private
+         */
+        _isLiimitReached: function _isLiimitReached() {
+
+            /**
+             * Define scope local.
+             * @type {*}
+             */
+            var scope = this.scope,
+                cname = scope.model.getItemNameSpace(),
+                itemConfig = scope.model.getConfig(cname);
+
+            return scope.controller.checkCondition({
+                condition: scope.model.getConfig('limit') && itemConfig.count >= itemConfig.limit,
+                type: 'warn',
+                msg: this.i18n.t('reached.maximum.limit'),
+                args: [cname, itemConfig]
+            });
         },
 
         /**
@@ -134,13 +153,19 @@ define([
              * Define scope
              * @type {*}
              */
-            var scope = this.scope[item.name.toLowerCase()];
+            var scope = this.scope,
+                itemScope = scope[scope.model.getItemNameSpace()];
 
-            if (this.base.defineBoolean(render, false, true)) {
-                scope.view.render(silent, where);
+            if (!itemScope.view) {
+                scope.logger.warn('Item doesn\'t created');
+                return false;
             }
 
-            return scope;
+            if (this.base.defineBoolean(render, false, true)) {
+                itemScope.view.render(silent, where);
+            }
+
+            return itemScope;
         }
 
     }, AntHill.prototype);
