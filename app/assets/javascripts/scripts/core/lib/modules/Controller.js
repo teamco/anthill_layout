@@ -742,7 +742,7 @@ define([
                     html: {
                         container: [
                             '#', scope.model.getUUID(),
-                            '-', scope.name.toLowerCase()
+                            '-', scope.model.getScopeName().toLowerCase()
                         ].join('')
                     },
                     containment: scope
@@ -769,7 +769,7 @@ define([
              * @returns {boolean}
              */
             isWorkspace: function isWorkspace() {
-                return this.scope.name === 'Workspace';
+                return this.scope.model.getScopeName() === 'Workspace';
             },
 
             /**
@@ -778,7 +778,7 @@ define([
              * @returns {boolean}
              */
             isPage: function isPage() {
-                return this.scope.name === 'Page';
+                return this.scope.model.getScopeName() === 'Page';
             },
 
             /**
@@ -788,7 +788,7 @@ define([
              * @returns {boolean}
              */
             isWidget: function isWidget(item) {
-                return (item || this.scope)['name'] === 'Widget';
+                return (item || this.scope).model.getScopeName() === 'Widget';
             },
 
             /**

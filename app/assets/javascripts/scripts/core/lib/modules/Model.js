@@ -159,7 +159,7 @@ define([
                     constructor = base.isFunction(scope) ?
                         scope : scope.constructor;
 
-                return constructor.name.toLowerCase();
+                return constructor.prototype.name.toLowerCase();
             },
 
             /**
@@ -459,6 +459,17 @@ define([
             },
 
             /**
+             * Get Scope constructor name
+             * @memberOf BaseModel
+             * @returns {string}
+             */
+            getScopeName: function getScopeName() {
+                var scope = this.scope;
+                scope.logger.debug('Get scope name', scope);
+                return scope.name;
+            },
+
+            /**
              * Get Item constructor name
              * @memberOf BaseModel
              * @returns {string}
@@ -575,7 +586,7 @@ define([
             /**
              * Update items collector
              * @memberOf BaseModel
-             * @param {function} Constructor
+             * @param {Function} Constructor
              * @param {{}} opts
              * @returns {*}
              */
@@ -583,7 +594,7 @@ define([
 
                 var namespace = this.getNameSpace(Constructor),
                     scope = this.scope,
-                    cname = Constructor.name,
+                    cname = Constructor.prototype.name,
                     node = scope[cname.toLowerCase()],
                     base = this.base;
 
