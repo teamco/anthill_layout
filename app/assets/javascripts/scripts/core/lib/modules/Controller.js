@@ -788,7 +788,8 @@ define([
              * @returns {boolean}
              */
             isWidget: function isWidget(item) {
-                return (item || this.scope).model.getScopeName() === 'Widget';
+                var model = (item || this.scope).model;
+                return model ? model.getScopeName() === 'Widget' : false;
             },
 
             /**

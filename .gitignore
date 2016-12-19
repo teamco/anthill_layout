@@ -35,5 +35,3 @@ db/*.sqlite3
 app/assets/.idea
 public/assets
 target
-app/assets/javascripts/public/consumption.js
-app/assets/javascripts/public/consumption.js.map

@@ -763,7 +763,7 @@ define([
                                  * Get fn name
                                  * @type {string}
                                  */
-                                var fName = 'load' + child.name + 's';
+                                var fName = 'load' + child.prototype.name + 's';
 
                                 typeof item.model[fName] === 'function' ?
                                     item.model[fName].apply(item.model) :
