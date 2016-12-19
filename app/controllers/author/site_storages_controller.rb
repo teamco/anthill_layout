@@ -38,6 +38,7 @@ class Author::SiteStoragesController < Author::AuthorController
       current = @versions[:last] if current.nil?
 
       @storage[:activated] = current.activated
+      @storage[:deployed] = current.deployed
       @storage[:show] = current.version
       @storage[:version] = @versions[:last].version
       @storage[:content] = current.content
@@ -47,6 +48,7 @@ class Author::SiteStoragesController < Author::AuthorController
         @storage[:content] = nil
       else
         @storage[:activated] = @versions[:published].activated
+        @storage[:deployed] = @versions[:published].deployed
         @storage[:show] = @versions[:published].version
         @storage[:content] = @versions[:published].content
         @storage[:published] = @versions[:published].published
@@ -125,6 +127,7 @@ class Author::SiteStoragesController < Author::AuthorController
               },
               version: @activated.version,
               activated: @activated.activated,
+              deployed: @activated.deployed,
               mode: @author_site_storage.author_site_type.name,
               notice: notice,
               updated_by: current_user.original_email,
@@ -255,6 +258,7 @@ class Author::SiteStoragesController < Author::AuthorController
         all: versions,
         current: current,
         activated: activated,
+        deployed: activated.deployed,
         last: @author_site_storage.get_last_version,
         published: @author_site_storage.get_published_version
     }
@@ -280,6 +284,7 @@ class Author::SiteStoragesController < Author::AuthorController
             :id,
             :version,
             :activated,
+            :deployed,
             :published
         ],
         author_site_types_attributes: [

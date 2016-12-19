@@ -33,6 +33,10 @@ class Author::SiteVersion < ActiveRecord::Base
     self.get_storage_versions(site_key).where(activated: true).first
   end
 
+  def self.get_deployed(site_key)
+    self.get_storage_versions(site_key).where(deployed: true).first
+  end
+
   def self.get_published(site_key)
     self.get_storage_versions(site_key).where(published: true).first
   end
@@ -64,7 +68,8 @@ class Author::SiteVersion < ActiveRecord::Base
   private
 
   def self.get_storage_versions(site_key)
-    Author::SiteStorage.fetch_data(User.current).
+    user = defined?(Rails::Console) ? User.first : User.current
+    Author::SiteStorage.fetch_data(user).
         where(key: site_key).
         includes(:author_item).
         first.author_site_versions

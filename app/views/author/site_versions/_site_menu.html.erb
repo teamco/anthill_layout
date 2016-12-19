@@ -33,6 +33,7 @@
                        nil, :put) %>
     </li>
     <li><%= link_to_icon(publish_path(item.author_site_storage, item), t('publish'), 'fa fa-bolt', nil, :put) %></li>
+    <li><%= link_to_icon(deploy_path(item.author_site_storage, item), t('deploy'), 'fa fa-cloud-upload', nil, :put) %></li>
     <li><%= link_to_destroy(item, item.version) %></li>
   </ul>
 </div>

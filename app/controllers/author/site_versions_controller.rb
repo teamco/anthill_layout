@@ -25,6 +25,7 @@ class Author::SiteVersionsController < Author::AuthorController
         favorites: [
             SiteVersion.get_published(site_storage.key),
             SiteVersion.get_activated(site_storage.key),
+            SiteVersion.get_deployed(site_storage.key),
             latest
         ],
         latest: latest,
@@ -130,6 +131,35 @@ class Author::SiteVersionsController < Author::AuthorController
     handle_version_activation(false)
   end
 
+  def deploy
+    site_storage = current_user.author_site_storages.where(key: params[:key] || params[:site_storage_id]).first
+    if site_storage.nil?
+      result = {json: {error: 'Undefined storage'}, status: :unprocessable_entity}
+    else
+      version_params = request.xhr? ?
+          {version: params[:version]} :
+          {id: params[:site_version_id]}
+      version = site_storage.get_versions.where(version_params).first
+      version.author_item.touch
+      notice = t('success_deploy')
+      data = {
+          storage: {
+              key: site_storage.key,
+              content: version.content
+          },
+          version: version.version,
+          activated: version.activated,
+          deployed: version.deployed,
+          mode: site_storage.author_site_type.name,
+          notice: notice
+      }
+      result = {json: data, status: :ok}
+    end
+    respond_to { |format| format.json { render result } } if request.xhr?
+    redirect_to author_site_storage_site_versions_path(version.author_site_storage),
+                notice: t('success_update') unless request.xhr?
+  end
+
   private
 
   def handle_version_activation(should_activate)
@@ -137,7 +167,7 @@ class Author::SiteVersionsController < Author::AuthorController
     if site_storage.nil?
       result = {json: {error: 'Undefined storage'}, status: :unprocessable_entity}
     else
-      version_params= request.xhr? ?
+      version_params = request.xhr? ?
           {version: params[:version]} :
           {id: params[:site_version_id]}
       version = site_storage.get_versions.where(version_params).first
@@ -152,6 +182,7 @@ class Author::SiteVersionsController < Author::AuthorController
             },
             version: version.version,
             activated: version.activated,
+            deployed: version.deployed,
             mode: site_storage.author_site_type.name,
             notice: notice
         }
@@ -174,6 +205,7 @@ class Author::SiteVersionsController < Author::AuthorController
   def author_site_version_params
     params.require(:author_site_version).permit(
         :activated,
+        :deployed,
         :content,
         :published
     )

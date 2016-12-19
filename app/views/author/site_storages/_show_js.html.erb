@@ -8,8 +8,9 @@
         'data-activated': storage[:activated],
         'data-mode': storage[:mode],
         'data-environment': Rails.env,
+        'data-deployed': storage[:deployed],
         'data-uuid': storage[:uuid],
-        'data-main': javascript_path("public/#{storage[:mode]}"),
+        'data-main': javascript_path("public/#{storage[:mode]}#{storage[:deployed] ? '.min' : ''}"),
         'id': 'require-init'
     ) %>
 

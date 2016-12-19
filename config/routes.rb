@@ -46,6 +46,7 @@ Rails.application.routes.draw do
       resources :site_storages do
         put 'activate', to: 'site_versions#activate'
         put 'deactivate', to: 'site_versions#deactivate'
+        put 'deploy', to: 'site_versions#deploy'
       end
     end
 
@@ -79,7 +80,9 @@ Rails.application.routes.draw do
 
   put '/sites/:key', to: 'author/site_storages#update'
   put '/sites/activate/:key/:version', to: 'author/site_versions#activate'
+  put '/sites/deactivate/:key/:version', to: 'author/site_versions#deactivate'
   put '/sites/:key/:id/publish', to: 'author/site_versions#publish', as: 'publish'
+  put '/sites/:key/:id/deploy', to: 'author/site_versions#deploy', as: 'deploy'
 
 
   get '/author', to: 'author/author#index'

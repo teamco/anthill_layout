@@ -11,10 +11,9 @@
             dataset = script.dataset || {},
             site = dataset.resource,
             uuid = dataset.uuid,
-            version = parseInt(dataset.current || 0, 10) || 1,
+            version = parseInt(dataset.version || 0, 10) || 1,
             user = dataset.user,
             mode = dataset.mode,
-            activated = dataset.activated,
             environment = dataset.environment;
 
         /**
@@ -26,7 +25,6 @@
 
             require([
 
-                'jquery.ui',
                 'bootstrap',
                 '_',
 
@@ -52,17 +50,16 @@
                 require([
                     'config/application',
                     'public/' + site + '/javascript/config'
-                ], function _initApplication(Application, config) {
+                ], function loadApplication(Application, config) {
 
                     $.extend(true, config, {
                         user: user,
                         uuid: uuid,
                         version: version,
-                        activate: activated === 'true',
                         environment: environment,
                         appName: site,
                         mode: mode,
-                        isDevelopment: mode === 'development'
+                        isConsumption: mode === 'consumption'
                     });
 
                     /**
