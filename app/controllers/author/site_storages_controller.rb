@@ -128,7 +128,7 @@ class Author::SiteStoragesController < Author::AuthorController
               version: @activated.version,
               activated: @activated.activated,
               deployed: @activated.deployed,
-              mode: @author_site_storage.author_site_type.name,
+              mode: SiteType.get_mode(@author_site_storage, params[:mode]),
               notice: notice,
               updated_by: current_user.original_email,
               updated_at: @activated.author_item.updated_at.strftime('%Y %b %d %I:%M:%S%p %Z')
@@ -270,6 +270,7 @@ class Author::SiteStoragesController < Author::AuthorController
     params.require(:author_site_storage).permit(
         :key,
         :site_type_id,
+        :mode,
         :public,
         :layout_type,
         :content,

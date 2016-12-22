@@ -48,6 +48,9 @@ module Author::SiteStoragesHelper
         "<div>#{layout}: #{collection.inspect}</div>".html_safe
     stylesheet_link_tag 'general', media: 'all' if layout == 'js'
     stylesheet_link_tag("public/#{collection[:key]}/css/general")
-    render "show_#{layout}", storage: collection, current_user: user
+    render "show_#{layout}",
+           storage: collection,
+           minified: collection[:deployed] && collection[:mode] != 'development' ? '.min' : '',
+           current_user: user
   end
 end

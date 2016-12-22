@@ -284,8 +284,8 @@
     },
 
     baseUrl: "../app/assets/javascripts/scripts/core",
-    out: "../app/assets/javascripts/public/development.min.js",
-    name: "../../public/development",
+    out: "../app/assets/javascripts/public/general.min.js",
+    name: "../../public/general",
     optimize: 'uglify2',
     optimizeCss: "standard",
     preserveLicenseComments: false,

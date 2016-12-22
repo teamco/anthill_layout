@@ -11,9 +11,10 @@
             dataset = script.dataset || {},
             site = dataset.resource,
             uuid = dataset.uuid,
-            version = parseInt(dataset.version || 0, 10) || 1,
+            version = parseInt(dataset.current || 0, 10) || 1,
             user = dataset.user,
             mode = dataset.mode,
+            activated = dataset.activated,
             environment = dataset.environment;
 
         /**
@@ -23,7 +24,11 @@
          */
         function _setup() {
 
-            require([
+            /**
+             * Define loaderJs
+             * @type {[*]}
+             */
+            var loaderJs = [
 
                 'bootstrap',
                 '_',
@@ -45,21 +50,27 @@
                 'public/' + site + '/javascript/listeners',
                 'public/' + site + '/javascript/permissions'
 
-            ], function init() {
+            ];
+
+            if (mode !== 'consumption') {
+                loaderJs.unshift('jquery.ui');
+            }
+
+            require(loaderJs, function init() {
 
                 require([
                     'config/application',
                     'public/' + site + '/javascript/config'
-                ], function loadApplication(Application, config) {
+                ], function _initApplication(Application, config) {
 
                     $.extend(true, config, {
                         user: user,
                         uuid: uuid,
                         version: version,
+                        activate: activated === 'true',
                         environment: environment,
                         appName: site,
-                        mode: mode,
-                        isConsumption: mode === 'consumption'
+                        mode: mode
                     });
 
                     /**

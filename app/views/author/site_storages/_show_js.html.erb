@@ -10,7 +10,7 @@
         'data-environment': Rails.env,
         'data-deployed': storage[:deployed],
         'data-uuid': storage[:uuid],
-        'data-main': javascript_path("public/#{storage[:mode]}#{storage[:deployed] ? '.min' : ''}"),
+        'data-main': javascript_path("public/general#{minified}"),
         'id': 'require-init'
     ) %>
 

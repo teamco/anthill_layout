@@ -28,4 +28,9 @@ class Author::SiteType < ActiveRecord::Base
   def get_sites(user, visible=true, public=true)
     author_site_storages.of_user(user, visible, public)
   end
+
+  def self.get_mode(storage, name)
+    mode = where(name: name).first
+    mode.nil? ? storage.author_site_type.name : mode.name
+  end
 end

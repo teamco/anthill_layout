@@ -404,6 +404,7 @@ define([
                             author_site_storage: {
                                 content: value
                             },
+                            mode: this.setting.mode,
                             activate: this.setting.activate
                         })
                     };
