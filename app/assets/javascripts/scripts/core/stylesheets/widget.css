@@ -30,7 +30,8 @@
     box-shadow: 0 0 0 1px rgba(50, 50, 50, 0.3);
 }
 
-.page .widget:hover {
+.development .page .widget:hover,
+.authoring .page .widget:hover {
     z-index: 1000;
 }
 
