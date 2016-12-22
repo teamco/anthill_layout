@@ -143,7 +143,7 @@ define([
              * @memberOf WidgetContent
              */
             destroyContent: function destroyContent() {
-                
+
                 // Delete content
                 delete this.scope.content;
                 this.getView().elements.$content.cleanMetamorphicContent();
@@ -269,12 +269,12 @@ define([
                  * @type {*}
                  */
                 var preferences = this.model.getConfig('preferences'),
-                    fname = this.showContent.getCallerName(),
+                    eventName = this.showContent.caller.eventName,
                     event;
 
-                if (fname.match(/drag/i)) {
+                if (eventName.match(/drag/i)) {
                     event = 'Drag';
-                } else if (fname.match(/resizable/i)) {
+                } else if (eventName.match(/resizable/i)) {
                     event = 'Resize';
                 }
 
