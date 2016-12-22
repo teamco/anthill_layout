@@ -6,6 +6,7 @@
     <%= render_json(item.content, '.json-view') %>
     <%= render_checkbox(f, :activated) %>
     <%= render_checkbox(f, :published) -%>
+    <%= render_checkbox(f, :deployed) -%>
     <%= image_tag(item.screenshot, alt: item.author_site_storage.try(:key)) unless item.screenshot.nil? %>
     <div class="panel-footer m-20">
       <%= cancel_button -%>

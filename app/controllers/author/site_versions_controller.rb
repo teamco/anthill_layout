@@ -91,7 +91,7 @@ class Author::SiteVersionsController < Author::AuthorController
         format.html { redirect_to author_site_versions_path, notice: 'Site version was successfully updated.' }
         format.json { render :index, status: :ok, location: @author_site_version }
       else
-        format.html { render :edit }
+        format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @author_site_version.errors, status: :unprocessable_entity }
       end
     end
