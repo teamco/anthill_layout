@@ -127,4 +127,40 @@ class Author::SiteStorage < ActiveRecord::Base
     version
   end
 
+  def get_storage_configuration(version, versions, mode_args)
+    last_version_if = {
+        authorize: :authorize,
+        consumption: :consumption,
+        development: :development
+    }
+
+    config = {}
+    config[:mode] = Author::SiteType.where(mode_args).first.name.to_sym
+
+    if version.nil? && last_version_if[config[:mode]]
+      current = versions[:last]
+    else
+      current = versions[:current]
+      current = versions[:last] if current.nil?
+    end
+
+    config[:activated] = current.activated
+    config[:deployed] = current.deployed
+    config[:show] = current.version
+    config[:version] = versions[:last].version
+    config[:content] = current.content
+    config[:published] = current.published
+
+    if versions[:published].nil?
+      config[:content] = nil
+    else
+      config[:activated] = versions[:published].activated
+      config[:deployed] = versions[:published].deployed
+      config[:show] = versions[:published].version
+      config[:content] = versions[:published].content
+      config[:published] = versions[:published].published
+    end if config[:mode] == :consumption
+    config
+  end
+
 end

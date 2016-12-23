@@ -23,39 +23,19 @@ class Author::SiteStoragesController < Author::AuthorController
     @storage = {}
 
     if File.exist?(@target_path)
-      @storage = @author_site_storage.get_storage_data unless @author_site_storage.nil?
+      @storage = @author_site_storage.get_storage_data
 
-      args = params[:mode].nil? ?
-          {id: params[:site_type_id]} :
-          {name: params[:mode]}
+      config = @author_site_storage.get_storage_configuration(
+          params[:version],
+          @versions,
+          params[:mode].nil? ?
+              {id: params[:site_type_id]} :
+              {name: params[:mode]}
+      )
 
-      @storage[:mode] = :development
-        
-      mode = SiteType.where(args)
-      @storage[:mode] = mode.first.name unless mode.nil?
+      @storage.deep_merge!(config)
 
-      current = @versions[:current]
-      current = @versions[:last] if current.nil?
-
-      @storage[:activated] = current.activated
-      @storage[:deployed] = current.deployed
-      @storage[:show] = current.version
-      @storage[:version] = @versions[:last].version
-      @storage[:content] = current.content
-      @storage[:published] = current.published
-
-      if @versions[:published].nil?
-        @storage[:content] = nil
-      else
-        @storage[:activated] = @versions[:published].activated
-        @storage[:deployed] = @versions[:published].deployed
-        @storage[:show] = @versions[:published].version
-        @storage[:content] = @versions[:published].content
-        @storage[:published] = @versions[:published].published
-      end if @storage[:mode] == :consumption
-
-    end
-
+    end unless @author_site_storage.nil?
   end
 
   # GET /author/site_storages/new
@@ -250,6 +230,8 @@ class Author::SiteStoragesController < Author::AuthorController
 
     versions = @author_site_storage.author_site_versions
     activated = @author_site_storage.get_activated_version
+    last = @author_site_storage.get_last_version
+    published = @author_site_storage.get_published_version
     current = params[:version].nil? ?
         activated :
         versions.where(version: params[:version]).first
@@ -259,8 +241,8 @@ class Author::SiteStoragesController < Author::AuthorController
         current: current,
         activated: activated,
         deployed: activated.deployed,
-        last: @author_site_storage.get_last_version,
-        published: @author_site_storage.get_published_version
+        last: last,
+        published: published
     }
     @target_path = get_target_url(@author_site_storage.key) unless @author_site_storage.nil?
   end
