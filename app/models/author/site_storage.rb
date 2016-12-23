@@ -163,4 +163,42 @@ class Author::SiteStorage < ActiveRecord::Base
     config
   end
 
+  def update_widget_connections(params)
+
+    widget_ids = params[:author_site_storage_widget_ids]
+    widgets = Author::Widget.where(id: widget_ids.reject(&:blank?)) rescue []
+
+    connected_widgets = author_site_storage_widgets
+    connected_widgets.delete_all unless connected_widgets.size == 0
+    author_widgets << widgets unless widgets.blank?
+    author_item.touch
+    params.delete :author_site_storage_widget_ids
+
+  end
+
+  def update_version_activation(version)
+    activate_site_version(version)
+    author_item.touch
+  end
+
+  def activate_site_version(version=nil)
+    if version.nil?
+      puts t('undefined_version')
+      version = get_last_version
+    end
+    version.deactivate unless version.is_current?(get_activated_version)
+    version
+  end
+
+  def deactivate_site_version(version=nil)
+    activated = get_activated_version
+
+    puts t('undefined_activation') if activated.nil?
+    puts t('undefined_version') if version.nil?
+    puts t('deactivate_nonactive_version') unless version.is_current?(activated)
+
+    version.deactivate
+  end
+
+
 end

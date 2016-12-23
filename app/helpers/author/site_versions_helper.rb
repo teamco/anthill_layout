@@ -28,4 +28,24 @@ module Author::SiteVersionsHelper
     render 'author/site_versions/site_menu', item: site_version
   end
 
+  def activation_link(item)
+    send("author_site_version_site_storage_#{item.activated? ? 'de' : ''}activate_path", item, item.author_site_storage)
+  end
+
+  def activation_name(item)
+    t("site_version_#{item.activated? ? 'de' : ''}activate")
+  end
+
+  def activation_icon(item)
+    "glyphicon-thumbs-#{item.activated? ? 'down' : 'up'}"
+  end
+
+  def get_version_style(item, latest)
+    style = 'default'
+    style = 'warning' if latest == item
+    style = 'success' if item.published
+    style = 'info' if item.activated
+    style
+  end
+
 end

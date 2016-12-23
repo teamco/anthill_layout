@@ -1,9 +1,9 @@
 <div class="menu btn-group">
-  <% style = 'default' %>
-  <% style = 'warning' if @partial[:latest] == item %>
-  <% style = 'success' if item.published %>
-  <% style = 'info' if item.activated %>
-  <button class="btn btn-<%= style %> btn-xs dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  <button class="btn btn-<%= get_version_style(item, @partial[:latest]) %> btn-xs dropdown-toggle"
+          type="button"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false">
     <span class="glyphicon glyphicon-cog"></span>
     <%= t('options') %>
     <span class="caret"></span>
@@ -26,12 +26,7 @@
       </ul>
     </li>
     <li><%= link_to_icon(edit_author_site_storage_site_version_path(item.author_site_storage, item), t('edit_site'), 'glyphicon-globe') %></li>
-    <li>
-      <% activation_link = send("author_site_version_site_storage_#{item.activated? ? 'de' : ''}activate_path", item, item.author_site_storage) %>
-      <%= link_to_icon(activation_link, t("site_version_#{item.activated? ? 'de' : ''}activate"),
-                       "glyphicon-thumbs-#{item.activated? ? 'down' : 'up'}",
-                       nil, :put) %>
-    </li>
+    <li><%= link_to_icon(activation_link(item), activation_name(item), activation_icon(item), nil, :put) %></li>
     <li><%= link_to_icon(publish_path(item.author_site_storage, item), t('publish'), 'fa fa-bolt', nil, :put) %></li>
     <li><%= link_to_icon(deploy_path(item.author_site_storage, item), t('deploy'), 'fa fa-cloud-upload', nil, :put) %></li>
     <li><%= link_to_destroy(item, item.version) %></li>

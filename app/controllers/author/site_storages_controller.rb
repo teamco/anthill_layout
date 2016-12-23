@@ -136,28 +136,6 @@ class Author::SiteStoragesController < Author::AuthorController
     end
   end
 
-  def activate_site_version(version=nil)
-    activated = @author_site_storage.get_activated_version
-    @activated = version
-
-    if version.nil?
-      puts t('undefined_version')
-      version = @author_site_storage.get_last_version
-    end
-
-    version.deactivate unless version.is_current?(activated)
-  end
-
-  def deactivate_site_version(version=nil)
-    activated = @author_site_storage.get_activated_version
-
-    puts t('undefined_activation') if activated.nil?
-    puts t('undefined_version') if version.nil?
-    puts t('deactivate_nonactive_version') if version != activated
-
-    version.deactivate
-  end
-
   private
 
   def resolve_layout
@@ -171,26 +149,8 @@ class Author::SiteStoragesController < Author::AuthorController
 
   def update_handler(version)
     current_version = version || @author_site_storage.get_last_version
-    update_widget_connections unless request.xhr?
-    update_version_activation(current_version) if @author_site_storage.update(author_site_storage_params)
-  end
-
-  def update_widget_connections
-
-    widget_ids = params[:author_site_storage][:author_site_storage_widget_ids]
-    widgets = Widget.where(id: widget_ids.reject(&:blank?)) rescue []
-
-    connected_widgets = @author_site_storage.author_site_storage_widgets
-    connected_widgets.delete_all unless connected_widgets.size == 0
-    @author_site_storage.author_widgets << widgets unless widgets.blank?
-    @author_site_storage.author_item.touch
-    params[:author_site_storage].delete :author_site_storage_widget_ids
-
-  end
-
-  def update_version_activation(version)
-    activate_site_version(version)
-    @activated.author_item.touch
+    @author_site_storage.update_widget_connections(params[:author_site_storage]) unless request.xhr?
+    @activated = @author_site_storage.update_version_activation(current_version) if @author_site_storage.update(author_site_storage_params)
   end
 
   def update_activation
