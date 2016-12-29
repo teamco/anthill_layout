@@ -1,7 +1,7 @@
 == README
 
 1. Install <b>rvm</b>: <em>https://rvm.io/</em>
-2. Install latest ruby version
+2. Install latest ruby version 2.3.x
 3. Install <b>Postgress</b>
 4. Update <b>bundler</b>: <em>bundle install</em>
 5. Create <b>db</b>: <em>rake db:create</em>
