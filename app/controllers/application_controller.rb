@@ -18,14 +18,6 @@ class ApplicationController < ActionController::Base
     raise ActionController::RoutingError.new("No route matches #{params[:unmatched_route]}")
   end
 
-  def handle_error(e, status, template)
-    super if self.methods.include? 'super'
-    unless is_localhost?
-      log = ErrorLog.handle_error(current_user, e, @user_log)
-      redirect_to error_log_path(log) and return
-    end
-  end
-
   protected
 
   def set_current_user
@@ -45,6 +37,17 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
+  def handle_error(e, status, template)
+    if is_localhost?
+      logger.error "Status: #{status.inspect}"
+      logger.error "Template: #{template.inspect}"
+      raise e
+    else
+      log = ErrorLog.handle_error(current_user, e, @user_log)
+      redirect_to error_log_path(log) and return
+    end
+  end
 
   def current_user
     super

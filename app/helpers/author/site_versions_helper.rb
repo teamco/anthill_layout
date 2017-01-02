@@ -17,11 +17,13 @@ module Author::SiteVersionsHelper
   end
 
   def version_type(version)
-    text = 'Draft'
-    text = 'Published' if version.published
-    text = 'Activated' if version.activated
-    text = 'Latest' if version == @partial[:latest]
-    "<td>#{text}</td>"
+    text = []
+    text.push('Published') if version.published
+    text.push('Activated') if version.activated
+    text.push('Deployed') if version.deployed
+    text.push('Latest') if version == @partial[:latest]
+    text.push('Draft') if text.empty?
+    "<td>#{text.join('/')}</td>"
   end
 
   def site_menu(site_version)

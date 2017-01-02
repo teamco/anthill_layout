@@ -9,7 +9,9 @@
     <span class="caret"></span>
   </button>
   <ul class="dropdown-menu pull-left">
-    <li><%= image_tag(item.screenshot, alt: item.author_site_storage.try(:key), class: 'thumbnail-preview') unless item.screenshot.nil? %></li>
+    <li><%= image_tag(item.screenshot,
+                      alt: item.author_site_storage.try(:key),
+                      class: 'thumbnail-preview') unless item.screenshot.nil? %></li>
     <li>
       <%= link_to(edit_author_site_storage_site_version_path(item.author_site_storage, item)) do %>
           <i class="fa fa-code-fork"></i><%= t('edit_site_version') %>
@@ -21,7 +23,8 @@
       </a>
       <ul class="dropdown-menu">
         <% @partial[:site_types].each do |type| %>
-            <li><%= link_to_icon(version_path(item.author_site_storage, type[1], item.version), type[1].capitalize, 'glyphicon-globe', '_blank') %></li>
+            <li><%= link_to_icon(version_path(item.author_site_storage, type[1], item.version),
+                                 type[1].capitalize, 'glyphicon-globe', '_blank') %></li>
         <% end %>
       </ul>
     </li>

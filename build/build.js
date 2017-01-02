@@ -20,7 +20,6 @@
 
         modules: 'lib/modules',
         plugins: '../plugins',
-        target: '../../public',
 
         services: '../../services',
 
