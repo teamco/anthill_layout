@@ -283,8 +283,8 @@
     },
 
     baseUrl: "../app/assets/javascripts/scripts/core",
-    out: "../app/assets/javascripts/public/general.min.js",
-    name: "../../public/general",
+    out: "../app/assets/javascripts/scripts/general.min.js",
+    name: "../general",
     optimize: 'uglify2',
     optimizeCss: "standard",
     preserveLicenseComments: false,
