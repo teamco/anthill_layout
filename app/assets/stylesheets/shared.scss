@@ -353,3 +353,9 @@ img {
 .popover {
   z-index: 3000 !important;
 }
+
+.anthill .navbar-default,
+#wrapper .navbar-default {
+  background-image: none;
+  border-radius: 0;
+}

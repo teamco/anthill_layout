@@ -14,7 +14,7 @@
         'id': 'require-init'
     ) %>
 
-<%= javascript_tag defer: 'defer', id: 'preload' do -%>
+<%= javascript_tag defer: 'defer', id: 'preload' do %>
     (function(){
     window.localStorage['<%= storage[:key] %>'] = '<%= storage[:content] %>';
     var script = document.getElementById('preload');

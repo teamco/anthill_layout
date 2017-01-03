@@ -61,6 +61,10 @@ class Author::SiteVersion < ActiveRecord::Base
     update({published: true})
   end
 
+  def deploy
+    update({deployed: true})
+  end
+
   def unpublish_other
     self.class.where.not(id: id).update_all(published: false)
   end

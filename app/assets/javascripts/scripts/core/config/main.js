@@ -1,12 +1,12 @@
 requirejs.config({
 
-    baseUrl: '../../assets/scripts/core',
+    baseUrl: '/assets/scripts/core',
 
     waitSeconds: 200,
 
     paths: {
         // Define public application path
-        'public': '../../public',
+        'public': '/assets/public',
 
         config: 'config',
 
@@ -22,10 +22,9 @@ requirejs.config({
         'extends': 'lib/extends',
 
         modules: 'lib/modules',
-        plugins: '../plugins',
-        target: '../../target',
+        plugins: '/assets/scripts/plugins',
 
-        services: '../../services',
+        services: '/assets/services',
 
         tinyMCE: 'lib/packages/tinymce/tinymce.min',
         moment: 'lib/packages/moment',
