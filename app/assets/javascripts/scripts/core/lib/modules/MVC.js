@@ -610,17 +610,23 @@ define([
                 scope = this.scope,
                 listener = type + 'Listeners';
 
-            if (typeof scope[listener] === 'object') {
+            /**
+             * Define scope listener
+             * @type {globalListeners|localListeners}
+             */
+            var scopeListener = scope[listener];
 
-                for (index in scope[listener]) {
+            if (typeof scopeListener === 'object') {
 
-                    if (scope[listener].hasOwnProperty(index)) {
+                for (index in scopeListener) {
+
+                    if (scopeListener.hasOwnProperty(index)) {
 
                         /**                                                     ß
                          * Define local instance of an event
                          * @type {*}
                          */
-                        event = scope[listener][index];
+                        event = scopeListener[index];
 
                         if (!this.base.isArray(event)) {
                             event = [event];
@@ -702,6 +708,12 @@ define([
                 mode = scope.controller.getMode(),
                 permission = type + 'Permissions';
 
+            /**
+             * Define permission params
+             * @type {globalPermissions|localPermissions}
+             */
+            var scopePermission = scope[permission];
+
             if (scope.controller.checkCondition({
                     condition: !base.isDefined(mode),
                     type: 'warn',
@@ -711,7 +723,7 @@ define([
             }
 
             if (scope.controller.checkCondition({
-                    condition: !base.isDefined(scope[permission]),
+                    condition: !base.isDefined(scopePermission),
                     type: 'warn',
                     msg: 'Undefined ' + type + ' permission'
                 })) {
@@ -720,7 +732,7 @@ define([
             }
 
             // Define capability
-            var capabilities = scope[permission][mode];
+            var capabilities = scopePermission[mode];
 
             if (scope.controller.checkCondition({
                     condition: !base.isDefined(capabilities),

@@ -91,7 +91,11 @@ class Author::SiteStoragesController < Author::AuthorController
       params[:author_site_storage].delete :activated_version
     end
 
-    update_handler(version)
+    @activated = @author_site_storage.update_handler(
+        version, params[:author_site_storage],
+        author_site_storage_params,
+        request.xhr?
+    )
 
     respond_to do |format|
       if @activated.nil?
@@ -145,12 +149,6 @@ class Author::SiteStoragesController < Author::AuthorController
       else
         'author'
     end
-  end
-
-  def update_handler(version)
-    current_version = version || @author_site_storage.get_last_version
-    @author_site_storage.update_widget_connections(params[:author_site_storage]) unless request.xhr?
-    @activated = @author_site_storage.update_version_activation(current_version) if @author_site_storage.update(author_site_storage_params)
   end
 
   def update_activation
