@@ -24,7 +24,7 @@ define([
         /**
          * Define scope
          * @property MVC
-         * @type {mvc.scope}
+         * @type {{}}
          */
         this.scope = opts.scope;
 
@@ -763,7 +763,7 @@ define([
 
             /**
              * Define observer
-             * @type {modules.observer}
+             * @type {Observer}
              */
             scope.observer = new Observer();
 
