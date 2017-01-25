@@ -92,6 +92,40 @@ define([
             },
 
             /**
+            * Define fetch content
+            * @memberOf WidgetContent
+            * @param {string} path
+            * @param {boolean} isInternal
+            */
+            fetchContent: function fetchContent(path, isInternal) {
+
+              /**
+               * Define widget instance
+               * @type {Widget}
+               */
+              var widget = this.scope;
+
+              widget.logger.debug('Load widget content', path);
+
+              require([path], function _getDependencies(Content) {
+
+                  if (isInternal) {
+                    widget.controller.destroyContent();
+                  }
+
+                  widget.observer.publish(
+                      widget.eventmanager.eventList.setContent,
+                      [Content, {
+                          events: widget.contentEvents || {},
+                          rules: widget.contentRules || {}
+                      }]
+                  );
+
+                  widget.logger.debug('Content finish loading');
+              });
+            },
+
+            /**
              * Define fetch external content
              * @memberOf WidgetContent
              * @param {string} resource
@@ -124,18 +158,7 @@ define([
                     '.js'
                 ].join('');
 
-                require([path], function _getDependencies(Content) {
-
-                    widget.observer.publish(
-                        widget.eventmanager.eventList.setContent,
-                        [Content, {
-                            events: widget.contentEvents || {},
-                            rules: widget.contentRules || {}
-                        }]
-                    );
-
-                    widget.logger.debug('Content finish loading');
-                });
+                this.fetchContent(path, 0);
             },
 
             /**
@@ -178,20 +201,7 @@ define([
                     ('/' + resource).repeat(2)
                 ].join('');
 
-                require([path], function _getDependencies(Content) {
-
-                    widget.controller.destroyContent();
-
-                    widget.observer.publish(
-                        widget.eventmanager.eventList.setContent,
-                        [Content, {
-                            events: widget.contentEvents || {},
-                            rules: widget.contentRules || {}
-                        }]
-                    );
-
-                    widget.logger.debug('Content finish loading');
-                });
+                this.fetchContent(path, 1);
             },
 
             /**
