@@ -30,10 +30,10 @@ group :test, :development do
   gem 'capistrano-rails', require: false
   gem 'rails_best_practices', require: false
   gem 'request-log-analyzer', require: false
-  gem 'traceroute', require: false
   gem 'brakeman', require: false
   gem 'rubocop', require: false
   gem 'rubycritic', require: false
+  gem 'traceroute', require: false
   # gem 'guard', require: false
   # gem 'guard-livereload', '~> 2.4', require: false
   gem 'byebug', require: false
@@ -43,11 +43,11 @@ gem 'derailed', group: :development
 gem 'stackprof', group: :development
 
 group :console do
-  gem 'web-console' #, '~> 2.0'
-  gem 'rails-console-tweaks'
   gem 'awesome_print', require: 'ap'
   gem 'hirb'
   gem 'interactive_editor'
+  gem 'rails-console-tweaks'
+  gem 'web-console' #, '~> 2.0'
 end
 
 group :doc do
@@ -63,7 +63,7 @@ gem 'rack-attack'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
-gem 'rmagick'
+# gem 'rmagick'
 # gem 'font-awesome-less'
 gem 'font-awesome-sass'#, git: 'https://github.com/teamco/font-awesome-sass.git'
 

@@ -6,25 +6,29 @@
  * To change this template use File | Settings | File Templates.
  */
 
-define([
-    'config/anthill',
-    'modules/MVC',
-    'api/page.api',
-    'controller/page.controller',
-    'model/page.model',
-    'view/page.view',
-    'event/page.event.manager',
-    'permission/page.permission'
-], function definePage(AntHill, MVC, API, Controller, Model, View, EventManager, Permission) {
+define(
+    [
+      'config/anthill',
+      'modules/MVC',
+      'api/page.api',
+      'controller/page.controller',
+      'model/page.model',
+      'view/page.view',
+      'event/page.event.manager',
+      'permission/page.permission'
+    ],
+    function definePage(AntHill, MVC, API, Controller, Model, View,
+                        EventManager,
+                        Permission) {
 
-    /**
-     * Define Page
-     * @class Page
-     * @param opts
-     * @extends AntHill
-     * @constructor
-     */
-    var Page = function Page(opts) {
+      /**
+       * Define Page
+       * @class Page
+       * @param opts
+       * @extends AntHill
+       * @constructor
+       */
+      var Page = function Page(opts) {
 
         /**
          * Define layout modes
@@ -36,9 +40,9 @@ define([
          * }}
          */
         this.LAYOUT_MODES = {
-            snap2grid: 'snap2grid',
-            jqUIGrid: 'jqUIGrid',
-            freeStyle: 'freeStyle'
+          snap2grid: 'snap2grid',
+          jqUIGrid: 'jqUIGrid',
+          freeStyle: 'freeStyle'
         };
 
         /**
@@ -51,11 +55,11 @@ define([
          * }}
          */
         this.ORGANIZE_MODES = {
-            none: 'none',
-            row: 'row',
-            column: 'column',
-            right: 'right',
-            left: 'left'
+          none: 'none',
+          row: 'row',
+          column: 'column',
+          right: 'right',
+          left: 'left'
         };
 
         /**
@@ -106,66 +110,65 @@ define([
          * }}
          */
         var DEFAULTS = {
-            preferences: opts.preferences || {
-                showInTabs: true
+          preferences: opts.preferences || {
+            showInTabs: true
+          },
+          order: 1,
+          type: 'default',
+          limit: false,
+          isResized: true,
+          isDefault: false,
+          layout: {
+            behavior: {
+              snap2grid: {
+                animate: true,
+                float: this.ORGANIZE_MODES.none,
+                organize: this.ORGANIZE_MODES.column,
+                emptySpaces: this.ORGANIZE_MODES.none
+              },
+              jqUIGrid: {
+                animate: true,
+                float: this.ORGANIZE_MODES.none,
+                organize: this.ORGANIZE_MODES.column,
+                emptySpaces: this.ORGANIZE_MODES.none
+              },
+              freeStyle: {}
             },
-            order: 1,
-            type: 'default',
-            limit: false,
-            isResized: true,
-            isDefault: false,
-            layout: {
-                behavior: {
-                    snap2grid: {
-                        animate: true,
-                        float: this.ORGANIZE_MODES.none,
-                        organize: this.ORGANIZE_MODES.column,
-                        emptySpaces: this.ORGANIZE_MODES.none
-                    },
-                    jqUIGrid: {
-                        animate: true,
-                        float: this.ORGANIZE_MODES.none,
-                        organize: this.ORGANIZE_MODES.column,
-                        emptySpaces: this.ORGANIZE_MODES.none
-                    },
-                    freeStyle: {
-                    }
-                },
-                mode: this.LAYOUT_MODES.snap2grid
+            mode: this.LAYOUT_MODES.snap2grid
+          },
+          widget: {
+            // allow to resize all items
+            plural: true,
+            types: {
+              widget: 'widget'
             },
-            widget: {
-                // allow to resize all items
-                plural: true,
-                types: {
-                    widget: 'widget'
-                },
-                // default widget relWidth/relHeight
-                defaults: {
-                    width: 30,
-                    height: 30
-                },
-                counter: 0,
-                overlapping: true,
-                allowToAdd: true,
-                addNewTo: this.ORGANIZE_MODES.row,
-                preferences: {
-                    draggable: true,
-                    resizable: true,
-                    maximizable: true
-                }
+            // default widget relWidth/relHeight
+            defaults: {
+              width: 30,
+              height: 30
             },
-            html: {
-                style: 'default',
-                header: true,
-                footer: false,
-                stretch: true,
-                padding: {
-                    top: 0,
-                    right: 0,
-                    bottom: 0,
-                    left: 0
-                }
+            counter: 0,
+            overlapping: true,
+            allowToAdd: true,
+            addNewTo: this.ORGANIZE_MODES.row,
+            preferences: {
+              draggable: true,
+              resizable: true,
+              maximizable: true
             }
+          },
+          html: {
+            style: 'default',
+            header: true,
+            footer: false,
+            stretch: true,
+            padding: {
+              top: 0,
+              right: 0,
+              bottom: 0,
+              left: 0
+            }
+          }
         };
 
         /**
@@ -174,82 +177,85 @@ define([
          * @type {MVC}
          */
         this.mvc = new MVC({
-            scope: this,
-            config: [opts.config, DEFAULTS],
-            components: [
-                API,
-                Controller,
-                Model,
-                View,
-                EventManager,
-                Permission
-            ],
-            render: true
+          scope: this,
+          config: [opts.config, DEFAULTS],
+          components: [
+            API,
+            Controller,
+            Model,
+            View,
+            EventManager,
+            Permission
+          ],
+          render: true
         });
 
         this.init();
-    };
+      };
 
-    return Page.extend('Page', {
-
-        /**
-         * Init page
-         * @memberOf Page
-         */
-        init: function init() {
+      return Page.extend('Page', {
 
             /**
-             * Define ready
-             * @property Page
-             * @type {number}
+             * Init page
+             * @memberOf Page
              */
-            this.ready = 0;
+            init: function init() {
 
-            /**
-             * Define items
-             * @property Page
-             * @type {*}
-             */
-            this.items = {};
+              /**
+               * Define ready
+               * @property Page
+               * @type {number}
+               */
+              this.ready = 0;
 
-            /**
-             * Define widget
-             * @property Page
-             * @type {Object|Widget}
-             */
-            this.widget = {};
+              /**
+               * Define items
+               * @property Page
+               * @type {*}
+               */
+              this.items = {};
 
-            /**
-             * Define maximized widget
-             * @property Page
-             * @type {Object|Widget}
-             */
-            this.maximized = {};
+              /**
+               * Define widget
+               * @property Page
+               * @type {Object|Widget}
+               */
+              this.widget = {};
 
-            /**
-             * Define layout
-             * @property Page
-             * @type {Layout}
-             */
-            this.layout = {};
+              /**
+               * Define maximized widget
+               * @property Page
+               * @type {Object|Widget}
+               */
+              this.maximized = {};
 
-            /**
-             * Init open Url Event Handler
-             * @property Page
-             * @type {number}
-             */
-            this.openUrlEventHandler = 0;
+              /**
+               * Define layout
+               * @property Page
+               * @type {Layout}
+               */
+              this.layout = {};
 
-            this.observer.publish(
-                this.eventmanager.eventList.createLayout,
-                this.config.layout
-            );
+              /**
+               * Init open Url Event Handler
+               * @property Page
+               * @type {number}
+               */
+              this.openUrlEventHandler = 0;
 
-            this.observer.batchPublish(
-                this.eventmanager.eventList.successCreated,
-                this.eventmanager.eventList.loadPreferences
-            );
-        }
+              this.observer.publish(
+                  this.eventmanager.eventList.createLayout,
+                  this.config.layout
+              );
 
-    }, AntHill.prototype);
-});
+              this.observer.batchPublish(
+                  this.eventmanager.eventList.successCreated,
+                  this.eventmanager.eventList.loadPreferences
+              );
+            }
+
+          },
+          AntHill.prototype
+      );
+    }
+);
