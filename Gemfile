@@ -63,7 +63,7 @@ gem 'rack-attack'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
-# gem 'rmagick'
+gem 'rmagick'
 # gem 'font-awesome-less'
 gem 'font-awesome-sass'#, git: 'https://github.com/teamco/font-awesome-sass.git'
 

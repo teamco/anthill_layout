@@ -163,19 +163,20 @@ class Author::SiteStorage < ActiveRecord::Base
     config
   end
 
-  def update_widget_connections(params)
-    widget_ids = params[:author_site_storage_widget_ids]
+  def update_widget_connections(widget_params, storage_params)
+    widget_ids = widget_params[:author_site_storage_widget_ids]
     widgets = Author::Widget.where(id: widget_ids.reject(&:blank?)) rescue []
     connected_widgets = author_site_storage_widgets
     connected_widgets.delete_all unless connected_widgets.empty?
     author_widgets << widgets unless widgets.blank?
     author_item.touch
-    params.delete :author_site_storage_widget_ids
+    widget_params.delete :author_site_storage_widget_ids
+    storage_params.delete :author_site_storage_widget_ids
   end
 
   def update_handler(version, widget_params, updated_params, xhr)
     current_version = version || get_last_version
-    update_widget_connections(widget_params) unless xhr
+    update_widget_connections(widget_params, updated_params) unless xhr
     update_version_activation(current_version) if update(updated_params)
   end
 
