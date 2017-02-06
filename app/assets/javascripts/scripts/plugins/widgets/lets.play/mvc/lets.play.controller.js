@@ -33,7 +33,7 @@ define([
         /**
          * Add LetsPlay rule
          * @memberOf LetsPlayController
-         * @param e
+         * @param {Event} e
          */
         addLetsPlayRule: function addLetsPlayRule(e) {
 

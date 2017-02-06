@@ -35,7 +35,7 @@ define([
         /**
          * Add Wikimapia rule
          * @memberOf WikimapiaController
-         * @param e
+         * @param {Event} e
          */
         addWikimapiaRule: function addWikimapiaRule(e) {
 

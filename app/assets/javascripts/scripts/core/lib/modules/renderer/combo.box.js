@@ -172,7 +172,7 @@ define([], function defineComboBoxRenderer() {
 
                         /**
                          * Define event callback
-                         * @param e
+                         * @param {Event} e
                          * @private
                          */
                         function _comboBoxEvent(e) {

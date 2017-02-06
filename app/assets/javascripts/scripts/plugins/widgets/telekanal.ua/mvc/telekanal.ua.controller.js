@@ -64,7 +64,7 @@ define([
         /**
          * Add TelekanalUa rule
          * @memberOf TelekanalUaController
-         * @param e
+         * @param {Event} e
          */
         addTelekanalUaRule: function addTelekanalUaRule(e) {
 

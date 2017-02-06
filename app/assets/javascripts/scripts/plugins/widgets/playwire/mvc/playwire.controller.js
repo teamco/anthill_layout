@@ -35,7 +35,7 @@ define([
         /**
          * Add Playwire rule
          * @memberOf PlaywireController
-         * @param e
+         * @param {Event} e
          */
         addPlaywireRule: function addPlaywireRule(e) {
 

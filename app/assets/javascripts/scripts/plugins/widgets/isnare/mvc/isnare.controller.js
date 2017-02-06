@@ -35,7 +35,7 @@ define([
         /**
          * Add Isnare rule
          * @memberOf IsnareController
-         * @param e
+         * @param {Event} e
          */
         addIsnareRule: function addIsnareRule(e) {
 

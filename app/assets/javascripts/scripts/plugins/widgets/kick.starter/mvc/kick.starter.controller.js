@@ -70,7 +70,7 @@ define([
         /**
          * Add KickStarter rule
          * @memberOf KickStarterController
-         * @param e
+         * @param {Event} e
          */
         addKickStarterRule: function addKickStarterRule(e) {
 

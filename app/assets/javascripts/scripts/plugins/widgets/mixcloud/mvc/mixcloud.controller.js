@@ -70,7 +70,7 @@ define([
         /**
          * Add Mixcloud rule
          * @memberOf MixcloudController
-         * @param e
+         * @param {Event} e
          */
         addMixcloudRule: function addMixcloudRule(e) {
 

@@ -66,7 +66,7 @@ define([
         /**
          * Add Mlkshk rule
          * @memberOf MlkshkController
-         * @param e
+         * @param {Event} e
          */
         addMlkshkRule: function addMlkshkRule(e) {
 

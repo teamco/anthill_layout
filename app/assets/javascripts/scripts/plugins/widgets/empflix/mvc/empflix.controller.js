@@ -6,88 +6,77 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineEmpflixController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define empflix controller
+   * @class EmpflixController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var EmpflixController = function EmpflixController() {
+  };
+
+  return EmpflixController.extend('EmpflixController', {
+
     /**
-     * Define empflix controller
-     * @class EmpflixController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf EmpflixController
      */
-    var EmpflixController = function EmpflixController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
 
-    return EmpflixController.extend('EmpflixController', {
+      /**
+       * Get url
+       * @type {string|*}
+       */
+      var url = this.model.getPrefs('empflixEmbedCode'),
+          embed = this.controller.getEmbedCode(url);
 
-        /**
-         * Set embedded content
-         * @memberOf EmpflixController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
+      if (embed) {
+        this.view.elements.$empflix.renderEmbeddedContent(embed);
+      }
+    },
 
-            /**
-             * Get url
-             * @type {string|*}
-             */
-            var url = this.model.getPrefs('empflixEmbedCode'),
-                embed = this.controller.getEmbedCode(url);
+    /**
+     * Validate empflix
+     * @memberOf EmpflixController
+     * @param {string} embed
+     * @return {string|boolean}
+     */
+    getEmbedCode: function getEmbedCode(embed) {
 
-            if (embed) {
-                this.view.elements.$empflix.renderEmbeddedContent(embed);
-            }
-        },
+      if (!embed) {
+        this.scope.logger.debug('Initial state');
+        return false;
+      }
 
-        /**
-         * Validate empflix
-         * @memberOf EmpflixController
-         * @param {string} embed
-         * @return {string|boolean}
-         */
-        getEmbedCode: function getEmbedCode(embed) {
+      // Convert to string
+      embed += '';
 
-            if (!embed) {
-                this.scope.logger.debug('Initial state');
-                return false;
-            }
+      if (embed.match(/<iframe/)) {
 
-            // Convert to string
-            embed += '';
+        return this.scope.view.locateDOMElement(
+            $(embed), 'iframe'
+        ).src;
 
-            if (embed.match(/<iframe/)) {
+      } else {
 
-                return this.scope.view.locateDOMElement(
-                    $(embed), 'iframe'
-                ).src;
+        this.scope.logger.warn('Invalid Empflix embed code');
+        return false;
+      }
+    },
 
-            } else {
+    /**
+     * Add Empflix rule
+     * @memberOf EmpflixController
+     * @param {Event} e
+     */
+    addEmpflixRule: function addEmpflixRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-                this.scope.logger.warn('Invalid Empflix embed code');
-                return false;
-            }
-        },
-
-        /**
-         * Add Empflix rule
-         * @memberOf EmpflixController
-         * @param e
-         */
-        addEmpflixRule: function addEmpflixRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

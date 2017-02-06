@@ -35,7 +35,7 @@ define([
         /**
          * Add Shoudio rule
          * @memberOf ShoudioController
-         * @param e
+         * @param {Event} e
          */
         addShoudioRule: function addShoudioRule(e) {
 

@@ -34,7 +34,7 @@ define([
         /**
          * Add IceFloe rule
          * @memberOf IceFloeController
-         * @param e
+         * @param {Event} e
          */
         addIceFloeRule: function addIceFloeRule(e) {
 

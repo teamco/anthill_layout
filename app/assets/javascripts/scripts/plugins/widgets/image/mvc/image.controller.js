@@ -128,7 +128,7 @@ define([
         /**
          * Add Image rule
          * @memberOf ImageController
-         * @param e
+         * @param {Event} e
          */
         addImageRule: function addImageRule(e) {
 

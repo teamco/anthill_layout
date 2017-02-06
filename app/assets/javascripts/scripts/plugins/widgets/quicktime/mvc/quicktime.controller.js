@@ -36,7 +36,7 @@ define([
         /**
          * Add Quicktime rule
          * @memberOf QuicktimeController
-         * @param e
+         * @param {Event} e
          */
         addQuicktimeRule: function addQuicktimeRule(e) {
 

@@ -35,7 +35,7 @@ define([
         /**
          * Add SpeakerDeck rule
          * @memberOf SpeakerDeckController
-         * @param e
+         * @param {Event} e
          */
         addSpeakerDeckRule: function addSpeakerDeckRule(e) {
 

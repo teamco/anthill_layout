@@ -89,7 +89,7 @@ define([
         /**
          * Add UrlWidget rule
          * @memberOf UrlWidgetController
-         * @param e
+         * @param {Event} e
          */
         addUrlWidgetRule: function addUrlWidgetRule(e) {
 

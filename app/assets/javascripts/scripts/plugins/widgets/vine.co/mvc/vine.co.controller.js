@@ -40,7 +40,7 @@ define([
         /**
          * Add VineCo rule
          * @memberOf VineCoController
-         * @param e
+         * @param {Event} e
          */
         addVineCoRule: function addVineCoRule(e) {
 

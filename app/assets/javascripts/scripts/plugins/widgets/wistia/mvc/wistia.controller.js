@@ -35,7 +35,7 @@ define([
         /**
          * Add Wistia rule
          * @memberOf WistiaController
-         * @param e
+         * @param {Event} e
          */
         addWistiaRule: function addWistiaRule(e) {
 

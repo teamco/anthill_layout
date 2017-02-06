@@ -34,7 +34,7 @@ define([
         /**
          * Add PostTool rule
          * @memberOf PostToolController
-         * @param e
+         * @param {Event} e
          */
         addPostToolRule: function addPostToolRule(e) {
 

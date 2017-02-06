@@ -6,52 +6,41 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineFlickrController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define Flickr controller
+   * @class FlickrController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var FlickrController = function FlickrController() {
+  };
+
+  return FlickrController.extend('FlickrController', {
+
     /**
-     * Define Flickr controller
-     * @class FlickrController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf FlickrController
      */
-    var FlickrController = function FlickrController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
 
-    return FlickrController.extend('FlickrController', {
+      this.view.elements.$flickr.renderEmbeddedContent(
+          this.model.getPrefs('flickrEmbed')
+      );
+    },
 
-        /**
-         * Set embedded content
-         * @memberOf FlickrController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
+    /**
+     * Add Flickr rule
+     * @memberOf FlickrController
+     * @param {Event} e
+     */
+    addFlickrRule: function addFlickrRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-            this.view.elements.$flickr.renderEmbeddedContent(
-                this.model.getPrefs('flickrEmbed')
-            );
-        },
-
-        /**
-         * Add Flickr rule
-         * @memberOf FlickrController
-         * @param e
-         */
-        addFlickrRule: function addFlickrRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), this.scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

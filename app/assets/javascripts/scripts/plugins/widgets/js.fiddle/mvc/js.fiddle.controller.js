@@ -70,7 +70,7 @@ define([
         /**
          * Add JsFiddle rule
          * @memberOf JsFiddleController
-         * @param e
+         * @param {Event} e
          */
         addJsFiddleRule: function addJsFiddleRule(e) {
 

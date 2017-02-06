@@ -69,7 +69,7 @@ define([
         /**
          * Add VideoPayNet rule
          * @memberOf VideoPayNetController
-         * @param e
+         * @param {Event} e
          */
         addVideoPayNetRule: function addVideoPayNetRule(e) {
 

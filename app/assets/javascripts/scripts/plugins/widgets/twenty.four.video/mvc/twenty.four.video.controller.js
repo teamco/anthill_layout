@@ -70,7 +70,7 @@ define([
         /**
          * Add TwentyFourVideo rule
          * @memberOf TwentyFourVideoController
-         * @param e
+         * @param {Event} e
          */
         addTwentyFourVideoRule: function addTwentyFourVideoRule(e) {
 

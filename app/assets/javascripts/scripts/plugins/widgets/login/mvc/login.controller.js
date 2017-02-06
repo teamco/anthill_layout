@@ -33,7 +33,7 @@ define([
         /**
          * Add Login rule
          * @memberOf LoginController
-         * @param e
+         * @param {Event} e
          */
         addLoginRule: function addLoginRule(e) {
 

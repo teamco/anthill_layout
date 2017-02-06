@@ -70,7 +70,7 @@ define([
         /**
          * Add Stepashka rule
          * @memberOf StepashkaController
-         * @param e
+         * @param {Event} e
          */
         addStepashkaRule: function addStepashkaRule(e) {
 

@@ -77,7 +77,7 @@ define([
         /**
          * Add Ubr rule
          * @memberOf UbrController
-         * @param e
+         * @param {Event} e
          */
         addUbrRule: function addUbrRule(e) {
 

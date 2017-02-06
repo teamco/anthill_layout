@@ -70,7 +70,7 @@ define([
         /**
          * Add Krem rule
          * @memberOf KremController
-         * @param e
+         * @param {Event} e
          */
         addKremRule: function addKremRule(e) {
 

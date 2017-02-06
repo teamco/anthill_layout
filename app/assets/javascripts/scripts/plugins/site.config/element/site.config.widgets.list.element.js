@@ -519,7 +519,7 @@ define([
 
             /**
              * Read data
-             * @param e
+             * @param {Event} e
              * @private
              */
             function _readData(e) {

@@ -86,7 +86,7 @@ define([
         /**
          * Add Giphy rule
          * @memberOf GiphyController
-         * @param e
+         * @param {Event} e
          */
         addGiphyRule: function addGiphyRule(e) {
 

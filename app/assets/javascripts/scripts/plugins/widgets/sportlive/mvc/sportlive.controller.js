@@ -35,7 +35,7 @@ define([
         /**
          * Add Sportlive rule
          * @memberOf SportliveController
-         * @param e
+         * @param {Event} e
          */
         addSportliveRule: function addSportliveRule(e) {
 

@@ -33,7 +33,7 @@ define([
         /**
          * Add SapOpenui rule
          * @memberOf SapOpenuiController
-         * @param e
+         * @param {Event} e
          */
         addSapOpenuiRule: function addSapOpenuiRule(e) {
 

@@ -35,7 +35,7 @@ define([
         /**
          * Add Interlude rule
          * @memberOf InterludeController
-         * @param e
+         * @param {Event} e
          */
         addInterludeRule: function addInterludeRule(e) {
 

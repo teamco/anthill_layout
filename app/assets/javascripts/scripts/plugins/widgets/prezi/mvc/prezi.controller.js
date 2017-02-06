@@ -70,7 +70,7 @@ define([
         /**
          * Add Prezi rule
          * @memberOf PreziController
-         * @param e
+         * @param {Event} e
          */
         addPreziRule: function addPreziRule(e) {
 

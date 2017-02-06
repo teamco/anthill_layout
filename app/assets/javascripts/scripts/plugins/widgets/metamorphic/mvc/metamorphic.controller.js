@@ -33,7 +33,7 @@ define([
         /**
          * Add Metamorphic rule
          * @memberOf MetamorphicController
-         * @param e
+         * @param {Event} e
          */
         addMetamorphicRule: function addMetamorphicRule(e) {
 

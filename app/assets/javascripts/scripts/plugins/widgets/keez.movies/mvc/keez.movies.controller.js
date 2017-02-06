@@ -70,7 +70,7 @@ define([
         /**
          * Add KeezMovies rule
          * @memberOf KeezMoviesController
-         * @param e
+         * @param {Event} e
          */
         addKeezMoviesRule: function addKeezMoviesRule(e) {
 

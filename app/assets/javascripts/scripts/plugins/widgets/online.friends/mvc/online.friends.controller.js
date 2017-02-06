@@ -35,7 +35,7 @@ define([
         /**
          * Add OnlineFriends rule
          * @memberOf OnlineFriendsController
-         * @param e
+         * @param {Event} e
          */
         addOnlineFriendsRule: function addOnlineFriendsRule(e) {
 

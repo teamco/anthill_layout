@@ -70,7 +70,7 @@ define([
         /**
          * Add TimeToast rule
          * @memberOf TimeToastController
-         * @param e
+         * @param {Event} e
          */
         addTimeToastRule: function addTimeToastRule(e) {
 

@@ -127,7 +127,7 @@ define([
         /**
          * Define do login
          * @memberOf WebrtcVideoChatController
-         * @param e
+         * @param {Event} e
          */
         doLogin: function doLogin(e) {
 
@@ -151,7 +151,7 @@ define([
         /**
          * Define do call
          * @memberOf WebrtcVideoChatController
-         * @param e
+         * @param {Event} e
          */
         doCall: function doCall(e) {
 
@@ -190,7 +190,7 @@ define([
         /**
          * Add WebrtcVideoChat rule
          * @memberOf WebrtcVideoChatController
-         * @param e
+         * @param {Event} e
          */
         addWebrtcVideoChatRule: function addWebrtcVideoChatRule(e) {
 

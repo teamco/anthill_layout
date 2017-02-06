@@ -6,56 +6,40 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineForecastIoController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define ForecastIo controller
+   * @class ForecastIoController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var ForecastIoController = function ForecastIoController() {
+  };
+
+  return ForecastIoController.extend('ForecastIoController', {
+
     /**
-     * Define ForecastIo controller
-     * @class ForecastIoController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf ForecastIoController
      */
-    var ForecastIoController = function ForecastIoController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
+      this.view.get$item().renderEmbeddedContent(
+          this.model.getPrefs('forecastioEmbedCode')
+      );
+    },
 
-    return ForecastIoController.extend('ForecastIoController', {
+    /**
+     * Add ForecastIo rule
+     * @memberOf ForecastIoController
+     * @param {Event} e
+     */
+    addForecastIoRule: function addForecastIoRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-        /**
-         * Set embedded content
-         * @memberOf ForecastIoController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
-            this.view.get$item().renderEmbeddedContent(
-                this.model.getPrefs('forecastioEmbedCode')
-            );
-        },
-
-        /**
-         * Add ForecastIo rule
-         * @memberOf ForecastIoController
-         * @param e
-         */
-        addForecastIoRule: function addForecastIoRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target);
-
-            /**
-             * Get scope
-             * @type {ForecastIo|{name: string}}
-             */
-            var scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

@@ -70,7 +70,7 @@ define([
         /**
          * Add Pixiv rule
          * @memberOf PixivController
-         * @param e
+         * @param {Event} e
          */
         addPixivRule: function addPixivRule(e) {
 

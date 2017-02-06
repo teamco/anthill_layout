@@ -6,54 +6,38 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineCountDownController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define CountDown controller
+   * @class CountDownController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var CountDownController = function CountDownController() {
+  };
+
+  return CountDownController.extend('CountDownController', {
+
     /**
-     * Define CountDown controller
-     * @class CountDownController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf CountDownController
      */
-    var CountDownController = function CountDownController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
+      this.view.get$item().renderEmbeddedContent();
+    },
 
-    return CountDownController.extend('CountDownController', {
+    /**
+     * Add CountDown rule
+     * @memberOf CountDownController
+     * @param {Event} e
+     */
+    addCountDownRule: function addCountDownRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-        /**
-         * Set embedded content
-         * @memberOf CountDownController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
-            this.view.get$item().renderEmbeddedContent();
-        },
-
-        /**
-         * Add CountDown rule
-         * @memberOf CountDownController
-         * @param e
-         */
-        addCountDownRule: function addCountDownRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target);
-
-            /**
-             * Get scope
-             * @type {CountDown|{name: string}}
-             */
-            var scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

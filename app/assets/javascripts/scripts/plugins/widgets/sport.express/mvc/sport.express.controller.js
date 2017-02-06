@@ -70,7 +70,7 @@ define([
         /**
          * Add SportExpress rule
          * @memberOf SportExpressController
-         * @param e
+         * @param {Event} e
          */
         addSportExpressRule: function addSportExpressRule(e) {
 

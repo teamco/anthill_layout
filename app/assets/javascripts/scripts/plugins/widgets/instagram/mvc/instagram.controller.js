@@ -36,7 +36,7 @@ define([
         /**
          * Add Instagram rule
          * @memberOf InstagramController
-         * @param e
+         * @param {Event} e
          */
         addInstagramRule: function addInstagramRule(e) {
 

@@ -35,7 +35,7 @@ define([
         /**
          * Add PizapPhotoEditor rule
          * @memberOf PizapPhotoEditorController
-         * @param e
+         * @param {Event} e
          */
         addPizapPhotoEditorRule: function addPizapPhotoEditorRule(e) {
 

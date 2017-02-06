@@ -70,7 +70,7 @@ define([
         /**
          * Add Rdio rule
          * @memberOf RdioController
-         * @param e
+         * @param {Event} e
          */
         addRdioRule: function addRdioRule(e) {
 

@@ -70,7 +70,7 @@ define([
         /**
          * Add TsnUa rule
          * @memberOf TsnUaController
-         * @param e
+         * @param {Event} e
          */
         addTsnUaRule: function addTsnUaRule(e) {
 

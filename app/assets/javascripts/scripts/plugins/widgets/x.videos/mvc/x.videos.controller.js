@@ -76,7 +76,7 @@ define([
         /**
          * Add XVideos rule
          * @memberOf XVideosController
-         * @param e
+         * @param {Event} e
          */
         addXVideosRule: function addXVideosRule(e) {
 

@@ -35,7 +35,7 @@ define([
         /**
          * Add WeatherUnderground rule
          * @memberOf WeatherUndergroundController
-         * @param e
+         * @param {Event} e
          */
         addWeatherUndergroundRule: function addWeatherUndergroundRule(e) {
 

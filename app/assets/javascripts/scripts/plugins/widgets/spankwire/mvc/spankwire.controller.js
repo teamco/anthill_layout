@@ -70,7 +70,7 @@ define([
         /**
          * Add Spankwire rule
          * @memberOf SpankwireController
-         * @param e
+         * @param {Event} e
          */
         addSpankwireRule: function addSpankwireRule(e) {
 

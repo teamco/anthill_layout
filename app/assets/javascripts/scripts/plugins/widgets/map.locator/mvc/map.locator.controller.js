@@ -76,7 +76,7 @@ define(
                 /**
                  * Add MapLocator rule
                  * @memberOf MapLocatorController
-                 * @param e
+                 * @param {Event} e
                  */
                 addMapLocatorRule: function addMapLocatorRule(e) {
 

@@ -20,40 +20,40 @@ define([
       }
 
       this.$.append(
-        this.getTemplate(text).append(
-          this.renderCombobox(
-            rulesList,
-            rulesList[0].value,
-            text,
-            [cname, 'Rule'].join(''), {
-              type: 'click.transferValue',
-              callback: this._transferValue.bind({
-                scope: this,
-                button: 'addContentRule'
-              })
-            },
-            true
+          this.getTemplate(text).append(
+              this.renderCombobox(
+                  rulesList,
+                  rulesList[0].value,
+                  text,
+                  [cname, 'Rule'].join(''), {
+                    type: 'click.transferValue',
+                    callback: this._transferValue.bind({
+                      scope: this,
+                      button: 'addContentRule'
+                    })
+                  },
+                  true
+              )
           )
-        )
       );
 
       this.view.button(
-        ButtonElement, {
-          addContentRule: {
-            text: 'Publish',
-            type: 'warning',
-            $container: this.$.find('.input-group:last'),
-            events: {
-              click: [
-                'add',
-                this.view.scope.name,
-                'Rule'
-              ].join('')
+          ButtonElement, {
+            addContentRule: {
+              text: 'Publish',
+              type: 'warning',
+              $container: this.$.find('.input-group:last'),
+              events: {
+                click: [
+                  'add',
+                  this.view.scope.name,
+                  'Rule'
+                ].join('')
+              }
             }
-          }
-        },
-        this.$buttons
+          },
+          this.$buttons
       );
-    },
+    }
   };
 });

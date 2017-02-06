@@ -117,7 +117,7 @@ define(function defineWidgetExpand() {
         /**
          * Define expand Content
          * @memberOf WidgetExpand
-         * @param e
+         * @param {Event} e
          */
         expandContent: function expandContent(e) {
 
@@ -143,7 +143,7 @@ define(function defineWidgetExpand() {
         /**
          * Define collapse Content
          * @memberOf WidgetExpand
-         * @param e
+         * @param {Event} e
          */
         collapseContent: function collapseContent(e) {
 
@@ -158,7 +158,7 @@ define(function defineWidgetExpand() {
 
         /**
          * Define on expand
-         * @param e
+         * @param {Event} e
          * @param {boolean} expand
          * @param {number} height
          * @returns {boolean}

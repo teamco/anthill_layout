@@ -34,7 +34,7 @@ define([
         /**
          * Add LoginFacebook rule
          * @memberOf LoginFacebookController
-         * @param e
+         * @param {Event} e
          */
         addLoginFacebookRule: function addLoginFacebookRule(e) {
 

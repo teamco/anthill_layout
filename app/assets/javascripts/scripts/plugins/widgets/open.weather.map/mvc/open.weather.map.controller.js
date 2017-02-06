@@ -66,7 +66,7 @@ define([
         /**
          * Add OpenWeatherMap rule
          * @memberOf OpenWeatherMapController
-         * @param e
+         * @param {Event} e
          */
         addOpenWeatherMapRule: function addOpenWeatherMapRule(e) {
 

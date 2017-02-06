@@ -35,7 +35,7 @@ define([
         /**
          * Add TourTv rule
          * @memberOf TourTvController
-         * @param e
+         * @param {Event} e
          */
         addTourTvRule: function addTourTvRule(e) {
 

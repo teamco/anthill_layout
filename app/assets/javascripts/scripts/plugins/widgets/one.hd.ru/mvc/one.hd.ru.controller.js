@@ -35,7 +35,7 @@ define([
         /**
          * Add OneHdRu rule
          * @memberOf OneHdRuController
-         * @param e
+         * @param {Event} e
          */
         addOneHdRuRule: function addOneHdRuRule(e) {
 

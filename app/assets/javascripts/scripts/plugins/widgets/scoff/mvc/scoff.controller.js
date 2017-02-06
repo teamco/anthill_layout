@@ -35,7 +35,7 @@ define([
         /**
          * Add Scoff rule
          * @memberOf ScoffController
-         * @param e
+         * @param {Event} e
          */
         addScoffRule: function addScoffRule(e) {
 

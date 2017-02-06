@@ -35,7 +35,7 @@ define([
         /**
          * Add TheWeatherNetwork rule
          * @memberOf TheWeatherNetworkController
-         * @param e
+         * @param {Event} e
          */
         addTheWeatherNetworkRule: function addTheWeatherNetworkRule(e) {
 

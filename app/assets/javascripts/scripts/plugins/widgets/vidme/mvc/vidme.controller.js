@@ -70,7 +70,7 @@ define([
         /**
          * Add Vidme rule
          * @memberOf VidmeController
-         * @param e
+         * @param {Event} e
          */
         addVidmeRule: function addVidmeRule(e) {
 

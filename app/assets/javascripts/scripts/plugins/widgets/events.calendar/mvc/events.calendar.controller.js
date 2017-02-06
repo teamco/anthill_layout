@@ -6,50 +6,40 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
-], function defineEventsCalendarController(PluginBase, WidgetContentController) {
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
+], function defineEventsCalendarController(PluginBase,
+    WidgetContentController) {
+
+  /**
+   * Define EventsCalendar controller
+   * @class EventsCalendarController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var EventsCalendarController = function EventsCalendarController() {
+  };
+
+  return EventsCalendarController.extend('EventsCalendarController', {
 
     /**
-     * Define EventsCalendar controller
-     * @class EventsCalendarController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf EventsCalendarController
      */
-    var EventsCalendarController = function EventsCalendarController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
 
-    return EventsCalendarController.extend('EventsCalendarController', {
+      this.view.elements.$eventscalendar.renderEmbeddedContent();
+    },
 
-        /**
-         * Set embedded content
-         * @memberOf EventsCalendarController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
+    /**
+     * Add EventsCalendar rule
+     * @memberOf EventsCalendarController
+     * @param {Event} e
+     */
+    addEventsCalendarRule: function addEventsCalendarRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-            this.view.elements.$eventscalendar.renderEmbeddedContent();
-        },
-
-        /**
-         * Add EventsCalendar rule
-         * @memberOf EventsCalendarController
-         * @param e
-         */
-        addEventsCalendarRule: function addEventsCalendarRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), this.scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

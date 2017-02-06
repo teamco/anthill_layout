@@ -70,7 +70,7 @@ define([
         /**
          * Add TubeEight rule
          * @memberOf TubeEightController
-         * @param e
+         * @param {Event} e
          */
         addTubeEightRule: function addTubeEightRule(e) {
 

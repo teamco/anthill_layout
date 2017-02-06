@@ -35,7 +35,7 @@ define([
         /**
          * Add Sinoptik rule
          * @memberOf SinoptikController
-         * @param e
+         * @param {Event} e
          */
         addSinoptikRule: function addSinoptikRule(e) {
 

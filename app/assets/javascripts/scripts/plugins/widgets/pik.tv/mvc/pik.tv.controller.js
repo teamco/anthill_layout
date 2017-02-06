@@ -35,7 +35,7 @@ define([
         /**
          * Add PikTv rule
          * @memberOf PikTvController
-         * @param e
+         * @param {Event} e
          */
         addPikTvRule: function addPikTvRule(e) {
 

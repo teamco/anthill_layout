@@ -6,56 +6,40 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineCodepointsController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define Codepoints controller
+   * @class CodepointsController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var CodepointsController = function CodepointsController() {
+  };
+
+  return CodepointsController.extend('CodepointsController', {
+
     /**
-     * Define Codepoints controller
-     * @class CodepointsController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf CodepointsController
      */
-    var CodepointsController = function CodepointsController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
+      this.view.get$item().renderEmbeddedContent(
+          this.model.getPrefs('codepointsEmbedCode')
+      );
+    },
 
-    return CodepointsController.extend('CodepointsController', {
+    /**
+     * Add Codepoints rule
+     * @memberOf CodepointsController
+     * @param {Event} e
+     */
+    addCodepointsRule: function addCodepointsRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-        /**
-         * Set embedded content
-         * @memberOf CodepointsController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
-            this.view.get$item().renderEmbeddedContent(
-                this.model.getPrefs('codepointsEmbedCode')
-            );
-        },
-
-        /**
-         * Add Codepoints rule
-         * @memberOf CodepointsController
-         * @param e
-         */
-        addCodepointsRule: function addCodepointsRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target);
-
-            /**
-             * Get scope
-             * @type {Codepoints|{name: string}}
-             */
-            var scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

@@ -6,86 +6,75 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineCollegeHumorController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define collegehumor controller
+   * @class CollegeHumorController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var CollegeHumorController = function CollegeHumorController() {
+  };
+
+  return CollegeHumorController.extend('CollegeHumorController', {
+
     /**
-     * Define collegehumor controller
-     * @class CollegeHumorController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf CollegeHumorController
      */
-    var CollegeHumorController = function CollegeHumorController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
 
-    return CollegeHumorController.extend('CollegeHumorController', {
+      /**
+       * Get url
+       * @type {string|*}
+       */
+      var url = this.model.getPrefs('collegehumorEmbedCode'),
+          embed = this.controller.getEmbedCode(url);
 
-        /**
-         * Set embedded content
-         * @memberOf CollegeHumorController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
+      if (embed) {
+        this.view.elements.$collegehumor.renderEmbeddedContent(embed);
+      }
+    },
 
-            /**
-             * Get url
-             * @type {string|*}
-             */
-            var url = this.model.getPrefs('collegehumorEmbedCode'),
-                embed = this.controller.getEmbedCode(url);
+    /**
+     * Validate collegehumor
+     * @memberOf CollegeHumorController
+     * @param {string} embed
+     * @return {string|boolean}
+     */
+    getEmbedCode: function getEmbedCode(embed) {
 
-            if (embed) {
-                this.view.elements.$collegehumor.renderEmbeddedContent(embed);
-            }
-        },
+      if (!embed) {
+        this.scope.logger.debug('Initial state');
+        return false;
+      }
 
-        /**
-         * Validate collegehumor
-         * @memberOf CollegeHumorController
-         * @param {string} embed
-         * @return {string|boolean}
-         */
-        getEmbedCode: function getEmbedCode(embed) {
+      // Convert to string
+      embed += '';
 
-            if (!embed) {
-                this.scope.logger.debug('Initial state');
-                return false;
-            }
+      if (embed.match(/^<iframe/)) {
 
-            // Convert to string
-            embed += '';
+        return $(embed).attr('src');
 
-            if (embed.match(/^<iframe/)) {
+      } else {
 
-                return $(embed).attr('src');
+        this.scope.logger.warn('Invalid CollegeHumor embed code');
+        return false;
+      }
+    },
 
-            } else {
+    /**
+     * Add CollegeHumor rule
+     * @memberOf CollegeHumorController
+     * @param {Event} e
+     */
+    addCollegeHumorRule: function addCollegeHumorRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-                this.scope.logger.warn('Invalid CollegeHumor embed code');
-                return false;
-            }
-        },
-
-        /**
-         * Add CollegeHumor rule
-         * @memberOf CollegeHumorController
-         * @param e
-         */
-        addCollegeHumorRule: function addCollegeHumorRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

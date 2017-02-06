@@ -35,7 +35,7 @@ define([
         /**
          * Add Huffduffer rule
          * @memberOf HuffdufferController
-         * @param e
+         * @param {Event} e
          */
         addHuffdufferRule: function addHuffdufferRule(e) {
 

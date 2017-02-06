@@ -36,7 +36,7 @@ define([
         /**
          * Add VideochartNet rule
          * @memberOf VideochartNetController
-         * @param e
+         * @param {Event} e
          */
         addVideochartNetRule: function addVideochartNetRule(e) {
 

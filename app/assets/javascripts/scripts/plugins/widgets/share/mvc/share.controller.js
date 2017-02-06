@@ -35,7 +35,7 @@ define([
         /**
          * Add Share rule
          * @memberOf ShareController
-         * @param e
+         * @param {Event} e
          */
         addShareRule: function addShareRule(e) {
 

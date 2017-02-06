@@ -76,7 +76,7 @@ define([
         /**
          * Add Pornhub rule
          * @memberOf PornhubController
-         * @param e
+         * @param {Event} e
          */
         addPornhubRule: function addPornhubRule(e) {
 

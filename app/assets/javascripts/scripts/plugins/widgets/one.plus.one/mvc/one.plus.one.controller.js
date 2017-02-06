@@ -70,7 +70,7 @@ define([
         /**
          * Add OnePlusOne rule
          * @memberOf OnePlusOneController
-         * @param e
+         * @param {Event} e
          */
         addOnePlusOneRule: function addOnePlusOneRule(e) {
 

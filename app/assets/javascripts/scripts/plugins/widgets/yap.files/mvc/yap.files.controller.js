@@ -70,7 +70,7 @@ define([
         /**
          * Add YapFiles rule
          * @memberOf YapFilesController
-         * @param e
+         * @param {Event} e
          */
         addYapFilesRule: function addYapFilesRule(e) {
 

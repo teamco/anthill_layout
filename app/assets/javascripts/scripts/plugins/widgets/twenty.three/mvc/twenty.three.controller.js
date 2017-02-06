@@ -35,7 +35,7 @@ define([
         /**
          * Add TwentyThree rule
          * @memberOf TwentyThreeController
-         * @param e
+         * @param {Event} e
          */
         addTwentyThreeRule: function addTwentyThreeRule(e) {
 

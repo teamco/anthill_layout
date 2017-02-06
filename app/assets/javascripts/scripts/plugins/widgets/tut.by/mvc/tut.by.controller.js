@@ -35,7 +35,7 @@ define([
         /**
          * Add TutBy rule
          * @memberOf TutByController
-         * @param e
+         * @param {Event} e
          */
         addTutByRule: function addTutByRule(e) {
 

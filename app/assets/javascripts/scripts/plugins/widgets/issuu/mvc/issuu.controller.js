@@ -80,7 +80,7 @@ define([
         /**
          * Add Issuu rule
          * @memberOf IssuuController
-         * @param e
+         * @param {Event} e
          */
         addIssuuRule: function addIssuuRule(e) {
 

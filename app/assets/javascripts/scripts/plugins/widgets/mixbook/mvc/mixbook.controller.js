@@ -70,7 +70,7 @@ define([
         /**
          * Add Mixbook rule
          * @memberOf MixbookController
-         * @param e
+         * @param {Event} e
          */
         addMixbookRule: function addMixbookRule(e) {
 

@@ -34,7 +34,7 @@ define([
         /**
          * Add MultipleIcons rule
          * @memberOf MultipleIconsController
-         * @param e
+         * @param {Event} e
          */
         addMultipleIconsRule: function addMultipleIconsRule(e) {
 

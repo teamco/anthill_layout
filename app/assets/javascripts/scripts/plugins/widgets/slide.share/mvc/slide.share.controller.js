@@ -36,7 +36,7 @@ define([
         /**
          * Add SlideShare rule
          * @memberOf SlideShareController
-         * @param e
+         * @param {Event} e
          */
         addSlideShareRule: function addSlideShareRule(e) {
 

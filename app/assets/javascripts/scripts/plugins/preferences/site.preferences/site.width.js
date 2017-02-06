@@ -61,7 +61,7 @@ define(function defineSiteConfigWidthPreferences(){
         /**
          * Enable/Disable slider
          * @memberOf SiteConfigWidthPreferences
-         * @param e
+         * @param {Event} e
          */
         toggleSlider: function toggleSlider(e) {
 

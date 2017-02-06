@@ -70,7 +70,7 @@ define([
         /**
          * Add Livestream rule
          * @memberOf LivestreamController
-         * @param e
+         * @param {Event} e
          */
         addLivestreamRule: function addLivestreamRule(e) {
 

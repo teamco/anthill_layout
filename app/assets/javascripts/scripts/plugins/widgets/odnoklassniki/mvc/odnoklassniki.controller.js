@@ -37,7 +37,7 @@ define([
         /**
          * Add Odnoklassniki rule
          * @memberOf OdnoklassnikiController
-         * @param e
+         * @param {Event} e
          */
         addOdnoklassnikiRule: function addOdnoklassnikiRule(e) {
 

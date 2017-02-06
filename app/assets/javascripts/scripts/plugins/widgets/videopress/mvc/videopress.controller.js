@@ -35,7 +35,7 @@ define([
         /**
          * Add Videopress rule
          * @memberOf VideopressController
-         * @param e
+         * @param {Event} e
          */
         addVideopressRule: function addVideopressRule(e) {
 

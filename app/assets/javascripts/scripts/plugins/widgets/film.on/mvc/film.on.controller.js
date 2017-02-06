@@ -6,61 +6,50 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineFilmOnController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define FilmOn controller
+   * @class FilmOnController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var FilmOnController = function FilmOnController() {
+  };
+
+  return FilmOnController.extend('FilmOnController', {
+
     /**
-     * Define FilmOn controller
-     * @class FilmOnController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf FilmOnController
      */
-    var FilmOnController = function FilmOnController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
 
-    return FilmOnController.extend('FilmOnController', {
+      /**
+       * Load config
+       * @type {*}
+       */
+      var mask = this.model.getConfig('mask'),
+          channel = this.model.getPrefs('filmonChannelId');
 
-        /**
-         * Set embedded content
-         * @memberOf FilmOnController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
+      if (channel) {
+        this.view.elements.$filmon.renderEmbeddedContent(
+            mask.replace(/\{channel}/, channel)
+        );
+      }
+    },
 
-            /**
-             * Load config
-             * @type {*}
-             */
-            var mask = this.model.getConfig('mask'),
-                channel = this.model.getPrefs('filmonChannelId');
+    /**
+     * Add FilmOn rule
+     * @memberOf FilmOnController
+     * @param {Event} e
+     */
+    addFilmOnRule: function addFilmOnRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-            if (channel) {
-                this.view.elements.$filmon.renderEmbeddedContent(
-                    mask.replace(/\{channel}/, channel)
-                );
-            }
-        },
-
-        /**
-         * Add FilmOn rule
-         * @memberOf FilmOnController
-         * @param e
-         */
-        addFilmOnRule: function addFilmOnRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), this.scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

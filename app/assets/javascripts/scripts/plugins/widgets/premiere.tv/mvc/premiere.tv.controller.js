@@ -35,7 +35,7 @@ define([
         /**
          * Add PremiereTv rule
          * @memberOf PremiereTvController
-         * @param e
+         * @param {Event} e
          */
         addPremiereTvRule: function addPremiereTvRule(e) {
 

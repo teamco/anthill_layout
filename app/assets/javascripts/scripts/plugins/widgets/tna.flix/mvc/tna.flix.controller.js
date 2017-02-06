@@ -72,7 +72,7 @@ define([
         /**
          * Add TnaFlix rule
          * @memberOf TnaFlixController
-         * @param e
+         * @param {Event} e
          */
         addTnaFlixRule: function addTnaFlixRule(e) {
 

@@ -35,7 +35,7 @@ define([
         /**
          * Add OneTwelveChannelUa rule
          * @memberOf OneTwelveChannelUaController
-         * @param e
+         * @param {Event} e
          */
         addOneTwelveChannelUaRule: function addOneTwelveChannelUaRule(e) {
 

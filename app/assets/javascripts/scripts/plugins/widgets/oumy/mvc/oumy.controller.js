@@ -35,7 +35,7 @@ define([
         /**
          * Add Oumy rule
          * @memberOf OumyController
-         * @param e
+         * @param {Event} e
          */
         addOumyRule: function addOumyRule(e) {
 

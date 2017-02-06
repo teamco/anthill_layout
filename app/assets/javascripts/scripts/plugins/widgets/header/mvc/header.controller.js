@@ -34,7 +34,7 @@ define([
         /**
          * Add Header rule
          * @memberOf HeaderController
-         * @param e
+         * @param {Event} e
          */
         addHeaderRule: function addHeaderRule(e) {
 

@@ -35,7 +35,7 @@ define([
         /**
          * Add Xkcd rule
          * @memberOf XkcdController
-         * @param e
+         * @param {Event} e
          */
         addXkcdRule: function addXkcdRule(e) {
 

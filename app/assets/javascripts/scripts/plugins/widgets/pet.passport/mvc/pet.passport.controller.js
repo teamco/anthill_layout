@@ -34,7 +34,7 @@ define([
         /**
          * Add PetPassport rule
          * @memberOf PetPassportController
-         * @param e
+         * @param {Event} e
          */
         addPetPassportRule: function addPetPassportRule(e) {
 

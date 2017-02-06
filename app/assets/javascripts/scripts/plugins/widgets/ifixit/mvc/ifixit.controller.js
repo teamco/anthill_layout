@@ -35,7 +35,7 @@ define([
         /**
          * Add Ifixit rule
          * @memberOf IfixitController
-         * @param e
+         * @param {Event} e
          */
         addIfixitRule: function addIfixitRule(e) {
 

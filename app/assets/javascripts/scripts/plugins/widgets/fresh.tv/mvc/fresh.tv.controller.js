@@ -35,7 +35,7 @@ define([
         /**
          * Add FreshTv rule
          * @memberOf FreshTvController
-         * @param e
+         * @param {Event} e
          */
         addFreshTvRule: function addFreshTvRule(e) {
 

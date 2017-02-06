@@ -6,66 +6,55 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineAvatarController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define avatar controller
+   * @class AvatarController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var AvatarController = function AvatarController() {
+  };
+
+  return AvatarController.extend('AvatarController', {
+
     /**
-     * Define avatar controller
-     * @class AvatarController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf AvatarController
      */
-    var AvatarController = function AvatarController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
+      this.view.elements.$avatar.renderEmbeddedContent(
+          this.model.getPrefs('avatarCoordinateX'),
+          this.model.getPrefs('avatarCoordinateY')
+      );
+    },
 
-    return AvatarController.extend('AvatarController', {
+    /**
+     * Update coordinates
+     * @memberOf AvatarController
+     * @param {number} x
+     * @param {number} y
+     */
+    updateCoordinates: function updateCoordinates(x, y) {
+      this.model.setAvatarCoordinateX(x);
+      this.model.setAvatarCoordinateY(y);
+      this.observer.publish(
+          this.eventmanager.eventList.alternativeSaveAllPreferences
+      );
+    },
 
-        /**
-         * Set embedded content
-         * @memberOf AvatarController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
-            this.view.elements.$avatar.renderEmbeddedContent(
-                this.model.getPrefs('avatarCoordinateX'),
-                this.model.getPrefs('avatarCoordinateY')
-            );
-        },
+    /**
+     * Add Avatar rule
+     * @memberOf AvatarController
+     * @param {Event} e
+     */
+    addAvatarRule: function addAvatarRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-        /**
-         * Update coordinates
-         * @memberOf AvatarController
-         * @param {number} x
-         * @param {number} y
-         */
-        updateCoordinates: function updateCoordinates(x, y){
-            this.model.setAvatarCoordinateX(x);
-            this.model.setAvatarCoordinateY(y);
-            this.observer.publish(
-                this.eventmanager.eventList.alternativeSaveAllPreferences
-            );
-        },
-
-        /**
-         * Add Avatar rule
-         * @memberOf AvatarController
-         * @param e
-         */
-        addAvatarRule: function addAvatarRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), this.scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

@@ -38,7 +38,7 @@ define([
         /**
          * Add MapQuest rule
          * @memberOf MapQuestController
-         * @param e
+         * @param {Event} e
          */
         addMapQuestRule: function addMapQuestRule(e) {
 

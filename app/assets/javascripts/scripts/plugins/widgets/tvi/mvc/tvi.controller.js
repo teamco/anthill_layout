@@ -77,7 +77,7 @@ define([
         /**
          * Add Tvi rule
          * @memberOf TviController
-         * @param e
+         * @param {Event} e
          */
         addTviRule: function addTviRule(e) {
 

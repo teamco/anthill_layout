@@ -35,7 +35,7 @@ define([
         /**
          * Add GettyImages rule
          * @memberOf GettyImagesController
-         * @param e
+         * @param {Event} e
          */
         addGettyImagesRule: function addGettyImagesRule(e) {
 

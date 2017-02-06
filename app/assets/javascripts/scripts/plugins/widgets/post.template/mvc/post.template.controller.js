@@ -33,7 +33,7 @@ define([
         /**
          * Add PostTemplate rule
          * @memberOf PostTemplateController
-         * @param e
+         * @param {Event} e
          */
         addPostTemplateRule: function addPostTemplateRule(e) {
 

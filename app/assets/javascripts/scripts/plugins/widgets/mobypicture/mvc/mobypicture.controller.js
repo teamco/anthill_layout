@@ -35,7 +35,7 @@ define([
         /**
          * Add Mobypicture rule
          * @memberOf MobypictureController
-         * @param e
+         * @param {Event} e
          */
         addMobypictureRule: function addMobypictureRule(e) {
 

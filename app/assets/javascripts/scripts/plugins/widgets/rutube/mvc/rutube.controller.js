@@ -36,7 +36,7 @@ define([
         /**
          * Add Rutube rule
          * @memberOf RutubeController
-         * @param e
+         * @param {Event} e
          */
         addRutubeRule: function addRutubeRule(e) {
 

@@ -77,7 +77,7 @@ define([
         /**
          * Add MusTv rule
          * @memberOf MusTvController
-         * @param e
+         * @param {Event} e
          */
         addMusTvRule: function addMusTvRule(e) {
 

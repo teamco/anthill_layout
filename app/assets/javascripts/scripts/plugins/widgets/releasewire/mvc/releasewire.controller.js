@@ -35,7 +35,7 @@ define([
         /**
          * Add Releasewire rule
          * @memberOf ReleasewireController
-         * @param e
+         * @param {Event} e
          */
         addReleasewireRule: function addReleasewireRule(e) {
 

@@ -114,7 +114,7 @@ define(function defineFilterRenderer() {
         /**
          * Filter search results
          * @memberOf FilterRenderer
-         * @param e
+         * @param {Event} e
          */
         filterResults: function filterResults(e) {
 

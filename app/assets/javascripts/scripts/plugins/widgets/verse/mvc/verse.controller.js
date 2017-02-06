@@ -35,7 +35,7 @@ define([
         /**
          * Add Verse rule
          * @memberOf VerseController
-         * @param e
+         * @param {Event} e
          */
         addVerseRule: function addVerseRule(e) {
 

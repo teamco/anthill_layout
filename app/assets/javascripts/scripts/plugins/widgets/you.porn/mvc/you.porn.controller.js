@@ -70,7 +70,7 @@ define([
         /**
          * Add YouPorn rule
          * @memberOf YouPornController
-         * @param e
+         * @param {Event} e
          */
         addYouPornRule: function addYouPornRule(e) {
 

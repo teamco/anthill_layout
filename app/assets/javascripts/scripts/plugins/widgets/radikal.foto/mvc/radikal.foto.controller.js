@@ -35,7 +35,7 @@ define([
         /**
          * Add RadikalFoto rule
          * @memberOf RadikalFotoController
-         * @param e
+         * @param {Event} e
          */
         addRadikalFotoRule: function addRadikalFotoRule(e) {
 

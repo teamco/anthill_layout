@@ -41,7 +41,7 @@ define([
         /**
          * Add Twits rule
          * @memberOf TwitsController
-         * @param e
+         * @param {Event} e
          */
         addTwitsRule: function addTwitsRule(e) {
 

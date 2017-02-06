@@ -36,7 +36,7 @@ define([
         /**
          * Add Pdf rule
          * @memberOf PdfController
-         * @param e
+         * @param {Event} e
          */
         addPdfRule: function addPdfRule(e) {
 

@@ -70,7 +70,7 @@ define([
         /**
          * Add Revision rule
          * @memberOf RevisionController
-         * @param e
+         * @param {Event} e
          */
         addRevisionRule: function addRevisionRule(e) {
 

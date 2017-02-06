@@ -70,7 +70,7 @@ define([
         /**
          * Add MyWorld rule
          * @memberOf MyWorldController
-         * @param e
+         * @param {Event} e
          */
         addMyWorldRule: function addMyWorldRule(e) {
 

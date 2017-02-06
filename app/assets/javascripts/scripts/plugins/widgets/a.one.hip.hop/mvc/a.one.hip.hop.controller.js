@@ -6,51 +6,40 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineAOneHipHopController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define aonehiphop controller
+   * @class AOneHipHopController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var AOneHipHopController = function AOneHipHopController() {
+  };
+
+  return AOneHipHopController.extend('AOneHipHopController', {
+
     /**
-     * Define aonehiphop controller
-     * @class AOneHipHopController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf AOneHipHopController
      */
-    var AOneHipHopController = function AOneHipHopController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
+      this.view.elements.$aonehiphop.renderEmbeddedContent(
+          this.model.getPrefs('aonehiphopEmbedCode')
+      );
+    },
 
-    return AOneHipHopController.extend('AOneHipHopController', {
+    /**
+     * Add AOneHipHop rule
+     * @memberOf AOneHipHopController
+     * @param {Event} e
+     */
+    addAOneHipHopRule: function addAOneHipHopRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-        /**
-         * Set embedded content
-         * @memberOf AOneHipHopController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
-            this.view.elements.$aonehiphop.renderEmbeddedContent(
-                this.model.getPrefs('aonehiphopEmbedCode')
-            );
-        },
-
-        /**
-         * Add AOneHipHop rule
-         * @memberOf AOneHipHopController
-         * @param e
-         */
-        addAOneHipHopRule: function addAOneHipHopRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

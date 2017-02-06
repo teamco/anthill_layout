@@ -34,7 +34,7 @@ define([
         /**
          * Add PetRadar rule
          * @memberOf PetRadarController
-         * @param e
+         * @param {Event} e
          */
         addPetRadarRule: function addPetRadarRule(e) {
 

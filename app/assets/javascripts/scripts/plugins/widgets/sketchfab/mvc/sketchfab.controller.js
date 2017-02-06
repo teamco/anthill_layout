@@ -35,7 +35,7 @@ define([
         /**
          * Add Sketchfab rule
          * @memberOf SketchfabController
-         * @param e
+         * @param {Event} e
          */
         addSketchfabRule: function addSketchfabRule(e) {
 

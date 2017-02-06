@@ -35,7 +35,7 @@ define([
         /**
          * Add Orphus rule
          * @memberOf OrphusController
-         * @param e
+         * @param {Event} e
          */
         addOrphusRule: function addOrphusRule(e) {
 

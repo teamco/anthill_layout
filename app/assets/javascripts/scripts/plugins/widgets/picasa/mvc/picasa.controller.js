@@ -35,7 +35,7 @@ define([
         /**
          * Add Picasa rule
          * @memberOf PicasaController
-         * @param e
+         * @param {Event} e
          */
         addPicasaRule: function addPicasaRule(e) {
 

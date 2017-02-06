@@ -36,7 +36,7 @@ define([
         /**
          * Add GooglePresentation rule
          * @memberOf GooglePresentationController
-         * @param e
+         * @param {Event} e
          */
         addGooglePresentationRule: function addGooglePresentationRule(e) {
 

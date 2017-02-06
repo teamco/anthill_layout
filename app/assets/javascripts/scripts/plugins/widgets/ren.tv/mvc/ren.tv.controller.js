@@ -35,7 +35,7 @@ define([
         /**
          * Add RenTv rule
          * @memberOf RenTvController
-         * @param e
+         * @param {Event} e
          */
         addRenTvRule: function addRenTvRule(e) {
 

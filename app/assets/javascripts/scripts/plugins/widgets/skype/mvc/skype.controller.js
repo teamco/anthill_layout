@@ -37,7 +37,7 @@ define([
         /**
          * Add Skype rule
          * @memberOf SkypeController
-         * @param e
+         * @param {Event} e
          */
         addSkypeRule: function addSkypeRule(e) {
 

@@ -37,7 +37,7 @@ define([
         /**
          * Add GooglePlus rule
          * @memberOf GooglePlusController
-         * @param e
+         * @param {Event} e
          */
         addGooglePlusRule: function addGooglePlusRule(e) {
 

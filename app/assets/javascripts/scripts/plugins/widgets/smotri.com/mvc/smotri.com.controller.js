@@ -78,7 +78,7 @@ define([
         /**
          * Add SmotriCom rule
          * @memberOf SmotriComController
-         * @param e
+         * @param {Event} e
          */
         addSmotriComRule: function addSmotriComRule(e) {
 

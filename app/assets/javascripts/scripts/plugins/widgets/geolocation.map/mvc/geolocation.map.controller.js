@@ -79,7 +79,7 @@ define(
                 /**
                  * Add GeolocationMap rule
                  * @memberOf GeolocationMapController
-                 * @param e
+                 * @param {Event} e
                  */
                 addGeolocationMapRule: function addGeolocationMapRule(e) {
 

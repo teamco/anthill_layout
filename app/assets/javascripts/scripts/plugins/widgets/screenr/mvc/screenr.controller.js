@@ -70,7 +70,7 @@ define([
         /**
          * Add Screenr rule
          * @memberOf ScreenrController
-         * @param e
+         * @param {Event} e
          */
         addScreenrRule: function addScreenrRule(e) {
 

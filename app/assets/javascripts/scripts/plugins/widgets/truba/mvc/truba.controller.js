@@ -76,7 +76,7 @@ define([
         /**
          * Add Truba rule
          * @memberOf TrubaController
-         * @param e
+         * @param {Event} e
          */
         addTrubaRule: function addTrubaRule(e) {
 

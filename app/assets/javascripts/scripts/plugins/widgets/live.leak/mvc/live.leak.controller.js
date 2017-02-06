@@ -76,7 +76,7 @@ define([
         /**
          * Add LiveLeak rule
          * @memberOf LiveLeakController
-         * @param e
+         * @param {Event} e
          */
         addLiveLeakRule: function addLiveLeakRule(e) {
 

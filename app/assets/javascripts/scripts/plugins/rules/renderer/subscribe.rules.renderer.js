@@ -20,7 +20,7 @@ define(function defineSubscribeRulesRenderer() {
       var empty = false,
           render = false;
 
-      if (this.base.lib.hash.hashLength(published) === 0) {
+      if (!this.base.lib.hash.hashLength(published)) {
         this.view.scope.logger.debug('No published rules', published);
         return false;
       }
@@ -69,7 +69,7 @@ define(function defineSubscribeRulesRenderer() {
                 $checkbox.find('.input-group-addon').append(type);
 
                 $inner.append(
-                  $('<li />').append($checkbox)
+                    $('<li />').append($checkbox)
                 );
               }
             }
@@ -80,17 +80,17 @@ define(function defineSubscribeRulesRenderer() {
             render = true;
 
             $('<li />').append(
-              $('<fieldset />').append([
-                $('<legend />').attr({'data-uuid': index}).html([
-                  '<span class="glyphicon glyphicon-chevron-up"></span>',
-                  published[index].type, ': ',
-                  index.replace(/-content/, '')
-                ].join('')).on(
-                  'click.toggle',
-                  this.toggleFieldset.bind(this)
-                ),
-                $inner
-              ])
+                $('<fieldset />').append([
+                  $('<legend />').attr({'data-uuid': index}).html([
+                    '<span class="glyphicon glyphicon-chevron-up"></span>',
+                    published[index].type, ': ',
+                    index.replace(/-content/, '')
+                  ].join('')).on(
+                      'click.toggle',
+                      this.toggleFieldset.bind(this)
+                  ),
+                  $inner
+                ])
             ).appendTo($ul);
           }
         }
@@ -98,12 +98,13 @@ define(function defineSubscribeRulesRenderer() {
 
       if (render) {
         this.$.find('div.content-rules').append(
-          $('<fieldset />').append([
-            $('<legend />').text(title).on('click.toggle', this.toggleFieldset.bind(this)).attr({
-              title: title
-            }),
-            $ul
-          ])
+            $('<fieldset />').append([
+              $('<legend />').text(title).on(
+                  'click.toggle',
+                  this.toggleFieldset.bind(this)
+              ).attr({title: title}),
+              $ul
+            ])
         );
       }
     }

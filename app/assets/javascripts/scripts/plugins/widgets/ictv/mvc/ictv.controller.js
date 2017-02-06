@@ -71,7 +71,7 @@ define([
         /**
          * Add Ictv rule
          * @memberOf IctvController
-         * @param e
+         * @param {Event} e
          */
         addIctvRule: function addIctvRule(e) {
 

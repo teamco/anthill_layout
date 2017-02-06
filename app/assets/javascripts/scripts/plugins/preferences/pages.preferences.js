@@ -521,7 +521,7 @@ define([
         /**
          * Show Widget prefs
          * @memberOf PagesPreferences
-         * @param e
+         * @param {Event} e
          */
         showWidgetPrefs: function showWidgetPrefs(e) {
 

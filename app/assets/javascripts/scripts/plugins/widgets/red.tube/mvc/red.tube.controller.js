@@ -76,7 +76,7 @@ define([
         /**
          * Add RedTube rule
          * @memberOf RedTubeController
-         * @param e
+         * @param {Event} e
          */
         addRedTubeRule: function addRedTubeRule(e) {
 

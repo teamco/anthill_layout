@@ -76,7 +76,7 @@ define([
             /**
              * Add SimpleWeather rule
              * @memberOf SimpleWeatherController
-             * @param e
+             * @param {Event} e
              */
             addSimpleWeatherRule: function addSimpleWeatherRule(e) {
 

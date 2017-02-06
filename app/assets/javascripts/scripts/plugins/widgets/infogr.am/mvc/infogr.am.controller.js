@@ -35,7 +35,7 @@ define([
         /**
          * Add InfogrAm rule
          * @memberOf InfogrAmController
-         * @param e
+         * @param {Event} e
          */
         addInfogrAmRule: function addInfogrAmRule(e) {
 

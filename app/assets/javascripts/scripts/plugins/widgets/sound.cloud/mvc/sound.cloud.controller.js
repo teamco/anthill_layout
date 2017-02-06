@@ -70,7 +70,7 @@ define([
         /**
          * Add SoundCloud rule
          * @memberOf SoundCloudController
-         * @param e
+         * @param {Event} e
          */
         addSoundCloudRule: function addSoundCloudRule(e) {
 

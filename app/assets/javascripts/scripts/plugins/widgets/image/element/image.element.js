@@ -162,7 +162,7 @@ define([
 
             /**
              * Set img dimensions
-             * @param e
+             * @param {Event} e
              * @private
              */
             function _setDimensions(e) {

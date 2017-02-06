@@ -35,7 +35,7 @@ define([
         /**
          * Add Repubhub rule
          * @memberOf RepubhubController
-         * @param e
+         * @param {Event} e
          */
         addRepubhubRule: function addRepubhubRule(e) {
 

@@ -66,7 +66,7 @@ define([
         /**
          * Add Lifestream rule
          * @memberOf LifestreamController
-         * @param e
+         * @param {Event} e
          */
         addLifestreamRule: function addLifestreamRule(e) {
 

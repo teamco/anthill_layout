@@ -35,7 +35,7 @@ define([
         /**
          * Add LearningApps rule
          * @memberOf LearningAppsController
-         * @param e
+         * @param {Event} e
          */
         addLearningAppsRule: function addLearningAppsRule(e) {
 

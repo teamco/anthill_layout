@@ -70,7 +70,7 @@ define([
         /**
          * Add Ted rule
          * @memberOf TedController
-         * @param e
+         * @param {Event} e
          */
         addTedRule: function addTedRule(e) {
 

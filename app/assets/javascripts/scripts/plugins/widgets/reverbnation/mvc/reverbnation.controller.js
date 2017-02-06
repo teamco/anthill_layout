@@ -35,7 +35,7 @@ define([
         /**
          * Add Reverbnation rule
          * @memberOf ReverbnationController
-         * @param e
+         * @param {Event} e
          */
         addReverbnationRule: function addReverbnationRule(e) {
 

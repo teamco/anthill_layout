@@ -70,7 +70,7 @@ define([
         /**
          * Add Ustream rule
          * @memberOf UstreamController
-         * @param e
+         * @param {Event} e
          */
         addUstreamRule: function addUstreamRule(e) {
 

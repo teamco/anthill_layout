@@ -35,7 +35,7 @@ define([
         /**
          * Add SapoVideos rule
          * @memberOf SapoVideosController
-         * @param e
+         * @param {Event} e
          */
         addSapoVideosRule: function addSapoVideosRule(e) {
 

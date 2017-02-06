@@ -35,7 +35,7 @@ define([
         /**
          * Add Ifttt rule
          * @memberOf IftttController
-         * @param e
+         * @param {Event} e
          */
         addIftttRule: function addIftttRule(e) {
 

@@ -70,7 +70,7 @@ define([
         /**
          * Add SublimeVideo rule
          * @memberOf SublimeVideoController
-         * @param e
+         * @param {Event} e
          */
         addSublimeVideoRule: function addSublimeVideoRule(e) {
 

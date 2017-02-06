@@ -35,7 +35,7 @@ define(function defineInteractions() {
         /**
          * Debug UI
          * @memberOf Interactions
-         * @param event
+         * @param {Event} event
          * @param ui
          */
         debugUI: function debugUI(event, ui) {

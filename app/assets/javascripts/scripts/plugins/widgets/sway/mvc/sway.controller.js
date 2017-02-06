@@ -35,7 +35,7 @@ define([
         /**
          * Add Sway rule
          * @memberOf SwayController
-         * @param e
+         * @param {Event} e
          */
         addSwayRule: function addSwayRule(e) {
 

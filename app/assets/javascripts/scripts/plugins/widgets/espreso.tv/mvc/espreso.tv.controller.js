@@ -6,93 +6,82 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineEspresoTvController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define espresotv controller
+   * @class EspresoTvController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var EspresoTvController = function EspresoTvController() {
+  };
+
+  return EspresoTvController.extend('EspresoTvController', {
+
     /**
-     * Define espresotv controller
-     * @class EspresoTvController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf EspresoTvController
      */
-    var EspresoTvController = function EspresoTvController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
 
-    return EspresoTvController.extend('EspresoTvController', {
+      /**
+       * Get url
+       * @type {string|*}
+       */
+      var url = this.model.getPrefs('espresotvUrl'),
+          embed = this.controller.getEmbedCode(url);
 
-        /**
-         * Set embedded content
-         * @memberOf EspresoTvController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
+      if (embed) {
+        this.view.elements.$espresotv.renderEmbeddedContent(embed);
+      }
+    },
 
-            /**
-             * Get url
-             * @type {string|*}
-             */
-            var url = this.model.getPrefs('espresotvUrl'),
-                embed = this.controller.getEmbedCode(url);
+    /**
+     * Validate espresotv
+     * @memberOf EspresoTvController
+     * @param {string} url
+     * @return {string|boolean}
+     */
+    getEmbedCode: function getEmbedCode(url) {
 
-            if (embed) {
-                this.view.elements.$espresotv.renderEmbeddedContent(embed);
-            }
-        },
+      if (!url) {
+        this.scope.logger.debug('Initial state');
+        return false;
+      }
 
-        /**
-         * Validate espresotv
-         * @memberOf EspresoTvController
-         * @param {string} url
-         * @return {string|boolean}
-         */
-        getEmbedCode: function getEmbedCode(url) {
+      var mask = this.model.getConfig('mask'),
+          regex = this.model.getConfig('regex');
 
-            if (!url) {
-                this.scope.logger.debug('Initial state');
-                return false;
-            }
+      if (!url.match(regex)) {
+        this.scope.logger.warn('Invalid espresotv url');
+        return false;
+      }
 
-            var mask = this.model.getConfig('mask'),
-                regex = this.model.getConfig('regex');
-
-            if (!url.match(regex)) {
-                this.scope.logger.warn('Invalid espresotv url');
-                return false;
-            }
-
-            if (url.match(/iframe/)) {
-
-                /**
-                 * Embed iframe fix
-                 * @type {string}
-                 */
-                url = $(url).attr('src');
-            }
-
-            return url.replace(regex, mask.replace(/\{videoId}/g, '$1')).
-                replace(/embed\/embed/, 'embed');
-        },
+      if (url.match(/iframe/)) {
 
         /**
-         * Add EspresoTv rule
-         * @memberOf EspresoTvController
-         * @param e
+         * Embed iframe fix
+         * @type {string}
          */
-        addEspresoTvRule: function addEspresoTvRule(e) {
+        url = $(url).attr('src');
+      }
 
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
+      return url.replace(regex, mask.replace(/{videoId}/g, '$1')).
+          replace(/embed\/embed/, 'embed');
+    },
 
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
+    /**
+     * Add EspresoTv rule
+     * @memberOf EspresoTvController
+     * @param {Event} e
+     */
+    addEspresoTvRule: function addEspresoTvRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

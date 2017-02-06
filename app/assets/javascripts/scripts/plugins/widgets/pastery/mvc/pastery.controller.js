@@ -35,7 +35,7 @@ define([
         /**
          * Add Pastery rule
          * @memberOf PasteryController
-         * @param e
+         * @param {Event} e
          */
         addPasteryRule: function addPasteryRule(e) {
 

@@ -67,7 +67,7 @@ define([
         /**
          * Add Polldaddy rule
          * @memberOf PolldaddyController
-         * @param e
+         * @param {Event} e
          */
         addPolldaddyRule: function addPolldaddyRule(e) {
 

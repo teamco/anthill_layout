@@ -41,7 +41,7 @@ define([
         /**
          * Add SyntaxHighlighter rule
          * @memberOf SyntaxHighlighterController
-         * @param e
+         * @param {Event} e
          */
         addSyntaxHighlighterRule: function addSyntaxHighlighterRule(e) {
 

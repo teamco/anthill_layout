@@ -78,7 +78,7 @@ define([
         /**
          * Add Screencast rule
          * @memberOf ScreencastController
-         * @param e
+         * @param {Event} e
          */
         addScreencastRule: function addScreencastRule(e) {
 

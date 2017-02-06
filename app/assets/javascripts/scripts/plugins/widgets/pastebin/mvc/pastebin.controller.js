@@ -70,7 +70,7 @@ define([
         /**
          * Add Pastebin rule
          * @memberOf PastebinController
-         * @param e
+         * @param {Event} e
          */
         addPastebinRule: function addPastebinRule(e) {
 

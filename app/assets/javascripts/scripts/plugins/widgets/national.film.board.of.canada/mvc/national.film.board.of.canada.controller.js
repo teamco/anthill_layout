@@ -35,7 +35,7 @@ define([
         /**
          * Add NationalFilmBoardOfCanada rule
          * @memberOf NationalFilmBoardOfCanadaController
-         * @param e
+         * @param {Event} e
          */
         addNationalFilmBoardOfCanadaRule: function addNationalFilmBoardOfCanadaRule(e) {
 

@@ -77,7 +77,7 @@ define([
         /**
          * Add TwentyFourLive rule
          * @memberOf TwentyFourLiveController
-         * @param e
+         * @param {Event} e
          */
         addTwentyFourLiveRule: function addTwentyFourLiveRule(e) {
 

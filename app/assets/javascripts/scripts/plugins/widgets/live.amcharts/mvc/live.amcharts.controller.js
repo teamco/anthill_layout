@@ -35,7 +35,7 @@ define([
         /**
          * Add LiveAmcharts rule
          * @memberOf LiveAmchartsController
-         * @param e
+         * @param {Event} e
          */
         addLiveAmchartsRule: function addLiveAmchartsRule(e) {
 

@@ -37,7 +37,7 @@ define([
         /**
          * Add ImageGallery rule
          * @memberOf ImageGalleryController
-         * @param e
+         * @param {Event} e
          */
         addImageGalleryRule: function addImageGalleryRule(e) {
 

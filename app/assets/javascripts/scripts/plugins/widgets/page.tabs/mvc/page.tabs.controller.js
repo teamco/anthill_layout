@@ -222,7 +222,7 @@ define([
         /**
          * Add PageTabs rule
          * @memberOf PageTabsController
-         * @param e
+         * @param {Event} e
          */
         addPageTabsRule: function addPageTabsRule(e) {
 

@@ -34,7 +34,7 @@ define([
         /**
          * Add LoginGoogle rule
          * @memberOf LoginGoogleController
-         * @param e
+         * @param {Event} e
          */
         addLoginGoogleRule: function addLoginGoogleRule(e) {
 

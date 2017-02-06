@@ -70,7 +70,7 @@ define([
         /**
          * Add PornHost rule
          * @memberOf PornHostController
-         * @param e
+         * @param {Event} e
          */
         addPornHostRule: function addPornHostRule(e) {
 

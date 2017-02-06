@@ -35,7 +35,7 @@ define([
         /**
          * Add ShowTheWay rule
          * @memberOf ShowTheWayController
-         * @param e
+         * @param {Event} e
          */
         addShowTheWayRule: function addShowTheWayRule(e) {
 

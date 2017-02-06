@@ -33,14 +33,14 @@ define(function defineAddRuleRenderer() {
         var title = 'Published events';
 
         $container.find('div.content-rules').append(
-          $('<fieldset />').append([
-            $('<legend />').text(title).on(
-              'click.toggle',
-              this.toggleFieldset.bind(this)).attr({
+            $('<fieldset />').append([
+              $('<legend />').text(title).on(
+                  'click.toggle',
+                  this.toggleFieldset.bind(this)).attr({
                 title: title
               }),
-            $ul
-          ])
+              $ul
+            ])
         );
       }
 
@@ -60,14 +60,14 @@ define(function defineAddRuleRenderer() {
         return false;
       }
 
+      var $input = [
+        '<input value="', rule, '" disabled="disabled"',
+        ' type="text" class="form-control" placeholder="Rule">'
+      ].join('');
+
       $ul.append(
-        $('<li />').attr({
-          value: value
-        }).append(
-          this.getTemplate(type).append(
-            '<input value="' + rule + '" disabled="disabled" type="text" class="form-control" placeholder="Rule">'
-          )
-        )
+          $('<li />').attr({value: value}).
+              append(this.getTemplate(type).append($input))
       );
     }
   };

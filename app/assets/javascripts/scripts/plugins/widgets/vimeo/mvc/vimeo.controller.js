@@ -76,7 +76,7 @@ define([
         /**
          * Add Vimeo rule
          * @memberOf VimeoController
-         * @param e
+         * @param {Event} e
          */
         addVimeoRule: function addVimeoRule(e) {
 

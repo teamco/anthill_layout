@@ -35,7 +35,7 @@ define([
         /**
          * Add Kaltura rule
          * @memberOf KalturaController
-         * @param e
+         * @param {Event} e
          */
         addKalturaRule: function addKalturaRule(e) {
 

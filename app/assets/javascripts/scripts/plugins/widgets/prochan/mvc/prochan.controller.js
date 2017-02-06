@@ -35,7 +35,7 @@ define([
         /**
          * Add Prochan rule
          * @memberOf ProchanController
-         * @param e
+         * @param {Event} e
          */
         addProchanRule: function addProchanRule(e) {
 

@@ -104,7 +104,7 @@ define([
         /**
          * Add HereMapsForLife rule
          * @memberOf HereMapsForLifeController
-         * @param e
+         * @param {Event} e
          */
         addHereMapsForLifeRule: function addHereMapsForLifeRule(e) {
 

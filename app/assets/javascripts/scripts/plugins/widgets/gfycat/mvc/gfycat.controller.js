@@ -35,7 +35,7 @@ define([
         /**
          * Add Gfycat rule
          * @memberOf GfycatController
-         * @param e
+         * @param {Event} e
          */
         addGfycatRule: function addGfycatRule(e) {
 

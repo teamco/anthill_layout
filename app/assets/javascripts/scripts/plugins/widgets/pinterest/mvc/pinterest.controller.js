@@ -42,7 +42,7 @@ define([
         /**
          * Add Pinterest rule
          * @memberOf PinterestController
-         * @param e
+         * @param {Event} e
          */
         addPinterestRule: function addPinterestRule(e) {
 

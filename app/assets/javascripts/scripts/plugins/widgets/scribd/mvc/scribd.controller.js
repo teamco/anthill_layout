@@ -74,7 +74,7 @@ define([
         /**
          * Add Scribd rule
          * @memberOf ScribdController
-         * @param e
+         * @param {Event} e
          */
         addScribdRule: function addScribdRule(e) {
 

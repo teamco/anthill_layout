@@ -117,7 +117,7 @@ define([
         /**
          * Filter search results
          * @memberOf GalleryController
-         * @param e
+         * @param {Event} e
          */
         filterResults: function filterResults(e) {
 

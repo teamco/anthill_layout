@@ -76,7 +76,7 @@ define([
         /**
          * Add Jwplayer rule
          * @memberOf JwplayerController
-         * @param e
+         * @param {Event} e
          */
         addJwplayerRule: function addJwplayerRule(e) {
 

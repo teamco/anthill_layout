@@ -71,7 +71,7 @@ define([
         /**
          * Add FunnyOrDie rule
          * @memberOf FunnyOrDieController
-         * @param e
+         * @param {Event} e
          */
         addFunnyOrDieRule: function addFunnyOrDieRule(e) {
 

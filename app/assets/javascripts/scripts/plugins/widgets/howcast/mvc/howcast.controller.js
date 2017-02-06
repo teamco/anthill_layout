@@ -70,7 +70,7 @@ define([
         /**
          * Add Howcast rule
          * @memberOf HowcastController
-         * @param e
+         * @param {Event} e
          */
         addHowcastRule: function addHowcastRule(e) {
 

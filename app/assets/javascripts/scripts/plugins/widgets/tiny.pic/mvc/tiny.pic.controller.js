@@ -74,7 +74,7 @@ define([
         /**
          * Add TinyPic rule
          * @memberOf TinyPicController
-         * @param e
+         * @param {Event} e
          */
         addTinyPicRule: function addTinyPicRule(e) {
 

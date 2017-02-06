@@ -35,7 +35,7 @@ define([
         /**
          * Add OvvaTv rule
          * @memberOf OvvaTvController
-         * @param e
+         * @param {Event} e
          */
         addOvvaTvRule: function addOvvaTvRule(e) {
 

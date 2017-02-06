@@ -60,7 +60,7 @@ define([
         /**
          * Add Rss rule
          * @memberOf RssController
-         * @param e
+         * @param {Event} e
          */
         addRssRule: function addRssRule(e) {
 

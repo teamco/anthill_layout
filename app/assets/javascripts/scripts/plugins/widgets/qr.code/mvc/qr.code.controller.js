@@ -37,7 +37,7 @@ define([
         /**
          * Add QrCode rule
          * @memberOf QrCodeController
-         * @param e
+         * @param {Event} e
          */
         addQrCodeRule: function addQrCodeRule(e) {
 

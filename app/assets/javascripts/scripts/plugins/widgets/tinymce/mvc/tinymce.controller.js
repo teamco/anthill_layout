@@ -35,7 +35,7 @@ define([
         /**
          * Add Tinymce rule
          * @memberOf TinymceController
-         * @param e
+         * @param {Event} e
          */
         addTinymceRule: function addTinymceRule(e) {
 

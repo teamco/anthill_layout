@@ -70,7 +70,7 @@ define([
         /**
          * Add WordcampTv rule
          * @memberOf WordcampTvController
-         * @param e
+         * @param {Event} e
          */
         addWordcampTvRule: function addWordcampTvRule(e) {
 

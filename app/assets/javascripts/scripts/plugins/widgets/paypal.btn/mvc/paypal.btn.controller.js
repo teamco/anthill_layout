@@ -47,7 +47,7 @@ define([
         /**
          * Add PaypalBtn rule
          * @memberOf PaypalBtnController
-         * @param e
+         * @param {Event} e
          */
         addPaypalBtnRule: function addPaypalBtnRule(e) {
 

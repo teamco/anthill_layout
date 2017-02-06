@@ -35,7 +35,7 @@ define([
         /**
          * Add Kitchenbowl rule
          * @memberOf KitchenbowlController
-         * @param e
+         * @param {Event} e
          */
         addKitchenbowlRule: function addKitchenbowlRule(e) {
 

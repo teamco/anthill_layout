@@ -36,7 +36,7 @@ define([
         /**
          * Add Iframely rule
          * @memberOf IframelyController
-         * @param e
+         * @param {Event} e
          */
         addIframelyRule: function addIframelyRule(e) {
 

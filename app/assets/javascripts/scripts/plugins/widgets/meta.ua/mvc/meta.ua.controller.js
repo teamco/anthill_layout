@@ -71,7 +71,7 @@ define([
         /**
          * Add MetaUa rule
          * @memberOf MetaUaController
-         * @param e
+         * @param {Event} e
          */
         addMetaUaRule: function addMetaUaRule(e) {
 

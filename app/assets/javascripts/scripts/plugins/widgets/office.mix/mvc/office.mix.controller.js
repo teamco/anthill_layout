@@ -35,7 +35,7 @@ define([
         /**
          * Add OfficeMix rule
          * @memberOf OfficeMixController
-         * @param e
+         * @param {Event} e
          */
         addOfficeMixRule: function addOfficeMixRule(e) {
 

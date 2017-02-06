@@ -18,7 +18,7 @@ define(function defineFieldSetRenderer() {
         /**
          * Toggle fieldset
          * @memberOf FieldSetRenderer
-         * @param e
+         * @param {Event} e
          */
         toggleFieldset: function toggleFieldset(e) {
 

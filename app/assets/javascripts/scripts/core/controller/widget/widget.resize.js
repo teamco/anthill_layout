@@ -129,7 +129,7 @@ define([
         /**
          * Create resize
          * @memberOf Resizable
-         * @param event
+         * @param {Event} event
          * @param ui
          */
         create: function create(event, ui) {
@@ -148,7 +148,7 @@ define([
         /**
          * Start resize
          * @memberOf Resizable
-         * @param event
+         * @param {Event} event
          * @param ui
          */
         start: function start(event, ui) {
@@ -172,7 +172,7 @@ define([
         /**
          * Stop resize
          * @memberOf Resizable
-         * @param event
+         * @param {Event} event
          * @param ui
          */
         stop: function stop(event, ui) {
@@ -194,7 +194,7 @@ define([
         /**
          * On resize event
          * @memberOf Resizable
-         * @param event
+         * @param {Event} event
          * @param ui
          */
         resize: function resize(event, ui) {

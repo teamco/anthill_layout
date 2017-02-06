@@ -35,7 +35,7 @@ define([
         /**
          * Add SportboxRu rule
          * @memberOf SportboxRuController
-         * @param e
+         * @param {Event} e
          */
         addSportboxRuRule: function addSportboxRuRule(e) {
 

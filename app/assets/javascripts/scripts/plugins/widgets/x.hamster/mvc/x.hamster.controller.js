@@ -76,7 +76,7 @@ define([
         /**
          * Add XHamster rule
          * @memberOf XHamsterController
-         * @param e
+         * @param {Event} e
          */
         addXHamsterRule: function addXHamsterRule(e) {
 

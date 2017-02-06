@@ -35,7 +35,7 @@ define([
         /**
          * Add TwitrPix rule
          * @memberOf TwitrPixController
-         * @param e
+         * @param {Event} e
          */
         addTwitrPixRule: function addTwitrPixRule(e) {
 

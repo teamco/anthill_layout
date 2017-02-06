@@ -35,7 +35,7 @@ define([
         /**
          * Add Portfolium rule
          * @memberOf PortfoliumController
-         * @param e
+         * @param {Event} e
          */
         addPortfoliumRule: function addPortfoliumRule(e) {
 

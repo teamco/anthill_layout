@@ -34,7 +34,7 @@ define([
         /**
          * Add ExternalWidget rule
          * @memberOf ExternalWidgetController
-         * @param e
+         * @param {Event} e
          */
         addExternalRule: function addExternalRule(e) {
 

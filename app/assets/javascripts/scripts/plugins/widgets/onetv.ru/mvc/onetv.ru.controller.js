@@ -70,7 +70,7 @@ define([
         /**
          * Add OnetvRu rule
          * @memberOf OnetvRuController
-         * @param e
+         * @param {Event} e
          */
         addOnetvRuRule: function addOnetvRuRule(e) {
 

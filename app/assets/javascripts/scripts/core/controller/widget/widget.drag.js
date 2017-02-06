@@ -111,7 +111,7 @@ define([
         /**
          * Create drag
          * @memberOf Draggable
-         * @param event
+         * @param {Event} event
          * @param ui
          */
         create: function create(event, ui) {
@@ -131,7 +131,7 @@ define([
         /**
          * Start drag
          * @memberOf Draggable
-         * @param event
+         * @param {Event} event
          * @param ui
          */
         start: function start(event, ui) {
@@ -156,7 +156,7 @@ define([
         /**
          * Stop drag
          * @memberOf Draggable
-         * @param event
+         * @param {Event} event
          * @param ui
          */
         stop: function stop(event, ui) {
@@ -180,7 +180,7 @@ define([
         /**
          * onDrag
          * @memberOf Draggable
-         * @param event
+         * @param {Event} event
          * @param ui
          */
         drag: function drag(event, ui) {

@@ -39,7 +39,7 @@ define([
         /**
          * Add Swf rule
          * @memberOf SwfController
-         * @param e
+         * @param {Event} e
          */
         addSwfRule: function addSwfRule(e) {
 

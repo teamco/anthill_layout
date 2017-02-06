@@ -35,7 +35,7 @@ define([
         /**
          * Add LaimTv rule
          * @memberOf LaimTvController
-         * @param e
+         * @param {Event} e
          */
         addLaimTvRule: function addLaimTvRule(e) {
 

@@ -35,7 +35,7 @@ define([
         /**
          * Add SomeEcards rule
          * @memberOf SomeEcardsController
-         * @param e
+         * @param {Event} e
          */
         addSomeEcardsRule: function addSomeEcardsRule(e) {
 

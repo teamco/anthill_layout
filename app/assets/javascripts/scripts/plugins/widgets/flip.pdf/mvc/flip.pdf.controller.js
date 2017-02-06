@@ -6,51 +6,40 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineFlipPdfController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define flippdf controller
+   * @class FlipPdfController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var FlipPdfController = function FlipPdfController() {
+  };
+
+  return FlipPdfController.extend('FlipPdfController', {
+
     /**
-     * Define flippdf controller
-     * @class FlipPdfController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf FlipPdfController
      */
-    var FlipPdfController = function FlipPdfController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
+      this.view.elements.$flippdf.renderEmbeddedContent(
+          this.model.getPrefs('flippdfEmbedCode')
+      );
+    },
 
-    return FlipPdfController.extend('FlipPdfController', {
+    /**
+     * Add FlipPdf rule
+     * @memberOf FlipPdfController
+     * @param {Event} e
+     */
+    addFlipPdfRule: function addFlipPdfRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-        /**
-         * Set embedded content
-         * @memberOf FlipPdfController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
-            this.view.elements.$flippdf.renderEmbeddedContent(
-                this.model.getPrefs('flippdfEmbedCode')
-            );
-        },
-
-        /**
-         * Add FlipPdf rule
-         * @memberOf FlipPdfController
-         * @param e
-         */
-        addFlipPdfRule: function addFlipPdfRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

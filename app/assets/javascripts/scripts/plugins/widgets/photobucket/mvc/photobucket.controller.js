@@ -35,7 +35,7 @@ define([
         /**
          * Add Photobucket rule
          * @memberOf PhotobucketController
-         * @param e
+         * @param {Event} e
          */
         addPhotobucketRule: function addPhotobucketRule(e) {
 

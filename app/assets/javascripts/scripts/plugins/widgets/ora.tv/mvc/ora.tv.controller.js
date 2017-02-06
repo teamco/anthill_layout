@@ -35,7 +35,7 @@ define([
         /**
          * Add OraTv rule
          * @memberOf OraTvController
-         * @param e
+         * @param {Event} e
          */
         addOraTvRule: function addOraTvRule(e) {
 

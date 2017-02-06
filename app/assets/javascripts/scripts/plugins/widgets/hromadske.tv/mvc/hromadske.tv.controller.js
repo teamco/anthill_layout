@@ -77,7 +77,7 @@ define([
         /**
          * Add HromadskeTv rule
          * @memberOf HromadskeTvController
-         * @param e
+         * @param {Event} e
          */
         addHromadskeTvRule: function addHromadskeTvRule(e) {
 
