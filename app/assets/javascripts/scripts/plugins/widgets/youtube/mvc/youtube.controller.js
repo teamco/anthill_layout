@@ -80,18 +80,7 @@ define([
          * @param e
          */
         addYoutubeRule: function addYoutubeRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
+          this.addWidgetRule(e, this.scope.name);  
         }
 
     }, PluginBase.prototype, WidgetContentController.prototype);

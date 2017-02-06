@@ -392,7 +392,7 @@ define([
                             if (this.base.isDefined(scope)) {
 
                                 this.controller._registerScopeRule(scope, opts);
-                                
+
                             } else {
 
                                 // Define content scope
@@ -543,9 +543,10 @@ define([
         /**
          * Add widget rule
          * @memberOf WidgetContentControllerRules
-         * @param e
+         * @param {Event} e
+         * @param {string} type
          */
-        addWidgetRule: function addWidgetRule(e) {
+        addWidgetRule: function addWidgetRule(e, type) {
 
             /**
              * Define $button
@@ -557,11 +558,16 @@ define([
                 $button = $button.closest('button');
             }
 
-            var scope = this.scope;
+            var scope = this.scope,
+                value = $button.attr('value');
+
+            if ((value || '').match(/Select rule \(\d+\)/)) {
+              value = undefined;
+            }
 
             scope.observer.publish(
                 scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), 'Widget']
+                [value, type || 'Widget']
             );
         },
 
