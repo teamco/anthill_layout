@@ -13,13 +13,17 @@
 .modal.rules .publish-rules .input-group-addon,
 .modal.rules .subscribe-rules .input-group-addon {
     float: none;
-    padding: 9px;
+    padding: 8px;
     text-transform: capitalize;
 }
 
 .modal.rules .subscribe-rules {
     width: 100%;
-    list-style: decimal inside;
+    list-style: decimal;
+}
+
+.modal.rules .subscribe-rules li {
+    margin-left: 20px;
 }
 
 .modal.rules .subscribe-rules .input-group-addon input[type="checkbox"] {
@@ -30,6 +34,7 @@
     border: none;
     cursor: pointer;
     font-size: 18px;
+    margin-bottom: 10px;
 }
 
 .modal.rules .subscribe-rules legend > span {
