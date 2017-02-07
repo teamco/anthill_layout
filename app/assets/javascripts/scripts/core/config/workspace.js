@@ -37,27 +37,27 @@ define(
         /**
          * Define default config
          * @type {{
-             *      preferences: {},
-             *      limit: boolean,
-             *      SEOSeparator: string,
-             *      isResized: boolean,
-             *      type: string,
-             *      order: number,
-             *      page: {
-             *          counter: number,
-             *          limit: number,
-             *          animate: boolean,
-             *          onDestroyShowPrevious: boolean
-             *      },
-             *      html: {
-             *          style: string,
-             *          header: boolean,
-             *          footer: boolean,
-             *          stretch: boolean,
-             *          padding: {top: number, right: number, bottom: number,
-             *     left: number}
-             *      }
-             * }}
+         *      preferences: {},
+         *      limit: boolean,
+         *      SEOSeparator: string,
+         *      isResized: boolean,
+         *      type: string,
+         *      order: number,
+         *      page: {
+         *          counter: number,
+         *          limit: number,
+         *          animate: boolean,
+         *          onDestroyShowPrevious: boolean
+         *      },
+         *      html: {
+         *          style: string,
+         *          header: boolean,
+         *          footer: boolean,
+         *          stretch: boolean,
+         *          padding: {top: number, right: number, bottom: number,
+         *     left: number}
+         *      }
+         * }}
          */
         var DEFAULTS = {
           preferences: opts.preferences || {

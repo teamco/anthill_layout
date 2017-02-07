@@ -31,7 +31,7 @@ define(
       var Page = function Page(opts) {
 
         /**
-         * Define layout modes
+     * Define layout modes
          * @property Page
          * @type {{
          *      snap2grid: string,

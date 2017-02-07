@@ -39,22 +39,22 @@ define([
     /**
      * Default config
      * @type {{
-         *      preferences: {[overlapping]: boolean},
-         *      rules: {},
-         *      limit: boolean,
-         *      metamorphic: boolean,
-         *      order: number,
-         *      html: {header: boolean, footer: boolean, frameLess: boolean,
-         *     style: string, zIndex: number}, type: string, maximize: boolean,
-         *     attributes: {magnet: string, freeze: boolean, alwaysTop:
-         *     boolean}, events: { draggable: {snap: boolean, axis: boolean,
-         *     scroll: boolean, connectToSortable: boolean, delay: number,
-         *     scrollSensitivity: number, scrollSpeed: number, cursor: string,
-         *     appendTo: string, cancel: string}, resizable: {handles: string},
-         *     droppable: {activeClass: string, hoverClass: string, greedy:
-         *     boolean, tolerance: string}
-         *      }
-         * }}
+     *      preferences: {[overlapping]: boolean},
+     *      rules: {},
+     *      limit: boolean,
+     *      metamorphic: boolean,
+     *      order: number,
+     *      html: {header: boolean, footer: boolean, frameLess: boolean,
+     *     style: string, zIndex: number}, type: string, maximize: boolean,
+     *     attributes: {magnet: string, freeze: boolean, alwaysTop:
+     *     boolean}, events: { draggable: {snap: boolean, axis: boolean,
+     *     scroll: boolean, connectToSortable: boolean, delay: number,
+     *     scrollSensitivity: number, scrollSpeed: number, cursor: string,
+     *     appendTo: string, cancel: string}, resizable: {handles: string},
+     *     droppable: {activeClass: string, hoverClass: string, greedy:
+     *     boolean, tolerance: string}
+     *      }
+     * }}
      */
     var DEFAULTS = {
       preferences: opts.preferences || {},

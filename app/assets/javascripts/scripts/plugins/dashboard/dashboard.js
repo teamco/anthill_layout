@@ -34,21 +34,21 @@ define([
     /**
      * Define defaults
      * @type {{
-         *      plugin: boolean,
-         *      getter: boolean,
-         *      html: {
-         *          style: string,
-         *          header: boolean,
-         *          footer: boolean,
-         *          floating: boolean,
-         *          padding: {
-         *              top: number,
-         *              right: number,
-         *              bottom: number,
-         *              left: number
-         *          }
-         *      }
-         * }}
+     *      plugin: boolean,
+     *      getter: boolean,
+     *      html: {
+     *          style: string,
+     *          header: boolean,
+     *          footer: boolean,
+     *          floating: boolean,
+     *          padding: {
+     *              top: number,
+     *              right: number,
+     *              bottom: number,
+     *              left: number
+     *          }
+     *      }
+     * }}
      */
     var DEFAULTS = {
       plugin: true,
