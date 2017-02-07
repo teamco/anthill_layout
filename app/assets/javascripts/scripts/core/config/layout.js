@@ -29,21 +29,21 @@ define([
     /**
      * Define default config
      * @type {{
-         *      type: string,
-         *      limit: boolean,
-         *      containment: Page|Widget,
-         *      grid: {
-         *          columns: number,
-         *          additionalRows: number,
-         *          margin: number,
-         *          padding: {
-         *              top: number,
-         *              right: number,
-         *              bottom: number,
-         *              left: number
-         *          }
-         *      }
-         * }}
+     *      type: string,
+     *      limit: boolean,
+     *      containment: Page|Widget,
+     *      grid: {
+     *          columns: number,
+     *          additionalRows: number,
+     *          margin: number,
+     *          padding: {
+     *              top: number,
+     *              right: number,
+     *              bottom: number,
+     *              left: number
+     *          }
+     *      }
+     * }}
      */
     var DEFAULTS = {
       type: 'default',

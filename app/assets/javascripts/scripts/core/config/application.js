@@ -24,43 +24,43 @@ define([
      * Ex. logger.namespace: 'Application'
      *
      * @type {{
-         *      workspace: {
-         *          limit: number,
-         *          counter: number
-         *      },
-         *      sendLog: true,
-         *      appName: string,
-         *      version: number,
-         *      mode: string,
-         *      environment: string,
-         *      type: string,
-         *      activate: boolean,
-         *      isResized: boolean,
-         *      loading: boolean,
-         *      logger: {
-         *          show: boolean,
-         *          namespaces: string|boolean,
-         *          type: {
-         *              debug: boolean,
-         *              log: boolean,
-         *              info: boolean,
-         *              error: boolean,
-         *              warn: boolean
-         *          }
-         *      },
-         *      html: {
-         *          style: string,
-         *          header: boolean,
-         *          footer: boolean,
-         *          stretch: boolean,
-         *          padding: {
-         *              top: number,
-         *              right: number,
-         *              bottom: number,
-         *              left: number
-         *          }
-         *      }
-         * }}
+     *      workspace: {
+     *          limit: number,
+     *          counter: number
+     *      },
+     *      sendLog: true,
+     *      appName: string,
+     *      version: number,
+     *      mode: string,
+     *      environment: string,
+     *      type: string,
+     *      activate: boolean,
+     *      isResized: boolean,
+     *      loading: boolean,
+     *      logger: {
+     *          show: boolean,
+     *          namespaces: string|boolean,
+     *          type: {
+     *              debug: boolean,
+     *              log: boolean,
+     *              info: boolean,
+     *              error: boolean,
+     *              warn: boolean
+     *          }
+     *      },
+     *      html: {
+     *          style: string,
+     *          header: boolean,
+     *          footer: boolean,
+     *          stretch: boolean,
+     *          padding: {
+     *              top: number,
+     *              right: number,
+     *              bottom: number,
+     *              left: number
+     *          }
+     *      }
+     * }}
      */
     var DEFAULTS = {
       workspace: {
