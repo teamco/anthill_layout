@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineKickStarterEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define KickStarter event manager
-     * @class KickStarterEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var KickStarterEventManager = function KickStarterEventManager() {
+  /**
+   * Define KickStarter event manager
+   * @class KickStarterEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var KickStarterEventManager = function KickStarterEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return KickStarterEventManager.extend('KickStarterEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return KickStarterEventManager.extend('KickStarterEventManager', {},
+      WidgetContentEventManager.prototype);
 });

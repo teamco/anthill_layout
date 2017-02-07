@@ -7,102 +7,103 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/avatar/element/avatar.element',
-    'plugins/widgets/avatar/element/avatar.preferences.element',
-    'plugins/widgets/avatar/element/avatar.rules.element'
-], function defineAvatarView(BaseView, Header, Footer, AvatarElement, AvatarPreferencesElement, AvatarRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/avatar/element/avatar.element',
+  'plugins/widgets/avatar/element/avatar.preferences.element',
+  'plugins/widgets/avatar/element/avatar.rules.element'
+], function defineAvatarView(BaseView, Header, Footer, AvatarElement,
+    AvatarPreferencesElement, AvatarRulesElement) {
+
+  /**
+   * Define view
+   * @class AvatarView
+   * @extends BaseView
+   * @constructor
+   */
+  var AvatarView = function AvatarView() {
+  };
+
+  return AvatarView.extend('AvatarView', {
 
     /**
-     * Define view
-     * @class AvatarView
-     * @extends BaseView
-     * @constructor
+     * Render avatar element
+     * @memberOf AvatarView
      */
-    var AvatarView = function AvatarView() {
-    };
+    renderAvatar: function renderAvatar() {
 
-    return AvatarView.extend('AvatarView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render avatar element
-         * @memberOf AvatarView
-         */
-        renderAvatar: function renderAvatar() {
+      /**
+       * Define $avatar
+       * @type {AvatarElement}
+       */
+      this.elements.$avatar = new AvatarElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $avatar
-             * @type {AvatarElement}
-             */
-            this.elements.$avatar = new AvatarElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf AvatarView
+     * @returns {AvatarPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define Avatar Preferences Element
+       * @type {AvatarPreferencesElement}
+       */
+      this.elements.$preferences = new AvatarPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf AvatarView
-         * @returns {AvatarPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define Avatar Preferences Element
-             * @type {AvatarPreferencesElement}
-             */
-            this.elements.$preferences = new AvatarPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf AvatarView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {AvatarRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
-
-        /**
-         * Render Rules
-         * @memberOf AvatarView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {AvatarRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define Avatar Rules Element
-             * @type {AvatarRulesElement}
-             */
-            this.elements.$rules = new AvatarRulesElement(this, {
-                data: this.controller.getRules(),
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render avatar
-         * @memberOf AvatarView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderAvatar.bind(this)
-            );
+      /**
+       * Define Avatar Rules Element
+       * @type {AvatarRulesElement}
+       */
+      this.elements.$rules = new AvatarRulesElement(this, {
+        data: this.controller.getRules(),
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render avatar
+     * @memberOf AvatarView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderAvatar.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

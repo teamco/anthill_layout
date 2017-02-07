@@ -6,35 +6,35 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
-], function defineSpankwirePreferencesElement(PluginElement, WidgetPreferences) {
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
+], function defineSpankwirePreferencesElement(PluginElement,
+    WidgetPreferences) {
 
-    /**
-     * Define Spankwire Preferences Element
-     * @param view
-     * @param opts
-     * @returns {SpankwirePreferencesElement}
-     * @constructor
-     * @class SpankwirePreferencesElement
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     */
-    var SpankwirePreferencesElement = function SpankwirePreferencesElement(view, opts) {
+  /**
+   * Define Spankwire Preferences Element
+   * @param view
+   * @param opts
+   * @returns {SpankwirePreferencesElement}
+   * @constructor
+   * @class SpankwirePreferencesElement
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   */
+  var SpankwirePreferencesElement = function SpankwirePreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return SpankwirePreferencesElement.extend('SpankwirePreferencesElement', {
-
-
-    }, PluginElement.prototype, WidgetPreferences.prototype);
+  return SpankwirePreferencesElement.extend('SpankwirePreferencesElement', {},
+      PluginElement.prototype, WidgetPreferences.prototype);
 
 });

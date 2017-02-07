@@ -7,108 +7,109 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/jwplayer/element/jwplayer.element',
-    'plugins/widgets/jwplayer/element/jwplayer.preferences.element',
-    'plugins/widgets/jwplayer/element/jwplayer.rules.element'
-], function defineJwplayerView(BaseView, Header, Footer, JwplayerElement, JwplayerPreferencesElement, JwplayerRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/jwplayer/element/jwplayer.element',
+  'plugins/widgets/jwplayer/element/jwplayer.preferences.element',
+  'plugins/widgets/jwplayer/element/jwplayer.rules.element'
+], function defineJwplayerView(BaseView, Header, Footer, JwplayerElement,
+    JwplayerPreferencesElement, JwplayerRulesElement) {
+
+  /**
+   * Define view
+   * @class JwplayerView
+   * @extends BaseView
+   * @constructor
+   */
+  var JwplayerView = function JwplayerView() {
+  };
+
+  return JwplayerView.extend('JwplayerView', {
 
     /**
-     * Define view
-     * @class JwplayerView
-     * @extends BaseView
-     * @constructor
+     * Render jwplayer element
+     * @memberOf JwplayerView
      */
-    var JwplayerView = function JwplayerView() {
-    };
+    renderJwplayer: function renderJwplayer() {
 
-    return JwplayerView.extend('JwplayerView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render jwplayer element
-         * @memberOf JwplayerView
-         */
-        renderJwplayer: function renderJwplayer() {
+      /**
+       * Define $jwplayer
+       * @type {JwplayerElement}
+       */
+      this.elements.$jwplayer = new JwplayerElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $jwplayer
-             * @type {JwplayerElement}
-             */
-            this.elements.$jwplayer = new JwplayerElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf JwplayerView
+     * @returns {JwplayerPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define Jwplayer Preferences Element
+       * @type {JwplayerPreferencesElement}
+       */
+      this.elements.$preferences = new JwplayerPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf JwplayerView
-         * @returns {JwplayerPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define Jwplayer Preferences Element
-             * @type {JwplayerPreferencesElement}
-             */
-            this.elements.$preferences = new JwplayerPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf JwplayerView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {JwplayerRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
+      /**
+       * Define data
+       * @type {*|{}}
+       */
+      var data = this.controller.getRules();
 
-        /**
-         * Render Rules
-         * @memberOf JwplayerView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {JwplayerRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define data
-             * @type {*|{}}
-             */
-            var data = this.controller.getRules();
-
-            /**
-             * Define Jwplayer Rules Element
-             * @type {JwplayerRulesElement}
-             */
-            this.elements.$rules = new JwplayerRulesElement(this, {
-                data: data,
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render jwplayer
-         * @memberOf JwplayerView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderJwplayer.bind(this)
-            );
+      /**
+       * Define Jwplayer Rules Element
+       * @type {JwplayerRulesElement}
+       */
+      this.elements.$rules = new JwplayerRulesElement(this, {
+        data: data,
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render jwplayer
+     * @memberOf JwplayerView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderJwplayer.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

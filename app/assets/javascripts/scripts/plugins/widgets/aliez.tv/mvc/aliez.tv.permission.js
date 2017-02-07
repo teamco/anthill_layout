@@ -7,20 +7,20 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineAliezTvPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class AliezTvPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var AliezTvPermission = function AliezTvPermission() {
-    };
+  /**
+   * Define Permissions
+   * @class AliezTvPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var AliezTvPermission = function AliezTvPermission() {
+  };
 
-    return AliezTvPermission.extend(
-        'AliezTvPermission', {}, 
-        BasePermission.prototype
-    );
+  return AliezTvPermission.extend(
+      'AliezTvPermission', {},
+      BasePermission.prototype
+  );
 });

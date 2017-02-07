@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineEmpflixEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define Empflix event manager
-     * @class EmpflixEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var EmpflixEventManager = function EmpflixEventManager() {
+  /**
+   * Define Empflix event manager
+   * @class EmpflixEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var EmpflixEventManager = function EmpflixEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return EmpflixEventManager.extend('EmpflixEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return EmpflixEventManager.extend('EmpflixEventManager', {},
+      WidgetContentEventManager.prototype);
 });

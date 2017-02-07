@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineChannelTwoIlPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class ChannelTwoIlPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var ChannelTwoIlPermission = function ChannelTwoIlPermission() {
+  /**
+   * Define Permissions
+   * @class ChannelTwoIlPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var ChannelTwoIlPermission = function ChannelTwoIlPermission() {
 
-    };
+  };
 
-    return ChannelTwoIlPermission.extend('ChannelTwoIlPermission', {
-
-    }, BasePermission.prototype);
+  return ChannelTwoIlPermission.extend('ChannelTwoIlPermission', {},
+      BasePermission.prototype);
 });

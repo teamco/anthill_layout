@@ -6,157 +6,159 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function definePanelElement(PluginElement) {
 
+  /**
+   * Define Panel Element
+   * @param view
+   * @param opts
+   * @returns {PanelElement}
+   * @constructor
+   * @class PanelElement
+   * @extends PluginElement
+   */
+  var PanelElement = function PanelElement(view, opts) {
+
+    this._config(view, opts, $(this.getTemplate())).build({
+      $container: opts.$container
+    });
+
     /**
-     * Define Panel Element
-     * @param view
-     * @param opts
-     * @returns {PanelElement}
-     * @constructor
-     * @class PanelElement
-     * @extends PluginElement
+     * Fetch panel header
+     * @property PanelElement
      */
-    var PanelElement = function PanelElement(view, opts) {
+    this.header = this.view.scope.model.getConfig('header');
 
-        this._config(view, opts, $(this.getTemplate())).build({
-            $container: opts.$container
-        });
+    this.addCSS('panel');
+    this.setPanelHeader();
 
-        /**
-         * Fetch panel header
-         * @property PanelElement
-         */
-        this.header = this.view.scope.model.getConfig('header');
+    return this;
+  };
 
-        this.addCSS('panel');
-        this.setPanelHeader();
+  return PanelElement.extend('PanelElement', {
 
-        return this;
-    };
+    /**
+     * Define template
+     * @memberOf PanelElement
+     * @returns {string}
+     */
+    getTemplate: function getTemplate() {
+      return [
+        '<nav class="navbar-default navbar-static-side" role="navigation">',
+        '<div class="sidebar-collapse">',
+        '<ul></ul></div></nav>'
+      ].join('');
+    },
 
-    return PanelElement.extend('PanelElement', {
+    /**
+     * Define content container
+     * @memberOf PanelElement
+     * @returns {*}
+     */
+    getContentContainer: function getContentContainer() {
+      return this.$.find('ul:first');
+    },
 
-        /**
-         * Define template
-         * @memberOf PanelElement
-         * @returns {string}
-         */
-        getTemplate: function getTemplate() {
-            return [
-                '<nav class="navbar-default navbar-static-side" role="navigation">',
-                '<div class="sidebar-collapse">',
-                '<ul></ul></div></nav>'
-            ].join('');
-        },
+    /**
+     * Toggle open/close
+     * @param {string} resource
+     * @memberOf PanelElement
+     * @returns {boolean}
+     */
+    toggleModule: function toggleModule(resource) {
 
-        /**
-         * Define content container
-         * @memberOf PanelElement
-         * @returns {*}
-         */
-        getContentContainer: function getContentContainer() {
-            return this.$.find('ul:first');
-        },
+      // Define locals
+      var view = this.view,
+          scope = view.scope;
 
-        /**
-         * Toggle open/close
-         * @param {string} resource
-         * @memberOf PanelElement
-         * @returns {boolean}
-         */
-        toggleModule: function toggleModule(resource) {
+      scope.observer.publish(
+          scope.eventmanager.eventList.showContent,
+          resource
+      );
+    },
 
-            // Define locals
-            var view = this.view,
-                scope = view.scope;
+    /**
+     * Define header wrapper
+     * @memberOf PanelElement
+     */
+    setPanelHeader: function setPanelHeader() {
 
-            scope.observer.publish(
-                scope.eventmanager.eventList.showContent,
-                resource
-            );
-        },
+      var $tpl = $('<li class="nav-header" />'),
+          header = this.header;
 
-        /**
-         * Define header wrapper
-         * @memberOf PanelElement
-         */
-        setPanelHeader: function setPanelHeader() {
+      if (header && this.base.defineBoolean(header.visible, true)) {
 
-            var $tpl = $('<li class="nav-header" />'),
-                header = this.header;
+        $tpl.appendTo(this.$.find('ul:first'));
 
-            if (header && this.base.defineBoolean(header.visible, true)) {
+        this.setLongHeader();
+        this.setShortHeader();
 
-                $tpl.appendTo(this.$.find('ul:first'));
+        this.$.removeClass('no-title');
 
-                this.setLongHeader();
-                this.setShortHeader();
+      } else {
 
-                this.$.removeClass('no-title');
+        this.$.addClass('no-title');
+      }
+    },
 
-            } else {
+    /**
+     * Define long header wrapper
+     * @memberOf PanelElement
+     */
+    setLongHeader: function getLongHeaderWrapper() {
 
-                this.$.addClass('no-title');
-            }
-        },
+      var $tpl = $(
+          '<div class="profile-element text-center"><h1 class="logo-element"></h1></div>'),
+          title = this.header.title;
 
-        /**
-         * Define long header wrapper
-         * @memberOf PanelElement
-         */
-        setLongHeader: function getLongHeaderWrapper() {
+      if (title && title.long) {
+        $tpl.find('.logo-element').text(title.long);
+        $tpl.appendTo(this.$.find('.nav-header'));
+      }
+    },
 
-            var $tpl = $('<div class="profile-element text-center"><h1 class="logo-element"></h1></div>'),
-                title = this.header.title;
+    /**
+     * Define short header wrapper
+     * @memberOf PanelElement
+     */
+    setShortHeader: function getShortHeaderWrapper() {
 
-            if (title && title.long) {
-                $tpl.find('.logo-element').text(title.long);
-                $tpl.appendTo(this.$.find('.nav-header'));
-            }
-        },
+      var $tpl = $('<div class="logo-element" />'),
+          title = this.header.title;
 
-        /**
-         * Define short header wrapper
-         * @memberOf PanelElement
-         */
-        setShortHeader: function getShortHeaderWrapper() {
+      if (title && title.short) {
+        $tpl.find('.logo-element').text(title.short);
+        $tpl.appendTo(this.$.find('.nav-header'));
+      }
+    },
 
-            var $tpl = $('<div class="logo-element" />'),
-                title = this.header.title;
+    /**
+     * Hide Active module
+     * @memberOf PanelElement
+     */
+    hideActiveModule: function hideActiveModule() {
+      this.view.elements.items[this.getContentItemIndex()].hide();
+    },
 
-            if (title && title.short) {
-                $tpl.find('.logo-element').text(title.short);
-                $tpl.appendTo(this.$.find('.nav-header'));
-            }
-        },
+    /**
+     * Show Active module
+     * @memberOf PanelElement
+     */
+    showActiveModule: function showActiveModule() {
+      this.view.elements.items[this.getContentItemIndex()].show();
+    },
 
-        /**
-         * Hide Active module
-         * @memberOf PanelElement
-         */
-        hideActiveModule: function hideActiveModule() {
-            this.view.elements.items[this.getContentItemIndex()].hide();
-        },
+    /**
+     * Get item index
+     * @memberOf PanelElement
+     * @returns {string}
+     */
+    getContentItemIndex: function getContentItemIndex() {
+      return ['$', this.view.controller.getActiveResource(), '-content'].join(
+          '');
+    }
 
-        /**
-         * Show Active module
-         * @memberOf PanelElement
-         */
-        showActiveModule: function showActiveModule() {
-            this.view.elements.items[this.getContentItemIndex()].show();
-        },
-
-        /**
-         * Get item index
-         * @memberOf PanelElement
-         * @returns {string}
-         */
-        getContentItemIndex: function getContentItemIndex() {
-            return ['$', this.view.controller.getActiveResource(), '-content'].join('');
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 
 });

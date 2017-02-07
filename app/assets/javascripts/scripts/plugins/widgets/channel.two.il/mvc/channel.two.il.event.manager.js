@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineChannelTwoIlEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define ChannelTwoIl event manager
-     * @class ChannelTwoIlEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var ChannelTwoIlEventManager = function ChannelTwoIlEventManager() {
+  /**
+   * Define ChannelTwoIl event manager
+   * @class ChannelTwoIlEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var ChannelTwoIlEventManager = function ChannelTwoIlEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return ChannelTwoIlEventManager.extend('ChannelTwoIlEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return ChannelTwoIlEventManager.extend('ChannelTwoIlEventManager', {},
+      WidgetContentEventManager.prototype);
 });

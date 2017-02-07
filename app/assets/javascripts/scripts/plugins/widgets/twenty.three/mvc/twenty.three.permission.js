@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineTwentyThreePermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class TwentyThreePermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var TwentyThreePermission = function TwentyThreePermission() {
+  /**
+   * Define Permissions
+   * @class TwentyThreePermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var TwentyThreePermission = function TwentyThreePermission() {
 
-    };
+  };
 
-    return TwentyThreePermission.extend('TwentyThreePermission', {
-
-    }, BasePermission.prototype);
+  return TwentyThreePermission.extend('TwentyThreePermission', {},
+      BasePermission.prototype);
 });

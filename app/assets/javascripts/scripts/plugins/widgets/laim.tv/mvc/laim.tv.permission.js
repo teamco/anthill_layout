@@ -7,20 +7,20 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineLaimTvPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class LaimTvPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var LaimTvPermission = function LaimTvPermission() {
-    };
+  /**
+   * Define Permissions
+   * @class LaimTvPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var LaimTvPermission = function LaimTvPermission() {
+  };
 
-    return LaimTvPermission.extend(
-        'LaimTvPermission', {}, 
-        BasePermission.prototype
-    );
+  return LaimTvPermission.extend(
+      'LaimTvPermission', {},
+      BasePermission.prototype
+  );
 });

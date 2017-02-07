@@ -6,35 +6,33 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
 ], function defineTourTvPreferencesElement(PluginElement, WidgetPreferences) {
 
-    /**
-     * Define TourTv Preferences Element
-     * @param view
-     * @param opts
-     * @returns {TourTvPreferencesElement}
-     * @constructor
-     * @class TourTvPreferencesElement
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     */
-    var TourTvPreferencesElement = function TourTvPreferencesElement(view, opts) {
+  /**
+   * Define TourTv Preferences Element
+   * @param view
+   * @param opts
+   * @returns {TourTvPreferencesElement}
+   * @constructor
+   * @class TourTvPreferencesElement
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   */
+  var TourTvPreferencesElement = function TourTvPreferencesElement(view, opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return TourTvPreferencesElement.extend('TourTvPreferencesElement', {
-
-
-    }, PluginElement.prototype, WidgetPreferences.prototype);
+  return TourTvPreferencesElement.extend('TourTvPreferencesElement', {},
+      PluginElement.prototype, WidgetPreferences.prototype);
 
 });

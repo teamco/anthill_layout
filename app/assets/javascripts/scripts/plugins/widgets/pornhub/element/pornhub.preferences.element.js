@@ -6,35 +6,34 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
 ], function definePornhubPreferencesElement(PluginElement, WidgetPreferences) {
 
-    /**
-     * Define Pornhub Preferences Element
-     * @param view
-     * @param opts
-     * @returns {PornhubPreferencesElement}
-     * @constructor
-     * @class PornhubPreferencesElement
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     */
-    var PornhubPreferencesElement = function PornhubPreferencesElement(view, opts) {
+  /**
+   * Define Pornhub Preferences Element
+   * @param view
+   * @param opts
+   * @returns {PornhubPreferencesElement}
+   * @constructor
+   * @class PornhubPreferencesElement
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   */
+  var PornhubPreferencesElement = function PornhubPreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return PornhubPreferencesElement.extend('PornhubPreferencesElement', {
-
-
-    }, PluginElement.prototype, WidgetPreferences.prototype);
+  return PornhubPreferencesElement.extend('PornhubPreferencesElement', {},
+      PluginElement.prototype, WidgetPreferences.prototype);
 
 });

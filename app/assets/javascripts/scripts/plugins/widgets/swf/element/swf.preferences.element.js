@@ -6,35 +6,33 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
 ], function defineSwfPreferencesElement(PluginElement, WidgetPreferences) {
 
-    /**
-     * Define Swf Preferences Element
-     * @param view
-     * @param opts
-     * @returns {SwfPreferencesElement}
-     * @constructor
-     * @class SwfPreferencesElement
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     */
-    var SwfPreferencesElement = function SwfPreferencesElement(view, opts) {
+  /**
+   * Define Swf Preferences Element
+   * @param view
+   * @param opts
+   * @returns {SwfPreferencesElement}
+   * @constructor
+   * @class SwfPreferencesElement
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   */
+  var SwfPreferencesElement = function SwfPreferencesElement(view, opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return SwfPreferencesElement.extend('SwfPreferencesElement', {
-
-
-    }, PluginElement.prototype, WidgetPreferences.prototype);
+  return SwfPreferencesElement.extend('SwfPreferencesElement', {},
+      PluginElement.prototype, WidgetPreferences.prototype);
 
 });

@@ -6,44 +6,44 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineDotsubModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define Dotsub model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class DotsubModel
+   * @constructor
+   */
+  var DotsubModel = function DotsubModel() {
+
     /**
-     * Define Dotsub model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class DotsubModel
-     * @constructor
+     * Define preferences
+     * @property DotsubModel
+     * @type {{}}
      */
-    var DotsubModel = function DotsubModel() {
-
-        /**
-         * Define preferences
-         * @property DotsubModel
-         * @type {{}}
-         */
-        this.preferences = {
-            dotsubEmbedCode: {
-                type: 'textarea',
-                disabled: false,
-                value: '<iframe src="https://dotsub.com/media/38b2f41f-485c-4545-b52b-d12da58a4c1c/embed/" frameborder="0" width="640" height="360" AllowFullScreen></iframe>',
-                visible: true
-            }
-        };
-
-        /**
-         * Define rules
-         * @property DotsubModel
-         * @type {{}}
-         */
-        this.rules = {};
+    this.preferences = {
+      dotsubEmbedCode: {
+        type: 'textarea',
+        disabled: false,
+        value: '<iframe src="https://dotsub.com/media/38b2f41f-485c-4545-b52b-d12da58a4c1c/embed/" frameborder="0" width="640" height="360" AllowFullScreen></iframe>',
+        visible: true
+      }
     };
 
-    return DotsubModel.extend('DotsubModel', {
+    /**
+     * Define rules
+     * @property DotsubModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        // Setter
+  return DotsubModel.extend('DotsubModel', {
 
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    // Setter
+
+  }, BaseModel.prototype, WidgetContentModel.prototype);
 });

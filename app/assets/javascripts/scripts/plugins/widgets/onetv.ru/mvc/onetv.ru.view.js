@@ -7,108 +7,109 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/onetv.ru/element/onetv.ru.element',
-    'plugins/widgets/onetv.ru/element/onetv.ru.preferences.element',
-    'plugins/widgets/onetv.ru/element/onetv.ru.rules.element'
-], function defineOnetvRuView(BaseView, Header, Footer, OnetvRuElement, OnetvRuPreferencesElement, OnetvRuRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/onetv.ru/element/onetv.ru.element',
+  'plugins/widgets/onetv.ru/element/onetv.ru.preferences.element',
+  'plugins/widgets/onetv.ru/element/onetv.ru.rules.element'
+], function defineOnetvRuView(BaseView, Header, Footer, OnetvRuElement,
+    OnetvRuPreferencesElement, OnetvRuRulesElement) {
+
+  /**
+   * Define view
+   * @class OnetvRuView
+   * @extends BaseView
+   * @constructor
+   */
+  var OnetvRuView = function OnetvRuView() {
+  };
+
+  return OnetvRuView.extend('OnetvRuView', {
 
     /**
-     * Define view
-     * @class OnetvRuView
-     * @extends BaseView
-     * @constructor
+     * Render onetvru element
+     * @memberOf OnetvRuView
      */
-    var OnetvRuView = function OnetvRuView() {
-    };
+    renderOnetvRu: function renderOnetvRu() {
 
-    return OnetvRuView.extend('OnetvRuView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render onetvru element
-         * @memberOf OnetvRuView
-         */
-        renderOnetvRu: function renderOnetvRu() {
+      /**
+       * Define $onetvru
+       * @type {OnetvRuElement}
+       */
+      this.elements.$onetvru = new OnetvRuElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $onetvru
-             * @type {OnetvRuElement}
-             */
-            this.elements.$onetvru = new OnetvRuElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf OnetvRuView
+     * @returns {OnetvRuPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define OnetvRu Preferences Element
+       * @type {OnetvRuPreferencesElement}
+       */
+      this.elements.$preferences = new OnetvRuPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf OnetvRuView
-         * @returns {OnetvRuPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define OnetvRu Preferences Element
-             * @type {OnetvRuPreferencesElement}
-             */
-            this.elements.$preferences = new OnetvRuPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf OnetvRuView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {OnetvRuRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
+      /**
+       * Define data
+       * @type {*|{}}
+       */
+      var data = this.controller.getRules();
 
-        /**
-         * Render Rules
-         * @memberOf OnetvRuView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {OnetvRuRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define data
-             * @type {*|{}}
-             */
-            var data = this.controller.getRules();
-
-            /**
-             * Define OnetvRu Rules Element
-             * @type {OnetvRuRulesElement}
-             */
-            this.elements.$rules = new OnetvRuRulesElement(this, {
-                data: data,
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render onetvru
-         * @memberOf OnetvRuView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderOnetvRu.bind(this)
-            );
+      /**
+       * Define OnetvRu Rules Element
+       * @type {OnetvRuRulesElement}
+       */
+      this.elements.$rules = new OnetvRuRulesElement(this, {
+        data: data,
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render onetvru
+     * @memberOf OnetvRuView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderOnetvRu.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

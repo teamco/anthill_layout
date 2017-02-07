@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function definePostToolPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class PostToolPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var PostToolPermission = function PostToolPermission() {
+  /**
+   * Define Permissions
+   * @class PostToolPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var PostToolPermission = function PostToolPermission() {
 
-    };
+  };
 
-    return PostToolPermission.extend('PostToolPermission', {
-
-    }, BasePermission.prototype);
+  return PostToolPermission.extend('PostToolPermission', {},
+      BasePermission.prototype);
 });

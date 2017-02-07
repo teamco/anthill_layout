@@ -6,43 +6,43 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineChannelNineUaElement(PluginElement) {
 
+  /**
+   * Define ChannelNineUa Element
+   * @param view
+   * @param opts
+   * @returns {ChannelNineUaElement}
+   * @constructor
+   * @class ChannelNineUaElement
+   * @extends PluginElement
+   */
+  var ChannelNineUaElement = function ChannelNineUaElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('channel.nine.ua', {resource: '/widgets'});
+
+    return this;
+  };
+
+  return ChannelNineUaElement.extend('ChannelNineUaElement', {
+
     /**
-     * Define ChannelNineUa Element
-     * @param view
-     * @param opts
-     * @returns {ChannelNineUaElement}
-     * @constructor
-     * @class ChannelNineUaElement
-     * @extends PluginElement
+     * Render Embedded content
+     * @memberOf ChannelNineUaElement
+     * @param {string} url
      */
-    var ChannelNineUaElement = function ChannelNineUaElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent(url) {
+      this.$.append(
+          this.renderIframe(url)
+      );
+    }
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
-
-        this.addCSS('channel.nine.ua', {resource: '/widgets'});
-
-        return this;
-    };
-
-    return ChannelNineUaElement.extend('ChannelNineUaElement', {
-
-        /**
-         * Render Embedded content
-         * @memberOf ChannelNineUaElement
-         * @param {string} url
-         */
-        renderEmbeddedContent: function renderEmbeddedContent(url) {
-            this.$.append(
-                this.renderIframe(url)
-            );
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 
 });

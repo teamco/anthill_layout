@@ -6,35 +6,35 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
-], function definePinterestPreferencesElement(PluginElement, WidgetPreferences) {
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
+], function definePinterestPreferencesElement(PluginElement,
+    WidgetPreferences) {
 
-    /**
-     * Define Pinterest Preferences Element
-     * @param view
-     * @param opts
-     * @returns {PinterestPreferencesElement}
-     * @constructor
-     * @class PinterestPreferencesElement
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     */
-    var PinterestPreferencesElement = function PinterestPreferencesElement(view, opts) {
+  /**
+   * Define Pinterest Preferences Element
+   * @param view
+   * @param opts
+   * @returns {PinterestPreferencesElement}
+   * @constructor
+   * @class PinterestPreferencesElement
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   */
+  var PinterestPreferencesElement = function PinterestPreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return PinterestPreferencesElement.extend('PinterestPreferencesElement', {
-
-
-    }, PluginElement.prototype, WidgetPreferences.prototype);
+  return PinterestPreferencesElement.extend('PinterestPreferencesElement', {},
+      PluginElement.prototype, WidgetPreferences.prototype);
 
 });

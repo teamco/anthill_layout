@@ -7,102 +7,103 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/login/element/login.element',
-    'plugins/widgets/login/element/login.preferences.element',
-    'plugins/widgets/login/element/login.rules.element'
-], function defineLoginView(BaseView, Header, Footer, LoginElement, LoginPreferencesElement, LoginRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/login/element/login.element',
+  'plugins/widgets/login/element/login.preferences.element',
+  'plugins/widgets/login/element/login.rules.element'
+], function defineLoginView(BaseView, Header, Footer, LoginElement,
+    LoginPreferencesElement, LoginRulesElement) {
+
+  /**
+   * Define view
+   * @class LoginView
+   * @extends BaseView
+   * @constructor
+   */
+  var LoginView = function LoginView() {
+  };
+
+  return LoginView.extend('LoginView', {
 
     /**
-     * Define view
-     * @class LoginView
-     * @extends BaseView
-     * @constructor
+     * Render login element
+     * @memberOf LoginView
      */
-    var LoginView = function LoginView() {
-    };
+    renderLogin: function renderLogin() {
 
-    return LoginView.extend('LoginView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render login element
-         * @memberOf LoginView
-         */
-        renderLogin: function renderLogin() {
+      /**
+       * Define $login
+       * @type {LoginElement}
+       */
+      this.elements.$login = new LoginElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $login
-             * @type {LoginElement}
-             */
-            this.elements.$login = new LoginElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf LoginView
+     * @returns {LoginPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define Login Preferences Element
+       * @type {LoginPreferencesElement}
+       */
+      this.elements.$preferences = new LoginPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf LoginView
-         * @returns {LoginPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define Login Preferences Element
-             * @type {LoginPreferencesElement}
-             */
-            this.elements.$preferences = new LoginPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf LoginView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {LoginRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
-
-        /**
-         * Render Rules
-         * @memberOf LoginView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {LoginRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define Login Rules Element
-             * @type {LoginRulesElement}
-             */
-            this.elements.$rules = new LoginRulesElement(this, {
-                data: this.controller.getRules(),
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render login
-         * @memberOf LoginView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderLogin.bind(this)
-            );
+      /**
+       * Define Login Rules Element
+       * @type {LoginRulesElement}
+       */
+      this.elements.$rules = new LoginRulesElement(this, {
+        data: this.controller.getRules(),
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render login
+     * @memberOf LoginView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderLogin.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

@@ -7,108 +7,109 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/one.plus.one/element/one.plus.one.element',
-    'plugins/widgets/one.plus.one/element/one.plus.one.preferences.element',
-    'plugins/widgets/one.plus.one/element/one.plus.one.rules.element'
-], function defineOnePlusOneView(BaseView, Header, Footer, OnePlusOneElement, OnePlusOnePreferencesElement, OnePlusOneRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/one.plus.one/element/one.plus.one.element',
+  'plugins/widgets/one.plus.one/element/one.plus.one.preferences.element',
+  'plugins/widgets/one.plus.one/element/one.plus.one.rules.element'
+], function defineOnePlusOneView(BaseView, Header, Footer, OnePlusOneElement,
+    OnePlusOnePreferencesElement, OnePlusOneRulesElement) {
+
+  /**
+   * Define view
+   * @class OnePlusOneView
+   * @extends BaseView
+   * @constructor
+   */
+  var OnePlusOneView = function OnePlusOneView() {
+  };
+
+  return OnePlusOneView.extend('OnePlusOneView', {
 
     /**
-     * Define view
-     * @class OnePlusOneView
-     * @extends BaseView
-     * @constructor
+     * Render $oneplusone element
+     * @memberOf OnePlusOneView
      */
-    var OnePlusOneView = function OnePlusOneView() {
-    };
+    renderOnePlusOne: function renderOnePlusOne() {
 
-    return OnePlusOneView.extend('OnePlusOneView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render $oneplusone element
-         * @memberOf OnePlusOneView
-         */
-        renderOnePlusOne: function renderOnePlusOne() {
+      /**
+       * Define $oneplusone
+       * @type {OnePlusOneElement}
+       */
+      this.elements.$oneplusone = new OnePlusOneElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $oneplusone
-             * @type {OnePlusOneElement}
-             */
-            this.elements.$oneplusone = new OnePlusOneElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf OnePlusOneView
+     * @returns {OnePlusOnePreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define OnePlusOne Preferences Element
+       * @type {OnePlusOnePreferencesElement}
+       */
+      this.elements.$preferences = new OnePlusOnePreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf OnePlusOneView
-         * @returns {OnePlusOnePreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define OnePlusOne Preferences Element
-             * @type {OnePlusOnePreferencesElement}
-             */
-            this.elements.$preferences = new OnePlusOnePreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf OnePlusOneView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {OnePlusOneRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
+      /**
+       * Define data
+       * @type {*|{}}
+       */
+      var data = this.controller.getRules();
 
-        /**
-         * Render Rules
-         * @memberOf OnePlusOneView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {OnePlusOneRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define data
-             * @type {*|{}}
-             */
-            var data = this.controller.getRules();
-
-            /**
-             * Define OnePlusOne Rules Element
-             * @type {OnePlusOneRulesElement}
-             */
-            this.elements.$rules = new OnePlusOneRulesElement(this, {
-                data: data,
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render $oneplusone
-         * @memberOf OnePlusOneView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderOnePlusOne.bind(this)
-            );
+      /**
+       * Define OnePlusOne Rules Element
+       * @type {OnePlusOneRulesElement}
+       */
+      this.elements.$rules = new OnePlusOneRulesElement(this, {
+        data: data,
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render $oneplusone
+     * @memberOf OnePlusOneView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderOnePlusOne.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineJsFiddleEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define JsFiddle event manager
-     * @class JsFiddleEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var JsFiddleEventManager = function JsFiddleEventManager() {
+  /**
+   * Define JsFiddle event manager
+   * @class JsFiddleEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var JsFiddleEventManager = function JsFiddleEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return JsFiddleEventManager.extend('JsFiddleEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return JsFiddleEventManager.extend('JsFiddleEventManager', {},
+      WidgetContentEventManager.prototype);
 });

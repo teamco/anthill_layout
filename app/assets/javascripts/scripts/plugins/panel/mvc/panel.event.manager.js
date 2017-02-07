@@ -7,28 +7,28 @@
  */
 
 define([
-    'modules/Event'
+  'modules/Event'
 ], function definePanelEventManager(BaseEvent) {
 
+  /**
+   * Define layout event manager
+   * @class PanelEventManager
+   * @constructor
+   * @extends BaseEvent
+   */
+  var PanelEventManager = function PanelEventManager() {
+
     /**
-     * Define layout event manager
-     * @class PanelEventManager
-     * @constructor
-     * @extends BaseEvent
+     * Define events
+     * @memberOf PanelEventManager
+     * @type {{}}
      */
-    var PanelEventManager = function PanelEventManager() {
+    this.events = {};
 
-        /**
-         * Define events
-         * @memberOf PanelEventManager
-         * @type {{}}
-         */
-        this.events = {};
-
-        /**
-         * Define event list
-         * @memberOf PanelEventManager
-         * @type {{
+    /**
+     * Define event list
+     * @memberOf PanelEventManager
+     * @type {{
          *      updateTranslations: string,
          *      showContent: string,
          *      defineModules: string,
@@ -38,19 +38,18 @@ define([
          *      refreshModulesContent: string,
          *      subscribeGenericEvent: string
          * }}
-         */
-        this.eventList = {
-            updateTranslations: 'update.translations',
-            showContent: 'show.content',
-            defineModules: 'define.modules',
-            definePackages: 'define.packages',
-            openPanel: 'open.panel',
-            closePanel: 'close.panel',
-            refreshModulesContent: 'refresh.modules.content',
-            subscribeGenericEvent: 'subscribe.generic.event'
-        };
+     */
+    this.eventList = {
+      updateTranslations: 'update.translations',
+      showContent: 'show.content',
+      defineModules: 'define.modules',
+      definePackages: 'define.packages',
+      openPanel: 'open.panel',
+      closePanel: 'close.panel',
+      refreshModulesContent: 'refresh.modules.content',
+      subscribeGenericEvent: 'subscribe.generic.event'
     };
+  };
 
-    return PanelEventManager.extend('PanelEventManager', {
-    }, BaseEvent.prototype);
+  return PanelEventManager.extend('PanelEventManager', {}, BaseEvent.prototype);
 });

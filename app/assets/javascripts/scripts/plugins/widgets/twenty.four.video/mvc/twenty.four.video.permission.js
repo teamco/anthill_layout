@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineTwentyFourVideoPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class TwentyFourVideoPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var TwentyFourVideoPermission = function TwentyFourVideoPermission() {
+  /**
+   * Define Permissions
+   * @class TwentyFourVideoPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var TwentyFourVideoPermission = function TwentyFourVideoPermission() {
 
-    };
+  };
 
-    return TwentyFourVideoPermission.extend('TwentyFourVideoPermission', {
-
-    }, BasePermission.prototype);
+  return TwentyFourVideoPermission.extend('TwentyFourVideoPermission', {},
+      BasePermission.prototype);
 });

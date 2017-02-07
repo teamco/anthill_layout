@@ -6,35 +6,35 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
-], function defineInstagramPreferencesElement(PluginElement, WidgetPreferences) {
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
+], function defineInstagramPreferencesElement(PluginElement,
+    WidgetPreferences) {
 
-    /**
-     * Define Instagram Preferences Element
-     * @param view
-     * @param opts
-     * @returns {InstagramPreferencesElement}
-     * @constructor
-     * @class InstagramPreferencesElement
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     */
-    var InstagramPreferencesElement = function InstagramPreferencesElement(view, opts) {
+  /**
+   * Define Instagram Preferences Element
+   * @param view
+   * @param opts
+   * @returns {InstagramPreferencesElement}
+   * @constructor
+   * @class InstagramPreferencesElement
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   */
+  var InstagramPreferencesElement = function InstagramPreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return InstagramPreferencesElement.extend('InstagramPreferencesElement', {
-
-
-    }, PluginElement.prototype, WidgetPreferences.prototype);
+  return InstagramPreferencesElement.extend('InstagramPreferencesElement', {},
+      PluginElement.prototype, WidgetPreferences.prototype);
 
 });

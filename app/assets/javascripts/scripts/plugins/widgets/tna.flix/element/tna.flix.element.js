@@ -6,43 +6,43 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineTnaFlixElement(PluginElement) {
 
+  /**
+   * Define TnaFlix Element
+   * @param view
+   * @param opts
+   * @returns {TnaFlixElement}
+   * @constructor
+   * @class TnaFlixElement
+   * @extends PluginElement
+   */
+  var TnaFlixElement = function TnaFlixElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('tna.flix', {resource: '/widgets'});
+
+    return this;
+  };
+
+  return TnaFlixElement.extend('TnaFlixElement', {
+
     /**
-     * Define TnaFlix Element
-     * @param view
-     * @param opts
-     * @returns {TnaFlixElement}
-     * @constructor
-     * @class TnaFlixElement
-     * @extends PluginElement
+     * Render Embedded content
+     * @memberOf TnaFlixElement
+     * @param {string} url
      */
-    var TnaFlixElement = function TnaFlixElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent(url) {
+      this.$.append(
+          this.renderIframe(url)
+      );
+    }
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
-
-        this.addCSS('tna.flix', {resource: '/widgets'});
-
-        return this;
-    };
-
-    return TnaFlixElement.extend('TnaFlixElement', {
-
-        /**
-         * Render Embedded content
-         * @memberOf TnaFlixElement
-         * @param {string} url
-         */
-        renderEmbeddedContent: function renderEmbeddedContent(url) {
-            this.$.append(
-                this.renderIframe(url)
-            );
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 
 });

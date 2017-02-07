@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineScribdEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define Scribd event manager
-     * @class ScribdEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var ScribdEventManager = function ScribdEventManager() {
+  /**
+   * Define Scribd event manager
+   * @class ScribdEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var ScribdEventManager = function ScribdEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return ScribdEventManager.extend('ScribdEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return ScribdEventManager.extend('ScribdEventManager', {},
+      WidgetContentEventManager.prototype);
 });

@@ -6,44 +6,44 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineWikimapiaElement(PluginElement) {
 
+  /**
+   * Define Wikimapia Element
+   * @param view
+   * @param opts
+   * @returns {WikimapiaElement}
+   * @constructor
+   * @class WikimapiaElement
+   * @extends PluginElement
+   */
+  var WikimapiaElement = function WikimapiaElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('wikimapia', {resource: '/widgets'});
+
+    return this;
+  };
+
+  return WikimapiaElement.extend('WikimapiaElement', {
+
     /**
-     * Define Wikimapia Element
-     * @param view
-     * @param opts
-     * @returns {WikimapiaElement}
-     * @constructor
-     * @class WikimapiaElement
-     * @extends PluginElement
+     * Render Embedded content
+     * @memberOf WikimapiaElement
+     * @param {string} embed
      */
-    var WikimapiaElement = function WikimapiaElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent(embed) {
+      this.addContent(
+          this.renderIframe(
+              $(embed).attr('src')
+          )
+      );
+    }
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
-
-        this.addCSS('wikimapia', {resource: '/widgets'});
-
-        return this;
-    };
-
-    return WikimapiaElement.extend('WikimapiaElement', {
-
-        /**
-         * Render Embedded content
-         * @memberOf WikimapiaElement
-         * @param {string} embed
-         */
-        renderEmbeddedContent: function renderEmbeddedContent(embed) {
-            this.addContent(
-                this.renderIframe(
-                    $(embed).attr('src')
-                )
-            );
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 });

@@ -7,101 +7,102 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/ifttt/element/ifttt.element',
-    'plugins/widgets/ifttt/element/ifttt.preferences.element',
-    'plugins/widgets/ifttt/element/ifttt.rules.element'
-], function defineIftttView(BaseView, Header, Footer, IftttElement, IftttPreferencesElement, IftttRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/ifttt/element/ifttt.element',
+  'plugins/widgets/ifttt/element/ifttt.preferences.element',
+  'plugins/widgets/ifttt/element/ifttt.rules.element'
+], function defineIftttView(BaseView, Header, Footer, IftttElement,
+    IftttPreferencesElement, IftttRulesElement) {
+
+  /**
+   * Define view
+   * @class IftttView
+   * @extends BaseView
+   * @constructor
+   */
+  var IftttView = function IftttView() {
+  };
+
+  return IftttView.extend('IftttView', {
 
     /**
-     * Define view
-     * @class IftttView
-     * @extends BaseView
-     * @constructor
+     * Render Ifttt element
+     * @memberOf IftttView
      */
-    var IftttView = function IftttView() {
-    };
+    renderIfttt: function renderIfttt() {
 
-    return IftttView.extend('IftttView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render Ifttt element
-         * @memberOf IftttView
-         */
-        renderIfttt: function renderIfttt() {
+      /**
+       * Define $ifttt
+       * @type {IftttElement}
+       */
+      this.elements.$ifttt = new IftttElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $ifttt
-             * @type {IftttElement}
-             */
-            this.elements.$ifttt = new IftttElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf IftttView
+     * @returns {IftttPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define Ifttt Preferences Element
+       * @type {IftttPreferencesElement}
+       */
+      this.elements.$preferences = new IftttPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf IftttView
-         * @returns {IftttPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define Ifttt Preferences Element
-             * @type {IftttPreferencesElement}
-             */
-            this.elements.$preferences = new IftttPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf IftttView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {IftttRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
-
-        /**
-         * Render Rules
-         * @memberOf IftttView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {IftttRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define Ifttt Rules Element
-             * @type {IftttRulesElement}
-             */
-            this.elements.$rules = new IftttRulesElement(this, {
-                data: this.controller.getRules(),
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render Ifttt
-         * @memberOf IftttView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderIfttt.bind(this)
-            );
+      /**
+       * Define Ifttt Rules Element
+       * @type {IftttRulesElement}
+       */
+      this.elements.$rules = new IftttRulesElement(this, {
+        data: this.controller.getRules(),
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype);
+      return this.get$rules();
+    },
+
+    /**
+     * Render Ifttt
+     * @memberOf IftttView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderIfttt.bind(this)
+      );
+    }
+
+  }, BaseView.prototype);
 });

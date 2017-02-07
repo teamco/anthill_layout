@@ -7,108 +7,110 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/channel.nine.ua/element/channel.nine.ua.element',
-    'plugins/widgets/channel.nine.ua/element/channel.nine.ua.preferences.element',
-    'plugins/widgets/channel.nine.ua/element/channel.nine.ua.rules.element'
-], function defineChannelNineUaView(BaseView, Header, Footer, ChannelNineUaElement, ChannelNineUaPreferencesElement, ChannelNineUaRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/channel.nine.ua/element/channel.nine.ua.element',
+  'plugins/widgets/channel.nine.ua/element/channel.nine.ua.preferences.element',
+  'plugins/widgets/channel.nine.ua/element/channel.nine.ua.rules.element'
+], function defineChannelNineUaView(BaseView, Header, Footer,
+    ChannelNineUaElement, ChannelNineUaPreferencesElement,
+    ChannelNineUaRulesElement) {
+
+  /**
+   * Define view
+   * @class ChannelNineUaView
+   * @extends BaseView
+   * @constructor
+   */
+  var ChannelNineUaView = function ChannelNineUaView() {
+  };
+
+  return ChannelNineUaView.extend('ChannelNineUaView', {
 
     /**
-     * Define view
-     * @class ChannelNineUaView
-     * @extends BaseView
-     * @constructor
+     * Render channelnineua element
+     * @memberOf ChannelNineUaView
      */
-    var ChannelNineUaView = function ChannelNineUaView() {
-    };
+    renderChannelNineUa: function renderChannelNineUa() {
 
-    return ChannelNineUaView.extend('ChannelNineUaView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render channelnineua element
-         * @memberOf ChannelNineUaView
-         */
-        renderChannelNineUa: function renderChannelNineUa() {
+      /**
+       * Define $channelnineua
+       * @type {ChannelNineUaElement}
+       */
+      this.elements.$channelnineua = new ChannelNineUaElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $channelnineua
-             * @type {ChannelNineUaElement}
-             */
-            this.elements.$channelnineua = new ChannelNineUaElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf ChannelNineUaView
+     * @returns {ChannelNineUaPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define ChannelNineUa Preferences Element
+       * @type {ChannelNineUaPreferencesElement}
+       */
+      this.elements.$preferences = new ChannelNineUaPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf ChannelNineUaView
-         * @returns {ChannelNineUaPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define ChannelNineUa Preferences Element
-             * @type {ChannelNineUaPreferencesElement}
-             */
-            this.elements.$preferences = new ChannelNineUaPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf ChannelNineUaView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {ChannelNineUaRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
+      /**
+       * Define data
+       * @type {*|{}}
+       */
+      var data = this.controller.getRules();
 
-        /**
-         * Render Rules
-         * @memberOf ChannelNineUaView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {ChannelNineUaRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define data
-             * @type {*|{}}
-             */
-            var data = this.controller.getRules();
-
-            /**
-             * Define ChannelNineUa Rules Element
-             * @type {ChannelNineUaRulesElement}
-             */
-            this.elements.$rules = new ChannelNineUaRulesElement(this, {
-                data: data,
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render channelnineua
-         * @memberOf ChannelNineUaView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderChannelNineUa.bind(this)
-            );
+      /**
+       * Define ChannelNineUa Rules Element
+       * @type {ChannelNineUaRulesElement}
+       */
+      this.elements.$rules = new ChannelNineUaRulesElement(this, {
+        data: data,
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render channelnineua
+     * @memberOf ChannelNineUaView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderChannelNineUa.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

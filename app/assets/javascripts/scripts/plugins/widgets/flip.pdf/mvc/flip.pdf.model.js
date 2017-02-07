@@ -6,53 +6,54 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineFlipPdfModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define FlipPdf model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class FlipPdfModel
+   * @constructor
+   */
+  var FlipPdfModel = function FlipPdfModel() {
+
     /**
-     * Define FlipPdf model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class FlipPdfModel
-     * @constructor
-     */
-    var FlipPdfModel = function FlipPdfModel() {
-
-        /**
-         * Define preferences
-         * @property FlipPdfModel
-         * @type {{
-         *      flippdfEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
+     * Define preferences
+     * @property FlipPdfModel
+     * @type {{
+         *      flippdfEmbedCode: {type: string, disabled: boolean, value:
+         *     undefined, visible: boolean}
          * }}
-         */
-        this.preferences = {
-            flippdfEmbedCode: {
-                type: 'textarea',
-                disabled: false,
-                value: undefined,
-                visible: true
-            }
-        };
-
-        /**
-         * Define rules
-         * @property FlipPdfModel
-         * @type {{}}
-         */
-        this.rules = {};
+     */
+    this.preferences = {
+      flippdfEmbedCode: {
+        type: 'textarea',
+        disabled: false,
+        value: undefined,
+        visible: true
+      }
     };
 
-    return FlipPdfModel.extend('FlipPdfModel', {
+    /**
+     * Define rules
+     * @property FlipPdfModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        /**
-         * Set FlipPdf embed code
-         * @memberOf FlipPdfModel
-         * @param {string} embed
-         */
-        setFlippdfEmbedCode: function setFlippdfEmbedCode(embed) {
-            this.setPrefs('flippdfEmbedCode', embed);
-        }
+  return FlipPdfModel.extend('FlipPdfModel', {
 
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    /**
+     * Set FlipPdf embed code
+     * @memberOf FlipPdfModel
+     * @param {string} embed
+     */
+    setFlippdfEmbedCode: function setFlippdfEmbedCode(embed) {
+      this.setPrefs('flippdfEmbedCode', embed);
+    }
+
+  }, BaseModel.prototype, WidgetContentModel.prototype);
 });

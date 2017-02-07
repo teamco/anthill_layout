@@ -6,63 +6,63 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function definePolldaddyElement(PluginElement) {
 
+  /**
+   * Define Polldaddy Element
+   * @param view
+   * @param opts
+   * @returns {PolldaddyElement}
+   * @constructor
+   * @class PolldaddyElement
+   * @extends PluginElement
+   */
+  var PolldaddyElement = function PolldaddyElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('polldaddy', {resource: '/widgets'});
+
+    return this;
+  };
+
+  return PolldaddyElement.extend('PolldaddyElement', {
+
     /**
-     * Define Polldaddy Element
-     * @param view
-     * @param opts
-     * @returns {PolldaddyElement}
-     * @constructor
-     * @class PolldaddyElement
-     * @extends PluginElement
+     * Render Embedded content
+     * @memberOf PolldaddyElement
+     * @param {{type, id}} data
      */
-    var PolldaddyElement = function PolldaddyElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent(data) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+      if (data.type === 'inline') {
 
-        this.addCSS('polldaddy', {resource: '/widgets'});
+        require([
+          '//static.polldaddy.com/p/' + data.id + '.js'
+        ]);
 
-        return this;
-    };
+      } else if (data.type === 'popup') {
 
-    return PolldaddyElement.extend('PolldaddyElement', {
-
-        /**
-         * Render Embedded content
-         * @memberOf PolldaddyElement
-         * @param {{type, id}} data
-         */
-        renderEmbeddedContent: function renderEmbeddedContent(data) {
-
-            if (data.type === 'inline') {
-
-                require([
-                    '//static.polldaddy.com/p/' + data.id + '.js'
-                ]);
-
-            } else if (data.type === 'popup') {
-
-                // TODO: unsupported
-                require(
-                    ['//i0.poll.fm/survey.js'],
-                    function definePollDaddy() {
-                        polldaddy.add({
-                            type: 'slider',
-                            embed: 'poll',
-                            delay: 100,
-                            visit: 'single',
-                            id: data.id
-                        });
-                    }
-                );
+        // TODO: unsupported
+        require(
+            ['//i0.poll.fm/survey.js'],
+            function definePollDaddy() {
+              polldaddy.add({
+                type: 'slider',
+                embed: 'poll',
+                delay: 100,
+                visit: 'single',
+                id: data.id
+              });
             }
-        }
+        );
+      }
+    }
 
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 
 });

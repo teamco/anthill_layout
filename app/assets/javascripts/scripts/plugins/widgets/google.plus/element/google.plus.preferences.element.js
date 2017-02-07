@@ -6,35 +6,35 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
-], function defineGooglePlusPreferencesElement(PluginElement, WidgetPreferences) {
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
+], function defineGooglePlusPreferencesElement(PluginElement,
+    WidgetPreferences) {
 
-    /**
-     * Define GooglePlus Preferences Element
-     * @param view
-     * @param opts
-     * @returns {GooglePlusPreferencesElement}
-     * @constructor
-     * @class GooglePlusPreferencesElement
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     */
-    var GooglePlusPreferencesElement = function GooglePlusPreferencesElement(view, opts) {
+  /**
+   * Define GooglePlus Preferences Element
+   * @param view
+   * @param opts
+   * @returns {GooglePlusPreferencesElement}
+   * @constructor
+   * @class GooglePlusPreferencesElement
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   */
+  var GooglePlusPreferencesElement = function GooglePlusPreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return GooglePlusPreferencesElement.extend('GooglePlusPreferencesElement', {
-
-
-    }, PluginElement.prototype, WidgetPreferences.prototype);
+  return GooglePlusPreferencesElement.extend('GooglePlusPreferencesElement', {},
+      PluginElement.prototype, WidgetPreferences.prototype);
 
 });

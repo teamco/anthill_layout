@@ -7,108 +7,109 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/hromadske.tv/element/hromadske.tv.element',
-    'plugins/widgets/hromadske.tv/element/hromadske.tv.preferences.element',
-    'plugins/widgets/hromadske.tv/element/hromadske.tv.rules.element'
-], function defineHromadskeTvView(BaseView, Header, Footer, HromadskeTvElement, HromadskeTvPreferencesElement, HromadskeTvRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/hromadske.tv/element/hromadske.tv.element',
+  'plugins/widgets/hromadske.tv/element/hromadske.tv.preferences.element',
+  'plugins/widgets/hromadske.tv/element/hromadske.tv.rules.element'
+], function defineHromadskeTvView(BaseView, Header, Footer, HromadskeTvElement,
+    HromadskeTvPreferencesElement, HromadskeTvRulesElement) {
+
+  /**
+   * Define view
+   * @class HromadskeTvView
+   * @extends BaseView
+   * @constructor
+   */
+  var HromadskeTvView = function HromadskeTvView() {
+  };
+
+  return HromadskeTvView.extend('HromadskeTvView', {
 
     /**
-     * Define view
-     * @class HromadskeTvView
-     * @extends BaseView
-     * @constructor
+     * Render hromadsketv element
+     * @memberOf HromadskeTvView
      */
-    var HromadskeTvView = function HromadskeTvView() {
-    };
+    renderHromadskeTv: function renderHromadskeTv() {
 
-    return HromadskeTvView.extend('HromadskeTvView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render hromadsketv element
-         * @memberOf HromadskeTvView
-         */
-        renderHromadskeTv: function renderHromadskeTv() {
+      /**
+       * Define $hromadsketv
+       * @type {HromadskeTvElement}
+       */
+      this.elements.$hromadsketv = new HromadskeTvElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $hromadsketv
-             * @type {HromadskeTvElement}
-             */
-            this.elements.$hromadsketv = new HromadskeTvElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf HromadskeTvView
+     * @returns {HromadskeTvPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define HromadskeTv Preferences Element
+       * @type {HromadskeTvPreferencesElement}
+       */
+      this.elements.$preferences = new HromadskeTvPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf HromadskeTvView
-         * @returns {HromadskeTvPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define HromadskeTv Preferences Element
-             * @type {HromadskeTvPreferencesElement}
-             */
-            this.elements.$preferences = new HromadskeTvPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf HromadskeTvView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {HromadskeTvRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
+      /**
+       * Define data
+       * @type {*|{}}
+       */
+      var data = this.controller.getRules();
 
-        /**
-         * Render Rules
-         * @memberOf HromadskeTvView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {HromadskeTvRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define data
-             * @type {*|{}}
-             */
-            var data = this.controller.getRules();
-
-            /**
-             * Define HromadskeTv Rules Element
-             * @type {HromadskeTvRulesElement}
-             */
-            this.elements.$rules = new HromadskeTvRulesElement(this, {
-                data: data,
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render hromadsketv
-         * @memberOf HromadskeTvView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderHromadskeTv.bind(this)
-            );
+      /**
+       * Define HromadskeTv Rules Element
+       * @type {HromadskeTvRulesElement}
+       */
+      this.elements.$rules = new HromadskeTvRulesElement(this, {
+        data: data,
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render hromadsketv
+     * @memberOf HromadskeTvView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderHromadskeTv.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

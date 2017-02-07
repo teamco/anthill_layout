@@ -6,39 +6,41 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/rules/widget.base.rules'
-], function defineNationalFilmBoardOfCanadaRulesElement(PluginElement, BaseWidgetRules) {
+  'plugins/plugin.element',
+  'plugins/rules/widget.base.rules'
+], function defineNationalFilmBoardOfCanadaRulesElement(PluginElement,
+    BaseWidgetRules) {
 
-    /**
-     * Define NationalFilmBoardOfCanada Rules Element
-     * @param view
-     * @param opts
-     * @returns {NationalFilmBoardOfCanadaRulesElement}
-     * @constructor
-     * @class NationalFilmBoardOfCanadaRulesElement
-     * @extends PluginElement
-     * @extends BaseWidgetRules
-     */
-    var NationalFilmBoardOfCanadaRulesElement = function NationalFilmBoardOfCanadaRulesElement(view, opts) {
+  /**
+   * Define NationalFilmBoardOfCanada Rules Element
+   * @param view
+   * @param opts
+   * @returns {NationalFilmBoardOfCanadaRulesElement}
+   * @constructor
+   * @class NationalFilmBoardOfCanadaRulesElement
+   * @extends PluginElement
+   * @extends BaseWidgetRules
+   */
+  var NationalFilmBoardOfCanadaRulesElement = function NationalFilmBoardOfCanadaRulesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBaseRulesData(
-            opts.data,
-            opts.rules.widget,
-            opts.rules.content
-        );
-
-        return this;
-    };
-
-    return NationalFilmBoardOfCanadaRulesElement.extend(
-        'NationalFilmBoardOfCanadaRulesElement', {}, 
-        PluginElement.prototype, 
-        BaseWidgetRules.prototype
+    this.renderBaseRulesData(
+        opts.data,
+        opts.rules.widget,
+        opts.rules.content
     );
+
+    return this;
+  };
+
+  return NationalFilmBoardOfCanadaRulesElement.extend(
+      'NationalFilmBoardOfCanadaRulesElement', {},
+      PluginElement.prototype,
+      BaseWidgetRules.prototype
+  );
 });

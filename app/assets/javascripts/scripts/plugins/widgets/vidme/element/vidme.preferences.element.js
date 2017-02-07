@@ -6,35 +6,33 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
 ], function defineVidmePreferencesElement(PluginElement, WidgetPreferences) {
 
-    /**
-     * Define Vidme Preferences Element
-     * @param view
-     * @param opts
-     * @returns {VidmePreferencesElement}
-     * @constructor
-     * @class VidmePreferencesElement
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     */
-    var VidmePreferencesElement = function VidmePreferencesElement(view, opts) {
+  /**
+   * Define Vidme Preferences Element
+   * @param view
+   * @param opts
+   * @returns {VidmePreferencesElement}
+   * @constructor
+   * @class VidmePreferencesElement
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   */
+  var VidmePreferencesElement = function VidmePreferencesElement(view, opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return VidmePreferencesElement.extend('VidmePreferencesElement', {
-
-
-    }, PluginElement.prototype, WidgetPreferences.prototype);
+  return VidmePreferencesElement.extend('VidmePreferencesElement', {},
+      PluginElement.prototype, WidgetPreferences.prototype);
 
 });

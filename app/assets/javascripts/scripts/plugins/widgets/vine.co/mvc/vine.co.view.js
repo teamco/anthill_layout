@@ -7,102 +7,103 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/vine.co/element/vine.co.element',
-    'plugins/widgets/vine.co/element/vine.co.preferences.element',
-    'plugins/widgets/vine.co/element/vine.co.rules.element'
-], function defineVineCoView(BaseView, Header, Footer, VineCoElement, VineCoPreferencesElement, VineCoRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/vine.co/element/vine.co.element',
+  'plugins/widgets/vine.co/element/vine.co.preferences.element',
+  'plugins/widgets/vine.co/element/vine.co.rules.element'
+], function defineVineCoView(BaseView, Header, Footer, VineCoElement,
+    VineCoPreferencesElement, VineCoRulesElement) {
+
+  /**
+   * Define view
+   * @class VineCoView
+   * @extends BaseView
+   * @constructor
+   */
+  var VineCoView = function VineCoView() {
+  };
+
+  return VineCoView.extend('VineCoView', {
 
     /**
-     * Define view
-     * @class VineCoView
-     * @extends BaseView
-     * @constructor
+     * Render VineCo element
+     * @memberOf VineCoView
      */
-    var VineCoView = function VineCoView() {
-    };
+    renderVineCo: function renderVineCo() {
 
-    return VineCoView.extend('VineCoView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render VineCo element
-         * @memberOf VineCoView
-         */
-        renderVineCo: function renderVineCo() {
+      /**
+       * Define $vineco
+       * @type {VineCoElement}
+       */
+      this.elements.$vineco = new VineCoElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $vineco
-             * @type {VineCoElement}
-             */
-            this.elements.$vineco = new VineCoElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf VineCoView
+     * @returns {VineCoPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define VineCo Preferences Element
+       * @type {VineCoPreferencesElement}
+       */
+      this.elements.$preferences = new VineCoPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf VineCoView
-         * @returns {VineCoPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define VineCo Preferences Element
-             * @type {VineCoPreferencesElement}
-             */
-            this.elements.$preferences = new VineCoPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf VineCoView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {VineCoRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
-
-        /**
-         * Render Rules
-         * @memberOf VineCoView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {VineCoRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define VineCo Rules Element
-             * @type {VineCoRulesElement}
-             */
-            this.elements.$rules = new VineCoRulesElement(this, {
-                data: this.controller.getRules(),
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render VineCo
-         * @memberOf VineCoView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderVineCo.bind(this)
-            );
+      /**
+       * Define VineCo Rules Element
+       * @type {VineCoRulesElement}
+       */
+      this.elements.$rules = new VineCoRulesElement(this, {
+        data: this.controller.getRules(),
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render VineCo
+     * @memberOf VineCoView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderVineCo.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

@@ -6,53 +6,54 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineMixcloudModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define Mixcloud model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class MixcloudModel
+   * @constructor
+   */
+  var MixcloudModel = function MixcloudModel() {
+
     /**
-     * Define Mixcloud model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class MixcloudModel
-     * @constructor
-     */
-    var MixcloudModel = function MixcloudModel() {
-
-        /**
-         * Define preferences
-         * @memberOf MixcloudModel
-         * @type {{
-         *      mixcloudEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
+     * Define preferences
+     * @memberOf MixcloudModel
+     * @type {{
+         *      mixcloudEmbedCode: {type: string, disabled: boolean, value:
+         *     undefined, visible: boolean}
          * }}
-         */
-        this.preferences = {
-            mixcloudEmbedCode: {
-                type: 'textarea',
-                disabled: false,
-                value: undefined,
-                visible: true
-            }
-        };
-
-        /**
-         * Define rules
-         * @memberOf MixcloudModel
-         * @type {{}}
-         */
-        this.rules = {};
+     */
+    this.preferences = {
+      mixcloudEmbedCode: {
+        type: 'textarea',
+        disabled: false,
+        value: undefined,
+        visible: true
+      }
     };
 
-    return MixcloudModel.extend('MixcloudModel', {
+    /**
+     * Define rules
+     * @memberOf MixcloudModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        /**
-         * Set Mixcloud embed code
-         * @memberOf MixcloudModel
-         * @param {string} embed
-         */
-        setMixcloudEmbedCode: function setMixcloudEmbedCode(embed) {
-            this.setPrefs('mixcloudEmbedCode', embed);
-        }
+  return MixcloudModel.extend('MixcloudModel', {
 
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    /**
+     * Set Mixcloud embed code
+     * @memberOf MixcloudModel
+     * @param {string} embed
+     */
+    setMixcloudEmbedCode: function setMixcloudEmbedCode(embed) {
+      this.setPrefs('mixcloudEmbedCode', embed);
+    }
+
+  }, BaseModel.prototype, WidgetContentModel.prototype);
 });

@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineBlipTvPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class BlipTvPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var BlipTvPermission = function BlipTvPermission() {
+  /**
+   * Define Permissions
+   * @class BlipTvPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var BlipTvPermission = function BlipTvPermission() {
 
-    };
+  };
 
-    return BlipTvPermission.extend('BlipTvPermission', {
-
-    }, BasePermission.prototype);
+  return BlipTvPermission.extend('BlipTvPermission', {},
+      BasePermission.prototype);
 });

@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineFiveChannelUaEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define FiveChannelUa event manager
-     * @class FiveChannelUaEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var FiveChannelUaEventManager = function FiveChannelUaEventManager() {
+  /**
+   * Define FiveChannelUa event manager
+   * @class FiveChannelUaEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var FiveChannelUaEventManager = function FiveChannelUaEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return FiveChannelUaEventManager.extend('FiveChannelUaEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return FiveChannelUaEventManager.extend('FiveChannelUaEventManager', {},
+      WidgetContentEventManager.prototype);
 });

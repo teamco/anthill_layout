@@ -6,43 +6,43 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineMyWorldElement(PluginElement) {
 
+  /**
+   * Define MyWorld Element
+   * @param view
+   * @param opts
+   * @returns {MyWorldElement}
+   * @constructor
+   * @class MyWorldElement
+   * @extends PluginElement
+   */
+  var MyWorldElement = function MyWorldElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('my.world', {resource: '/widgets'});
+
+    return this;
+  };
+
+  return MyWorldElement.extend('MyWorldElement', {
+
     /**
-     * Define MyWorld Element
-     * @param view
-     * @param opts
-     * @returns {MyWorldElement}
-     * @constructor
-     * @class MyWorldElement
-     * @extends PluginElement
+     * Render Embedded content
+     * @memberOf MyWorldElement
+     * @param {string} url
      */
-    var MyWorldElement = function MyWorldElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent(url) {
+      this.$.append(
+          this.renderIframe(url)
+      );
+    }
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
-
-        this.addCSS('my.world', {resource: '/widgets'});
-
-        return this;
-    };
-
-    return MyWorldElement.extend('MyWorldElement', {
-
-        /**
-         * Render Embedded content
-         * @memberOf MyWorldElement
-         * @param {string} url
-         */
-        renderEmbeddedContent: function renderEmbeddedContent(url) {
-            this.$.append(
-                this.renderIframe(url)
-            );
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 
 });

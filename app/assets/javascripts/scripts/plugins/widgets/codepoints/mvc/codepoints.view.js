@@ -7,101 +7,102 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/codepoints/element/codepoints.element',
-    'plugins/widgets/codepoints/element/codepoints.preferences.element',
-    'plugins/widgets/codepoints/element/codepoints.rules.element'
-], function defineCodepointsView(BaseView, Header, Footer, CodepointsElement, CodepointsPreferencesElement, CodepointsRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/codepoints/element/codepoints.element',
+  'plugins/widgets/codepoints/element/codepoints.preferences.element',
+  'plugins/widgets/codepoints/element/codepoints.rules.element'
+], function defineCodepointsView(BaseView, Header, Footer, CodepointsElement,
+    CodepointsPreferencesElement, CodepointsRulesElement) {
+
+  /**
+   * Define view
+   * @class CodepointsView
+   * @extends BaseView
+   * @constructor
+   */
+  var CodepointsView = function CodepointsView() {
+  };
+
+  return CodepointsView.extend('CodepointsView', {
 
     /**
-     * Define view
-     * @class CodepointsView
-     * @extends BaseView
-     * @constructor
+     * Render Codepoints element
+     * @memberOf CodepointsView
      */
-    var CodepointsView = function CodepointsView() {
-    };
+    renderCodepoints: function renderCodepoints() {
 
-    return CodepointsView.extend('CodepointsView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render Codepoints element
-         * @memberOf CodepointsView
-         */
-        renderCodepoints: function renderCodepoints() {
+      /**
+       * Define $codepoints
+       * @type {CodepointsElement}
+       */
+      this.elements.$codepoints = new CodepointsElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $codepoints
-             * @type {CodepointsElement}
-             */
-            this.elements.$codepoints = new CodepointsElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf CodepointsView
+     * @returns {CodepointsPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define Codepoints Preferences Element
+       * @type {CodepointsPreferencesElement}
+       */
+      this.elements.$preferences = new CodepointsPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf CodepointsView
-         * @returns {CodepointsPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define Codepoints Preferences Element
-             * @type {CodepointsPreferencesElement}
-             */
-            this.elements.$preferences = new CodepointsPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf CodepointsView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {CodepointsRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
-
-        /**
-         * Render Rules
-         * @memberOf CodepointsView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {CodepointsRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define Codepoints Rules Element
-             * @type {CodepointsRulesElement}
-             */
-            this.elements.$rules = new CodepointsRulesElement(this, {
-                data: this.controller.getRules(),
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render Codepoints
-         * @memberOf CodepointsView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderCodepoints.bind(this)
-            );
+      /**
+       * Define Codepoints Rules Element
+       * @type {CodepointsRulesElement}
+       */
+      this.elements.$rules = new CodepointsRulesElement(this, {
+        data: this.controller.getRules(),
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype);
+      return this.get$rules();
+    },
+
+    /**
+     * Render Codepoints
+     * @memberOf CodepointsView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderCodepoints.bind(this)
+      );
+    }
+
+  }, BaseView.prototype);
 });

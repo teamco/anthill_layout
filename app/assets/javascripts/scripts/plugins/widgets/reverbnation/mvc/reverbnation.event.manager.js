@@ -7,23 +7,23 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineReverbnationEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define Reverbnation event manager
-     * @class ReverbnationEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var ReverbnationEventManager = function ReverbnationEventManager() {
+  /**
+   * Define Reverbnation event manager
+   * @class ReverbnationEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var ReverbnationEventManager = function ReverbnationEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return ReverbnationEventManager.extend(
-        'ReverbnationEventManager', {},
-        WidgetContentEventManager.prototype
-    );
+  return ReverbnationEventManager.extend(
+      'ReverbnationEventManager', {},
+      WidgetContentEventManager.prototype
+  );
 });

@@ -6,56 +6,56 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function definePicasaElement(PluginElement) {
 
+  /**
+   * Define Picasa Element
+   * @param view
+   * @param opts
+   * @returns {PicasaElement}
+   * @constructor
+   * @class PicasaElement
+   * @extends PluginElement
+   */
+  var PicasaElement = function PicasaElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('picasa', {resource: '/widgets'});
+
+    return this;
+  };
+
+  return PicasaElement.extend('PicasaElement', {
+
     /**
-     * Define Picasa Element
-     * @param view
-     * @param opts
-     * @returns {PicasaElement}
-     * @constructor
-     * @class PicasaElement
-     * @extends PluginElement
+     * Render Embedded content
+     * @memberOf PicasaElement
+     * @param {string} embed
      */
-    var PicasaElement = function PicasaElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent(embed) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+      this.empty();
 
-        this.addCSS('picasa', {resource: '/widgets'});
+      if (!embed) {
+        return false;
+      }
 
-        return this;
-    };
+      if (embed.match(/^<table/)) {
+        this.$.append(embed);
+      }
 
-    return PicasaElement.extend('PicasaElement', {
+      if (embed.match(/^<embed/)) {
+        this.$.append(
+            this.renderEmbed(embed)
+        );
+      }
+    }
 
-        /**
-         * Render Embedded content
-         * @memberOf PicasaElement
-         * @param {string} embed
-         */
-        renderEmbeddedContent: function renderEmbeddedContent(embed) {
-
-            this.empty();
-
-            if (!embed) {
-                return false;
-            }
-
-            if (embed.match(/^<table/)) {
-                this.$.append(embed);
-            }
-
-            if (embed.match(/^<embed/)) {
-                this.$.append(
-                    this.renderEmbed(embed)
-                );
-            }
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 
 });

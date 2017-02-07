@@ -7,23 +7,23 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineScoffEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define Scoff event manager
-     * @class ScoffEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var ScoffEventManager = function ScoffEventManager() {
+  /**
+   * Define Scoff event manager
+   * @class ScoffEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var ScoffEventManager = function ScoffEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return ScoffEventManager.extend(
-        'ScoffEventManager', {},
-        WidgetContentEventManager.prototype
-    );
+  return ScoffEventManager.extend(
+      'ScoffEventManager', {},
+      WidgetContentEventManager.prototype
+  );
 });

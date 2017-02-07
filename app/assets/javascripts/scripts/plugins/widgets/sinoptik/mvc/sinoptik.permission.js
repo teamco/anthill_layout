@@ -7,20 +7,20 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineSinoptikPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class SinoptikPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var SinoptikPermission = function SinoptikPermission() {
-    };
+  /**
+   * Define Permissions
+   * @class SinoptikPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var SinoptikPermission = function SinoptikPermission() {
+  };
 
-    return SinoptikPermission.extend(
-        'SinoptikPermission', {}, 
-        BasePermission.prototype
-    );
+  return SinoptikPermission.extend(
+      'SinoptikPermission', {},
+      BasePermission.prototype
+  );
 });

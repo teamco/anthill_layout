@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineMyWorldEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define MyWorld event manager
-     * @class MyWorldEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var MyWorldEventManager = function MyWorldEventManager() {
+  /**
+   * Define MyWorld event manager
+   * @class MyWorldEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var MyWorldEventManager = function MyWorldEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return MyWorldEventManager.extend('MyWorldEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return MyWorldEventManager.extend('MyWorldEventManager', {},
+      WidgetContentEventManager.prototype);
 });

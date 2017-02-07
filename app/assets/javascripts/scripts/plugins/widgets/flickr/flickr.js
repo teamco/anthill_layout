@@ -6,41 +6,42 @@
  */
 
 define([
-    'config/anthill',
-    'modules/MVC',
-    'plugins/widgets/flickr/mvc/flickr.controller',
-    'plugins/widgets/flickr/mvc/flickr.model',
-    'plugins/widgets/flickr/mvc/flickr.view',
-    'plugins/widgets/flickr/mvc/flickr.event.manager',
-    'plugins/widgets/flickr/mvc/flickr.permission'
-], function defineFlickr(AntHill, MVC, Controller, Model, View, EventManager, Permission) {
+  'config/anthill',
+  'modules/MVC',
+  'plugins/widgets/flickr/mvc/flickr.controller',
+  'plugins/widgets/flickr/mvc/flickr.model',
+  'plugins/widgets/flickr/mvc/flickr.view',
+  'plugins/widgets/flickr/mvc/flickr.event.manager',
+  'plugins/widgets/flickr/mvc/flickr.permission'
+], function defineFlickr(AntHill, MVC, Controller, Model, View, EventManager,
+    Permission) {
+
+  /**
+   * Define Flickr
+   * @param containment
+   * @param [opts]
+   * @constructor
+   * @class Flickr
+   * @extends AntHill
+   */
+  var Flickr = function Flickr(containment, opts) {
 
     /**
-     * Define Flickr
-     * @param containment
-     * @param [opts]
-     * @constructor
-     * @class Flickr
-     * @extends AntHill
+     * Define containment
+     * @property Flickr
      */
-    var Flickr = function Flickr(containment, opts) {
+    this.containment = containment;
 
-        /**
-         * Define containment
-         * @property Flickr
-         */
-        this.containment = containment;
+    /**
+     * Define referrer
+     * @property Flickr
+     * @type {*}
+     */
+    this.referrer = undefined;
 
-        /**
-         * Define referrer
-         * @property Flickr
-         * @type {*}
-         */
-        this.referrer = undefined;
-
-        /**
-         * Define defaults
-         * @type {{
+    /**
+     * Define defaults
+     * @type {{
          *      plugin: boolean,
          *      html: {
          *          style: string,
@@ -55,50 +56,48 @@ define([
          *          }
          *      }
          * }}
-         */
-        var DEFAULTS = {
-            plugin: true,
-            html: {
-                style: 'default',
-                header: false,
-                footer: false,
-                padding: {
-                    top: 0,
-                    right: 0,
-                    bottom: 0,
-                    left: 0
-                }
-            }
-        };
-
-        /**
-         * Define MVC
-         * @property Flickr
-         * @type {MVC}
-         */
-        this.mvc = new MVC({
-            scope: this,
-            config: [
-                {uuid: this.containment.model.getContentUUID()},
-                DEFAULTS
-            ],
-            components: [
-                Controller,
-                Model,
-                View,
-                EventManager,
-                Permission
-            ],
-            render: true
-        });
-
-        this.observer.publish(
-            this.eventmanager.eventList.initWidget,
-            opts
-        );
+     */
+    var DEFAULTS = {
+      plugin: true,
+      html: {
+        style: 'default',
+        header: false,
+        footer: false,
+        padding: {
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0
+        }
+      }
     };
 
-    return Flickr.extend('Flickr', {
+    /**
+     * Define MVC
+     * @property Flickr
+     * @type {MVC}
+     */
+    this.mvc = new MVC({
+      scope: this,
+      config: [
+        {uuid: this.containment.model.getContentUUID()},
+        DEFAULTS
+      ],
+      components: [
+        Controller,
+        Model,
+        View,
+        EventManager,
+        Permission
+      ],
+      render: true
+    });
 
-    }, AntHill.prototype);
+    this.observer.publish(
+        this.eventmanager.eventList.initWidget,
+        opts
+    );
+  };
+
+  return Flickr.extend('Flickr', {}, AntHill.prototype);
 });

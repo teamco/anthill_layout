@@ -7,24 +7,23 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineOpenWeatherMapEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define OpenWeatherMap event manager
-     * @class OpenWeatherMapEventManager
-     * @constructor
-     * @extends WidgetContentEventManager
-     * @extends BaseEvent
-     */
-    var OpenWeatherMapEventManager = function OpenWeatherMapEventManager() {
+  /**
+   * Define OpenWeatherMap event manager
+   * @class OpenWeatherMapEventManager
+   * @constructor
+   * @extends WidgetContentEventManager
+   * @extends BaseEvent
+   */
+  var OpenWeatherMapEventManager = function OpenWeatherMapEventManager() {
 
-        this.updateEventList({
-            getLocation: 'get.location'
-        });
-    };
+    this.updateEventList({
+      getLocation: 'get.location'
+    });
+  };
 
-    return OpenWeatherMapEventManager.extend('OpenWeatherMapEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return OpenWeatherMapEventManager.extend('OpenWeatherMapEventManager', {},
+      WidgetContentEventManager.prototype);
 });

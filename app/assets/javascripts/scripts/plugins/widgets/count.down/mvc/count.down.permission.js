@@ -7,20 +7,20 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineCountDownPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class CountDownPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var CountDownPermission = function CountDownPermission() {
-    };
+  /**
+   * Define Permissions
+   * @class CountDownPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var CountDownPermission = function CountDownPermission() {
+  };
 
-    return CountDownPermission.extend(
-        'CountDownPermission', {}, 
-        BasePermission.prototype
-    );
+  return CountDownPermission.extend(
+      'CountDownPermission', {},
+      BasePermission.prototype
+  );
 });

@@ -7,101 +7,102 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/sportbox.ru/element/sportbox.ru.element',
-    'plugins/widgets/sportbox.ru/element/sportbox.ru.preferences.element',
-    'plugins/widgets/sportbox.ru/element/sportbox.ru.rules.element'
-], function defineSportboxRuView(BaseView, Header, Footer, SportboxRuElement, SportboxRuPreferencesElement, SportboxRuRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/sportbox.ru/element/sportbox.ru.element',
+  'plugins/widgets/sportbox.ru/element/sportbox.ru.preferences.element',
+  'plugins/widgets/sportbox.ru/element/sportbox.ru.rules.element'
+], function defineSportboxRuView(BaseView, Header, Footer, SportboxRuElement,
+    SportboxRuPreferencesElement, SportboxRuRulesElement) {
+
+  /**
+   * Define view
+   * @class SportboxRuView
+   * @extends BaseView
+   * @constructor
+   */
+  var SportboxRuView = function SportboxRuView() {
+  };
+
+  return SportboxRuView.extend('SportboxRuView', {
 
     /**
-     * Define view
-     * @class SportboxRuView
-     * @extends BaseView
-     * @constructor
+     * Render SportboxRu element
+     * @memberOf SportboxRuView
      */
-    var SportboxRuView = function SportboxRuView() {
-    };
+    renderSportboxRu: function renderSportboxRu() {
 
-    return SportboxRuView.extend('SportboxRuView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render SportboxRu element
-         * @memberOf SportboxRuView
-         */
-        renderSportboxRu: function renderSportboxRu() {
+      /**
+       * Define $sportboxru
+       * @type {SportboxRuElement}
+       */
+      this.elements.$sportboxru = new SportboxRuElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $sportboxru
-             * @type {SportboxRuElement}
-             */
-            this.elements.$sportboxru = new SportboxRuElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf SportboxRuView
+     * @returns {SportboxRuPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define SportboxRu Preferences Element
+       * @type {SportboxRuPreferencesElement}
+       */
+      this.elements.$preferences = new SportboxRuPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf SportboxRuView
-         * @returns {SportboxRuPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define SportboxRu Preferences Element
-             * @type {SportboxRuPreferencesElement}
-             */
-            this.elements.$preferences = new SportboxRuPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf SportboxRuView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {SportboxRuRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
-
-        /**
-         * Render Rules
-         * @memberOf SportboxRuView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {SportboxRuRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define SportboxRu Rules Element
-             * @type {SportboxRuRulesElement}
-             */
-            this.elements.$rules = new SportboxRuRulesElement(this, {
-                data: this.controller.getRules(),
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render SportboxRu
-         * @memberOf SportboxRuView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderSportboxRu.bind(this)
-            );
+      /**
+       * Define SportboxRu Rules Element
+       * @type {SportboxRuRulesElement}
+       */
+      this.elements.$rules = new SportboxRuRulesElement(this, {
+        data: this.controller.getRules(),
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype);
+      return this.get$rules();
+    },
+
+    /**
+     * Render SportboxRu
+     * @memberOf SportboxRuView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderSportboxRu.bind(this)
+      );
+    }
+
+  }, BaseView.prototype);
 });

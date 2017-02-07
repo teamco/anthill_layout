@@ -6,40 +6,40 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineRepubhubElement(PluginElement) {
 
+  /**
+   * Define Repubhub Element
+   * @param view
+   * @param opts
+   * @returns {RepubhubElement}
+   * @constructor
+   * @class RepubhubElement
+   * @extends PluginElement
+   */
+  var RepubhubElement = function RepubhubElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('repubhub', {resource: '/widgets'});
+
+    return this;
+  };
+
+  return RepubhubElement.extend('RepubhubElement', {
+
     /**
-     * Define Repubhub Element
-     * @param view
-     * @param opts
-     * @returns {RepubhubElement}
-     * @constructor
-     * @class RepubhubElement
-     * @extends PluginElement
+     * Render Embedded content
+     * @memberOf RepubhubElement
+     * @param {string} embed
      */
-    var RepubhubElement = function RepubhubElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent(embed) {
+      this.addContent(embed);
+    }
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
-
-        this.addCSS('repubhub', {resource: '/widgets'});
-
-        return this;
-    };
-
-    return RepubhubElement.extend('RepubhubElement', {
-
-        /**
-         * Render Embedded content
-         * @memberOf RepubhubElement
-         * @param {string} embed
-         */
-        renderEmbeddedContent: function renderEmbeddedContent(embed) {
-            this.addContent(embed);
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 });

@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineInstagramEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define Instagram event manager
-     * @class InstagramEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var InstagramEventManager = function InstagramEventManager() {
+  /**
+   * Define Instagram event manager
+   * @class InstagramEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var InstagramEventManager = function InstagramEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return InstagramEventManager.extend('InstagramEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return InstagramEventManager.extend('InstagramEventManager', {},
+      WidgetContentEventManager.prototype);
 });

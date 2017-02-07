@@ -7,20 +7,20 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function definePlaywirePermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class PlaywirePermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var PlaywirePermission = function PlaywirePermission() {
-    };
+  /**
+   * Define Permissions
+   * @class PlaywirePermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var PlaywirePermission = function PlaywirePermission() {
+  };
 
-    return PlaywirePermission.extend(
-        'PlaywirePermission', {}, 
-        BasePermission.prototype
-    );
+  return PlaywirePermission.extend(
+      'PlaywirePermission', {},
+      BasePermission.prototype
+  );
 });

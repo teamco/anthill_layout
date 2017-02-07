@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineFreshTvEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define FreshTv event manager
-     * @class FreshTvEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var FreshTvEventManager = function FreshTvEventManager() {
+  /**
+   * Define FreshTv event manager
+   * @class FreshTvEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var FreshTvEventManager = function FreshTvEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return FreshTvEventManager.extend('FreshTvEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return FreshTvEventManager.extend('FreshTvEventManager', {},
+      WidgetContentEventManager.prototype);
 });

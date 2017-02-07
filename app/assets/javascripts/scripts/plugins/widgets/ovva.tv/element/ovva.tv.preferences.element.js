@@ -6,35 +6,35 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
 ], function defineOvvaTvPreferencesElement(PluginElement, WidgetPreferences) {
 
-    /**
-     * Define OvvaTv Preferences Element
-     * @constructor
-     * @class OvvaTvPreferencesElement
-     * @param {OvvaTvView} view
-     * @param opts
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     * @returns {OvvaTvPreferencesElement}
-     */
-    var OvvaTvPreferencesElement = function OvvaTvPreferencesElement(view, opts) {
+  /**
+   * Define OvvaTv Preferences Element
+   * @constructor
+   * @class OvvaTvPreferencesElement
+   * @param {OvvaTvView} view
+   * @param opts
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   * @returns {OvvaTvPreferencesElement}
+   */
+  var OvvaTvPreferencesElement = function OvvaTvPreferencesElement(view, opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return OvvaTvPreferencesElement.extend(
-        'OvvaTvPreferencesElement', {}, 
-        PluginElement.prototype, 
-        WidgetPreferences.prototype
-    );
+  return OvvaTvPreferencesElement.extend(
+      'OvvaTvPreferencesElement', {},
+      PluginElement.prototype,
+      WidgetPreferences.prototype
+  );
 });

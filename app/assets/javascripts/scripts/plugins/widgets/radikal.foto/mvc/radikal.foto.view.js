@@ -7,108 +7,109 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/radikal.foto/element/radikal.foto.element',
-    'plugins/widgets/radikal.foto/element/radikal.foto.preferences.element',
-    'plugins/widgets/radikal.foto/element/radikal.foto.rules.element'
-], function defineRadikalFotoView(BaseView, Header, Footer, RadikalFotoElement, RadikalFotoPreferencesElement, RadikalFotoRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/radikal.foto/element/radikal.foto.element',
+  'plugins/widgets/radikal.foto/element/radikal.foto.preferences.element',
+  'plugins/widgets/radikal.foto/element/radikal.foto.rules.element'
+], function defineRadikalFotoView(BaseView, Header, Footer, RadikalFotoElement,
+    RadikalFotoPreferencesElement, RadikalFotoRulesElement) {
+
+  /**
+   * Define view
+   * @class RadikalFotoView
+   * @extends BaseView
+   * @constructor
+   */
+  var RadikalFotoView = function RadikalFotoView() {
+  };
+
+  return RadikalFotoView.extend('RadikalFotoView', {
 
     /**
-     * Define view
-     * @class RadikalFotoView
-     * @extends BaseView
-     * @constructor
+     * Render radikalfoto element
+     * @memberOf RadikalFotoView
      */
-    var RadikalFotoView = function RadikalFotoView() {
-    };
+    renderRadikalFoto: function renderRadikalFoto() {
 
-    return RadikalFotoView.extend('RadikalFotoView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render radikalfoto element
-         * @memberOf RadikalFotoView
-         */
-        renderRadikalFoto: function renderRadikalFoto() {
+      /**
+       * Define $radikalfoto
+       * @type {RadikalFotoElement}
+       */
+      this.elements.$radikalfoto = new RadikalFotoElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $radikalfoto
-             * @type {RadikalFotoElement}
-             */
-            this.elements.$radikalfoto = new RadikalFotoElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf RadikalFotoView
+     * @returns {RadikalFotoPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define RadikalFoto Preferences Element
+       * @type {RadikalFotoPreferencesElement}
+       */
+      this.elements.$preferences = new RadikalFotoPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf RadikalFotoView
-         * @returns {RadikalFotoPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define RadikalFoto Preferences Element
-             * @type {RadikalFotoPreferencesElement}
-             */
-            this.elements.$preferences = new RadikalFotoPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf RadikalFotoView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {RadikalFotoRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
+      /**
+       * Define data
+       * @type {*|{}}
+       */
+      var data = this.controller.getRules();
 
-        /**
-         * Render Rules
-         * @memberOf RadikalFotoView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {RadikalFotoRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define data
-             * @type {*|{}}
-             */
-            var data = this.controller.getRules();
-
-            /**
-             * Define RadikalFoto Rules Element
-             * @type {RadikalFotoRulesElement}
-             */
-            this.elements.$rules = new RadikalFotoRulesElement(this, {
-                data: data,
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render radikalfoto
-         * @memberOf RadikalFotoView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderRadikalFoto.bind(this)
-            );
+      /**
+       * Define RadikalFoto Rules Element
+       * @type {RadikalFotoRulesElement}
+       */
+      this.elements.$rules = new RadikalFotoRulesElement(this, {
+        data: data,
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render radikalfoto
+     * @memberOf RadikalFotoView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderRadikalFoto.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

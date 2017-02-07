@@ -6,44 +6,45 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineGfycatModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define Gfycat model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class GfycatModel
+   * @constructor
+   */
+  var GfycatModel = function GfycatModel() {
+
     /**
-     * Define Gfycat model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class GfycatModel
-     * @constructor
+     * Define preferences
+     * @property GfycatModel
+     * @type {{gfycatUrl: {type: string, disabled: boolean, value: string,
+     *     visible: boolean}}}
      */
-    var GfycatModel = function GfycatModel() {
-
-        /**
-         * Define preferences
-         * @property GfycatModel
-         * @type {{gfycatUrl: {type: string, disabled: boolean, value: string, visible: boolean}}}
-         */
-        this.preferences = {
-            gfycatUrl: {
-                type: 'text',
-                disabled: false,
-                value: 'https://gfycat.com/SlimArcticGreatargus',
-                visible: true
-            }
-        };
-
-        /**
-         * Define rules
-         * @property GfycatModel
-         * @type {{}}
-         */
-        this.rules = {};
+    this.preferences = {
+      gfycatUrl: {
+        type: 'text',
+        disabled: false,
+        value: 'https://gfycat.com/SlimArcticGreatargus',
+        visible: true
+      }
     };
 
-    return GfycatModel.extend('GfycatModel', {
+    /**
+     * Define rules
+     * @property GfycatModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        // Setter
+  return GfycatModel.extend('GfycatModel', {
 
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    // Setter
+
+  }, BaseModel.prototype, WidgetContentModel.prototype);
 });

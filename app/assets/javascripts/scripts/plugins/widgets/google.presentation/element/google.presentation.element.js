@@ -6,56 +6,57 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineGooglePresentationElement(PluginElement) {
 
+  /**
+   * Define GooglePresentation Element
+   * @param view
+   * @param opts
+   * @returns {GooglePresentationElement}
+   * @constructor
+   * @class GooglePresentationElement
+   * @extends PluginElement
+   */
+  var GooglePresentationElement = function GooglePresentationElement(view,
+      opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('google.presentation', {resource: '/widgets'});
+
+    return this;
+  };
+
+  return GooglePresentationElement.extend('GooglePresentationElement', {
+
     /**
-     * Define GooglePresentation Element
-     * @param view
-     * @param opts
-     * @returns {GooglePresentationElement}
-     * @constructor
-     * @class GooglePresentationElement
-     * @extends PluginElement
+     * Render Embedded content
+     * @memberOf GooglePresentationElement
+     * @param {string} embed
      */
-    var GooglePresentationElement = function GooglePresentationElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent(embed) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+      /**
+       * Define $iframe
+       * @type {*|jQuery|HTMLElement}
+       */
+      var $embed = $(embed);
 
-        this.addCSS('google.presentation', {resource: '/widgets'});
+      if ($embed.length === 0) {
+        return false;
+      }
 
-        return this;
-    };
+      this.$.append(
+          $('<iframe />').attr({
+            src: $embed[0].src
+          })
+      );
+    }
 
-    return GooglePresentationElement.extend('GooglePresentationElement', {
-
-        /**
-         * Render Embedded content
-         * @memberOf GooglePresentationElement
-         * @param {string} embed
-         */
-        renderEmbeddedContent: function renderEmbeddedContent(embed) {
-
-            /**
-             * Define $iframe
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $embed = $(embed);
-
-            if ($embed.length === 0) {
-                return false;
-            }
-
-            this.$.append(
-                $('<iframe />').attr({
-                    src: $embed[0].src
-                })
-            );
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 
 });

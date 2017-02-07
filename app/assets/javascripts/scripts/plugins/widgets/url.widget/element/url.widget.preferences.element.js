@@ -6,35 +6,37 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
-], function defineUrlWidgetPreferencesElement(PluginElement, WidgetPreferences) {
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
+], function defineUrlWidgetPreferencesElement(PluginElement,
+    WidgetPreferences) {
 
-    /**
-     * Define UrlWidget Preferences Element
-     * @constructor
-     * @class UrlWidgetPreferencesElement
-     * @param {UrlWidgetView} view
-     * @param opts
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     * @returns {UrlWidgetPreferencesElement}
-     */
-    var UrlWidgetPreferencesElement = function UrlWidgetPreferencesElement(view, opts) {
+  /**
+   * Define UrlWidget Preferences Element
+   * @constructor
+   * @class UrlWidgetPreferencesElement
+   * @param {UrlWidgetView} view
+   * @param opts
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   * @returns {UrlWidgetPreferencesElement}
+   */
+  var UrlWidgetPreferencesElement = function UrlWidgetPreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return UrlWidgetPreferencesElement.extend(
-        'UrlWidgetPreferencesElement', {},
-        PluginElement.prototype,
-        WidgetPreferences.prototype
-    );
+  return UrlWidgetPreferencesElement.extend(
+      'UrlWidgetPreferencesElement', {},
+      PluginElement.prototype,
+      WidgetPreferences.prototype
+  );
 });

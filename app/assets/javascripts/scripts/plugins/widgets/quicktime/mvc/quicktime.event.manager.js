@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineQuicktimeEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define Quicktime event manager
-     * @class QuicktimeEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var QuicktimeEventManager = function QuicktimeEventManager() {
+  /**
+   * Define Quicktime event manager
+   * @class QuicktimeEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var QuicktimeEventManager = function QuicktimeEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return QuicktimeEventManager.extend('QuicktimeEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return QuicktimeEventManager.extend('QuicktimeEventManager', {},
+      WidgetContentEventManager.prototype);
 });

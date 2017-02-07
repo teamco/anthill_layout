@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineIceFloePermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class IceFloePermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var IceFloePermission = function IceFloePermission() {
+  /**
+   * Define Permissions
+   * @class IceFloePermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var IceFloePermission = function IceFloePermission() {
 
-    };
+  };
 
-    return IceFloePermission.extend('IceFloePermission', {
-
-    }, BasePermission.prototype);
+  return IceFloePermission.extend('IceFloePermission', {},
+      BasePermission.prototype);
 });

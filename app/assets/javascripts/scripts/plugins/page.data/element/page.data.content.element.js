@@ -6,101 +6,103 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function definePageDataContentElement(PluginElement) {
 
+  /**
+   * Define PageData Content Element
+   * @param view
+   * @param opts
+   * @returns {PageDataContentElement}
+   * @constructor
+   * @class PageDataContentElement
+   * @extends PluginElement
+   * @extends Renderer
+   */
+  var PageDataContentElement = function PageDataContentElement(view, opts) {
+
+    this._config(view, opts, $('<li />')).build({
+      $container: opts.$container
+    });
+
+    this.getTemplate(opts.data);
+    this.setAttributes(opts.data);
+    this.bindShowPrefs(opts.data);
+    this.bindLocate(opts.data);
+
+    return this;
+  };
+
+  return PageDataContentElement.extend('PageDataContentElement', {
+
     /**
-     * Define PageData Content Element
-     * @param view
-     * @param opts
-     * @returns {PageDataContentElement}
-     * @constructor
-     * @class PageDataContentElement
-     * @extends PluginElement
-     * @extends Renderer
+     * Define inner content
+     * @memberOf PageDataContentElement
      */
-    var PageDataContentElement = function PageDataContentElement(view, opts) {
+    getTemplate: function getTemplate(data) {
+      $('<a class="widget ' +
+          data.model.getConfig('preferences').resource.toClassName() + '" />').
+          appendTo(this.$);
+    },
 
-        this._config(view, opts, $('<li />')).build({
-            $container: opts.$container
-        });
+    /**
+     * Define attributes
+     * @memberOf PageDataContentElement
+     * @param data
+     */
+    setAttributes: function setAttributes(data) {
 
-        this.getTemplate(opts.data);
-        this.setAttributes(opts.data);
-        this.bindShowPrefs(opts.data);
-        this.bindLocate(opts.data);
+      /**
+       * Get title
+       * @type {boolean|string}
+       */
+      var title = data.model.getItemTitle();
 
-        return this;
-    };
+      /**
+       * Get prefs
+       * @type {{description: string, resource: string}}
+       */
+      var prefs = data.model.getConfig('preferences');
 
-    return PageDataContentElement.extend('PageDataContentElement', {
+      /**
+       * Define data
+       * @memberOf PageDataContentElement
+       * @type {{name: string, description: string}}
+       */
+      this.data = {
+        name: title,
+        description: prefs.description
+      };
 
-        /**
-         * Define inner content
-         * @memberOf PageDataContentElement
-         */
-        getTemplate: function getTemplate(data) {
-            $('<a class="widget ' + data.model.getConfig('preferences').resource.toClassName() + '" />').appendTo(this.$);
-        },
+      /**
+       * Get description
+       * @type {string}
+       */
+      var description = prefs.description || '';
 
-        /**
-         * Define attributes
-         * @memberOf PageDataContentElement
-         * @param data
-         */
-        setAttributes: function setAttributes(data) {
+      this.$.attr({
+        title: title
+      }).addClass(
+          this.view.controller.getResourceClassName(
+              prefs.resource
+          )
+      );
 
-            /**
-             * Get title
-             * @type {boolean|string}
-             */
-            var title = data.model.getItemTitle();
+      this.renderTooltip({
+        title: title,
+        description: description,
+        selector: this.$
+      });
+    },
 
-            /**
-             * Get prefs
-             * @type {{description: string, resource: string}}
-             */
-            var prefs = data.model.getConfig('preferences');
+    /**
+     * Bind show prefs
+     * @memberOf PageDataContentElement
+     * @param data
+     */
+    bindShowPrefs: function bindShowPrefs(data) {
+      this.bindShowModalData(data);
+    }
 
-            /**
-             * Define data
-             * @memberOf PageDataContentElement
-             * @type {{name: string, description: string}}
-             */
-            this.data = {
-                name: title,
-                description: prefs.description
-            };
-
-            /**
-             * Get description
-             * @type {string}
-             */
-            var description = prefs.description || '';
-
-            this.$.attr({
-                title: title
-            }).addClass(
-                this.view.controller.getResourceClassName(
-                    prefs.resource
-                )
-            );
-
-            this.renderTooltip({
-                title: title,
-                description: description,
-                selector: this.$
-            });
-        },
-
-        /**
-         * Bind show prefs
-         * @memberOf PageDataContentElement
-         * @param data
-         */
-        bindShowPrefs: function bindShowPrefs(data) {
-            this.bindShowModalData(data);
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 });

@@ -7,23 +7,23 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineTinymceEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define Tinymce event manager
-     * @class TinymceEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var TinymceEventManager = function TinymceEventManager() {
+  /**
+   * Define Tinymce event manager
+   * @class TinymceEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var TinymceEventManager = function TinymceEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return TinymceEventManager.extend(
-        'TinymceEventManager', {},
-        WidgetContentEventManager.prototype
-    );
+  return TinymceEventManager.extend(
+      'TinymceEventManager', {},
+      WidgetContentEventManager.prototype
+  );
 });

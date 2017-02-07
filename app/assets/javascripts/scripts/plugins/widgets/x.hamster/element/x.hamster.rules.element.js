@@ -6,38 +6,37 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/rules/widget.base.rules'
+  'plugins/plugin.element',
+  'plugins/rules/widget.base.rules'
 ], function defineXHamsterRulesElement(PluginElement, BaseWidgetRules) {
 
-    /**
-     * Define XHamster Rules Element
-     * @param view
-     * @param opts
-     * @returns {XHamsterRulesElement}
-     * @constructor
-     * @class XHamsterRulesElement
-     * @extends PluginElement
-     * @extends BaseWidgetRules
-     */
-    var XHamsterRulesElement = function XHamsterRulesElement(view, opts) {
+  /**
+   * Define XHamster Rules Element
+   * @param view
+   * @param opts
+   * @returns {XHamsterRulesElement}
+   * @constructor
+   * @class XHamsterRulesElement
+   * @extends PluginElement
+   * @extends BaseWidgetRules
+   */
+  var XHamsterRulesElement = function XHamsterRulesElement(view, opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBaseRulesData(
-            opts.data,
-            opts.rules.widget,
-            opts.rules.content
-        );
+    this.renderBaseRulesData(
+        opts.data,
+        opts.rules.widget,
+        opts.rules.content
+    );
 
-        return this;
-    };
+    return this;
+  };
 
-    return XHamsterRulesElement.extend('XHamsterRulesElement', {
-
-    }, PluginElement.prototype, BaseWidgetRules.prototype);
+  return XHamsterRulesElement.extend('XHamsterRulesElement', {},
+      PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

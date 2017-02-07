@@ -6,44 +6,44 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineKalturaElement(PluginElement) {
 
+  /**
+   * Define Kaltura Element
+   * @param view
+   * @param opts
+   * @returns {KalturaElement}
+   * @constructor
+   * @class KalturaElement
+   * @extends PluginElement
+   */
+  var KalturaElement = function KalturaElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('kaltura', {resource: '/widgets'});
+
+    return this;
+  };
+
+  return KalturaElement.extend('KalturaElement', {
+
     /**
-     * Define Kaltura Element
-     * @param view
-     * @param opts
-     * @returns {KalturaElement}
-     * @constructor
-     * @class KalturaElement
-     * @extends PluginElement
+     * Render Embedded content
+     * @memberOf KalturaElement
+     * @type {string}
      */
-    var KalturaElement = function KalturaElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent(iframe) {
+      this.$.append(
+          this.renderIframe(
+              $(iframe).attr('src')
+          )
+      );
+    }
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
-
-        this.addCSS('kaltura', {resource: '/widgets'});
-
-        return this;
-    };
-
-    return KalturaElement.extend('KalturaElement', {
-
-        /**
-         * Render Embedded content
-         * @memberOf KalturaElement
-         * @type {string}
-         */
-        renderEmbeddedContent: function renderEmbeddedContent(iframe) {
-            this.$.append(
-                this.renderIframe(
-                    $(iframe).attr('src')
-                )
-            );
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 });

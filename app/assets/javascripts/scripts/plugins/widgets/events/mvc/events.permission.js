@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineEventsPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class EventsPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var EventsPermission = function EventsPermission() {
+  /**
+   * Define Permissions
+   * @class EventsPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var EventsPermission = function EventsPermission() {
 
-    };
+  };
 
-    return EventsPermission.extend('EventsPermission', {
-
-    }, BasePermission.prototype);
+  return EventsPermission.extend('EventsPermission', {},
+      BasePermission.prototype);
 });

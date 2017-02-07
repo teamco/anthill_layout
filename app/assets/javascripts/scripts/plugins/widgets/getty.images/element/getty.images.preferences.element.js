@@ -6,35 +6,37 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
-], function defineGettyImagesPreferencesElement(PluginElement, WidgetPreferences) {
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
+], function defineGettyImagesPreferencesElement(PluginElement,
+    WidgetPreferences) {
 
-    /**
-     * Define GettyImages Preferences Element
-     * @constructor
-     * @class GettyImagesPreferencesElement
-     * @param {GettyImagesView} view
-     * @param opts
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     * @returns {GettyImagesPreferencesElement}
-     */
-    var GettyImagesPreferencesElement = function GettyImagesPreferencesElement(view, opts) {
+  /**
+   * Define GettyImages Preferences Element
+   * @constructor
+   * @class GettyImagesPreferencesElement
+   * @param {GettyImagesView} view
+   * @param opts
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   * @returns {GettyImagesPreferencesElement}
+   */
+  var GettyImagesPreferencesElement = function GettyImagesPreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return GettyImagesPreferencesElement.extend(
-        'GettyImagesPreferencesElement', {}, 
-        PluginElement.prototype, 
-        WidgetPreferences.prototype
-    );
+  return GettyImagesPreferencesElement.extend(
+      'GettyImagesPreferencesElement', {},
+      PluginElement.prototype,
+      WidgetPreferences.prototype
+  );
 });

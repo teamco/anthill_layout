@@ -6,35 +6,33 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
 ], function defineFapaTvPreferencesElement(PluginElement, WidgetPreferences) {
 
-    /**
-     * Define FapaTv Preferences Element
-     * @param view
-     * @param opts
-     * @returns {FapaTvPreferencesElement}
-     * @constructor
-     * @class FapaTvPreferencesElement
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     */
-    var FapaTvPreferencesElement = function FapaTvPreferencesElement(view, opts) {
+  /**
+   * Define FapaTv Preferences Element
+   * @param view
+   * @param opts
+   * @returns {FapaTvPreferencesElement}
+   * @constructor
+   * @class FapaTvPreferencesElement
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   */
+  var FapaTvPreferencesElement = function FapaTvPreferencesElement(view, opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return FapaTvPreferencesElement.extend('FapaTvPreferencesElement', {
-
-
-    }, PluginElement.prototype, WidgetPreferences.prototype);
+  return FapaTvPreferencesElement.extend('FapaTvPreferencesElement', {},
+      PluginElement.prototype, WidgetPreferences.prototype);
 
 });

@@ -6,38 +6,37 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/rules/widget.base.rules'
+  'plugins/plugin.element',
+  'plugins/rules/widget.base.rules'
 ], function defineStepashkaRulesElement(PluginElement, BaseWidgetRules) {
 
-    /**
-     * Define Stepashka Rules Element
-     * @param view
-     * @param opts
-     * @returns {StepashkaRulesElement}
-     * @constructor
-     * @class StepashkaRulesElement
-     * @extends PluginElement
-     * @extends BaseWidgetRules
-     */
-    var StepashkaRulesElement = function StepashkaRulesElement(view, opts) {
+  /**
+   * Define Stepashka Rules Element
+   * @param view
+   * @param opts
+   * @returns {StepashkaRulesElement}
+   * @constructor
+   * @class StepashkaRulesElement
+   * @extends PluginElement
+   * @extends BaseWidgetRules
+   */
+  var StepashkaRulesElement = function StepashkaRulesElement(view, opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBaseRulesData(
-            opts.data,
-            opts.rules.widget,
-            opts.rules.content
-        );
+    this.renderBaseRulesData(
+        opts.data,
+        opts.rules.widget,
+        opts.rules.content
+    );
 
-        return this;
-    };
+    return this;
+  };
 
-    return StepashkaRulesElement.extend('StepashkaRulesElement', {
-
-    }, PluginElement.prototype, BaseWidgetRules.prototype);
+  return StepashkaRulesElement.extend('StepashkaRulesElement', {},
+      PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

@@ -3,70 +3,71 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineSiteConfigActivateElement(PluginElement) {
 
+  /**
+   * Define SiteConfigActivateElement
+   * @class SiteConfigActivateElement
+   * @constructor
+   * @param {SiteConfigView} view
+   * @param opts
+   * @extends PluginElement
+   * @extends Renderer
+   * @returns {SiteConfigActivateElement}
+   */
+  var SiteConfigActivateElement = function SiteConfigActivateElement(view,
+      opts) {
+
+    this._config(view, opts, $('<div class="site-version" />')).build({
+      $container: opts.$container
+    });
+
+    this.fetchScreenshot(opts.callback);
+
+    return this;
+  };
+
+  return SiteConfigActivateElement.extend('SiteConfigActivateElement', {
+
     /**
-     * Define SiteConfigActivateElement
-     * @class SiteConfigActivateElement
-     * @constructor
-     * @param {SiteConfigView} view
-     * @param opts
-     * @extends PluginElement
-     * @extends Renderer
-     * @returns {SiteConfigActivateElement}
+     * Define fetch screenshot
+     * @memberOf SiteConfigActivateElement
+     * @param {function} callback
      */
-    var SiteConfigActivateElement = function SiteConfigActivateElement(view, opts) {
+    fetchScreenshot: function fetchScreenshot(callback) {
 
-        this._config(view, opts, $('<div class="site-version" />')).build({
-            $container: opts.$container
-        });
+      /**
+       * Get element
+       * @type {SiteConfigActivateElement}
+       */
+      var $element = this;
 
-        this.fetchScreenshot(opts.callback);
+      // Hide popovers before send screenshot
+      $('.popover').remove();
 
-        return this;
-    };
+      /**
+       * Define combo
+       * @type {*|jQuery}
+       */
+      this.base.lib.image.resizeThumbnail(
+          document.body, function _fetchScreenshot(img) {
 
-    return SiteConfigActivateElement.extend('SiteConfigActivateElement', {
-
-        /**
-         * Define fetch screenshot
-         * @memberOf SiteConfigActivateElement
-         * @param {function} callback
-         */
-        fetchScreenshot: function fetchScreenshot(callback) {
-
-            /**
-             * Get element
-             * @type {SiteConfigActivateElement}
-             */
-            var $element = this;
-
-            // Hide popovers before send screenshot
-            $('.popover').remove();
-
-            /**
-             * Define combo
-             * @type {*|jQuery}
-             */
-            this.base.lib.image.resizeThumbnail(
-                document.body, function _fetchScreenshot(img) {
-
-                    $element.addContent(
-                        $('<img class="activate-thumbnail"/>').attr({
-                            src: img,
-                            alt: 'Screenshot'
-                        })
-                    );
-
-                    $element.$.removeClass('loading');
-
-                    callback();
-                }
+            $element.addContent(
+                $('<img class="activate-thumbnail"/>').attr({
+                  src: img,
+                  alt: 'Screenshot'
+                })
             );
 
-            this.addContent('<div class="uil-ripple-css" />').$.addClass('loading');
-        }
+            $element.$.removeClass('loading');
 
-    }, PluginElement.prototype);
+            callback();
+          }
+      );
+
+      this.addContent('<div class="uil-ripple-css" />').$.addClass('loading');
+    }
+
+  }, PluginElement.prototype);
 });

@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineSoundCloudEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define SoundCloud event manager
-     * @class SoundCloudEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var SoundCloudEventManager = function SoundCloudEventManager() {
+  /**
+   * Define SoundCloud event manager
+   * @class SoundCloudEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var SoundCloudEventManager = function SoundCloudEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return SoundCloudEventManager.extend('SoundCloudEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return SoundCloudEventManager.extend('SoundCloudEventManager', {},
+      WidgetContentEventManager.prototype);
 });

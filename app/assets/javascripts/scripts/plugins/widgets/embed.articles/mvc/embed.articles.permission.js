@@ -7,20 +7,20 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineEmbedArticlesPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class EmbedArticlesPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var EmbedArticlesPermission = function EmbedArticlesPermission() {
-    };
+  /**
+   * Define Permissions
+   * @class EmbedArticlesPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var EmbedArticlesPermission = function EmbedArticlesPermission() {
+  };
 
-    return EmbedArticlesPermission.extend(
-        'EmbedArticlesPermission', {}, 
-        BasePermission.prototype
-    );
+  return EmbedArticlesPermission.extend(
+      'EmbedArticlesPermission', {},
+      BasePermission.prototype
+  );
 });

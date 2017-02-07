@@ -7,23 +7,23 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineGettyImagesEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define GettyImages event manager
-     * @class GettyImagesEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var GettyImagesEventManager = function GettyImagesEventManager() {
+  /**
+   * Define GettyImages event manager
+   * @class GettyImagesEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var GettyImagesEventManager = function GettyImagesEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return GettyImagesEventManager.extend(
-        'GettyImagesEventManager', {},
-        WidgetContentEventManager.prototype
-    );
+  return GettyImagesEventManager.extend(
+      'GettyImagesEventManager', {},
+      WidgetContentEventManager.prototype
+  );
 });

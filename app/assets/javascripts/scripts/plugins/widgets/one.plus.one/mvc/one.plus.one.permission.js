@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineOnePlusOnePermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class OnePlusOnePermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var OnePlusOnePermission = function OnePlusOnePermission() {
+  /**
+   * Define Permissions
+   * @class OnePlusOnePermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var OnePlusOnePermission = function OnePlusOnePermission() {
 
-    };
+  };
 
-    return OnePlusOnePermission.extend('OnePlusOnePermission', {
-
-    }, BasePermission.prototype);
+  return OnePlusOnePermission.extend('OnePlusOnePermission', {},
+      BasePermission.prototype);
 });

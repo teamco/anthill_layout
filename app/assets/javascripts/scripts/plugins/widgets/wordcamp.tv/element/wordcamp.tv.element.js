@@ -6,43 +6,43 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineWordcampTvElement(PluginElement) {
 
+  /**
+   * Define WordcampTv Element
+   * @param view
+   * @param opts
+   * @returns {WordcampTvElement}
+   * @constructor
+   * @class WordcampTvElement
+   * @extends PluginElement
+   */
+  var WordcampTvElement = function WordcampTvElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('wordcamp.tv', {resource: '/widgets'});
+
+    return this;
+  };
+
+  return WordcampTvElement.extend('WordcampTvElement', {
+
     /**
-     * Define WordcampTv Element
-     * @param view
-     * @param opts
-     * @returns {WordcampTvElement}
-     * @constructor
-     * @class WordcampTvElement
-     * @extends PluginElement
+     * Render Embedded content
+     * @memberOf WordcampTvElement
+     * @param {string} embed
      */
-    var WordcampTvElement = function WordcampTvElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent(embed) {
+      this.$.append(
+          this.renderEmbed(embed)
+      );
+    }
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
-
-        this.addCSS('wordcamp.tv', {resource: '/widgets'});
-
-        return this;
-    };
-
-    return WordcampTvElement.extend('WordcampTvElement', {
-
-        /**
-         * Render Embedded content
-         * @memberOf WordcampTvElement
-         * @param {string} embed
-         */
-        renderEmbeddedContent: function renderEmbeddedContent(embed) {
-            this.$.append(
-                this.renderEmbed(embed)
-            );
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 
 });

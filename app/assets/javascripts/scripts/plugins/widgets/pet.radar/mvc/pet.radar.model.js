@@ -6,36 +6,33 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function definePetRadarModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define PetRadar model
+   * @extends BaseModel
+   * @class PetRadarModel
+   * @constructor
+   */
+  var PetRadarModel = function PetRadarModel() {
+
     /**
-     * Define PetRadar model
-     * @extends BaseModel
-     * @class PetRadarModel
-     * @constructor
+     * Define preferences
+     * @memberOf PetRadarModel
+     * @type {{}}
      */
-    var PetRadarModel = function PetRadarModel() {
+    this.preferences = {};
 
-        /**
-         * Define preferences
-         * @memberOf PetRadarModel
-         * @type {{}}
-         */
-        this.preferences = {
-        };
+    /**
+     * Define rules
+     * @memberOf PetRadarModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        /**
-         * Define rules
-         * @memberOf PetRadarModel
-         * @type {{}}
-         */
-        this.rules = {};
-    };
-
-    return PetRadarModel.extend('PetRadarModel', {
-
-
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+  return PetRadarModel.extend('PetRadarModel', {}, BaseModel.prototype,
+      WidgetContentModel.prototype);
 });

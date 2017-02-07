@@ -6,35 +6,36 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
-], function defineGeolocationMapPreferencesElement(PluginElement, WidgetPreferences) {
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
+], function defineGeolocationMapPreferencesElement(PluginElement,
+    WidgetPreferences) {
 
-    /**
-     * Define GeolocationMap Preferences Element
-     * @param view
-     * @param opts
-     * @returns {GeolocationMapPreferencesElement}
-     * @constructor
-     * @class GeolocationMapPreferencesElement
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     */
-    let GeolocationMapPreferencesElement = function GeolocationMapPreferencesElement(view, opts) {
+  /**
+   * Define GeolocationMap Preferences Element
+   * @param view
+   * @param opts
+   * @returns {GeolocationMapPreferencesElement}
+   * @constructor
+   * @class GeolocationMapPreferencesElement
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   */
+  let GeolocationMapPreferencesElement = function GeolocationMapPreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return GeolocationMapPreferencesElement.extend('GeolocationMapPreferencesElement', {
-
-
-    }, PluginElement.prototype, WidgetPreferences.prototype);
+  return GeolocationMapPreferencesElement.extend(
+      'GeolocationMapPreferencesElement', {}, PluginElement.prototype,
+      WidgetPreferences.prototype);
 
 });

@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineWordcampTvPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class WordcampTvPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var WordcampTvPermission = function WordcampTvPermission() {
+  /**
+   * Define Permissions
+   * @class WordcampTvPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var WordcampTvPermission = function WordcampTvPermission() {
 
-    };
+  };
 
-    return WordcampTvPermission.extend('WordcampTvPermission', {
-
-    }, BasePermission.prototype);
+  return WordcampTvPermission.extend('WordcampTvPermission', {},
+      BasePermission.prototype);
 });

@@ -6,48 +6,48 @@
  */
 
 define([
-    'plugins/plugin.controller'
+  'plugins/plugin.controller'
 ], function defineBarController(PluginBase) {
 
+  /**
+   * Define bar controller
+   * @class BarController
+   * @extends PluginController
+   * @constructor
+   */
+  var BarController = function BarController() {
+  };
+
+  return BarController.extend('BarController', {
+
     /**
-     * Define bar controller
-     * @class BarController
-     * @extends PluginController
-     * @constructor
+     * Get modules data
+     * @memberOf BarController
      */
-    var BarController = function BarController() {
-    };
+    getData: function getData() {
+      return this.model.getModules();
+    },
 
-    return BarController.extend('BarController', {
+    /**
+     * Define modules
+     * @memberOf BarController
+     */
+    defineModules: function defineModules() {
+      this.model.storeModules();
+    },
 
-        /**
-         * Get modules data
-         * @memberOf BarController
-         */
-        getData: function getData() {
-            return this.model.getModules();
-        },
+    /**
+     * Load gallery content
+     * @memberOf BarController
+     */
+    loadContent: function loadContent() {
 
-        /**
-         * Define modules
-         * @memberOf BarController
-         */
-        defineModules: function defineModules() {
-            this.model.storeModules();
-        },
+      if (this.isDataNotExist()) {
+        this.getView().renderContent(
+            this.getData()
+        );
+      }
+    }
 
-        /**
-         * Load gallery content
-         * @memberOf BarController
-         */
-        loadContent: function loadContent() {
-
-            if (this.isDataNotExist()) {
-                this.getView().renderContent(
-                    this.getData()
-                );
-            }
-        }
-
-    }, PluginBase.prototype);
+  }, PluginBase.prototype);
 });

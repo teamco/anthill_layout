@@ -7,20 +7,18 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineKremPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class KremPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var KremPermission = function KremPermission() {
+  /**
+   * Define Permissions
+   * @class KremPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var KremPermission = function KremPermission() {
 
-    };
+  };
 
-    return KremPermission.extend('KremPermission', {
-
-    }, BasePermission.prototype);
+  return KremPermission.extend('KremPermission', {}, BasePermission.prototype);
 });

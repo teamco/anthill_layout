@@ -6,35 +6,35 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
-], function definePhotobucketPreferencesElement(PluginElement, WidgetPreferences) {
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
+], function definePhotobucketPreferencesElement(PluginElement,
+    WidgetPreferences) {
 
-    /**
-     * Define Photobucket Preferences Element
-     * @param view
-     * @param opts
-     * @returns {PhotobucketPreferencesElement}
-     * @constructor
-     * @class PhotobucketPreferencesElement
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     */
-    var PhotobucketPreferencesElement = function PhotobucketPreferencesElement(view, opts) {
+  /**
+   * Define Photobucket Preferences Element
+   * @param view
+   * @param opts
+   * @returns {PhotobucketPreferencesElement}
+   * @constructor
+   * @class PhotobucketPreferencesElement
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   */
+  var PhotobucketPreferencesElement = function PhotobucketPreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return PhotobucketPreferencesElement.extend('PhotobucketPreferencesElement', {
-
-
-    }, PluginElement.prototype, WidgetPreferences.prototype);
+  return PhotobucketPreferencesElement.extend('PhotobucketPreferencesElement',
+      {}, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

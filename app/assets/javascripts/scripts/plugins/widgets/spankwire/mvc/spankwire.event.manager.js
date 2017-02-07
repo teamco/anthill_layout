@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineSpankwireEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define Spankwire event manager
-     * @class SpankwireEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var SpankwireEventManager = function SpankwireEventManager() {
+  /**
+   * Define Spankwire event manager
+   * @class SpankwireEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var SpankwireEventManager = function SpankwireEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return SpankwireEventManager.extend('SpankwireEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return SpankwireEventManager.extend('SpankwireEventManager', {},
+      WidgetContentEventManager.prototype);
 });

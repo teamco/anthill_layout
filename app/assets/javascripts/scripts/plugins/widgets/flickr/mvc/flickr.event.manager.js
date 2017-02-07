@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineFlickrEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define Flickr event manager
-     * @class FlickrEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var FlickrEventManager = function FlickrEventManager() {
+  /**
+   * Define Flickr event manager
+   * @class FlickrEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var FlickrEventManager = function FlickrEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return FlickrEventManager.extend('FlickrEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return FlickrEventManager.extend('FlickrEventManager', {},
+      WidgetContentEventManager.prototype);
 });

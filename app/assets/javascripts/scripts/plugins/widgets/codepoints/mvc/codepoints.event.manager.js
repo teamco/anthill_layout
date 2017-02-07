@@ -7,23 +7,23 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineCodepointsEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define Codepoints event manager
-     * @class CodepointsEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var CodepointsEventManager = function CodepointsEventManager() {
+  /**
+   * Define Codepoints event manager
+   * @class CodepointsEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var CodepointsEventManager = function CodepointsEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return CodepointsEventManager.extend(
-        'CodepointsEventManager', {},
-        WidgetContentEventManager.prototype
-    );
+  return CodepointsEventManager.extend(
+      'CodepointsEventManager', {},
+      WidgetContentEventManager.prototype
+  );
 });

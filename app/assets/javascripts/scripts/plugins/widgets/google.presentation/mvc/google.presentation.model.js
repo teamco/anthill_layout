@@ -6,53 +6,54 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineGooglePresentationModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define GooglePresentation model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class GooglePresentationModel
+   * @constructor
+   */
+  var GooglePresentationModel = function GooglePresentationModel() {
+
     /**
-     * Define GooglePresentation model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class GooglePresentationModel
-     * @constructor
-     */
-    var GooglePresentationModel = function GooglePresentationModel() {
-
-        /**
-         * Define preferences
-         * @memberOf GooglePresentationModel
-         * @type {{
-         *      googlepresentationEmbed: {type: string, disabled: boolean, value: undefined, visible: boolean}
+     * Define preferences
+     * @memberOf GooglePresentationModel
+     * @type {{
+         *      googlepresentationEmbed: {type: string, disabled: boolean,
+         *     value: undefined, visible: boolean}
          * }}
-         */
-        this.preferences = {
-            googlepresentationEmbed: {
-                type: 'textarea',
-                disabled: false,
-                value: undefined,
-                visible: true
-            }
-        };
-
-        /**
-         * Define rules
-         * @memberOf GooglePresentationModel
-         * @type {{}}
-         */
-        this.rules = {};
+     */
+    this.preferences = {
+      googlepresentationEmbed: {
+        type: 'textarea',
+        disabled: false,
+        value: undefined,
+        visible: true
+      }
     };
 
-    return GooglePresentationModel.extend('GooglePresentationModel', {
+    /**
+     * Define rules
+     * @memberOf GooglePresentationModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        /**
-         * Set embed
-         * @memberOf GooglePresentationModel
-         * @param {string} embed
-         */
-        setGooglepresentationEmbed: function setGooglepresentationEmbed(embed) {
-            this.setPrefs('googlepresentationEmbed', embed);
-        }
+  return GooglePresentationModel.extend('GooglePresentationModel', {
 
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    /**
+     * Set embed
+     * @memberOf GooglePresentationModel
+     * @param {string} embed
+     */
+    setGooglepresentationEmbed: function setGooglepresentationEmbed(embed) {
+      this.setPrefs('googlepresentationEmbed', embed);
+    }
+
+  }, BaseModel.prototype, WidgetContentModel.prototype);
 });

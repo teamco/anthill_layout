@@ -6,39 +6,39 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/rules/widget.base.rules'
+  'plugins/plugin.element',
+  'plugins/rules/widget.base.rules'
 ], function defineReverbnationRulesElement(PluginElement, BaseWidgetRules) {
 
-    /**
-     * Define Reverbnation Rules Element
-     * @param view
-     * @param opts
-     * @returns {ReverbnationRulesElement}
-     * @constructor
-     * @class ReverbnationRulesElement
-     * @extends PluginElement
-     * @extends BaseWidgetRules
-     */
-    var ReverbnationRulesElement = function ReverbnationRulesElement(view, opts) {
+  /**
+   * Define Reverbnation Rules Element
+   * @param view
+   * @param opts
+   * @returns {ReverbnationRulesElement}
+   * @constructor
+   * @class ReverbnationRulesElement
+   * @extends PluginElement
+   * @extends BaseWidgetRules
+   */
+  var ReverbnationRulesElement = function ReverbnationRulesElement(view, opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBaseRulesData(
-            opts.data,
-            opts.rules.widget,
-            opts.rules.content
-        );
-
-        return this;
-    };
-
-    return ReverbnationRulesElement.extend(
-        'ReverbnationRulesElement', {}, 
-        PluginElement.prototype, 
-        BaseWidgetRules.prototype
+    this.renderBaseRulesData(
+        opts.data,
+        opts.rules.widget,
+        opts.rules.content
     );
+
+    return this;
+  };
+
+  return ReverbnationRulesElement.extend(
+      'ReverbnationRulesElement', {},
+      PluginElement.prototype,
+      BaseWidgetRules.prototype
+  );
 });

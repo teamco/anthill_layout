@@ -6,43 +6,43 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineDailyMotionElement(PluginElement) {
 
+  /**
+   * Define DailyMotion Element
+   * @param view
+   * @param opts
+   * @returns {DailyMotionElement}
+   * @constructor
+   * @class DailyMotionElement
+   * @extends PluginElement
+   */
+  var DailyMotionElement = function DailyMotionElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('daily.motion', {resource: '/widgets'});
+
+    return this;
+  };
+
+  return DailyMotionElement.extend('DailyMotionElement', {
+
     /**
-     * Define DailyMotion Element
-     * @param view
-     * @param opts
-     * @returns {DailyMotionElement}
-     * @constructor
-     * @class DailyMotionElement
-     * @extends PluginElement
+     * Render Embedded content
+     * @memberOf DailyMotionElement
+     * @param {string} url
      */
-    var DailyMotionElement = function DailyMotionElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent(url) {
+      this.$.append(
+          this.renderIframe(url)
+      );
+    }
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
-
-        this.addCSS('daily.motion', {resource: '/widgets'});
-
-        return this;
-    };
-
-    return DailyMotionElement.extend('DailyMotionElement', {
-
-        /**
-         * Render Embedded content
-         * @memberOf DailyMotionElement
-         * @param {string} url
-         */
-        renderEmbeddedContent: function renderEmbeddedContent(url) {
-            this.$.append(
-                this.renderIframe(url)
-            );
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 
 });

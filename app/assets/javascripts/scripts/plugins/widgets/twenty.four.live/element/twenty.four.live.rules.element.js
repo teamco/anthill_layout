@@ -6,38 +6,38 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/rules/widget.base.rules'
+  'plugins/plugin.element',
+  'plugins/rules/widget.base.rules'
 ], function defineTwentyFourLiveRulesElement(PluginElement, BaseWidgetRules) {
 
-    /**
-     * Define TwentyFourLive Rules Element
-     * @param view
-     * @param opts
-     * @returns {TwentyFourLiveRulesElement}
-     * @constructor
-     * @class TwentyFourLiveRulesElement
-     * @extends PluginElement
-     * @extends BaseWidgetRules
-     */
-    var TwentyFourLiveRulesElement = function TwentyFourLiveRulesElement(view, opts) {
+  /**
+   * Define TwentyFourLive Rules Element
+   * @param view
+   * @param opts
+   * @returns {TwentyFourLiveRulesElement}
+   * @constructor
+   * @class TwentyFourLiveRulesElement
+   * @extends PluginElement
+   * @extends BaseWidgetRules
+   */
+  var TwentyFourLiveRulesElement = function TwentyFourLiveRulesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBaseRulesData(
-            opts.data,
-            opts.rules.widget,
-            opts.rules.content
-        );
+    this.renderBaseRulesData(
+        opts.data,
+        opts.rules.widget,
+        opts.rules.content
+    );
 
-        return this;
-    };
+    return this;
+  };
 
-    return TwentyFourLiveRulesElement.extend('TwentyFourLiveRulesElement', {
-
-    }, PluginElement.prototype, BaseWidgetRules.prototype);
+  return TwentyFourLiveRulesElement.extend('TwentyFourLiveRulesElement', {},
+      PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

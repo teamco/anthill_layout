@@ -7,108 +7,109 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/pik.tv/element/pik.tv.element',
-    'plugins/widgets/pik.tv/element/pik.tv.preferences.element',
-    'plugins/widgets/pik.tv/element/pik.tv.rules.element'
-], function definePikTvView(BaseView, Header, Footer, PikTvElement, PikTvPreferencesElement, PikTvRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/pik.tv/element/pik.tv.element',
+  'plugins/widgets/pik.tv/element/pik.tv.preferences.element',
+  'plugins/widgets/pik.tv/element/pik.tv.rules.element'
+], function definePikTvView(BaseView, Header, Footer, PikTvElement,
+    PikTvPreferencesElement, PikTvRulesElement) {
+
+  /**
+   * Define view
+   * @class PikTvView
+   * @extends BaseView
+   * @constructor
+   */
+  var PikTvView = function PikTvView() {
+  };
+
+  return PikTvView.extend('PikTvView', {
 
     /**
-     * Define view
-     * @class PikTvView
-     * @extends BaseView
-     * @constructor
+     * Render piktv element
+     * @memberOf PikTvView
      */
-    var PikTvView = function PikTvView() {
-    };
+    renderPikTv: function renderPikTv() {
 
-    return PikTvView.extend('PikTvView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render piktv element
-         * @memberOf PikTvView
-         */
-        renderPikTv: function renderPikTv() {
+      /**
+       * Define $piktv
+       * @type {PikTvElement}
+       */
+      this.elements.$piktv = new PikTvElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $piktv
-             * @type {PikTvElement}
-             */
-            this.elements.$piktv = new PikTvElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf PikTvView
+     * @returns {PikTvPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define PikTv Preferences Element
+       * @type {PikTvPreferencesElement}
+       */
+      this.elements.$preferences = new PikTvPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf PikTvView
-         * @returns {PikTvPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define PikTv Preferences Element
-             * @type {PikTvPreferencesElement}
-             */
-            this.elements.$preferences = new PikTvPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf PikTvView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {PikTvRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
+      /**
+       * Define data
+       * @type {*|{}}
+       */
+      var data = this.controller.getRules();
 
-        /**
-         * Render Rules
-         * @memberOf PikTvView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {PikTvRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define data
-             * @type {*|{}}
-             */
-            var data = this.controller.getRules();
-
-            /**
-             * Define PikTv Rules Element
-             * @type {PikTvRulesElement}
-             */
-            this.elements.$rules = new PikTvRulesElement(this, {
-                data: data,
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render piktv
-         * @memberOf PikTvView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderPikTv.bind(this)
-            );
+      /**
+       * Define PikTv Rules Element
+       * @type {PikTvRulesElement}
+       */
+      this.elements.$rules = new PikTvRulesElement(this, {
+        data: data,
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render piktv
+     * @memberOf PikTvView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderPikTv.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

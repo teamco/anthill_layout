@@ -6,35 +6,37 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
-], function defineOfficeMixPreferencesElement(PluginElement, WidgetPreferences) {
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
+], function defineOfficeMixPreferencesElement(PluginElement,
+    WidgetPreferences) {
 
-    /**
-     * Define OfficeMix Preferences Element
-     * @constructor
-     * @class OfficeMixPreferencesElement
-     * @param {OfficeMixView} view
-     * @param opts
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     * @returns {OfficeMixPreferencesElement}
-     */
-    var OfficeMixPreferencesElement = function OfficeMixPreferencesElement(view, opts) {
+  /**
+   * Define OfficeMix Preferences Element
+   * @constructor
+   * @class OfficeMixPreferencesElement
+   * @param {OfficeMixView} view
+   * @param opts
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   * @returns {OfficeMixPreferencesElement}
+   */
+  var OfficeMixPreferencesElement = function OfficeMixPreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return OfficeMixPreferencesElement.extend(
-        'OfficeMixPreferencesElement', {}, 
-        PluginElement.prototype, 
-        WidgetPreferences.prototype
-    );
+  return OfficeMixPreferencesElement.extend(
+      'OfficeMixPreferencesElement', {},
+      PluginElement.prototype,
+      WidgetPreferences.prototype
+  );
 });

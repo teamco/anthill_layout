@@ -6,53 +6,54 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function definePastebinModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define Pastebin model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class PastebinModel
+   * @constructor
+   */
+  var PastebinModel = function PastebinModel() {
+
     /**
-     * Define Pastebin model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class PastebinModel
-     * @constructor
-     */
-    var PastebinModel = function PastebinModel() {
-
-        /**
-         * Define preferences
-         * @memberOf PastebinModel
-         * @type {{
-         *      pastebinEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
+     * Define preferences
+     * @memberOf PastebinModel
+     * @type {{
+         *      pastebinEmbedCode: {type: string, disabled: boolean, value:
+         *     undefined, visible: boolean}
          * }}
-         */
-        this.preferences = {
-            pastebinEmbedCode: {
-                type: 'textarea',
-                disabled: false,
-                value: undefined,
-                visible: true
-            }
-        };
-
-        /**
-         * Define rules
-         * @memberOf PastebinModel
-         * @type {{}}
-         */
-        this.rules = {};
+     */
+    this.preferences = {
+      pastebinEmbedCode: {
+        type: 'textarea',
+        disabled: false,
+        value: undefined,
+        visible: true
+      }
     };
 
-    return PastebinModel.extend('PastebinModel', {
+    /**
+     * Define rules
+     * @memberOf PastebinModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        /**
-         * Set Pastebin embed code
-         * @memberOf PastebinModel
-         * @param {string} embed
-         */
-        setPastebinEmbedCode: function setPastebinEmbedCode(embed) {
-            this.setPrefs('pastebinEmbedCode', embed);
-        }
+  return PastebinModel.extend('PastebinModel', {
 
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    /**
+     * Set Pastebin embed code
+     * @memberOf PastebinModel
+     * @param {string} embed
+     */
+    setPastebinEmbedCode: function setPastebinEmbedCode(embed) {
+      this.setPrefs('pastebinEmbedCode', embed);
+    }
+
+  }, BaseModel.prototype, WidgetContentModel.prototype);
 });

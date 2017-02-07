@@ -6,35 +6,34 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
 ], function defineTnaFlixPreferencesElement(PluginElement, WidgetPreferences) {
 
-    /**
-     * Define TnaFlix Preferences Element
-     * @param view
-     * @param opts
-     * @returns {TnaFlixPreferencesElement}
-     * @constructor
-     * @class TnaFlixPreferencesElement
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     */
-    var TnaFlixPreferencesElement = function TnaFlixPreferencesElement(view, opts) {
+  /**
+   * Define TnaFlix Preferences Element
+   * @param view
+   * @param opts
+   * @returns {TnaFlixPreferencesElement}
+   * @constructor
+   * @class TnaFlixPreferencesElement
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   */
+  var TnaFlixPreferencesElement = function TnaFlixPreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return TnaFlixPreferencesElement.extend('TnaFlixPreferencesElement', {
-
-
-    }, PluginElement.prototype, WidgetPreferences.prototype);
+  return TnaFlixPreferencesElement.extend('TnaFlixPreferencesElement', {},
+      PluginElement.prototype, WidgetPreferences.prototype);
 
 });

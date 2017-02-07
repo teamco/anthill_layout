@@ -7,102 +7,103 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/ice.floe/element/ice.floe.element',
-    'plugins/widgets/ice.floe/element/ice.floe.preferences.element',
-    'plugins/widgets/ice.floe/element/ice.floe.rules.element'
-], function defineIceFloeView(BaseView, Header, Footer, IceFloeElement, IceFloePreferencesElement, IceFloeRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/ice.floe/element/ice.floe.element',
+  'plugins/widgets/ice.floe/element/ice.floe.preferences.element',
+  'plugins/widgets/ice.floe/element/ice.floe.rules.element'
+], function defineIceFloeView(BaseView, Header, Footer, IceFloeElement,
+    IceFloePreferencesElement, IceFloeRulesElement) {
+
+  /**
+   * Define view
+   * @class IceFloeView
+   * @extends BaseView
+   * @constructor
+   */
+  var IceFloeView = function IceFloeView() {
+  };
+
+  return IceFloeView.extend('IceFloeView', {
 
     /**
-     * Define view
-     * @class IceFloeView
-     * @extends BaseView
-     * @constructor
+     * Render ice.floe element
+     * @memberOf IceFloeView
      */
-    var IceFloeView = function IceFloeView() {
-    };
+    renderIceFloe: function renderIceFloe() {
 
-    return IceFloeView.extend('IceFloeView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render ice.floe element
-         * @memberOf IceFloeView
-         */
-        renderIceFloe: function renderIceFloe() {
+      /**
+       * Define $ice.floe
+       * @type {IceFloeElement}
+       */
+      this.elements.$icefloe = new IceFloeElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $ice.floe
-             * @type {IceFloeElement}
-             */
-            this.elements.$icefloe = new IceFloeElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf IceFloeView
+     * @returns {IceFloePreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define IceFloe Preferences Element
+       * @type {IceFloePreferencesElement}
+       */
+      this.elements.$preferences = new IceFloePreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf IceFloeView
-         * @returns {IceFloePreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define IceFloe Preferences Element
-             * @type {IceFloePreferencesElement}
-             */
-            this.elements.$preferences = new IceFloePreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf IceFloeView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {IceFloeRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
-
-        /**
-         * Render Rules
-         * @memberOf IceFloeView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {IceFloeRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define IceFloe Rules Element
-             * @type {IceFloeRulesElement}
-             */
-            this.elements.$rules = new IceFloeRulesElement(this, {
-                data: this.controller.getRules(),
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render ice.floe
-         * @memberOf IceFloeView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderIceFloe.bind(this)
-            );
+      /**
+       * Define IceFloe Rules Element
+       * @type {IceFloeRulesElement}
+       */
+      this.elements.$rules = new IceFloeRulesElement(this, {
+        data: this.controller.getRules(),
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render ice.floe
+     * @memberOf IceFloeView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderIceFloe.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

@@ -6,38 +6,37 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/rules/widget.base.rules'
+  'plugins/plugin.element',
+  'plugins/rules/widget.base.rules'
 ], function definePastebinRulesElement(PluginElement, BaseWidgetRules) {
 
-    /**
-     * Define Pastebin Rules Element
-     * @param view
-     * @param opts
-     * @returns {PastebinRulesElement}
-     * @constructor
-     * @class PastebinRulesElement
-     * @extends PluginElement
-     * @extends BaseWidgetRules
-     */
-    var PastebinRulesElement = function PastebinRulesElement(view, opts) {
+  /**
+   * Define Pastebin Rules Element
+   * @param view
+   * @param opts
+   * @returns {PastebinRulesElement}
+   * @constructor
+   * @class PastebinRulesElement
+   * @extends PluginElement
+   * @extends BaseWidgetRules
+   */
+  var PastebinRulesElement = function PastebinRulesElement(view, opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBaseRulesData(
-            opts.data,
-            opts.rules.widget,
-            opts.rules.content
-        );
+    this.renderBaseRulesData(
+        opts.data,
+        opts.rules.widget,
+        opts.rules.content
+    );
 
-        return this;
-    };
+    return this;
+  };
 
-    return PastebinRulesElement.extend('PastebinRulesElement', {
-
-    }, PluginElement.prototype, BaseWidgetRules.prototype);
+  return PastebinRulesElement.extend('PastebinRulesElement', {},
+      PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

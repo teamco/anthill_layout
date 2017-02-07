@@ -6,35 +6,37 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
-], function defineAnimatronPreferencesElement(PluginElement, WidgetPreferences) {
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
+], function defineAnimatronPreferencesElement(PluginElement,
+    WidgetPreferences) {
 
-    /**
-     * Define Animatron Preferences Element
-     * @constructor
-     * @class AnimatronPreferencesElement
-     * @param {AnimatronView} view
-     * @param opts
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     * @returns {AnimatronPreferencesElement}
-     */
-    var AnimatronPreferencesElement = function AnimatronPreferencesElement(view, opts) {
+  /**
+   * Define Animatron Preferences Element
+   * @constructor
+   * @class AnimatronPreferencesElement
+   * @param {AnimatronView} view
+   * @param opts
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   * @returns {AnimatronPreferencesElement}
+   */
+  var AnimatronPreferencesElement = function AnimatronPreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return AnimatronPreferencesElement.extend(
-        'AnimatronPreferencesElement', {}, 
-        PluginElement.prototype, 
-        WidgetPreferences.prototype
-    );
+  return AnimatronPreferencesElement.extend(
+      'AnimatronPreferencesElement', {},
+      PluginElement.prototype,
+      WidgetPreferences.prototype
+  );
 });

@@ -6,38 +6,37 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/rules/widget.base.rules'
+  'plugins/plugin.element',
+  'plugins/rules/widget.base.rules'
 ], function defineEmbedlyRulesElement(PluginElement, BaseWidgetRules) {
 
-    /**
-     * Define Embedly Rules Element
-     * @param view
-     * @param opts
-     * @returns {EmbedlyRulesElement}
-     * @constructor
-     * @class EmbedlyRulesElement
-     * @extends PluginElement
-     * @extends BaseWidgetRules
-     */
-    var EmbedlyRulesElement = function EmbedlyRulesElement(view, opts) {
+  /**
+   * Define Embedly Rules Element
+   * @param view
+   * @param opts
+   * @returns {EmbedlyRulesElement}
+   * @constructor
+   * @class EmbedlyRulesElement
+   * @extends PluginElement
+   * @extends BaseWidgetRules
+   */
+  var EmbedlyRulesElement = function EmbedlyRulesElement(view, opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBaseRulesData(
-            opts.data,
-            opts.rules.widget,
-            opts.rules.content
-        );
+    this.renderBaseRulesData(
+        opts.data,
+        opts.rules.widget,
+        opts.rules.content
+    );
 
-        return this;
-    };
+    return this;
+  };
 
-    return EmbedlyRulesElement.extend('EmbedlyRulesElement', {
-
-    }, PluginElement.prototype, BaseWidgetRules.prototype);
+  return EmbedlyRulesElement.extend('EmbedlyRulesElement', {},
+      PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

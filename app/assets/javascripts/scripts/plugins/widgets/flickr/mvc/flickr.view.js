@@ -7,102 +7,103 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/flickr/element/flickr.element',
-    'plugins/widgets/flickr/element/flickr.preferences.element',
-    'plugins/widgets/flickr/element/flickr.rules.element'
-], function defineFlickrView(BaseView, Header, Footer, FlickrElement, FlickrPreferencesElement, FlickrRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/flickr/element/flickr.element',
+  'plugins/widgets/flickr/element/flickr.preferences.element',
+  'plugins/widgets/flickr/element/flickr.rules.element'
+], function defineFlickrView(BaseView, Header, Footer, FlickrElement,
+    FlickrPreferencesElement, FlickrRulesElement) {
+
+  /**
+   * Define view
+   * @class FlickrView
+   * @extends BaseView
+   * @constructor
+   */
+  var FlickrView = function FlickrView() {
+  };
+
+  return FlickrView.extend('FlickrView', {
 
     /**
-     * Define view
-     * @class FlickrView
-     * @extends BaseView
-     * @constructor
+     * Render Flickr element
+     * @memberOf FlickrView
      */
-    var FlickrView = function FlickrView() {
-    };
+    renderFlickr: function renderFlickr() {
 
-    return FlickrView.extend('FlickrView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render Flickr element
-         * @memberOf FlickrView
-         */
-        renderFlickr: function renderFlickr() {
+      /**
+       * Define $flickr
+       * @type {FlickrElement}
+       */
+      this.elements.$flickr = new FlickrElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $flickr
-             * @type {FlickrElement}
-             */
-            this.elements.$flickr = new FlickrElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf FlickrView
+     * @returns {FlickrPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define Flickr Preferences Element
+       * @type {FlickrPreferencesElement}
+       */
+      this.elements.$preferences = new FlickrPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf FlickrView
-         * @returns {FlickrPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define Flickr Preferences Element
-             * @type {FlickrPreferencesElement}
-             */
-            this.elements.$preferences = new FlickrPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf FlickrView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {FlickrRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
-
-        /**
-         * Render Rules
-         * @memberOf FlickrView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {FlickrRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define Flickr Rules Element
-             * @type {FlickrRulesElement}
-             */
-            this.elements.$rules = new FlickrRulesElement(this, {
-                data: this.controller.getRules(),
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render Flickr
-         * @memberOf FlickrView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderFlickr.bind(this)
-            );
+      /**
+       * Define Flickr Rules Element
+       * @type {FlickrRulesElement}
+       */
+      this.elements.$rules = new FlickrRulesElement(this, {
+        data: this.controller.getRules(),
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render Flickr
+     * @memberOf FlickrView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderFlickr.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

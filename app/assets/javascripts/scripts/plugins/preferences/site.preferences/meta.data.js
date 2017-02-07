@@ -3,149 +3,153 @@
  */
 define(function defineSiteConfigMetaDataPreferences() {
 
+  /**
+   * Define SiteConfig MetaData Preferences
+   * @class SiteConfigMetaDataPreferences
+   * @extends Renderer
+   * @constructor
+   */
+  var SiteConfigMetaDataPreferences = function SiteConfigMetaDataPreferences() {
+  };
+
+  return SiteConfigMetaDataPreferences.extend('SiteConfigMetaDataPreferences', {
+
     /**
-     * Define SiteConfig MetaData Preferences
-     * @class SiteConfigMetaDataPreferences
-     * @extends Renderer
-     * @constructor
+     * Set site title preference
+     * @memberOf SiteConfigMetaDataPreferences
+     * @returns {*|jQuery}
      */
-    var SiteConfigMetaDataPreferences = function SiteConfigMetaDataPreferences() {
-    };
+    setSiteTitle: function setSiteTitle() {
 
-    return SiteConfigMetaDataPreferences.extend('SiteConfigMetaDataPreferences', {
+      /**
+       * Get workspace
+       * @type {Workspace}
+       */
+      var workspace = this.view.controller.getWorkspace(),
+          preferences = workspace.model.getConfig('preferences');
 
-        /**
-         * Set site title preference
-         * @memberOf SiteConfigMetaDataPreferences
-         * @returns {*|jQuery}
-         */
-        setSiteTitle: function setSiteTitle() {
+      /**
+       * Get site title
+       * @type {*|string}
+       */
+      var siteTitle = preferences['siteTitle'];
 
-            /**
-             * Get workspace
-             * @type {Workspace}
-             */
-            var workspace = this.view.controller.getWorkspace(),
-                preferences = workspace.model.getConfig('preferences');
+      /**
+       * Split SEO title
+       * @type {*|Array}
+       */
+      var seoTitle = workspace.view.get$item().getSiteTitle().split(
+          workspace.model.getConfig('SEOSeparator')
+      );
 
-            /**
-             * Get site title
-             * @type {*|string}
-             */
-            var siteTitle = preferences['siteTitle'];
+      /**
+       * Render title
+       * @type {*[]}
+       */
+      var $title = this.renderTextField({
+        name: 'siteTitle',
+        text: 'Title',
+        disabled: false,
+        placeholder: 'Enter title',
+        visible: true,
+        value: siteTitle || seoTitle[seoTitle.length - 1]
+      });
 
-            /**
-             * Split SEO title
-             * @type {*|Array}
-             */
-            var seoTitle = workspace.view.get$item().getSiteTitle().split(
-                workspace.model.getConfig('SEOSeparator')
-            );
+      return $('<li />').addClass('workspace-title-prefs').append($title);
+    },
 
-            /**
-             * Render title
-             * @type {*[]}
-             */
-            var $title = this.renderTextField({
-                name: 'siteTitle',
-                text: 'Title',
-                disabled: false,
-                placeholder: 'Enter title',
-                visible: true,
-                value: siteTitle || seoTitle[seoTitle.length - 1]
-            });
+    /**
+     * Set site meta description
+     * @memberOf SiteConfigMetaDataPreferences
+     * @returns {*|jQuery}
+     */
+    setSiteMetaDescription: function setSiteMetaDescription() {
 
-            return $('<li />').addClass('workspace-title-prefs').append($title);
-        },
+      /**
+       * Get workspace
+       * @type {Workspace}
+       */
+      var workspace = this.view.controller.getWorkspace(),
+          preferences = workspace.model.getConfig('preferences');
 
-        /**
-         * Set site meta description
-         * @memberOf SiteConfigMetaDataPreferences
-         * @returns {*|jQuery}
-         */
-        setSiteMetaDescription: function setSiteMetaDescription() {
+      /**
+       * Render description
+       * @type {*[]}
+       */
+      var $description = this.renderTextArea({
+        name: 'siteDescription',
+        text: 'Description',
+        disabled: false,
+        placeholder: 'Enter description',
+        visible: true,
+        value: preferences['siteDescription'] ||
+        $('meta[name="description"]').attr('content')
+      });
 
-            /**
-             * Get workspace
-             * @type {Workspace}
-             */
-            var workspace = this.view.controller.getWorkspace(),
-                preferences = workspace.model.getConfig('preferences');
+      return $('<li />').addClass('workspace-description-prefs').
+          append($description);
+    },
 
-            /**
-             * Render description
-             * @type {*[]}
-             */
-            var $description = this.renderTextArea({
-                name: 'siteDescription',
-                text: 'Description',
-                disabled: false,
-                placeholder: 'Enter description',
-                visible: true,
-                value: preferences['siteDescription'] || $('meta[name="description"]').attr('content')
-            });
+    /**
+     * Set site meta key words
+     * @memberOf SiteConfigMetaDataPreferences
+     * @returns {*|jQuery}
+     */
+    setSiteMetaKeywords: function setSiteMetaKeywords() {
 
-            return $('<li />').addClass('workspace-description-prefs').append($description);
-        },
+      /**
+       * Get workspace
+       * @type {Workspace}
+       */
+      var workspace = this.view.controller.getWorkspace(),
+          preferences = workspace.model.getConfig('preferences');
 
-        /**
-         * Set site meta key words
-         * @memberOf SiteConfigMetaDataPreferences
-         * @returns {*|jQuery}
-         */
-        setSiteMetaKeywords: function setSiteMetaKeywords() {
+      /**
+       * Render description
+       * @type {*[]}
+       */
+      var $keywords = this.renderTextArea({
+        name: 'siteKeywords',
+        text: 'Keywords',
+        placeholder: 'Enter keywords',
+        disabled: false,
+        visible: true,
+        value: preferences['siteKeywords'] ||
+        $('meta[name="keywords"]').attr('content')
+      });
 
-            /**
-             * Get workspace
-             * @type {Workspace}
-             */
-            var workspace = this.view.controller.getWorkspace(),
-                preferences = workspace.model.getConfig('preferences');
+      return $('<li />').addClass('workspace-keywords-prefs').append($keywords);
+    },
 
-            /**
-             * Render description
-             * @type {*[]}
-             */
-            var $keywords = this.renderTextArea({
-                name: 'siteKeywords',
-                text: 'Keywords',
-                placeholder: 'Enter keywords',
-                disabled: false,
-                visible: true,
-                value: preferences['siteKeywords'] || $('meta[name="keywords"]').attr('content')
-            });
+    /**
+     * Set site meta author
+     * @memberOf SiteConfigMetaDataPreferences
+     * @returns {*|jQuery}
+     */
+    setSiteMetaAuthor: function setSiteMetaAuthor() {
 
-            return $('<li />').addClass('workspace-keywords-prefs').append($keywords);
-        },
+      /**
+       * Get workspace
+       * @type {Workspace}
+       */
+      var workspace = this.view.controller.getWorkspace(),
+          preferences = workspace.model.getConfig('preferences');
 
-        /**
-         * Set site meta author
-         * @memberOf SiteConfigMetaDataPreferences
-         * @returns {*|jQuery}
-         */
-        setSiteMetaAuthor: function setSiteMetaAuthor() {
+      /**
+       * Render description
+       * @type {*[]}
+       */
+      var $author = this.renderTextField({
+        name: 'siteAuthor',
+        text: 'Author',
+        placeholder: 'Enter author',
+        disabled: false,
+        visible: true,
+        value: preferences['siteAuthor'] ||
+        $('meta[name="author"]').attr('content')
+      });
 
-            /**
-             * Get workspace
-             * @type {Workspace}
-             */
-            var workspace = this.view.controller.getWorkspace(),
-                preferences = workspace.model.getConfig('preferences');
-
-            /**
-             * Render description
-             * @type {*[]}
-             */
-            var $author = this.renderTextField({
-                name: 'siteAuthor',
-                text: 'Author',
-                placeholder: 'Enter author',
-                disabled: false,
-                visible: true,
-                value: preferences['siteAuthor'] || $('meta[name="author"]').attr('content')
-            });
-
-            return $('<li />').addClass('workspace-author-prefs').append($author);
-        }
-    });
+      return $('<li />').addClass('workspace-author-prefs').append($author);
+    }
+  });
 });

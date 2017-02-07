@@ -6,44 +6,44 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineLearningAppsElement(PluginElement) {
 
+  /**
+   * Define LearningApps Element
+   * @param view
+   * @param opts
+   * @returns {LearningAppsElement}
+   * @constructor
+   * @class LearningAppsElement
+   * @extends PluginElement
+   */
+  var LearningAppsElement = function LearningAppsElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('learning.apps', {resource: '/widgets'});
+
+    return this;
+  };
+
+  return LearningAppsElement.extend('LearningAppsElement', {
+
     /**
-     * Define LearningApps Element
-     * @param view
-     * @param opts
-     * @returns {LearningAppsElement}
-     * @constructor
-     * @class LearningAppsElement
-     * @extends PluginElement
+     * Render Embedded content
+     * @memberOf LearningAppsElement
+     * @param {string} embed
      */
-    var LearningAppsElement = function LearningAppsElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent(embed) {
+      this.addContent(
+          this.renderIframe(
+              $(embed).attr('src')
+          )
+      );
+    }
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
-
-        this.addCSS('learning.apps', {resource: '/widgets'});
-
-        return this;
-    };
-
-    return LearningAppsElement.extend('LearningAppsElement', {
-
-        /**
-         * Render Embedded content
-         * @memberOf LearningAppsElement
-         * @param {string} embed
-         */
-        renderEmbeddedContent: function renderEmbeddedContent(embed) {
-            this.addContent(
-                this.renderIframe(
-                    $(embed).attr('src')
-                )
-            );
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 });

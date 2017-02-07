@@ -7,102 +7,103 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/film.on/element/film.on.element',
-    'plugins/widgets/film.on/element/film.on.preferences.element',
-    'plugins/widgets/film.on/element/film.on.rules.element'
-], function defineFilmOnView(BaseView, Header, Footer, FilmOnElement, FilmOnPreferencesElement, FilmOnRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/film.on/element/film.on.element',
+  'plugins/widgets/film.on/element/film.on.preferences.element',
+  'plugins/widgets/film.on/element/film.on.rules.element'
+], function defineFilmOnView(BaseView, Header, Footer, FilmOnElement,
+    FilmOnPreferencesElement, FilmOnRulesElement) {
+
+  /**
+   * Define view
+   * @class FilmOnView
+   * @extends BaseView
+   * @constructor
+   */
+  var FilmOnView = function FilmOnView() {
+  };
+
+  return FilmOnView.extend('FilmOnView', {
 
     /**
-     * Define view
-     * @class FilmOnView
-     * @extends BaseView
-     * @constructor
+     * Render FilmOn element
+     * @memberOf FilmOnView
      */
-    var FilmOnView = function FilmOnView() {
-    };
+    renderFilmOn: function renderFilmOn() {
 
-    return FilmOnView.extend('FilmOnView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render FilmOn element
-         * @memberOf FilmOnView
-         */
-        renderFilmOn: function renderFilmOn() {
+      /**
+       * Define $filmon
+       * @type {FilmOnElement}
+       */
+      this.elements.$filmon = new FilmOnElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $filmon
-             * @type {FilmOnElement}
-             */
-            this.elements.$filmon = new FilmOnElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf FilmOnView
+     * @returns {FilmOnPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define FilmOn Preferences Element
+       * @type {FilmOnPreferencesElement}
+       */
+      this.elements.$preferences = new FilmOnPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf FilmOnView
-         * @returns {FilmOnPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define FilmOn Preferences Element
-             * @type {FilmOnPreferencesElement}
-             */
-            this.elements.$preferences = new FilmOnPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf FilmOnView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {FilmOnRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
-
-        /**
-         * Render Rules
-         * @memberOf FilmOnView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {FilmOnRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define FilmOn Rules Element
-             * @type {FilmOnRulesElement}
-             */
-            this.elements.$rules = new FilmOnRulesElement(this, {
-                data: this.controller.getRules(),
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render FilmOn
-         * @memberOf FilmOnView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderFilmOn.bind(this)
-            );
+      /**
+       * Define FilmOn Rules Element
+       * @type {FilmOnRulesElement}
+       */
+      this.elements.$rules = new FilmOnRulesElement(this, {
+        data: this.controller.getRules(),
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render FilmOn
+     * @memberOf FilmOnView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderFilmOn.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

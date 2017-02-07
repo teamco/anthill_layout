@@ -6,35 +6,35 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
-], function defineMobypicturePreferencesElement(PluginElement, WidgetPreferences) {
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
+], function defineMobypicturePreferencesElement(PluginElement,
+    WidgetPreferences) {
 
-    /**
-     * Define Mobypicture Preferences Element
-     * @param view
-     * @param opts
-     * @returns {MobypicturePreferencesElement}
-     * @constructor
-     * @class MobypicturePreferencesElement
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     */
-    var MobypicturePreferencesElement = function MobypicturePreferencesElement(view, opts) {
+  /**
+   * Define Mobypicture Preferences Element
+   * @param view
+   * @param opts
+   * @returns {MobypicturePreferencesElement}
+   * @constructor
+   * @class MobypicturePreferencesElement
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   */
+  var MobypicturePreferencesElement = function MobypicturePreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return MobypicturePreferencesElement.extend('MobypicturePreferencesElement', {
-
-
-    }, PluginElement.prototype, WidgetPreferences.prototype);
+  return MobypicturePreferencesElement.extend('MobypicturePreferencesElement',
+      {}, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

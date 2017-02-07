@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineTsnUaPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class TsnUaPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var TsnUaPermission = function TsnUaPermission() {
+  /**
+   * Define Permissions
+   * @class TsnUaPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var TsnUaPermission = function TsnUaPermission() {
 
-    };
+  };
 
-    return TsnUaPermission.extend('TsnUaPermission', {
-
-    }, BasePermission.prototype);
+  return TsnUaPermission.extend('TsnUaPermission', {},
+      BasePermission.prototype);
 });

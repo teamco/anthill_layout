@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineEmbedlyPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class EmbedlyPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var EmbedlyPermission = function EmbedlyPermission() {
+  /**
+   * Define Permissions
+   * @class EmbedlyPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var EmbedlyPermission = function EmbedlyPermission() {
 
-    };
+  };
 
-    return EmbedlyPermission.extend('EmbedlyPermission', {
-
-    }, BasePermission.prototype);
+  return EmbedlyPermission.extend('EmbedlyPermission', {},
+      BasePermission.prototype);
 });

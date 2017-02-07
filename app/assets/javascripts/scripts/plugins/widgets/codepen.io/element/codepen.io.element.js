@@ -6,40 +6,40 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineCodepenIoElement(PluginElement) {
 
+  /**
+   * Define CodepenIo Element
+   * @param view
+   * @param opts
+   * @returns {CodepenIoElement}
+   * @constructor
+   * @class CodepenIoElement
+   * @extends PluginElement
+   */
+  var CodepenIoElement = function CodepenIoElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('codepen.io', {resource: '/widgets'});
+
+    return this;
+  };
+
+  return CodepenIoElement.extend('CodepenIoElement', {
+
     /**
-     * Define CodepenIo Element
-     * @param view
-     * @param opts
-     * @returns {CodepenIoElement}
-     * @constructor
-     * @class CodepenIoElement
-     * @extends PluginElement
+     * Render Embedded content
+     * @memberOf CodepenIoElement
+     * @param {string} embed
      */
-    var CodepenIoElement = function CodepenIoElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent(embed) {
+      this.$.append(embed);
+    }
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
-
-        this.addCSS('codepen.io', {resource: '/widgets'});
-
-        return this;
-    };
-
-    return CodepenIoElement.extend('CodepenIoElement', {
-
-        /**
-         * Render Embedded content
-         * @memberOf CodepenIoElement
-         * @param {string} embed
-         */
-        renderEmbeddedContent: function renderEmbeddedContent(embed) {
-            this.$.append(embed);
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 });

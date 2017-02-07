@@ -6,38 +6,37 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/rules/widget.base.rules'
+  'plugins/plugin.element',
+  'plugins/rules/widget.base.rules'
 ], function defineTelekanalUaRulesElement(PluginElement, BaseWidgetRules) {
 
-    /**
-     * Define TelekanalUa Rules Element
-     * @param view
-     * @param opts
-     * @returns {TelekanalUaRulesElement}
-     * @constructor
-     * @class TelekanalUaRulesElement
-     * @extends PluginElement
-     * @extends BaseWidgetRules
-     */
-    var TelekanalUaRulesElement = function TelekanalUaRulesElement(view, opts) {
+  /**
+   * Define TelekanalUa Rules Element
+   * @param view
+   * @param opts
+   * @returns {TelekanalUaRulesElement}
+   * @constructor
+   * @class TelekanalUaRulesElement
+   * @extends PluginElement
+   * @extends BaseWidgetRules
+   */
+  var TelekanalUaRulesElement = function TelekanalUaRulesElement(view, opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBaseRulesData(
-            opts.data,
-            opts.rules.widget,
-            opts.rules.content
-        );
+    this.renderBaseRulesData(
+        opts.data,
+        opts.rules.widget,
+        opts.rules.content
+    );
 
-        return this;
-    };
+    return this;
+  };
 
-    return TelekanalUaRulesElement.extend('TelekanalUaRulesElement', {
-
-    }, PluginElement.prototype, BaseWidgetRules.prototype);
+  return TelekanalUaRulesElement.extend('TelekanalUaRulesElement', {},
+      PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineDeviantArtPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class DeviantArtPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var DeviantArtPermission = function DeviantArtPermission() {
+  /**
+   * Define Permissions
+   * @class DeviantArtPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var DeviantArtPermission = function DeviantArtPermission() {
 
-    };
+  };
 
-    return DeviantArtPermission.extend('DeviantArtPermission', {
-
-    }, BasePermission.prototype);
+  return DeviantArtPermission.extend('DeviantArtPermission', {},
+      BasePermission.prototype);
 });

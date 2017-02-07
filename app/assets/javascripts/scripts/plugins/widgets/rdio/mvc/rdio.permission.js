@@ -7,20 +7,18 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineRdioPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class RdioPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var RdioPermission = function RdioPermission() {
+  /**
+   * Define Permissions
+   * @class RdioPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var RdioPermission = function RdioPermission() {
 
-    };
+  };
 
-    return RdioPermission.extend('RdioPermission', {
-
-    }, BasePermission.prototype);
+  return RdioPermission.extend('RdioPermission', {}, BasePermission.prototype);
 });

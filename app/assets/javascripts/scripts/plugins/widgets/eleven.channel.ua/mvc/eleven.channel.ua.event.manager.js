@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineElevenChannelUaEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define ElevenChannelUa event manager
-     * @class ElevenChannelUaEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var ElevenChannelUaEventManager = function ElevenChannelUaEventManager() {
+  /**
+   * Define ElevenChannelUa event manager
+   * @class ElevenChannelUaEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var ElevenChannelUaEventManager = function ElevenChannelUaEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return ElevenChannelUaEventManager.extend('ElevenChannelUaEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return ElevenChannelUaEventManager.extend('ElevenChannelUaEventManager', {},
+      WidgetContentEventManager.prototype);
 });

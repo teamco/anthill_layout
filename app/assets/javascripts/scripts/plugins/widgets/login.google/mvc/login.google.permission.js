@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineLoginGooglePermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class LoginGooglePermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var LoginGooglePermission = function LoginGooglePermission() {
+  /**
+   * Define Permissions
+   * @class LoginGooglePermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var LoginGooglePermission = function LoginGooglePermission() {
 
-    };
+  };
 
-    return LoginGooglePermission.extend('LoginGooglePermission', {
-
-    }, BasePermission.prototype);
+  return LoginGooglePermission.extend('LoginGooglePermission', {},
+      BasePermission.prototype);
 });

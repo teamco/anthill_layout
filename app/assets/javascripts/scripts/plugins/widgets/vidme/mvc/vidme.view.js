@@ -7,108 +7,109 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/vidme/element/vidme.element',
-    'plugins/widgets/vidme/element/vidme.preferences.element',
-    'plugins/widgets/vidme/element/vidme.rules.element'
-], function defineVidmeView(BaseView, Header, Footer, VidmeElement, VidmePreferencesElement, VidmeRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/vidme/element/vidme.element',
+  'plugins/widgets/vidme/element/vidme.preferences.element',
+  'plugins/widgets/vidme/element/vidme.rules.element'
+], function defineVidmeView(BaseView, Header, Footer, VidmeElement,
+    VidmePreferencesElement, VidmeRulesElement) {
+
+  /**
+   * Define view
+   * @class VidmeView
+   * @extends BaseView
+   * @constructor
+   */
+  var VidmeView = function VidmeView() {
+  };
+
+  return VidmeView.extend('VidmeView', {
 
     /**
-     * Define view
-     * @class VidmeView
-     * @extends BaseView
-     * @constructor
+     * Render vidme element
+     * @memberOf VidmeView
      */
-    var VidmeView = function VidmeView() {
-    };
+    renderVidme: function renderVidme() {
 
-    return VidmeView.extend('VidmeView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render vidme element
-         * @memberOf VidmeView
-         */
-        renderVidme: function renderVidme() {
+      /**
+       * Define $vidme
+       * @type {VidmeElement}
+       */
+      this.elements.$vidme = new VidmeElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $vidme
-             * @type {VidmeElement}
-             */
-            this.elements.$vidme = new VidmeElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf VidmeView
+     * @returns {VidmePreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define Vidme Preferences Element
+       * @type {VidmePreferencesElement}
+       */
+      this.elements.$preferences = new VidmePreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf VidmeView
-         * @returns {VidmePreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define Vidme Preferences Element
-             * @type {VidmePreferencesElement}
-             */
-            this.elements.$preferences = new VidmePreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf VidmeView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {VidmeRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
+      /**
+       * Define data
+       * @type {*|{}}
+       */
+      var data = this.controller.getRules();
 
-        /**
-         * Render Rules
-         * @memberOf VidmeView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {VidmeRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define data
-             * @type {*|{}}
-             */
-            var data = this.controller.getRules();
-
-            /**
-             * Define Vidme Rules Element
-             * @type {VidmeRulesElement}
-             */
-            this.elements.$rules = new VidmeRulesElement(this, {
-                data: data,
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render vidme
-         * @memberOf VidmeView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderVidme.bind(this)
-            );
+      /**
+       * Define Vidme Rules Element
+       * @type {VidmeRulesElement}
+       */
+      this.elements.$rules = new VidmeRulesElement(this, {
+        data: data,
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render vidme
+     * @memberOf VidmeView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderVidme.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

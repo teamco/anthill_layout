@@ -6,92 +6,92 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineXHamsterController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define XHamster controller
+   * @class XHamsterController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var XHamsterController = function XHamsterController() {
+  };
+
+  return XHamsterController.extend('XHamsterController', {
+
     /**
-     * Define XHamster controller
-     * @class XHamsterController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf XHamsterController
      */
-    var XHamsterController = function XHamsterController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
 
-    return XHamsterController.extend('XHamsterController', {
+      /**
+       * Get url
+       * @type {string|*}
+       */
+      var url = this.model.getPrefs('xhamsterUrl'),
+          embed = this.controller.getEmbedCode(url);
 
-        /**
-         * Set embedded content
-         * @memberOf XHamsterController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
+      if (embed) {
+        this.view.elements.$xhamster.renderEmbeddedContent(embed);
+      }
+    },
 
-            /**
-             * Get url
-             * @type {string|*}
-             */
-            var url = this.model.getPrefs('xhamsterUrl'),
-                embed = this.controller.getEmbedCode(url);
+    /**
+     * Validate xHamster
+     * @memberOf XHamsterController
+     * @param {string} url
+     * @return {string|boolean}
+     */
+    getEmbedCode: function getEmbedCode(url) {
 
-            if (embed) {
-                this.view.elements.$xhamster.renderEmbeddedContent(embed);
-            }
-        },
+      if (!url) {
+        this.scope.logger.debug('Initial state');
+        return false;
+      }
 
-        /**
-         * Validate xHamster
-         * @memberOf XHamsterController
-         * @param {string} url
-         * @return {string|boolean}
-         */
-        getEmbedCode: function getEmbedCode(url) {
+      // Convert to string
+      url += '';
 
-            if (!url) {
-                this.scope.logger.debug('Initial state');
-                return false;
-            }
+      if (url.match(/iframe/)) {
+        url = $(url).attr('src');
+      }
 
-            // Convert to string
-            url += '';
+      var mask = this.model.getConfig('mask'),
+          regex = url.match(
+              this.model.getConfig('regex')
+          );
 
-            if (url.match(/iframe/)) {
-                url = $(url).attr('src');
-            }
+      if (!regex) {
+        this.scope.logger.warn('Invalid xHamster url');
+        return false;
+      }
 
-            var mask = this.model.getConfig('mask'),
-                regex = url.match(
-                    this.model.getConfig('regex')
-                );
+      return mask.replace(/\{id}/g, regex[0]);
+    },
 
-            if (!regex) {
-                this.scope.logger.warn('Invalid xHamster url');
-                return false;
-            }
+    /**
+     * Add XHamster rule
+     * @memberOf XHamsterController
+     * @param {Event} e
+     */
+    addXHamsterRule: function addXHamsterRule(e) {
 
-            return mask.replace(/\{id}/g, regex[0]);
-        },
+      /**
+       * Define $button
+       * @type {*|jQuery|HTMLElement}
+       */
+      var $button = $(e.target),
+          scope = this.scope;
 
-        /**
-         * Add XHamster rule
-         * @memberOf XHamsterController
-         * @param {Event} e
-         */
-        addXHamsterRule: function addXHamsterRule(e) {
+      scope.observer.publish(
+          scope.eventmanager.eventList.publishRule,
+          [$button.attr('value'), this.scope.name]
+      );
+    }
 
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), this.scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

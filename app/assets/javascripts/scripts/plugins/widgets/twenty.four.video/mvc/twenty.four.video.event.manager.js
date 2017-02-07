@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineTwentyFourVideoEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define TwentyFourVideo event manager
-     * @class TwentyFourVideoEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var TwentyFourVideoEventManager = function TwentyFourVideoEventManager() {
+  /**
+   * Define TwentyFourVideo event manager
+   * @class TwentyFourVideoEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var TwentyFourVideoEventManager = function TwentyFourVideoEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return TwentyFourVideoEventManager.extend('TwentyFourVideoEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return TwentyFourVideoEventManager.extend('TwentyFourVideoEventManager', {},
+      WidgetContentEventManager.prototype);
 });

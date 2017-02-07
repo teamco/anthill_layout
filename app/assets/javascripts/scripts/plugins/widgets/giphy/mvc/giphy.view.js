@@ -7,108 +7,109 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/giphy/element/giphy.element',
-    'plugins/widgets/giphy/element/giphy.preferences.element',
-    'plugins/widgets/giphy/element/giphy.rules.element'
-], function defineGiphyView(BaseView, Header, Footer, GiphyElement, GiphyPreferencesElement, GiphyRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/giphy/element/giphy.element',
+  'plugins/widgets/giphy/element/giphy.preferences.element',
+  'plugins/widgets/giphy/element/giphy.rules.element'
+], function defineGiphyView(BaseView, Header, Footer, GiphyElement,
+    GiphyPreferencesElement, GiphyRulesElement) {
+
+  /**
+   * Define view
+   * @class GiphyView
+   * @extends BaseView
+   * @constructor
+   */
+  var GiphyView = function GiphyView() {
+  };
+
+  return GiphyView.extend('GiphyView', {
 
     /**
-     * Define view
-     * @class GiphyView
-     * @extends BaseView
-     * @constructor
+     * Render giphy element
+     * @memberOf GiphyView
      */
-    var GiphyView = function GiphyView() {
-    };
+    renderGiphy: function renderGiphy() {
 
-    return GiphyView.extend('GiphyView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render giphy element
-         * @memberOf GiphyView
-         */
-        renderGiphy: function renderGiphy() {
+      /**
+       * Define $giphy
+       * @type {GiphyElement}
+       */
+      this.elements.$giphy = new GiphyElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $giphy
-             * @type {GiphyElement}
-             */
-            this.elements.$giphy = new GiphyElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf GiphyView
+     * @returns {GiphyPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define Giphy Preferences Element
+       * @type {GiphyPreferencesElement}
+       */
+      this.elements.$preferences = new GiphyPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf GiphyView
-         * @returns {GiphyPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define Giphy Preferences Element
-             * @type {GiphyPreferencesElement}
-             */
-            this.elements.$preferences = new GiphyPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf GiphyView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {GiphyRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
+      /**
+       * Define data
+       * @type {*|{}}
+       */
+      var data = this.controller.getRules();
 
-        /**
-         * Render Rules
-         * @memberOf GiphyView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {GiphyRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define data
-             * @type {*|{}}
-             */
-            var data = this.controller.getRules();
-
-            /**
-             * Define Giphy Rules Element
-             * @type {GiphyRulesElement}
-             */
-            this.elements.$rules = new GiphyRulesElement(this, {
-                data: data,
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render giphy
-         * @memberOf GiphyView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderGiphy.bind(this)
-            );
+      /**
+       * Define Giphy Rules Element
+       * @type {GiphyRulesElement}
+       */
+      this.elements.$rules = new GiphyRulesElement(this, {
+        data: data,
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render giphy
+     * @memberOf GiphyView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderGiphy.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

@@ -6,38 +6,37 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/rules/widget.base.rules'
+  'plugins/plugin.element',
+  'plugins/rules/widget.base.rules'
 ], function defineIsnareRulesElement(PluginElement, BaseWidgetRules) {
 
-    /**
-     * Define Isnare Rules Element
-     * @param view
-     * @param opts
-     * @returns {IsnareRulesElement}
-     * @constructor
-     * @class IsnareRulesElement
-     * @extends PluginElement
-     * @extends BaseWidgetRules
-     */
-    var IsnareRulesElement = function IsnareRulesElement(view, opts) {
+  /**
+   * Define Isnare Rules Element
+   * @param view
+   * @param opts
+   * @returns {IsnareRulesElement}
+   * @constructor
+   * @class IsnareRulesElement
+   * @extends PluginElement
+   * @extends BaseWidgetRules
+   */
+  var IsnareRulesElement = function IsnareRulesElement(view, opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBaseRulesData(
-            opts.data,
-            opts.rules.widget,
-            opts.rules.content
-        );
+    this.renderBaseRulesData(
+        opts.data,
+        opts.rules.widget,
+        opts.rules.content
+    );
 
-        return this;
-    };
+    return this;
+  };
 
-    return IsnareRulesElement.extend('IsnareRulesElement', {
-
-    }, PluginElement.prototype, BaseWidgetRules.prototype);
+  return IsnareRulesElement.extend('IsnareRulesElement', {},
+      PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

@@ -6,46 +6,47 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineSportliveModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define Sportlive model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class SportliveModel
+   * @constructor
+   */
+  var SportliveModel = function SportliveModel() {
+
     /**
-     * Define Sportlive model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class SportliveModel
-     * @constructor
-     */
-    var SportliveModel = function SportliveModel() {
-
-        /**
-         * Define preferences
-         * @property SportliveModel
-         * @type {{
-         *      sportliveEmbedCode: {type: string, disabled: boolean, value: string, visible: boolean}
+     * Define preferences
+     * @property SportliveModel
+     * @type {{
+         *      sportliveEmbedCode: {type: string, disabled: boolean, value:
+         *     string, visible: boolean}
          * }}
-         */
-        this.preferences = {
-            sportliveEmbedCode: {
-                type: 'textarea',
-                disabled: false,
-                value: '<iframe src="http://sportlive.ws/player?channel=match" width="643" height="360" frameborder="0" scrolling="no" allowfullscreen></iframe>',
-                visible: true
-            }
-        };
-
-        /**
-         * Define rules
-         * @property SportliveModel
-         * @type {{}}
-         */
-        this.rules = {};
+     */
+    this.preferences = {
+      sportliveEmbedCode: {
+        type: 'textarea',
+        disabled: false,
+        value: '<iframe src="http://sportlive.ws/player?channel=match" width="643" height="360" frameborder="0" scrolling="no" allowfullscreen></iframe>',
+        visible: true
+      }
     };
 
-    return SportliveModel.extend('SportliveModel', {
+    /**
+     * Define rules
+     * @property SportliveModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        // Setter
+  return SportliveModel.extend('SportliveModel', {
 
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    // Setter
+
+  }, BaseModel.prototype, WidgetContentModel.prototype);
 });

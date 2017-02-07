@@ -6,38 +6,37 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/rules/widget.base.rules'
+  'plugins/plugin.element',
+  'plugins/rules/widget.base.rules'
 ], function defineSpankwireRulesElement(PluginElement, BaseWidgetRules) {
 
-    /**
-     * Define Spankwire Rules Element
-     * @param view
-     * @param opts
-     * @returns {SpankwireRulesElement}
-     * @constructor
-     * @class SpankwireRulesElement
-     * @extends PluginElement
-     * @extends BaseWidgetRules
-     */
-    var SpankwireRulesElement = function SpankwireRulesElement(view, opts) {
+  /**
+   * Define Spankwire Rules Element
+   * @param view
+   * @param opts
+   * @returns {SpankwireRulesElement}
+   * @constructor
+   * @class SpankwireRulesElement
+   * @extends PluginElement
+   * @extends BaseWidgetRules
+   */
+  var SpankwireRulesElement = function SpankwireRulesElement(view, opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBaseRulesData(
-            opts.data,
-            opts.rules.widget,
-            opts.rules.content
-        );
+    this.renderBaseRulesData(
+        opts.data,
+        opts.rules.widget,
+        opts.rules.content
+    );
 
-        return this;
-    };
+    return this;
+  };
 
-    return SpankwireRulesElement.extend('SpankwireRulesElement', {
-
-    }, PluginElement.prototype, BaseWidgetRules.prototype);
+  return SpankwireRulesElement.extend('SpankwireRulesElement', {},
+      PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

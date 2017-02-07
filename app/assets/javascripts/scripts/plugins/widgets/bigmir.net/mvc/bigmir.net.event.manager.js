@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineBigmirNetEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define BigmirNet event manager
-     * @class BigmirNetEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var BigmirNetEventManager = function BigmirNetEventManager() {
+  /**
+   * Define BigmirNet event manager
+   * @class BigmirNetEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var BigmirNetEventManager = function BigmirNetEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return BigmirNetEventManager.extend('BigmirNetEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return BigmirNetEventManager.extend('BigmirNetEventManager', {},
+      WidgetContentEventManager.prototype);
 });

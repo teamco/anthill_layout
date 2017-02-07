@@ -6,82 +6,82 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineLifestreamController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define Lifestream controller
+   * @class LifestreamController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var LifestreamController = function LifestreamController() {
+  };
+
+  return LifestreamController.extend('LifestreamController', {
+
     /**
-     * Define Lifestream controller
-     * @class LifestreamController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf LifestreamController
      */
-    var LifestreamController = function LifestreamController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
 
-    return LifestreamController.extend('LifestreamController', {
+      var prefs = this.model.getAllContentPrefs(),
+          index, opts = [], value,
+          service, condition;
 
-        /**
-         * Set embedded content
-         * @memberOf LifestreamController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
+      for (index in prefs) {
 
-            var prefs = this.model.getAllContentPrefs(),
-                index, opts = [], value,
-                service, condition;
+        if (prefs.hasOwnProperty(index)) {
 
-            for (index in prefs) {
+          // Get prefs
+          value = this.model.getPrefs(index);
 
-                if (prefs.hasOwnProperty(index)) {
+          if (this.base.isDefined(value)) {
 
-                    // Get prefs
-                    value = this.model.getPrefs(index);
+            // Get service name
+            service = index.toLowerCase().
+                replace(this.name.toLowerCase(), '');
 
-                    if (this.base.isDefined(value)) {
+            condition =
+                service.match(/user/) ||
+                service.match(/url/);
 
-                        // Get service name
-                        service = index.toLowerCase().
-                            replace(this.name.toLowerCase(), '');
-
-                        condition =
-                            service.match(/user/) ||
-                            service.match(/url/);
-
-                        if (condition && value.length > 0) {
-                            opts.push({
-                                service: service.replace(/user/, '').
-                                    replace(/url/, ''),
-                                user: value
-                            });
-                        }
-                    }
-                }
+            if (condition && value.length > 0) {
+              opts.push({
+                service: service.replace(/user/, '').
+                    replace(/url/, ''),
+                user: value
+              });
             }
-
-            this.view.get$item().renderEmbeddedContent(opts);
-        },
-
-        /**
-         * Add Lifestream rule
-         * @memberOf LifestreamController
-         * @param {Event} e
-         */
-        addLifestreamRule: function addLifestreamRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), this.scope.name]
-            );
+          }
         }
+      }
 
-    }, PluginBase.prototype, WidgetContentController.prototype);
+      this.view.get$item().renderEmbeddedContent(opts);
+    },
+
+    /**
+     * Add Lifestream rule
+     * @memberOf LifestreamController
+     * @param {Event} e
+     */
+    addLifestreamRule: function addLifestreamRule(e) {
+
+      /**
+       * Define $button
+       * @type {*|jQuery|HTMLElement}
+       */
+      var $button = $(e.target),
+          scope = this.scope;
+
+      scope.observer.publish(
+          scope.eventmanager.eventList.publishRule,
+          [$button.attr('value'), this.scope.name]
+      );
+    }
+
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

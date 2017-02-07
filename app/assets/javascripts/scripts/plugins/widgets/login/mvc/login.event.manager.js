@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineLoginEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define Login event manager
-     * @class LoginEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var LoginEventManager = function LoginEventManager() {
+  /**
+   * Define Login event manager
+   * @class LoginEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var LoginEventManager = function LoginEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return LoginEventManager.extend('LoginEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return LoginEventManager.extend('LoginEventManager', {},
+      WidgetContentEventManager.prototype);
 });

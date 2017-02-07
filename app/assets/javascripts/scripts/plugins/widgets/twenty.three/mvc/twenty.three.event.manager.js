@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineTwentyThreeEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define TwentyThree event manager
-     * @class TwentyThreeEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var TwentyThreeEventManager = function TwentyThreeEventManager() {
+  /**
+   * Define TwentyThree event manager
+   * @class TwentyThreeEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var TwentyThreeEventManager = function TwentyThreeEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return TwentyThreeEventManager.extend('TwentyThreeEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return TwentyThreeEventManager.extend('TwentyThreeEventManager', {},
+      WidgetContentEventManager.prototype);
 });

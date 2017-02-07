@@ -6,35 +6,37 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
-], function defineHuffdufferPreferencesElement(PluginElement, WidgetPreferences) {
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
+], function defineHuffdufferPreferencesElement(PluginElement,
+    WidgetPreferences) {
 
-    /**
-     * Define Huffduffer Preferences Element
-     * @constructor
-     * @class HuffdufferPreferencesElement
-     * @param {HuffdufferView} view
-     * @param opts
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     * @returns {HuffdufferPreferencesElement}
-     */
-    var HuffdufferPreferencesElement = function HuffdufferPreferencesElement(view, opts) {
+  /**
+   * Define Huffduffer Preferences Element
+   * @constructor
+   * @class HuffdufferPreferencesElement
+   * @param {HuffdufferView} view
+   * @param opts
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   * @returns {HuffdufferPreferencesElement}
+   */
+  var HuffdufferPreferencesElement = function HuffdufferPreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return HuffdufferPreferencesElement.extend(
-        'HuffdufferPreferencesElement', {}, 
-        PluginElement.prototype, 
-        WidgetPreferences.prototype
-    );
+  return HuffdufferPreferencesElement.extend(
+      'HuffdufferPreferencesElement', {},
+      PluginElement.prototype,
+      WidgetPreferences.prototype
+  );
 });

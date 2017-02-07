@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineIctvEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define Ictv event manager
-     * @class IctvEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var IctvEventManager = function IctvEventManager() {
+  /**
+   * Define Ictv event manager
+   * @class IctvEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var IctvEventManager = function IctvEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return IctvEventManager.extend('IctvEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return IctvEventManager.extend('IctvEventManager', {},
+      WidgetContentEventManager.prototype);
 });

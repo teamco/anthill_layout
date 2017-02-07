@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineFilmOnEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define FilmOn event manager
-     * @class FilmOnEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var FilmOnEventManager = function FilmOnEventManager() {
+  /**
+   * Define FilmOn event manager
+   * @class FilmOnEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var FilmOnEventManager = function FilmOnEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return FilmOnEventManager.extend('FilmOnEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return FilmOnEventManager.extend('FilmOnEventManager', {},
+      WidgetContentEventManager.prototype);
 });

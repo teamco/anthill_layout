@@ -7,101 +7,103 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/videochart.net/element/videochart.net.element',
-    'plugins/widgets/videochart.net/element/videochart.net.preferences.element',
-    'plugins/widgets/videochart.net/element/videochart.net.rules.element'
-], function defineVideochartNetView(BaseView, Header, Footer, VideochartNetElement, VideochartNetPreferencesElement, VideochartNetRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/videochart.net/element/videochart.net.element',
+  'plugins/widgets/videochart.net/element/videochart.net.preferences.element',
+  'plugins/widgets/videochart.net/element/videochart.net.rules.element'
+], function defineVideochartNetView(BaseView, Header, Footer,
+    VideochartNetElement, VideochartNetPreferencesElement,
+    VideochartNetRulesElement) {
+
+  /**
+   * Define view
+   * @class VideochartNetView
+   * @extends BaseView
+   * @constructor
+   */
+  var VideochartNetView = function VideochartNetView() {
+  };
+
+  return VideochartNetView.extend('VideochartNetView', {
 
     /**
-     * Define view
-     * @class VideochartNetView
-     * @extends BaseView
-     * @constructor
+     * Render VideochartNet element
+     * @memberOf VideochartNetView
      */
-    var VideochartNetView = function VideochartNetView() {
-    };
+    renderVideochartNet: function renderVideochartNet() {
 
-    return VideochartNetView.extend('VideochartNetView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render VideochartNet element
-         * @memberOf VideochartNetView
-         */
-        renderVideochartNet: function renderVideochartNet() {
+      /**
+       * Define $videochartnet
+       * @type {VideochartNetElement}
+       */
+      this.elements.$videochartnet = new VideochartNetElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $videochartnet
-             * @type {VideochartNetElement}
-             */
-            this.elements.$videochartnet = new VideochartNetElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf VideochartNetView
+     * @returns {VideochartNetPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define VideochartNet Preferences Element
+       * @type {VideochartNetPreferencesElement}
+       */
+      this.elements.$preferences = new VideochartNetPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf VideochartNetView
-         * @returns {VideochartNetPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define VideochartNet Preferences Element
-             * @type {VideochartNetPreferencesElement}
-             */
-            this.elements.$preferences = new VideochartNetPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf VideochartNetView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {VideochartNetRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
-
-        /**
-         * Render Rules
-         * @memberOf VideochartNetView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {VideochartNetRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define VideochartNet Rules Element
-             * @type {VideochartNetRulesElement}
-             */
-            this.elements.$rules = new VideochartNetRulesElement(this, {
-                data: this.controller.getRules(),
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render VideochartNet
-         * @memberOf VideochartNetView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderVideochartNet.bind(this)
-            );
+      /**
+       * Define VideochartNet Rules Element
+       * @type {VideochartNetRulesElement}
+       */
+      this.elements.$rules = new VideochartNetRulesElement(this, {
+        data: this.controller.getRules(),
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype);
+      return this.get$rules();
+    },
+
+    /**
+     * Render VideochartNet
+     * @memberOf VideochartNetView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderVideochartNet.bind(this)
+      );
+    }
+
+  }, BaseView.prototype);
 });

@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineVimeoPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class VimeoPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var VimeoPermission = function VimeoPermission() {
+  /**
+   * Define Permissions
+   * @class VimeoPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var VimeoPermission = function VimeoPermission() {
 
-    };
+  };
 
-    return VimeoPermission.extend('VimeoPermission', {
-
-    }, BasePermission.prototype);
+  return VimeoPermission.extend('VimeoPermission', {},
+      BasePermission.prototype);
 });

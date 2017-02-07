@@ -6,44 +6,45 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineLiveAmchartsModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define LiveAmcharts model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class LiveAmchartsModel
+   * @constructor
+   */
+  var LiveAmchartsModel = function LiveAmchartsModel() {
+
     /**
-     * Define LiveAmcharts model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class LiveAmchartsModel
-     * @constructor
+     * Define preferences
+     * @property LiveAmchartsModel
+     * @type {{liveamchartsEmbedCode: {type: string, disabled: boolean, value:
+     *     string, visible: boolean}}}
      */
-    var LiveAmchartsModel = function LiveAmchartsModel() {
-
-        /**
-         * Define preferences
-         * @property LiveAmchartsModel
-         * @type {{liveamchartsEmbedCode: {type: string, disabled: boolean, value: string, visible: boolean}}}
-         */
-        this.preferences = {
-            liveamchartsEmbedCode: {
-                type: 'textarea',
-                disabled: false,
-                value: '<iframe width="600" height="400" src="https://live.amcharts.com/zOTk5/embed/" frameborder="0"></iframe>',
-                visible: true
-            }
-        };
-
-        /**
-         * Define rules
-         * @property LiveAmchartsModel
-         * @type {{}}
-         */
-        this.rules = {};
+    this.preferences = {
+      liveamchartsEmbedCode: {
+        type: 'textarea',
+        disabled: false,
+        value: '<iframe width="600" height="400" src="https://live.amcharts.com/zOTk5/embed/" frameborder="0"></iframe>',
+        visible: true
+      }
     };
 
-    return LiveAmchartsModel.extend(
-        'LiveAmchartsModel', {},
-        BaseModel.prototype,
-        WidgetContentModel.prototype
-    );
+    /**
+     * Define rules
+     * @property LiveAmchartsModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
+
+  return LiveAmchartsModel.extend(
+      'LiveAmchartsModel', {},
+      BaseModel.prototype,
+      WidgetContentModel.prototype
+  );
 });

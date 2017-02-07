@@ -7,101 +7,102 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/sapo.videos/element/sapo.videos.element',
-    'plugins/widgets/sapo.videos/element/sapo.videos.preferences.element',
-    'plugins/widgets/sapo.videos/element/sapo.videos.rules.element'
-], function defineSapoVideosView(BaseView, Header, Footer, SapoVideosElement, SapoVideosPreferencesElement, SapoVideosRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/sapo.videos/element/sapo.videos.element',
+  'plugins/widgets/sapo.videos/element/sapo.videos.preferences.element',
+  'plugins/widgets/sapo.videos/element/sapo.videos.rules.element'
+], function defineSapoVideosView(BaseView, Header, Footer, SapoVideosElement,
+    SapoVideosPreferencesElement, SapoVideosRulesElement) {
+
+  /**
+   * Define view
+   * @class SapoVideosView
+   * @extends BaseView
+   * @constructor
+   */
+  var SapoVideosView = function SapoVideosView() {
+  };
+
+  return SapoVideosView.extend('SapoVideosView', {
 
     /**
-     * Define view
-     * @class SapoVideosView
-     * @extends BaseView
-     * @constructor
+     * Render SapoVideos element
+     * @memberOf SapoVideosView
      */
-    var SapoVideosView = function SapoVideosView() {
-    };
+    renderSapoVideos: function renderSapoVideos() {
 
-    return SapoVideosView.extend('SapoVideosView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render SapoVideos element
-         * @memberOf SapoVideosView
-         */
-        renderSapoVideos: function renderSapoVideos() {
+      /**
+       * Define $sapovideos
+       * @type {SapoVideosElement}
+       */
+      this.elements.$sapovideos = new SapoVideosElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $sapovideos
-             * @type {SapoVideosElement}
-             */
-            this.elements.$sapovideos = new SapoVideosElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf SapoVideosView
+     * @returns {SapoVideosPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define SapoVideos Preferences Element
+       * @type {SapoVideosPreferencesElement}
+       */
+      this.elements.$preferences = new SapoVideosPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf SapoVideosView
-         * @returns {SapoVideosPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define SapoVideos Preferences Element
-             * @type {SapoVideosPreferencesElement}
-             */
-            this.elements.$preferences = new SapoVideosPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf SapoVideosView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {SapoVideosRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
-
-        /**
-         * Render Rules
-         * @memberOf SapoVideosView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {SapoVideosRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define SapoVideos Rules Element
-             * @type {SapoVideosRulesElement}
-             */
-            this.elements.$rules = new SapoVideosRulesElement(this, {
-                data: this.controller.getRules(),
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render SapoVideos
-         * @memberOf SapoVideosView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderSapoVideos.bind(this)
-            );
+      /**
+       * Define SapoVideos Rules Element
+       * @type {SapoVideosRulesElement}
+       */
+      this.elements.$rules = new SapoVideosRulesElement(this, {
+        data: this.controller.getRules(),
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype);
+      return this.get$rules();
+    },
+
+    /**
+     * Render SapoVideos
+     * @memberOf SapoVideosView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderSapoVideos.bind(this)
+      );
+    }
+
+  }, BaseView.prototype);
 });

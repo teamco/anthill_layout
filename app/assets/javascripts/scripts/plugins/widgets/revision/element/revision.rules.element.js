@@ -6,38 +6,37 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/rules/widget.base.rules'
+  'plugins/plugin.element',
+  'plugins/rules/widget.base.rules'
 ], function defineRevisionRulesElement(PluginElement, BaseWidgetRules) {
 
-    /**
-     * Define Revision Rules Element
-     * @param view
-     * @param opts
-     * @returns {RevisionRulesElement}
-     * @constructor
-     * @class RevisionRulesElement
-     * @extends PluginElement
-     * @extends BaseWidgetRules
-     */
-    var RevisionRulesElement = function RevisionRulesElement(view, opts) {
+  /**
+   * Define Revision Rules Element
+   * @param view
+   * @param opts
+   * @returns {RevisionRulesElement}
+   * @constructor
+   * @class RevisionRulesElement
+   * @extends PluginElement
+   * @extends BaseWidgetRules
+   */
+  var RevisionRulesElement = function RevisionRulesElement(view, opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBaseRulesData(
-            opts.data,
-            opts.rules.widget,
-            opts.rules.content
-        );
+    this.renderBaseRulesData(
+        opts.data,
+        opts.rules.widget,
+        opts.rules.content
+    );
 
-        return this;
-    };
+    return this;
+  };
 
-    return RevisionRulesElement.extend('RevisionRulesElement', {
-
-    }, PluginElement.prototype, BaseWidgetRules.prototype);
+  return RevisionRulesElement.extend('RevisionRulesElement', {},
+      PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

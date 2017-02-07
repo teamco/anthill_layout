@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineSomeEcardsPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class SomeEcardsPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var SomeEcardsPermission = function SomeEcardsPermission() {
+  /**
+   * Define Permissions
+   * @class SomeEcardsPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var SomeEcardsPermission = function SomeEcardsPermission() {
 
-    };
+  };
 
-    return SomeEcardsPermission.extend('SomeEcardsPermission', {
-
-    }, BasePermission.prototype);
+  return SomeEcardsPermission.extend('SomeEcardsPermission', {},
+      BasePermission.prototype);
 });

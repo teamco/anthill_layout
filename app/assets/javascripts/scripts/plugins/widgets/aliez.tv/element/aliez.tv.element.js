@@ -6,44 +6,44 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineAliezTvElement(PluginElement) {
 
+  /**
+   * Define AliezTv Element
+   * @param view
+   * @param opts
+   * @returns {AliezTvElement}
+   * @constructor
+   * @class AliezTvElement
+   * @extends PluginElement
+   */
+  var AliezTvElement = function AliezTvElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('aliez.tv', {resource: '/widgets'});
+
+    return this;
+  };
+
+  return AliezTvElement.extend('AliezTvElement', {
+
     /**
-     * Define AliezTv Element
-     * @param view
-     * @param opts
-     * @returns {AliezTvElement}
-     * @constructor
-     * @class AliezTvElement
-     * @extends PluginElement
+     * Render Embedded content
+     * @memberOf AliezTvElement
+     * @type {string}
      */
-    var AliezTvElement = function AliezTvElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent(iframe) {
+      this.$.append(
+          this.renderIframe(
+              $(iframe).attr('src')
+          )
+      );
+    }
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
-
-        this.addCSS('aliez.tv', {resource: '/widgets'});
-
-        return this;
-    };
-
-    return AliezTvElement.extend('AliezTvElement', {
-
-        /**
-         * Render Embedded content
-         * @memberOf AliezTvElement
-         * @type {string}
-         */
-        renderEmbeddedContent: function renderEmbeddedContent(iframe) {
-            this.$.append(
-                this.renderIframe(
-                    $(iframe).attr('src')
-                )
-            );
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 });

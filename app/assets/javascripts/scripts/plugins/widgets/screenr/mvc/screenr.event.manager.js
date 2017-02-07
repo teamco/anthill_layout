@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineScreenrEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define Screenr event manager
-     * @class ScreenrEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var ScreenrEventManager = function ScreenrEventManager() {
+  /**
+   * Define Screenr event manager
+   * @class ScreenrEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var ScreenrEventManager = function ScreenrEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return ScreenrEventManager.extend('ScreenrEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return ScreenrEventManager.extend('ScreenrEventManager', {},
+      WidgetContentEventManager.prototype);
 });

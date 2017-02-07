@@ -6,35 +6,33 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
 ], function defineRdioPreferencesElement(PluginElement, WidgetPreferences) {
 
-    /**
-     * Define Rdio Preferences Element
-     * @param view
-     * @param opts
-     * @returns {RdioPreferencesElement}
-     * @constructor
-     * @class RdioPreferencesElement
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     */
-    var RdioPreferencesElement = function RdioPreferencesElement(view, opts) {
+  /**
+   * Define Rdio Preferences Element
+   * @param view
+   * @param opts
+   * @returns {RdioPreferencesElement}
+   * @constructor
+   * @class RdioPreferencesElement
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   */
+  var RdioPreferencesElement = function RdioPreferencesElement(view, opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return RdioPreferencesElement.extend('RdioPreferencesElement', {
-
-
-    }, PluginElement.prototype, WidgetPreferences.prototype);
+  return RdioPreferencesElement.extend('RdioPreferencesElement', {},
+      PluginElement.prototype, WidgetPreferences.prototype);
 
 });

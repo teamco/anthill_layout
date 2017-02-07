@@ -7,20 +7,20 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineOraTvPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class OraTvPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var OraTvPermission = function OraTvPermission() {
-    };
+  /**
+   * Define Permissions
+   * @class OraTvPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var OraTvPermission = function OraTvPermission() {
+  };
 
-    return OraTvPermission.extend(
-        'OraTvPermission', {}, 
-        BasePermission.prototype
-    );
+  return OraTvPermission.extend(
+      'OraTvPermission', {},
+      BasePermission.prototype
+  );
 });

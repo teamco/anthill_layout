@@ -6,85 +6,85 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineVideoPayNetController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define VideoPayNet controller
+   * @class VideoPayNetController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var VideoPayNetController = function VideoPayNetController() {
+  };
+
+  return VideoPayNetController.extend('VideoPayNetController', {
+
     /**
-     * Define VideoPayNet controller
-     * @class VideoPayNetController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf VideoPayNetController
      */
-    var VideoPayNetController = function VideoPayNetController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
+      /**
+       * Get url
+       * @type {string|*}
+       */
+      var url = this.model.getPrefs('videopaynetEmbedCode'),
+          embed = this.controller.getEmbedCode(url);
 
-    return VideoPayNetController.extend('VideoPayNetController', {
+      if (embed) {
+        this.view.elements.$videopaynet.renderEmbeddedContent(embed);
+      }
+    },
 
-        /**
-         * Set embedded content
-         * @memberOf VideoPayNetController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
-            /**
-             * Get url
-             * @type {string|*}
-             */
-            var url = this.model.getPrefs('videopaynetEmbedCode'),
-                embed = this.controller.getEmbedCode(url);
+    /**
+     * Validate iframe
+     * @memberOf VideoPayNetController
+     * @param {string} embed
+     * @return {string|boolean}
+     */
+    getEmbedCode: function getEmbedCode(embed) {
 
-            if (embed) {
-                this.view.elements.$videopaynet.renderEmbeddedContent(embed);
-            }
-        },
+      if (!embed) {
+        this.scope.logger.debug('Initial state');
+        return false;
+      }
 
-        /**
-         * Validate iframe
-         * @memberOf VideoPayNetController
-         * @param {string} embed
-         * @return {string|boolean}
-         */
-        getEmbedCode: function getEmbedCode(embed) {
+      // Convert to string
+      embed += '';
 
-            if (!embed) {
-                this.scope.logger.debug('Initial state');
-                return false;
-            }
+      if (embed.match(/^<iframe/)) {
 
-            // Convert to string
-            embed += '';
+        return $(embed).attr('src');
 
-            if (embed.match(/^<iframe/)) {
+      } else {
 
-                return $(embed).attr('src');
+        this.scope.logger.warn('Invalid VideoPayNet embed code');
+        return false;
+      }
+    },
 
-            } else {
+    /**
+     * Add VideoPayNet rule
+     * @memberOf VideoPayNetController
+     * @param {Event} e
+     */
+    addVideoPayNetRule: function addVideoPayNetRule(e) {
 
-                this.scope.logger.warn('Invalid VideoPayNet embed code');
-                return false;
-            }
-        },
+      /**
+       * Define $button
+       * @type {*|jQuery|HTMLElement}
+       */
+      var $button = $(e.target),
+          scope = this.scope;
 
-        /**
-         * Add VideoPayNet rule
-         * @memberOf VideoPayNetController
-         * @param {Event} e
-         */
-        addVideoPayNetRule: function addVideoPayNetRule(e) {
+      scope.observer.publish(
+          scope.eventmanager.eventList.publishRule,
+          [$button.attr('value'), this.scope.name]
+      );
+    }
 
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), this.scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

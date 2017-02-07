@@ -7,101 +7,102 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/empty/element/empty.element',
-    'plugins/widgets/empty/element/empty.preferences.element',
-    'plugins/widgets/empty/element/empty.rules.element'
-], function defineEmptyView(BaseView, Header, Footer, EmptyElement, EmptyPreferencesElement, EmptyRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/empty/element/empty.element',
+  'plugins/widgets/empty/element/empty.preferences.element',
+  'plugins/widgets/empty/element/empty.rules.element'
+], function defineEmptyView(BaseView, Header, Footer, EmptyElement,
+    EmptyPreferencesElement, EmptyRulesElement) {
+
+  /**
+   * Define view
+   * @class EmptyView
+   * @extends BaseView
+   * @constructor
+   */
+  var EmptyView = function EmptyView() {
+  };
+
+  return EmptyView.extend('EmptyView', {
 
     /**
-     * Define view
-     * @class EmptyView
-     * @extends BaseView
-     * @constructor
+     * Render Empty element
+     * @memberOf EmptyView
      */
-    var EmptyView = function EmptyView() {
-    };
+    renderEmpty: function renderEmpty() {
 
-    return EmptyView.extend('EmptyView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render Empty element
-         * @memberOf EmptyView
-         */
-        renderEmpty: function renderEmpty() {
+      /**
+       * Define $empty
+       * @type {EmptyElement}
+       */
+      this.elements.$empty = new EmptyElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $empty
-             * @type {EmptyElement}
-             */
-            this.elements.$empty = new EmptyElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf EmptyView
+     * @returns {EmptyPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define Empty Preferences Element
+       * @type {EmptyPreferencesElement}
+       */
+      this.elements.$preferences = new EmptyPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf EmptyView
-         * @returns {EmptyPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define Empty Preferences Element
-             * @type {EmptyPreferencesElement}
-             */
-            this.elements.$preferences = new EmptyPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf EmptyView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {EmptyRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
-
-        /**
-         * Render Rules
-         * @memberOf EmptyView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {EmptyRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define Empty Rules Element
-             * @type {EmptyRulesElement}
-             */
-            this.elements.$rules = new EmptyRulesElement(this, {
-                data: this.controller.getRules(),
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render Empty
-         * @memberOf EmptyView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderEmpty.bind(this)
-            );
+      /**
+       * Define Empty Rules Element
+       * @type {EmptyRulesElement}
+       */
+      this.elements.$rules = new EmptyRulesElement(this, {
+        data: this.controller.getRules(),
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype);
+      return this.get$rules();
+    },
+
+    /**
+     * Render Empty
+     * @memberOf EmptyView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderEmpty.bind(this)
+      );
+    }
+
+  }, BaseView.prototype);
 });

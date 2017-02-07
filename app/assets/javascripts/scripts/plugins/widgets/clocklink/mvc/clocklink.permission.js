@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineClocklinkPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class ClocklinkPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var ClocklinkPermission = function ClocklinkPermission() {
+  /**
+   * Define Permissions
+   * @class ClocklinkPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var ClocklinkPermission = function ClocklinkPermission() {
 
-    };
+  };
 
-    return ClocklinkPermission.extend('ClocklinkPermission', {
-
-    }, BasePermission.prototype);
+  return ClocklinkPermission.extend('ClocklinkPermission', {},
+      BasePermission.prototype);
 });

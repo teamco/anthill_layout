@@ -7,108 +7,109 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/photobucket/element/photobucket.element',
-    'plugins/widgets/photobucket/element/photobucket.preferences.element',
-    'plugins/widgets/photobucket/element/photobucket.rules.element'
-], function definePhotobucketView(BaseView, Header, Footer, PhotobucketElement, PhotobucketPreferencesElement, PhotobucketRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/photobucket/element/photobucket.element',
+  'plugins/widgets/photobucket/element/photobucket.preferences.element',
+  'plugins/widgets/photobucket/element/photobucket.rules.element'
+], function definePhotobucketView(BaseView, Header, Footer, PhotobucketElement,
+    PhotobucketPreferencesElement, PhotobucketRulesElement) {
+
+  /**
+   * Define view
+   * @class PhotobucketView
+   * @extends BaseView
+   * @constructor
+   */
+  var PhotobucketView = function PhotobucketView() {
+  };
+
+  return PhotobucketView.extend('PhotobucketView', {
 
     /**
-     * Define view
-     * @class PhotobucketView
-     * @extends BaseView
-     * @constructor
+     * Render photobucket element
+     * @memberOf PhotobucketView
      */
-    var PhotobucketView = function PhotobucketView() {
-    };
+    renderPhotobucket: function renderPhotobucket() {
 
-    return PhotobucketView.extend('PhotobucketView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render photobucket element
-         * @memberOf PhotobucketView
-         */
-        renderPhotobucket: function renderPhotobucket() {
+      /**
+       * Define $photobucket
+       * @type {PhotobucketElement}
+       */
+      this.elements.$photobucket = new PhotobucketElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $photobucket
-             * @type {PhotobucketElement}
-             */
-            this.elements.$photobucket = new PhotobucketElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf PhotobucketView
+     * @returns {PhotobucketPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define Photobucket Preferences Element
+       * @type {PhotobucketPreferencesElement}
+       */
+      this.elements.$preferences = new PhotobucketPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf PhotobucketView
-         * @returns {PhotobucketPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define Photobucket Preferences Element
-             * @type {PhotobucketPreferencesElement}
-             */
-            this.elements.$preferences = new PhotobucketPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf PhotobucketView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {PhotobucketRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
+      /**
+       * Define data
+       * @type {*|{}}
+       */
+      var data = this.controller.getRules();
 
-        /**
-         * Render Rules
-         * @memberOf PhotobucketView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {PhotobucketRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define data
-             * @type {*|{}}
-             */
-            var data = this.controller.getRules();
-
-            /**
-             * Define Photobucket Rules Element
-             * @type {PhotobucketRulesElement}
-             */
-            this.elements.$rules = new PhotobucketRulesElement(this, {
-                data: data,
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render photobucket
-         * @memberOf PhotobucketView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderPhotobucket.bind(this)
-            );
+      /**
+       * Define Photobucket Rules Element
+       * @type {PhotobucketRulesElement}
+       */
+      this.elements.$rules = new PhotobucketRulesElement(this, {
+        data: data,
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render photobucket
+     * @memberOf PhotobucketView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderPhotobucket.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

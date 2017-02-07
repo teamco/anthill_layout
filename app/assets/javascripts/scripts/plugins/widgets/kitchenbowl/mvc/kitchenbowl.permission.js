@@ -7,20 +7,20 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineKitchenbowlPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class KitchenbowlPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var KitchenbowlPermission = function KitchenbowlPermission() {
-    };
+  /**
+   * Define Permissions
+   * @class KitchenbowlPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var KitchenbowlPermission = function KitchenbowlPermission() {
+  };
 
-    return KitchenbowlPermission.extend(
-        'KitchenbowlPermission', {}, 
-        BasePermission.prototype
-    );
+  return KitchenbowlPermission.extend(
+      'KitchenbowlPermission', {},
+      BasePermission.prototype
+  );
 });

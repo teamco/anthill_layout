@@ -6,38 +6,37 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/rules/widget.base.rules'
+  'plugins/plugin.element',
+  'plugins/rules/widget.base.rules'
 ], function defineBigmirNetRulesElement(PluginElement, BaseWidgetRules) {
 
-    /**
-     * Define BigmirNet Rules Element
-     * @param view
-     * @param opts
-     * @returns {BigmirNetRulesElement}
-     * @constructor
-     * @class BigmirNetRulesElement
-     * @extends PluginElement
-     * @extends BaseWidgetRules
-     */
-    var BigmirNetRulesElement = function BigmirNetRulesElement(view, opts) {
+  /**
+   * Define BigmirNet Rules Element
+   * @param view
+   * @param opts
+   * @returns {BigmirNetRulesElement}
+   * @constructor
+   * @class BigmirNetRulesElement
+   * @extends PluginElement
+   * @extends BaseWidgetRules
+   */
+  var BigmirNetRulesElement = function BigmirNetRulesElement(view, opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBaseRulesData(
-            opts.data,
-            opts.rules.widget,
-            opts.rules.content
-        );
+    this.renderBaseRulesData(
+        opts.data,
+        opts.rules.widget,
+        opts.rules.content
+    );
 
-        return this;
-    };
+    return this;
+  };
 
-    return BigmirNetRulesElement.extend('BigmirNetRulesElement', {
-
-    }, PluginElement.prototype, BaseWidgetRules.prototype);
+  return BigmirNetRulesElement.extend('BigmirNetRulesElement', {},
+      PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

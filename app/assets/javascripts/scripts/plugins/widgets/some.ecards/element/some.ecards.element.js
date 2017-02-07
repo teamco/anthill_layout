@@ -6,46 +6,46 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineSomeEcardsElement(PluginElement) {
 
+  /**
+   * Define SomeEcards Element
+   * @param view
+   * @param opts
+   * @returns {SomeEcardsElement}
+   * @constructor
+   * @class SomeEcardsElement
+   * @extends PluginElement
+   */
+  var SomeEcardsElement = function SomeEcardsElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('some.ecards', {resource: '/widgets'});
+
+    return this;
+  };
+
+  return SomeEcardsElement.extend('SomeEcardsElement', {
+
     /**
-     * Define SomeEcards Element
-     * @param view
-     * @param opts
-     * @returns {SomeEcardsElement}
-     * @constructor
-     * @class SomeEcardsElement
-     * @extends PluginElement
+     * Render Embedded content
+     * @memberOf SomeEcardsElement
+     * @param {string} embed
      */
-    var SomeEcardsElement = function SomeEcardsElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent(embed) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+      if (!(embed && (embed + '').match(/^<a/))) {
+        return false;
+      }
 
-        this.addCSS('some.ecards', {resource: '/widgets'});
+      this.$.append(embed);
+    }
 
-        return this;
-    };
-
-    return SomeEcardsElement.extend('SomeEcardsElement', {
-
-        /**
-         * Render Embedded content
-         * @memberOf SomeEcardsElement
-         * @param {string} embed
-         */
-        renderEmbeddedContent: function renderEmbeddedContent(embed) {
-
-            if (!(embed && (embed + '').match(/^<a/))) {
-                return false;
-            }
-
-            this.$.append(embed);
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 
 });

@@ -7,20 +7,20 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineDotsubPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class DotsubPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var DotsubPermission = function DotsubPermission() {
-    };
+  /**
+   * Define Permissions
+   * @class DotsubPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var DotsubPermission = function DotsubPermission() {
+  };
 
-    return DotsubPermission.extend(
-        'DotsubPermission', {}, 
-        BasePermission.prototype
-    );
+  return DotsubPermission.extend(
+      'DotsubPermission', {},
+      BasePermission.prototype
+  );
 });

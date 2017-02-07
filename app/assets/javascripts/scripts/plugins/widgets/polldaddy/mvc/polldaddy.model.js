@@ -6,53 +6,54 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function definePolldaddyModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define Polldaddy model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class PolldaddyModel
+   * @constructor
+   */
+  var PolldaddyModel = function PolldaddyModel() {
+
     /**
-     * Define Polldaddy model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class PolldaddyModel
-     * @constructor
-     */
-    var PolldaddyModel = function PolldaddyModel() {
-
-        /**
-         * Define preferences
-         * @memberOf PolldaddyModel
-         * @type {{
-         *      polldaddyEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
+     * Define preferences
+     * @memberOf PolldaddyModel
+     * @type {{
+         *      polldaddyEmbedCode: {type: string, disabled: boolean, value:
+         *     undefined, visible: boolean}
          * }}
-         */
-        this.preferences = {
-            polldaddyEmbedCode: {
-                type: 'textarea',
-                disabled: false,
-                value: undefined,
-                visible: true
-            }
-        };
-
-        /**
-         * Define rules
-         * @memberOf PolldaddyModel
-         * @type {{}}
-         */
-        this.rules = {};
+     */
+    this.preferences = {
+      polldaddyEmbedCode: {
+        type: 'textarea',
+        disabled: false,
+        value: undefined,
+        visible: true
+      }
     };
 
-    return PolldaddyModel.extend('PolldaddyModel', {
+    /**
+     * Define rules
+     * @memberOf PolldaddyModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        /**
-         * Set Polldaddy embed code
-         * @memberOf PolldaddyModel
-         * @param {string} embed
-         */
-        setPolldaddyEmbedCode: function setPolldaddyEmbedCode(embed) {
-            this.setPrefs('polldaddyEmbedCode', embed);
-        }
+  return PolldaddyModel.extend('PolldaddyModel', {
 
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    /**
+     * Set Polldaddy embed code
+     * @memberOf PolldaddyModel
+     * @param {string} embed
+     */
+    setPolldaddyEmbedCode: function setPolldaddyEmbedCode(embed) {
+      this.setPrefs('polldaddyEmbedCode', embed);
+    }
+
+  }, BaseModel.prototype, WidgetContentModel.prototype);
 });

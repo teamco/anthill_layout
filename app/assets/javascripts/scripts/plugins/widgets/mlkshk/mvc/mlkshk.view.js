@@ -7,108 +7,109 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/mlkshk/element/mlkshk.element',
-    'plugins/widgets/mlkshk/element/mlkshk.preferences.element',
-    'plugins/widgets/mlkshk/element/mlkshk.rules.element'
-], function defineMlkshkView(BaseView, Header, Footer, MlkshkElement, MlkshkPreferencesElement, MlkshkRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/mlkshk/element/mlkshk.element',
+  'plugins/widgets/mlkshk/element/mlkshk.preferences.element',
+  'plugins/widgets/mlkshk/element/mlkshk.rules.element'
+], function defineMlkshkView(BaseView, Header, Footer, MlkshkElement,
+    MlkshkPreferencesElement, MlkshkRulesElement) {
+
+  /**
+   * Define view
+   * @class MlkshkView
+   * @extends BaseView
+   * @constructor
+   */
+  var MlkshkView = function MlkshkView() {
+  };
+
+  return MlkshkView.extend('MlkshkView', {
 
     /**
-     * Define view
-     * @class MlkshkView
-     * @extends BaseView
-     * @constructor
+     * Render mlkshk element
+     * @memberOf MlkshkView
      */
-    var MlkshkView = function MlkshkView() {
-    };
+    renderMlkshk: function renderMlkshk() {
 
-    return MlkshkView.extend('MlkshkView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render mlkshk element
-         * @memberOf MlkshkView
-         */
-        renderMlkshk: function renderMlkshk() {
+      /**
+       * Define $mlkshk
+       * @type {MlkshkElement}
+       */
+      this.elements.$mlkshk = new MlkshkElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $mlkshk
-             * @type {MlkshkElement}
-             */
-            this.elements.$mlkshk = new MlkshkElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf MlkshkView
+     * @returns {MlkshkPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define Mlkshk Preferences Element
+       * @type {MlkshkPreferencesElement}
+       */
+      this.elements.$preferences = new MlkshkPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf MlkshkView
-         * @returns {MlkshkPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define Mlkshk Preferences Element
-             * @type {MlkshkPreferencesElement}
-             */
-            this.elements.$preferences = new MlkshkPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf MlkshkView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {MlkshkRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
+      /**
+       * Define data
+       * @type {*|{}}
+       */
+      var data = this.controller.getRules();
 
-        /**
-         * Render Rules
-         * @memberOf MlkshkView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {MlkshkRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define data
-             * @type {*|{}}
-             */
-            var data = this.controller.getRules();
-
-            /**
-             * Define Mlkshk Rules Element
-             * @type {MlkshkRulesElement}
-             */
-            this.elements.$rules = new MlkshkRulesElement(this, {
-                data: data,
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render mlkshk
-         * @memberOf MlkshkView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderMlkshk.bind(this)
-            );
+      /**
+       * Define Mlkshk Rules Element
+       * @type {MlkshkRulesElement}
+       */
+      this.elements.$rules = new MlkshkRulesElement(this, {
+        data: data,
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render mlkshk
+     * @memberOf MlkshkView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderMlkshk.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

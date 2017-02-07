@@ -7,108 +7,109 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/ictv/element/ictv.element',
-    'plugins/widgets/ictv/element/ictv.preferences.element',
-    'plugins/widgets/ictv/element/ictv.rules.element'
-], function defineIctvView(BaseView, Header, Footer, IctvElement, IctvPreferencesElement, IctvRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/ictv/element/ictv.element',
+  'plugins/widgets/ictv/element/ictv.preferences.element',
+  'plugins/widgets/ictv/element/ictv.rules.element'
+], function defineIctvView(BaseView, Header, Footer, IctvElement,
+    IctvPreferencesElement, IctvRulesElement) {
+
+  /**
+   * Define view
+   * @class IctvView
+   * @extends BaseView
+   * @constructor
+   */
+  var IctvView = function IctvView() {
+  };
+
+  return IctvView.extend('IctvView', {
 
     /**
-     * Define view
-     * @class IctvView
-     * @extends BaseView
-     * @constructor
+     * Render ictv element
+     * @memberOf IctvView
      */
-    var IctvView = function IctvView() {
-    };
+    renderIctv: function renderIctv() {
 
-    return IctvView.extend('IctvView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render ictv element
-         * @memberOf IctvView
-         */
-        renderIctv: function renderIctv() {
+      /**
+       * Define $ictv
+       * @type {IctvElement}
+       */
+      this.elements.$ictv = new IctvElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $ictv
-             * @type {IctvElement}
-             */
-            this.elements.$ictv = new IctvElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf IctvView
+     * @returns {IctvPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define Ictv Preferences Element
+       * @type {IctvPreferencesElement}
+       */
+      this.elements.$preferences = new IctvPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf IctvView
-         * @returns {IctvPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define Ictv Preferences Element
-             * @type {IctvPreferencesElement}
-             */
-            this.elements.$preferences = new IctvPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf IctvView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {IctvRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
+      /**
+       * Define data
+       * @type {*|{}}
+       */
+      var data = this.controller.getRules();
 
-        /**
-         * Render Rules
-         * @memberOf IctvView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {IctvRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define data
-             * @type {*|{}}
-             */
-            var data = this.controller.getRules();
-
-            /**
-             * Define Ictv Rules Element
-             * @type {IctvRulesElement}
-             */
-            this.elements.$rules = new IctvRulesElement(this, {
-                data: data,
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render ictv
-         * @memberOf IctvView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderIctv.bind(this)
-            );
+      /**
+       * Define Ictv Rules Element
+       * @type {IctvRulesElement}
+       */
+      this.elements.$rules = new IctvRulesElement(this, {
+        data: data,
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render ictv
+     * @memberOf IctvView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderIctv.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

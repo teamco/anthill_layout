@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineQrCodePermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class QrCodePermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var QrCodePermission = function QrCodePermission() {
+  /**
+   * Define Permissions
+   * @class QrCodePermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var QrCodePermission = function QrCodePermission() {
 
-    };
+  };
 
-    return QrCodePermission.extend('QrCodePermission', {
-
-    }, BasePermission.prototype);
+  return QrCodePermission.extend('QrCodePermission', {},
+      BasePermission.prototype);
 });

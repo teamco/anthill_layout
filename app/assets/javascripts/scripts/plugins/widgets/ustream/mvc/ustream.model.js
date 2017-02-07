@@ -6,53 +6,54 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineUstreamModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define Ustream model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class UstreamModel
+   * @constructor
+   */
+  var UstreamModel = function UstreamModel() {
+
     /**
-     * Define Ustream model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class UstreamModel
-     * @constructor
-     */
-    var UstreamModel = function UstreamModel() {
-
-        /**
-         * Define preferences
-         * @memberOf UstreamModel
-         * @type {{
-         *      ustreamEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
+     * Define preferences
+     * @memberOf UstreamModel
+     * @type {{
+         *      ustreamEmbedCode: {type: string, disabled: boolean, value:
+         *     undefined, visible: boolean}
          * }}
-         */
-        this.preferences = {
-            ustreamEmbedCode: {
-                type: 'textarea',
-                disabled: false,
-                value: undefined,
-                visible: true
-            }
-        };
-
-        /**
-         * Define rules
-         * @memberOf UstreamModel
-         * @type {{}}
-         */
-        this.rules = {};
+     */
+    this.preferences = {
+      ustreamEmbedCode: {
+        type: 'textarea',
+        disabled: false,
+        value: undefined,
+        visible: true
+      }
     };
 
-    return UstreamModel.extend('UstreamModel', {
+    /**
+     * Define rules
+     * @memberOf UstreamModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        /**
-         * Set Ustream embed code
-         * @memberOf UstreamModel
-         * @param {string} embed
-         */
-        setUstreamEmbedCode: function setUstreamEmbedCode(embed) {
-            this.setPrefs('ustreamEmbedCode', embed);
-        }
+  return UstreamModel.extend('UstreamModel', {
 
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    /**
+     * Set Ustream embed code
+     * @memberOf UstreamModel
+     * @param {string} embed
+     */
+    setUstreamEmbedCode: function setUstreamEmbedCode(embed) {
+      this.setPrefs('ustreamEmbedCode', embed);
+    }
+
+  }, BaseModel.prototype, WidgetContentModel.prototype);
 });

@@ -7,23 +7,23 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineAnimatronEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define Animatron event manager
-     * @class AnimatronEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var AnimatronEventManager = function AnimatronEventManager() {
+  /**
+   * Define Animatron event manager
+   * @class AnimatronEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var AnimatronEventManager = function AnimatronEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return AnimatronEventManager.extend(
-        'AnimatronEventManager', {},
-        WidgetContentEventManager.prototype
-    );
+  return AnimatronEventManager.extend(
+      'AnimatronEventManager', {},
+      WidgetContentEventManager.prototype
+  );
 });

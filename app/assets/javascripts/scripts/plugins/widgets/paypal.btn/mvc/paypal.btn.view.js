@@ -7,101 +7,102 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/paypal.btn/element/paypal.btn.element',
-    'plugins/widgets/paypal.btn/element/paypal.btn.preferences.element',
-    'plugins/widgets/paypal.btn/element/paypal.btn.rules.element'
-], function definePaypalBtnView(BaseView, Header, Footer, PaypalBtnElement, PaypalBtnPreferencesElement, PaypalBtnRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/paypal.btn/element/paypal.btn.element',
+  'plugins/widgets/paypal.btn/element/paypal.btn.preferences.element',
+  'plugins/widgets/paypal.btn/element/paypal.btn.rules.element'
+], function definePaypalBtnView(BaseView, Header, Footer, PaypalBtnElement,
+    PaypalBtnPreferencesElement, PaypalBtnRulesElement) {
+
+  /**
+   * Define view
+   * @class PaypalBtnView
+   * @extends BaseView
+   * @constructor
+   */
+  var PaypalBtnView = function PaypalBtnView() {
+  };
+
+  return PaypalBtnView.extend('PaypalBtnView', {
 
     /**
-     * Define view
-     * @class PaypalBtnView
-     * @extends BaseView
-     * @constructor
+     * Render PaypalBtn element
+     * @memberOf PaypalBtnView
      */
-    var PaypalBtnView = function PaypalBtnView() {
-    };
+    renderPaypalBtn: function renderPaypalBtn() {
 
-    return PaypalBtnView.extend('PaypalBtnView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render PaypalBtn element
-         * @memberOf PaypalBtnView
-         */
-        renderPaypalBtn: function renderPaypalBtn() {
+      /**
+       * Define $paypalbtn
+       * @type {PaypalBtnElement}
+       */
+      this.elements.$paypalbtn = new PaypalBtnElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $paypalbtn
-             * @type {PaypalBtnElement}
-             */
-            this.elements.$paypalbtn = new PaypalBtnElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf PaypalBtnView
+     * @returns {PaypalBtnPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define PaypalBtn Preferences Element
+       * @type {PaypalBtnPreferencesElement}
+       */
+      this.elements.$preferences = new PaypalBtnPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf PaypalBtnView
-         * @returns {PaypalBtnPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define PaypalBtn Preferences Element
-             * @type {PaypalBtnPreferencesElement}
-             */
-            this.elements.$preferences = new PaypalBtnPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf PaypalBtnView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {PaypalBtnRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
-
-        /**
-         * Render Rules
-         * @memberOf PaypalBtnView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {PaypalBtnRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define PaypalBtn Rules Element
-             * @type {PaypalBtnRulesElement}
-             */
-            this.elements.$rules = new PaypalBtnRulesElement(this, {
-                data: this.controller.getRules(),
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render PaypalBtn
-         * @memberOf PaypalBtnView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderPaypalBtn.bind(this)
-            );
+      /**
+       * Define PaypalBtn Rules Element
+       * @type {PaypalBtnRulesElement}
+       */
+      this.elements.$rules = new PaypalBtnRulesElement(this, {
+        data: this.controller.getRules(),
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype);
+      return this.get$rules();
+    },
+
+    /**
+     * Render PaypalBtn
+     * @memberOf PaypalBtnView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderPaypalBtn.bind(this)
+      );
+    }
+
+  }, BaseView.prototype);
 });

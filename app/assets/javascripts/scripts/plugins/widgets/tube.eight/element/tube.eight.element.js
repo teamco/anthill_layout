@@ -6,43 +6,43 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineTubeEightElement(PluginElement) {
 
+  /**
+   * Define TubeEight Element
+   * @param view
+   * @param opts
+   * @returns {TubeEightElement}
+   * @constructor
+   * @class TubeEightElement
+   * @extends PluginElement
+   */
+  var TubeEightElement = function TubeEightElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('tube.eight', {resource: '/widgets'});
+
+    return this;
+  };
+
+  return TubeEightElement.extend('TubeEightElement', {
+
     /**
-     * Define TubeEight Element
-     * @param view
-     * @param opts
-     * @returns {TubeEightElement}
-     * @constructor
-     * @class TubeEightElement
-     * @extends PluginElement
+     * Render Embedded content
+     * @memberOf TubeEightElement
+     * @param {string} url
      */
-    var TubeEightElement = function TubeEightElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent(url) {
+      this.$.append(
+          this.renderIframe(url)
+      );
+    }
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
-
-        this.addCSS('tube.eight', {resource: '/widgets'});
-
-        return this;
-    };
-
-    return TubeEightElement.extend('TubeEightElement', {
-
-        /**
-         * Render Embedded content
-         * @memberOf TubeEightElement
-         * @param {string} url
-         */
-        renderEmbeddedContent: function renderEmbeddedContent(url) {
-            this.$.append(
-                this.renderIframe(url)
-            );
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 
 });

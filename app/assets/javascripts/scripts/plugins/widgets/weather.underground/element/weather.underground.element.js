@@ -6,40 +6,41 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineWeatherUndergroundElement(PluginElement) {
 
+  /**
+   * Define WeatherUnderground Element
+   * @param view
+   * @param opts
+   * @returns {WeatherUndergroundElement}
+   * @constructor
+   * @class WeatherUndergroundElement
+   * @extends PluginElement
+   */
+  var WeatherUndergroundElement = function WeatherUndergroundElement(view,
+      opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('weather.underground', {resource: '/widgets'});
+
+    return this;
+  };
+
+  return WeatherUndergroundElement.extend('WeatherUndergroundElement', {
+
     /**
-     * Define WeatherUnderground Element
-     * @param view
-     * @param opts
-     * @returns {WeatherUndergroundElement}
-     * @constructor
-     * @class WeatherUndergroundElement
-     * @extends PluginElement
+     * Render Embedded content
+     * @memberOf WeatherUndergroundElement
+     * @param {string} html
      */
-    var WeatherUndergroundElement = function WeatherUndergroundElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent(html) {
+      this.addContent(html);
+    }
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
-
-        this.addCSS('weather.underground', {resource: '/widgets'});
-
-        return this;
-    };
-
-    return WeatherUndergroundElement.extend('WeatherUndergroundElement', {
-
-        /**
-         * Render Embedded content
-         * @memberOf WeatherUndergroundElement
-         * @param {string} html
-         */
-        renderEmbeddedContent: function renderEmbeddedContent(html) {
-            this.addContent(html);
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 });

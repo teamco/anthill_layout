@@ -6,38 +6,37 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/rules/widget.base.rules'
+  'plugins/plugin.element',
+  'plugins/rules/widget.base.rules'
 ], function definePolldaddyRulesElement(PluginElement, BaseWidgetRules) {
 
-    /**
-     * Define Polldaddy Rules Element
-     * @param view
-     * @param opts
-     * @returns {PolldaddyRulesElement}
-     * @constructor
-     * @class PolldaddyRulesElement
-     * @extends PluginElement
-     * @extends BaseWidgetRules
-     */
-    var PolldaddyRulesElement = function PolldaddyRulesElement(view, opts) {
+  /**
+   * Define Polldaddy Rules Element
+   * @param view
+   * @param opts
+   * @returns {PolldaddyRulesElement}
+   * @constructor
+   * @class PolldaddyRulesElement
+   * @extends PluginElement
+   * @extends BaseWidgetRules
+   */
+  var PolldaddyRulesElement = function PolldaddyRulesElement(view, opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBaseRulesData(
-            opts.data,
-            opts.rules.widget,
-            opts.rules.content
-        );
+    this.renderBaseRulesData(
+        opts.data,
+        opts.rules.widget,
+        opts.rules.content
+    );
 
-        return this;
-    };
+    return this;
+  };
 
-    return PolldaddyRulesElement.extend('PolldaddyRulesElement', {
-
-    }, PluginElement.prototype, BaseWidgetRules.prototype);
+  return PolldaddyRulesElement.extend('PolldaddyRulesElement', {},
+      PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

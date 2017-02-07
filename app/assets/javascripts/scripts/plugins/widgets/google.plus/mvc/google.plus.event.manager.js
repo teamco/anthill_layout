@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineGooglePlusEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define GooglePlus event manager
-     * @class GooglePlusEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var GooglePlusEventManager = function GooglePlusEventManager() {
+  /**
+   * Define GooglePlus event manager
+   * @class GooglePlusEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var GooglePlusEventManager = function GooglePlusEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return GooglePlusEventManager.extend('GooglePlusEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return GooglePlusEventManager.extend('GooglePlusEventManager', {},
+      WidgetContentEventManager.prototype);
 });

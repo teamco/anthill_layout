@@ -6,53 +6,54 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineSublimeVideoModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define SublimeVideo model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class SublimeVideoModel
+   * @constructor
+   */
+  var SublimeVideoModel = function SublimeVideoModel() {
+
     /**
-     * Define SublimeVideo model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class SublimeVideoModel
-     * @constructor
-     */
-    var SublimeVideoModel = function SublimeVideoModel() {
-
-        /**
-         * Define preferences
-         * @memberOf SublimeVideoModel
-         * @type {{
-         *      sublimevideoEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
+     * Define preferences
+     * @memberOf SublimeVideoModel
+     * @type {{
+         *      sublimevideoEmbedCode: {type: string, disabled: boolean, value:
+         *     undefined, visible: boolean}
          * }}
-         */
-        this.preferences = {
-            sublimevideoEmbedCode: {
-                type: 'textarea',
-                disabled: false,
-                value: undefined,
-                visible: true
-            }
-        };
-
-        /**
-         * Define rules
-         * @memberOf SublimeVideoModel
-         * @type {{}}
-         */
-        this.rules = {};
+     */
+    this.preferences = {
+      sublimevideoEmbedCode: {
+        type: 'textarea',
+        disabled: false,
+        value: undefined,
+        visible: true
+      }
     };
 
-    return SublimeVideoModel.extend('SublimeVideoModel', {
+    /**
+     * Define rules
+     * @memberOf SublimeVideoModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        /**
-         * Set SublimeVideo embed code
-         * @memberOf SublimeVideoModel
-         * @param {string} embed
-         */
-        setSublimevideoEmbedCode: function setSublimevideoEmbedCode(embed) {
-            this.setPrefs('sublimevideoEmbedCode', embed);
-        }
+  return SublimeVideoModel.extend('SublimeVideoModel', {
 
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    /**
+     * Set SublimeVideo embed code
+     * @memberOf SublimeVideoModel
+     * @param {string} embed
+     */
+    setSublimevideoEmbedCode: function setSublimevideoEmbedCode(embed) {
+      this.setPrefs('sublimevideoEmbedCode', embed);
+    }
+
+  }, BaseModel.prototype, WidgetContentModel.prototype);
 });

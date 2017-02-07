@@ -7,102 +7,103 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/embedly/element/embedly.element',
-    'plugins/widgets/embedly/element/embedly.preferences.element',
-    'plugins/widgets/embedly/element/embedly.rules.element'
-], function defineEmbedlyView(BaseView, Header, Footer, EmbedlyElement, EmbedlyPreferencesElement, EmbedlyRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/embedly/element/embedly.element',
+  'plugins/widgets/embedly/element/embedly.preferences.element',
+  'plugins/widgets/embedly/element/embedly.rules.element'
+], function defineEmbedlyView(BaseView, Header, Footer, EmbedlyElement,
+    EmbedlyPreferencesElement, EmbedlyRulesElement) {
+
+  /**
+   * Define view
+   * @class EmbedlyView
+   * @extends BaseView
+   * @constructor
+   */
+  var EmbedlyView = function EmbedlyView() {
+  };
+
+  return EmbedlyView.extend('EmbedlyView', {
 
     /**
-     * Define view
-     * @class EmbedlyView
-     * @extends BaseView
-     * @constructor
+     * Render Embedly element
+     * @memberOf EmbedlyView
      */
-    var EmbedlyView = function EmbedlyView() {
-    };
+    renderEmbedly: function renderEmbedly() {
 
-    return EmbedlyView.extend('EmbedlyView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render Embedly element
-         * @memberOf EmbedlyView
-         */
-        renderEmbedly: function renderEmbedly() {
+      /**
+       * Define $embedly
+       * @type {EmbedlyElement}
+       */
+      this.elements.$embedly = new EmbedlyElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $embedly
-             * @type {EmbedlyElement}
-             */
-            this.elements.$embedly = new EmbedlyElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf EmbedlyView
+     * @returns {EmbedlyPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define Embedly Preferences Element
+       * @type {EmbedlyPreferencesElement}
+       */
+      this.elements.$preferences = new EmbedlyPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf EmbedlyView
-         * @returns {EmbedlyPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define Embedly Preferences Element
-             * @type {EmbedlyPreferencesElement}
-             */
-            this.elements.$preferences = new EmbedlyPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf EmbedlyView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {EmbedlyRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
-
-        /**
-         * Render Rules
-         * @memberOf EmbedlyView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {EmbedlyRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define Embedly Rules Element
-             * @type {EmbedlyRulesElement}
-             */
-            this.elements.$rules = new EmbedlyRulesElement(this, {
-                data: this.controller.getRules(),
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render Embedly
-         * @memberOf EmbedlyView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderEmbedly.bind(this)
-            );
+      /**
+       * Define Embedly Rules Element
+       * @type {EmbedlyRulesElement}
+       */
+      this.elements.$rules = new EmbedlyRulesElement(this, {
+        data: this.controller.getRules(),
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render Embedly
+     * @memberOf EmbedlyView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderEmbedly.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

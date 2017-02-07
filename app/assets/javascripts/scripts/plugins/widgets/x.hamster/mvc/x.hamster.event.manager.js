@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineXHamsterEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define XHamster event manager
-     * @class XHamsterEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var XHamsterEventManager = function XHamsterEventManager() {
+  /**
+   * Define XHamster event manager
+   * @class XHamsterEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var XHamsterEventManager = function XHamsterEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return XHamsterEventManager.extend('XHamsterEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return XHamsterEventManager.extend('XHamsterEventManager', {},
+      WidgetContentEventManager.prototype);
 });

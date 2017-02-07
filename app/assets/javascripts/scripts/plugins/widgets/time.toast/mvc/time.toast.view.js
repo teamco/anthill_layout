@@ -7,108 +7,109 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/time.toast/element/time.toast.element',
-    'plugins/widgets/time.toast/element/time.toast.preferences.element',
-    'plugins/widgets/time.toast/element/time.toast.rules.element'
-], function defineTimeToastView(BaseView, Header, Footer, TimeToastElement, TimeToastPreferencesElement, TimeToastRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/time.toast/element/time.toast.element',
+  'plugins/widgets/time.toast/element/time.toast.preferences.element',
+  'plugins/widgets/time.toast/element/time.toast.rules.element'
+], function defineTimeToastView(BaseView, Header, Footer, TimeToastElement,
+    TimeToastPreferencesElement, TimeToastRulesElement) {
+
+  /**
+   * Define view
+   * @class TimeToastView
+   * @extends BaseView
+   * @constructor
+   */
+  var TimeToastView = function TimeToastView() {
+  };
+
+  return TimeToastView.extend('TimeToastView', {
 
     /**
-     * Define view
-     * @class TimeToastView
-     * @extends BaseView
-     * @constructor
+     * Render timetoast element
+     * @memberOf TimeToastView
      */
-    var TimeToastView = function TimeToastView() {
-    };
+    renderTimeToast: function renderTimeToast() {
 
-    return TimeToastView.extend('TimeToastView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render timetoast element
-         * @memberOf TimeToastView
-         */
-        renderTimeToast: function renderTimeToast() {
+      /**
+       * Define $timetoast
+       * @type {TimeToastElement}
+       */
+      this.elements.$timetoast = new TimeToastElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $timetoast
-             * @type {TimeToastElement}
-             */
-            this.elements.$timetoast = new TimeToastElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf TimeToastView
+     * @returns {TimeToastPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define TimeToast Preferences Element
+       * @type {TimeToastPreferencesElement}
+       */
+      this.elements.$preferences = new TimeToastPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf TimeToastView
-         * @returns {TimeToastPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define TimeToast Preferences Element
-             * @type {TimeToastPreferencesElement}
-             */
-            this.elements.$preferences = new TimeToastPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf TimeToastView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {TimeToastRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
+      /**
+       * Define data
+       * @type {*|{}}
+       */
+      var data = this.controller.getRules();
 
-        /**
-         * Render Rules
-         * @memberOf TimeToastView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {TimeToastRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define data
-             * @type {*|{}}
-             */
-            var data = this.controller.getRules();
-
-            /**
-             * Define TimeToast Rules Element
-             * @type {TimeToastRulesElement}
-             */
-            this.elements.$rules = new TimeToastRulesElement(this, {
-                data: data,
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render timetoast
-         * @memberOf TimeToastView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderTimeToast.bind(this)
-            );
+      /**
+       * Define TimeToast Rules Element
+       * @type {TimeToastRulesElement}
+       */
+      this.elements.$rules = new TimeToastRulesElement(this, {
+        data: data,
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render timetoast
+     * @memberOf TimeToastView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderTimeToast.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

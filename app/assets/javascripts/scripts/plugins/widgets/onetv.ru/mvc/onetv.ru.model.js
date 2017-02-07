@@ -6,53 +6,54 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineOnetvRuModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define OnetvRu model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class OnetvRuModel
+   * @constructor
+   */
+  var OnetvRuModel = function OnetvRuModel() {
+
     /**
-     * Define OnetvRu model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class OnetvRuModel
-     * @constructor
-     */
-    var OnetvRuModel = function OnetvRuModel() {
-
-        /**
-         * Define preferences
-         * @memberOf OnetvRuModel
-         * @type {{
-         *      onetvruEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
+     * Define preferences
+     * @memberOf OnetvRuModel
+     * @type {{
+         *      onetvruEmbedCode: {type: string, disabled: boolean, value:
+         *     undefined, visible: boolean}
          * }}
-         */
-        this.preferences = {
-            onetvruEmbedCode: {
-                type: 'textarea',
-                disabled: false,
-                value: undefined,
-                visible: true
-            }
-        };
-
-        /**
-         * Define rules
-         * @memberOf OnetvRuModel
-         * @type {{}}
-         */
-        this.rules = {};
+     */
+    this.preferences = {
+      onetvruEmbedCode: {
+        type: 'textarea',
+        disabled: false,
+        value: undefined,
+        visible: true
+      }
     };
 
-    return OnetvRuModel.extend('OnetvRuModel', {
+    /**
+     * Define rules
+     * @memberOf OnetvRuModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        /**
-         * Set OnetvRu embed code
-         * @memberOf OnetvRuModel
-         * @param {string} embed
-         */
-        setOnetvruEmbedCode: function setOnetvruEmbedCode(embed) {
-            this.setPrefs('onetvruEmbedCode', embed);
-        }
+  return OnetvRuModel.extend('OnetvRuModel', {
 
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    /**
+     * Set OnetvRu embed code
+     * @memberOf OnetvRuModel
+     * @param {string} embed
+     */
+    setOnetvruEmbedCode: function setOnetvruEmbedCode(embed) {
+      this.setPrefs('onetvruEmbedCode', embed);
+    }
+
+  }, BaseModel.prototype, WidgetContentModel.prototype);
 });

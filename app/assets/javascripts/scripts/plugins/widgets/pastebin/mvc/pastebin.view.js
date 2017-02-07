@@ -7,108 +7,109 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/pastebin/element/pastebin.element',
-    'plugins/widgets/pastebin/element/pastebin.preferences.element',
-    'plugins/widgets/pastebin/element/pastebin.rules.element'
-], function definePastebinView(BaseView, Header, Footer, PastebinElement, PastebinPreferencesElement, PastebinRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/pastebin/element/pastebin.element',
+  'plugins/widgets/pastebin/element/pastebin.preferences.element',
+  'plugins/widgets/pastebin/element/pastebin.rules.element'
+], function definePastebinView(BaseView, Header, Footer, PastebinElement,
+    PastebinPreferencesElement, PastebinRulesElement) {
+
+  /**
+   * Define view
+   * @class PastebinView
+   * @extends BaseView
+   * @constructor
+   */
+  var PastebinView = function PastebinView() {
+  };
+
+  return PastebinView.extend('PastebinView', {
 
     /**
-     * Define view
-     * @class PastebinView
-     * @extends BaseView
-     * @constructor
+     * Render pastebin element
+     * @memberOf PastebinView
      */
-    var PastebinView = function PastebinView() {
-    };
+    renderPastebin: function renderPastebin() {
 
-    return PastebinView.extend('PastebinView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render pastebin element
-         * @memberOf PastebinView
-         */
-        renderPastebin: function renderPastebin() {
+      /**
+       * Define $pastebin
+       * @type {PastebinElement}
+       */
+      this.elements.$pastebin = new PastebinElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $pastebin
-             * @type {PastebinElement}
-             */
-            this.elements.$pastebin = new PastebinElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf PastebinView
+     * @returns {PastebinPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define Pastebin Preferences Element
+       * @type {PastebinPreferencesElement}
+       */
+      this.elements.$preferences = new PastebinPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf PastebinView
-         * @returns {PastebinPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define Pastebin Preferences Element
-             * @type {PastebinPreferencesElement}
-             */
-            this.elements.$preferences = new PastebinPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf PastebinView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {PastebinRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
+      /**
+       * Define data
+       * @type {*|{}}
+       */
+      var data = this.controller.getRules();
 
-        /**
-         * Render Rules
-         * @memberOf PastebinView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {PastebinRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define data
-             * @type {*|{}}
-             */
-            var data = this.controller.getRules();
-
-            /**
-             * Define Pastebin Rules Element
-             * @type {PastebinRulesElement}
-             */
-            this.elements.$rules = new PastebinRulesElement(this, {
-                data: data,
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render pastebin
-         * @memberOf PastebinView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderPastebin.bind(this)
-            );
+      /**
+       * Define Pastebin Rules Element
+       * @type {PastebinRulesElement}
+       */
+      this.elements.$rules = new PastebinRulesElement(this, {
+        data: data,
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render pastebin
+     * @memberOf PastebinView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderPastebin.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

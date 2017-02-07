@@ -6,74 +6,74 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineSwfElement(PluginElement) {
 
+  /**
+   * Define Swf Element
+   * @param view
+   * @param opts
+   * @returns {SwfElement}
+   * @constructor
+   * @class SwfElement
+   * @extends PluginElement
+   */
+  var SwfElement = function SwfElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('swf', {resource: '/widgets'});
+
+    return this;
+  };
+
+  return SwfElement.extend('SwfElement', {
+
     /**
-     * Define Swf Element
-     * @param view
-     * @param opts
-     * @returns {SwfElement}
-     * @constructor
-     * @class SwfElement
-     * @extends PluginElement
+     * Render Embedded content
+     * @memberOf SwfElement
+     * @param {{}} opts
      */
-    var SwfElement = function SwfElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent(opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+      if (typeof (url) !== 'string' || (url && !(url + '').match(/\.swf/))) {
+        return false;
+      }
 
-        this.addCSS('swf', {resource: '/widgets'});
+      // clear html content
+      this.$.empty();
 
-        return this;
-    };
+      /**
+       * Define flash player container
+       * @type {*|jQuery}
+       */
+      var $flash = $('<div class="flash-player" />').attr({
+        id: this.view.renderUUID()
+      });
 
-    return SwfElement.extend('SwfElement', {
+      this.$.append($flash);
 
-        /**
-         * Render Embedded content
-         * @memberOf SwfElement
-         * @param {{}} opts
-         */
-        renderEmbeddedContent: function renderEmbeddedContent(opts) {
+      require([
+        'plugins/widgets/swf/lib/swfobject'
+      ], function defineSwfObject() {
 
-            if (typeof (url) !== 'string' || (url && !(url + '').match(/\.swf/))) {
-                return false;
-            }
+        swfobject.embedSWF(
+            url,
+            $flash[0],
+            "100%",
+            "100%",
+            10,
+            "expressInstall.swf",
+            JSON.parse(opts.flashvars || '{}'),
+            JSON.parse(opts.params || '{}'),
+            JSON.parse(opts.attributes || '{}')
+        );
+      });
+    }
 
-            // clear html content
-            this.$.empty();
-
-            /**
-             * Define flash player container
-             * @type {*|jQuery}
-             */
-            var $flash = $('<div class="flash-player" />').attr({
-                id: this.view.renderUUID()
-            });
-
-            this.$.append($flash);
-
-            require([
-                'plugins/widgets/swf/lib/swfobject'
-            ], function defineSwfObject(){
-
-                swfobject.embedSWF(
-                    url,
-                    $flash[0],
-                    "100%",
-                    "100%",
-                    10,
-                    "expressInstall.swf",
-                    JSON.parse(opts.flashvars || '{}'),
-                    JSON.parse(opts.params || '{}'),
-                    JSON.parse(opts.attributes || '{}')
-                );
-            });
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 
 });

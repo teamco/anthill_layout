@@ -7,108 +7,109 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/mus.tv/element/mus.tv.element',
-    'plugins/widgets/mus.tv/element/mus.tv.preferences.element',
-    'plugins/widgets/mus.tv/element/mus.tv.rules.element'
-], function defineMusTvView(BaseView, Header, Footer, MusTvElement, MusTvPreferencesElement, MusTvRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/mus.tv/element/mus.tv.element',
+  'plugins/widgets/mus.tv/element/mus.tv.preferences.element',
+  'plugins/widgets/mus.tv/element/mus.tv.rules.element'
+], function defineMusTvView(BaseView, Header, Footer, MusTvElement,
+    MusTvPreferencesElement, MusTvRulesElement) {
+
+  /**
+   * Define view
+   * @class MusTvView
+   * @extends BaseView
+   * @constructor
+   */
+  var MusTvView = function MusTvView() {
+  };
+
+  return MusTvView.extend('MusTvView', {
 
     /**
-     * Define view
-     * @class MusTvView
-     * @extends BaseView
-     * @constructor
+     * Render mustv element
+     * @memberOf MusTvView
      */
-    var MusTvView = function MusTvView() {
-    };
+    renderMusTv: function renderMusTv() {
 
-    return MusTvView.extend('MusTvView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render mustv element
-         * @memberOf MusTvView
-         */
-        renderMusTv: function renderMusTv() {
+      /**
+       * Define $mustv
+       * @type {MusTvElement}
+       */
+      this.elements.$mustv = new MusTvElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $mustv
-             * @type {MusTvElement}
-             */
-            this.elements.$mustv = new MusTvElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf MusTvView
+     * @returns {MusTvPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define MusTv Preferences Element
+       * @type {MusTvPreferencesElement}
+       */
+      this.elements.$preferences = new MusTvPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf MusTvView
-         * @returns {MusTvPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define MusTv Preferences Element
-             * @type {MusTvPreferencesElement}
-             */
-            this.elements.$preferences = new MusTvPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf MusTvView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {MusTvRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
+      /**
+       * Define data
+       * @type {*|{}}
+       */
+      var data = this.controller.getRules();
 
-        /**
-         * Render Rules
-         * @memberOf MusTvView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {MusTvRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define data
-             * @type {*|{}}
-             */
-            var data = this.controller.getRules();
-
-            /**
-             * Define MusTv Rules Element
-             * @type {MusTvRulesElement}
-             */
-            this.elements.$rules = new MusTvRulesElement(this, {
-                data: data,
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render mustv
-         * @memberOf MusTvView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderMusTv.bind(this)
-            );
+      /**
+       * Define MusTv Rules Element
+       * @type {MusTvRulesElement}
+       */
+      this.elements.$rules = new MusTvRulesElement(this, {
+        data: data,
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render mustv
+     * @memberOf MusTvView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderMusTv.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

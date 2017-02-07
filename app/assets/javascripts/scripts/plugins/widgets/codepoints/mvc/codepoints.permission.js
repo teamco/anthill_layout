@@ -7,20 +7,20 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineCodepointsPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class CodepointsPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var CodepointsPermission = function CodepointsPermission() {
-    };
+  /**
+   * Define Permissions
+   * @class CodepointsPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var CodepointsPermission = function CodepointsPermission() {
+  };
 
-    return CodepointsPermission.extend(
-        'CodepointsPermission', {}, 
-        BasePermission.prototype
-    );
+  return CodepointsPermission.extend(
+      'CodepointsPermission', {},
+      BasePermission.prototype
+  );
 });

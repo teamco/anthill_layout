@@ -7,17 +7,18 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineWebrtcVideoChatPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class WebrtcVideoChatPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var WebrtcVideoChatPermission = function WebrtcVideoChatPermission() {
-    };
+  /**
+   * Define Permissions
+   * @class WebrtcVideoChatPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var WebrtcVideoChatPermission = function WebrtcVideoChatPermission() {
+  };
 
-    return WebrtcVideoChatPermission.extend('WebrtcVideoChatPermission', {}, BasePermission.prototype);
+  return WebrtcVideoChatPermission.extend('WebrtcVideoChatPermission', {},
+      BasePermission.prototype);
 });

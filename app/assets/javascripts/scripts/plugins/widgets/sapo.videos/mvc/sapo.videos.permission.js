@@ -7,20 +7,20 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineSapoVideosPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class SapoVideosPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var SapoVideosPermission = function SapoVideosPermission() {
-    };
+  /**
+   * Define Permissions
+   * @class SapoVideosPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var SapoVideosPermission = function SapoVideosPermission() {
+  };
 
-    return SapoVideosPermission.extend(
-        'SapoVideosPermission', {}, 
-        BasePermission.prototype
-    );
+  return SapoVideosPermission.extend(
+      'SapoVideosPermission', {},
+      BasePermission.prototype
+  );
 });

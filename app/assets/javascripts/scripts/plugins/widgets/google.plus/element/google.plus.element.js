@@ -6,52 +6,52 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineGooglePlusElement(PluginElement) {
 
+  /**
+   * Define GooglePlus Element
+   * @param view
+   * @param opts
+   * @returns {GooglePlusElement}
+   * @constructor
+   * @class GooglePlusElement
+   * @extends PluginElement
+   */
+  var GooglePlusElement = function GooglePlusElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('google.plus', {resource: '/widgets'});
+
+    return this;
+  };
+
+  return GooglePlusElement.extend('GooglePlusElement', {
+
     /**
-     * Define GooglePlus Element
-     * @param view
-     * @param opts
-     * @returns {GooglePlusElement}
-     * @constructor
-     * @class GooglePlusElement
-     * @extends PluginElement
+     * Render Embedded content
+     * @memberOf GooglePlusElement
+     * @param {string} api
+     * @param {string} url
      */
-    var GooglePlusElement = function GooglePlusElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent(api, url) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+      this.empty();
 
-        this.addCSS('google.plus', {resource: '/widgets'});
+      var $element = this;
 
-        return this;
-    };
+      require([api], function _defineGooglePlusApi() {
 
-    return GooglePlusElement.extend('GooglePlusElement', {
+        // Render embedded post
+        // https://developers.google.com/+/web/embedded-post/
+        gapi.post.render($element.id, {href: url});
+      });
+    }
 
-        /**
-         * Render Embedded content
-         * @memberOf GooglePlusElement
-         * @param {string} api
-         * @param {string} url
-         */
-        renderEmbeddedContent: function renderEmbeddedContent(api, url) {
-
-            this.empty();
-
-            var $element = this;
-
-            require([api], function _defineGooglePlusApi() {
-
-                // Render embedded post
-                // https://developers.google.com/+/web/embedded-post/
-                gapi.post.render($element.id, {href: url});
-            });
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 
 });

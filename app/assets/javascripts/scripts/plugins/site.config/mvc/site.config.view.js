@@ -8,18 +8,18 @@
 
 define(
     [
-        'modules/View',
-        'plugins/preferences/preferences',
-        'element/header.element',
-        'element/footer.element',
-        'plugins/site.config/mvc/view/site.config.activate.view',
-        'plugins/site.config/mvc/view/site.config.cleanup.view',
-        'plugins/site.config/mvc/view/site.config.import.view',
-        'plugins/site.config/mvc/view/site.config.preferences.view',
-        'plugins/site.config/mvc/view/site.config.publish.view',
-        'plugins/site.config/mvc/view/site.config.widget.view',
-        'plugins/site.config/element/site.config.content.element',
-        'plugins/site.config/element/site.config.element'
+      'modules/View',
+      'plugins/preferences/preferences',
+      'element/header.element',
+      'element/footer.element',
+      'plugins/site.config/mvc/view/site.config.activate.view',
+      'plugins/site.config/mvc/view/site.config.cleanup.view',
+      'plugins/site.config/mvc/view/site.config.import.view',
+      'plugins/site.config/mvc/view/site.config.preferences.view',
+      'plugins/site.config/mvc/view/site.config.publish.view',
+      'plugins/site.config/mvc/view/site.config.widget.view',
+      'plugins/site.config/element/site.config.content.element',
+      'plugins/site.config/element/site.config.element'
     ],
 
     /**
@@ -38,129 +38,132 @@ define(
      * @param {SiteConfigElement} SiteConfigElement
      * @returns {*}
      */
-    function defineSiteConfigView(BaseView, BasePreferencesElement, Header, Footer, SiteConfigActivateView, SiteConfigCleanupView, SiteConfigImportView, SiteConfigPreferencesView, SiteConfigPublishView, SiteConfigWidgetView, SiteConfigContentElement, SiteConfigElement) {
+    function defineSiteConfigView(BaseView, BasePreferencesElement, Header,
+        Footer, SiteConfigActivateView, SiteConfigCleanupView,
+        SiteConfigImportView, SiteConfigPreferencesView, SiteConfigPublishView,
+        SiteConfigWidgetView, SiteConfigContentElement, SiteConfigElement) {
 
-        /**
-         * Define view
-         * @class SiteConfigView
-         * @extends BaseView
-         * @extends BasePreferencesElement
-         * @extends SiteConfigActivateView,
-         * @extends SiteConfigCleanupView,
-         * @extends SiteConfigImportView,
-         * @extends SiteConfigPreferencesView,
-         * @extends SiteConfigPublishView,
-         * @extends SiteConfigWidgetView,
-         * @constructor
-         */
-        var SiteConfigView = function SiteConfigView() {
-        };
+      /**
+       * Define view
+       * @class SiteConfigView
+       * @extends BaseView
+       * @extends BasePreferencesElement
+       * @extends SiteConfigActivateView,
+       * @extends SiteConfigCleanupView,
+       * @extends SiteConfigImportView,
+       * @extends SiteConfigPreferencesView,
+       * @extends SiteConfigPublishView,
+       * @extends SiteConfigWidgetView,
+       * @constructor
+       */
+      var SiteConfigView = function SiteConfigView() {
+      };
 
-        return SiteConfigView.extend(
-            'SiteConfigView', {
+      return SiteConfigView.extend(
+          'SiteConfigView', {
 
-                /**
-                 * Render SiteConfig
-                 * @memberOf SiteConfigView
-                 * @returns {boolean}
-                 */
-                renderSiteConfig: function renderSiteConfig() {
+            /**
+             * Render SiteConfig
+             * @memberOf SiteConfigView
+             * @returns {boolean}
+             */
+            renderSiteConfig: function renderSiteConfig() {
 
-                    this.renderFilter(
-                        this.updateFooterContent.bind(this)
-                    );
+              this.renderFilter(
+                  this.updateFooterContent.bind(this)
+              );
 
-                    if (!this.isCached('$siteconfig', SiteConfigElement)) {
-
-                        /**
-                         * Define SiteConfig element
-                         * @type {SiteConfigElement}
-                         */
-                        this.elements.$siteconfig = new SiteConfigElement(this, {
-                            id: this.createUUID(),
-                            $container: this.get$container().$
-                        });
-                    }
-
-                    this.updateFooterContent();
-                },
+              if (!this.isCached('$siteconfig', SiteConfigElement)) {
 
                 /**
-                 * Render site.config content
-                 * @memberOf SiteConfigView
-                 * @param data
-                 * @returns {boolean}
+                 * Define SiteConfig element
+                 * @type {SiteConfigElement}
                  */
-                renderContent: function renderContent(data) {
+                this.elements.$siteconfig = new SiteConfigElement(this, {
+                  id: this.createUUID(),
+                  $container: this.get$container().$
+                });
+              }
 
-                    this.cleanElementItems();
-                    this.updateElementItems();
-
-                    var index, counter = 1;
-
-                    for (index in data) {
-
-                        if (data.hasOwnProperty(index)) {
-
-                            /**
-                             * Render item
-                             * @type {SiteConfigContentElement}
-                             */
-                            var $item = new SiteConfigContentElement(this, {
-                                style: [
-                                    'content',
-                                    data[index].title.toClassName()
-                                ].join(' '),
-                                $container: this.get$item().$,
-                                counter: counter,
-                                data: data[index]
-                            });
-
-                            counter += 1;
-
-                            this.updateElementItems($item);
-                        }
-                    }
-
-                    this.updateScrollCover();
-
-                    this.elements.$filter.updateData({
-                        items: this.elements.items,
-                        focusOn: 'input'
-                    });
-
-                    this.updateFooterContent();
-                },
-
-                /**
-                 * Update footer content
-                 * @memberOf SiteConfigView
-                 */
-                updateFooterContent: function updateFooterContent() {
-                    this.renderFooter(Footer, this.get$item());
-                },
-
-                /**
-                 * Render site.config
-                 * @memberOf SiteConfigView
-                 */
-                render: function render() {
-
-                    this.scope.observer.publish(
-                        this.scope.eventmanager.eventList.successRendered,
-                        this.renderSiteConfig.bind(this)
-                    );
-                }
-
+              this.updateFooterContent();
             },
-            BaseView.prototype,
-            BasePreferencesElement.prototype,
-            SiteConfigActivateView.prototype,
-            SiteConfigCleanupView.prototype,
-            SiteConfigImportView.prototype,
-            SiteConfigPreferencesView.prototype,
-            SiteConfigPublishView.prototype,
-            SiteConfigWidgetView.prototype
-        )
+
+            /**
+             * Render site.config content
+             * @memberOf SiteConfigView
+             * @param data
+             * @returns {boolean}
+             */
+            renderContent: function renderContent(data) {
+
+              this.cleanElementItems();
+              this.updateElementItems();
+
+              var index, counter = 1;
+
+              for (index in data) {
+
+                if (data.hasOwnProperty(index)) {
+
+                  /**
+                   * Render item
+                   * @type {SiteConfigContentElement}
+                   */
+                  var $item = new SiteConfigContentElement(this, {
+                    style: [
+                      'content',
+                      data[index].title.toClassName()
+                    ].join(' '),
+                    $container: this.get$item().$,
+                    counter: counter,
+                    data: data[index]
+                  });
+
+                  counter += 1;
+
+                  this.updateElementItems($item);
+                }
+              }
+
+              this.updateScrollCover();
+
+              this.elements.$filter.updateData({
+                items: this.elements.items,
+                focusOn: 'input'
+              });
+
+              this.updateFooterContent();
+            },
+
+            /**
+             * Update footer content
+             * @memberOf SiteConfigView
+             */
+            updateFooterContent: function updateFooterContent() {
+              this.renderFooter(Footer, this.get$item());
+            },
+
+            /**
+             * Render site.config
+             * @memberOf SiteConfigView
+             */
+            render: function render() {
+
+              this.scope.observer.publish(
+                  this.scope.eventmanager.eventList.successRendered,
+                  this.renderSiteConfig.bind(this)
+              );
+            }
+
+          },
+          BaseView.prototype,
+          BasePreferencesElement.prototype,
+          SiteConfigActivateView.prototype,
+          SiteConfigCleanupView.prototype,
+          SiteConfigImportView.prototype,
+          SiteConfigPreferencesView.prototype,
+          SiteConfigPublishView.prototype,
+          SiteConfigWidgetView.prototype
+      )
     }
 );

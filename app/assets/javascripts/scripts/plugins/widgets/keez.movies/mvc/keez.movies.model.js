@@ -6,53 +6,54 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineKeezMoviesModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define KeezMovies model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class KeezMoviesModel
+   * @constructor
+   */
+  var KeezMoviesModel = function KeezMoviesModel() {
+
     /**
-     * Define KeezMovies model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class KeezMoviesModel
-     * @constructor
-     */
-    var KeezMoviesModel = function KeezMoviesModel() {
-
-        /**
-         * Define preferences
-         * @memberOf KeezMoviesModel
-         * @type {{
-         *      keezmoviesEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
+     * Define preferences
+     * @memberOf KeezMoviesModel
+     * @type {{
+         *      keezmoviesEmbedCode: {type: string, disabled: boolean, value:
+         *     undefined, visible: boolean}
          * }}
-         */
-        this.preferences = {
-            keezmoviesEmbedCode: {
-                type: 'textarea',
-                disabled: false,
-                value: undefined,
-                visible: true
-            }
-        };
-
-        /**
-         * Define rules
-         * @memberOf KeezMoviesModel
-         * @type {{}}
-         */
-        this.rules = {};
+     */
+    this.preferences = {
+      keezmoviesEmbedCode: {
+        type: 'textarea',
+        disabled: false,
+        value: undefined,
+        visible: true
+      }
     };
 
-    return KeezMoviesModel.extend('KeezMoviesModel', {
+    /**
+     * Define rules
+     * @memberOf KeezMoviesModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        /**
-         * Set KeezMovies embed code
-         * @memberOf KeezMoviesModel
-         * @param {string} embed
-         */
-        setKeezmoviesEmbedCode: function setKeezmoviesEmbedCode(embed) {
-            this.setPrefs('keezmoviesEmbedCode', embed);
-        }
+  return KeezMoviesModel.extend('KeezMoviesModel', {
 
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    /**
+     * Set KeezMovies embed code
+     * @memberOf KeezMoviesModel
+     * @param {string} embed
+     */
+    setKeezmoviesEmbedCode: function setKeezmoviesEmbedCode(embed) {
+      this.setPrefs('keezmoviesEmbedCode', embed);
+    }
+
+  }, BaseModel.prototype, WidgetContentModel.prototype);
 });

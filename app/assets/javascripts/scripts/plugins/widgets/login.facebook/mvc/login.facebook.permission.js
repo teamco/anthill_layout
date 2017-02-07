@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineLoginFacebookPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class LoginFacebookPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var LoginFacebookPermission = function LoginFacebookPermission() {
+  /**
+   * Define Permissions
+   * @class LoginFacebookPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var LoginFacebookPermission = function LoginFacebookPermission() {
 
-    };
+  };
 
-    return LoginFacebookPermission.extend('LoginFacebookPermission', {
-
-    }, BasePermission.prototype);
+  return LoginFacebookPermission.extend('LoginFacebookPermission', {},
+      BasePermission.prototype);
 });

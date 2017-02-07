@@ -6,52 +6,52 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model'
+  'modules/Model'
 ], function defineBarModel(BaseModel) {
 
+  /**
+   * Define Bar model
+   * @extends BaseModel
+   * @class BarModel
+   * @constructor
+   */
+  var BarModel = function BarModel() {
+
     /**
-     * Define Bar model
-     * @extends BaseModel
-     * @class BarModel
-     * @constructor
+     * Init modules
+     * @memberOf BarModel
+     * @type {Array}
      */
-    var BarModel = function BarModel() {
+    this.modules = [];
+  };
 
-        /**
-         * Init modules
-         * @memberOf BarModel
-         * @type {Array}
-         */
-        this.modules = [];
-    };
+  return BarModel.extend('BarModel', {
 
-    return BarModel.extend('BarModel', {
+    /**
+     * Get list of modules
+     * @memberOf BarModel
+     * @returns {*}
+     */
+    getModulesData: function getModulesData() {
+      return this.scope.containment.model.getModule();
+    },
 
-        /**
-         * Get list of modules
-         * @memberOf BarModel
-         * @returns {*}
-         */
-        getModulesData: function getModulesData() {
-            return this.scope.containment.model.getModule();
-        },
+    /**
+     * Store modules
+     * @memberOf BarModel
+     */
+    storeModules: function storeModules() {
+      this.modules = this.getModulesData();
+    },
 
-        /**
-         * Store modules
-         * @memberOf BarModel
-         */
-        storeModules: function storeModules() {
-            this.modules = this.getModulesData();
-        },
+    /**
+     * Get modules
+     * @memberOf BarModel
+     * @returns {Array}
+     */
+    getModules: function getModules() {
+      return this.modules;
+    }
 
-        /**
-         * Get modules
-         * @memberOf BarModel
-         * @returns {Array}
-         */
-        getModules: function getModules() {
-            return this.modules;
-        }
-
-    }, BaseModel.prototype);
+  }, BaseModel.prototype);
 });

@@ -6,46 +6,46 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineFiveChannelUaElement(PluginElement) {
 
+  /**
+   * Define FiveChannelUa Element
+   * @param view
+   * @param opts
+   * @returns {FiveChannelUaElement}
+   * @constructor
+   * @class FiveChannelUaElement
+   * @extends PluginElement
+   */
+  var FiveChannelUaElement = function FiveChannelUaElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('five.channel.ua', {resource: '/widgets'});
+
+    return this;
+  };
+
+  return FiveChannelUaElement.extend('FiveChannelUaElement', {
+
     /**
-     * Define FiveChannelUa Element
-     * @param view
-     * @param opts
-     * @returns {FiveChannelUaElement}
-     * @constructor
-     * @class FiveChannelUaElement
-     * @extends PluginElement
+     * Render Embedded content
+     * @memberOf FiveChannelUaElement
+     * @param {string} url
      */
-    var FiveChannelUaElement = function FiveChannelUaElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent(url) {
+      this.$.append(
+          this.renderIframe(url, {
+            id: "ytplayer",
+            type: "text/html"
+          })
+      );
+    }
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
-
-        this.addCSS('five.channel.ua', {resource: '/widgets'});
-
-        return this;
-    };
-
-    return FiveChannelUaElement.extend('FiveChannelUaElement', {
-
-        /**
-         * Render Embedded content
-         * @memberOf FiveChannelUaElement
-         * @param {string} url
-         */
-        renderEmbeddedContent: function renderEmbeddedContent(url) {
-            this.$.append(
-                this.renderIframe(url, {
-                    id: "ytplayer",
-                    type: "text/html"
-                })
-            );
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 
 });

@@ -7,20 +7,20 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineInfogrAmPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class InfogrAmPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var InfogrAmPermission = function InfogrAmPermission() {
-    };
+  /**
+   * Define Permissions
+   * @class InfogrAmPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var InfogrAmPermission = function InfogrAmPermission() {
+  };
 
-    return InfogrAmPermission.extend(
-        'InfogrAmPermission', {}, 
-        BasePermission.prototype
-    );
+  return InfogrAmPermission.extend(
+      'InfogrAmPermission', {},
+      BasePermission.prototype
+  );
 });

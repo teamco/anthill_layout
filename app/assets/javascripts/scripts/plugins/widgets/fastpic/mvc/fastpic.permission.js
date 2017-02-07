@@ -7,20 +7,20 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineFastpicPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class FastpicPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var FastpicPermission = function FastpicPermission() {
-    };
+  /**
+   * Define Permissions
+   * @class FastpicPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var FastpicPermission = function FastpicPermission() {
+  };
 
-    return FastpicPermission.extend(
-        'FastpicPermission', {}, 
-        BasePermission.prototype
-    );
+  return FastpicPermission.extend(
+      'FastpicPermission', {},
+      BasePermission.prototype
+  );
 });

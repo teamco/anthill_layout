@@ -6,44 +6,44 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineReverbnationElement(PluginElement) {
 
+  /**
+   * Define Reverbnation Element
+   * @param view
+   * @param opts
+   * @returns {ReverbnationElement}
+   * @constructor
+   * @class ReverbnationElement
+   * @extends PluginElement
+   */
+  var ReverbnationElement = function ReverbnationElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('reverbnation', {resource: '/widgets'});
+
+    return this;
+  };
+
+  return ReverbnationElement.extend('ReverbnationElement', {
+
     /**
-     * Define Reverbnation Element
-     * @param view
-     * @param opts
-     * @returns {ReverbnationElement}
-     * @constructor
-     * @class ReverbnationElement
-     * @extends PluginElement
+     * Render Embedded content
+     * @memberOf ReverbnationElement
+     * @param {string} embed
      */
-    var ReverbnationElement = function ReverbnationElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent(embed) {
+      this.addContent(
+          this.renderIframe(
+              $(embed).attr('src')
+          )
+      );
+    }
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
-
-        this.addCSS('reverbnation', {resource: '/widgets'});
-
-        return this;
-    };
-
-    return ReverbnationElement.extend('ReverbnationElement', {
-
-        /**
-         * Render Embedded content
-         * @memberOf ReverbnationElement
-         * @param {string} embed
-         */
-        renderEmbeddedContent: function renderEmbeddedContent(embed) {
-            this.addContent(
-                this.renderIframe(
-                    $(embed).attr('src')
-                )
-            );
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 });

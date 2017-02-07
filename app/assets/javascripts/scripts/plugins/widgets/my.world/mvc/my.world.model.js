@@ -6,53 +6,54 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineMyWorldModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define MyWorld model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class MyWorldModel
+   * @constructor
+   */
+  var MyWorldModel = function MyWorldModel() {
+
     /**
-     * Define MyWorld model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class MyWorldModel
-     * @constructor
-     */
-    var MyWorldModel = function MyWorldModel() {
-
-        /**
-         * Define preferences
-         * @memberOf MyWorldModel
-         * @type {{
-         *      myworldEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
+     * Define preferences
+     * @memberOf MyWorldModel
+     * @type {{
+         *      myworldEmbedCode: {type: string, disabled: boolean, value:
+         *     undefined, visible: boolean}
          * }}
-         */
-        this.preferences = {
-            myworldEmbedCode: {
-                type: 'textarea',
-                disabled: false,
-                value: undefined,
-                visible: true
-            }
-        };
-
-        /**
-         * Define rules
-         * @memberOf MyWorldModel
-         * @type {{}}
-         */
-        this.rules = {};
+     */
+    this.preferences = {
+      myworldEmbedCode: {
+        type: 'textarea',
+        disabled: false,
+        value: undefined,
+        visible: true
+      }
     };
 
-    return MyWorldModel.extend('MyWorldModel', {
+    /**
+     * Define rules
+     * @memberOf MyWorldModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        /**
-         * Set MyWorld embed code
-         * @memberOf MyWorldModel
-         * @param {string} embed
-         */
-        setMyworldEmbedCode: function setMyworldEmbedCode(embed) {
-            this.setPrefs('myworldEmbedCode', embed);
-        }
+  return MyWorldModel.extend('MyWorldModel', {
 
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    /**
+     * Set MyWorld embed code
+     * @memberOf MyWorldModel
+     * @param {string} embed
+     */
+    setMyworldEmbedCode: function setMyworldEmbedCode(embed) {
+      this.setPrefs('myworldEmbedCode', embed);
+    }
+
+  }, BaseModel.prototype, WidgetContentModel.prototype);
 });

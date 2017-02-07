@@ -6,44 +6,45 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineReleasewireModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define Releasewire model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class ReleasewireModel
+   * @constructor
+   */
+  var ReleasewireModel = function ReleasewireModel() {
+
     /**
-     * Define Releasewire model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class ReleasewireModel
-     * @constructor
+     * Define preferences
+     * @property ReleasewireModel
+     * @type {{releasewireEmbedCode: {type: string, disabled: boolean, value:
+     *     string, visible: boolean}}}
      */
-    var ReleasewireModel = function ReleasewireModel() {
-
-        /**
-         * Define preferences
-         * @property ReleasewireModel
-         * @type {{releasewireEmbedCode: {type: string, disabled: boolean, value: string, visible: boolean}}}
-         */
-        this.preferences = {
-            releasewireEmbedCode: {
-                type: 'textarea',
-                disabled: false,
-                value: '<a class="rwp-pr" href="http://rwire.com/684985">Another American Hero Discarded, SSG Lewis Foutch</a><script>!function(){var e="rwp-platform";if(!document.getElementById(e)){var t=document.createElement("script");t.id=e,t.src=("https:"===document.location.protocol?"https":"http")+"://publisher.releasewire.com/embed.js",t.async=!0,document.body.appendChild(t)}}();</script>',
-                visible: true
-            }
-        };
-
-        /**
-         * Define rules
-         * @property ReleasewireModel
-         * @type {{}}
-         */
-        this.rules = {};
+    this.preferences = {
+      releasewireEmbedCode: {
+        type: 'textarea',
+        disabled: false,
+        value: '<a class="rwp-pr" href="http://rwire.com/684985">Another American Hero Discarded, SSG Lewis Foutch</a><script>!function(){var e="rwp-platform";if(!document.getElementById(e)){var t=document.createElement("script");t.id=e,t.src=("https:"===document.location.protocol?"https":"http")+"://publisher.releasewire.com/embed.js",t.async=!0,document.body.appendChild(t)}}();</script>',
+        visible: true
+      }
     };
 
-    return ReleasewireModel.extend('ReleasewireModel', {
+    /**
+     * Define rules
+     * @property ReleasewireModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        // Setter
+  return ReleasewireModel.extend('ReleasewireModel', {
 
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    // Setter
+
+  }, BaseModel.prototype, WidgetContentModel.prototype);
 });

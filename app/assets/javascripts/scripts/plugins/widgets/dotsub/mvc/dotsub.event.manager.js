@@ -7,23 +7,23 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineDotsubEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define Dotsub event manager
-     * @class DotsubEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var DotsubEventManager = function DotsubEventManager() {
+  /**
+   * Define Dotsub event manager
+   * @class DotsubEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var DotsubEventManager = function DotsubEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return DotsubEventManager.extend(
-        'DotsubEventManager', {},
-        WidgetContentEventManager.prototype
-    );
+  return DotsubEventManager.extend(
+      'DotsubEventManager', {},
+      WidgetContentEventManager.prototype
+  );
 });

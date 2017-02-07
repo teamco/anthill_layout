@@ -7,23 +7,23 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineSapOpenuiEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define SapOpenui event manager
-     * @class SapOpenuiEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var SapOpenuiEventManager = function SapOpenuiEventManager() {
+  /**
+   * Define SapOpenui event manager
+   * @class SapOpenuiEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var SapOpenuiEventManager = function SapOpenuiEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return SapOpenuiEventManager.extend(
-        'SapOpenuiEventManager', {},
-        WidgetContentEventManager.prototype
-    );
+  return SapOpenuiEventManager.extend(
+      'SapOpenuiEventManager', {},
+      WidgetContentEventManager.prototype
+  );
 });

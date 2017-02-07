@@ -6,35 +6,36 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
-], function defineChannelNineUaPreferencesElement(PluginElement, WidgetPreferences) {
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
+], function defineChannelNineUaPreferencesElement(PluginElement,
+    WidgetPreferences) {
 
-    /**
-     * Define ChannelNineUa Preferences Element
-     * @param view
-     * @param opts
-     * @returns {ChannelNineUaPreferencesElement}
-     * @constructor
-     * @class ChannelNineUaPreferencesElement
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     */
-    var ChannelNineUaPreferencesElement = function ChannelNineUaPreferencesElement(view, opts) {
+  /**
+   * Define ChannelNineUa Preferences Element
+   * @param view
+   * @param opts
+   * @returns {ChannelNineUaPreferencesElement}
+   * @constructor
+   * @class ChannelNineUaPreferencesElement
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   */
+  var ChannelNineUaPreferencesElement = function ChannelNineUaPreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return ChannelNineUaPreferencesElement.extend('ChannelNineUaPreferencesElement', {
-
-
-    }, PluginElement.prototype, WidgetPreferences.prototype);
+  return ChannelNineUaPreferencesElement.extend(
+      'ChannelNineUaPreferencesElement', {}, PluginElement.prototype,
+      WidgetPreferences.prototype);
 
 });

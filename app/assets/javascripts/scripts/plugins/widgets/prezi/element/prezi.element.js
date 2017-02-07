@@ -6,43 +6,43 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function definePreziElement(PluginElement) {
 
+  /**
+   * Define Prezi Element
+   * @param view
+   * @param opts
+   * @returns {PreziElement}
+   * @constructor
+   * @class PreziElement
+   * @extends PluginElement
+   */
+  var PreziElement = function PreziElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('prezi', {resource: '/widgets'});
+
+    return this;
+  };
+
+  return PreziElement.extend('PreziElement', {
+
     /**
-     * Define Prezi Element
-     * @param view
-     * @param opts
-     * @returns {PreziElement}
-     * @constructor
-     * @class PreziElement
-     * @extends PluginElement
+     * Render Embedded content
+     * @memberOf PreziElement
+     * @param {string} url
      */
-    var PreziElement = function PreziElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent(url) {
+      this.$.append(
+          this.renderIframe(url)
+      );
+    }
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
-
-        this.addCSS('prezi', {resource: '/widgets'});
-
-        return this;
-    };
-
-    return PreziElement.extend('PreziElement', {
-
-        /**
-         * Render Embedded content
-         * @memberOf PreziElement
-         * @param {string} url
-         */
-        renderEmbeddedContent: function renderEmbeddedContent(url) {
-            this.$.append(
-                this.renderIframe(url)
-            );
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 
 });

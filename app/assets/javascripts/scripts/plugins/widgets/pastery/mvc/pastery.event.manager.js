@@ -7,23 +7,23 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function definePasteryEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define Pastery event manager
-     * @class PasteryEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var PasteryEventManager = function PasteryEventManager() {
+  /**
+   * Define Pastery event manager
+   * @class PasteryEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var PasteryEventManager = function PasteryEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return PasteryEventManager.extend(
-        'PasteryEventManager', {},
-        WidgetContentEventManager.prototype
-    );
+  return PasteryEventManager.extend(
+      'PasteryEventManager', {},
+      WidgetContentEventManager.prototype
+  );
 });

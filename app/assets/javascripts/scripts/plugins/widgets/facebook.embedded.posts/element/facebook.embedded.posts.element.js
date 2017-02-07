@@ -6,44 +6,45 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineFacebookEmbeddedPostsElement(PluginElement) {
 
+  /**
+   * Define FacebookEmbeddedPosts Element
+   * @param view
+   * @param opts
+   * @returns {FacebookEmbeddedPostsElement}
+   * @constructor
+   * @class FacebookEmbeddedPostsElement
+   * @extends PluginElement
+   */
+  var FacebookEmbeddedPostsElement = function FacebookEmbeddedPostsElement(view,
+      opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('facebook.embedded.posts', {resource: '/widgets'});
+
+    return this;
+  };
+
+  return FacebookEmbeddedPostsElement.extend('FacebookEmbeddedPostsElement', {
+
     /**
-     * Define FacebookEmbeddedPosts Element
-     * @param view
-     * @param opts
-     * @returns {FacebookEmbeddedPostsElement}
-     * @constructor
-     * @class FacebookEmbeddedPostsElement
-     * @extends PluginElement
+     * Render Embedded content
+     * @memberOf FacebookEmbeddedPostsElement
+     * @param {string} embed
      */
-    var FacebookEmbeddedPostsElement = function FacebookEmbeddedPostsElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent(embed) {
+      this.$.append(
+          this.renderIframe(
+              $(embed).attr('src')
+          )
+      );
+    }
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
-
-        this.addCSS('facebook.embedded.posts', {resource: '/widgets'});
-
-        return this;
-    };
-
-    return FacebookEmbeddedPostsElement.extend('FacebookEmbeddedPostsElement', {
-
-        /**
-         * Render Embedded content
-         * @memberOf FacebookEmbeddedPostsElement
-         * @param {string} embed
-         */
-        renderEmbeddedContent: function renderEmbeddedContent(embed) {
-            this.$.append(
-                this.renderIframe(
-                    $(embed).attr('src')
-                )
-            );
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 });

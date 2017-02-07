@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineEmpflixPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class EmpflixPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var EmpflixPermission = function EmpflixPermission() {
+  /**
+   * Define Permissions
+   * @class EmpflixPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var EmpflixPermission = function EmpflixPermission() {
 
-    };
+  };
 
-    return EmpflixPermission.extend('EmpflixPermission', {
-
-    }, BasePermission.prototype);
+  return EmpflixPermission.extend('EmpflixPermission', {},
+      BasePermission.prototype);
 });

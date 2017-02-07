@@ -7,101 +7,102 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/cacoo/element/cacoo.element',
-    'plugins/widgets/cacoo/element/cacoo.preferences.element',
-    'plugins/widgets/cacoo/element/cacoo.rules.element'
-], function defineCacooView(BaseView, Header, Footer, CacooElement, CacooPreferencesElement, CacooRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/cacoo/element/cacoo.element',
+  'plugins/widgets/cacoo/element/cacoo.preferences.element',
+  'plugins/widgets/cacoo/element/cacoo.rules.element'
+], function defineCacooView(BaseView, Header, Footer, CacooElement,
+    CacooPreferencesElement, CacooRulesElement) {
+
+  /**
+   * Define view
+   * @class CacooView
+   * @extends BaseView
+   * @constructor
+   */
+  var CacooView = function CacooView() {
+  };
+
+  return CacooView.extend('CacooView', {
 
     /**
-     * Define view
-     * @class CacooView
-     * @extends BaseView
-     * @constructor
+     * Render Cacoo element
+     * @memberOf CacooView
      */
-    var CacooView = function CacooView() {
-    };
+    renderCacoo: function renderCacoo() {
 
-    return CacooView.extend('CacooView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render Cacoo element
-         * @memberOf CacooView
-         */
-        renderCacoo: function renderCacoo() {
+      /**
+       * Define $cacoo
+       * @type {CacooElement}
+       */
+      this.elements.$cacoo = new CacooElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $cacoo
-             * @type {CacooElement}
-             */
-            this.elements.$cacoo = new CacooElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf CacooView
+     * @returns {CacooPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define Cacoo Preferences Element
+       * @type {CacooPreferencesElement}
+       */
+      this.elements.$preferences = new CacooPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf CacooView
-         * @returns {CacooPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define Cacoo Preferences Element
-             * @type {CacooPreferencesElement}
-             */
-            this.elements.$preferences = new CacooPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf CacooView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {CacooRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
-
-        /**
-         * Render Rules
-         * @memberOf CacooView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {CacooRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define Cacoo Rules Element
-             * @type {CacooRulesElement}
-             */
-            this.elements.$rules = new CacooRulesElement(this, {
-                data: this.controller.getRules(),
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render Cacoo
-         * @memberOf CacooView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderCacoo.bind(this)
-            );
+      /**
+       * Define Cacoo Rules Element
+       * @type {CacooRulesElement}
+       */
+      this.elements.$rules = new CacooRulesElement(this, {
+        data: this.controller.getRules(),
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype);
+      return this.get$rules();
+    },
+
+    /**
+     * Render Cacoo
+     * @memberOf CacooView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderCacoo.bind(this)
+      );
+    }
+
+  }, BaseView.prototype);
 });

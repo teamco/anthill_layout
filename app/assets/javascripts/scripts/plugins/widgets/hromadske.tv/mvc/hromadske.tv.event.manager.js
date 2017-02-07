@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineHromadskeTvEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define HromadskeTv event manager
-     * @class HromadskeTvEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var HromadskeTvEventManager = function HromadskeTvEventManager() {
+  /**
+   * Define HromadskeTv event manager
+   * @class HromadskeTvEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var HromadskeTvEventManager = function HromadskeTvEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return HromadskeTvEventManager.extend('HromadskeTvEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return HromadskeTvEventManager.extend('HromadskeTvEventManager', {},
+      WidgetContentEventManager.prototype);
 });

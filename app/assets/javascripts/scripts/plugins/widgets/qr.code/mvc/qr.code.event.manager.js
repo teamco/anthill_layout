@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineQrCodeEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define QrCode event manager
-     * @class QrCodeEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var QrCodeEventManager = function QrCodeEventManager() {
+  /**
+   * Define QrCode event manager
+   * @class QrCodeEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var QrCodeEventManager = function QrCodeEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return QrCodeEventManager.extend('QrCodeEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return QrCodeEventManager.extend('QrCodeEventManager', {},
+      WidgetContentEventManager.prototype);
 });

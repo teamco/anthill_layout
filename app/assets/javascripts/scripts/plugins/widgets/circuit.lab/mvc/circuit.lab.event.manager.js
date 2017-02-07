@@ -7,23 +7,23 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineCircuitLabEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define CircuitLab event manager
-     * @class CircuitLabEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var CircuitLabEventManager = function CircuitLabEventManager() {
+  /**
+   * Define CircuitLab event manager
+   * @class CircuitLabEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var CircuitLabEventManager = function CircuitLabEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return CircuitLabEventManager.extend(
-        'CircuitLabEventManager', {},
-        WidgetContentEventManager.prototype
-    );
+  return CircuitLabEventManager.extend(
+      'CircuitLabEventManager', {},
+      WidgetContentEventManager.prototype
+  );
 });

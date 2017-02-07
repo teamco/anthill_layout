@@ -7,122 +7,124 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/panel/element/panel.content.element',
-    'plugins/panel/element/panel.content.container.element',
-    'plugins/panel/element/panel.element'
-], function definePanelView(BaseView, Header, Footer, PanelContentElement, PanelContentContainer, Panel) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/panel/element/panel.content.element',
+  'plugins/panel/element/panel.content.container.element',
+  'plugins/panel/element/panel.element'
+], function definePanelView(BaseView, Header, Footer, PanelContentElement,
+    PanelContentContainer, Panel) {
+
+  /**
+   * Define view
+   * @class PanelView
+   * @constructor
+   * @extends BaseView
+   */
+  var PanelView = function PanelView() {
+  };
+
+  return PanelView.extend('PanelView', {
 
     /**
-     * Define view
-     * @class PanelView
-     * @constructor
-     * @extends BaseView
+     * Render Panel
+     * @memberOf PanelView
      */
-    var PanelView = function PanelView() {
-    };
+    renderPanel: function renderPanel() {
 
-    return PanelView.extend('PanelView', {
+      if (this.isCached('$panel', Panel)) {
+        return false;
+      }
 
-        /**
-         * Render Panel
-         * @memberOf PanelView
-         */
-        renderPanel: function renderPanel() {
+      /**
+       * Define Panel element
+       * @property PanelView.elements
+       * @type {PanelElement}
+       */
+      this.elements.$panel = new Panel(this, {
+        $container: 'body',
+        style: [
+          'panel-container',
+          this.controller.getRenderAt()
+        ].join(' ')
+      });
 
-            if (this.isCached('$panel', Panel)) {
-                return false;
-            }
+      this.renderContentContainer();
 
-            /**
-             * Define Panel element
-             * @property PanelView.elements
-             * @type {PanelElement}
-             */
-            this.elements.$panel = new Panel(this, {
-                $container: 'body',
-                style: [
-                    'panel-container',
-                    this.controller.getRenderAt()
-                ].join(' ')
-            });
+      this.footer(Footer, this.get$item());
 
-            this.renderContentContainer();
+      this.controller.renderPackages();
 
-            this.footer(Footer, this.get$item());
+    },
 
-            this.controller.renderPackages();
+    /**
+     * Render content container
+     * @memberOf PanelView
+     */
+    renderContentContainer: function renderContentContainer() {
 
-        },
+      /**
+       * Define Panel element
+       * @type {PanelContentContainerElement}
+       */
+      this.elements.$content = new PanelContentContainer(this, {
+        $container: this.get$item().getContentContainer(),
+        style: 'panel-content'
+      });
+    },
 
-        /**
-         * Render content container
-         * @memberOf PanelView
-         */
-        renderContentContainer: function renderContentContainer() {
+    /**
+     * Render panel content
+     * @memberOf PanelView
+     * @param module
+     * @param {Boolean} [force]
+     * @returns {boolean}
+     */
+    renderContent: function renderContent(module, force) {
 
-            /**
-             * Define Panel element
-             * @type {PanelContentContainerElement}
-             */
-            this.elements.$content = new PanelContentContainer(this, {
-                $container: this.get$item().getContentContainer(),
-                style: 'panel-content'
-            });
-        },
+      /**
+       * Define style
+       * @type {string}
+       */
+      var style = [
+            this.scope.model.getPanelEntityResourceName(module),
+            'content'
+          ].join('-'),
+          sname = '$' + style;
 
-        /**
-         * Render panel content
-         * @memberOf PanelView
-         * @param module
-         * @param {Boolean} [force]
-         * @returns {boolean}
-         */
-        renderContent: function renderContent(module, force) {
+      this.updateElementItems();
 
-            /**
-             * Define style
-             * @type {string}
-             */
-            var style = [
-                    this.scope.model.getPanelEntityResourceName(module),
-                    'content'
-                ].join('-'),
-                sname = '$' + style;
+      if ((this.isCachedItems() || this.elements.items.hasOwnProperty(sname)) &&
+          !force) {
+        return false;
+      }
 
-            this.updateElementItems();
+      /**
+       * Render item
+       * @type {PanelContentElement}
+       */
+      var $item = new PanelContentElement(this, {
+        style: style,
+        $container: this.elements.$content.$
+      });
 
-            if ((this.isCachedItems() || this.elements.items.hasOwnProperty(sname)) && !force) {
-                return false;
-            }
+      module.view.defineContainer($item);
 
-            /**
-             * Render item
-             * @type {PanelContentElement}
-             */
-            var $item = new PanelContentElement(this, {
-                style: style,
-                $container: this.elements.$content.$
-            });
+      this.updateElementItems($item, sname);
+    },
 
-            module.view.defineContainer($item);
+    /**
+     * Render panel
+     * @memberOf PanelView
+     */
+    render: function render() {
 
-            this.updateElementItems($item, sname);
-        },
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderPanel.bind(this)
+      );
+    }
 
-        /**
-         * Render panel
-         * @memberOf PanelView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderPanel.bind(this)
-            );
-        }
-
-    }, BaseView.prototype)
+  }, BaseView.prototype)
 });

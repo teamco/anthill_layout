@@ -6,142 +6,142 @@
  */
 
 define([
-    'config/anthill',
-    'plugins/plugin.controller'
+  'config/anthill',
+  'plugins/plugin.controller'
 ], function defineMaximizeController(AntHill, PluginBase) {
 
+  /**
+   * Define maximize controller
+   * @class MaximizeController
+   * @extends AntHill
+   * @extends PluginController
+   * @constructor
+   */
+  var MaximizeController = function MaximizeController() {
+  };
+
+  return MaximizeController.extend('MaximizeController', {
+
     /**
-     * Define maximize controller
-     * @class MaximizeController
-     * @extends AntHill
-     * @extends PluginController
-     * @constructor
+     * Store item
+     * @memberOf MaximizeController
+     * @param item
      */
-    var MaximizeController = function MaximizeController() {
-    };
+    storeItem: function storeItem(item) {
+      this.logger.debug('Update storage', item);
+      this.model.collectItems(item);
+    },
 
-    return MaximizeController.extend('MaximizeController', {
+    /**
+     * Get providers data
+     * @memberOf MaximizeController
+     */
+    getModuleData: function getModuleData() {
+      return this.model.getMaximize(
+          this.getPage()
+      );
+    },
 
-        /**
-         * Store item
-         * @memberOf MaximizeController
-         * @param item
-         */
-        storeItem: function storeItem(item) {
-            this.logger.debug('Update storage', item);
-            this.model.collectItems(item);
-        },
+    /**
+     * Set active content
+     * @memberOf MaximizeController
+     * @param {string} uuid
+     * @returns {*|boolean}
+     */
+    setActiveContent: function setActiveContent(uuid) {
 
-        /**
-         * Get providers data
-         * @memberOf MaximizeController
-         */
-        getModuleData: function getModuleData() {
-            return this.model.getMaximize(
-                this.getPage()
-            );
-        },
+      /**
+       * Get page
+       * @type {Page}
+       */
+      var page = this.controller.getPage();
 
-        /**
-         * Set active content
-         * @memberOf MaximizeController
-         * @param {string} uuid
-         * @returns {*|boolean}
-         */
-        setActiveContent: function setActiveContent(uuid) {
+      /**
+       * Get widget
+       * @type {Widget}
+       */
+      var widget = page.model.getItemByUUID(uuid);
 
-            /**
-             * Get page
-             * @type {Page}
-             */
-            var page = this.controller.getPage();
+      if (!widget) {
 
-            /**
-             * Get widget
-             * @type {Widget}
-             */
-            var widget = page.model.getItemByUUID(uuid);
-
-            if (!widget) {
-
-                this.logger.warn('Invalid data', page, uuid);
-
-                /**
-                 * Get panel
-                 * @type {Panel}
-                 */
-                var panel = this.controller.getDesignTimePanel();
-
-                panel.observer.publish(
-                    panel.eventmanager.eventList.closePanel,
-                    panel.active
-                );
-
-                return false;
-            }
-
-            /**
-             * Set active content
-             * @type {WidgetContent}
-             */
-            this.activeContent = widget.controller.getContent();
-
-            /**
-             * Define referrer
-             * @type {Maximize}
-             */
-            this.activeContent.referrer = this;
-
-            this.logger.debug('Active content', this.activeContent);
-        },
-        
-        /**
-         * Load maximize content
-         * @memberOf MaximizeController
-         * @param opened
-         */
-        loadContent: function loadContent(opened) {
-
-            if (opened) {
-                this.getView().renderContent(
-                    this.getData()
-                );
-            }
-        },
+        this.logger.warn('Invalid data', page, uuid);
 
         /**
-         * Define maximize interaction
-         * @memberOf MaximizeController
-         * @param {Widget} widget
+         * Get panel
+         * @type {Panel}
          */
-        defineInteraction: function defineInteraction(widget) {
+        var panel = this.controller.getDesignTimePanel();
 
-            /**
-             * Get page
-             * @type {Page}
-             */
-            var page = this.controller.getPage();
+        panel.observer.publish(
+            panel.eventmanager.eventList.closePanel,
+            panel.active
+        );
 
-            if (page.maximized === widget) {
+        return false;
+      }
 
-                widget.observer.publish(
-                    widget.eventmanager.eventList.reduceWidget
-                );
+      /**
+       * Set active content
+       * @type {WidgetContent}
+       */
+      this.activeContent = widget.controller.getContent();
 
-            } else {
+      /**
+       * Define referrer
+       * @type {Maximize}
+       */
+      this.activeContent.referrer = this;
 
-                if (page.maximized.observer) {
+      this.logger.debug('Active content', this.activeContent);
+    },
 
-                    page.maximized.observer.publish(
-                        page.maximized.eventmanager.eventList.reduceWidget
-                    );
-                }
+    /**
+     * Load maximize content
+     * @memberOf MaximizeController
+     * @param opened
+     */
+    loadContent: function loadContent(opened) {
 
-                widget.observer.publish(
-                    widget.eventmanager.eventList.enlargeWidget
-                );
-            }
+      if (opened) {
+        this.getView().renderContent(
+            this.getData()
+        );
+      }
+    },
+
+    /**
+     * Define maximize interaction
+     * @memberOf MaximizeController
+     * @param {Widget} widget
+     */
+    defineInteraction: function defineInteraction(widget) {
+
+      /**
+       * Get page
+       * @type {Page}
+       */
+      var page = this.controller.getPage();
+
+      if (page.maximized === widget) {
+
+        widget.observer.publish(
+            widget.eventmanager.eventList.reduceWidget
+        );
+
+      } else {
+
+        if (page.maximized.observer) {
+
+          page.maximized.observer.publish(
+              page.maximized.eventmanager.eventList.reduceWidget
+          );
         }
 
-    }, AntHill.prototype, PluginBase.prototype);
+        widget.observer.publish(
+            widget.eventmanager.eventList.enlargeWidget
+        );
+      }
+    }
+
+  }, AntHill.prototype, PluginBase.prototype);
 });

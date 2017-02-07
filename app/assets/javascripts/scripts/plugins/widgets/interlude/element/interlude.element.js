@@ -6,49 +6,49 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineInterludeElement(PluginElement) {
 
+  /**
+   * Define Interlude Element
+   * @param view
+   * @param opts
+   * @returns {InterludeElement}
+   * @constructor
+   * @class InterludeElement
+   * @extends PluginElement
+   */
+  var InterludeElement = function InterludeElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('interlude', {resource: '/widgets'});
+
+    return this;
+  };
+
+  return InterludeElement.extend('InterludeElement', {
+
     /**
-     * Define Interlude Element
-     * @param view
-     * @param opts
-     * @returns {InterludeElement}
-     * @constructor
-     * @class InterludeElement
-     * @extends PluginElement
+     * Render Embedded content
+     * @memberOf InterludeElement
+     * @param {string} embed
      */
-    var InterludeElement = function InterludeElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent(embed) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+      if (!embed) {
+        return false;
+      }
 
-        this.addCSS('interlude', {resource: '/widgets'});
+      this.$.append(
+          this.renderIframe(
+              $(embed).attr('src')
+          )
+      );
+    }
 
-        return this;
-    };
-
-    return InterludeElement.extend('InterludeElement', {
-
-        /**
-         * Render Embedded content
-         * @memberOf InterludeElement
-         * @param {string} embed
-         */
-        renderEmbeddedContent: function renderEmbeddedContent(embed) {
-
-            if (!embed) {
-                return false;
-            }
-
-            this.$.append(
-                this.renderIframe(
-                    $(embed).attr('src')
-                )
-            );
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 });

@@ -6,38 +6,37 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/rules/widget.base.rules'
+  'plugins/plugin.element',
+  'plugins/rules/widget.base.rules'
 ], function defineChannelTwoIlRulesElement(PluginElement, BaseWidgetRules) {
 
-    /**
-     * Define ChannelTwoIl Rules Element
-     * @param view
-     * @param opts
-     * @returns {ChannelTwoIlRulesElement}
-     * @constructor
-     * @class ChannelTwoIlRulesElement
-     * @extends PluginElement
-     * @extends BaseWidgetRules
-     */
-    var ChannelTwoIlRulesElement = function ChannelTwoIlRulesElement(view, opts) {
+  /**
+   * Define ChannelTwoIl Rules Element
+   * @param view
+   * @param opts
+   * @returns {ChannelTwoIlRulesElement}
+   * @constructor
+   * @class ChannelTwoIlRulesElement
+   * @extends PluginElement
+   * @extends BaseWidgetRules
+   */
+  var ChannelTwoIlRulesElement = function ChannelTwoIlRulesElement(view, opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBaseRulesData(
-            opts.data,
-            opts.rules.widget,
-            opts.rules.content
-        );
+    this.renderBaseRulesData(
+        opts.data,
+        opts.rules.widget,
+        opts.rules.content
+    );
 
-        return this;
-    };
+    return this;
+  };
 
-    return ChannelTwoIlRulesElement.extend('ChannelTwoIlRulesElement', {
-
-    }, PluginElement.prototype, BaseWidgetRules.prototype);
+  return ChannelTwoIlRulesElement.extend('ChannelTwoIlRulesElement', {},
+      PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineTelekanalUaPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class TelekanalUaPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var TelekanalUaPermission = function TelekanalUaPermission() {
+  /**
+   * Define Permissions
+   * @class TelekanalUaPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var TelekanalUaPermission = function TelekanalUaPermission() {
 
-    };
+  };
 
-    return TelekanalUaPermission.extend('TelekanalUaPermission', {
-
-    }, BasePermission.prototype);
+  return TelekanalUaPermission.extend('TelekanalUaPermission', {},
+      BasePermission.prototype);
 });

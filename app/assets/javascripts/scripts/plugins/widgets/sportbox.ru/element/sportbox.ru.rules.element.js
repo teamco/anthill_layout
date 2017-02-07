@@ -6,39 +6,39 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/rules/widget.base.rules'
+  'plugins/plugin.element',
+  'plugins/rules/widget.base.rules'
 ], function defineSportboxRuRulesElement(PluginElement, BaseWidgetRules) {
 
-    /**
-     * Define SportboxRu Rules Element
-     * @param view
-     * @param opts
-     * @returns {SportboxRuRulesElement}
-     * @constructor
-     * @class SportboxRuRulesElement
-     * @extends PluginElement
-     * @extends BaseWidgetRules
-     */
-    var SportboxRuRulesElement = function SportboxRuRulesElement(view, opts) {
+  /**
+   * Define SportboxRu Rules Element
+   * @param view
+   * @param opts
+   * @returns {SportboxRuRulesElement}
+   * @constructor
+   * @class SportboxRuRulesElement
+   * @extends PluginElement
+   * @extends BaseWidgetRules
+   */
+  var SportboxRuRulesElement = function SportboxRuRulesElement(view, opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBaseRulesData(
-            opts.data,
-            opts.rules.widget,
-            opts.rules.content
-        );
-
-        return this;
-    };
-
-    return SportboxRuRulesElement.extend(
-        'SportboxRuRulesElement', {}, 
-        PluginElement.prototype, 
-        BaseWidgetRules.prototype
+    this.renderBaseRulesData(
+        opts.data,
+        opts.rules.widget,
+        opts.rules.content
     );
+
+    return this;
+  };
+
+  return SportboxRuRulesElement.extend(
+      'SportboxRuRulesElement', {},
+      PluginElement.prototype,
+      BaseWidgetRules.prototype
+  );
 });

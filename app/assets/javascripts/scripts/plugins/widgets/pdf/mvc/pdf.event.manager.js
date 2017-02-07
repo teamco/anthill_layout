@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function definePdfEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define Pdf event manager
-     * @class PdfEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var PdfEventManager = function PdfEventManager() {
+  /**
+   * Define Pdf event manager
+   * @class PdfEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var PdfEventManager = function PdfEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return PdfEventManager.extend('PdfEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return PdfEventManager.extend('PdfEventManager', {},
+      WidgetContentEventManager.prototype);
 });

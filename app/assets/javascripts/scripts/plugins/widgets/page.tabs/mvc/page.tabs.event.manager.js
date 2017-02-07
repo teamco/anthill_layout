@@ -7,39 +7,38 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function definePageTabsEventManager(WidgetContentEventManager) {
 
+  /**
+   * Define PageTabs event manager
+   * @class PageTabsEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var PageTabsEventManager = function PageTabsEventManager() {
+
+    this.updateEventList({
+      switchToPage: 'switch.to.page',
+      setActivePageTab: 'set.active.page.tab',
+      subscribeChangePageTitleEvent: 'subscribe.change.page.title.event',
+      subscribeAfterSwitchPageEvent: 'subscribe.after.switch.page.event',
+      subscribeCreatePageEvent: 'subscribe.create.page.event',
+      subscribeDestroyPageEvent: 'subscribe.destroy.page.event',
+      subscribeOrderPagesEvent: 'subscribe.order.pages.event'
+    });
+
     /**
-     * Define PageTabs event manager
-     * @class PageTabsEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
+     * Define on load events
+     * @memberOf WidgetContentEventManager
+     * @type {[string]}
      */
-    var PageTabsEventManager = function PageTabsEventManager() {
+    this.onLoadEvents = [
+      this.eventList.switchToPage
+    ];
+  };
 
-        this.updateEventList({
-            switchToPage: 'switch.to.page',
-            setActivePageTab: 'set.active.page.tab',
-            subscribeChangePageTitleEvent: 'subscribe.change.page.title.event',
-            subscribeAfterSwitchPageEvent: 'subscribe.after.switch.page.event',
-            subscribeCreatePageEvent: 'subscribe.create.page.event',
-            subscribeDestroyPageEvent: 'subscribe.destroy.page.event',
-            subscribeOrderPagesEvent: 'subscribe.order.pages.event'
-        });
-
-        /**
-         * Define on load events
-         * @memberOf WidgetContentEventManager
-         * @type {[string]}
-         */
-        this.onLoadEvents = [
-            this.eventList.switchToPage
-        ];
-    };
-
-    return PageTabsEventManager.extend('PageTabsEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return PageTabsEventManager.extend('PageTabsEventManager', {},
+      WidgetContentEventManager.prototype);
 });

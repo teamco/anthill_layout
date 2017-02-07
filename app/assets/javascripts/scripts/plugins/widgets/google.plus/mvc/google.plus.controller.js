@@ -6,53 +6,53 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineGooglePlusController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define GooglePlus controller
+   * @class GooglePlusController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var GooglePlusController = function GooglePlusController() {
+  };
+
+  return GooglePlusController.extend('GooglePlusController', {
+
     /**
-     * Define GooglePlus controller
-     * @class GooglePlusController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf GooglePlusController
      */
-    var GooglePlusController = function GooglePlusController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
 
-    return GooglePlusController.extend('GooglePlusController', {
+      this.view.elements.$googleplus.renderEmbeddedContent(
+          this.model.getPrefs('googlePlusApi'),
+          this.model.getPrefs('googlePlusUrl')
+      );
+    },
 
-        /**
-         * Set embedded content
-         * @memberOf GooglePlusController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
+    /**
+     * Add GooglePlus rule
+     * @memberOf GooglePlusController
+     * @param {Event} e
+     */
+    addGooglePlusRule: function addGooglePlusRule(e) {
 
-            this.view.elements.$googleplus.renderEmbeddedContent(
-                this.model.getPrefs('googlePlusApi'),
-                this.model.getPrefs('googlePlusUrl')
-            );
-        },
+      /**
+       * Define $button
+       * @type {*|jQuery|HTMLElement}
+       */
+      var $button = $(e.target),
+          scope = this.scope;
 
-        /**
-         * Add GooglePlus rule
-         * @memberOf GooglePlusController
-         * @param {Event} e
-         */
-        addGooglePlusRule: function addGooglePlusRule(e) {
+      scope.observer.publish(
+          scope.eventmanager.eventList.publishRule,
+          [$button.attr('value'), this.scope.name]
+      );
+    }
 
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), this.scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

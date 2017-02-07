@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineKeezMoviesEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define KeezMovies event manager
-     * @class KeezMoviesEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var KeezMoviesEventManager = function KeezMoviesEventManager() {
+  /**
+   * Define KeezMovies event manager
+   * @class KeezMoviesEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var KeezMoviesEventManager = function KeezMoviesEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return KeezMoviesEventManager.extend('KeezMoviesEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return KeezMoviesEventManager.extend('KeezMoviesEventManager', {},
+      WidgetContentEventManager.prototype);
 });

@@ -6,43 +6,43 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineSublimeVideoElement(PluginElement) {
 
+  /**
+   * Define SublimeVideo Element
+   * @param view
+   * @param opts
+   * @returns {SublimeVideoElement}
+   * @constructor
+   * @class SublimeVideoElement
+   * @extends PluginElement
+   */
+  var SublimeVideoElement = function SublimeVideoElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('sublime.video', {resource: '/widgets'});
+
+    return this;
+  };
+
+  return SublimeVideoElement.extend('SublimeVideoElement', {
+
     /**
-     * Define SublimeVideo Element
-     * @param view
-     * @param opts
-     * @returns {SublimeVideoElement}
-     * @constructor
-     * @class SublimeVideoElement
-     * @extends PluginElement
+     * Render Embedded content
+     * @memberOf SublimeVideoElement
+     * @param {string} url
      */
-    var SublimeVideoElement = function SublimeVideoElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent(url) {
+      this.$.append(
+          this.renderIframe(url)
+      );
+    }
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
-
-        this.addCSS('sublime.video', {resource: '/widgets'});
-
-        return this;
-    };
-
-    return SublimeVideoElement.extend('SublimeVideoElement', {
-
-        /**
-         * Render Embedded content
-         * @memberOf SublimeVideoElement
-         * @param {string} url
-         */
-        renderEmbeddedContent: function renderEmbeddedContent(url) {
-            this.$.append(
-                this.renderIframe(url)
-            );
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 
 });

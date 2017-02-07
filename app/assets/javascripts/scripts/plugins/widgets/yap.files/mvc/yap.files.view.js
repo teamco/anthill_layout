@@ -7,108 +7,109 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/yap.files/element/yap.files.element',
-    'plugins/widgets/yap.files/element/yap.files.preferences.element',
-    'plugins/widgets/yap.files/element/yap.files.rules.element'
-], function defineYapFilesView(BaseView, Header, Footer, YapFilesElement, YapFilesPreferencesElement, YapFilesRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/yap.files/element/yap.files.element',
+  'plugins/widgets/yap.files/element/yap.files.preferences.element',
+  'plugins/widgets/yap.files/element/yap.files.rules.element'
+], function defineYapFilesView(BaseView, Header, Footer, YapFilesElement,
+    YapFilesPreferencesElement, YapFilesRulesElement) {
+
+  /**
+   * Define view
+   * @class YapFilesView
+   * @extends BaseView
+   * @constructor
+   */
+  var YapFilesView = function YapFilesView() {
+  };
+
+  return YapFilesView.extend('YapFilesView', {
 
     /**
-     * Define view
-     * @class YapFilesView
-     * @extends BaseView
-     * @constructor
+     * Render yapfiles element
+     * @memberOf YapFilesView
      */
-    var YapFilesView = function YapFilesView() {
-    };
+    renderYapFiles: function renderYapFiles() {
 
-    return YapFilesView.extend('YapFilesView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render yapfiles element
-         * @memberOf YapFilesView
-         */
-        renderYapFiles: function renderYapFiles() {
+      /**
+       * Define $yapfiles
+       * @type {YapFilesElement}
+       */
+      this.elements.$yapfiles = new YapFilesElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $yapfiles
-             * @type {YapFilesElement}
-             */
-            this.elements.$yapfiles = new YapFilesElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf YapFilesView
+     * @returns {YapFilesPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define YapFiles Preferences Element
+       * @type {YapFilesPreferencesElement}
+       */
+      this.elements.$preferences = new YapFilesPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf YapFilesView
-         * @returns {YapFilesPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define YapFiles Preferences Element
-             * @type {YapFilesPreferencesElement}
-             */
-            this.elements.$preferences = new YapFilesPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf YapFilesView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {YapFilesRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
+      /**
+       * Define data
+       * @type {*|{}}
+       */
+      var data = this.controller.getRules();
 
-        /**
-         * Render Rules
-         * @memberOf YapFilesView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {YapFilesRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define data
-             * @type {*|{}}
-             */
-            var data = this.controller.getRules();
-
-            /**
-             * Define YapFiles Rules Element
-             * @type {YapFilesRulesElement}
-             */
-            this.elements.$rules = new YapFilesRulesElement(this, {
-                data: data,
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render yapfiles
-         * @memberOf YapFilesView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderYapFiles.bind(this)
-            );
+      /**
+       * Define YapFiles Rules Element
+       * @type {YapFilesRulesElement}
+       */
+      this.elements.$rules = new YapFilesRulesElement(this, {
+        data: data,
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render yapfiles
+     * @memberOf YapFilesView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderYapFiles.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

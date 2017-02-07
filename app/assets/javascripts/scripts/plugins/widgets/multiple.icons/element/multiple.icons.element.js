@@ -6,53 +6,53 @@
  */
 
 define([
-    'plugins/plugin.element'
-    // 'plugins/widgets/multiple.icons/mvc/multiple.icons.behavior'
+  'plugins/plugin.element'
+  // 'plugins/widgets/multiple.icons/mvc/multiple.icons.behavior'
 ], function defineMultipleIconsElement(PluginElement) {
 
+  /**
+   * Define MultipleIcons Element
+   * @param view
+   * @param opts
+   * @returns {MultipleIconsElement}
+   * @constructor
+   * @class MultipleIconsElement
+   * @extends PluginElement
+   */
+  var MultipleIconsElement = function MultipleIconsElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('multiple.icons', {
+      resource: '/widgets'
+    });
+
+    return this;
+  };
+
+  return MultipleIconsElement.extend('MultipleIconsElement', {
+
     /**
-     * Define MultipleIcons Element
-     * @param view
-     * @param opts
-     * @returns {MultipleIconsElement}
-     * @constructor
-     * @class MultipleIconsElement
-     * @extends PluginElement
+     * Render Embedded content
+     * @memberOf MultipleIconsElement
      */
-    var MultipleIconsElement = function MultipleIconsElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent() {
+      var $element = this;
+      var $list = '<ul class="icons-container"/>';
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+      $element.view.controller.clearParentThumbnail();
+      $element.$.append($list);
 
-        this.addCSS('multiple.icons', {
-            resource: '/widgets'
-        });
+      require([
+        'plugins/widgets/multiple.icons/mvc/multiple.icons.behavior'
+      ], function showMultipleIcons(MultipleIconsBehavior) {
+        var showMultipleIcons = new MultipleIconsBehavior();
+      });
+    }
 
-        return this;
-    };
-
-    return MultipleIconsElement.extend('MultipleIconsElement', {
-
-        /**
-         * Render Embedded content
-         * @memberOf MultipleIconsElement
-         */
-        renderEmbeddedContent: function renderEmbeddedContent() {
-            var $element = this;
-            var $list = '<ul class="icons-container"/>';
-
-            $element.view.controller.clearParentThumbnail();
-            $element.$.append($list);
-
-            require([
-                'plugins/widgets/multiple.icons/mvc/multiple.icons.behavior'
-            ], function showMultipleIcons(MultipleIconsBehavior) {
-                var showMultipleIcons = new MultipleIconsBehavior();
-            });
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 
 });

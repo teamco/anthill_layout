@@ -7,23 +7,23 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineSapoVideosEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define SapoVideos event manager
-     * @class SapoVideosEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var SapoVideosEventManager = function SapoVideosEventManager() {
+  /**
+   * Define SapoVideos event manager
+   * @class SapoVideosEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var SapoVideosEventManager = function SapoVideosEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return SapoVideosEventManager.extend(
-        'SapoVideosEventManager', {},
-        WidgetContentEventManager.prototype
-    );
+  return SapoVideosEventManager.extend(
+      'SapoVideosEventManager', {},
+      WidgetContentEventManager.prototype
+  );
 });

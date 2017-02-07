@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineFotoKritikEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define FotoKritik event manager
-     * @class FotoKritikEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var FotoKritikEventManager = function FotoKritikEventManager() {
+  /**
+   * Define FotoKritik event manager
+   * @class FotoKritikEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var FotoKritikEventManager = function FotoKritikEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return FotoKritikEventManager.extend('FotoKritikEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return FotoKritikEventManager.extend('FotoKritikEventManager', {},
+      WidgetContentEventManager.prototype);
 });

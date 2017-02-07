@@ -7,20 +7,20 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineWeatherUndergroundPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class WeatherUndergroundPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var WeatherUndergroundPermission = function WeatherUndergroundPermission() {
-    };
+  /**
+   * Define Permissions
+   * @class WeatherUndergroundPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var WeatherUndergroundPermission = function WeatherUndergroundPermission() {
+  };
 
-    return WeatherUndergroundPermission.extend(
-        'WeatherUndergroundPermission', {}, 
-        BasePermission.prototype
-    );
+  return WeatherUndergroundPermission.extend(
+      'WeatherUndergroundPermission', {},
+      BasePermission.prototype
+  );
 });

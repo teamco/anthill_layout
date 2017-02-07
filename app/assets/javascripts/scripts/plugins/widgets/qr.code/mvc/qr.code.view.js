@@ -7,102 +7,103 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/qr.code/element/qr.code.element',
-    'plugins/widgets/qr.code/element/qr.code.preferences.element',
-    'plugins/widgets/qr.code/element/qr.code.rules.element'
-], function defineQrCodeView(BaseView, Header, Footer, QrCodeElement, QrCodePreferencesElement, QrCodeRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/qr.code/element/qr.code.element',
+  'plugins/widgets/qr.code/element/qr.code.preferences.element',
+  'plugins/widgets/qr.code/element/qr.code.rules.element'
+], function defineQrCodeView(BaseView, Header, Footer, QrCodeElement,
+    QrCodePreferencesElement, QrCodeRulesElement) {
+
+  /**
+   * Define view
+   * @class QrCodeView
+   * @extends BaseView
+   * @constructor
+   */
+  var QrCodeView = function QrCodeView() {
+  };
+
+  return QrCodeView.extend('QrCodeView', {
 
     /**
-     * Define view
-     * @class QrCodeView
-     * @extends BaseView
-     * @constructor
+     * Render QrCode element
+     * @memberOf QrCodeView
      */
-    var QrCodeView = function QrCodeView() {
-    };
+    renderQrCode: function renderQrCode() {
 
-    return QrCodeView.extend('QrCodeView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render QrCode element
-         * @memberOf QrCodeView
-         */
-        renderQrCode: function renderQrCode() {
+      /**
+       * Define $qrcode
+       * @type {QrCodeElement}
+       */
+      this.elements.$qrcode = new QrCodeElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $qrcode
-             * @type {QrCodeElement}
-             */
-            this.elements.$qrcode = new QrCodeElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf QrCodeView
+     * @returns {QrCodePreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define QrCode Preferences Element
+       * @type {QrCodePreferencesElement}
+       */
+      this.elements.$preferences = new QrCodePreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf QrCodeView
-         * @returns {QrCodePreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define QrCode Preferences Element
-             * @type {QrCodePreferencesElement}
-             */
-            this.elements.$preferences = new QrCodePreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf QrCodeView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {QrCodeRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
-
-        /**
-         * Render Rules
-         * @memberOf QrCodeView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {QrCodeRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define QrCode Rules Element
-             * @type {QrCodeRulesElement}
-             */
-            this.elements.$rules = new QrCodeRulesElement(this, {
-                data: this.controller.getRules(),
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render QrCode
-         * @memberOf QrCodeView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderQrCode.bind(this)
-            );
+      /**
+       * Define QrCode Rules Element
+       * @type {QrCodeRulesElement}
+       */
+      this.elements.$rules = new QrCodeRulesElement(this, {
+        data: this.controller.getRules(),
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render QrCode
+     * @memberOf QrCodeView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderQrCode.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

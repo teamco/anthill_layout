@@ -6,38 +6,37 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/rules/widget.base.rules'
+  'plugins/plugin.element',
+  'plugins/rules/widget.base.rules'
 ], function definePicasaRulesElement(PluginElement, BaseWidgetRules) {
 
-    /**
-     * Define Picasa Rules Element
-     * @param view
-     * @param opts
-     * @returns {PicasaRulesElement}
-     * @constructor
-     * @class PicasaRulesElement
-     * @extends PluginElement
-     * @extends BaseWidgetRules
-     */
-    var PicasaRulesElement = function PicasaRulesElement(view, opts) {
+  /**
+   * Define Picasa Rules Element
+   * @param view
+   * @param opts
+   * @returns {PicasaRulesElement}
+   * @constructor
+   * @class PicasaRulesElement
+   * @extends PluginElement
+   * @extends BaseWidgetRules
+   */
+  var PicasaRulesElement = function PicasaRulesElement(view, opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBaseRulesData(
-            opts.data,
-            opts.rules.widget,
-            opts.rules.content
-        );
+    this.renderBaseRulesData(
+        opts.data,
+        opts.rules.widget,
+        opts.rules.content
+    );
 
-        return this;
-    };
+    return this;
+  };
 
-    return PicasaRulesElement.extend('PicasaRulesElement', {
-
-    }, PluginElement.prototype, BaseWidgetRules.prototype);
+  return PicasaRulesElement.extend('PicasaRulesElement', {},
+      PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

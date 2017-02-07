@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function definePixivEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define Pixiv event manager
-     * @class PixivEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var PixivEventManager = function PixivEventManager() {
+  /**
+   * Define Pixiv event manager
+   * @class PixivEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var PixivEventManager = function PixivEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return PixivEventManager.extend('PixivEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return PixivEventManager.extend('PixivEventManager', {},
+      WidgetContentEventManager.prototype);
 });

@@ -6,35 +6,34 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
 ], function defineMixcloudPreferencesElement(PluginElement, WidgetPreferences) {
 
-    /**
-     * Define Mixcloud Preferences Element
-     * @param view
-     * @param opts
-     * @returns {MixcloudPreferencesElement}
-     * @constructor
-     * @class MixcloudPreferencesElement
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     */
-    var MixcloudPreferencesElement = function MixcloudPreferencesElement(view, opts) {
+  /**
+   * Define Mixcloud Preferences Element
+   * @param view
+   * @param opts
+   * @returns {MixcloudPreferencesElement}
+   * @constructor
+   * @class MixcloudPreferencesElement
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   */
+  var MixcloudPreferencesElement = function MixcloudPreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return MixcloudPreferencesElement.extend('MixcloudPreferencesElement', {
-
-
-    }, PluginElement.prototype, WidgetPreferences.prototype);
+  return MixcloudPreferencesElement.extend('MixcloudPreferencesElement', {},
+      PluginElement.prototype, WidgetPreferences.prototype);
 
 });

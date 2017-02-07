@@ -6,35 +6,33 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
 ], function defineFilmOnPreferencesElement(PluginElement, WidgetPreferences) {
 
-    /**
-     * Define FilmOn Preferences Element
-     * @param view
-     * @param opts
-     * @returns {FilmOnPreferencesElement}
-     * @constructor
-     * @class FilmOnPreferencesElement
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     */
-    var FilmOnPreferencesElement = function FilmOnPreferencesElement(view, opts) {
+  /**
+   * Define FilmOn Preferences Element
+   * @param view
+   * @param opts
+   * @returns {FilmOnPreferencesElement}
+   * @constructor
+   * @class FilmOnPreferencesElement
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   */
+  var FilmOnPreferencesElement = function FilmOnPreferencesElement(view, opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return FilmOnPreferencesElement.extend('FilmOnPreferencesElement', {
-
-
-    }, PluginElement.prototype, WidgetPreferences.prototype);
+  return FilmOnPreferencesElement.extend('FilmOnPreferencesElement', {},
+      PluginElement.prototype, WidgetPreferences.prototype);
 
 });

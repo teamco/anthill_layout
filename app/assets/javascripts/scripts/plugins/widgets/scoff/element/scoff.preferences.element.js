@@ -6,35 +6,35 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
 ], function defineScoffPreferencesElement(PluginElement, WidgetPreferences) {
 
-    /**
-     * Define Scoff Preferences Element
-     * @constructor
-     * @class ScoffPreferencesElement
-     * @param {ScoffView} view
-     * @param opts
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     * @returns {ScoffPreferencesElement}
-     */
-    var ScoffPreferencesElement = function ScoffPreferencesElement(view, opts) {
+  /**
+   * Define Scoff Preferences Element
+   * @constructor
+   * @class ScoffPreferencesElement
+   * @param {ScoffView} view
+   * @param opts
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   * @returns {ScoffPreferencesElement}
+   */
+  var ScoffPreferencesElement = function ScoffPreferencesElement(view, opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return ScoffPreferencesElement.extend(
-        'ScoffPreferencesElement', {}, 
-        PluginElement.prototype, 
-        WidgetPreferences.prototype
-    );
+  return ScoffPreferencesElement.extend(
+      'ScoffPreferencesElement', {},
+      PluginElement.prototype,
+      WidgetPreferences.prototype
+  );
 });

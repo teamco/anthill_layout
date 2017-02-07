@@ -6,35 +6,34 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
 ], function defineRevisionPreferencesElement(PluginElement, WidgetPreferences) {
 
-    /**
-     * Define Revision Preferences Element
-     * @param view
-     * @param opts
-     * @returns {RevisionPreferencesElement}
-     * @constructor
-     * @class RevisionPreferencesElement
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     */
-    var RevisionPreferencesElement = function RevisionPreferencesElement(view, opts) {
+  /**
+   * Define Revision Preferences Element
+   * @param view
+   * @param opts
+   * @returns {RevisionPreferencesElement}
+   * @constructor
+   * @class RevisionPreferencesElement
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   */
+  var RevisionPreferencesElement = function RevisionPreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return RevisionPreferencesElement.extend('RevisionPreferencesElement', {
-
-
-    }, PluginElement.prototype, WidgetPreferences.prototype);
+  return RevisionPreferencesElement.extend('RevisionPreferencesElement', {},
+      PluginElement.prototype, WidgetPreferences.prototype);
 
 });

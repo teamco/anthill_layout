@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineTinyPicPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class TinyPicPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var TinyPicPermission = function TinyPicPermission() {
+  /**
+   * Define Permissions
+   * @class TinyPicPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var TinyPicPermission = function TinyPicPermission() {
 
-    };
+  };
 
-    return TinyPicPermission.extend('TinyPicPermission', {
-
-    }, BasePermission.prototype);
+  return TinyPicPermission.extend('TinyPicPermission', {},
+      BasePermission.prototype);
 });

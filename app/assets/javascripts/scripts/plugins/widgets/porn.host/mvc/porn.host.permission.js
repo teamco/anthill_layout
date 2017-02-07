@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function definePornHostPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class PornHostPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var PornHostPermission = function PornHostPermission() {
+  /**
+   * Define Permissions
+   * @class PornHostPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var PornHostPermission = function PornHostPermission() {
 
-    };
+  };
 
-    return PornHostPermission.extend('PornHostPermission', {
-
-    }, BasePermission.prototype);
+  return PornHostPermission.extend('PornHostPermission', {},
+      BasePermission.prototype);
 });

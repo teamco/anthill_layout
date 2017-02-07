@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineMobypicturePermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class MobypicturePermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var MobypicturePermission = function MobypicturePermission() {
+  /**
+   * Define Permissions
+   * @class MobypicturePermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var MobypicturePermission = function MobypicturePermission() {
 
-    };
+  };
 
-    return MobypicturePermission.extend('MobypicturePermission', {
-
-    }, BasePermission.prototype);
+  return MobypicturePermission.extend('MobypicturePermission', {},
+      BasePermission.prototype);
 });

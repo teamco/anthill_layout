@@ -6,35 +6,35 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
-], function defineOnePlusOnePreferencesElement(PluginElement, WidgetPreferences) {
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
+], function defineOnePlusOnePreferencesElement(PluginElement,
+    WidgetPreferences) {
 
-    /**
-     * Define OnePlusOne Preferences Element
-     * @param view
-     * @param opts
-     * @returns {OnePlusOnePreferencesElement}
-     * @constructor
-     * @class OnePlusOnePreferencesElement
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     */
-    var OnePlusOnePreferencesElement = function OnePlusOnePreferencesElement(view, opts) {
+  /**
+   * Define OnePlusOne Preferences Element
+   * @param view
+   * @param opts
+   * @returns {OnePlusOnePreferencesElement}
+   * @constructor
+   * @class OnePlusOnePreferencesElement
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   */
+  var OnePlusOnePreferencesElement = function OnePlusOnePreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return OnePlusOnePreferencesElement.extend('OnePlusOnePreferencesElement', {
-
-
-    }, PluginElement.prototype, WidgetPreferences.prototype);
+  return OnePlusOnePreferencesElement.extend('OnePlusOnePreferencesElement', {},
+      PluginElement.prototype, WidgetPreferences.prototype);
 
 });

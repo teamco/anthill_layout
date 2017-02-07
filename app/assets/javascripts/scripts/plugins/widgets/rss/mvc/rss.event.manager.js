@@ -7,24 +7,23 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineRssEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define Rss event manager
-     * @class RssEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var RssEventManager = function RssEventManager() {
+  /**
+   * Define Rss event manager
+   * @class RssEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var RssEventManager = function RssEventManager() {
 
-        this.updateEventList({
-            parseRss: 'parse.rss'
-        });
-    };
+    this.updateEventList({
+      parseRss: 'parse.rss'
+    });
+  };
 
-    return RssEventManager.extend('RssEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return RssEventManager.extend('RssEventManager', {},
+      WidgetContentEventManager.prototype);
 });

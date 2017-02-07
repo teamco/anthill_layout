@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineTrubaEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define Truba event manager
-     * @class TrubaEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var TrubaEventManager = function TrubaEventManager() {
+  /**
+   * Define Truba event manager
+   * @class TrubaEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var TrubaEventManager = function TrubaEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return TrubaEventManager.extend('TrubaEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return TrubaEventManager.extend('TrubaEventManager', {},
+      WidgetContentEventManager.prototype);
 });

@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineScreenrPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class ScreenrPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var ScreenrPermission = function ScreenrPermission() {
+  /**
+   * Define Permissions
+   * @class ScreenrPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var ScreenrPermission = function ScreenrPermission() {
 
-    };
+  };
 
-    return ScreenrPermission.extend('ScreenrPermission', {
-
-    }, BasePermission.prototype);
+  return ScreenrPermission.extend('ScreenrPermission', {},
+      BasePermission.prototype);
 });

@@ -6,35 +6,34 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
 ], function defineDropboxPreferencesElement(PluginElement, WidgetPreferences) {
 
-    /**
-     * Define Dropbox Preferences Element
-     * @param view
-     * @param opts
-     * @returns {DropboxPreferencesElement}
-     * @constructor
-     * @class DropboxPreferencesElement
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     */
-    var DropboxPreferencesElement = function DropboxPreferencesElement(view, opts) {
+  /**
+   * Define Dropbox Preferences Element
+   * @param view
+   * @param opts
+   * @returns {DropboxPreferencesElement}
+   * @constructor
+   * @class DropboxPreferencesElement
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   */
+  var DropboxPreferencesElement = function DropboxPreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return DropboxPreferencesElement.extend('DropboxPreferencesElement', {
-
-
-    }, PluginElement.prototype, WidgetPreferences.prototype);
+  return DropboxPreferencesElement.extend('DropboxPreferencesElement', {},
+      PluginElement.prototype, WidgetPreferences.prototype);
 
 });

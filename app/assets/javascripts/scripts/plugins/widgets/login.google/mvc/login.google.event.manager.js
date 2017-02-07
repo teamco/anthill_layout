@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineLoginGoogleEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define LoginGoogle event manager
-     * @class LoginGoogleEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var LoginGoogleEventManager = function LoginGoogleEventManager() {
+  /**
+   * Define LoginGoogle event manager
+   * @class LoginGoogleEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var LoginGoogleEventManager = function LoginGoogleEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return LoginGoogleEventManager.extend('LoginGoogleEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return LoginGoogleEventManager.extend('LoginGoogleEventManager', {},
+      WidgetContentEventManager.prototype);
 });

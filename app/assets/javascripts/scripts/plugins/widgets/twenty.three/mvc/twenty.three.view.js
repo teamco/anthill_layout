@@ -7,108 +7,109 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/twenty.three/element/twenty.three.element',
-    'plugins/widgets/twenty.three/element/twenty.three.preferences.element',
-    'plugins/widgets/twenty.three/element/twenty.three.rules.element'
-], function defineTwentyThreeView(BaseView, Header, Footer, TwentyThreeElement, TwentyThreePreferencesElement, TwentyThreeRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/twenty.three/element/twenty.three.element',
+  'plugins/widgets/twenty.three/element/twenty.three.preferences.element',
+  'plugins/widgets/twenty.three/element/twenty.three.rules.element'
+], function defineTwentyThreeView(BaseView, Header, Footer, TwentyThreeElement,
+    TwentyThreePreferencesElement, TwentyThreeRulesElement) {
+
+  /**
+   * Define view
+   * @class TwentyThreeView
+   * @extends BaseView
+   * @constructor
+   */
+  var TwentyThreeView = function TwentyThreeView() {
+  };
+
+  return TwentyThreeView.extend('TwentyThreeView', {
 
     /**
-     * Define view
-     * @class TwentyThreeView
-     * @extends BaseView
-     * @constructor
+     * Render twentythree element
+     * @memberOf TwentyThreeView
      */
-    var TwentyThreeView = function TwentyThreeView() {
-    };
+    renderTwentyThree: function renderTwentyThree() {
 
-    return TwentyThreeView.extend('TwentyThreeView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render twentythree element
-         * @memberOf TwentyThreeView
-         */
-        renderTwentyThree: function renderTwentyThree() {
+      /**
+       * Define $twentythree
+       * @type {TwentyThreeElement}
+       */
+      this.elements.$twentythree = new TwentyThreeElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $twentythree
-             * @type {TwentyThreeElement}
-             */
-            this.elements.$twentythree = new TwentyThreeElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf TwentyThreeView
+     * @returns {TwentyThreePreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define TwentyThree Preferences Element
+       * @type {TwentyThreePreferencesElement}
+       */
+      this.elements.$preferences = new TwentyThreePreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf TwentyThreeView
-         * @returns {TwentyThreePreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define TwentyThree Preferences Element
-             * @type {TwentyThreePreferencesElement}
-             */
-            this.elements.$preferences = new TwentyThreePreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf TwentyThreeView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {TwentyThreeRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
+      /**
+       * Define data
+       * @type {*|{}}
+       */
+      var data = this.controller.getRules();
 
-        /**
-         * Render Rules
-         * @memberOf TwentyThreeView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {TwentyThreeRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define data
-             * @type {*|{}}
-             */
-            var data = this.controller.getRules();
-
-            /**
-             * Define TwentyThree Rules Element
-             * @type {TwentyThreeRulesElement}
-             */
-            this.elements.$rules = new TwentyThreeRulesElement(this, {
-                data: data,
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render twentythree
-         * @memberOf TwentyThreeView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderTwentyThree.bind(this)
-            );
+      /**
+       * Define TwentyThree Rules Element
+       * @type {TwentyThreeRulesElement}
+       */
+      this.elements.$rules = new TwentyThreeRulesElement(this, {
+        data: data,
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render twentythree
+     * @memberOf TwentyThreeView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderTwentyThree.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

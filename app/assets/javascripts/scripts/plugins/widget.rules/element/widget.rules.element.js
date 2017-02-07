@@ -6,30 +6,30 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineWidgetRulesElement(PluginElement) {
 
-    /**
-     * Define WidgetRules Element
-     * @param view
-     * @param opts
-     * @returns {WidgetRulesElement}
-     * @constructor
-     * @class WidgetRulesElement
-     * @extends PluginElement
-     */
-    var WidgetRulesElement = function WidgetRulesElement(view, opts) {
+  /**
+   * Define WidgetRules Element
+   * @param view
+   * @param opts
+   * @returns {WidgetRulesElement}
+   * @constructor
+   * @class WidgetRulesElement
+   * @extends PluginElement
+   */
+  var WidgetRulesElement = function WidgetRulesElement(view, opts) {
 
-        this._config(view, opts, $('<ul />')).build({
-            $container: opts.$container
-        });
+    this._config(view, opts, $('<ul />')).build({
+      $container: opts.$container
+    });
 
-        this.addCSS('widget.rules');
-        this.addCSS('rules');
+    this.addCSS('widget.rules');
+    this.addCSS('rules');
 
-        return this;
-    };
+    return this;
+  };
 
-    return WidgetRulesElement.extend('WidgetRulesElement', {
-    }, PluginElement.prototype);
+  return WidgetRulesElement.extend('WidgetRulesElement', {},
+      PluginElement.prototype);
 });

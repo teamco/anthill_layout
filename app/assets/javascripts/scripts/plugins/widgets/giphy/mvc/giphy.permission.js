@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineGiphyPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class GiphyPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var GiphyPermission = function GiphyPermission() {
+  /**
+   * Define Permissions
+   * @class GiphyPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var GiphyPermission = function GiphyPermission() {
 
-    };
+  };
 
-    return GiphyPermission.extend('GiphyPermission', {
-
-    }, BasePermission.prototype);
+  return GiphyPermission.extend('GiphyPermission', {},
+      BasePermission.prototype);
 });

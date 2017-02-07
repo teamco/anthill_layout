@@ -6,41 +6,42 @@
  */
 
 define([
-    'config/anthill',
-    'modules/MVC',
-    'plugins/widgets/stepashka/mvc/stepashka.controller',
-    'plugins/widgets/stepashka/mvc/stepashka.model',
-    'plugins/widgets/stepashka/mvc/stepashka.view',
-    'plugins/widgets/stepashka/mvc/stepashka.event.manager',
-    'plugins/widgets/stepashka/mvc/stepashka.permission'
-], function defineStepashka(AntHill, MVC, Controller, Model, View, EventManager, Permission) {
+  'config/anthill',
+  'modules/MVC',
+  'plugins/widgets/stepashka/mvc/stepashka.controller',
+  'plugins/widgets/stepashka/mvc/stepashka.model',
+  'plugins/widgets/stepashka/mvc/stepashka.view',
+  'plugins/widgets/stepashka/mvc/stepashka.event.manager',
+  'plugins/widgets/stepashka/mvc/stepashka.permission'
+], function defineStepashka(AntHill, MVC, Controller, Model, View, EventManager,
+    Permission) {
+
+  /**
+   * Define Stepashka
+   * @param containment
+   * @param [opts]
+   * @constructor
+   * @class Stepashka
+   * @extends AntHill
+   */
+  var Stepashka = function Stepashka(containment, opts) {
 
     /**
-     * Define Stepashka
-     * @param containment
-     * @param [opts]
-     * @constructor
-     * @class Stepashka
-     * @extends AntHill
+     * Define containment
+     * @memberOf Stepashka
      */
-    var Stepashka = function Stepashka(containment, opts) {
+    this.containment = containment;
 
-        /**
-         * Define containment
-         * @memberOf Stepashka
-         */
-        this.containment = containment;
+    /**
+     * Define referrer
+     * @memberOf Stepashka
+     * @type {*}
+     */
+    this.referrer = undefined;
 
-        /**
-         * Define referrer
-         * @memberOf Stepashka
-         * @type {*}
-         */
-        this.referrer = undefined;
-
-        /**
-         * Define defaults
-         * @type {{
+    /**
+     * Define defaults
+     * @type {{
          *      plugin: boolean,
          *      html: {
          *          style: string,
@@ -56,50 +57,48 @@ define([
          *      regex: RegExp,
          *      mask: string
          * }}
-         */
-        var DEFAULTS = {
-            plugin: true,
-            html: {
-                style: 'default',
-                header: false,
-                footer: false,
-                padding: {
-                    top: 0,
-                    right: 0,
-                    bottom: 0,
-                    left: 0
-                }
-            }
-        };
-
-        /**
-         * Define MVC
-         * @memberOf Stepashka
-         * @type {MVC}
-         */
-        this.mvc = new MVC({
-            scope: this,
-            config: [
-                {uuid: this.containment.model.getContentUUID()},
-                DEFAULTS
-            ],
-            components: [
-                Controller,
-                Model,
-                View,
-                EventManager,
-                Permission
-            ],
-            render: true
-        });
-
-        this.observer.publish(
-            this.eventmanager.eventList.initWidget,
-            opts
-        );
+     */
+    var DEFAULTS = {
+      plugin: true,
+      html: {
+        style: 'default',
+        header: false,
+        footer: false,
+        padding: {
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0
+        }
+      }
     };
 
-    return Stepashka.extend('Stepashka', {
+    /**
+     * Define MVC
+     * @memberOf Stepashka
+     * @type {MVC}
+     */
+    this.mvc = new MVC({
+      scope: this,
+      config: [
+        {uuid: this.containment.model.getContentUUID()},
+        DEFAULTS
+      ],
+      components: [
+        Controller,
+        Model,
+        View,
+        EventManager,
+        Permission
+      ],
+      render: true
+    });
 
-    }, AntHill.prototype);
+    this.observer.publish(
+        this.eventmanager.eventList.initWidget,
+        opts
+    );
+  };
+
+  return Stepashka.extend('Stepashka', {}, AntHill.prototype);
 });

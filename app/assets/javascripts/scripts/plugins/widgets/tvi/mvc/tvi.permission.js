@@ -7,20 +7,18 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineTviPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class TviPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var TviPermission = function TviPermission() {
+  /**
+   * Define Permissions
+   * @class TviPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var TviPermission = function TviPermission() {
 
-    };
+  };
 
-    return TviPermission.extend('TviPermission', {
-
-    }, BasePermission.prototype);
+  return TviPermission.extend('TviPermission', {}, BasePermission.prototype);
 });

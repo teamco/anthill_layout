@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineGooglePresentationPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class GooglePresentationPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var GooglePresentationPermission = function GooglePresentationPermission() {
+  /**
+   * Define Permissions
+   * @class GooglePresentationPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var GooglePresentationPermission = function GooglePresentationPermission() {
 
-    };
+  };
 
-    return GooglePresentationPermission.extend('GooglePresentationPermission', {
-
-    }, BasePermission.prototype);
+  return GooglePresentationPermission.extend('GooglePresentationPermission', {},
+      BasePermission.prototype);
 });

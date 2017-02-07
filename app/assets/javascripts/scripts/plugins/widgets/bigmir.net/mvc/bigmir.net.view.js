@@ -7,108 +7,109 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/bigmir.net/element/bigmir.net.element',
-    'plugins/widgets/bigmir.net/element/bigmir.net.preferences.element',
-    'plugins/widgets/bigmir.net/element/bigmir.net.rules.element'
-], function defineBigmirNetView(BaseView, Header, Footer, BigmirNetElement, BigmirNetPreferencesElement, BigmirNetRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/bigmir.net/element/bigmir.net.element',
+  'plugins/widgets/bigmir.net/element/bigmir.net.preferences.element',
+  'plugins/widgets/bigmir.net/element/bigmir.net.rules.element'
+], function defineBigmirNetView(BaseView, Header, Footer, BigmirNetElement,
+    BigmirNetPreferencesElement, BigmirNetRulesElement) {
+
+  /**
+   * Define view
+   * @class BigmirNetView
+   * @extends BaseView
+   * @constructor
+   */
+  var BigmirNetView = function BigmirNetView() {
+  };
+
+  return BigmirNetView.extend('BigmirNetView', {
 
     /**
-     * Define view
-     * @class BigmirNetView
-     * @extends BaseView
-     * @constructor
+     * Render bigmirnet element
+     * @memberOf BigmirNetView
      */
-    var BigmirNetView = function BigmirNetView() {
-    };
+    renderBigmirNet: function renderBigmirNet() {
 
-    return BigmirNetView.extend('BigmirNetView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render bigmirnet element
-         * @memberOf BigmirNetView
-         */
-        renderBigmirNet: function renderBigmirNet() {
+      /**
+       * Define $bigmirnet
+       * @type {BigmirNetElement}
+       */
+      this.elements.$bigmirnet = new BigmirNetElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $bigmirnet
-             * @type {BigmirNetElement}
-             */
-            this.elements.$bigmirnet = new BigmirNetElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf BigmirNetView
+     * @returns {BigmirNetPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define BigmirNet Preferences Element
+       * @type {BigmirNetPreferencesElement}
+       */
+      this.elements.$preferences = new BigmirNetPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf BigmirNetView
-         * @returns {BigmirNetPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define BigmirNet Preferences Element
-             * @type {BigmirNetPreferencesElement}
-             */
-            this.elements.$preferences = new BigmirNetPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf BigmirNetView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {BigmirNetRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
+      /**
+       * Define data
+       * @type {*|{}}
+       */
+      var data = this.controller.getRules();
 
-        /**
-         * Render Rules
-         * @memberOf BigmirNetView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {BigmirNetRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define data
-             * @type {*|{}}
-             */
-            var data = this.controller.getRules();
-
-            /**
-             * Define BigmirNet Rules Element
-             * @type {BigmirNetRulesElement}
-             */
-            this.elements.$rules = new BigmirNetRulesElement(this, {
-                data: data,
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render bigmirnet
-         * @memberOf BigmirNetView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderBigmirNet.bind(this)
-            );
+      /**
+       * Define BigmirNet Rules Element
+       * @type {BigmirNetRulesElement}
+       */
+      this.elements.$rules = new BigmirNetRulesElement(this, {
+        data: data,
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render bigmirnet
+     * @memberOf BigmirNetView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderBigmirNet.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

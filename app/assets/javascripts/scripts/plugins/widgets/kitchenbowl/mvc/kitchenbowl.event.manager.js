@@ -7,23 +7,23 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineKitchenbowlEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define Kitchenbowl event manager
-     * @class KitchenbowlEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var KitchenbowlEventManager = function KitchenbowlEventManager() {
+  /**
+   * Define Kitchenbowl event manager
+   * @class KitchenbowlEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var KitchenbowlEventManager = function KitchenbowlEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return KitchenbowlEventManager.extend(
-        'KitchenbowlEventManager', {},
-        WidgetContentEventManager.prototype
-    );
+  return KitchenbowlEventManager.extend(
+      'KitchenbowlEventManager', {},
+      WidgetContentEventManager.prototype
+  );
 });

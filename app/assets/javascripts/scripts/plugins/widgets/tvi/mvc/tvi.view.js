@@ -7,108 +7,109 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/tvi/element/tvi.element',
-    'plugins/widgets/tvi/element/tvi.preferences.element',
-    'plugins/widgets/tvi/element/tvi.rules.element'
-], function defineTviView(BaseView, Header, Footer, TviElement, TviPreferencesElement, TviRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/tvi/element/tvi.element',
+  'plugins/widgets/tvi/element/tvi.preferences.element',
+  'plugins/widgets/tvi/element/tvi.rules.element'
+], function defineTviView(BaseView, Header, Footer, TviElement,
+    TviPreferencesElement, TviRulesElement) {
+
+  /**
+   * Define view
+   * @class TviView
+   * @extends BaseView
+   * @constructor
+   */
+  var TviView = function TviView() {
+  };
+
+  return TviView.extend('TviView', {
 
     /**
-     * Define view
-     * @class TviView
-     * @extends BaseView
-     * @constructor
+     * Render tvi element
+     * @memberOf TviView
      */
-    var TviView = function TviView() {
-    };
+    renderTvi: function renderTvi() {
 
-    return TviView.extend('TviView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render tvi element
-         * @memberOf TviView
-         */
-        renderTvi: function renderTvi() {
+      /**
+       * Define $tvi
+       * @type {TviElement}
+       */
+      this.elements.$tvi = new TviElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $tvi
-             * @type {TviElement}
-             */
-            this.elements.$tvi = new TviElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf TviView
+     * @returns {TviPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define Tvi Preferences Element
+       * @type {TviPreferencesElement}
+       */
+      this.elements.$preferences = new TviPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf TviView
-         * @returns {TviPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define Tvi Preferences Element
-             * @type {TviPreferencesElement}
-             */
-            this.elements.$preferences = new TviPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf TviView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {TviRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
+      /**
+       * Define data
+       * @type {*|{}}
+       */
+      var data = this.controller.getRules();
 
-        /**
-         * Render Rules
-         * @memberOf TviView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {TviRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define data
-             * @type {*|{}}
-             */
-            var data = this.controller.getRules();
-
-            /**
-             * Define Tvi Rules Element
-             * @type {TviRulesElement}
-             */
-            this.elements.$rules = new TviRulesElement(this, {
-                data: data,
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render tvi
-         * @memberOf TviView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderTvi.bind(this)
-            );
+      /**
+       * Define Tvi Rules Element
+       * @type {TviRulesElement}
+       */
+      this.elements.$rules = new TviRulesElement(this, {
+        data: data,
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render tvi
+     * @memberOf TviView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderTvi.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

@@ -6,47 +6,47 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineIceFloeElement(PluginElement) {
 
+  /**
+   * Define IceFloe Element
+   * @param view
+   * @param opts
+   * @returns {IceFloeElement}
+   * @constructor
+   * @class IceFloeElement
+   * @extends PluginElement
+   */
+  var IceFloeElement = function IceFloeElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('ice.floe', {
+      resource: '/widgets'
+    });
+
+    return this;
+  };
+
+  return IceFloeElement.extend('IceFloeElement', {
+
     /**
-     * Define IceFloe Element
-     * @param view
-     * @param opts
-     * @returns {IceFloeElement}
-     * @constructor
-     * @class IceFloeElement
-     * @extends PluginElement
+     * Render Embedded content
+     * @memberOf IceFloeElement
      */
-    var IceFloeElement = function IceFloeElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent() {
+      var $element = this;
+      var $iceFloe = '<div class="floe_base"></div>';
+      $element.view.controller.clearParentThumbnail();
+      $element.$.append(
+          $iceFloe
+      );
+    }
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
-
-        this.addCSS('ice.floe', {
-            resource: '/widgets'
-        });
-
-        return this;
-    };
-
-    return IceFloeElement.extend('IceFloeElement', {
-
-        /**
-         * Render Embedded content
-         * @memberOf IceFloeElement
-         */
-        renderEmbeddedContent: function renderEmbeddedContent() {
-            var $element = this;
-            var $iceFloe = '<div class="floe_base"></div>';
-            $element.view.controller.clearParentThumbnail();
-            $element.$.append(
-                $iceFloe
-            );
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 
 });

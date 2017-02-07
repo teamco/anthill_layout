@@ -7,116 +7,118 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/open.weather.map/element/open.weather.map.element',
-    'plugins/widgets/open.weather.map/element/open.weather.map.preferences.element',
-    'plugins/widgets/open.weather.map/element/open.weather.map.rules.element'
-], function defineOpenWeatherMapView(BaseView, Header, Footer, OpenWeatherMapElement, OpenWeatherMapPreferencesElement, OpenWeatherMapRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/open.weather.map/element/open.weather.map.element',
+  'plugins/widgets/open.weather.map/element/open.weather.map.preferences.element',
+  'plugins/widgets/open.weather.map/element/open.weather.map.rules.element'
+], function defineOpenWeatherMapView(BaseView, Header, Footer,
+    OpenWeatherMapElement, OpenWeatherMapPreferencesElement,
+    OpenWeatherMapRulesElement) {
+
+  /**
+   * Define view
+   * @class OpenWeatherMapView
+   * @extends BaseView
+   * @constructor
+   */
+  var OpenWeatherMapView = function OpenWeatherMapView() {
+  };
+
+  return OpenWeatherMapView.extend('OpenWeatherMapView', {
 
     /**
-     * Define view
-     * @class OpenWeatherMapView
-     * @extends BaseView
-     * @constructor
+     * Render open.weather.map element
+     * @memberOf OpenWeatherMapView
      */
-    var OpenWeatherMapView = function OpenWeatherMapView() {
-    };
+    renderOpenWeatherMap: function renderOpenWeatherMap() {
 
-    return OpenWeatherMapView.extend('OpenWeatherMapView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render open.weather.map element
-         * @memberOf OpenWeatherMapView
-         */
-        renderOpenWeatherMap: function renderOpenWeatherMap() {
+      /**
+       * Define $open.weather.map
+       * @type {OpenWeatherMapElement}
+       */
+      this.elements.$openweathermap = new OpenWeatherMapElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $open.weather.map
-             * @type {OpenWeatherMapElement}
-             */
-            this.elements.$openweathermap = new OpenWeatherMapElement(this, {
-                $container: this.get$container().$
-            });
+      this.showPosition();
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf OpenWeatherMapView
+     * @returns {OpenWeatherMapPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.showPosition();
-        },
+      /**
+       * Define OpenWeatherMap Preferences Element
+       * @type {OpenWeatherMapPreferencesElement}
+       */
+      this.elements.$preferences = new OpenWeatherMapPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf OpenWeatherMapView
-         * @returns {OpenWeatherMapPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define OpenWeatherMap Preferences Element
-             * @type {OpenWeatherMapPreferencesElement}
-             */
-            this.elements.$preferences = new OpenWeatherMapPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf OpenWeatherMapView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {OpenWeatherMapRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
+      /**
+       * Define data
+       * @type {*|{}}
+       */
+      var data = this.controller.getRules();
 
-        /**
-         * Render Rules
-         * @memberOf OpenWeatherMapView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {OpenWeatherMapRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define data
-             * @type {*|{}}
-             */
-            var data = this.controller.getRules();
-
-            /**
-             * Define OpenWeatherMap Rules Element
-             * @type {OpenWeatherMapRulesElement}
-             */
-            this.elements.$rules = new OpenWeatherMapRulesElement(this, {
-                data: data,
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Show position
-         * @memberOf OpenWeatherMapView
-         */
-        showPosition: function showPosition() {
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
-
-        /**
-         * Render open.weather.map
-         * @memberOf OpenWeatherMapView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderOpenWeatherMap.bind(this)
-            );
+      /**
+       * Define OpenWeatherMap Rules Element
+       * @type {OpenWeatherMapRulesElement}
+       */
+      this.elements.$rules = new OpenWeatherMapRulesElement(this, {
+        data: data,
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Show position
+     * @memberOf OpenWeatherMapView
+     */
+    showPosition: function showPosition() {
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
+
+    /**
+     * Render open.weather.map
+     * @memberOf OpenWeatherMapView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderOpenWeatherMap.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

@@ -6,37 +6,34 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineLoginGoogleModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define LoginGoogle model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class LoginGoogleModel
+   * @constructor
+   */
+  var LoginGoogleModel = function LoginGoogleModel() {
+
     /**
-     * Define LoginGoogle model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class LoginGoogleModel
-     * @constructor
+     * Define preferences
+     * @memberOf LoginGoogleModel
+     * @type {{}}
      */
-    var LoginGoogleModel = function LoginGoogleModel() {
+    this.preferences = {};
 
-        /**
-         * Define preferences
-         * @memberOf LoginGoogleModel
-         * @type {{}}
-         */
-        this.preferences = {
-        };
+    /**
+     * Define rules
+     * @memberOf LoginGoogleModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        /**
-         * Define rules
-         * @memberOf LoginGoogleModel
-         * @type {{}}
-         */
-        this.rules = {};
-    };
-
-    return LoginGoogleModel.extend('LoginGoogleModel', {
-
-
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+  return LoginGoogleModel.extend('LoginGoogleModel', {}, BaseModel.prototype,
+      WidgetContentModel.prototype);
 });

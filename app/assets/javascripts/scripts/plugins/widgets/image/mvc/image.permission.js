@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineImagePermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class ImagePermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var ImagePermission = function ImagePermission() {
+  /**
+   * Define Permissions
+   * @class ImagePermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var ImagePermission = function ImagePermission() {
 
-    };
+  };
 
-    return ImagePermission.extend('ImagePermission', {
-
-    }, BasePermission.prototype);
+  return ImagePermission.extend('ImagePermission', {},
+      BasePermission.prototype);
 });

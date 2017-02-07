@@ -7,23 +7,23 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineVideopressEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define Videopress event manager
-     * @class VideopressEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var VideopressEventManager = function VideopressEventManager() {
+  /**
+   * Define Videopress event manager
+   * @class VideopressEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var VideopressEventManager = function VideopressEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return VideopressEventManager.extend(
-        'VideopressEventManager', {},
-        WidgetContentEventManager.prototype
-    );
+  return VideopressEventManager.extend(
+      'VideopressEventManager', {},
+      WidgetContentEventManager.prototype
+  );
 });

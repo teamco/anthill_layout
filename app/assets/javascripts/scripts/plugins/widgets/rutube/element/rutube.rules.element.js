@@ -6,38 +6,37 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/rules/widget.base.rules'
+  'plugins/plugin.element',
+  'plugins/rules/widget.base.rules'
 ], function defineRutubeRulesElement(PluginElement, BaseWidgetRules) {
 
-    /**
-     * Define Rutube Rules Element
-     * @param view
-     * @param opts
-     * @returns {RutubeRulesElement}
-     * @constructor
-     * @class RutubeRulesElement
-     * @extends PluginElement
-     * @extends BaseWidgetRules
-     */
-    var RutubeRulesElement = function RutubeRulesElement(view, opts) {
+  /**
+   * Define Rutube Rules Element
+   * @param view
+   * @param opts
+   * @returns {RutubeRulesElement}
+   * @constructor
+   * @class RutubeRulesElement
+   * @extends PluginElement
+   * @extends BaseWidgetRules
+   */
+  var RutubeRulesElement = function RutubeRulesElement(view, opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBaseRulesData(
-            opts.data,
-            opts.rules.widget,
-            opts.rules.content
-        );
+    this.renderBaseRulesData(
+        opts.data,
+        opts.rules.widget,
+        opts.rules.content
+    );
 
-        return this;
-    };
+    return this;
+  };
 
-    return RutubeRulesElement.extend('RutubeRulesElement', {
-
-    }, PluginElement.prototype, BaseWidgetRules.prototype);
+  return RutubeRulesElement.extend('RutubeRulesElement', {},
+      PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

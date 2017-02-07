@@ -6,35 +6,37 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
-], function defineReverbnationPreferencesElement(PluginElement, WidgetPreferences) {
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
+], function defineReverbnationPreferencesElement(PluginElement,
+    WidgetPreferences) {
 
-    /**
-     * Define Reverbnation Preferences Element
-     * @constructor
-     * @class ReverbnationPreferencesElement
-     * @param {ReverbnationView} view
-     * @param opts
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     * @returns {ReverbnationPreferencesElement}
-     */
-    var ReverbnationPreferencesElement = function ReverbnationPreferencesElement(view, opts) {
+  /**
+   * Define Reverbnation Preferences Element
+   * @constructor
+   * @class ReverbnationPreferencesElement
+   * @param {ReverbnationView} view
+   * @param opts
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   * @returns {ReverbnationPreferencesElement}
+   */
+  var ReverbnationPreferencesElement = function ReverbnationPreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return ReverbnationPreferencesElement.extend(
-        'ReverbnationPreferencesElement', {}, 
-        PluginElement.prototype, 
-        WidgetPreferences.prototype
-    );
+  return ReverbnationPreferencesElement.extend(
+      'ReverbnationPreferencesElement', {},
+      PluginElement.prototype,
+      WidgetPreferences.prototype
+  );
 });

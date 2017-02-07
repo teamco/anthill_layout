@@ -7,20 +7,20 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineDashboardPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class DashboardPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var DashboardPermission = function DashboardPermission() {
-    };
+  /**
+   * Define Permissions
+   * @class DashboardPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var DashboardPermission = function DashboardPermission() {
+  };
 
-    return DashboardPermission.extend(
-        'DashboardPermission', {},
-        BasePermission.prototype
-    );
+  return DashboardPermission.extend(
+      'DashboardPermission', {},
+      BasePermission.prototype
+  );
 });

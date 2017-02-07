@@ -7,101 +7,103 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/here.maps.for.life/element/here.maps.for.life.element',
-    'plugins/widgets/here.maps.for.life/element/here.maps.for.life.preferences.element',
-    'plugins/widgets/here.maps.for.life/element/here.maps.for.life.rules.element'
-], function defineHereMapsForLifeView(BaseView, Header, Footer, HereMapsForLifeElement, HereMapsForLifePreferencesElement, HereMapsForLifeRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/here.maps.for.life/element/here.maps.for.life.element',
+  'plugins/widgets/here.maps.for.life/element/here.maps.for.life.preferences.element',
+  'plugins/widgets/here.maps.for.life/element/here.maps.for.life.rules.element'
+], function defineHereMapsForLifeView(BaseView, Header, Footer,
+    HereMapsForLifeElement, HereMapsForLifePreferencesElement,
+    HereMapsForLifeRulesElement) {
+
+  /**
+   * Define view
+   * @class HereMapsForLifeView
+   * @extends BaseView
+   * @constructor
+   */
+  var HereMapsForLifeView = function HereMapsForLifeView() {
+  };
+
+  return HereMapsForLifeView.extend('HereMapsForLifeView', {
 
     /**
-     * Define view
-     * @class HereMapsForLifeView
-     * @extends BaseView
-     * @constructor
+     * Render HereMapsForLife element
+     * @memberOf HereMapsForLifeView
      */
-    var HereMapsForLifeView = function HereMapsForLifeView() {
-    };
+    renderHereMapsForLife: function renderHereMapsForLife() {
 
-    return HereMapsForLifeView.extend('HereMapsForLifeView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render HereMapsForLife element
-         * @memberOf HereMapsForLifeView
-         */
-        renderHereMapsForLife: function renderHereMapsForLife() {
+      /**
+       * Define $heremapsforlife
+       * @type {HereMapsForLifeElement}
+       */
+      this.elements.$heremapsforlife = new HereMapsForLifeElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $heremapsforlife
-             * @type {HereMapsForLifeElement}
-             */
-            this.elements.$heremapsforlife = new HereMapsForLifeElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf HereMapsForLifeView
+     * @returns {HereMapsForLifePreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define HereMapsForLife Preferences Element
+       * @type {HereMapsForLifePreferencesElement}
+       */
+      this.elements.$preferences = new HereMapsForLifePreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf HereMapsForLifeView
-         * @returns {HereMapsForLifePreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define HereMapsForLife Preferences Element
-             * @type {HereMapsForLifePreferencesElement}
-             */
-            this.elements.$preferences = new HereMapsForLifePreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf HereMapsForLifeView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {HereMapsForLifeRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
-
-        /**
-         * Render Rules
-         * @memberOf HereMapsForLifeView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {HereMapsForLifeRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define HereMapsForLife Rules Element
-             * @type {HereMapsForLifeRulesElement}
-             */
-            this.elements.$rules = new HereMapsForLifeRulesElement(this, {
-                data: this.controller.getRules(),
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render HereMapsForLife
-         * @memberOf HereMapsForLifeView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderHereMapsForLife.bind(this)
-            );
+      /**
+       * Define HereMapsForLife Rules Element
+       * @type {HereMapsForLifeRulesElement}
+       */
+      this.elements.$rules = new HereMapsForLifeRulesElement(this, {
+        data: this.controller.getRules(),
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype);
+      return this.get$rules();
+    },
+
+    /**
+     * Render HereMapsForLife
+     * @memberOf HereMapsForLifeView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderHereMapsForLife.bind(this)
+      );
+    }
+
+  }, BaseView.prototype);
 });

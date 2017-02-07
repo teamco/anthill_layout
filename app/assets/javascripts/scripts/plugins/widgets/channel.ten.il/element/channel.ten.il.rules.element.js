@@ -6,38 +6,37 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/rules/widget.base.rules'
+  'plugins/plugin.element',
+  'plugins/rules/widget.base.rules'
 ], function defineChannelTenIlRulesElement(PluginElement, BaseWidgetRules) {
 
-    /**
-     * Define ChannelTenIl Rules Element
-     * @param view
-     * @param opts
-     * @returns {ChannelTenIlRulesElement}
-     * @constructor
-     * @class ChannelTenIlRulesElement
-     * @extends PluginElement
-     * @extends BaseWidgetRules
-     */
-    var ChannelTenIlRulesElement = function ChannelTenIlRulesElement(view, opts) {
+  /**
+   * Define ChannelTenIl Rules Element
+   * @param view
+   * @param opts
+   * @returns {ChannelTenIlRulesElement}
+   * @constructor
+   * @class ChannelTenIlRulesElement
+   * @extends PluginElement
+   * @extends BaseWidgetRules
+   */
+  var ChannelTenIlRulesElement = function ChannelTenIlRulesElement(view, opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBaseRulesData(
-            opts.data,
-            opts.rules.widget,
-            opts.rules.content
-        );
+    this.renderBaseRulesData(
+        opts.data,
+        opts.rules.widget,
+        opts.rules.content
+    );
 
-        return this;
-    };
+    return this;
+  };
 
-    return ChannelTenIlRulesElement.extend('ChannelTenIlRulesElement', {
-
-    }, PluginElement.prototype, BaseWidgetRules.prototype);
+  return ChannelTenIlRulesElement.extend('ChannelTenIlRulesElement', {},
+      PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

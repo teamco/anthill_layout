@@ -6,63 +6,63 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineMapQuestModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define MapQuest model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class MapQuestModel
+   * @constructor
+   */
+  var MapQuestModel = function MapQuestModel() {
+
     /**
-     * Define MapQuest model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class MapQuestModel
-     * @constructor
+     * Define preferences
+     * @property MapQuestModel
+     * @type {{}}
      */
-    var MapQuestModel = function MapQuestModel() {
-
-        /**
-         * Define preferences
-         * @property MapQuestModel
-         * @type {{}}
-         */
-        this.preferences = {
-            mapquestConsumerKey: {
-                type: 'text',
-                disabled: false,
-                value: 'qN2wBoKG2Q6PS6A5ezVpuiJ2GKOIOSbw',
-                visible: true
-            },
-            mapquestLatitudeLongitude: {
-                type: 'text',
-                disabled: false,
-                value: '39.7439,-105.0200',
-                placeholder: 'Enter location: Latitude,Longitude',
-                visible: true
-            },
-            mapquestZoomOnDoubleClick: {
-                type: 'checkbox',
-                disabled: false,
-                checked: true,
-                visible: true
-            },
-            mapquestZoom: {
-                type: 'number',
-                disabled: false,
-                value: 10,
-                visible: true
-            }
-        };
-
-        /**
-         * Define rules
-         * @property MapQuestModel
-         * @type {{}}
-         */
-        this.rules = {};
+    this.preferences = {
+      mapquestConsumerKey: {
+        type: 'text',
+        disabled: false,
+        value: 'qN2wBoKG2Q6PS6A5ezVpuiJ2GKOIOSbw',
+        visible: true
+      },
+      mapquestLatitudeLongitude: {
+        type: 'text',
+        disabled: false,
+        value: '39.7439,-105.0200',
+        placeholder: 'Enter location: Latitude,Longitude',
+        visible: true
+      },
+      mapquestZoomOnDoubleClick: {
+        type: 'checkbox',
+        disabled: false,
+        checked: true,
+        visible: true
+      },
+      mapquestZoom: {
+        type: 'number',
+        disabled: false,
+        value: 10,
+        visible: true
+      }
     };
 
-    return MapQuestModel.extend('MapQuestModel', {
+    /**
+     * Define rules
+     * @property MapQuestModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        // Setter
+  return MapQuestModel.extend('MapQuestModel', {
 
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    // Setter
+
+  }, BaseModel.prototype, WidgetContentModel.prototype);
 });

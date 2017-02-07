@@ -7,20 +7,18 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineSwfPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class SwfPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var SwfPermission = function SwfPermission() {
+  /**
+   * Define Permissions
+   * @class SwfPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var SwfPermission = function SwfPermission() {
 
-    };
+  };
 
-    return SwfPermission.extend('SwfPermission', {
-
-    }, BasePermission.prototype);
+  return SwfPermission.extend('SwfPermission', {}, BasePermission.prototype);
 });

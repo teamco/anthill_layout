@@ -6,53 +6,54 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineSportExpressModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define SportExpress model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class SportExpressModel
+   * @constructor
+   */
+  var SportExpressModel = function SportExpressModel() {
+
     /**
-     * Define SportExpress model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class SportExpressModel
-     * @constructor
-     */
-    var SportExpressModel = function SportExpressModel() {
-
-        /**
-         * Define preferences
-         * @memberOf SportExpressModel
-         * @type {{
-         *      sportexpressEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
+     * Define preferences
+     * @memberOf SportExpressModel
+     * @type {{
+         *      sportexpressEmbedCode: {type: string, disabled: boolean, value:
+         *     undefined, visible: boolean}
          * }}
-         */
-        this.preferences = {
-            sportexpressEmbedCode: {
-                type: 'textarea',
-                disabled: false,
-                value: undefined,
-                visible: true
-            }
-        };
-
-        /**
-         * Define rules
-         * @memberOf SportExpressModel
-         * @type {{}}
-         */
-        this.rules = {};
+     */
+    this.preferences = {
+      sportexpressEmbedCode: {
+        type: 'textarea',
+        disabled: false,
+        value: undefined,
+        visible: true
+      }
     };
 
-    return SportExpressModel.extend('SportExpressModel', {
+    /**
+     * Define rules
+     * @memberOf SportExpressModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        /**
-         * Set SportExpress embed code
-         * @memberOf SportExpressModel
-         * @param {string} embed
-         */
-        setSportexpressEmbedCode: function setSportexpressEmbedCode(embed) {
-            this.setPrefs('sportexpressEmbedCode', embed);
-        }
+  return SportExpressModel.extend('SportExpressModel', {
 
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    /**
+     * Set SportExpress embed code
+     * @memberOf SportExpressModel
+     * @param {string} embed
+     */
+    setSportexpressEmbedCode: function setSportexpressEmbedCode(embed) {
+      this.setPrefs('sportexpressEmbedCode', embed);
+    }
+
+  }, BaseModel.prototype, WidgetContentModel.prototype);
 });

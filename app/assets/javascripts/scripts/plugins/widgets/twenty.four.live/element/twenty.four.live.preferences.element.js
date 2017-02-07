@@ -6,35 +6,36 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
-], function defineTwentyFourLivePreferencesElement(PluginElement, WidgetPreferences) {
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
+], function defineTwentyFourLivePreferencesElement(PluginElement,
+    WidgetPreferences) {
 
-    /**
-     * Define TwentyFourLive Preferences Element
-     * @param view
-     * @param opts
-     * @returns {TwentyFourLivePreferencesElement}
-     * @constructor
-     * @class TwentyFourLivePreferencesElement
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     */
-    var TwentyFourLivePreferencesElement = function TwentyFourLivePreferencesElement(view, opts) {
+  /**
+   * Define TwentyFourLive Preferences Element
+   * @param view
+   * @param opts
+   * @returns {TwentyFourLivePreferencesElement}
+   * @constructor
+   * @class TwentyFourLivePreferencesElement
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   */
+  var TwentyFourLivePreferencesElement = function TwentyFourLivePreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return TwentyFourLivePreferencesElement.extend('TwentyFourLivePreferencesElement', {
-
-
-    }, PluginElement.prototype, WidgetPreferences.prototype);
+  return TwentyFourLivePreferencesElement.extend(
+      'TwentyFourLivePreferencesElement', {}, PluginElement.prototype,
+      WidgetPreferences.prototype);
 
 });

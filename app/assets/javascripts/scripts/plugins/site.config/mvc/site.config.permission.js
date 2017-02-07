@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineSiteConfigPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class SiteConfigPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var SiteConfigPermission = function SiteConfigPermission() {
+  /**
+   * Define Permissions
+   * @class SiteConfigPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var SiteConfigPermission = function SiteConfigPermission() {
 
-    };
+  };
 
-    return SiteConfigPermission.extend('SiteConfigPermission', {
-
-    }, BasePermission.prototype);
+  return SiteConfigPermission.extend('SiteConfigPermission', {},
+      BasePermission.prototype);
 });

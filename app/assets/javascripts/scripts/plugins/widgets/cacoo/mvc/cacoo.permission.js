@@ -7,20 +7,20 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineCacooPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class CacooPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var CacooPermission = function CacooPermission() {
-    };
+  /**
+   * Define Permissions
+   * @class CacooPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var CacooPermission = function CacooPermission() {
+  };
 
-    return CacooPermission.extend(
-        'CacooPermission', {}, 
-        BasePermission.prototype
-    );
+  return CacooPermission.extend(
+      'CacooPermission', {},
+      BasePermission.prototype
+  );
 });

@@ -6,44 +6,44 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineLaimTvModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define LaimTv model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class LaimTvModel
+   * @constructor
+   */
+  var LaimTvModel = function LaimTvModel() {
+
     /**
-     * Define LaimTv model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class LaimTvModel
-     * @constructor
+     * Define preferences
+     * @property LaimTvModel
+     * @type {{}}
      */
-    var LaimTvModel = function LaimTvModel() {
-
-        /**
-         * Define preferences
-         * @property LaimTvModel
-         * @type {{}}
-         */
-        this.preferences = {
-            laimtvEmbedCode: {
-                type: 'textarea',
-                disabled: false,
-                value: "<iframe src='http://www.laim.tv/video/7/' width='720' height='400' frameborder='0' webkitAllowFullScreen mozallowfullscreen allowfullscreen></iframe>",
-                visible: true
-            }
-        };
-
-        /**
-         * Define rules
-         * @property LaimTvModel
-         * @type {{}}
-         */
-        this.rules = {};
+    this.preferences = {
+      laimtvEmbedCode: {
+        type: 'textarea',
+        disabled: false,
+        value: "<iframe src='http://www.laim.tv/video/7/' width='720' height='400' frameborder='0' webkitAllowFullScreen mozallowfullscreen allowfullscreen></iframe>",
+        visible: true
+      }
     };
 
-    return LaimTvModel.extend(
-        'LaimTvModel', {},
-        BaseModel.prototype,
-        WidgetContentModel.prototype
-    );
+    /**
+     * Define rules
+     * @property LaimTvModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
+
+  return LaimTvModel.extend(
+      'LaimTvModel', {},
+      BaseModel.prototype,
+      WidgetContentModel.prototype
+  );
 });

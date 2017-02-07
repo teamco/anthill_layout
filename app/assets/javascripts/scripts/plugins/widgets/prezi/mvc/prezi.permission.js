@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function definePreziPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class PreziPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var PreziPermission = function PreziPermission() {
+  /**
+   * Define Permissions
+   * @class PreziPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var PreziPermission = function PreziPermission() {
 
-    };
+  };
 
-    return PreziPermission.extend('PreziPermission', {
-
-    }, BasePermission.prototype);
+  return PreziPermission.extend('PreziPermission', {},
+      BasePermission.prototype);
 });

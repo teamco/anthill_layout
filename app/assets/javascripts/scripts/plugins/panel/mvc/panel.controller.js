@@ -6,386 +6,387 @@
  */
 
 define([
-    'plugins/plugin.controller'
+  'plugins/plugin.controller'
 ], function definePanelController(PluginController) {
 
+  /**
+   * Define panel controller
+   * @class PanelController
+   * @constructor
+   * @extends PluginController
+   * @extends AntHill
+   */
+  var PanelController = function PanelController() {
+  };
+
+  return PanelController.extend('PanelController', {
+
     /**
-     * Define panel controller
-     * @class PanelController
-     * @constructor
-     * @extends PluginController
-     * @extends AntHill
+     * Check if panel resizable
+     * @memberOf PanelController
+     * @returns {boolean}
      */
-    var PanelController = function PanelController() {
-    };
+    isResizable: function isResizable() {
 
-    return PanelController.extend('PanelController', {
+      /**
+       * Define model
+       * @type {PanelModel}
+       */
+      var model = this.model;
 
-        /**
-         * Check if panel resizable
-         * @memberOf PanelController
-         * @returns {boolean}
-         */
-        isResizable: function isResizable() {
+      return model.getConfig('html/resizable') ?
+          model.getConfig('renderAt') : false;
+    },
 
-            /**
-             * Define model
-             * @type {PanelModel}
-             */
-            var model = this.model;
+    /**
+     * Define modules
+     * @memberOf PanelController
+     * @param modules
+     */
+    defineModules: function defineModules(modules) {
 
-            return model.getConfig('html/resizable') ?
-                model.getConfig('renderAt') : false;
-        },
+      for (var i = 0, l = modules.length; i < l; i++) {
+        this.model.defineModule(modules[i]);
+      }
+    },
 
-        /**
-         * Define modules
-         * @memberOf PanelController
-         * @param modules
-         */
-        defineModules: function defineModules(modules) {
+    /**
+     * Define packages
+     * @memberOf PanelController
+     * @param packages
+     */
+    definePackages: function definePackages(packages) {
 
-            for (var i = 0, l = modules.length; i < l; i++) {
-                this.model.defineModule(modules[i]);
-            }
-        },
+      for (var i = 0, l = packages.length; i < l; i++) {
+        this.model.definePackage(packages[i]);
+      }
+    },
 
-        /**
-         * Define packages
-         * @memberOf PanelController
-         * @param packages
-         */
-        definePackages: function definePackages(packages) {
+    /**
+     * Check if opened
+     * @memberOf PanelController
+     * @param {string} [resource]
+     * @returns {boolean|*}
+     */
+    isOpened: function isOpened(resource) {
+      return this.scope.opened[resource || this.getActiveResource()];
+    },
 
-            for (var i = 0, l = packages.length; i < l; i++) {
-                this.model.definePackage(packages[i]);
-            }
-        },
+    /**
+     * Check if panel active
+     * @param {string} resource
+     * @memberOf PanelController
+     * @returns {boolean}
+     */
+    isActive: function isActive(resource) {
+      return this.getActiveResource() === resource;
+    },
 
-        /**
-         * Check if opened
-         * @memberOf PanelController
-         * @param {string} [resource]
-         * @returns {boolean|*}
-         */
-        isOpened: function isOpened(resource) {
-            return this.scope.opened[resource || this.getActiveResource()];
-        },
+    /**
+     * Refresh modules content
+     * @memberOf PanelController
+     */
+    refreshModulesContent: function refreshModulesContent() {
 
-        /**
-         * Check if panel active
-         * @param {string} resource
-         * @memberOf PanelController
-         * @returns {boolean}
-         */
-        isActive: function isActive(resource) {
-            return this.getActiveResource() === resource;
-        },
+      if (this.controller.isOpened()) {
 
-        /**
-         * Refresh modules content
-         * @memberOf PanelController
-         */
-        refreshModulesContent: function refreshModulesContent() {
+        this.observer.publish(
+            this.eventmanager.eventList.showContent,
+            [this.controller.getActiveResource(), true]
+        );
+      }
+    },
 
-            if (this.controller.isOpened()) {
+    /**
+     * Get active resource
+     * @memberOf PanelController
+     * @returns {string}
+     */
+    getActiveResource: function getActiveResource() {
+      return this.scope.active;
+    },
 
-                this.observer.publish(
-                    this.eventmanager.eventList.showContent,
-                    [this.controller.getActiveResource(), true]
-                );
-            }
-        },
+    /**
+     * Set active resource
+     * @memberOf PanelController
+     * @param {string} [resource]
+     * @returns {string}
+     */
+    setActiveResource: function setActiveResource(resource) {
+      return this.scope.active = resource;
+    },
 
-        /**
-         * Get active resource
-         * @memberOf PanelController
-         * @returns {string}
-         */
-        getActiveResource: function getActiveResource() {
-            return this.scope.active;
-        },
+    /**
+     * Update opened
+     * @memberOf PanelController
+     * @param {String} resource
+     */
+    setBehavior: function setBehavior(resource) {
 
-        /**
-         * Set active resource
-         * @memberOf PanelController
-         * @param {string} [resource]
-         * @returns {string}
-         */
-        setActiveResource: function setActiveResource(resource) {
-            return this.scope.active = resource;
-        },
+      if (!resource) {
+        return false;
+      }
 
-        /**
-         * Update opened
-         * @memberOf PanelController
-         * @param {String} resource
-         */
-        setBehavior: function setBehavior(resource) {
+      /**
+       * Define $panel
+       * @type {PanelElement}
+       */
+      var $panel = this.scope.view.get$item();
 
-            if (!resource) {
-                return false;
-            }
+      this.scope.opened[this.getActiveResource()] = false;
 
-            /**
-             * Define $panel
-             * @type {PanelElement}
-             */
-            var $panel = this.scope.view.get$item();
+      if (this.getActiveResource()) {
+        $panel.hideActiveModule();
+      }
 
-            this.scope.opened[this.getActiveResource()] = false;
+      /**
+       * Update opened instance
+       * @type {boolean}
+       */
+      this.scope.opened[resource] = true;
 
-            if (this.getActiveResource()) {
-                $panel.hideActiveModule();
-            }
+      /**
+       * Define active panel
+       * @type {String}
+       */
+      this.setActiveResource(resource);
 
-            /**
-             * Update opened instance
-             * @type {boolean}
-             */
-            this.scope.opened[resource] = true;
+      $panel.showActiveModule();
+    },
 
-            /**
-             * Define active panel
-             * @type {String}
-             */
-            this.setActiveResource(resource);
+    /**
+     * Close panel
+     * @memberOf PanelController
+     * @param {string} resource
+     * @param {boolean} [close]
+     */
+    closePanel: function closePanel(resource, close) {
 
-            $panel.showActiveModule();
-        },
+      if (!resource) {
+        return false;
+      }
 
-        /**
-         * Close panel
-         * @memberOf PanelController
-         * @param {string} resource
-         * @param {boolean} [close]
-         */
-        closePanel: function closePanel(resource, close) {
+      var elements = this.view.elements,
+          $bar = elements.items['$bar-content'];
 
-            if (!resource) {
-                return false;
-            }
+      if (this.controller.isActive(resource)) {
 
-            var elements = this.view.elements,
-                $bar = elements.items['$bar-content'];
+        if (this.controller.isOpened(resource) && close) {
 
-            if (this.controller.isActive(resource)) {
+          $bar.deactivateItems();
+          this.view.get$item().hideActiveModule();
 
-                if (this.controller.isOpened(resource) && close) {
+          this.controller.setActiveResource();
+          this.opened[resource] = false;
 
-                    $bar.deactivateItems();
-                    this.view.get$item().hideActiveModule();
+          return false;
+        }
 
-                    this.controller.setActiveResource();
-                    this.opened[resource] = false;
+      } else {
 
-                    return false;
-                }
+        this.observer.publish(
+            this.eventmanager.eventList.openPanel,
+            resource
+        );
+      }
 
-            } else {
+      $bar.selectItem(resource);
+    },
 
-                this.observer.publish(
-                    this.eventmanager.eventList.openPanel,
-                    resource
-                );
-            }
+    /**
+     * Close panels [except this]
+     * @memberOf PanelController
+     */
+    closePanels: function closePanels() {
 
-            $bar.selectItem(resource);
-        },
+      var panels = this.root().panels,
+          index, panel;
 
-        /**
-         * Close panels [except this]
-         * @memberOf PanelController
-         */
-        closePanels: function closePanels() {
+      for (index in panels) {
 
-            var panels = this.root().panels,
-                index, panel;
+        if (panels.hasOwnProperty(index)) {
 
-            for (index in panels) {
+          /**
+           * Get panel
+           * @type {Panel}
+           */
+          panel = panels[index];
 
-                if (panels.hasOwnProperty(index)) {
+          panel.observer.publish(
+              panel.eventmanager.eventList.closePanel,
+              [panel.active, false]
+          );
+        }
+      }
+    },
 
-                    /**
-                     * Get panel
-                     * @type {Panel}
-                     */
-                    panel = panels[index];
+    /**
+     * Open panel
+     * @memberOf PanelController
+     * @param {string} resource
+     * @param {*} [event]
+     * @param {function} [callback]
+     */
+    openPanel: function openPanel(resource, event, callback) {
 
-                    panel.observer.publish(
-                        panel.eventmanager.eventList.closePanel,
-                        [panel.active, false]
-                    );
-                }
-            }
-        },
+      this.view.get$item().toggleModule(resource);
+      this.controller.closePanels();
 
-        /**
-         * Open panel
-         * @memberOf PanelController
-         * @param {string} resource
-         * @param {*} [event]
-         * @param {function} [callback]
-         */
-        openPanel: function openPanel(resource, event, callback) {
+      if (_.isFunction(callback)) {
+        callback(event);
+      }
+    },
 
-            this.view.get$item().toggleModule(resource);
-            this.controller.closePanels();
+    /**
+     * Show content
+     * @memberOf PanelController
+     * @param {string} [resource]
+     * @param {boolean} [force]
+     */
+    showContent: function showContent(resource, force) {
 
-            if (_.isFunction(callback)) {
-                callback(event);
-            }
-        },
+      if (!force && this.controller.isActive(resource) &&
+          this.controller.isOpened()) {
+        return false;
+      }
 
-        /**
-         * Show content
-         * @memberOf PanelController
-         * @param {string} [resource]
-         * @param {boolean} [force]
-         */
-        showContent: function showContent(resource, force) {
+      /**
+       * Define module index
+       * @type {number}
+       */
+      var index = this.model.getModuleIndex(resource);
 
-            if (!force && this.controller.isActive(resource) && this.controller.isOpened()) {
-                return false;
-            }
+      /**
+       * Define module instance
+       * @type {*}
+       */
+      var module = this.controller.activateModule(index);
 
-            /**
-             * Define module index
-             * @type {number}
-             */
-            var index = this.model.getModuleIndex(resource);
+      this.view.renderContent(module, true);
 
-            /**
-             * Define module instance
-             * @type {*}
-             */
-            var module = this.controller.activateModule(index);
+      module.view.render();
 
-            this.view.renderContent(module, true);
+      module.observer.publish(
+          module.eventmanager.eventList.loadModuleContent
+      );
 
-            module.view.render();
+      this.controller.setBehavior(resource);
+    },
 
-            module.observer.publish(
-                module.eventmanager.eventList.loadModuleContent
-            );
+    /**
+     * Get render at
+     * @memberOf PanelController
+     * @returns {*}
+     */
+    getRenderAt: function getRenderAt() {
 
-            this.controller.setBehavior(resource);
-        },
+      return [
+        this.scope.name.toLowerCase(),
+        this.model.getConfig('renderAt')
+      ].join('-');
+    },
 
-        /**
-         * Get render at
-         * @memberOf PanelController
-         * @returns {*}
-         */
-        getRenderAt: function getRenderAt() {
+    /**
+     * Activate module
+     * @memberOf PanelController
+     * @param {number} index
+     * @returns {*}
+     */
+    activateModule: function activateModule(index) {
 
-            return [
-                this.scope.name.toLowerCase(),
-                this.model.getConfig('renderAt')
-            ].join('-');
-        },
+      /**
+       * Define module config
+       * @type {{activated: Boolean, module}}
+       */
+      var data = this.model.getModule(index);
+
+      if (_.isUndefined(data)) {
+
+        this.scope.logger.error('Undefined module');
+        return false;
+      }
+
+      if (!data.activated) {
 
         /**
          * Activate module
-         * @memberOf PanelController
-         * @param {number} index
-         * @returns {*}
+         * @type {boolean}
          */
-        activateModule: function activateModule(index) {
+        data.activated = true;
+      }
 
-            /**
-             * Define module config
-             * @type {{activated: Boolean, module}}
-             */
-            var data = this.model.getModule(index);
+      return data.module;
+    },
 
-            if (_.isUndefined(data)) {
+    /**
+     * Render packages
+     * @memberOf PanelController
+     */
+    renderPackages: function renderPackages() {
 
-                this.scope.logger.error('Undefined module');
-                return false;
-            }
+      /**
+       * Init packages
+       * @type {*}
+       */
+      var packages = this.model.getPackage();
 
-            if (!data.activated) {
-
-                /**
-                 * Activate module
-                 * @type {boolean}
-                 */
-                data.activated = true;
-            }
-
-            return data.module;
-        },
+      for (var i = 0, l = packages.length; i < l; i++) {
 
         /**
-         * Render packages
-         * @memberOf PanelController
+         * Define package local instance
+         * @type {*}
          */
-        renderPackages: function renderPackages() {
+        var module = packages[i];
 
-            /**
-             * Init packages
-             * @type {*}
-             */
-            var packages = this.model.getPackage();
+        this.scope.view.renderContent(module, false);
 
-            for (var i = 0, l = packages.length; i < l; i++) {
+        module.view.render();
+        module.controller.loadContent();
+      }
+    },
 
-                /**
-                 * Define package local instance
-                 * @type {*}
-                 */
-                var module = packages[i];
+    /**
+     * Execute generic event
+     * @memberOf PanelController
+     */
+    executeGenericEvent: function executeGenericEvent() {
+      this.observer.publish(
+          this.eventmanager.eventList.closePanel,
+          this.active
+      );
+    },
 
-                this.scope.view.renderContent(module, false);
+    /**
+     * Subscribe to generic event
+     * @memberOf PanelController
+     */
+    subscribeGenericEvent: function subscribeGenericEvent() {
 
-                module.view.render();
-                module.controller.loadContent();
-            }
+      /**
+       * Get workspace
+       * @type {Workspace}
+       */
+      var ws = this.controller.getWorkspace();
+
+      /**
+       * Get workspace
+       * @type {WorkspaceEventManager}
+       */
+      var wsEventManager = ws.eventmanager;
+
+      if (!wsEventManager) {
+
+        this.logger.warn('Workspace not initialized', ws);
+        return false;
+      }
+
+      wsEventManager.subscribe({
+        event: {
+          eventName: wsEventManager.eventList.switchToPage
         },
+        callback: this.controller.executeGenericEvent.bind(this)
+      }, false);
+    }
 
-        /**
-         * Execute generic event
-         * @memberOf PanelController
-         */
-        executeGenericEvent: function executeGenericEvent() {
-            this.observer.publish(
-                this.eventmanager.eventList.closePanel,
-                this.active
-            );
-        },
-
-        /**
-         * Subscribe to generic event
-         * @memberOf PanelController
-         */
-        subscribeGenericEvent: function subscribeGenericEvent() {
-
-            /**
-             * Get workspace
-             * @type {Workspace}
-             */
-            var ws = this.controller.getWorkspace();
-
-            /**
-             * Get workspace
-             * @type {WorkspaceEventManager}
-             */
-            var wsEventManager = ws.eventmanager;
-
-            if (!wsEventManager) {
-
-                this.logger.warn('Workspace not initialized', ws);
-                return false;
-            }
-
-            wsEventManager.subscribe({
-                event: {
-                    eventName: wsEventManager.eventList.switchToPage
-                },
-                callback: this.controller.executeGenericEvent.bind(this)
-            }, false);
-        }
-
-    }, PluginController.prototype);
+  }, PluginController.prototype);
 });

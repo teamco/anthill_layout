@@ -7,108 +7,110 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/sublime.video/element/sublime.video.element',
-    'plugins/widgets/sublime.video/element/sublime.video.preferences.element',
-    'plugins/widgets/sublime.video/element/sublime.video.rules.element'
-], function defineSublimeVideoView(BaseView, Header, Footer, SublimeVideoElement, SublimeVideoPreferencesElement, SublimeVideoRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/sublime.video/element/sublime.video.element',
+  'plugins/widgets/sublime.video/element/sublime.video.preferences.element',
+  'plugins/widgets/sublime.video/element/sublime.video.rules.element'
+], function defineSublimeVideoView(BaseView, Header, Footer,
+    SublimeVideoElement, SublimeVideoPreferencesElement,
+    SublimeVideoRulesElement) {
+
+  /**
+   * Define view
+   * @class SublimeVideoView
+   * @extends BaseView
+   * @constructor
+   */
+  var SublimeVideoView = function SublimeVideoView() {
+  };
+
+  return SublimeVideoView.extend('SublimeVideoView', {
 
     /**
-     * Define view
-     * @class SublimeVideoView
-     * @extends BaseView
-     * @constructor
+     * Render sublimevideo element
+     * @memberOf SublimeVideoView
      */
-    var SublimeVideoView = function SublimeVideoView() {
-    };
+    renderSublimeVideo: function renderSublimeVideo() {
 
-    return SublimeVideoView.extend('SublimeVideoView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render sublimevideo element
-         * @memberOf SublimeVideoView
-         */
-        renderSublimeVideo: function renderSublimeVideo() {
+      /**
+       * Define $sublimevideo
+       * @type {SublimeVideoElement}
+       */
+      this.elements.$sublimevideo = new SublimeVideoElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $sublimevideo
-             * @type {SublimeVideoElement}
-             */
-            this.elements.$sublimevideo = new SublimeVideoElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf SublimeVideoView
+     * @returns {SublimeVideoPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define SublimeVideo Preferences Element
+       * @type {SublimeVideoPreferencesElement}
+       */
+      this.elements.$preferences = new SublimeVideoPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf SublimeVideoView
-         * @returns {SublimeVideoPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define SublimeVideo Preferences Element
-             * @type {SublimeVideoPreferencesElement}
-             */
-            this.elements.$preferences = new SublimeVideoPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf SublimeVideoView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {SublimeVideoRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
+      /**
+       * Define data
+       * @type {*|{}}
+       */
+      var data = this.controller.getRules();
 
-        /**
-         * Render Rules
-         * @memberOf SublimeVideoView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {SublimeVideoRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define data
-             * @type {*|{}}
-             */
-            var data = this.controller.getRules();
-
-            /**
-             * Define SublimeVideo Rules Element
-             * @type {SublimeVideoRulesElement}
-             */
-            this.elements.$rules = new SublimeVideoRulesElement(this, {
-                data: data,
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render sublimevideo
-         * @memberOf SublimeVideoView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderSublimeVideo.bind(this)
-            );
+      /**
+       * Define SublimeVideo Rules Element
+       * @type {SublimeVideoRulesElement}
+       */
+      this.elements.$rules = new SublimeVideoRulesElement(this, {
+        data: data,
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render sublimevideo
+     * @memberOf SublimeVideoView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderSublimeVideo.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

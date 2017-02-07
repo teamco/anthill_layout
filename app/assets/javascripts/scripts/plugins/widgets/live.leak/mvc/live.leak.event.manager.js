@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineLiveLeakEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define LiveLeak event manager
-     * @class LiveLeakEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var LiveLeakEventManager = function LiveLeakEventManager() {
+  /**
+   * Define LiveLeak event manager
+   * @class LiveLeakEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var LiveLeakEventManager = function LiveLeakEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return LiveLeakEventManager.extend('LiveLeakEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return LiveLeakEventManager.extend('LiveLeakEventManager', {},
+      WidgetContentEventManager.prototype);
 });

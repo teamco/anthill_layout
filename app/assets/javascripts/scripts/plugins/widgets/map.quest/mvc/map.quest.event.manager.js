@@ -7,23 +7,23 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineMapQuestEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define MapQuest event manager
-     * @class MapQuestEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var MapQuestEventManager = function MapQuestEventManager() {
+  /**
+   * Define MapQuest event manager
+   * @class MapQuestEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var MapQuestEventManager = function MapQuestEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return MapQuestEventManager.extend(
-        'MapQuestEventManager', {},
-        WidgetContentEventManager.prototype
-    );
+  return MapQuestEventManager.extend(
+      'MapQuestEventManager', {},
+      WidgetContentEventManager.prototype
+  );
 });

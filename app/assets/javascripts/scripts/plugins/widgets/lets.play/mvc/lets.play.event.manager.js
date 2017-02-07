@@ -7,23 +7,23 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineLetsPlayEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define LetsPlay event manager
-     * @class LetsPlayEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var LetsPlayEventManager = function LetsPlayEventManager() {
+  /**
+   * Define LetsPlay event manager
+   * @class LetsPlayEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var LetsPlayEventManager = function LetsPlayEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return LetsPlayEventManager.extend(
-        'LetsPlayEventManager', {},
-        WidgetContentEventManager.prototype
-    );
+  return LetsPlayEventManager.extend(
+      'LetsPlayEventManager', {},
+      WidgetContentEventManager.prototype
+  );
 });

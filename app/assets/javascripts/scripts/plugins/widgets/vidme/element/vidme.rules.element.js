@@ -6,38 +6,37 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/rules/widget.base.rules'
+  'plugins/plugin.element',
+  'plugins/rules/widget.base.rules'
 ], function defineVidmeRulesElement(PluginElement, BaseWidgetRules) {
 
-    /**
-     * Define Vidme Rules Element
-     * @param view
-     * @param opts
-     * @returns {VidmeRulesElement}
-     * @constructor
-     * @class VidmeRulesElement
-     * @extends PluginElement
-     * @extends BaseWidgetRules
-     */
-    var VidmeRulesElement = function VidmeRulesElement(view, opts) {
+  /**
+   * Define Vidme Rules Element
+   * @param view
+   * @param opts
+   * @returns {VidmeRulesElement}
+   * @constructor
+   * @class VidmeRulesElement
+   * @extends PluginElement
+   * @extends BaseWidgetRules
+   */
+  var VidmeRulesElement = function VidmeRulesElement(view, opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBaseRulesData(
-            opts.data,
-            opts.rules.widget,
-            opts.rules.content
-        );
+    this.renderBaseRulesData(
+        opts.data,
+        opts.rules.widget,
+        opts.rules.content
+    );
 
-        return this;
-    };
+    return this;
+  };
 
-    return VidmeRulesElement.extend('VidmeRulesElement', {
-
-    }, PluginElement.prototype, BaseWidgetRules.prototype);
+  return VidmeRulesElement.extend('VidmeRulesElement', {},
+      PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

@@ -7,23 +7,23 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineLearningAppsEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define LearningApps event manager
-     * @class LearningAppsEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var LearningAppsEventManager = function LearningAppsEventManager() {
+  /**
+   * Define LearningApps event manager
+   * @class LearningAppsEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var LearningAppsEventManager = function LearningAppsEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return LearningAppsEventManager.extend(
-        'LearningAppsEventManager', {},
-        WidgetContentEventManager.prototype
-    );
+  return LearningAppsEventManager.extend(
+      'LearningAppsEventManager', {},
+      WidgetContentEventManager.prototype
+  );
 });

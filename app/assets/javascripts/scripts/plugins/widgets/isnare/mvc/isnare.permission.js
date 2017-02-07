@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineIsnarePermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class IsnarePermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var IsnarePermission = function IsnarePermission() {
+  /**
+   * Define Permissions
+   * @class IsnarePermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var IsnarePermission = function IsnarePermission() {
 
-    };
+  };
 
-    return IsnarePermission.extend('IsnarePermission', {
-
-    }, BasePermission.prototype);
+  return IsnarePermission.extend('IsnarePermission', {},
+      BasePermission.prototype);
 });

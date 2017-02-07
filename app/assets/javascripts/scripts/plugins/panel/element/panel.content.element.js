@@ -6,56 +6,57 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function definePanelContentElement(PluginElement) {
 
+  /**
+   * Define Panel Content Element
+   * @constructor
+   * @class PanelContentElement
+   * @extends PluginElement
+   * @param {PanelView} view
+   * @param opts
+   * @returns {PanelContentElement}
+   */
+  var PanelContentElement = function PanelContentElement(view, opts) {
+
+    this._config(view, opts, $('<div class="content-container" />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    return this;
+  };
+
+  return PanelContentElement.extend('PanelContentElement', {
+
     /**
-     * Define Panel Content Element
-     * @constructor
-     * @class PanelContentElement
-     * @extends PluginElement
-     * @param {PanelView} view
-     * @param opts
-     * @returns {PanelContentElement}
+     * Select item
+     * @memberOf PanelContentElement
+     * @param {string} resource
      */
-    var PanelContentElement = function PanelContentElement(view, opts) {
+    selectItem: function selectItem(resource) {
+      this.unselectItems();
+      $('.content.' + resource, this.$).addClass('activated').
+          removeClass('collapsed');
+    },
 
-        this._config(view, opts, $('<div class="content-container" />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    /**
+     * Remove items selection
+     * @memberOf PanelContentElement
+     */
+    unselectItems: function unselectItems() {
+      this.deactivateItems().addClass('collapsed');
+    },
 
-        return this;
-    };
+    /**
+     * Remove items activation
+     * @memberOf PanelContentElement
+     * @returns {*|jQuery}
+     */
+    deactivateItems: function deactivateItems() {
+      return $('ul.panel-bar li', this.$).removeClass('activated collapsed');
+    }
 
-    return PanelContentElement.extend('PanelContentElement', {
-
-        /**
-         * Select item
-         * @memberOf PanelContentElement
-         * @param {string} resource
-         */
-        selectItem: function selectItem(resource) {
-            this.unselectItems();
-            $('.content.' + resource, this.$).addClass('activated').removeClass('collapsed');
-        },
-
-        /**
-         * Remove items selection
-         * @memberOf PanelContentElement
-         */
-        unselectItems: function unselectItems() {
-            this.deactivateItems().addClass('collapsed');
-        },
-
-        /**
-         * Remove items activation
-         * @memberOf PanelContentElement
-         * @returns {*|jQuery}
-         */
-        deactivateItems: function deactivateItems() {
-            return $('ul.panel-bar li', this.$).removeClass('activated collapsed');
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 });

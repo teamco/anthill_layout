@@ -6,38 +6,37 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/rules/widget.base.rules'
+  'plugins/plugin.element',
+  'plugins/rules/widget.base.rules'
 ], function defineSportExpressRulesElement(PluginElement, BaseWidgetRules) {
 
-    /**
-     * Define SportExpress Rules Element
-     * @param view
-     * @param opts
-     * @returns {SportExpressRulesElement}
-     * @constructor
-     * @class SportExpressRulesElement
-     * @extends PluginElement
-     * @extends BaseWidgetRules
-     */
-    var SportExpressRulesElement = function SportExpressRulesElement(view, opts) {
+  /**
+   * Define SportExpress Rules Element
+   * @param view
+   * @param opts
+   * @returns {SportExpressRulesElement}
+   * @constructor
+   * @class SportExpressRulesElement
+   * @extends PluginElement
+   * @extends BaseWidgetRules
+   */
+  var SportExpressRulesElement = function SportExpressRulesElement(view, opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBaseRulesData(
-            opts.data,
-            opts.rules.widget,
-            opts.rules.content
-        );
+    this.renderBaseRulesData(
+        opts.data,
+        opts.rules.widget,
+        opts.rules.content
+    );
 
-        return this;
-    };
+    return this;
+  };
 
-    return SportExpressRulesElement.extend('SportExpressRulesElement', {
-
-    }, PluginElement.prototype, BaseWidgetRules.prototype);
+  return SportExpressRulesElement.extend('SportExpressRulesElement', {},
+      PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

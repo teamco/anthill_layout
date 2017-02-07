@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineEventsCalendarEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define EventsCalendar event manager
-     * @class EventsCalendarEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var EventsCalendarEventManager = function EventsCalendarEventManager() {
+  /**
+   * Define EventsCalendar event manager
+   * @class EventsCalendarEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var EventsCalendarEventManager = function EventsCalendarEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return EventsCalendarEventManager.extend('EventsCalendarEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return EventsCalendarEventManager.extend('EventsCalendarEventManager', {},
+      WidgetContentEventManager.prototype);
 });

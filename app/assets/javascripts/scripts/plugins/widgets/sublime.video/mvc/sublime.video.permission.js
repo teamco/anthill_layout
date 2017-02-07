@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineSublimeVideoPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class SublimeVideoPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var SublimeVideoPermission = function SublimeVideoPermission() {
+  /**
+   * Define Permissions
+   * @class SublimeVideoPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var SublimeVideoPermission = function SublimeVideoPermission() {
 
-    };
+  };
 
-    return SublimeVideoPermission.extend('SublimeVideoPermission', {
-
-    }, BasePermission.prototype);
+  return SublimeVideoPermission.extend('SublimeVideoPermission', {},
+      BasePermission.prototype);
 });

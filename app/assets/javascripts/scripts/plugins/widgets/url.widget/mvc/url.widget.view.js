@@ -7,101 +7,102 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/url.widget/element/url.widget.element',
-    'plugins/widgets/url.widget/element/url.widget.preferences.element',
-    'plugins/widgets/url.widget/element/url.widget.rules.element'
-], function defineUrlWidgetView(BaseView, Header, Footer, UrlWidgetElement, UrlWidgetPreferencesElement, UrlWidgetRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/url.widget/element/url.widget.element',
+  'plugins/widgets/url.widget/element/url.widget.preferences.element',
+  'plugins/widgets/url.widget/element/url.widget.rules.element'
+], function defineUrlWidgetView(BaseView, Header, Footer, UrlWidgetElement,
+    UrlWidgetPreferencesElement, UrlWidgetRulesElement) {
+
+  /**
+   * Define view
+   * @class UrlWidgetView
+   * @extends BaseView
+   * @constructor
+   */
+  var UrlWidgetView = function UrlWidgetView() {
+  };
+
+  return UrlWidgetView.extend('UrlWidgetView', {
 
     /**
-     * Define view
-     * @class UrlWidgetView
-     * @extends BaseView
-     * @constructor
+     * Render UrlWidget element
+     * @memberOf UrlWidgetView
      */
-    var UrlWidgetView = function UrlWidgetView() {
-    };
+    renderUrlWidget: function renderUrlWidget() {
 
-    return UrlWidgetView.extend('UrlWidgetView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render UrlWidget element
-         * @memberOf UrlWidgetView
-         */
-        renderUrlWidget: function renderUrlWidget() {
+      /**
+       * Define $urlwidget
+       * @type {UrlWidgetElement}
+       */
+      this.elements.$urlwidget = new UrlWidgetElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $urlwidget
-             * @type {UrlWidgetElement}
-             */
-            this.elements.$urlwidget = new UrlWidgetElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf UrlWidgetView
+     * @returns {UrlWidgetPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define UrlWidget Preferences Element
+       * @type {UrlWidgetPreferencesElement}
+       */
+      this.elements.$preferences = new UrlWidgetPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf UrlWidgetView
-         * @returns {UrlWidgetPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define UrlWidget Preferences Element
-             * @type {UrlWidgetPreferencesElement}
-             */
-            this.elements.$preferences = new UrlWidgetPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf UrlWidgetView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {UrlWidgetRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
-
-        /**
-         * Render Rules
-         * @memberOf UrlWidgetView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {UrlWidgetRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define UrlWidget Rules Element
-             * @type {UrlWidgetRulesElement}
-             */
-            this.elements.$rules = new UrlWidgetRulesElement(this, {
-                data: this.controller.getRules(),
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render UrlWidget
-         * @memberOf UrlWidgetView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderUrlWidget.bind(this)
-            );
+      /**
+       * Define UrlWidget Rules Element
+       * @type {UrlWidgetRulesElement}
+       */
+      this.elements.$rules = new UrlWidgetRulesElement(this, {
+        data: this.controller.getRules(),
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype);
+      return this.get$rules();
+    },
+
+    /**
+     * Render UrlWidget
+     * @memberOf UrlWidgetView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderUrlWidget.bind(this)
+      );
+    }
+
+  }, BaseView.prototype);
 });

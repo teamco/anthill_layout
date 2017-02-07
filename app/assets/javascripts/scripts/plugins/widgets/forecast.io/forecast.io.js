@@ -6,41 +6,42 @@
  */
 
 define([
-    'config/anthill',
-    'modules/MVC',
-    'plugins/widgets/forecast.io/mvc/forecast.io.controller',
-    'plugins/widgets/forecast.io/mvc/forecast.io.model',
-    'plugins/widgets/forecast.io/mvc/forecast.io.view',
-    'plugins/widgets/forecast.io/mvc/forecast.io.event.manager',
-    'plugins/widgets/forecast.io/mvc/forecast.io.permission'
-], function defineForecastIo(AntHill, MVC, Controller, Model, View, EventManager, Permission) {
+  'config/anthill',
+  'modules/MVC',
+  'plugins/widgets/forecast.io/mvc/forecast.io.controller',
+  'plugins/widgets/forecast.io/mvc/forecast.io.model',
+  'plugins/widgets/forecast.io/mvc/forecast.io.view',
+  'plugins/widgets/forecast.io/mvc/forecast.io.event.manager',
+  'plugins/widgets/forecast.io/mvc/forecast.io.permission'
+], function defineForecastIo(AntHill, MVC, Controller, Model, View,
+    EventManager, Permission) {
+
+  /**
+   * Define ForecastIo
+   * @param containment
+   * @param [opts]
+   * @constructor
+   * @class ForecastIo
+   * @extends AntHill
+   */
+  var ForecastIo = function ForecastIo(containment, opts) {
 
     /**
-     * Define ForecastIo
-     * @param containment
-     * @param [opts]
-     * @constructor
-     * @class ForecastIo
-     * @extends AntHill
+     * Define containment
+     * @property ForecastIo
      */
-    var ForecastIo = function ForecastIo(containment, opts) {
+    this.containment = containment;
 
-        /**
-         * Define containment
-         * @property ForecastIo
-         */
-        this.containment = containment;
+    /**
+     * Define referrer
+     * @property ForecastIo
+     * @type {*}
+     */
+    this.referrer = undefined;
 
-        /**
-         * Define referrer
-         * @property ForecastIo
-         * @type {*}
-         */
-        this.referrer = undefined;
-
-        /**
-         * Define defaults
-         * @type {{
+    /**
+     * Define defaults
+     * @type {{
          *      plugin: boolean,
          *      html: {
          *          style: string,
@@ -55,48 +56,48 @@ define([
          *          }
          *      }
          * }}
-         */
-        var DEFAULTS = {
-            plugin: true,
-            html: {
-                style: 'default',
-                header: false,
-                footer: false,
-                padding: {
-                    top: 0,
-                    right: 0,
-                    bottom: 0,
-                    left: 0
-                }
-            }
-        };
-
-        /**
-         * Define MVC
-         * @property ForecastIo
-         * @type {MVC}
-         */
-        this.mvc = new MVC({
-            scope: this,
-            config: [
-                {uuid: this.containment.model.getContentUUID()},
-                DEFAULTS
-            ],
-            components: [
-                Controller,
-                Model,
-                View,
-                EventManager,
-                Permission
-            ],
-            render: true
-        });
-
-        this.observer.publish(
-            this.eventmanager.eventList.initWidget,
-            opts
-        );
+     */
+    var DEFAULTS = {
+      plugin: true,
+      html: {
+        style: 'default',
+        header: false,
+        footer: false,
+        padding: {
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0
+        }
+      }
     };
 
-    return ForecastIo.extend('ForecastIo', {}, AntHill.prototype);
+    /**
+     * Define MVC
+     * @property ForecastIo
+     * @type {MVC}
+     */
+    this.mvc = new MVC({
+      scope: this,
+      config: [
+        {uuid: this.containment.model.getContentUUID()},
+        DEFAULTS
+      ],
+      components: [
+        Controller,
+        Model,
+        View,
+        EventManager,
+        Permission
+      ],
+      render: true
+    });
+
+    this.observer.publish(
+        this.eventmanager.eventList.initWidget,
+        opts
+    );
+  };
+
+  return ForecastIo.extend('ForecastIo', {}, AntHill.prototype);
 });

@@ -6,43 +6,43 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineStepashkaElement(PluginElement) {
 
+  /**
+   * Define Stepashka Element
+   * @param view
+   * @param opts
+   * @returns {StepashkaElement}
+   * @constructor
+   * @class StepashkaElement
+   * @extends PluginElement
+   */
+  var StepashkaElement = function StepashkaElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('stepashka', {resource: '/widgets'});
+
+    return this;
+  };
+
+  return StepashkaElement.extend('StepashkaElement', {
+
     /**
-     * Define Stepashka Element
-     * @param view
-     * @param opts
-     * @returns {StepashkaElement}
-     * @constructor
-     * @class StepashkaElement
-     * @extends PluginElement
+     * Render Embedded content
+     * @memberOf StepashkaElement
+     * @param {string} url
      */
-    var StepashkaElement = function StepashkaElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent(url) {
+      this.$.append(
+          this.renderIframe(url)
+      );
+    }
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
-
-        this.addCSS('stepashka', {resource: '/widgets'});
-
-        return this;
-    };
-
-    return StepashkaElement.extend('StepashkaElement', {
-
-        /**
-         * Render Embedded content
-         * @memberOf StepashkaElement
-         * @param {string} url
-         */
-        renderEmbeddedContent: function renderEmbeddedContent(url) {
-            this.$.append(
-                this.renderIframe(url)
-            );
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 
 });

@@ -7,20 +7,20 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineForecastIoPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class ForecastIoPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var ForecastIoPermission = function ForecastIoPermission() {
-    };
+  /**
+   * Define Permissions
+   * @class ForecastIoPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var ForecastIoPermission = function ForecastIoPermission() {
+  };
 
-    return ForecastIoPermission.extend(
-        'ForecastIoPermission', {}, 
-        BasePermission.prototype
-    );
+  return ForecastIoPermission.extend(
+      'ForecastIoPermission', {},
+      BasePermission.prototype
+  );
 });

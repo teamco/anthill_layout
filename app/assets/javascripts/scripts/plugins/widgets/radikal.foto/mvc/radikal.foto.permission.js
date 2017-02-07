@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineRadikalFotoPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class RadikalFotoPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var RadikalFotoPermission = function RadikalFotoPermission() {
+  /**
+   * Define Permissions
+   * @class RadikalFotoPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var RadikalFotoPermission = function RadikalFotoPermission() {
 
-    };
+  };
 
-    return RadikalFotoPermission.extend('RadikalFotoPermission', {
-
-    }, BasePermission.prototype);
+  return RadikalFotoPermission.extend('RadikalFotoPermission', {},
+      BasePermission.prototype);
 });

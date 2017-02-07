@@ -6,35 +6,34 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
 ], function defineScreenrPreferencesElement(PluginElement, WidgetPreferences) {
 
-    /**
-     * Define Screenr Preferences Element
-     * @param view
-     * @param opts
-     * @returns {ScreenrPreferencesElement}
-     * @constructor
-     * @class ScreenrPreferencesElement
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     */
-    var ScreenrPreferencesElement = function ScreenrPreferencesElement(view, opts) {
+  /**
+   * Define Screenr Preferences Element
+   * @param view
+   * @param opts
+   * @returns {ScreenrPreferencesElement}
+   * @constructor
+   * @class ScreenrPreferencesElement
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   */
+  var ScreenrPreferencesElement = function ScreenrPreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return ScreenrPreferencesElement.extend('ScreenrPreferencesElement', {
-
-
-    }, PluginElement.prototype, WidgetPreferences.prototype);
+  return ScreenrPreferencesElement.extend('ScreenrPreferencesElement', {},
+      PluginElement.prototype, WidgetPreferences.prototype);
 
 });

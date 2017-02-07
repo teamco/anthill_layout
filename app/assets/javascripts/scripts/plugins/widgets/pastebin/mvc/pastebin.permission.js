@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function definePastebinPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class PastebinPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var PastebinPermission = function PastebinPermission() {
+  /**
+   * Define Permissions
+   * @class PastebinPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var PastebinPermission = function PastebinPermission() {
 
-    };
+  };
 
-    return PastebinPermission.extend('PastebinPermission', {
-
-    }, BasePermission.prototype);
+  return PastebinPermission.extend('PastebinPermission', {},
+      BasePermission.prototype);
 });

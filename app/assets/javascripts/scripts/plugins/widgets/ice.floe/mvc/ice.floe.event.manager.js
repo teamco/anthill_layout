@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineIceFloeEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define IceFloe event manager
-     * @class IceFloeEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var IceFloeEventManager = function IceFloeEventManager() {
+  /**
+   * Define IceFloe event manager
+   * @class IceFloeEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var IceFloeEventManager = function IceFloeEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return IceFloeEventManager.extend('IceFloeEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return IceFloeEventManager.extend('IceFloeEventManager', {},
+      WidgetContentEventManager.prototype);
 });

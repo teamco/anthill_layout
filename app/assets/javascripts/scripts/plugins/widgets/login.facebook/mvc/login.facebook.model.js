@@ -6,37 +6,34 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineLoginFacebookModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define LoginFacebook model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class LoginFacebookModel
+   * @constructor
+   */
+  var LoginFacebookModel = function LoginFacebookModel() {
+
     /**
-     * Define LoginFacebook model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class LoginFacebookModel
-     * @constructor
+     * Define preferences
+     * @memberOf LoginFacebookModel
+     * @type {{}}
      */
-    var LoginFacebookModel = function LoginFacebookModel() {
+    this.preferences = {};
 
-        /**
-         * Define preferences
-         * @memberOf LoginFacebookModel
-         * @type {{}}
-         */
-        this.preferences = {
-        };
+    /**
+     * Define rules
+     * @memberOf LoginFacebookModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        /**
-         * Define rules
-         * @memberOf LoginFacebookModel
-         * @type {{}}
-         */
-        this.rules = {};
-    };
-
-    return LoginFacebookModel.extend('LoginFacebookModel', {
-
-
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+  return LoginFacebookModel.extend('LoginFacebookModel', {},
+      BaseModel.prototype, WidgetContentModel.prototype);
 });

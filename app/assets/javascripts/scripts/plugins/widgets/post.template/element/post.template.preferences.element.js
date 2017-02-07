@@ -6,35 +6,35 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
-], function definePostTemplatePreferencesElement(PluginElement, WidgetPreferences) {
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
+], function definePostTemplatePreferencesElement(PluginElement,
+    WidgetPreferences) {
 
-    /**
-     * Define PostTemplate Preferences Element
-     * @param view
-     * @param opts
-     * @returns {PostTemplatePreferencesElement}
-     * @constructor
-     * @class PostTemplatePreferencesElement
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     */
-    var PostTemplatePreferencesElement = function PostTemplatePreferencesElement(view, opts) {
+  /**
+   * Define PostTemplate Preferences Element
+   * @param view
+   * @param opts
+   * @returns {PostTemplatePreferencesElement}
+   * @constructor
+   * @class PostTemplatePreferencesElement
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   */
+  var PostTemplatePreferencesElement = function PostTemplatePreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return PostTemplatePreferencesElement.extend('PostTemplatePreferencesElement', {
-
-
-    }, PluginElement.prototype, WidgetPreferences.prototype);
+  return PostTemplatePreferencesElement.extend('PostTemplatePreferencesElement',
+      {}, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineEspresoTvEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define EspresoTv event manager
-     * @class EspresoTvEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var EspresoTvEventManager = function EspresoTvEventManager() {
+  /**
+   * Define EspresoTv event manager
+   * @class EspresoTvEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var EspresoTvEventManager = function EspresoTvEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return EspresoTvEventManager.extend('EspresoTvEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return EspresoTvEventManager.extend('EspresoTvEventManager', {},
+      WidgetContentEventManager.prototype);
 });

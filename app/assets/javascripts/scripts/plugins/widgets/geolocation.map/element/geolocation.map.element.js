@@ -6,36 +6,36 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineGeolocationMapElement(PluginElement) {
 
+  /**
+   * Define GeolocationMap Element
+   * @param view
+   * @param opts
+   * @returns {GeolocationMapElement}
+   * @constructor
+   * @class GeolocationMapElement
+   * @extends PluginElement
+   */
+  let GeolocationMapElement = function GeolocationMapElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('geolocation.map', {resource: '/widgets'});
+
+    return this;
+  };
+
+  return GeolocationMapElement.extend('GeolocationMapElement', {
+
     /**
-     * Define GeolocationMap Element
-     * @param view
-     * @param opts
-     * @returns {GeolocationMapElement}
-     * @constructor
-     * @class GeolocationMapElement
-     * @extends PluginElement
-     */
-    let GeolocationMapElement = function GeolocationMapElement(view, opts) {
-
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
-
-        this.addCSS('geolocation.map', {resource: '/widgets'});
-
-        return this;
-    };
-
-    return GeolocationMapElement.extend('GeolocationMapElement', {
-
-        /**
-         * Render Embedded content
-         * @memberOf GeolocationMapElement
-         * @param {{
+     * Render Embedded content
+     * @memberOf GeolocationMapElement
+     * @param {{
          *      latitude: number,
          *      longitude: number,
          *      zoom: number,
@@ -48,31 +48,31 @@ define([
          *      sensor: boolean,
          *      stretch: boolean
          * }} opts
-         */
-        renderEmbeddedContent: function renderEmbeddedContent(opts) {
+     */
+    renderEmbeddedContent: function renderEmbeddedContent(opts) {
 
-            let url = [
-                'https://maps.googleapis.com/maps/api/staticmap',
-                '?center=', opts.latitude, ',', opts.longitude,
-                '&markers=color:blue|label:S|', opts.latitude, ',', opts.longitude,
-                '&maptype=', opts.maptype.toLowerCase(),
-                '&zoom=', opts.zoom,
-                '&scale=', (opts.scale ? 2 : 1),
-                '&size=', opts.width, 'x', opts.height,
-                '&sensor=', opts.sensor,
-                '&key=', opts.apiKey
-            ].join('');
+      let url = [
+        'https://maps.googleapis.com/maps/api/staticmap',
+        '?center=', opts.latitude, ',', opts.longitude,
+        '&markers=color:blue|label:S|', opts.latitude, ',', opts.longitude,
+        '&maptype=', opts.maptype.toLowerCase(),
+        '&zoom=', opts.zoom,
+        '&scale=', (opts.scale ? 2 : 1),
+        '&size=', opts.width, 'x', opts.height,
+        '&sensor=', opts.sensor,
+        '&key=', opts.apiKey
+      ].join('');
 
-            this.$.append(
-                $('<img />').attr({
-                    src: url,
-                    alt: url
-                }).addClass(opts.stretch ? 'stretch' : undefined)
-            );
+      this.$.append(
+          $('<img />').attr({
+            src: url,
+            alt: url
+          }).addClass(opts.stretch ? 'stretch' : undefined)
+      );
 
-            this.view.controller.clearParentThumbnail();
-        }
+      this.view.controller.clearParentThumbnail();
+    }
 
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 
 });

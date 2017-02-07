@@ -6,37 +6,34 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineIceFloeModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define IceFloe model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class IceFloeModel
+   * @constructor
+   */
+  var IceFloeModel = function IceFloeModel() {
+
     /**
-     * Define IceFloe model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class IceFloeModel
-     * @constructor
+     * Define preferences
+     * @memberOf IceFloeModel
+     * @type {{}}
      */
-    var IceFloeModel = function IceFloeModel() {
+    this.preferences = {};
 
-        /**
-         * Define preferences
-         * @memberOf IceFloeModel
-         * @type {{}}
-         */
-        this.preferences = {
-        };
+    /**
+     * Define rules
+     * @memberOf IceFloeModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        /**
-         * Define rules
-         * @memberOf IceFloeModel
-         * @type {{}}
-         */
-        this.rules = {};
-    };
-
-    return IceFloeModel.extend('IceFloeModel', {
-
-
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+  return IceFloeModel.extend('IceFloeModel', {}, BaseModel.prototype,
+      WidgetContentModel.prototype);
 });

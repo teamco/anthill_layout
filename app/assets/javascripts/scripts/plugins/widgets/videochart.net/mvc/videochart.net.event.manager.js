@@ -7,23 +7,23 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineVideochartNetEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define VideochartNet event manager
-     * @class VideochartNetEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var VideochartNetEventManager = function VideochartNetEventManager() {
+  /**
+   * Define VideochartNet event manager
+   * @class VideochartNetEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var VideochartNetEventManager = function VideochartNetEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return VideochartNetEventManager.extend(
-        'VideochartNetEventManager', {},
-        WidgetContentEventManager.prototype
-    );
+  return VideochartNetEventManager.extend(
+      'VideochartNetEventManager', {},
+      WidgetContentEventManager.prototype
+  );
 });

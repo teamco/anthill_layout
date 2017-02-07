@@ -6,35 +6,37 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
-], function defineSapoVideosPreferencesElement(PluginElement, WidgetPreferences) {
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
+], function defineSapoVideosPreferencesElement(PluginElement,
+    WidgetPreferences) {
 
-    /**
-     * Define SapoVideos Preferences Element
-     * @constructor
-     * @class SapoVideosPreferencesElement
-     * @param {SapoVideosView} view
-     * @param opts
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     * @returns {SapoVideosPreferencesElement}
-     */
-    var SapoVideosPreferencesElement = function SapoVideosPreferencesElement(view, opts) {
+  /**
+   * Define SapoVideos Preferences Element
+   * @constructor
+   * @class SapoVideosPreferencesElement
+   * @param {SapoVideosView} view
+   * @param opts
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   * @returns {SapoVideosPreferencesElement}
+   */
+  var SapoVideosPreferencesElement = function SapoVideosPreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return SapoVideosPreferencesElement.extend(
-        'SapoVideosPreferencesElement', {}, 
-        PluginElement.prototype, 
-        WidgetPreferences.prototype
-    );
+  return SapoVideosPreferencesElement.extend(
+      'SapoVideosPreferencesElement', {},
+      PluginElement.prototype,
+      WidgetPreferences.prototype
+  );
 });

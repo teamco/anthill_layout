@@ -3,247 +3,247 @@
  */
 define(function defineWidgetSubscribe() {
 
+  /**
+   * Define widget subscribe events
+   * @class WidgetSubscribe
+   * @constructor
+   */
+  var WidgetSubscribe = function WidgetSubscribe() {
+  };
+
+  return WidgetSubscribe.extend('WidgetSubscribe', {
+
     /**
-     * Define widget subscribe events
-     * @class WidgetSubscribe
-     * @constructor
+     * On drag event simulate
+     * @memberOf WidgetSubscribe
+     * @param type
+     * @param args
      */
-    var WidgetSubscribe = function WidgetSubscribe() {
-    };
+    dragDraggableSimulate: function dragDraggableSimulate(type, args) {
 
-    return WidgetSubscribe.extend('WidgetSubscribe', {
+      /**
+       * Define widget
+       * @type {Widget}
+       */
+      var widget = this.scope.controller.getContainment();
 
-        /**
-         * On drag event simulate
-         * @memberOf WidgetSubscribe
-         * @param type
-         * @param args
-         */
-        dragDraggableSimulate: function dragDraggableSimulate(type, args) {
+      /**
+       * Get jQuery.UI element
+       * @type {*}
+       */
+      var ui = args[1];
 
-            /**
-             * Define widget
-             * @type {Widget}
-             */
-            var widget = this.scope.controller.getContainment();
+      /**
+       * Get $widget
+       * @type {*}
+       */
+      var $widget = widget.view.get$item().$;
 
-            /**
-             * Get jQuery.UI element
-             * @type {*}
-             */
-            var ui = args[1];
+      /**
+       * Set delta left
+       * @type {number}
+       */
+      var deltaLeft = ui.position.left -
+          ui.originalPosition.left;
 
-            /**
-             * Get $widget
-             * @type {*}
-             */
-            var $widget = widget.view.get$item().$;
+      /**
+       * Set delta top
+       * @type {number}
+       */
+      var deltaTop = ui.position.top -
+          ui.originalPosition.top;
 
-            /**
-             * Set delta left
-             * @type {number}
-             */
-            var deltaLeft = ui.position.left -
-                ui.originalPosition.left;
+      $widget.css({
+        left: widget.dom.left + deltaLeft,
+        top: widget.dom.top + deltaTop
+      });
+    },
 
-            /**
-             * Set delta top
-             * @type {number}
-             */
-            var deltaTop = ui.position.top -
-                ui.originalPosition.top;
+    /**
+     * On resize event simulate
+     * @memberOf WidgetSubscribe
+     * @param type
+     * @param args
+     */
+    resizeResizableSimulate: function resizeResizableSimulate(type, args) {
 
-            $widget.css({
-                left: widget.dom.left + deltaLeft,
-                top: widget.dom.top + deltaTop
-            });
-        },
+      /**
+       * Get jQuery.UI element
+       * @type {*}
+       */
+      var ui = args[1];
 
-        /**
-         * On resize event simulate
-         * @memberOf WidgetSubscribe
-         * @param type
-         * @param args
-         */
-        resizeResizableSimulate: function resizeResizableSimulate(type, args) {
+      /**
+       * Define widget
+       * @type {Widget}
+       */
+      var widget = this.scope.controller.getContainment();
 
-            /**
-             * Get jQuery.UI element
-             * @type {*}
-             */
-            var ui = args[1];
+      /**
+       * Define resizable
+       * @type {Resizable}
+       */
+      var resizable = widget.interactions.resizable;
+      /**
+       * Define direction
+       * @type {string}
+       */
+      var direction = resizable.getResizeDirection(ui);
 
-            /**
-             * Define widget
-             * @type {Widget}
-             */
-            var widget = this.scope.controller.getContainment();
+      /**
+       * Get $widget
+       * @type {*}
+       */
+      var $widget = widget.view.get$item().$;
 
-            /**
-             * Define resizable
-             * @type {Resizable}
-             */
-            var resizable = widget.interactions.resizable;
-            /**
-             * Define direction
-             * @type {string}
-             */
-            var direction = resizable.getResizeDirection(ui);
+      if (direction === 'w') {
+        $widget.css(resizable.getDirectionW(ui));
+      }
 
-            /**
-             * Get $widget
-             * @type {*}
-             */
-            var $widget = widget.view.get$item().$;
+      if (direction === 'e') {
+        $widget.css(resizable.getDirectionE(ui));
+      }
 
-            if (direction === 'w') {
-                $widget.css(resizable.getDirectionW(ui));
-            }
+      if (direction === 'n') {
+        $widget.css(resizable.getDirectionN(ui));
+      }
 
-            if (direction === 'e') {
-                $widget.css(resizable.getDirectionE(ui));
-            }
+      if (direction === 's') {
+        $widget.css(resizable.getDirectionS(ui));
+      }
 
-            if (direction === 'n') {
-                $widget.css(resizable.getDirectionN(ui));
-            }
+      if (direction === 'nw') {
+        $widget.css(resizable.getDirectionW(ui));
+        $widget.css(resizable.getDirectionN(ui));
+      }
 
-            if (direction === 's') {
-                $widget.css(resizable.getDirectionS(ui));
-            }
+      if (direction === 'ne') {
+        $widget.css(resizable.getDirectionE(ui));
+        $widget.css(resizable.getDirectionN(ui));
+      }
 
-            if (direction === 'nw') {
-                $widget.css(resizable.getDirectionW(ui));
-                $widget.css(resizable.getDirectionN(ui));
-            }
+      if (direction === 'sw') {
+        $widget.css(resizable.getDirectionW(ui));
+        $widget.css(resizable.getDirectionS(ui));
+      }
 
-            if (direction === 'ne') {
-                $widget.css(resizable.getDirectionE(ui));
-                $widget.css(resizable.getDirectionN(ui));
-            }
+      if (direction === 'se') {
+        $widget.css(resizable.getDirectionE(ui));
+        $widget.css(resizable.getDirectionS(ui));
+      }
+    },
 
-            if (direction === 'sw') {
-                $widget.css(resizable.getDirectionW(ui));
-                $widget.css(resizable.getDirectionS(ui));
-            }
+    /**
+     * On drag stop event simulate
+     * @memberOf WidgetSubscribe
+     */
+    stopDraggableSimulate: function stopDraggableSimulate() {
 
-            if (direction === 'se') {
-                $widget.css(resizable.getDirectionE(ui));
-                $widget.css(resizable.getDirectionS(ui));
-            }
-        },
+      /**
+       * Define widget
+       * @type {Widget}
+       */
+      var widget = this.scope.controller.getContainment();
 
-        /**
-         * On drag stop event simulate
-         * @memberOf WidgetSubscribe
-         */
-        stopDraggableSimulate: function stopDraggableSimulate() {
+      widget.observer.publish(
+          widget.eventmanager.eventList.saveDom
+      );
 
-            /**
-             * Define widget
-             * @type {Widget}
-             */
-            var widget = this.scope.controller.getContainment();
+      widget.observer.publish(
+          widget.eventmanager.eventList.stopDraggable,
+          'stopDraggable'
+      );
+    },
 
-            widget.observer.publish(
-                widget.eventmanager.eventList.saveDom
-            );
+    /**
+     * On resize stop event simulate
+     * @memberOf WidgetSubscribe
+     */
+    stopResizableSimulate: function stopResizableSimulate() {
 
-            widget.observer.publish(
-                widget.eventmanager.eventList.stopDraggable,
-                'stopDraggable'
-            );
-        },
+      /**
+       * Define widget
+       * @type {Widget}
+       */
+      var widget = this.scope.controller.getContainment();
 
-        /**
-         * On resize stop event simulate
-         * @memberOf WidgetSubscribe
-         */
-        stopResizableSimulate: function stopResizableSimulate() {
+      widget.observer.publish(
+          widget.eventmanager.eventList.saveDom
+      );
 
-            /**
-             * Define widget
-             * @type {Widget}
-             */
-            var widget = this.scope.controller.getContainment();
+      widget.observer.publish(
+          widget.eventmanager.eventList.stopResizable,
+          'stopResizable'
+      );
+    },
 
-            widget.observer.publish(
-                widget.eventmanager.eventList.saveDom
-            );
+    /**
+     * Split embedded content
+     * @memberOf WidgetSubscribe
+     * @returns {boolean}
+     */
+    splitEmbeddedContentSimulate: function splitEmbeddedContentSimulate() {
 
-            widget.observer.publish(
-                widget.eventmanager.eventList.stopResizable,
-                'stopResizable'
-            );
-        },
+      /**
+       * Define referrer widget
+       * @type {Widget}
+       */
+      var widget = this.referrer;
 
-        /**
-         * Split embedded content
-         * @memberOf WidgetSubscribe
-         * @returns {boolean}
-         */
-        splitEmbeddedContentSimulate: function splitEmbeddedContentSimulate() {
+      var subscribers = widget.controller.getSubscribers(
+          widget.eventmanager.eventList.splitEmbeddedContent
+      );
 
-            /**
-             * Define referrer widget
-             * @type {Widget}
-             */
-            var widget = this.referrer;
+      /**
+       * Get subscribers
+       * @type {*}
+       */
+      var scope = this.scope;
 
-            var subscribers = widget.controller.getSubscribers(
-                widget.eventmanager.eventList.splitEmbeddedContent
-            );
+      scope.model.copyPrefs(widget);
 
-            /**
-             * Get subscribers
-             * @type {*}
-             */
-            var scope = this.scope;
+      scope.observer.publish(
+          scope.eventmanager.eventList.splitEmbeddedContent,
+          [subscribers, true]
+      );
 
-            scope.model.copyPrefs(widget);
+      return false;
+    },
+
+    /**
+     * Set embedded content simulate
+     * @memberOf WidgetSubscribe
+     */
+    setEmbeddedContentSimulate: function setEmbeddedContentSimulate() {
+
+      /**
+       * Define scope
+       * @type {*}
+       */
+      var content = this,
+          scope = content.scope;
+
+      scope.base.waitFor(
+          function condition() {
+            return scope.base.isDefined(scope.view.get$item()) &&
+                scope.base.isDefined(content.referrer);
+          },
+
+          function callback() {
+
+            scope.model.copyPrefs(content.referrer);
 
             scope.observer.publish(
-                scope.eventmanager.eventList.splitEmbeddedContent,
-                [subscribers, true]
+                scope.eventmanager.eventList.setEmbeddedContent
             );
+          },
 
-            return false;
-        },
+          function fallback() {
+            scope.logger.warn('Timeout. Unable to embed content');
+          }
+      );
 
-        /**
-         * Set embedded content simulate
-         * @memberOf WidgetSubscribe
-         */
-        setEmbeddedContentSimulate: function setEmbeddedContentSimulate() {
-
-            /**
-             * Define scope
-             * @type {*}
-             */
-            var content = this,
-                scope = content.scope;
-
-            scope.base.waitFor(
-                function condition() {
-                    return scope.base.isDefined(scope.view.get$item()) &&
-                        scope.base.isDefined(content.referrer);
-                },
-
-                function callback() {
-
-                    scope.model.copyPrefs(content.referrer);
-
-                    scope.observer.publish(
-                        scope.eventmanager.eventList.setEmbeddedContent
-                    );
-                },
-
-                function fallback() {
-                    scope.logger.warn('Timeout. Unable to embed content');
-                }
-            );
-
-            return false;
-        }
-    });
+      return false;
+    }
+  });
 });

@@ -6,38 +6,37 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/rules/widget.base.rules'
+  'plugins/plugin.element',
+  'plugins/rules/widget.base.rules'
 ], function defineKickStarterRulesElement(PluginElement, BaseWidgetRules) {
 
-    /**
-     * Define KickStarter Rules Element
-     * @param view
-     * @param opts
-     * @returns {KickStarterRulesElement}
-     * @constructor
-     * @class KickStarterRulesElement
-     * @extends PluginElement
-     * @extends BaseWidgetRules
-     */
-    var KickStarterRulesElement = function KickStarterRulesElement(view, opts) {
+  /**
+   * Define KickStarter Rules Element
+   * @param view
+   * @param opts
+   * @returns {KickStarterRulesElement}
+   * @constructor
+   * @class KickStarterRulesElement
+   * @extends PluginElement
+   * @extends BaseWidgetRules
+   */
+  var KickStarterRulesElement = function KickStarterRulesElement(view, opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBaseRulesData(
-            opts.data,
-            opts.rules.widget,
-            opts.rules.content
-        );
+    this.renderBaseRulesData(
+        opts.data,
+        opts.rules.widget,
+        opts.rules.content
+    );
 
-        return this;
-    };
+    return this;
+  };
 
-    return KickStarterRulesElement.extend('KickStarterRulesElement', {
-
-    }, PluginElement.prototype, BaseWidgetRules.prototype);
+  return KickStarterRulesElement.extend('KickStarterRulesElement', {},
+      PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

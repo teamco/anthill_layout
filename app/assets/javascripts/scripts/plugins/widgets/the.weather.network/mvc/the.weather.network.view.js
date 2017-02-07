@@ -7,101 +7,104 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/the.weather.network/element/the.weather.network.element',
-    'plugins/widgets/the.weather.network/element/the.weather.network.preferences.element',
-    'plugins/widgets/the.weather.network/element/the.weather.network.rules.element'
-], function defineTheWeatherNetworkView(BaseView, Header, Footer, TheWeatherNetworkElement, TheWeatherNetworkPreferencesElement, TheWeatherNetworkRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/the.weather.network/element/the.weather.network.element',
+  'plugins/widgets/the.weather.network/element/the.weather.network.preferences.element',
+  'plugins/widgets/the.weather.network/element/the.weather.network.rules.element'
+], function defineTheWeatherNetworkView(BaseView, Header, Footer,
+    TheWeatherNetworkElement, TheWeatherNetworkPreferencesElement,
+    TheWeatherNetworkRulesElement) {
+
+  /**
+   * Define view
+   * @class TheWeatherNetworkView
+   * @extends BaseView
+   * @constructor
+   */
+  var TheWeatherNetworkView = function TheWeatherNetworkView() {
+  };
+
+  return TheWeatherNetworkView.extend('TheWeatherNetworkView', {
 
     /**
-     * Define view
-     * @class TheWeatherNetworkView
-     * @extends BaseView
-     * @constructor
+     * Render TheWeatherNetwork element
+     * @memberOf TheWeatherNetworkView
      */
-    var TheWeatherNetworkView = function TheWeatherNetworkView() {
-    };
+    renderTheWeatherNetwork: function renderTheWeatherNetwork() {
 
-    return TheWeatherNetworkView.extend('TheWeatherNetworkView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render TheWeatherNetwork element
-         * @memberOf TheWeatherNetworkView
-         */
-        renderTheWeatherNetwork: function renderTheWeatherNetwork() {
+      /**
+       * Define $theweathernetwork
+       * @type {TheWeatherNetworkElement}
+       */
+      this.elements.$theweathernetwork = new TheWeatherNetworkElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $theweathernetwork
-             * @type {TheWeatherNetworkElement}
-             */
-            this.elements.$theweathernetwork = new TheWeatherNetworkElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf TheWeatherNetworkView
+     * @returns {TheWeatherNetworkPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define TheWeatherNetwork Preferences Element
+       * @type {TheWeatherNetworkPreferencesElement}
+       */
+      this.elements.$preferences =
+          new TheWeatherNetworkPreferencesElement(this, {
+            data: this.controller.getPreferences()
+          });
 
-        /**
-         * Render Prefs
-         * @memberOf TheWeatherNetworkView
-         * @returns {TheWeatherNetworkPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define TheWeatherNetwork Preferences Element
-             * @type {TheWeatherNetworkPreferencesElement}
-             */
-            this.elements.$preferences = new TheWeatherNetworkPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf TheWeatherNetworkView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {TheWeatherNetworkRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
-
-        /**
-         * Render Rules
-         * @memberOf TheWeatherNetworkView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {TheWeatherNetworkRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define TheWeatherNetwork Rules Element
-             * @type {TheWeatherNetworkRulesElement}
-             */
-            this.elements.$rules = new TheWeatherNetworkRulesElement(this, {
-                data: this.controller.getRules(),
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render TheWeatherNetwork
-         * @memberOf TheWeatherNetworkView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderTheWeatherNetwork.bind(this)
-            );
+      /**
+       * Define TheWeatherNetwork Rules Element
+       * @type {TheWeatherNetworkRulesElement}
+       */
+      this.elements.$rules = new TheWeatherNetworkRulesElement(this, {
+        data: this.controller.getRules(),
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype);
+      return this.get$rules();
+    },
+
+    /**
+     * Render TheWeatherNetwork
+     * @memberOf TheWeatherNetworkView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderTheWeatherNetwork.bind(this)
+      );
+    }
+
+  }, BaseView.prototype);
 });

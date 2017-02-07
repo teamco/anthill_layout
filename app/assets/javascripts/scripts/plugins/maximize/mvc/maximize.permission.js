@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineMaximizePermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class MaximizePermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var MaximizePermission = function MaximizePermission() {
+  /**
+   * Define Permissions
+   * @class MaximizePermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var MaximizePermission = function MaximizePermission() {
 
-    };
+  };
 
-    return MaximizePermission.extend('MaximizePermission', {
-
-    }, BasePermission.prototype);
+  return MaximizePermission.extend('MaximizePermission', {},
+      BasePermission.prototype);
 });

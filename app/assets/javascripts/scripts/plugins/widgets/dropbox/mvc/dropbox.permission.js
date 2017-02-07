@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineDropboxPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class DropboxPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var DropboxPermission = function DropboxPermission() {
+  /**
+   * Define Permissions
+   * @class DropboxPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var DropboxPermission = function DropboxPermission() {
 
-    };
+  };
 
-    return DropboxPermission.extend('DropboxPermission', {
-
-    }, BasePermission.prototype);
+  return DropboxPermission.extend('DropboxPermission', {},
+      BasePermission.prototype);
 });

@@ -7,23 +7,23 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function definePlaywireEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define Playwire event manager
-     * @class PlaywireEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var PlaywireEventManager = function PlaywireEventManager() {
+  /**
+   * Define Playwire event manager
+   * @class PlaywireEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var PlaywireEventManager = function PlaywireEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return PlaywireEventManager.extend(
-        'PlaywireEventManager', {},
-        WidgetContentEventManager.prototype
-    );
+  return PlaywireEventManager.extend(
+      'PlaywireEventManager', {},
+      WidgetContentEventManager.prototype
+  );
 });

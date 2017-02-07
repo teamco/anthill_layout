@@ -6,35 +6,36 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
 ], function defineMapQuestPreferencesElement(PluginElement, WidgetPreferences) {
 
-    /**
-     * Define MapQuest Preferences Element
-     * @constructor
-     * @class MapQuestPreferencesElement
-     * @param {MapQuestView} view
-     * @param opts
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     * @returns {MapQuestPreferencesElement}
-     */
-    var MapQuestPreferencesElement = function MapQuestPreferencesElement(view, opts) {
+  /**
+   * Define MapQuest Preferences Element
+   * @constructor
+   * @class MapQuestPreferencesElement
+   * @param {MapQuestView} view
+   * @param opts
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   * @returns {MapQuestPreferencesElement}
+   */
+  var MapQuestPreferencesElement = function MapQuestPreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return MapQuestPreferencesElement.extend(
-        'MapQuestPreferencesElement', {}, 
-        PluginElement.prototype, 
-        WidgetPreferences.prototype
-    );
+  return MapQuestPreferencesElement.extend(
+      'MapQuestPreferencesElement', {},
+      PluginElement.prototype,
+      WidgetPreferences.prototype
+  );
 });

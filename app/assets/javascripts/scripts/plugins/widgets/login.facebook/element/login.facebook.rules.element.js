@@ -6,38 +6,38 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/rules/widget.base.rules'
+  'plugins/plugin.element',
+  'plugins/rules/widget.base.rules'
 ], function defineLoginFacebookRulesElement(PluginElement, BaseWidgetRules) {
 
-    /**
-     * Define LoginFacebook Rules Element
-     * @param view
-     * @param opts
-     * @returns {LoginFacebookRulesElement}
-     * @constructor
-     * @class LoginFacebookRulesElement
-     * @extends PluginElement
-     * @extends BaseWidgetRules
-     */
-    var LoginFacebookRulesElement = function LoginFacebookRulesElement(view, opts) {
+  /**
+   * Define LoginFacebook Rules Element
+   * @param view
+   * @param opts
+   * @returns {LoginFacebookRulesElement}
+   * @constructor
+   * @class LoginFacebookRulesElement
+   * @extends PluginElement
+   * @extends BaseWidgetRules
+   */
+  var LoginFacebookRulesElement = function LoginFacebookRulesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBaseRulesData(
-            opts.data,
-            opts.rules.widget,
-            opts.rules.content
-        );
+    this.renderBaseRulesData(
+        opts.data,
+        opts.rules.widget,
+        opts.rules.content
+    );
 
-        return this;
-    };
+    return this;
+  };
 
-    return LoginFacebookRulesElement.extend('LoginFacebookRulesElement', {
-
-    }, PluginElement.prototype, BaseWidgetRules.prototype);
+  return LoginFacebookRulesElement.extend('LoginFacebookRulesElement', {},
+      PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

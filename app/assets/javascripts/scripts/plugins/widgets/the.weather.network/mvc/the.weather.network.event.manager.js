@@ -7,23 +7,23 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineTheWeatherNetworkEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define TheWeatherNetwork event manager
-     * @class TheWeatherNetworkEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var TheWeatherNetworkEventManager = function TheWeatherNetworkEventManager() {
+  /**
+   * Define TheWeatherNetwork event manager
+   * @class TheWeatherNetworkEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var TheWeatherNetworkEventManager = function TheWeatherNetworkEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return TheWeatherNetworkEventManager.extend(
-        'TheWeatherNetworkEventManager', {},
-        WidgetContentEventManager.prototype
-    );
+  return TheWeatherNetworkEventManager.extend(
+      'TheWeatherNetworkEventManager', {},
+      WidgetContentEventManager.prototype
+  );
 });

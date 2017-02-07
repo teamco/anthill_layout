@@ -7,23 +7,23 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineCacooEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define Cacoo event manager
-     * @class CacooEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var CacooEventManager = function CacooEventManager() {
+  /**
+   * Define Cacoo event manager
+   * @class CacooEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var CacooEventManager = function CacooEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return CacooEventManager.extend(
-        'CacooEventManager', {},
-        WidgetContentEventManager.prototype
-    );
+  return CacooEventManager.extend(
+      'CacooEventManager', {},
+      WidgetContentEventManager.prototype
+  );
 });

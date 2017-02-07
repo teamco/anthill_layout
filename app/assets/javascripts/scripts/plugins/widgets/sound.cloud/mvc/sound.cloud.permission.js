@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineSoundCloudPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class SoundCloudPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var SoundCloudPermission = function SoundCloudPermission() {
+  /**
+   * Define Permissions
+   * @class SoundCloudPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var SoundCloudPermission = function SoundCloudPermission() {
 
-    };
+  };
 
-    return SoundCloudPermission.extend('SoundCloudPermission', {
-
-    }, BasePermission.prototype);
+  return SoundCloudPermission.extend('SoundCloudPermission', {},
+      BasePermission.prototype);
 });

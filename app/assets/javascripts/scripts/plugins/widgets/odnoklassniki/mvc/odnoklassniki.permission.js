@@ -7,20 +7,20 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineOdnoklassnikiPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class OdnoklassnikiPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var OdnoklassnikiPermission = function OdnoklassnikiPermission() {
-    };
+  /**
+   * Define Permissions
+   * @class OdnoklassnikiPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var OdnoklassnikiPermission = function OdnoklassnikiPermission() {
+  };
 
-    return OdnoklassnikiPermission.extend(
-        'OdnoklassnikiPermission', {}, 
-        BasePermission.prototype
-    );
+  return OdnoklassnikiPermission.extend(
+      'OdnoklassnikiPermission', {},
+      BasePermission.prototype
+  );
 });

@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineClocklinkEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define Clocklink event manager
-     * @class ClocklinkEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var ClocklinkEventManager = function ClocklinkEventManager() {
+  /**
+   * Define Clocklink event manager
+   * @class ClocklinkEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var ClocklinkEventManager = function ClocklinkEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return ClocklinkEventManager.extend('ClocklinkEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return ClocklinkEventManager.extend('ClocklinkEventManager', {},
+      WidgetContentEventManager.prototype);
 });

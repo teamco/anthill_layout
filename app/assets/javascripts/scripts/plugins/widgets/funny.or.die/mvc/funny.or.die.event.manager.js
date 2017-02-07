@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineFunnyOrDieEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define FunnyOrDie event manager
-     * @class FunnyOrDieEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var FunnyOrDieEventManager = function FunnyOrDieEventManager() {
+  /**
+   * Define FunnyOrDie event manager
+   * @class FunnyOrDieEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var FunnyOrDieEventManager = function FunnyOrDieEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return FunnyOrDieEventManager.extend('FunnyOrDieEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return FunnyOrDieEventManager.extend('FunnyOrDieEventManager', {},
+      WidgetContentEventManager.prototype);
 });

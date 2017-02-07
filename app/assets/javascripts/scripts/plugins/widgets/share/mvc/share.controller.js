@@ -6,51 +6,49 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineShareController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define share controller
+   * @class ShareController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var ShareController = function ShareController() {
+  };
+
+  return ShareController.extend('ShareController', {
+
     /**
-     * Define share controller
-     * @class ShareController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf ShareController
      */
-    var ShareController = function ShareController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
+      this.view.elements.$share.renderEmbeddedContent({});
+    },
 
-    return ShareController.extend('ShareController', {
+    /**
+     * Add Share rule
+     * @memberOf ShareController
+     * @param {Event} e
+     */
+    addShareRule: function addShareRule(e) {
 
-        /**
-         * Set embedded content
-         * @memberOf ShareController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
-            this.view.elements.$share.renderEmbeddedContent({
+      /**
+       * Define $button
+       * @type {*|jQuery|HTMLElement}
+       */
+      var $button = $(e.target),
+          scope = this.scope;
 
-            });
-        },
+      scope.observer.publish(
+          scope.eventmanager.eventList.publishRule,
+          [$button.attr('value'), this.scope.name]
+      );
+    }
 
-        /**
-         * Add Share rule
-         * @memberOf ShareController
-         * @param {Event} e
-         */
-        addShareRule: function addShareRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), this.scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

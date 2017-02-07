@@ -6,20 +6,20 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model'
+  'modules/Model'
 ], function defineDashboardModel(BaseModel) {
 
-    /**
-     * Define Dashboard model
-     * @extends BaseModel
-     * @class DashboardModel
-     * @constructor
-     */
-    var DashboardModel = function DashboardModel() {
-    };
+  /**
+   * Define Dashboard model
+   * @extends BaseModel
+   * @class DashboardModel
+   * @constructor
+   */
+  var DashboardModel = function DashboardModel() {
+  };
 
-    return DashboardModel.extend(
-        'DashboardModel', {}, 
-        BaseModel.prototype
-    );
+  return DashboardModel.extend(
+      'DashboardModel', {},
+      BaseModel.prototype
+  );
 });

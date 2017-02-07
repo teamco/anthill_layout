@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineRutubePermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class RutubePermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var RutubePermission = function RutubePermission() {
+  /**
+   * Define Permissions
+   * @class RutubePermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var RutubePermission = function RutubePermission() {
 
-    };
+  };
 
-    return RutubePermission.extend('RutubePermission', {
-
-    }, BasePermission.prototype);
+  return RutubePermission.extend('RutubePermission', {},
+      BasePermission.prototype);
 });

@@ -7,102 +7,103 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/login.google/element/login.google.element',
-    'plugins/widgets/login.google/element/login.google.preferences.element',
-    'plugins/widgets/login.google/element/login.google.rules.element'
-], function defineLoginGoogleView(BaseView, Header, Footer, LoginGoogleElement, LoginGooglePreferencesElement, LoginGoogleRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/login.google/element/login.google.element',
+  'plugins/widgets/login.google/element/login.google.preferences.element',
+  'plugins/widgets/login.google/element/login.google.rules.element'
+], function defineLoginGoogleView(BaseView, Header, Footer, LoginGoogleElement,
+    LoginGooglePreferencesElement, LoginGoogleRulesElement) {
+
+  /**
+   * Define view
+   * @class LoginGoogleView
+   * @extends BaseView
+   * @constructor
+   */
+  var LoginGoogleView = function LoginGoogleView() {
+  };
+
+  return LoginGoogleView.extend('LoginGoogleView', {
 
     /**
-     * Define view
-     * @class LoginGoogleView
-     * @extends BaseView
-     * @constructor
+     * Render login.google element
+     * @memberOf LoginGoogleView
      */
-    var LoginGoogleView = function LoginGoogleView() {
-    };
+    renderLoginGoogle: function renderLoginGoogle() {
 
-    return LoginGoogleView.extend('LoginGoogleView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render login.google element
-         * @memberOf LoginGoogleView
-         */
-        renderLoginGoogle: function renderLoginGoogle() {
+      /**
+       * Define $login.google
+       * @type {LoginGoogleElement}
+       */
+      this.elements.$logingoogle = new LoginGoogleElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $login.google
-             * @type {LoginGoogleElement}
-             */
-            this.elements.$logingoogle = new LoginGoogleElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf LoginGoogleView
+     * @returns {LoginGooglePreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define LoginGoogle Preferences Element
+       * @type {LoginGooglePreferencesElement}
+       */
+      this.elements.$preferences = new LoginGooglePreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf LoginGoogleView
-         * @returns {LoginGooglePreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define LoginGoogle Preferences Element
-             * @type {LoginGooglePreferencesElement}
-             */
-            this.elements.$preferences = new LoginGooglePreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf LoginGoogleView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {LoginGoogleRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
-
-        /**
-         * Render Rules
-         * @memberOf LoginGoogleView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {LoginGoogleRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define LoginGoogle Rules Element
-             * @type {LoginGoogleRulesElement}
-             */
-            this.elements.$rules = new LoginGoogleRulesElement(this, {
-                data: this.controller.getRules(),
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render login.google
-         * @memberOf LoginGoogleView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderLoginGoogle.bind(this)
-            );
+      /**
+       * Define LoginGoogle Rules Element
+       * @type {LoginGoogleRulesElement}
+       */
+      this.elements.$rules = new LoginGoogleRulesElement(this, {
+        data: this.controller.getRules(),
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render login.google
+     * @memberOf LoginGoogleView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderLoginGoogle.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

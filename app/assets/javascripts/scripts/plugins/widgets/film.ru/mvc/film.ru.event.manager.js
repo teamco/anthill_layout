@@ -7,23 +7,23 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineFilmRuEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define FilmRu event manager
-     * @class FilmRuEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var FilmRuEventManager = function FilmRuEventManager() {
+  /**
+   * Define FilmRu event manager
+   * @class FilmRuEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var FilmRuEventManager = function FilmRuEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return FilmRuEventManager.extend(
-        'FilmRuEventManager', {},
-        WidgetContentEventManager.prototype
-    );
+  return FilmRuEventManager.extend(
+      'FilmRuEventManager', {},
+      WidgetContentEventManager.prototype
+  );
 });

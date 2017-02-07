@@ -7,20 +7,20 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineProchanPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class ProchanPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var ProchanPermission = function ProchanPermission() {
-    };
+  /**
+   * Define Permissions
+   * @class ProchanPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var ProchanPermission = function ProchanPermission() {
+  };
 
-    return ProchanPermission.extend(
-        'ProchanPermission', {}, 
-        BasePermission.prototype
-    );
+  return ProchanPermission.extend(
+      'ProchanPermission', {},
+      BasePermission.prototype
+  );
 });

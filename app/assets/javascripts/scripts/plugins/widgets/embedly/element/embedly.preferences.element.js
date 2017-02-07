@@ -6,35 +6,34 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
 ], function defineEmbedlyPreferencesElement(PluginElement, WidgetPreferences) {
 
-    /**
-     * Define Embedly Preferences Element
-     * @constructor
-     * @class EmbedlyPreferencesElement
-     * @param {EmbedlyView} view
-     * @param opts
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     * @returns {EmbedlyPreferencesElement}
-     */
-    var EmbedlyPreferencesElement = function EmbedlyPreferencesElement(view, opts) {
+  /**
+   * Define Embedly Preferences Element
+   * @constructor
+   * @class EmbedlyPreferencesElement
+   * @param {EmbedlyView} view
+   * @param opts
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   * @returns {EmbedlyPreferencesElement}
+   */
+  var EmbedlyPreferencesElement = function EmbedlyPreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return EmbedlyPreferencesElement.extend('EmbedlyPreferencesElement', {
-
-
-    }, PluginElement.prototype, WidgetPreferences.prototype);
+  return EmbedlyPreferencesElement.extend('EmbedlyPreferencesElement', {},
+      PluginElement.prototype, WidgetPreferences.prototype);
 
 });

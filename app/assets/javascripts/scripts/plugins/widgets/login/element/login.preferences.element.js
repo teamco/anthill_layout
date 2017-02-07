@@ -6,35 +6,33 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
 ], function defineLoginPreferencesElement(PluginElement, WidgetPreferences) {
 
-    /**
-     * Define Login Preferences Element
-     * @param view
-     * @param opts
-     * @returns {LoginPreferencesElement}
-     * @constructor
-     * @class LoginPreferencesElement
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     */
-    var LoginPreferencesElement = function LoginPreferencesElement(view, opts) {
+  /**
+   * Define Login Preferences Element
+   * @param view
+   * @param opts
+   * @returns {LoginPreferencesElement}
+   * @constructor
+   * @class LoginPreferencesElement
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   */
+  var LoginPreferencesElement = function LoginPreferencesElement(view, opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return LoginPreferencesElement.extend('LoginPreferencesElement', {
-
-
-    }, PluginElement.prototype, WidgetPreferences.prototype);
+  return LoginPreferencesElement.extend('LoginPreferencesElement', {},
+      PluginElement.prototype, WidgetPreferences.prototype);
 
 });

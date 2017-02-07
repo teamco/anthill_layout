@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineFirePicPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class FirePicPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var FirePicPermission = function FirePicPermission() {
+  /**
+   * Define Permissions
+   * @class FirePicPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var FirePicPermission = function FirePicPermission() {
 
-    };
+  };
 
-    return FirePicPermission.extend('FirePicPermission', {
-
-    }, BasePermission.prototype);
+  return FirePicPermission.extend('FirePicPermission', {},
+      BasePermission.prototype);
 });

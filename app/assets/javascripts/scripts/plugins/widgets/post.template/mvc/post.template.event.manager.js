@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function definePostTemplateEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define PostTemplate event manager
-     * @class PostTemplateEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var PostTemplateEventManager = function PostTemplateEventManager() {
+  /**
+   * Define PostTemplate event manager
+   * @class PostTemplateEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var PostTemplateEventManager = function PostTemplateEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return PostTemplateEventManager.extend('PostTemplateEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return PostTemplateEventManager.extend('PostTemplateEventManager', {},
+      WidgetContentEventManager.prototype);
 });

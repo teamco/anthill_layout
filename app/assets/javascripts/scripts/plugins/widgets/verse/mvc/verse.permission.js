@@ -7,20 +7,20 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineVersePermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class VersePermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var VersePermission = function VersePermission() {
-    };
+  /**
+   * Define Permissions
+   * @class VersePermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var VersePermission = function VersePermission() {
+  };
 
-    return VersePermission.extend(
-        'VersePermission', {}, 
-        BasePermission.prototype
-    );
+  return VersePermission.extend(
+      'VersePermission', {},
+      BasePermission.prototype
+  );
 });

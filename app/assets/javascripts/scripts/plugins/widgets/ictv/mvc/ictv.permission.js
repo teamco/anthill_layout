@@ -7,20 +7,18 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineIctvPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class IctvPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var IctvPermission = function IctvPermission() {
+  /**
+   * Define Permissions
+   * @class IctvPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var IctvPermission = function IctvPermission() {
 
-    };
+  };
 
-    return IctvPermission.extend('IctvPermission', {
-
-    }, BasePermission.prototype);
+  return IctvPermission.extend('IctvPermission', {}, BasePermission.prototype);
 });

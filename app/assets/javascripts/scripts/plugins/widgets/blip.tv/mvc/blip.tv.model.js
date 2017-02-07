@@ -6,53 +6,54 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineBlipTvModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define BlipTv model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class BlipTvModel
+   * @constructor
+   */
+  var BlipTvModel = function BlipTvModel() {
+
     /**
-     * Define BlipTv model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class BlipTvModel
-     * @constructor
-     */
-    var BlipTvModel = function BlipTvModel() {
-
-        /**
-         * Define preferences
-         * @memberOf BlipTvModel
-         * @type {{
-         *      bliptvEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
+     * Define preferences
+     * @memberOf BlipTvModel
+     * @type {{
+         *      bliptvEmbedCode: {type: string, disabled: boolean, value:
+         *     undefined, visible: boolean}
          * }}
-         */
-        this.preferences = {
-            bliptvEmbedCode: {
-                type: 'textarea',
-                disabled: false,
-                value: undefined,
-                visible: true
-            }
-        };
-
-        /**
-         * Define rules
-         * @memberOf BlipTvModel
-         * @type {{}}
-         */
-        this.rules = {};
+     */
+    this.preferences = {
+      bliptvEmbedCode: {
+        type: 'textarea',
+        disabled: false,
+        value: undefined,
+        visible: true
+      }
     };
 
-    return BlipTvModel.extend('BlipTvModel', {
+    /**
+     * Define rules
+     * @memberOf BlipTvModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        /**
-         * Set BlipTv embed code
-         * @memberOf BlipTvModel
-         * @param {string} embed
-         */
-        setBliptvEmbedCode: function setBliptvEmbedCode(embed) {
-            this.setPrefs('bliptvEmbedCode', embed);
-        }
+  return BlipTvModel.extend('BlipTvModel', {
 
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    /**
+     * Set BlipTv embed code
+     * @memberOf BlipTvModel
+     * @param {string} embed
+     */
+    setBliptvEmbedCode: function setBliptvEmbedCode(embed) {
+      this.setPrefs('bliptvEmbedCode', embed);
+    }
+
+  }, BaseModel.prototype, WidgetContentModel.prototype);
 });

@@ -7,108 +7,109 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/revision/element/revision.element',
-    'plugins/widgets/revision/element/revision.preferences.element',
-    'plugins/widgets/revision/element/revision.rules.element'
-], function defineRevisionView(BaseView, Header, Footer, RevisionElement, RevisionPreferencesElement, RevisionRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/revision/element/revision.element',
+  'plugins/widgets/revision/element/revision.preferences.element',
+  'plugins/widgets/revision/element/revision.rules.element'
+], function defineRevisionView(BaseView, Header, Footer, RevisionElement,
+    RevisionPreferencesElement, RevisionRulesElement) {
+
+  /**
+   * Define view
+   * @class RevisionView
+   * @extends BaseView
+   * @constructor
+   */
+  var RevisionView = function RevisionView() {
+  };
+
+  return RevisionView.extend('RevisionView', {
 
     /**
-     * Define view
-     * @class RevisionView
-     * @extends BaseView
-     * @constructor
+     * Render revision element
+     * @memberOf RevisionView
      */
-    var RevisionView = function RevisionView() {
-    };
+    renderRevision: function renderRevision() {
 
-    return RevisionView.extend('RevisionView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render revision element
-         * @memberOf RevisionView
-         */
-        renderRevision: function renderRevision() {
+      /**
+       * Define $revision
+       * @type {RevisionElement}
+       */
+      this.elements.$revision = new RevisionElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $revision
-             * @type {RevisionElement}
-             */
-            this.elements.$revision = new RevisionElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf RevisionView
+     * @returns {RevisionPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define Revision Preferences Element
+       * @type {RevisionPreferencesElement}
+       */
+      this.elements.$preferences = new RevisionPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf RevisionView
-         * @returns {RevisionPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define Revision Preferences Element
-             * @type {RevisionPreferencesElement}
-             */
-            this.elements.$preferences = new RevisionPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf RevisionView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {RevisionRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
+      /**
+       * Define data
+       * @type {*|{}}
+       */
+      var data = this.controller.getRules();
 
-        /**
-         * Render Rules
-         * @memberOf RevisionView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {RevisionRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define data
-             * @type {*|{}}
-             */
-            var data = this.controller.getRules();
-
-            /**
-             * Define Revision Rules Element
-             * @type {RevisionRulesElement}
-             */
-            this.elements.$rules = new RevisionRulesElement(this, {
-                data: data,
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render revision
-         * @memberOf RevisionView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderRevision.bind(this)
-            );
+      /**
+       * Define Revision Rules Element
+       * @type {RevisionRulesElement}
+       */
+      this.elements.$rules = new RevisionRulesElement(this, {
+        data: data,
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render revision
+     * @memberOf RevisionView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderRevision.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

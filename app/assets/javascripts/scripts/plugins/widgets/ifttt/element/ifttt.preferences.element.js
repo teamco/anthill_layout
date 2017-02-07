@@ -6,35 +6,35 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
 ], function defineIftttPreferencesElement(PluginElement, WidgetPreferences) {
 
-    /**
-     * Define Ifttt Preferences Element
-     * @constructor
-     * @class IftttPreferencesElement
-     * @param {IftttView} view
-     * @param opts
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     * @returns {IftttPreferencesElement}
-     */
-    var IftttPreferencesElement = function IftttPreferencesElement(view, opts) {
+  /**
+   * Define Ifttt Preferences Element
+   * @constructor
+   * @class IftttPreferencesElement
+   * @param {IftttView} view
+   * @param opts
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   * @returns {IftttPreferencesElement}
+   */
+  var IftttPreferencesElement = function IftttPreferencesElement(view, opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return IftttPreferencesElement.extend(
-        'IftttPreferencesElement', {}, 
-        PluginElement.prototype, 
-        WidgetPreferences.prototype
-    );
+  return IftttPreferencesElement.extend(
+      'IftttPreferencesElement', {},
+      PluginElement.prototype,
+      WidgetPreferences.prototype
+  );
 });

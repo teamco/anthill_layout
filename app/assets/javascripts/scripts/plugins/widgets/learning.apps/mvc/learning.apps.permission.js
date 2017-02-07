@@ -7,20 +7,20 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineLearningAppsPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class LearningAppsPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var LearningAppsPermission = function LearningAppsPermission() {
-    };
+  /**
+   * Define Permissions
+   * @class LearningAppsPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var LearningAppsPermission = function LearningAppsPermission() {
+  };
 
-    return LearningAppsPermission.extend(
-        'LearningAppsPermission', {}, 
-        BasePermission.prototype
-    );
+  return LearningAppsPermission.extend(
+      'LearningAppsPermission', {},
+      BasePermission.prototype
+  );
 });

@@ -6,43 +6,43 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineFotoKritikElement(PluginElement) {
 
+  /**
+   * Define FotoKritik Element
+   * @param view
+   * @param opts
+   * @returns {FotoKritikElement}
+   * @constructor
+   * @class FotoKritikElement
+   * @extends PluginElement
+   */
+  var FotoKritikElement = function FotoKritikElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('foto.kritik', {resource: '/widgets'});
+
+    return this;
+  };
+
+  return FotoKritikElement.extend('FotoKritikElement', {
+
     /**
-     * Define FotoKritik Element
-     * @param view
-     * @param opts
-     * @returns {FotoKritikElement}
-     * @constructor
-     * @class FotoKritikElement
-     * @extends PluginElement
+     * Render Embedded content
+     * @memberOf FotoKritikElement
+     * @param {string} url
      */
-    var FotoKritikElement = function FotoKritikElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent(url) {
+      this.$.append(
+          this.renderIframe(url)
+      );
+    }
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
-
-        this.addCSS('foto.kritik', {resource: '/widgets'});
-
-        return this;
-    };
-
-    return FotoKritikElement.extend('FotoKritikElement', {
-
-        /**
-         * Render Embedded content
-         * @memberOf FotoKritikElement
-         * @param {string} url
-         */
-        renderEmbeddedContent: function renderEmbeddedContent(url) {
-            this.$.append(
-                this.renderIframe(url)
-            );
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 
 });

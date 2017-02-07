@@ -6,35 +6,35 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
-], function defineVideoPayNetPreferencesElement(PluginElement, WidgetPreferences) {
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
+], function defineVideoPayNetPreferencesElement(PluginElement,
+    WidgetPreferences) {
 
-    /**
-     * Define VideoPayNet Preferences Element
-     * @param view
-     * @param opts
-     * @returns {VideoPayNetPreferencesElement}
-     * @constructor
-     * @class VideoPayNetPreferencesElement
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     */
-    var VideoPayNetPreferencesElement = function VideoPayNetPreferencesElement(view, opts) {
+  /**
+   * Define VideoPayNet Preferences Element
+   * @param view
+   * @param opts
+   * @returns {VideoPayNetPreferencesElement}
+   * @constructor
+   * @class VideoPayNetPreferencesElement
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   */
+  var VideoPayNetPreferencesElement = function VideoPayNetPreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return VideoPayNetPreferencesElement.extend('VideoPayNetPreferencesElement', {
-
-
-    }, PluginElement.prototype, WidgetPreferences.prototype);
+  return VideoPayNetPreferencesElement.extend('VideoPayNetPreferencesElement',
+      {}, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

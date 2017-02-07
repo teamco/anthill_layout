@@ -7,102 +7,103 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/pinterest/element/pinterest.element',
-    'plugins/widgets/pinterest/element/pinterest.preferences.element',
-    'plugins/widgets/pinterest/element/pinterest.rules.element'
-], function definePinterestView(BaseView, Header, Footer, PinterestElement, PinterestPreferencesElement, PinterestRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/pinterest/element/pinterest.element',
+  'plugins/widgets/pinterest/element/pinterest.preferences.element',
+  'plugins/widgets/pinterest/element/pinterest.rules.element'
+], function definePinterestView(BaseView, Header, Footer, PinterestElement,
+    PinterestPreferencesElement, PinterestRulesElement) {
+
+  /**
+   * Define view
+   * @class PinterestView
+   * @extends BaseView
+   * @constructor
+   */
+  var PinterestView = function PinterestView() {
+  };
+
+  return PinterestView.extend('PinterestView', {
 
     /**
-     * Define view
-     * @class PinterestView
-     * @extends BaseView
-     * @constructor
+     * Render Pinterest element
+     * @memberOf PinterestView
      */
-    var PinterestView = function PinterestView() {
-    };
+    renderPinterest: function renderPinterest() {
 
-    return PinterestView.extend('PinterestView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render Pinterest element
-         * @memberOf PinterestView
-         */
-        renderPinterest: function renderPinterest() {
+      /**
+       * Define $pinterest
+       * @type {PinterestElement}
+       */
+      this.elements.$pinterest = new PinterestElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $pinterest
-             * @type {PinterestElement}
-             */
-            this.elements.$pinterest = new PinterestElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf PinterestView
+     * @returns {PinterestPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define Pinterest Preferences Element
+       * @type {PinterestPreferencesElement}
+       */
+      this.elements.$preferences = new PinterestPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf PinterestView
-         * @returns {PinterestPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define Pinterest Preferences Element
-             * @type {PinterestPreferencesElement}
-             */
-            this.elements.$preferences = new PinterestPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf PinterestView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {PinterestRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
-
-        /**
-         * Render Rules
-         * @memberOf PinterestView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {PinterestRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define Pinterest Rules Element
-             * @type {PinterestRulesElement}
-             */
-            this.elements.$rules = new PinterestRulesElement(this, {
-                data: this.controller.getRules(),
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render Pinterest
-         * @memberOf PinterestView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderPinterest.bind(this)
-            );
+      /**
+       * Define Pinterest Rules Element
+       * @type {PinterestRulesElement}
+       */
+      this.elements.$rules = new PinterestRulesElement(this, {
+        data: this.controller.getRules(),
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render Pinterest
+     * @memberOf PinterestView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderPinterest.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

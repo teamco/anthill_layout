@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineFotoKritikPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class FotoKritikPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var FotoKritikPermission = function FotoKritikPermission() {
+  /**
+   * Define Permissions
+   * @class FotoKritikPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var FotoKritikPermission = function FotoKritikPermission() {
 
-    };
+  };
 
-    return FotoKritikPermission.extend('FotoKritikPermission', {
-
-    }, BasePermission.prototype);
+  return FotoKritikPermission.extend('FotoKritikPermission', {},
+      BasePermission.prototype);
 });

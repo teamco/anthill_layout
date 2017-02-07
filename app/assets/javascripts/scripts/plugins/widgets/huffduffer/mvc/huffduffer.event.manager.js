@@ -7,23 +7,23 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineHuffdufferEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define Huffduffer event manager
-     * @class HuffdufferEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var HuffdufferEventManager = function HuffdufferEventManager() {
+  /**
+   * Define Huffduffer event manager
+   * @class HuffdufferEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var HuffdufferEventManager = function HuffdufferEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return HuffdufferEventManager.extend(
-        'HuffdufferEventManager', {},
-        WidgetContentEventManager.prototype
-    );
+  return HuffdufferEventManager.extend(
+      'HuffdufferEventManager', {},
+      WidgetContentEventManager.prototype
+  );
 });

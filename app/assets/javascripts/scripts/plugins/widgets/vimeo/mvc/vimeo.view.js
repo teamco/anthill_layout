@@ -7,108 +7,109 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/vimeo/element/vimeo.element',
-    'plugins/widgets/vimeo/element/vimeo.preferences.element',
-    'plugins/widgets/vimeo/element/vimeo.rules.element'
-], function defineVimeoView(BaseView, Header, Footer, VimeoElement, VimeoPreferencesElement, VimeoRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/vimeo/element/vimeo.element',
+  'plugins/widgets/vimeo/element/vimeo.preferences.element',
+  'plugins/widgets/vimeo/element/vimeo.rules.element'
+], function defineVimeoView(BaseView, Header, Footer, VimeoElement,
+    VimeoPreferencesElement, VimeoRulesElement) {
+
+  /**
+   * Define view
+   * @class VimeoView
+   * @extends BaseView
+   * @constructor
+   */
+  var VimeoView = function VimeoView() {
+  };
+
+  return VimeoView.extend('VimeoView', {
 
     /**
-     * Define view
-     * @class VimeoView
-     * @extends BaseView
-     * @constructor
+     * Render vimeo element
+     * @memberOf VimeoView
      */
-    var VimeoView = function VimeoView() {
-    };
+    renderVimeo: function renderVimeo() {
 
-    return VimeoView.extend('VimeoView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render vimeo element
-         * @memberOf VimeoView
-         */
-        renderVimeo: function renderVimeo() {
+      /**
+       * Define $vimeo
+       * @type {VimeoElement}
+       */
+      this.elements.$vimeo = new VimeoElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $vimeo
-             * @type {VimeoElement}
-             */
-            this.elements.$vimeo = new VimeoElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf VimeoView
+     * @returns {VimeoPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define Vimeo Preferences Element
+       * @type {VimeoPreferencesElement}
+       */
+      this.elements.$preferences = new VimeoPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf VimeoView
-         * @returns {VimeoPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define Vimeo Preferences Element
-             * @type {VimeoPreferencesElement}
-             */
-            this.elements.$preferences = new VimeoPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf VimeoView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {VimeoRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
+      /**
+       * Define data
+       * @type {*|{}}
+       */
+      var data = this.controller.getRules();
 
-        /**
-         * Render Rules
-         * @memberOf VimeoView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {VimeoRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define data
-             * @type {*|{}}
-             */
-            var data = this.controller.getRules();
-
-            /**
-             * Define Vimeo Rules Element
-             * @type {VimeoRulesElement}
-             */
-            this.elements.$rules = new VimeoRulesElement(this, {
-                data: data,
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render vimeo
-         * @memberOf VimeoView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderVimeo.bind(this)
-            );
+      /**
+       * Define Vimeo Rules Element
+       * @type {VimeoRulesElement}
+       */
+      this.elements.$rules = new VimeoRulesElement(this, {
+        data: data,
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render vimeo
+     * @memberOf VimeoView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderVimeo.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

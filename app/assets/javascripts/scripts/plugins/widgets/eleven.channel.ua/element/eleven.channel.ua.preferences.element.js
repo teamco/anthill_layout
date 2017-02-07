@@ -6,35 +6,36 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
-], function defineElevenChannelUaPreferencesElement(PluginElement, WidgetPreferences) {
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
+], function defineElevenChannelUaPreferencesElement(PluginElement,
+    WidgetPreferences) {
 
-    /**
-     * Define ElevenChannelUa Preferences Element
-     * @param view
-     * @param opts
-     * @returns {ElevenChannelUaPreferencesElement}
-     * @constructor
-     * @class ElevenChannelUaPreferencesElement
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     */
-    var ElevenChannelUaPreferencesElement = function ElevenChannelUaPreferencesElement(view, opts) {
+  /**
+   * Define ElevenChannelUa Preferences Element
+   * @param view
+   * @param opts
+   * @returns {ElevenChannelUaPreferencesElement}
+   * @constructor
+   * @class ElevenChannelUaPreferencesElement
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   */
+  var ElevenChannelUaPreferencesElement = function ElevenChannelUaPreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return ElevenChannelUaPreferencesElement.extend('ElevenChannelUaPreferencesElement', {
-
-
-    }, PluginElement.prototype, WidgetPreferences.prototype);
+  return ElevenChannelUaPreferencesElement.extend(
+      'ElevenChannelUaPreferencesElement', {}, PluginElement.prototype,
+      WidgetPreferences.prototype);
 
 });

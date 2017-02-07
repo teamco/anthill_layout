@@ -7,23 +7,23 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineOrphusEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define Orphus event manager
-     * @class OrphusEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var OrphusEventManager = function OrphusEventManager() {
+  /**
+   * Define Orphus event manager
+   * @class OrphusEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var OrphusEventManager = function OrphusEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return OrphusEventManager.extend(
-        'OrphusEventManager', {},
-        WidgetContentEventManager.prototype
-    );
+  return OrphusEventManager.extend(
+      'OrphusEventManager', {},
+      WidgetContentEventManager.prototype
+  );
 });

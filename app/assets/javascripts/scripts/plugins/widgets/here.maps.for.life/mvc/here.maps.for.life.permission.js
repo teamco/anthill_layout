@@ -7,20 +7,20 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineHereMapsForLifePermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class HereMapsForLifePermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var HereMapsForLifePermission = function HereMapsForLifePermission() {
-    };
+  /**
+   * Define Permissions
+   * @class HereMapsForLifePermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var HereMapsForLifePermission = function HereMapsForLifePermission() {
+  };
 
-    return HereMapsForLifePermission.extend(
-        'HereMapsForLifePermission', {}, 
-        BasePermission.prototype
-    );
+  return HereMapsForLifePermission.extend(
+      'HereMapsForLifePermission', {},
+      BasePermission.prototype
+  );
 });

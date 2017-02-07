@@ -7,20 +7,20 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineSpeakerDeckPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class SpeakerDeckPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var SpeakerDeckPermission = function SpeakerDeckPermission() {
-    };
+  /**
+   * Define Permissions
+   * @class SpeakerDeckPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var SpeakerDeckPermission = function SpeakerDeckPermission() {
+  };
 
-    return SpeakerDeckPermission.extend(
-        'SpeakerDeckPermission', {}, 
-        BasePermission.prototype
-    );
+  return SpeakerDeckPermission.extend(
+      'SpeakerDeckPermission', {},
+      BasePermission.prototype
+  );
 });

@@ -6,35 +6,37 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
-], function defineNationalFilmBoardOfCanadaPreferencesElement(PluginElement, WidgetPreferences) {
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
+], function defineNationalFilmBoardOfCanadaPreferencesElement(PluginElement,
+    WidgetPreferences) {
 
-    /**
-     * Define NationalFilmBoardOfCanada Preferences Element
-     * @constructor
-     * @class NationalFilmBoardOfCanadaPreferencesElement
-     * @param {NationalFilmBoardOfCanadaView} view
-     * @param opts
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     * @returns {NationalFilmBoardOfCanadaPreferencesElement}
-     */
-    var NationalFilmBoardOfCanadaPreferencesElement = function NationalFilmBoardOfCanadaPreferencesElement(view, opts) {
+  /**
+   * Define NationalFilmBoardOfCanada Preferences Element
+   * @constructor
+   * @class NationalFilmBoardOfCanadaPreferencesElement
+   * @param {NationalFilmBoardOfCanadaView} view
+   * @param opts
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   * @returns {NationalFilmBoardOfCanadaPreferencesElement}
+   */
+  var NationalFilmBoardOfCanadaPreferencesElement = function NationalFilmBoardOfCanadaPreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return NationalFilmBoardOfCanadaPreferencesElement.extend(
-        'NationalFilmBoardOfCanadaPreferencesElement', {}, 
-        PluginElement.prototype, 
-        WidgetPreferences.prototype
-    );
+  return NationalFilmBoardOfCanadaPreferencesElement.extend(
+      'NationalFilmBoardOfCanadaPreferencesElement', {},
+      PluginElement.prototype,
+      WidgetPreferences.prototype
+  );
 });

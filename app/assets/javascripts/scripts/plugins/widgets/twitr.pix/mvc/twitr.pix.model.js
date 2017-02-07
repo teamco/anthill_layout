@@ -6,53 +6,54 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineTwitrPixModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define TwitrPix model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class TwitrPixModel
+   * @constructor
+   */
+  var TwitrPixModel = function TwitrPixModel() {
+
     /**
-     * Define TwitrPix model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class TwitrPixModel
-     * @constructor
-     */
-    var TwitrPixModel = function TwitrPixModel() {
-
-        /**
-         * Define preferences
-         * @memberOf TwitrPixModel
-         * @type {{
-         *      twitrpixEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
+     * Define preferences
+     * @memberOf TwitrPixModel
+     * @type {{
+         *      twitrpixEmbedCode: {type: string, disabled: boolean, value:
+         *     undefined, visible: boolean}
          * }}
-         */
-        this.preferences = {
-            twitrpixEmbedCode: {
-                type: 'textarea',
-                disabled: false,
-                value: undefined,
-                visible: true
-            }
-        };
-
-        /**
-         * Define rules
-         * @memberOf TwitrPixModel
-         * @type {{}}
-         */
-        this.rules = {};
+     */
+    this.preferences = {
+      twitrpixEmbedCode: {
+        type: 'textarea',
+        disabled: false,
+        value: undefined,
+        visible: true
+      }
     };
 
-    return TwitrPixModel.extend('TwitrPixModel', {
+    /**
+     * Define rules
+     * @memberOf TwitrPixModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        /**
-         * Set TwitrPix embed code
-         * @memberOf TwitrPixModel
-         * @param {string} embed
-         */
-        setTwitrpixEmbedCode: function setTwitrpixEmbedCode(embed) {
-            this.setPrefs('twitrpixEmbedCode', embed);
-        }
+  return TwitrPixModel.extend('TwitrPixModel', {
 
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    /**
+     * Set TwitrPix embed code
+     * @memberOf TwitrPixModel
+     * @param {string} embed
+     */
+    setTwitrpixEmbedCode: function setTwitrpixEmbedCode(embed) {
+      this.setPrefs('twitrpixEmbedCode', embed);
+    }
+
+  }, BaseModel.prototype, WidgetContentModel.prototype);
 });

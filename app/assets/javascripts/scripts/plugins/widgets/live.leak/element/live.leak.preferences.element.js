@@ -6,35 +6,34 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
 ], function defineLiveLeakPreferencesElement(PluginElement, WidgetPreferences) {
 
-    /**
-     * Define LiveLeak Preferences Element
-     * @param view
-     * @param opts
-     * @returns {LiveLeakPreferencesElement}
-     * @constructor
-     * @class LiveLeakPreferencesElement
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     */
-    var LiveLeakPreferencesElement = function LiveLeakPreferencesElement(view, opts) {
+  /**
+   * Define LiveLeak Preferences Element
+   * @param view
+   * @param opts
+   * @returns {LiveLeakPreferencesElement}
+   * @constructor
+   * @class LiveLeakPreferencesElement
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   */
+  var LiveLeakPreferencesElement = function LiveLeakPreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return LiveLeakPreferencesElement.extend('LiveLeakPreferencesElement', {
-
-
-    }, PluginElement.prototype, WidgetPreferences.prototype);
+  return LiveLeakPreferencesElement.extend('LiveLeakPreferencesElement', {},
+      PluginElement.prototype, WidgetPreferences.prototype);
 
 });

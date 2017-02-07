@@ -1,160 +1,160 @@
 define([], function defineEventsBehavior() {
 
+  /**
+   * Define EventsBehavior
+   * @class EventsBehavior
+   * @param $mainContainer
+   * @param $element
+   * @constructor
+   */
+  var EventsBehavior = function EventsBehavior($mainContainer, $element) {
+
     /**
-     * Define EventsBehavior
-     * @class EventsBehavior
-     * @param $mainContainer
-     * @param $element
-     * @constructor
+     * Define main $container
+     * @memberOf EventsBehavior
      */
-    var EventsBehavior = function EventsBehavior($mainContainer, $element) {
+    this.$mainContainer = $mainContainer;
 
-        /**
-         * Define main $container
-         * @memberOf EventsBehavior
-         */
-        this.$mainContainer = $mainContainer;
+    /**
+     * Define $element
+     * @memberOf EventsBehavior
+     */
+    this.$element = $element;
+  };
 
-        /**
-         * Define $element
-         * @memberOf EventsBehavior
-         */
-        this.$element = $element;
-    };
+  return EventsBehavior.extend('EventsBehavior', {
 
-    return EventsBehavior.extend('EventsBehavior', {
+    /**
+     * Define Init
+     * @memberOf EventsBehavior
+     */
+    initialize: function initialize() {
 
-        /**
-         * Define Init
-         * @memberOf EventsBehavior
-         */
-        initialize: function initialize() {
+      var json = this.$element.view.controller.parseData() || [];
+      var calendarReadyData = [];
 
-            var json = this.$element.view.controller.parseData() || [];
-            var calendarReadyData = [];
+      var keys = Object.keys(json),
+          count = keys.length;
 
-            var keys = Object.keys(json),
-                count = keys.length;
+      for (var i = 0; i < count; i++) {
 
-            for (var i = 0; i < count; i++) {
+        var currentField = keys[i],
+            date = json[currentField].timest,
+            title = json[currentField].title,
+            description = json[currentField].description;
 
-                var currentField = keys[i],
-                    date = json[currentField].timest,
-                    title = json[currentField].title,
-                    description = json[currentField].description;
+        calendarReadyData.push({
+          'date': date.toString(),
+          'type': date.toString(),
+          'title': title,
+          'description': description,
+          'url': ''
+        });
+      }
 
-                calendarReadyData.push({
-                    'date': date.toString(),
-                    'type': date.toString(),
-                    'title': title,
-                    'description': description,
-                    'url': ''
-                });
-            }
+      this.$mainContainer.eventCalendar({
+        jsonData: calendarReadyData
+      });
 
-            this.$mainContainer.eventCalendar({
-                jsonData: calendarReadyData
-            });
+      this.bindCancel();
+      this.bindSave();
+      this.bindRecycle();
+    },
 
-            this.bindCancel();
-            this.bindSave();
-            this.bindRecycle();
-        },
+    /**
+     * Remove container
+     * @memberOf EventsBehavior
+     */
+    removeContainer: function removeContainer() {
+      $('.eventEditorContainer', this.$element.$).remove();
+    },
 
-        /**
-         * Remove container
-         * @memberOf EventsBehavior
-         */
-        removeContainer: function removeContainer() {
-            $('.eventEditorContainer', this.$element.$).remove();
-        },
+    /**
+     * Define cancel button binding
+     * @memberOf EventsBehavior
+     */
+    bindCancel: function bindCancel() {
 
-        /**
-         * Define cancel button binding
-         * @memberOf EventsBehavior
-         */
-        bindCancel: function bindCancel() {
+      this.$element.$.on(
+          'click.cancel',
+          '.cancel_button',
+          this.removeContainer.bind(this)
+      );
+    },
 
-            this.$element.$.on(
-                'click.cancel',
-                '.cancel_button',
-                this.removeContainer.bind(this)
+    /**
+     * Define recycle button binding
+     * @memberOf EventsBehavior
+     */
+    bindRecycle: function bindRecycle() {
+
+      this.$element.$.on(
+          'click.recicle',
+          '.recicle_button',
+          function clickRecicle(event) {
+
+            /**
+             * Get scope
+             * @type {Events}
+             */
+            var scope = this.$element.view.scope;
+
+            scope.observer.publish(
+                scope.eventmanager.eventList.removeEvent,
+                $(event.target).parent()[0].className
             );
-        },
 
-        /**
-         * Define recycle button binding
-         * @memberOf EventsBehavior
-         */
-        bindRecycle: function bindRecycle() {
+            this.$element.renderEmbeddedContent();
 
-            this.$element.$.on(
-                'click.recicle',
-                '.recicle_button',
-                function clickRecicle(event) {
+          }.bind(this)
+      );
+    },
 
-                    /**
-                     * Get scope
-                     * @type {Events}
-                     */
-                    var scope = this.$element.view.scope;
+    /**
+     * Define save button binding
+     * @memberOf EventsBehavior
+     */
+    bindSave: function bindSave() {
 
-                    scope.observer.publish(
-                        scope.eventmanager.eventList.removeEvent,
-                        $(event.target).parent()[0].className
-                    );
-					
-					this.$element.renderEmbeddedContent();
+      this.$element.$.on(
+          'click.save',
+          '.save_button',
+          function clickSave() {
 
-                }.bind(this)
-            );
-        },
+            var evTitle = $('[name="eventTitle"]')[0].value,
+                evDescription = $('[name="eventDescription"]')[0].value,
+                evDate = $('[name="eventDate"]')[0].value,
+                evTime = $('[name="timePicker"]')[0].value,
+                pretimestamp = evDate + ' ' + evTime,
+                timestamp = (new Date(pretimestamp)).getTime(),
 
-        /**
-         * Define save button binding
-         * @memberOf EventsBehavior
-         */
-        bindSave: function bindSave() {
+                sendData = {
+                  title: evTitle,
+                  description: evDescription,
+                  date: evDate,
+                  time: evTime,
+                  timest: timestamp
+                };
 
-            this.$element.$.on(
-                'click.save',
-                '.save_button',
-                function clickSave() {
+            this.$element.collectEventData(sendData, timestamp);
 
-                    var evTitle = $('[name="eventTitle"]')[0].value,
-                        evDescription = $('[name="eventDescription"]')[0].value,
-                        evDate = $('[name="eventDate"]')[0].value,
-                        evTime = $('[name="timePicker"]')[0].value,
-                        pretimestamp = evDate + ' ' + evTime,
-                        timestamp = (new Date(pretimestamp)).getTime(),
+            this.removeContainer.bind(this)();
 
-                        sendData = {
-                            title: evTitle,
-                            description: evDescription,
-                            date: evDate,
-                            time: evTime,
-                            timest: timestamp
-                        };
+            $('#calendarik').append(
+                '<div class="eventSavedNotice animated flipInX">Event Saved Successfully</div>');
 
-                    this.$element.collectEventData(sendData, timestamp);
+            setTimeout(function () {
+              var notice = $('.eventSavedNotice');
+              notice.removeClass('flipInX').addClass('flipOutX');
 
-                    this.removeContainer.bind(this)();
+              setTimeout(function () {
+                notice.remove();
+                this.$element.renderEmbeddedContent();
+              }.bind(this), 1000);
+            }.bind(this), 2000);
 
-                    $('#calendarik').append('<div class="eventSavedNotice animated flipInX">Event Saved Successfully</div>');
-					
-					
-                    setTimeout(function () {
-                        var notice = $('.eventSavedNotice');
-                        notice.removeClass('flipInX').addClass('flipOutX');
-						
-                        setTimeout(function () {
-                            notice.remove();
-							this.$element.renderEmbeddedContent();
-                        }.bind(this), 1000);
-                    }.bind(this), 2000);
-
-                }.bind(this)
-            );
-        }
-    });
+          }.bind(this)
+      );
+    }
+  });
 });

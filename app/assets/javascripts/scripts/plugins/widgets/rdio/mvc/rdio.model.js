@@ -6,53 +6,54 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineRdioModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define Rdio model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class RdioModel
+   * @constructor
+   */
+  var RdioModel = function RdioModel() {
+
     /**
-     * Define Rdio model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class RdioModel
-     * @constructor
-     */
-    var RdioModel = function RdioModel() {
-
-        /**
-         * Define preferences
-         * @memberOf RdioModel
-         * @type {{
-         *      rdioEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
+     * Define preferences
+     * @memberOf RdioModel
+     * @type {{
+         *      rdioEmbedCode: {type: string, disabled: boolean, value:
+         *     undefined, visible: boolean}
          * }}
-         */
-        this.preferences = {
-            rdioEmbedCode: {
-                type: 'textarea',
-                disabled: false,
-                value: undefined,
-                visible: true
-            }
-        };
-
-        /**
-         * Define rules
-         * @memberOf RdioModel
-         * @type {{}}
-         */
-        this.rules = {};
+     */
+    this.preferences = {
+      rdioEmbedCode: {
+        type: 'textarea',
+        disabled: false,
+        value: undefined,
+        visible: true
+      }
     };
 
-    return RdioModel.extend('RdioModel', {
+    /**
+     * Define rules
+     * @memberOf RdioModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        /**
-         * Set Rdio embed code
-         * @memberOf RdioModel
-         * @param {string} embed
-         */
-        setRdioEmbedCode: function setRdioEmbedCode(embed) {
-            this.setPrefs('rdioEmbedCode', embed);
-        }
+  return RdioModel.extend('RdioModel', {
 
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    /**
+     * Set Rdio embed code
+     * @memberOf RdioModel
+     * @param {string} embed
+     */
+    setRdioEmbedCode: function setRdioEmbedCode(embed) {
+      this.setPrefs('rdioEmbedCode', embed);
+    }
+
+  }, BaseModel.prototype, WidgetContentModel.prototype);
 });

@@ -6,39 +6,39 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/rules/widget.base.rules'
+  'plugins/plugin.element',
+  'plugins/rules/widget.base.rules'
 ], function defineForecastIoRulesElement(PluginElement, BaseWidgetRules) {
 
-    /**
-     * Define ForecastIo Rules Element
-     * @param view
-     * @param opts
-     * @returns {ForecastIoRulesElement}
-     * @constructor
-     * @class ForecastIoRulesElement
-     * @extends PluginElement
-     * @extends BaseWidgetRules
-     */
-    var ForecastIoRulesElement = function ForecastIoRulesElement(view, opts) {
+  /**
+   * Define ForecastIo Rules Element
+   * @param view
+   * @param opts
+   * @returns {ForecastIoRulesElement}
+   * @constructor
+   * @class ForecastIoRulesElement
+   * @extends PluginElement
+   * @extends BaseWidgetRules
+   */
+  var ForecastIoRulesElement = function ForecastIoRulesElement(view, opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBaseRulesData(
-            opts.data,
-            opts.rules.widget,
-            opts.rules.content
-        );
-
-        return this;
-    };
-
-    return ForecastIoRulesElement.extend(
-        'ForecastIoRulesElement', {}, 
-        PluginElement.prototype, 
-        BaseWidgetRules.prototype
+    this.renderBaseRulesData(
+        opts.data,
+        opts.rules.widget,
+        opts.rules.content
     );
+
+    return this;
+  };
+
+  return ForecastIoRulesElement.extend(
+      'ForecastIoRulesElement', {},
+      PluginElement.prototype,
+      BaseWidgetRules.prototype
+  );
 });

@@ -6,35 +6,36 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
-], function defineTwentyFourVideoPreferencesElement(PluginElement, WidgetPreferences) {
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
+], function defineTwentyFourVideoPreferencesElement(PluginElement,
+    WidgetPreferences) {
 
-    /**
-     * Define TwentyFourVideo Preferences Element
-     * @param view
-     * @param opts
-     * @returns {TwentyFourVideoPreferencesElement}
-     * @constructor
-     * @class TwentyFourVideoPreferencesElement
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     */
-    var TwentyFourVideoPreferencesElement = function TwentyFourVideoPreferencesElement(view, opts) {
+  /**
+   * Define TwentyFourVideo Preferences Element
+   * @param view
+   * @param opts
+   * @returns {TwentyFourVideoPreferencesElement}
+   * @constructor
+   * @class TwentyFourVideoPreferencesElement
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   */
+  var TwentyFourVideoPreferencesElement = function TwentyFourVideoPreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return TwentyFourVideoPreferencesElement.extend('TwentyFourVideoPreferencesElement', {
-
-
-    }, PluginElement.prototype, WidgetPreferences.prototype);
+  return TwentyFourVideoPreferencesElement.extend(
+      'TwentyFourVideoPreferencesElement', {}, PluginElement.prototype,
+      WidgetPreferences.prototype);
 
 });

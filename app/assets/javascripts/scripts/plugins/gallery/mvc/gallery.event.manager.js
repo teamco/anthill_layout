@@ -7,28 +7,28 @@
  */
 
 define([
-    'modules/Event'
+  'modules/Event'
 ], function defineGalleryEventManager(BaseEvent) {
 
+  /**
+   * Define Gallery event manager
+   * @class GalleryEventManager
+   * @constructor
+   * @extends BaseEvent
+   */
+  var GalleryEventManager = function GalleryEventManager() {
+
     /**
-     * Define Gallery event manager
-     * @class GalleryEventManager
-     * @constructor
-     * @extends BaseEvent
+     * Define events
+     * @memberOf GalleryEventManager
+     * @type {{}}
      */
-    var GalleryEventManager = function GalleryEventManager() {
+    this.events = {};
 
-        /**
-         * Define events
-         * @memberOf GalleryEventManager
-         * @type {{}}
-         */
-        this.events = {};
-
-        /**
-         * Define event list
-         * @memberOf GalleryEventManager
-         * @type {{
+    /**
+     * Define event list
+     * @memberOf GalleryEventManager
+     * @type {{
          *      updateTranslations: string,
          *      loadModuleContent: string,
          *      initModel: string,
@@ -36,19 +36,19 @@ define([
          *      setCurrentProvider: string,
          *      setRoutes: string
          * }}
-         */
-        this.eventList = {
-            updateTranslations: 'update.translations',
-            loadModuleContent: 'load.module.content',
-            initModel: 'init.model',
-            setProviders: 'set.providers',
-            setCurrentProvider: 'set.current.provider',
-            setRoutes: 'set.routes'
-        };
+     */
+    this.eventList = {
+      updateTranslations: 'update.translations',
+      loadModuleContent: 'load.module.content',
+      initModel: 'init.model',
+      setProviders: 'set.providers',
+      setCurrentProvider: 'set.current.provider',
+      setRoutes: 'set.routes'
     };
+  };
 
-    return GalleryEventManager.extend(
-        'GalleryEventManager', {},
-        BaseEvent.prototype
-    );
+  return GalleryEventManager.extend(
+      'GalleryEventManager', {},
+      BaseEvent.prototype
+  );
 });

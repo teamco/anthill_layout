@@ -7,108 +7,109 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/ubr/element/ubr.element',
-    'plugins/widgets/ubr/element/ubr.preferences.element',
-    'plugins/widgets/ubr/element/ubr.rules.element'
-], function defineUbrView(BaseView, Header, Footer, UbrElement, UbrPreferencesElement, UbrRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/ubr/element/ubr.element',
+  'plugins/widgets/ubr/element/ubr.preferences.element',
+  'plugins/widgets/ubr/element/ubr.rules.element'
+], function defineUbrView(BaseView, Header, Footer, UbrElement,
+    UbrPreferencesElement, UbrRulesElement) {
+
+  /**
+   * Define view
+   * @class UbrView
+   * @extends BaseView
+   * @constructor
+   */
+  var UbrView = function UbrView() {
+  };
+
+  return UbrView.extend('UbrView', {
 
     /**
-     * Define view
-     * @class UbrView
-     * @extends BaseView
-     * @constructor
+     * Render ubr element
+     * @memberOf UbrView
      */
-    var UbrView = function UbrView() {
-    };
+    renderUbr: function renderUbr() {
 
-    return UbrView.extend('UbrView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render ubr element
-         * @memberOf UbrView
-         */
-        renderUbr: function renderUbr() {
+      /**
+       * Define $ubr
+       * @type {UbrElement}
+       */
+      this.elements.$ubr = new UbrElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $ubr
-             * @type {UbrElement}
-             */
-            this.elements.$ubr = new UbrElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf UbrView
+     * @returns {UbrPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define Ubr Preferences Element
+       * @type {UbrPreferencesElement}
+       */
+      this.elements.$preferences = new UbrPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf UbrView
-         * @returns {UbrPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define Ubr Preferences Element
-             * @type {UbrPreferencesElement}
-             */
-            this.elements.$preferences = new UbrPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf UbrView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {UbrRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
+      /**
+       * Define data
+       * @type {*|{}}
+       */
+      var data = this.controller.getRules();
 
-        /**
-         * Render Rules
-         * @memberOf UbrView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {UbrRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define data
-             * @type {*|{}}
-             */
-            var data = this.controller.getRules();
-
-            /**
-             * Define Ubr Rules Element
-             * @type {UbrRulesElement}
-             */
-            this.elements.$rules = new UbrRulesElement(this, {
-                data: data,
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render ubr
-         * @memberOf UbrView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderUbr.bind(this)
-            );
+      /**
+       * Define Ubr Rules Element
+       * @type {UbrRulesElement}
+       */
+      this.elements.$rules = new UbrRulesElement(this, {
+        data: data,
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render ubr
+     * @memberOf UbrView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderUbr.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

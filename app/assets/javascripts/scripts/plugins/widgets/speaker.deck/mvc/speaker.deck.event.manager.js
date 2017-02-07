@@ -7,23 +7,23 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineSpeakerDeckEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define SpeakerDeck event manager
-     * @class SpeakerDeckEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var SpeakerDeckEventManager = function SpeakerDeckEventManager() {
+  /**
+   * Define SpeakerDeck event manager
+   * @class SpeakerDeckEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var SpeakerDeckEventManager = function SpeakerDeckEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return SpeakerDeckEventManager.extend(
-        'SpeakerDeckEventManager', {},
-        WidgetContentEventManager.prototype
-    );
+  return SpeakerDeckEventManager.extend(
+      'SpeakerDeckEventManager', {},
+      WidgetContentEventManager.prototype
+  );
 });

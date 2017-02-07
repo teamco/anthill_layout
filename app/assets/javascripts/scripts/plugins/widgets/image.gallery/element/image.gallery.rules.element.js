@@ -6,38 +6,37 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/rules/widget.base.rules'
+  'plugins/plugin.element',
+  'plugins/rules/widget.base.rules'
 ], function defineImageGalleryRulesElement(PluginElement, BaseWidgetRules) {
 
-    /**
-     * Define ImageGallery Rules Element
-     * @param view
-     * @param opts
-     * @returns {ImageGalleryRulesElement}
-     * @constructor
-     * @class ImageGalleryRulesElement
-     * @extends PluginElement
-     * @extends BaseWidgetRules
-     */
-    var ImageGalleryRulesElement = function ImageGalleryRulesElement(view, opts) {
+  /**
+   * Define ImageGallery Rules Element
+   * @param view
+   * @param opts
+   * @returns {ImageGalleryRulesElement}
+   * @constructor
+   * @class ImageGalleryRulesElement
+   * @extends PluginElement
+   * @extends BaseWidgetRules
+   */
+  var ImageGalleryRulesElement = function ImageGalleryRulesElement(view, opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBaseRulesData(
-            opts.data,
-            opts.rules.widget,
-            opts.rules.content
-        );
+    this.renderBaseRulesData(
+        opts.data,
+        opts.rules.widget,
+        opts.rules.content
+    );
 
-        return this;
-    };
+    return this;
+  };
 
-    return ImageGalleryRulesElement.extend('ImageGalleryRulesElement', {
-
-    }, PluginElement.prototype, BaseWidgetRules.prototype);
+  return ImageGalleryRulesElement.extend('ImageGalleryRulesElement', {},
+      PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

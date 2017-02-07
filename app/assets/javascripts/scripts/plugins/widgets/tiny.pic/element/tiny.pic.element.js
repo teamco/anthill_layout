@@ -6,53 +6,53 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineTinyPicElement(PluginElement) {
 
+  /**
+   * Define TinyPic Element
+   * @param view
+   * @param opts
+   * @returns {TinyPicElement}
+   * @constructor
+   * @class TinyPicElement
+   * @extends PluginElement
+   */
+  var TinyPicElement = function TinyPicElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('tiny.pic', {resource: '/widgets'});
+
+    return this;
+  };
+
+  return TinyPicElement.extend('TinyPicElement', {
+
     /**
-     * Define TinyPic Element
-     * @param view
-     * @param opts
-     * @returns {TinyPicElement}
-     * @constructor
-     * @class TinyPicElement
-     * @extends PluginElement
+     * Render Embedded content
+     * @memberOf TinyPicElement
+     * @param {boolean|{type, code}} embed
      */
-    var TinyPicElement = function TinyPicElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent(embed) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+      if (!embed) {
+        return false;
+      }
 
-        this.addCSS('tiny.pic', {resource: '/widgets'});
+      /**
+       * Define $content
+       */
+      var $content = embed.type === 'image' ?
+          embed.code :
+          this.renderEmbed(embed.code);
 
-        return this;
-    };
+      this.$.append($content);
+    }
 
-    return TinyPicElement.extend('TinyPicElement', {
-
-        /**
-         * Render Embedded content
-         * @memberOf TinyPicElement
-         * @param {boolean|{type, code}} embed
-         */
-        renderEmbeddedContent: function renderEmbeddedContent(embed) {
-
-            if (!embed) {
-                return false;
-            }
-
-            /**
-             * Define $content
-             */
-            var $content = embed.type === 'image' ?
-                embed.code :
-                this.renderEmbed(embed.code);
-
-            this.$.append($content);
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 
 });

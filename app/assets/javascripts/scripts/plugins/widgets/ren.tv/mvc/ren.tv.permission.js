@@ -7,20 +7,20 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineRenTvPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class RenTvPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var RenTvPermission = function RenTvPermission() {
-    };
+  /**
+   * Define Permissions
+   * @class RenTvPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var RenTvPermission = function RenTvPermission() {
+  };
 
-    return RenTvPermission.extend(
-        'RenTvPermission', {}, 
-        BasePermission.prototype
-    );
+  return RenTvPermission.extend(
+      'RenTvPermission', {},
+      BasePermission.prototype
+  );
 });

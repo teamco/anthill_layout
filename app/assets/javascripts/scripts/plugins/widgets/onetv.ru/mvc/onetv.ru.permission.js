@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineOnetvRuPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class OnetvRuPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var OnetvRuPermission = function OnetvRuPermission() {
+  /**
+   * Define Permissions
+   * @class OnetvRuPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var OnetvRuPermission = function OnetvRuPermission() {
 
-    };
+  };
 
-    return OnetvRuPermission.extend('OnetvRuPermission', {
-
-    }, BasePermission.prototype);
+  return OnetvRuPermission.extend('OnetvRuPermission', {},
+      BasePermission.prototype);
 });

@@ -6,37 +6,34 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineMultipleIconsModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define MultipleIcons model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class MultipleIconsModel
+   * @constructor
+   */
+  var MultipleIconsModel = function MultipleIconsModel() {
+
     /**
-     * Define MultipleIcons model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class MultipleIconsModel
-     * @constructor
+     * Define preferences
+     * @memberOf MultipleIconsModel
+     * @type {{}}
      */
-    var MultipleIconsModel = function MultipleIconsModel() {
+    this.preferences = {};
 
-        /**
-         * Define preferences
-         * @memberOf MultipleIconsModel
-         * @type {{}}
-         */
-        this.preferences = {
-        };
+    /**
+     * Define rules
+     * @memberOf MultipleIconsModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        /**
-         * Define rules
-         * @memberOf MultipleIconsModel
-         * @type {{}}
-         */
-        this.rules = {};
-    };
-
-    return MultipleIconsModel.extend('MultipleIconsModel', {
-
-
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+  return MultipleIconsModel.extend('MultipleIconsModel', {},
+      BaseModel.prototype, WidgetContentModel.prototype);
 });

@@ -6,44 +6,44 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineFilmRuElement(PluginElement) {
 
+  /**
+   * Define FilmRu Element
+   * @param view
+   * @param opts
+   * @returns {FilmRuElement}
+   * @constructor
+   * @class FilmRuElement
+   * @extends PluginElement
+   */
+  var FilmRuElement = function FilmRuElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('film.ru', {resource: '/widgets'});
+
+    return this;
+  };
+
+  return FilmRuElement.extend('FilmRuElement', {
+
     /**
-     * Define FilmRu Element
-     * @param view
-     * @param opts
-     * @returns {FilmRuElement}
-     * @constructor
-     * @class FilmRuElement
-     * @extends PluginElement
+     * Render Embedded content
+     * @memberOf FilmRuElement
+     * @param {string} embed
      */
-    var FilmRuElement = function FilmRuElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent(embed) {
+      this.$.append(
+          this.renderIframe(
+              $(embed).attr('src')
+          )
+      );
+    }
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
-
-        this.addCSS('film.ru', {resource: '/widgets'});
-
-        return this;
-    };
-
-    return FilmRuElement.extend('FilmRuElement', {
-
-        /**
-         * Render Embedded content
-         * @memberOf FilmRuElement
-         * @param {string} embed
-         */
-        renderEmbeddedContent: function renderEmbeddedContent(embed) {
-            this.$.append(
-                this.renderIframe(
-                    $(embed).attr('src')
-                )
-            );
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 });

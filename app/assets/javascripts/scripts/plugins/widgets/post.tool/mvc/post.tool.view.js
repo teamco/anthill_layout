@@ -7,102 +7,103 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/post.tool/element/post.tool.element',
-    'plugins/widgets/post.tool/element/post.tool.preferences.element',
-    'plugins/widgets/post.tool/element/post.tool.rules.element'
-], function definePostToolView(BaseView, Header, Footer, PostToolElement, PostToolPreferencesElement, PostToolRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/post.tool/element/post.tool.element',
+  'plugins/widgets/post.tool/element/post.tool.preferences.element',
+  'plugins/widgets/post.tool/element/post.tool.rules.element'
+], function definePostToolView(BaseView, Header, Footer, PostToolElement,
+    PostToolPreferencesElement, PostToolRulesElement) {
+
+  /**
+   * Define view
+   * @class PostToolView
+   * @extends BaseView
+   * @constructor
+   */
+  var PostToolView = function PostToolView() {
+  };
+
+  return PostToolView.extend('PostToolView', {
 
     /**
-     * Define view
-     * @class PostToolView
-     * @extends BaseView
-     * @constructor
+     * Render post.tool element
+     * @memberOf PostToolView
      */
-    var PostToolView = function PostToolView() {
-    };
+    renderPostTool: function renderPostTool() {
 
-    return PostToolView.extend('PostToolView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render post.tool element
-         * @memberOf PostToolView
-         */
-        renderPostTool: function renderPostTool() {
+      /**
+       * Define $post.tool
+       * @type {PostToolElement}
+       */
+      this.elements.$posttool = new PostToolElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $post.tool
-             * @type {PostToolElement}
-             */
-            this.elements.$posttool = new PostToolElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf PostToolView
+     * @returns {PostToolPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define Post tool Preferences Element
+       * @type {PostToolPreferencesElement}
+       */
+      this.elements.$preferences = new PostToolPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf PostToolView
-         * @returns {PostToolPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define Post tool Preferences Element
-             * @type {PostToolPreferencesElement}
-             */
-            this.elements.$preferences = new PostToolPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf PostToolView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {PostToolRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
-
-        /**
-         * Render Rules
-         * @memberOf PostToolView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {PostToolRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define PostTool Rules Element
-             * @type {PostToolRulesElement}
-             */
-            this.elements.$rules = new PostToolRulesElement(this, {
-                data: this.controller.getRules(),
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render post.tool
-         * @memberOf PostToolView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderPostTool.bind(this)
-            );
+      /**
+       * Define PostTool Rules Element
+       * @type {PostToolRulesElement}
+       */
+      this.elements.$rules = new PostToolRulesElement(this, {
+        data: this.controller.getRules(),
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render post.tool
+     * @memberOf PostToolView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderPostTool.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

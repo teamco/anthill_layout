@@ -6,35 +6,35 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
-], function defineSportExpressPreferencesElement(PluginElement, WidgetPreferences) {
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
+], function defineSportExpressPreferencesElement(PluginElement,
+    WidgetPreferences) {
 
-    /**
-     * Define SportExpress Preferences Element
-     * @param view
-     * @param opts
-     * @returns {SportExpressPreferencesElement}
-     * @constructor
-     * @class SportExpressPreferencesElement
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     */
-    var SportExpressPreferencesElement = function SportExpressPreferencesElement(view, opts) {
+  /**
+   * Define SportExpress Preferences Element
+   * @param view
+   * @param opts
+   * @returns {SportExpressPreferencesElement}
+   * @constructor
+   * @class SportExpressPreferencesElement
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   */
+  var SportExpressPreferencesElement = function SportExpressPreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return SportExpressPreferencesElement.extend('SportExpressPreferencesElement', {
-
-
-    }, PluginElement.prototype, WidgetPreferences.prototype);
+  return SportExpressPreferencesElement.extend('SportExpressPreferencesElement',
+      {}, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

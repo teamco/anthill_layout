@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineTwitsEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define Twits event manager
-     * @class TwitsEventManager
-     * @constructor
-     * @extends WidgetContentEventManager
-     * @extends BaseEvent
-     */
-    var TwitsEventManager = function TwitsEventManager() {
+  /**
+   * Define Twits event manager
+   * @class TwitsEventManager
+   * @constructor
+   * @extends WidgetContentEventManager
+   * @extends BaseEvent
+   */
+  var TwitsEventManager = function TwitsEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return TwitsEventManager.extend('TwitsEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return TwitsEventManager.extend('TwitsEventManager', {},
+      WidgetContentEventManager.prototype);
 });

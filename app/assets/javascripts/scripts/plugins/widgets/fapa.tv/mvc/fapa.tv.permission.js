@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineFapaTvPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class FapaTvPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var FapaTvPermission = function FapaTvPermission() {
+  /**
+   * Define Permissions
+   * @class FapaTvPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var FapaTvPermission = function FapaTvPermission() {
 
-    };
+  };
 
-    return FapaTvPermission.extend('FapaTvPermission', {
-
-    }, BasePermission.prototype);
+  return FapaTvPermission.extend('FapaTvPermission', {},
+      BasePermission.prototype);
 });

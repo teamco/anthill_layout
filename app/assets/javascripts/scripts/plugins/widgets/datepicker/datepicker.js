@@ -6,41 +6,42 @@
  */
 
 define([
-    'config/anthill',
-    'modules/MVC',
-    'plugins/widgets/datepicker/mvc/datepicker.controller',
-    'plugins/widgets/datepicker/mvc/datepicker.model',
-    'plugins/widgets/datepicker/mvc/datepicker.view',
-    'plugins/widgets/datepicker/mvc/datepicker.event.manager',
-    'plugins/widgets/datepicker/mvc/datepicker.permission'
-], function defineDatepicker(AntHill, MVC, Controller, Model, View, EventManager, Permission) {
+  'config/anthill',
+  'modules/MVC',
+  'plugins/widgets/datepicker/mvc/datepicker.controller',
+  'plugins/widgets/datepicker/mvc/datepicker.model',
+  'plugins/widgets/datepicker/mvc/datepicker.view',
+  'plugins/widgets/datepicker/mvc/datepicker.event.manager',
+  'plugins/widgets/datepicker/mvc/datepicker.permission'
+], function defineDatepicker(AntHill, MVC, Controller, Model, View,
+    EventManager, Permission) {
+
+  /**
+   * Define Datepicker
+   * @param containment
+   * @param [opts]
+   * @constructor
+   * @class Datepicker
+   * @extends AntHill
+   */
+  var Datepicker = function Datepicker(containment, opts) {
 
     /**
-     * Define Datepicker
-     * @param containment
-     * @param [opts]
-     * @constructor
-     * @class Datepicker
-     * @extends AntHill
+     * Define containment
+     * @property Datepicker
      */
-    var Datepicker = function Datepicker(containment, opts) {
+    this.containment = containment;
 
-        /**
-         * Define containment
-         * @property Datepicker
-         */
-        this.containment = containment;
+    /**
+     * Define referrer
+     * @property Datepicker
+     * @type {*}
+     */
+    this.referrer = undefined;
 
-        /**
-         * Define referrer
-         * @property Datepicker
-         * @type {*}
-         */
-        this.referrer = undefined;
-
-        /**
-         * Define defaults
-         * @type {{
+    /**
+     * Define defaults
+     * @type {{
          *      plugin: boolean,
          *      html: {
          *          style: string,
@@ -55,48 +56,48 @@ define([
          *          }
          *      }
          * }}
-         */
-        var DEFAULTS = {
-            plugin: true,
-            html: {
-                style: 'default',
-                header: false,
-                footer: false,
-                padding: {
-                    top: 0,
-                    right: 0,
-                    bottom: 0,
-                    left: 0
-                }
-            }
-        };
-
-        /**
-         * Define MVC
-         * @property Datepicker
-         * @type {MVC}
-         */
-        this.mvc = new MVC({
-            scope: this,
-            config: [
-                {uuid: this.containment.model.getContentUUID()},
-                DEFAULTS
-            ],
-            components: [
-                Controller,
-                Model,
-                View,
-                EventManager,
-                Permission
-            ],
-            render: true
-        });
-
-        this.observer.publish(
-            this.eventmanager.eventList.initWidget,
-            opts
-        );
+     */
+    var DEFAULTS = {
+      plugin: true,
+      html: {
+        style: 'default',
+        header: false,
+        footer: false,
+        padding: {
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0
+        }
+      }
     };
 
-    return Datepicker.extend('Datepicker', {}, AntHill.prototype);
+    /**
+     * Define MVC
+     * @property Datepicker
+     * @type {MVC}
+     */
+    this.mvc = new MVC({
+      scope: this,
+      config: [
+        {uuid: this.containment.model.getContentUUID()},
+        DEFAULTS
+      ],
+      components: [
+        Controller,
+        Model,
+        View,
+        EventManager,
+        Permission
+      ],
+      render: true
+    });
+
+    this.observer.publish(
+        this.eventmanager.eventList.initWidget,
+        opts
+    );
+  };
+
+  return Datepicker.extend('Datepicker', {}, AntHill.prototype);
 });

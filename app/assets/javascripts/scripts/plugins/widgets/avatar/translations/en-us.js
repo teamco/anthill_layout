@@ -8,11 +8,11 @@
 
 define(function defineEnUs() {
 
-    return {
-        'change.position': 'Change image position',
-        'change.photo': 'Change your avatar photo',
-        'like.photo': 'Like this photo',
-        'unlock.photo': 'Unlock',
-        'profile.setting': 'Profile Settings'
-    };
+  return {
+    'change.position': 'Change image position',
+    'change.photo': 'Change your avatar photo',
+    'like.photo': 'Like this photo',
+    'unlock.photo': 'Unlock',
+    'profile.setting': 'Profile Settings'
+  };
 });

@@ -6,35 +6,33 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
 ], function defineTviPreferencesElement(PluginElement, WidgetPreferences) {
 
-    /**
-     * Define Tvi Preferences Element
-     * @param view
-     * @param opts
-     * @returns {TviPreferencesElement}
-     * @constructor
-     * @class TviPreferencesElement
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     */
-    var TviPreferencesElement = function TviPreferencesElement(view, opts) {
+  /**
+   * Define Tvi Preferences Element
+   * @param view
+   * @param opts
+   * @returns {TviPreferencesElement}
+   * @constructor
+   * @class TviPreferencesElement
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   */
+  var TviPreferencesElement = function TviPreferencesElement(view, opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return TviPreferencesElement.extend('TviPreferencesElement', {
-
-
-    }, PluginElement.prototype, WidgetPreferences.prototype);
+  return TviPreferencesElement.extend('TviPreferencesElement', {},
+      PluginElement.prototype, WidgetPreferences.prototype);
 
 });

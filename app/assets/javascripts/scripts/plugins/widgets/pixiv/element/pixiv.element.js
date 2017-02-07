@@ -6,87 +6,86 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function definePixivElement(PluginElement) {
 
+  /**
+   * Define Pixiv Element
+   * @param view
+   * @param opts
+   * @returns {PixivElement}
+   * @constructor
+   * @class PixivElement
+   * @extends PluginElement
+   */
+  var PixivElement = function PixivElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('pixiv', {resource: '/widgets'});
+
     /**
-     * Define Pixiv Element
-     * @param view
-     * @param opts
-     * @returns {PixivElement}
-     * @constructor
-     * @class PixivElement
-     * @extends PluginElement
+     * Define embed
+     * @memberOf PixivElement
+     * @type {*}
      */
-    var PixivElement = function PixivElement(view, opts) {
+    this.embed = opts.embed;
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    return this;
+  };
 
-        this.addCSS('pixiv', {resource: '/widgets'});
+  return PixivElement.extend('PixivElement', {
 
-        /**
-         * Define embed
-         * @memberOf PixivElement
-         * @type {*}
-         */
-        this.embed = opts.embed;
+    /**
+     * Render Embedded content
+     * @memberOf PixivElement
+     * @param {HTMLElement} code
+     */
+    renderEmbeddedContent: function renderEmbeddedContent(code) {
 
-        return this;
-    };
+      // Export attributes
+      // data-size="small|medium|large"
+      // data-border="on|off"
+      var attributes = {
+        'src': code.getAttribute('src'),
+        'data-id': code.getAttribute('data-id'),
+        'data-size': code.getAttribute('data-size'),
+        'data-border': code.getAttribute('data-border'),
+        'done': code.getAttribute('data-done')
+      };
 
-    return PixivElement.extend('PixivElement', {
+      this.createScript(attributes, this.$[0]);
 
-        /**
-         * Render Embedded content
-         * @memberOf PixivElement
-         * @param {HTMLElement} code
-         */
-        renderEmbeddedContent: function renderEmbeddedContent(code) {
+      /**
+       * Get EventManager
+       * @type {Pixiv}
+       */
+      var scope = this.view.scope,
+          event = scope.eventmanager,
+          $element = this;
 
-            // Export attributes
-            // data-size="small|medium|large"
-            // data-border="on|off"
-            var attributes = {
-                'src': code.getAttribute('src'),
-                'data-id': code.getAttribute('data-id'),
-                'data-size': code.getAttribute('data-size'),
-                'data-border': code.getAttribute('data-border'),
-                'done': code.getAttribute('data-done')
-            };
+      this.base.waitFor(
+          function condition() {
+            return $('div.pixiv-embed', $element.$).length > 0;
+          },
 
-            this.createScript(attributes, this.$[0]);
+          function callback() {
 
-            /**
-             * Get EventManager
-             * @type {Pixiv}
-             */
-            var scope = this.view.scope,
-                event = scope.eventmanager,
-                $element = this;
+            // Re-emit the load event
+            event.reEmmit('load');
 
-            this.base.waitFor(
+            // Re-emit the message event
+            event.reEmmit('message');
+          },
 
-                function condition() {
-                    return $('div.pixiv-embed', $element.$).length > 0;
-                },
+          function fallback() {
+            scope.logger.warn('Timeout. Unable to embed content');
+          }
+      );
+    }
 
-                function callback() {
-
-                    // Re-emit the load event
-                    event.reEmmit('load');
-
-                    // Re-emit the message event
-                    event.reEmmit('message');
-                },
-
-                function fallback() {
-                    scope.logger.warn('Timeout. Unable to embed content');
-                }
-            );
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 });

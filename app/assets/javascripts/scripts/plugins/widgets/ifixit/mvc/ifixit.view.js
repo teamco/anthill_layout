@@ -7,101 +7,102 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/ifixit/element/ifixit.element',
-    'plugins/widgets/ifixit/element/ifixit.preferences.element',
-    'plugins/widgets/ifixit/element/ifixit.rules.element'
-], function defineIfixitView(BaseView, Header, Footer, IfixitElement, IfixitPreferencesElement, IfixitRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/ifixit/element/ifixit.element',
+  'plugins/widgets/ifixit/element/ifixit.preferences.element',
+  'plugins/widgets/ifixit/element/ifixit.rules.element'
+], function defineIfixitView(BaseView, Header, Footer, IfixitElement,
+    IfixitPreferencesElement, IfixitRulesElement) {
+
+  /**
+   * Define view
+   * @class IfixitView
+   * @extends BaseView
+   * @constructor
+   */
+  var IfixitView = function IfixitView() {
+  };
+
+  return IfixitView.extend('IfixitView', {
 
     /**
-     * Define view
-     * @class IfixitView
-     * @extends BaseView
-     * @constructor
+     * Render Ifixit element
+     * @memberOf IfixitView
      */
-    var IfixitView = function IfixitView() {
-    };
+    renderIfixit: function renderIfixit() {
 
-    return IfixitView.extend('IfixitView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render Ifixit element
-         * @memberOf IfixitView
-         */
-        renderIfixit: function renderIfixit() {
+      /**
+       * Define $ifixit
+       * @type {IfixitElement}
+       */
+      this.elements.$ifixit = new IfixitElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $ifixit
-             * @type {IfixitElement}
-             */
-            this.elements.$ifixit = new IfixitElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf IfixitView
+     * @returns {IfixitPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define Ifixit Preferences Element
+       * @type {IfixitPreferencesElement}
+       */
+      this.elements.$preferences = new IfixitPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf IfixitView
-         * @returns {IfixitPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define Ifixit Preferences Element
-             * @type {IfixitPreferencesElement}
-             */
-            this.elements.$preferences = new IfixitPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf IfixitView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {IfixitRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
-
-        /**
-         * Render Rules
-         * @memberOf IfixitView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {IfixitRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define Ifixit Rules Element
-             * @type {IfixitRulesElement}
-             */
-            this.elements.$rules = new IfixitRulesElement(this, {
-                data: this.controller.getRules(),
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render Ifixit
-         * @memberOf IfixitView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderIfixit.bind(this)
-            );
+      /**
+       * Define Ifixit Rules Element
+       * @type {IfixitRulesElement}
+       */
+      this.elements.$rules = new IfixitRulesElement(this, {
+        data: this.controller.getRules(),
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype);
+      return this.get$rules();
+    },
+
+    /**
+     * Render Ifixit
+     * @memberOf IfixitView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderIfixit.bind(this)
+      );
+    }
+
+  }, BaseView.prototype);
 });

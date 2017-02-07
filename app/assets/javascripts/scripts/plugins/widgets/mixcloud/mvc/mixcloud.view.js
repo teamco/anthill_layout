@@ -7,108 +7,109 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/mixcloud/element/mixcloud.element',
-    'plugins/widgets/mixcloud/element/mixcloud.preferences.element',
-    'plugins/widgets/mixcloud/element/mixcloud.rules.element'
-], function defineMixcloudView(BaseView, Header, Footer, MixcloudElement, MixcloudPreferencesElement, MixcloudRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/mixcloud/element/mixcloud.element',
+  'plugins/widgets/mixcloud/element/mixcloud.preferences.element',
+  'plugins/widgets/mixcloud/element/mixcloud.rules.element'
+], function defineMixcloudView(BaseView, Header, Footer, MixcloudElement,
+    MixcloudPreferencesElement, MixcloudRulesElement) {
+
+  /**
+   * Define view
+   * @class MixcloudView
+   * @extends BaseView
+   * @constructor
+   */
+  var MixcloudView = function MixcloudView() {
+  };
+
+  return MixcloudView.extend('MixcloudView', {
 
     /**
-     * Define view
-     * @class MixcloudView
-     * @extends BaseView
-     * @constructor
+     * Render mixcloud element
+     * @memberOf MixcloudView
      */
-    var MixcloudView = function MixcloudView() {
-    };
+    renderMixcloud: function renderMixcloud() {
 
-    return MixcloudView.extend('MixcloudView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render mixcloud element
-         * @memberOf MixcloudView
-         */
-        renderMixcloud: function renderMixcloud() {
+      /**
+       * Define $mixcloud
+       * @type {MixcloudElement}
+       */
+      this.elements.$mixcloud = new MixcloudElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $mixcloud
-             * @type {MixcloudElement}
-             */
-            this.elements.$mixcloud = new MixcloudElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf MixcloudView
+     * @returns {MixcloudPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define Mixcloud Preferences Element
+       * @type {MixcloudPreferencesElement}
+       */
+      this.elements.$preferences = new MixcloudPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf MixcloudView
-         * @returns {MixcloudPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define Mixcloud Preferences Element
-             * @type {MixcloudPreferencesElement}
-             */
-            this.elements.$preferences = new MixcloudPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf MixcloudView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {MixcloudRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
+      /**
+       * Define data
+       * @type {*|{}}
+       */
+      var data = this.controller.getRules();
 
-        /**
-         * Render Rules
-         * @memberOf MixcloudView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {MixcloudRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define data
-             * @type {*|{}}
-             */
-            var data = this.controller.getRules();
-
-            /**
-             * Define Mixcloud Rules Element
-             * @type {MixcloudRulesElement}
-             */
-            this.elements.$rules = new MixcloudRulesElement(this, {
-                data: data,
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render mixcloud
-         * @memberOf MixcloudView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderMixcloud.bind(this)
-            );
+      /**
+       * Define Mixcloud Rules Element
+       * @type {MixcloudRulesElement}
+       */
+      this.elements.$rules = new MixcloudRulesElement(this, {
+        data: data,
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render mixcloud
+     * @memberOf MixcloudView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderMixcloud.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

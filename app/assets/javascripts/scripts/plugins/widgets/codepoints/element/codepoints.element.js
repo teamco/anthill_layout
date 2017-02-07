@@ -6,44 +6,44 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineCodepointsElement(PluginElement) {
 
+  /**
+   * Define Codepoints Element
+   * @param view
+   * @param opts
+   * @returns {CodepointsElement}
+   * @constructor
+   * @class CodepointsElement
+   * @extends PluginElement
+   */
+  var CodepointsElement = function CodepointsElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('codepoints', {resource: '/widgets'});
+
+    return this;
+  };
+
+  return CodepointsElement.extend('CodepointsElement', {
+
     /**
-     * Define Codepoints Element
-     * @param view
-     * @param opts
-     * @returns {CodepointsElement}
-     * @constructor
-     * @class CodepointsElement
-     * @extends PluginElement
+     * Render Embedded content
+     * @memberOf CodepointsElement
+     * @param {string} embed
      */
-    var CodepointsElement = function CodepointsElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent(embed) {
+      this.addContent(
+          this.renderIframe(
+              $(embed).attr('src')
+          )
+      );
+    }
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
-
-        this.addCSS('codepoints', {resource: '/widgets'});
-
-        return this;
-    };
-
-    return CodepointsElement.extend('CodepointsElement', {
-
-        /**
-         * Render Embedded content
-         * @memberOf CodepointsElement
-         * @param {string} embed
-         */
-        renderEmbeddedContent: function renderEmbeddedContent(embed) {
-            this.addContent(
-                this.renderIframe(
-                    $(embed).attr('src')
-                )
-            );
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 });

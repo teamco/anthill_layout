@@ -7,23 +7,23 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineFacebookEmbeddedPostsEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define FacebookEmbeddedPosts event manager
-     * @class FacebookEmbeddedPostsEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var FacebookEmbeddedPostsEventManager = function FacebookEmbeddedPostsEventManager() {
+  /**
+   * Define FacebookEmbeddedPosts event manager
+   * @class FacebookEmbeddedPostsEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var FacebookEmbeddedPostsEventManager = function FacebookEmbeddedPostsEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return FacebookEmbeddedPostsEventManager.extend(
-        'FacebookEmbeddedPostsEventManager', {},
-        WidgetContentEventManager.prototype
-    );
+  return FacebookEmbeddedPostsEventManager.extend(
+      'FacebookEmbeddedPostsEventManager', {},
+      WidgetContentEventManager.prototype
+  );
 });

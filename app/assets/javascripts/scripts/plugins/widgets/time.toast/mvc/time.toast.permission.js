@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineTimeToastPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class TimeToastPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var TimeToastPermission = function TimeToastPermission() {
+  /**
+   * Define Permissions
+   * @class TimeToastPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var TimeToastPermission = function TimeToastPermission() {
 
-    };
+  };
 
-    return TimeToastPermission.extend('TimeToastPermission', {
-
-    }, BasePermission.prototype);
+  return TimeToastPermission.extend('TimeToastPermission', {},
+      BasePermission.prototype);
 });

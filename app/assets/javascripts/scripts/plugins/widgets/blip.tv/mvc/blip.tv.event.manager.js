@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineBlipTvEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define BlipTv event manager
-     * @class BlipTvEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var BlipTvEventManager = function BlipTvEventManager() {
+  /**
+   * Define BlipTv event manager
+   * @class BlipTvEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var BlipTvEventManager = function BlipTvEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return BlipTvEventManager.extend('BlipTvEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return BlipTvEventManager.extend('BlipTvEventManager', {},
+      WidgetContentEventManager.prototype);
 });

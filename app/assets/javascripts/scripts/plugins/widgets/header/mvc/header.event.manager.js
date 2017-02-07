@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineHeaderEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define Header event manager
-     * @class HeaderEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var HeaderEventManager = function HeaderEventManager() {
+  /**
+   * Define Header event manager
+   * @class HeaderEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var HeaderEventManager = function HeaderEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return HeaderEventManager.extend('HeaderEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return HeaderEventManager.extend('HeaderEventManager', {},
+      WidgetContentEventManager.prototype);
 });

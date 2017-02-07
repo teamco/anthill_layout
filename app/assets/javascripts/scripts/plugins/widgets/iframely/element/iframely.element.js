@@ -6,72 +6,72 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineIframelyElement(PluginElement) {
 
+  /**
+   * Define Iframely Element
+   * @param view
+   * @param opts
+   * @returns {IframelyElement}
+   * @constructor
+   * @class IframelyElement
+   * @extends PluginElement
+   */
+  var IframelyElement = function IframelyElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('iframely', {resource: '/widgets'});
+
+    return this;
+  };
+
+  return IframelyElement.extend('IframelyElement', {
+
     /**
-     * Define Iframely Element
-     * @param view
-     * @param opts
-     * @returns {IframelyElement}
-     * @constructor
-     * @class IframelyElement
-     * @extends PluginElement
+     * Render Embedded content
+     * @memberOf IframelyElement
+     * @para, {string} api
+     * @para, {string} url
      */
-    var IframelyElement = function IframelyElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent(api, url) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+      /**
+       * Get element
+       * @type {IframelyElement}
+       */
+      var $element = this;
 
-        this.addCSS('iframely', {resource: '/widgets'});
+      /**
+       * Get scope
+       * @type {Iframely}
+       */
+      var scope = $element.view.scope;
 
-        return this;
-    };
+      if (!api) {
 
-    return IframelyElement.extend('IframelyElement', {
+        scope.logger.warn('Undefined API Key', arguments);
+        return false;
+      }
 
-        /**
-         * Render Embedded content
-         * @memberOf IframelyElement
-         * @para, {string} api
-         * @para, {string} url
-         */
-        renderEmbeddedContent: function renderEmbeddedContent(api, url) {
+      $.get(
+          '/widget/fetch_embedded_content/?url=' + encodeURIComponent(url) +
+          '&api_key=' + api,
 
-            /**
-             * Get element
-             * @type {IframelyElement}
-             */
-            var $element = this;
+          /**
+           * Define iframely API callback
+           * @param json
+           * @private
+           */
+          function _getContent(json) {
+            $element.addContent(json.html);
+          }
+      );
+    }
 
-            /**
-             * Get scope
-             * @type {Iframely}
-             */
-            var scope = $element.view.scope;
-
-            if (!api) {
-
-                scope.logger.warn('Undefined API Key', arguments);
-                return false;
-            }
-
-
-            $.get(
-                '/widget/fetch_embedded_content/?url=' + encodeURIComponent(url) + '&api_key=' + api,
-
-                /**
-                 * Define iframely API callback
-                 * @param json
-                 * @private
-                 */
-                function _getContent(json) {
-                    $element.addContent(json.html);
-                }
-            );
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 });

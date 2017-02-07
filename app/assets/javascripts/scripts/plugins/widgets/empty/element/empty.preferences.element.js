@@ -6,35 +6,35 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
 ], function defineEmptyPreferencesElement(PluginElement, WidgetPreferences) {
 
-    /**
-     * Define Empty Preferences Element
-     * @constructor
-     * @class EmptyPreferencesElement
-     * @param {EmptyView} view
-     * @param opts
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     * @returns {EmptyPreferencesElement}
-     */
-    var EmptyPreferencesElement = function EmptyPreferencesElement(view, opts) {
+  /**
+   * Define Empty Preferences Element
+   * @constructor
+   * @class EmptyPreferencesElement
+   * @param {EmptyView} view
+   * @param opts
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   * @returns {EmptyPreferencesElement}
+   */
+  var EmptyPreferencesElement = function EmptyPreferencesElement(view, opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return EmptyPreferencesElement.extend(
-        'EmptyPreferencesElement', {}, 
-        PluginElement.prototype, 
-        WidgetPreferences.prototype
-    );
+  return EmptyPreferencesElement.extend(
+      'EmptyPreferencesElement', {},
+      PluginElement.prototype,
+      WidgetPreferences.prototype
+  );
 });

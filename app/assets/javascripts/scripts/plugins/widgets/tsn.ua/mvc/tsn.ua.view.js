@@ -7,108 +7,109 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/tsn.ua/element/tsn.ua.element',
-    'plugins/widgets/tsn.ua/element/tsn.ua.preferences.element',
-    'plugins/widgets/tsn.ua/element/tsn.ua.rules.element'
-], function defineTsnUaView(BaseView, Header, Footer, TsnUaElement, TsnUaPreferencesElement, TsnUaRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/tsn.ua/element/tsn.ua.element',
+  'plugins/widgets/tsn.ua/element/tsn.ua.preferences.element',
+  'plugins/widgets/tsn.ua/element/tsn.ua.rules.element'
+], function defineTsnUaView(BaseView, Header, Footer, TsnUaElement,
+    TsnUaPreferencesElement, TsnUaRulesElement) {
+
+  /**
+   * Define view
+   * @class TsnUaView
+   * @extends BaseView
+   * @constructor
+   */
+  var TsnUaView = function TsnUaView() {
+  };
+
+  return TsnUaView.extend('TsnUaView', {
 
     /**
-     * Define view
-     * @class TsnUaView
-     * @extends BaseView
-     * @constructor
+     * Render tsnua element
+     * @memberOf TsnUaView
      */
-    var TsnUaView = function TsnUaView() {
-    };
+    renderTsnUa: function renderTsnUa() {
 
-    return TsnUaView.extend('TsnUaView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render tsnua element
-         * @memberOf TsnUaView
-         */
-        renderTsnUa: function renderTsnUa() {
+      /**
+       * Define $tsnua
+       * @type {TsnUaElement}
+       */
+      this.elements.$tsnua = new TsnUaElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $tsnua
-             * @type {TsnUaElement}
-             */
-            this.elements.$tsnua = new TsnUaElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf TsnUaView
+     * @returns {TsnUaPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define TsnUa Preferences Element
+       * @type {TsnUaPreferencesElement}
+       */
+      this.elements.$preferences = new TsnUaPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf TsnUaView
-         * @returns {TsnUaPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define TsnUa Preferences Element
-             * @type {TsnUaPreferencesElement}
-             */
-            this.elements.$preferences = new TsnUaPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf TsnUaView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {TsnUaRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
+      /**
+       * Define data
+       * @type {*|{}}
+       */
+      var data = this.controller.getRules();
 
-        /**
-         * Render Rules
-         * @memberOf TsnUaView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {TsnUaRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define data
-             * @type {*|{}}
-             */
-            var data = this.controller.getRules();
-
-            /**
-             * Define TsnUa Rules Element
-             * @type {TsnUaRulesElement}
-             */
-            this.elements.$rules = new TsnUaRulesElement(this, {
-                data: data,
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render tsnua
-         * @memberOf TsnUaView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderTsnUa.bind(this)
-            );
+      /**
+       * Define TsnUa Rules Element
+       * @type {TsnUaRulesElement}
+       */
+      this.elements.$rules = new TsnUaRulesElement(this, {
+        data: data,
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render tsnua
+     * @memberOf TsnUaView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderTsnUa.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

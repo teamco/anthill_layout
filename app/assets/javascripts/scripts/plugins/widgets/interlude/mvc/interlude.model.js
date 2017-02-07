@@ -6,44 +6,44 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineInterludeModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define Interlude model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class InterludeModel
+   * @constructor
+   */
+  var InterludeModel = function InterludeModel() {
+
     /**
-     * Define Interlude model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class InterludeModel
-     * @constructor
+     * Define preferences
+     * @property InterludeModel
+     * @type {{}}
      */
-    var InterludeModel = function InterludeModel() {
-
-        /**
-         * Define preferences
-         * @property InterludeModel
-         * @type {{}}
-         */
-        this.preferences = {
-            interludeEmbedCode: {
-                type: 'textarea',
-                disabled: false,
-                value: '<iframe width="854" height="480" src="https://v.interlude.fm/embed/V5PDXA?publisherID=hfUTkx" frameborder="0" allowfullscreen></iframe>',
-                visible: true
-            }
-        };
-
-        /**
-         * Define rules
-         * @property InterludeModel
-         * @type {{}}
-         */
-        this.rules = {};
+    this.preferences = {
+      interludeEmbedCode: {
+        type: 'textarea',
+        disabled: false,
+        value: '<iframe width="854" height="480" src="https://v.interlude.fm/embed/V5PDXA?publisherID=hfUTkx" frameborder="0" allowfullscreen></iframe>',
+        visible: true
+      }
     };
 
-    return InterludeModel.extend(
-        'InterludeModel', {},
-        BaseModel.prototype,
-        WidgetContentModel.prototype
-    );
+    /**
+     * Define rules
+     * @property InterludeModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
+
+  return InterludeModel.extend(
+      'InterludeModel', {},
+      BaseModel.prototype,
+      WidgetContentModel.prototype
+  );
 });

@@ -6,45 +6,45 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineChannelTwoIlElement(PluginElement) {
 
+  /**
+   * Define ChannelTwoIl Element
+   * @param view
+   * @param opts
+   * @returns {ChannelTwoIlElement}
+   * @constructor
+   * @class ChannelTwoIlElement
+   * @extends PluginElement
+   */
+  var ChannelTwoIlElement = function ChannelTwoIlElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('channel.two.il', {resource: '/widgets'});
+
+    return this;
+  };
+
+  return ChannelTwoIlElement.extend('ChannelTwoIlElement', {
+
     /**
-     * Define ChannelTwoIl Element
-     * @param view
-     * @param opts
-     * @returns {ChannelTwoIlElement}
-     * @constructor
-     * @class ChannelTwoIlElement
-     * @extends PluginElement
+     * Render Embedded content
+     * @memberOf ChannelTwoIlElement
+     * @param {string} embed
      */
-    var ChannelTwoIlElement = function ChannelTwoIlElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent(embed) {
+      this.$.append(
+          this.renderObject(
+              $(embed)[0]
+          )
+      );
+    }
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
-
-        this.addCSS('channel.two.il', {resource: '/widgets'});
-
-        return this;
-    };
-
-    return ChannelTwoIlElement.extend('ChannelTwoIlElement', {
-
-        /**
-         * Render Embedded content
-         * @memberOf ChannelTwoIlElement
-         * @param {string} embed
-         */
-        renderEmbeddedContent: function renderEmbeddedContent(embed) {
-            this.$.append(
-                this.renderObject(
-                    $(embed)[0]
-                )
-            );
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 
 });

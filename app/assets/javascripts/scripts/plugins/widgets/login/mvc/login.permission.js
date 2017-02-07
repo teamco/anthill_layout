@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineLoginPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class LoginPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var LoginPermission = function LoginPermission() {
+  /**
+   * Define Permissions
+   * @class LoginPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var LoginPermission = function LoginPermission() {
 
-    };
+  };
 
-    return LoginPermission.extend('LoginPermission', {
-
-    }, BasePermission.prototype);
+  return LoginPermission.extend('LoginPermission', {},
+      BasePermission.prototype);
 });

@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineMlkshkEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define Mlkshk event manager
-     * @class MlkshkEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var MlkshkEventManager = function MlkshkEventManager() {
+  /**
+   * Define Mlkshk event manager
+   * @class MlkshkEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var MlkshkEventManager = function MlkshkEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return MlkshkEventManager.extend('MlkshkEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return MlkshkEventManager.extend('MlkshkEventManager', {},
+      WidgetContentEventManager.prototype);
 });

@@ -6,38 +6,37 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/rules/widget.base.rules'
+  'plugins/plugin.element',
+  'plugins/rules/widget.base.rules'
 ], function defineTwentyThreeRulesElement(PluginElement, BaseWidgetRules) {
 
-    /**
-     * Define TwentyThree Rules Element
-     * @param view
-     * @param opts
-     * @returns {TwentyThreeRulesElement}
-     * @constructor
-     * @class TwentyThreeRulesElement
-     * @extends PluginElement
-     * @extends BaseWidgetRules
-     */
-    var TwentyThreeRulesElement = function TwentyThreeRulesElement(view, opts) {
+  /**
+   * Define TwentyThree Rules Element
+   * @param view
+   * @param opts
+   * @returns {TwentyThreeRulesElement}
+   * @constructor
+   * @class TwentyThreeRulesElement
+   * @extends PluginElement
+   * @extends BaseWidgetRules
+   */
+  var TwentyThreeRulesElement = function TwentyThreeRulesElement(view, opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBaseRulesData(
-            opts.data,
-            opts.rules.widget,
-            opts.rules.content
-        );
+    this.renderBaseRulesData(
+        opts.data,
+        opts.rules.widget,
+        opts.rules.content
+    );
 
-        return this;
-    };
+    return this;
+  };
 
-    return TwentyThreeRulesElement.extend('TwentyThreeRulesElement', {
-
-    }, PluginElement.prototype, BaseWidgetRules.prototype);
+  return TwentyThreeRulesElement.extend('TwentyThreeRulesElement', {},
+      PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

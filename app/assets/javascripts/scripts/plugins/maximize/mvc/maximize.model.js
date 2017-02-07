@@ -6,54 +6,54 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model'
+  'modules/Model'
 ], function defineMaximizeModel(BaseModel) {
 
+  /**
+   * Define Maximize model
+   * @extends BaseModel
+   * @class MaximizeModel
+   * @constructor
+   */
+  var MaximizeModel = function MaximizeModel() {
+
     /**
-     * Define Maximize model
-     * @extends BaseModel
-     * @class MaximizeModel
-     * @constructor
+     * Define data
+     * @memberOf MaximizeModel
+     * @type {{}}
      */
-    var MaximizeModel = function MaximizeModel() {
+    this.data = {};
+  };
 
-        /**
-         * Define data
-         * @memberOf MaximizeModel
-         * @type {{}}
-         */
-        this.data = {};
-    };
+  return MaximizeModel.extend('MaximizeModel', {
 
-    return MaximizeModel.extend('MaximizeModel', {
+    /**
+     * Get items
+     * @memberOf MaximizeModel
+     * @param page
+     * @returns {*}
+     */
+    getMaximize: function getMaximize(page) {
+      return page.model.getItems();
+    },
 
-        /**
-         * Get items
-         * @memberOf MaximizeModel
-         * @param page
-         * @returns {*}
-         */
-        getMaximize: function getMaximize(page) {
-            return page.model.getItems();
-        },
+    /**
+     * Collect items
+     * @memberOf MaximizeModel
+     * @param item
+     */
+    collectItems: function collectItems(item) {
+      this.data[item.model.getUUID()] = item;
+    },
 
-        /**
-         * Collect items
-         * @memberOf MaximizeModel
-         * @param item
-         */
-        collectItems: function collectItems(item) {
-            this.data[item.model.getUUID()] = item;
-        },
+    /**
+     * Get data
+     * @memberOf MaximizeModel
+     * @returns {{}}
+     */
+    getCollectedItems: function getCollectedItems() {
+      return this.data;
+    }
 
-        /**
-         * Get data
-         * @memberOf MaximizeModel
-         * @returns {{}}
-         */
-        getCollectedItems: function getCollectedItems() {
-            return this.data;
-        }
-
-    }, BaseModel.prototype);
+  }, BaseModel.prototype);
 });

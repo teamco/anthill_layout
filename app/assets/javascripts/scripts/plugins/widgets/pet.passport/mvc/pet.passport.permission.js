@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function definePetPassportPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class PetPassportPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var PetPassportPermission = function PetPassportPermission() {
+  /**
+   * Define Permissions
+   * @class PetPassportPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var PetPassportPermission = function PetPassportPermission() {
 
-    };
+  };
 
-    return PetPassportPermission.extend('PetPassportPermission', {
-
-    }, BasePermission.prototype);
+  return PetPassportPermission.extend('PetPassportPermission', {},
+      BasePermission.prototype);
 });

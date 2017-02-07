@@ -6,53 +6,54 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineRssModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define Rss model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class RssModel
+   * @constructor
+   */
+  var RssModel = function RssModel() {
+
     /**
-     * Define Rss model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class RssModel
-     * @constructor
-     */
-    var RssModel = function RssModel() {
-
-        /**
-         * Define preferences
-         * @memberOf RssModel
-         * @type {{
-         *      rssUrl: {type: string, disabled: boolean, value: undefined, visible: boolean}
+     * Define preferences
+     * @memberOf RssModel
+     * @type {{
+         *      rssUrl: {type: string, disabled: boolean, value: undefined,
+         *     visible: boolean}
          * }}
-         */
-        this.preferences = {
-            rssFeedUrl: {
-                type: 'text',
-                disabled: false,
-                value: undefined,
-                visible: true
-            }
-        };
-
-        /**
-         * Define rules
-         * @memberOf RssModel
-         * @type {{}}
-         */
-        this.rules = {};
+     */
+    this.preferences = {
+      rssFeedUrl: {
+        type: 'text',
+        disabled: false,
+        value: undefined,
+        visible: true
+      }
     };
 
-    return RssModel.extend('RssModel', {
+    /**
+     * Define rules
+     * @memberOf RssModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        /**
-         * Set Rss Feed Url
-         * @memberOf RssModel
-         * @param {string} url
-         */
-        setRssFeedUrl: function setRssFeedUrl(url) {
-            this.setPrefs('rssFeedUrl', url);
-        }
+  return RssModel.extend('RssModel', {
 
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    /**
+     * Set Rss Feed Url
+     * @memberOf RssModel
+     * @param {string} url
+     */
+    setRssFeedUrl: function setRssFeedUrl(url) {
+      this.setPrefs('rssFeedUrl', url);
+    }
+
+  }, BaseModel.prototype, WidgetContentModel.prototype);
 });

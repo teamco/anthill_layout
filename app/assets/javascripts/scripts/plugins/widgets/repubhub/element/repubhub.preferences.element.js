@@ -6,35 +6,36 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
 ], function defineRepubhubPreferencesElement(PluginElement, WidgetPreferences) {
 
-    /**
-     * Define Repubhub Preferences Element
-     * @constructor
-     * @class RepubhubPreferencesElement
-     * @param {RepubhubView} view
-     * @param opts
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     * @returns {RepubhubPreferencesElement}
-     */
-    var RepubhubPreferencesElement = function RepubhubPreferencesElement(view, opts) {
+  /**
+   * Define Repubhub Preferences Element
+   * @constructor
+   * @class RepubhubPreferencesElement
+   * @param {RepubhubView} view
+   * @param opts
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   * @returns {RepubhubPreferencesElement}
+   */
+  var RepubhubPreferencesElement = function RepubhubPreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return RepubhubPreferencesElement.extend(
-        'RepubhubPreferencesElement', {}, 
-        PluginElement.prototype, 
-        WidgetPreferences.prototype
-    );
+  return RepubhubPreferencesElement.extend(
+      'RepubhubPreferencesElement', {},
+      PluginElement.prototype,
+      WidgetPreferences.prototype
+  );
 });

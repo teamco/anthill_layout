@@ -6,35 +6,34 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
 ], function defineUstreamPreferencesElement(PluginElement, WidgetPreferences) {
 
-    /**
-     * Define Ustream Preferences Element
-     * @param view
-     * @param opts
-     * @returns {UstreamPreferencesElement}
-     * @constructor
-     * @class UstreamPreferencesElement
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     */
-    var UstreamPreferencesElement = function UstreamPreferencesElement(view, opts) {
+  /**
+   * Define Ustream Preferences Element
+   * @param view
+   * @param opts
+   * @returns {UstreamPreferencesElement}
+   * @constructor
+   * @class UstreamPreferencesElement
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   */
+  var UstreamPreferencesElement = function UstreamPreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return UstreamPreferencesElement.extend('UstreamPreferencesElement', {
-
-
-    }, PluginElement.prototype, WidgetPreferences.prototype);
+  return UstreamPreferencesElement.extend('UstreamPreferencesElement', {},
+      PluginElement.prototype, WidgetPreferences.prototype);
 
 });

@@ -6,38 +6,37 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/rules/widget.base.rules'
+  'plugins/plugin.element',
+  'plugins/rules/widget.base.rules'
 ], function defineTnaFlixRulesElement(PluginElement, BaseWidgetRules) {
 
-    /**
-     * Define TnaFlix Rules Element
-     * @param view
-     * @param opts
-     * @returns {TnaFlixRulesElement}
-     * @constructor
-     * @class TnaFlixRulesElement
-     * @extends PluginElement
-     * @extends BaseWidgetRules
-     */
-    var TnaFlixRulesElement = function TnaFlixRulesElement(view, opts) {
+  /**
+   * Define TnaFlix Rules Element
+   * @param view
+   * @param opts
+   * @returns {TnaFlixRulesElement}
+   * @constructor
+   * @class TnaFlixRulesElement
+   * @extends PluginElement
+   * @extends BaseWidgetRules
+   */
+  var TnaFlixRulesElement = function TnaFlixRulesElement(view, opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBaseRulesData(
-            opts.data,
-            opts.rules.widget,
-            opts.rules.content
-        );
+    this.renderBaseRulesData(
+        opts.data,
+        opts.rules.widget,
+        opts.rules.content
+    );
 
-        return this;
-    };
+    return this;
+  };
 
-    return TnaFlixRulesElement.extend('TnaFlixRulesElement', {
-
-    }, PluginElement.prototype, BaseWidgetRules.prototype);
+  return TnaFlixRulesElement.extend('TnaFlixRulesElement', {},
+      PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

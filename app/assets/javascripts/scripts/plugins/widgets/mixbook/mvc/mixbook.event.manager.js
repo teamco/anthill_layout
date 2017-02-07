@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineMixbookEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define Mixbook event manager
-     * @class MixbookEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var MixbookEventManager = function MixbookEventManager() {
+  /**
+   * Define Mixbook event manager
+   * @class MixbookEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var MixbookEventManager = function MixbookEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return MixbookEventManager.extend('MixbookEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return MixbookEventManager.extend('MixbookEventManager', {},
+      WidgetContentEventManager.prototype);
 });

@@ -6,39 +6,39 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/rules/widget.base.rules'
+  'plugins/plugin.element',
+  'plugins/rules/widget.base.rules'
 ], function defineClypItRulesElement(PluginElement, BaseWidgetRules) {
 
-    /**
-     * Define ClypIt Rules Element
-     * @param view
-     * @param opts
-     * @returns {ClypItRulesElement}
-     * @constructor
-     * @class ClypItRulesElement
-     * @extends PluginElement
-     * @extends BaseWidgetRules
-     */
-    var ClypItRulesElement = function ClypItRulesElement(view, opts) {
+  /**
+   * Define ClypIt Rules Element
+   * @param view
+   * @param opts
+   * @returns {ClypItRulesElement}
+   * @constructor
+   * @class ClypItRulesElement
+   * @extends PluginElement
+   * @extends BaseWidgetRules
+   */
+  var ClypItRulesElement = function ClypItRulesElement(view, opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBaseRulesData(
-            opts.data,
-            opts.rules.widget,
-            opts.rules.content
-        );
-
-        return this;
-    };
-
-    return ClypItRulesElement.extend(
-        'ClypItRulesElement', {}, 
-        PluginElement.prototype, 
-        BaseWidgetRules.prototype
+    this.renderBaseRulesData(
+        opts.data,
+        opts.rules.widget,
+        opts.rules.content
     );
+
+    return this;
+  };
+
+  return ClypItRulesElement.extend(
+      'ClypItRulesElement', {},
+      PluginElement.prototype,
+      BaseWidgetRules.prototype
+  );
 });

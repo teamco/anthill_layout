@@ -7,24 +7,23 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineMapLocatorEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define MapLocator event manager
-     * @class MapLocatorEventManager
-     * @constructor
-     * @extends WidgetContentEventManager
-     * @extends BaseEvent
-     */
-    var MapLocatorEventManager = function MapLocatorEventManager() {
+  /**
+   * Define MapLocator event manager
+   * @class MapLocatorEventManager
+   * @constructor
+   * @extends WidgetContentEventManager
+   * @extends BaseEvent
+   */
+  var MapLocatorEventManager = function MapLocatorEventManager() {
 
-        this.updateEventList({
-            getLocation: 'get.location'
-        });
-    };
+    this.updateEventList({
+      getLocation: 'get.location'
+    });
+  };
 
-    return MapLocatorEventManager.extend('MapLocatorEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return MapLocatorEventManager.extend('MapLocatorEventManager', {},
+      WidgetContentEventManager.prototype);
 });

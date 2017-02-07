@@ -6,35 +6,33 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
 ], function definePdfPreferencesElement(PluginElement, WidgetPreferences) {
 
-    /**
-     * Define Pdf Preferences Element
-     * @param view
-     * @param opts
-     * @returns {PdfPreferencesElement}
-     * @constructor
-     * @class PdfPreferencesElement
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     */
-    var PdfPreferencesElement = function PdfPreferencesElement(view, opts) {
+  /**
+   * Define Pdf Preferences Element
+   * @param view
+   * @param opts
+   * @returns {PdfPreferencesElement}
+   * @constructor
+   * @class PdfPreferencesElement
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   */
+  var PdfPreferencesElement = function PdfPreferencesElement(view, opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return PdfPreferencesElement.extend('PdfPreferencesElement', {
-
-
-    }, PluginElement.prototype, WidgetPreferences.prototype);
+  return PdfPreferencesElement.extend('PdfPreferencesElement', {},
+      PluginElement.prototype, WidgetPreferences.prototype);
 
 });

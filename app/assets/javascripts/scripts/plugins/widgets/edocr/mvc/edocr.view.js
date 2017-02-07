@@ -7,101 +7,102 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/edocr/element/edocr.element',
-    'plugins/widgets/edocr/element/edocr.preferences.element',
-    'plugins/widgets/edocr/element/edocr.rules.element'
-], function defineEdocrView(BaseView, Header, Footer, EdocrElement, EdocrPreferencesElement, EdocrRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/edocr/element/edocr.element',
+  'plugins/widgets/edocr/element/edocr.preferences.element',
+  'plugins/widgets/edocr/element/edocr.rules.element'
+], function defineEdocrView(BaseView, Header, Footer, EdocrElement,
+    EdocrPreferencesElement, EdocrRulesElement) {
+
+  /**
+   * Define view
+   * @class EdocrView
+   * @extends BaseView
+   * @constructor
+   */
+  var EdocrView = function EdocrView() {
+  };
+
+  return EdocrView.extend('EdocrView', {
 
     /**
-     * Define view
-     * @class EdocrView
-     * @extends BaseView
-     * @constructor
+     * Render Edocr element
+     * @memberOf EdocrView
      */
-    var EdocrView = function EdocrView() {
-    };
+    renderEdocr: function renderEdocr() {
 
-    return EdocrView.extend('EdocrView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render Edocr element
-         * @memberOf EdocrView
-         */
-        renderEdocr: function renderEdocr() {
+      /**
+       * Define $edocr
+       * @type {EdocrElement}
+       */
+      this.elements.$edocr = new EdocrElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $edocr
-             * @type {EdocrElement}
-             */
-            this.elements.$edocr = new EdocrElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf EdocrView
+     * @returns {EdocrPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define Edocr Preferences Element
+       * @type {EdocrPreferencesElement}
+       */
+      this.elements.$preferences = new EdocrPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf EdocrView
-         * @returns {EdocrPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define Edocr Preferences Element
-             * @type {EdocrPreferencesElement}
-             */
-            this.elements.$preferences = new EdocrPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf EdocrView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {EdocrRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
-
-        /**
-         * Render Rules
-         * @memberOf EdocrView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {EdocrRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define Edocr Rules Element
-             * @type {EdocrRulesElement}
-             */
-            this.elements.$rules = new EdocrRulesElement(this, {
-                data: this.controller.getRules(),
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render Edocr
-         * @memberOf EdocrView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderEdocr.bind(this)
-            );
+      /**
+       * Define Edocr Rules Element
+       * @type {EdocrRulesElement}
+       */
+      this.elements.$rules = new EdocrRulesElement(this, {
+        data: this.controller.getRules(),
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype);
+      return this.get$rules();
+    },
+
+    /**
+     * Render Edocr
+     * @memberOf EdocrView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderEdocr.bind(this)
+      );
+    }
+
+  }, BaseView.prototype);
 });

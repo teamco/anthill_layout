@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineVidmePermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class VidmePermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var VidmePermission = function VidmePermission() {
+  /**
+   * Define Permissions
+   * @class VidmePermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var VidmePermission = function VidmePermission() {
 
-    };
+  };
 
-    return VidmePermission.extend('VidmePermission', {
-
-    }, BasePermission.prototype);
+  return VidmePermission.extend('VidmePermission', {},
+      BasePermission.prototype);
 });

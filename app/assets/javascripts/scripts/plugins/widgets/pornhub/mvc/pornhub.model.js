@@ -6,51 +6,52 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function definePornhubModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define Pornhub model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class PornhubModel
+   * @constructor
+   */
+  var PornhubModel = function PornhubModel() {
+
     /**
-     * Define Pornhub model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class PornhubModel
-     * @constructor
+     * Define preferences
+     * @memberOf PornhubModel
+     * @type {{pornhubUrl: {type: string, disabled: boolean, value: undefined,
+     *     visible: boolean}}}
      */
-    var PornhubModel = function PornhubModel() {
-
-        /**
-         * Define preferences
-         * @memberOf PornhubModel
-         * @type {{pornhubUrl: {type: string, disabled: boolean, value: undefined, visible: boolean}}}
-         */
-        this.preferences = {
-            pornhubUrl: {
-                type: 'text',
-                disabled: false,
-                value: undefined,
-                visible: true
-            }
-        };
-
-        /**
-         * Define rules
-         * @memberOf PornhubModel
-         * @type {{}}
-         */
-        this.rules = {};
+    this.preferences = {
+      pornhubUrl: {
+        type: 'text',
+        disabled: false,
+        value: undefined,
+        visible: true
+      }
     };
 
-    return PornhubModel.extend('PornhubModel', {
+    /**
+     * Define rules
+     * @memberOf PornhubModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        /**
-         * Set Pornhub Url
-         * @memberOf PornhubModel
-         * @param {string} url
-         */
-        setPornhubUrl: function setPornhubUrl(url) {
-            this.setPrefs('pornhubUrl', url);
-        }
+  return PornhubModel.extend('PornhubModel', {
 
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    /**
+     * Set Pornhub Url
+     * @memberOf PornhubModel
+     * @param {string} url
+     */
+    setPornhubUrl: function setPornhubUrl(url) {
+      this.setPrefs('pornhubUrl', url);
+    }
+
+  }, BaseModel.prototype, WidgetContentModel.prototype);
 });

@@ -7,23 +7,23 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineEbaumsWorldEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define EbaumsWorld event manager
-     * @class EbaumsWorldEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var EbaumsWorldEventManager = function EbaumsWorldEventManager() {
+  /**
+   * Define EbaumsWorld event manager
+   * @class EbaumsWorldEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var EbaumsWorldEventManager = function EbaumsWorldEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return EbaumsWorldEventManager.extend(
-        'EbaumsWorldEventManager', {},
-        WidgetContentEventManager.prototype
-    );
+  return EbaumsWorldEventManager.extend(
+      'EbaumsWorldEventManager', {},
+      WidgetContentEventManager.prototype
+  );
 });

@@ -7,23 +7,23 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineEdocrEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define Edocr event manager
-     * @class EdocrEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var EdocrEventManager = function EdocrEventManager() {
+  /**
+   * Define Edocr event manager
+   * @class EdocrEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var EdocrEventManager = function EdocrEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return EdocrEventManager.extend(
-        'EdocrEventManager', {},
-        WidgetContentEventManager.prototype
-    );
+  return EdocrEventManager.extend(
+      'EdocrEventManager', {},
+      WidgetContentEventManager.prototype
+  );
 });

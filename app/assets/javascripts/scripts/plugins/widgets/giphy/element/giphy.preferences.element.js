@@ -6,35 +6,33 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
 ], function defineGiphyPreferencesElement(PluginElement, WidgetPreferences) {
 
-    /**
-     * Define Giphy Preferences Element
-     * @param view
-     * @param opts
-     * @returns {GiphyPreferencesElement}
-     * @constructor
-     * @class GiphyPreferencesElement
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     */
-    var GiphyPreferencesElement = function GiphyPreferencesElement(view, opts) {
+  /**
+   * Define Giphy Preferences Element
+   * @param view
+   * @param opts
+   * @returns {GiphyPreferencesElement}
+   * @constructor
+   * @class GiphyPreferencesElement
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   */
+  var GiphyPreferencesElement = function GiphyPreferencesElement(view, opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return GiphyPreferencesElement.extend('GiphyPreferencesElement', {
-
-
-    }, PluginElement.prototype, WidgetPreferences.prototype);
+  return GiphyPreferencesElement.extend('GiphyPreferencesElement', {},
+      PluginElement.prototype, WidgetPreferences.prototype);
 
 });

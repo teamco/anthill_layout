@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineMixbookPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class MixbookPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var MixbookPermission = function MixbookPermission() {
+  /**
+   * Define Permissions
+   * @class MixbookPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var MixbookPermission = function MixbookPermission() {
 
-    };
+  };
 
-    return MixbookPermission.extend('MixbookPermission', {
-
-    }, BasePermission.prototype);
+  return MixbookPermission.extend('MixbookPermission', {},
+      BasePermission.prototype);
 });

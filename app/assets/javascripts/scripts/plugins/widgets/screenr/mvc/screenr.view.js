@@ -7,108 +7,109 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/screenr/element/screenr.element',
-    'plugins/widgets/screenr/element/screenr.preferences.element',
-    'plugins/widgets/screenr/element/screenr.rules.element'
-], function defineScreenrView(BaseView, Header, Footer, ScreenrElement, ScreenrPreferencesElement, ScreenrRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/screenr/element/screenr.element',
+  'plugins/widgets/screenr/element/screenr.preferences.element',
+  'plugins/widgets/screenr/element/screenr.rules.element'
+], function defineScreenrView(BaseView, Header, Footer, ScreenrElement,
+    ScreenrPreferencesElement, ScreenrRulesElement) {
+
+  /**
+   * Define view
+   * @class ScreenrView
+   * @extends BaseView
+   * @constructor
+   */
+  var ScreenrView = function ScreenrView() {
+  };
+
+  return ScreenrView.extend('ScreenrView', {
 
     /**
-     * Define view
-     * @class ScreenrView
-     * @extends BaseView
-     * @constructor
+     * Render screenr element
+     * @memberOf ScreenrView
      */
-    var ScreenrView = function ScreenrView() {
-    };
+    renderScreenr: function renderScreenr() {
 
-    return ScreenrView.extend('ScreenrView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render screenr element
-         * @memberOf ScreenrView
-         */
-        renderScreenr: function renderScreenr() {
+      /**
+       * Define $screenr
+       * @type {ScreenrElement}
+       */
+      this.elements.$screenr = new ScreenrElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $screenr
-             * @type {ScreenrElement}
-             */
-            this.elements.$screenr = new ScreenrElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf ScreenrView
+     * @returns {ScreenrPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define Screenr Preferences Element
+       * @type {ScreenrPreferencesElement}
+       */
+      this.elements.$preferences = new ScreenrPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf ScreenrView
-         * @returns {ScreenrPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define Screenr Preferences Element
-             * @type {ScreenrPreferencesElement}
-             */
-            this.elements.$preferences = new ScreenrPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf ScreenrView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {ScreenrRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
+      /**
+       * Define data
+       * @type {*|{}}
+       */
+      var data = this.controller.getRules();
 
-        /**
-         * Render Rules
-         * @memberOf ScreenrView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {ScreenrRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define data
-             * @type {*|{}}
-             */
-            var data = this.controller.getRules();
-
-            /**
-             * Define Screenr Rules Element
-             * @type {ScreenrRulesElement}
-             */
-            this.elements.$rules = new ScreenrRulesElement(this, {
-                data: data,
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render screenr
-         * @memberOf ScreenrView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderScreenr.bind(this)
-            );
+      /**
+       * Define Screenr Rules Element
+       * @type {ScreenrRulesElement}
+       */
+      this.elements.$rules = new ScreenrRulesElement(this, {
+        data: data,
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render screenr
+     * @memberOf ScreenrView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderScreenr.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

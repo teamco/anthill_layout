@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineSyntaxHighlighterPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class SyntaxHighlighterPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var SyntaxHighlighterPermission = function SyntaxHighlighterPermission() {
+  /**
+   * Define Permissions
+   * @class SyntaxHighlighterPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var SyntaxHighlighterPermission = function SyntaxHighlighterPermission() {
 
-    };
+  };
 
-    return SyntaxHighlighterPermission.extend('SyntaxHighlighterPermission', {
-
-    }, BasePermission.prototype);
+  return SyntaxHighlighterPermission.extend('SyntaxHighlighterPermission', {},
+      BasePermission.prototype);
 });

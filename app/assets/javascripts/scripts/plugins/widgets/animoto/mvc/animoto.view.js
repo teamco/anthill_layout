@@ -7,108 +7,109 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/animoto/element/animoto.element',
-    'plugins/widgets/animoto/element/animoto.preferences.element',
-    'plugins/widgets/animoto/element/animoto.rules.element'
-], function defineAnimotoView(BaseView, Header, Footer, AnimotoElement, AnimotoPreferencesElement, AnimotoRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/animoto/element/animoto.element',
+  'plugins/widgets/animoto/element/animoto.preferences.element',
+  'plugins/widgets/animoto/element/animoto.rules.element'
+], function defineAnimotoView(BaseView, Header, Footer, AnimotoElement,
+    AnimotoPreferencesElement, AnimotoRulesElement) {
+
+  /**
+   * Define view
+   * @class AnimotoView
+   * @extends BaseView
+   * @constructor
+   */
+  var AnimotoView = function AnimotoView() {
+  };
+
+  return AnimotoView.extend('AnimotoView', {
 
     /**
-     * Define view
-     * @class AnimotoView
-     * @extends BaseView
-     * @constructor
+     * Render animoto element
+     * @memberOf AnimotoView
      */
-    var AnimotoView = function AnimotoView() {
-    };
+    renderAnimoto: function renderAnimoto() {
 
-    return AnimotoView.extend('AnimotoView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render animoto element
-         * @memberOf AnimotoView
-         */
-        renderAnimoto: function renderAnimoto() {
+      /**
+       * Define $animoto
+       * @type {AnimotoElement}
+       */
+      this.elements.$animoto = new AnimotoElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $animoto
-             * @type {AnimotoElement}
-             */
-            this.elements.$animoto = new AnimotoElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf AnimotoView
+     * @returns {AnimotoPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define Animoto Preferences Element
+       * @type {AnimotoPreferencesElement}
+       */
+      this.elements.$preferences = new AnimotoPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf AnimotoView
-         * @returns {AnimotoPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define Animoto Preferences Element
-             * @type {AnimotoPreferencesElement}
-             */
-            this.elements.$preferences = new AnimotoPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf AnimotoView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {AnimotoRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
+      /**
+       * Define data
+       * @type {*|{}}
+       */
+      var data = this.controller.getRules();
 
-        /**
-         * Render Rules
-         * @memberOf AnimotoView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {AnimotoRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define data
-             * @type {*|{}}
-             */
-            var data = this.controller.getRules();
-
-            /**
-             * Define Animoto Rules Element
-             * @type {AnimotoRulesElement}
-             */
-            this.elements.$rules = new AnimotoRulesElement(this, {
-                data: data,
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render animoto
-         * @memberOf AnimotoView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderAnimoto.bind(this)
-            );
+      /**
+       * Define Animoto Rules Element
+       * @type {AnimotoRulesElement}
+       */
+      this.elements.$rules = new AnimotoRulesElement(this, {
+        data: data,
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render animoto
+     * @memberOf AnimotoView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderAnimoto.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

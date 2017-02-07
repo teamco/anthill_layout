@@ -6,53 +6,54 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineIsnareModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define Isnare model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class IsnareModel
+   * @constructor
+   */
+  var IsnareModel = function IsnareModel() {
+
     /**
-     * Define Isnare model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class IsnareModel
-     * @constructor
-     */
-    var IsnareModel = function IsnareModel() {
-
-        /**
-         * Define preferences
-         * @memberOf IsnareModel
-         * @type {{
-         *      isnareEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
+     * Define preferences
+     * @memberOf IsnareModel
+     * @type {{
+         *      isnareEmbedCode: {type: string, disabled: boolean, value:
+         *     undefined, visible: boolean}
          * }}
-         */
-        this.preferences = {
-            isnareEmbedCode: {
-                type: 'textarea',
-                disabled: false,
-                value: undefined,
-                visible: true
-            }
-        };
-
-        /**
-         * Define rules
-         * @memberOf IsnareModel
-         * @type {{}}
-         */
-        this.rules = {};
+     */
+    this.preferences = {
+      isnareEmbedCode: {
+        type: 'textarea',
+        disabled: false,
+        value: undefined,
+        visible: true
+      }
     };
 
-    return IsnareModel.extend('IsnareModel', {
+    /**
+     * Define rules
+     * @memberOf IsnareModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        /**
-         * Set Isnare embed code
-         * @memberOf IsnareModel
-         * @param {string} embed
-         */
-        setIsnareEmbedCode: function setIsnareEmbedCode(embed) {
-            this.setPrefs('isnareEmbedCode', embed);
-        }
+  return IsnareModel.extend('IsnareModel', {
 
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    /**
+     * Set Isnare embed code
+     * @memberOf IsnareModel
+     * @param {string} embed
+     */
+    setIsnareEmbedCode: function setIsnareEmbedCode(embed) {
+      this.setPrefs('isnareEmbedCode', embed);
+    }
+
+  }, BaseModel.prototype, WidgetContentModel.prototype);
 });

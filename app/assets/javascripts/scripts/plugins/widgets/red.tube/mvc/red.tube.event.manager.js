@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineRedTubeEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define RedTube event manager
-     * @class RedTubeEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var RedTubeEventManager = function RedTubeEventManager() {
+  /**
+   * Define RedTube event manager
+   * @class RedTubeEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var RedTubeEventManager = function RedTubeEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return RedTubeEventManager.extend('RedTubeEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return RedTubeEventManager.extend('RedTubeEventManager', {},
+      WidgetContentEventManager.prototype);
 });

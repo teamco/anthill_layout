@@ -7,20 +7,20 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineReleasewirePermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class ReleasewirePermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var ReleasewirePermission = function ReleasewirePermission() {
-    };
+  /**
+   * Define Permissions
+   * @class ReleasewirePermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var ReleasewirePermission = function ReleasewirePermission() {
+  };
 
-    return ReleasewirePermission.extend(
-        'ReleasewirePermission', {}, 
-        BasePermission.prototype
-    );
+  return ReleasewirePermission.extend(
+      'ReleasewirePermission', {},
+      BasePermission.prototype
+  );
 });

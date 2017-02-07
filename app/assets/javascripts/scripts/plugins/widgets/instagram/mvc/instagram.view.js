@@ -7,102 +7,103 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/instagram/element/instagram.element',
-    'plugins/widgets/instagram/element/instagram.preferences.element',
-    'plugins/widgets/instagram/element/instagram.rules.element'
-], function defineInstagramView(BaseView, Header, Footer, InstagramElement, InstagramPreferencesElement, InstagramRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/instagram/element/instagram.element',
+  'plugins/widgets/instagram/element/instagram.preferences.element',
+  'plugins/widgets/instagram/element/instagram.rules.element'
+], function defineInstagramView(BaseView, Header, Footer, InstagramElement,
+    InstagramPreferencesElement, InstagramRulesElement) {
+
+  /**
+   * Define view
+   * @class InstagramView
+   * @extends BaseView
+   * @constructor
+   */
+  var InstagramView = function InstagramView() {
+  };
+
+  return InstagramView.extend('InstagramView', {
 
     /**
-     * Define view
-     * @class InstagramView
-     * @extends BaseView
-     * @constructor
+     * Render Instagram element
+     * @memberOf InstagramView
      */
-    var InstagramView = function InstagramView() {
-    };
+    renderInstagram: function renderInstagram() {
 
-    return InstagramView.extend('InstagramView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render Instagram element
-         * @memberOf InstagramView
-         */
-        renderInstagram: function renderInstagram() {
+      /**
+       * Define $instagram
+       * @type {InstagramElement}
+       */
+      this.elements.$instagram = new InstagramElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $instagram
-             * @type {InstagramElement}
-             */
-            this.elements.$instagram = new InstagramElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf InstagramView
+     * @returns {InstagramPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define Instagram Preferences Element
+       * @type {InstagramPreferencesElement}
+       */
+      this.elements.$preferences = new InstagramPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf InstagramView
-         * @returns {InstagramPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define Instagram Preferences Element
-             * @type {InstagramPreferencesElement}
-             */
-            this.elements.$preferences = new InstagramPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf InstagramView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {InstagramRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
-
-        /**
-         * Render Rules
-         * @memberOf InstagramView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {InstagramRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define Instagram Rules Element
-             * @type {InstagramRulesElement}
-             */
-            this.elements.$rules = new InstagramRulesElement(this, {
-                data: this.controller.getRules(),
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render Instagram
-         * @memberOf InstagramView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderInstagram.bind(this)
-            );
+      /**
+       * Define Instagram Rules Element
+       * @type {InstagramRulesElement}
+       */
+      this.elements.$rules = new InstagramRulesElement(this, {
+        data: this.controller.getRules(),
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render Instagram
+     * @memberOf InstagramView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderInstagram.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

@@ -6,39 +6,39 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/rules/widget.base.rules'
+  'plugins/plugin.element',
+  'plugins/rules/widget.base.rules'
 ], function defineVideopressRulesElement(PluginElement, BaseWidgetRules) {
 
-    /**
-     * Define Videopress Rules Element
-     * @param view
-     * @param opts
-     * @returns {VideopressRulesElement}
-     * @constructor
-     * @class VideopressRulesElement
-     * @extends PluginElement
-     * @extends BaseWidgetRules
-     */
-    var VideopressRulesElement = function VideopressRulesElement(view, opts) {
+  /**
+   * Define Videopress Rules Element
+   * @param view
+   * @param opts
+   * @returns {VideopressRulesElement}
+   * @constructor
+   * @class VideopressRulesElement
+   * @extends PluginElement
+   * @extends BaseWidgetRules
+   */
+  var VideopressRulesElement = function VideopressRulesElement(view, opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBaseRulesData(
-            opts.data,
-            opts.rules.widget,
-            opts.rules.content
-        );
-
-        return this;
-    };
-
-    return VideopressRulesElement.extend(
-        'VideopressRulesElement', {}, 
-        PluginElement.prototype, 
-        BaseWidgetRules.prototype
+    this.renderBaseRulesData(
+        opts.data,
+        opts.rules.widget,
+        opts.rules.content
     );
+
+    return this;
+  };
+
+  return VideopressRulesElement.extend(
+      'VideopressRulesElement', {},
+      PluginElement.prototype,
+      BaseWidgetRules.prototype
+  );
 });

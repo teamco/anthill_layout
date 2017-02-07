@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineOpenWeatherMapPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class OpenWeatherMapPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var OpenWeatherMapPermission = function OpenWeatherMapPermission() {
+  /**
+   * Define Permissions
+   * @class OpenWeatherMapPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var OpenWeatherMapPermission = function OpenWeatherMapPermission() {
 
-    };
+  };
 
-    return OpenWeatherMapPermission.extend('OpenWeatherMapPermission', {
-
-    }, BasePermission.prototype);
+  return OpenWeatherMapPermission.extend('OpenWeatherMapPermission', {},
+      BasePermission.prototype);
 });

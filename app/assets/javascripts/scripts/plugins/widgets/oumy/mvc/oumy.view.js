@@ -7,101 +7,102 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/oumy/element/oumy.element',
-    'plugins/widgets/oumy/element/oumy.preferences.element',
-    'plugins/widgets/oumy/element/oumy.rules.element'
-], function defineOumyView(BaseView, Header, Footer, OumyElement, OumyPreferencesElement, OumyRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/oumy/element/oumy.element',
+  'plugins/widgets/oumy/element/oumy.preferences.element',
+  'plugins/widgets/oumy/element/oumy.rules.element'
+], function defineOumyView(BaseView, Header, Footer, OumyElement,
+    OumyPreferencesElement, OumyRulesElement) {
+
+  /**
+   * Define view
+   * @class OumyView
+   * @extends BaseView
+   * @constructor
+   */
+  var OumyView = function OumyView() {
+  };
+
+  return OumyView.extend('OumyView', {
 
     /**
-     * Define view
-     * @class OumyView
-     * @extends BaseView
-     * @constructor
+     * Render Oumy element
+     * @memberOf OumyView
      */
-    var OumyView = function OumyView() {
-    };
+    renderOumy: function renderOumy() {
 
-    return OumyView.extend('OumyView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render Oumy element
-         * @memberOf OumyView
-         */
-        renderOumy: function renderOumy() {
+      /**
+       * Define $oumy
+       * @type {OumyElement}
+       */
+      this.elements.$oumy = new OumyElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $oumy
-             * @type {OumyElement}
-             */
-            this.elements.$oumy = new OumyElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf OumyView
+     * @returns {OumyPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define Oumy Preferences Element
+       * @type {OumyPreferencesElement}
+       */
+      this.elements.$preferences = new OumyPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf OumyView
-         * @returns {OumyPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define Oumy Preferences Element
-             * @type {OumyPreferencesElement}
-             */
-            this.elements.$preferences = new OumyPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf OumyView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {OumyRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
-
-        /**
-         * Render Rules
-         * @memberOf OumyView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {OumyRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define Oumy Rules Element
-             * @type {OumyRulesElement}
-             */
-            this.elements.$rules = new OumyRulesElement(this, {
-                data: this.controller.getRules(),
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render Oumy
-         * @memberOf OumyView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderOumy.bind(this)
-            );
+      /**
+       * Define Oumy Rules Element
+       * @type {OumyRulesElement}
+       */
+      this.elements.$rules = new OumyRulesElement(this, {
+        data: this.controller.getRules(),
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype);
+      return this.get$rules();
+    },
+
+    /**
+     * Render Oumy
+     * @memberOf OumyView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderOumy.bind(this)
+      );
+    }
+
+  }, BaseView.prototype);
 });

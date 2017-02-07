@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineAOneHipHopEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define AOneHipHop event manager
-     * @class AOneHipHopEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var AOneHipHopEventManager = function AOneHipHopEventManager() {
+  /**
+   * Define AOneHipHop event manager
+   * @class AOneHipHopEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var AOneHipHopEventManager = function AOneHipHopEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return AOneHipHopEventManager.extend('AOneHipHopEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return AOneHipHopEventManager.extend('AOneHipHopEventManager', {},
+      WidgetContentEventManager.prototype);
 });

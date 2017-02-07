@@ -7,108 +7,109 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/quicktime/element/quicktime.element',
-    'plugins/widgets/quicktime/element/quicktime.preferences.element',
-    'plugins/widgets/quicktime/element/quicktime.rules.element'
-], function defineQuicktimeView(BaseView, Header, Footer, QuicktimeElement, QuicktimePreferencesElement, QuicktimeRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/quicktime/element/quicktime.element',
+  'plugins/widgets/quicktime/element/quicktime.preferences.element',
+  'plugins/widgets/quicktime/element/quicktime.rules.element'
+], function defineQuicktimeView(BaseView, Header, Footer, QuicktimeElement,
+    QuicktimePreferencesElement, QuicktimeRulesElement) {
+
+  /**
+   * Define view
+   * @class QuicktimeView
+   * @extends BaseView
+   * @constructor
+   */
+  var QuicktimeView = function QuicktimeView() {
+  };
+
+  return QuicktimeView.extend('QuicktimeView', {
 
     /**
-     * Define view
-     * @class QuicktimeView
-     * @extends BaseView
-     * @constructor
+     * Render quicktime element
+     * @memberOf QuicktimeView
      */
-    var QuicktimeView = function QuicktimeView() {
-    };
+    renderQuicktime: function renderQuicktime() {
 
-    return QuicktimeView.extend('QuicktimeView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render quicktime element
-         * @memberOf QuicktimeView
-         */
-        renderQuicktime: function renderQuicktime() {
+      /**
+       * Define $quicktime
+       * @type {QuicktimeElement}
+       */
+      this.elements.$quicktime = new QuicktimeElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $quicktime
-             * @type {QuicktimeElement}
-             */
-            this.elements.$quicktime = new QuicktimeElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf QuicktimeView
+     * @returns {QuicktimePreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define Quicktime Preferences Element
+       * @type {QuicktimePreferencesElement}
+       */
+      this.elements.$preferences = new QuicktimePreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf QuicktimeView
-         * @returns {QuicktimePreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define Quicktime Preferences Element
-             * @type {QuicktimePreferencesElement}
-             */
-            this.elements.$preferences = new QuicktimePreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf QuicktimeView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {QuicktimeRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
+      /**
+       * Define data
+       * @type {*|{}}
+       */
+      var data = this.controller.getRules();
 
-        /**
-         * Render Rules
-         * @memberOf QuicktimeView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {QuicktimeRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define data
-             * @type {*|{}}
-             */
-            var data = this.controller.getRules();
-
-            /**
-             * Define Quicktime Rules Element
-             * @type {QuicktimeRulesElement}
-             */
-            this.elements.$rules = new QuicktimeRulesElement(this, {
-                data: data,
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render quicktime
-         * @memberOf QuicktimeView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderQuicktime.bind(this)
-            );
+      /**
+       * Define Quicktime Rules Element
+       * @type {QuicktimeRulesElement}
+       */
+      this.elements.$rules = new QuicktimeRulesElement(this, {
+        data: data,
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render quicktime
+     * @memberOf QuicktimeView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderQuicktime.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

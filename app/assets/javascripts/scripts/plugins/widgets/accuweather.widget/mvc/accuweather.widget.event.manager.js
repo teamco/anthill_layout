@@ -7,23 +7,23 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineAccuweatherWidgetEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define AccuweatherWidget event manager
-     * @class AccuweatherWidgetEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var AccuweatherWidgetEventManager = function AccuweatherWidgetEventManager() {
+  /**
+   * Define AccuweatherWidget event manager
+   * @class AccuweatherWidgetEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var AccuweatherWidgetEventManager = function AccuweatherWidgetEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return AccuweatherWidgetEventManager.extend(
-        'AccuweatherWidgetEventManager', {},
-        WidgetContentEventManager.prototype
-    );
+  return AccuweatherWidgetEventManager.extend(
+      'AccuweatherWidgetEventManager', {},
+      WidgetContentEventManager.prototype
+  );
 });

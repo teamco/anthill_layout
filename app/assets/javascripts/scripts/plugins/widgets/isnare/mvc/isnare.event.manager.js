@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineIsnareEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define Isnare event manager
-     * @class IsnareEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var IsnareEventManager = function IsnareEventManager() {
+  /**
+   * Define Isnare event manager
+   * @class IsnareEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var IsnareEventManager = function IsnareEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return IsnareEventManager.extend('IsnareEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return IsnareEventManager.extend('IsnareEventManager', {},
+      WidgetContentEventManager.prototype);
 });

@@ -6,35 +6,35 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
-], function defineScreencastPreferencesElement(PluginElement, WidgetPreferences) {
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
+], function defineScreencastPreferencesElement(PluginElement,
+    WidgetPreferences) {
 
-    /**
-     * Define Screencast Preferences Element
-     * @param view
-     * @param opts
-     * @returns {ScreencastPreferencesElement}
-     * @constructor
-     * @class ScreencastPreferencesElement
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     */
-    var ScreencastPreferencesElement = function ScreencastPreferencesElement(view, opts) {
+  /**
+   * Define Screencast Preferences Element
+   * @param view
+   * @param opts
+   * @returns {ScreencastPreferencesElement}
+   * @constructor
+   * @class ScreencastPreferencesElement
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   */
+  var ScreencastPreferencesElement = function ScreencastPreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return ScreencastPreferencesElement.extend('ScreencastPreferencesElement', {
-
-
-    }, PluginElement.prototype, WidgetPreferences.prototype);
+  return ScreencastPreferencesElement.extend('ScreencastPreferencesElement', {},
+      PluginElement.prototype, WidgetPreferences.prototype);
 
 });

@@ -7,20 +7,20 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineArcgisPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class ArcgisPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var ArcgisPermission = function ArcgisPermission() {
-    };
+  /**
+   * Define Permissions
+   * @class ArcgisPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var ArcgisPermission = function ArcgisPermission() {
+  };
 
-    return ArcgisPermission.extend(
-        'ArcgisPermission', {}, 
-        BasePermission.prototype
-    );
+  return ArcgisPermission.extend(
+      'ArcgisPermission', {},
+      BasePermission.prototype
+  );
 });

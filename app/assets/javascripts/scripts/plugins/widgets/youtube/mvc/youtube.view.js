@@ -7,108 +7,109 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/youtube/element/youtube.element',
-    'plugins/widgets/youtube/element/youtube.preferences.element',
-    'plugins/widgets/youtube/element/youtube.rules.element'
-], function defineYoutubeView(BaseView, Header, Footer, YoutubeElement, YoutubePreferencesElement, YoutubeRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/youtube/element/youtube.element',
+  'plugins/widgets/youtube/element/youtube.preferences.element',
+  'plugins/widgets/youtube/element/youtube.rules.element'
+], function defineYoutubeView(BaseView, Header, Footer, YoutubeElement,
+    YoutubePreferencesElement, YoutubeRulesElement) {
+
+  /**
+   * Define view
+   * @class YoutubeView
+   * @extends BaseView
+   * @constructor
+   */
+  var YoutubeView = function YoutubeView() {
+  };
+
+  return YoutubeView.extend('YoutubeView', {
 
     /**
-     * Define view
-     * @class YoutubeView
-     * @extends BaseView
-     * @constructor
+     * Render youtube element
+     * @memberOf YoutubeView
      */
-    var YoutubeView = function YoutubeView() {
-    };
+    renderYoutube: function renderYoutube() {
 
-    return YoutubeView.extend('YoutubeView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render youtube element
-         * @memberOf YoutubeView
-         */
-        renderYoutube: function renderYoutube() {
+      /**
+       * Define $youtube
+       * @type {YoutubeElement}
+       */
+      this.elements.$youtube = new YoutubeElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $youtube
-             * @type {YoutubeElement}
-             */
-            this.elements.$youtube = new YoutubeElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf YoutubeView
+     * @returns {YoutubePreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define Youtube Preferences Element
+       * @type {YoutubePreferencesElement}
+       */
+      this.elements.$preferences = new YoutubePreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf YoutubeView
-         * @returns {YoutubePreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define Youtube Preferences Element
-             * @type {YoutubePreferencesElement}
-             */
-            this.elements.$preferences = new YoutubePreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf YoutubeView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {YoutubeRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
+      /**
+       * Define data
+       * @type {*|{}}
+       */
+      var data = this.controller.getRules();
 
-        /**
-         * Render Rules
-         * @memberOf YoutubeView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {YoutubeRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define data
-             * @type {*|{}}
-             */
-            var data = this.controller.getRules();
-
-            /**
-             * Define Youtube Rules Element
-             * @type {YoutubeRulesElement}
-             */
-            this.elements.$rules = new YoutubeRulesElement(this, {
-                data: data,
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render youtube
-         * @memberOf YoutubeView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderYoutube.bind(this)
-            );
+      /**
+       * Define Youtube Rules Element
+       * @type {YoutubeRulesElement}
+       */
+      this.elements.$rules = new YoutubeRulesElement(this, {
+        data: data,
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render youtube
+     * @memberOf YoutubeView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderYoutube.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

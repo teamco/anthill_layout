@@ -6,43 +6,43 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineMusTvElement(PluginElement) {
 
+  /**
+   * Define MusTv Element
+   * @param view
+   * @param opts
+   * @returns {MusTvElement}
+   * @constructor
+   * @class MusTvElement
+   * @extends PluginElement
+   */
+  var MusTvElement = function MusTvElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('mus.tv', {resource: '/widgets'});
+
+    return this;
+  };
+
+  return MusTvElement.extend('MusTvElement', {
+
     /**
-     * Define MusTv Element
-     * @param view
-     * @param opts
-     * @returns {MusTvElement}
-     * @constructor
-     * @class MusTvElement
-     * @extends PluginElement
+     * Render Embedded content
+     * @memberOf MusTvElement
+     * @param {string} url
      */
-    var MusTvElement = function MusTvElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent(url) {
+      this.$.append(
+          this.renderIframe(url)
+      );
+    }
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
-
-        this.addCSS('mus.tv', {resource: '/widgets'});
-
-        return this;
-    };
-
-    return MusTvElement.extend('MusTvElement', {
-
-        /**
-         * Render Embedded content
-         * @memberOf MusTvElement
-         * @param {string} url
-         */
-        renderEmbeddedContent: function renderEmbeddedContent(url) {
-            this.$.append(
-                this.renderIframe(url)
-            );
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 
 });

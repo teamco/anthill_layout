@@ -7,108 +7,109 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/my.world/element/my.world.element',
-    'plugins/widgets/my.world/element/my.world.preferences.element',
-    'plugins/widgets/my.world/element/my.world.rules.element'
-], function defineMyWorldView(BaseView, Header, Footer, MyWorldElement, MyWorldPreferencesElement, MyWorldRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/my.world/element/my.world.element',
+  'plugins/widgets/my.world/element/my.world.preferences.element',
+  'plugins/widgets/my.world/element/my.world.rules.element'
+], function defineMyWorldView(BaseView, Header, Footer, MyWorldElement,
+    MyWorldPreferencesElement, MyWorldRulesElement) {
+
+  /**
+   * Define view
+   * @class MyWorldView
+   * @extends BaseView
+   * @constructor
+   */
+  var MyWorldView = function MyWorldView() {
+  };
+
+  return MyWorldView.extend('MyWorldView', {
 
     /**
-     * Define view
-     * @class MyWorldView
-     * @extends BaseView
-     * @constructor
+     * Render myworld element
+     * @memberOf MyWorldView
      */
-    var MyWorldView = function MyWorldView() {
-    };
+    renderMyWorld: function renderMyWorld() {
 
-    return MyWorldView.extend('MyWorldView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render myworld element
-         * @memberOf MyWorldView
-         */
-        renderMyWorld: function renderMyWorld() {
+      /**
+       * Define $myworld
+       * @type {MyWorldElement}
+       */
+      this.elements.$myworld = new MyWorldElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $myworld
-             * @type {MyWorldElement}
-             */
-            this.elements.$myworld = new MyWorldElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf MyWorldView
+     * @returns {MyWorldPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define MyWorld Preferences Element
+       * @type {MyWorldPreferencesElement}
+       */
+      this.elements.$preferences = new MyWorldPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf MyWorldView
-         * @returns {MyWorldPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define MyWorld Preferences Element
-             * @type {MyWorldPreferencesElement}
-             */
-            this.elements.$preferences = new MyWorldPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf MyWorldView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {MyWorldRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
+      /**
+       * Define data
+       * @type {*|{}}
+       */
+      var data = this.controller.getRules();
 
-        /**
-         * Render Rules
-         * @memberOf MyWorldView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {MyWorldRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define data
-             * @type {*|{}}
-             */
-            var data = this.controller.getRules();
-
-            /**
-             * Define MyWorld Rules Element
-             * @type {MyWorldRulesElement}
-             */
-            this.elements.$rules = new MyWorldRulesElement(this, {
-                data: data,
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render myworld
-         * @memberOf MyWorldView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderMyWorld.bind(this)
-            );
+      /**
+       * Define MyWorld Rules Element
+       * @type {MyWorldRulesElement}
+       */
+      this.elements.$rules = new MyWorldRulesElement(this, {
+        data: data,
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render myworld
+     * @memberOf MyWorldView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderMyWorld.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

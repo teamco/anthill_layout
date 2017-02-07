@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineInstagramPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class InstagramPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var InstagramPermission = function InstagramPermission() {
+  /**
+   * Define Permissions
+   * @class InstagramPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var InstagramPermission = function InstagramPermission() {
 
-    };
+  };
 
-    return InstagramPermission.extend('InstagramPermission', {
-
-    }, BasePermission.prototype);
+  return InstagramPermission.extend('InstagramPermission', {},
+      BasePermission.prototype);
 });

@@ -6,41 +6,42 @@
  */
 
 define([
-    'config/anthill',
-    'modules/MVC',
-    'plugins/widgets/polldaddy/mvc/polldaddy.controller',
-    'plugins/widgets/polldaddy/mvc/polldaddy.model',
-    'plugins/widgets/polldaddy/mvc/polldaddy.view',
-    'plugins/widgets/polldaddy/mvc/polldaddy.event.manager',
-    'plugins/widgets/polldaddy/mvc/polldaddy.permission'
-], function definePolldaddy(AntHill, MVC, Controller, Model, View, EventManager, Permission) {
+  'config/anthill',
+  'modules/MVC',
+  'plugins/widgets/polldaddy/mvc/polldaddy.controller',
+  'plugins/widgets/polldaddy/mvc/polldaddy.model',
+  'plugins/widgets/polldaddy/mvc/polldaddy.view',
+  'plugins/widgets/polldaddy/mvc/polldaddy.event.manager',
+  'plugins/widgets/polldaddy/mvc/polldaddy.permission'
+], function definePolldaddy(AntHill, MVC, Controller, Model, View, EventManager,
+    Permission) {
+
+  /**
+   * Define Polldaddy
+   * @param containment
+   * @param [opts]
+   * @constructor
+   * @class Polldaddy
+   * @extends AntHill
+   */
+  var Polldaddy = function Polldaddy(containment, opts) {
 
     /**
-     * Define Polldaddy
-     * @param containment
-     * @param [opts]
-     * @constructor
-     * @class Polldaddy
-     * @extends AntHill
+     * Define containment
+     * @memberOf Polldaddy
      */
-    var Polldaddy = function Polldaddy(containment, opts) {
+    this.containment = containment;
 
-        /**
-         * Define containment
-         * @memberOf Polldaddy
-         */
-        this.containment = containment;
+    /**
+     * Define referrer
+     * @memberOf Polldaddy
+     * @type {*}
+     */
+    this.referrer = undefined;
 
-        /**
-         * Define referrer
-         * @memberOf Polldaddy
-         * @type {*}
-         */
-        this.referrer = undefined;
-
-        /**
-         * Define defaults
-         * @type {{
+    /**
+     * Define defaults
+     * @type {{
          *      plugin: boolean,
          *      html: {
          *          style: string,
@@ -56,50 +57,48 @@ define([
          *      regex: RegExp,
          *      mask: string
          * }}
-         */
-        var DEFAULTS = {
-            plugin: true,
-            html: {
-                style: 'default',
-                header: false,
-                footer: false,
-                padding: {
-                    top: 0,
-                    right: 0,
-                    bottom: 0,
-                    left: 0
-                }
-            }
-        };
-
-        /**
-         * Define MVC
-         * @memberOf Polldaddy
-         * @type {MVC}
-         */
-        this.mvc = new MVC({
-            scope: this,
-            config: [
-                {uuid: this.containment.model.getContentUUID()},
-                DEFAULTS
-            ],
-            components: [
-                Controller,
-                Model,
-                View,
-                EventManager,
-                Permission
-            ],
-            render: true
-        });
-
-        this.observer.publish(
-            this.eventmanager.eventList.initWidget,
-            opts
-        );
+     */
+    var DEFAULTS = {
+      plugin: true,
+      html: {
+        style: 'default',
+        header: false,
+        footer: false,
+        padding: {
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0
+        }
+      }
     };
 
-    return Polldaddy.extend('Polldaddy', {
+    /**
+     * Define MVC
+     * @memberOf Polldaddy
+     * @type {MVC}
+     */
+    this.mvc = new MVC({
+      scope: this,
+      config: [
+        {uuid: this.containment.model.getContentUUID()},
+        DEFAULTS
+      ],
+      components: [
+        Controller,
+        Model,
+        View,
+        EventManager,
+        Permission
+      ],
+      render: true
+    });
 
-    }, AntHill.prototype);
+    this.observer.publish(
+        this.eventmanager.eventList.initWidget,
+        opts
+    );
+  };
+
+  return Polldaddy.extend('Polldaddy', {}, AntHill.prototype);
 });

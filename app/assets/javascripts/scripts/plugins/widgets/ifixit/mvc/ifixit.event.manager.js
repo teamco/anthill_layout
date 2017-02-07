@@ -7,23 +7,23 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineIfixitEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define Ifixit event manager
-     * @class IfixitEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var IfixitEventManager = function IfixitEventManager() {
+  /**
+   * Define Ifixit event manager
+   * @class IfixitEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var IfixitEventManager = function IfixitEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return IfixitEventManager.extend(
-        'IfixitEventManager', {},
-        WidgetContentEventManager.prototype
-    );
+  return IfixitEventManager.extend(
+      'IfixitEventManager', {},
+      WidgetContentEventManager.prototype
+  );
 });

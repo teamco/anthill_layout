@@ -6,35 +6,37 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
-], function defineReleasewirePreferencesElement(PluginElement, WidgetPreferences) {
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
+], function defineReleasewirePreferencesElement(PluginElement,
+    WidgetPreferences) {
 
-    /**
-     * Define Releasewire Preferences Element
-     * @constructor
-     * @class ReleasewirePreferencesElement
-     * @param {ReleasewireView} view
-     * @param opts
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     * @returns {ReleasewirePreferencesElement}
-     */
-    var ReleasewirePreferencesElement = function ReleasewirePreferencesElement(view, opts) {
+  /**
+   * Define Releasewire Preferences Element
+   * @constructor
+   * @class ReleasewirePreferencesElement
+   * @param {ReleasewireView} view
+   * @param opts
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   * @returns {ReleasewirePreferencesElement}
+   */
+  var ReleasewirePreferencesElement = function ReleasewirePreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return ReleasewirePreferencesElement.extend(
-        'ReleasewirePreferencesElement', {}, 
-        PluginElement.prototype, 
-        WidgetPreferences.prototype
-    );
+  return ReleasewirePreferencesElement.extend(
+      'ReleasewirePreferencesElement', {},
+      PluginElement.prototype,
+      WidgetPreferences.prototype
+  );
 });

@@ -7,20 +7,20 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineEmptyPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class EmptyPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var EmptyPermission = function EmptyPermission() {
-    };
+  /**
+   * Define Permissions
+   * @class EmptyPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var EmptyPermission = function EmptyPermission() {
+  };
 
-    return EmptyPermission.extend(
-        'EmptyPermission', {}, 
-        BasePermission.prototype
-    );
+  return EmptyPermission.extend(
+      'EmptyPermission', {},
+      BasePermission.prototype
+  );
 });

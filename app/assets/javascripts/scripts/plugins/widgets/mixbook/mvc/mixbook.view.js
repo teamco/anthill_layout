@@ -7,108 +7,109 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/mixbook/element/mixbook.element',
-    'plugins/widgets/mixbook/element/mixbook.preferences.element',
-    'plugins/widgets/mixbook/element/mixbook.rules.element'
-], function defineMixbookView(BaseView, Header, Footer, MixbookElement, MixbookPreferencesElement, MixbookRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/mixbook/element/mixbook.element',
+  'plugins/widgets/mixbook/element/mixbook.preferences.element',
+  'plugins/widgets/mixbook/element/mixbook.rules.element'
+], function defineMixbookView(BaseView, Header, Footer, MixbookElement,
+    MixbookPreferencesElement, MixbookRulesElement) {
+
+  /**
+   * Define view
+   * @class MixbookView
+   * @extends BaseView
+   * @constructor
+   */
+  var MixbookView = function MixbookView() {
+  };
+
+  return MixbookView.extend('MixbookView', {
 
     /**
-     * Define view
-     * @class MixbookView
-     * @extends BaseView
-     * @constructor
+     * Render mixbook element
+     * @memberOf MixbookView
      */
-    var MixbookView = function MixbookView() {
-    };
+    renderMixbook: function renderMixbook() {
 
-    return MixbookView.extend('MixbookView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render mixbook element
-         * @memberOf MixbookView
-         */
-        renderMixbook: function renderMixbook() {
+      /**
+       * Define $mixbook
+       * @type {MixbookElement}
+       */
+      this.elements.$mixbook = new MixbookElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $mixbook
-             * @type {MixbookElement}
-             */
-            this.elements.$mixbook = new MixbookElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf MixbookView
+     * @returns {MixbookPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define Mixbook Preferences Element
+       * @type {MixbookPreferencesElement}
+       */
+      this.elements.$preferences = new MixbookPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf MixbookView
-         * @returns {MixbookPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define Mixbook Preferences Element
-             * @type {MixbookPreferencesElement}
-             */
-            this.elements.$preferences = new MixbookPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf MixbookView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {MixbookRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
+      /**
+       * Define data
+       * @type {*|{}}
+       */
+      var data = this.controller.getRules();
 
-        /**
-         * Render Rules
-         * @memberOf MixbookView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {MixbookRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define data
-             * @type {*|{}}
-             */
-            var data = this.controller.getRules();
-
-            /**
-             * Define Mixbook Rules Element
-             * @type {MixbookRulesElement}
-             */
-            this.elements.$rules = new MixbookRulesElement(this, {
-                data: data,
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render mixbook
-         * @memberOf MixbookView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderMixbook.bind(this)
-            );
+      /**
+       * Define Mixbook Rules Element
+       * @type {MixbookRulesElement}
+       */
+      this.elements.$rules = new MixbookRulesElement(this, {
+        data: data,
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render mixbook
+     * @memberOf MixbookView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderMixbook.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

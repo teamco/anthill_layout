@@ -7,20 +7,20 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineSwayPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class SwayPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var SwayPermission = function SwayPermission() {
-    };
+  /**
+   * Define Permissions
+   * @class SwayPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var SwayPermission = function SwayPermission() {
+  };
 
-    return SwayPermission.extend(
-        'SwayPermission', {}, 
-        BasePermission.prototype
-    );
+  return SwayPermission.extend(
+      'SwayPermission', {},
+      BasePermission.prototype
+  );
 });

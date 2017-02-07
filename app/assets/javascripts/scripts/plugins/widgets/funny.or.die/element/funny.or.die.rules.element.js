@@ -6,38 +6,37 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/rules/widget.base.rules'
+  'plugins/plugin.element',
+  'plugins/rules/widget.base.rules'
 ], function defineFunnyOrDieRulesElement(PluginElement, BaseWidgetRules) {
 
-    /**
-     * Define FunnyOrDie Rules Element
-     * @param view
-     * @param opts
-     * @returns {FunnyOrDieRulesElement}
-     * @constructor
-     * @class FunnyOrDieRulesElement
-     * @extends PluginElement
-     * @extends BaseWidgetRules
-     */
-    var FunnyOrDieRulesElement = function FunnyOrDieRulesElement(view, opts) {
+  /**
+   * Define FunnyOrDie Rules Element
+   * @param view
+   * @param opts
+   * @returns {FunnyOrDieRulesElement}
+   * @constructor
+   * @class FunnyOrDieRulesElement
+   * @extends PluginElement
+   * @extends BaseWidgetRules
+   */
+  var FunnyOrDieRulesElement = function FunnyOrDieRulesElement(view, opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBaseRulesData(
-            opts.data,
-            opts.rules.widget,
-            opts.rules.content
-        );
+    this.renderBaseRulesData(
+        opts.data,
+        opts.rules.widget,
+        opts.rules.content
+    );
 
-        return this;
-    };
+    return this;
+  };
 
-    return FunnyOrDieRulesElement.extend('FunnyOrDieRulesElement', {
-
-    }, PluginElement.prototype, BaseWidgetRules.prototype);
+  return FunnyOrDieRulesElement.extend('FunnyOrDieRulesElement', {},
+      PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

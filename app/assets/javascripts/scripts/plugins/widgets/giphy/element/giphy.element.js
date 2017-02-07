@@ -6,62 +6,62 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineGiphyElement(PluginElement) {
 
-    /**
-     * Define Giphy Element
-     * @param view
-     * @param opts
-     * @returns {GiphyElement}
-     * @constructor
-     * @class GiphyElement
-     * @extends PluginElement
-     */
-    var GiphyElement = function GiphyElement(view, opts) {
+  /**
+   * Define Giphy Element
+   * @param view
+   * @param opts
+   * @returns {GiphyElement}
+   * @constructor
+   * @class GiphyElement
+   * @extends PluginElement
+   */
+  var GiphyElement = function GiphyElement(view, opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('giphy', {resource: '/widgets'});
+
+    return this;
+  };
+
+  return GiphyElement.extend('GiphyElement', {
+
+    /**
+     * Render Embedded content
+     * @memberOf GiphyElement
+     * @param {{src, type, [id], [width], [height]}} embed
+     */
+    renderEmbeddedContent: function renderEmbeddedContent(embed) {
+
+      /**
+       * Define content
+       * @type {*|jQuery}
+       */
+      var $content = embed.type === 'iframe' ?
+          this.renderIframe(embed.src) :
+          embed.src;
+
+      this.$.append($content);
+
+      if (embed.type === 'js') {
+        window._giphy = window._giphy || [];
+        window._giphy.push({
+          id: embed.id,
+          w: embed.width,
+          h: embed.height
         });
 
-        this.addCSS('giphy', {resource: '/widgets'});
+        require(['//giphy.com/static/js/widgets/embed.js']);
+      }
+    }
 
-        return this;
-    };
-
-    return GiphyElement.extend('GiphyElement', {
-
-        /**
-         * Render Embedded content
-         * @memberOf GiphyElement
-         * @param {{src, type, [id], [width], [height]}} embed
-         */
-        renderEmbeddedContent: function renderEmbeddedContent(embed) {
-
-            /**
-             * Define content
-             * @type {*|jQuery}
-             */
-            var $content = embed.type === 'iframe' ?
-                this.renderIframe(embed.src) :
-                embed.src;
-
-            this.$.append($content);
-
-            if (embed.type === 'js') {
-                window._giphy = window._giphy || [];
-                window._giphy.push({
-                    id: embed.id,
-                    w: embed.width,
-                    h: embed.height
-                });
-
-                require(['//giphy.com/static/js/widgets/embed.js']);
-            }
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 
 });
 

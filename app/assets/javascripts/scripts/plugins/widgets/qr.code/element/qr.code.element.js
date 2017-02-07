@@ -6,61 +6,61 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineQrCodeElement(PluginElement) {
 
+  /**
+   * Define QrCode Element
+   * @param view
+   * @param opts
+   * @returns {QrCodeElement}
+   * @constructor
+   * @class QrCodeElement
+   * @extends PluginElement
+   */
+  var QrCodeElement = function QrCodeElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('qr.code', {resource: '/widgets'});
+
+    return this;
+  };
+
+  return QrCodeElement.extend('QrCodeElement', {
+
     /**
-     * Define QrCode Element
-     * @param view
-     * @param opts
-     * @returns {QrCodeElement}
-     * @constructor
-     * @class QrCodeElement
-     * @extends PluginElement
+     * Render Embedded content
+     * @memberOf QrCodeElement
      */
-    var QrCodeElement = function QrCodeElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent(text, size) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+      if (_.isUndefined(text) || _.isUndefined(size)) {
 
-        this.addCSS('qr.code', {resource: '/widgets'});
+        this.view.scope.logger.debug('Initial loading', arguments);
+        return false;
+      }
 
-        return this;
-    };
-
-    return QrCodeElement.extend('QrCodeElement', {
+      require([
+        'lib/packages/raphael-min',
+        'plugins/widgets/qr.code/lib/qrcodesvg'
+      ], function requireQCode() {
 
         /**
-         * Render Embedded content
-         * @memberOf QrCodeElement
+         * Init QrCode
+         * @type {Qrcodesvg}
          */
-        renderEmbeddedContent: function renderEmbeddedContent(text, size) {
+        var qrcodesvg = new Qrcodesvg(text, this.id, size);
 
-            if (_.isUndefined(text) || _.isUndefined(size)) {
+        qrcodesvg.draw();
 
-                this.view.scope.logger.debug('Initial loading', arguments);
-                return false;
-            }
+        this.view.controller.clearParentThumbnail();
 
-            require([
-                'lib/packages/raphael-min',
-                'plugins/widgets/qr.code/lib/qrcodesvg'
-            ], function requireQCode() {
+      }.bind(this));
+    }
 
-                /**
-                 * Init QrCode
-                 * @type {Qrcodesvg}
-                 */
-                var qrcodesvg = new Qrcodesvg(text, this.id, size);
-
-                qrcodesvg.draw();
-
-                this.view.controller.clearParentThumbnail();
-
-            }.bind(this));
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 });

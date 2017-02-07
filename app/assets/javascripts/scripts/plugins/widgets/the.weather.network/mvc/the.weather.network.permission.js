@@ -7,20 +7,20 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineTheWeatherNetworkPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class TheWeatherNetworkPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var TheWeatherNetworkPermission = function TheWeatherNetworkPermission() {
-    };
+  /**
+   * Define Permissions
+   * @class TheWeatherNetworkPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var TheWeatherNetworkPermission = function TheWeatherNetworkPermission() {
+  };
 
-    return TheWeatherNetworkPermission.extend(
-        'TheWeatherNetworkPermission', {}, 
-        BasePermission.prototype
-    );
+  return TheWeatherNetworkPermission.extend(
+      'TheWeatherNetworkPermission', {},
+      BasePermission.prototype
+  );
 });

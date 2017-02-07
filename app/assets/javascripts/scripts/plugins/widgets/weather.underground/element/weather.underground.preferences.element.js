@@ -6,35 +6,37 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
-], function defineWeatherUndergroundPreferencesElement(PluginElement, WidgetPreferences) {
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
+], function defineWeatherUndergroundPreferencesElement(PluginElement,
+    WidgetPreferences) {
 
-    /**
-     * Define WeatherUnderground Preferences Element
-     * @constructor
-     * @class WeatherUndergroundPreferencesElement
-     * @param {WeatherUndergroundView} view
-     * @param opts
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     * @returns {WeatherUndergroundPreferencesElement}
-     */
-    var WeatherUndergroundPreferencesElement = function WeatherUndergroundPreferencesElement(view, opts) {
+  /**
+   * Define WeatherUnderground Preferences Element
+   * @constructor
+   * @class WeatherUndergroundPreferencesElement
+   * @param {WeatherUndergroundView} view
+   * @param opts
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   * @returns {WeatherUndergroundPreferencesElement}
+   */
+  var WeatherUndergroundPreferencesElement = function WeatherUndergroundPreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return WeatherUndergroundPreferencesElement.extend(
-        'WeatherUndergroundPreferencesElement', {}, 
-        PluginElement.prototype, 
-        WidgetPreferences.prototype
-    );
+  return WeatherUndergroundPreferencesElement.extend(
+      'WeatherUndergroundPreferencesElement', {},
+      PluginElement.prototype,
+      WidgetPreferences.prototype
+  );
 });

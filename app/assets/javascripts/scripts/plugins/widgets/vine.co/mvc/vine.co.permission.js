@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineVineCoPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class VineCoPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var VineCoPermission = function VineCoPermission() {
+  /**
+   * Define Permissions
+   * @class VineCoPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var VineCoPermission = function VineCoPermission() {
 
-    };
+  };
 
-    return VineCoPermission.extend('VineCoPermission', {
-
-    }, BasePermission.prototype);
+  return VineCoPermission.extend('VineCoPermission', {},
+      BasePermission.prototype);
 });

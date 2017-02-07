@@ -6,53 +6,54 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineKremModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define Krem model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class KremModel
+   * @constructor
+   */
+  var KremModel = function KremModel() {
+
     /**
-     * Define Krem model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class KremModel
-     * @constructor
-     */
-    var KremModel = function KremModel() {
-
-        /**
-         * Define preferences
-         * @memberOf KremModel
-         * @type {{
-         *      kremEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
+     * Define preferences
+     * @memberOf KremModel
+     * @type {{
+         *      kremEmbedCode: {type: string, disabled: boolean, value:
+         *     undefined, visible: boolean}
          * }}
-         */
-        this.preferences = {
-            kremEmbedCode: {
-                type: 'textarea',
-                disabled: false,
-                value: undefined,
-                visible: true
-            }
-        };
-
-        /**
-         * Define rules
-         * @memberOf KremModel
-         * @type {{}}
-         */
-        this.rules = {};
+     */
+    this.preferences = {
+      kremEmbedCode: {
+        type: 'textarea',
+        disabled: false,
+        value: undefined,
+        visible: true
+      }
     };
 
-    return KremModel.extend('KremModel', {
+    /**
+     * Define rules
+     * @memberOf KremModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        /**
-         * Set Krem embed code
-         * @memberOf KremModel
-         * @param {string} embed
-         */
-        setKremEmbedCode: function setKremEmbedCode(embed) {
-            this.setPrefs('kremEmbedCode', embed);
-        }
+  return KremModel.extend('KremModel', {
 
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    /**
+     * Set Krem embed code
+     * @memberOf KremModel
+     * @param {string} embed
+     */
+    setKremEmbedCode: function setKremEmbedCode(embed) {
+      this.setPrefs('kremEmbedCode', embed);
+    }
+
+  }, BaseModel.prototype, WidgetContentModel.prototype);
 });

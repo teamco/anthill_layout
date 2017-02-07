@@ -6,49 +6,49 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function definePostTemplateController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define post.template controller
+   * @class PostTemplateController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var PostTemplateController = function PostTemplateController() {
+  };
+
+  return PostTemplateController.extend('PostTemplateController', {
+
     /**
-     * Define post.template controller
-     * @class PostTemplateController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf PostTemplateController
      */
-    var PostTemplateController = function PostTemplateController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
+      this.view.get$item().renderEmbeddedContent();
+    },
 
-    return PostTemplateController.extend('PostTemplateController', {
+    /**
+     * Add PostTemplate rule
+     * @memberOf PostTemplateController
+     * @param {Event} e
+     */
+    addPostTemplateRule: function addPostTemplateRule(e) {
 
-        /**
-         * Set embedded content
-         * @memberOf PostTemplateController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
-            this.view.get$item().renderEmbeddedContent();
-        },
+      /**
+       * Define $button
+       * @type {*|jQuery|HTMLElement}
+       */
+      var $button = $(e.target),
+          scope = this.scope;
 
-        /**
-         * Add PostTemplate rule
-         * @memberOf PostTemplateController
-         * @param {Event} e
-         */
-        addPostTemplateRule: function addPostTemplateRule(e) {
+      scope.observer.publish(
+          scope.eventmanager.eventList.publishRule,
+          [$button.attr('value'), this.scope.name]
+      );
+    }
 
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), this.scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

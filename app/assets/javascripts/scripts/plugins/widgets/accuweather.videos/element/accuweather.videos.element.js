@@ -6,44 +6,44 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineAccuweatherVideosElement(PluginElement) {
 
+  /**
+   * Define AccuweatherVideos Element
+   * @param view
+   * @param opts
+   * @returns {AccuweatherVideosElement}
+   * @constructor
+   * @class AccuweatherVideosElement
+   * @extends PluginElement
+   */
+  var AccuweatherVideosElement = function AccuweatherVideosElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('accuweather.videos', {resource: '/widgets'});
+
+    return this;
+  };
+
+  return AccuweatherVideosElement.extend('AccuweatherVideosElement', {
+
     /**
-     * Define AccuweatherVideos Element
-     * @param view
-     * @param opts
-     * @returns {AccuweatherVideosElement}
-     * @constructor
-     * @class AccuweatherVideosElement
-     * @extends PluginElement
+     * Render Embedded content
+     * @memberOf AccuweatherVideosElement
+     * @param {string} embed
      */
-    var AccuweatherVideosElement = function AccuweatherVideosElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent(embed) {
+      this.addContent(
+          this.renderObject(
+              $(embed)[0]
+          )
+      );
+    }
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
-
-        this.addCSS('accuweather.videos', {resource: '/widgets'});
-
-        return this;
-    };
-
-    return AccuweatherVideosElement.extend('AccuweatherVideosElement', {
-
-        /**
-         * Render Embedded content
-         * @memberOf AccuweatherVideosElement
-         * @param {string} embed
-         */
-        renderEmbeddedContent: function renderEmbeddedContent(embed) {
-            this.addContent(
-                this.renderObject(
-                    $(embed)[0]
-                )
-            );
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 });

@@ -6,53 +6,54 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineTwentyFourLiveModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define TwentyFourLive model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class TwentyFourLiveModel
+   * @constructor
+   */
+  var TwentyFourLiveModel = function TwentyFourLiveModel() {
+
     /**
-     * Define TwentyFourLive model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class TwentyFourLiveModel
-     * @constructor
-     */
-    var TwentyFourLiveModel = function TwentyFourLiveModel() {
-
-        /**
-         * Define preferences
-         * @memberOf TwentyFourLiveModel
-         * @type {{
-         *      twentyfourliveUrl: {type: string, disabled: boolean, value: undefined, visible: boolean}
+     * Define preferences
+     * @memberOf TwentyFourLiveModel
+     * @type {{
+         *      twentyfourliveUrl: {type: string, disabled: boolean, value:
+         *     undefined, visible: boolean}
          * }}
-         */
-        this.preferences = {
-            twentyfourliveUrl: {
-                type: 'text',
-                disabled: true,
-                value: 'https://www.youtube.com/watch?feature=player_embedded&v=naKpfjR5fqo',
-                visible: true
-            }
-        };
-
-        /**
-         * Define rules
-         * @memberOf TwentyFourLiveModel
-         * @type {{}}
-         */
-        this.rules = {};
+     */
+    this.preferences = {
+      twentyfourliveUrl: {
+        type: 'text',
+        disabled: true,
+        value: 'https://www.youtube.com/watch?feature=player_embedded&v=naKpfjR5fqo',
+        visible: true
+      }
     };
 
-    return TwentyFourLiveModel.extend('TwentyFourLiveModel', {
+    /**
+     * Define rules
+     * @memberOf TwentyFourLiveModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        /**
-         * Set TwentyFourLive Url
-         * @memberOf TwentyFourLiveModel
-         * @param {string} url
-         */
-        setTwentyfourliveUrl: function setTwentyfourliveUrl(url) {
-            this.setPrefs('twentyfourliveUrl', url);
-        }
+  return TwentyFourLiveModel.extend('TwentyFourLiveModel', {
 
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    /**
+     * Set TwentyFourLive Url
+     * @memberOf TwentyFourLiveModel
+     * @param {string} url
+     */
+    setTwentyfourliveUrl: function setTwentyfourliveUrl(url) {
+      this.setPrefs('twentyfourliveUrl', url);
+    }
+
+  }, BaseModel.prototype, WidgetContentModel.prototype);
 });

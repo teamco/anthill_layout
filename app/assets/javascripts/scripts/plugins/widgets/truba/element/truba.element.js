@@ -6,43 +6,43 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineTrubaElement(PluginElement) {
 
+  /**
+   * Define Truba Element
+   * @param view
+   * @param opts
+   * @returns {TrubaElement}
+   * @constructor
+   * @class TrubaElement
+   * @extends PluginElement
+   */
+  var TrubaElement = function TrubaElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('truba', {resource: '/widgets'});
+
+    return this;
+  };
+
+  return TrubaElement.extend('TrubaElement', {
+
     /**
-     * Define Truba Element
-     * @param view
-     * @param opts
-     * @returns {TrubaElement}
-     * @constructor
-     * @class TrubaElement
-     * @extends PluginElement
+     * Render Embedded content
+     * @memberOf TrubaElement
+     * @param {string} url
      */
-    var TrubaElement = function TrubaElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent(url) {
+      this.$.append(
+          this.renderIframe(url)
+      );
+    }
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
-
-        this.addCSS('truba', {resource: '/widgets'});
-
-        return this;
-    };
-
-    return TrubaElement.extend('TrubaElement', {
-
-        /**
-         * Render Embedded content
-         * @memberOf TrubaElement
-         * @param {string} url
-         */
-        renderEmbeddedContent: function renderEmbeddedContent(url) {
-            this.$.append(
-                this.renderIframe(url)
-            );
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 
 });

@@ -7,40 +7,39 @@
  */
 
 define([
-    'modules/Event'
+  'modules/Event'
 ], function defineBarEventManager(BaseEvent) {
 
+  /**
+   * Define bar event manager
+   * @class BarEventManager
+   * @constructor
+   * @extends BaseEvent
+   */
+  var BarEventManager = function BarEventManager() {
+
     /**
-     * Define bar event manager
-     * @class BarEventManager
-     * @constructor
-     * @extends BaseEvent
+     * Define events
+     * @type {{}}
+     * @memberOf BarEventManager
      */
-    var BarEventManager = function BarEventManager() {
+    this.events = {};
 
-        /**
-         * Define events
-         * @type {{}}
-         * @memberOf BarEventManager
-         */
-        this.events = {};
-
-        /**
-         * Define event list
-         * @memberOf BarEventManager
-         * @type {{
+    /**
+     * Define event list
+     * @memberOf BarEventManager
+     * @type {{
          *      updateTranslations: string,
          *      showContent: string,
          *      defineModules: string
          * }}
-         */
-        this.eventList = {
-            updateTranslations: 'update.translations',
-            showContent: 'show.content',
-            defineModules: 'define.modules'
-        };
+     */
+    this.eventList = {
+      updateTranslations: 'update.translations',
+      showContent: 'show.content',
+      defineModules: 'define.modules'
     };
+  };
 
-    return BarEventManager.extend('BarEventManager', {
-    }, BaseEvent.prototype);
+  return BarEventManager.extend('BarEventManager', {}, BaseEvent.prototype);
 });

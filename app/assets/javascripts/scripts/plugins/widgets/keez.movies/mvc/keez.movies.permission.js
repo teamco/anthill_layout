@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineKeezMoviesPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class KeezMoviesPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var KeezMoviesPermission = function KeezMoviesPermission() {
+  /**
+   * Define Permissions
+   * @class KeezMoviesPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var KeezMoviesPermission = function KeezMoviesPermission() {
 
-    };
+  };
 
-    return KeezMoviesPermission.extend('KeezMoviesPermission', {
-
-    }, BasePermission.prototype);
+  return KeezMoviesPermission.extend('KeezMoviesPermission', {},
+      BasePermission.prototype);
 });

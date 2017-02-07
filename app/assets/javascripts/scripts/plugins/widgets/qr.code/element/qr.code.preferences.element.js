@@ -6,35 +6,33 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
 ], function defineQrCodePreferencesElement(PluginElement, WidgetPreferences) {
 
-    /**
-     * Define QrCode Preferences Element
-     * @param view
-     * @param opts
-     * @returns {QrCodePreferencesElement}
-     * @constructor
-     * @class QrCodePreferencesElement
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     */
-    var QrCodePreferencesElement = function QrCodePreferencesElement(view, opts) {
+  /**
+   * Define QrCode Preferences Element
+   * @param view
+   * @param opts
+   * @returns {QrCodePreferencesElement}
+   * @constructor
+   * @class QrCodePreferencesElement
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   */
+  var QrCodePreferencesElement = function QrCodePreferencesElement(view, opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return QrCodePreferencesElement.extend('QrCodePreferencesElement', {
-
-
-    }, PluginElement.prototype, WidgetPreferences.prototype);
+  return QrCodePreferencesElement.extend('QrCodePreferencesElement', {},
+      PluginElement.prototype, WidgetPreferences.prototype);
 
 });

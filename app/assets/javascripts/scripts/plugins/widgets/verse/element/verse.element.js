@@ -6,44 +6,44 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineVerseElement(PluginElement) {
 
+  /**
+   * Define Verse Element
+   * @param view
+   * @param opts
+   * @returns {VerseElement}
+   * @constructor
+   * @class VerseElement
+   * @extends PluginElement
+   */
+  var VerseElement = function VerseElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('verse', {resource: '/widgets'});
+
+    return this;
+  };
+
+  return VerseElement.extend('VerseElement', {
+
     /**
-     * Define Verse Element
-     * @param view
-     * @param opts
-     * @returns {VerseElement}
-     * @constructor
-     * @class VerseElement
-     * @extends PluginElement
+     * Render Embedded content
+     * @memberOf VerseElement
+     * @param {string} embed
      */
-    var VerseElement = function VerseElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent(embed) {
+      this.addContent(
+          this.renderIframe(
+              $(embed).attr('src')
+          )
+      );
+    }
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
-
-        this.addCSS('verse', {resource: '/widgets'});
-
-        return this;
-    };
-
-    return VerseElement.extend('VerseElement', {
-
-        /**
-         * Render Embedded content
-         * @memberOf VerseElement
-         * @param {string} embed
-         */
-        renderEmbeddedContent: function renderEmbeddedContent(embed) {
-            this.addContent(
-                this.renderIframe(
-                    $(embed).attr('src')
-                )
-            );
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 });

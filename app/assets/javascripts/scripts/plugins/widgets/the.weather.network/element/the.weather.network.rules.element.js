@@ -6,39 +6,41 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/rules/widget.base.rules'
-], function defineTheWeatherNetworkRulesElement(PluginElement, BaseWidgetRules) {
+  'plugins/plugin.element',
+  'plugins/rules/widget.base.rules'
+], function defineTheWeatherNetworkRulesElement(PluginElement,
+    BaseWidgetRules) {
 
-    /**
-     * Define TheWeatherNetwork Rules Element
-     * @param view
-     * @param opts
-     * @returns {TheWeatherNetworkRulesElement}
-     * @constructor
-     * @class TheWeatherNetworkRulesElement
-     * @extends PluginElement
-     * @extends BaseWidgetRules
-     */
-    var TheWeatherNetworkRulesElement = function TheWeatherNetworkRulesElement(view, opts) {
+  /**
+   * Define TheWeatherNetwork Rules Element
+   * @param view
+   * @param opts
+   * @returns {TheWeatherNetworkRulesElement}
+   * @constructor
+   * @class TheWeatherNetworkRulesElement
+   * @extends PluginElement
+   * @extends BaseWidgetRules
+   */
+  var TheWeatherNetworkRulesElement = function TheWeatherNetworkRulesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBaseRulesData(
-            opts.data,
-            opts.rules.widget,
-            opts.rules.content
-        );
-
-        return this;
-    };
-
-    return TheWeatherNetworkRulesElement.extend(
-        'TheWeatherNetworkRulesElement', {}, 
-        PluginElement.prototype, 
-        BaseWidgetRules.prototype
+    this.renderBaseRulesData(
+        opts.data,
+        opts.rules.widget,
+        opts.rules.content
     );
+
+    return this;
+  };
+
+  return TheWeatherNetworkRulesElement.extend(
+      'TheWeatherNetworkRulesElement', {},
+      PluginElement.prototype,
+      BaseWidgetRules.prototype
+  );
 });

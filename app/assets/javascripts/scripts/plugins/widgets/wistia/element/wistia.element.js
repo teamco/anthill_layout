@@ -6,44 +6,44 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineWistiaElement(PluginElement) {
 
+  /**
+   * Define Wistia Element
+   * @param view
+   * @param opts
+   * @returns {WistiaElement}
+   * @constructor
+   * @class WistiaElement
+   * @extends PluginElement
+   */
+  var WistiaElement = function WistiaElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('wistia', {resource: '/widgets'});
+
+    return this;
+  };
+
+  return WistiaElement.extend('WistiaElement', {
+
     /**
-     * Define Wistia Element
-     * @param view
-     * @param opts
-     * @returns {WistiaElement}
-     * @constructor
-     * @class WistiaElement
-     * @extends PluginElement
+     * Render Embedded content
+     * @memberOf WistiaElement
+     * @param {string} embed
      */
-    var WistiaElement = function WistiaElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent(embed) {
+      this.addContent(
+          this.renderIframe(
+              $(embed).find('iframe').attr('src')
+          )
+      );
+    }
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
-
-        this.addCSS('wistia', {resource: '/widgets'});
-
-        return this;
-    };
-
-    return WistiaElement.extend('WistiaElement', {
-
-        /**
-         * Render Embedded content
-         * @memberOf WistiaElement
-         * @param {string} embed
-         */
-        renderEmbeddedContent: function renderEmbeddedContent(embed) {
-            this.addContent(
-                this.renderIframe(
-                    $(embed).find('iframe').attr('src')
-                )
-            );
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 });

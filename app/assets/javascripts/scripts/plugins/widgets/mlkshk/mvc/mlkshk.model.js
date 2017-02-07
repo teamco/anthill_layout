@@ -6,53 +6,54 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineMlkshkModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define Mlkshk model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class MlkshkModel
+   * @constructor
+   */
+  var MlkshkModel = function MlkshkModel() {
+
     /**
-     * Define Mlkshk model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class MlkshkModel
-     * @constructor
-     */
-    var MlkshkModel = function MlkshkModel() {
-
-        /**
-         * Define preferences
-         * @memberOf MlkshkModel
-         * @type {{
-         *      mlkshkEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
+     * Define preferences
+     * @memberOf MlkshkModel
+     * @type {{
+         *      mlkshkEmbedCode: {type: string, disabled: boolean, value:
+         *     undefined, visible: boolean}
          * }}
-         */
-        this.preferences = {
-            mlkshkEmbedCode: {
-                type: 'textarea',
-                disabled: false,
-                value: undefined,
-                visible: true
-            }
-        };
-
-        /**
-         * Define rules
-         * @memberOf MlkshkModel
-         * @type {{}}
-         */
-        this.rules = {};
+     */
+    this.preferences = {
+      mlkshkEmbedCode: {
+        type: 'textarea',
+        disabled: false,
+        value: undefined,
+        visible: true
+      }
     };
 
-    return MlkshkModel.extend('MlkshkModel', {
+    /**
+     * Define rules
+     * @memberOf MlkshkModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        /**
-         * Set Mlkshk embed code
-         * @memberOf MlkshkModel
-         * @param {string} embed
-         */
-        setMlkshkEmbedCode: function setMlkshkEmbedCode(embed) {
-            this.setPrefs('mlkshkEmbedCode', embed);
-        }
+  return MlkshkModel.extend('MlkshkModel', {
 
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    /**
+     * Set Mlkshk embed code
+     * @memberOf MlkshkModel
+     * @param {string} embed
+     */
+    setMlkshkEmbedCode: function setMlkshkEmbedCode(embed) {
+      this.setPrefs('mlkshkEmbedCode', embed);
+    }
+
+  }, BaseModel.prototype, WidgetContentModel.prototype);
 });

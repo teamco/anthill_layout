@@ -6,35 +6,35 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
 ], function defineOumyPreferencesElement(PluginElement, WidgetPreferences) {
 
-    /**
-     * Define Oumy Preferences Element
-     * @constructor
-     * @class OumyPreferencesElement
-     * @param {OumyView} view
-     * @param opts
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     * @returns {OumyPreferencesElement}
-     */
-    var OumyPreferencesElement = function OumyPreferencesElement(view, opts) {
+  /**
+   * Define Oumy Preferences Element
+   * @constructor
+   * @class OumyPreferencesElement
+   * @param {OumyView} view
+   * @param opts
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   * @returns {OumyPreferencesElement}
+   */
+  var OumyPreferencesElement = function OumyPreferencesElement(view, opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return OumyPreferencesElement.extend(
-        'OumyPreferencesElement', {}, 
-        PluginElement.prototype, 
-        WidgetPreferences.prototype
-    );
+  return OumyPreferencesElement.extend(
+      'OumyPreferencesElement', {},
+      PluginElement.prototype,
+      WidgetPreferences.prototype
+  );
 });

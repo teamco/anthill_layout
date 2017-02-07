@@ -7,23 +7,23 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineOdnoklassnikiEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define Odnoklassniki event manager
-     * @class OdnoklassnikiEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var OdnoklassnikiEventManager = function OdnoklassnikiEventManager() {
+  /**
+   * Define Odnoklassniki event manager
+   * @class OdnoklassnikiEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var OdnoklassnikiEventManager = function OdnoklassnikiEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return OdnoklassnikiEventManager.extend(
-        'OdnoklassnikiEventManager', {},
-        WidgetContentEventManager.prototype
-    );
+  return OdnoklassnikiEventManager.extend(
+      'OdnoklassnikiEventManager', {},
+      WidgetContentEventManager.prototype
+  );
 });

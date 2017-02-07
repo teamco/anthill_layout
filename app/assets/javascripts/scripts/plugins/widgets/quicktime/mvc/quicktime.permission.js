@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineQuicktimePermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class QuicktimePermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var QuicktimePermission = function QuicktimePermission() {
+  /**
+   * Define Permissions
+   * @class QuicktimePermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var QuicktimePermission = function QuicktimePermission() {
 
-    };
+  };
 
-    return QuicktimePermission.extend('QuicktimePermission', {
-
-    }, BasePermission.prototype);
+  return QuicktimePermission.extend('QuicktimePermission', {},
+      BasePermission.prototype);
 });

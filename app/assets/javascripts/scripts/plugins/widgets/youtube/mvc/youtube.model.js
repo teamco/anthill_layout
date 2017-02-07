@@ -6,53 +6,54 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineYoutubeModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define Youtube model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class YoutubeModel
+   * @constructor
+   */
+  var YoutubeModel = function YoutubeModel() {
+
     /**
-     * Define Youtube model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class YoutubeModel
-     * @constructor
-     */
-    var YoutubeModel = function YoutubeModel() {
-
-        /**
-         * Define preferences
-         * @memberOf YoutubeModel
-         * @type {{
-         *      youtubeUrl: {type: string, disabled: boolean, value: undefined, visible: boolean}
+     * Define preferences
+     * @memberOf YoutubeModel
+     * @type {{
+         *      youtubeUrl: {type: string, disabled: boolean, value: undefined,
+         *     visible: boolean}
          * }}
-         */
-        this.preferences = {
-            youtubeUrl: {
-                type: 'text',
-                disabled: false,
-                value: 'https://www.youtube.com/watch?v=xcL-oGPxgCg',
-                visible: true
-            }
-        };
-
-        /**
-         * Define rules
-         * @memberOf YoutubeModel
-         * @type {{}}
-         */
-        this.rules = {};
+     */
+    this.preferences = {
+      youtubeUrl: {
+        type: 'text',
+        disabled: false,
+        value: 'https://www.youtube.com/watch?v=xcL-oGPxgCg',
+        visible: true
+      }
     };
 
-    return YoutubeModel.extend('YoutubeModel', {
+    /**
+     * Define rules
+     * @memberOf YoutubeModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        /**
-         * Set Youtube Url
-         * @memberOf YoutubeModel
-         * @param {string} url
-         */
-        setYoutubeUrl: function setYoutubeUrl(url) {
-            this.setPrefs('youtubeUrl', url);
-        }
+  return YoutubeModel.extend('YoutubeModel', {
 
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    /**
+     * Set Youtube Url
+     * @memberOf YoutubeModel
+     * @param {string} url
+     */
+    setYoutubeUrl: function setYoutubeUrl(url) {
+      this.setPrefs('youtubeUrl', url);
+    }
+
+  }, BaseModel.prototype, WidgetContentModel.prototype);
 });

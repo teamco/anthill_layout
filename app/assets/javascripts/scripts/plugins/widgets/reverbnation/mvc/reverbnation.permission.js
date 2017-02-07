@@ -7,20 +7,20 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineReverbnationPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class ReverbnationPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var ReverbnationPermission = function ReverbnationPermission() {
-    };
+  /**
+   * Define Permissions
+   * @class ReverbnationPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var ReverbnationPermission = function ReverbnationPermission() {
+  };
 
-    return ReverbnationPermission.extend(
-        'ReverbnationPermission', {}, 
-        BasePermission.prototype
-    );
+  return ReverbnationPermission.extend(
+      'ReverbnationPermission', {},
+      BasePermission.prototype
+  );
 });

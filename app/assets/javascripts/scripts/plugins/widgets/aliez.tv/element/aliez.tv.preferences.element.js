@@ -6,35 +6,36 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
 ], function defineAliezTvPreferencesElement(PluginElement, WidgetPreferences) {
 
-    /**
-     * Define AliezTv Preferences Element
-     * @constructor
-     * @class AliezTvPreferencesElement
-     * @param {AliezTvView} view
-     * @param opts
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     * @returns {AliezTvPreferencesElement}
-     */
-    var AliezTvPreferencesElement = function AliezTvPreferencesElement(view, opts) {
+  /**
+   * Define AliezTv Preferences Element
+   * @constructor
+   * @class AliezTvPreferencesElement
+   * @param {AliezTvView} view
+   * @param opts
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   * @returns {AliezTvPreferencesElement}
+   */
+  var AliezTvPreferencesElement = function AliezTvPreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return AliezTvPreferencesElement.extend(
-        'AliezTvPreferencesElement', {}, 
-        PluginElement.prototype, 
-        WidgetPreferences.prototype
-    );
+  return AliezTvPreferencesElement.extend(
+      'AliezTvPreferencesElement', {},
+      PluginElement.prototype,
+      WidgetPreferences.prototype
+  );
 });

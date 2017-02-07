@@ -6,38 +6,37 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineExternalWidgetModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define ExternalWidget model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class ExternalWidgetModel
+   * @constructor
+   */
+  var ExternalWidgetModel = function ExternalWidgetModel() {
+
     /**
-     * Define ExternalWidget model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class ExternalWidgetModel
-     * @constructor
+     * Define preferences
+     * @property ExternalWidgetModel
+     * @type {{}}
      */
-    var ExternalWidgetModel = function ExternalWidgetModel() {
+    this.preferences = {};
 
-        /**
-         * Define preferences
-         * @property ExternalWidgetModel
-         * @type {{}}
-         */
-        this.preferences = {
-        };
+    /**
+     * Define rules
+     * @property ExternalWidgetModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        /**
-         * Define rules
-         * @property ExternalWidgetModel
-         * @type {{}}
-         */
-        this.rules = {};
-    };
-
-    return ExternalWidgetModel.extend(
-        'ExternalWidgetModel', {},
-        BaseModel.prototype,
-        WidgetContentModel.prototype
-    );
+  return ExternalWidgetModel.extend(
+      'ExternalWidgetModel', {},
+      BaseModel.prototype,
+      WidgetContentModel.prototype
+  );
 });

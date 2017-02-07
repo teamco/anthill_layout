@@ -6,35 +6,35 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
 ], function defineIfixitPreferencesElement(PluginElement, WidgetPreferences) {
 
-    /**
-     * Define Ifixit Preferences Element
-     * @constructor
-     * @class IfixitPreferencesElement
-     * @param {IfixitView} view
-     * @param opts
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     * @returns {IfixitPreferencesElement}
-     */
-    var IfixitPreferencesElement = function IfixitPreferencesElement(view, opts) {
+  /**
+   * Define Ifixit Preferences Element
+   * @constructor
+   * @class IfixitPreferencesElement
+   * @param {IfixitView} view
+   * @param opts
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   * @returns {IfixitPreferencesElement}
+   */
+  var IfixitPreferencesElement = function IfixitPreferencesElement(view, opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return IfixitPreferencesElement.extend(
-        'IfixitPreferencesElement', {}, 
-        PluginElement.prototype, 
-        WidgetPreferences.prototype
-    );
+  return IfixitPreferencesElement.extend(
+      'IfixitPreferencesElement', {},
+      PluginElement.prototype,
+      WidgetPreferences.prototype
+  );
 });

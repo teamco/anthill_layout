@@ -7,108 +7,109 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/deviant.art/element/deviant.art.element',
-    'plugins/widgets/deviant.art/element/deviant.art.preferences.element',
-    'plugins/widgets/deviant.art/element/deviant.art.rules.element'
-], function defineDeviantArtView(BaseView, Header, Footer, DeviantArtElement, DeviantArtPreferencesElement, DeviantArtRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/deviant.art/element/deviant.art.element',
+  'plugins/widgets/deviant.art/element/deviant.art.preferences.element',
+  'plugins/widgets/deviant.art/element/deviant.art.rules.element'
+], function defineDeviantArtView(BaseView, Header, Footer, DeviantArtElement,
+    DeviantArtPreferencesElement, DeviantArtRulesElement) {
+
+  /**
+   * Define view
+   * @class DeviantArtView
+   * @extends BaseView
+   * @constructor
+   */
+  var DeviantArtView = function DeviantArtView() {
+  };
+
+  return DeviantArtView.extend('DeviantArtView', {
 
     /**
-     * Define view
-     * @class DeviantArtView
-     * @extends BaseView
-     * @constructor
+     * Render deviantart element
+     * @memberOf DeviantArtView
      */
-    var DeviantArtView = function DeviantArtView() {
-    };
+    renderDeviantArt: function renderDeviantArt() {
 
-    return DeviantArtView.extend('DeviantArtView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render deviantart element
-         * @memberOf DeviantArtView
-         */
-        renderDeviantArt: function renderDeviantArt() {
+      /**
+       * Define $deviantart
+       * @type {DeviantArtElement}
+       */
+      this.elements.$deviantart = new DeviantArtElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $deviantart
-             * @type {DeviantArtElement}
-             */
-            this.elements.$deviantart = new DeviantArtElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf DeviantArtView
+     * @returns {DeviantArtPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define DeviantArt Preferences Element
+       * @type {DeviantArtPreferencesElement}
+       */
+      this.elements.$preferences = new DeviantArtPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf DeviantArtView
-         * @returns {DeviantArtPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define DeviantArt Preferences Element
-             * @type {DeviantArtPreferencesElement}
-             */
-            this.elements.$preferences = new DeviantArtPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf DeviantArtView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {DeviantArtRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
+      /**
+       * Define data
+       * @type {*|{}}
+       */
+      var data = this.controller.getRules();
 
-        /**
-         * Render Rules
-         * @memberOf DeviantArtView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {DeviantArtRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define data
-             * @type {*|{}}
-             */
-            var data = this.controller.getRules();
-
-            /**
-             * Define DeviantArt Rules Element
-             * @type {DeviantArtRulesElement}
-             */
-            this.elements.$rules = new DeviantArtRulesElement(this, {
-                data: data,
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render deviantart
-         * @memberOf DeviantArtView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderDeviantArt.bind(this)
-            );
+      /**
+       * Define DeviantArt Rules Element
+       * @type {DeviantArtRulesElement}
+       */
+      this.elements.$rules = new DeviantArtRulesElement(this, {
+        data: data,
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render deviantart
+     * @memberOf DeviantArtView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderDeviantArt.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

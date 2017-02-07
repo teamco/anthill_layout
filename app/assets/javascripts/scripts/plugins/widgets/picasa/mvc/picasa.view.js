@@ -7,108 +7,109 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/picasa/element/picasa.element',
-    'plugins/widgets/picasa/element/picasa.preferences.element',
-    'plugins/widgets/picasa/element/picasa.rules.element'
-], function definePicasaView(BaseView, Header, Footer, PicasaElement, PicasaPreferencesElement, PicasaRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/picasa/element/picasa.element',
+  'plugins/widgets/picasa/element/picasa.preferences.element',
+  'plugins/widgets/picasa/element/picasa.rules.element'
+], function definePicasaView(BaseView, Header, Footer, PicasaElement,
+    PicasaPreferencesElement, PicasaRulesElement) {
+
+  /**
+   * Define view
+   * @class PicasaView
+   * @extends BaseView
+   * @constructor
+   */
+  var PicasaView = function PicasaView() {
+  };
+
+  return PicasaView.extend('PicasaView', {
 
     /**
-     * Define view
-     * @class PicasaView
-     * @extends BaseView
-     * @constructor
+     * Render picasa element
+     * @memberOf PicasaView
      */
-    var PicasaView = function PicasaView() {
-    };
+    renderPicasa: function renderPicasa() {
 
-    return PicasaView.extend('PicasaView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render picasa element
-         * @memberOf PicasaView
-         */
-        renderPicasa: function renderPicasa() {
+      /**
+       * Define $picasa
+       * @type {PicasaElement}
+       */
+      this.elements.$picasa = new PicasaElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $picasa
-             * @type {PicasaElement}
-             */
-            this.elements.$picasa = new PicasaElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf PicasaView
+     * @returns {PicasaPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define Picasa Preferences Element
+       * @type {PicasaPreferencesElement}
+       */
+      this.elements.$preferences = new PicasaPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf PicasaView
-         * @returns {PicasaPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define Picasa Preferences Element
-             * @type {PicasaPreferencesElement}
-             */
-            this.elements.$preferences = new PicasaPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf PicasaView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {PicasaRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
+      /**
+       * Define data
+       * @type {*|{}}
+       */
+      var data = this.controller.getRules();
 
-        /**
-         * Render Rules
-         * @memberOf PicasaView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {PicasaRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define data
-             * @type {*|{}}
-             */
-            var data = this.controller.getRules();
-
-            /**
-             * Define Picasa Rules Element
-             * @type {PicasaRulesElement}
-             */
-            this.elements.$rules = new PicasaRulesElement(this, {
-                data: data,
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render picasa
-         * @memberOf PicasaView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderPicasa.bind(this)
-            );
+      /**
+       * Define Picasa Rules Element
+       * @type {PicasaRulesElement}
+       */
+      this.elements.$rules = new PicasaRulesElement(this, {
+        data: data,
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render picasa
+     * @memberOf PicasaView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderPicasa.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

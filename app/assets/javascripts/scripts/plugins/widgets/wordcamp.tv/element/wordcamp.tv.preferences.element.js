@@ -6,35 +6,35 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
-], function defineWordcampTvPreferencesElement(PluginElement, WidgetPreferences) {
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
+], function defineWordcampTvPreferencesElement(PluginElement,
+    WidgetPreferences) {
 
-    /**
-     * Define WordcampTv Preferences Element
-     * @param view
-     * @param opts
-     * @returns {WordcampTvPreferencesElement}
-     * @constructor
-     * @class WordcampTvPreferencesElement
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     */
-    var WordcampTvPreferencesElement = function WordcampTvPreferencesElement(view, opts) {
+  /**
+   * Define WordcampTv Preferences Element
+   * @param view
+   * @param opts
+   * @returns {WordcampTvPreferencesElement}
+   * @constructor
+   * @class WordcampTvPreferencesElement
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   */
+  var WordcampTvPreferencesElement = function WordcampTvPreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return WordcampTvPreferencesElement.extend('WordcampTvPreferencesElement', {
-
-
-    }, PluginElement.prototype, WidgetPreferences.prototype);
+  return WordcampTvPreferencesElement.extend('WordcampTvPreferencesElement', {},
+      PluginElement.prototype, WidgetPreferences.prototype);
 
 });

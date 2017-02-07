@@ -6,53 +6,54 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineHowcastModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define Howcast model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class HowcastModel
+   * @constructor
+   */
+  var HowcastModel = function HowcastModel() {
+
     /**
-     * Define Howcast model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class HowcastModel
-     * @constructor
-     */
-    var HowcastModel = function HowcastModel() {
-
-        /**
-         * Define preferences
-         * @memberOf HowcastModel
-         * @type {{
-         *      howcastEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
+     * Define preferences
+     * @memberOf HowcastModel
+     * @type {{
+         *      howcastEmbedCode: {type: string, disabled: boolean, value:
+         *     undefined, visible: boolean}
          * }}
-         */
-        this.preferences = {
-            howcastEmbedCode: {
-                type: 'textarea',
-                disabled: false,
-                value: undefined,
-                visible: true
-            }
-        };
-
-        /**
-         * Define rules
-         * @memberOf HowcastModel
-         * @type {{}}
-         */
-        this.rules = {};
+     */
+    this.preferences = {
+      howcastEmbedCode: {
+        type: 'textarea',
+        disabled: false,
+        value: undefined,
+        visible: true
+      }
     };
 
-    return HowcastModel.extend('HowcastModel', {
+    /**
+     * Define rules
+     * @memberOf HowcastModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        /**
-         * Set Howcast embed code
-         * @memberOf HowcastModel
-         * @param {string} embed
-         */
-        setHowcastEmbedCode: function setHowcastEmbedCode(embed) {
-            this.setPrefs('howcastEmbedCode', embed);
-        }
+  return HowcastModel.extend('HowcastModel', {
 
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    /**
+     * Set Howcast embed code
+     * @memberOf HowcastModel
+     * @param {string} embed
+     */
+    setHowcastEmbedCode: function setHowcastEmbedCode(embed) {
+      this.setPrefs('howcastEmbedCode', embed);
+    }
+
+  }, BaseModel.prototype, WidgetContentModel.prototype);
 });

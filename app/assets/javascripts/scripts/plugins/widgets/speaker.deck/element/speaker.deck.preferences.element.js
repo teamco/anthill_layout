@@ -6,35 +6,37 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
-], function defineSpeakerDeckPreferencesElement(PluginElement, WidgetPreferences) {
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
+], function defineSpeakerDeckPreferencesElement(PluginElement,
+    WidgetPreferences) {
 
-    /**
-     * Define SpeakerDeck Preferences Element
-     * @constructor
-     * @class SpeakerDeckPreferencesElement
-     * @param {SpeakerDeckView} view
-     * @param opts
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     * @returns {SpeakerDeckPreferencesElement}
-     */
-    var SpeakerDeckPreferencesElement = function SpeakerDeckPreferencesElement(view, opts) {
+  /**
+   * Define SpeakerDeck Preferences Element
+   * @constructor
+   * @class SpeakerDeckPreferencesElement
+   * @param {SpeakerDeckView} view
+   * @param opts
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   * @returns {SpeakerDeckPreferencesElement}
+   */
+  var SpeakerDeckPreferencesElement = function SpeakerDeckPreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return SpeakerDeckPreferencesElement.extend(
-        'SpeakerDeckPreferencesElement', {}, 
-        PluginElement.prototype, 
-        WidgetPreferences.prototype
-    );
+  return SpeakerDeckPreferencesElement.extend(
+      'SpeakerDeckPreferencesElement', {},
+      PluginElement.prototype,
+      WidgetPreferences.prototype
+  );
 });

@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineXVideosPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class XVideosPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var XVideosPermission = function XVideosPermission() {
+  /**
+   * Define Permissions
+   * @class XVideosPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var XVideosPermission = function XVideosPermission() {
 
-    };
+  };
 
-    return XVideosPermission.extend('XVideosPermission', {
-
-    }, BasePermission.prototype);
+  return XVideosPermission.extend('XVideosPermission', {},
+      BasePermission.prototype);
 });

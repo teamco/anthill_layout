@@ -7,108 +7,109 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/funny.or.die/element/funny.or.die.element',
-    'plugins/widgets/funny.or.die/element/funny.or.die.preferences.element',
-    'plugins/widgets/funny.or.die/element/funny.or.die.rules.element'
-], function defineFunnyOrDieView(BaseView, Header, Footer, FunnyOrDieElement, FunnyOrDiePreferencesElement, FunnyOrDieRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/funny.or.die/element/funny.or.die.element',
+  'plugins/widgets/funny.or.die/element/funny.or.die.preferences.element',
+  'plugins/widgets/funny.or.die/element/funny.or.die.rules.element'
+], function defineFunnyOrDieView(BaseView, Header, Footer, FunnyOrDieElement,
+    FunnyOrDiePreferencesElement, FunnyOrDieRulesElement) {
+
+  /**
+   * Define view
+   * @class FunnyOrDieView
+   * @extends BaseView
+   * @constructor
+   */
+  var FunnyOrDieView = function FunnyOrDieView() {
+  };
+
+  return FunnyOrDieView.extend('FunnyOrDieView', {
 
     /**
-     * Define view
-     * @class FunnyOrDieView
-     * @extends BaseView
-     * @constructor
+     * Render funnyordie element
+     * @memberOf FunnyOrDieView
      */
-    var FunnyOrDieView = function FunnyOrDieView() {
-    };
+    renderFunnyOrDie: function renderFunnyOrDie() {
 
-    return FunnyOrDieView.extend('FunnyOrDieView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render funnyordie element
-         * @memberOf FunnyOrDieView
-         */
-        renderFunnyOrDie: function renderFunnyOrDie() {
+      /**
+       * Define $funnyordie
+       * @type {FunnyOrDieElement}
+       */
+      this.elements.$funnyordie = new FunnyOrDieElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $funnyordie
-             * @type {FunnyOrDieElement}
-             */
-            this.elements.$funnyordie = new FunnyOrDieElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf FunnyOrDieView
+     * @returns {FunnyOrDiePreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define FunnyOrDie Preferences Element
+       * @type {FunnyOrDiePreferencesElement}
+       */
+      this.elements.$preferences = new FunnyOrDiePreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf FunnyOrDieView
-         * @returns {FunnyOrDiePreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define FunnyOrDie Preferences Element
-             * @type {FunnyOrDiePreferencesElement}
-             */
-            this.elements.$preferences = new FunnyOrDiePreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf FunnyOrDieView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {FunnyOrDieRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
+      /**
+       * Define data
+       * @type {*|{}}
+       */
+      var data = this.controller.getRules();
 
-        /**
-         * Render Rules
-         * @memberOf FunnyOrDieView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {FunnyOrDieRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define data
-             * @type {*|{}}
-             */
-            var data = this.controller.getRules();
-
-            /**
-             * Define FunnyOrDie Rules Element
-             * @type {FunnyOrDieRulesElement}
-             */
-            this.elements.$rules = new FunnyOrDieRulesElement(this, {
-                data: data,
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render funnyordie
-         * @memberOf FunnyOrDieView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderFunnyOrDie.bind(this)
-            );
+      /**
+       * Define FunnyOrDie Rules Element
+       * @type {FunnyOrDieRulesElement}
+       */
+      this.elements.$rules = new FunnyOrDieRulesElement(this, {
+        data: data,
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render funnyordie
+     * @memberOf FunnyOrDieView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderFunnyOrDie.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

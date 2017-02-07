@@ -6,46 +6,46 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineHromadskeTvElement(PluginElement) {
 
+  /**
+   * Define HromadskeTv Element
+   * @param view
+   * @param opts
+   * @returns {HromadskeTvElement}
+   * @constructor
+   * @class HromadskeTvElement
+   * @extends PluginElement
+   */
+  var HromadskeTvElement = function HromadskeTvElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('hromadske.tv', {resource: '/widgets'});
+
+    return this;
+  };
+
+  return HromadskeTvElement.extend('HromadskeTvElement', {
+
     /**
-     * Define HromadskeTv Element
-     * @param view
-     * @param opts
-     * @returns {HromadskeTvElement}
-     * @constructor
-     * @class HromadskeTvElement
-     * @extends PluginElement
+     * Render Embedded content
+     * @memberOf HromadskeTvElement
+     * @param {string} url
      */
-    var HromadskeTvElement = function HromadskeTvElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent(url) {
+      this.$.append(
+          this.renderIframe(url, {
+            id: "ytplayer",
+            type: "text/html"
+          })
+      );
+    }
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
-
-        this.addCSS('hromadske.tv', {resource: '/widgets'});
-
-        return this;
-    };
-
-    return HromadskeTvElement.extend('HromadskeTvElement', {
-
-        /**
-         * Render Embedded content
-         * @memberOf HromadskeTvElement
-         * @param {string} url
-         */
-        renderEmbeddedContent: function renderEmbeddedContent(url) {
-            this.$.append(
-                this.renderIframe(url, {
-                    id: "ytplayer",
-                    type: "text/html"
-                })
-            );
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 
 });

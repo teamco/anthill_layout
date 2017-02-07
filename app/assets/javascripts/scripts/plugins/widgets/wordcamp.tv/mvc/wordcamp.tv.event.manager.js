@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineWordcampTvEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define WordcampTv event manager
-     * @class WordcampTvEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var WordcampTvEventManager = function WordcampTvEventManager() {
+  /**
+   * Define WordcampTv event manager
+   * @class WordcampTvEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var WordcampTvEventManager = function WordcampTvEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return WordcampTvEventManager.extend('WordcampTvEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return WordcampTvEventManager.extend('WordcampTvEventManager', {},
+      WidgetContentEventManager.prototype);
 });

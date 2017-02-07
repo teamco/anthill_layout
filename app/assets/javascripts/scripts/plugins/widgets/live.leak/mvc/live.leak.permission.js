@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineLiveLeakPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class LiveLeakPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var LiveLeakPermission = function LiveLeakPermission() {
+  /**
+   * Define Permissions
+   * @class LiveLeakPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var LiveLeakPermission = function LiveLeakPermission() {
 
-    };
+  };
 
-    return LiveLeakPermission.extend('LiveLeakPermission', {
-
-    }, BasePermission.prototype);
+  return LiveLeakPermission.extend('LiveLeakPermission', {},
+      BasePermission.prototype);
 });

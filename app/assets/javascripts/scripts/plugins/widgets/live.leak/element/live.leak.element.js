@@ -6,43 +6,43 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineLiveLeakElement(PluginElement) {
 
+  /**
+   * Define LiveLeak Element
+   * @param view
+   * @param opts
+   * @returns {LiveLeakElement}
+   * @constructor
+   * @class LiveLeakElement
+   * @extends PluginElement
+   */
+  var LiveLeakElement = function LiveLeakElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('live.leak', {resource: '/widgets'});
+
+    return this;
+  };
+
+  return LiveLeakElement.extend('LiveLeakElement', {
+
     /**
-     * Define LiveLeak Element
-     * @param view
-     * @param opts
-     * @returns {LiveLeakElement}
-     * @constructor
-     * @class LiveLeakElement
-     * @extends PluginElement
+     * Render Embedded content
+     * @memberOf LiveLeakElement
+     * @param {string} url
      */
-    var LiveLeakElement = function LiveLeakElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent(url) {
+      this.$.append(
+          this.renderIframe(url)
+      );
+    }
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
-
-        this.addCSS('live.leak', {resource: '/widgets'});
-
-        return this;
-    };
-
-    return LiveLeakElement.extend('LiveLeakElement', {
-
-        /**
-         * Render Embedded content
-         * @memberOf LiveLeakElement
-         * @param {string} url
-         */
-        renderEmbeddedContent: function renderEmbeddedContent(url) {
-            this.$.append(
-                this.renderIframe(url)
-            );
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 
 });

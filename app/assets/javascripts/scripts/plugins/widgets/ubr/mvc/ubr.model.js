@@ -6,53 +6,54 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineUbrModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define Ubr model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class UbrModel
+   * @constructor
+   */
+  var UbrModel = function UbrModel() {
+
     /**
-     * Define Ubr model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class UbrModel
-     * @constructor
-     */
-    var UbrModel = function UbrModel() {
-
-        /**
-         * Define preferences
-         * @memberOf UbrModel
-         * @type {{
-         *      ubrEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
+     * Define preferences
+     * @memberOf UbrModel
+     * @type {{
+         *      ubrEmbedCode: {type: string, disabled: boolean, value:
+         *     undefined, visible: boolean}
          * }}
-         */
-        this.preferences = {
-            ubrEmbedCode: {
-                type: 'text',
-                disabled: true,
-                value: 'https://www.youtube.com/watch?feature=player_embedded&v=VqbWCiuegkU',
-                visible: true
-            }
-        };
-
-        /**
-         * Define rules
-         * @memberOf UbrModel
-         * @type {{}}
-         */
-        this.rules = {};
+     */
+    this.preferences = {
+      ubrEmbedCode: {
+        type: 'text',
+        disabled: true,
+        value: 'https://www.youtube.com/watch?feature=player_embedded&v=VqbWCiuegkU',
+        visible: true
+      }
     };
 
-    return UbrModel.extend('UbrModel', {
+    /**
+     * Define rules
+     * @memberOf UbrModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        /**
-         * Set Ubr embed code
-         * @memberOf UbrModel
-         * @param {string} embed
-         */
-        setUbrEmbedCode: function setUbrEmbedCode(embed) {
-            this.setPrefs('ubrEmbedCode', embed);
-        }
+  return UbrModel.extend('UbrModel', {
 
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    /**
+     * Set Ubr embed code
+     * @memberOf UbrModel
+     * @param {string} embed
+     */
+    setUbrEmbedCode: function setUbrEmbedCode(embed) {
+      this.setPrefs('ubrEmbedCode', embed);
+    }
+
+  }, BaseModel.prototype, WidgetContentModel.prototype);
 });

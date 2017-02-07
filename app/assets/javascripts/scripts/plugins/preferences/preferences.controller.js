@@ -6,18 +6,18 @@
  */
 
 define([
-    'modules/Preferences'
+  'modules/Preferences'
 ], function definePreferencesController(BasePreferences) {
 
-    /**
-     * Define Preferences Controller
-     * @class PreferencesController
-     * @constructor
-     * @extends BasePreferences
-     */
-    var PreferencesController = function PreferencesController() {
-    };
+  /**
+   * Define Preferences Controller
+   * @class PreferencesController
+   * @constructor
+   * @extends BasePreferences
+   */
+  var PreferencesController = function PreferencesController() {
+  };
 
-    return PreferencesController.extend('PreferencesController', {
-    }, BasePreferences.prototype);
+  return PreferencesController.extend('PreferencesController', {},
+      BasePreferences.prototype);
 });

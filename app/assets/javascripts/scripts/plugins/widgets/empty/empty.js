@@ -6,41 +6,42 @@
  */
 
 define([
-    'config/anthill',
-    'modules/MVC',
-    'plugins/widgets/empty/mvc/empty.controller',
-    'plugins/widgets/empty/mvc/empty.model',
-    'plugins/widgets/empty/mvc/empty.view',
-    'plugins/widgets/empty/mvc/empty.event.manager',
-    'plugins/widgets/empty/mvc/empty.permission'
-], function defineEmpty(AntHill, MVC, Controller, Model, View, EventManager, Permission) {
+  'config/anthill',
+  'modules/MVC',
+  'plugins/widgets/empty/mvc/empty.controller',
+  'plugins/widgets/empty/mvc/empty.model',
+  'plugins/widgets/empty/mvc/empty.view',
+  'plugins/widgets/empty/mvc/empty.event.manager',
+  'plugins/widgets/empty/mvc/empty.permission'
+], function defineEmpty(AntHill, MVC, Controller, Model, View, EventManager,
+    Permission) {
+
+  /**
+   * Define Empty
+   * @param containment
+   * @param [opts]
+   * @constructor
+   * @class Empty
+   * @extends AntHill
+   */
+  var Empty = function Empty(containment, opts) {
 
     /**
-     * Define Empty
-     * @param containment
-     * @param [opts]
-     * @constructor
-     * @class Empty
-     * @extends AntHill
+     * Define containment
+     * @property Empty
      */
-    var Empty = function Empty(containment, opts) {
+    this.containment = containment;
 
-        /**
-         * Define containment
-         * @property Empty
-         */
-        this.containment = containment;
+    /**
+     * Define referrer
+     * @property Empty
+     * @type {*}
+     */
+    this.referrer = undefined;
 
-        /**
-         * Define referrer
-         * @property Empty
-         * @type {*}
-         */
-        this.referrer = undefined;
-
-        /**
-         * Define defaults
-         * @type {{
+    /**
+     * Define defaults
+     * @type {{
          *      plugin: boolean,
          *      html: {
          *          style: string,
@@ -55,48 +56,48 @@ define([
          *          }
          *      }
          * }}
-         */
-        var DEFAULTS = {
-            plugin: true,
-            html: {
-                style: 'default',
-                header: false,
-                footer: false,
-                padding: {
-                    top: 0,
-                    right: 0,
-                    bottom: 0,
-                    left: 0
-                }
-            }
-        };
-
-        /**
-         * Define MVC
-         * @property Empty
-         * @type {MVC}
-         */
-        this.mvc = new MVC({
-            scope: this,
-            config: [
-                {uuid: this.containment.model.getContentUUID()},
-                DEFAULTS
-            ],
-            components: [
-                Controller,
-                Model,
-                View,
-                EventManager,
-                Permission
-            ],
-            render: true
-        });
-
-        this.observer.publish(
-            this.eventmanager.eventList.initWidget,
-            opts
-        );
+     */
+    var DEFAULTS = {
+      plugin: true,
+      html: {
+        style: 'default',
+        header: false,
+        footer: false,
+        padding: {
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0
+        }
+      }
     };
 
-    return Empty.extend('Empty', {}, AntHill.prototype);
+    /**
+     * Define MVC
+     * @property Empty
+     * @type {MVC}
+     */
+    this.mvc = new MVC({
+      scope: this,
+      config: [
+        {uuid: this.containment.model.getContentUUID()},
+        DEFAULTS
+      ],
+      components: [
+        Controller,
+        Model,
+        View,
+        EventManager,
+        Permission
+      ],
+      render: true
+    });
+
+    this.observer.publish(
+        this.eventmanager.eventList.initWidget,
+        opts
+    );
+  };
+
+  return Empty.extend('Empty', {}, AntHill.prototype);
 });

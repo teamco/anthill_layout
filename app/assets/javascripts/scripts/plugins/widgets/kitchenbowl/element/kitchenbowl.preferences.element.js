@@ -6,35 +6,37 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
-], function defineKitchenbowlPreferencesElement(PluginElement, WidgetPreferences) {
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
+], function defineKitchenbowlPreferencesElement(PluginElement,
+    WidgetPreferences) {
 
-    /**
-     * Define Kitchenbowl Preferences Element
-     * @constructor
-     * @class KitchenbowlPreferencesElement
-     * @param {KitchenbowlView} view
-     * @param opts
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     * @returns {KitchenbowlPreferencesElement}
-     */
-    var KitchenbowlPreferencesElement = function KitchenbowlPreferencesElement(view, opts) {
+  /**
+   * Define Kitchenbowl Preferences Element
+   * @constructor
+   * @class KitchenbowlPreferencesElement
+   * @param {KitchenbowlView} view
+   * @param opts
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   * @returns {KitchenbowlPreferencesElement}
+   */
+  var KitchenbowlPreferencesElement = function KitchenbowlPreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return KitchenbowlPreferencesElement.extend(
-        'KitchenbowlPreferencesElement', {}, 
-        PluginElement.prototype, 
-        WidgetPreferences.prototype
-    );
+  return KitchenbowlPreferencesElement.extend(
+      'KitchenbowlPreferencesElement', {},
+      PluginElement.prototype,
+      WidgetPreferences.prototype
+  );
 });

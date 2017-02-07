@@ -6,53 +6,54 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function definePreziModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define Prezi model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class PreziModel
+   * @constructor
+   */
+  var PreziModel = function PreziModel() {
+
     /**
-     * Define Prezi model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class PreziModel
-     * @constructor
-     */
-    var PreziModel = function PreziModel() {
-
-        /**
-         * Define preferences
-         * @memberOf PreziModel
-         * @type {{
-         *      preziEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
+     * Define preferences
+     * @memberOf PreziModel
+     * @type {{
+         *      preziEmbedCode: {type: string, disabled: boolean, value:
+         *     undefined, visible: boolean}
          * }}
-         */
-        this.preferences = {
-            preziEmbedCode: {
-                type: 'textarea',
-                disabled: false,
-                value: undefined,
-                visible: true
-            }
-        };
-
-        /**
-         * Define rules
-         * @memberOf PreziModel
-         * @type {{}}
-         */
-        this.rules = {};
+     */
+    this.preferences = {
+      preziEmbedCode: {
+        type: 'textarea',
+        disabled: false,
+        value: undefined,
+        visible: true
+      }
     };
 
-    return PreziModel.extend('PreziModel', {
+    /**
+     * Define rules
+     * @memberOf PreziModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        /**
-         * Set Prezi embed code
-         * @memberOf PreziModel
-         * @param {string} embed
-         */
-        setPreziEmbedCode: function setPreziEmbedCode(embed) {
-            this.setPrefs('preziEmbedCode', embed);
-        }
+  return PreziModel.extend('PreziModel', {
 
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    /**
+     * Set Prezi embed code
+     * @memberOf PreziModel
+     * @param {string} embed
+     */
+    setPreziEmbedCode: function setPreziEmbedCode(embed) {
+      this.setPrefs('preziEmbedCode', embed);
+    }
+
+  }, BaseModel.prototype, WidgetContentModel.prototype);
 });

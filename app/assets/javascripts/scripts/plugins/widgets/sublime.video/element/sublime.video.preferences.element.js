@@ -6,35 +6,35 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
-], function defineSublimeVideoPreferencesElement(PluginElement, WidgetPreferences) {
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
+], function defineSublimeVideoPreferencesElement(PluginElement,
+    WidgetPreferences) {
 
-    /**
-     * Define SublimeVideo Preferences Element
-     * @param view
-     * @param opts
-     * @returns {SublimeVideoPreferencesElement}
-     * @constructor
-     * @class SublimeVideoPreferencesElement
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     */
-    var SublimeVideoPreferencesElement = function SublimeVideoPreferencesElement(view, opts) {
+  /**
+   * Define SublimeVideo Preferences Element
+   * @param view
+   * @param opts
+   * @returns {SublimeVideoPreferencesElement}
+   * @constructor
+   * @class SublimeVideoPreferencesElement
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   */
+  var SublimeVideoPreferencesElement = function SublimeVideoPreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return SublimeVideoPreferencesElement.extend('SublimeVideoPreferencesElement', {
-
-
-    }, PluginElement.prototype, WidgetPreferences.prototype);
+  return SublimeVideoPreferencesElement.extend('SublimeVideoPreferencesElement',
+      {}, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

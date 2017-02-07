@@ -7,20 +7,20 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineWistiaPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class WistiaPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var WistiaPermission = function WistiaPermission() {
-    };
+  /**
+   * Define Permissions
+   * @class WistiaPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var WistiaPermission = function WistiaPermission() {
+  };
 
-    return WistiaPermission.extend(
-        'WistiaPermission', {}, 
-        BasePermission.prototype
-    );
+  return WistiaPermission.extend(
+      'WistiaPermission', {},
+      BasePermission.prototype
+  );
 });

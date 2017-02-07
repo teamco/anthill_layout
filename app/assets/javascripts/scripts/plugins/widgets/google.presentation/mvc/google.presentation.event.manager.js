@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineGooglePresentationEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define GooglePresentation event manager
-     * @class GooglePresentationEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var GooglePresentationEventManager = function GooglePresentationEventManager() {
+  /**
+   * Define GooglePresentation event manager
+   * @class GooglePresentationEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var GooglePresentationEventManager = function GooglePresentationEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return GooglePresentationEventManager.extend('GooglePresentationEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return GooglePresentationEventManager.extend('GooglePresentationEventManager',
+      {}, WidgetContentEventManager.prototype);
 });

@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineTwentyFourLivePermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class TwentyFourLivePermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var TwentyFourLivePermission = function TwentyFourLivePermission() {
+  /**
+   * Define Permissions
+   * @class TwentyFourLivePermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var TwentyFourLivePermission = function TwentyFourLivePermission() {
 
-    };
+  };
 
-    return TwentyFourLivePermission.extend('TwentyFourLivePermission', {
-
-    }, BasePermission.prototype);
+  return TwentyFourLivePermission.extend('TwentyFourLivePermission', {},
+      BasePermission.prototype);
 });

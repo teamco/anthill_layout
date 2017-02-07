@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineMixcloudPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class MixcloudPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var MixcloudPermission = function MixcloudPermission() {
+  /**
+   * Define Permissions
+   * @class MixcloudPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var MixcloudPermission = function MixcloudPermission() {
 
-    };
+  };
 
-    return MixcloudPermission.extend('MixcloudPermission', {
-
-    }, BasePermission.prototype);
+  return MixcloudPermission.extend('MixcloudPermission', {},
+      BasePermission.prototype);
 });

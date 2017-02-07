@@ -6,35 +6,34 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
 ], function definePastebinPreferencesElement(PluginElement, WidgetPreferences) {
 
-    /**
-     * Define Pastebin Preferences Element
-     * @param view
-     * @param opts
-     * @returns {PastebinPreferencesElement}
-     * @constructor
-     * @class PastebinPreferencesElement
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     */
-    var PastebinPreferencesElement = function PastebinPreferencesElement(view, opts) {
+  /**
+   * Define Pastebin Preferences Element
+   * @param view
+   * @param opts
+   * @returns {PastebinPreferencesElement}
+   * @constructor
+   * @class PastebinPreferencesElement
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   */
+  var PastebinPreferencesElement = function PastebinPreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return PastebinPreferencesElement.extend('PastebinPreferencesElement', {
-
-
-    }, PluginElement.prototype, WidgetPreferences.prototype);
+  return PastebinPreferencesElement.extend('PastebinPreferencesElement', {},
+      PluginElement.prototype, WidgetPreferences.prototype);
 
 });

@@ -7,23 +7,23 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineProchanEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define Prochan event manager
-     * @class ProchanEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var ProchanEventManager = function ProchanEventManager() {
+  /**
+   * Define Prochan event manager
+   * @class ProchanEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var ProchanEventManager = function ProchanEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return ProchanEventManager.extend(
-        'ProchanEventManager', {},
-        WidgetContentEventManager.prototype
-    );
+  return ProchanEventManager.extend(
+      'ProchanEventManager', {},
+      WidgetContentEventManager.prototype
+  );
 });

@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineCollegeHumorEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define CollegeHumor event manager
-     * @class CollegeHumorEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var CollegeHumorEventManager = function CollegeHumorEventManager() {
+  /**
+   * Define CollegeHumor event manager
+   * @class CollegeHumorEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var CollegeHumorEventManager = function CollegeHumorEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return CollegeHumorEventManager.extend('CollegeHumorEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return CollegeHumorEventManager.extend('CollegeHumorEventManager', {},
+      WidgetContentEventManager.prototype);
 });

@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineHowcastEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define Howcast event manager
-     * @class HowcastEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var HowcastEventManager = function HowcastEventManager() {
+  /**
+   * Define Howcast event manager
+   * @class HowcastEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var HowcastEventManager = function HowcastEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return HowcastEventManager.extend('HowcastEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return HowcastEventManager.extend('HowcastEventManager', {},
+      WidgetContentEventManager.prototype);
 });

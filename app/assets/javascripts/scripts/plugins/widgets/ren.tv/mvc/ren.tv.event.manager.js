@@ -7,23 +7,23 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineRenTvEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define RenTv event manager
-     * @class RenTvEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var RenTvEventManager = function RenTvEventManager() {
+  /**
+   * Define RenTv event manager
+   * @class RenTvEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var RenTvEventManager = function RenTvEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return RenTvEventManager.extend(
-        'RenTvEventManager', {},
-        WidgetContentEventManager.prototype
-    );
+  return RenTvEventManager.extend(
+      'RenTvEventManager', {},
+      WidgetContentEventManager.prototype
+  );
 });

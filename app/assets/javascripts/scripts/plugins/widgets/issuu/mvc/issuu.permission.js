@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineIssuuPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class IssuuPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var IssuuPermission = function IssuuPermission() {
+  /**
+   * Define Permissions
+   * @class IssuuPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var IssuuPermission = function IssuuPermission() {
 
-    };
+  };
 
-    return IssuuPermission.extend('IssuuPermission', {
-
-    }, BasePermission.prototype);
+  return IssuuPermission.extend('IssuuPermission', {},
+      BasePermission.prototype);
 });

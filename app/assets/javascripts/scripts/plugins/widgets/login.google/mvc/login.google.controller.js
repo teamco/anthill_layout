@@ -6,50 +6,50 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineLoginGoogleController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define login.google controller
+   * @class LoginGoogleController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var LoginGoogleController = function LoginGoogleController() {
+  };
+
+  return LoginGoogleController.extend('LoginGoogleController', {
+
     /**
-     * Define login.google controller
-     * @class LoginGoogleController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf LoginGoogleController
      */
-    var LoginGoogleController = function LoginGoogleController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
 
-    return LoginGoogleController.extend('LoginGoogleController', {
+      this.view.elements.$logingoogle.renderEmbeddedContent();
+    },
 
-        /**
-         * Set embedded content
-         * @memberOf LoginGoogleController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
+    /**
+     * Add LoginGoogle rule
+     * @memberOf LoginGoogleController
+     * @param {Event} e
+     */
+    addLoginGoogleRule: function addLoginGoogleRule(e) {
 
-            this.view.elements.$logingoogle.renderEmbeddedContent();
-        },
+      /**
+       * Define $button
+       * @type {*|jQuery|HTMLElement}
+       */
+      var $button = $(e.target),
+          scope = this.scope;
 
-        /**
-         * Add LoginGoogle rule
-         * @memberOf LoginGoogleController
-         * @param {Event} e
-         */
-        addLoginGoogleRule: function addLoginGoogleRule(e) {
+      scope.observer.publish(
+          scope.eventmanager.eventList.publishRule,
+          [$button.attr('value'), this.scope.name]
+      );
+    }
 
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), this.scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

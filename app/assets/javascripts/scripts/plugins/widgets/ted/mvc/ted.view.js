@@ -7,108 +7,109 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/ted/element/ted.element',
-    'plugins/widgets/ted/element/ted.preferences.element',
-    'plugins/widgets/ted/element/ted.rules.element'
-], function defineTedView(BaseView, Header, Footer, TedElement, TedPreferencesElement, TedRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/ted/element/ted.element',
+  'plugins/widgets/ted/element/ted.preferences.element',
+  'plugins/widgets/ted/element/ted.rules.element'
+], function defineTedView(BaseView, Header, Footer, TedElement,
+    TedPreferencesElement, TedRulesElement) {
+
+  /**
+   * Define view
+   * @class TedView
+   * @extends BaseView
+   * @constructor
+   */
+  var TedView = function TedView() {
+  };
+
+  return TedView.extend('TedView', {
 
     /**
-     * Define view
-     * @class TedView
-     * @extends BaseView
-     * @constructor
+     * Render ted element
+     * @memberOf TedView
      */
-    var TedView = function TedView() {
-    };
+    renderTed: function renderTed() {
 
-    return TedView.extend('TedView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render ted element
-         * @memberOf TedView
-         */
-        renderTed: function renderTed() {
+      /**
+       * Define $ted
+       * @type {TedElement}
+       */
+      this.elements.$ted = new TedElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $ted
-             * @type {TedElement}
-             */
-            this.elements.$ted = new TedElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf TedView
+     * @returns {TedPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define Ted Preferences Element
+       * @type {TedPreferencesElement}
+       */
+      this.elements.$preferences = new TedPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf TedView
-         * @returns {TedPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define Ted Preferences Element
-             * @type {TedPreferencesElement}
-             */
-            this.elements.$preferences = new TedPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf TedView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {TedRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
+      /**
+       * Define data
+       * @type {*|{}}
+       */
+      var data = this.controller.getRules();
 
-        /**
-         * Render Rules
-         * @memberOf TedView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {TedRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define data
-             * @type {*|{}}
-             */
-            var data = this.controller.getRules();
-
-            /**
-             * Define Ted Rules Element
-             * @type {TedRulesElement}
-             */
-            this.elements.$rules = new TedRulesElement(this, {
-                data: data,
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render ted
-         * @memberOf TedView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderTed.bind(this)
-            );
+      /**
+       * Define Ted Rules Element
+       * @type {TedRulesElement}
+       */
+      this.elements.$rules = new TedRulesElement(this, {
+        data: data,
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render ted
+     * @memberOf TedView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderTed.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

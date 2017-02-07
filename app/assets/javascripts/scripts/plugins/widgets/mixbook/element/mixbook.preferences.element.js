@@ -6,35 +6,34 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
 ], function defineMixbookPreferencesElement(PluginElement, WidgetPreferences) {
 
-    /**
-     * Define Mixbook Preferences Element
-     * @param view
-     * @param opts
-     * @returns {MixbookPreferencesElement}
-     * @constructor
-     * @class MixbookPreferencesElement
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     */
-    var MixbookPreferencesElement = function MixbookPreferencesElement(view, opts) {
+  /**
+   * Define Mixbook Preferences Element
+   * @param view
+   * @param opts
+   * @returns {MixbookPreferencesElement}
+   * @constructor
+   * @class MixbookPreferencesElement
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   */
+  var MixbookPreferencesElement = function MixbookPreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return MixbookPreferencesElement.extend('MixbookPreferencesElement', {
-
-
-    }, PluginElement.prototype, WidgetPreferences.prototype);
+  return MixbookPreferencesElement.extend('MixbookPreferencesElement', {},
+      PluginElement.prototype, WidgetPreferences.prototype);
 
 });

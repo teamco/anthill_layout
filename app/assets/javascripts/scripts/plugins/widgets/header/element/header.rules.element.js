@@ -6,38 +6,37 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/rules/widget.base.rules'
+  'plugins/plugin.element',
+  'plugins/rules/widget.base.rules'
 ], function defineHeaderRulesElement(PluginElement, BaseWidgetRules) {
 
-    /**
-     * Define Header Rules Element
-     * @param view
-     * @param opts
-     * @returns {HeaderRulesElement}
-     * @constructor
-     * @class HeaderRulesElement
-     * @extends PluginElement
-     * @extends BaseWidgetRules
-     */
-    var HeaderRulesElement = function HeaderRulesElement(view, opts) {
+  /**
+   * Define Header Rules Element
+   * @param view
+   * @param opts
+   * @returns {HeaderRulesElement}
+   * @constructor
+   * @class HeaderRulesElement
+   * @extends PluginElement
+   * @extends BaseWidgetRules
+   */
+  var HeaderRulesElement = function HeaderRulesElement(view, opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBaseRulesData(
-            opts.data,
-            opts.rules.widget,
-            opts.rules.content
-        );
+    this.renderBaseRulesData(
+        opts.data,
+        opts.rules.widget,
+        opts.rules.content
+    );
 
-        return this;
-    };
+    return this;
+  };
 
-    return HeaderRulesElement.extend('HeaderRulesElement', {
-
-    }, PluginElement.prototype, BaseWidgetRules.prototype);
+  return HeaderRulesElement.extend('HeaderRulesElement', {},
+      PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

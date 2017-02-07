@@ -6,57 +6,58 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
-], function defineSyntaxHighlighterController(PluginBase, WidgetContentController) {
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
+], function defineSyntaxHighlighterController(PluginBase,
+    WidgetContentController) {
+
+  /**
+   * Define SyntaxHighlighter controller
+   * @class SyntaxHighlighterController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var SyntaxHighlighterController = function SyntaxHighlighterController() {
+  };
+
+  return SyntaxHighlighterController.extend('SyntaxHighlighterController', {
 
     /**
-     * Define SyntaxHighlighter controller
-     * @class SyntaxHighlighterController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf SyntaxHighlighterController
      */
-    var SyntaxHighlighterController = function SyntaxHighlighterController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
 
-    return SyntaxHighlighterController.extend('SyntaxHighlighterController', {
+      // Get file type
+      var type = this.model.getPrefs('syntaxhighlighterType');
 
-        /**
-         * Set embedded content
-         * @memberOf SyntaxHighlighterController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
+      this.view.elements.$syntaxhighlighter.renderEmbeddedContent(
+          this.model.getPrefs('syntaxhighlighterCode'),
+          this.model.getEntityByName('file', type),
+          this.model.getEntityByName('alias', type)
+      );
+    },
 
-            // Get file type
-            var type = this.model.getPrefs('syntaxhighlighterType');
+    /**
+     * Add SyntaxHighlighter rule
+     * @memberOf SyntaxHighlighterController
+     * @param {Event} e
+     */
+    addSyntaxHighlighterRule: function addSyntaxHighlighterRule(e) {
 
-            this.view.elements.$syntaxhighlighter.renderEmbeddedContent(
-                this.model.getPrefs('syntaxhighlighterCode'),
-                this.model.getEntityByName('file', type),
-                this.model.getEntityByName('alias', type)
-            );
-        },
+      /**
+       * Define $button
+       * @type {*|jQuery|HTMLElement}
+       */
+      var $button = $(e.target),
+          scope = this.scope;
 
-        /**
-         * Add SyntaxHighlighter rule
-         * @memberOf SyntaxHighlighterController
-         * @param {Event} e
-         */
-        addSyntaxHighlighterRule: function addSyntaxHighlighterRule(e) {
+      scope.observer.publish(
+          scope.eventmanager.eventList.publishRule,
+          [$button.attr('value'), this.scope.name]
+      );
+    }
 
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), this.scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

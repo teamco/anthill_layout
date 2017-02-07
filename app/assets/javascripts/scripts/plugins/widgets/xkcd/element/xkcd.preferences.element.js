@@ -6,35 +6,33 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
 ], function defineXkcdPreferencesElement(PluginElement, WidgetPreferences) {
 
-    /**
-     * Define Xkcd Preferences Element
-     * @param view
-     * @param opts
-     * @returns {XkcdPreferencesElement}
-     * @constructor
-     * @class XkcdPreferencesElement
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     */
-    var XkcdPreferencesElement = function XkcdPreferencesElement(view, opts) {
+  /**
+   * Define Xkcd Preferences Element
+   * @param view
+   * @param opts
+   * @returns {XkcdPreferencesElement}
+   * @constructor
+   * @class XkcdPreferencesElement
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   */
+  var XkcdPreferencesElement = function XkcdPreferencesElement(view, opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return XkcdPreferencesElement.extend('XkcdPreferencesElement', {
-
-
-    }, PluginElement.prototype, WidgetPreferences.prototype);
+  return XkcdPreferencesElement.extend('XkcdPreferencesElement', {},
+      PluginElement.prototype, WidgetPreferences.prototype);
 
 });

@@ -6,37 +6,34 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function definePostToolModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define PostTool model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class PostToolModel
+   * @constructor
+   */
+  var PostToolModel = function PostToolModel() {
+
     /**
-     * Define PostTool model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class PostToolModel
-     * @constructor
+     * Define preferences
+     * @memberOf PostToolModel
+     * @type {{}}
      */
-    var PostToolModel = function PostToolModel() {
+    this.preferences = {};
 
-        /**
-         * Define preferences
-         * @memberOf PostToolModel
-         * @type {{}}
-         */
-        this.preferences = {
-        };
+    /**
+     * Define rules
+     * @memberOf PostToolModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        /**
-         * Define rules
-         * @memberOf PostToolModel
-         * @type {{}}
-         */
-        this.rules = {};
-    };
-
-    return PostToolModel.extend('PostToolModel', {
-
-
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+  return PostToolModel.extend('PostToolModel', {}, BaseModel.prototype,
+      WidgetContentModel.prototype);
 });

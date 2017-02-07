@@ -7,108 +7,109 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/keez.movies/element/keez.movies.element',
-    'plugins/widgets/keez.movies/element/keez.movies.preferences.element',
-    'plugins/widgets/keez.movies/element/keez.movies.rules.element'
-], function defineKeezMoviesView(BaseView, Header, Footer, KeezMoviesElement, KeezMoviesPreferencesElement, KeezMoviesRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/keez.movies/element/keez.movies.element',
+  'plugins/widgets/keez.movies/element/keez.movies.preferences.element',
+  'plugins/widgets/keez.movies/element/keez.movies.rules.element'
+], function defineKeezMoviesView(BaseView, Header, Footer, KeezMoviesElement,
+    KeezMoviesPreferencesElement, KeezMoviesRulesElement) {
+
+  /**
+   * Define view
+   * @class KeezMoviesView
+   * @extends BaseView
+   * @constructor
+   */
+  var KeezMoviesView = function KeezMoviesView() {
+  };
+
+  return KeezMoviesView.extend('KeezMoviesView', {
 
     /**
-     * Define view
-     * @class KeezMoviesView
-     * @extends BaseView
-     * @constructor
+     * Render keezmovies element
+     * @memberOf KeezMoviesView
      */
-    var KeezMoviesView = function KeezMoviesView() {
-    };
+    renderKeezMovies: function renderKeezMovies() {
 
-    return KeezMoviesView.extend('KeezMoviesView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render keezmovies element
-         * @memberOf KeezMoviesView
-         */
-        renderKeezMovies: function renderKeezMovies() {
+      /**
+       * Define $keezmovies
+       * @type {KeezMoviesElement}
+       */
+      this.elements.$keezmovies = new KeezMoviesElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $keezmovies
-             * @type {KeezMoviesElement}
-             */
-            this.elements.$keezmovies = new KeezMoviesElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf KeezMoviesView
+     * @returns {KeezMoviesPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define KeezMovies Preferences Element
+       * @type {KeezMoviesPreferencesElement}
+       */
+      this.elements.$preferences = new KeezMoviesPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf KeezMoviesView
-         * @returns {KeezMoviesPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define KeezMovies Preferences Element
-             * @type {KeezMoviesPreferencesElement}
-             */
-            this.elements.$preferences = new KeezMoviesPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf KeezMoviesView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {KeezMoviesRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
+      /**
+       * Define data
+       * @type {*|{}}
+       */
+      var data = this.controller.getRules();
 
-        /**
-         * Render Rules
-         * @memberOf KeezMoviesView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {KeezMoviesRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define data
-             * @type {*|{}}
-             */
-            var data = this.controller.getRules();
-
-            /**
-             * Define KeezMovies Rules Element
-             * @type {KeezMoviesRulesElement}
-             */
-            this.elements.$rules = new KeezMoviesRulesElement(this, {
-                data: data,
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render keezmovies
-         * @memberOf KeezMoviesView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderKeezMovies.bind(this)
-            );
+      /**
+       * Define KeezMovies Rules Element
+       * @type {KeezMoviesRulesElement}
+       */
+      this.elements.$rules = new KeezMoviesRulesElement(this, {
+        data: data,
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render keezmovies
+     * @memberOf KeezMoviesView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderKeezMovies.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

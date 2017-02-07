@@ -6,43 +6,44 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineOrphusModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define Orphus model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class OrphusModel
+   * @constructor
+   */
+  var OrphusModel = function OrphusModel() {
+
     /**
-     * Define Orphus model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class OrphusModel
-     * @constructor
+     * Define preferences
+     * @property OrphusModel
+     * @type {{orphusMainScript: {type: string, disabled: boolean, visible:
+     *     boolean}}}
      */
-    var OrphusModel = function OrphusModel() {
-
-        /**
-         * Define preferences
-         * @property OrphusModel
-         * @type {{orphusMainScript: {type: string, disabled: boolean, visible: boolean}}}
-         */
-        this.preferences = {
-            orphusMainScript: {
-                type: 'textarea',
-                disabled: false,
-                visible: true
-            }
-        };
-
-        /**
-         * Define rules
-         * @property OrphusModel
-         * @type {{}}
-         */
-        this.rules = {};
+    this.preferences = {
+      orphusMainScript: {
+        type: 'textarea',
+        disabled: false,
+        visible: true
+      }
     };
 
-    return OrphusModel.extend('OrphusModel', {
+    /**
+     * Define rules
+     * @property OrphusModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        // Setter
+  return OrphusModel.extend('OrphusModel', {
 
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    // Setter
+
+  }, BaseModel.prototype, WidgetContentModel.prototype);
 });

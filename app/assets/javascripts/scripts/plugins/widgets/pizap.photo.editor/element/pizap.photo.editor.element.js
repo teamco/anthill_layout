@@ -6,40 +6,40 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function definePizapPhotoEditorElement(PluginElement) {
 
+  /**
+   * Define PizapPhotoEditor Element
+   * @param view
+   * @param opts
+   * @returns {PizapPhotoEditorElement}
+   * @constructor
+   * @class PizapPhotoEditorElement
+   * @extends PluginElement
+   */
+  var PizapPhotoEditorElement = function PizapPhotoEditorElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('pizap.photo.editor', {resource: '/widgets'});
+
+    return this;
+  };
+
+  return PizapPhotoEditorElement.extend('PizapPhotoEditorElement', {
+
     /**
-     * Define PizapPhotoEditor Element
-     * @param view
-     * @param opts
-     * @returns {PizapPhotoEditorElement}
-     * @constructor
-     * @class PizapPhotoEditorElement
-     * @extends PluginElement
+     * Render Embedded content
+     * @memberOf PizapPhotoEditorElement
+     * @param {string} html
      */
-    var PizapPhotoEditorElement = function PizapPhotoEditorElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent(html) {
+      this.addContent(html);
+    }
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
-
-        this.addCSS('pizap.photo.editor', {resource: '/widgets'});
-
-        return this;
-    };
-
-    return PizapPhotoEditorElement.extend('PizapPhotoEditorElement', {
-
-        /**
-         * Render Embedded content
-         * @memberOf PizapPhotoEditorElement
-         * @param {string} html
-         */
-        renderEmbeddedContent: function renderEmbeddedContent(html) {
-            this.addContent(html);
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 });

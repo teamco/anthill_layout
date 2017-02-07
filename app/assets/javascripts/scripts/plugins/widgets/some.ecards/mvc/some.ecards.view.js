@@ -7,108 +7,109 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/some.ecards/element/some.ecards.element',
-    'plugins/widgets/some.ecards/element/some.ecards.preferences.element',
-    'plugins/widgets/some.ecards/element/some.ecards.rules.element'
-], function defineSomeEcardsView(BaseView, Header, Footer, SomeEcardsElement, SomeEcardsPreferencesElement, SomeEcardsRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/some.ecards/element/some.ecards.element',
+  'plugins/widgets/some.ecards/element/some.ecards.preferences.element',
+  'plugins/widgets/some.ecards/element/some.ecards.rules.element'
+], function defineSomeEcardsView(BaseView, Header, Footer, SomeEcardsElement,
+    SomeEcardsPreferencesElement, SomeEcardsRulesElement) {
+
+  /**
+   * Define view
+   * @class SomeEcardsView
+   * @extends BaseView
+   * @constructor
+   */
+  var SomeEcardsView = function SomeEcardsView() {
+  };
+
+  return SomeEcardsView.extend('SomeEcardsView', {
 
     /**
-     * Define view
-     * @class SomeEcardsView
-     * @extends BaseView
-     * @constructor
+     * Render someecards element
+     * @memberOf SomeEcardsView
      */
-    var SomeEcardsView = function SomeEcardsView() {
-    };
+    renderSomeEcards: function renderSomeEcards() {
 
-    return SomeEcardsView.extend('SomeEcardsView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render someecards element
-         * @memberOf SomeEcardsView
-         */
-        renderSomeEcards: function renderSomeEcards() {
+      /**
+       * Define $someecards
+       * @type {SomeEcardsElement}
+       */
+      this.elements.$someecards = new SomeEcardsElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $someecards
-             * @type {SomeEcardsElement}
-             */
-            this.elements.$someecards = new SomeEcardsElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf SomeEcardsView
+     * @returns {SomeEcardsPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define SomeEcards Preferences Element
+       * @type {SomeEcardsPreferencesElement}
+       */
+      this.elements.$preferences = new SomeEcardsPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf SomeEcardsView
-         * @returns {SomeEcardsPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define SomeEcards Preferences Element
-             * @type {SomeEcardsPreferencesElement}
-             */
-            this.elements.$preferences = new SomeEcardsPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf SomeEcardsView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {SomeEcardsRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
+      /**
+       * Define data
+       * @type {*|{}}
+       */
+      var data = this.controller.getRules();
 
-        /**
-         * Render Rules
-         * @memberOf SomeEcardsView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {SomeEcardsRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define data
-             * @type {*|{}}
-             */
-            var data = this.controller.getRules();
-
-            /**
-             * Define SomeEcards Rules Element
-             * @type {SomeEcardsRulesElement}
-             */
-            this.elements.$rules = new SomeEcardsRulesElement(this, {
-                data: data,
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render someecards
-         * @memberOf SomeEcardsView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderSomeEcards.bind(this)
-            );
+      /**
+       * Define SomeEcards Rules Element
+       * @type {SomeEcardsRulesElement}
+       */
+      this.elements.$rules = new SomeEcardsRulesElement(this, {
+        data: data,
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render someecards
+     * @memberOf SomeEcardsView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderSomeEcards.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

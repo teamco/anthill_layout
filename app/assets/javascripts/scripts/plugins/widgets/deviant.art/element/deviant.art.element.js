@@ -6,48 +6,48 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineDeviantArtElement(PluginElement) {
 
+  /**
+   * Define DeviantArt Element
+   * @param view
+   * @param opts
+   * @returns {DeviantArtElement}
+   * @constructor
+   * @class DeviantArtElement
+   * @extends PluginElement
+   */
+  var DeviantArtElement = function DeviantArtElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('deviant.art', {resource: '/widgets'});
+
+    return this;
+  };
+
+  return DeviantArtElement.extend('DeviantArtElement', {
+
     /**
-     * Define DeviantArt Element
-     * @param view
-     * @param opts
-     * @returns {DeviantArtElement}
-     * @constructor
-     * @class DeviantArtElement
-     * @extends PluginElement
+     * Render Embedded content
+     * @memberOf DeviantArtElement
+     * @param {string} embed
      */
-    var DeviantArtElement = function DeviantArtElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent(embed) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+      if (!embed) {
+        return false;
+      }
 
-        this.addCSS('deviant.art', {resource: '/widgets'});
+      this.$.append(
+          this.renderObject($(embed)[0])
+      );
+    }
 
-        return this;
-    };
-
-    return DeviantArtElement.extend('DeviantArtElement', {
-
-        /**
-         * Render Embedded content
-         * @memberOf DeviantArtElement
-         * @param {string} embed
-         */
-        renderEmbeddedContent: function renderEmbeddedContent(embed) {
-
-            if (!embed) {
-                return false;
-            }
-
-            this.$.append(
-                this.renderObject($(embed)[0])
-            );
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 
 });

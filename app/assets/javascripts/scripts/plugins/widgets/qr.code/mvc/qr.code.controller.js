@@ -6,53 +6,53 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineQrCodeController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define QrCode controller
+   * @class QrCodeController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var QrCodeController = function QrCodeController() {
+  };
+
+  return QrCodeController.extend('QrCodeController', {
+
     /**
-     * Define QrCode controller
-     * @class QrCodeController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf QrCodeController
      */
-    var QrCodeController = function QrCodeController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
 
-    return QrCodeController.extend('QrCodeController', {
+      this.view.elements.$qrcode.renderEmbeddedContent(
+          this.model.getPrefs('qrcodeText'),
+          this.model.getPrefs('qrcodeSize')
+      );
+    },
 
-        /**
-         * Set embedded content
-         * @memberOf QrCodeController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
+    /**
+     * Add QrCode rule
+     * @memberOf QrCodeController
+     * @param {Event} e
+     */
+    addQrCodeRule: function addQrCodeRule(e) {
 
-            this.view.elements.$qrcode.renderEmbeddedContent(
-                this.model.getPrefs('qrcodeText'),
-                this.model.getPrefs('qrcodeSize')
-            );
-        },
+      /**
+       * Define $button
+       * @type {*|jQuery|HTMLElement}
+       */
+      var $button = $(e.target),
+          scope = this.scope;
 
-        /**
-         * Add QrCode rule
-         * @memberOf QrCodeController
-         * @param {Event} e
-         */
-        addQrCodeRule: function addQrCodeRule(e) {
+      scope.observer.publish(
+          scope.eventmanager.eventList.publishRule,
+          [$button.attr('value'), this.scope.name]
+      );
+    }
 
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), this.scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

@@ -6,29 +6,29 @@
  */
 
 define([
-    'config/anthill',
-    'plugins/plugin.controller'
+  'config/anthill',
+  'plugins/plugin.controller'
 ], function defineDashboardController(AntHill, PluginBase) {
 
+  /**
+   * Define dashboard controller
+   * @class DashboardController
+   * @extends AntHill
+   * @extends PluginController
+   * @constructor
+   */
+  var DashboardController = function DashboardController() {
+  };
+
+  return DashboardController.extend('DashboardController', {
+
     /**
-     * Define dashboard controller
-     * @class DashboardController
-     * @extends AntHill
-     * @extends PluginController
-     * @constructor
+     * Define show content
+     * @memberOf DashboardController
      */
-    var DashboardController = function DashboardController() {
-    };
+    getModuleData: function getModuleData() {
+      this.getView().get$item().openDashboard();
+    }
 
-    return DashboardController.extend('DashboardController', {
-
-        /**
-         * Define show content
-         * @memberOf DashboardController
-         */
-        getModuleData: function getModuleData() {
-            this.getView().get$item().openDashboard();
-        }
-
-    }, AntHill.prototype, PluginBase.prototype);
+  }, AntHill.prototype, PluginBase.prototype);
 });

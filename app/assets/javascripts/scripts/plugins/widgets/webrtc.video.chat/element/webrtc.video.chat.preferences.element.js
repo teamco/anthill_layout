@@ -6,35 +6,36 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
-], function defineWebrtcVideoChatPreferencesElement(PluginElement, WidgetPreferences) {
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
+], function defineWebrtcVideoChatPreferencesElement(PluginElement,
+    WidgetPreferences) {
 
-    /**
-     * Define WebrtcVideoChat Preferences Element
-     * @constructor
-     * @class WebrtcVideoChatPreferencesElement
-     * @param {WebrtcVideoChatView} view
-     * @param opts
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     * @returns {WebrtcVideoChatPreferencesElement}
-     */
-    var WebrtcVideoChatPreferencesElement = function WebrtcVideoChatPreferencesElement(view, opts) {
+  /**
+   * Define WebrtcVideoChat Preferences Element
+   * @constructor
+   * @class WebrtcVideoChatPreferencesElement
+   * @param {WebrtcVideoChatView} view
+   * @param opts
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   * @returns {WebrtcVideoChatPreferencesElement}
+   */
+  var WebrtcVideoChatPreferencesElement = function WebrtcVideoChatPreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return WebrtcVideoChatPreferencesElement.extend('WebrtcVideoChatPreferencesElement', {
-
-
-    }, PluginElement.prototype, WidgetPreferences.prototype);
+  return WebrtcVideoChatPreferencesElement.extend(
+      'WebrtcVideoChatPreferencesElement', {}, PluginElement.prototype,
+      WidgetPreferences.prototype);
 
 });

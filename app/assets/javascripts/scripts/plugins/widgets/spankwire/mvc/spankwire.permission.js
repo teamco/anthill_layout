@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineSpankwirePermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class SpankwirePermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var SpankwirePermission = function SpankwirePermission() {
+  /**
+   * Define Permissions
+   * @class SpankwirePermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var SpankwirePermission = function SpankwirePermission() {
 
-    };
+  };
 
-    return SpankwirePermission.extend('SpankwirePermission', {
-
-    }, BasePermission.prototype);
+  return SpankwirePermission.extend('SpankwirePermission', {},
+      BasePermission.prototype);
 });

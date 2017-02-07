@@ -7,31 +7,31 @@
  */
 
 define([
-    'modules/Event'
+  'modules/Event'
 ], function defineWorkspaceDataEventManager(BaseEvent) {
 
+  /**
+   * Define WorkspaceData event manager
+   * @class WorkspaceDataEventManager
+   * @constructor
+   * @extends BaseEvent
+   */
+  var WorkspaceDataEventManager = function WorkspaceDataEventManager() {
+
     /**
-     * Define WorkspaceData event manager
-     * @class WorkspaceDataEventManager
-     * @constructor
-     * @extends BaseEvent
+     * Define events
+     * @memberOf WorkspaceDataEventManager
+     * @type {{}}
      */
-    var WorkspaceDataEventManager = function WorkspaceDataEventManager() {
+    this.events = {};
+  };
 
-        /**
-         * Define events
-         * @memberOf WorkspaceDataEventManager
-         * @type {{}}
-         */
-        this.events = {};
-    };
+  return WorkspaceDataEventManager.extend('WorkspaceDataEventManager', {
 
-    return WorkspaceDataEventManager.extend('WorkspaceDataEventManager', {
-
-        /**
-         * Define event list
-         * @memberOf WorkspaceDataEventManager
-         * @type {{
+    /**
+     * Define event list
+     * @memberOf WorkspaceDataEventManager
+     * @type {{
          *      updateTranslations: string,
          *      loadModuleContent: string,
          *      setActiveContent: string,
@@ -39,47 +39,48 @@ define([
          *      preparePreferences: string,
          *      switchToActivePage: string
          * }}
-         */
-        eventList: {
-            updateTranslations: 'update.translations',
-            loadModuleContent: 'load.module.content',
-            setActiveContent: 'set.active.content',
-            preparePreferences: 'prepare.preferences',
-            updatePagesOrder: 'update.pages.order',
-            switchToActivePage: 'switch.to.active.page'
-        },
+     */
+    eventList: {
+      updateTranslations: 'update.translations',
+      loadModuleContent: 'load.module.content',
+      setActiveContent: 'set.active.content',
+      preparePreferences: 'prepare.preferences',
+      updatePagesOrder: 'update.pages.order',
+      switchToActivePage: 'switch.to.active.page'
+    },
 
-        /**
-         * Subscribe publish on
-         * @memberOf WorkspaceDataEventManager
-         * @param {Page} page
-         * @param {Function} [callback]
-         * @returns {{}}
-         */
-        subscribePublishOn: function subscribePublishOn(page, callback) {
+    /**
+     * Subscribe publish on
+     * @memberOf WorkspaceDataEventManager
+     * @param {Page} page
+     * @param {Function} [callback]
+     * @returns {{}}
+     */
+    subscribePublishOn: function subscribePublishOn(page, callback) {
 
-            /**
-             * Define event list
-             * @type {*}
-             */
-            var pageEventList = page.eventmanager.eventList;
+      /**
+       * Define event list
+       * @type {*}
+       */
+      var pageEventList = page.eventmanager.eventList;
 
-            /**
-             * Define events
-             * @type {{scope: Page, events: {eventName: string}[], callback: Function}}
-             */
-            var publish = {
-                scope: page,
-                events: [
-                    {eventName: pageEventList.afterCreateItem},
-                    {eventName: pageEventList.afterDestroyItem},
-                    {eventName: pageEventList.afterDestroyItems}
-                ],
-                callback: callback
-            };
+      /**
+       * Define events
+       * @type {{scope: Page, events: {eventName: string}[], callback:
+       *     Function}}
+       */
+      var publish = {
+        scope: page,
+        events: [
+          {eventName: pageEventList.afterCreateItem},
+          {eventName: pageEventList.afterDestroyItem},
+          {eventName: pageEventList.afterDestroyItems}
+        ],
+        callback: callback
+      };
 
-            this.publishOn(publish);
-        }
+      this.publishOn(publish);
+    }
 
-    }, BaseEvent.prototype);
+  }, BaseEvent.prototype);
 });

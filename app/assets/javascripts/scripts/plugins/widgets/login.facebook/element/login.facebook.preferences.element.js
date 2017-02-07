@@ -6,35 +6,36 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
-], function defineLoginFacebookPreferencesElement(PluginElement, WidgetPreferences) {
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
+], function defineLoginFacebookPreferencesElement(PluginElement,
+    WidgetPreferences) {
 
-    /**
-     * Define LoginFacebook Preferences Element
-     * @param view
-     * @param opts
-     * @returns {LoginFacebookPreferencesElement}
-     * @constructor
-     * @class LoginFacebookPreferencesElement
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     */
-    var LoginFacebookPreferencesElement = function LoginFacebookPreferencesElement(view, opts) {
+  /**
+   * Define LoginFacebook Preferences Element
+   * @param view
+   * @param opts
+   * @returns {LoginFacebookPreferencesElement}
+   * @constructor
+   * @class LoginFacebookPreferencesElement
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   */
+  var LoginFacebookPreferencesElement = function LoginFacebookPreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return LoginFacebookPreferencesElement.extend('LoginFacebookPreferencesElement', {
-
-
-    }, PluginElement.prototype, WidgetPreferences.prototype);
+  return LoginFacebookPreferencesElement.extend(
+      'LoginFacebookPreferencesElement', {}, PluginElement.prototype,
+      WidgetPreferences.prototype);
 
 });

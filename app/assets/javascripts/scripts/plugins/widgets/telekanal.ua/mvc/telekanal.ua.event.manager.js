@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineTelekanalUaEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define TelekanalUa event manager
-     * @class TelekanalUaEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var TelekanalUaEventManager = function TelekanalUaEventManager() {
+  /**
+   * Define TelekanalUa event manager
+   * @class TelekanalUaEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var TelekanalUaEventManager = function TelekanalUaEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return TelekanalUaEventManager.extend('TelekanalUaEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return TelekanalUaEventManager.extend('TelekanalUaEventManager', {},
+      WidgetContentEventManager.prototype);
 });

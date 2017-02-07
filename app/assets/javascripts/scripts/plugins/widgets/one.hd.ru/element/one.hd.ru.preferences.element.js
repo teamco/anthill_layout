@@ -6,35 +6,34 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
 ], function defineOneHdRuPreferencesElement(PluginElement, WidgetPreferences) {
 
-    /**
-     * Define OneHdRu Preferences Element
-     * @param view
-     * @param opts
-     * @returns {OneHdRuPreferencesElement}
-     * @constructor
-     * @class OneHdRuPreferencesElement
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     */
-    var OneHdRuPreferencesElement = function OneHdRuPreferencesElement(view, opts) {
+  /**
+   * Define OneHdRu Preferences Element
+   * @param view
+   * @param opts
+   * @returns {OneHdRuPreferencesElement}
+   * @constructor
+   * @class OneHdRuPreferencesElement
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   */
+  var OneHdRuPreferencesElement = function OneHdRuPreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return OneHdRuPreferencesElement.extend('OneHdRuPreferencesElement', {
-
-
-    }, PluginElement.prototype, WidgetPreferences.prototype);
+  return OneHdRuPreferencesElement.extend('OneHdRuPreferencesElement', {},
+      PluginElement.prototype, WidgetPreferences.prototype);
 
 });

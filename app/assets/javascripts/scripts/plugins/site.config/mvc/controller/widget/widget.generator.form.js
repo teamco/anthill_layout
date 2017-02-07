@@ -3,140 +3,141 @@
  */
 define(function defineWidgetGeneratorForm() {
 
+  /**
+   * Define WidgetGeneratorForm
+   * @class WidgetGeneratorForm
+   * @extends SiteConfigWidgetGenerator
+   * @constructor
+   */
+  var WidgetGeneratorForm = function WidgetGeneratorForm() {
+  };
+
+  return WidgetGeneratorForm.extend('WidgetGeneratorForm', {
+
     /**
-     * Define WidgetGeneratorForm
-     * @class WidgetGeneratorForm
-     * @extends SiteConfigWidgetGenerator
-     * @constructor
+     * Clear widget generate form
+     * @memberOf WidgetGeneratorForm
+     * @protected
      */
-    var WidgetGeneratorForm = function WidgetGeneratorForm() {
-    };
+    _clearWidgetForm: function _clearWidgetForm() {
 
-    return WidgetGeneratorForm.extend('WidgetGeneratorForm', {
+      /**
+       * Get $modal
+       * @type {ModalElement}
+       */
+      var $modal = this.scope.view.get$modal();
 
-        /**
-         * Clear widget generate form
-         * @memberOf WidgetGeneratorForm
-         * @protected
-         */
-        _clearWidgetForm: function _clearWidgetForm() {
+      // Clear form
+      $modal.collectInputFields({
+        method: 'not',
+        value: '[name="category"]'
+      }).val('');
 
-            /**
-             * Get $modal
-             * @type {ModalElement}
-             */
-            var $modal = this.scope.view.get$modal();
+      // Clear image preview
+      $modal.$.find('img').attr('src', '');
+    },
 
-            // Clear form
-            $modal.collectInputFields({
-                method: 'not',
-                value: '[name="category"]'
-            }).val('');
-
-            // Clear image preview
-            $modal.$.find('img').attr('src', '');
-        },
-
-        /**
-         * Collect form widget's data
-         * @memberOf WidgetGeneratorForm
-         * @param {boolean} [external]
-         * @returns {boolean|{
+    /**
+     * Collect form widget's data
+     * @memberOf WidgetGeneratorForm
+     * @param {boolean} [external]
+     * @returns {boolean|{
          *      category: string,
          *      collector: {},
          *      $modal: ModalElement,
          *      validate: *,
          *      empty: number
          * }}
-         * @protected
+     * @protected
+     */
+    _collectFormWidgetData: function _collectFormWidgetData(external) {
+
+      // Convert to boolean
+      external = !!external;
+
+      /**
+       * Get scope
+       * @type {SiteConfig}
+       */
+      var scope = this.scope;
+
+      /**
+       * Get $modal
+       * @type {ModalElement}
+       */
+      var $modal = scope.view.get$modal();
+
+      var inputs = $modal.collectInputFields(),
+          validate = inputs.hasClass('validate'),
+          empty = 0,
+          i = 0, l = inputs.length,
+          data;
+
+      /**
+       * Define collector
+       * @type {{name: string, category: string, clone: string, scratch:
+       *     string, visible: boolean}}
+       */
+      var collector = {
+        clone: '',
+        scratch: '',
+        visible: true
+      };
+
+      for (; i < l; i++) {
+        data = inputs[i];
+        collector[data.name] = data.value;
+        $(data).blur();
+        if (!data.value.length) empty++;
+      }
+
+      if (!collector['clone'].length && collector['scratch'] === 'true') {
+        empty--;
+      }
+
+      /**
+       * Define panel
+       * @type {Panel}
+       */
+      var panel = this.getDesignTimePanel();
+
+      /**
+       * Get gallery
+       * @type {Gallery|*}
+       */
+      var gallery = panel.controller.getGallery(),
+          clone, name;
+
+      if (gallery) {
+
+        // Store category key
+        var category = this.base.lib.hash.getKeyByValue(
+            gallery.model.dataTypes,
+            collector.category
+        );
+
+        /**
+         * Get widget resource
+         * @type {string}
          */
-        _collectFormWidgetData: function _collectFormWidgetData(external) {
+        var resource = scope.view.elements.$widgetgenerator.getResource();
 
-            // Convert to boolean
-            external = !!external;
+        if (collector.clone.length) {
 
-            /**
-             * Get scope
-             * @type {SiteConfig}
-             */
-            var scope = this.scope;
+          resource = (gallery.model.staticData.getWidgetData(
+              'name', collector.clone
+          ) || {}).resource;
+        }
 
-            /**
-             * Get $modal
-             * @type {ModalElement}
-             */
-            var $modal = scope.view.get$modal();
+        if (_.isUndefined(resource) || !resource.length) {
 
-            var inputs = $modal.collectInputFields(),
-                validate = inputs.hasClass('validate'),
-                empty = 0,
-                i = 0, l = inputs.length,
-                data;
+          scope.logger.warn('Undefined resource', collector);
+          return false;
+        }
 
-            /**
-             * Define collector
-             * @type {{name: string, category: string, clone: string, scratch: string, visible: boolean}}
-             */
-            var collector = {
-                clone: '',
-                scratch: '',
-                visible: true
-            };
-
-            for (; i < l; i++) {
-                data = inputs[i];
-                collector[data.name] = data.value;
-                $(data).blur();
-                if (!data.value.length) empty++;
-            }
-
-            if (!collector['clone'].length && collector['scratch'] === 'true') {
-                empty--;
-            }
-
-            /**
-             * Define panel
-             * @type {Panel}
-             */
-            var panel = this.getDesignTimePanel();
-
-            /**
-             * Get gallery
-             * @type {Gallery|*}
-             */
-            var gallery = panel.controller.getGallery(),
-                clone, name;
-
-            if (gallery) {
-
-                // Store category key
-                var category = this.base.lib.hash.getKeyByValue(
-                    gallery.model.dataTypes,
-                    collector.category
-                );
-
-                /**
-                 * Get widget resource
-                 * @type {string}
-                 */
-                var resource = scope.view.elements.$widgetgenerator.getResource();
-
-                if (collector.clone.length) {
-
-                    resource = (gallery.model.staticData.getWidgetData(
-                        'name', collector.clone
-                    ) || {}).resource;
-                }
-
-                if (_.isUndefined(resource) || !resource.length) {
-
-                    scope.logger.warn('Undefined resource', collector);
-                    return false;
-                }
-
-                /**
-                 * Get clone data
-                 * @type {{
+        /**
+         * Get clone data
+         * @type {{
                  *      name: string,
                  *      description: string,
                  *      thumbnail: string,
@@ -144,29 +145,30 @@ define(function defineWidgetGeneratorForm() {
                  *      type: string,
                  *      resource: string
                  * }}
-                 */
-                clone = gallery.model.staticData.getWidgetData(
-                        'resource',
-                        external ? 'external' : (collector.scratch === 'true' ? 'empty' : resource)
-                    ) || {}
-            }
+         */
+        clone = gallery.model.staticData.getWidgetData(
+                'resource',
+                external ? 'external' :
+                    (collector.scratch === 'true' ? 'empty' : resource)
+            ) || {}
+      }
 
-            // Define hash
-            var hash = {
-                clone: clone.resource,
-                category: category,
-                collector: collector,
-                $modal: $modal,
-                validate: validate,
-                empty: empty
-            };
+      // Define hash
+      var hash = {
+        clone: clone.resource,
+        category: category,
+        collector: collector,
+        $modal: $modal,
+        validate: validate,
+        empty: empty
+      };
 
-            // Remove none permitted attribute
-            delete collector.category;
-            delete collector.clone;
-            delete collector.scratch;
+      // Remove none permitted attribute
+      delete collector.category;
+      delete collector.clone;
+      delete collector.scratch;
 
-            return hash;
-        }
-    });
+      return hash;
+    }
+  });
 });

@@ -7,20 +7,20 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function definePaypalBtnPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class PaypalBtnPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var PaypalBtnPermission = function PaypalBtnPermission() {
-    };
+  /**
+   * Define Permissions
+   * @class PaypalBtnPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var PaypalBtnPermission = function PaypalBtnPermission() {
+  };
 
-    return PaypalBtnPermission.extend(
-        'PaypalBtnPermission', {}, 
-        BasePermission.prototype
-    );
+  return PaypalBtnPermission.extend(
+      'PaypalBtnPermission', {},
+      BasePermission.prototype
+  );
 });

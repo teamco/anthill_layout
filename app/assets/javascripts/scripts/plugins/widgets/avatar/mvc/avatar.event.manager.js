@@ -7,24 +7,23 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineAvatarEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define Avatar event manager
-     * @class AvatarEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var AvatarEventManager = function AvatarEventManager() {
+  /**
+   * Define Avatar event manager
+   * @class AvatarEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var AvatarEventManager = function AvatarEventManager() {
 
-        this.updateEventList({
-            updateCoordinates: 'update.coordinates'
-        });
-    };
+    this.updateEventList({
+      updateCoordinates: 'update.coordinates'
+    });
+  };
 
-    return AvatarEventManager.extend('AvatarEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return AvatarEventManager.extend('AvatarEventManager', {},
+      WidgetContentEventManager.prototype);
 });

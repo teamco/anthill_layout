@@ -6,45 +6,45 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineAOneHipHopElement(PluginElement) {
 
+  /**
+   * Define AOneHipHop Element
+   * @param view
+   * @param opts
+   * @returns {AOneHipHopElement}
+   * @constructor
+   * @class AOneHipHopElement
+   * @extends PluginElement
+   */
+  var AOneHipHopElement = function AOneHipHopElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('a.one.hip.hop', {resource: '/widgets'});
+
+    return this;
+  };
+
+  return AOneHipHopElement.extend('AOneHipHopElement', {
+
     /**
-     * Define AOneHipHop Element
-     * @param view
-     * @param opts
-     * @returns {AOneHipHopElement}
-     * @constructor
-     * @class AOneHipHopElement
-     * @extends PluginElement
+     * Render Embedded content
+     * @memberOf AOneHipHopElement
+     * @param {string} embed
      */
-    var AOneHipHopElement = function AOneHipHopElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent(embed) {
+      this.$.append(
+          this.renderObject(
+              embed.toHtml()
+          )
+      );
+    }
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
-
-        this.addCSS('a.one.hip.hop', {resource: '/widgets'});
-
-        return this;
-    };
-
-    return AOneHipHopElement.extend('AOneHipHopElement', {
-
-        /**
-         * Render Embedded content
-         * @memberOf AOneHipHopElement
-         * @param {string} embed
-         */
-        renderEmbeddedContent: function renderEmbeddedContent(embed) {
-            this.$.append(
-                this.renderObject(
-                    embed.toHtml()
-                )
-            );
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 
 });

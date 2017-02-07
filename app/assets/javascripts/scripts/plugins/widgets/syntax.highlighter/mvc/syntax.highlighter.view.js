@@ -7,102 +7,105 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/syntax.highlighter/element/syntax.highlighter.element',
-    'plugins/widgets/syntax.highlighter/element/syntax.highlighter.preferences.element',
-    'plugins/widgets/syntax.highlighter/element/syntax.highlighter.rules.element'
-], function defineSyntaxHighlighterView(BaseView, Header, Footer, SyntaxHighlighterElement, SyntaxHighlighterPreferencesElement, SyntaxHighlighterRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/syntax.highlighter/element/syntax.highlighter.element',
+  'plugins/widgets/syntax.highlighter/element/syntax.highlighter.preferences.element',
+  'plugins/widgets/syntax.highlighter/element/syntax.highlighter.rules.element'
+], function defineSyntaxHighlighterView(BaseView, Header, Footer,
+    SyntaxHighlighterElement, SyntaxHighlighterPreferencesElement,
+    SyntaxHighlighterRulesElement) {
+
+  /**
+   * Define view
+   * @class SyntaxHighlighterView
+   * @extends BaseView
+   * @constructor
+   */
+  var SyntaxHighlighterView = function SyntaxHighlighterView() {
+  };
+
+  return SyntaxHighlighterView.extend('SyntaxHighlighterView', {
 
     /**
-     * Define view
-     * @class SyntaxHighlighterView
-     * @extends BaseView
-     * @constructor
+     * Render SyntaxHighlighter element
+     * @memberOf SyntaxHighlighterView
      */
-    var SyntaxHighlighterView = function SyntaxHighlighterView() {
-    };
+    renderSyntaxHighlighter: function renderSyntaxHighlighter() {
 
-    return SyntaxHighlighterView.extend('SyntaxHighlighterView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render SyntaxHighlighter element
-         * @memberOf SyntaxHighlighterView
-         */
-        renderSyntaxHighlighter: function renderSyntaxHighlighter() {
+      /**
+       * Define $syntaxhighlighter
+       * @type {SyntaxHighlighterElement}
+       */
+      this.elements.$syntaxhighlighter = new SyntaxHighlighterElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $syntaxhighlighter
-             * @type {SyntaxHighlighterElement}
-             */
-            this.elements.$syntaxhighlighter = new SyntaxHighlighterElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf SyntaxHighlighterView
+     * @returns {SyntaxHighlighterPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define SyntaxHighlighter Preferences Element
+       * @type {SyntaxHighlighterPreferencesElement}
+       */
+      this.elements.$preferences =
+          new SyntaxHighlighterPreferencesElement(this, {
+            data: this.controller.getPreferences()
+          });
 
-        /**
-         * Render Prefs
-         * @memberOf SyntaxHighlighterView
-         * @returns {SyntaxHighlighterPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define SyntaxHighlighter Preferences Element
-             * @type {SyntaxHighlighterPreferencesElement}
-             */
-            this.elements.$preferences = new SyntaxHighlighterPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf SyntaxHighlighterView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {SyntaxHighlighterRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
-
-        /**
-         * Render Rules
-         * @memberOf SyntaxHighlighterView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {SyntaxHighlighterRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define SyntaxHighlighter Rules Element
-             * @type {SyntaxHighlighterRulesElement}
-             */
-            this.elements.$rules = new SyntaxHighlighterRulesElement(this, {
-                data: this.controller.getRules(),
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render SyntaxHighlighter
-         * @memberOf SyntaxHighlighterView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderSyntaxHighlighter.bind(this)
-            );
+      /**
+       * Define SyntaxHighlighter Rules Element
+       * @type {SyntaxHighlighterRulesElement}
+       */
+      this.elements.$rules = new SyntaxHighlighterRulesElement(this, {
+        data: this.controller.getRules(),
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render SyntaxHighlighter
+     * @memberOf SyntaxHighlighterView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderSyntaxHighlighter.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

@@ -6,39 +6,39 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineLetsPlayModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define LetsPlay model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class LetsPlayModel
+   * @constructor
+   */
+  var LetsPlayModel = function LetsPlayModel() {
+
     /**
-     * Define LetsPlay model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class LetsPlayModel
-     * @constructor
+     * Define preferences
+     * @property LetsPlayModel
+     * @type {{}}
      */
-    var LetsPlayModel = function LetsPlayModel() {
-
-        /**
-         * Define preferences
-         * @property LetsPlayModel
-         * @type {{}}
-         */
-        this.preferences = {
-            // Preferences
-        };
-
-        /**
-         * Define rules
-         * @property LetsPlayModel
-         * @type {{}}
-         */
-        this.rules = {};
+    this.preferences = {
+      // Preferences
     };
 
-    return LetsPlayModel.extend('LetsPlayModel', {
+    /**
+     * Define rules
+     * @property LetsPlayModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        // Setter
+  return LetsPlayModel.extend('LetsPlayModel', {
 
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    // Setter
+
+  }, BaseModel.prototype, WidgetContentModel.prototype);
 });

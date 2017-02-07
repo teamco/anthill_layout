@@ -6,35 +6,36 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
-], function defineFiveChannelUaPreferencesElement(PluginElement, WidgetPreferences) {
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
+], function defineFiveChannelUaPreferencesElement(PluginElement,
+    WidgetPreferences) {
 
-    /**
-     * Define FiveChannelUa Preferences Element
-     * @param view
-     * @param opts
-     * @returns {FiveChannelUaPreferencesElement}
-     * @constructor
-     * @class FiveChannelUaPreferencesElement
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     */
-    var FiveChannelUaPreferencesElement = function FiveChannelUaPreferencesElement(view, opts) {
+  /**
+   * Define FiveChannelUa Preferences Element
+   * @param view
+   * @param opts
+   * @returns {FiveChannelUaPreferencesElement}
+   * @constructor
+   * @class FiveChannelUaPreferencesElement
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   */
+  var FiveChannelUaPreferencesElement = function FiveChannelUaPreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return FiveChannelUaPreferencesElement.extend('FiveChannelUaPreferencesElement', {
-
-
-    }, PluginElement.prototype, WidgetPreferences.prototype);
+  return FiveChannelUaPreferencesElement.extend(
+      'FiveChannelUaPreferencesElement', {}, PluginElement.prototype,
+      WidgetPreferences.prototype);
 
 });

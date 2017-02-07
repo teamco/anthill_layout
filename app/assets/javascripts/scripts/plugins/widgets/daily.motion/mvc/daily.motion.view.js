@@ -7,108 +7,109 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/daily.motion/element/daily.motion.element',
-    'plugins/widgets/daily.motion/element/daily.motion.preferences.element',
-    'plugins/widgets/daily.motion/element/daily.motion.rules.element'
-], function defineDailyMotionView(BaseView, Header, Footer, DailyMotionElement, DailyMotionPreferencesElement, DailyMotionRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/daily.motion/element/daily.motion.element',
+  'plugins/widgets/daily.motion/element/daily.motion.preferences.element',
+  'plugins/widgets/daily.motion/element/daily.motion.rules.element'
+], function defineDailyMotionView(BaseView, Header, Footer, DailyMotionElement,
+    DailyMotionPreferencesElement, DailyMotionRulesElement) {
+
+  /**
+   * Define view
+   * @class DailyMotionView
+   * @extends BaseView
+   * @constructor
+   */
+  var DailyMotionView = function DailyMotionView() {
+  };
+
+  return DailyMotionView.extend('DailyMotionView', {
 
     /**
-     * Define view
-     * @class DailyMotionView
-     * @extends BaseView
-     * @constructor
+     * Render dailymotion element
+     * @memberOf DailyMotionView
      */
-    var DailyMotionView = function DailyMotionView() {
-    };
+    renderDailyMotion: function renderDailyMotion() {
 
-    return DailyMotionView.extend('DailyMotionView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render dailymotion element
-         * @memberOf DailyMotionView
-         */
-        renderDailyMotion: function renderDailyMotion() {
+      /**
+       * Define $dailymotion
+       * @type {DailyMotionElement}
+       */
+      this.elements.$dailymotion = new DailyMotionElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $dailymotion
-             * @type {DailyMotionElement}
-             */
-            this.elements.$dailymotion = new DailyMotionElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf DailyMotionView
+     * @returns {DailyMotionPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define DailyMotion Preferences Element
+       * @type {DailyMotionPreferencesElement}
+       */
+      this.elements.$preferences = new DailyMotionPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf DailyMotionView
-         * @returns {DailyMotionPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define DailyMotion Preferences Element
-             * @type {DailyMotionPreferencesElement}
-             */
-            this.elements.$preferences = new DailyMotionPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf DailyMotionView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {DailyMotionRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
+      /**
+       * Define data
+       * @type {*|{}}
+       */
+      var data = this.controller.getRules();
 
-        /**
-         * Render Rules
-         * @memberOf DailyMotionView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {DailyMotionRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define data
-             * @type {*|{}}
-             */
-            var data = this.controller.getRules();
-
-            /**
-             * Define DailyMotion Rules Element
-             * @type {DailyMotionRulesElement}
-             */
-            this.elements.$rules = new DailyMotionRulesElement(this, {
-                data: data,
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render dailymotion
-         * @memberOf DailyMotionView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderDailyMotion.bind(this)
-            );
+      /**
+       * Define DailyMotion Rules Element
+       * @type {DailyMotionRulesElement}
+       */
+      this.elements.$rules = new DailyMotionRulesElement(this, {
+        data: data,
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render dailymotion
+     * @memberOf DailyMotionView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderDailyMotion.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

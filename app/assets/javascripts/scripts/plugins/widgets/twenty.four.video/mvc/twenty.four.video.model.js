@@ -6,53 +6,54 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineTwentyFourVideoModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define TwentyFourVideo model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class TwentyFourVideoModel
+   * @constructor
+   */
+  var TwentyFourVideoModel = function TwentyFourVideoModel() {
+
     /**
-     * Define TwentyFourVideo model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class TwentyFourVideoModel
-     * @constructor
-     */
-    var TwentyFourVideoModel = function TwentyFourVideoModel() {
-
-        /**
-         * Define preferences
-         * @memberOf TwentyFourVideoModel
-         * @type {{
-         *      twentyfourvideoEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
+     * Define preferences
+     * @memberOf TwentyFourVideoModel
+     * @type {{
+         *      twentyfourvideoEmbedCode: {type: string, disabled: boolean,
+         *     value: undefined, visible: boolean}
          * }}
-         */
-        this.preferences = {
-            twentyfourvideoEmbedCode: {
-                type: 'textarea',
-                disabled: false,
-                value: undefined,
-                visible: true
-            }
-        };
-
-        /**
-         * Define rules
-         * @memberOf TwentyFourVideoModel
-         * @type {{}}
-         */
-        this.rules = {};
+     */
+    this.preferences = {
+      twentyfourvideoEmbedCode: {
+        type: 'textarea',
+        disabled: false,
+        value: undefined,
+        visible: true
+      }
     };
 
-    return TwentyFourVideoModel.extend('TwentyFourVideoModel', {
+    /**
+     * Define rules
+     * @memberOf TwentyFourVideoModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        /**
-         * Set TwentyFourVideo embed code
-         * @memberOf TwentyFourVideoModel
-         * @param {string} embed
-         */
-        setTwentyfourvideoEmbedCode: function setTwentyfourvideoEmbedCode(embed) {
-            this.setPrefs('twentyfourvideoEmbedCode', embed);
-        }
+  return TwentyFourVideoModel.extend('TwentyFourVideoModel', {
 
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    /**
+     * Set TwentyFourVideo embed code
+     * @memberOf TwentyFourVideoModel
+     * @param {string} embed
+     */
+    setTwentyfourvideoEmbedCode: function setTwentyfourvideoEmbedCode(embed) {
+      this.setPrefs('twentyfourvideoEmbedCode', embed);
+    }
+
+  }, BaseModel.prototype, WidgetContentModel.prototype);
 });

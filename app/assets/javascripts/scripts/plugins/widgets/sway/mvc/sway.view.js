@@ -7,101 +7,102 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/sway/element/sway.element',
-    'plugins/widgets/sway/element/sway.preferences.element',
-    'plugins/widgets/sway/element/sway.rules.element'
-], function defineSwayView(BaseView, Header, Footer, SwayElement, SwayPreferencesElement, SwayRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/sway/element/sway.element',
+  'plugins/widgets/sway/element/sway.preferences.element',
+  'plugins/widgets/sway/element/sway.rules.element'
+], function defineSwayView(BaseView, Header, Footer, SwayElement,
+    SwayPreferencesElement, SwayRulesElement) {
+
+  /**
+   * Define view
+   * @class SwayView
+   * @extends BaseView
+   * @constructor
+   */
+  var SwayView = function SwayView() {
+  };
+
+  return SwayView.extend('SwayView', {
 
     /**
-     * Define view
-     * @class SwayView
-     * @extends BaseView
-     * @constructor
+     * Render Sway element
+     * @memberOf SwayView
      */
-    var SwayView = function SwayView() {
-    };
+    renderSway: function renderSway() {
 
-    return SwayView.extend('SwayView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render Sway element
-         * @memberOf SwayView
-         */
-        renderSway: function renderSway() {
+      /**
+       * Define $sway
+       * @type {SwayElement}
+       */
+      this.elements.$sway = new SwayElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $sway
-             * @type {SwayElement}
-             */
-            this.elements.$sway = new SwayElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf SwayView
+     * @returns {SwayPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define Sway Preferences Element
+       * @type {SwayPreferencesElement}
+       */
+      this.elements.$preferences = new SwayPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf SwayView
-         * @returns {SwayPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define Sway Preferences Element
-             * @type {SwayPreferencesElement}
-             */
-            this.elements.$preferences = new SwayPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf SwayView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {SwayRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
-
-        /**
-         * Render Rules
-         * @memberOf SwayView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {SwayRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define Sway Rules Element
-             * @type {SwayRulesElement}
-             */
-            this.elements.$rules = new SwayRulesElement(this, {
-                data: this.controller.getRules(),
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render Sway
-         * @memberOf SwayView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderSway.bind(this)
-            );
+      /**
+       * Define Sway Rules Element
+       * @type {SwayRulesElement}
+       */
+      this.elements.$rules = new SwayRulesElement(this, {
+        data: this.controller.getRules(),
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype);
+      return this.get$rules();
+    },
+
+    /**
+     * Render Sway
+     * @memberOf SwayView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderSway.bind(this)
+      );
+    }
+
+  }, BaseView.prototype);
 });

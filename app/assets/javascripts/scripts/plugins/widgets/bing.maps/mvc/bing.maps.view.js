@@ -7,101 +7,102 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/bing.maps/element/bing.maps.element',
-    'plugins/widgets/bing.maps/element/bing.maps.preferences.element',
-    'plugins/widgets/bing.maps/element/bing.maps.rules.element'
-], function defineBingMapsView(BaseView, Header, Footer, BingMapsElement, BingMapsPreferencesElement, BingMapsRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/bing.maps/element/bing.maps.element',
+  'plugins/widgets/bing.maps/element/bing.maps.preferences.element',
+  'plugins/widgets/bing.maps/element/bing.maps.rules.element'
+], function defineBingMapsView(BaseView, Header, Footer, BingMapsElement,
+    BingMapsPreferencesElement, BingMapsRulesElement) {
+
+  /**
+   * Define view
+   * @class BingMapsView
+   * @extends BaseView
+   * @constructor
+   */
+  var BingMapsView = function BingMapsView() {
+  };
+
+  return BingMapsView.extend('BingMapsView', {
 
     /**
-     * Define view
-     * @class BingMapsView
-     * @extends BaseView
-     * @constructor
+     * Render BingMaps element
+     * @memberOf BingMapsView
      */
-    var BingMapsView = function BingMapsView() {
-    };
+    renderBingMaps: function renderBingMaps() {
 
-    return BingMapsView.extend('BingMapsView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render BingMaps element
-         * @memberOf BingMapsView
-         */
-        renderBingMaps: function renderBingMaps() {
+      /**
+       * Define $bingmaps
+       * @type {BingMapsElement}
+       */
+      this.elements.$bingmaps = new BingMapsElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $bingmaps
-             * @type {BingMapsElement}
-             */
-            this.elements.$bingmaps = new BingMapsElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf BingMapsView
+     * @returns {BingMapsPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define BingMaps Preferences Element
+       * @type {BingMapsPreferencesElement}
+       */
+      this.elements.$preferences = new BingMapsPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf BingMapsView
-         * @returns {BingMapsPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define BingMaps Preferences Element
-             * @type {BingMapsPreferencesElement}
-             */
-            this.elements.$preferences = new BingMapsPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf BingMapsView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {BingMapsRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
-
-        /**
-         * Render Rules
-         * @memberOf BingMapsView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {BingMapsRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define BingMaps Rules Element
-             * @type {BingMapsRulesElement}
-             */
-            this.elements.$rules = new BingMapsRulesElement(this, {
-                data: this.controller.getRules(),
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render BingMaps
-         * @memberOf BingMapsView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderBingMaps.bind(this)
-            );
+      /**
+       * Define BingMaps Rules Element
+       * @type {BingMapsRulesElement}
+       */
+      this.elements.$rules = new BingMapsRulesElement(this, {
+        data: this.controller.getRules(),
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype);
+      return this.get$rules();
+    },
+
+    /**
+     * Render BingMaps
+     * @memberOf BingMapsView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderBingMaps.bind(this)
+      );
+    }
+
+  }, BaseView.prototype);
 });

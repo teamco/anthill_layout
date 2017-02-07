@@ -6,40 +6,40 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineAccuweatherVideosElement(PluginElement) {
 
+  /**
+   * Define AccuweatherVideos Element
+   * @param view
+   * @param opts
+   * @returns {AccuweatherVideosElement}
+   * @constructor
+   * @class AccuweatherVideosElement
+   * @extends PluginElement
+   */
+  var AccuweatherVideosElement = function AccuweatherVideosElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('accuweather.widget', {resource: '/widgets'});
+
+    return this;
+  };
+
+  return AccuweatherVideosElement.extend('AccuweatherVideosElement', {
+
     /**
-     * Define AccuweatherVideos Element
-     * @param view
-     * @param opts
-     * @returns {AccuweatherVideosElement}
-     * @constructor
-     * @class AccuweatherVideosElement
-     * @extends PluginElement
+     * Render Embedded content
+     * @memberOf AccuweatherVideosElement
+     * @param {string} html
      */
-    var AccuweatherVideosElement = function AccuweatherVideosElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent(html) {
+      this.addContent(html);
+    }
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
-
-        this.addCSS('accuweather.widget', {resource: '/widgets'});
-
-        return this;
-    };
-
-    return AccuweatherVideosElement.extend('AccuweatherVideosElement', {
-
-        /**
-         * Render Embedded content
-         * @memberOf AccuweatherVideosElement
-         * @param {string} html
-         */
-        renderEmbeddedContent: function renderEmbeddedContent(html) {
-            this.addContent(html);
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 });

@@ -6,53 +6,54 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineSomeEcardsModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define SomeEcards model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class SomeEcardsModel
+   * @constructor
+   */
+  var SomeEcardsModel = function SomeEcardsModel() {
+
     /**
-     * Define SomeEcards model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class SomeEcardsModel
-     * @constructor
-     */
-    var SomeEcardsModel = function SomeEcardsModel() {
-
-        /**
-         * Define preferences
-         * @memberOf SomeEcardsModel
-         * @type {{
-         *      someecardsEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
+     * Define preferences
+     * @memberOf SomeEcardsModel
+     * @type {{
+         *      someecardsEmbedCode: {type: string, disabled: boolean, value:
+         *     undefined, visible: boolean}
          * }}
-         */
-        this.preferences = {
-            someecardsEmbedCode: {
-                type: 'textarea',
-                disabled: false,
-                value: undefined,
-                visible: true
-            }
-        };
-
-        /**
-         * Define rules
-         * @memberOf SomeEcardsModel
-         * @type {{}}
-         */
-        this.rules = {};
+     */
+    this.preferences = {
+      someecardsEmbedCode: {
+        type: 'textarea',
+        disabled: false,
+        value: undefined,
+        visible: true
+      }
     };
 
-    return SomeEcardsModel.extend('SomeEcardsModel', {
+    /**
+     * Define rules
+     * @memberOf SomeEcardsModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        /**
-         * Set SomeEcards embed code
-         * @memberOf SomeEcardsModel
-         * @param {string} embed
-         */
-        setSomeecardsEmbedCode: function setSomeecardsEmbedCode(embed) {
-            this.setPrefs('someecardsEmbedCode', embed);
-        }
+  return SomeEcardsModel.extend('SomeEcardsModel', {
 
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    /**
+     * Set SomeEcards embed code
+     * @memberOf SomeEcardsModel
+     * @param {string} embed
+     */
+    setSomeecardsEmbedCode: function setSomeecardsEmbedCode(embed) {
+      this.setPrefs('someecardsEmbedCode', embed);
+    }
+
+  }, BaseModel.prototype, WidgetContentModel.prototype);
 });

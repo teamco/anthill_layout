@@ -6,38 +6,37 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/rules/widget.base.rules'
+  'plugins/plugin.element',
+  'plugins/rules/widget.base.rules'
 ], function defineLoginRulesElement(PluginElement, BaseWidgetRules) {
 
-    /**
-     * Define Login Rules Element
-     * @param view
-     * @param opts
-     * @returns {LoginRulesElement}
-     * @constructor
-     * @class LoginRulesElement
-     * @extends PluginElement
-     * @extends BaseWidgetRules
-     */
-    var LoginRulesElement = function LoginRulesElement(view, opts) {
+  /**
+   * Define Login Rules Element
+   * @param view
+   * @param opts
+   * @returns {LoginRulesElement}
+   * @constructor
+   * @class LoginRulesElement
+   * @extends PluginElement
+   * @extends BaseWidgetRules
+   */
+  var LoginRulesElement = function LoginRulesElement(view, opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBaseRulesData(
-            opts.data,
-            opts.rules.widget,
-            opts.rules.content
-        );
+    this.renderBaseRulesData(
+        opts.data,
+        opts.rules.widget,
+        opts.rules.content
+    );
 
-        return this;
-    };
+    return this;
+  };
 
-    return LoginRulesElement.extend('LoginRulesElement', {
-
-    }, PluginElement.prototype, BaseWidgetRules.prototype);
+  return LoginRulesElement.extend('LoginRulesElement', {},
+      PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

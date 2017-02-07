@@ -6,35 +6,35 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
-], function defineDatepickerPreferencesElement(PluginElement, WidgetPreferences) {
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
+], function defineDatepickerPreferencesElement(PluginElement,
+    WidgetPreferences) {
 
-    /**
-     * Define Datepicker Preferences Element
-     * @constructor
-     * @class DatepickerPreferencesElement
-     * @param {DatepickerView} view
-     * @param opts
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     * @returns {DatepickerPreferencesElement}
-     */
-    var DatepickerPreferencesElement = function DatepickerPreferencesElement(view, opts) {
+  /**
+   * Define Datepicker Preferences Element
+   * @constructor
+   * @class DatepickerPreferencesElement
+   * @param {DatepickerView} view
+   * @param opts
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   * @returns {DatepickerPreferencesElement}
+   */
+  var DatepickerPreferencesElement = function DatepickerPreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return DatepickerPreferencesElement.extend('DatepickerPreferencesElement', {
-
-
-    }, PluginElement.prototype, WidgetPreferences.prototype);
+  return DatepickerPreferencesElement.extend('DatepickerPreferencesElement', {},
+      PluginElement.prototype, WidgetPreferences.prototype);
 
 });

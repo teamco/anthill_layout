@@ -7,102 +7,103 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/video.pay.net/element/video.pay.net.element',
-    'plugins/widgets/video.pay.net/element/video.pay.net.preferences.element',
-    'plugins/widgets/video.pay.net/element/video.pay.net.rules.element'
-], function defineVideoPayNetView(BaseView, Header, Footer, VideoPayNetElement, VideoPayNetPreferencesElement, VideoPayNetRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/video.pay.net/element/video.pay.net.element',
+  'plugins/widgets/video.pay.net/element/video.pay.net.preferences.element',
+  'plugins/widgets/video.pay.net/element/video.pay.net.rules.element'
+], function defineVideoPayNetView(BaseView, Header, Footer, VideoPayNetElement,
+    VideoPayNetPreferencesElement, VideoPayNetRulesElement) {
+
+  /**
+   * Define view
+   * @class VideoPayNetView
+   * @extends BaseView
+   * @constructor
+   */
+  var VideoPayNetView = function VideoPayNetView() {
+  };
+
+  return VideoPayNetView.extend('VideoPayNetView', {
 
     /**
-     * Define view
-     * @class VideoPayNetView
-     * @extends BaseView
-     * @constructor
+     * Render VideoPayNet element
+     * @memberOf VideoPayNetView
      */
-    var VideoPayNetView = function VideoPayNetView() {
-    };
+    renderVideoPayNet: function renderVideoPayNet() {
 
-    return VideoPayNetView.extend('VideoPayNetView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render VideoPayNet element
-         * @memberOf VideoPayNetView
-         */
-        renderVideoPayNet: function renderVideoPayNet() {
+      /**
+       * Define $videopaynet
+       * @type {VideoPayNetElement}
+       */
+      this.elements.$videopaynet = new VideoPayNetElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $videopaynet
-             * @type {VideoPayNetElement}
-             */
-            this.elements.$videopaynet = new VideoPayNetElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf VideoPayNetView
+     * @returns {VideoPayNetPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define VideoPayNet Preferences Element
+       * @type {VideoPayNetPreferencesElement}
+       */
+      this.elements.$preferences = new VideoPayNetPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf VideoPayNetView
-         * @returns {VideoPayNetPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define VideoPayNet Preferences Element
-             * @type {VideoPayNetPreferencesElement}
-             */
-            this.elements.$preferences = new VideoPayNetPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf VideoPayNetView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {VideoPayNetRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
-
-        /**
-         * Render Rules
-         * @memberOf VideoPayNetView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {VideoPayNetRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define VideoPayNet Rules Element
-             * @type {VideoPayNetRulesElement}
-             */
-            this.elements.$rules = new VideoPayNetRulesElement(this, {
-                data: this.controller.getRules(),
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render VideoPayNet
-         * @memberOf VideoPayNetView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderVideoPayNet.bind(this)
-            );
+      /**
+       * Define VideoPayNet Rules Element
+       * @type {VideoPayNetRulesElement}
+       */
+      this.elements.$rules = new VideoPayNetRulesElement(this, {
+        data: this.controller.getRules(),
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render VideoPayNet
+     * @memberOf VideoPayNetView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderVideoPayNet.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

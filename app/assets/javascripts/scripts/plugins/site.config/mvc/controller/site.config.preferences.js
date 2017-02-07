@@ -4,63 +4,63 @@
 
 define(function defineSiteConfigPreferences() {
 
+  /**
+   * Define SiteConfig Preferences
+   * @class SiteConfigPreferences
+   * @extends BaseController
+   * @constructor
+   */
+  var SiteConfigPreferences = function SiteConfigPreferences() {
+  };
+
+  return SiteConfigPreferences.extend('SiteConfigPreferences', {
+
     /**
-     * Define SiteConfig Preferences
-     * @class SiteConfigPreferences
-     * @extends BaseController
-     * @constructor
+     * Load preferences
+     * @memberOf SiteConfigPreferences
+     * @param data
      */
-    var SiteConfigPreferences = function SiteConfigPreferences() {
-    };
+    loadSitePreferences: function loadSitePreferences(data) {
+      this.view.showPreferences(
+          data,
+          this.model.getSiteWidthRange()
+      );
+    },
 
-    return SiteConfigPreferences.extend('SiteConfigPreferences', {
+    /**
+     * Approve update preferences
+     * @memberOf SiteConfigPreferences
+     */
+    approveUpdatePreferences: function approveUpdatePreferences() {
 
-        /**
-         * Load preferences
-         * @memberOf SiteConfigPreferences
-         * @param data
-         */
-        loadSitePreferences: function loadSitePreferences(data) {
-            this.view.showPreferences(
-                data,
-                this.model.getSiteWidthRange()
-            );
-        },
+      /**
+       * Define scope
+       * @type {SitePreferences}
+       */
+      var scope = this.scope,
+          workspace = scope.controller.getWorkspace();
 
-        /**
-         * Approve update preferences
-         * @memberOf SiteConfigPreferences
-         */
-        approveUpdatePreferences: function approveUpdatePreferences() {
+      workspace.controller.updatePreferences(
+          scope.view.elements.$modal,
+          false
+      );
+    },
 
-            /**
-             * Define scope
-             * @type {SitePreferences}
-             */
-            var scope = this.scope,
-                workspace = scope.controller.getWorkspace();
+    /**
+     * Revert preferences on cancel
+     * @memberOf SiteConfigPreferences
+     */
+    revertSitePreferences: function revertSitePreferences() {
 
-            workspace.controller.updatePreferences(
-                scope.view.elements.$modal,
-                false
-            );
-        },
+      /**
+       * Define workspace
+       * @type {Workspace}
+       */
+      var workspace = this.getWorkspace();
 
-        /**
-         * Revert preferences on cancel
-         * @memberOf SiteConfigPreferences
-         */
-        revertSitePreferences: function revertSitePreferences() {
-
-            /**
-             * Define workspace
-             * @type {Workspace}
-             */
-            var workspace = this.getWorkspace();
-
-            workspace.observer.publish(
-                workspace.eventmanager.eventList.updateSiteWidth
-            );
-        }
-    });
+      workspace.observer.publish(
+          workspace.eventmanager.eventList.updateSiteWidth
+      );
+    }
+  });
 });

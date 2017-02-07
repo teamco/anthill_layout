@@ -7,20 +7,20 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineNationalFilmBoardOfCanadaPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class NationalFilmBoardOfCanadaPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var NationalFilmBoardOfCanadaPermission = function NationalFilmBoardOfCanadaPermission() {
-    };
+  /**
+   * Define Permissions
+   * @class NationalFilmBoardOfCanadaPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var NationalFilmBoardOfCanadaPermission = function NationalFilmBoardOfCanadaPermission() {
+  };
 
-    return NationalFilmBoardOfCanadaPermission.extend(
-        'NationalFilmBoardOfCanadaPermission', {}, 
-        BasePermission.prototype
-    );
+  return NationalFilmBoardOfCanadaPermission.extend(
+      'NationalFilmBoardOfCanadaPermission', {},
+      BasePermission.prototype
+  );
 });

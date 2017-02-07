@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineYapFilesEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define YapFiles event manager
-     * @class YapFilesEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var YapFilesEventManager = function YapFilesEventManager() {
+  /**
+   * Define YapFiles event manager
+   * @class YapFilesEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var YapFilesEventManager = function YapFilesEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return YapFilesEventManager.extend('YapFilesEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return YapFilesEventManager.extend('YapFilesEventManager', {},
+      WidgetContentEventManager.prototype);
 });

@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function definePhotobucketPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class PhotobucketPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var PhotobucketPermission = function PhotobucketPermission() {
+  /**
+   * Define Permissions
+   * @class PhotobucketPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var PhotobucketPermission = function PhotobucketPermission() {
 
-    };
+  };
 
-    return PhotobucketPermission.extend('PhotobucketPermission', {
-
-    }, BasePermission.prototype);
+  return PhotobucketPermission.extend('PhotobucketPermission', {},
+      BasePermission.prototype);
 });

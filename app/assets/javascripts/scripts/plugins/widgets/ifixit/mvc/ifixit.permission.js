@@ -7,20 +7,20 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineIfixitPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class IfixitPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var IfixitPermission = function IfixitPermission() {
-    };
+  /**
+   * Define Permissions
+   * @class IfixitPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var IfixitPermission = function IfixitPermission() {
+  };
 
-    return IfixitPermission.extend(
-        'IfixitPermission', {}, 
-        BasePermission.prototype
-    );
+  return IfixitPermission.extend(
+      'IfixitPermission', {},
+      BasePermission.prototype
+  );
 });

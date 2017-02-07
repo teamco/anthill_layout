@@ -7,20 +7,20 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineOvvaTvPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class OvvaTvPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var OvvaTvPermission = function OvvaTvPermission() {
-    };
+  /**
+   * Define Permissions
+   * @class OvvaTvPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var OvvaTvPermission = function OvvaTvPermission() {
+  };
 
-    return OvvaTvPermission.extend(
-        'OvvaTvPermission', {}, 
-        BasePermission.prototype
-    );
+  return OvvaTvPermission.extend(
+      'OvvaTvPermission', {},
+      BasePermission.prototype
+  );
 });

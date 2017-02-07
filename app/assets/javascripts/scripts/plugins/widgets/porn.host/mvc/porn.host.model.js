@@ -6,53 +6,54 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function definePornHostModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define PornHost model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class PornHostModel
+   * @constructor
+   */
+  var PornHostModel = function PornHostModel() {
+
     /**
-     * Define PornHost model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class PornHostModel
-     * @constructor
-     */
-    var PornHostModel = function PornHostModel() {
-
-        /**
-         * Define preferences
-         * @memberOf PornHostModel
-         * @type {{
-         *      pornhostEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
+     * Define preferences
+     * @memberOf PornHostModel
+     * @type {{
+         *      pornhostEmbedCode: {type: string, disabled: boolean, value:
+         *     undefined, visible: boolean}
          * }}
-         */
-        this.preferences = {
-            pornhostEmbedCode: {
-                type: 'textarea',
-                disabled: false,
-                value: undefined,
-                visible: true
-            }
-        };
-
-        /**
-         * Define rules
-         * @memberOf PornHostModel
-         * @type {{}}
-         */
-        this.rules = {};
+     */
+    this.preferences = {
+      pornhostEmbedCode: {
+        type: 'textarea',
+        disabled: false,
+        value: undefined,
+        visible: true
+      }
     };
 
-    return PornHostModel.extend('PornHostModel', {
+    /**
+     * Define rules
+     * @memberOf PornHostModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        /**
-         * Set PornHost embed code
-         * @memberOf PornHostModel
-         * @param {string} embed
-         */
-        setPornhostEmbedCode: function setPornhostEmbedCode(embed) {
-            this.setPrefs('pornhostEmbedCode', embed);
-        }
+  return PornHostModel.extend('PornHostModel', {
 
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    /**
+     * Set PornHost embed code
+     * @memberOf PornHostModel
+     * @param {string} embed
+     */
+    setPornhostEmbedCode: function setPornhostEmbedCode(embed) {
+      this.setPrefs('pornhostEmbedCode', embed);
+    }
+
+  }, BaseModel.prototype, WidgetContentModel.prototype);
 });

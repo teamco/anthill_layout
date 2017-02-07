@@ -6,44 +6,44 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineDotsubElement(PluginElement) {
 
+  /**
+   * Define Dotsub Element
+   * @param view
+   * @param opts
+   * @returns {DotsubElement}
+   * @constructor
+   * @class DotsubElement
+   * @extends PluginElement
+   */
+  var DotsubElement = function DotsubElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('dotsub', {resource: '/widgets'});
+
+    return this;
+  };
+
+  return DotsubElement.extend('DotsubElement', {
+
     /**
-     * Define Dotsub Element
-     * @param view
-     * @param opts
-     * @returns {DotsubElement}
-     * @constructor
-     * @class DotsubElement
-     * @extends PluginElement
+     * Render Embedded content
+     * @memberOf DotsubElement
+     * @param {string} embed
      */
-    var DotsubElement = function DotsubElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent(embed) {
+      this.addContent(
+          this.renderIframe(
+              $(embed).attr('src')
+          )
+      )
+    }
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
-
-        this.addCSS('dotsub', {resource: '/widgets'});
-
-        return this;
-    };
-
-    return DotsubElement.extend('DotsubElement', {
-
-        /**
-         * Render Embedded content
-         * @memberOf DotsubElement
-         * @param {string} embed
-         */
-        renderEmbeddedContent: function renderEmbeddedContent(embed) {
-            this.addContent(
-                this.renderIframe(
-                    $(embed).attr('src')
-                )
-            )
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 });

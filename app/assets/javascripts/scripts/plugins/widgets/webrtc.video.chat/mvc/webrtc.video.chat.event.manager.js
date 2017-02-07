@@ -7,29 +7,28 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineWebrtcVideoChatEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define WebrtcVideoChat event manager
-     * @class WebrtcVideoChatEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var WebrtcVideoChatEventManager = function WebrtcVideoChatEventManager() {
+  /**
+   * Define WebrtcVideoChat event manager
+   * @class WebrtcVideoChatEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var WebrtcVideoChatEventManager = function WebrtcVideoChatEventManager() {
 
-        this.updateEventList({
-            chatLogin: 'chat.login',
-            chatReady: 'chat.ready',
-            chatReceive: 'chat.receive',
-            chatCall: 'chat.call',
-            chatConnected: 'chat.connected',
-            chatEnded: 'chat.ended'
-        });
-    };
+    this.updateEventList({
+      chatLogin: 'chat.login',
+      chatReady: 'chat.ready',
+      chatReceive: 'chat.receive',
+      chatCall: 'chat.call',
+      chatConnected: 'chat.connected',
+      chatEnded: 'chat.ended'
+    });
+  };
 
-    return WebrtcVideoChatEventManager.extend('WebrtcVideoChatEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return WebrtcVideoChatEventManager.extend('WebrtcVideoChatEventManager', {},
+      WidgetContentEventManager.prototype);
 });

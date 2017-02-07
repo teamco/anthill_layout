@@ -6,38 +6,37 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/rules/widget.base.rules'
+  'plugins/plugin.element',
+  'plugins/rules/widget.base.rules'
 ], function defineBlipTvRulesElement(PluginElement, BaseWidgetRules) {
 
-    /**
-     * Define BlipTv Rules Element
-     * @param view
-     * @param opts
-     * @returns {BlipTvRulesElement}
-     * @constructor
-     * @class BlipTvRulesElement
-     * @extends PluginElement
-     * @extends BaseWidgetRules
-     */
-    var BlipTvRulesElement = function BlipTvRulesElement(view, opts) {
+  /**
+   * Define BlipTv Rules Element
+   * @param view
+   * @param opts
+   * @returns {BlipTvRulesElement}
+   * @constructor
+   * @class BlipTvRulesElement
+   * @extends PluginElement
+   * @extends BaseWidgetRules
+   */
+  var BlipTvRulesElement = function BlipTvRulesElement(view, opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBaseRulesData(
-            opts.data,
-            opts.rules.widget,
-            opts.rules.content
-        );
+    this.renderBaseRulesData(
+        opts.data,
+        opts.rules.widget,
+        opts.rules.content
+    );
 
-        return this;
-    };
+    return this;
+  };
 
-    return BlipTvRulesElement.extend('BlipTvRulesElement', {
-
-    }, PluginElement.prototype, BaseWidgetRules.prototype);
+  return BlipTvRulesElement.extend('BlipTvRulesElement', {},
+      PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

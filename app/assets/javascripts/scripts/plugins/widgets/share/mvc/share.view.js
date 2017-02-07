@@ -7,102 +7,103 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/share/element/share.element',
-    'plugins/widgets/share/element/share.preferences.element',
-    'plugins/widgets/share/element/share.rules.element'
-], function defineShareView(BaseView, Header, Footer, ShareElement, SharePreferencesElement, ShareRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/share/element/share.element',
+  'plugins/widgets/share/element/share.preferences.element',
+  'plugins/widgets/share/element/share.rules.element'
+], function defineShareView(BaseView, Header, Footer, ShareElement,
+    SharePreferencesElement, ShareRulesElement) {
+
+  /**
+   * Define view
+   * @class ShareView
+   * @extends BaseView
+   * @constructor
+   */
+  var ShareView = function ShareView() {
+  };
+
+  return ShareView.extend('ShareView', {
 
     /**
-     * Define view
-     * @class ShareView
-     * @extends BaseView
-     * @constructor
+     * Render share element
+     * @memberOf ShareView
      */
-    var ShareView = function ShareView() {
-    };
+    renderShare: function renderShare() {
 
-    return ShareView.extend('ShareView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render share element
-         * @memberOf ShareView
-         */
-        renderShare: function renderShare() {
+      /**
+       * Define $share
+       * @type {ShareElement}
+       */
+      this.elements.$share = new ShareElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $share
-             * @type {ShareElement}
-             */
-            this.elements.$share = new ShareElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf ShareView
+     * @returns {SharePreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define Share Preferences Element
+       * @type {SharePreferencesElement}
+       */
+      this.elements.$preferences = new SharePreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf ShareView
-         * @returns {SharePreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define Share Preferences Element
-             * @type {SharePreferencesElement}
-             */
-            this.elements.$preferences = new SharePreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf ShareView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {ShareRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
-
-        /**
-         * Render Rules
-         * @memberOf ShareView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {ShareRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define Share Rules Element
-             * @type {ShareRulesElement}
-             */
-            this.elements.$rules = new ShareRulesElement(this, {
-                data: this.controller.getRules(),
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render share
-         * @memberOf ShareView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderShare.bind(this)
-            );
+      /**
+       * Define Share Rules Element
+       * @type {ShareRulesElement}
+       */
+      this.elements.$rules = new ShareRulesElement(this, {
+        data: this.controller.getRules(),
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render share
+     * @memberOf ShareView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderShare.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

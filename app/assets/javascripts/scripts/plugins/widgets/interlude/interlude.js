@@ -6,41 +6,42 @@
  */
 
 define([
-    'config/anthill',
-    'modules/MVC',
-    'plugins/widgets/interlude/mvc/interlude.controller',
-    'plugins/widgets/interlude/mvc/interlude.model',
-    'plugins/widgets/interlude/mvc/interlude.view',
-    'plugins/widgets/interlude/mvc/interlude.event.manager',
-    'plugins/widgets/interlude/mvc/interlude.permission'
-], function defineInterlude(AntHill, MVC, Controller, Model, View, EventManager, Permission) {
+  'config/anthill',
+  'modules/MVC',
+  'plugins/widgets/interlude/mvc/interlude.controller',
+  'plugins/widgets/interlude/mvc/interlude.model',
+  'plugins/widgets/interlude/mvc/interlude.view',
+  'plugins/widgets/interlude/mvc/interlude.event.manager',
+  'plugins/widgets/interlude/mvc/interlude.permission'
+], function defineInterlude(AntHill, MVC, Controller, Model, View, EventManager,
+    Permission) {
+
+  /**
+   * Define Interlude
+   * @param containment
+   * @param [opts]
+   * @constructor
+   * @class Interlude
+   * @extends AntHill
+   */
+  var Interlude = function Interlude(containment, opts) {
 
     /**
-     * Define Interlude
-     * @param containment
-     * @param [opts]
-     * @constructor
-     * @class Interlude
-     * @extends AntHill
+     * Define containment
+     * @property Interlude
      */
-    var Interlude = function Interlude(containment, opts) {
+    this.containment = containment;
 
-        /**
-         * Define containment
-         * @property Interlude
-         */
-        this.containment = containment;
+    /**
+     * Define referrer
+     * @property Interlude
+     * @type {*}
+     */
+    this.referrer = undefined;
 
-        /**
-         * Define referrer
-         * @property Interlude
-         * @type {*}
-         */
-        this.referrer = undefined;
-
-        /**
-         * Define defaults
-         * @type {{
+    /**
+     * Define defaults
+     * @type {{
          *      plugin: boolean,
          *      html: {
          *          style: string,
@@ -55,48 +56,48 @@ define([
          *          }
          *      }
          * }}
-         */
-        var DEFAULTS = {
-            plugin: true,
-            html: {
-                style: 'default',
-                header: false,
-                footer: false,
-                padding: {
-                    top: 0,
-                    right: 0,
-                    bottom: 0,
-                    left: 0
-                }
-            }
-        };
-
-        /**
-         * Define MVC
-         * @property Interlude
-         * @type {MVC}
-         */
-        this.mvc = new MVC({
-            scope: this,
-            config: [
-                {uuid: this.containment.model.getContentUUID()},
-                DEFAULTS
-            ],
-            components: [
-                Controller,
-                Model,
-                View,
-                EventManager,
-                Permission
-            ],
-            render: true
-        });
-
-        this.observer.publish(
-            this.eventmanager.eventList.initWidget,
-            opts
-        );
+     */
+    var DEFAULTS = {
+      plugin: true,
+      html: {
+        style: 'default',
+        header: false,
+        footer: false,
+        padding: {
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0
+        }
+      }
     };
 
-    return Interlude.extend('Interlude', {}, AntHill.prototype);
+    /**
+     * Define MVC
+     * @property Interlude
+     * @type {MVC}
+     */
+    this.mvc = new MVC({
+      scope: this,
+      config: [
+        {uuid: this.containment.model.getContentUUID()},
+        DEFAULTS
+      ],
+      components: [
+        Controller,
+        Model,
+        View,
+        EventManager,
+        Permission
+      ],
+      render: true
+    });
+
+    this.observer.publish(
+        this.eventmanager.eventList.initWidget,
+        opts
+    );
+  };
+
+  return Interlude.extend('Interlude', {}, AntHill.prototype);
 });

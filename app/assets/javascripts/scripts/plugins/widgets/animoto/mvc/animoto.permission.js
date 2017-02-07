@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineAnimotoPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class AnimotoPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var AnimotoPermission = function AnimotoPermission() {
+  /**
+   * Define Permissions
+   * @class AnimotoPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var AnimotoPermission = function AnimotoPermission() {
 
-    };
+  };
 
-    return AnimotoPermission.extend('AnimotoPermission', {
-
-    }, BasePermission.prototype);
+  return AnimotoPermission.extend('AnimotoPermission', {},
+      BasePermission.prototype);
 });

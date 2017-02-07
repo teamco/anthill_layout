@@ -6,35 +6,35 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
 ], function defineOrphusPreferencesElement(PluginElement, WidgetPreferences) {
 
-    /**
-     * Define Orphus Preferences Element
-     * @constructor
-     * @class OrphusPreferencesElement
-     * @param {OrphusView} view
-     * @param opts
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     * @returns {OrphusPreferencesElement}
-     */
-    var OrphusPreferencesElement = function OrphusPreferencesElement(view, opts) {
+  /**
+   * Define Orphus Preferences Element
+   * @constructor
+   * @class OrphusPreferencesElement
+   * @param {OrphusView} view
+   * @param opts
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   * @returns {OrphusPreferencesElement}
+   */
+  var OrphusPreferencesElement = function OrphusPreferencesElement(view, opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return OrphusPreferencesElement.extend(
-        'OrphusPreferencesElement', {}, 
-        PluginElement.prototype, 
-        WidgetPreferences.prototype
-    );
+  return OrphusPreferencesElement.extend(
+      'OrphusPreferencesElement', {},
+      PluginElement.prototype,
+      WidgetPreferences.prototype
+  );
 });

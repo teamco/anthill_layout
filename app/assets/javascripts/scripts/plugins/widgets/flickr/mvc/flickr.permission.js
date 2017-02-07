@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineFlickrPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class FlickrPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var FlickrPermission = function FlickrPermission() {
+  /**
+   * Define Permissions
+   * @class FlickrPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var FlickrPermission = function FlickrPermission() {
 
-    };
+  };
 
-    return FlickrPermission.extend('FlickrPermission', {
-
-    }, BasePermission.prototype);
+  return FlickrPermission.extend('FlickrPermission', {},
+      BasePermission.prototype);
 });

@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineTourTvEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define TourTv event manager
-     * @class TourTvEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var TourTvEventManager = function TourTvEventManager() {
+  /**
+   * Define TourTv event manager
+   * @class TourTvEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var TourTvEventManager = function TourTvEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return TourTvEventManager.extend('TourTvEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return TourTvEventManager.extend('TourTvEventManager', {},
+      WidgetContentEventManager.prototype);
 });

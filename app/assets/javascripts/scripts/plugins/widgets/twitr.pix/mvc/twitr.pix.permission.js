@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineTwitrPixPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class TwitrPixPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var TwitrPixPermission = function TwitrPixPermission() {
+  /**
+   * Define Permissions
+   * @class TwitrPixPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var TwitrPixPermission = function TwitrPixPermission() {
 
-    };
+  };
 
-    return TwitrPixPermission.extend('TwitrPixPermission', {
-
-    }, BasePermission.prototype);
+  return TwitrPixPermission.extend('TwitrPixPermission', {},
+      BasePermission.prototype);
 });

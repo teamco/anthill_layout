@@ -6,41 +6,42 @@
  */
 
 define([
-    'config/anthill',
-    'modules/MVC',
-    'plugins/widgets/login/mvc/login.controller',
-    'plugins/widgets/login/mvc/login.model',
-    'plugins/widgets/login/mvc/login.view',
-    'plugins/widgets/login/mvc/login.event.manager',
-    'plugins/widgets/login/mvc/login.permission'
-], function defineLogin(AntHill, MVC, Controller, Model, View, EventManager, Permission) {
+  'config/anthill',
+  'modules/MVC',
+  'plugins/widgets/login/mvc/login.controller',
+  'plugins/widgets/login/mvc/login.model',
+  'plugins/widgets/login/mvc/login.view',
+  'plugins/widgets/login/mvc/login.event.manager',
+  'plugins/widgets/login/mvc/login.permission'
+], function defineLogin(AntHill, MVC, Controller, Model, View, EventManager,
+    Permission) {
+
+  /**
+   * Define Login
+   * @param containment
+   * @param [opts]
+   * @constructor
+   * @class Login
+   * @extends AntHill
+   */
+  var Login = function Login(containment, opts) {
 
     /**
-     * Define Login
-     * @param containment
-     * @param [opts]
-     * @constructor
-     * @class Login
-     * @extends AntHill
+     * Define containment
+     * @memberOf Login
      */
-    var Login = function Login(containment, opts) {
+    this.containment = containment;
 
-        /**
-         * Define containment
-         * @memberOf Login
-         */
-        this.containment = containment;
+    /**
+     * Define referrer
+     * @memberOf Login
+     * @type {*}
+     */
+    this.referrer = undefined;
 
-        /**
-         * Define referrer
-         * @memberOf Login
-         * @type {*}
-         */
-        this.referrer = undefined;
-
-        /**
-         * Define defaults
-         * @type {{
+    /**
+     * Define defaults
+     * @type {{
          *      plugin: boolean,
          *      html: {
          *          style: string,
@@ -54,50 +55,48 @@ define([
          *          }
          *      }
          * }}
-         */
-        var DEFAULTS = {
-            plugin: true,
-            html: {
-                style: 'default',
-                header: false,
-                footer: false,
-                padding: {
-                    top: 0,
-                    right: 0,
-                    bottom: 0,
-                    left: 0
-                }
-            }
-        };
-
-        /**
-         * Define MVC
-         * @memberOf Login
-         * @type {MVC}
-         */
-        this.mvc = new MVC({
-            scope: this,
-            config: [
-                {uuid: this.containment.model.getContentUUID()},
-                DEFAULTS
-            ],
-            components: [
-                Controller,
-                Model,
-                View,
-                EventManager,
-                Permission
-            ],
-            render: true
-        });
-
-        this.observer.publish(
-            this.eventmanager.eventList.initWidget,
-            opts
-        );
+     */
+    var DEFAULTS = {
+      plugin: true,
+      html: {
+        style: 'default',
+        header: false,
+        footer: false,
+        padding: {
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0
+        }
+      }
     };
 
-    return Login.extend('Login', {
+    /**
+     * Define MVC
+     * @memberOf Login
+     * @type {MVC}
+     */
+    this.mvc = new MVC({
+      scope: this,
+      config: [
+        {uuid: this.containment.model.getContentUUID()},
+        DEFAULTS
+      ],
+      components: [
+        Controller,
+        Model,
+        View,
+        EventManager,
+        Permission
+      ],
+      render: true
+    });
 
-    }, AntHill.prototype);
+    this.observer.publish(
+        this.eventmanager.eventList.initWidget,
+        opts
+    );
+  };
+
+  return Login.extend('Login', {}, AntHill.prototype);
 });

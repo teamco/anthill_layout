@@ -7,23 +7,23 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function definePaypalBtnEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define PaypalBtn event manager
-     * @class PaypalBtnEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var PaypalBtnEventManager = function PaypalBtnEventManager() {
+  /**
+   * Define PaypalBtn event manager
+   * @class PaypalBtnEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var PaypalBtnEventManager = function PaypalBtnEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return PaypalBtnEventManager.extend(
-        'PaypalBtnEventManager', {},
-        WidgetContentEventManager.prototype
-    );
+  return PaypalBtnEventManager.extend(
+      'PaypalBtnEventManager', {},
+      WidgetContentEventManager.prototype
+  );
 });

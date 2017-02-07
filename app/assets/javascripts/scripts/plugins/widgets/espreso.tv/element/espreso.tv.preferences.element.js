@@ -6,35 +6,35 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
-], function defineEspresoTvPreferencesElement(PluginElement, WidgetPreferences) {
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
+], function defineEspresoTvPreferencesElement(PluginElement,
+    WidgetPreferences) {
 
-    /**
-     * Define EspresoTv Preferences Element
-     * @param view
-     * @param opts
-     * @returns {EspresoTvPreferencesElement}
-     * @constructor
-     * @class EspresoTvPreferencesElement
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     */
-    var EspresoTvPreferencesElement = function EspresoTvPreferencesElement(view, opts) {
+  /**
+   * Define EspresoTv Preferences Element
+   * @param view
+   * @param opts
+   * @returns {EspresoTvPreferencesElement}
+   * @constructor
+   * @class EspresoTvPreferencesElement
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   */
+  var EspresoTvPreferencesElement = function EspresoTvPreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return EspresoTvPreferencesElement.extend('EspresoTvPreferencesElement', {
-
-
-    }, PluginElement.prototype, WidgetPreferences.prototype);
+  return EspresoTvPreferencesElement.extend('EspresoTvPreferencesElement', {},
+      PluginElement.prototype, WidgetPreferences.prototype);
 
 });

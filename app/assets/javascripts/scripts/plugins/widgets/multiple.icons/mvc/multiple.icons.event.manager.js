@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineMultipleIconsEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define MultipleIcons event manager
-     * @class MultipleIconsEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var MultipleIconsEventManager = function MultipleIconsEventManager() {
+  /**
+   * Define MultipleIcons event manager
+   * @class MultipleIconsEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var MultipleIconsEventManager = function MultipleIconsEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return MultipleIconsEventManager.extend('MultipleIconsEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return MultipleIconsEventManager.extend('MultipleIconsEventManager', {},
+      WidgetContentEventManager.prototype);
 });

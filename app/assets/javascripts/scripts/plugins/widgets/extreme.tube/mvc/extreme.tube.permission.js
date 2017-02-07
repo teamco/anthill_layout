@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineExtremeTubePermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class ExtremeTubePermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var ExtremeTubePermission = function ExtremeTubePermission() {
+  /**
+   * Define Permissions
+   * @class ExtremeTubePermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var ExtremeTubePermission = function ExtremeTubePermission() {
 
-    };
+  };
 
-    return ExtremeTubePermission.extend('ExtremeTubePermission', {
-
-    }, BasePermission.prototype);
+  return ExtremeTubePermission.extend('ExtremeTubePermission', {},
+      BasePermission.prototype);
 });

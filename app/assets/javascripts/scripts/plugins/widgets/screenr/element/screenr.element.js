@@ -6,43 +6,43 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineScreenrElement(PluginElement) {
 
+  /**
+   * Define Screenr Element
+   * @param view
+   * @param opts
+   * @returns {ScreenrElement}
+   * @constructor
+   * @class ScreenrElement
+   * @extends PluginElement
+   */
+  var ScreenrElement = function ScreenrElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('screenr', {resource: '/widgets'});
+
+    return this;
+  };
+
+  return ScreenrElement.extend('ScreenrElement', {
+
     /**
-     * Define Screenr Element
-     * @param view
-     * @param opts
-     * @returns {ScreenrElement}
-     * @constructor
-     * @class ScreenrElement
-     * @extends PluginElement
+     * Render Embedded content
+     * @memberOf ScreenrElement
+     * @param {string} url
      */
-    var ScreenrElement = function ScreenrElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent(url) {
+      this.$.append(
+          this.renderIframe(url)
+      );
+    }
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
-
-        this.addCSS('screenr', {resource: '/widgets'});
-
-        return this;
-    };
-
-    return ScreenrElement.extend('ScreenrElement', {
-
-        /**
-         * Render Embedded content
-         * @memberOf ScreenrElement
-         * @param {string} url
-         */
-        renderEmbeddedContent: function renderEmbeddedContent(url) {
-            this.$.append(
-                this.renderIframe(url)
-            );
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 
 });

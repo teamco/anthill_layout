@@ -6,84 +6,84 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
 ], function defineImagePreferencesElement(PluginElement, WidgetPreferences) {
 
-    /**
-     * Define Image Preferences Element
-     * @constructor
-     * @class ImagePreferencesElement
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     * @param {ImageView} view
-     * @param opts
-     * @returns {ImagePreferencesElement}
-     */
-    var ImagePreferencesElement = function ImagePreferencesElement(view, opts) {
+  /**
+   * Define Image Preferences Element
+   * @constructor
+   * @class ImagePreferencesElement
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   * @param {ImageView} view
+   * @param opts
+   * @returns {ImagePreferencesElement}
+   */
+  var ImagePreferencesElement = function ImagePreferencesElement(view, opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
-        this.renderImagePlaceholder();
+    this.renderBasePrefsData(opts.data);
+    this.renderImagePlaceholder();
 
-        return this;
-    };
+    return this;
+  };
 
-    return ImagePreferencesElement.extend(
-        'ImagePreferencesElement', {
+  return ImagePreferencesElement.extend(
+      'ImagePreferencesElement', {
 
-            /**
-             * Define image placeholder
-             * @memberOf ImagePreferencesElement
-             */
-            renderImagePlaceholder: function renderImagePlaceholder() {
+        /**
+         * Define image placeholder
+         * @memberOf ImagePreferencesElement
+         */
+        renderImagePlaceholder: function renderImagePlaceholder() {
 
-                // Get image prefs container
-                var $container = $('#content', this.$);
+          // Get image prefs container
+          var $container = $('#content', this.$);
 
-                $container.append('<img class="image-preview" />');
+          $container.append('<img class="image-preview" />');
 
-                // Update image
-                var $url = $('textarea[name="imageUrl"]', $container);
+          // Update image
+          var $url = $('textarea[name="imageUrl"]', $container);
 
-                this.updatePreviewImage(this, {target: $url[0]});
-            },
-
-            /**
-             * Update preview image
-             * @memberOf ImagePreferencesElement
-             * @param {ModalElement} $modal
-             * @param event
-             */
-            updatePreviewImage: function updatePreviewImage($modal, event) {
-
-                var $img = $('img.image-preview', $modal.$),
-                    target = event.target,
-                    view = this.view,
-                    $item = view.get$item();
-
-                if (!target) {
-                    view.scope.logger.debug('Undefined target', event);
-                    return false;
-                }
-
-                // Get callback
-                var callback = 'update' + target.name.replace(/image/, '');
-
-                if (typeof $item[callback] !== 'function') {
-
-                    view.scope.logger.warn('Undefined callback', callback);
-                    return false;
-                }
-
-                $item[callback]($img, target.value);
-            }
+          this.updatePreviewImage(this, {target: $url[0]});
         },
-        PluginElement.prototype,
-        WidgetPreferences.prototype
-    );
+
+        /**
+         * Update preview image
+         * @memberOf ImagePreferencesElement
+         * @param {ModalElement} $modal
+         * @param event
+         */
+        updatePreviewImage: function updatePreviewImage($modal, event) {
+
+          var $img = $('img.image-preview', $modal.$),
+              target = event.target,
+              view = this.view,
+              $item = view.get$item();
+
+          if (!target) {
+            view.scope.logger.debug('Undefined target', event);
+            return false;
+          }
+
+          // Get callback
+          var callback = 'update' + target.name.replace(/image/, '');
+
+          if (typeof $item[callback] !== 'function') {
+
+            view.scope.logger.warn('Undefined callback', callback);
+            return false;
+          }
+
+          $item[callback]($img, target.value);
+        }
+      },
+      PluginElement.prototype,
+      WidgetPreferences.prototype
+  );
 });

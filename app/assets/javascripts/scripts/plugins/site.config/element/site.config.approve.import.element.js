@@ -3,37 +3,39 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineSiteConfigApproveImportElement(PluginElement) {
 
+  /**
+   * Define SiteConfigApproveImportElement
+   * @class SiteConfigApproveImportElement
+   * @constructor
+   * @param {SiteConfigView} view
+   * @param opts
+   * @extends PluginElement
+   * @returns {SiteConfigApproveImportElement}
+   */
+  var SiteConfigApproveImportElement = function SiteConfigApproveImportElement(view,
+      opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container
+    });
+
     /**
-     * Define SiteConfigApproveImportElement
-     * @class SiteConfigApproveImportElement
-     * @constructor
-     * @param {SiteConfigView} view
-     * @param opts
-     * @extends PluginElement
-     * @returns {SiteConfigApproveImportElement}
+     * Define local data
+     * @property SiteConfigApproveImportElement
+     * @type {object}
      */
-    var SiteConfigApproveImportElement = function SiteConfigApproveImportElement(view, opts) {
+    this.data = opts.data;
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container
-        });
+    this.prettifyJSON(this.data);
 
-        /**
-         * Define local data
-         * @property SiteConfigApproveImportElement
-         * @type {object}
-         */
-        this.data = opts.data;
+    return this;
+  };
 
-        this.prettifyJSON(this.data);
-
-        return this;
-    };
-
-    return SiteConfigApproveImportElement.extend('SiteConfigApproveImportElement', {
+  return SiteConfigApproveImportElement.extend('SiteConfigApproveImportElement',
+      {
 
         /**
          * Prettify JSON
@@ -43,29 +45,29 @@ define([
          */
         prettifyJSON: function prettifyJSON(data) {
 
-            /**
-             * Load pretty print functionality
-             * @private
-             */
-            function _loadPrettyPrint() {
+          /**
+           * Load pretty print functionality
+           * @private
+           */
+          function _loadPrettyPrint() {
 
-                $(prettyPrint(data)).appendTo(this.$);
-                this.adoptModalDialogPosition();
-            }
+            $(prettyPrint(data)).appendTo(this.$);
+            this.adoptModalDialogPosition();
+          }
 
-            if (window.prettyPrint) {
+          if (window.prettyPrint) {
 
-                // Load cached version
-                _loadPrettyPrint.bind(this)();
+            // Load cached version
+            _loadPrettyPrint.bind(this)();
 
-            } else {
+          } else {
 
-                require(
-                    ['lib/packages/pretty.print'],
-                    _loadPrettyPrint.bind(this)
-                );
-            }
+            require(
+                ['lib/packages/pretty.print'],
+                _loadPrettyPrint.bind(this)
+            );
+          }
         }
 
-    }, PluginElement.prototype);
+      }, PluginElement.prototype);
 });

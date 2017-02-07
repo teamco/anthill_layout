@@ -8,6 +8,5 @@
 
 define([], function defineEnUs() {
 
-    return {
-    };
+  return {};
 });

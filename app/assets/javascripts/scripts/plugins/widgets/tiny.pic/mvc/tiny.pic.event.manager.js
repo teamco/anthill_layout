@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineTinyPicEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define TinyPic event manager
-     * @class TinyPicEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var TinyPicEventManager = function TinyPicEventManager() {
+  /**
+   * Define TinyPic event manager
+   * @class TinyPicEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var TinyPicEventManager = function TinyPicEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return TinyPicEventManager.extend('TinyPicEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return TinyPicEventManager.extend('TinyPicEventManager', {},
+      WidgetContentEventManager.prototype);
 });

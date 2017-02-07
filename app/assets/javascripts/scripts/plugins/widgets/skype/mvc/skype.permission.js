@@ -7,20 +7,20 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineSkypePermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class SkypePermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var SkypePermission = function SkypePermission() {
-    };
+  /**
+   * Define Permissions
+   * @class SkypePermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var SkypePermission = function SkypePermission() {
+  };
 
-    return SkypePermission.extend(
-        'SkypePermission', {}, 
-        BasePermission.prototype
-    );
+  return SkypePermission.extend(
+      'SkypePermission', {},
+      BasePermission.prototype
+  );
 });

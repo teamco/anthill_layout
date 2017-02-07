@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineSublimeVideoEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define SublimeVideo event manager
-     * @class SublimeVideoEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var SublimeVideoEventManager = function SublimeVideoEventManager() {
+  /**
+   * Define SublimeVideo event manager
+   * @class SublimeVideoEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var SublimeVideoEventManager = function SublimeVideoEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return SublimeVideoEventManager.extend('SublimeVideoEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return SublimeVideoEventManager.extend('SublimeVideoEventManager', {},
+      WidgetContentEventManager.prototype);
 });

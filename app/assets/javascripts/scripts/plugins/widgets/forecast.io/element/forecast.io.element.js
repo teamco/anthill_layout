@@ -6,44 +6,44 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineForecastIoElement(PluginElement) {
 
+  /**
+   * Define ForecastIo Element
+   * @param view
+   * @param opts
+   * @returns {ForecastIoElement}
+   * @constructor
+   * @class ForecastIoElement
+   * @extends PluginElement
+   */
+  var ForecastIoElement = function ForecastIoElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('forecast.io', {resource: '/widgets'});
+
+    return this;
+  };
+
+  return ForecastIoElement.extend('ForecastIoElement', {
+
     /**
-     * Define ForecastIo Element
-     * @param view
-     * @param opts
-     * @returns {ForecastIoElement}
-     * @constructor
-     * @class ForecastIoElement
-     * @extends PluginElement
+     * Render Embedded content
+     * @memberOf ForecastIoElement
+     * @param {string} embed
      */
-    var ForecastIoElement = function ForecastIoElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent(embed) {
+      this.addContent(
+          this.renderIframe(
+              $(embed).attr('src')
+          )
+      );
+    }
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
-
-        this.addCSS('forecast.io', {resource: '/widgets'});
-
-        return this;
-    };
-
-    return ForecastIoElement.extend('ForecastIoElement', {
-
-        /**
-         * Render Embedded content
-         * @memberOf ForecastIoElement
-         * @param {string} embed
-         */
-        renderEmbeddedContent: function renderEmbeddedContent(embed) {
-            this.addContent(
-                this.renderIframe(
-                    $(embed).attr('src')
-                )
-            );
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 });

@@ -6,38 +6,37 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/rules/widget.base.rules'
+  'plugins/plugin.element',
+  'plugins/rules/widget.base.rules'
 ], function defineScribdRulesElement(PluginElement, BaseWidgetRules) {
 
-    /**
-     * Define Scribd Rules Element
-     * @param view
-     * @param opts
-     * @returns {ScribdRulesElement}
-     * @constructor
-     * @class ScribdRulesElement
-     * @extends PluginElement
-     * @extends BaseWidgetRules
-     */
-    var ScribdRulesElement = function ScribdRulesElement(view, opts) {
+  /**
+   * Define Scribd Rules Element
+   * @param view
+   * @param opts
+   * @returns {ScribdRulesElement}
+   * @constructor
+   * @class ScribdRulesElement
+   * @extends PluginElement
+   * @extends BaseWidgetRules
+   */
+  var ScribdRulesElement = function ScribdRulesElement(view, opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBaseRulesData(
-            opts.data,
-            opts.rules.widget,
-            opts.rules.content
-        );
+    this.renderBaseRulesData(
+        opts.data,
+        opts.rules.widget,
+        opts.rules.content
+    );
 
-        return this;
-    };
+    return this;
+  };
 
-    return ScribdRulesElement.extend('ScribdRulesElement', {
-
-    }, PluginElement.prototype, BaseWidgetRules.prototype);
+  return ScribdRulesElement.extend('ScribdRulesElement', {},
+      PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

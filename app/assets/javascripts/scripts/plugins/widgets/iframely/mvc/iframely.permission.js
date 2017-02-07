@@ -7,20 +7,20 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineIframelyPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class IframelyPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var IframelyPermission = function IframelyPermission() {
-    };
+  /**
+   * Define Permissions
+   * @class IframelyPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var IframelyPermission = function IframelyPermission() {
+  };
 
-    return IframelyPermission.extend(
-        'IframelyPermission', {}, 
-        BasePermission.prototype
-    );
+  return IframelyPermission.extend(
+      'IframelyPermission', {},
+      BasePermission.prototype
+  );
 });

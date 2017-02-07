@@ -7,20 +7,20 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineMetamorphicPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class MetamorphicPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var MetamorphicPermission = function MetamorphicPermission() {
-    };
+  /**
+   * Define Permissions
+   * @class MetamorphicPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var MetamorphicPermission = function MetamorphicPermission() {
+  };
 
-    return MetamorphicPermission.extend(
-        'MetamorphicPermission', {}, 
-        BasePermission.prototype
-    );
+  return MetamorphicPermission.extend(
+      'MetamorphicPermission', {},
+      BasePermission.prototype
+  );
 });

@@ -6,49 +6,49 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineBarElement(PluginElement) {
 
+  /**
+   * Define Bar Element
+   * @param view
+   * @param opts
+   * @returns {BarElement}
+   * @constructor
+   * @class BarElement
+   * @extends PluginElement
+   */
+  var BarElement = function BarElement(view, opts) {
+
+    this._config(view, opts, $(this.getTemplate())).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('bar');
+
+    return this;
+  };
+
+  return BarElement.extend('BarElement', {
+
     /**
-     * Define Bar Element
-     * @param view
-     * @param opts
-     * @returns {BarElement}
-     * @constructor
-     * @class BarElement
-     * @extends PluginElement
+     * Define template
+     * @memberOf BarElement
+     * @returns {string}
      */
-    var BarElement = function BarElement(view, opts) {
+    getTemplate: function getTemplate() {
+      return '<ul class="nav" />';
+    },
 
-        this._config(view, opts, $(this.getTemplate())).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    /**
+     * Define content container
+     * @memberOf BarElement
+     * @returns {*}
+     */
+    getContentContainer: function getContentContainer() {
+      return this.$.find('.nav');
+    }
 
-        this.addCSS('bar');
-
-        return this;
-    };
-
-    return BarElement.extend('BarElement', {
-
-        /**
-         * Define template
-         * @memberOf BarElement
-         * @returns {string}
-         */
-        getTemplate: function getTemplate() {
-            return '<ul class="nav" />';
-        },
-
-        /**
-         * Define content container
-         * @memberOf BarElement
-         * @returns {*}
-         */
-        getContentContainer: function getContentContainer() {
-            return this.$.find('.nav');
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 });

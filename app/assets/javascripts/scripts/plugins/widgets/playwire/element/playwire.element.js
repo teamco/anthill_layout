@@ -6,40 +6,40 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function definePlaywireElement(PluginElement) {
 
+  /**
+   * Define Playwire Element
+   * @param view
+   * @param opts
+   * @returns {PlaywireElement}
+   * @constructor
+   * @class PlaywireElement
+   * @extends PluginElement
+   */
+  var PlaywireElement = function PlaywireElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('playwire', {resource: '/widgets'});
+
+    return this;
+  };
+
+  return PlaywireElement.extend('PlaywireElement', {
+
     /**
-     * Define Playwire Element
-     * @param view
-     * @param opts
-     * @returns {PlaywireElement}
-     * @constructor
-     * @class PlaywireElement
-     * @extends PluginElement
+     * Render Embedded content
+     * @memberOf PlaywireElement
+     * @param {string} embed
      */
-    var PlaywireElement = function PlaywireElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent(embed) {
+      this.addContent(embed);
+    }
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
-
-        this.addCSS('playwire', {resource: '/widgets'});
-
-        return this;
-    };
-
-    return PlaywireElement.extend('PlaywireElement', {
-
-        /**
-         * Render Embedded content
-         * @memberOf PlaywireElement
-         * @param {string} embed
-         */
-        renderEmbeddedContent: function renderEmbeddedContent(embed) {
-            this.addContent(embed);
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 });

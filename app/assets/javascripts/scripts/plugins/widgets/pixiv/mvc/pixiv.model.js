@@ -6,53 +6,54 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function definePixivModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define Pixiv model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class PixivModel
+   * @constructor
+   */
+  var PixivModel = function PixivModel() {
+
     /**
-     * Define Pixiv model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class PixivModel
-     * @constructor
-     */
-    var PixivModel = function PixivModel() {
-
-        /**
-         * Define preferences
-         * @memberOf PixivModel
-         * @type {{
-         *      pixivEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
+     * Define preferences
+     * @memberOf PixivModel
+     * @type {{
+         *      pixivEmbedCode: {type: string, disabled: boolean, value:
+         *     undefined, visible: boolean}
          * }}
-         */
-        this.preferences = {
-            pixivEmbedCode: {
-                type: 'textarea',
-                disabled: false,
-                value: undefined,
-                visible: true
-            }
-        };
-
-        /**
-         * Define rules
-         * @memberOf PixivModel
-         * @type {{}}
-         */
-        this.rules = {};
+     */
+    this.preferences = {
+      pixivEmbedCode: {
+        type: 'textarea',
+        disabled: false,
+        value: undefined,
+        visible: true
+      }
     };
 
-    return PixivModel.extend('PixivModel', {
+    /**
+     * Define rules
+     * @memberOf PixivModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        /**
-         * Set Pixiv embed code
-         * @memberOf PixivModel
-         * @param {string} embed
-         */
-        setPixivEmbedCode: function setPixivEmbedCode(embed) {
-            this.setPrefs('pixivEmbedCode', embed);
-        }
+  return PixivModel.extend('PixivModel', {
 
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    /**
+     * Set Pixiv embed code
+     * @memberOf PixivModel
+     * @param {string} embed
+     */
+    setPixivEmbedCode: function setPixivEmbedCode(embed) {
+      this.setPrefs('pixivEmbedCode', embed);
+    }
+
+  }, BaseModel.prototype, WidgetContentModel.prototype);
 });

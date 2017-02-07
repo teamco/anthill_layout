@@ -7,101 +7,102 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/office.mix/element/office.mix.element',
-    'plugins/widgets/office.mix/element/office.mix.preferences.element',
-    'plugins/widgets/office.mix/element/office.mix.rules.element'
-], function defineOfficeMixView(BaseView, Header, Footer, OfficeMixElement, OfficeMixPreferencesElement, OfficeMixRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/office.mix/element/office.mix.element',
+  'plugins/widgets/office.mix/element/office.mix.preferences.element',
+  'plugins/widgets/office.mix/element/office.mix.rules.element'
+], function defineOfficeMixView(BaseView, Header, Footer, OfficeMixElement,
+    OfficeMixPreferencesElement, OfficeMixRulesElement) {
+
+  /**
+   * Define view
+   * @class OfficeMixView
+   * @extends BaseView
+   * @constructor
+   */
+  var OfficeMixView = function OfficeMixView() {
+  };
+
+  return OfficeMixView.extend('OfficeMixView', {
 
     /**
-     * Define view
-     * @class OfficeMixView
-     * @extends BaseView
-     * @constructor
+     * Render OfficeMix element
+     * @memberOf OfficeMixView
      */
-    var OfficeMixView = function OfficeMixView() {
-    };
+    renderOfficeMix: function renderOfficeMix() {
 
-    return OfficeMixView.extend('OfficeMixView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render OfficeMix element
-         * @memberOf OfficeMixView
-         */
-        renderOfficeMix: function renderOfficeMix() {
+      /**
+       * Define $officemix
+       * @type {OfficeMixElement}
+       */
+      this.elements.$officemix = new OfficeMixElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $officemix
-             * @type {OfficeMixElement}
-             */
-            this.elements.$officemix = new OfficeMixElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf OfficeMixView
+     * @returns {OfficeMixPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define OfficeMix Preferences Element
+       * @type {OfficeMixPreferencesElement}
+       */
+      this.elements.$preferences = new OfficeMixPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf OfficeMixView
-         * @returns {OfficeMixPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define OfficeMix Preferences Element
-             * @type {OfficeMixPreferencesElement}
-             */
-            this.elements.$preferences = new OfficeMixPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf OfficeMixView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {OfficeMixRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
-
-        /**
-         * Render Rules
-         * @memberOf OfficeMixView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {OfficeMixRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define OfficeMix Rules Element
-             * @type {OfficeMixRulesElement}
-             */
-            this.elements.$rules = new OfficeMixRulesElement(this, {
-                data: this.controller.getRules(),
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render OfficeMix
-         * @memberOf OfficeMixView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderOfficeMix.bind(this)
-            );
+      /**
+       * Define OfficeMix Rules Element
+       * @type {OfficeMixRulesElement}
+       */
+      this.elements.$rules = new OfficeMixRulesElement(this, {
+        data: this.controller.getRules(),
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype);
+      return this.get$rules();
+    },
+
+    /**
+     * Render OfficeMix
+     * @memberOf OfficeMixView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderOfficeMix.bind(this)
+      );
+    }
+
+  }, BaseView.prototype);
 });

@@ -6,35 +6,35 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
 ], function defineWistiaPreferencesElement(PluginElement, WidgetPreferences) {
 
-    /**
-     * Define Wistia Preferences Element
-     * @constructor
-     * @class WistiaPreferencesElement
-     * @param {WistiaView} view
-     * @param opts
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     * @returns {WistiaPreferencesElement}
-     */
-    var WistiaPreferencesElement = function WistiaPreferencesElement(view, opts) {
+  /**
+   * Define Wistia Preferences Element
+   * @constructor
+   * @class WistiaPreferencesElement
+   * @param {WistiaView} view
+   * @param opts
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   * @returns {WistiaPreferencesElement}
+   */
+  var WistiaPreferencesElement = function WistiaPreferencesElement(view, opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return WistiaPreferencesElement.extend(
-        'WistiaPreferencesElement', {}, 
-        PluginElement.prototype, 
-        WidgetPreferences.prototype
-    );
+  return WistiaPreferencesElement.extend(
+      'WistiaPreferencesElement', {},
+      PluginElement.prototype,
+      WidgetPreferences.prototype
+  );
 });

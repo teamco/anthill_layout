@@ -7,23 +7,23 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineIframelyEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define Iframely event manager
-     * @class IframelyEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var IframelyEventManager = function IframelyEventManager() {
+  /**
+   * Define Iframely event manager
+   * @class IframelyEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var IframelyEventManager = function IframelyEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return IframelyEventManager.extend(
-        'IframelyEventManager', {},
-        WidgetContentEventManager.prototype
-    );
+  return IframelyEventManager.extend(
+      'IframelyEventManager', {},
+      WidgetContentEventManager.prototype
+  );
 });

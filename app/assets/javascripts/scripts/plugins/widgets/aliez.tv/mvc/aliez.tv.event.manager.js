@@ -7,23 +7,23 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineAliezTvEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define AliezTv event manager
-     * @class AliezTvEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var AliezTvEventManager = function AliezTvEventManager() {
+  /**
+   * Define AliezTv event manager
+   * @class AliezTvEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var AliezTvEventManager = function AliezTvEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return AliezTvEventManager.extend(
-        'AliezTvEventManager', {},
-        WidgetContentEventManager.prototype
-    );
+  return AliezTvEventManager.extend(
+      'AliezTvEventManager', {},
+      WidgetContentEventManager.prototype
+  );
 });

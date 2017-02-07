@@ -6,41 +6,41 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineTwentyThreeElement(PluginElement) {
 
+  /**
+   * Define TwentyThree Element
+   * @param view
+   * @param opts
+   * @returns {TwentyThreeElement}
+   * @constructor
+   * @class TwentyThreeElement
+   * @extends PluginElement
+   */
+  var TwentyThreeElement = function TwentyThreeElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('twenty.three', {resource: '/widgets'});
+
+    return this;
+  };
+
+  return TwentyThreeElement.extend('TwentyThreeElement', {
+
     /**
-     * Define TwentyThree Element
-     * @param view
-     * @param opts
-     * @returns {TwentyThreeElement}
-     * @constructor
-     * @class TwentyThreeElement
-     * @extends PluginElement
+     * Render Embedded content
+     * @memberOf TwentyThreeElement
+     * @param {string} embed
      */
-    var TwentyThreeElement = function TwentyThreeElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent(embed) {
+      this.$.append(embed);
+    }
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
-
-        this.addCSS('twenty.three', {resource: '/widgets'});
-
-        return this;
-    };
-
-    return TwentyThreeElement.extend('TwentyThreeElement', {
-
-        /**
-         * Render Embedded content
-         * @memberOf TwentyThreeElement
-         * @param {string} embed
-         */
-        renderEmbeddedContent: function renderEmbeddedContent(embed) {
-            this.$.append(embed);
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 
 });

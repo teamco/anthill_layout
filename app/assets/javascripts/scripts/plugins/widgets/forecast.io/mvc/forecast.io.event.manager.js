@@ -7,23 +7,23 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineForecastIoEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define ForecastIo event manager
-     * @class ForecastIoEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var ForecastIoEventManager = function ForecastIoEventManager() {
+  /**
+   * Define ForecastIo event manager
+   * @class ForecastIoEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var ForecastIoEventManager = function ForecastIoEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return ForecastIoEventManager.extend(
-        'ForecastIoEventManager', {},
-        WidgetContentEventManager.prototype
-    );
+  return ForecastIoEventManager.extend(
+      'ForecastIoEventManager', {},
+      WidgetContentEventManager.prototype
+  );
 });

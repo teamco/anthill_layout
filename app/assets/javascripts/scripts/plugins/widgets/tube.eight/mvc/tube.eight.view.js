@@ -7,108 +7,109 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/tube.eight/element/tube.eight.element',
-    'plugins/widgets/tube.eight/element/tube.eight.preferences.element',
-    'plugins/widgets/tube.eight/element/tube.eight.rules.element'
-], function defineTubeEightView(BaseView, Header, Footer, TubeEightElement, TubeEightPreferencesElement, TubeEightRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/tube.eight/element/tube.eight.element',
+  'plugins/widgets/tube.eight/element/tube.eight.preferences.element',
+  'plugins/widgets/tube.eight/element/tube.eight.rules.element'
+], function defineTubeEightView(BaseView, Header, Footer, TubeEightElement,
+    TubeEightPreferencesElement, TubeEightRulesElement) {
+
+  /**
+   * Define view
+   * @class TubeEightView
+   * @extends BaseView
+   * @constructor
+   */
+  var TubeEightView = function TubeEightView() {
+  };
+
+  return TubeEightView.extend('TubeEightView', {
 
     /**
-     * Define view
-     * @class TubeEightView
-     * @extends BaseView
-     * @constructor
+     * Render tubeeight element
+     * @memberOf TubeEightView
      */
-    var TubeEightView = function TubeEightView() {
-    };
+    renderTubeEight: function renderTubeEight() {
 
-    return TubeEightView.extend('TubeEightView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render tubeeight element
-         * @memberOf TubeEightView
-         */
-        renderTubeEight: function renderTubeEight() {
+      /**
+       * Define $tubeeight
+       * @type {TubeEightElement}
+       */
+      this.elements.$tubeeight = new TubeEightElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $tubeeight
-             * @type {TubeEightElement}
-             */
-            this.elements.$tubeeight = new TubeEightElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf TubeEightView
+     * @returns {TubeEightPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define TubeEight Preferences Element
+       * @type {TubeEightPreferencesElement}
+       */
+      this.elements.$preferences = new TubeEightPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf TubeEightView
-         * @returns {TubeEightPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define TubeEight Preferences Element
-             * @type {TubeEightPreferencesElement}
-             */
-            this.elements.$preferences = new TubeEightPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf TubeEightView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {TubeEightRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
+      /**
+       * Define data
+       * @type {*|{}}
+       */
+      var data = this.controller.getRules();
 
-        /**
-         * Render Rules
-         * @memberOf TubeEightView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {TubeEightRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define data
-             * @type {*|{}}
-             */
-            var data = this.controller.getRules();
-
-            /**
-             * Define TubeEight Rules Element
-             * @type {TubeEightRulesElement}
-             */
-            this.elements.$rules = new TubeEightRulesElement(this, {
-                data: data,
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render tubeeight
-         * @memberOf TubeEightView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderTubeEight.bind(this)
-            );
+      /**
+       * Define TubeEight Rules Element
+       * @type {TubeEightRulesElement}
+       */
+      this.elements.$rules = new TubeEightRulesElement(this, {
+        data: data,
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render tubeeight
+     * @memberOf TubeEightView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderTubeEight.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

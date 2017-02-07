@@ -6,41 +6,42 @@
  */
 
 define([
-    'config/anthill',
-    'modules/MVC',
-    'plugins/widgets/events.calendar/mvc/events.calendar.controller',
-    'plugins/widgets/events.calendar/mvc/events.calendar.model',
-    'plugins/widgets/events.calendar/mvc/events.calendar.view',
-    'plugins/widgets/events.calendar/mvc/events.calendar.event.manager',
-    'plugins/widgets/events.calendar/mvc/events.calendar.permission'
-], function defineEventsCalendar(AntHill, MVC, Controller, Model, View, EventManager, Permission) {
+  'config/anthill',
+  'modules/MVC',
+  'plugins/widgets/events.calendar/mvc/events.calendar.controller',
+  'plugins/widgets/events.calendar/mvc/events.calendar.model',
+  'plugins/widgets/events.calendar/mvc/events.calendar.view',
+  'plugins/widgets/events.calendar/mvc/events.calendar.event.manager',
+  'plugins/widgets/events.calendar/mvc/events.calendar.permission'
+], function defineEventsCalendar(AntHill, MVC, Controller, Model, View,
+    EventManager, Permission) {
+
+  /**
+   * Define EventsCalendar
+   * @param containment
+   * @param [opts]
+   * @constructor
+   * @class EventsCalendar
+   * @extends AntHill
+   */
+  var EventsCalendar = function EventsCalendar(containment, opts) {
 
     /**
-     * Define EventsCalendar
-     * @param containment
-     * @param [opts]
-     * @constructor
-     * @class EventsCalendar
-     * @extends AntHill
+     * Define containment
+     * @property EventsCalendar
      */
-    var EventsCalendar = function EventsCalendar(containment, opts) {
+    this.containment = containment;
 
-        /**
-         * Define containment
-         * @property EventsCalendar
-         */
-        this.containment = containment;
+    /**
+     * Define referrer
+     * @property EventsCalendar
+     * @type {*}
+     */
+    this.referrer = undefined;
 
-        /**
-         * Define referrer
-         * @property EventsCalendar
-         * @type {*}
-         */
-        this.referrer = undefined;
-
-        /**
-         * Define defaults
-         * @type {{
+    /**
+     * Define defaults
+     * @type {{
          *      plugin: boolean,
          *      html: {
          *          style: string,
@@ -55,50 +56,48 @@ define([
          *          }
          *      }
          * }}
-         */
-        var DEFAULTS = {
-            plugin: true,
-            html: {
-                style: 'default',
-                header: false,
-                footer: false,
-                padding: {
-                    top: 0,
-                    right: 0,
-                    bottom: 0,
-                    left: 0
-                }
-            }
-        };
-
-        /**
-         * Define MVC
-         * @property EventsCalendar
-         * @type {MVC}
-         */
-        this.mvc = new MVC({
-            scope: this,
-            config: [
-                {uuid: this.containment.model.getContentUUID()},
-                DEFAULTS
-            ],
-            components: [
-                Controller,
-                Model,
-                View,
-                EventManager,
-                Permission
-            ],
-            render: true
-        });
-
-        this.observer.publish(
-            this.eventmanager.eventList.initWidget,
-            opts
-        );
+     */
+    var DEFAULTS = {
+      plugin: true,
+      html: {
+        style: 'default',
+        header: false,
+        footer: false,
+        padding: {
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0
+        }
+      }
     };
 
-    return EventsCalendar.extend('EventsCalendar', {
+    /**
+     * Define MVC
+     * @property EventsCalendar
+     * @type {MVC}
+     */
+    this.mvc = new MVC({
+      scope: this,
+      config: [
+        {uuid: this.containment.model.getContentUUID()},
+        DEFAULTS
+      ],
+      components: [
+        Controller,
+        Model,
+        View,
+        EventManager,
+        Permission
+      ],
+      render: true
+    });
 
-    }, AntHill.prototype);
+    this.observer.publish(
+        this.eventmanager.eventList.initWidget,
+        opts
+    );
+  };
+
+  return EventsCalendar.extend('EventsCalendar', {}, AntHill.prototype);
 });

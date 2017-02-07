@@ -6,120 +6,120 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function definePageTabsElement(PluginElement) {
 
+  /**
+   * Define PageTabs Element
+   * @param view
+   * @param opts
+   * @returns {PageTabsElement}
+   * @constructor
+   * @class PageTabsElement
+   * @extends PluginElement
+   */
+  var PageTabsElement = function PageTabsElement(view, opts) {
+
+    this._config(view, opts, $('<ul class="nav nav-tabs" />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
     /**
-     * Define PageTabs Element
-     * @param view
-     * @param opts
-     * @returns {PageTabsElement}
-     * @constructor
-     * @class PageTabsElement
-     * @extends PluginElement
+     * Define current page class name
+     * @type {string}
      */
-    var PageTabsElement = function PageTabsElement(view, opts) {
+    this.current = 'active';
 
-        this._config(view, opts, $('<ul class="nav nav-tabs" />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this.addCSS('page.tabs', {resource: '/widgets'});
 
-        /**
-         * Define current page class name
-         * @type {string}
-         */
-        this.current = 'active';
+    return this;
+  };
 
-        this.addCSS('page.tabs', {resource: '/widgets'});
+  return PageTabsElement.extend('PageTabsElement', {
 
-        return this;
-    };
+    /**
+     * Render Embedded content
+     * @memberOf PageTabsElement
+     * @param {object} pages
+     */
+    renderEmbeddedContent: function renderEmbeddedContent(pages) {
 
-    return PageTabsElement.extend('PageTabsElement', {
+      this.empty();
 
-        /**
-         * Render Embedded content
-         * @memberOf PageTabsElement
-         * @param {object} pages
-         */
-        renderEmbeddedContent: function renderEmbeddedContent(pages) {
+      /**
+       * Define page tab items
+       * @memberOf PageTabsView
+       * @type {object}
+       */
+      this.view.elements.items = {};
 
-            this.empty();
+      this.view.controller.clearParentThumbnail();
 
-            /**
-             * Define page tab items
-             * @memberOf PageTabsView
-             * @type {object}
-             */
-            this.view.elements.items = {};
+      var item, index,
+          tabs = [], $tab,
+          order, show;
 
-            this.view.controller.clearParentThumbnail();
+      for (index in pages) {
 
-            var item, index,
-                tabs = [], $tab,
-                order, show;
+        if (pages.hasOwnProperty(index)) {
 
-            for (index in pages) {
+          /**
+           * Get item
+           * @type {Page}
+           */
+          item = pages[index];
 
-                if (pages.hasOwnProperty(index)) {
+          /**
+           * Show page in tabs
+           * @type {PagesPreferences.defaultPrefs.showInTabs|*}
+           */
+          show = item.model.getConfig('preferences').showInTabs;
 
-                    /**
-                     * Get item
-                     * @type {Page}
-                     */
-                    item = pages[index];
-
-                    /**
-                     * Show page in tabs
-                     * @type {PagesPreferences.defaultPrefs.showInTabs|*}
-                     */
-                    show = item.model.getConfig('preferences').showInTabs;
-
-                    if (show) {
-
-                        /**
-                         * Get order
-                         * @type {number}
-                         */
-                        order = item.model.getConfig('preferences').order;
-
-                        /**
-                         * Define tab
-                         * @type {jQuery}
-                         */
-                        $tab = this.view.renderPageTabsItem(item);
-
-                        typeof(order) === 'number' ?
-                            tabs[order] = $tab :
-                            tabs.push($tab);
-                    }
-                }
-            }
-
-            this.$.append(tabs);
-        },
-
-        /**
-         * Set page tab as current
-         * @memberOf PageTabsElement
-         * @param {Page} page
-         */
-        setPageTabAsCurrent: function setPageTabAsCurrent(page) {
-
-            // Reset current state
-            $('li', this.$).removeClass(this.current);
+          if (show) {
 
             /**
-             * Get current page title
-             * @type {string}
+             * Get order
+             * @type {number}
              */
-            var title = page.model.getItemTitle();
+            order = item.model.getConfig('preferences').order;
 
-            $('li:contains("' + title + '")', this.$).
-                addClass(this.current);
+            /**
+             * Define tab
+             * @type {jQuery}
+             */
+            $tab = this.view.renderPageTabsItem(item);
+
+            typeof(order) === 'number' ?
+                tabs[order] = $tab :
+                tabs.push($tab);
+          }
         }
+      }
 
-    }, PluginElement.prototype);
+      this.$.append(tabs);
+    },
+
+    /**
+     * Set page tab as current
+     * @memberOf PageTabsElement
+     * @param {Page} page
+     */
+    setPageTabAsCurrent: function setPageTabAsCurrent(page) {
+
+      // Reset current state
+      $('li', this.$).removeClass(this.current);
+
+      /**
+       * Get current page title
+       * @type {string}
+       */
+      var title = page.model.getItemTitle();
+
+      $('li:contains("' + title + '")', this.$).
+          addClass(this.current);
+    }
+
+  }, PluginElement.prototype);
 
 });

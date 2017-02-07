@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineOneHdRuEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define OneHdRu event manager
-     * @class OneHdRuEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var OneHdRuEventManager = function OneHdRuEventManager() {
+  /**
+   * Define OneHdRu event manager
+   * @class OneHdRuEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var OneHdRuEventManager = function OneHdRuEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return OneHdRuEventManager.extend('OneHdRuEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return OneHdRuEventManager.extend('OneHdRuEventManager', {},
+      WidgetContentEventManager.prototype);
 });

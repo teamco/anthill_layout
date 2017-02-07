@@ -7,20 +7,20 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineAccuweatherWidgetPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class AccuweatherWidgetPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var AccuweatherWidgetPermission = function AccuweatherWidgetPermission() {
-    };
+  /**
+   * Define Permissions
+   * @class AccuweatherWidgetPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var AccuweatherWidgetPermission = function AccuweatherWidgetPermission() {
+  };
 
-    return AccuweatherWidgetPermission.extend(
-        'AccuweatherWidgetPermission', {}, 
-        BasePermission.prototype
-    );
+  return AccuweatherWidgetPermission.extend(
+      'AccuweatherWidgetPermission', {},
+      BasePermission.prototype
+  );
 });

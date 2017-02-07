@@ -6,53 +6,54 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineGiphyModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define Giphy model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class GiphyModel
+   * @constructor
+   */
+  var GiphyModel = function GiphyModel() {
+
     /**
-     * Define Giphy model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class GiphyModel
-     * @constructor
-     */
-    var GiphyModel = function GiphyModel() {
-
-        /**
-         * Define preferences
-         * @memberOf GiphyModel
-         * @type {{
-         *      giphyEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
+     * Define preferences
+     * @memberOf GiphyModel
+     * @type {{
+         *      giphyEmbedCode: {type: string, disabled: boolean, value:
+         *     undefined, visible: boolean}
          * }}
-         */
-        this.preferences = {
-            giphyEmbedCode: {
-                type: 'textarea',
-                disabled: false,
-                value: undefined,
-                visible: true
-            }
-        };
-
-        /**
-         * Define rules
-         * @memberOf GiphyModel
-         * @type {{}}
-         */
-        this.rules = {};
+     */
+    this.preferences = {
+      giphyEmbedCode: {
+        type: 'textarea',
+        disabled: false,
+        value: undefined,
+        visible: true
+      }
     };
 
-    return GiphyModel.extend('GiphyModel', {
+    /**
+     * Define rules
+     * @memberOf GiphyModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        /**
-         * Set Giphy embed code
-         * @memberOf GiphyModel
-         * @param {string} embed
-         */
-        setGiphyEmbedCode: function setGiphyEmbedCode(embed) {
-            this.setPrefs('giphyEmbedCode', embed);
-        }
+  return GiphyModel.extend('GiphyModel', {
 
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    /**
+     * Set Giphy embed code
+     * @memberOf GiphyModel
+     * @param {string} embed
+     */
+    setGiphyEmbedCode: function setGiphyEmbedCode(embed) {
+      this.setPrefs('giphyEmbedCode', embed);
+    }
+
+  }, BaseModel.prototype, WidgetContentModel.prototype);
 });

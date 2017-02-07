@@ -6,31 +6,33 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineNationalFilmBoardOfCanadaElement(PluginElement) {
 
-    /**
-     * Define NationalFilmBoardOfCanada Element
-     * @param view
-     * @param opts
-     * @returns {NationalFilmBoardOfCanadaElement}
-     * @constructor
-     * @class NationalFilmBoardOfCanadaElement
-     * @extends PluginElement
-     */
-    var NationalFilmBoardOfCanadaElement = function NationalFilmBoardOfCanadaElement(view, opts) {
+  /**
+   * Define NationalFilmBoardOfCanada Element
+   * @param view
+   * @param opts
+   * @returns {NationalFilmBoardOfCanadaElement}
+   * @constructor
+   * @class NationalFilmBoardOfCanadaElement
+   * @extends PluginElement
+   */
+  var NationalFilmBoardOfCanadaElement = function NationalFilmBoardOfCanadaElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.addCSS('national.film.board.of.canada', {resource: '/widgets'});
+    this.addCSS('national.film.board.of.canada', {resource: '/widgets'});
 
-        return this;
-    };
+    return this;
+  };
 
-    return NationalFilmBoardOfCanadaElement.extend('NationalFilmBoardOfCanadaElement', {
+  return NationalFilmBoardOfCanadaElement.extend(
+      'NationalFilmBoardOfCanadaElement', {
 
         /**
          * Render Embedded content
@@ -38,8 +40,8 @@ define([
          * @param {string} embed
          */
         renderEmbeddedContent: function renderEmbeddedContent(embed) {
-            this.addContent(embed);
+          this.addContent(embed);
         }
 
-    }, PluginElement.prototype);
+      }, PluginElement.prototype);
 });

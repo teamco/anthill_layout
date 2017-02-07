@@ -6,38 +6,37 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/rules/widget.base.rules'
+  'plugins/plugin.element',
+  'plugins/rules/widget.base.rules'
 ], function defineFilmOnRulesElement(PluginElement, BaseWidgetRules) {
 
-    /**
-     * Define FilmOn Rules Element
-     * @param view
-     * @param opts
-     * @returns {FilmOnRulesElement}
-     * @constructor
-     * @class FilmOnRulesElement
-     * @extends PluginElement
-     * @extends BaseWidgetRules
-     */
-    var FilmOnRulesElement = function FilmOnRulesElement(view, opts) {
+  /**
+   * Define FilmOn Rules Element
+   * @param view
+   * @param opts
+   * @returns {FilmOnRulesElement}
+   * @constructor
+   * @class FilmOnRulesElement
+   * @extends PluginElement
+   * @extends BaseWidgetRules
+   */
+  var FilmOnRulesElement = function FilmOnRulesElement(view, opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBaseRulesData(
-            opts.data,
-            opts.rules.widget,
-            opts.rules.content
-        );
+    this.renderBaseRulesData(
+        opts.data,
+        opts.rules.widget,
+        opts.rules.content
+    );
 
-        return this;
-    };
+    return this;
+  };
 
-    return FilmOnRulesElement.extend('FilmOnRulesElement', {
-
-    }, PluginElement.prototype, BaseWidgetRules.prototype);
+  return FilmOnRulesElement.extend('FilmOnRulesElement', {},
+      PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

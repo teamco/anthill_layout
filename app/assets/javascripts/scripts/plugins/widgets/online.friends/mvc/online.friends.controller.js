@@ -6,51 +6,51 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller',
-    'lib/jquery/jquery.nicescroll'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller',
+  'lib/jquery/jquery.nicescroll'
 ], function defineOnlineFriendsController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define online friends controller
+   * @class OnlineFriendsController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var OnlineFriendsController = function OnlineFriendsController() {
+  };
+
+  return OnlineFriendsController.extend('OnlineFriendsController', {
+
     /**
-     * Define online friends controller
-     * @class OnlineFriendsController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf OnlineFriendsController
      */
-    var OnlineFriendsController = function OnlineFriendsController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
 
-    return OnlineFriendsController.extend('OnlineFriendsController', {
+      this.view.elements.$onlinefriends.renderEmbeddedContent();
+    },
 
-        /**
-         * Set embedded content
-         * @memberOf OnlineFriendsController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
+    /**
+     * Add OnlineFriends rule
+     * @memberOf OnlineFriendsController
+     * @param {Event} e
+     */
+    addOnlineFriendsRule: function addOnlineFriendsRule(e) {
 
-            this.view.elements.$onlinefriends.renderEmbeddedContent();
-        },
+      /**
+       * Define $button
+       * @type {*|jQuery|HTMLElement}
+       */
+      var $button = $(e.target),
+          scope = this.scope;
 
-        /**
-         * Add OnlineFriends rule
-         * @memberOf OnlineFriendsController
-         * @param {Event} e
-         */
-        addOnlineFriendsRule: function addOnlineFriendsRule(e) {
+      scope.observer.publish(
+          scope.eventmanager.eventList.publishRule,
+          [$button.attr('value'), this.scope.name]
+      );
+    }
 
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), this.scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

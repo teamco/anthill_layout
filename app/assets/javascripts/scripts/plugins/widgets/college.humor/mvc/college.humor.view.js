@@ -7,108 +7,110 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/college.humor/element/college.humor.element',
-    'plugins/widgets/college.humor/element/college.humor.preferences.element',
-    'plugins/widgets/college.humor/element/college.humor.rules.element'
-], function defineCollegeHumorView(BaseView, Header, Footer, CollegeHumorElement, CollegeHumorPreferencesElement, CollegeHumorRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/college.humor/element/college.humor.element',
+  'plugins/widgets/college.humor/element/college.humor.preferences.element',
+  'plugins/widgets/college.humor/element/college.humor.rules.element'
+], function defineCollegeHumorView(BaseView, Header, Footer,
+    CollegeHumorElement, CollegeHumorPreferencesElement,
+    CollegeHumorRulesElement) {
+
+  /**
+   * Define view
+   * @class CollegeHumorView
+   * @extends BaseView
+   * @constructor
+   */
+  var CollegeHumorView = function CollegeHumorView() {
+  };
+
+  return CollegeHumorView.extend('CollegeHumorView', {
 
     /**
-     * Define view
-     * @class CollegeHumorView
-     * @extends BaseView
-     * @constructor
+     * Render collegehumor element
+     * @memberOf CollegeHumorView
      */
-    var CollegeHumorView = function CollegeHumorView() {
-    };
+    renderCollegeHumor: function renderCollegeHumor() {
 
-    return CollegeHumorView.extend('CollegeHumorView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render collegehumor element
-         * @memberOf CollegeHumorView
-         */
-        renderCollegeHumor: function renderCollegeHumor() {
+      /**
+       * Define $collegehumor
+       * @type {CollegeHumorElement}
+       */
+      this.elements.$collegehumor = new CollegeHumorElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $collegehumor
-             * @type {CollegeHumorElement}
-             */
-            this.elements.$collegehumor = new CollegeHumorElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf CollegeHumorView
+     * @returns {CollegeHumorPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define CollegeHumor Preferences Element
+       * @type {CollegeHumorPreferencesElement}
+       */
+      this.elements.$preferences = new CollegeHumorPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf CollegeHumorView
-         * @returns {CollegeHumorPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define CollegeHumor Preferences Element
-             * @type {CollegeHumorPreferencesElement}
-             */
-            this.elements.$preferences = new CollegeHumorPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf CollegeHumorView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {CollegeHumorRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
+      /**
+       * Define data
+       * @type {*|{}}
+       */
+      var data = this.controller.getRules();
 
-        /**
-         * Render Rules
-         * @memberOf CollegeHumorView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {CollegeHumorRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define data
-             * @type {*|{}}
-             */
-            var data = this.controller.getRules();
-
-            /**
-             * Define CollegeHumor Rules Element
-             * @type {CollegeHumorRulesElement}
-             */
-            this.elements.$rules = new CollegeHumorRulesElement(this, {
-                data: data,
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render collegehumor
-         * @memberOf CollegeHumorView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderCollegeHumor.bind(this)
-            );
+      /**
+       * Define CollegeHumor Rules Element
+       * @type {CollegeHumorRulesElement}
+       */
+      this.elements.$rules = new CollegeHumorRulesElement(this, {
+        data: data,
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render collegehumor
+     * @memberOf CollegeHumorView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderCollegeHumor.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

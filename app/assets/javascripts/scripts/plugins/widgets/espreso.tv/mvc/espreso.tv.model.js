@@ -6,53 +6,54 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineEspresoTvModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define EspresoTv model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class EspresoTvModel
+   * @constructor
+   */
+  var EspresoTvModel = function EspresoTvModel() {
+
     /**
-     * Define EspresoTv model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class EspresoTvModel
-     * @constructor
-     */
-    var EspresoTvModel = function EspresoTvModel() {
-
-        /**
-         * Define preferences
-         * @property EspresoTvModel
-         * @type {{
-         *      espresotvUrl: {type: string, disabled: boolean, value: undefined, visible: boolean}
+     * Define preferences
+     * @property EspresoTvModel
+     * @type {{
+         *      espresotvUrl: {type: string, disabled: boolean, value:
+         *     undefined, visible: boolean}
          * }}
-         */
-        this.preferences = {
-            espresotvUrl: {
-                type: 'text',
-                disabled: true,
-                value: 'https://www.youtube.com/watch?feature=player_embedded&v=WQzVhOZnku8',
-                visible: true
-            }
-        };
-
-        /**
-         * Define rules
-         * @property EspresoTvModel
-         * @type {{}}
-         */
-        this.rules = {};
+     */
+    this.preferences = {
+      espresotvUrl: {
+        type: 'text',
+        disabled: true,
+        value: 'https://www.youtube.com/watch?feature=player_embedded&v=WQzVhOZnku8',
+        visible: true
+      }
     };
 
-    return EspresoTvModel.extend('EspresoTvModel', {
+    /**
+     * Define rules
+     * @property EspresoTvModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        /**
-         * Set EspresoTv Url
-         * @memberOf EspresoTvModel
-         * @param {string} url
-         */
-        setEspresotvUrl: function setEspresotvUrl(url) {
-            this.setPrefs('espresotvUrl', url);
-        }
+  return EspresoTvModel.extend('EspresoTvModel', {
 
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    /**
+     * Set EspresoTv Url
+     * @memberOf EspresoTvModel
+     * @param {string} url
+     */
+    setEspresotvUrl: function setEspresotvUrl(url) {
+      this.setPrefs('espresotvUrl', url);
+    }
+
+  }, BaseModel.prototype, WidgetContentModel.prototype);
 });

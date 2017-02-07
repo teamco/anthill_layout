@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineYouPornEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define YouPorn event manager
-     * @class YouPornEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var YouPornEventManager = function YouPornEventManager() {
+  /**
+   * Define YouPorn event manager
+   * @class YouPornEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var YouPornEventManager = function YouPornEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return YouPornEventManager.extend('YouPornEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return YouPornEventManager.extend('YouPornEventManager', {},
+      WidgetContentEventManager.prototype);
 });

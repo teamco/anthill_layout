@@ -6,42 +6,42 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineFastpicElement(PluginElement) {
 
+  /**
+   * Define Fastpic Element
+   * @param view
+   * @param opts
+   * @returns {FastpicElement}
+   * @constructor
+   * @class FastpicElement
+   * @extends PluginElement
+   */
+  var FastpicElement = function FastpicElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('fastpic', {resource: '/widgets'});
+
+    return this;
+  };
+
+  return FastpicElement.extend('FastpicElement', {
+
     /**
-     * Define Fastpic Element
-     * @param view
-     * @param opts
-     * @returns {FastpicElement}
-     * @constructor
-     * @class FastpicElement
-     * @extends PluginElement
+     * Render Embedded content
+     * @memberOf FastpicElement
+     * @param {string} url
      */
-    var FastpicElement = function FastpicElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent(url) {
+      this.addContent(
+          $('<img />').attr('src', url)
+      );
+    }
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
-
-        this.addCSS('fastpic', {resource: '/widgets'});
-
-        return this;
-    };
-
-    return FastpicElement.extend('FastpicElement', {
-
-        /**
-         * Render Embedded content
-         * @memberOf FastpicElement
-         * @param {string} url
-         */
-        renderEmbeddedContent: function renderEmbeddedContent(url) {
-            this.addContent(
-                $('<img />').attr('src', url)
-            );
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 });

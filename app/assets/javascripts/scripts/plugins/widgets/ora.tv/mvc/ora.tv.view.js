@@ -7,101 +7,102 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/ora.tv/element/ora.tv.element',
-    'plugins/widgets/ora.tv/element/ora.tv.preferences.element',
-    'plugins/widgets/ora.tv/element/ora.tv.rules.element'
-], function defineOraTvView(BaseView, Header, Footer, OraTvElement, OraTvPreferencesElement, OraTvRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/ora.tv/element/ora.tv.element',
+  'plugins/widgets/ora.tv/element/ora.tv.preferences.element',
+  'plugins/widgets/ora.tv/element/ora.tv.rules.element'
+], function defineOraTvView(BaseView, Header, Footer, OraTvElement,
+    OraTvPreferencesElement, OraTvRulesElement) {
+
+  /**
+   * Define view
+   * @class OraTvView
+   * @extends BaseView
+   * @constructor
+   */
+  var OraTvView = function OraTvView() {
+  };
+
+  return OraTvView.extend('OraTvView', {
 
     /**
-     * Define view
-     * @class OraTvView
-     * @extends BaseView
-     * @constructor
+     * Render OraTv element
+     * @memberOf OraTvView
      */
-    var OraTvView = function OraTvView() {
-    };
+    renderOraTv: function renderOraTv() {
 
-    return OraTvView.extend('OraTvView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render OraTv element
-         * @memberOf OraTvView
-         */
-        renderOraTv: function renderOraTv() {
+      /**
+       * Define $oratv
+       * @type {OraTvElement}
+       */
+      this.elements.$oratv = new OraTvElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $oratv
-             * @type {OraTvElement}
-             */
-            this.elements.$oratv = new OraTvElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf OraTvView
+     * @returns {OraTvPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define OraTv Preferences Element
+       * @type {OraTvPreferencesElement}
+       */
+      this.elements.$preferences = new OraTvPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf OraTvView
-         * @returns {OraTvPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define OraTv Preferences Element
-             * @type {OraTvPreferencesElement}
-             */
-            this.elements.$preferences = new OraTvPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf OraTvView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {OraTvRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
-
-        /**
-         * Render Rules
-         * @memberOf OraTvView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {OraTvRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define OraTv Rules Element
-             * @type {OraTvRulesElement}
-             */
-            this.elements.$rules = new OraTvRulesElement(this, {
-                data: this.controller.getRules(),
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render OraTv
-         * @memberOf OraTvView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderOraTv.bind(this)
-            );
+      /**
+       * Define OraTv Rules Element
+       * @type {OraTvRulesElement}
+       */
+      this.elements.$rules = new OraTvRulesElement(this, {
+        data: this.controller.getRules(),
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype);
+      return this.get$rules();
+    },
+
+    /**
+     * Render OraTv
+     * @memberOf OraTvView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderOraTv.bind(this)
+      );
+    }
+
+  }, BaseView.prototype);
 });

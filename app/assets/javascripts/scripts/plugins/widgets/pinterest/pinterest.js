@@ -6,41 +6,42 @@
  */
 
 define([
-    'config/anthill',
-    'modules/MVC',
-    'plugins/widgets/pinterest/mvc/pinterest.controller',
-    'plugins/widgets/pinterest/mvc/pinterest.model',
-    'plugins/widgets/pinterest/mvc/pinterest.view',
-    'plugins/widgets/pinterest/mvc/pinterest.event.manager',
-    'plugins/widgets/pinterest/mvc/pinterest.permission'
-], function definePinterest(AntHill, MVC, Controller, Model, View, EventManager, Permission) {
+  'config/anthill',
+  'modules/MVC',
+  'plugins/widgets/pinterest/mvc/pinterest.controller',
+  'plugins/widgets/pinterest/mvc/pinterest.model',
+  'plugins/widgets/pinterest/mvc/pinterest.view',
+  'plugins/widgets/pinterest/mvc/pinterest.event.manager',
+  'plugins/widgets/pinterest/mvc/pinterest.permission'
+], function definePinterest(AntHill, MVC, Controller, Model, View, EventManager,
+    Permission) {
+
+  /**
+   * Define Pinterest
+   * @param containment
+   * @param [opts]
+   * @constructor
+   * @class Pinterest
+   * @extends AntHill
+   */
+  var Pinterest = function Pinterest(containment, opts) {
 
     /**
-     * Define Pinterest
-     * @param containment
-     * @param [opts]
-     * @constructor
-     * @class Pinterest
-     * @extends AntHill
+     * Define containment
+     * @memberOf Pinterest
      */
-    var Pinterest = function Pinterest(containment, opts) {
+    this.containment = containment;
 
-        /**
-         * Define containment
-         * @memberOf Pinterest
-         */
-        this.containment = containment;
+    /**
+     * Define referrer
+     * @memberOf Pinterest
+     * @type {*}
+     */
+    this.referrer = undefined;
 
-        /**
-         * Define referrer
-         * @memberOf Pinterest
-         * @type {*}
-         */
-        this.referrer = undefined;
-
-        /**
-         * Define defaults
-         * @type {{
+    /**
+     * Define defaults
+     * @type {{
          *      plugin: boolean,
          *      html: {
          *          style: string,
@@ -55,50 +56,48 @@ define([
          *          }
          *      }
          * }}
-         */
-        var DEFAULTS = {
-            plugin: true,
-            html: {
-                style: 'default',
-                header: false,
-                footer: false,
-                padding: {
-                    top: 0,
-                    right: 0,
-                    bottom: 0,
-                    left: 0
-                }
-            }
-        };
-
-        /**
-         * Define MVC
-         * @memberOf Pinterest
-         * @type {MVC}
-         */
-        this.mvc = new MVC({
-            scope: this,
-            config: [
-                {uuid: this.containment.model.getContentUUID()},
-                DEFAULTS
-            ],
-            components: [
-                Controller,
-                Model,
-                View,
-                EventManager,
-                Permission
-            ],
-            render: true
-        });
-
-        this.observer.publish(
-            this.eventmanager.eventList.initWidget,
-            opts
-        );
+     */
+    var DEFAULTS = {
+      plugin: true,
+      html: {
+        style: 'default',
+        header: false,
+        footer: false,
+        padding: {
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0
+        }
+      }
     };
 
-    return Pinterest.extend('Pinterest', {
+    /**
+     * Define MVC
+     * @memberOf Pinterest
+     * @type {MVC}
+     */
+    this.mvc = new MVC({
+      scope: this,
+      config: [
+        {uuid: this.containment.model.getContentUUID()},
+        DEFAULTS
+      ],
+      components: [
+        Controller,
+        Model,
+        View,
+        EventManager,
+        Permission
+      ],
+      render: true
+    });
 
-    }, AntHill.prototype);
+    this.observer.publish(
+        this.eventmanager.eventList.initWidget,
+        opts
+    );
+  };
+
+  return Pinterest.extend('Pinterest', {}, AntHill.prototype);
 });

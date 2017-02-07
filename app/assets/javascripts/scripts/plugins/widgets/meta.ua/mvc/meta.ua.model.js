@@ -6,53 +6,54 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineMetaUaModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define MetaUa model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class MetaUaModel
+   * @constructor
+   */
+  var MetaUaModel = function MetaUaModel() {
+
     /**
-     * Define MetaUa model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class MetaUaModel
-     * @constructor
-     */
-    var MetaUaModel = function MetaUaModel() {
-
-        /**
-         * Define preferences
-         * @memberOf MetaUaModel
-         * @type {{
-         *      metaUrl: {type: string, disabled: boolean, value: undefined, visible: boolean}
+     * Define preferences
+     * @memberOf MetaUaModel
+     * @type {{
+         *      metaUrl: {type: string, disabled: boolean, value: undefined,
+         *     visible: boolean}
          * }}
-         */
-        this.preferences = {
-            metauaUrl: {
-                type: 'text',
-                disabled: false,
-                value: undefined,
-                visible: true
-            }
-        };
-
-        /**
-         * Define rules
-         * @memberOf MetaUaModel
-         * @type {{}}
-         */
-        this.rules = {};
+     */
+    this.preferences = {
+      metauaUrl: {
+        type: 'text',
+        disabled: false,
+        value: undefined,
+        visible: true
+      }
     };
 
-    return MetaUaModel.extend('MetaUaModel', {
+    /**
+     * Define rules
+     * @memberOf MetaUaModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        /**
-         * Set MetaUa Url
-         * @memberOf MetaUaModel
-         * @param {string} url
-         */
-        setMetauaUrl: function setMetauaUrl(url) {
-            this.setPrefs('metauaUrl', url);
-        }
+  return MetaUaModel.extend('MetaUaModel', {
 
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    /**
+     * Set MetaUa Url
+     * @memberOf MetaUaModel
+     * @param {string} url
+     */
+    setMetauaUrl: function setMetauaUrl(url) {
+      this.setPrefs('metauaUrl', url);
+    }
+
+  }, BaseModel.prototype, WidgetContentModel.prototype);
 });

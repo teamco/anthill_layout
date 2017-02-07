@@ -6,46 +6,46 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineShareModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define Share model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class ShareModel
+   * @constructor
+   */
+  var ShareModel = function ShareModel() {
+
     /**
-     * Define Share model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class ShareModel
-     * @constructor
+     * Define preferences
+     * @memberOf ShareModel
+     * @type {{}}
      */
-    var ShareModel = function ShareModel() {
-
-        /**
-         * Define preferences
-         * @memberOf ShareModel
-         * @type {{}}
-         */
-        this.preferences = {
-            shareFacebook: {
-                type: 'checkbox',
-                disabled: false,
-                checked: false,
-                visible: true
-            }
-        };
-
-        /**
-         * Define rules
-         * @memberOf ShareModel
-         * @type {{}}
-         */
-        this.rules = {};
+    this.preferences = {
+      shareFacebook: {
+        type: 'checkbox',
+        disabled: false,
+        checked: false,
+        visible: true
+      }
     };
 
-    return ShareModel.extend('ShareModel', {
+    /**
+     * Define rules
+     * @memberOf ShareModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        setShareFacebook: function setShareFacebook(checked) {
-            this.setPrefs('shareFacebook', checked);
-        }
+  return ShareModel.extend('ShareModel', {
 
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    setShareFacebook: function setShareFacebook(checked) {
+      this.setPrefs('shareFacebook', checked);
+    }
+
+  }, BaseModel.prototype, WidgetContentModel.prototype);
 });

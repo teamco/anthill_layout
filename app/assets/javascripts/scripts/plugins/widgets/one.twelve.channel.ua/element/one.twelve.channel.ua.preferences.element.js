@@ -6,35 +6,36 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
-], function defineOneTwelveChannelUaPreferencesElement(PluginElement, WidgetPreferences) {
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
+], function defineOneTwelveChannelUaPreferencesElement(PluginElement,
+    WidgetPreferences) {
 
-    /**
-     * Define OneTwelveChannelUa Preferences Element
-     * @param view
-     * @param opts
-     * @returns {OneTwelveChannelUaPreferencesElement}
-     * @constructor
-     * @class OneTwelveChannelUaPreferencesElement
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     */
-    var OneTwelveChannelUaPreferencesElement = function OneTwelveChannelUaPreferencesElement(view, opts) {
+  /**
+   * Define OneTwelveChannelUa Preferences Element
+   * @param view
+   * @param opts
+   * @returns {OneTwelveChannelUaPreferencesElement}
+   * @constructor
+   * @class OneTwelveChannelUaPreferencesElement
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   */
+  var OneTwelveChannelUaPreferencesElement = function OneTwelveChannelUaPreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return OneTwelveChannelUaPreferencesElement.extend('OneTwelveChannelUaPreferencesElement', {
-
-
-    }, PluginElement.prototype, WidgetPreferences.prototype);
+  return OneTwelveChannelUaPreferencesElement.extend(
+      'OneTwelveChannelUaPreferencesElement', {}, PluginElement.prototype,
+      WidgetPreferences.prototype);
 
 });

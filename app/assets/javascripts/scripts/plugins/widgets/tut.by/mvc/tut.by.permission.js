@@ -7,20 +7,20 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineTutByPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class TutByPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var TutByPermission = function TutByPermission() {
-    };
+  /**
+   * Define Permissions
+   * @class TutByPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var TutByPermission = function TutByPermission() {
+  };
 
-    return TutByPermission.extend(
-        'TutByPermission', {}, 
-        BasePermission.prototype
-    );
+  return TutByPermission.extend(
+      'TutByPermission', {},
+      BasePermission.prototype
+  );
 });

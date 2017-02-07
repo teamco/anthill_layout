@@ -7,102 +7,104 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/online.friends/element/online.friends.element',
-    'plugins/widgets/online.friends/element/online.friends.preferences.element',
-    'plugins/widgets/online.friends/element/online.friends.rules.element'
-], function defineOnlineFriendsView(BaseView, Header, Footer, OnlineFriendsElement, OnlineFriendsPreferencesElement, OnlineFriendsRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/online.friends/element/online.friends.element',
+  'plugins/widgets/online.friends/element/online.friends.preferences.element',
+  'plugins/widgets/online.friends/element/online.friends.rules.element'
+], function defineOnlineFriendsView(BaseView, Header, Footer,
+    OnlineFriendsElement, OnlineFriendsPreferencesElement,
+    OnlineFriendsRulesElement) {
+
+  /**
+   * Define view
+   * @class OnlineFriendsView
+   * @extends BaseView
+   * @constructor
+   */
+  var OnlineFriendsView = function OnlineFriendsView() {
+  };
+
+  return OnlineFriendsView.extend('OnlineFriendsView', {
 
     /**
-     * Define view
-     * @class OnlineFriendsView
-     * @extends BaseView
-     * @constructor
+     * Render online friends element
+     * @memberOf OnlineFriendsView
      */
-    var OnlineFriendsView = function OnlineFriendsView() {
-    };
+    renderOnlineFriends: function renderOnlineFriends() {
 
-    return OnlineFriendsView.extend('OnlineFriendsView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render online friends element
-         * @memberOf OnlineFriendsView
-         */
-        renderOnlineFriends: function renderOnlineFriends() {
+      /**
+       * Define $onlinefriends
+       * @type {OnlineFriendsElement}
+       */
+      this.elements.$onlinefriends = new OnlineFriendsElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $onlinefriends
-             * @type {OnlineFriendsElement}
-             */
-            this.elements.$onlinefriends = new OnlineFriendsElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf OnlineFriendsView
+     * @returns {OnlineFriendsPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define OnlineFriends Preferences Element
+       * @type {OnlineFriendsPreferencesElement}
+       */
+      this.elements.$preferences = new OnlineFriendsPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf OnlineFriendsView
-         * @returns {OnlineFriendsPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define OnlineFriends Preferences Element
-             * @type {OnlineFriendsPreferencesElement}
-             */
-            this.elements.$preferences = new OnlineFriendsPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf OnlineFriendsView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {OnlineFriendsRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
-
-        /**
-         * Render Rules
-         * @memberOf OnlineFriendsView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {OnlineFriendsRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define OnlineFriends Rules Element
-             * @type {OnlineFriendsRulesElement}
-             */
-            this.elements.$rules = new OnlineFriendsRulesElement(this, {
-                data: this.controller.getRules(),
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render online friends
-         * @memberOf OnlineFriendsView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderOnlineFriends.bind(this)
-            );
+      /**
+       * Define OnlineFriends Rules Element
+       * @type {OnlineFriendsRulesElement}
+       */
+      this.elements.$rules = new OnlineFriendsRulesElement(this, {
+        data: this.controller.getRules(),
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render online friends
+     * @memberOf OnlineFriendsView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderOnlineFriends.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

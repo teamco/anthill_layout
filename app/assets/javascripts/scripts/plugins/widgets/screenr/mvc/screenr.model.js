@@ -6,53 +6,54 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineScreenrModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define Screenr model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class ScreenrModel
+   * @constructor
+   */
+  var ScreenrModel = function ScreenrModel() {
+
     /**
-     * Define Screenr model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class ScreenrModel
-     * @constructor
-     */
-    var ScreenrModel = function ScreenrModel() {
-
-        /**
-         * Define preferences
-         * @memberOf ScreenrModel
-         * @type {{
-         *      screenrEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
+     * Define preferences
+     * @memberOf ScreenrModel
+     * @type {{
+         *      screenrEmbedCode: {type: string, disabled: boolean, value:
+         *     undefined, visible: boolean}
          * }}
-         */
-        this.preferences = {
-            screenrEmbedCode: {
-                type: 'textarea',
-                disabled: false,
-                value: undefined,
-                visible: true
-            }
-        };
-
-        /**
-         * Define rules
-         * @memberOf ScreenrModel
-         * @type {{}}
-         */
-        this.rules = {};
+     */
+    this.preferences = {
+      screenrEmbedCode: {
+        type: 'textarea',
+        disabled: false,
+        value: undefined,
+        visible: true
+      }
     };
 
-    return ScreenrModel.extend('ScreenrModel', {
+    /**
+     * Define rules
+     * @memberOf ScreenrModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        /**
-         * Set Screenr embed code
-         * @memberOf ScreenrModel
-         * @param {string} embed
-         */
-        setScreenrEmbedCode: function setScreenrEmbedCode(embed) {
-            this.setPrefs('screenrEmbedCode', embed);
-        }
+  return ScreenrModel.extend('ScreenrModel', {
 
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    /**
+     * Set Screenr embed code
+     * @memberOf ScreenrModel
+     * @param {string} embed
+     */
+    setScreenrEmbedCode: function setScreenrEmbedCode(embed) {
+      this.setPrefs('screenrEmbedCode', embed);
+    }
+
+  }, BaseModel.prototype, WidgetContentModel.prototype);
 });

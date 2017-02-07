@@ -6,44 +6,45 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineOraTvModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define OraTv model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class OraTvModel
+   * @constructor
+   */
+  var OraTvModel = function OraTvModel() {
+
     /**
-     * Define OraTv model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class OraTvModel
-     * @constructor
+     * Define preferences
+     * @property OraTvModel
+     * @type {{oratvEmbedCode: {type: string, disabled: boolean, value: string,
+     *     visible: boolean}}}
      */
-    var OraTvModel = function OraTvModel() {
-
-        /**
-         * Define preferences
-         * @property OraTvModel
-         * @type {{oratvEmbedCode: {type: string, disabled: boolean, value: string, visible: boolean}}}
-         */
-        this.preferences = {
-            oratvEmbedCode: {
-                type: 'textarea',
-                disabled: false,
-                value: '<iframe width="640" height="360" src="//www.ora.tv/embed/0_5n38b3v5ggkw" frameBorder="0" scrolling="no" webkitAllowFullScreen mozallowfullscreen allowfullscreen></iframe>',
-                visible: true
-            }
-        };
-
-        /**
-         * Define rules
-         * @property OraTvModel
-         * @type {{}}
-         */
-        this.rules = {};
+    this.preferences = {
+      oratvEmbedCode: {
+        type: 'textarea',
+        disabled: false,
+        value: '<iframe width="640" height="360" src="//www.ora.tv/embed/0_5n38b3v5ggkw" frameBorder="0" scrolling="no" webkitAllowFullScreen mozallowfullscreen allowfullscreen></iframe>',
+        visible: true
+      }
     };
 
-    return OraTvModel.extend('OraTvModel', {
+    /**
+     * Define rules
+     * @property OraTvModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        // Setter
+  return OraTvModel.extend('OraTvModel', {
 
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    // Setter
+
+  }, BaseModel.prototype, WidgetContentModel.prototype);
 });
