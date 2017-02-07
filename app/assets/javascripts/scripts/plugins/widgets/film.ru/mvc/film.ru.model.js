@@ -23,9 +23,9 @@ define([
      * Define preferences
      * @property FilmRuModel
      * @type {{
-         *      filmruEmbedCode: {type: string, disabled: boolean, value:
-         *     undefined, visible: boolean}
-         * }}
+     *      filmruEmbedCode: {type: string, disabled: boolean, value:
+     *     undefined, visible: boolean}
+     * }}
      */
     this.preferences = {
       filmruEmbedCode: {

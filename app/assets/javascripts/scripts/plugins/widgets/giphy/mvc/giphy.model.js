@@ -23,9 +23,9 @@ define([
      * Define preferences
      * @memberOf GiphyModel
      * @type {{
-         *      giphyEmbedCode: {type: string, disabled: boolean, value:
-         *     undefined, visible: boolean}
-         * }}
+     *      giphyEmbedCode: {type: string, disabled: boolean, value:
+     *     undefined, visible: boolean}
+     * }}
      */
     this.preferences = {
       giphyEmbedCode: {

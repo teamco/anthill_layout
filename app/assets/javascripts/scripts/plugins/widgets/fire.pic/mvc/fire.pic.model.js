@@ -23,9 +23,9 @@ define([
      * Define preferences
      * @property FirePicModel
      * @type {{
-         *      firepicUrl: {type: string, disabled: boolean, value: undefined,
-         *     visible: boolean}
-         * }}
+     *      firepicUrl: {type: string, disabled: boolean, value: undefined,
+     *     visible: boolean}
+     * }}
      */
     this.preferences = {
       firepicUrl: {

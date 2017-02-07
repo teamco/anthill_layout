@@ -23,9 +23,9 @@ define([
      * Define preferences
      * @memberOf BlipTvModel
      * @type {{
-         *      bliptvEmbedCode: {type: string, disabled: boolean, value:
-         *     undefined, visible: boolean}
-         * }}
+     *      bliptvEmbedCode: {type: string, disabled: boolean, value:
+     *     undefined, visible: boolean}
+     * }}
      */
     this.preferences = {
       bliptvEmbedCode: {

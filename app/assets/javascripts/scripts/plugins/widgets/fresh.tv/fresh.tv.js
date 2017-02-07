@@ -42,21 +42,21 @@ define([
     /**
      * Define defaults
      * @type {{
-         *      plugin: boolean,
-         *      html: {
-         *          style: string,
-         *          header: boolean,
-         *          footer: boolean,
-         *          padding: {
-         *              top: number,
-         *              right: number,
-         *              bottom: number,
-         *              left: number
-         *          }
-         *      },
-         *      regex: RegExp,
-         *      mask: string
-         * }}
+     *      plugin: boolean,
+     *      html: {
+     *          style: string,
+     *          header: boolean,
+     *          footer: boolean,
+     *          padding: {
+     *              top: number,
+     *              right: number,
+     *              bottom: number,
+     *              left: number
+     *          }
+     *      },
+     *      regex: RegExp,
+     *      mask: string
+     * }}
      */
     var DEFAULTS = {
       plugin: true,

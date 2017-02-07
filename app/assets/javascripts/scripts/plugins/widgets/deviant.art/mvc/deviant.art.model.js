@@ -23,9 +23,9 @@ define([
      * Define preferences
      * @memberOf DeviantArtModel
      * @type {{
-         *      deviantartEmbedCode: {type: string, disabled: boolean, value:
-         *     undefined, visible: boolean}
-         * }}
+     *      deviantartEmbedCode: {type: string, disabled: boolean, value:
+     *     undefined, visible: boolean}
+     * }}
      */
     this.preferences = {
       deviantartEmbedCode: {

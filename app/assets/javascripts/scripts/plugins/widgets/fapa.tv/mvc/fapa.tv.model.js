@@ -23,9 +23,9 @@ define([
      * Define preferences
      * @property FapaTvModel
      * @type {{
-         *      fapatvEmbedCode: {type: string, disabled: boolean, value:
-         *     undefined, visible: boolean}
-         * }}
+     *      fapatvEmbedCode: {type: string, disabled: boolean, value:
+     *     undefined, visible: boolean}
+     * }}
      */
     this.preferences = {
       fapatvEmbedCode: {

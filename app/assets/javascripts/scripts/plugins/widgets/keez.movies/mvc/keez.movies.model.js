@@ -23,9 +23,9 @@ define([
      * Define preferences
      * @memberOf KeezMoviesModel
      * @type {{
-         *      keezmoviesEmbedCode: {type: string, disabled: boolean, value:
-         *     undefined, visible: boolean}
-         * }}
+     *      keezmoviesEmbedCode: {type: string, disabled: boolean, value:
+     *     undefined, visible: boolean}
+     * }}
      */
     this.preferences = {
       keezmoviesEmbedCode: {

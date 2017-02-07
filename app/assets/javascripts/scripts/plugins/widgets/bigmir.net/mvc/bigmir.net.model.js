@@ -23,9 +23,9 @@ define([
      * Define preferences
      * @memberOf BigmirNetModel
      * @type {{
-         *      bigmirnetEmbedCode: {type: string, disabled: boolean, value:
-         *     undefined, visible: boolean}
-         * }}
+     *      bigmirnetEmbedCode: {type: string, disabled: boolean, value:
+     *     undefined, visible: boolean}
+     * }}
      */
     this.preferences = {
       bigmirnetEmbedCode: {

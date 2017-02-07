@@ -23,11 +23,11 @@ define([
      * Define preferences
      * @memberOf DatepickerModel
      * @type {{
-         *      datepickerShowWeek: {type: string, disabled: boolean, checked:
-         *     boolean, visible: boolean, value: boolean}, datepickerFirstDay:
-         *     {type: string, disabled: boolean, list: *[], value: string,
-         *     visible: boolean}
-         * }}
+     *      datepickerShowWeek: {type: string, disabled: boolean, checked:
+     *     boolean, visible: boolean, value: boolean}, datepickerFirstDay:
+     *     {type: string, disabled: boolean, list: *[], value: string,
+     *     visible: boolean}
+     * }}
      */
     this.preferences = {
       datepickerFirstDay: {

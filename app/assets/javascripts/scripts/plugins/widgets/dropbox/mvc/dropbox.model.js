@@ -23,16 +23,16 @@ define([
      * Define preferences
      * @memberOf DropboxModel
      * @type {{
-         *      dropboxUrl: {type: string, disabled: boolean, value: undefined,
-         *     visible: boolean}, dropboxApiKey: {type: string, disabled:
-         *     boolean, value: undefined, visible: boolean}, dropboxBytes:
-         *     {type: string, disabled: boolean, value: undefined, visible:
-         *     boolean}, dropboxIcon: {type: string, disabled: boolean, value:
-         *     undefined, visible: boolean}, dropboxFileName: {type: string,
-         *     disabled: boolean, value: undefined, visible: boolean},
-         *     dropboxDownload: {type: string, disabled: boolean, value:
-         *     undefined, visible: boolean}
-         * }}
+     *      dropboxUrl: {type: string, disabled: boolean, value: undefined,
+     *     visible: boolean}, dropboxApiKey: {type: string, disabled:
+     *     boolean, value: undefined, visible: boolean}, dropboxBytes:
+     *     {type: string, disabled: boolean, value: undefined, visible:
+     *     boolean}, dropboxIcon: {type: string, disabled: boolean, value:
+     *     undefined, visible: boolean}, dropboxFileName: {type: string,
+     *     disabled: boolean, value: undefined, visible: boolean},
+     *     dropboxDownload: {type: string, disabled: boolean, value:
+     *     undefined, visible: boolean}
+     * }}
      */
     this.preferences = {
       dropboxFileName: {

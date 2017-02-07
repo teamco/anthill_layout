@@ -23,9 +23,9 @@ define([
      * Define preferences
      * @property AliezTvModel
      * @type {{
-         *      alieztvEmbedCode: {type: string, disabled: boolean, value:
-         *     undefined, visible: boolean}
-         * }}
+     *      alieztvEmbedCode: {type: string, disabled: boolean, value:
+     *     undefined, visible: boolean}
+     * }}
      */
     this.preferences = {
       alieztvEmbedCode: {

@@ -23,10 +23,10 @@ define([
      * Define preferences
      * @property IframelyModel
      * @type {{
-         *      iframelyApiKey: {type: string, disabled: boolean, value:
-         *     string, visible: boolean}, iframelyUrl: {type: string, disabled:
-         *     boolean, value: string, visible: boolean}
-         * }}
+     *      iframelyApiKey: {type: string, disabled: boolean, value:
+     *     string, visible: boolean}, iframelyUrl: {type: string, disabled:
+     *     boolean, value: string, visible: boolean}
+     * }}
      */
     this.preferences = {
       iframelyApiKey: {

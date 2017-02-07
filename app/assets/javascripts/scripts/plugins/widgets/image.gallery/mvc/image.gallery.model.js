@@ -23,12 +23,12 @@ define([
      * Define preferences
      * @memberOf ImageGalleryModel
      * @type {{
-         *      imageGalleryUrls: {type: string, disabled: boolean, value:
-         *     undefined, visible: boolean}, imageGalleryTexts: {type: string,
-         *     disabled: boolean, value: undefined, visible: boolean},
-         *     imageGalleryResponsive: {type: string, disabled: boolean, value:
-         *     boolean, visible: boolean}
-         * }}
+     *      imageGalleryUrls: {type: string, disabled: boolean, value:
+     *     undefined, visible: boolean}, imageGalleryTexts: {type: string,
+     *     disabled: boolean, value: undefined, visible: boolean},
+     *     imageGalleryResponsive: {type: string, disabled: boolean, value:
+     *     boolean, visible: boolean}
+     * }}
      */
     this.preferences = {
       imageGalleryUrls: {

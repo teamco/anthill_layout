@@ -23,10 +23,10 @@ define([
      * Define preferences
      * @memberOf GooglePlusModel
      * @type {{
-         *      googlePlusApi: {type: string, disabled: boolean, value: string,
-         *     visible: boolean}, googlePlusUrl: {type: string, disabled:
-         *     boolean, value: undefined, visible: boolean}
-         * }}
+     *      googlePlusApi: {type: string, disabled: boolean, value: string,
+     *     visible: boolean}, googlePlusUrl: {type: string, disabled:
+     *     boolean, value: undefined, visible: boolean}
+     * }}
      */
     this.preferences = {
       googlePlusApi: {

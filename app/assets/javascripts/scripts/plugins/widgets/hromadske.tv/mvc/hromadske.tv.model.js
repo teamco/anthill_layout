@@ -23,9 +23,9 @@ define([
      * Define preferences
      * @memberOf HromadskeTvModel
      * @type {{
-         *      hromadsketvUrl: {type: string, disabled: boolean, value:
-         *     undefined, visible: boolean}
-         * }}
+     *      hromadsketvUrl: {type: string, disabled: boolean, value:
+     *     undefined, visible: boolean}
+     * }}
      */
     this.preferences = {
       hromadsketvUrl: {

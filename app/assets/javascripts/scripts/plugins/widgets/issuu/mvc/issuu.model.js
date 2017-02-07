@@ -23,9 +23,9 @@ define([
      * Define preferences
      * @memberOf IssuuModel
      * @type {{
-         *      issuuEmbedCode: {type: string, disabled: boolean, value:
-         *     undefined, visible: boolean}
-         * }}
+     *      issuuEmbedCode: {type: string, disabled: boolean, value:
+     *     undefined, visible: boolean}
+     * }}
      */
     this.preferences = {
       issuuEmbedCode: {

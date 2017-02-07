@@ -23,9 +23,9 @@ define([
      * Define preferences
      * @property CodepenIoModel
      * @type {{
-         *      codepenioEmbedCode: {type: string, disabled: boolean, value:
-         *     undefined, visible: boolean}
-         * }}
+     *      codepenioEmbedCode: {type: string, disabled: boolean, value:
+     *     undefined, visible: boolean}
+     * }}
      */
     this.preferences = {
       codepenioEmbedCode: {

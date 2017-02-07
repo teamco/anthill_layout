@@ -23,9 +23,9 @@ define([
      * Define preferences
      * @property FunnyOrDieModel
      * @type {{
-         *      funnyordieUrl: {type: string, disabled: boolean, value:
-         *     undefined, visible: boolean}
-         * }}
+     *      funnyordieUrl: {type: string, disabled: boolean, value:
+     *     undefined, visible: boolean}
+     * }}
      */
     this.preferences = {
       funnyordieUrl: {

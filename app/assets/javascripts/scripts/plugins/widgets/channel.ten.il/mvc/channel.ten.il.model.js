@@ -23,9 +23,9 @@ define([
      * Define preferences
      * @memberOf ChannelTenIlModel
      * @type {{
-         *      channeltenilEmbedCode: {type: string, disabled: boolean, value:
-         *     undefined, visible: boolean}
-         * }}
+     *      channeltenilEmbedCode: {type: string, disabled: boolean, value:
+     *     undefined, visible: boolean}
+     * }}
      */
     this.preferences = {
       channeltenilEmbedCode: {

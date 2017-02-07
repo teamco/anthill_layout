@@ -42,24 +42,26 @@ define([
     /**
      * Define defaults
      * @type {{
-         *      plugin: boolean,
-         *      mask: string,
-         *      html: {
-         *          style: string,
-         *          header: boolean,
-         *          footer: boolean,
-         *          padding: {
-         *              top: number,
-         *              right: number,
-         *              bottom: number,
-         *              left: number
-         *          }
-         *      }
-         * }}
+     *      plugin: boolean,
+     *      mask: string,
+     *      html: {
+     *          style: string,
+     *          header: boolean,
+     *          footer: boolean,
+     *          padding: {
+     *              top: number,
+     *              right: number,
+     *              bottom: number,
+     *              left: number
+     *          }
+     *      }
+     * }}
      */
     var DEFAULTS = {
       plugin: true,
-      mask: '<iframe width="100%" height="100%" scrolling="no" src="http://www.filmon.com/tv/channel/export?channel_id={channel}" frameborder="0" allowfullscreen></iframe>',
+      mask: ['<iframe width="100%" height="100%" scrolling="no"',
+        ' src="http://www.filmon.com/tv/channel/export?channel_id={channel}"',
+        ' frameborder="0" allowfullscreen></iframe>'].join(''),
       html: {
         style: 'default',
         header: false,

@@ -23,9 +23,9 @@ define([
      * Define preferences
      * @property EspresoTvModel
      * @type {{
-         *      espresotvUrl: {type: string, disabled: boolean, value:
-         *     undefined, visible: boolean}
-         * }}
+     *      espresotvUrl: {type: string, disabled: boolean, value:
+     *     undefined, visible: boolean}
+     * }}
      */
     this.preferences = {
       espresotvUrl: {

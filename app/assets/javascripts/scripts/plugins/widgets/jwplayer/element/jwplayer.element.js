@@ -36,14 +36,14 @@ define([
      * Render Embedded content
      * @memberOf JwplayerElement
      * @param {{
-         *      title: string,
-         *      script: string,
-         *      rtmp: string,
-         *      image: string,
-         *      width: string,
-         *      aspectratio: string,
-         *      autostart: boolean
-         * }} opts
+     *      title: string,
+     *      script: string,
+     *      rtmp: string,
+     *      image: string,
+     *      width: string,
+     *      aspectratio: string,
+     *      autostart: boolean
+     * }} opts
      */
     renderEmbeddedContent: function renderEmbeddedContent(opts) {
 

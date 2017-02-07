@@ -23,9 +23,9 @@ define([
      * Define preferences
      * @memberOf IctvModel
      * @type {{
-         *      ictvEmbedCode: {type: string, disabled: boolean, value:
-         *     undefined, visible: boolean}
-         * }}
+     *      ictvEmbedCode: {type: string, disabled: boolean, value:
+     *     undefined, visible: boolean}
+     * }}
      */
     this.preferences = {
       ictvEmbedCode: {

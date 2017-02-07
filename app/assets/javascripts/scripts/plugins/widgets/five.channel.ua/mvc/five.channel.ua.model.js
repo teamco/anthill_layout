@@ -23,9 +23,9 @@ define([
      * Define preferences
      * @property FiveChannelUaModel
      * @type {{
-         *      fivechanneluaUrl: {type: string, disabled: boolean, value:
-         *     undefined, visible: boolean}
-         * }}
+     *      fivechanneluaUrl: {type: string, disabled: boolean, value:
+     *     undefined, visible: boolean}
+     * }}
      */
     this.preferences = {
       fivechanneluaUrl: {

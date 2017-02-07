@@ -23,9 +23,9 @@ define([
      * Define preferences
      * @memberOf KickStarterModel
      * @type {{
-         *      kickstarterEmbedCode: {type: string, disabled: boolean, value:
-         *     undefined, visible: boolean}
-         * }}
+     *      kickstarterEmbedCode: {type: string, disabled: boolean, value:
+     *     undefined, visible: boolean}
+     * }}
      */
     this.preferences = {
       kickstarterEmbedCode: {

@@ -23,9 +23,9 @@ define([
      * Define preferences
      * @property FlickrModel
      * @type {{
-         *      flickEmbed: {type: string, disabled: boolean, value: undefined,
-         *     visible: boolean}
-         * }}
+     *      flickEmbed: {type: string, disabled: boolean, value: undefined,
+     *     visible: boolean}
+     * }}
      */
     this.preferences = {
       flickrEmbed: {

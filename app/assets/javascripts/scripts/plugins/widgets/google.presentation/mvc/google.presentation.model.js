@@ -23,9 +23,9 @@ define([
      * Define preferences
      * @memberOf GooglePresentationModel
      * @type {{
-         *      googlepresentationEmbed: {type: string, disabled: boolean,
-         *     value: undefined, visible: boolean}
-         * }}
+     *      googlepresentationEmbed: {type: string, disabled: boolean,
+     *     value: undefined, visible: boolean}
+     * }}
      */
     this.preferences = {
       googlepresentationEmbed: {

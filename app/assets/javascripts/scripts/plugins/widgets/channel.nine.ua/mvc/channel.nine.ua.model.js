@@ -23,9 +23,9 @@ define([
      * Define preferences
      * @memberOf ChannelNineUaModel
      * @type {{
-         *      channelnineuaEmbedCode: {type: string, disabled: boolean,
-         *     value: undefined, visible: boolean}
-         * }}
+     *      channelnineuaEmbedCode: {type: string, disabled: boolean,
+     *     value: undefined, visible: boolean}
+     * }}
      */
     this.preferences = {
       channelnineuaEmbedCode: {

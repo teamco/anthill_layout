@@ -23,9 +23,9 @@ define([
      * Define preferences
      * @memberOf AOneHipHopModel
      * @type {{
-         *      aonehiphopEmbedCode: {type: string, disabled: boolean, value:
-         *     undefined, visible: boolean}
-         * }}
+     *      aonehiphopEmbedCode: {type: string, disabled: boolean, value:
+     *     undefined, visible: boolean}
+     * }}
      */
     this.preferences = {
       aonehiphopEmbedCode: {

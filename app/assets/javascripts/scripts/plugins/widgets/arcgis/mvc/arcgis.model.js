@@ -23,9 +23,9 @@ define([
      * Define preferences
      * @property ArcgisModel
      * @type {{
-         *      arcgisEmbedCode: {type: string, disabled: boolean, value:
-         *     undefined, visible: boolean}
-         * }}
+     *      arcgisEmbedCode: {type: string, disabled: boolean, value:
+     *     undefined, visible: boolean}
+     * }}
      */
     this.preferences = {
       arcgisEmbedCode: {

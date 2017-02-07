@@ -23,14 +23,14 @@ define([
      * Define preferences
      * @memberOf CoubModel
      * @type {{
-         *      coubLink: {type: string, disabled: boolean, value: undefined,
-         *     visible: boolean}, coubAutoStart: {type: string, disabled:
-         *     boolean, value: boolean, visible: boolean}, coubMute: {type:
-         *     string, disabled: boolean, value: boolean, visible: boolean},
-         *     coubHideTopBar: {type: string, disabled: boolean, value:
-         *     boolean, visible: boolean}, coubStartWithHighDefinition: {type:
-         *     string, disabled: boolean, value: boolean, visible: boolean}
-         * }}
+     *      coubLink: {type: string, disabled: boolean, value: undefined,
+     *     visible: boolean}, coubAutoStart: {type: string, disabled:
+     *     boolean, value: boolean, visible: boolean}, coubMute: {type:
+     *     string, disabled: boolean, value: boolean, visible: boolean},
+     *     coubHideTopBar: {type: string, disabled: boolean, value:
+     *     boolean, visible: boolean}, coubStartWithHighDefinition: {type:
+     *     string, disabled: boolean, value: boolean, visible: boolean}
+     * }}
      */
     this.preferences = {
       coubLink: {

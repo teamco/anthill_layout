@@ -23,15 +23,30 @@ define([
      * Define preferences
      * @property FreshTvModel
      * @type {{
-         *      freshtvEmbedCode: {type: string, disabled: boolean, value:
-         *     undefined, visible: boolean}
-         * }}
+     *      freshtvEmbedCode: {type: string, disabled: boolean, value:
+     *     undefined, visible: boolean}
+     * }}
      */
     this.preferences = {
       freshtvEmbedCode: {
         type: 'textarea',
         disabled: true,
-        value: '<object type="application/x-shockwave-flash" id="myDynamicContent" name="myDynamicContent" data="http://www.planeta-online.tv/planeta_player.swf?ver=102" width="692" height="384" style="display: block !important;"><param name="menu" value="true"><param name="allowFullScreen" value="true"><param name="allowScriptAccess" value="always"><param name="bgcolor" value="#000000"><param name="wmode" value="opaque"><param name="flashvars" value="f=ZHVyYXRpb249LTEmbG9nbz1odHRwOi8vd3d3LnBsYW5ldGEtb25saW5lLnR2Ly9pbWFnZXMvbG9nby9mcmVzaC5wbmcmYWRmb3g9dHJ1ZSZjYXRfaWQ9MTMmc3ViamVjdD01JnB1aWQ2PTc1JmFnZT00JnllYXI9OSZnZW89MSZjb2RlPTAwNDFhMjZmOTc4YTQzOTNhNDNjYzQ5ZGE1Y2ZiZDY0JmRsPXd3dy5wbGFuZXRhLW9ubGluZS50diZyZWY9d3d3LnBsYW5ldGEtb25saW5lLnR2Jmxpbms9aHR0cDovL3d3dy5wbGFuZXRhLW9ubGluZS50di9jaGFubmVscy80Lmh0bWwmb3BlbkxpbmtzPV9zZWxmJnRpdGxlPUZSRVNIVFYuVFYmcnRtcD1ydG1wOi8vODAuOTMuNTMuODg6MTkzNS9saXZlL2NoYW5uZWxfNA=="></object>',
+        value: ['<object type="application/x-shockwave-flash"',
+          ' id="myDynamicContent" name="myDynamicContent"',
+          ' data="http://www.planeta-online.tv/planeta_player.swf?ver=102"',
+          ' width="692" height="384" style="display: block !important;"><param',
+          ' name="menu" value="true"><param name="allowFullScreen"',
+          ' value="true"><param name="allowScriptAccess" value="always"><param',
+          ' name="bgcolor" value="#000000"><param name="wmode"',
+          ' value="opaque"><param name="flashvars"',
+          ' value="f=ZHVyYXRpb249LTEmbG9nbz1odHRwOi8vd3d3LnBsYW5ldGEtb25saW5lL',
+          'nR2Ly9pbWFnZXMvbG9nby9mcmVzaC5wbmcmYWRmb3g9dHJ1ZSZjYXRfaWQ9MTMmc3Vi',
+          'amVjdD01JnB1aWQ2PTc1JmFnZT00JnllYXI9OSZnZW89MSZjb2RlPTAwNDFhMjZmOTc',
+          '4YTQzOTNhNDNjYzQ5ZGE1Y2ZiZDY0JmRsPXd3dy5wbGFuZXRhLW9ubGluZS50diZyZW',
+          'Y9d3d3LnBsYW5ldGEtb25saW5lLnR2Jmxpbms9aHR0cDovL3d3dy5wbGFuZXRhLW9ub',
+          'GluZS50di9jaGFubmVscy80Lmh0bWwmb3BlbkxpbmtzPV9zZWxmJnRpdGxlPUZSRVNI',
+          'VFYuVFYmcnRtcD1ydG1wOi8vODAuOTMuNTMuODg6MTkzNS9saXZlL2NoYW5uZWxfNA=',
+          '="></object>'].join(''),
         visible: true
       }
     };

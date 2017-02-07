@@ -23,10 +23,10 @@ define([
      * Define preferences
      * @memberOf AvatarModel
      * @type {{
-         *      avatarCoordinateX: {type: string, disabled: boolean, value:
-         *     undefined, visible: boolean}, avatarCoordinateY: {type: string,
-         *     disabled: boolean, value: undefined, visible: boolean}
-         * }}
+     *      avatarCoordinateX: {type: string, disabled: boolean, value:
+     *     undefined, visible: boolean}, avatarCoordinateY: {type: string,
+     *     disabled: boolean, value: undefined, visible: boolean}
+     * }}
      */
     this.preferences = {
       avatarCoordinateX: {

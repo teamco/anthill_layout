@@ -23,9 +23,9 @@ define([
      * Define preferences
      * @memberOf LiveLeakModel
      * @type {{
-         *      liveleakUrl: {type: string, disabled: boolean, value:
-         *     undefined, visible: boolean}
-         * }}
+     *      liveleakUrl: {type: string, disabled: boolean, value:
+     *     undefined, visible: boolean}
+     * }}
      */
     this.preferences = {
       liveleakUrl: {

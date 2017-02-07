@@ -23,9 +23,9 @@ define([
      * Define preferences
      * @memberOf CollegeHumorModel
      * @type {{
-         *      collegehumorEmbedCode: {type: string, disabled: boolean, value:
-         *     undefined, visible: boolean}
-         * }}
+     *      collegehumorEmbedCode: {type: string, disabled: boolean, value:
+     *     undefined, visible: boolean}
+     * }}
      */
     this.preferences = {
       collegehumorEmbedCode: {

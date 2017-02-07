@@ -23,9 +23,9 @@ define([
      * Define preferences
      * @property AnimotoModel
      * @type {{
-         *      animotoEmbedCode: {type: string, disabled: boolean, value:
-         *     undefined, visible: boolean}
-         * }}
+     *      animotoEmbedCode: {type: string, disabled: boolean, value:
+     *     undefined, visible: boolean}
+     * }}
      */
     this.preferences = {
       animotoEmbedCode: {

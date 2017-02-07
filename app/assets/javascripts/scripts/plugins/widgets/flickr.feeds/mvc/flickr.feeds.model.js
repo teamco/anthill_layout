@@ -23,19 +23,19 @@ define([
      * Define preferences
      * @property FlickrFeedsModel
      * @type {{
-         *      flickrfeedsServices: {
-         *          type: string,
-         *          list: {
-         *              type: string,
-         *              value: string,
-         *              tooltip: string
-         *          }[],
-         *          value: undefined,
-         *          placeholder: string,
-         *          disabled: boolean,
-         *          visible: boolean
-         *      }
-         * }}
+     *      flickrfeedsServices: {
+     *          type: string,
+     *          list: {
+     *              type: string,
+     *              value: string,
+     *              tooltip: string
+     *          }[],
+     *          value: undefined,
+     *          placeholder: string,
+     *          disabled: boolean,
+     *          visible: boolean
+     *      }
+     * }}
      */
     this.preferences = {
       flickrfeedsServices: {

@@ -36,18 +36,18 @@ define([
      * Render Embedded content
      * @memberOf GeolocationMapElement
      * @param {{
-         *      latitude: number,
-         *      longitude: number,
-         *      zoom: number,
-         *      width: number,
-         *      height: number,
-         *      apiKey: string,
-         *      maptype: string,
-         *      sensor: boolean,
-         *      scale: boolean,
-         *      sensor: boolean,
-         *      stretch: boolean
-         * }} opts
+     *      latitude: number,
+     *      longitude: number,
+     *      zoom: number,
+     *      width: number,
+     *      height: number,
+     *      apiKey: string,
+     *      maptype: string,
+     *      sensor: boolean,
+     *      scale: boolean,
+     *      sensor: boolean,
+     *      stretch: boolean
+     * }} opts
      */
     renderEmbeddedContent: function renderEmbeddedContent(opts) {
 

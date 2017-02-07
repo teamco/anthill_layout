@@ -36,12 +36,12 @@ define([
      * Render Embedded content
      * @memberOf CoubElement
      * @param {{
-         *      link: string,
-         *      start: boolean,
-         *      mute: boolean,
-         *      hide: boolean,
-         *      hd: boolean
-         * }} opts
+     *      link: string,
+     *      start: boolean,
+     *      mute: boolean,
+     *      hide: boolean,
+     *      hd: boolean
+     * }} opts
      */
     renderEmbeddedContent: function renderEmbeddedContent(opts) {
 

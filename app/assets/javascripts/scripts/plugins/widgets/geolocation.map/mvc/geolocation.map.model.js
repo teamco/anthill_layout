@@ -23,24 +23,24 @@ define([
      * Define preferences
      * @memberOf GeolocationMapModel
      * @type {{
-         *      geolocationmapAPIKey: {type: string, disabled: boolean, value:
-         *     string, visible: boolean}, geolocationmapLatitude: {type:
-         *     string, disabled: boolean, value: undefined, visible: boolean},
-         *     geolocationmapLongitude: {type: string, disabled: boolean,
-         *     value: undefined, visible: boolean}, geolocationmapZoom: {type:
-         *     string, disabled: boolean, value: number, visible: boolean},
-         *     geolocationmapWidth: {type: string, disabled: boolean, value:
-         *     number, visible: boolean}, geolocationmapHeight: {type: string,
-         *     disabled: boolean, value: number, visible: boolean},
-         *     geolocationmapMapType: { type: string, disabled: boolean, list:
-         *     {type: string, value: string}[], value: string, visible: boolean
-         *      },
-         *      geolocationmapGpsSensor: {type: string, disabled: boolean,
-         *     value: boolean, visible: boolean}, geolocationmapScale: {type:
-         *     string, disabled: boolean, value: boolean, visible: boolean},
-         *     geolocationmapStretch: {type: string, disabled: boolean, value:
-         *     boolean, visible: boolean}
-         * }}
+     *      geolocationmapAPIKey: {type: string, disabled: boolean, value:
+     *     string, visible: boolean}, geolocationmapLatitude: {type:
+     *     string, disabled: boolean, value: undefined, visible: boolean},
+     *     geolocationmapLongitude: {type: string, disabled: boolean,
+     *     value: undefined, visible: boolean}, geolocationmapZoom: {type:
+     *     string, disabled: boolean, value: number, visible: boolean},
+     *     geolocationmapWidth: {type: string, disabled: boolean, value:
+     *     number, visible: boolean}, geolocationmapHeight: {type: string,
+     *     disabled: boolean, value: number, visible: boolean},
+     *     geolocationmapMapType: { type: string, disabled: boolean, list:
+     *     {type: string, value: string}[], value: string, visible: boolean
+     *      },
+     *      geolocationmapGpsSensor: {type: string, disabled: boolean,
+     *     value: boolean, visible: boolean}, geolocationmapScale: {type:
+     *     string, disabled: boolean, value: boolean, visible: boolean},
+     *     geolocationmapStretch: {type: string, disabled: boolean, value:
+     *     boolean, visible: boolean}
+     * }}
      */
     this.preferences = {
       geolocationmapAPIKey: {

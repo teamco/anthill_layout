@@ -23,9 +23,9 @@ define([
      * Define preferences
      * @memberOf HowcastModel
      * @type {{
-         *      howcastEmbedCode: {type: string, disabled: boolean, value:
-         *     undefined, visible: boolean}
-         * }}
+     *      howcastEmbedCode: {type: string, disabled: boolean, value:
+     *     undefined, visible: boolean}
+     * }}
      */
     this.preferences = {
       howcastEmbedCode: {

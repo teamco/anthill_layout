@@ -23,9 +23,9 @@ define([
      * Define preferences
      * @memberOf LivestreamModel
      * @type {{
-         *      livestreamEmbedCode: {type: string, disabled: boolean, value:
-         *     undefined, visible: boolean}
-         * }}
+     *      livestreamEmbedCode: {type: string, disabled: boolean, value:
+     *     undefined, visible: boolean}
+     * }}
      */
     this.preferences = {
       livestreamEmbedCode: {

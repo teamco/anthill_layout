@@ -23,9 +23,9 @@ define([
      * Define preferences
      * @property KalturaModel
      * @type {{
-         *      kalturaEmbedCode: {type: string, disabled: boolean, value:
-         *     undefined, visible: boolean}
-         * }}
+     *      kalturaEmbedCode: {type: string, disabled: boolean, value:
+     *     undefined, visible: boolean}
+     * }}
      */
     this.preferences = {
       kalturaEmbedCode: {

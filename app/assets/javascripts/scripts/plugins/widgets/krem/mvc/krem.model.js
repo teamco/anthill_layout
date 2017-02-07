@@ -23,9 +23,9 @@ define([
      * Define preferences
      * @memberOf KremModel
      * @type {{
-         *      kremEmbedCode: {type: string, disabled: boolean, value:
-         *     undefined, visible: boolean}
-         * }}
+     *      kremEmbedCode: {type: string, disabled: boolean, value:
+     *     undefined, visible: boolean}
+     * }}
      */
     this.preferences = {
       kremEmbedCode: {

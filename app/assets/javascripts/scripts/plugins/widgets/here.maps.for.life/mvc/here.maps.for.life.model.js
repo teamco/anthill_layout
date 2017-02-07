@@ -23,18 +23,18 @@ define([
      * Define preferences
      * @property HereMapsForLifeModel
      * @type {{
-         *      heremapsforlifeAppId: {type: string, disabled: boolean, value:
-         *     string, visible: boolean},  heremapsforlifeAppCode: {type:
-         *     string, disabled: boolean, value: string, visible: boolean},
-         *     heremapsforlifeSpecifiedLocation: {type: string, disabled:
-         *     boolean, value: boolean, visible: boolean, monitor: {events:
-         *     string[], callback: string}},  heremapsforlifeViewBounds: {type:
-         *     string, disabled: boolean, value: boolean, visible: boolean,
-         *     monitor: {events: string[], callback: string}},
-         *     heremapsforlifeVenuesLayer: {type: string, disabled: boolean,
-         *     value: boolean, visible: boolean},
-         *     heremapsforlifeRestrictMovement: {type: string, disabled: boolean, value: boolean, visible: boolean, monitor: {events: string[], callback: string}},  heremapsforlifeMarker: {type: string, disabled: boolean, value: boolean, visible: boolean, monitor: {events: string[], callback: string}},  heremapsforlifeDraggableMarker: {type: string, disabled: boolean, value: boolean, visible: boolean},  heremapsforlifeTerrainMap: {type: string, disabled: boolean, value: boolean, visible: boolean},  heremapsforlifeZoom: {type: string, disabled: boolean, value: number, visible: boolean},  heremapsforlifeLatitudeLongitude: {type: string, disabled: boolean, value: undefined, visible: boolean, placeholder: string},  heremapsforlifeLocationMarker: {type: string, disabled: boolean, value: undefined, visible: boolean, placeholder: string},  heremapsforlifeNWSECorners: {type: string, disabled: boolean, value: undefined, visible: boolean, placeholder: string},  heremapsforlifeRestrictBounds: {type: string, disabled: boolean, value: undefined, visible: boolean, placeholder: string}
-         * }}
+     *      heremapsforlifeAppId: {type: string, disabled: boolean, value:
+     *     string, visible: boolean},  heremapsforlifeAppCode: {type:
+     *     string, disabled: boolean, value: string, visible: boolean},
+     *     heremapsforlifeSpecifiedLocation: {type: string, disabled:
+     *     boolean, value: boolean, visible: boolean, monitor: {events:
+     *     string[], callback: string}},  heremapsforlifeViewBounds: {type:
+     *     string, disabled: boolean, value: boolean, visible: boolean,
+     *     monitor: {events: string[], callback: string}},
+     *     heremapsforlifeVenuesLayer: {type: string, disabled: boolean,
+     *     value: boolean, visible: boolean},
+     *     heremapsforlifeRestrictMovement: {type: string, disabled: boolean, value: boolean, visible: boolean, monitor: {events: string[], callback: string}},  heremapsforlifeMarker: {type: string, disabled: boolean, value: boolean, visible: boolean, monitor: {events: string[], callback: string}},  heremapsforlifeDraggableMarker: {type: string, disabled: boolean, value: boolean, visible: boolean},  heremapsforlifeTerrainMap: {type: string, disabled: boolean, value: boolean, visible: boolean},  heremapsforlifeZoom: {type: string, disabled: boolean, value: number, visible: boolean},  heremapsforlifeLatitudeLongitude: {type: string, disabled: boolean, value: undefined, visible: boolean, placeholder: string},  heremapsforlifeLocationMarker: {type: string, disabled: boolean, value: undefined, visible: boolean, placeholder: string},  heremapsforlifeNWSECorners: {type: string, disabled: boolean, value: undefined, visible: boolean, placeholder: string},  heremapsforlifeRestrictBounds: {type: string, disabled: boolean, value: undefined, visible: boolean, placeholder: string}
+     * }}
      */
     this.preferences = {
       heremapsforlifeAppId: {

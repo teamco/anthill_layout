@@ -36,23 +36,23 @@ define([
      * Render Embedded content
      * @memberOf HereMapsForLifeElement
      * @param {{
-         *      api_id: string,
-         *      app_code: string,
-         *      location: boolean,
-         *      bounds: boolean,
-         *      draggable_marker: boolean,
-         *      venues_layers: boolean,
-         *      draggable_marker: boolean,
-         *      restrict_movement: boolean,
-         *      marker: boolean,
-         *      terrain_map: boolean,
-         *      location: string,
-         *      zoom: string,
-         *      latitude_longitude: string,
-         *      location_marker: string,
-         *      nwse_corners: string,
-         *      restrict_bounds: string
-         * }} opts
+     *      api_id: string,
+     *      app_code: string,
+     *      location: boolean,
+     *      bounds: boolean,
+     *      draggable_marker: boolean,
+     *      venues_layers: boolean,
+     *      draggable_marker: boolean,
+     *      restrict_movement: boolean,
+     *      marker: boolean,
+     *      terrain_map: boolean,
+     *      location: string,
+     *      zoom: string,
+     *      latitude_longitude: string,
+     *      location_marker: string,
+     *      nwse_corners: string,
+     *      restrict_bounds: string
+     * }} opts
      */
     renderEmbeddedContent: function renderEmbeddedContent(opts) {
 

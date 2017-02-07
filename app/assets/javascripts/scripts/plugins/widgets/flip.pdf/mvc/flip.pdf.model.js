@@ -23,9 +23,9 @@ define([
      * Define preferences
      * @property FlipPdfModel
      * @type {{
-         *      flippdfEmbedCode: {type: string, disabled: boolean, value:
-         *     undefined, visible: boolean}
-         * }}
+     *      flippdfEmbedCode: {type: string, disabled: boolean, value:
+     *     undefined, visible: boolean}
+     * }}
      */
     this.preferences = {
       flippdfEmbedCode: {

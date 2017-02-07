@@ -23,9 +23,9 @@ define([
      * Define preferences
      * @memberOf IsnareModel
      * @type {{
-         *      isnareEmbedCode: {type: string, disabled: boolean, value:
-         *     undefined, visible: boolean}
-         * }}
+     *      isnareEmbedCode: {type: string, disabled: boolean, value:
+     *     undefined, visible: boolean}
+     * }}
      */
     this.preferences = {
       isnareEmbedCode: {

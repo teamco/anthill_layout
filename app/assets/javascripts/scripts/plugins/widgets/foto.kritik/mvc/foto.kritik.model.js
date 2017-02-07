@@ -23,9 +23,9 @@ define([
      * Define preferences
      * @property FotoKritikModel
      * @type {{
-         *      fotokritikEmbedCode: {type: string, disabled: boolean, value:
-         *     undefined, visible: boolean}
-         * }}
+     *      fotokritikEmbedCode: {type: string, disabled: boolean, value:
+     *     undefined, visible: boolean}
+     * }}
      */
     this.preferences = {
       fotokritikEmbedCode: {

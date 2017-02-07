@@ -23,9 +23,9 @@ define([
      * Define preferences
      * @property ClocklinkModel
      * @type {{
-         *      clocklinkEmbedCode: {type: string, disabled: boolean, value:
-         *     undefined, visible: boolean}
-         * }}
+     *      clocklinkEmbedCode: {type: string, disabled: boolean, value:
+     *     undefined, visible: boolean}
+     * }}
      */
     this.preferences = {
       clocklinkEmbedCode: {

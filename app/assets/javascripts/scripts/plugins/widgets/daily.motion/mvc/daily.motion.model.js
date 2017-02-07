@@ -23,9 +23,9 @@ define([
      * Define preferences
      * @memberOf DailyMotionModel
      * @type {{
-         *      dailymotionUrl: {type: string, disabled: boolean, value:
-         *     undefined, visible: boolean}
-         * }}
+     *      dailymotionUrl: {type: string, disabled: boolean, value:
+     *     undefined, visible: boolean}
+     * }}
      */
     this.preferences = {
       dailymotionUrl: {

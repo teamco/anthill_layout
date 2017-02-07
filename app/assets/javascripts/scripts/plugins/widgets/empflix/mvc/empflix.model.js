@@ -23,9 +23,9 @@ define([
      * Define preferences
      * @memberOf EmpflixModel
      * @type {{
-         *      empflixEmbedCode: {type: string, disabled: boolean, value:
-         *     undefined, visible: boolean}
-         * }}
+     *      empflixEmbedCode: {type: string, disabled: boolean, value:
+     *     undefined, visible: boolean}
+     * }}
      */
     this.preferences = {
       empflixEmbedCode: {

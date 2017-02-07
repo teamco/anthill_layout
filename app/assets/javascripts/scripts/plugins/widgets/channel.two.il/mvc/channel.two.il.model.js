@@ -23,9 +23,9 @@ define([
      * Define preferences
      * @memberOf ChannelTwoIlModel
      * @type {{
-         *      channeltwoilEmbedCode: {type: string, disabled: boolean, value:
-         *     undefined, visible: boolean}
-         * }}
+     *      channeltwoilEmbedCode: {type: string, disabled: boolean, value:
+     *     undefined, visible: boolean}
+     * }}
      */
     this.preferences = {
       channeltwoilEmbedCode: {

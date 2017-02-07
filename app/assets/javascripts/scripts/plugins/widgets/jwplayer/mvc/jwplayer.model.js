@@ -23,9 +23,9 @@ define([
      * Define preferences
      * @memberOf JwplayerModel
      * @type {{
-         *      jwplayerCloudHostedScriptUrl: {type: string, disabled: boolean,
-         *     value: undefined, visible: boolean}
-         * }}
+     *      jwplayerCloudHostedScriptUrl: {type: string, disabled: boolean,
+     *     value: undefined, visible: boolean}
+     * }}
      */
     this.preferences = {
       jwplayerVideoTitle: {
