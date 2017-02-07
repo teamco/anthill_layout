@@ -3,136 +3,136 @@
  */
 define(function definePageItemMaximize() {
 
+  /**
+   * Define PageItemMaximize
+   * @class PageItemMaximize
+   * @constructor
+   */
+  var PageItemMaximize = function PageItemMaximize() {
+  };
+
+  return PageItemMaximize.extend('PageItemMaximize', {
+
     /**
-     * Define PageItemMaximize
-     * @class PageItemMaximize
-     * @constructor
+     * Get maximized widget
+     * @memberOf PageItemMaximize
+     * @returns {Widget|*}
      */
-    var PageItemMaximize = function PageItemMaximize() {
-    };
+    getMaximized: function getMaximized() {
+      return this.scope.maximized;
+    },
 
-    return PageItemMaximize.extend('PageItemMaximize', {
+    /**
+     * Set widget as maximized
+     * @memberOf  {PageItemMaximize}
+     * @param {Widget} widget
+     */
+    setMaximized: function setMaximized(widget) {
 
-        /**
-         * Get maximized widget
-         * @memberOf PageItemMaximize
-         * @returns {Widget|*}
-         */
-        getMaximized: function getMaximized() {
-            return this.scope.maximized;
-        },
+      /**
+       * Set maximized
+       * @memberOf PageItemMaximize
+       * @type {Widget}
+       */
+      this.maximized = widget;
 
-        /**
-         * Set widget as maximized
-         * @memberOf  {PageItemMaximize}
-         * @param {Widget} widget
-         */
-        setMaximized: function setMaximized(widget) {
+      this.logger.debug('Set maximized', this.maximized);
+    },
 
-            /**
-             * Set maximized
-             * @memberOf PageItemMaximize
-             * @type {Widget}
-             */
-            this.maximized = widget;
+    /**
+     * Unset widget as maximized
+     * @memberOf PageItemMaximize
+     */
+    unsetMaximized: function unsetMaximized() {
 
-            this.logger.debug('Set maximized', this.maximized);
-        },
+      /**
+       * Unset maximized
+       * @memberOf PageItemMaximize
+       * @type {{}}
+       */
+      this.maximized = {};
 
-        /**
-         * Unset widget as maximized
-         * @memberOf PageItemMaximize
-         */
-        unsetMaximized: function unsetMaximized() {
+      this.logger.debug('Unset maximized', this.maximized);
+    },
 
-            /**
-             * Unset maximized
-             * @memberOf PageItemMaximize
-             * @type {{}}
-             */
-            this.maximized = {};
+    /**
+     * Disable items interactions on enlarge
+     * @memberOf PageItemMaximize
+     * @param {Widget} widget
+     */
+    disableItemInteractions: function disableItemInteractions(widget) {
 
-            this.logger.debug('Unset maximized', this.maximized);
-        },
+      var items = this.model.getItems(),
+          index, item;
 
-        /**
-         * Disable items interactions on enlarge
-         * @memberOf PageItemMaximize
-         * @param {Widget} widget
-         */
-        disableItemInteractions: function disableItemInteractions(widget) {
+      for (index in items) {
 
-            var items = this.model.getItems(),
-                index, item;
+        if (items.hasOwnProperty(index)) {
 
-            for (index in items) {
+          /**
+           * Define item
+           * @type {Widget}
+           */
+          item = items[index];
 
-                if (items.hasOwnProperty(index)) {
+          item.observer.publish(
+              item.eventmanager.eventList.disableDraggable
+          );
 
-                    /**
-                     * Define item
-                     * @type {Widget}
-                     */
-                    item = items[index];
+          item.observer.publish(
+              item.eventmanager.eventList.disableResizable
+          );
 
-                    item.observer.publish(
-                        item.eventmanager.eventList.disableDraggable
-                    );
-
-                    item.observer.publish(
-                        item.eventmanager.eventList.disableResizable
-                    );
-
-                    if (widget !== item) {
-                        item.view.get$item().hide();
-                    }
-                }
-            }
-
-            this.controller.banAddWidget();
-
-            this.observer.publish(
-                this.eventmanager.eventList.setMaximized,
-                widget
-            );
-        },
-
-        /**
-         * Enable item interaction on reduce
-         * @memberOf PageItemMaximize
-         */
-        enableItemInteractions: function enableItemInteractions() {
-
-            var items = this.model.getItems(),
-                index, item;
-
-            for (index in items) {
-
-                if (items.hasOwnProperty(index)) {
-
-                    /**
-                     * Define item
-                     * @type {Widget}
-                     */
-                    item = items[index];
-
-                    item.observer.publish(
-                        item.eventmanager.eventList.enableDraggable
-                    );
-
-                    item.observer.publish(
-                        item.eventmanager.eventList.enableResizable
-                    );
-
-                    item.view.get$item().show();
-                }
-            }
-
-            this.controller.allowAddWidget();
-
-            this.observer.publish(
-                this.eventmanager.eventList.unsetMaximized
-            );
+          if (widget !== item) {
+            item.view.get$item().hide();
+          }
         }
-    });
+      }
+
+      this.controller.banAddWidget();
+
+      this.observer.publish(
+          this.eventmanager.eventList.setMaximized,
+          widget
+      );
+    },
+
+    /**
+     * Enable item interaction on reduce
+     * @memberOf PageItemMaximize
+     */
+    enableItemInteractions: function enableItemInteractions() {
+
+      var items = this.model.getItems(),
+          index, item;
+
+      for (index in items) {
+
+        if (items.hasOwnProperty(index)) {
+
+          /**
+           * Define item
+           * @type {Widget}
+           */
+          item = items[index];
+
+          item.observer.publish(
+              item.eventmanager.eventList.enableDraggable
+          );
+
+          item.observer.publish(
+              item.eventmanager.eventList.enableResizable
+          );
+
+          item.view.get$item().show();
+        }
+      }
+
+      this.controller.allowAddWidget();
+
+      this.observer.publish(
+          this.eventmanager.eventList.unsetMaximized
+      );
+    }
+  });
 });

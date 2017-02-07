@@ -1,84 +1,84 @@
 define(function defineRapidEngagePreferences() {
 
+  /**
+   * Define RapidEngage Preferences
+   * @class RapidEngagePreferences
+   * @extends Renderer
+   * @constructor
+   */
+  var RapidEngagePreferences = function RapidEngagePreferences() {
+  };
+
+  return RapidEngagePreferences.extend('RapidEngagePreferences', {
+
     /**
-     * Define RapidEngage Preferences
-     * @class RapidEngagePreferences
-     * @extends Renderer
-     * @constructor
+     * Render RapidEngage
+     * @memberOf RapidEngagePreferences
+     * @returns {*|jQuery}
      */
-    var RapidEngagePreferences = function RapidEngagePreferences() {
-    };
+    renderRapidEngage: function renderRapidEngage() {
 
-    return RapidEngagePreferences.extend('RapidEngagePreferences', {
+      /**
+       * Get workspace
+       * @type {*|Workspace}
+       */
+      var workspace = this.view.controller.getWorkspace();
 
-        /**
-         * Render RapidEngage
-         * @memberOf RapidEngagePreferences
-         * @returns {*|jQuery}
-         */
-        renderRapidEngage: function renderRapidEngage() {
+      /**
+       * Get workspace prefs
+       * @type {{rapidEngageCode, activateRapidEngage}}
+       */
+      var preferences = workspace.model.getConfig('preferences');
 
-            /**
-             * Get workspace
-             * @type {*|Workspace}
-             */
-            var workspace = this.view.controller.getWorkspace();
+      var $textarea = this.renderTextArea({
+        name: 'rapidEngageCode',
+        text: 'RapidEngage Code',
+        placeholder: 'Paste RapidEngage Code here',
+        disabled: false,
+        visible: true,
+        value: preferences.rapidEngageCode || ''
+      });
 
-            /**
-             * Get workspace prefs
-             * @type {{rapidEngageCode, activateRapidEngage}}
-             */
-            var preferences = workspace.model.getConfig('preferences');
+      var $checkbox = this.renderCheckbox({
+        name: 'activateRapidEngage',
+        text: 'Activate',
+        checked: preferences.activateRapidEngage,
+        value: preferences.activateRapidEngage,
+        disabled: false,
+        visible: true
+      });
 
-            var $textarea = this.renderTextArea({
-                name: 'rapidEngageCode',
-                text: 'RapidEngage Code',
-                placeholder: 'Paste RapidEngage Code here',
-                disabled: false,
-                visible: true,
-                value: preferences.rapidEngageCode || ''
-            });
+      return $('<div class="workspace-rapid-engage-prefs" />').append(
+          $textarea, $checkbox
+      );
+    },
 
-            var $checkbox = this.renderCheckbox({
-                name: 'activateRapidEngage',
-                text: 'Activate',
-                checked: preferences.activateRapidEngage,
-                value: preferences.activateRapidEngage,
-                disabled: false,
-                visible: true
-            });
+    /**
+     * Load RapidEngage code
+     * @memberOf RapidEngagePreferences
+     */
+    loadActivateRapidEngage: function loadActivateRapidEngage() {
 
-            return $('<div class="workspace-rapid-engage-prefs" />').append(
-                $textarea, $checkbox
-            );
-        },
+      this.logger.debug('Load RapidEngage code', arguments);
 
-        /**
-         * Load RapidEngage code
-         * @memberOf RapidEngagePreferences
-         */
-        loadActivateRapidEngage: function loadActivateRapidEngage() {
+      /**
+       * Get prefs
+       * @type {{rapidEngageCode, activateRapidEngage}}
+       */
+      var preferences = this.model.getConfig('preferences');
 
-            this.logger.debug('Load RapidEngage code', arguments);
+      /**
+       * Define embed code
+       * @type {string}
+       */
+      var embedCode = preferences.rapidEngageCode || '',
+          activate = preferences.activateRapidEngage;
 
-            /**
-             * Get prefs
-             * @type {{rapidEngageCode, activateRapidEngage}}
-             */
-            var preferences = this.model.getConfig('preferences');
-
-            /**
-             * Define embed code
-             * @type {string}
-             */
-            var embedCode = preferences.rapidEngageCode || '',
-                activate = preferences.activateRapidEngage;
-
-            if (this.controller.isServiceActivated(embedCode, activate)) {
-                this.view.get$item().addContent(
-                    embedCode
-                );
-            }
-        }
-    });
+      if (this.controller.isServiceActivated(embedCode, activate)) {
+        this.view.get$item().addContent(
+            embedCode
+        );
+      }
+    }
+  });
 });

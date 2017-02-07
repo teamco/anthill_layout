@@ -7,31 +7,31 @@
  */
 
 define([
-    'modules/Event'
+  'modules/Event'
 ], function defineLayoutEventManager(BaseEvent) {
 
+  /**
+   * Define layout event manager
+   * @class LayoutEventManager
+   * @extends BaseEvent
+   * @constructor
+   */
+  var LayoutEventManager = function LayoutEventManager() {
+
     /**
-     * Define layout event manager
-     * @class LayoutEventManager
-     * @extends BaseEvent
-     * @constructor
+     * Define events
+     * @memberOf LayoutEventManager
+     * @type {{}}
      */
-    var LayoutEventManager = function LayoutEventManager() {
+    this.events = {};
+  };
 
-        /**
-         * Define events
-         * @memberOf LayoutEventManager
-         * @type {{}}
-         */
-        this.events = {};
-    };
+  return LayoutEventManager.extend('LayoutEventManager', {
 
-    return LayoutEventManager.extend('LayoutEventManager', {
-
-        /**
-         * Define event list
-         * @memberOf LayoutEventManager
-         * @type {{
+    /**
+     * Define event list
+     * @memberOf LayoutEventManager
+     * @type {{
          *      updateNumberOfColumns: string,
          *      updateMinCellWidth: string,
          *      beforeNestedOrganizer: string,
@@ -43,19 +43,19 @@ define([
          *      setBehaviorMode: string,
          *      setEmptySpacesMode: string
          * }}
-         */
-        eventList: {
-            updateNumberOfColumns: 'update.number.of.columns',
-            updateMinCellWidth: 'update.min.cell.width',
-            beforeNestedOrganizer: 'before.nested.organizer',
-            afterNestedOrganizer: 'after.nested.organizer',
-            beforeExpand: 'before.expand',
-            onExpand: 'on.expand',
-            afterExpand: 'after.expand',
-            setOrganizeMode: 'set.organize.mode',
-            setBehaviorMode: 'set.behavior.mode',
-            setEmptySpacesMode: 'set.empty.spaces.mode'
-        }
+     */
+    eventList: {
+      updateNumberOfColumns: 'update.number.of.columns',
+      updateMinCellWidth: 'update.min.cell.width',
+      beforeNestedOrganizer: 'before.nested.organizer',
+      afterNestedOrganizer: 'after.nested.organizer',
+      beforeExpand: 'before.expand',
+      onExpand: 'on.expand',
+      afterExpand: 'after.expand',
+      setOrganizeMode: 'set.organize.mode',
+      setBehaviorMode: 'set.behavior.mode',
+      setEmptySpacesMode: 'set.empty.spaces.mode'
+    }
 
-    }, BaseEvent.prototype);
+  }, BaseEvent.prototype);
 });

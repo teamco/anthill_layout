@@ -7,16 +7,15 @@
  */
 define(function defineLibArray() {
 
-    /**
-     * Define LibArray
-     * @class LibArray
-     * @constructor
-     */
-    var LibArray = function LibArray() {
-    };
+  /**
+   * Define LibArray
+   * @class LibArray
+   * @constructor
+   */
+  var LibArray = function LibArray() {
+  };
 
-    LibArray.extend('LibArray', {
-    });
+  LibArray.extend('LibArray', {});
 
-    return new LibArray();
+  return new LibArray();
 });

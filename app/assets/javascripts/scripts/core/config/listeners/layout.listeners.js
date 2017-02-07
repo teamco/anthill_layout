@@ -7,22 +7,22 @@
 
 define(['config/layout'], function defineLayoutListeners(Layout) {
 
-    /**
-     * Define Layout Local listeners
-     * @memberOf Layout
-     * @type {{
+  /**
+   * Define Layout Local listeners
+   * @memberOf Layout
+   * @type {{
      *      afterNestedOrganizer: {name: string, callback: Function}
      * }}
-     */
-    Layout.prototype.localListeners = {
+   */
+  Layout.prototype.localListeners = {
 
-        afterNestedOrganizer: {
-            name: 'after.nested.organizer',
-            callback: function afterNestedOrganizerCallback() {
-                // TODO
-            }
-        }
-    };
+    afterNestedOrganizer: {
+      name: 'after.nested.organizer',
+      callback: function afterNestedOrganizerCallback() {
+        // TODO
+      }
+    }
+  };
 
-    return Layout;
+  return Layout;
 });

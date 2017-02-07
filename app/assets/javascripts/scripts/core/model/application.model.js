@@ -7,72 +7,72 @@
  */
 
 define([
-    'modules/Model',
-    'modules/Setting',
-    'config/workspace'
+  'modules/Model',
+  'modules/Setting',
+  'config/workspace'
 ], function defineApplicationModel(BaseModel, Setting, Workspace) {
 
+  /**
+   * Define Application model
+   * @extends BaseModel
+   * @class ApplicationModel
+   * @constructor
+   */
+  var ApplicationModel = function ApplicationModel() {
+
     /**
-     * Define Application model
-     * @extends BaseModel
-     * @class ApplicationModel
-     * @constructor
+     * Define item
+     * @property ApplicationModel
+     * @type {Workspace}
      */
-    var ApplicationModel = function ApplicationModel() {
+    this.item = Workspace;
+  };
 
-        /**
-         * Define item
-         * @property ApplicationModel
-         * @type {Workspace}
-         */
-        this.item = Workspace;
-    };
+  return ApplicationModel.extend('ApplicationModel', {
 
-    return ApplicationModel.extend('ApplicationModel', {
+    /**
+     * Define global setting
+     * @memberOf ApplicationModel
+     */
+    initGlobalSetting: function initGlobalSetting() {
 
-        /**
-         * Define global setting
-         * @memberOf ApplicationModel
-         */
-        initGlobalSetting: function initGlobalSetting() {
+      /**
+       * Get scope
+       * @type {Application}
+       */
+      var scope = this.scope;
 
-            /**
-             * Get scope
-             * @type {Application}
-             */
-            var scope = this.scope;
+      /**
+       * Define setting
+       * @memberOf ApplicationModel
+       * @type {Setting}
+       */
+      this.setting = new Setting(
+          scope,
+          scope.controller.getAppName()
+      );
 
-            /**
-             * Define setting
-             * @memberOf ApplicationModel
-             * @type {Setting}
-             */
-            this.setting = new Setting(
-                scope,
-                scope.controller.getAppName()
-            );
+      scope.logger.debug('Define setting', this.setting);
+    },
 
-            scope.logger.debug('Define setting', this.setting);
-        },
+    /**
+     * Define load workspaces
+     * @memberOf ApplicationModel
+     */
+    loadWorkspaces: function loadWorkspaces() {
 
-        /**
-         * Define load workspaces
-         * @memberOf ApplicationModel
-         */
-        loadWorkspaces: function loadWorkspaces() {
+      this.scope.controller.setAsLoading(true);
 
-            this.scope.controller.setAsLoading(true);
+      /**
+       * Get collector
+       * @type {object}
+       */
+      var collector = this.getCollector(this.item);
 
-            /**
-             * Get collector
-             * @type {object}
-             */
-            var collector = this.getCollector(this.item);
+      return collector ?
+          this.loadData(this.item, collector, true) : -1;
+    }
 
-            return collector ?
-                this.loadData(this.item, collector, true) : -1;
-        }
-
-    }, BaseModel.prototype);
+  }, BaseModel.prototype);
 
 });

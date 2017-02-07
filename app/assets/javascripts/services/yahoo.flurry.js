@@ -1,87 +1,87 @@
 define(function defineScriptPreferences() {
 
+  /**
+   * Define Yahoo Flurry Preferences
+   * @class YahooFlurryPreferences
+   * @extends Renderer
+   * @constructor
+   */
+  var YahooFlurryPreferences = function YahooFlurryPreferences() {
+  };
+
+  return YahooFlurryPreferences.extend('YahooFlurryPreferences', {
+
     /**
-     * Define Yahoo Flurry Preferences
-     * @class YahooFlurryPreferences
-     * @extends Renderer
-     * @constructor
+     * Render Script
+     * @memberOf YahooFlurryPreferences
+     * @returns {*|jQuery}
      */
-    var YahooFlurryPreferences = function YahooFlurryPreferences() {
-    };
+    renderYahooFlurry: function renderYahooFlurry() {
 
-    return YahooFlurryPreferences.extend('YahooFlurryPreferences', {
+      /**
+       * Get workspace
+       * @type {*|Workspace}
+       */
+      var workspace = this.view.controller.getWorkspace();
 
-        /**
-         * Render Script
-         * @memberOf YahooFlurryPreferences
-         * @returns {*|jQuery}
-         */
-        renderYahooFlurry: function renderYahooFlurry() {
+      /**
+       * Get workspace prefs
+       * @type {{yahooFlurryAppKey, activateYahooFlurry}}
+       */
+      var preferences = workspace.model.getConfig('preferences');
 
-            /**
-             * Get workspace
-             * @type {*|Workspace}
-             */
-            var workspace = this.view.controller.getWorkspace();
+      var $textarea = this.renderTextArea({
+        name: 'yahooFlurryAppKey',
+        text: 'Yahoo Flurry Application Key',
+        disabled: false,
+        visible: true,
+        value: preferences.yahooFlurryAppKey || ''
+      });
 
-            /**
-             * Get workspace prefs
-             * @type {{yahooFlurryAppKey, activateYahooFlurry}}
-             */
-            var preferences = workspace.model.getConfig('preferences');
+      var $checkbox = this.renderCheckbox({
+        name: 'activateYahooFlurry',
+        text: 'Activate',
+        checked: preferences.activateYahooFlurry,
+        value: preferences.activateYahooFlurry,
+        disabled: false,
+        visible: true
+      });
 
-            var $textarea = this.renderTextArea({
-                name: 'yahooFlurryAppKey',
-                text: 'Yahoo Flurry Application Key',
-                disabled: false,
-                visible: true,
-                value: preferences.yahooFlurryAppKey || ''
-            });
+      return $('<div class="workspace-bigmir-net-prefs" />').append(
+          $textarea, $checkbox
+      );
+    },
 
-            var $checkbox = this.renderCheckbox({
-                name: 'activateYahooFlurry',
-                text: 'Activate',
-                checked: preferences.activateYahooFlurry,
-                value: preferences.activateYahooFlurry,
-                disabled: false,
-                visible: true
-            });
+    /**
+     * Load Yahoo Flurry code
+     * @memberOf YahooFlurryPreferences
+     */
+    loadActivateYahooFlurry: function loadActivateYahooFlurry() {
 
-            return $('<div class="workspace-bigmir-net-prefs" />').append(
-                $textarea, $checkbox
-            );
-        },
+      this.logger.debug('Load Yahoo Flurry code', arguments);
 
-        /**
-         * Load Yahoo Flurry code
-         * @memberOf YahooFlurryPreferences
-         */
-        loadActivateYahooFlurry: function loadActivateYahooFlurry() {
+      /**
+       * Get prefs
+       * @type {{yahooFlurryAppKey, activateYahooFlurry}}
+       */
+      var preferences = this.model.getConfig('preferences');
 
-            this.logger.debug('Load Yahoo Flurry code', arguments);
+      /**
+       * Get Inject Script Code
+       * @type {string}
+       */
+      var yahooFlurryAppKey = preferences.yahooFlurryAppKey,
+          activate = preferences.activateYahooFlurry;
 
-            /**
-             * Get prefs
-             * @type {{yahooFlurryAppKey, activateYahooFlurry}}
-             */
-            var preferences = this.model.getConfig('preferences');
+      if (this.controller.isServiceActivated(yahooFlurryAppKey, activate)) {
 
-            /**
-             * Get Inject Script Code
-             * @type {string}
-             */
-            var yahooFlurryAppKey = preferences.yahooFlurryAppKey,
-                activate = preferences.activateYahooFlurry;
-
-            if (this.controller.isServiceActivated(yahooFlurryAppKey, activate)) {
-
-                require(
-                    ['https://cdn.flurry.com/js/flurry.js'],
-                    function _loadYahooFlurry() {
-                        FlurryAgent.startSession(yahooFlurryAppKey);
-                    }
-                );
+        require(
+            ['https://cdn.flurry.com/js/flurry.js'],
+            function _loadYahooFlurry() {
+              FlurryAgent.startSession(yahooFlurryAppKey);
             }
-        }
-    });
+        );
+      }
+    }
+  });
 });

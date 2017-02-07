@@ -7,176 +7,176 @@
 
 define(function defineWidgetMaximize() {
 
+  /**
+   * Define WidgetMaximize
+   * @class WidgetMaximize
+   * @constructor
+   * @extends BaseController
+   * @extends Router
+   */
+  var WidgetMaximize = function WidgetMaximize() {
+  };
+
+  return WidgetMaximize.extend('WidgetMaximize', {
+
     /**
-     * Define WidgetMaximize
-     * @class WidgetMaximize
-     * @constructor
-     * @extends BaseController
-     * @extends Router
+     * Check if widget already maximized
+     * @memberOf WidgetMaximize
+     * @returns {boolean}
      */
-    var WidgetMaximize = function WidgetMaximize() {
-    };
+    isMaximized: function isMaximized() {
 
-    return WidgetMaximize.extend('WidgetMaximize', {
+      /**
+       * Get page
+       * @type {Page}
+       */
+      var page = this.getContainment();
 
-        /**
-         * Check if widget already maximized
-         * @memberOf WidgetMaximize
-         * @returns {boolean}
-         */
-        isMaximized: function isMaximized() {
+      return page.controller.getMaximized() === this.scope;
+    },
 
-            /**
-             * Get page
-             * @type {Page}
-             */
-            var page = this.getContainment();
+    /**
+     * Check if maximizable
+     * @memberOf WidgetMaximize
+     * @returns {boolean}
+     */
+    isMaximizable: function isMaximizable() {
 
-            return page.controller.getMaximized() === this.scope;
-        },
+      /**
+       * Get capability and prefs
+       * @type {boolean}
+       */
+      var capability = this.scope.permission.getCapability('maximizable'),
+          preferences = !!this.model.getConfig('preferences').maximizable;
 
-        /**
-         * Check if maximizable
-         * @memberOf WidgetMaximize
-         * @returns {boolean}
-         */
-        isMaximizable: function isMaximizable() {
+      return capability && preferences;
+    },
 
-            /**
-             * Get capability and prefs
-             * @type {boolean}
-             */
-            var capability = this.scope.permission.getCapability('maximizable'),
-                preferences = !!this.model.getConfig('preferences').maximizable;
+    /**
+     * Reduce widget
+     * @memberOf WidgetMaximize
+     * @param {boolean} [force]
+     */
+    reduceWidget: function reduceWidget(force) {
 
-            return capability && preferences;
-        },
+      // Get scope
+      var scope = this;
 
-        /**
-         * Reduce widget
-         * @memberOf WidgetMaximize
-         * @param {boolean} [force]
-         */
-        reduceWidget: function reduceWidget(force) {
+      force = scope.base.defineBoolean(force, false, true);
 
-            // Get scope
-            var scope = this;
+      if (!scope.controller.isMaximized()) {
 
-            force = scope.base.defineBoolean(force, false, true);
+        scope.logger.debug('Widget not maximized');
+        return false;
+      }
 
-            if (!scope.controller.isMaximized()) {
+      scope.observer.publish(
+          scope.eventmanager.eventList.beforeReduce
+      );
 
-                scope.logger.debug('Widget not maximized');
-                return false;
-            }
+      setTimeout(function () {
+        scope.view.get$item().reduce(force);
+      }, 0);
+    },
 
-            scope.observer.publish(
-                scope.eventmanager.eventList.beforeReduce
-            );
+    /**
+     * Enlarge widget
+     * @memberOf WidgetMaximize
+     * @param {boolean} [force]
+     */
+    enlargeWidget: function enlargeWidget(force) {
 
-            setTimeout(function () {
-                scope.view.get$item().reduce(force);
-            }, 0);
-        },
+      // Get scope
+      var scope = this;
 
-        /**
-         * Enlarge widget
-         * @memberOf WidgetMaximize
-         * @param {boolean} [force]
-         */
-        enlargeWidget: function enlargeWidget(force) {
+      force = scope.base.defineBoolean(force, false, true);
 
-            // Get scope
-            var scope = this;
+      if (scope.controller.isMaximized()) {
 
-            force = scope.base.defineBoolean(force, false, true);
+        scope.logger.warn('Widget already maximized');
+        return false;
+      }
 
-            if (scope.controller.isMaximized()) {
+      if (!scope.controller.isMaximizable()) {
 
-                scope.logger.warn('Widget already maximized');
-                return false;
-            }
+        scope.logger.warn('Widget can\'t be maximized');
+        return false;
+      }
 
-            if (!scope.controller.isMaximizable()) {
+      scope.observer.publish(
+          scope.eventmanager.eventList.beforeMaximize
+      );
 
-                scope.logger.warn('Widget can\'t be maximized');
-                return false;
-            }
+      setTimeout(function () {
+        scope.view.get$item().enlarge(force);
+      }, 0);
+    },
 
-            scope.observer.publish(
-                scope.eventmanager.eventList.beforeMaximize
-            );
+    /**
+     * Before maximize callback
+     * @memberOf WidgetMaximize
+     */
+    beforeMaximize: function beforeMaximize() {
 
-            setTimeout(function () {
-                scope.view.get$item().enlarge(force);
-            }, 0);
-        },
+      this.logger.debug('Before maximize');
 
-        /**
-         * Before maximize callback
-         * @memberOf WidgetMaximize
-         */
-        beforeMaximize: function beforeMaximize() {
+      /**
+       * Get page
+       * @type {Page}
+       */
+      var page = this.controller.getContainment();
 
-            this.logger.debug('Before maximize');
+      page.observer.publish(
+          page.eventmanager.eventList.disableItemInteractions,
+          this
+      );
 
-            /**
-             * Get page
-             * @type {Page}
-             */
-            var page = this.controller.getContainment();
+      page.observer.publish(
+          page.eventmanager.eventList.updateHashOnMaximize,
+          this
+      );
 
-            page.observer.publish(
-                page.eventmanager.eventList.disableItemInteractions,
-                this
-            );
+      this.view.get$item().show();
+    },
 
-            page.observer.publish(
-                page.eventmanager.eventList.updateHashOnMaximize,
-                this
-            );
+    /**
+     * After maximize callback
+     * @memberOf WidgetMaximize
+     */
+    afterMaximize: function afterMaximize() {
+      this.logger.debug('After maximize');
+    },
 
-            this.view.get$item().show();
-        },
+    /**
+     * Before reduce callback
+     * @memberOf WidgetMaximize
+     */
+    beforeReduce: function beforeReduce() {
 
-        /**
-         * After maximize callback
-         * @memberOf WidgetMaximize
-         */
-        afterMaximize: function afterMaximize() {
-            this.logger.debug('After maximize');
-        },
+      this.logger.debug('Before reduce');
 
-        /**
-         * Before reduce callback
-         * @memberOf WidgetMaximize
-         */
-        beforeReduce: function beforeReduce() {
+      /**
+       * Get page
+       * @type {Page}
+       */
+      var page = this.controller.getContainment();
 
-            this.logger.debug('Before reduce');
+      page.observer.publish(
+          page.eventmanager.eventList.enableItemInteractions
+      );
 
-            /**
-             * Get page
-             * @type {Page}
-             */
-            var page = this.controller.getContainment();
+      page.observer.publish(
+          page.eventmanager.eventList.updateHashOnReduce,
+          this
+      );
+    },
 
-            page.observer.publish(
-                page.eventmanager.eventList.enableItemInteractions
-            );
-
-            page.observer.publish(
-                page.eventmanager.eventList.updateHashOnReduce,
-                this
-            );
-        },
-
-        /**
-         * After reduce callback
-         * @memberOf WidgetMaximize
-         */
-        afterReduce: function afterReduce() {
-            this.logger.debug('After reduce');
-        }
-    });
+    /**
+     * After reduce callback
+     * @memberOf WidgetMaximize
+     */
+    afterReduce: function afterReduce() {
+      this.logger.debug('After reduce');
+    }
+  });
 });

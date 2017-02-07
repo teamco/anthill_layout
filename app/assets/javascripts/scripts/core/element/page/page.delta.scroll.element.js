@@ -7,26 +7,24 @@
  */
 
 define([
-    'modules/Element'
+  'modules/Element'
 ], function defineDeltaScroll(BaseElement) {
 
-    /**
-     * Define delta scroll
-     * @param view
-     * @param opts
-     * @returns {*}
-     * @constructor
-     * @class DeltaScroll
-     * @extends BaseElement
-     */
-    var DeltaScroll = function DeltaScroll(view, opts) {
-        return this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
-    };
+  /**
+   * Define delta scroll
+   * @param view
+   * @param opts
+   * @returns {*}
+   * @constructor
+   * @class DeltaScroll
+   * @extends BaseElement
+   */
+  var DeltaScroll = function DeltaScroll(view, opts) {
+    return this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+  };
 
-    return DeltaScroll.extend('DeltaScroll', {
-
-    }, BaseElement.prototype);
+  return DeltaScroll.extend('DeltaScroll', {}, BaseElement.prototype);
 });

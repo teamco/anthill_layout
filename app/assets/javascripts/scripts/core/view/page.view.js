@@ -7,135 +7,136 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'element/modal.element',
-    'element/page/page.element',
-    'element/page/page.content.element',
-    'element/page/page.delta.scroll.element'
-], function definePageView(BaseView, Header, Footer, Modal, Page, Content, DeltaScroll) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'element/modal.element',
+  'element/page/page.element',
+  'element/page/page.content.element',
+  'element/page/page.delta.scroll.element'
+], function definePageView(BaseView, Header, Footer, Modal, Page, Content,
+    DeltaScroll) {
+
+  /**
+   * Define PageView
+   * @class PageView
+   * @extends BaseView
+   * @constructor
+   */
+  var PageView = function PageView() {
+  };
+
+  return PageView.extend('PageView', {
 
     /**
-     * Define PageView
-     * @class PageView
-     * @extends BaseView
-     * @constructor
+     * Render Page
+     * @memberOf PageView
      */
-    var PageView = function PageView() {
-    };
+    renderPage: function renderPage() {
 
-    return PageView.extend('PageView', {
+      /**
+       * Define page element
+       * @type {PageElement}
+       */
+      this.elements.$page = new Page(this, {
+        $container: this.getContainerSelector()
+      });
 
-        /**
-         * Render Page
-         * @memberOf PageView
-         */
-        renderPage: function renderPage() {
+      this.header(Header, this.get$item());
+      this.widgets();
+      this.deltaScroll();
+      this.footer(Footer, this.get$item());
 
-            /**
-             * Define page element
-             * @type {PageElement}
-             */
-            this.elements.$page = new Page(this, {
-                $container: this.getContainerSelector()
-            });
+      /**
+       * Get workspace
+       * @type {Workspace}
+       */
+      var containment = this.controller.getContainment();
 
-            this.header(Header, this.get$item());
-            this.widgets();
-            this.deltaScroll();
-            this.footer(Footer, this.get$item());
+      containment.observer.publish(
+          containment.eventmanager.eventList.adoptContentWidth
+      );
+    },
 
-            /**
-             * Get workspace
-             * @type {Workspace}
-             */
-            var containment = this.controller.getContainment();
+    /**
+     * Define delta scroll
+     * @memberOf PageView
+     */
+    deltaScroll: function deltaScroll() {
 
-            containment.observer.publish(
-                containment.eventmanager.eventList.adoptContentWidth
-            );
-        },
+      /**
+       * Define delta scroll element
+       * @type {DeltaScroll}
+       */
+      this.elements.$deltaScroll = new DeltaScroll(this, {
+        $container: this.get$item().$,
+        style: 'delta-scroll'
+      });
+    },
 
-        /**
-         * Define delta scroll
-         * @memberOf PageView
-         */
-        deltaScroll: function deltaScroll() {
+    /**
+     * Define widgets container
+     * @memberOf PageView
+     */
+    widgets: function widgets() {
 
-            /**
-             * Define delta scroll element
-             * @type {DeltaScroll}
-             */
-            this.elements.$deltaScroll = new DeltaScroll(this, {
-                $container: this.get$item().$,
-                style: 'delta-scroll'
-            });
-        },
+      /**
+       * Define widgets container element
+       * @type {PageContent}
+       */
+      this.elements.$widgets = new Content(this, {
+        style: 'widgets',
+        $container: this.get$item().$
+      });
+    },
 
-        /**
-         * Define widgets container
-         * @memberOf PageView
-         */
-        widgets: function widgets() {
+    /**
+     * Show destroy widgets confirmation modal dialog
+     * @memberOf PageView
+     */
+    destroyWidgetsModalDialog: function destroyWidgetsModalDialog(widgets) {
 
-            /**
-             * Define widgets container element
-             * @type {PageContent}
-             */
-            this.elements.$widgets = new Content(this, {
-                style: 'widgets',
-                $container: this.get$item().$
-            });
-        },
-
-        /**
-         * Show destroy widgets confirmation modal dialog
-         * @memberOf PageView
-         */
-        destroyWidgetsModalDialog: function destroyWidgetsModalDialog(widgets) {
-
-            this.modalDialog({
-                style: this.scope.name.toLowerCase() + '-modal',
-                items: widgets,
-                type: 'warning',
-                title: 'Remove widgets',
-                html: [
-                    '<p>Are you sure want to destroy:</p>',
-                    this.get$item().getItemsList(widgets)
-                ].join(''),
-                cover: true,
-                autoclose: true,
-                buttons: {
-                    approve: {
-                        text: 'OK',
-                        type: 'success',
-                        events: {
-                            click: 'approveItemsDestroy'
-                        }
-                    },
-                    reject: {
-                        text: 'Cancel',
-                        events: {
-                            click: 'rejectModalEvent'
-                        }
-                    }
-                }
-            });
-        },
-
-        /**
-         * Render page
-         * @memberOf PageView
-         * @param {boolean} silent
-         */
-        render: function render(silent) {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                silent
-            );
+      this.modalDialog({
+        style: this.scope.name.toLowerCase() + '-modal',
+        items: widgets,
+        type: 'warning',
+        title: 'Remove widgets',
+        html: [
+          '<p>Are you sure want to destroy:</p>',
+          this.get$item().getItemsList(widgets)
+        ].join(''),
+        cover: true,
+        autoclose: true,
+        buttons: {
+          approve: {
+            text: 'OK',
+            type: 'success',
+            events: {
+              click: 'approveItemsDestroy'
+            }
+          },
+          reject: {
+            text: 'Cancel',
+            events: {
+              click: 'rejectModalEvent'
+            }
+          }
         }
+      });
+    },
 
-    }, BaseView.prototype)
+    /**
+     * Render page
+     * @memberOf PageView
+     * @param {boolean} silent
+     */
+    render: function render(silent) {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          silent
+      );
+    }
+
+  }, BaseView.prototype)
 });

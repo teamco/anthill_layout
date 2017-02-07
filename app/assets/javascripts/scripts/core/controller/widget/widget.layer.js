@@ -4,82 +4,82 @@
 
 define(function defineWidgetLayer() {
 
+  /**
+   * Define WidgetLayer
+   * @class WidgetLayer
+   * @constructor
+   */
+  var WidgetLayer = function WidgetLayer() {
+  };
+
+  return WidgetLayer.extend('WidgetLayer', {
+
     /**
-     * Define WidgetLayer
-     * @class WidgetLayer
-     * @constructor
+     * Set widget layer up
+     * @memberOf WidgetLayer
+     * @param {boolean} save
      */
-    var WidgetLayer = function WidgetLayer() {
-    };
+    setLayerUp: function setLayerUp(save) {
+      this.map.updateLayer(true, save);
+    },
 
-    return WidgetLayer.extend('WidgetLayer', {
+    /**
+     * Set widget layer down
+     * @memberOf WidgetLayer
+     * @param {boolean} save
+     */
+    setLayerDown: function setLayerDown(save) {
+      this.map.updateLayer(false, save);
+    },
 
-        /**
-         * Set widget layer up
-         * @memberOf WidgetLayer
-         * @param {boolean} save
-         */
-        setLayerUp: function setLayerUp(save) {
-            this.map.updateLayer(true, save);
-        },
+    /**
+     * Update layout z-index
+     * @memberOf WidgetLayer
+     * @param index
+     */
+    updateLayerIndex: function updateLayerIndex(index) {
 
-        /**
-         * Set widget layer down
-         * @memberOf WidgetLayer
-         * @param {boolean} save
-         */
-        setLayerDown: function setLayerDown(save) {
-            this.map.updateLayer(false, save);
-        },
+      /**
+       * Define config html
+       * @type {{}}
+       */
+      var configHtml = this.model.getConfig('html');
 
-        /**
-         * Update layout z-index
-         * @memberOf WidgetLayer
-         * @param index
-         */
-        updateLayerIndex: function updateLayerIndex(index) {
+      configHtml.zIndex = index;
+      this.mode.setConfig('html', configHtml);
+    },
 
-            /**
-             * Define config html
-             * @type {{}}
-             */
-            var configHtml = this.model.getConfig('html');
+    /**
+     * Restore layer index
+     * @memberOf WidgetLayer
+     */
+    restoreLayerIndex: function restoreLayerIndex() {
 
-            configHtml.zIndex = index;
-            this.mode.setConfig('html', configHtml);
-        },
+      /**
+       * Get containment
+       * @type {Page|*}
+       */
+      var containment = this.controller.getContainment();
 
-        /**
-         * Restore layer index
-         * @memberOf WidgetLayer
-         */
-        restoreLayerIndex: function restoreLayerIndex() {
+      containment.controller.revertLayer();
+    },
 
-            /**
-             * Get containment
-             * @type {Page|*}
-             */
-            var containment = this.controller.getContainment();
+    /**
+     * Set widget always on top
+     * @memberOf WidgetLayer
+     * @param {boolean} ontop
+     */
+    setAlwaysOnTop: function setAlwaysOnTop(ontop) {
 
-            containment.controller.revertLayer();
-        },
+      this.view.get$item().moveOnTopLayer(ontop);
 
-        /**
-         * Set widget always on top
-         * @memberOf WidgetLayer
-         * @param {boolean} ontop
-         */
-        setAlwaysOnTop: function setAlwaysOnTop(ontop) {
+      /**
+       * Get containment
+       * @type {Page|*}
+       */
+      var containment = this.controller.getContainment();
 
-            this.view.get$item().moveOnTopLayer(ontop);
-
-            /**
-             * Get containment
-             * @type {Page|*}
-             */
-            var containment = this.controller.getContainment();
-
-            containment.controller.reorderLayers();
-        }
-    });
+      containment.controller.reorderLayers();
+    }
+  });
 });

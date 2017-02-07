@@ -7,31 +7,31 @@
  */
 
 define([
-    'modules/Event'
+  'modules/Event'
 ], function definePageEventManager(BaseEvent) {
 
+  /**
+   * Define page event manager
+   * @class PageEventManager
+   * @extends BaseEvent
+   * @constructor
+   */
+  var PageEventManager = function PageEventManager() {
+
     /**
-     * Define page event manager
-     * @class PageEventManager
-     * @extends BaseEvent
-     * @constructor
+     * Define events
+     * @property PageEventManager
+     * @type {{}}
      */
-    var PageEventManager = function PageEventManager() {
+    this.events = {};
+  };
 
-        /**
-         * Define events
-         * @property PageEventManager
-         * @type {{}}
-         */
-        this.events = {};
-    };
+  return PageEventManager.extend('PageEventManager', {
 
-    return PageEventManager.extend('PageEventManager', {
-
-        /**
-         * Define event list
-         * @property PageEventManager
-         * @type {{
+    /**
+     * Define event list
+     * @property PageEventManager
+     * @type {{
          *      setMaximized: string,
          *      unsetMaximized: string,
          *      setAsReady: string,
@@ -64,54 +64,54 @@ define([
          *      updatePageScrollHeight: string,
          *      showWidgetContent: string
          * }}
-         */
-        eventList: {
+     */
+    eventList: {
 
-            setMaximized: 'set.maximized',
-            unsetMaximized: 'unset.maximized',
+      setMaximized: 'set.maximized',
+      unsetMaximized: 'unset.maximized',
 
-            createWidget: 'create.widget',
-            destroyWidget: 'destroy.widget',
-            destroyWidgets: 'destroy.widgets',
-            approveItemsDestroy: 'approve.items.destroy',
+      createWidget: 'create.widget',
+      destroyWidget: 'destroy.widget',
+      destroyWidgets: 'destroy.widgets',
+      approveItemsDestroy: 'approve.items.destroy',
 
-            setAsReady: 'set.as.ready',
+      setAsReady: 'set.as.ready',
 
-            createLayout: 'create.layout',
-            destroyLayout: 'destroy.layout',
-            updateLayoutConfig: 'update.layout.config',
-            expandLayout: 'expand.layout',
+      createLayout: 'create.layout',
+      destroyLayout: 'destroy.layout',
+      updateLayoutConfig: 'update.layout.config',
+      expandLayout: 'expand.layout',
 
-            updatePadding: 'update.padding',
+      updatePadding: 'update.padding',
 
-            resizeWidget: 'resize.widget',
+      resizeWidget: 'resize.widget',
 
-            resizeWidgets: 'resize.widgets',
-            updateHashOnMaximize: 'update.hash.on.maximize',
+      resizeWidgets: 'resize.widgets',
+      updateHashOnMaximize: 'update.hash.on.maximize',
 
-            updateHashOnReduce: 'update.hash.on.reduce',
+      updateHashOnReduce: 'update.hash.on.reduce',
 
-            updateHeight: 'update.height',
-            updatePageScrollHeight: 'update.page.scroll.height',
+      updateHeight: 'update.height',
+      updatePageScrollHeight: 'update.page.scroll.height',
 
-            updateSiteDescription: 'update.site.description',
-            updateSiteKeywords: 'update.site.keywords',
+      updateSiteDescription: 'update.site.description',
+      updateSiteKeywords: 'update.site.keywords',
 
-            afterLoadingItems: 'after.loading.items',
-            disableItemInteractions: 'disable.item.interactions',
-            loadItemsContent: 'load.items.content',
-            setLoadedContent: 'set.loaded.content',
-            updateLoadedContent: 'update.loaded.content',
-            enableItemInteractions: 'enable.item.interactions',
-            updateItemInteractions: 'update.item.interactions',
+      afterLoadingItems: 'after.loading.items',
+      disableItemInteractions: 'disable.item.interactions',
+      loadItemsContent: 'load.items.content',
+      setLoadedContent: 'set.loaded.content',
+      updateLoadedContent: 'update.loaded.content',
+      enableItemInteractions: 'enable.item.interactions',
+      updateItemInteractions: 'update.item.interactions',
 
-            loadPreferences: 'load.preferences',
-            transferContentPreferences: 'transfer.content.preferences',
-            transferPreferences: 'transfer.preferences',
-            afterUpdatePreferences: 'after.update.preferences',
+      loadPreferences: 'load.preferences',
+      transferContentPreferences: 'transfer.content.preferences',
+      transferPreferences: 'transfer.preferences',
+      afterUpdatePreferences: 'after.update.preferences',
 
-            showWidgetContent: 'show.widget.content'
-        }
+      showWidgetContent: 'show.widget.content'
+    }
 
-    }, BaseEvent.prototype);
+  }, BaseEvent.prototype);
 });

@@ -14,30 +14,30 @@ define(
      * @param {BaseEvent} BaseEvent
      * @returns {*}
      */
-        function defineWorkspaceEventManager(BaseEvent) {
+    function defineWorkspaceEventManager(BaseEvent) {
+
+      /**
+       * Define workspace event manager
+       * @class EventManager
+       * @constructor
+       * @extends BaseEvent
+       */
+      var WorkspaceEventManager = function WorkspaceEventManager() {
 
         /**
-         * Define workspace event manager
-         * @class EventManager
-         * @constructor
-         * @extends BaseEvent
+         * Define events
+         * @property WorkspaceEventManager
+         * @type {{}}
          */
-        var WorkspaceEventManager = function WorkspaceEventManager() {
+        this.events = {};
+      };
 
-            /**
-             * Define events
-             * @property WorkspaceEventManager
-             * @type {{}}
-             */
-            this.events = {};
-        };
+      return WorkspaceEventManager.extend('WorkspaceEventManager', {
 
-        return WorkspaceEventManager.extend('WorkspaceEventManager', {
-
-            /**
-             * Define event list
-             * @property WorkspaceEventManager
-             * @type {{
+        /**
+         * Define event list
+         * @property WorkspaceEventManager
+         * @type {{
              *      bindHashChange: string,
              *      createPage: string,
              *      destroyPage: string,
@@ -63,42 +63,42 @@ define(
              *      afterUpdatePreferences: string,
              *      clonePage: string
              * }}
-             */
-            eventList: {
-                bindHashChange: 'bind.hash.change',
-                createPage: 'create.page',
-                destroyPage: 'destroy.page',
-                destroyPages: 'destroy.pages',
-                resizePage: 'resize.page',
-                resizePages: 'resize.pages',
-                setPageContainerDimensions: 'set.page.container.dimensions',
-                updatePagesWidth: 'update.pages.width',
+         */
+        eventList: {
+          bindHashChange: 'bind.hash.change',
+          createPage: 'create.page',
+          destroyPage: 'destroy.page',
+          destroyPages: 'destroy.pages',
+          resizePage: 'resize.page',
+          resizePages: 'resize.pages',
+          setPageContainerDimensions: 'set.page.container.dimensions',
+          updatePagesWidth: 'update.pages.width',
 
-                beforeSwitchToPage: 'before.switch.to.page',
-                switchToPage: 'switch.to.page',
-                afterSwitchToPage: 'after.switch.to.page',
-                afterPageOrder: 'after.page.order',
+          beforeSwitchToPage: 'before.switch.to.page',
+          switchToPage: 'switch.to.page',
+          afterSwitchToPage: 'after.switch.to.page',
+          afterPageOrder: 'after.page.order',
 
-                adoptContentWidth: 'adopt.content.width',
+          adoptContentWidth: 'adopt.content.width',
 
-                afterLoadingItems: 'after.loading.items',
+          afterLoadingItems: 'after.loading.items',
 
-                updateSiteWidth: 'update.site.width',
+          updateSiteWidth: 'update.site.width',
 
-                updateSiteTitle: 'update.site.title',
-                updateSiteAuthor: 'update.site.author',
-                updateSiteDescription: 'update.site.description',
-                updateSiteKeywords: 'update.site.keywords',
-                updateMetaData: 'update.meta.data',
+          updateSiteTitle: 'update.site.title',
+          updateSiteAuthor: 'update.site.author',
+          updateSiteDescription: 'update.site.description',
+          updateSiteKeywords: 'update.site.keywords',
+          updateMetaData: 'update.meta.data',
 
-                loadPreferences: 'load.preferences',
-                transferPreferences: 'transfer.preferences',
-                transferContentPreferences: 'transfer.content.preferences',
-                afterUpdatePreferences: 'after.update.preferences',
+          loadPreferences: 'load.preferences',
+          transferPreferences: 'transfer.preferences',
+          transferContentPreferences: 'transfer.content.preferences',
+          afterUpdatePreferences: 'after.update.preferences',
 
-                clonePage: 'clone.page'
-            }
+          clonePage: 'clone.page'
+        }
 
-        }, BaseEvent.prototype);
+      }, BaseEvent.prototype);
     }
 );

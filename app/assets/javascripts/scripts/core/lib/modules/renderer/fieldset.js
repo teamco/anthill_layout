@@ -4,69 +4,69 @@
 
 define(function defineFieldSetRenderer() {
 
+  /**
+   * Define FieldSetRenderer
+   * @class FieldSetRenderer
+   * @extends ModalElement
+   * @constructor
+   */
+  var FieldSetRenderer = function FieldSetRenderer() {
+  };
+
+  return FieldSetRenderer.extend('FieldSetRenderer', {
+
     /**
-     * Define FieldSetRenderer
-     * @class FieldSetRenderer
-     * @extends ModalElement
-     * @constructor
+     * Toggle fieldset
+     * @memberOf FieldSetRenderer
+     * @param {Event} e
      */
-    var FieldSetRenderer = function FieldSetRenderer() {
-    };
+    toggleFieldset: function toggleFieldset(e) {
 
-    return FieldSetRenderer.extend('FieldSetRenderer', {
+      /**
+       * Define $li
+       * @type {*|jQuery|HTMLElement}
+       */
+      var $li = $(e.target);
 
-        /**
-         * Toggle fieldset
-         * @memberOf FieldSetRenderer
-         * @param {Event} e
-         */
-        toggleFieldset: function toggleFieldset(e) {
+      $li.hasClass('open') ?
+          $li.removeClass('open') :
+          $li.addClass('open');
 
-            /**
-             * Define $li
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $li = $(e.target);
+      if (_.isFunction(this.adoptModalDialogPosition)) {
+        this.adoptModalDialogPosition();
+      }
+    },
 
-            $li.hasClass('open') ?
-                $li.removeClass('open') :
-                $li.addClass('open');
+    /**
+     * Render fieldset
+     * @memberOf FieldSetRenderer
+     * @param {string} text
+     * @param {*} $content
+     * @param {boolean} [open]
+     * @returns {*|jQuery}
+     */
+    renderFieldSet: function renderFieldSet(text, $content, open) {
 
-            if (_.isFunction(this.adoptModalDialogPosition)) {
-                this.adoptModalDialogPosition();
-            }
-        },
+      var $legend = {
+        $: $('<legend />').html(text).
+            on('click.toggle', this.toggleFieldset.bind(this))
+      };
 
-        /**
-         * Render fieldset
-         * @memberOf FieldSetRenderer
-         * @param {string} text
-         * @param {*} $content
-         * @param {boolean} [open]
-         * @returns {*|jQuery}
-         */
-        renderFieldSet: function renderFieldSet(text, $content, open) {
+      if (open) {
+        $legend.$.addClass('open');
+      }
 
-            var $legend = {
-                $: $('<legend />').html(text).
-                    on('click.toggle', this.toggleFieldset.bind(this))
-            };
+      var $fieldset = $('<fieldset />').append(
+          $legend.$,
+          $content
+      );
 
-            if (open) {
-                $legend.$.addClass('open');
-            }
+      this.renderTooltip({
+        title: $('<div />').html(text).text(),
+        selector: $legend.$
+      });
 
-            var $fieldset = $('<fieldset />').append(
-                $legend.$,
-                $content
-            );
-
-            this.renderTooltip({
-                title: $('<div />').html(text).text(),
-                selector: $legend.$
-            });
-
-            return $fieldset;
-        }
-    });
+      return $fieldset;
+    }
+  });
 });

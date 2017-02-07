@@ -4,82 +4,82 @@
 
 define(function defineFixVulnerabilities() {
 
+  /**
+   * Define fixes for vulnerabilities
+   * @class BehaviorFixVulnerabilities
+   * @constructor
+   * @extends AntHill
+   */
+  var BehaviorFixVulnerabilities = function BehaviorFixVulnerabilities() {
+
+    // Scope hook
+    this.scope = undefined;
+  };
+
+  return BehaviorFixVulnerabilities.extend('BehaviorFixVulnerabilities', {
+
     /**
-     * Define fixes for vulnerabilities
-     * @class BehaviorFixVulnerabilities
-     * @constructor
-     * @extends AntHill
+     * Define fix for ClickJacking
+     * @memberOf BehaviorFixVulnerabilities
      */
-    var BehaviorFixVulnerabilities = function BehaviorFixVulnerabilities() {
+    fixClickJacking: function fixClickJacking() {
 
-        // Scope hook
-        this.scope = undefined;
-    };
+      if (window.top !== window) {
 
-    return BehaviorFixVulnerabilities.extend('BehaviorFixVulnerabilities', {
+        // Redirect to window.location
+        window.top.location = window.location;
 
-        /**
-         * Define fix for ClickJacking
-         * @memberOf BehaviorFixVulnerabilities
-         */
-        fixClickJacking: function fixClickJacking() {
+        this.scope.observer.publish(
+            this.scope.eventmanager.eventList.handleVulnerabilities,
+            'ClickJacking'
+        );
+      }
+    },
 
-            if (window.top !== window) {
+    /**
+     * Define after Handle Vulnerabilities
+     * @memberOf BehaviorFixVulnerabilities
+     * @param data
+     */
+    afterHandleVulnerabilities: function afterHandleVulnerabilities(data) {
 
-                // Redirect to window.location
-                window.top.location = window.location;
+      // TODO
+      debugger
+    },
 
-                this.scope.observer.publish(
-                    this.scope.eventmanager.eventList.handleVulnerabilities,
-                    'ClickJacking'
-                );
-            }
-        },
+    /**
+     * Define fix for ClickJacking
+     * @memberOf BehaviorFixVulnerabilities
+     * @param {string} type
+     */
+    handleVulnerabilities: function handleVulnerabilities(type) {
 
-        /**
-         * Define after Handle Vulnerabilities
-         * @memberOf BehaviorFixVulnerabilities
-         * @param data
-         */
-        afterHandleVulnerabilities: function afterHandleVulnerabilities(data) {
+      var route = this.model.getConfig('routes/handleVulnerabilities'),
+          appName = this.model.getConfig('appName');
 
-            // TODO
-            debugger
-        },
+      $.ajax({
 
-        /**
-         * Define fix for ClickJacking
-         * @memberOf BehaviorFixVulnerabilities
-         * @param {string} type
-         */
-        handleVulnerabilities: function handleVulnerabilities(type) {
+        dataType: 'json',
 
-            var route = this.model.getConfig('routes/handleVulnerabilities'),
-                appName = this.model.getConfig('appName');
+        url: route[0],
+        method: route[1],
 
-            $.ajax({
+        data: this.controller.prepareXhrData({
+          key: appName,
+          type: type
+        })
 
-                dataType: 'json',
+      }).done(
+          function done(data, type, xhr) {
 
-                url: route[0],
-                method: route[1],
-
-                data: this.controller.prepareXhrData({
-                    key: appName,
-                    type: type
-                })
-
-            }).done(
-                function done(data, type, xhr) {
-
-                    this.logger.debug(arguments);
-                    this.observer.publish(
-                        this.eventmanager.eventList.afterHandleVulnerabilities,
-                        data
-                    );
-
-                }.bind(this)
+            this.logger.debug(arguments);
+            this.observer.publish(
+                this.eventmanager.eventList.afterHandleVulnerabilities,
+                data
             );
-        }
-    });
+
+          }.bind(this)
+      );
+    }
+  });
 });

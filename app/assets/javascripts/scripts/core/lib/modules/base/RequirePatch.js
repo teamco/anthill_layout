@@ -7,25 +7,25 @@
  */
 define(function defineLibRequirePatch() {
 
+  /**
+   * Define LibRequirePatch
+   * @class LibRequirePatch
+   * @constructor
+   */
+  var LibRequirePatch = function LibRequirePatch() {
+  };
+
+  LibRequirePatch.extend('LibRequirePatch', {
+
     /**
-     * Define LibRequirePatch
-     * @class LibRequirePatch
-     * @constructor
+     * Get requirejs config
+     * @memberOf LibRequirePatch
+     * @returns {*}
      */
-    var LibRequirePatch = function LibRequirePatch() {
-    };
+    get: function get() {
+      return requirejs.s.contexts._.config;
+    }
+  });
 
-    LibRequirePatch.extend('LibRequirePatch', {
-
-        /**
-         * Get requirejs config
-         * @memberOf LibRequirePatch
-         * @returns {*}
-         */
-        get: function get() {
-            return requirejs.s.contexts._.config;
-        }
-    });
-
-    return new LibRequirePatch();
+  return new LibRequirePatch();
 });

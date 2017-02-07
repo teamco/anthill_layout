@@ -6,174 +6,174 @@
  */
 define(['config/layout'], function definePageLayout(Layout) {
 
-    /**
-     * Define PageLayout
-     * @class PageLayout
-     * @constructor
-     * @extends AntHill
-     */
-    var PageLayout = function PageLayout() {
-    };
+  /**
+   * Define PageLayout
+   * @class PageLayout
+   * @constructor
+   * @extends AntHill
+   */
+  var PageLayout = function PageLayout() {
+  };
 
-    return PageLayout.extend(
-        'PageLayout', {
+  return PageLayout.extend(
+      'PageLayout', {
 
-            /**
-             * Update layout config
-             * @memberOf PageLayout
-             */
-            updateLayoutConfig: function updateLayoutConfig() {
+        /**
+         * Update layout config
+         * @memberOf PageLayout
+         */
+        updateLayoutConfig: function updateLayoutConfig() {
 
-                this.logger.debug('Update layout config');
+          this.logger.debug('Update layout config');
 
-                /**
-                 * Get page preferences
-                 * @type {{
+          /**
+           * Get page preferences
+           * @type {{
                  *      layoutColumns: number
                  * }}
-                 */
-                var preferences = this.model.getConfig('preferences') || {};
+           */
+          var preferences = this.model.getConfig('preferences') || {};
 
-                /**
-                 * Get layout
-                 * @type {Layout}
-                 */
-                var layout = this.layout;
+          /**
+           * Get layout
+           * @type {Layout}
+           */
+          var layout = this.layout;
 
-                layout.observer.publish(
-                    layout.eventmanager.eventList.updateNumberOfColumns,
-                    preferences.layoutColumns
-                );
-            },
+          layout.observer.publish(
+              layout.eventmanager.eventList.updateNumberOfColumns,
+              preferences.layoutColumns
+          );
+        },
 
-            /**
-             * Update page padding
-             * @memberOf PageLayout
-             * @param opts
-             */
-            updatePadding: function updatePadding(opts) {
+        /**
+         * Update page padding
+         * @memberOf PageLayout
+         * @param opts
+         */
+        updatePadding: function updatePadding(opts) {
 
-                // Get scope
-                var scope = this;
+          // Get scope
+          var scope = this;
 
-                // Get padding
-                var padding = scope.model.getConfig('html/padding');
+          // Get padding
+          var padding = scope.model.getConfig('html/padding');
 
-                $.extend(padding, opts);
+          $.extend(padding, opts);
 
-                if (scope.view.get$item()) {
-                    scope.view.get$item().setPadding(padding);
-                } else {
+          if (scope.view.get$item()) {
+            scope.view.get$item().setPadding(padding);
+          } else {
 
-                    scope.eventmanager.subscribe({
-                        event: scope.eventmanager.eventList.successRendered,
-                        callback: function _setPadding() {
-                            scope.view.get$item().setPadding(padding);
-                        }
-                    }, true);
-                }
-            },
+            scope.eventmanager.subscribe({
+              event: scope.eventmanager.eventList.successRendered,
+              callback: function _setPadding() {
+                scope.view.get$item().setPadding(padding);
+              }
+            }, true);
+          }
+        },
 
-            /**
-             * Update page height
-             * @memberOf PageLayout
-             */
-            updateHeight: function updateHeight() {
-                this.view.get$item().updateDimensions();
-            },
+        /**
+         * Update page height
+         * @memberOf PageLayout
+         */
+        updateHeight: function updateHeight() {
+          this.view.get$item().updateDimensions();
+        },
 
-            /**
-             * Update page scroll height
-             * @memberOf PageLayout
-             */
-            updatePageScrollHeight: function updatePageScrollHeight() {
+        /**
+         * Update page scroll height
+         * @memberOf PageLayout
+         */
+        updatePageScrollHeight: function updatePageScrollHeight() {
 
-                // Get scope
-                var scope = this;
+          // Get scope
+          var scope = this;
 
-                if (scope.view.get$item()) {
-                    scope.view.get$item().updateDimensions();
-                } else {
+          if (scope.view.get$item()) {
+            scope.view.get$item().updateDimensions();
+          } else {
 
-                    scope.eventmanager.subscribe({
-                        event: scope.eventmanager.eventList.successRendered,
-                        callback: function _setPageScroll() {
-                            scope.view.get$item().updateDimensions();
-                        }
-                    }, true);
-                }
-            },
+            scope.eventmanager.subscribe({
+              event: scope.eventmanager.eventList.successRendered,
+              callback: function _setPageScroll() {
+                scope.view.get$item().updateDimensions();
+              }
+            }, true);
+          }
+        },
 
-            /**
-             * Define expandLayout
-             * @memberOf PageLayout
-             * @param {Widget} widget
-             */
-            expandLayout: function expandLayout(widget) {
+        /**
+         * Define expandLayout
+         * @memberOf PageLayout
+         * @param {Widget} widget
+         */
+        expandLayout: function expandLayout(widget) {
 
-                /**
-                 * Get layout
-                 * @type {Layout}
-                 */
-                var layout = this.controller.getLayout();
+          /**
+           * Get layout
+           * @type {Layout}
+           */
+          var layout = this.controller.getLayout();
 
-                layout.observer.publish(
-                    layout.eventmanager.eventList.onExpand,
-                    widget
-                );
-            },
+          layout.observer.publish(
+              layout.eventmanager.eventList.onExpand,
+              widget
+          );
+        },
 
-            /**
-             * Create page layout
-             * @memberOf PageLayout
-             * @param opts
-             */
-            createLayout: function createLayout(opts) {
+        /**
+         * Create page layout
+         * @memberOf PageLayout
+         * @param opts
+         */
+        createLayout: function createLayout(opts) {
 
-                /**
-                 * Define layout
-                 * @memberOf Page
-                 * @type {Layout}
-                 */
-                this.layout = new Layout(opts, this);
-            },
+          /**
+           * Define layout
+           * @memberOf Page
+           * @type {Layout}
+           */
+          this.layout = new Layout(opts, this);
+        },
 
-            /**
-             * Destroy layout
-             * @memberOf PageLayout
-             */
-            destroyLayout: function destroyLayout() {
-                this.logger.info('Destroy Layout', this.layout);
-                delete this.layout;
-            },
+        /**
+         * Destroy layout
+         * @memberOf PageLayout
+         */
+        destroyLayout: function destroyLayout() {
+          this.logger.info('Destroy Layout', this.layout);
+          delete this.layout;
+        },
 
-            /**
-             * Get Layout
-             * @memberOf PageLayout
-             * @returns {Layout}
-             */
-            getLayout: function getLayout() {
-                return this.scope.layout;
-            },
+        /**
+         * Get Layout
+         * @memberOf PageLayout
+         * @returns {Layout}
+         */
+        getLayout: function getLayout() {
+          return this.scope.layout;
+        },
 
-            /**
-             * Update layout config
-             * @memberOf PageLayout
-             */
-            updateLayout: function updateLayout() {
+        /**
+         * Update layout config
+         * @memberOf PageLayout
+         */
+        updateLayout: function updateLayout() {
 
-                /**
-                 * Define scope
-                 * @type {Layout}
-                 */
-                var layout = this.scope.layout;
+          /**
+           * Define scope
+           * @type {Layout}
+           */
+          var layout = this.scope.layout;
 
-                layout.observer.publish(
-                    layout.eventmanager.eventList.updateMinCellWidth
-                );
+          layout.observer.publish(
+              layout.eventmanager.eventList.updateMinCellWidth
+          );
 
-                this.updateWidgetsConfig();
-            }
+          this.updateWidgetsConfig();
         }
-    );
+      }
+  );
 });

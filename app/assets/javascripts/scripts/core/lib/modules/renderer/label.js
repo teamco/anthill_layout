@@ -4,47 +4,47 @@
 
 define(function defineLabelRenderer() {
 
+  /**
+   * Define LabelRenderer
+   * @class LabelRenderer
+   * @constructor
+   */
+  var LabelRenderer = function LabelRenderer() {
+  };
+
+  return LabelRenderer.extend('LabelRenderer', {
+
     /**
-     * Define LabelRenderer
-     * @class LabelRenderer
-     * @constructor
+     * Render label
+     * @memberOf LabelRenderer
+     * @param {*|string} uuid
+     * @param {string} text
+     * @param {*|string} [type]
+     * @param {boolean} [visible]
+     * @returns {*|jQuery}
      */
-    var LabelRenderer = function LabelRenderer() {
-    };
+    renderLabel: function renderLabel(uuid, text, type, visible) {
 
-    return LabelRenderer.extend('LabelRenderer', {
+      /**
+       * Parse Html
+       * @type {Array}
+       */
+      var html = $.parseHTML(text) || [''];
 
-        /**
-         * Render label
-         * @memberOf LabelRenderer
-         * @param {*|string} uuid
-         * @param {string} text
-         * @param {*|string} [type]
-         * @param {boolean} [visible]
-         * @returns {*|jQuery}
-         */
-        renderLabel: function renderLabel(uuid, text, type, visible) {
+      html = html.length ? html : [''];
 
-            /**
-             * Parse Html
-             * @type {Array}
-             */
-            var html = $.parseHTML(text) || [''];
+      var title = html[html.length - 1].data || '';
 
-            html = html.length ? html : [''];
+      var $label = $('<span />').attr({
+        id: uuid,
+        title: title.toUpperCase()
+      }).addClass(type + ' input-group-addon').html(text);
 
-            var title = html[html.length - 1].data || '';
+      if (!visible) {
+        $label.hide();
+      }
 
-            var $label = $('<span />').attr({
-                id: uuid,
-                title: title.toUpperCase()
-            }).addClass(type + ' input-group-addon').html(text);
-
-            if (!visible) {
-                $label.hide();
-            }
-
-            return $label;
-        }
-    });
+      return $label;
+    }
+  });
 });

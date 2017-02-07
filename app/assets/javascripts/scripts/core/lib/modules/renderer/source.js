@@ -4,54 +4,55 @@
 
 define(function defineSourceRenderer() {
 
+  /**
+   * Define SourceRenderer
+   * @class SourceRenderer
+   * @extends AntHill
+   * @constructor
+   */
+  var SourceRenderer = function SourceRenderer() {
+  };
+
+  return SourceRenderer.extend('SourceRenderer', {
+
     /**
-     * Define SourceRenderer
-     * @class SourceRenderer
+     * Render source
+     * @memberOf SourceRenderer
      * @extends AntHill
-     * @constructor
+     * @extends BaseElement
+     * @param {string} src
+     * @param {string} type
+     * @param {{monitor, [visible]: boolean}} [opts]
+     * @returns {*|jQuery}
      */
-    var SourceRenderer = function SourceRenderer() {
-    };
+    renderSource: function renderSource(src, type, opts) {
 
-    return SourceRenderer.extend('SourceRenderer', {
+      var $source = $(
+          '<div class="source"><pre><code class="hljs"></code></pre></div>'),
+          $code = $source.find('code');
 
-        /**
-         * Render source
-         * @memberOf SourceRenderer
-         * @extends AntHill
-         * @extends BaseElement
-         * @param {string} src
-         * @param {string} type
-         * @param {{monitor, [visible]: boolean}} [opts]
-         * @returns {*|jQuery}
-         */
-        renderSource: function renderSource(src, type, opts) {
+      try {
+        require([
+          'lib/packages/highlight/vkbeautify',
+          'lib/packages/highlight/highlight.pack'
+        ], function () {
+          $code.text(vkbeautify.xml(src));
+          hljs.highlightBlock($code.get(0));
+        });
 
-            var $source = $('<div class="source"><pre><code class="hljs"></code></pre></div>'),
-                $code = $source.find('code');
+        this.createLinkCss({
+          href: '../../assets/scripts/core/lib/packages/highlight/styles/agate.css'
+        });
 
-            try {
-                require([
-                    'lib/packages/highlight/vkbeautify',
-                    'lib/packages/highlight/highlight.pack'
-                ], function () {
-                    $code.text(vkbeautify.xml(src));
-                    hljs.highlightBlock($code.get(0));
-                });
+        this.initMonitor($source, opts.monitor);
+        this.checkVisibility($source, opts.visible);
 
-                this.createLinkCss({
-                    href: '../../assets/scripts/core/lib/packages/highlight/styles/agate.css'
-                });
+      } catch (e) {
 
-                this.initMonitor($source, opts.monitor);
-                this.checkVisibility($source, opts.visible);
+        this.view.scope.logger.warn('Unable to render source', e);
+      }
 
-            } catch(e) {
-
-                this.view.scope.logger.warn('Unable to render source', e);
-            }
-
-            return $source;
-        }
-    });
+      return $source;
+    }
+  });
 });

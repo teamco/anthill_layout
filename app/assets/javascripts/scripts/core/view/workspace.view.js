@@ -7,70 +7,71 @@
  */
 
 define([
-    'modules/View',
-    'element/workspace/workspace.element',
-    'element/header.element',
-    'element/footer.element',
-    'element/workspace/workspace.content.element'
-], function defineWorkspaceView(BaseView, WorkspaceElement, Header, Footer, WorkspaceContentElement) {
+  'modules/View',
+  'element/workspace/workspace.element',
+  'element/header.element',
+  'element/footer.element',
+  'element/workspace/workspace.content.element'
+], function defineWorkspaceView(BaseView, WorkspaceElement, Header, Footer,
+    WorkspaceContentElement) {
+
+  /**
+   * Define WorkspaceView
+   * @class WorkspaceView
+   * @extends BaseView
+   * @constructor
+   */
+  var WorkspaceView = function WorkspaceView() {
+  };
+
+  return WorkspaceView.extend('WorkspaceView', {
 
     /**
-     * Define WorkspaceView
-     * @class WorkspaceView
-     * @extends BaseView
-     * @constructor
+     * Render workspace
+     * @memberOf WorkspaceView
      */
-    var WorkspaceView = function WorkspaceView() {
-    };
+    renderWorkspace: function renderWorkspace() {
 
-    return WorkspaceView.extend('WorkspaceView', {
+      /**
+       * Define $workspace
+       * @type {WorkspaceElement}
+       */
+      this.elements.$workspace = new WorkspaceElement(this, {
+        $container: this.getContainerSelector()
+      });
 
-        /**
-         * Render workspace
-         * @memberOf WorkspaceView
-         */
-        renderWorkspace: function renderWorkspace() {
+      this.header(Header, this.get$item());
+      this.pages();
+      this.footer(Footer, this.get$item());
+    },
 
-            /**
-             * Define $workspace
-             * @type {WorkspaceElement}
-             */
-            this.elements.$workspace = new WorkspaceElement(this, {
-                $container: this.getContainerSelector()
-            });
+    /**
+     * Render pages
+     * @memberOf WorkspaceView
+     */
+    pages: function pages() {
 
-            this.header(Header, this.get$item());
-            this.pages();
-            this.footer(Footer, this.get$item());
-        },
+      /**
+       * Define $pages
+       * @type {WorkspaceContentElement}
+       */
+      this.elements.$pages = new WorkspaceContentElement(this, {
+        $container: this.get$item().$,
+        style: 'pages'
+      });
+    },
 
-        /**
-         * Render pages
-         * @memberOf WorkspaceView
-         */
-        pages: function pages() {
-
-            /**
-             * Define $pages
-             * @type {WorkspaceContentElement}
-             */
-            this.elements.$pages = new WorkspaceContentElement(this, {
-                $container: this.get$item().$,
-                style: 'pages'
-            });
-        },
-
-        /**
-         * Render workspace
-         * @memberOf WorkspaceView
-         * @param silent
-         */
-        render: function render(silent) {
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                silent
-            );
-        }
-    }, BaseView.prototype)
+    /**
+     * Render workspace
+     * @memberOf WorkspaceView
+     * @param silent
+     */
+    render: function render(silent) {
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          silent
+      );
+    }
+  }, BaseView.prototype)
 
 });

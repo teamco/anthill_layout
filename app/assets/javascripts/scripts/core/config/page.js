@@ -18,8 +18,8 @@ define(
       'permission/page.permission'
     ],
     function definePage(AntHill, MVC, API, Controller, Model, View,
-                        EventManager,
-                        Permission) {
+        EventManager,
+        Permission) {
 
       /**
        * Define Page

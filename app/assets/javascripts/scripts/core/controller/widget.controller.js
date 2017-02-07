@@ -8,16 +8,16 @@
 
 define(
     [
-        'config/anthill',
-        'modules/Controller',
-        'controller/widget/widget.interactions',
-        'controller/widget/widget.maximize',
-        'controller/widget/widget.zoom',
-        'controller/widget/widget.stretch',
-        'controller/widget/widget.stick',
-        'controller/widget/widget.layer',
-        'controller/widget/widget.content',
-        'controller/widget/widget.parallax'
+      'config/anthill',
+      'modules/Controller',
+      'controller/widget/widget.interactions',
+      'controller/widget/widget.maximize',
+      'controller/widget/widget.zoom',
+      'controller/widget/widget.stretch',
+      'controller/widget/widget.stick',
+      'controller/widget/widget.layer',
+      'controller/widget/widget.content',
+      'controller/widget/widget.parallax'
     ],
 
     /**
@@ -34,294 +34,299 @@ define(
      * @param {WidgetZoom} WidgetZoom
      * @returns {*}
      */
-    function defineWidgetController(AntHill, BaseController, WidgetInteractions, WidgetMaximize, WidgetZoom, WidgetStretch, WidgetStick, WidgetLayer, WidgetContent, WidgetParallax) {
+    function defineWidgetController(AntHill, BaseController, WidgetInteractions,
+        WidgetMaximize, WidgetZoom, WidgetStretch, WidgetStick, WidgetLayer,
+        WidgetContent, WidgetParallax) {
 
-        /**
-         * Define widget controller
-         * @class WidgetController
-         * @extends AntHill
-         * @extends BaseController
-         * @extends WidgetInteractions
-         * @extends WidgetContent
-         * @extends WidgetStretch
-         * @extends WidgetStick
-         * @extends WidgetLayer
-         * @extends WidgetMaximize
-         * @extends WidgetZoom
-         * @constructor
-         */
-        var WidgetController = function WidgetController() {
-        };
+      /**
+       * Define widget controller
+       * @class WidgetController
+       * @extends AntHill
+       * @extends BaseController
+       * @extends WidgetInteractions
+       * @extends WidgetContent
+       * @extends WidgetStretch
+       * @extends WidgetStick
+       * @extends WidgetLayer
+       * @extends WidgetMaximize
+       * @extends WidgetZoom
+       * @constructor
+       */
+      var WidgetController = function WidgetController() {
+      };
 
-        return WidgetController.extend('WidgetController', {
+      return WidgetController.extend('WidgetController', {
 
-                /**
-                 * Get config
-                 * @memberOf WidgetController
-                 * @param {string} type
-                 * @returns {*|{
+            /**
+             * Get config
+             * @memberOf WidgetController
+             * @param {string} type
+             * @returns {*|{
                  *      animate: Boolean,
                  *      organize: Boolean,
                  *      [callback]: Function,
                  *      $source
                  * }}
-                 */
-                getInteractionConfig: function getInteractionConfig(type) {
+             */
+            getInteractionConfig: function getInteractionConfig(type) {
 
-                    /**
-                     * Init config
-                     * @type {*}
-                     */
-                    var config = {};
+              /**
+               * Init config
+               * @type {*}
+               */
+              var config = {};
 
-                    switch (type) {
+              switch (type) {
 
-                        case 'ongoing':
+                case 'ongoing':
 
-                            /**
-                             * Set config
-                             * @type {{
+                  /**
+                   * Set config
+                   * @type {{
                              *      animate: boolean,
                              *      organize: boolean,
                              *      $source: ($|*|Element.$)
                              * }}
-                             */
-                            config = {
-                                animate: false,
-                                organize: true,
-                                $source: this.scope.wireframe.$
-                            };
-                            break;
+                   */
+                  config = {
+                    animate: false,
+                    organize: true,
+                    $source: this.scope.wireframe.$
+                  };
+                  break;
 
-                        case 'stop':
+                case 'stop':
 
-                            /**
-                             * Set config
-                             * @type {{
+                  /**
+                   * Set config
+                   * @type {{
                              *      animate: boolean,
                              *      organize: boolean,
                              *      $source: ($|*|Element.$)
                              * }}
-                             */
-                            config = {
-                                animate: true,
-                                organize: true,
-                                $source: this.scope.view.get$item().$
-                            };
-                            break;
-                    }
+                   */
+                  config = {
+                    animate: true,
+                    organize: true,
+                    $source: this.scope.view.get$item().$
+                  };
+                  break;
+              }
 
-                    return config;
-                },
+              return config;
+            },
 
-                /**
-                 * Get widget interaction prefs
-                 * @memberOf WidgetController
-                 * @returns {WidgetModel.interactions}
-                 */
-                getInteractionPreferences: function getInteractionPreferences() {
-                    return this.model.interactions;
-                },
+            /**
+             * Get widget interaction prefs
+             * @memberOf WidgetController
+             * @returns {WidgetModel.interactions}
+             */
+            getInteractionPreferences: function getInteractionPreferences() {
+              return this.model.interactions;
+            },
 
-                /**
-                 * Get PageElement
-                 * @memberOf WidgetController
-                 * @returns {PageElement}
-                 */
-                get$page: function get$page() {
-                    return this.getContainment().view.elements.$page;
-                },
+            /**
+             * Get PageElement
+             * @memberOf WidgetController
+             * @returns {PageElement}
+             */
+            get$page: function get$page() {
+              return this.getContainment().view.elements.$page;
+            },
 
-                /**
-                 * Get page layout
-                 * @memberOf WidgetController
-                 * @returns {Layout}
-                 */
-                getPageLayout: function getPageLayout() {
-                    return this.getContainment().controller.getLayout();
-                },
+            /**
+             * Get page layout
+             * @memberOf WidgetController
+             * @returns {Layout}
+             */
+            getPageLayout: function getPageLayout() {
+              return this.getContainment().controller.getLayout();
+            },
 
-                /**
-                 * Get merged local padding from widget dom
-                 * @memberOf WidgetController
-                 * @returns {{top: number, right: number, bottom: number, left: number}|*}
-                 */
-                getLocalPadding: function getLocalPadding() {
-                    var padding = {},
-                        global = this.getGlobalPadding(),
-                        local = this.base.define(this.scope.dom.padding, {}, true);
+            /**
+             * Get merged local padding from widget dom
+             * @memberOf WidgetController
+             * @returns {{top: number, right: number, bottom: number, left:
+             *     number}|*}
+             */
+            getLocalPadding: function getLocalPadding() {
+              var padding = {},
+                  global = this.getGlobalPadding(),
+                  local = this.base.define(this.scope.dom.padding, {}, true);
 
-                    this.scope.logger.debug(
-                        'Merge local padding',
-                        $.extend(padding, global, local)
-                    );
+              this.scope.logger.debug(
+                  'Merge local padding',
+                  $.extend(padding, global, local)
+              );
 
-                    return padding;
-                },
+              return padding;
+            },
 
-                /**
-                 * Get global padding from layout config
-                 * @memberOf WidgetController
-                 * @returns {{top: number, right: number, bottom: number, left: number}}
-                 */
-                getGlobalPadding: function getGlobalPadding() {
+            /**
+             * Get global padding from layout config
+             * @memberOf WidgetController
+             * @returns {{top: number, right: number, bottom: number, left:
+             *     number}}
+             */
+            getGlobalPadding: function getGlobalPadding() {
 
-                    /**
-                     * Get layout
-                     * @type {Layout}
-                     */
-                    var layout = this.getPageLayout();
+              /**
+               * Get layout
+               * @type {Layout}
+               */
+              var layout = this.getPageLayout();
 
-                    /**
-                     * Get padding
-                     * @type {{top: number, right: number, bottom: number, left: number}|*}
-                     */
-                    var padding = layout.config.grid.padding;
+              /**
+               * Get padding
+               * @type {{top: number, right: number, bottom: number, left:
+               *     number}|*}
+               */
+              var padding = layout.config.grid.padding;
 
-                    this.scope.logger.debug('Get global padding', padding);
+              this.scope.logger.debug('Get global padding', padding);
 
-                    return padding;
-                },
+              return padding;
+            },
 
-                /**
-                 * Define custom class name
-                 * @memberOf WidgetController
-                 * @param {string} name
-                 * @param {string} previous
-                 */
-                customClassName: function customClassName(name, previous) {
+            /**
+             * Define custom class name
+             * @memberOf WidgetController
+             * @param {string} name
+             * @param {string} previous
+             */
+            customClassName: function customClassName(name, previous) {
 
-                    /**
-                     * Get $widget
-                     * @type {WidgetElement}
-                     */
-                    var $widget = this.view.get$item();
+              /**
+               * Get $widget
+               * @type {WidgetElement}
+               */
+              var $widget = this.view.get$item();
 
-                    $widget.$.removeClass(previous);
+              $widget.$.removeClass(previous);
 
-                    if (name && name.length > 0) {
-                        $widget.$.addClass(name);
-                    }
-                },
+              if (name && name.length > 0) {
+                $widget.$.addClass(name);
+              }
+            },
 
-                /**
-                 * Toggle freeze
-                 * @memberOf WidgetController
-                 * @param {boolean} freeze
-                 */
-                toggleFreeze: function toggleFreeze(freeze) {
+            /**
+             * Toggle freeze
+             * @memberOf WidgetController
+             * @param {boolean} freeze
+             */
+            toggleFreeze: function toggleFreeze(freeze) {
 
-                    /**
-                     * Get $widget
-                     * @type {WidgetElement}
-                     */
-                    var $widget = this.view.get$item();
+              /**
+               * Get $widget
+               * @type {WidgetElement}
+               */
+              var $widget = this.view.get$item();
 
-                    $widget.freezePosition(freeze);
-                },
+              $widget.freezePosition(freeze);
+            },
 
-                /**
-                 * Behavior mode
-                 * @memberOf WidgetController
-                 * @param {{
+            /**
+             * Behavior mode
+             * @memberOf WidgetController
+             * @param {{
                  *      animate: Boolean,
                  *      [callback]: Function,
                  *      [type]: String
                  *      $source
                  * }} opts
-                 * @param {String} type
-                 */
-                behaviorMode: function behaviorMode(opts, type) {
+             * @param {String} type
+             */
+            behaviorMode: function behaviorMode(opts, type) {
 
-                    /**
-                     * Check if mod
-                     * @type {string}
-                     */
-                    var mode = this.isMode();
+              /**
+               * Check if mod
+               * @type {string}
+               */
+              var mode = this.isMode();
 
-                    /**
-                     * Set event type
-                     * @type {String}
-                     */
-                    opts.type = type;
+              /**
+               * Set event type
+               * @type {String}
+               */
+              opts.type = type;
 
-                    if (mode && _.isFunction(this[mode + 'Mode'])) {
-                        this[mode + 'Mode'](
-                            opts,
-                            mode,
-                            this.getPageLayout().controller.getBehavior()
-                        );
-                    }
-                },
-
-                /**
-                 * Define snap2grid mode
-                 * @memberOf WidgetController
-                 * @param opts
-                 * @param mode
-                 * @param behavior
-                 */
-                jqUIGridMode: function jqUIGridMode(opts, mode, behavior) {
-                    this.scope.wireframe.hide();
-                    this.scope.map.sticker(opts, mode, behavior);
-                },
-
-                /**
-                 * Define free style mode
-                 * @memberOf WidgetController
-                 * @param opts
-                 * @param mode
-                 * @param behavior
-                 */
-                freeStyleMode: function freeStyleMode(opts, mode, behavior) {
-                    // TODO
-                },
-
-                /**
-                 * Define snap2grid mode
-                 * @memberOf WidgetController
-                 * @param opts
-                 * @param mode
-                 * @param behavior
-                 */
-                snap2gridMode: function snap2gridMode(opts, mode, behavior) {
-                    this.scope.map.sticker(opts, mode, behavior);
-                },
-
-                /**
-                 * Check behavior mode
-                 * @memberOf WidgetController
-                 * @returns {string|undefined}
-                 */
-                isMode: function isMode() {
-
-                    var modes = this.getContainment().LAYOUT_MODES,
-                        layout = this.getPageLayout(),
-                        mode = layout.config.mode;
-
-                    return modes[mode];
-                },
-
-                /**
-                 * Save widget DOM
-                 * @memberOf WidgetController
-                 */
-                saveDom: function saveDom() {
-                    this.logger.debug(this.i18n.t('save.widget'));
-                    this.model.defineDOM();
-                }
+              if (mode && _.isFunction(this[mode + 'Mode'])) {
+                this[mode + 'Mode'](
+                    opts,
+                    mode,
+                    this.getPageLayout().controller.getBehavior()
+                );
+              }
             },
 
-            AntHill.prototype,
-            BaseController.prototype,
-            WidgetContent.prototype,
-            WidgetParallax.prototype,
-            WidgetMaximize.prototype,
-            WidgetZoom.prototype,
-            WidgetStretch.prototype,
-            WidgetStick.prototype,
-            WidgetLayer.prototype,
-            WidgetInteractions.prototype
-        );
+            /**
+             * Define snap2grid mode
+             * @memberOf WidgetController
+             * @param opts
+             * @param mode
+             * @param behavior
+             */
+            jqUIGridMode: function jqUIGridMode(opts, mode, behavior) {
+              this.scope.wireframe.hide();
+              this.scope.map.sticker(opts, mode, behavior);
+            },
+
+            /**
+             * Define free style mode
+             * @memberOf WidgetController
+             * @param opts
+             * @param mode
+             * @param behavior
+             */
+            freeStyleMode: function freeStyleMode(opts, mode, behavior) {
+              // TODO
+            },
+
+            /**
+             * Define snap2grid mode
+             * @memberOf WidgetController
+             * @param opts
+             * @param mode
+             * @param behavior
+             */
+            snap2gridMode: function snap2gridMode(opts, mode, behavior) {
+              this.scope.map.sticker(opts, mode, behavior);
+            },
+
+            /**
+             * Check behavior mode
+             * @memberOf WidgetController
+             * @returns {string|undefined}
+             */
+            isMode: function isMode() {
+
+              var modes = this.getContainment().LAYOUT_MODES,
+                  layout = this.getPageLayout(),
+                  mode = layout.config.mode;
+
+              return modes[mode];
+            },
+
+            /**
+             * Save widget DOM
+             * @memberOf WidgetController
+             */
+            saveDom: function saveDom() {
+              this.logger.debug(this.i18n.t('save.widget'));
+              this.model.defineDOM();
+            }
+          },
+
+          AntHill.prototype,
+          BaseController.prototype,
+          WidgetContent.prototype,
+          WidgetParallax.prototype,
+          WidgetMaximize.prototype,
+          WidgetZoom.prototype,
+          WidgetStretch.prototype,
+          WidgetStick.prototype,
+          WidgetLayer.prototype,
+          WidgetInteractions.prototype
+      );
     }
 );

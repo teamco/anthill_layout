@@ -7,116 +7,119 @@
  */
 
 define([
-    'modules/Element'
+  'modules/Element'
 ], function definePageElement(BaseElement) {
 
+  /**
+   * Define page element
+   * @param view
+   * @param opts
+   * @returns {*}
+   * @constructor
+   * @class PageElement
+   * @extends BaseElement
+   */
+  var PageElement = function PageElement(view, opts) {
+    return this._config(view, opts, $('<li />')).build({
+      $container: opts.$container
+    });
+  };
+
+  return PageElement.extend('PageElement', {
+
     /**
-     * Define page element
-     * @param view
-     * @param opts
-     * @returns {*}
-     * @constructor
-     * @class PageElement
-     * @extends BaseElement
+     * Set page padding
+     * @param padding
+     * @memberOf PageElement
      */
-    var PageElement = function PageElement(view, opts) {
-        return this._config(view, opts, $('<li />')).build({
-            $container: opts.$container
-        });
-    };
+    setPadding: function setPadding(padding) {
 
-    return PageElement.extend('PageElement', {
+      this.view.elements.$widgets.$.css({
+        paddingTop: padding.top,
+        paddingRight: padding.right,
+        paddingBottom: padding.bottom,
+        paddingLeft: padding.left
+      });
+    },
 
-        /**
-         * Set page padding
-         * @param padding
-         * @memberOf PageElement
-         */
-        setPadding: function setPadding(padding) {
+    /**
+     * Define height
+     * @memberOf PageElement
+     */
+    updateDimensions: function updateDimensions() {
 
-            this.view.elements.$widgets.$.css({
-                paddingTop: padding.top,
-                paddingRight: padding.right,
-                paddingBottom: padding.bottom,
-                paddingLeft: padding.left
-            });
-        },
+      /**
+       * Fetch page
+       * @type {Page}
+       */
+      var scope = this.view.scope;
 
-        /**
-         * Define height
-         * @memberOf PageElement
-         */
-        updateDimensions: function updateDimensions() {
+      /**
+       * Get widget
+       * @type {Widget}
+       */
+      var widget = scope.model.getCurrentItem();
 
-            /**
-             * Fetch page
-             * @type {Page}
-             */
-            var scope = this.view.scope;
+      if (!widget.view) {
+        scope.logger.debug(
+            'Unable to set page height: Page without items (default 100%)');
+        return false;
+      }
 
-            /**
-             * Get widget
-             * @type {Widget}
-             */
-            var widget = scope.model.getCurrentItem();
+      if (!widget.view.get$item()) {
+        scope.logger.debug(
+            'Unable to set page height: Initial state (default 100%)');
+        return false;
+      }
 
-            if (!widget.view) {
-                scope.logger.debug('Unable to set page height: Page without items (default 100%)');
-                return false;
-            }
+      /**
+       * Calculate last occupied row
+       * @type {*|number}
+       */
+      var lastOccupiedRow = widget.map.getLastOccupiedRow();
 
-            if (!widget.view.get$item()) {
-                scope.logger.debug('Unable to set page height: Initial state (default 100%)');
-                return false;
-            }
+      /**
+       * Get layout
+       * @type {*|Layout}
+       */
+      var layout = scope.controller.getLayout();
 
-            /**
-             * Calculate last occupied row
-             * @type {*|number}
-             */
-            var lastOccupiedRow = widget.map.getLastOccupiedRow();
+      var height = lastOccupiedRow * layout.controller.minCellWidth() +
+          (lastOccupiedRow + 1) * layout.config.grid.margin;
 
-            /**
-             * Get layout
-             * @type {*|Layout}
-             */
-            var layout = scope.controller.getLayout();
+      var header = this.view.elements.$header,
+          footer = this.view.elements.$footer,
+          $container = this.getRootContainer();
 
-            var height = lastOccupiedRow * layout.controller.minCellWidth() +
-                (lastOccupiedRow + 1) * layout.config.grid.margin;
+      var headerHeight = header.$ ? header.$.height() : 0,
+          footerHeight = footer.$ ? footer.$.height() : 0,
+          outerHeight = headerHeight + footerHeight;
 
-            var header = this.view.elements.$header,
-                footer = this.view.elements.$footer,
-                $container = this.getRootContainer();
+      height = height ? height : $container.height();
 
-            var headerHeight = header.$ ? header.$.height() : 0,
-                footerHeight = footer.$ ? footer.$.height() : 0,
-                outerHeight = headerHeight + footerHeight;
+      if (height < $container.height()) {
+        height = $container.height();
+      }
 
-            height = height ? height : $container.height();
+      var pageScrollHeight = parseInt(
+              scope.model.getConfig('preferences').pageScrollHeight, 10) || 0,
+          delta = height + outerHeight;
 
-            if (height < $container.height()) {
-                height = $container.height();
-            }
+      if (pageScrollHeight > delta) {
+        delta += (pageScrollHeight - delta);
+      }
 
-            var pageScrollHeight = parseInt(scope.model.getConfig('preferences').pageScrollHeight, 10) || 0,
-                delta = height + outerHeight;
+      this.setHeight(delta);
+    },
 
-            if (pageScrollHeight > delta) {
-                delta += (pageScrollHeight - delta);
-            }
+    /**
+     * Define page visibility
+     * @memberOf PageElement
+     * @param {boolean} visible
+     */
+    setVisibility: function setVisibility(visible) {
+      this.$[(visible ? 'add' : 'remove') + 'Class']('current-page');
+    }
 
-            this.setHeight(delta);
-        },
-
-        /**
-         * Define page visibility
-         * @memberOf PageElement
-         * @param {boolean} visible
-         */
-        setVisibility: function setVisibility(visible) {
-            this.$[(visible ? 'add' : 'remove') + 'Class']('current-page');
-        }
-
-    }, BaseElement.prototype);
+  }, BaseElement.prototype);
 });

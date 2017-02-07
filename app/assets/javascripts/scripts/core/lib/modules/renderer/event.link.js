@@ -2,100 +2,101 @@
  * Created by teamco on 7/10/14.
  */
 
-define(function defineEventLinkRenderer(){
+define(function defineEventLinkRenderer() {
+
+  /**
+   * Define EventLinkRenderer
+   * @class EventLinkRenderer
+   * @extends LabelRenderer
+   * @constructor
+   */
+  var EventLinkRenderer = function EventLinkRenderer() {
+  };
+
+  return EventLinkRenderer.extend('EventLinkRenderer', {
 
     /**
-     * Define EventLinkRenderer
-     * @class EventLinkRenderer
-     * @extends LabelRenderer
-     * @constructor
+     * Render link event
+     * @memberOf EventLinkRenderer
+     * @param opts
+     * @returns {*|jQuery}
      */
-    var EventLinkRenderer = function EventLinkRenderer(){
-    };
+    renderEventLink: function renderEventLink(opts) {
 
-    return EventLinkRenderer.extend('EventLinkRenderer', {
+      /**
+       * Create UUID
+       * @type {String}
+       */
+      var uuid = this.base.lib.generator.UUID() + '-event',
+          checked = !!opts.checked;
 
-        /**
-         * Render link event
-         * @memberOf EventLinkRenderer
-         * @param opts
-         * @returns {*|jQuery}
-         */
-        renderEventLink: function renderEventLink(opts) {
+      var $input = $('<input />').attr({
+        name: opts.group,
+        type: 'radio',
+        checked: checked
+      });
 
-            /**
-             * Create UUID
-             * @type {String}
-             */
-            var uuid = this.base.lib.generator.UUID() + '-event',
-                checked = !!opts.checked;
+      if (checked) {
+        $input.val(opts.name);
+      }
 
-            var $input = $('<input />').attr({
-                name: opts.group,
-                type: 'radio',
-                checked: checked
-            });
+      /**
+       * Define $link
+       * @type {*|jQuery}
+       */
+      var $link = $('<div />').attr({
+        rel: opts.name,
+        id: uuid,
+        title: opts.title
+      }).text(opts.title).
+          addClass(opts.name.toDash()).
+          append($input);
 
-            if (checked) {
-                $input.val(opts.name);
-            }
+      $input.prop(
+          'checked',
+          checked
+      );
 
-            /**
-             * Define $link
-             * @type {*|jQuery}
-             */
-            var $link = $('<div />').attr({
-                rel: opts.name,
-                id: uuid,
-                title: opts.title
-            }).text(opts.title).
-                addClass(opts.name.toDash()).
-                append($input);
+      /**
+       * Define monitor
+       * @type {{events: *, callback:
+       *     (function(this:EventLinkRenderer)|fBound)}}
+       */
+      opts.monitor = {
+        events: opts.events,
+        callback: function _onEventCallback(e) {
 
-            $input.prop(
-                'checked',
-                checked
-            );
+          e.preventDefault();
+          e.stopPropagation();
 
-            /**
-             * Define monitor
-             * @type {{events: *, callback: (function(this:EventLinkRenderer)|fBound)}}
-             */
-            opts.monitor = {
-                events: opts.events,
-                callback: function _onEventCallback(e) {
+          /**
+           * Define widget content
+           * @type {WidgetContent}
+           */
+          var content = this.view.scope;
 
-                    e.preventDefault();
-                    e.stopPropagation();
+          // Reset to default value
+          $('input:radio[name="' + opts.group + '"]').val('on');
 
-                    /**
-                     * Define widget content
-                     * @type {WidgetContent}
-                     */
-                    var content = this.view.scope;
+          // Set new value
+          $('input', $(e.target)).prop({
+            checked: true
+          }).val(opts.name);
 
-                    // Reset to default value
-                    $('input:radio[name="' + opts.group + '"]').val('on');
+          content.observer.publish(
+              content.eventmanager.eventList.executeOnWidgetEvent,
+              opts.name
+          );
 
-                    // Set new value
-                    $('input', $(e.target)).prop({
-                        checked: true
-                    }).val(opts.name);
+        }.bind(this)
+      };
 
-                    content.observer.publish(
-                        content.eventmanager.eventList.executeOnWidgetEvent,
-                        opts.name
-                    );
+      this.initMonitor($link, opts.monitor);
+      this.checkVisibility(
+          $link, this.base.defineBoolean(opts.visible, true, true)
+      );
 
-                }.bind(this)
-            };
-
-            this.initMonitor($link, opts.monitor);
-            this.checkVisibility(
-                $link, this.base.defineBoolean(opts.visible, true, true)
-            );
-
-            return $link;
-        }
-    });
+      return $link;
+    }
+  });
 });

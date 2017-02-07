@@ -3,59 +3,59 @@
  */
 
 define([
-    'modules/Element'
+  'modules/Element'
 ], function defineFilter(BaseElement) {
 
+  /**
+   * Define Filter Element
+   * @param view
+   * @param opts
+   * @returns {FilterElement}
+   * @constructor
+   * @class FilterElement
+   * @extends BaseElement
+   */
+  var FilterElement = function FilterElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    return this.renderData(
+        opts.callback,
+        opts.enter
+    );
+  };
+
+  return FilterElement.extend('FilterElement', {
+
     /**
-     * Define Filter Element
-     * @param view
-     * @param opts
+     * Render search
+     * @memberOf FilterElement
+     * @param {function} [callback]
+     * @param {boolean} [enter]
      * @returns {FilterElement}
-     * @constructor
-     * @class FilterElement
-     * @extends BaseElement
      */
-    var FilterElement = function FilterElement(view, opts) {
+    renderData: function renderData(callback, enter) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+      /**
+       * Define $filter
+       * @type {FilterRenderer}
+       */
+      this.$filter = this.renderFilter({
+        text: '',
+        name: 'filter',
+        placeholder: this.i18n.t('filter'),
+        visible: true,
+        callback: callback,
+        enter: enter
+      });
 
-        return this.renderData(
-            opts.callback,
-            opts.enter
-        );
-    };
+      this.$.append(this.$filter);
 
-    return FilterElement.extend('FilterElement', {
+      return this;
+    }
 
-        /**
-         * Render search
-         * @memberOf FilterElement
-         * @param {function} [callback]
-         * @param {boolean} [enter]
-         * @returns {FilterElement}
-         */
-        renderData: function renderData(callback, enter) {
-
-            /**
-             * Define $filter
-             * @type {FilterRenderer}
-             */
-            this.$filter = this.renderFilter({
-                text: '',
-                name: 'filter',
-                placeholder: this.i18n.t('filter'),
-                visible: true,
-                callback: callback,
-                enter: enter
-            });
-
-            this.$.append(this.$filter);
-
-            return this;
-        }
-
-    }, BaseElement.prototype);
+  }, BaseElement.prototype);
 });
