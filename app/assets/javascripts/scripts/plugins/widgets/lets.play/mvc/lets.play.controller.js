@@ -6,54 +6,38 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineLetsPlayController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define LetsPlay controller
+   * @class LetsPlayController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var LetsPlayController = function LetsPlayController() {
+  };
+
+  return LetsPlayController.extend('LetsPlayController', {
+
     /**
-     * Define LetsPlay controller
-     * @class LetsPlayController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf LetsPlayController
      */
-    var LetsPlayController = function LetsPlayController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
+      this.view.get$item().renderEmbeddedContent();
+    },
 
-    return LetsPlayController.extend('LetsPlayController', {
+    /**
+     * Add LetsPlay rule
+     * @memberOf LetsPlayController
+     * @param {Event} e
+     */
+    addLetsPlayRule: function addLetsPlayRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-        /**
-         * Set embedded content
-         * @memberOf LetsPlayController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
-            this.view.get$item().renderEmbeddedContent();
-        },
-
-        /**
-         * Add LetsPlay rule
-         * @memberOf LetsPlayController
-         * @param {Event} e
-         */
-        addLetsPlayRule: function addLetsPlayRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target);
-
-            /**
-             * Get scope
-             * @type {LetsPlay|{name: string}}
-             */
-            var scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

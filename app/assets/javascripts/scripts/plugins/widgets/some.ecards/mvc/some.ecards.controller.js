@@ -6,51 +6,40 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineSomeEcardsController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define someecards controller
+   * @class SomeEcardsController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var SomeEcardsController = function SomeEcardsController() {
+  };
+
+  return SomeEcardsController.extend('SomeEcardsController', {
+
     /**
-     * Define someecards controller
-     * @class SomeEcardsController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf SomeEcardsController
      */
-    var SomeEcardsController = function SomeEcardsController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
+      this.view.elements.$someecards.renderEmbeddedContent(
+          this.model.getPrefs('someecardsEmbedCode')
+      );
+    },
 
-    return SomeEcardsController.extend('SomeEcardsController', {
+    /**
+     * Add SomeEcards rule
+     * @memberOf SomeEcardsController
+     * @param {Event} e
+     */
+    addSomeEcardsRule: function addSomeEcardsRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-        /**
-         * Set embedded content
-         * @memberOf SomeEcardsController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
-            this.view.elements.$someecards.renderEmbeddedContent(
-                this.model.getPrefs('someecardsEmbedCode')
-            );
-        },
-
-        /**
-         * Add SomeEcards rule
-         * @memberOf SomeEcardsController
-         * @param {Event} e
-         */
-        addSomeEcardsRule: function addSomeEcardsRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

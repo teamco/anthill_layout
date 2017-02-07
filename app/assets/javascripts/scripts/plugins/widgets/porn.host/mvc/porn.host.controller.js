@@ -6,86 +6,75 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function definePornHostController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define pornhost controller
+   * @class PornHostController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var PornHostController = function PornHostController() {
+  };
+
+  return PornHostController.extend('PornHostController', {
+
     /**
-     * Define pornhost controller
-     * @class PornHostController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf PornHostController
      */
-    var PornHostController = function PornHostController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
 
-    return PornHostController.extend('PornHostController', {
+      /**
+       * Get url
+       * @type {string|*}
+       */
+      var url = this.model.getPrefs('pornhostEmbedCode'),
+          embed = this.controller.getEmbedCode(url);
 
-        /**
-         * Set embedded content
-         * @memberOf PornHostController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
+      if (embed) {
+        this.view.elements.$pornhost.renderEmbeddedContent(embed);
+      }
+    },
 
-            /**
-             * Get url
-             * @type {string|*}
-             */
-            var url = this.model.getPrefs('pornhostEmbedCode'),
-                embed = this.controller.getEmbedCode(url);
+    /**
+     * Validate pornhost
+     * @memberOf PornHostController
+     * @param {string} embed
+     * @return {string|boolean}
+     */
+    getEmbedCode: function getEmbedCode(embed) {
 
-            if (embed) {
-                this.view.elements.$pornhost.renderEmbeddedContent(embed);
-            }
-        },
+      if (!embed) {
+        this.scope.logger.debug('Initial state');
+        return false;
+      }
 
-        /**
-         * Validate pornhost
-         * @memberOf PornHostController
-         * @param {string} embed
-         * @return {string|boolean}
-         */
-        getEmbedCode: function getEmbedCode(embed) {
+      // Convert to string
+      embed += '';
 
-            if (!embed) {
-                this.scope.logger.debug('Initial state');
-                return false;
-            }
+      if (embed.match(/^<iframe/)) {
 
-            // Convert to string
-            embed += '';
+        return $(embed).attr('src');
 
-            if (embed.match(/^<iframe/)) {
+      } else {
 
-                return $(embed).attr('src');
+        this.scope.logger.warn('Invalid PornHost embed code');
+        return false;
+      }
+    },
 
-            } else {
+    /**
+     * Add PornHost rule
+     * @memberOf PornHostController
+     * @param {Event} e
+     */
+    addPornHostRule: function addPornHostRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-                this.scope.logger.warn('Invalid PornHost embed code');
-                return false;
-            }
-        },
-
-        /**
-         * Add PornHost rule
-         * @memberOf PornHostController
-         * @param {Event} e
-         */
-        addPornHostRule: function addPornHostRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

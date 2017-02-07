@@ -6,86 +6,75 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineMixcloudController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define mixcloud controller
+   * @class MixcloudController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var MixcloudController = function MixcloudController() {
+  };
+
+  return MixcloudController.extend('MixcloudController', {
+
     /**
-     * Define mixcloud controller
-     * @class MixcloudController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf MixcloudController
      */
-    var MixcloudController = function MixcloudController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
 
-    return MixcloudController.extend('MixcloudController', {
+      /**
+       * Get url
+       * @type {string|*}
+       */
+      var url = this.model.getPrefs('mixcloudEmbedCode'),
+          embed = this.controller.getEmbedCode(url);
 
-        /**
-         * Set embedded content
-         * @memberOf MixcloudController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
+      if (embed) {
+        this.view.elements.$mixcloud.renderEmbeddedContent(embed);
+      }
+    },
 
-            /**
-             * Get url
-             * @type {string|*}
-             */
-            var url = this.model.getPrefs('mixcloudEmbedCode'),
-                embed = this.controller.getEmbedCode(url);
+    /**
+     * Validate mixcloud
+     * @memberOf MixcloudController
+     * @param {string} embed
+     * @return {string|boolean}
+     */
+    getEmbedCode: function getEmbedCode(embed) {
 
-            if (embed) {
-                this.view.elements.$mixcloud.renderEmbeddedContent(embed);
-            }
-        },
+      if (!embed) {
+        this.scope.logger.debug('Initial state');
+        return false;
+      }
 
-        /**
-         * Validate mixcloud
-         * @memberOf MixcloudController
-         * @param {string} embed
-         * @return {string|boolean}
-         */
-        getEmbedCode: function getEmbedCode(embed) {
+      // Convert to string
+      embed += '';
 
-            if (!embed) {
-                this.scope.logger.debug('Initial state');
-                return false;
-            }
+      if (embed.match(/^<iframe/)) {
 
-            // Convert to string
-            embed += '';
+        return $(embed).attr('src');
 
-            if (embed.match(/^<iframe/)) {
+      } else {
 
-                return $(embed).attr('src');
+        this.scope.logger.warn('Invalid Mixcloud embed code');
+        return false;
+      }
+    },
 
-            } else {
+    /**
+     * Add Mixcloud rule
+     * @memberOf MixcloudController
+     * @param {Event} e
+     */
+    addMixcloudRule: function addMixcloudRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-                this.scope.logger.warn('Invalid Mixcloud embed code');
-                return false;
-            }
-        },
-
-        /**
-         * Add Mixcloud rule
-         * @memberOf MixcloudController
-         * @param {Event} e
-         */
-        addMixcloudRule: function addMixcloudRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

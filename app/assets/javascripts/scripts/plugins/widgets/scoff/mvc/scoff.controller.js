@@ -6,56 +6,40 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineScoffController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define Scoff controller
+   * @class ScoffController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var ScoffController = function ScoffController() {
+  };
+
+  return ScoffController.extend('ScoffController', {
+
     /**
-     * Define Scoff controller
-     * @class ScoffController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf ScoffController
      */
-    var ScoffController = function ScoffController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
+      this.view.get$item().renderEmbeddedContent(
+          this.model.getPrefs('scoffEmbedCode')
+      );
+    },
 
-    return ScoffController.extend('ScoffController', {
+    /**
+     * Add Scoff rule
+     * @memberOf ScoffController
+     * @param {Event} e
+     */
+    addScoffRule: function addScoffRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-        /**
-         * Set embedded content
-         * @memberOf ScoffController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
-            this.view.get$item().renderEmbeddedContent(
-                this.model.getPrefs('scoffEmbedCode')
-            );
-        },
-
-        /**
-         * Add Scoff rule
-         * @memberOf ScoffController
-         * @param {Event} e
-         */
-        addScoffRule: function addScoffRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target);
-
-            /**
-             * Get scope
-             * @type {Scoff|{name: string}}
-             */
-            var scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

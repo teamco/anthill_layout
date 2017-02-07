@@ -6,110 +6,94 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineUrlWidgetController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define UrlWidget controller
+   * @class UrlWidgetController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var UrlWidgetController = function UrlWidgetController() {
+  };
+
+  return UrlWidgetController.extend('UrlWidgetController', {
+
     /**
-     * Define UrlWidget controller
-     * @class UrlWidgetController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf UrlWidgetController
      */
-    var UrlWidgetController = function UrlWidgetController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
 
-    return UrlWidgetController.extend('UrlWidgetController', {
+      // Get prefs
+      var url = this.model.getPrefs('urlwidgetUrlResource'),
+          isIframe = this.model.getPrefs('urlwidgetShowInIframe');
 
-        /**
-         * Set embedded content
-         * @memberOf UrlWidgetController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
+      this.view.get$item().renderEmbeddedContent(
+          url, isIframe
+      );
+    },
 
-            // Get prefs
-            var url = this.model.getPrefs('urlwidgetUrlResource'),
-                isIframe = this.model.getPrefs('urlwidgetShowInIframe');
+    /**
+     * Fetch readability content
+     * @memberOf UrlWidgetController
+     * @param {string} url
+     */
+    fetchReadability: function fetchReadability(url) {
 
-            this.view.get$item().renderEmbeddedContent(
-                url, isIframe
-            );
-        },
+      /**
+       * Get scope
+       * @type {UrlWidget|string}
+       */
+      var scope = this.scope,
+          encodedUrl = scope.base.lib.string.base64.encode(url);
 
-        /**
-         * Fetch readability content
-         * @memberOf UrlWidgetController
-         * @param {string} url
-         */
-        fetchReadability: function fetchReadability(url) {
+      if (scope.cachedContent && scope.cachedContent.length) {
+        return scope.controller.getCachedContent();
+      }
 
-            /**
-             * Get scope
-             * @type {UrlWidget|string}
-             */
-            var scope = this.scope,
-                encodedUrl = scope.base.lib.string.base64.encode(url);
+      $.get(
+          '/readability_content/' + encodedUrl,
+          function _getCallback(content) {
+            scope.controller.setCachedContent(content);
+            scope.view.get$item().updateEmbeddedContent(content);
+          }
+      );
+    },
 
-            if (scope.cachedContent && scope.cachedContent.length) {
-                return scope.controller.getCachedContent();
-            }
+    /**
+     * Get cached content
+     * @memberOf UrlWidgetController
+     * @returns {string}
+     */
+    getCachedContent: function getCachedContent() {
+      return this.scope.cachedContent;
+    },
 
-            $.get(
-                '/readability_content/' + encodedUrl,
-                function _getCallback(content) {
-                    scope.controller.setCachedContent(content);
-                    scope.view.get$item().updateEmbeddedContent(content);
-                }
-            );
-        },
+    /**
+     * Update cached content
+     * @param {string} content
+     */
+    setCachedContent: function setCachedContent(content) {
 
-        /**
-         * Get cached content
-         * @memberOf UrlWidgetController
-         * @returns {string}
-         */
-        getCachedContent: function getCachedContent() {
-            return this.scope.cachedContent;
-        },
+      /**
+       * Update cached content
+       * @type {string}
+       */
+      this.scope.cachedContent = content;
+    },
 
-        /**
-         * Update cached content
-         * @param {string} content
-         */
-        setCachedContent: function setCachedContent(content) {
+    /**
+     * Add UrlWidget rule
+     * @memberOf UrlWidgetController
+     * @param {Event} e
+     */
+    addUrlWidgetRule: function addUrlWidgetRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-            /**
-             * Update cached content
-             * @type {string}
-             */
-            this.scope.cachedContent = content;
-        },
-
-        /**
-         * Add UrlWidget rule
-         * @memberOf UrlWidgetController
-         * @param {Event} e
-         */
-        addUrlWidgetRule: function addUrlWidgetRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target);
-
-            /**
-             * Get scope
-             * @type {UrlWidget|{name: string}}
-             */
-            var scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

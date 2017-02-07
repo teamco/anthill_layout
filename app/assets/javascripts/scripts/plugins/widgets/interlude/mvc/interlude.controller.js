@@ -6,56 +6,40 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineInterludeController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define Interlude controller
+   * @class InterludeController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var InterludeController = function InterludeController() {
+  };
+
+  return InterludeController.extend('InterludeController', {
+
     /**
-     * Define Interlude controller
-     * @class InterludeController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf InterludeController
      */
-    var InterludeController = function InterludeController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
+      this.view.get$item().renderEmbeddedContent(
+          this.model.getPrefs('interludeEmbedCode')
+      );
+    },
 
-    return InterludeController.extend('InterludeController', {
+    /**
+     * Add Interlude rule
+     * @memberOf InterludeController
+     * @param {Event} e
+     */
+    addInterludeRule: function addInterludeRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-        /**
-         * Set embedded content
-         * @memberOf InterludeController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
-            this.view.get$item().renderEmbeddedContent(
-                this.model.getPrefs('interludeEmbedCode')
-            );
-        },
-
-        /**
-         * Add Interlude rule
-         * @memberOf InterludeController
-         * @param {Event} e
-         */
-        addInterludeRule: function addInterludeRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target);
-
-            /**
-             * Get scope
-             * @type {Interlude|{name: string}}
-             */
-            var scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

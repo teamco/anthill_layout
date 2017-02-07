@@ -6,86 +6,75 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineMyWorldController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define myworld controller
+   * @class MyWorldController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var MyWorldController = function MyWorldController() {
+  };
+
+  return MyWorldController.extend('MyWorldController', {
+
     /**
-     * Define myworld controller
-     * @class MyWorldController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf MyWorldController
      */
-    var MyWorldController = function MyWorldController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
 
-    return MyWorldController.extend('MyWorldController', {
+      /**
+       * Get url
+       * @type {string|*}
+       */
+      var url = this.model.getPrefs('myworldEmbedCode'),
+          embed = this.controller.getEmbedCode(url);
 
-        /**
-         * Set embedded content
-         * @memberOf MyWorldController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
+      if (embed) {
+        this.view.elements.$myworld.renderEmbeddedContent(embed);
+      }
+    },
 
-            /**
-             * Get url
-             * @type {string|*}
-             */
-            var url = this.model.getPrefs('myworldEmbedCode'),
-                embed = this.controller.getEmbedCode(url);
+    /**
+     * Validate myworld
+     * @memberOf MyWorldController
+     * @param {string} embed
+     * @return {string|boolean}
+     */
+    getEmbedCode: function getEmbedCode(embed) {
 
-            if (embed) {
-                this.view.elements.$myworld.renderEmbeddedContent(embed);
-            }
-        },
+      if (!embed) {
+        this.scope.logger.debug('Initial state');
+        return false;
+      }
 
-        /**
-         * Validate myworld
-         * @memberOf MyWorldController
-         * @param {string} embed
-         * @return {string|boolean}
-         */
-        getEmbedCode: function getEmbedCode(embed) {
+      // Convert to string
+      embed += '';
 
-            if (!embed) {
-                this.scope.logger.debug('Initial state');
-                return false;
-            }
+      if (embed.match(/^<iframe/)) {
 
-            // Convert to string
-            embed += '';
+        return $(embed).attr('src');
 
-            if (embed.match(/^<iframe/)) {
+      } else {
 
-                return $(embed).attr('src');
+        this.scope.logger.warn('Invalid MyWorld embed code');
+        return false;
+      }
+    },
 
-            } else {
+    /**
+     * Add MyWorld rule
+     * @memberOf MyWorldController
+     * @param {Event} e
+     */
+    addMyWorldRule: function addMyWorldRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-                this.scope.logger.warn('Invalid MyWorld embed code');
-                return false;
-            }
-        },
-
-        /**
-         * Add MyWorld rule
-         * @memberOf MyWorldController
-         * @param {Event} e
-         */
-        addMyWorldRule: function addMyWorldRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

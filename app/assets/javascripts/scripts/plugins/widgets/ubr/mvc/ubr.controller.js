@@ -6,93 +6,82 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineUbrController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define ubr controller
+   * @class UbrController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var UbrController = function UbrController() {
+  };
+
+  return UbrController.extend('UbrController', {
+
     /**
-     * Define ubr controller
-     * @class UbrController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf UbrController
      */
-    var UbrController = function UbrController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
 
-    return UbrController.extend('UbrController', {
+      /**
+       * Get url
+       * @type {string|*}
+       */
+      var url = this.model.getPrefs('ubrEmbedCode'),
+          embed = this.controller.getEmbedCode(url);
 
-        /**
-         * Set embedded content
-         * @memberOf UbrController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
+      if (embed) {
+        this.view.elements.$ubr.renderEmbeddedContent(embed);
+      }
+    },
 
-            /**
-             * Get url
-             * @type {string|*}
-             */
-            var url = this.model.getPrefs('ubrEmbedCode'),
-                embed = this.controller.getEmbedCode(url);
+    /**
+     * Validate ubr
+     * @memberOf UbrController
+     * @param {string} url
+     * @return {string|boolean}
+     */
+    getEmbedCode: function getEmbedCode(url) {
 
-            if (embed) {
-                this.view.elements.$ubr.renderEmbeddedContent(embed);
-            }
-        },
+      if (!url) {
+        this.scope.logger.debug('Initial state');
+        return false;
+      }
 
-        /**
-         * Validate ubr
-         * @memberOf UbrController
-         * @param {string} url
-         * @return {string|boolean}
-         */
-        getEmbedCode: function getEmbedCode(url) {
+      var mask = this.model.getConfig('mask'),
+          regex = this.model.getConfig('regex');
 
-            if (!url) {
-                this.scope.logger.debug('Initial state');
-                return false;
-            }
+      if (!url.match(regex)) {
+        this.scope.logger.warn('Invalid ubr url');
+        return false;
+      }
 
-            var mask = this.model.getConfig('mask'),
-                regex = this.model.getConfig('regex');
-
-            if (!url.match(regex)) {
-                this.scope.logger.warn('Invalid ubr url');
-                return false;
-            }
-
-            if (url.match(/iframe/)) {
-
-                /**
-                 * Embed iframe fix
-                 * @type {string}
-                 */
-                url = $(url).attr('src');
-            }
-
-            return url.replace(regex, mask.replace(/\{videoId}/g, '$1')).
-                replace(/embed\/embed/, 'embed');
-        },
+      if (url.match(/iframe/)) {
 
         /**
-         * Add Ubr rule
-         * @memberOf UbrController
-         * @param {Event} e
+         * Embed iframe fix
+         * @type {string}
          */
-        addUbrRule: function addUbrRule(e) {
+        url = $(url).attr('src');
+      }
 
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
+      return url.replace(regex, mask.replace(/\{videoId}/g, '$1')).
+          replace(/embed\/embed/, 'embed');
+    },
 
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
+    /**
+     * Add Ubr rule
+     * @memberOf UbrController
+     * @param {Event} e
+     */
+    addUbrRule: function addUbrRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

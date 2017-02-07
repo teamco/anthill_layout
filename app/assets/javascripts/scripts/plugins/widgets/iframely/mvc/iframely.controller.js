@@ -6,57 +6,41 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineIframelyController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define Iframely controller
+   * @class IframelyController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var IframelyController = function IframelyController() {
+  };
+
+  return IframelyController.extend('IframelyController', {
+
     /**
-     * Define Iframely controller
-     * @class IframelyController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf IframelyController
      */
-    var IframelyController = function IframelyController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
+      this.view.get$item().renderEmbeddedContent(
+          this.model.getPrefs('iframelyApiKey'),
+          this.model.getPrefs('iframelyUrl')
+      );
+    },
 
-    return IframelyController.extend('IframelyController', {
+    /**
+     * Add Iframely rule
+     * @memberOf IframelyController
+     * @param {Event} e
+     */
+    addIframelyRule: function addIframelyRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-        /**
-         * Set embedded content
-         * @memberOf IframelyController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
-            this.view.get$item().renderEmbeddedContent(
-                this.model.getPrefs('iframelyApiKey'),
-                this.model.getPrefs('iframelyUrl')
-            );
-        },
-
-        /**
-         * Add Iframely rule
-         * @memberOf IframelyController
-         * @param {Event} e
-         */
-        addIframelyRule: function addIframelyRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target);
-
-            /**
-             * Get scope
-             * @type {Iframely|{name: string}}
-             */
-            var scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

@@ -6,86 +6,75 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineKickStarterController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define kickstarter controller
+   * @class KickStarterController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var KickStarterController = function KickStarterController() {
+  };
+
+  return KickStarterController.extend('KickStarterController', {
+
     /**
-     * Define kickstarter controller
-     * @class KickStarterController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf KickStarterController
      */
-    var KickStarterController = function KickStarterController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
 
-    return KickStarterController.extend('KickStarterController', {
+      /**
+       * Get url
+       * @type {string|*}
+       */
+      var url = this.model.getPrefs('kickstarterEmbedCode'),
+          embed = this.controller.getEmbedCode(url);
 
-        /**
-         * Set embedded content
-         * @memberOf KickStarterController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
+      if (embed) {
+        this.view.elements.$kickstarter.renderEmbeddedContent(embed);
+      }
+    },
 
-            /**
-             * Get url
-             * @type {string|*}
-             */
-            var url = this.model.getPrefs('kickstarterEmbedCode'),
-                embed = this.controller.getEmbedCode(url);
+    /**
+     * Validate kickstarter
+     * @memberOf KickStarterController
+     * @param {string} embed
+     * @return {string|boolean}
+     */
+    getEmbedCode: function getEmbedCode(embed) {
 
-            if (embed) {
-                this.view.elements.$kickstarter.renderEmbeddedContent(embed);
-            }
-        },
+      if (!embed) {
+        this.scope.logger.debug('Initial state');
+        return false;
+      }
 
-        /**
-         * Validate kickstarter
-         * @memberOf KickStarterController
-         * @param {string} embed
-         * @return {string|boolean}
-         */
-        getEmbedCode: function getEmbedCode(embed) {
+      // Convert to string
+      embed += '';
 
-            if (!embed) {
-                this.scope.logger.debug('Initial state');
-                return false;
-            }
+      if (embed.match(/^<iframe/)) {
 
-            // Convert to string
-            embed += '';
+        return $(embed).attr('src');
 
-            if (embed.match(/^<iframe/)) {
+      } else {
 
-                return $(embed).attr('src');
+        this.scope.logger.warn('Invalid KickStarter embed code');
+        return false;
+      }
+    },
 
-            } else {
+    /**
+     * Add KickStarter rule
+     * @memberOf KickStarterController
+     * @param {Event} e
+     */
+    addKickStarterRule: function addKickStarterRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-                this.scope.logger.warn('Invalid KickStarter embed code');
-                return false;
-            }
-        },
-
-        /**
-         * Add KickStarter rule
-         * @memberOf KickStarterController
-         * @param {Event} e
-         */
-        addKickStarterRule: function addKickStarterRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

@@ -6,56 +6,40 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineLiveAmchartsController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define LiveAmcharts controller
+   * @class LiveAmchartsController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var LiveAmchartsController = function LiveAmchartsController() {
+  };
+
+  return LiveAmchartsController.extend('LiveAmchartsController', {
+
     /**
-     * Define LiveAmcharts controller
-     * @class LiveAmchartsController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf LiveAmchartsController
      */
-    var LiveAmchartsController = function LiveAmchartsController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
+      this.view.get$item().renderEmbeddedContent(
+          this.model.getPrefs('liveamchartsEmbedCode')
+      );
+    },
 
-    return LiveAmchartsController.extend('LiveAmchartsController', {
+    /**
+     * Add LiveAmcharts rule
+     * @memberOf LiveAmchartsController
+     * @param {Event} e
+     */
+    addLiveAmchartsRule: function addLiveAmchartsRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-        /**
-         * Set embedded content
-         * @memberOf LiveAmchartsController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
-            this.view.get$item().renderEmbeddedContent(
-                this.model.getPrefs('liveamchartsEmbedCode')
-            );
-        },
-
-        /**
-         * Add LiveAmcharts rule
-         * @memberOf LiveAmchartsController
-         * @param {Event} e
-         */
-        addLiveAmchartsRule: function addLiveAmchartsRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target);
-
-            /**
-             * Get scope
-             * @type {LiveAmcharts|{name: string}}
-             */
-            var scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

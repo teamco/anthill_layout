@@ -6,56 +6,40 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineSportliveController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define Sportlive controller
+   * @class SportliveController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var SportliveController = function SportliveController() {
+  };
+
+  return SportliveController.extend('SportliveController', {
+
     /**
-     * Define Sportlive controller
-     * @class SportliveController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf SportliveController
      */
-    var SportliveController = function SportliveController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
+      this.view.get$item().renderEmbeddedContent(
+          this.model.getPrefs('sportliveEmbedCode')
+      );
+    },
 
-    return SportliveController.extend('SportliveController', {
+    /**
+     * Add Sportlive rule
+     * @memberOf SportliveController
+     * @param {Event} e
+     */
+    addSportliveRule: function addSportliveRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-        /**
-         * Set embedded content
-         * @memberOf SportliveController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
-            this.view.get$item().renderEmbeddedContent(
-                this.model.getPrefs('sportliveEmbedCode')
-            );
-        },
-
-        /**
-         * Add Sportlive rule
-         * @memberOf SportliveController
-         * @param {Event} e
-         */
-        addSportliveRule: function addSportliveRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target);
-
-            /**
-             * Get scope
-             * @type {Sportlive|{name: string}}
-             */
-            var scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

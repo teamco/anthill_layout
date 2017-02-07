@@ -6,86 +6,75 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function definePreziController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define prezi controller
+   * @class PreziController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var PreziController = function PreziController() {
+  };
+
+  return PreziController.extend('PreziController', {
+
     /**
-     * Define prezi controller
-     * @class PreziController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf PreziController
      */
-    var PreziController = function PreziController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
 
-    return PreziController.extend('PreziController', {
+      /**
+       * Get url
+       * @type {string|*}
+       */
+      var url = this.model.getPrefs('preziEmbedCode'),
+          embed = this.controller.getEmbedCode(url);
 
-        /**
-         * Set embedded content
-         * @memberOf PreziController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
+      if (embed) {
+        this.view.elements.$prezi.renderEmbeddedContent(embed);
+      }
+    },
 
-            /**
-             * Get url
-             * @type {string|*}
-             */
-            var url = this.model.getPrefs('preziEmbedCode'),
-                embed = this.controller.getEmbedCode(url);
+    /**
+     * Validate prezi
+     * @memberOf PreziController
+     * @param {string} embed
+     * @return {string|boolean}
+     */
+    getEmbedCode: function getEmbedCode(embed) {
 
-            if (embed) {
-                this.view.elements.$prezi.renderEmbeddedContent(embed);
-            }
-        },
+      if (!embed) {
+        this.scope.logger.debug('Initial state');
+        return false;
+      }
 
-        /**
-         * Validate prezi
-         * @memberOf PreziController
-         * @param {string} embed
-         * @return {string|boolean}
-         */
-        getEmbedCode: function getEmbedCode(embed) {
+      // Convert to string
+      embed += '';
 
-            if (!embed) {
-                this.scope.logger.debug('Initial state');
-                return false;
-            }
+      if (embed.match(/^<iframe/)) {
 
-            // Convert to string
-            embed += '';
+        return $(embed).attr('src');
 
-            if (embed.match(/^<iframe/)) {
+      } else {
 
-                return $(embed).attr('src');
+        this.scope.logger.warn('Invalid Prezi embed code');
+        return false;
+      }
+    },
 
-            } else {
+    /**
+     * Add Prezi rule
+     * @memberOf PreziController
+     * @param {Event} e
+     */
+    addPreziRule: function addPreziRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-                this.scope.logger.warn('Invalid Prezi embed code');
-                return false;
-            }
-        },
-
-        /**
-         * Add Prezi rule
-         * @memberOf PreziController
-         * @param {Event} e
-         */
-        addPreziRule: function addPreziRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

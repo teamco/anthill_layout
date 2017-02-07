@@ -6,86 +6,75 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineRevisionController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define revision controller
+   * @class RevisionController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var RevisionController = function RevisionController() {
+  };
+
+  return RevisionController.extend('RevisionController', {
+
     /**
-     * Define revision controller
-     * @class RevisionController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf RevisionController
      */
-    var RevisionController = function RevisionController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
 
-    return RevisionController.extend('RevisionController', {
+      /**
+       * Get url
+       * @type {string|*}
+       */
+      var url = this.model.getPrefs('revisionEmbedCode'),
+          embed = this.controller.getEmbedCode(url);
 
-        /**
-         * Set embedded content
-         * @memberOf RevisionController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
+      if (embed) {
+        this.view.elements.$revision.renderEmbeddedContent(embed);
+      }
+    },
 
-            /**
-             * Get url
-             * @type {string|*}
-             */
-            var url = this.model.getPrefs('revisionEmbedCode'),
-                embed = this.controller.getEmbedCode(url);
+    /**
+     * Validate revision
+     * @memberOf RevisionController
+     * @param {string} embed
+     * @return {string|boolean}
+     */
+    getEmbedCode: function getEmbedCode(embed) {
 
-            if (embed) {
-                this.view.elements.$revision.renderEmbeddedContent(embed);
-            }
-        },
+      if (!embed) {
+        this.scope.logger.debug('Initial state');
+        return false;
+      }
 
-        /**
-         * Validate revision
-         * @memberOf RevisionController
-         * @param {string} embed
-         * @return {string|boolean}
-         */
-        getEmbedCode: function getEmbedCode(embed) {
+      // Convert to string
+      embed += '';
 
-            if (!embed) {
-                this.scope.logger.debug('Initial state');
-                return false;
-            }
+      if (embed.match(/^<iframe/)) {
 
-            // Convert to string
-            embed += '';
+        return $(embed).attr('src');
 
-            if (embed.match(/^<iframe/)) {
+      } else {
 
-                return $(embed).attr('src');
+        this.scope.logger.warn('Invalid Revision embed code');
+        return false;
+      }
+    },
 
-            } else {
+    /**
+     * Add Revision rule
+     * @memberOf RevisionController
+     * @param {Event} e
+     */
+    addRevisionRule: function addRevisionRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-                this.scope.logger.warn('Invalid Revision embed code');
-                return false;
-            }
-        },
-
-        /**
-         * Add Revision rule
-         * @memberOf RevisionController
-         * @param {Event} e
-         */
-        addRevisionRule: function addRevisionRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

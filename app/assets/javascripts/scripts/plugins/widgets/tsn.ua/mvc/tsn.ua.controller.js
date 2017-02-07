@@ -6,86 +6,75 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineTsnUaController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define tsnua controller
+   * @class TsnUaController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var TsnUaController = function TsnUaController() {
+  };
+
+  return TsnUaController.extend('TsnUaController', {
+
     /**
-     * Define tsnua controller
-     * @class TsnUaController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf TsnUaController
      */
-    var TsnUaController = function TsnUaController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
 
-    return TsnUaController.extend('TsnUaController', {
+      /**
+       * Get url
+       * @type {string|*}
+       */
+      var url = this.model.getPrefs('tsnuaEmbedCode'),
+          embed = this.controller.getEmbedCode(url);
 
-        /**
-         * Set embedded content
-         * @memberOf TsnUaController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
+      if (embed) {
+        this.view.elements.$tsnua.renderEmbeddedContent(embed);
+      }
+    },
 
-            /**
-             * Get url
-             * @type {string|*}
-             */
-            var url = this.model.getPrefs('tsnuaEmbedCode'),
-                embed = this.controller.getEmbedCode(url);
+    /**
+     * Validate tsnua
+     * @memberOf TsnUaController
+     * @param {string} embed
+     * @return {string|boolean}
+     */
+    getEmbedCode: function getEmbedCode(embed) {
 
-            if (embed) {
-                this.view.elements.$tsnua.renderEmbeddedContent(embed);
-            }
-        },
+      if (!embed) {
+        this.scope.logger.debug('Initial state');
+        return false;
+      }
 
-        /**
-         * Validate tsnua
-         * @memberOf TsnUaController
-         * @param {string} embed
-         * @return {string|boolean}
-         */
-        getEmbedCode: function getEmbedCode(embed) {
+      // Convert to string
+      embed += '';
 
-            if (!embed) {
-                this.scope.logger.debug('Initial state');
-                return false;
-            }
+      if (embed.match(/^<embed/)) {
 
-            // Convert to string
-            embed += '';
+        return embed;
 
-            if (embed.match(/^<embed/)) {
+      } else {
 
-                return embed;
+        this.scope.logger.warn('Invalid TsnUa embed code');
+        return false;
+      }
+    },
 
-            } else {
+    /**
+     * Add TsnUa rule
+     * @memberOf TsnUaController
+     * @param {Event} e
+     */
+    addTsnUaRule: function addTsnUaRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-                this.scope.logger.warn('Invalid TsnUa embed code');
-                return false;
-            }
-        },
-
-        /**
-         * Add TsnUa rule
-         * @memberOf TsnUaController
-         * @param {Event} e
-         */
-        addTsnUaRule: function addTsnUaRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

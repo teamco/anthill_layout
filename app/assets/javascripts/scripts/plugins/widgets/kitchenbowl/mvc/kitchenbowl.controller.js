@@ -6,56 +6,40 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineKitchenbowlController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define Kitchenbowl controller
+   * @class KitchenbowlController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var KitchenbowlController = function KitchenbowlController() {
+  };
+
+  return KitchenbowlController.extend('KitchenbowlController', {
+
     /**
-     * Define Kitchenbowl controller
-     * @class KitchenbowlController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf KitchenbowlController
      */
-    var KitchenbowlController = function KitchenbowlController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
+      this.view.get$item().renderEmbeddedContent(
+          this.model.getPrefs('kitchenbowlEmbedCode')
+      );
+    },
 
-    return KitchenbowlController.extend('KitchenbowlController', {
+    /**
+     * Add Kitchenbowl rule
+     * @memberOf KitchenbowlController
+     * @param {Event} e
+     */
+    addKitchenbowlRule: function addKitchenbowlRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-        /**
-         * Set embedded content
-         * @memberOf KitchenbowlController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
-            this.view.get$item().renderEmbeddedContent(
-                this.model.getPrefs('kitchenbowlEmbedCode')
-            );
-        },
-
-        /**
-         * Add Kitchenbowl rule
-         * @memberOf KitchenbowlController
-         * @param {Event} e
-         */
-        addKitchenbowlRule: function addKitchenbowlRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target);
-
-            /**
-             * Get scope
-             * @type {Kitchenbowl|{name: string}}
-             */
-            var scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

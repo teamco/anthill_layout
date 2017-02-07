@@ -6,86 +6,75 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineOnePlusOneController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define OnePlusOne controller
+   * @class OnePlusOneController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var OnePlusOneController = function OnePlusOneController() {
+  };
+
+  return OnePlusOneController.extend('OnePlusOneController', {
+
     /**
-     * Define OnePlusOne controller
-     * @class OnePlusOneController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf OnePlusOneController
      */
-    var OnePlusOneController = function OnePlusOneController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
 
-    return OnePlusOneController.extend('OnePlusOneController', {
+      /**
+       * Get url
+       * @type {string|*}
+       */
+      var url = this.model.getPrefs('oneplusoneEmbedCode'),
+          embed = this.controller.getEmbedCode(url);
 
-        /**
-         * Set embedded content
-         * @memberOf OnePlusOneController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
+      if (embed) {
+        this.view.elements.$oneplusone.renderEmbeddedContent(embed);
+      }
+    },
 
-            /**
-             * Get url
-             * @type {string|*}
-             */
-            var url = this.model.getPrefs('oneplusoneEmbedCode'),
-                embed = this.controller.getEmbedCode(url);
+    /**
+     * Validate tsnua
+     * @memberOf OnePlusOneController
+     * @param {string} embed
+     * @return {string|boolean}
+     */
+    getEmbedCode: function getEmbedCode(embed) {
 
-            if (embed) {
-                this.view.elements.$oneplusone.renderEmbeddedContent(embed);
-            }
-        },
+      if (!embed) {
+        this.scope.logger.debug('Initial state');
+        return false;
+      }
 
-        /**
-         * Validate tsnua
-         * @memberOf OnePlusOneController
-         * @param {string} embed
-         * @return {string|boolean}
-         */
-        getEmbedCode: function getEmbedCode(embed) {
+      // Convert to string
+      embed += '';
 
-            if (!embed) {
-                this.scope.logger.debug('Initial state');
-                return false;
-            }
+      if (embed.match(/^<embed/)) {
 
-            // Convert to string
-            embed += '';
+        return embed;
 
-            if (embed.match(/^<embed/)) {
+      } else {
 
-                return embed;
+        this.scope.logger.warn('Invalid OnePlusOne embed code');
+        return false;
+      }
+    },
 
-            } else {
+    /**
+     * Add OnePlusOne rule
+     * @memberOf OnePlusOneController
+     * @param {Event} e
+     */
+    addOnePlusOneRule: function addOnePlusOneRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-                this.scope.logger.warn('Invalid OnePlusOne embed code');
-                return false;
-            }
-        },
-
-        /**
-         * Add OnePlusOne rule
-         * @memberOf OnePlusOneController
-         * @param {Event} e
-         */
-        addOnePlusOneRule: function addOnePlusOneRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

@@ -6,56 +6,40 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineSportboxRuController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define SportboxRu controller
+   * @class SportboxRuController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var SportboxRuController = function SportboxRuController() {
+  };
+
+  return SportboxRuController.extend('SportboxRuController', {
+
     /**
-     * Define SportboxRu controller
-     * @class SportboxRuController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf SportboxRuController
      */
-    var SportboxRuController = function SportboxRuController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
+      this.view.get$item().renderEmbeddedContent(
+          this.model.getPrefs('sportboxEmbedCode')
+      );
+    },
 
-    return SportboxRuController.extend('SportboxRuController', {
+    /**
+     * Add SportboxRu rule
+     * @memberOf SportboxRuController
+     * @param {Event} e
+     */
+    addSportboxRuRule: function addSportboxRuRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-        /**
-         * Set embedded content
-         * @memberOf SportboxRuController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
-            this.view.get$item().renderEmbeddedContent(
-                this.model.getPrefs('sportboxEmbedCode')
-            );
-        },
-
-        /**
-         * Add SportboxRu rule
-         * @memberOf SportboxRuController
-         * @param {Event} e
-         */
-        addSportboxRuRule: function addSportboxRuRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target);
-
-            /**
-             * Get scope
-             * @type {SportboxRu|{name: string}}
-             */
-            var scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

@@ -6,86 +6,75 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineYouPornController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define youporn controller
+   * @class YouPornController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var YouPornController = function YouPornController() {
+  };
+
+  return YouPornController.extend('YouPornController', {
+
     /**
-     * Define youporn controller
-     * @class YouPornController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf YouPornController
      */
-    var YouPornController = function YouPornController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
 
-    return YouPornController.extend('YouPornController', {
+      /**
+       * Get url
+       * @type {string|*}
+       */
+      var url = this.model.getPrefs('youpornEmbedCode'),
+          embed = this.controller.getEmbedCode(url);
 
-        /**
-         * Set embedded content
-         * @memberOf YouPornController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
+      if (embed) {
+        this.view.elements.$youporn.renderEmbeddedContent(embed);
+      }
+    },
 
-            /**
-             * Get url
-             * @type {string|*}
-             */
-            var url = this.model.getPrefs('youpornEmbedCode'),
-                embed = this.controller.getEmbedCode(url);
+    /**
+     * Validate youporn
+     * @memberOf YouPornController
+     * @param {string} embed
+     * @return {string|boolean}
+     */
+    getEmbedCode: function getEmbedCode(embed) {
 
-            if (embed) {
-                this.view.elements.$youporn.renderEmbeddedContent(embed);
-            }
-        },
+      if (!embed) {
+        this.scope.logger.debug('Initial state');
+        return false;
+      }
 
-        /**
-         * Validate youporn
-         * @memberOf YouPornController
-         * @param {string} embed
-         * @return {string|boolean}
-         */
-        getEmbedCode: function getEmbedCode(embed) {
+      // Convert to string
+      embed += '';
 
-            if (!embed) {
-                this.scope.logger.debug('Initial state');
-                return false;
-            }
+      if (embed.match(/^<iframe/)) {
 
-            // Convert to string
-            embed += '';
+        return $(embed).attr('src');
 
-            if (embed.match(/^<iframe/)) {
+      } else {
 
-                return $(embed).attr('src');
+        this.scope.logger.warn('Invalid YouPorn embed code');
+        return false;
+      }
+    },
 
-            } else {
+    /**
+     * Add YouPorn rule
+     * @memberOf YouPornController
+     * @param {Event} e
+     */
+    addYouPornRule: function addYouPornRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-                this.scope.logger.warn('Invalid YouPorn embed code');
-                return false;
-            }
-        },
-
-        /**
-         * Add YouPorn rule
-         * @memberOf YouPornController
-         * @param {Event} e
-         */
-        addYouPornRule: function addYouPornRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

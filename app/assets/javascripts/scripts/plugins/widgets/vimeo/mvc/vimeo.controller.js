@@ -6,92 +6,81 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineVimeoController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define vimeo controller
+   * @class VimeoController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var VimeoController = function VimeoController() {
+  };
+
+  return VimeoController.extend('VimeoController', {
+
     /**
-     * Define vimeo controller
-     * @class VimeoController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf VimeoController
      */
-    var VimeoController = function VimeoController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
 
-    return VimeoController.extend('VimeoController', {
+      /**
+       * Get url
+       * @type {string|*}
+       */
+      var url = this.model.getPrefs('vimeoUrl'),
+          embed = this.controller.getEmbedCode(url);
 
-        /**
-         * Set embedded content
-         * @memberOf VimeoController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
+      if (embed) {
+        this.view.elements.$vimeo.renderEmbeddedContent(embed);
+      }
+    },
 
-            /**
-             * Get url
-             * @type {string|*}
-             */
-            var url = this.model.getPrefs('vimeoUrl'),
-                embed = this.controller.getEmbedCode(url);
+    /**
+     * Validate vimeo
+     * @memberOf VimeoController
+     * @param {string} url
+     * @return {string|boolean}
+     */
+    getEmbedCode: function getEmbedCode(url) {
 
-            if (embed) {
-                this.view.elements.$vimeo.renderEmbeddedContent(embed);
-            }
-        },
+      if (!url) {
+        this.scope.logger.debug('Initial state');
+        return false;
+      }
 
-        /**
-         * Validate vimeo
-         * @memberOf VimeoController
-         * @param {string} url
-         * @return {string|boolean}
-         */
-        getEmbedCode: function getEmbedCode(url) {
+      var mask = this.model.getConfig('mask'),
+          regex = this.model.getConfig('regex');
 
-            if (!url) {
-                this.scope.logger.debug('Initial state');
-                return false;
-            }
+      if (!url.match(regex)) {
+        this.scope.logger.warn('Invalid vimeo url');
+        return false;
+      }
 
-            var mask = this.model.getConfig('mask'),
-                regex = this.model.getConfig('regex');
-
-            if (!url.match(regex)) {
-                this.scope.logger.warn('Invalid vimeo url');
-                return false;
-            }
-
-            if (url.match(/iframe/)) {
-
-                /**
-                 * Embed iframe fix
-                 * @type {string}
-                 */
-                url = $(url).attr('src');
-            }
-
-            return url.replace(regex, mask.replace(/{{videoId}}/g, '$4'));;
-        },
+      if (url.match(/iframe/)) {
 
         /**
-         * Add Vimeo rule
-         * @memberOf VimeoController
-         * @param {Event} e
+         * Embed iframe fix
+         * @type {string}
          */
-        addVimeoRule: function addVimeoRule(e) {
+        url = $(url).attr('src');
+      }
 
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
+      return url.replace(regex, mask.replace(/{{videoId}}/g, '$4'));
+    },
 
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
+    /**
+     * Add Vimeo rule
+     * @memberOf VimeoController
+     * @param {Event} e
+     */
+    addVimeoRule: function addVimeoRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

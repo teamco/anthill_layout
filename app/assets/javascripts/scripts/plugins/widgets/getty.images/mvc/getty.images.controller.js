@@ -6,56 +6,40 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineGettyImagesController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define GettyImages controller
+   * @class GettyImagesController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var GettyImagesController = function GettyImagesController() {
+  };
+
+  return GettyImagesController.extend('GettyImagesController', {
+
     /**
-     * Define GettyImages controller
-     * @class GettyImagesController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf GettyImagesController
      */
-    var GettyImagesController = function GettyImagesController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
+      this.view.get$item().renderEmbeddedContent(
+          this.model.getPrefs('gettyimagesEmbedCode')
+      );
+    },
 
-    return GettyImagesController.extend('GettyImagesController', {
+    /**
+     * Add GettyImages rule
+     * @memberOf GettyImagesController
+     * @param {Event} e
+     */
+    addGettyImagesRule: function addGettyImagesRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-        /**
-         * Set embedded content
-         * @memberOf GettyImagesController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
-            this.view.get$item().renderEmbeddedContent(
-                this.model.getPrefs('gettyimagesEmbedCode')
-            );
-        },
-
-        /**
-         * Add GettyImages rule
-         * @memberOf GettyImagesController
-         * @param {Event} e
-         */
-        addGettyImagesRule: function addGettyImagesRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target);
-
-            /**
-             * Get scope
-             * @type {GettyImages|{name: string}}
-             */
-            var scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

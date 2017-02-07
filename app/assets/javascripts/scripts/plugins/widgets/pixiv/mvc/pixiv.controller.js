@@ -6,86 +6,75 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function definePixivController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define pixiv controller
+   * @class PixivController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var PixivController = function PixivController() {
+  };
+
+  return PixivController.extend('PixivController', {
+
     /**
-     * Define pixiv controller
-     * @class PixivController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf PixivController
      */
-    var PixivController = function PixivController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
 
-    return PixivController.extend('PixivController', {
+      /**
+       * Get url
+       * @type {string|*}
+       */
+      var embed = this.model.getPrefs('pixivEmbedCode'),
+          script = this.controller.getEmbedCode(embed);
 
-        /**
-         * Set embedded content
-         * @memberOf PixivController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
+      if (script) {
+        this.view.elements.$pixiv.renderEmbeddedContent(script);
+      }
+    },
 
-            /**
-             * Get url
-             * @type {string|*}
-             */
-            var embed = this.model.getPrefs('pixivEmbedCode'),
-                script = this.controller.getEmbedCode(embed);
+    /**
+     * Validate pixiv
+     * @memberOf PixivController
+     * @param {string} embed
+     * @return {string|boolean}
+     */
+    getEmbedCode: function getEmbedCode(embed) {
 
-            if (script) {
-                this.view.elements.$pixiv.renderEmbeddedContent(script);
-            }
-        },
+      if (!embed) {
+        this.scope.logger.debug('Initial state');
+        return false;
+      }
 
-        /**
-         * Validate pixiv
-         * @memberOf PixivController
-         * @param {string} embed
-         * @return {string|boolean}
-         */
-        getEmbedCode: function getEmbedCode(embed) {
+      // Convert to string
+      embed += '';
 
-            if (!embed) {
-                this.scope.logger.debug('Initial state');
-                return false;
-            }
+      if (embed.match(/^<script/)) {
 
-            // Convert to string
-            embed += '';
+        return $(embed)[0];
 
-            if (embed.match(/^<script/)) {
+      } else {
 
-                return $(embed)[0];
+        this.scope.logger.warn('Invalid Pixiv embed code');
+        return false;
+      }
+    },
 
-            } else {
+    /**
+     * Add Pixiv rule
+     * @memberOf PixivController
+     * @param {Event} e
+     */
+    addPixivRule: function addPixivRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-                this.scope.logger.warn('Invalid Pixiv embed code');
-                return false;
-            }
-        },
-
-        /**
-         * Add Pixiv rule
-         * @memberOf PixivController
-         * @param {Event} e
-         */
-        addPixivRule: function addPixivRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

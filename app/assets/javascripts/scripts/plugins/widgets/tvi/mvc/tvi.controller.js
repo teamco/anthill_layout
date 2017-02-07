@@ -6,93 +6,82 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineTviController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define tvi controller
+   * @class TviController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var TviController = function TviController() {
+  };
+
+  return TviController.extend('TviController', {
+
     /**
-     * Define tvi controller
-     * @class TviController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf TviController
      */
-    var TviController = function TviController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
 
-    return TviController.extend('TviController', {
+      /**
+       * Get url
+       * @type {string|*}
+       */
+      var url = this.model.getPrefs('tviEmbedCode'),
+          embed = this.controller.getEmbedCode(url);
 
-        /**
-         * Set embedded content
-         * @memberOf TviController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
+      if (embed) {
+        this.view.elements.$tvi.renderEmbeddedContent(embed);
+      }
+    },
 
-            /**
-             * Get url
-             * @type {string|*}
-             */
-            var url = this.model.getPrefs('tviEmbedCode'),
-                embed = this.controller.getEmbedCode(url);
+    /**
+     * Validate tvi
+     * @memberOf TviController
+     * @param {string} url
+     * @return {string|boolean}
+     */
+    getEmbedCode: function getEmbedCode(url) {
 
-            if (embed) {
-                this.view.elements.$tvi.renderEmbeddedContent(embed);
-            }
-        },
+      if (!url) {
+        this.scope.logger.debug('Initial state');
+        return false;
+      }
 
-        /**
-         * Validate tvi
-         * @memberOf TviController
-         * @param {string} url
-         * @return {string|boolean}
-         */
-        getEmbedCode: function getEmbedCode(url) {
+      var mask = this.model.getConfig('mask'),
+          regex = this.model.getConfig('regex');
 
-            if (!url) {
-                this.scope.logger.debug('Initial state');
-                return false;
-            }
+      if (!url.match(regex)) {
+        this.scope.logger.warn('Invalid tvi url');
+        return false;
+      }
 
-            var mask = this.model.getConfig('mask'),
-                regex = this.model.getConfig('regex');
-
-            if (!url.match(regex)) {
-                this.scope.logger.warn('Invalid tvi url');
-                return false;
-            }
-
-            if (url.match(/iframe/)) {
-
-                /**
-                 * Embed iframe fix
-                 * @type {string}
-                 */
-                url = $(url).attr('src');
-            }
-
-            return url.replace(regex, mask.replace(/\{videoId}/g, '$1')).
-                replace(/embed\/embed/, 'embed');
-        },
+      if (url.match(/iframe/)) {
 
         /**
-         * Add Tvi rule
-         * @memberOf TviController
-         * @param {Event} e
+         * Embed iframe fix
+         * @type {string}
          */
-        addTviRule: function addTviRule(e) {
+        url = $(url).attr('src');
+      }
 
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
+      return url.replace(regex, mask.replace(/\{videoId}/g, '$1')).
+          replace(/embed\/embed/, 'embed');
+    },
 
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
+    /**
+     * Add Tvi rule
+     * @memberOf TviController
+     * @param {Event} e
+     */
+    addTviRule: function addTviRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

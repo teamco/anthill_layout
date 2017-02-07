@@ -6,56 +6,41 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
-], function defineTheWeatherNetworkController(PluginBase, WidgetContentController) {
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
+], function defineTheWeatherNetworkController(PluginBase,
+    WidgetContentController) {
+
+  /**
+   * Define TheWeatherNetwork controller
+   * @class TheWeatherNetworkController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var TheWeatherNetworkController = function TheWeatherNetworkController() {
+  };
+
+  return TheWeatherNetworkController.extend('TheWeatherNetworkController', {
 
     /**
-     * Define TheWeatherNetwork controller
-     * @class TheWeatherNetworkController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf TheWeatherNetworkController
      */
-    var TheWeatherNetworkController = function TheWeatherNetworkController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
+      this.view.get$item().renderEmbeddedContent(
+          this.model.getPrefs('theweathernetworHtmlCode')
+      );
+    },
 
-    return TheWeatherNetworkController.extend('TheWeatherNetworkController', {
+    /**
+     * Add TheWeatherNetwork rule
+     * @memberOf TheWeatherNetworkController
+     * @param {Event} e
+     */
+    addTheWeatherNetworkRule: function addTheWeatherNetworkRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-        /**
-         * Set embedded content
-         * @memberOf TheWeatherNetworkController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
-            this.view.get$item().renderEmbeddedContent(
-                this.model.getPrefs('theweathernetworHtmlCode')
-            );
-        },
-
-        /**
-         * Add TheWeatherNetwork rule
-         * @memberOf TheWeatherNetworkController
-         * @param {Event} e
-         */
-        addTheWeatherNetworkRule: function addTheWeatherNetworkRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target);
-
-            /**
-             * Get scope
-             * @type {TheWeatherNetwork|{name: string}}
-             */
-            var scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

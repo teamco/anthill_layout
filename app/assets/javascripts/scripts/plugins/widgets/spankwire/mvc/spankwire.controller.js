@@ -6,86 +6,75 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineSpankwireController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define spankwire controller
+   * @class SpankwireController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var SpankwireController = function SpankwireController() {
+  };
+
+  return SpankwireController.extend('SpankwireController', {
+
     /**
-     * Define spankwire controller
-     * @class SpankwireController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf SpankwireController
      */
-    var SpankwireController = function SpankwireController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
 
-    return SpankwireController.extend('SpankwireController', {
+      /**
+       * Get url
+       * @type {string|*}
+       */
+      var url = this.model.getPrefs('spankwireEmbedCode'),
+          embed = this.controller.getEmbedCode(url);
 
-        /**
-         * Set embedded content
-         * @memberOf SpankwireController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
+      if (embed) {
+        this.view.elements.$spankwire.renderEmbeddedContent(embed);
+      }
+    },
 
-            /**
-             * Get url
-             * @type {string|*}
-             */
-            var url = this.model.getPrefs('spankwireEmbedCode'),
-                embed = this.controller.getEmbedCode(url);
+    /**
+     * Validate spankwire
+     * @memberOf SpankwireController
+     * @param {string} embed
+     * @return {string|boolean}
+     */
+    getEmbedCode: function getEmbedCode(embed) {
 
-            if (embed) {
-                this.view.elements.$spankwire.renderEmbeddedContent(embed);
-            }
-        },
+      if (!embed) {
+        this.scope.logger.debug('Initial state');
+        return false;
+      }
 
-        /**
-         * Validate spankwire
-         * @memberOf SpankwireController
-         * @param {string} embed
-         * @return {string|boolean}
-         */
-        getEmbedCode: function getEmbedCode(embed) {
+      // Convert to string
+      embed += '';
 
-            if (!embed) {
-                this.scope.logger.debug('Initial state');
-                return false;
-            }
+      if (embed.match(/^<iframe/)) {
 
-            // Convert to string
-            embed += '';
+        return $(embed).attr('src');
 
-            if (embed.match(/^<iframe/)) {
+      } else {
 
-                return $(embed).attr('src');
+        this.scope.logger.warn('Invalid Spankwire embed code');
+        return false;
+      }
+    },
 
-            } else {
+    /**
+     * Add Spankwire rule
+     * @memberOf SpankwireController
+     * @param {Event} e
+     */
+    addSpankwireRule: function addSpankwireRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-                this.scope.logger.warn('Invalid Spankwire embed code');
-                return false;
-            }
-        },
-
-        /**
-         * Add Spankwire rule
-         * @memberOf SpankwireController
-         * @param {Event} e
-         */
-        addSpankwireRule: function addSpankwireRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

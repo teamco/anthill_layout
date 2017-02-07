@@ -6,86 +6,75 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineStepashkaController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define stepashka controller
+   * @class StepashkaController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var StepashkaController = function StepashkaController() {
+  };
+
+  return StepashkaController.extend('StepashkaController', {
+
     /**
-     * Define stepashka controller
-     * @class StepashkaController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf StepashkaController
      */
-    var StepashkaController = function StepashkaController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
 
-    return StepashkaController.extend('StepashkaController', {
+      /**
+       * Get url
+       * @type {string|*}
+       */
+      var url = this.model.getPrefs('stepashkaEmbedCode'),
+          embed = this.controller.getEmbedCode(url);
 
-        /**
-         * Set embedded content
-         * @memberOf StepashkaController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
+      if (embed) {
+        this.view.elements.$stepashka.renderEmbeddedContent(embed);
+      }
+    },
 
-            /**
-             * Get url
-             * @type {string|*}
-             */
-            var url = this.model.getPrefs('stepashkaEmbedCode'),
-                embed = this.controller.getEmbedCode(url);
+    /**
+     * Validate stepashka
+     * @memberOf StepashkaController
+     * @param {string} embed
+     * @return {string|boolean}
+     */
+    getEmbedCode: function getEmbedCode(embed) {
 
-            if (embed) {
-                this.view.elements.$stepashka.renderEmbeddedContent(embed);
-            }
-        },
+      if (!embed) {
+        this.scope.logger.debug('Initial state');
+        return false;
+      }
 
-        /**
-         * Validate stepashka
-         * @memberOf StepashkaController
-         * @param {string} embed
-         * @return {string|boolean}
-         */
-        getEmbedCode: function getEmbedCode(embed) {
+      // Convert to string
+      embed += '';
 
-            if (!embed) {
-                this.scope.logger.debug('Initial state');
-                return false;
-            }
+      if (embed.match(/^<iframe/)) {
 
-            // Convert to string
-            embed += '';
+        return $(embed).attr('src');
 
-            if (embed.match(/^<iframe/)) {
+      } else {
 
-                return $(embed).attr('src');
+        this.scope.logger.warn('Invalid Stepashka embed code');
+        return false;
+      }
+    },
 
-            } else {
+    /**
+     * Add Stepashka rule
+     * @memberOf StepashkaController
+     * @param {Event} e
+     */
+    addStepashkaRule: function addStepashkaRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-                this.scope.logger.warn('Invalid Stepashka embed code');
-                return false;
-            }
-        },
-
-        /**
-         * Add Stepashka rule
-         * @memberOf StepashkaController
-         * @param {Event} e
-         */
-        addStepashkaRule: function addStepashkaRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

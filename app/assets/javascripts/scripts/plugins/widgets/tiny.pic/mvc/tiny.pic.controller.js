@@ -6,90 +6,79 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineTinyPicController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define tinypic controller
+   * @class TinyPicController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var TinyPicController = function TinyPicController() {
+  };
+
+  return TinyPicController.extend('TinyPicController', {
+
     /**
-     * Define tinypic controller
-     * @class TinyPicController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf TinyPicController
      */
-    var TinyPicController = function TinyPicController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
+      this.view.elements.$tinypic.renderEmbeddedContent(
+          this.controller.getEmbedCode(
+              this.model.getPrefs('tinypicEmbedCode')
+          )
+      );
+    },
 
-    return TinyPicController.extend('TinyPicController', {
+    /**
+     * Validate tiny pic
+     * @memberOf TinyPicController
+     * @param {string} embed
+     * @return {string|boolean}
+     */
+    getEmbedCode: function getEmbedCode(embed) {
 
-        /**
-         * Set embedded content
-         * @memberOf TinyPicController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
-            this.view.elements.$tinypic.renderEmbeddedContent(
-                this.controller.getEmbedCode(
-                    this.model.getPrefs('tinypicEmbedCode')
-                )
-            );
-        },
+      if (!embed) {
+        this.scope.logger.debug('Initial state');
+        return false;
+      }
 
-        /**
-         * Validate tiny pic
-         * @memberOf TinyPicController
-         * @param {string} embed
-         * @return {string|boolean}
-         */
-        getEmbedCode: function getEmbedCode(embed) {
+      // Convert to string
+      embed += '';
 
-            if (!embed) {
-                this.scope.logger.debug('Initial state');
-                return false;
-            }
+      if (embed.match(/^<embed/)) {
 
-            // Convert to string
-            embed += '';
+        return {
+          type: 'embed',
+          code: embed
+        };
 
-            if (embed.match(/^<embed/)) {
+      } else if (embed.match(/^<a/)) {
 
-                return {
-                    type: 'embed',
-                    code: embed
-                };
+        return {
+          type: 'image',
+          code: embed
+        };
 
-            } else if (embed.match(/^<a/)) {
+      } else {
 
-                return {
-                    type: 'image',
-                    code: embed
-                };
+        this.scope.logger.warn('Invalid TsnUa embed code');
+        return false;
+      }
+    },
 
-            } else {
+    /**
+     * Add TinyPic rule
+     * @memberOf TinyPicController
+     * @param {Event} e
+     */
+    addTinyPicRule: function addTinyPicRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-                this.scope.logger.warn('Invalid TsnUa embed code');
-                return false;
-            }
-        },
-
-        /**
-         * Add TinyPic rule
-         * @memberOf TinyPicController
-         * @param {Event} e
-         */
-        addTinyPicRule: function addTinyPicRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

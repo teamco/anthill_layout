@@ -6,86 +6,75 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineVidmeController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define vidme controller
+   * @class VidmeController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var VidmeController = function VidmeController() {
+  };
+
+  return VidmeController.extend('VidmeController', {
+
     /**
-     * Define vidme controller
-     * @class VidmeController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf VidmeController
      */
-    var VidmeController = function VidmeController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
 
-    return VidmeController.extend('VidmeController', {
+      /**
+       * Get url
+       * @type {string|*}
+       */
+      var url = this.model.getPrefs('vidmeEmbedCode'),
+          embed = this.controller.getEmbedCode(url);
 
-        /**
-         * Set embedded content
-         * @memberOf VidmeController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
+      if (embed) {
+        this.view.elements.$vidme.renderEmbeddedContent(embed);
+      }
+    },
 
-            /**
-             * Get url
-             * @type {string|*}
-             */
-            var url = this.model.getPrefs('vidmeEmbedCode'),
-                embed = this.controller.getEmbedCode(url);
+    /**
+     * Validate vidme
+     * @memberOf VidmeController
+     * @param {string} embed
+     * @return {string|boolean}
+     */
+    getEmbedCode: function getEmbedCode(embed) {
 
-            if (embed) {
-                this.view.elements.$vidme.renderEmbeddedContent(embed);
-            }
-        },
+      if (!embed) {
+        this.scope.logger.debug('Initial state');
+        return false;
+      }
 
-        /**
-         * Validate vidme
-         * @memberOf VidmeController
-         * @param {string} embed
-         * @return {string|boolean}
-         */
-        getEmbedCode: function getEmbedCode(embed) {
+      // Convert to string
+      embed += '';
 
-            if (!embed) {
-                this.scope.logger.debug('Initial state');
-                return false;
-            }
+      if (embed.match(/^<iframe/)) {
 
-            // Convert to string
-            embed += '';
+        return $(embed).attr('src');
 
-            if (embed.match(/^<iframe/)) {
+      } else {
 
-                return $(embed).attr('src');
+        this.scope.logger.warn('Invalid Vidme embed code');
+        return false;
+      }
+    },
 
-            } else {
+    /**
+     * Add Vidme rule
+     * @memberOf VidmeController
+     * @param {Event} e
+     */
+    addVidmeRule: function addVidmeRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-                this.scope.logger.warn('Invalid Vidme embed code');
-                return false;
-            }
-        },
-
-        /**
-         * Add Vidme rule
-         * @memberOf VidmeController
-         * @param {Event} e
-         */
-        addVidmeRule: function addVidmeRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

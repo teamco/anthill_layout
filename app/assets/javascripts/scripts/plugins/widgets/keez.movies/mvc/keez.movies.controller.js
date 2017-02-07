@@ -6,86 +6,75 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineKeezMoviesController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define keezmovies controller
+   * @class KeezMoviesController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var KeezMoviesController = function KeezMoviesController() {
+  };
+
+  return KeezMoviesController.extend('KeezMoviesController', {
+
     /**
-     * Define keezmovies controller
-     * @class KeezMoviesController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf KeezMoviesController
      */
-    var KeezMoviesController = function KeezMoviesController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
 
-    return KeezMoviesController.extend('KeezMoviesController', {
+      /**
+       * Get url
+       * @type {string|*}
+       */
+      var url = this.model.getPrefs('keezmoviesEmbedCode'),
+          embed = this.controller.getEmbedCode(url);
 
-        /**
-         * Set embedded content
-         * @memberOf KeezMoviesController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
+      if (embed) {
+        this.view.elements.$keezmovies.renderEmbeddedContent(embed);
+      }
+    },
 
-            /**
-             * Get url
-             * @type {string|*}
-             */
-            var url = this.model.getPrefs('keezmoviesEmbedCode'),
-                embed = this.controller.getEmbedCode(url);
+    /**
+     * Validate keezmovies
+     * @memberOf KeezMoviesController
+     * @param {string} embed
+     * @return {string|boolean}
+     */
+    getEmbedCode: function getEmbedCode(embed) {
 
-            if (embed) {
-                this.view.elements.$keezmovies.renderEmbeddedContent(embed);
-            }
-        },
+      if (!embed) {
+        this.scope.logger.debug('Initial state');
+        return false;
+      }
 
-        /**
-         * Validate keezmovies
-         * @memberOf KeezMoviesController
-         * @param {string} embed
-         * @return {string|boolean}
-         */
-        getEmbedCode: function getEmbedCode(embed) {
+      // Convert to string
+      embed += '';
 
-            if (!embed) {
-                this.scope.logger.debug('Initial state');
-                return false;
-            }
+      if (embed.match(/^<iframe/)) {
 
-            // Convert to string
-            embed += '';
+        return $(embed).attr('src');
 
-            if (embed.match(/^<iframe/)) {
+      } else {
 
-                return $(embed).attr('src');
+        this.scope.logger.warn('Invalid KeezMovies embed code');
+        return false;
+      }
+    },
 
-            } else {
+    /**
+     * Add KeezMovies rule
+     * @memberOf KeezMoviesController
+     * @param {Event} e
+     */
+    addKeezMoviesRule: function addKeezMoviesRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-                this.scope.logger.warn('Invalid KeezMovies embed code');
-                return false;
-            }
-        },
-
-        /**
-         * Add KeezMovies rule
-         * @memberOf KeezMoviesController
-         * @param {Event} e
-         */
-        addKeezMoviesRule: function addKeezMoviesRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

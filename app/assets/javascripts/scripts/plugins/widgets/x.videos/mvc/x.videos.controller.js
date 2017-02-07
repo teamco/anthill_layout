@@ -6,92 +6,81 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineXVideosController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define xVideos controller
+   * @class XVideosController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var XVideosController = function XVideosController() {
+  };
+
+  return XVideosController.extend('XVideosController', {
+
     /**
-     * Define xVideos controller
-     * @class XVideosController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf XVideosController
      */
-    var XVideosController = function XVideosController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
 
-    return XVideosController.extend('XVideosController', {
+      /**
+       * Get url
+       * @type {string|*}
+       */
+      var url = this.model.getPrefs('xvideosUrl'),
+          embed = this.controller.getEmbedCode(url);
 
-        /**
-         * Set embedded content
-         * @memberOf XVideosController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
+      if (embed) {
+        this.view.elements.$xvideos.renderEmbeddedContent(embed);
+      }
+    },
 
-            /**
-             * Get url
-             * @type {string|*}
-             */
-            var url = this.model.getPrefs('xvideosUrl'),
-                embed = this.controller.getEmbedCode(url);
+    /**
+     * Validate xvideos
+     * @memberOf XVideosController
+     * @param {string} url
+     * @return {string|boolean}
+     */
+    getEmbedCode: function getEmbedCode(url) {
 
-            if (embed) {
-                this.view.elements.$xvideos.renderEmbeddedContent(embed);
-            }
-        },
+      if (!url) {
+        this.scope.logger.debug('Initial state');
+        return false;
+      }
 
-        /**
-         * Validate xvideos
-         * @memberOf XVideosController
-         * @param {string} url
-         * @return {string|boolean}
-         */
-        getEmbedCode: function getEmbedCode(url) {
+      // Convert to string
+      url += '';
 
-            if (!url) {
-                this.scope.logger.debug('Initial state');
-                return false;
-            }
+      if (url.match(/iframe/)) {
+        url = $(url).attr('src');
+      }
 
-            // Convert to string
-            url += '';
+      var mask = this.model.getConfig('mask'),
+          regex = url.match(
+              this.model.getConfig('regex')
+          );
 
-            if (url.match(/iframe/)) {
-                url = $(url).attr('src');
-            }
+      if (!regex || url.match(/^\[/)) {
+        this.scope.logger.warn('Invalid XVideos url');
+        return false;
+      }
 
-            var mask = this.model.getConfig('mask'),
-                regex = url.match(
-                    this.model.getConfig('regex')
-                );
+      return mask.replace(/\{id}/g, regex[0]);
+    },
 
-            if (!regex || url.match(/^\[/)) {
-                this.scope.logger.warn('Invalid XVideos url');
-                return false;
-            }
+    /**
+     * Add XVideos rule
+     * @memberOf XVideosController
+     * @param {Event} e
+     */
+    addXVideosRule: function addXVideosRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-            return mask.replace(/\{id}/g, regex[0]);
-        },
-
-        /**
-         * Add XVideos rule
-         * @memberOf XVideosController
-         * @param {Event} e
-         */
-        addXVideosRule: function addXVideosRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

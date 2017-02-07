@@ -6,21 +6,21 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineFunnyOrDieController(PluginBase, WidgetContentController) {
 
-    /**
-     * Define funnyordie controller
-     * @class FunnyOrDieController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
-     */
-    var FunnyOrDieController = function FunnyOrDieController() {
-    };
+  /**
+   * Define funnyordie controller
+   * @class FunnyOrDieController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var FunnyOrDieController = function FunnyOrDieController() {
+  };
 
-    return FunnyOrDieController.extend('FunnyOrDieController', {
+  return FunnyOrDieController.extend('FunnyOrDieController', {
 
         /**
          * Set embedded content
@@ -28,16 +28,16 @@ define([
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
-            /**
-             * Get url
-             * @type {string|*}
-             */
-            var url = this.model.getPrefs('funnyordieUrl'),
-                embed = this.controller.getEmbedCode(url);
+          /**
+           * Get url
+           * @type {string|*}
+           */
+          var url = this.model.getPrefs('funnyordieUrl'),
+              embed = this.controller.getEmbedCode(url);
 
-            if (embed) {
-                this.view.elements.$funnyordie.renderEmbeddedContent(embed);
-            }
+          if (embed) {
+            this.view.elements.$funnyordie.renderEmbeddedContent(embed);
+          }
         },
 
         /**
@@ -48,24 +48,22 @@ define([
          */
         getEmbedCode: function getEmbedCode(url) {
 
-            if (!url) {
-                this.scope.logger.debug('Initial state');
-                return false;
-            }
+          if (!url) {
+            this.scope.logger.debug('Initial state');
+            return false;
+          }
 
-            // Convert to string
-            url += '';
+          // Convert to string
+          url += '';
 
-            if (url.match(/iframe/)) {
-                url = $(url).attr('src');
-            }
+          if (url.match(/iframe/)) {
+            url = $(url).attr('src');
+          }
 
-            var mask = this.model.getConfig('mask'),
-                regex = url.match(
-                    this.model.getConfig('regex')
-                );
+          var mask = this.model.getConfig('mask'),
+              regex = url.match(this.model.getConfig('regex'));
 
-            return mask.replace(/\{id}/g, regex[1]);
+          return mask.replace(/\{id}/g, regex[1]);
         },
 
         /**
@@ -74,19 +72,11 @@ define([
          * @param {Event} e
          */
         addFunnyOrDieRule: function addFunnyOrDieRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
+          this.addWidgetRule(e, this.scope.name);
         }
 
-    }, PluginBase.prototype, WidgetContentController.prototype);
+      },
+      PluginBase.prototype,
+      WidgetContentController.prototype
+  );
 });

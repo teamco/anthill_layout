@@ -6,96 +6,85 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineIssuuController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define issuu controller
+   * @class IssuuController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var IssuuController = function IssuuController() {
+  };
+
+  return IssuuController.extend('IssuuController', {
+
     /**
-     * Define issuu controller
-     * @class IssuuController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf IssuuController
      */
-    var IssuuController = function IssuuController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
 
-    return IssuuController.extend('IssuuController', {
+      /**
+       * Get url
+       * @type {string|*}
+       */
+      var url = this.model.getPrefs('issuuEmbedCode'),
+          embed = this.controller.getEmbedCode(url);
 
-        /**
-         * Set embedded content
-         * @memberOf IssuuController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
+      if (embed) {
+        this.view.elements.$issuu.renderEmbeddedContent(embed);
+      }
+    },
 
-            /**
-             * Get url
-             * @type {string|*}
-             */
-            var url = this.model.getPrefs('issuuEmbedCode'),
-                embed = this.controller.getEmbedCode(url);
+    /**
+     * Validate issuu
+     * @memberOf IssuuController
+     * @param {string} embed
+     * @return {object|boolean}
+     */
+    getEmbedCode: function getEmbedCode(embed) {
 
-            if (embed) {
-                this.view.elements.$issuu.renderEmbeddedContent(embed);
-            }
-        },
+      if (!embed) {
+        this.scope.logger.debug('Initial state');
+        return false;
+      }
 
-        /**
-         * Validate issuu
-         * @memberOf IssuuController
-         * @param {string} embed
-         * @return {object|boolean}
-         */
-        getEmbedCode: function getEmbedCode(embed) {
+      // Convert to string
+      embed += '';
 
-            if (!embed) {
-                this.scope.logger.debug('Initial state');
-                return false;
-            }
+      if (embed.match(/^<iframe/)) {
 
-            // Convert to string
-            embed += '';
+        return {
+          type: 'iframe',
+          code: $(embed).attr('src')
+        };
 
-            if (embed.match(/^<iframe/)) {
+      } else if (embed.match(/issuuembed/)) {
 
-                return {
-                    type: 'iframe',
-                    code: $(embed).attr('src')
-                };
+        return {
+          type: 'embed',
+          code: embed
+        };
 
-            } else if (embed.match(/issuuembed/)) {
+      } else {
 
-                return {
-                    type: 'embed',
-                    code: embed
-                };
+        this.scope.logger.warn('Invalid Issuu embed code');
+        return false;
+      }
+    },
 
-            } else {
+    /**
+     * Add Issuu rule
+     * @memberOf IssuuController
+     * @param {Event} e
+     */
+    addIssuuRule: function addIssuuRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-                this.scope.logger.warn('Invalid Issuu embed code');
-                return false;
-            }
-        },
-
-        /**
-         * Add Issuu rule
-         * @memberOf IssuuController
-         * @param {Event} e
-         */
-        addIssuuRule: function addIssuuRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

@@ -6,56 +6,40 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineShowTheWayController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define ShowTheWay controller
+   * @class ShowTheWayController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var ShowTheWayController = function ShowTheWayController() {
+  };
+
+  return ShowTheWayController.extend('ShowTheWayController', {
+
     /**
-     * Define ShowTheWay controller
-     * @class ShowTheWayController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf ShowTheWayController
      */
-    var ShowTheWayController = function ShowTheWayController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
+      this.view.get$item().renderEmbeddedContent(
+          this.model.getPrefs('showthewayEmbedCode')
+      );
+    },
 
-    return ShowTheWayController.extend('ShowTheWayController', {
+    /**
+     * Add ShowTheWay rule
+     * @memberOf ShowTheWayController
+     * @param {Event} e
+     */
+    addShowTheWayRule: function addShowTheWayRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-        /**
-         * Set embedded content
-         * @memberOf ShowTheWayController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
-            this.view.get$item().renderEmbeddedContent(
-                this.model.getPrefs('showthewayEmbedCode')
-            );
-        },
-
-        /**
-         * Add ShowTheWay rule
-         * @memberOf ShowTheWayController
-         * @param {Event} e
-         */
-        addShowTheWayRule: function addShowTheWayRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target);
-
-            /**
-             * Get scope
-             * @type {ShowTheWay|{name: string}}
-             */
-            var scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

@@ -6,83 +6,72 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function definePolldaddyController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define polldaddy controller
+   * @class PolldaddyController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var PolldaddyController = function PolldaddyController() {
+  };
+
+  return PolldaddyController.extend('PolldaddyController', {
+
     /**
-     * Define polldaddy controller
-     * @class PolldaddyController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf PolldaddyController
      */
-    var PolldaddyController = function PolldaddyController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
+      this.view.elements.$polldaddy.renderEmbeddedContent(
+          this.controller.getEmbeddedId(
+              this.model.getPrefs('polldaddyEmbedCode')
+          )
+      );
+    },
 
-    return PolldaddyController.extend('PolldaddyController', {
+    /**
+     * Parse embedded content to extract id
+     * @memberOf PolldaddyController
+     * @param {string} embed
+     * @returns {*}
+     */
+    getEmbeddedId: function getEmbeddedId(embed) {
 
-        /**
-         * Set embedded content
-         * @memberOf PolldaddyController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
-            this.view.elements.$polldaddy.renderEmbeddedContent(
-                this.controller.getEmbeddedId(
-                    this.model.getPrefs('polldaddyEmbedCode')
-                )
-            );
-        },
+      if (!embed) {
+        this.scope.logger.debug('Initial state');
+        return false;
+      }
 
-        /**
-         * Parse embedded content to extract id
-         * @memberOf PolldaddyController
-         * @param {string} embed
-         * @returns {*}
-         */
-        getEmbeddedId: function getEmbeddedId(embed) {
+      // Match inline embed code
+      var regex = embed.match(/poll\/(\d+)/);
 
-            if (!embed) {
-                this.scope.logger.debug('Initial state');
-                return false;
-            }
+      if (regex) {
 
-            // Match inline embed code
-            var regex = embed.match(/poll\/(\d+)/);
+        return data = {
+          type: 'inline',
+          id: regex[1]
+        };
 
-            if (regex) {
+      } else {
 
-                return data = {
-                    type: 'inline',
-                    id: regex[1]
-                };
+        this.scope.logger.warn('Invalid embed code');
+        return false;
+      }
+    },
 
-            } else {
+    /**
+     * Add Polldaddy rule
+     * @memberOf PolldaddyController
+     * @param {Event} e
+     */
+    addPolldaddyRule: function addPolldaddyRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-                this.scope.logger.warn('Invalid embed code');
-                return false;
-            }
-        },
-
-        /**
-         * Add Polldaddy rule
-         * @memberOf PolldaddyController
-         * @param {Event} e
-         */
-        addPolldaddyRule: function addPolldaddyRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

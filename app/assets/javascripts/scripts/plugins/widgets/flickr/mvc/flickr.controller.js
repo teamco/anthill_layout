@@ -22,25 +22,28 @@ define([
 
   return FlickrController.extend('FlickrController', {
 
-    /**
-     * Set embedded content
-     * @memberOf FlickrController
-     */
-    setEmbeddedContent: function setEmbeddedContent() {
+        /**
+         * Set embedded content
+         * @memberOf FlickrController
+         */
+        setEmbeddedContent: function setEmbeddedContent() {
 
-      this.view.elements.$flickr.renderEmbeddedContent(
-          this.model.getPrefs('flickrEmbed')
-      );
-    },
+          this.view.elements.$flickr.renderEmbeddedContent(
+              this.model.getPrefs('flickrEmbed')
+          );
+        },
 
-    /**
-     * Add Flickr rule
-     * @memberOf FlickrController
-     * @param {Event} e
-     */
-    addFlickrRule: function addFlickrRule(e) {
-      this.addWidgetRule(e, this.scope.name);
-    }
+        /**
+         * Add Flickr rule
+         * @memberOf FlickrController
+         * @param {Event} e
+         */
+        addFlickrRule: function addFlickrRule(e) {
+          this.addWidgetRule(e, this.scope.name);
+        }
 
-  }, PluginBase.prototype, WidgetContentController.prototype);
+      },
+      PluginBase.prototype,
+      WidgetContentController.prototype
+  );
 });

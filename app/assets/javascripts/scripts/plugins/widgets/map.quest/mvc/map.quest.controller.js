@@ -6,59 +6,43 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineMapQuestController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define MapQuest controller
+   * @class MapQuestController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var MapQuestController = function MapQuestController() {
+  };
+
+  return MapQuestController.extend('MapQuestController', {
+
     /**
-     * Define MapQuest controller
-     * @class MapQuestController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf MapQuestController
      */
-    var MapQuestController = function MapQuestController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
+      this.view.get$item().renderEmbeddedContent(
+          this.model.getPrefs('mapquestConsumerKey'),
+          this.model.getPrefs('mapquestZoom'),
+          this.model.getPrefs('mapquestZoomOnDoubleClick'),
+          this.model.getPrefs('mapquestLatitudeLongitude')
+      );
+    },
 
-    return MapQuestController.extend('MapQuestController', {
+    /**
+     * Add MapQuest rule
+     * @memberOf MapQuestController
+     * @param {Event} e
+     */
+    addMapQuestRule: function addMapQuestRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-        /**
-         * Set embedded content
-         * @memberOf MapQuestController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
-            this.view.get$item().renderEmbeddedContent(
-                this.model.getPrefs('mapquestConsumerKey'),
-                this.model.getPrefs('mapquestZoom'),
-                this.model.getPrefs('mapquestZoomOnDoubleClick'),
-                this.model.getPrefs('mapquestLatitudeLongitude')
-            );
-        },
-
-        /**
-         * Add MapQuest rule
-         * @memberOf MapQuestController
-         * @param {Event} e
-         */
-        addMapQuestRule: function addMapQuestRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target);
-
-            /**
-             * Get scope
-             * @type {MapQuest|{name: string}}
-             */
-            var scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

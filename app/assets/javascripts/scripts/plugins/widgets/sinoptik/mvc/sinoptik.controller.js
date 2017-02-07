@@ -6,56 +6,40 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineSinoptikController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define Sinoptik controller
+   * @class SinoptikController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var SinoptikController = function SinoptikController() {
+  };
+
+  return SinoptikController.extend('SinoptikController', {
+
     /**
-     * Define Sinoptik controller
-     * @class SinoptikController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf SinoptikController
      */
-    var SinoptikController = function SinoptikController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
+      this.view.get$item().renderEmbeddedContent(
+          this.model.getPrefs('sinoptikEmbedCode')
+      );
+    },
 
-    return SinoptikController.extend('SinoptikController', {
+    /**
+     * Add Sinoptik rule
+     * @memberOf SinoptikController
+     * @param {Event} e
+     */
+    addSinoptikRule: function addSinoptikRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-        /**
-         * Set embedded content
-         * @memberOf SinoptikController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
-            this.view.get$item().renderEmbeddedContent(
-                this.model.getPrefs('sinoptikEmbedCode')
-            );
-        },
-
-        /**
-         * Add Sinoptik rule
-         * @memberOf SinoptikController
-         * @param {Event} e
-         */
-        addSinoptikRule: function addSinoptikRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target);
-
-            /**
-             * Get scope
-             * @type {Sinoptik|{name: string}}
-             */
-            var scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

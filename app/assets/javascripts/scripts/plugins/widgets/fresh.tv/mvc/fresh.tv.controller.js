@@ -6,51 +6,40 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineFreshTvController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define freshtv controller
+   * @class FreshTvController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var FreshTvController = function FreshTvController() {
+  };
+
+  return FreshTvController.extend('FreshTvController', {
+
     /**
-     * Define freshtv controller
-     * @class FreshTvController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf FreshTvController
      */
-    var FreshTvController = function FreshTvController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
+      this.view.elements.$freshtv.renderEmbeddedContent(
+          this.model.getPrefs('freshtvEmbedCode')
+      );
+    },
 
-    return FreshTvController.extend('FreshTvController', {
+    /**
+     * Add FreshTv rule
+     * @memberOf FreshTvController
+     * @param {Event} e
+     */
+    addFreshTvRule: function addFreshTvRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-        /**
-         * Set embedded content
-         * @memberOf FreshTvController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
-            this.view.elements.$freshtv.renderEmbeddedContent(
-                this.model.getPrefs('freshtvEmbedCode')
-            );
-        },
-
-        /**
-         * Add FreshTv rule
-         * @memberOf FreshTvController
-         * @param {Event} e
-         */
-        addFreshTvRule: function addFreshTvRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

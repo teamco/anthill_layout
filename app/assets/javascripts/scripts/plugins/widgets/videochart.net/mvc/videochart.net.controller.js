@@ -6,57 +6,41 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineVideochartNetController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define VideochartNet controller
+   * @class VideochartNetController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var VideochartNetController = function VideochartNetController() {
+  };
+
+  return VideochartNetController.extend('VideochartNetController', {
+
     /**
-     * Define VideochartNet controller
-     * @class VideochartNetController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf VideochartNetController
      */
-    var VideochartNetController = function VideochartNetController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
 
-    return VideochartNetController.extend('VideochartNetController', {
+      this.view.get$item().renderEmbeddedContent(
+          this.model.getPrefs('videochartnetUrl')
+      );
+    },
 
-        /**
-         * Set embedded content
-         * @memberOf VideochartNetController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
+    /**
+     * Add VideochartNet rule
+     * @memberOf VideochartNetController
+     * @param {Event} e
+     */
+    addVideochartNetRule: function addVideochartNetRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-            this.view.get$item().renderEmbeddedContent(
-                this.model.getPrefs('videochartnetUrl')
-            );
-        },
-
-        /**
-         * Add VideochartNet rule
-         * @memberOf VideochartNetController
-         * @param {Event} e
-         */
-        addVideochartNetRule: function addVideochartNetRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target);
-
-            /**
-             * Get scope
-             * @type {VideochartNet|{name: string}}
-             */
-            var scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

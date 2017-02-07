@@ -6,51 +6,40 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function definePicasaController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define picasa controller
+   * @class PicasaController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var PicasaController = function PicasaController() {
+  };
+
+  return PicasaController.extend('PicasaController', {
+
     /**
-     * Define picasa controller
-     * @class PicasaController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf PicasaController
      */
-    var PicasaController = function PicasaController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
+      this.view.elements.$picasa.renderEmbeddedContent(
+          this.model.getPrefs('picasaEmbedCode')
+      );
+    },
 
-    return PicasaController.extend('PicasaController', {
+    /**
+     * Add Picasa rule
+     * @memberOf PicasaController
+     * @param {Event} e
+     */
+    addPicasaRule: function addPicasaRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-        /**
-         * Set embedded content
-         * @memberOf PicasaController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
-            this.view.elements.$picasa.renderEmbeddedContent(
-                this.model.getPrefs('picasaEmbedCode')
-            );
-        },
-
-        /**
-         * Add Picasa rule
-         * @memberOf PicasaController
-         * @param {Event} e
-         */
-        addPicasaRule: function addPicasaRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

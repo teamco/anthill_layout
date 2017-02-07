@@ -6,56 +6,40 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineVerseController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define Verse controller
+   * @class VerseController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var VerseController = function VerseController() {
+  };
+
+  return VerseController.extend('VerseController', {
+
     /**
-     * Define Verse controller
-     * @class VerseController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf VerseController
      */
-    var VerseController = function VerseController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
+      this.view.get$item().renderEmbeddedContent(
+          this.model.getPrefs('verseEmbedCode')
+      );
+    },
 
-    return VerseController.extend('VerseController', {
+    /**
+     * Add Verse rule
+     * @memberOf VerseController
+     * @param {Event} e
+     */
+    addVerseRule: function addVerseRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-        /**
-         * Set embedded content
-         * @memberOf VerseController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
-            this.view.get$item().renderEmbeddedContent(
-                this.model.getPrefs('verseEmbedCode')
-            );
-        },
-
-        /**
-         * Add Verse rule
-         * @memberOf VerseController
-         * @param {Event} e
-         */
-        addVerseRule: function addVerseRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target);
-
-            /**
-             * Get scope
-             * @type {Verse|{name: string}}
-             */
-            var scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

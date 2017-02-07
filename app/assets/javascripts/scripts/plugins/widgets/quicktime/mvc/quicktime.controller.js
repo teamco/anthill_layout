@@ -6,52 +6,41 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineQuicktimeController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define quicktime controller
+   * @class QuicktimeController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var QuicktimeController = function QuicktimeController() {
+  };
+
+  return QuicktimeController.extend('QuicktimeController', {
+
     /**
-     * Define quicktime controller
-     * @class QuicktimeController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf QuicktimeController
      */
-    var QuicktimeController = function QuicktimeController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
 
-    return QuicktimeController.extend('QuicktimeController', {
+      this.view.elements.$quicktime.renderEmbeddedContent(
+          this.model.getPrefs('quicktimeUrl')
+      );
+    },
 
-        /**
-         * Set embedded content
-         * @memberOf QuicktimeController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
+    /**
+     * Add Quicktime rule
+     * @memberOf QuicktimeController
+     * @param {Event} e
+     */
+    addQuicktimeRule: function addQuicktimeRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-            this.view.elements.$quicktime.renderEmbeddedContent(
-                this.model.getPrefs('quicktimeUrl')
-            );
-        },
-
-        /**
-         * Add Quicktime rule
-         * @memberOf QuicktimeController
-         * @param {Event} e
-         */
-        addQuicktimeRule: function addQuicktimeRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

@@ -6,141 +6,131 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
-], function defineOpenWeatherMapController(PluginBase, WidgetContentController) {
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
+], function defineOpenWeatherMapController(PluginBase,
+    WidgetContentController) {
+
+  /**
+   * Define youtube controller
+   * @class OpenWeatherMapController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var OpenWeatherMapController = function OpenWeatherMapController() {
+  };
+
+  return OpenWeatherMapController.extend('OpenWeatherMapController', {
 
     /**
-     * Define youtube controller
-     * @class OpenWeatherMapController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf OpenWeatherMapController
      */
-    var OpenWeatherMapController = function OpenWeatherMapController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
 
-    return OpenWeatherMapController.extend('OpenWeatherMapController', {
+      var latitude = this.model.getPrefs('openweathermapLatitude'),
+          longitude = this.model.getPrefs('openweathermapLongitude');
 
-        /**
-         * Set embedded content
-         * @memberOf OpenWeatherMapController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
+      if (!latitude || !longitude) {
 
-            var latitude = this.model.getPrefs('openweathermapLatitude'),
-                longitude = this.model.getPrefs('openweathermapLongitude');
+        this.observer.publish(
+            this.eventmanager.eventList.getLocation
+        );
 
-            if (!latitude || !longitude) {
+        return false;
+      }
 
-                this.observer.publish(
-                    this.eventmanager.eventList.getLocation
-                );
+      this.controller._setEmbeddedContent.bind(this)();
+    },
 
-                return false;
-            }
+    /**
+     * Set embedded content
+     * @memberOf OpenWeatherMapController
+     * @private
+     */
+    _setEmbeddedContent: function _setEmbeddedContent() {
+      this.view.elements.$openweathermap.renderEmbeddedContent({
+            latitude: this.model.getPrefs('openweathermapLatitude'),
+            longitude: this.model.getPrefs('openweathermapLongitude'),
+            zoom: this.model.getPrefs('openweathermapZoom'),
+            width: this.model.getPrefs('openweathermapWidth'),
+            height: this.model.getPrefs('openweathermapHeight'),
+            sensor: this.model.getPrefs('openweathermapGpsSensor'),
+            scale: this.model.getPrefs('openweathermapScale'),
+            stretch: this.model.getPrefs('openweathermapStretch'),
+            maptype: this.model.getPrefs('openweathermapMapType')
+          }
+      );
+    },
 
-            this.controller._setEmbeddedContent.bind(this)();
-        },
+    /**
+     * Add OpenWeatherMap rule
+     * @memberOf OpenWeatherMapController
+     * @param {Event} e
+     */
+    addOpenWeatherMapRule: function addOpenWeatherMapRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    },
 
-        /**
-         * Set embedded content
-         * @memberOf OpenWeatherMapController
-         * @private
-         */
-        _setEmbeddedContent: function _setEmbeddedContent() {
-            this.view.elements.$openweathermap.renderEmbeddedContent({
-                    latitude: this.model.getPrefs('openweathermapLatitude'),
-                    longitude: this.model.getPrefs('openweathermapLongitude'),
-                    zoom: this.model.getPrefs('openweathermapZoom'),
-                    width: this.model.getPrefs('openweathermapWidth'),
-                    height: this.model.getPrefs('openweathermapHeight'),
-                    sensor: this.model.getPrefs('openweathermapGpsSensor'),
-                    scale: this.model.getPrefs('openweathermapScale'),
-                    stretch: this.model.getPrefs('openweathermapStretch'),
-                    maptype: this.model.getPrefs('openweathermapMapType')
-                }
-            );
-        },
+    /**
+     * Get location
+     * @memberOf OpenWeatherMapController
+     */
+    getLocation: function getLocation() {
 
-        /**
-         * Add OpenWeatherMap rule
-         * @memberOf OpenWeatherMapController
-         * @param {Event} e
-         */
-        addOpenWeatherMapRule: function addOpenWeatherMapRule(e) {
+      /**
+       * Set Location callback
+       * @param position
+       * @returns {*}
+       * @private
+       */
+      function _setLocation(position) {
+        this.model.setOpenWeatherMapLatitude(position.coords.latitude);
+        this.model.setOpenWeatherMapLongitude(position.coords.longitude);
+        this.controller._setEmbeddedContent.bind(this)();
+      }
 
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+            _setLocation.bind(this),
+            this.controller.errorHandler
+        );
+      } else {
+        this.controller.errorHandler({});
+      }
+    },
 
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        },
+    /**
+     * Error handler
+     * @memberOf OpenWeatherMapController
+     * @param [error]
+     */
+    errorHandler: function errorHandler(error) {
 
-        /**
-         * Get location
-         * @memberOf OpenWeatherMapController
-         */
-        getLocation: function getLocation() {
+      /**
+       * Define default message
+       * @type {string}
+       */
+      var message = 'OpenWeatherMap is not supported by this browser';
 
-            /**
-             * Set Location callback
-             * @param position
-             * @returns {*}
-             * @private
-             */
-            function _setLocation(position) {
-                this.model.setOpenWeatherMapLatitude(position.coords.latitude);
-                this.model.setOpenWeatherMapLongitude(position.coords.longitude);
-                this.controller._setEmbeddedContent.bind(this)();
-            }
+      switch (error.code) {
+        case error.PERMISSION_DENIED:
+          message = 'User denied the request for OpenWeatherMap';
+          break;
+        case error.POSITION_UNAVAILABLE:
+          message = 'Location information is unavailable';
+          break;
+        case error.TIMEOUT:
+          message = 'The request to get user location timed out';
+          break;
+        case error.UNKNOWN_ERROR:
+          message = 'An unknown error occurred';
+          break;
+      }
 
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(
-                    _setLocation.bind(this),
-                    this.controller.errorHandler
-                );
-            } else {
-                this.controller.errorHandler({});
-            }
-        },
+      this.scope.logger.warn(message, error);
+    }
 
-        /**
-         * Error handler
-         * @memberOf OpenWeatherMapController
-         * @param [error]
-         */
-        errorHandler: function errorHandler(error) {
-
-            /**
-             * Define default message
-             * @type {string}
-             */
-            var message = 'OpenWeatherMap is not supported by this browser';
-
-            switch (error.code) {
-                case error.PERMISSION_DENIED:
-                    message = 'User denied the request for OpenWeatherMap';
-                    break;
-                case error.POSITION_UNAVAILABLE:
-                    message = 'Location information is unavailable';
-                    break;
-                case error.TIMEOUT:
-                    message = 'The request to get user location timed out';
-                    break;
-                case error.UNKNOWN_ERROR:
-                    message = 'An unknown error occurred';
-                    break;
-            }
-
-            this.scope.logger.warn(message, error);
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

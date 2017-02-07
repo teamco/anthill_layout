@@ -6,87 +6,76 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineMetaUaController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define meta controller
+   * @class MetaUaController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var MetaUaController = function MetaUaController() {
+  };
+
+  return MetaUaController.extend('MetaUaController', {
+
     /**
-     * Define meta controller
-     * @class MetaUaController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf MetaUaController
      */
-    var MetaUaController = function MetaUaController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
 
-    return MetaUaController.extend('MetaUaController', {
+      /**
+       * Get url
+       * @type {string|*}
+       */
+      var url = this.model.getPrefs('metauaUrl'),
+          embed = this.controller.getEmbedCode(url);
 
-        /**
-         * Set embedded content
-         * @memberOf MetaUaController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
+      if (embed) {
+        this.view.elements.$metaua.renderEmbeddedContent(embed);
+      }
+    },
 
-            /**
-             * Get url
-             * @type {string|*}
-             */
-            var url = this.model.getPrefs('metauaUrl'),
-                embed = this.controller.getEmbedCode(url);
+    /**
+     * Validate meta
+     * @memberOf MetaUaController
+     * @param {string} url
+     * @return {string|boolean}
+     */
+    getEmbedCode: function getEmbedCode(url) {
 
-            if (embed) {
-                this.view.elements.$metaua.renderEmbeddedContent(embed);
-            }
-        },
+      if (!url) {
+        this.scope.logger.debug('Initial state');
+        return false;
+      }
 
-        /**
-         * Validate meta
-         * @memberOf MetaUaController
-         * @param {string} url
-         * @return {string|boolean}
-         */
-        getEmbedCode: function getEmbedCode(url) {
+      // Convert to string
+      url += '';
 
-            if (!url) {
-                this.scope.logger.debug('Initial state');
-                return false;
-            }
+      if (url.match(/iframe/)) {
+        url = $(url).attr('src');
+      }
 
-            // Convert to string
-            url += '';
+      var mask = this.model.getConfig('mask'),
+          regex = url.match(
+              this.model.getConfig('regex')
+          );
 
-            if (url.match(/iframe/)) {
-                url = $(url).attr('src');
-            }
+      return mask.replace(/\{id}/g, regex[0]);
+    },
 
-            var mask = this.model.getConfig('mask'),
-                regex = url.match(
-                    this.model.getConfig('regex')
-                );
+    /**
+     * Add MetaUa rule
+     * @memberOf MetaUaController
+     * @param {Event} e
+     */
+    addMetaUaRule: function addMetaUaRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-            return mask.replace(/\{id}/g, regex[0]);
-        },
-
-        /**
-         * Add MetaUa rule
-         * @memberOf MetaUaController
-         * @param {Event} e
-         */
-        addMetaUaRule: function addMetaUaRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

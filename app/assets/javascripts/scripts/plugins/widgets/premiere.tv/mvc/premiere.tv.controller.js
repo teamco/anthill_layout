@@ -6,51 +6,40 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function definePremiereTvController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define premieretv controller
+   * @class PremiereTvController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var PremiereTvController = function PremiereTvController() {
+  };
+
+  return PremiereTvController.extend('PremiereTvController', {
+
     /**
-     * Define premieretv controller
-     * @class PremiereTvController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf PremiereTvController
      */
-    var PremiereTvController = function PremiereTvController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
+      this.view.elements.$premieretv.renderEmbeddedContent(
+          this.model.getPrefs('premieretvEmbedCode')
+      );
+    },
 
-    return PremiereTvController.extend('PremiereTvController', {
+    /**
+     * Add PremiereTv rule
+     * @memberOf PremiereTvController
+     * @param {Event} e
+     */
+    addPremiereTvRule: function addPremiereTvRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-        /**
-         * Set embedded content
-         * @memberOf PremiereTvController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
-            this.view.elements.$premieretv.renderEmbeddedContent(
-                this.model.getPrefs('premieretvEmbedCode')
-            );
-        },
-
-        /**
-         * Add PremiereTv rule
-         * @memberOf PremiereTvController
-         * @param {Event} e
-         */
-        addPremiereTvRule: function addPremiereTvRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

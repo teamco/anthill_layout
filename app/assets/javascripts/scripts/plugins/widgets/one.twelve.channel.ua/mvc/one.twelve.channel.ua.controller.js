@@ -6,51 +6,41 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
-], function defineOneTwelveChannelUaController(PluginBase, WidgetContentController) {
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
+], function defineOneTwelveChannelUaController(PluginBase,
+    WidgetContentController) {
+
+  /**
+   * Define onetwelvechannelua controller
+   * @class OneTwelveChannelUaController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var OneTwelveChannelUaController = function OneTwelveChannelUaController() {
+  };
+
+  return OneTwelveChannelUaController.extend('OneTwelveChannelUaController', {
 
     /**
-     * Define onetwelvechannelua controller
-     * @class OneTwelveChannelUaController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf OneTwelveChannelUaController
      */
-    var OneTwelveChannelUaController = function OneTwelveChannelUaController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
+      this.view.elements.$onetwelvechannelua.renderEmbeddedContent(
+          this.model.getPrefs('onetwelvechanneluaEmbedCode')
+      );
+    },
 
-    return OneTwelveChannelUaController.extend('OneTwelveChannelUaController', {
+    /**
+     * Add OneTwelveChannelUa rule
+     * @memberOf OneTwelveChannelUaController
+     * @param {Event} e
+     */
+    addOneTwelveChannelUaRule: function addOneTwelveChannelUaRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-        /**
-         * Set embedded content
-         * @memberOf OneTwelveChannelUaController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
-            this.view.elements.$onetwelvechannelua.renderEmbeddedContent(
-                this.model.getPrefs('onetwelvechanneluaEmbedCode')
-            );
-        },
-
-        /**
-         * Add OneTwelveChannelUa rule
-         * @memberOf OneTwelveChannelUaController
-         * @param {Event} e
-         */
-        addOneTwelveChannelUaRule: function addOneTwelveChannelUaRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

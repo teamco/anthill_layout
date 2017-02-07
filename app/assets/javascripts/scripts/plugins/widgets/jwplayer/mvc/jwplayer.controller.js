@@ -6,92 +6,81 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineJwplayerController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define jwplayer controller
+   * @class JwplayerController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var JwplayerController = function JwplayerController() {
+  };
+
+  return JwplayerController.extend('JwplayerController', {
+
     /**
-     * Define jwplayer controller
-     * @class JwplayerController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf JwplayerController
      */
-    var JwplayerController = function JwplayerController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
 
-    return JwplayerController.extend('JwplayerController', {
+      this.view.elements.$jwplayer.renderEmbeddedContent({
+        title: this.model.getPrefs('jwplayerVideoTitle'),
+        script: this.model.getPrefs('jwplayerScriptUrl'),
+        rtmp: this.model.getPrefs('jwplayerRtmpUrl'),
+        image: this.model.getPrefs('jwplayerImageUrl'),
+        width: this.model.getPrefs('jwplayerWidth'),
+        aspectratio: this.model.getPrefs('jwplayerAspectRatio'),
+        autostart: this.model.getPrefs('jwplayerAutoStart')
+      });
+    },
 
-        /**
-         * Set embedded content
-         * @memberOf JwplayerController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
+    /**
+     * Validate jwplayer
+     * @memberOf JwplayerController
+     * @param {string} url
+     * @return {string|boolean}
+     */
+    getEmbedCode: function getEmbedCode(url) {
 
-            this.view.elements.$jwplayer.renderEmbeddedContent({
-                title: this.model.getPrefs('jwplayerVideoTitle'),
-                script: this.model.getPrefs('jwplayerScriptUrl'),
-                rtmp: this.model.getPrefs('jwplayerRtmpUrl'),
-                image: this.model.getPrefs('jwplayerImageUrl'),
-                width: this.model.getPrefs('jwplayerWidth'),
-                aspectratio: this.model.getPrefs('jwplayerAspectRatio'),
-                autostart: this.model.getPrefs('jwplayerAutoStart')
-            });
-        },
+      if (!url) {
+        this.scope.logger.debug('Initial state');
+        return false;
+      }
 
-        /**
-         * Validate jwplayer
-         * @memberOf JwplayerController
-         * @param {string} url
-         * @return {string|boolean}
-         */
-        getEmbedCode: function getEmbedCode(url) {
+      var mask = this.model.getConfig('mask'),
+          embed, regex = this.model.getConfig('regex');
 
-            if (!url) {
-                this.scope.logger.debug('Initial state');
-                return false;
-            }
+      if (!url.match(regex)) {
+        this.scope.logger.warn('Invalid jwplayer url');
+        return false;
+      }
 
-            var mask = this.model.getConfig('mask'),
-                embed, regex = this.model.getConfig('regex');
-
-            if (!url.match(regex)) {
-                this.scope.logger.warn('Invalid jwplayer url');
-                return false;
-            }
-
-            if (url.match(/iframe/)) {
-
-                /**
-                 * Embed iframe fix
-                 * @type {string}
-                 */
-                url = $(url).attr('src');
-            }
-
-            return url.replace(regex, mask.replace(/{{videoId}}/g, '$1')).
-                replace(/embed\/embed/, 'embed');
-        },
+      if (url.match(/iframe/)) {
 
         /**
-         * Add Jwplayer rule
-         * @memberOf JwplayerController
-         * @param {Event} e
+         * Embed iframe fix
+         * @type {string}
          */
-        addJwplayerRule: function addJwplayerRule(e) {
+        url = $(url).attr('src');
+      }
 
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
+      return url.replace(regex, mask.replace(/{{videoId}}/g, '$1')).
+          replace(/embed\/embed/, 'embed');
+    },
 
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
+    /**
+     * Add Jwplayer rule
+     * @memberOf JwplayerController
+     * @param {Event} e
+     */
+    addJwplayerRule: function addJwplayerRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

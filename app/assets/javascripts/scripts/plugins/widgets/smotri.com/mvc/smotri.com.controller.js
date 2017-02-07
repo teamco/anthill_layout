@@ -6,94 +6,83 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineSmotriComController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define smotricom controller
+   * @class SmotriComController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var SmotriComController = function SmotriComController() {
+  };
+
+  return SmotriComController.extend('SmotriComController', {
+
     /**
-     * Define smotricom controller
-     * @class SmotriComController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf SmotriComController
      */
-    var SmotriComController = function SmotriComController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
 
-    return SmotriComController.extend('SmotriComController', {
+      /**
+       * Get url
+       * @type {string|*}
+       */
+      var url = this.model.getPrefs('smotricomEmbedCode'),
+          embed = this.controller.getEmbedCode(url);
 
-        /**
-         * Set embedded content
-         * @memberOf SmotriComController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
+      if (embed) {
+        this.view.elements.$smotricom.renderEmbeddedContent(embed);
+      }
+    },
 
-            /**
-             * Get url
-             * @type {string|*}
-             */
-            var url = this.model.getPrefs('smotricomEmbedCode'),
-                embed = this.controller.getEmbedCode(url);
+    /**
+     * Validate smotricom
+     * @memberOf SmotriComController
+     * @param {string} embed
+     * @return {string|boolean}
+     */
+    getEmbedCode: function getEmbedCode(embed) {
 
-            if (embed) {
-                this.view.elements.$smotricom.renderEmbeddedContent(embed);
-            }
-        },
+      if (!embed) {
+        this.scope.logger.debug('Initial state');
+        return false;
+      }
 
-        /**
-         * Validate smotricom
-         * @memberOf SmotriComController
-         * @param {string} embed
-         * @return {string|boolean}
-         */
-        getEmbedCode: function getEmbedCode(embed) {
+      // Convert to string
+      embed += '';
 
-            if (!embed) {
-                this.scope.logger.debug('Initial state');
-                return false;
-            }
-
-            // Convert to string
-            embed += '';
-
-            if (embed.match(/<object/)) {
-
-                /**
-                 * Get $embed
-                 * @type {*|jQuery|HTMLElement}
-                 */
-                var $embed = $(embed);
-
-                return embed.match(/^<object/) ?
-                    $embed :
-                    $embed.find('object');
-
-            } else {
-
-                this.scope.logger.warn('Invalid SmotriCom embed code');
-                return false;
-            }
-        },
+      if (embed.match(/<object/)) {
 
         /**
-         * Add SmotriCom rule
-         * @memberOf SmotriComController
-         * @param {Event} e
+         * Get $embed
+         * @type {*|jQuery|HTMLElement}
          */
-        addSmotriComRule: function addSmotriComRule(e) {
+        var $embed = $(embed);
 
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
+        return embed.match(/^<object/) ?
+            $embed :
+            $embed.find('object');
 
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
+      } else {
 
-    }, PluginBase.prototype, WidgetContentController.prototype);
+        this.scope.logger.warn('Invalid SmotriCom embed code');
+        return false;
+      }
+    },
+
+    /**
+     * Add SmotriCom rule
+     * @memberOf SmotriComController
+     * @param {Event} e
+     */
+    addSmotriComRule: function addSmotriComRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
+
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

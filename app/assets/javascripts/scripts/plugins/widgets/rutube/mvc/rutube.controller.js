@@ -6,52 +6,41 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineRutubeController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define rutube controller
+   * @class RutubeController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var RutubeController = function RutubeController() {
+  };
+
+  return RutubeController.extend('RutubeController', {
+
     /**
-     * Define rutube controller
-     * @class RutubeController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf RutubeController
      */
-    var RutubeController = function RutubeController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
 
-    return RutubeController.extend('RutubeController', {
+      this.view.elements.$rutube.renderEmbeddedContent(
+          this.model.getPrefs('rutubeEmbedCode')
+      );
+    },
 
-        /**
-         * Set embedded content
-         * @memberOf RutubeController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
+    /**
+     * Add Rutube rule
+     * @memberOf RutubeController
+     * @param {Event} e
+     */
+    addRutubeRule: function addRutubeRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-            this.view.elements.$rutube.renderEmbeddedContent(
-                this.model.getPrefs('rutubeEmbedCode')
-            );
-        },
-
-        /**
-         * Add Rutube rule
-         * @memberOf RutubeController
-         * @param {Event} e
-         */
-        addRutubeRule: function addRutubeRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });
