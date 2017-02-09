@@ -23,9 +23,9 @@ define([
      * Define preferences
      * @memberOf MixcloudModel
      * @type {{
-         *      mixcloudEmbedCode: {type: string, disabled: boolean, value:
-         *     undefined, visible: boolean}
-         * }}
+     *      mixcloudEmbedCode: {type: string, disabled: boolean, value:
+     *     undefined, visible: boolean}
+     * }}
      */
     this.preferences = {
       mixcloudEmbedCode: {

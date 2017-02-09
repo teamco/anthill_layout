@@ -23,9 +23,9 @@ define([
      * Define preferences
      * @memberOf MetaUaModel
      * @type {{
-         *      metaUrl: {type: string, disabled: boolean, value: undefined,
-         *     visible: boolean}
-         * }}
+     *      metaUrl: {type: string, disabled: boolean, value: undefined,
+     *     visible: boolean}
+     * }}
      */
     this.preferences = {
       metauaUrl: {

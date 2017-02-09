@@ -23,9 +23,9 @@ define([
      * Define preferences
      * @memberOf MixbookModel
      * @type {{
-         *      mixbookEmbedCode: {type: string, disabled: boolean, value:
-         *     undefined, visible: boolean}
-         * }}
+     *      mixbookEmbedCode: {type: string, disabled: boolean, value:
+     *     undefined, visible: boolean}
+     * }}
      */
     this.preferences = {
       mixbookEmbedCode: {
