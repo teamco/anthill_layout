@@ -23,9 +23,13 @@ define([
      * Define preferences
      * @memberOf MlkshkModel
      * @type {{
-         *      mlkshkEmbedCode: {type: string, disabled: boolean, value:
-         *     undefined, visible: boolean}
-         * }}
+     *    mlkshkEmbedCode: {
+     *      type: string,
+     *      disabled: boolean,
+     *      value: undefined,
+     *      visible: boolean
+     *    }
+     * }}
      */
     this.preferences = {
       mlkshkEmbedCode: {
