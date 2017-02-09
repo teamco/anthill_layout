@@ -66,7 +66,7 @@ define([
         _transferValue: function _transferValue(value) {
           this.scope.$buttons[this.button].$.attr({
             value: value
-          })
+          });
         },
 
         /**

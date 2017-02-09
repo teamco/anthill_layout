@@ -182,6 +182,9 @@ define([], function defineComboBoxRenderer() {
                */
               function _comboBoxEvent(e) {
 
+                // Fix for change hash.
+                e.preventDefault();
+
                 // Execute callback with value as parameter
                 event.callback(
                     $(e.target).parent().attr('rel')

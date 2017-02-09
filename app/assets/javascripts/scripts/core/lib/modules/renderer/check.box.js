@@ -21,15 +21,15 @@ define(function defineCheckBoxRenderer() {
      * Render checkbox
      * @memberOf CheckBoxRenderer
      * @param {{
-         *      text: string,
-         *      name: string,
-         *      value,
-         *      [checked]: boolean,
-         *      [disabled]: boolean,
-         *      [monitor],
-         *      [tooltip],
-         *      [visible]
-         * }} opts
+     *      text: string,
+     *      name: string,
+     *      value,
+     *      [checked]: boolean,
+     *      [disabled]: boolean,
+     *      [monitor],
+     *      [tooltip],
+     *      [visible]
+     * }} opts
      * @returns {*}
      */
     renderCheckbox: function renderCheckbox(opts) {

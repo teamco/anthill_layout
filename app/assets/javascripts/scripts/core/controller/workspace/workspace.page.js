@@ -39,8 +39,9 @@ define(function defineWorkspacePage() {
         /**
          * Switch page on hash change
          * @memberOf WorkspacePage
+         * @param {Event} e
          */
-        switchPageOnHashChange: function switchPageOnHashChange() {
+        switchPageOnHashChange: function switchPageOnHashChange(e) {
 
           /**
            * Define scope
@@ -48,6 +49,9 @@ define(function defineWorkspacePage() {
            */
           var scope = this.scope,
               page = this.getPageByHashLocation(scope);
+
+          scope.logger.debug('Change hash', e, page,
+              window.location.hash.length);
 
           if (window.location.hash.length) {
 
