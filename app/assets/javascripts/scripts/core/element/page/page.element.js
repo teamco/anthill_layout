@@ -89,16 +89,16 @@ define([
 
       var header = this.view.elements.$header,
           footer = this.view.elements.$footer,
-          $container = this.getRootContainer();
+          containerHeight = this.getRootContainer().height();
 
       var headerHeight = header.$ ? header.$.height() : 0,
           footerHeight = footer.$ ? footer.$.height() : 0,
           outerHeight = headerHeight + footerHeight;
 
-      height = height ? height : $container.height();
+      height = height ? height : containerHeight;
 
-      if (height < $container.height()) {
-        height = $container.height();
+      if (height < containerHeight) {
+        height = containerHeight;
       }
 
       var pageScrollHeight = parseInt(
