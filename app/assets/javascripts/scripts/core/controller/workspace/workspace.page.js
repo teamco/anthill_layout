@@ -153,6 +153,11 @@ define(function defineWorkspacePage() {
               this.eventmanager.eventList.resetPagesHeightBeforeSwitch
           );
 
+          /**
+           * Define swipe page
+           * @property Workspace
+           * @type {boolean}
+           */
           this.switchPage = true;
 
           /**
