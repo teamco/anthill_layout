@@ -235,33 +235,41 @@ define([
       }
 
       var top = 'auto',
+          bottom = 'auto',
           left = 'auto',
+          right = 'auto',
           mw = cWidth - eWidth,
           cw = offsetLeft + (mw / 2),
           mh = cHeight - eHeight,
           ch = offsetTop + (mh / 2);
 
-      if (opts.position == 'tl') {
-      } else if (opts.position == 'tc') {
+      if (opts.position === 'tl') {
+        top = 0;
+        left = 0;
+      } else if (opts.position === 'tc') {
+        top = 0;
         left = cw;
-      } else if (opts.position == 'tr') {
-        left = mw;
-      } else if (opts.position == 'cl') {
+      } else if (opts.position === 'tr') {
+        right = 0;
+        top = 0;
+      } else if (opts.position === 'cl') {
         top = ch;
-      } else if (opts.position == 'cc') {
+        left = 0;
+      } else if (opts.position === 'cc') {
         top = ch;
         left = cw;
-      } else if (opts.position == 'cr') {
+      } else if (opts.position === 'cr') {
         top = ch;
-        left = mw;
-      } else if (opts.position == 'bl') {
-        top = mh;
-      } else if (opts.position == 'bc') {
-        top = mh;
+        right = 0;
+      } else if (opts.position === 'bl') {
+        bottom = 0;
+        left = 0;
+      } else if (opts.position === 'bc') {
+        bottom = 0;
         left = cw;
-      } else if (opts.position == 'br') {
-        top = mh;
-        left = mw;
+      } else if (opts.position === 'br') {
+        bottom = 0;
+        right = 0;
       }
 
       /**
@@ -269,7 +277,9 @@ define([
        */
       var css = $.extend({
         left: left,
-        top: top
+        right: right,
+        top: top,
+        bottom: bottom
       }, opts.css || {});
 
       return $item.css(css);

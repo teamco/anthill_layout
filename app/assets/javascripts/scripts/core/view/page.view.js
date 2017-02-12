@@ -44,7 +44,11 @@ define([
 
       this.header(Header, this.get$item());
       this.widgets();
-      this.deltaScroll();
+
+      if (!this.controller.isConsumptionMode()) {
+        this.deltaScroll();
+      }
+
       this.footer(Footer, this.get$item());
 
       /**
