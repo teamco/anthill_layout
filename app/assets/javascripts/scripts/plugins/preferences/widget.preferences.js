@@ -200,7 +200,7 @@ define([
         text: text,
         $container: $container,
         content: this.renderPrefsForm(
-            this.renderLayoutInteractions(), text
+            this.renderLayoutInteractions(widget), text
         )
       });
 
@@ -289,29 +289,13 @@ define([
     /**
      * Render Layout interactions
      * @memberOf WidgetPreferences
+     * @param {Widget} widget
      * @returns {*}
      */
-    renderLayoutInteractions: function renderLayoutInteractions() {
+    renderLayoutInteractions: function renderLayoutInteractions(widget) {
 
-      /**
-       * Render layout
-       * @private
-       * @param {string} side
-       * @param value
-       * @returns {*|jQuery}
-       */
-      function _renderPrefs(side, value) {
-
-        return {
-          type: 'text',
-          name: side.toLowerCase(),
-          text: side,
-          placeholder: side,
-          value: value,
-          disabled: true,
-          visible: true
-        };
-      }
+      // Get layout prefs
+      var layout = widget.controller.getPreferences().layout;
 
       /**
        * Define controller
@@ -325,12 +309,15 @@ define([
           width = controller.getDOMPreferences('relWidth'),
           height = controller.getDOMPreferences('relHeight');
 
-      return {
-        column: _renderPrefs('Column', column),
-        width: _renderPrefs('Width', width),
-        row: _renderPrefs('Row', row),
-        height: _renderPrefs('Height', height)
-      };
+      layout.column.value = column;
+      layout.row.value = row;
+      layout.width.value = width;
+      layout.height.value = height;
+
+      return this.mergeWidgetPrefs(
+          layout,
+          widget.model.getConfig('preferences')
+      );
     }
 
   }, BasePreferencesElement.prototype);
