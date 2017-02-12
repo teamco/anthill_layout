@@ -149,6 +149,10 @@ define(function defineWorkspacePage() {
 
           this.logger.debug('Before switch to page', page);
 
+          this.observer.publish(
+              this.eventmanager.eventList.resetPagesHeightBeforeSwitch
+          );
+
           this.switchPage = true;
 
           /**
@@ -335,6 +339,17 @@ define(function defineWorkspacePage() {
               page.controller.isLazyLoaded()) {
             return page;
           }
+        },
+
+        /**
+         * Reset pages height before switch
+         * @memberOf WorkspacePage
+         */
+        resetPagesHeightBeforeSwitch: function resetPagesHeightBeforeSwitch() {
+
+          _.each(this.model.getItems(), function (item) {
+            item.view.get$item().$.addClass('height-auto');
+          });
         },
 
         /**

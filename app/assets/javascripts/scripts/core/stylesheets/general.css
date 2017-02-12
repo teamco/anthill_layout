@@ -143,3 +143,7 @@ html, body, .application,
 .fa.dashboard:before {
     content: "\f015";
 }
+
+.height-auto {
+    height: 100% !important;
+}

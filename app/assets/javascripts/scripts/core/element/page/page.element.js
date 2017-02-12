@@ -54,6 +54,8 @@ define([
        */
       var scope = this.view.scope;
 
+      this.$.removeClass('height-auto');
+
       /**
        * Get widget
        * @type {Widget}
