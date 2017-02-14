@@ -34,8 +34,8 @@ group :test, :development do
   gem 'rubocop', require: false
   gem 'rubycritic', require: false
   gem 'traceroute', require: false
-  # gem 'guard', require: false
-  # gem 'guard-livereload', '~> 2.4', require: false
+  gem 'guard', require: false
+  gem 'guard-livereload', '~> 2.5', require: false
   gem 'byebug', require: false
 end
 

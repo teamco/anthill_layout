@@ -15,15 +15,60 @@ define(function defineTabsRenderer() {
   return TabsRenderer.extend('TabsRenderer', {
 
     /**
+     * General class names
+     * @memberOf TabsRenderer
+     * @type {Object}
+     */
+    scrollerClass: {
+      name: 'scroller',
+      left: 'left',
+      right: 'right'
+    },
+
+    /**
+     * Get scroller side class name
+     * @param {string} side
+     * @memberOf TabsRenderer
+     * @returns {string}
+     */
+    getScrollerSideClassName: function getScrollerSideClassName(side) {
+      return [this.scrollerClass.name, side].join('-');
+    },
+
+    /**
+     * Get scroller class name
+     * @param {string} side
+     * @memberOf TabsRenderer
+     * @returns {string}
+     */
+    getScrollerClassName: function getScrollerClassName(side) {
+      return [
+        this.scrollerClass.name,
+        this.getScrollerSideClassName(side)
+      ].join(' ');
+    },
+
+    /**
      * Render scroller
      * @memberOf TabsRenderer
-     * @returns {*|jQuery}
+     * @returns {string}
      */
     renderScroller: function renderScroller() {
       return [
-        '<div class="scroller scroller-left"><i class="glyphicon glyphicon-chevron-left"></i></div>',
-        '<div class="scroller scroller-right"><i class="glyphicon glyphicon-chevron-right"></i></div>'
+        '<div class="', this.getScrollerClassName('left'), '">',
+        '<i class="glyphicon glyphicon-chevron-left"></i></div>',
+        '<div class="', this.getScrollerClassName('right'), '">',
+        '<i class="glyphicon glyphicon-chevron-right"></i></div>'
       ].join('');
+    },
+
+    /**
+     * Get scroller side jQuery element
+     * @memberOf TabsRenderer
+     * @returns {*|jQuery}
+     */
+    get$scroller: function get$scroller($container, side) {
+      return $('.' + this.getScrollerSideClassName(side), $container);
     },
 
     /**
@@ -123,8 +168,8 @@ define(function defineTabsRenderer() {
        */
       var element = this;
 
-      var $left = $('.scroller-left', $container),
-          $right = $('.scroller-right', $container),
+      var $left = this.get$scroller($container, 'left'),
+          $right = this.get$scroller($container, 'right'),
           width = $container.outerWidth(),
           leftOffset = element.getTabsLeftPos($container);
 
@@ -133,8 +178,8 @@ define(function defineTabsRenderer() {
           rightFade = Math.abs(leftOffset) + width <
               $rightLast.outerWidth() + $rightLast.position().left;
 
-      $right['fade' + (rightFade ? 'In' : 'Out')]();
-      $left['fade' + (leftFade ? 'In' : 'Out')]();
+      $right.stop()[(rightFade ? 'show' : 'hide')]();
+      $left.stop()[(leftFade ? 'show' : 'hide')]();
     },
 
     /**
@@ -151,8 +196,8 @@ define(function defineTabsRenderer() {
        */
       var element = this;
 
-      var $left = $('.scroller-left', $container),
-          $right = $('.scroller-right', $container);
+      var $left = this.get$scroller($container, 'left'),
+          $right = this.get$scroller($container, 'right');
 
       if (!$left.length) {
         return false;
@@ -160,17 +205,17 @@ define(function defineTabsRenderer() {
 
       var $tabs = $('.nav-tabs', $container);
 
-      $left.off().on('click.left', function _scrollLeft() {
+      $left.off().on('click.left', function _scrollLeft(e) {
         element.scrollToTab(
             element.scrollTabsLeft($tabs),
-            $tabs, 0
+            $tabs, 0, e
         );
       });
 
-      $right.off().on('click.right', function _scrollRight() {
+      $right.off().on('click.right', function _scrollRight(e) {
         element.scrollToTab(
             element.scrollTabsRight($tabs, this),
-            $tabs, 1
+            $tabs, 1, e
         );
       });
 
@@ -180,11 +225,12 @@ define(function defineTabsRenderer() {
     /**
      * Scroll tab
      * @memberOf TabsRenderer
-     * @param delta
+     * @param {number} delta
      * @param $tabs
-     * @param side
+     * @param {number} side
+     * @param {Event} event
      */
-    scrollToTab: function scrollToTab(delta, $tabs, side) {
+    scrollToTab: function scrollToTab(delta, $tabs, side, event) {
 
       /**
        * Get element
@@ -194,7 +240,8 @@ define(function defineTabsRenderer() {
           $pt = $tabs.parent();
 
       if (delta) {
-        $tabs.animate(
+        element.reAdjustTabs($pt);
+        $tabs.stop().animate(
             {left: (side ? '-' : '+') + '=' + delta + 'px'},
             function _afterAnimate() {
               element.reAdjustTabs($pt);
