@@ -1,4 +1,6 @@
 source 'https://rubygems.org'
+ruby '2.4.0'
+
 
 # case RUBY_PLATFORM
 #   when /darwin|linux/
