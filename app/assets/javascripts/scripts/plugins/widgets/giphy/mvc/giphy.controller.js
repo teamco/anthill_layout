@@ -6,102 +6,91 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineGiphyController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define giphy controller
+   * @class GiphyController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var GiphyController = function GiphyController() {
+  };
+
+  return GiphyController.extend('GiphyController', {
+
     /**
-     * Define giphy controller
-     * @class GiphyController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf GiphyController
      */
-    var GiphyController = function GiphyController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
 
-    return GiphyController.extend('GiphyController', {
+      /**
+       * Get url
+       * @type {string|*}
+       */
+      var url = this.model.getPrefs('giphyEmbedCode'),
+          embed = this.controller.getEmbedCode(url);
 
-        /**
-         * Set embedded content
-         * @memberOf GiphyController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
+      if (embed) {
+        this.view.elements.$giphy.renderEmbeddedContent(embed);
+      }
+    },
 
-            /**
-             * Get url
-             * @type {string|*}
-             */
-            var url = this.model.getPrefs('giphyEmbedCode'),
-                embed = this.controller.getEmbedCode(url);
+    /**
+     * Validate giphy
+     * @memberOf GiphyController
+     * @param {string} embed
+     * @return {string|boolean}
+     */
+    getEmbedCode: function getEmbedCode(embed) {
 
-            if (embed) {
-                this.view.elements.$giphy.renderEmbeddedContent(embed);
-            }
-        },
+      if (!embed) {
+        this.scope.logger.debug('Initial state');
+        return false;
+      }
 
-        /**
-         * Validate giphy
-         * @memberOf GiphyController
-         * @param {string} embed
-         * @return {string|boolean}
-         */
-        getEmbedCode: function getEmbedCode(embed) {
+      // Convert to string
+      embed += '';
 
-            if (!embed) {
-                this.scope.logger.debug('Initial state');
-                return false;
-            }
+      if (embed.match(/^<iframe/)) {
 
-            // Convert to string
-            embed += '';
+        return {
+          type: 'iframe',
+          src: $(embed).attr('src')
+        };
+      }
 
-            if (embed.match(/^<iframe/)) {
+      if (embed.match(/^<div/)) {
 
-                return {
-                    type: 'iframe',
-                    src: $(embed).attr('src')
-                };
-            }
+        var $embed = $(embed),
+            id = $embed[0].id.replace(/_giphy_/, ''),
+            width = $embed[1].outerHTML.match(/w\:(| )(\d+)/),
+            height = $embed[1].outerHTML.match(/h\:(| )(\d+)/);
 
-            if (embed.match(/^<div/)) {
+        return {
+          type: 'js',
+          src: $($embed[0]).attr('style', ''),
+          id: id,
+          width: width ? width[2] : 0,
+          height: height ? height[2] : 0
+        };
+      }
 
-                var $embed = $(embed),
-                    id = $embed[0].id.replace(/_giphy_/, ''),
-                    width = $embed[1].outerHTML.match(/w\:(| )(\d+)/),
-                    height = $embed[1].outerHTML.match(/h\:(| )(\d+)/);
+      this.scope.logger.warn('Invalid Giphy embed code');
+    },
 
-                return {
-                    type: 'js',
-                    src: $($embed[0]).attr('style', ''),
-                    id: id,
-                    width: width ? width[2] : 0,
-                    height: height ? height[2] : 0
-                };
-            }
+    /**
+     * Add Giphy rule
+     * @memberOf GiphyController
+     * @param {Event} e
+     */
+    addGiphyRule: function addGiphyRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-            this.scope.logger.warn('Invalid Giphy embed code');
-        },
-
-        /**
-         * Add Giphy rule
-         * @memberOf GiphyController
-         * @param e
-         */
-        addGiphyRule: function addGiphyRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

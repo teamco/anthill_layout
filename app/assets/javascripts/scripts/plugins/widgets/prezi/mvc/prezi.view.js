@@ -7,108 +7,109 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/prezi/element/prezi.element',
-    'plugins/widgets/prezi/element/prezi.preferences.element',
-    'plugins/widgets/prezi/element/prezi.rules.element'
-], function definePreziView(BaseView, Header, Footer, PreziElement, PreziPreferencesElement, PreziRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/prezi/element/prezi.element',
+  'plugins/widgets/prezi/element/prezi.preferences.element',
+  'plugins/widgets/prezi/element/prezi.rules.element'
+], function definePreziView(BaseView, Header, Footer, PreziElement,
+    PreziPreferencesElement, PreziRulesElement) {
+
+  /**
+   * Define view
+   * @class PreziView
+   * @extends BaseView
+   * @constructor
+   */
+  var PreziView = function PreziView() {
+  };
+
+  return PreziView.extend('PreziView', {
 
     /**
-     * Define view
-     * @class PreziView
-     * @extends BaseView
-     * @constructor
+     * Render prezi element
+     * @memberOf PreziView
      */
-    var PreziView = function PreziView() {
-    };
+    renderPrezi: function renderPrezi() {
 
-    return PreziView.extend('PreziView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render prezi element
-         * @memberOf PreziView
-         */
-        renderPrezi: function renderPrezi() {
+      /**
+       * Define $prezi
+       * @type {PreziElement}
+       */
+      this.elements.$prezi = new PreziElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $prezi
-             * @type {PreziElement}
-             */
-            this.elements.$prezi = new PreziElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf PreziView
+     * @returns {PreziPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define Prezi Preferences Element
+       * @type {PreziPreferencesElement}
+       */
+      this.elements.$preferences = new PreziPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf PreziView
-         * @returns {PreziPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define Prezi Preferences Element
-             * @type {PreziPreferencesElement}
-             */
-            this.elements.$preferences = new PreziPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf PreziView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {PreziRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
+      /**
+       * Define data
+       * @type {*|{}}
+       */
+      var data = this.controller.getRules();
 
-        /**
-         * Render Rules
-         * @memberOf PreziView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {PreziRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define data
-             * @type {*|{}}
-             */
-            var data = this.controller.getRules();
-
-            /**
-             * Define Prezi Rules Element
-             * @type {PreziRulesElement}
-             */
-            this.elements.$rules = new PreziRulesElement(this, {
-                data: data,
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render prezi
-         * @memberOf PreziView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderPrezi.bind(this)
-            );
+      /**
+       * Define Prezi Rules Element
+       * @type {PreziRulesElement}
+       */
+      this.elements.$rules = new PreziRulesElement(this, {
+        data: data,
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render prezi
+     * @memberOf PreziView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderPrezi.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

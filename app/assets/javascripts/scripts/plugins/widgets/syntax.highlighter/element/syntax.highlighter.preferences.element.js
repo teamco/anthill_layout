@@ -6,35 +6,36 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
-], function defineSyntaxHighlighterPreferencesElement(PluginElement, WidgetPreferences) {
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
+], function defineSyntaxHighlighterPreferencesElement(PluginElement,
+    WidgetPreferences) {
 
-    /**
-     * Define SyntaxHighlighter Preferences Element
-     * @constructor
-     * @class SyntaxHighlighterPreferencesElement
-     * @param {SyntaxHighlighterView} view
-     * @param opts
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     * @returns {SyntaxHighlighterPreferencesElement}
-     */
-    var SyntaxHighlighterPreferencesElement = function SyntaxHighlighterPreferencesElement(view, opts) {
+  /**
+   * Define SyntaxHighlighter Preferences Element
+   * @constructor
+   * @class SyntaxHighlighterPreferencesElement
+   * @param {SyntaxHighlighterView} view
+   * @param opts
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   * @returns {SyntaxHighlighterPreferencesElement}
+   */
+  var SyntaxHighlighterPreferencesElement = function SyntaxHighlighterPreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return SyntaxHighlighterPreferencesElement.extend('SyntaxHighlighterPreferencesElement', {
-
-
-    }, PluginElement.prototype, WidgetPreferences.prototype);
+  return SyntaxHighlighterPreferencesElement.extend(
+      'SyntaxHighlighterPreferencesElement', {}, PluginElement.prototype,
+      WidgetPreferences.prototype);
 
 });

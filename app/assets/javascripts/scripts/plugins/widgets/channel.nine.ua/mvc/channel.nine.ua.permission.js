@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineChannelNineUaPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class ChannelNineUaPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var ChannelNineUaPermission = function ChannelNineUaPermission() {
+  /**
+   * Define Permissions
+   * @class ChannelNineUaPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var ChannelNineUaPermission = function ChannelNineUaPermission() {
 
-    };
+  };
 
-    return ChannelNineUaPermission.extend('ChannelNineUaPermission', {
-
-    }, BasePermission.prototype);
+  return ChannelNineUaPermission.extend('ChannelNineUaPermission', {},
+      BasePermission.prototype);
 });

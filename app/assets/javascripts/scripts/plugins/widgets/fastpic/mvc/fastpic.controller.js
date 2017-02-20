@@ -6,56 +6,40 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineFastpicController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define Fastpic controller
+   * @class FastpicController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var FastpicController = function FastpicController() {
+  };
+
+  return FastpicController.extend('FastpicController', {
+
     /**
-     * Define Fastpic controller
-     * @class FastpicController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf FastpicController
      */
-    var FastpicController = function FastpicController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
+      this.view.get$item().renderEmbeddedContent(
+          this.model.getPrefs('fastpicImageUrl')
+      );
+    },
 
-    return FastpicController.extend('FastpicController', {
+    /**
+     * Add Fastpic rule
+     * @memberOf FastpicController
+     * @param {Event} e
+     */
+    addFastpicRule: function addFastpicRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-        /**
-         * Set embedded content
-         * @memberOf FastpicController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
-            this.view.get$item().renderEmbeddedContent(
-                this.model.getPrefs('fastpicImageUrl')
-            );
-        },
-
-        /**
-         * Add Fastpic rule
-         * @memberOf FastpicController
-         * @param e
-         */
-        addFastpicRule: function addFastpicRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target);
-
-            /**
-             * Get scope
-             * @type {Fastpic|{name: string}}
-             */
-            var scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

@@ -7,108 +7,109 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/espreso.tv/element/espreso.tv.element',
-    'plugins/widgets/espreso.tv/element/espreso.tv.preferences.element',
-    'plugins/widgets/espreso.tv/element/espreso.tv.rules.element'
-], function defineEspresoTvView(BaseView, Header, Footer, EspresoTvElement, EspresoTvPreferencesElement, EspresoTvRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/espreso.tv/element/espreso.tv.element',
+  'plugins/widgets/espreso.tv/element/espreso.tv.preferences.element',
+  'plugins/widgets/espreso.tv/element/espreso.tv.rules.element'
+], function defineEspresoTvView(BaseView, Header, Footer, EspresoTvElement,
+    EspresoTvPreferencesElement, EspresoTvRulesElement) {
+
+  /**
+   * Define view
+   * @class EspresoTvView
+   * @extends BaseView
+   * @constructor
+   */
+  var EspresoTvView = function EspresoTvView() {
+  };
+
+  return EspresoTvView.extend('EspresoTvView', {
 
     /**
-     * Define view
-     * @class EspresoTvView
-     * @extends BaseView
-     * @constructor
+     * Render espresotv element
+     * @memberOf EspresoTvView
      */
-    var EspresoTvView = function EspresoTvView() {
-    };
+    renderEspresoTv: function renderEspresoTv() {
 
-    return EspresoTvView.extend('EspresoTvView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render espresotv element
-         * @memberOf EspresoTvView
-         */
-        renderEspresoTv: function renderEspresoTv() {
+      /**
+       * Define $espresotv
+       * @type {EspresoTvElement}
+       */
+      this.elements.$espresotv = new EspresoTvElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $espresotv
-             * @type {EspresoTvElement}
-             */
-            this.elements.$espresotv = new EspresoTvElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf EspresoTvView
+     * @returns {EspresoTvPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define EspresoTv Preferences Element
+       * @type {EspresoTvPreferencesElement}
+       */
+      this.elements.$preferences = new EspresoTvPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf EspresoTvView
-         * @returns {EspresoTvPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define EspresoTv Preferences Element
-             * @type {EspresoTvPreferencesElement}
-             */
-            this.elements.$preferences = new EspresoTvPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf EspresoTvView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {EspresoTvRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
+      /**
+       * Define data
+       * @type {*|{}}
+       */
+      var data = this.controller.getRules();
 
-        /**
-         * Render Rules
-         * @memberOf EspresoTvView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {EspresoTvRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define data
-             * @type {*|{}}
-             */
-            var data = this.controller.getRules();
-
-            /**
-             * Define EspresoTv Rules Element
-             * @type {EspresoTvRulesElement}
-             */
-            this.elements.$rules = new EspresoTvRulesElement(this, {
-                data: data,
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render espresotv
-         * @memberOf EspresoTvView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderEspresoTv.bind(this)
-            );
+      /**
+       * Define EspresoTv Rules Element
+       * @type {EspresoTvRulesElement}
+       */
+      this.elements.$rules = new EspresoTvRulesElement(this, {
+        data: data,
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render espresotv
+     * @memberOf EspresoTvView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderEspresoTv.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

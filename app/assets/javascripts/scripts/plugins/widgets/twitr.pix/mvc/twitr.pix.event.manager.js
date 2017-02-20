@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineTwitrPixEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define TwitrPix event manager
-     * @class TwitrPixEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var TwitrPixEventManager = function TwitrPixEventManager() {
+  /**
+   * Define TwitrPix event manager
+   * @class TwitrPixEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var TwitrPixEventManager = function TwitrPixEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return TwitrPixEventManager.extend('TwitrPixEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return TwitrPixEventManager.extend('TwitrPixEventManager', {},
+      WidgetContentEventManager.prototype);
 });

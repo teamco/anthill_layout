@@ -7,23 +7,23 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineShoudioEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define Shoudio event manager
-     * @class ShoudioEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var ShoudioEventManager = function ShoudioEventManager() {
+  /**
+   * Define Shoudio event manager
+   * @class ShoudioEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var ShoudioEventManager = function ShoudioEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return ShoudioEventManager.extend(
-        'ShoudioEventManager', {},
-        WidgetContentEventManager.prototype
-    );
+  return ShoudioEventManager.extend(
+      'ShoudioEventManager', {},
+      WidgetContentEventManager.prototype
+  );
 });

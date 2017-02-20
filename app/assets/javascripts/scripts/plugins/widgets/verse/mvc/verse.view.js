@@ -7,101 +7,102 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/verse/element/verse.element',
-    'plugins/widgets/verse/element/verse.preferences.element',
-    'plugins/widgets/verse/element/verse.rules.element'
-], function defineVerseView(BaseView, Header, Footer, VerseElement, VersePreferencesElement, VerseRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/verse/element/verse.element',
+  'plugins/widgets/verse/element/verse.preferences.element',
+  'plugins/widgets/verse/element/verse.rules.element'
+], function defineVerseView(BaseView, Header, Footer, VerseElement,
+    VersePreferencesElement, VerseRulesElement) {
+
+  /**
+   * Define view
+   * @class VerseView
+   * @extends BaseView
+   * @constructor
+   */
+  var VerseView = function VerseView() {
+  };
+
+  return VerseView.extend('VerseView', {
 
     /**
-     * Define view
-     * @class VerseView
-     * @extends BaseView
-     * @constructor
+     * Render Verse element
+     * @memberOf VerseView
      */
-    var VerseView = function VerseView() {
-    };
+    renderVerse: function renderVerse() {
 
-    return VerseView.extend('VerseView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render Verse element
-         * @memberOf VerseView
-         */
-        renderVerse: function renderVerse() {
+      /**
+       * Define $verse
+       * @type {VerseElement}
+       */
+      this.elements.$verse = new VerseElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $verse
-             * @type {VerseElement}
-             */
-            this.elements.$verse = new VerseElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf VerseView
+     * @returns {VersePreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define Verse Preferences Element
+       * @type {VersePreferencesElement}
+       */
+      this.elements.$preferences = new VersePreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf VerseView
-         * @returns {VersePreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define Verse Preferences Element
-             * @type {VersePreferencesElement}
-             */
-            this.elements.$preferences = new VersePreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf VerseView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {VerseRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
-
-        /**
-         * Render Rules
-         * @memberOf VerseView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {VerseRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define Verse Rules Element
-             * @type {VerseRulesElement}
-             */
-            this.elements.$rules = new VerseRulesElement(this, {
-                data: this.controller.getRules(),
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render Verse
-         * @memberOf VerseView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderVerse.bind(this)
-            );
+      /**
+       * Define Verse Rules Element
+       * @type {VerseRulesElement}
+       */
+      this.elements.$rules = new VerseRulesElement(this, {
+        data: this.controller.getRules(),
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype);
+      return this.get$rules();
+    },
+
+    /**
+     * Render Verse
+     * @memberOf VerseView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderVerse.bind(this)
+      );
+    }
+
+  }, BaseView.prototype);
 });

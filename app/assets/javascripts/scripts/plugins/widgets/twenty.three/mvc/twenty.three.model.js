@@ -6,53 +6,54 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineTwentyThreeModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define TwentyThree model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class TwentyThreeModel
+   * @constructor
+   */
+  var TwentyThreeModel = function TwentyThreeModel() {
+
     /**
-     * Define TwentyThree model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class TwentyThreeModel
-     * @constructor
-     */
-    var TwentyThreeModel = function TwentyThreeModel() {
-
-        /**
-         * Define preferences
-         * @memberOf TwentyThreeModel
-         * @type {{
-         *      twentythreeEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
+     * Define preferences
+     * @memberOf TwentyThreeModel
+     * @type {{
+         *      twentythreeEmbedCode: {type: string, disabled: boolean, value:
+         *     undefined, visible: boolean}
          * }}
-         */
-        this.preferences = {
-            twentythreeEmbedCode: {
-                type: 'textarea',
-                disabled: false,
-                value: undefined,
-                visible: true
-            }
-        };
-
-        /**
-         * Define rules
-         * @memberOf TwentyThreeModel
-         * @type {{}}
-         */
-        this.rules = {};
+     */
+    this.preferences = {
+      twentythreeEmbedCode: {
+        type: 'textarea',
+        disabled: false,
+        value: undefined,
+        visible: true
+      }
     };
 
-    return TwentyThreeModel.extend('TwentyThreeModel', {
+    /**
+     * Define rules
+     * @memberOf TwentyThreeModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        /**
-         * Set TwentyThree embed code
-         * @memberOf TwentyThreeModel
-         * @param {string} embed
-         */
-        setTwentythreeEmbedCode: function setTwentythreeEmbedCode(embed) {
-            this.setPrefs('twentythreeEmbedCode', embed);
-        }
+  return TwentyThreeModel.extend('TwentyThreeModel', {
 
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    /**
+     * Set TwentyThree embed code
+     * @memberOf TwentyThreeModel
+     * @param {string} embed
+     */
+    setTwentythreeEmbedCode: function setTwentythreeEmbedCode(embed) {
+      this.setPrefs('twentythreeEmbedCode', embed);
+    }
+
+  }, BaseModel.prototype, WidgetContentModel.prototype);
 });

@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineMultipleIconsPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class MultipleIconsPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var MultipleIconsPermission = function MultipleIconsPermission() {
+  /**
+   * Define Permissions
+   * @class MultipleIconsPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var MultipleIconsPermission = function MultipleIconsPermission() {
 
-    };
+  };
 
-    return MultipleIconsPermission.extend('MultipleIconsPermission', {
-
-    }, BasePermission.prototype);
+  return MultipleIconsPermission.extend('MultipleIconsPermission', {},
+      BasePermission.prototype);
 });

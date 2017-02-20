@@ -7,20 +7,20 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineCircuitLabPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class CircuitLabPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var CircuitLabPermission = function CircuitLabPermission() {
-    };
+  /**
+   * Define Permissions
+   * @class CircuitLabPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var CircuitLabPermission = function CircuitLabPermission() {
+  };
 
-    return CircuitLabPermission.extend(
-        'CircuitLabPermission', {}, 
-        BasePermission.prototype
-    );
+  return CircuitLabPermission.extend(
+      'CircuitLabPermission', {},
+      BasePermission.prototype
+  );
 });

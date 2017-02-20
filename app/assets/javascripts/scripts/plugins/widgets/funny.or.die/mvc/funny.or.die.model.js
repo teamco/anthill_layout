@@ -6,53 +6,54 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineFunnyOrDieModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define FunnyOrDie model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class FunnyOrDieModel
+   * @constructor
+   */
+  var FunnyOrDieModel = function FunnyOrDieModel() {
+
     /**
-     * Define FunnyOrDie model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class FunnyOrDieModel
-     * @constructor
+     * Define preferences
+     * @property FunnyOrDieModel
+     * @type {{
+     *      funnyordieUrl: {type: string, disabled: boolean, value:
+     *     undefined, visible: boolean}
+     * }}
      */
-    var FunnyOrDieModel = function FunnyOrDieModel() {
-
-        /**
-         * Define preferences
-         * @property FunnyOrDieModel
-         * @type {{
-         *      funnyordieUrl: {type: string, disabled: boolean, value: undefined, visible: boolean}
-         * }}
-         */
-        this.preferences = {
-            funnyordieUrl: {
-                type: 'text',
-                disabled: false,
-                value: undefined,
-                visible: true
-            }
-        };
-
-        /**
-         * Define rules
-         * @property FunnyOrDieModel
-         * @type {{}}
-         */
-        this.rules = {};
+    this.preferences = {
+      funnyordieUrl: {
+        type: 'text',
+        disabled: false,
+        value: undefined,
+        visible: true
+      }
     };
 
-    return FunnyOrDieModel.extend('FunnyOrDieModel', {
+    /**
+     * Define rules
+     * @property FunnyOrDieModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        /**
-         * Set FunnyOrDie Url
-         * @memberOf FunnyOrDieModel
-         * @param {string} url
-         */
-        setFunnyordieUrl: function setFunnyordieUrl(url) {
-            this.setPrefs('funnyordieUrl', url);
-        }
+  return FunnyOrDieModel.extend('FunnyOrDieModel', {
 
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    /**
+     * Set FunnyOrDie Url
+     * @memberOf FunnyOrDieModel
+     * @param {string} url
+     */
+    setFunnyordieUrl: function setFunnyordieUrl(url) {
+      this.setPrefs('funnyordieUrl', url);
+    }
+
+  }, BaseModel.prototype, WidgetContentModel.prototype);
 });

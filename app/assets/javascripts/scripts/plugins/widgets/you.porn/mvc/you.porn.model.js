@@ -6,53 +6,54 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineYouPornModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define YouPorn model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class YouPornModel
+   * @constructor
+   */
+  var YouPornModel = function YouPornModel() {
+
     /**
-     * Define YouPorn model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class YouPornModel
-     * @constructor
-     */
-    var YouPornModel = function YouPornModel() {
-
-        /**
-         * Define preferences
-         * @memberOf YouPornModel
-         * @type {{
-         *      youpornEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
+     * Define preferences
+     * @memberOf YouPornModel
+     * @type {{
+         *      youpornEmbedCode: {type: string, disabled: boolean, value:
+         *     undefined, visible: boolean}
          * }}
-         */
-        this.preferences = {
-            youpornEmbedCode: {
-                type: 'textarea',
-                disabled: false,
-                value: undefined,
-                visible: true
-            }
-        };
-
-        /**
-         * Define rules
-         * @memberOf YouPornModel
-         * @type {{}}
-         */
-        this.rules = {};
+     */
+    this.preferences = {
+      youpornEmbedCode: {
+        type: 'textarea',
+        disabled: false,
+        value: undefined,
+        visible: true
+      }
     };
 
-    return YouPornModel.extend('YouPornModel', {
+    /**
+     * Define rules
+     * @memberOf YouPornModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        /**
-         * Set YouPorn embed code
-         * @memberOf YouPornModel
-         * @param {string} embed
-         */
-        setYoupornEmbedCode: function setYoupornEmbedCode(embed) {
-            this.setPrefs('youpornEmbedCode', embed);
-        }
+  return YouPornModel.extend('YouPornModel', {
 
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    /**
+     * Set YouPorn embed code
+     * @memberOf YouPornModel
+     * @param {string} embed
+     */
+    setYoupornEmbedCode: function setYoupornEmbedCode(embed) {
+      this.setPrefs('youpornEmbedCode', embed);
+    }
+
+  }, BaseModel.prototype, WidgetContentModel.prototype);
 });

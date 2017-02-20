@@ -6,39 +6,39 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineSapOpenuiModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define SapOpenui model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class SapOpenuiModel
+   * @constructor
+   */
+  var SapOpenuiModel = function SapOpenuiModel() {
+
     /**
-     * Define SapOpenui model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class SapOpenuiModel
-     * @constructor
+     * Define preferences
+     * @property SapOpenuiModel
+     * @type {{}}
      */
-    var SapOpenuiModel = function SapOpenuiModel() {
-
-        /**
-         * Define preferences
-         * @property SapOpenuiModel
-         * @type {{}}
-         */
-        this.preferences = {
-            // Preferences
-        };
-
-        /**
-         * Define rules
-         * @property SapOpenuiModel
-         * @type {{}}
-         */
-        this.rules = {};
+    this.preferences = {
+      // Preferences
     };
 
-    return SapOpenuiModel.extend('SapOpenuiModel', {
+    /**
+     * Define rules
+     * @property SapOpenuiModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        // Setter
+  return SapOpenuiModel.extend('SapOpenuiModel', {
 
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    // Setter
+
+  }, BaseModel.prototype, WidgetContentModel.prototype);
 });

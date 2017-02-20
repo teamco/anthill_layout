@@ -6,86 +6,75 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function definePastebinController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define pastebin controller
+   * @class PastebinController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var PastebinController = function PastebinController() {
+  };
+
+  return PastebinController.extend('PastebinController', {
+
     /**
-     * Define pastebin controller
-     * @class PastebinController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf PastebinController
      */
-    var PastebinController = function PastebinController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
 
-    return PastebinController.extend('PastebinController', {
+      /**
+       * Get url
+       * @type {string|*}
+       */
+      var url = this.model.getPrefs('pastebinEmbedCode'),
+          embed = this.controller.getEmbedCode(url);
 
-        /**
-         * Set embedded content
-         * @memberOf PastebinController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
+      if (embed) {
+        this.view.elements.$pastebin.renderEmbeddedContent(embed);
+      }
+    },
 
-            /**
-             * Get url
-             * @type {string|*}
-             */
-            var url = this.model.getPrefs('pastebinEmbedCode'),
-                embed = this.controller.getEmbedCode(url);
+    /**
+     * Validate pastebin
+     * @memberOf PastebinController
+     * @param {string} embed
+     * @return {string|boolean}
+     */
+    getEmbedCode: function getEmbedCode(embed) {
 
-            if (embed) {
-                this.view.elements.$pastebin.renderEmbeddedContent(embed);
-            }
-        },
+      if (!embed) {
+        this.scope.logger.debug('Initial state');
+        return false;
+      }
 
-        /**
-         * Validate pastebin
-         * @memberOf PastebinController
-         * @param {string} embed
-         * @return {string|boolean}
-         */
-        getEmbedCode: function getEmbedCode(embed) {
+      // Convert to string
+      embed += '';
 
-            if (!embed) {
-                this.scope.logger.debug('Initial state');
-                return false;
-            }
+      if (embed.match(/^<iframe/)) {
 
-            // Convert to string
-            embed += '';
+        return $(embed).attr('src');
 
-            if (embed.match(/^<iframe/)) {
+      } else {
 
-                return $(embed).attr('src');
+        this.scope.logger.warn('Invalid Pastebin embed code');
+        return false;
+      }
+    },
 
-            } else {
+    /**
+     * Add Pastebin rule
+     * @memberOf PastebinController
+     * @param {Event} e
+     */
+    addPastebinRule: function addPastebinRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-                this.scope.logger.warn('Invalid Pastebin embed code');
-                return false;
-            }
-        },
-
-        /**
-         * Add Pastebin rule
-         * @memberOf PastebinController
-         * @param e
-         */
-        addPastebinRule: function addPastebinRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

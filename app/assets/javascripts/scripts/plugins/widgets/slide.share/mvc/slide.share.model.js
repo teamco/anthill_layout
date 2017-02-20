@@ -6,51 +6,51 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineSlideShareModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define SlideShare model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class SlideShareModel
+   * @constructor
+   */
+  var SlideShareModel = function SlideShareModel() {
+
     /**
-     * Define SlideShare model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class SlideShareModel
-     * @constructor
+     * Define preferences
+     * @memberOf SlideShareModel
+     * @type {{}}
      */
-    var SlideShareModel = function SlideShareModel() {
-
-        /**
-         * Define preferences
-         * @memberOf SlideShareModel
-         * @type {{}}
-         */
-        this.preferences = {
-            slideshareEmbed: {
-                type: 'textarea',
-                disabled: false,
-                value: undefined,
-                visible: true
-            }
-        };
-
-        /**
-         * Define rules
-         * @memberOf SlideShareModel
-         * @type {{}}
-         */
-        this.rules = {};
+    this.preferences = {
+      slideshareEmbed: {
+        type: 'textarea',
+        disabled: false,
+        value: undefined,
+        visible: true
+      }
     };
 
-    return SlideShareModel.extend('SlideShareModel', {
+    /**
+     * Define rules
+     * @memberOf SlideShareModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        /**
-         * Set embed code
-         * @memberOf SlideShareModel
-         * @param {string} embed
-         */
-        setSlideshareEmbed: function setSlideshareEmbed(embed) {
-            this.setPrefs('slideshareEmbed', embed);
-        }
+  return SlideShareModel.extend('SlideShareModel', {
 
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    /**
+     * Set embed code
+     * @memberOf SlideShareModel
+     * @param {string} embed
+     */
+    setSlideshareEmbed: function setSlideshareEmbed(embed) {
+      this.setPrefs('slideshareEmbed', embed);
+    }
+
+  }, BaseModel.prototype, WidgetContentModel.prototype);
 });

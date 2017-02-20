@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineLivestreamEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define Livestream event manager
-     * @class LivestreamEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var LivestreamEventManager = function LivestreamEventManager() {
+  /**
+   * Define Livestream event manager
+   * @class LivestreamEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var LivestreamEventManager = function LivestreamEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return LivestreamEventManager.extend('LivestreamEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return LivestreamEventManager.extend('LivestreamEventManager', {},
+      WidgetContentEventManager.prototype);
 });

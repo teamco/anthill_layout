@@ -7,76 +7,76 @@
 
 define(['config/page'], function definePageListeners(Page) {
 
-    /**
-     * Define Page Local listeners
-     * @memberOf Page
-     * @type {{
+  /**
+   * Define Page Local listeners
+   * @memberOf Page
+   * @type {{
      *      successCreated: {name: string, callback: Function},
      *      successRendered: {name: string, callback: Function},
      *      createWidget: {name: string, callback: Function}
      *      resizeWidget: {name: string, callback: Function}
      * }}
-     */
-    Page.prototype.localListeners = {
+   */
+  Page.prototype.localListeners = {
 
-        successCreated: {
-            name: "success.created",
-            callback: function successCreatedCallback() {
-            }
-        },
+    successCreated: {
+      name: "success.created",
+      callback: function successCreatedCallback() {
+      }
+    },
 
-        successRendered: {
-            name: "success.rendered",
-            callback: function successRenderedCallback() {
+    successRendered: {
+      name: "success.rendered",
+      callback: function successRenderedCallback() {
 
-                this.view.renderPage();
-                this.controller.updateLayout();
+        this.view.renderPage();
+        this.controller.updateLayout();
 
-                this.observer.batchPublish(
-                    this.eventmanager.eventList.updateItemInteractions
-                );
-            }
-        },
+        this.observer.batchPublish(
+            this.eventmanager.eventList.updateItemInteractions
+        );
+      }
+    },
 
-        createWidget: {
-            name: 'create.widget',
-            callback: function createWidgetCallback() {
+    createWidget: {
+      name: 'create.widget',
+      callback: function createWidgetCallback() {
 
-                if (this.controller.root().model.getConfig('loading')) {
-                    return false;
-                }
-
-                /**
-                 * Get current widget
-                 * @type {Widget}
-                 */
-                var widget = this.model.getCurrentItem();
-
-                widget.model.setOverlapping(
-                    this.model.getConfig('widget/overlapping')
-                );
-
-                this.observer.publish(
-                    this.eventmanager.eventList.updateHeight
-                );
-            }
-        },
-
-        resizeWidget: {
-            name: 'resize.widget',
-            callback: function resizeWidgetCallback(widget) {
-
-                widget.observer.publish(
-                    widget.eventmanager.eventList.adoptDimensions,
-                    true
-                );
-
-                this.observer.publish(
-                    this.eventmanager.eventList.updateHeight
-                );
-            }
+        if (this.controller.root().model.getConfig('loading')) {
+          return false;
         }
-    };
 
-    return Page;
+        /**
+         * Get current widget
+         * @type {Widget}
+         */
+        var widget = this.model.getCurrentItem();
+
+        widget.model.setOverlapping(
+            this.model.getConfig('widget/overlapping')
+        );
+
+        this.observer.publish(
+            this.eventmanager.eventList.updateHeight
+        );
+      }
+    },
+
+    resizeWidget: {
+      name: 'resize.widget',
+      callback: function resizeWidgetCallback(widget) {
+
+        widget.observer.publish(
+            widget.eventmanager.eventList.adoptDimensions,
+            true
+        );
+
+        this.observer.publish(
+            this.eventmanager.eventList.updateHeight
+        );
+      }
+    }
+  };
+
+  return Page;
 });

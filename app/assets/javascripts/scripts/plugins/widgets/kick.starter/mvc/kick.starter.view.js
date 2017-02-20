@@ -7,108 +7,109 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/kick.starter/element/kick.starter.element',
-    'plugins/widgets/kick.starter/element/kick.starter.preferences.element',
-    'plugins/widgets/kick.starter/element/kick.starter.rules.element'
-], function defineKickStarterView(BaseView, Header, Footer, KickStarterElement, KickStarterPreferencesElement, KickStarterRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/kick.starter/element/kick.starter.element',
+  'plugins/widgets/kick.starter/element/kick.starter.preferences.element',
+  'plugins/widgets/kick.starter/element/kick.starter.rules.element'
+], function defineKickStarterView(BaseView, Header, Footer, KickStarterElement,
+    KickStarterPreferencesElement, KickStarterRulesElement) {
+
+  /**
+   * Define view
+   * @class KickStarterView
+   * @extends BaseView
+   * @constructor
+   */
+  var KickStarterView = function KickStarterView() {
+  };
+
+  return KickStarterView.extend('KickStarterView', {
 
     /**
-     * Define view
-     * @class KickStarterView
-     * @extends BaseView
-     * @constructor
+     * Render kickstarter element
+     * @memberOf KickStarterView
      */
-    var KickStarterView = function KickStarterView() {
-    };
+    renderKickStarter: function renderKickStarter() {
 
-    return KickStarterView.extend('KickStarterView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render kickstarter element
-         * @memberOf KickStarterView
-         */
-        renderKickStarter: function renderKickStarter() {
+      /**
+       * Define $kickstarter
+       * @type {KickStarterElement}
+       */
+      this.elements.$kickstarter = new KickStarterElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $kickstarter
-             * @type {KickStarterElement}
-             */
-            this.elements.$kickstarter = new KickStarterElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf KickStarterView
+     * @returns {KickStarterPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define KickStarter Preferences Element
+       * @type {KickStarterPreferencesElement}
+       */
+      this.elements.$preferences = new KickStarterPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf KickStarterView
-         * @returns {KickStarterPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define KickStarter Preferences Element
-             * @type {KickStarterPreferencesElement}
-             */
-            this.elements.$preferences = new KickStarterPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf KickStarterView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {KickStarterRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
+      /**
+       * Define data
+       * @type {*|{}}
+       */
+      var data = this.controller.getRules();
 
-        /**
-         * Render Rules
-         * @memberOf KickStarterView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {KickStarterRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define data
-             * @type {*|{}}
-             */
-            var data = this.controller.getRules();
-
-            /**
-             * Define KickStarter Rules Element
-             * @type {KickStarterRulesElement}
-             */
-            this.elements.$rules = new KickStarterRulesElement(this, {
-                data: data,
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render kickstarter
-         * @memberOf KickStarterView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderKickStarter.bind(this)
-            );
+      /**
+       * Define KickStarter Rules Element
+       * @type {KickStarterRulesElement}
+       */
+      this.elements.$rules = new KickStarterRulesElement(this, {
+        data: data,
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render kickstarter
+     * @memberOf KickStarterView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderKickStarter.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

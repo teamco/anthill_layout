@@ -7,108 +7,109 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/truba/element/truba.element',
-    'plugins/widgets/truba/element/truba.preferences.element',
-    'plugins/widgets/truba/element/truba.rules.element'
-], function defineTrubaView(BaseView, Header, Footer, TrubaElement, TrubaPreferencesElement, TrubaRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/truba/element/truba.element',
+  'plugins/widgets/truba/element/truba.preferences.element',
+  'plugins/widgets/truba/element/truba.rules.element'
+], function defineTrubaView(BaseView, Header, Footer, TrubaElement,
+    TrubaPreferencesElement, TrubaRulesElement) {
+
+  /**
+   * Define view
+   * @class TrubaView
+   * @extends BaseView
+   * @constructor
+   */
+  var TrubaView = function TrubaView() {
+  };
+
+  return TrubaView.extend('TrubaView', {
 
     /**
-     * Define view
-     * @class TrubaView
-     * @extends BaseView
-     * @constructor
+     * Render truba element
+     * @memberOf TrubaView
      */
-    var TrubaView = function TrubaView() {
-    };
+    renderTruba: function renderTruba() {
 
-    return TrubaView.extend('TrubaView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render truba element
-         * @memberOf TrubaView
-         */
-        renderTruba: function renderTruba() {
+      /**
+       * Define $truba
+       * @type {TrubaElement}
+       */
+      this.elements.$truba = new TrubaElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $truba
-             * @type {TrubaElement}
-             */
-            this.elements.$truba = new TrubaElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf TrubaView
+     * @returns {TrubaPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define Truba Preferences Element
+       * @type {TrubaPreferencesElement}
+       */
+      this.elements.$preferences = new TrubaPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf TrubaView
-         * @returns {TrubaPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define Truba Preferences Element
-             * @type {TrubaPreferencesElement}
-             */
-            this.elements.$preferences = new TrubaPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf TrubaView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {TrubaRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
+      /**
+       * Define data
+       * @type {*|{}}
+       */
+      var data = this.controller.getRules();
 
-        /**
-         * Render Rules
-         * @memberOf TrubaView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {TrubaRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define data
-             * @type {*|{}}
-             */
-            var data = this.controller.getRules();
-
-            /**
-             * Define Truba Rules Element
-             * @type {TrubaRulesElement}
-             */
-            this.elements.$rules = new TrubaRulesElement(this, {
-                data: data,
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render truba
-         * @memberOf TrubaView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderTruba.bind(this)
-            );
+      /**
+       * Define Truba Rules Element
+       * @type {TrubaRulesElement}
+       */
+      this.elements.$rules = new TrubaRulesElement(this, {
+        data: data,
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render truba
+     * @memberOf TrubaView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderTruba.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

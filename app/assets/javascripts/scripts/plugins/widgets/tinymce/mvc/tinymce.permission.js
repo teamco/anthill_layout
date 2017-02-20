@@ -7,20 +7,20 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineTinymcePermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class TinymcePermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var TinymcePermission = function TinymcePermission() {
-    };
+  /**
+   * Define Permissions
+   * @class TinymcePermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var TinymcePermission = function TinymcePermission() {
+  };
 
-    return TinymcePermission.extend(
-        'TinymcePermission', {}, 
-        BasePermission.prototype
-    );
+  return TinymcePermission.extend(
+      'TinymcePermission', {},
+      BasePermission.prototype
+  );
 });

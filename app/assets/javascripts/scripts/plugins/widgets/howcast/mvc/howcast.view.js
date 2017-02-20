@@ -7,108 +7,109 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/howcast/element/howcast.element',
-    'plugins/widgets/howcast/element/howcast.preferences.element',
-    'plugins/widgets/howcast/element/howcast.rules.element'
-], function defineHowcastView(BaseView, Header, Footer, HowcastElement, HowcastPreferencesElement, HowcastRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/howcast/element/howcast.element',
+  'plugins/widgets/howcast/element/howcast.preferences.element',
+  'plugins/widgets/howcast/element/howcast.rules.element'
+], function defineHowcastView(BaseView, Header, Footer, HowcastElement,
+    HowcastPreferencesElement, HowcastRulesElement) {
+
+  /**
+   * Define view
+   * @class HowcastView
+   * @extends BaseView
+   * @constructor
+   */
+  var HowcastView = function HowcastView() {
+  };
+
+  return HowcastView.extend('HowcastView', {
 
     /**
-     * Define view
-     * @class HowcastView
-     * @extends BaseView
-     * @constructor
+     * Render howcast element
+     * @memberOf HowcastView
      */
-    var HowcastView = function HowcastView() {
-    };
+    renderHowcast: function renderHowcast() {
 
-    return HowcastView.extend('HowcastView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render howcast element
-         * @memberOf HowcastView
-         */
-        renderHowcast: function renderHowcast() {
+      /**
+       * Define $howcast
+       * @type {HowcastElement}
+       */
+      this.elements.$howcast = new HowcastElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $howcast
-             * @type {HowcastElement}
-             */
-            this.elements.$howcast = new HowcastElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf HowcastView
+     * @returns {HowcastPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define Howcast Preferences Element
+       * @type {HowcastPreferencesElement}
+       */
+      this.elements.$preferences = new HowcastPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf HowcastView
-         * @returns {HowcastPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define Howcast Preferences Element
-             * @type {HowcastPreferencesElement}
-             */
-            this.elements.$preferences = new HowcastPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf HowcastView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {HowcastRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
+      /**
+       * Define data
+       * @type {*|{}}
+       */
+      var data = this.controller.getRules();
 
-        /**
-         * Render Rules
-         * @memberOf HowcastView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {HowcastRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define data
-             * @type {*|{}}
-             */
-            var data = this.controller.getRules();
-
-            /**
-             * Define Howcast Rules Element
-             * @type {HowcastRulesElement}
-             */
-            this.elements.$rules = new HowcastRulesElement(this, {
-                data: data,
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render howcast
-         * @memberOf HowcastView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderHowcast.bind(this)
-            );
+      /**
+       * Define Howcast Rules Element
+       * @type {HowcastRulesElement}
+       */
+      this.elements.$rules = new HowcastRulesElement(this, {
+        data: data,
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render howcast
+     * @memberOf HowcastView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderHowcast.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

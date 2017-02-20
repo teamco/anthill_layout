@@ -6,41 +6,42 @@
  */
 
 define([
-    'config/anthill',
-    'modules/MVC',
-    'plugins/widgets/page.tabs/mvc/page.tabs.controller',
-    'plugins/widgets/page.tabs/mvc/page.tabs.model',
-    'plugins/widgets/page.tabs/mvc/page.tabs.view',
-    'plugins/widgets/page.tabs/mvc/page.tabs.event.manager',
-    'plugins/widgets/page.tabs/mvc/page.tabs.permission'
-], function definePageTabs(AntHill, MVC, Controller, Model, View, EventManager, Permission) {
+  'config/anthill',
+  'modules/MVC',
+  'plugins/widgets/page.tabs/mvc/page.tabs.controller',
+  'plugins/widgets/page.tabs/mvc/page.tabs.model',
+  'plugins/widgets/page.tabs/mvc/page.tabs.view',
+  'plugins/widgets/page.tabs/mvc/page.tabs.event.manager',
+  'plugins/widgets/page.tabs/mvc/page.tabs.permission'
+], function definePageTabs(AntHill, MVC, Controller, Model, View, EventManager,
+    Permission) {
+
+  /**
+   * Define PageTabs
+   * @param containment
+   * @param [opts]
+   * @constructor
+   * @class PageTabs
+   * @extends AntHill
+   */
+  var PageTabs = function PageTabs(containment, opts) {
 
     /**
-     * Define PageTabs
-     * @param containment
-     * @param [opts]
-     * @constructor
-     * @class PageTabs
-     * @extends AntHill
+     * Define containment
+     * @property PageTabs
      */
-    var PageTabs = function PageTabs(containment, opts) {
+    this.containment = containment;
 
-        /**
-         * Define containment
-         * @property PageTabs
-         */
-        this.containment = containment;
+    /**
+     * Define referrer
+     * @property PageTabs
+     * @type {*}
+     */
+    this.referrer = undefined;
 
-        /**
-         * Define referrer
-         * @property PageTabs
-         * @type {*}
-         */
-        this.referrer = undefined;
-
-        /**
-         * Define defaults
-         * @type {{
+    /**
+     * Define defaults
+     * @type {{
          *      plugin: boolean,
          *      html: {
          *          style: string,
@@ -54,67 +55,67 @@ define([
          *          }
          *      }
          * }}
-         */
-        var DEFAULTS = {
-            plugin: true,
-            html: {
-                style: 'default',
-                header: false,
-                footer: false,
-                padding: {
-                    top: 0,
-                    right: 0,
-                    bottom: 0,
-                    left: 0
-                }
-            }
-        };
-
-        /**
-         * Define MVC
-         * @property PageTabs
-         * @type {MVC}
-         */
-        this.mvc = new MVC({
-            scope: this,
-            config: [
-                {uuid: this.containment.model.getContentUUID()},
-                DEFAULTS
-            ],
-            components: [
-                Controller,
-                Model,
-                View,
-                EventManager,
-                Permission
-            ],
-            render: true
-        });
-
-        this.observer.publish(
-            this.eventmanager.eventList.initWidget,
-            opts
-        );
-
-        this.init();
+     */
+    var DEFAULTS = {
+      plugin: true,
+      html: {
+        style: 'default',
+        header: false,
+        footer: false,
+        padding: {
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0
+        }
+      }
     };
 
-    return PageTabs.extend('PageTabs', {
+    /**
+     * Define MVC
+     * @property PageTabs
+     * @type {MVC}
+     */
+    this.mvc = new MVC({
+      scope: this,
+      config: [
+        {uuid: this.containment.model.getContentUUID()},
+        DEFAULTS
+      ],
+      components: [
+        Controller,
+        Model,
+        View,
+        EventManager,
+        Permission
+      ],
+      render: true
+    });
 
-        /**
-         * Define init
-         * @memberOf PageTabs
-         */
-        init: function init() {
+    this.observer.publish(
+        this.eventmanager.eventList.initWidget,
+        opts
+    );
 
-            this.observer.batchPublish(
-                this.eventmanager.eventList.subscribeOrderPagesEvent,
-                this.eventmanager.eventList.subscribeAfterSwitchPageEvent,
-                this.eventmanager.eventList.subscribeCreatePageEvent,
-                this.eventmanager.eventList.subscribeDestroyPageEvent,
-                this.eventmanager.eventList.subscribeChangePageTitleEvent
-            );
-        }
+    this.init();
+  };
 
-    }, AntHill.prototype);
+  return PageTabs.extend('PageTabs', {
+
+    /**
+     * Define init
+     * @memberOf PageTabs
+     */
+    init: function init() {
+
+      this.observer.batchPublish(
+          this.eventmanager.eventList.subscribeOrderPagesEvent,
+          this.eventmanager.eventList.subscribeAfterSwitchPageEvent,
+          this.eventmanager.eventList.subscribeCreatePageEvent,
+          this.eventmanager.eventList.subscribeDestroyPageEvent,
+          this.eventmanager.eventList.subscribeChangePageTitleEvent
+      );
+    }
+
+  }, AntHill.prototype);
 });

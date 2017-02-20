@@ -6,44 +6,44 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function definePikTvElement(PluginElement) {
 
+  /**
+   * Define PikTv Element
+   * @param view
+   * @param opts
+   * @returns {PikTvElement}
+   * @constructor
+   * @class PikTvElement
+   * @extends PluginElement
+   * @extends Renderer
+   */
+  var PikTvElement = function PikTvElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('pik.tv', {resource: '/widgets'});
+
+    return this;
+  };
+
+  return PikTvElement.extend('PikTvElement', {
+
     /**
-     * Define PikTv Element
-     * @param view
-     * @param opts
-     * @returns {PikTvElement}
-     * @constructor
-     * @class PikTvElement
-     * @extends PluginElement
-     * @extends Renderer
+     * Render Embedded content
+     * @memberOf PikTvElement
+     * @param {string} url
      */
-    var PikTvElement = function PikTvElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent(url) {
+      this.$.append(
+          this.renderIframe(url)
+      );
+    }
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
-
-        this.addCSS('pik.tv', {resource: '/widgets'});
-
-        return this;
-    };
-
-    return PikTvElement.extend('PikTvElement', {
-
-        /**
-         * Render Embedded content
-         * @memberOf PikTvElement
-         * @param {string} url
-         */
-        renderEmbeddedContent: function renderEmbeddedContent(url) {
-            this.$.append(
-                this.renderIframe(url)
-            );
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 
 });

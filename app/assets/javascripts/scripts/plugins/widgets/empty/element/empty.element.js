@@ -6,39 +6,39 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineEmptyElement(PluginElement) {
 
+  /**
+   * Define Empty Element
+   * @param view
+   * @param opts
+   * @returns {EmptyElement}
+   * @constructor
+   * @class EmptyElement
+   * @extends PluginElement
+   */
+  var EmptyElement = function EmptyElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('empty', {resource: '/widgets'});
+
+    return this;
+  };
+
+  return EmptyElement.extend('EmptyElement', {
+
     /**
-     * Define Empty Element
-     * @param view
-     * @param opts
-     * @returns {EmptyElement}
-     * @constructor
-     * @class EmptyElement
-     * @extends PluginElement
+     * Render Embedded content
+     * @memberOf EmptyElement
      */
-    var EmptyElement = function EmptyElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent() {
+      // TODO
+    }
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
-
-        this.addCSS('empty', {resource: '/widgets'});
-
-        return this;
-    };
-
-    return EmptyElement.extend('EmptyElement', {
-
-        /**
-         * Render Embedded content
-         * @memberOf EmptyElement
-         */
-        renderEmbeddedContent: function renderEmbeddedContent() {
-            // TODO
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 });

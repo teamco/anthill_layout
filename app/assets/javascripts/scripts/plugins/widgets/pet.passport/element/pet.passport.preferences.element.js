@@ -6,35 +6,35 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
-], function definePetPassportPreferencesElement(PluginElement, WidgetPreferences) {
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
+], function definePetPassportPreferencesElement(PluginElement,
+    WidgetPreferences) {
 
-    /**
-     * Define PetPassport Preferences Element
-     * @param view
-     * @param opts
-     * @returns {PetPassportPreferencesElement}
-     * @constructor
-     * @class PetPassportPreferencesElement
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     */
-    var PetPassportPreferencesElement = function PetPassportPreferencesElement(view, opts) {
+  /**
+   * Define PetPassport Preferences Element
+   * @param view
+   * @param opts
+   * @returns {PetPassportPreferencesElement}
+   * @constructor
+   * @class PetPassportPreferencesElement
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   */
+  var PetPassportPreferencesElement = function PetPassportPreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return PetPassportPreferencesElement.extend('PetPassportPreferencesElement', {
-
-
-    }, PluginElement.prototype, WidgetPreferences.prototype);
+  return PetPassportPreferencesElement.extend('PetPassportPreferencesElement',
+      {}, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

@@ -6,44 +6,45 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineRenTvModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define RenTv model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class RenTvModel
+   * @constructor
+   */
+  var RenTvModel = function RenTvModel() {
+
     /**
-     * Define RenTv model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class RenTvModel
-     * @constructor
+     * Define preferences
+     * @property RenTvModel
+     * @type {{rentvEmbedCode: {type: string, disabled: boolean, value: string,
+     *     visible: boolean}}}
      */
-    var RenTvModel = function RenTvModel() {
-
-        /**
-         * Define preferences
-         * @property RenTvModel
-         * @type {{rentvEmbedCode: {type: string, disabled: boolean, value: string, visible: boolean}}}
-         */
-        this.preferences = {
-            rentvEmbedCode: {
-                type: 'textarea',
-                disabled: false,
-                value: '<iframe src="http://ren.tv/player/112588" width="560" height="315" frameborder="0" allowfullscreen></iframe>',
-                visible: true
-            }
-        };
-
-        /**
-         * Define rules
-         * @property RenTvModel
-         * @type {{}}
-         */
-        this.rules = {};
+    this.preferences = {
+      rentvEmbedCode: {
+        type: 'textarea',
+        disabled: false,
+        value: '<iframe src="http://ren.tv/player/112588" width="560" height="315" frameborder="0" allowfullscreen></iframe>',
+        visible: true
+      }
     };
 
-    return RenTvModel.extend('RenTvModel', {
+    /**
+     * Define rules
+     * @property RenTvModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        // Setter
+  return RenTvModel.extend('RenTvModel', {
 
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    // Setter
+
+  }, BaseModel.prototype, WidgetContentModel.prototype);
 });

@@ -6,62 +6,62 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineOnlineFriendsElement(PluginElement) {
 
+  /**
+   * Define OnlineFriends Element
+   * @param view
+   * @param opts
+   * @returns {OnlineFriendsElement}
+   * @constructor
+   * @class OnlineFriendsElement
+   * @extends PluginElement
+   */
+  var OnlineFriendsElement = function OnlineFriendsElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('online.friends', {
+      resource: '/widgets'
+    });
+
+    return this;
+  };
+
+  return OnlineFriendsElement.extend('OnlineFriendsElement', {
+
     /**
-     * Define OnlineFriends Element
-     * @param view
-     * @param opts
-     * @returns {OnlineFriendsElement}
-     * @constructor
-     * @class OnlineFriendsElement
-     * @extends PluginElement
+     * Render Embedded content
+     * @memberOf OnlineFriendsElement
      */
-    var OnlineFriendsElement = function OnlineFriendsElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent() {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+      /**
+       * Define $element
+       * @type {OnlineFriendsElement}
+       */
+      var $element = this;
 
-        this.addCSS('online.friends', {
-            resource: '/widgets'
-        });
+      var $structure = [
+        '<div class="mainContainer"><h3>Friends Online</h3><i class="online_amount"></i>',
+        '<div class="scrollableContent"><ul class="friendsRowsContainer"></ul>',
+        '</div><div class="viewAllMenu">View All</div></div>'
+      ].join('');
 
-        return this;
-    };
+      $element.view.controller.clearParentThumbnail();
+      $element.$.append($structure);
 
-    return OnlineFriendsElement.extend('OnlineFriendsElement', {
+      require([
+        'plugins/widgets/online.friends/mvc/online.friends.behavior'
+      ], function showFriendsOnline(OnlineFriendsBehavior) {
+        var showFriendsOnline = new OnlineFriendsBehavior();
+      });
+    }
 
-        /**
-         * Render Embedded content
-         * @memberOf OnlineFriendsElement
-         */
-        renderEmbeddedContent: function renderEmbeddedContent() {
-
-            /**
-             * Define $element
-             * @type {OnlineFriendsElement}
-             */
-            var $element = this;
-
-            var $structure = [
-                '<div class="mainContainer"><h3>Friends Online</h3><i class="online_amount"></i>',
-                '<div class="scrollableContent"><ul class="friendsRowsContainer"></ul>',
-                '</div><div class="viewAllMenu">View All</div></div>'
-            ].join('');
-
-            $element.view.controller.clearParentThumbnail();
-            $element.$.append($structure);
-
-            require([
-                'plugins/widgets/online.friends/mvc/online.friends.behavior'
-            ], function showFriendsOnline(OnlineFriendsBehavior) {
-                var showFriendsOnline = new OnlineFriendsBehavior();
-            });
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 
 });

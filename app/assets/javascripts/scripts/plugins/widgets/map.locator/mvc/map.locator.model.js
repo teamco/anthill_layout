@@ -6,168 +6,168 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineMapLocatorModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define MapLocator model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class MapLocatorModel
+   * @constructor
+   */
+  var MapLocatorModel = function MapLocatorModel() {
+
     /**
-     * Define MapLocator model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class MapLocatorModel
-     * @constructor
+     * Define preferences
+     * @memberOf MapLocatorModel
+     * @type {{}}
      */
-    var MapLocatorModel = function MapLocatorModel() {
-
-        /**
-         * Define preferences
-         * @memberOf MapLocatorModel
-         * @type {{}}
-         */
-        this.preferences = {
-            maplocatorLatitude: {
-                type: 'text',
-                disabled: false,
-                value: undefined,
-                visible: true
-            },
-            maplocatorLongitude: {
-                type: 'text',
-                disabled: false,
-                value: undefined,
-                visible: true
-            },
-            maplocatorZoom: {
-                type: 'text',
-                disabled: false,
-                value: 13,
-                visible: true
-            },
-            maplocatorSearchRadius: {
-                type: 'text',
-                disabled: false,
-                value: 1000,
-                visible: true
-            },
-            maplocatorMapStyleWaterColor: {
-                type: 'text',
-                disabled: true,
-                value: '#46bcec',
-                visible: false
-            },
-            maplocatorMapStyleWaterVisibility: {
-                type: 'text',
-                disabled: true,
-                value: 'on',
-                visible: false
-            },
-            maplocatorMapStyleLandscapeColor: {
-                type: 'text',
-                disabled: true,
-                value: '#f2f2f2',
-                visible: false
-            },
-            maplocatorMapStyleRoadSaturation: {
-                type: 'text',
-                disabled: true,
-                value: -100,
-                visible: false
-            },
-            maplocatorMapStyleRoadLightness: {
-                type: 'text',
-                disabled: true,
-                value: 45,
-                visible: false
-            },
-            maplocatorMapStyleRoadHighwayVisibility: {
-                type: 'text',
-                disabled: true,
-                value: 'simplified',
-                visible: false
-            },
-            maplocatorMapStyleRoadArterialElementType: {
-                type: 'text',
-                disabled: true,
-                value: 'labels.icon',
-                visible: false
-            },
-            maplocatorMapStyleRoadArterialVisibility: {
-                type: 'text',
-                disabled: true,
-                value: 'off',
-                visible: false
-            },
-            maplocatorMapStyleAdministrativeElementType: {
-                type: 'text',
-                disabled: true,
-                value: 'labels.text.fill',
-                visible: false
-            },
-            maplocatorMapStyleAdministrativeColor: {
-                type: 'text',
-                disabled: true,
-                value: '#444444',
-                visible: false
-            },
-            maplocatorMapStyleTransitVisibility: {
-                type: 'text',
-                disabled: true,
-                value: 'off',
-                visible: false
-            },
-            maplocatorMapStylePoiVisibility: {
-                type: 'text',
-                disabled: true,
-                value: 'off',
-                visible: false
-            }
-        };
-
-        /**
-         * Define rules
-         * @memberOf MapLocatorModel
-         * @type {{}}
-         */
-        this.rules = {};
+    this.preferences = {
+      maplocatorLatitude: {
+        type: 'text',
+        disabled: false,
+        value: undefined,
+        visible: true
+      },
+      maplocatorLongitude: {
+        type: 'text',
+        disabled: false,
+        value: undefined,
+        visible: true
+      },
+      maplocatorZoom: {
+        type: 'text',
+        disabled: false,
+        value: 13,
+        visible: true
+      },
+      maplocatorSearchRadius: {
+        type: 'text',
+        disabled: false,
+        value: 1000,
+        visible: true
+      },
+      maplocatorMapStyleWaterColor: {
+        type: 'text',
+        disabled: true,
+        value: '#46bcec',
+        visible: false
+      },
+      maplocatorMapStyleWaterVisibility: {
+        type: 'text',
+        disabled: true,
+        value: 'on',
+        visible: false
+      },
+      maplocatorMapStyleLandscapeColor: {
+        type: 'text',
+        disabled: true,
+        value: '#f2f2f2',
+        visible: false
+      },
+      maplocatorMapStyleRoadSaturation: {
+        type: 'text',
+        disabled: true,
+        value: -100,
+        visible: false
+      },
+      maplocatorMapStyleRoadLightness: {
+        type: 'text',
+        disabled: true,
+        value: 45,
+        visible: false
+      },
+      maplocatorMapStyleRoadHighwayVisibility: {
+        type: 'text',
+        disabled: true,
+        value: 'simplified',
+        visible: false
+      },
+      maplocatorMapStyleRoadArterialElementType: {
+        type: 'text',
+        disabled: true,
+        value: 'labels.icon',
+        visible: false
+      },
+      maplocatorMapStyleRoadArterialVisibility: {
+        type: 'text',
+        disabled: true,
+        value: 'off',
+        visible: false
+      },
+      maplocatorMapStyleAdministrativeElementType: {
+        type: 'text',
+        disabled: true,
+        value: 'labels.text.fill',
+        visible: false
+      },
+      maplocatorMapStyleAdministrativeColor: {
+        type: 'text',
+        disabled: true,
+        value: '#444444',
+        visible: false
+      },
+      maplocatorMapStyleTransitVisibility: {
+        type: 'text',
+        disabled: true,
+        value: 'off',
+        visible: false
+      },
+      maplocatorMapStylePoiVisibility: {
+        type: 'text',
+        disabled: true,
+        value: 'off',
+        visible: false
+      }
     };
 
-    return MapLocatorModel.extend('MapLocatorModel', {
+    /**
+     * Define rules
+     * @memberOf MapLocatorModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        /**
-         * Set MapLocator Latitude
-         * @memberOf MapLocatorModel
-         * @param {number} latitude
-         */
-        setMapLocatorLatitude: function setMapLocatorLatitude(latitude) {
-            this.setPrefs('maplocatorLatitude', latitude);
-        },
+  return MapLocatorModel.extend('MapLocatorModel', {
 
-        /**
-         * Set MapLocator Longitude
-         * @memberOf MapLocatorModel
-         * @param {number} longitude
-         */
-        setMapLocatorLongitude: function setMapLocatorLongitude(longitude) {
-            this.setPrefs('maplocatorLongitude', longitude);
-        },
+    /**
+     * Set MapLocator Latitude
+     * @memberOf MapLocatorModel
+     * @param {number} latitude
+     */
+    setMapLocatorLatitude: function setMapLocatorLatitude(latitude) {
+      this.setPrefs('maplocatorLatitude', latitude);
+    },
 
-        /**
-         * Set MapLocator zoom
-         * @memberOf MapLocatorModel
-         * @param {number} zoom
-         */
-        setMapLocatorZoom: function setMapLocatorZoom(zoom) {
-            this.setPrefs('maplocatorZoom', zoom);
-        },
+    /**
+     * Set MapLocator Longitude
+     * @memberOf MapLocatorModel
+     * @param {number} longitude
+     */
+    setMapLocatorLongitude: function setMapLocatorLongitude(longitude) {
+      this.setPrefs('maplocatorLongitude', longitude);
+    },
 
-        /**
-         * Set MapLocator Search radius
-         * @memberOf MapLocatorModel
-         * @param {string} radius
-         */
-        setMapLocatorSearchRadius: function setMapLocatorSearchRadius(radius) {
-            this.setPrefs('maplocatorSearchRadius', parseInt(radius, 10));
-        }
+    /**
+     * Set MapLocator zoom
+     * @memberOf MapLocatorModel
+     * @param {number} zoom
+     */
+    setMapLocatorZoom: function setMapLocatorZoom(zoom) {
+      this.setPrefs('maplocatorZoom', zoom);
+    },
 
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    /**
+     * Set MapLocator Search radius
+     * @memberOf MapLocatorModel
+     * @param {string} radius
+     */
+    setMapLocatorSearchRadius: function setMapLocatorSearchRadius(radius) {
+      this.setPrefs('maplocatorSearchRadius', parseInt(radius, 10));
+    }
+
+  }, BaseModel.prototype, WidgetContentModel.prototype);
 });

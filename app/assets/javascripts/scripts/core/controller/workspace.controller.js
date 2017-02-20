@@ -7,12 +7,12 @@
  */
 define(
     [
-        'modules/Controller',
-        'modules/Preferences',
-        'modules/Router',
-        'controller/workspace/workspace.page',
-        'controller/workspace/workspace.seo',
-        'controller/workspace/workspace.services'
+      'modules/Controller',
+      'modules/Preferences',
+      'modules/Router',
+      'controller/workspace/workspace.page',
+      'controller/workspace/workspace.seo',
+      'controller/workspace/workspace.services'
     ],
 
     /**
@@ -25,103 +25,105 @@ define(
      * @param {WorkspaceServices} WorkspaceServices
      * @returns {*}
      */
-    function defineWorkspaceController(BaseController, BasePreferences, Router, WorkspacePage, WorkspaceSEO, WorkspaceServices) {
+    function defineWorkspaceController(BaseController, BasePreferences, Router,
+        WorkspacePage, WorkspaceSEO, WorkspaceServices) {
 
-        /**
-         * Define workspace controller
-         * @class WorkspaceController
-         * @extends BaseController
-         * @extends BasePreferences
-         * @extends Router
-         * @extends WorkspacePage
-         * @extends WorkspaceSEO
-         * @extends WorkspaceServices
-         * @constructor
-         */
-        var WorkspaceController = function WorkspaceController() {
-        };
+      /**
+       * Define workspace controller
+       * @class WorkspaceController
+       * @extends BaseController
+       * @extends BasePreferences
+       * @extends Router
+       * @extends WorkspacePage
+       * @extends WorkspaceSEO
+       * @extends WorkspaceServices
+       * @constructor
+       */
+      var WorkspaceController = function WorkspaceController() {
+      };
 
-        return WorkspaceController.extend(
-            'WorkspaceController', {
+      return WorkspaceController.extend(
+          'WorkspaceController', {
 
-                /**
-                 * Set page height
-                 * @memberOf WorkspaceController
-                 */
-                bindHashChange: function bindHashChange() {
+            /**
+             * Set page height
+             * @memberOf WorkspaceController
+             */
+            bindHashChange: function bindHashChange() {
 
-                    /**
-                     * Get controller
-                     * @type {WorkspaceController}
-                     */
-                    var controller = this.controller;
+              /**
+               * Get controller
+               * @type {WorkspaceController}
+               */
+              var controller = this.controller;
 
-                    $(window).on(
-                        'hashchange',
-                        controller.switchPageOnHashChange.bind(controller)
-                    );
-                },
-
-                /**
-                 * Adopt content width after adding new page
-                 * @memberOf WorkspaceController
-                 */
-                adoptContentWidth: function adoptContentWidth() {
-
-                    this.view.elements.$pages.adoptPagesWidth(
-                        this.model.getItems(),
-                        this.model.getConfig('page/counter')
-                    );
-                },
-
-                /**
-                 * Transfer preferences
-                 * @memberOf WorkspaceController
-                 * @param {string} index
-                 * @param value
-                 */
-                transferContentPreferences: function transferContentPreferences(index, value) {
-
-                    this.observer.publish(
-                        this.eventmanager.eventList.transferPreferences,
-                        [index, value]
-                    );
-                },
-
-                /**
-                 * Update site width
-                 * @memberOf WorkspaceController
-                 */
-                updateSiteWidth: function updateSiteWidth() {
-
-                    /**
-                     * Define element
-                     * @type {WorkspaceElement}
-                     */
-                    var $workspace = this.view.get$item();
-
-                    var preferences = this.model.getConfig('preferences'),
-                        width = 0;
-
-                    if (preferences.staticWidth) {
-
-                        // Get site widths
-                        width = parseInt(preferences.siteWidthSlider, 10) || width;
-                        $workspace.updateWidth(width);
-
-                    } else {
-
-                        $workspace.unsetWidth();
-                    }
-                }
+              $(window).on(
+                  'hashchange',
+                  controller.switchPageOnHashChange.bind(controller)
+              );
             },
 
-            BaseController.prototype,
-            BasePreferences.prototype,
-            Router.prototype,
-            WorkspacePage.prototype,
-            WorkspaceSEO.prototype,
-            WorkspaceServices.prototype
-        );
+            /**
+             * Adopt content width after adding new page
+             * @memberOf WorkspaceController
+             */
+            adoptContentWidth: function adoptContentWidth() {
+
+              this.view.elements.$pages.adoptPagesWidth(
+                  this.model.getItems(),
+                  this.model.getConfig('page/counter')
+              );
+            },
+
+            /**
+             * Transfer preferences
+             * @memberOf WorkspaceController
+             * @param {string} index
+             * @param value
+             */
+            transferContentPreferences: function transferContentPreferences(index,
+                value) {
+
+              this.observer.publish(
+                  this.eventmanager.eventList.transferPreferences,
+                  [index, value]
+              );
+            },
+
+            /**
+             * Update site width
+             * @memberOf WorkspaceController
+             */
+            updateSiteWidth: function updateSiteWidth() {
+
+              /**
+               * Define element
+               * @type {WorkspaceElement}
+               */
+              var $workspace = this.view.get$item();
+
+              var preferences = this.model.getConfig('preferences'),
+                  width = 0;
+
+              if (preferences.staticWidth) {
+
+                // Get site widths
+                width = parseInt(preferences.siteWidthSlider, 10) || width;
+                $workspace.updateWidth(width);
+
+              } else {
+
+                $workspace.unsetWidth();
+              }
+            }
+          },
+
+          BaseController.prototype,
+          BasePreferences.prototype,
+          Router.prototype,
+          WorkspacePage.prototype,
+          WorkspaceSEO.prototype,
+          WorkspaceServices.prototype
+      );
     }
 );

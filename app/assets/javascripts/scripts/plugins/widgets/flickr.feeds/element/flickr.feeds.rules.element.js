@@ -6,38 +6,37 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/rules/widget.base.rules'
+  'plugins/plugin.element',
+  'plugins/rules/widget.base.rules'
 ], function defineFlickrFeedsRulesElement(PluginElement, BaseWidgetRules) {
 
-    /**
-     * Define FlickrFeeds Rules Element
-     * @param view
-     * @param opts
-     * @returns {FlickrFeedsRulesElement}
-     * @constructor
-     * @class FlickrFeedsRulesElement
-     * @extends PluginElement
-     * @extends BaseWidgetRules
-     */
-    var FlickrFeedsRulesElement = function FlickrFeedsRulesElement(view, opts) {
+  /**
+   * Define FlickrFeeds Rules Element
+   * @param view
+   * @param opts
+   * @returns {FlickrFeedsRulesElement}
+   * @constructor
+   * @class FlickrFeedsRulesElement
+   * @extends PluginElement
+   * @extends BaseWidgetRules
+   */
+  var FlickrFeedsRulesElement = function FlickrFeedsRulesElement(view, opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBaseRulesData(
-            opts.data,
-            opts.rules.widget,
-            opts.rules.content
-        );
+    this.renderBaseRulesData(
+        opts.data,
+        opts.rules.widget,
+        opts.rules.content
+    );
 
-        return this;
-    };
+    return this;
+  };
 
-    return FlickrFeedsRulesElement.extend('FlickrFeedsRulesElement', {
-
-    }, PluginElement.prototype, BaseWidgetRules.prototype);
+  return FlickrFeedsRulesElement.extend('FlickrFeedsRulesElement', {},
+      PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

@@ -7,108 +7,109 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/screencast/element/screencast.element',
-    'plugins/widgets/screencast/element/screencast.preferences.element',
-    'plugins/widgets/screencast/element/screencast.rules.element'
-], function defineScreencastView(BaseView, Header, Footer, ScreencastElement, ScreencastPreferencesElement, ScreencastRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/screencast/element/screencast.element',
+  'plugins/widgets/screencast/element/screencast.preferences.element',
+  'plugins/widgets/screencast/element/screencast.rules.element'
+], function defineScreencastView(BaseView, Header, Footer, ScreencastElement,
+    ScreencastPreferencesElement, ScreencastRulesElement) {
+
+  /**
+   * Define view
+   * @class ScreencastView
+   * @extends BaseView
+   * @constructor
+   */
+  var ScreencastView = function ScreencastView() {
+  };
+
+  return ScreencastView.extend('ScreencastView', {
 
     /**
-     * Define view
-     * @class ScreencastView
-     * @extends BaseView
-     * @constructor
+     * Render screencast element
+     * @memberOf ScreencastView
      */
-    var ScreencastView = function ScreencastView() {
-    };
+    renderScreencast: function renderScreencast() {
 
-    return ScreencastView.extend('ScreencastView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render screencast element
-         * @memberOf ScreencastView
-         */
-        renderScreencast: function renderScreencast() {
+      /**
+       * Define $screencast
+       * @type {ScreencastElement}
+       */
+      this.elements.$screencast = new ScreencastElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $screencast
-             * @type {ScreencastElement}
-             */
-            this.elements.$screencast = new ScreencastElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf ScreencastView
+     * @returns {ScreencastPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define Screencast Preferences Element
+       * @type {ScreencastPreferencesElement}
+       */
+      this.elements.$preferences = new ScreencastPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf ScreencastView
-         * @returns {ScreencastPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define Screencast Preferences Element
-             * @type {ScreencastPreferencesElement}
-             */
-            this.elements.$preferences = new ScreencastPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf ScreencastView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {ScreencastRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
+      /**
+       * Define data
+       * @type {*|{}}
+       */
+      var data = this.controller.getRules();
 
-        /**
-         * Render Rules
-         * @memberOf ScreencastView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {ScreencastRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define data
-             * @type {*|{}}
-             */
-            var data = this.controller.getRules();
-
-            /**
-             * Define Screencast Rules Element
-             * @type {ScreencastRulesElement}
-             */
-            this.elements.$rules = new ScreencastRulesElement(this, {
-                data: data,
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render screencast
-         * @memberOf ScreencastView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderScreencast.bind(this)
-            );
+      /**
+       * Define Screencast Rules Element
+       * @type {ScreencastRulesElement}
+       */
+      this.elements.$rules = new ScreencastRulesElement(this, {
+        data: data,
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render screencast
+     * @memberOf ScreencastView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderScreencast.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

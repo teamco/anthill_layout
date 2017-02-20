@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineXkcdEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define Xkcd event manager
-     * @class XkcdEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var XkcdEventManager = function XkcdEventManager() {
+  /**
+   * Define Xkcd event manager
+   * @class XkcdEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var XkcdEventManager = function XkcdEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return XkcdEventManager.extend('XkcdEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return XkcdEventManager.extend('XkcdEventManager', {},
+      WidgetContentEventManager.prototype);
 });

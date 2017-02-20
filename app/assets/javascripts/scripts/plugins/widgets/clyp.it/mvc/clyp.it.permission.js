@@ -7,20 +7,20 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineClypItPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class ClypItPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var ClypItPermission = function ClypItPermission() {
-    };
+  /**
+   * Define Permissions
+   * @class ClypItPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var ClypItPermission = function ClypItPermission() {
+  };
 
-    return ClypItPermission.extend(
-        'ClypItPermission', {}, 
-        BasePermission.prototype
-    );
+  return ClypItPermission.extend(
+      'ClypItPermission', {},
+      BasePermission.prototype
+  );
 });

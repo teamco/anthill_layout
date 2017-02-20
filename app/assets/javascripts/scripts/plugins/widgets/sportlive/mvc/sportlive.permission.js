@@ -7,20 +7,20 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineSportlivePermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class SportlivePermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var SportlivePermission = function SportlivePermission() {
-    };
+  /**
+   * Define Permissions
+   * @class SportlivePermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var SportlivePermission = function SportlivePermission() {
+  };
 
-    return SportlivePermission.extend(
-        'SportlivePermission', {}, 
-        BasePermission.prototype
-    );
+  return SportlivePermission.extend(
+      'SportlivePermission', {},
+      BasePermission.prototype
+  );
 });

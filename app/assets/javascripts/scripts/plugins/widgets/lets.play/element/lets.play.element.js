@@ -6,48 +6,48 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineLetsPlayElement(PluginElement) {
 
+  /**
+   * Define LetsPlay Element
+   * @param view
+   * @param opts
+   * @returns {LetsPlayElement}
+   * @constructor
+   * @class LetsPlayElement
+   * @extends PluginElement
+   */
+  var LetsPlayElement = function LetsPlayElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('lets.play', {resource: '/widgets'});
+
+    return this;
+  };
+
+  return LetsPlayElement.extend('LetsPlayElement', {
+
     /**
-     * Define LetsPlay Element
-     * @param view
-     * @param opts
-     * @returns {LetsPlayElement}
-     * @constructor
-     * @class LetsPlayElement
-     * @extends PluginElement
+     * Render Embedded content
+     * @memberOf LetsPlayElement
      */
-    var LetsPlayElement = function LetsPlayElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent() {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+      this.addContent('<img src="/assets/demo/play" />');
 
-        this.addCSS('lets.play', {resource: '/widgets'});
+      this.$.off().on(
+          'click',
+          function () {
+            $('.application').scrollTop(0, 0);
+            window.location.hash = '#/profile';
+          }
+      );
+    }
 
-        return this;
-    };
-
-    return LetsPlayElement.extend('LetsPlayElement', {
-
-        /**
-         * Render Embedded content
-         * @memberOf LetsPlayElement
-         */
-        renderEmbeddedContent: function renderEmbeddedContent() {
-
-            this.addContent('<img src="/assets/demo/play" />');
-
-            this.$.off().on(
-                'click',
-                function () {
-                    $('.application').scrollTop(0, 0);
-                    window.location.hash = '#/profile';
-                }
-            );
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 });

@@ -6,35 +6,37 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
-], function defineSportlivePreferencesElement(PluginElement, WidgetPreferences) {
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
+], function defineSportlivePreferencesElement(PluginElement,
+    WidgetPreferences) {
 
-    /**
-     * Define Sportlive Preferences Element
-     * @constructor
-     * @class SportlivePreferencesElement
-     * @param {SportliveView} view
-     * @param opts
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     * @returns {SportlivePreferencesElement}
-     */
-    var SportlivePreferencesElement = function SportlivePreferencesElement(view, opts) {
+  /**
+   * Define Sportlive Preferences Element
+   * @constructor
+   * @class SportlivePreferencesElement
+   * @param {SportliveView} view
+   * @param opts
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   * @returns {SportlivePreferencesElement}
+   */
+  var SportlivePreferencesElement = function SportlivePreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return SportlivePreferencesElement.extend(
-        'SportlivePreferencesElement', {}, 
-        PluginElement.prototype, 
-        WidgetPreferences.prototype
-    );
+  return SportlivePreferencesElement.extend(
+      'SportlivePreferencesElement', {},
+      PluginElement.prototype,
+      WidgetPreferences.prototype
+  );
 });

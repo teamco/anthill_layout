@@ -7,101 +7,102 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/shoudio/element/shoudio.element',
-    'plugins/widgets/shoudio/element/shoudio.preferences.element',
-    'plugins/widgets/shoudio/element/shoudio.rules.element'
-], function defineShoudioView(BaseView, Header, Footer, ShoudioElement, ShoudioPreferencesElement, ShoudioRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/shoudio/element/shoudio.element',
+  'plugins/widgets/shoudio/element/shoudio.preferences.element',
+  'plugins/widgets/shoudio/element/shoudio.rules.element'
+], function defineShoudioView(BaseView, Header, Footer, ShoudioElement,
+    ShoudioPreferencesElement, ShoudioRulesElement) {
+
+  /**
+   * Define view
+   * @class ShoudioView
+   * @extends BaseView
+   * @constructor
+   */
+  var ShoudioView = function ShoudioView() {
+  };
+
+  return ShoudioView.extend('ShoudioView', {
 
     /**
-     * Define view
-     * @class ShoudioView
-     * @extends BaseView
-     * @constructor
+     * Render Shoudio element
+     * @memberOf ShoudioView
      */
-    var ShoudioView = function ShoudioView() {
-    };
+    renderShoudio: function renderShoudio() {
 
-    return ShoudioView.extend('ShoudioView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render Shoudio element
-         * @memberOf ShoudioView
-         */
-        renderShoudio: function renderShoudio() {
+      /**
+       * Define $shoudio
+       * @type {ShoudioElement}
+       */
+      this.elements.$shoudio = new ShoudioElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $shoudio
-             * @type {ShoudioElement}
-             */
-            this.elements.$shoudio = new ShoudioElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf ShoudioView
+     * @returns {ShoudioPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define Shoudio Preferences Element
+       * @type {ShoudioPreferencesElement}
+       */
+      this.elements.$preferences = new ShoudioPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf ShoudioView
-         * @returns {ShoudioPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define Shoudio Preferences Element
-             * @type {ShoudioPreferencesElement}
-             */
-            this.elements.$preferences = new ShoudioPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf ShoudioView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {ShoudioRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
-
-        /**
-         * Render Rules
-         * @memberOf ShoudioView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {ShoudioRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define Shoudio Rules Element
-             * @type {ShoudioRulesElement}
-             */
-            this.elements.$rules = new ShoudioRulesElement(this, {
-                data: this.controller.getRules(),
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render Shoudio
-         * @memberOf ShoudioView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderShoudio.bind(this)
-            );
+      /**
+       * Define Shoudio Rules Element
+       * @type {ShoudioRulesElement}
+       */
+      this.elements.$rules = new ShoudioRulesElement(this, {
+        data: this.controller.getRules(),
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype);
+      return this.get$rules();
+    },
+
+    /**
+     * Render Shoudio
+     * @memberOf ShoudioView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderShoudio.bind(this)
+      );
+    }
+
+  }, BaseView.prototype);
 });

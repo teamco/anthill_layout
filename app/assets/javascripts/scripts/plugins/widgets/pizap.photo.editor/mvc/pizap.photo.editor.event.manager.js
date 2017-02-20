@@ -7,23 +7,23 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function definePizapPhotoEditorEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define PizapPhotoEditor event manager
-     * @class PizapPhotoEditorEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var PizapPhotoEditorEventManager = function PizapPhotoEditorEventManager() {
+  /**
+   * Define PizapPhotoEditor event manager
+   * @class PizapPhotoEditorEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var PizapPhotoEditorEventManager = function PizapPhotoEditorEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return PizapPhotoEditorEventManager.extend(
-        'PizapPhotoEditorEventManager', {},
-        WidgetContentEventManager.prototype
-    );
+  return PizapPhotoEditorEventManager.extend(
+      'PizapPhotoEditorEventManager', {},
+      WidgetContentEventManager.prototype
+  );
 });

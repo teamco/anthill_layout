@@ -6,35 +6,35 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
-], function defineFotoKritikPreferencesElement(PluginElement, WidgetPreferences) {
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
+], function defineFotoKritikPreferencesElement(PluginElement,
+    WidgetPreferences) {
 
-    /**
-     * Define FotoKritik Preferences Element
-     * @param view
-     * @param opts
-     * @returns {FotoKritikPreferencesElement}
-     * @constructor
-     * @class FotoKritikPreferencesElement
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     */
-    var FotoKritikPreferencesElement = function FotoKritikPreferencesElement(view, opts) {
+  /**
+   * Define FotoKritik Preferences Element
+   * @param view
+   * @param opts
+   * @returns {FotoKritikPreferencesElement}
+   * @constructor
+   * @class FotoKritikPreferencesElement
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   */
+  var FotoKritikPreferencesElement = function FotoKritikPreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return FotoKritikPreferencesElement.extend('FotoKritikPreferencesElement', {
-
-
-    }, PluginElement.prototype, WidgetPreferences.prototype);
+  return FotoKritikPreferencesElement.extend('FotoKritikPreferencesElement', {},
+      PluginElement.prototype, WidgetPreferences.prototype);
 
 });

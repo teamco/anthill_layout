@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineEventsCalendarPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class EventsCalendarPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var EventsCalendarPermission = function EventsCalendarPermission() {
+  /**
+   * Define Permissions
+   * @class EventsCalendarPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var EventsCalendarPermission = function EventsCalendarPermission() {
 
-    };
+  };
 
-    return EventsCalendarPermission.extend('EventsCalendarPermission', {
-
-    }, BasePermission.prototype);
+  return EventsCalendarPermission.extend('EventsCalendarPermission', {},
+      BasePermission.prototype);
 });

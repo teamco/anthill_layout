@@ -6,76 +6,65 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineDeviantArtController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define deviantart controller
+   * @class DeviantArtController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var DeviantArtController = function DeviantArtController() {
+  };
+
+  return DeviantArtController.extend('DeviantArtController', {
+
     /**
-     * Define deviantart controller
-     * @class DeviantArtController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf DeviantArtController
      */
-    var DeviantArtController = function DeviantArtController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
+      this.view.elements.$deviantart.renderEmbeddedContent(
+          this.controller.getEmbedCode(
+              this.model.getPrefs('deviantartEmbedCode')
+          )
+      );
+    },
 
-    return DeviantArtController.extend('DeviantArtController', {
+    /**
+     * Validate DeviantArt
+     * @memberOf DeviantArtController
+     * @param {string} embed
+     * @return {string|boolean}
+     */
+    getEmbedCode: function getEmbedCode(embed) {
 
-        /**
-         * Set embedded content
-         * @memberOf DeviantArtController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
-            this.view.elements.$deviantart.renderEmbeddedContent(
-                this.controller.getEmbedCode(
-                    this.model.getPrefs('deviantartEmbedCode')
-                )
-            );
-        },
+      if (!embed) {
+        this.scope.logger.debug('Initial state');
+        return false;
+      }
 
-        /**
-         * Validate DeviantArt
-         * @memberOf DeviantArtController
-         * @param {string} embed
-         * @return {string|boolean}
-         */
-        getEmbedCode: function getEmbedCode(embed) {
+      // Convert to string
+      embed += '';
 
-            if (!embed) {
-                this.scope.logger.debug('Initial state');
-                return false;
-            }
+      if (embed.match(/^<object/)) {
+        return embed;
+      }
 
-            // Convert to string
-            embed += '';
+      this.scope.logger.warn('Invalid DeviantArt embed code');
+    },
 
-            if (embed.match(/^<object/)) {
-                return embed;
-            }
+    /**
+     * Add DeviantArt rule
+     * @memberOf DeviantArtController
+     * @param {Event} e
+     */
+    addDeviantArtRule: function addDeviantArtRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-            this.scope.logger.warn('Invalid DeviantArt embed code');
-        },
-
-        /**
-         * Add DeviantArt rule
-         * @memberOf DeviantArtController
-         * @param e
-         */
-        addDeviantArtRule: function addDeviantArtRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

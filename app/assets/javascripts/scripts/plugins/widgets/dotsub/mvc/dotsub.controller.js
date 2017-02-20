@@ -6,56 +6,40 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineDotsubController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define Dotsub controller
+   * @class DotsubController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var DotsubController = function DotsubController() {
+  };
+
+  return DotsubController.extend('DotsubController', {
+
     /**
-     * Define Dotsub controller
-     * @class DotsubController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf DotsubController
      */
-    var DotsubController = function DotsubController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
+      this.view.get$item().renderEmbeddedContent(
+          this.model.getPrefs('dotsubEmbedCode')
+      );
+    },
 
-    return DotsubController.extend('DotsubController', {
+    /**
+     * Add Dotsub rule
+     * @memberOf DotsubController
+     * @param {Event} e
+     */
+    addDotsubRule: function addDotsubRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-        /**
-         * Set embedded content
-         * @memberOf DotsubController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
-            this.view.get$item().renderEmbeddedContent(
-                this.model.getPrefs('dotsubEmbedCode')
-            );
-        },
-
-        /**
-         * Add Dotsub rule
-         * @memberOf DotsubController
-         * @param e
-         */
-        addDotsubRule: function addDotsubRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target);
-
-            /**
-             * Get scope
-             * @type {Dotsub|{name: string}}
-             */
-            var scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

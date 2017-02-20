@@ -6,53 +6,54 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineIssuuModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define Issuu model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class IssuuModel
+   * @constructor
+   */
+  var IssuuModel = function IssuuModel() {
+
     /**
-     * Define Issuu model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class IssuuModel
-     * @constructor
+     * Define preferences
+     * @memberOf IssuuModel
+     * @type {{
+     *      issuuEmbedCode: {type: string, disabled: boolean, value:
+     *     undefined, visible: boolean}
+     * }}
      */
-    var IssuuModel = function IssuuModel() {
-
-        /**
-         * Define preferences
-         * @memberOf IssuuModel
-         * @type {{
-         *      issuuEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
-         * }}
-         */
-        this.preferences = {
-            issuuEmbedCode: {
-                type: 'textarea',
-                disabled: false,
-                value: undefined,
-                visible: true
-            }
-        };
-
-        /**
-         * Define rules
-         * @memberOf IssuuModel
-         * @type {{}}
-         */
-        this.rules = {};
+    this.preferences = {
+      issuuEmbedCode: {
+        type: 'textarea',
+        disabled: false,
+        value: undefined,
+        visible: true
+      }
     };
 
-    return IssuuModel.extend('IssuuModel', {
+    /**
+     * Define rules
+     * @memberOf IssuuModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        /**
-         * Set Issuu embed code
-         * @memberOf IssuuModel
-         * @param {string} embed
-         */
-        setIssuuEmbedCode: function setIssuuEmbedCode(embed) {
-            this.setPrefs('issuuEmbedCode', embed);
-        }
+  return IssuuModel.extend('IssuuModel', {
 
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    /**
+     * Set Issuu embed code
+     * @memberOf IssuuModel
+     * @param {string} embed
+     */
+    setIssuuEmbedCode: function setIssuuEmbedCode(embed) {
+      this.setPrefs('issuuEmbedCode', embed);
+    }
+
+  }, BaseModel.prototype, WidgetContentModel.prototype);
 });

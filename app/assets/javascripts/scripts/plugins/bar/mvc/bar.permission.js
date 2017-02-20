@@ -7,20 +7,18 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineBarPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class BarPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var BarPermission = function BarPermission() {
+  /**
+   * Define Permissions
+   * @class BarPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var BarPermission = function BarPermission() {
 
-    };
+  };
 
-    return BarPermission.extend('BarPermission', {
-
-    }, BasePermission.prototype);
+  return BarPermission.extend('BarPermission', {}, BasePermission.prototype);
 });

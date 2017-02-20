@@ -6,35 +6,37 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
-], function definePortfoliumPreferencesElement(PluginElement, WidgetPreferences) {
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
+], function definePortfoliumPreferencesElement(PluginElement,
+    WidgetPreferences) {
 
-    /**
-     * Define Portfolium Preferences Element
-     * @constructor
-     * @class PortfoliumPreferencesElement
-     * @param {PortfoliumView} view
-     * @param opts
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     * @returns {PortfoliumPreferencesElement}
-     */
-    var PortfoliumPreferencesElement = function PortfoliumPreferencesElement(view, opts) {
+  /**
+   * Define Portfolium Preferences Element
+   * @constructor
+   * @class PortfoliumPreferencesElement
+   * @param {PortfoliumView} view
+   * @param opts
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   * @returns {PortfoliumPreferencesElement}
+   */
+  var PortfoliumPreferencesElement = function PortfoliumPreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return PortfoliumPreferencesElement.extend(
-        'PortfoliumPreferencesElement', {}, 
-        PluginElement.prototype, 
-        WidgetPreferences.prototype
-    );
+  return PortfoliumPreferencesElement.extend(
+      'PortfoliumPreferencesElement', {},
+      PluginElement.prototype,
+      WidgetPreferences.prototype
+  );
 });

@@ -6,58 +6,58 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineFlickrElement(PluginElement) {
 
+  /**
+   * Define Flickr Element
+   * @param view
+   * @param opts
+   * @returns {FlickrElement}
+   * @constructor
+   * @class FlickrElement
+   * @extends PluginElement
+   */
+  var FlickrElement = function FlickrElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('flickr', {resource: '/widgets'});
+
+    return this;
+  };
+
+  return FlickrElement.extend('FlickrElement', {
+
     /**
-     * Define Flickr Element
-     * @param view
-     * @param opts
-     * @returns {FlickrElement}
-     * @constructor
-     * @class FlickrElement
-     * @extends PluginElement
+     * Render Embedded content
+     * @memberOf FlickrElement
+     * @param {string} embed
      */
-    var FlickrElement = function FlickrElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent(embed) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+      /**
+       * Define $iframe
+       * @type {*|jQuery|HTMLElement}
+       */
+      var $embed = $(embed);
 
-        this.addCSS('flickr', {resource: '/widgets'});
+      if ($embed.length === 0) {
+        return false;
+      }
 
-        return this;
-    };
+      this.$.append(
+          $('<iframe />').attr({
+            src: $embed[0].src,
+            frameborder: 0,
+            allowfullscreen: ''
+          })
+      );
+    }
 
-    return FlickrElement.extend('FlickrElement', {
-
-        /**
-         * Render Embedded content
-         * @memberOf FlickrElement
-         * @param {string} embed
-         */
-        renderEmbeddedContent: function renderEmbeddedContent(embed) {
-
-            /**
-             * Define $iframe
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $embed = $(embed);
-
-            if ($embed.length === 0) {
-                return false;
-            }
-
-            this.$.append(
-                $('<iframe />').attr({
-                    src: $embed[0].src,
-                    frameborder: 0,
-                    allowfullscreen: ''
-                })
-            );
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 
 });

@@ -7,23 +7,23 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineWistiaEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define Wistia event manager
-     * @class WistiaEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var WistiaEventManager = function WistiaEventManager() {
+  /**
+   * Define Wistia event manager
+   * @class WistiaEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var WistiaEventManager = function WistiaEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return WistiaEventManager.extend(
-        'WistiaEventManager', {},
-        WidgetContentEventManager.prototype
-    );
+  return WistiaEventManager.extend(
+      'WistiaEventManager', {},
+      WidgetContentEventManager.prototype
+  );
 });

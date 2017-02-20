@@ -7,45 +7,45 @@
  */
 
 define([
-    'modules/Event'
+  'modules/Event'
 ], function defineWidgetRulesEventManager(BaseEvent) {
 
+  /**
+   * Define widget rules event manager
+   * @class WidgetRulesEventManager
+   * @constructor
+   * @extends BaseEvent
+   */
+  var WidgetRulesEventManager = function WidgetRulesEventManager() {
+
     /**
-     * Define widget rules event manager
-     * @class WidgetRulesEventManager
-     * @constructor
-     * @extends BaseEvent
+     * Define events
+     * @property WidgetRulesEventManager
+     * @type {{}}
      */
-    var WidgetRulesEventManager = function WidgetRulesEventManager() {
+    this.events = {};
 
-        /**
-         * Define events
-         * @property WidgetRulesEventManager
-         * @type {{}}
-         */
-        this.events = {};
-
-        /**
-         * Define event list
-         * @property WidgetRulesEventManager
-         * @type {{
+    /**
+     * Define event list
+     * @property WidgetRulesEventManager
+     * @type {{
          *      updateTranslations: string,
          *      loadModuleContent: string,
          *      prepareActiveComponent: string,
          *      storeItem: string,
          *      setActiveContent: string
          * }}
-         */
-        this.eventList = {
-            updateTranslations: 'update.translations',
-            loadModuleContent: 'load.module.content',
-            prepareActiveComponent: 'prepare.active.component',
-            storeItem: 'store.item',
-            setActiveContent: 'set.active.content'
-        };
+     */
+    this.eventList = {
+      updateTranslations: 'update.translations',
+      loadModuleContent: 'load.module.content',
+      prepareActiveComponent: 'prepare.active.component',
+      storeItem: 'store.item',
+      setActiveContent: 'set.active.content'
     };
+  };
 
-    return WidgetRulesEventManager.extend(
-        'WidgetRulesEventManager', {}, BaseEvent.prototype
-    );
+  return WidgetRulesEventManager.extend(
+      'WidgetRulesEventManager', {}, BaseEvent.prototype
+  );
 });

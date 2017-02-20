@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineUbrEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define Ubr event manager
-     * @class UbrEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var UbrEventManager = function UbrEventManager() {
+  /**
+   * Define Ubr event manager
+   * @class UbrEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var UbrEventManager = function UbrEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return UbrEventManager.extend('UbrEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return UbrEventManager.extend('UbrEventManager', {},
+      WidgetContentEventManager.prototype);
 });

@@ -6,56 +6,40 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineAliezTvController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define AliezTv controller
+   * @class AliezTvController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var AliezTvController = function AliezTvController() {
+  };
+
+  return AliezTvController.extend('AliezTvController', {
+
     /**
-     * Define AliezTv controller
-     * @class AliezTvController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf AliezTvController
      */
-    var AliezTvController = function AliezTvController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
+      this.view.get$item().renderEmbeddedContent(
+          this.model.getPrefs('alieztvEmbedCode')
+      );
+    },
 
-    return AliezTvController.extend('AliezTvController', {
+    /**
+     * Add AliezTv rule
+     * @memberOf AliezTvController
+     * @param {Event} e
+     */
+    addAliezTvRule: function addAliezTvRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-        /**
-         * Set embedded content
-         * @memberOf AliezTvController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
-            this.view.get$item().renderEmbeddedContent(
-                this.model.getPrefs('alieztvEmbedCode')
-            );
-        },
-
-        /**
-         * Add AliezTv rule
-         * @memberOf AliezTvController
-         * @param e
-         */
-        addAliezTvRule: function addAliezTvRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target);
-
-            /**
-             * Get scope
-             * @type {AliezTv|{name: string}}
-             */
-            var scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

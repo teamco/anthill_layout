@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineEmbedlyEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define Embedly event manager
-     * @class EmbedlyEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var EmbedlyEventManager = function EmbedlyEventManager() {
+  /**
+   * Define Embedly event manager
+   * @class EmbedlyEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var EmbedlyEventManager = function EmbedlyEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return EmbedlyEventManager.extend('EmbedlyEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return EmbedlyEventManager.extend('EmbedlyEventManager', {},
+      WidgetContentEventManager.prototype);
 });

@@ -6,53 +6,54 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineExtremeTubeModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define ExtremeTube model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class ExtremeTubeModel
+   * @constructor
+   */
+  var ExtremeTubeModel = function ExtremeTubeModel() {
+
     /**
-     * Define ExtremeTube model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class ExtremeTubeModel
-     * @constructor
+     * Define preferences
+     * @property ExtremeTubeModel
+     * @type {{
+     *      extremetubeEmbedCode: {type: string, disabled: boolean, value:
+     *     undefined, visible: boolean}
+     * }}
      */
-    var ExtremeTubeModel = function ExtremeTubeModel() {
-
-        /**
-         * Define preferences
-         * @property ExtremeTubeModel
-         * @type {{
-         *      extremetubeEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
-         * }}
-         */
-        this.preferences = {
-            extremetubeEmbedCode: {
-                type: 'textarea',
-                disabled: false,
-                value: undefined,
-                visible: true
-            }
-        };
-
-        /**
-         * Define rules
-         * @property ExtremeTubeModel
-         * @type {{}}
-         */
-        this.rules = {};
+    this.preferences = {
+      extremetubeEmbedCode: {
+        type: 'textarea',
+        disabled: false,
+        value: undefined,
+        visible: true
+      }
     };
 
-    return ExtremeTubeModel.extend('ExtremeTubeModel', {
+    /**
+     * Define rules
+     * @property ExtremeTubeModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        /**
-         * Set ExtremeTube embed code
-         * @memberOf ExtremeTubeModel
-         * @param {string} embed
-         */
-        setExtremetubeEmbedCode: function setExtremetubeEmbedCode(embed) {
-            this.setPrefs('extremetubeEmbedCode', embed);
-        }
+  return ExtremeTubeModel.extend('ExtremeTubeModel', {
 
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    /**
+     * Set ExtremeTube embed code
+     * @memberOf ExtremeTubeModel
+     * @param {string} embed
+     */
+    setExtremetubeEmbedCode: function setExtremetubeEmbedCode(embed) {
+      this.setPrefs('extremetubeEmbedCode', embed);
+    }
+
+  }, BaseModel.prototype, WidgetContentModel.prototype);
 });

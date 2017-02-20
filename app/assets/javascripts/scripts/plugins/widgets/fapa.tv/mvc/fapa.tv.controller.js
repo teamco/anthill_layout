@@ -6,86 +6,75 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineFapaTvController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define fapatv controller
+   * @class FapaTvController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var FapaTvController = function FapaTvController() {
+  };
+
+  return FapaTvController.extend('FapaTvController', {
+
     /**
-     * Define fapatv controller
-     * @class FapaTvController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf FapaTvController
      */
-    var FapaTvController = function FapaTvController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
 
-    return FapaTvController.extend('FapaTvController', {
+      /**
+       * Get url
+       * @type {string|*}
+       */
+      var url = this.model.getPrefs('fapatvEmbedCode'),
+          embed = this.controller.getEmbedCode(url);
 
-        /**
-         * Set embedded content
-         * @memberOf FapaTvController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
+      if (embed) {
+        this.view.elements.$fapatv.renderEmbeddedContent(embed);
+      }
+    },
 
-            /**
-             * Get url
-             * @type {string|*}
-             */
-            var url = this.model.getPrefs('fapatvEmbedCode'),
-                embed = this.controller.getEmbedCode(url);
+    /**
+     * Validate fapatv
+     * @memberOf FapaTvController
+     * @param {string} embed
+     * @return {string|boolean}
+     */
+    getEmbedCode: function getEmbedCode(embed) {
 
-            if (embed) {
-                this.view.elements.$fapatv.renderEmbeddedContent(embed);
-            }
-        },
+      if (!embed) {
+        this.scope.logger.debug('Initial state');
+        return false;
+      }
 
-        /**
-         * Validate fapatv
-         * @memberOf FapaTvController
-         * @param {string} embed
-         * @return {string|boolean}
-         */
-        getEmbedCode: function getEmbedCode(embed) {
+      // Convert to string
+      embed += '';
 
-            if (!embed) {
-                this.scope.logger.debug('Initial state');
-                return false;
-            }
+      if (embed.match(/^<iframe/)) {
 
-            // Convert to string
-            embed += '';
+        return $(embed).attr('src');
 
-            if (embed.match(/^<iframe/)) {
+      } else {
 
-                return $(embed).attr('src');
+        this.scope.logger.warn('Invalid FapaTv embed code');
+        return false;
+      }
+    },
 
-            } else {
+    /**
+     * Add FapaTv rule
+     * @memberOf FapaTvController
+     * @param {Event} e
+     */
+    addFapaTvRule: function addFapaTvRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-                this.scope.logger.warn('Invalid FapaTv embed code');
-                return false;
-            }
-        },
-
-        /**
-         * Add FapaTv rule
-         * @memberOf FapaTvController
-         * @param e
-         */
-        addFapaTvRule: function addFapaTvRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

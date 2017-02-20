@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineXVideosEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define XVideos event manager
-     * @class XVideosEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var XVideosEventManager = function XVideosEventManager() {
+  /**
+   * Define XVideos event manager
+   * @class XVideosEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var XVideosEventManager = function XVideosEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return XVideosEventManager.extend('XVideosEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return XVideosEventManager.extend('XVideosEventManager', {},
+      WidgetContentEventManager.prototype);
 });

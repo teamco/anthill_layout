@@ -7,23 +7,23 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineNationalFilmBoardOfCanadaEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define NationalFilmBoardOfCanada event manager
-     * @class NationalFilmBoardOfCanadaEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var NationalFilmBoardOfCanadaEventManager = function NationalFilmBoardOfCanadaEventManager() {
+  /**
+   * Define NationalFilmBoardOfCanada event manager
+   * @class NationalFilmBoardOfCanadaEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var NationalFilmBoardOfCanadaEventManager = function NationalFilmBoardOfCanadaEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return NationalFilmBoardOfCanadaEventManager.extend(
-        'NationalFilmBoardOfCanadaEventManager', {},
-        WidgetContentEventManager.prototype
-    );
+  return NationalFilmBoardOfCanadaEventManager.extend(
+      'NationalFilmBoardOfCanadaEventManager', {},
+      WidgetContentEventManager.prototype
+  );
 });

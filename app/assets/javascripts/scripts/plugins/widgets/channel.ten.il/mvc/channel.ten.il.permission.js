@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineChannelTenIlPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class ChannelTenIlPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var ChannelTenIlPermission = function ChannelTenIlPermission() {
+  /**
+   * Define Permissions
+   * @class ChannelTenIlPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var ChannelTenIlPermission = function ChannelTenIlPermission() {
 
-    };
+  };
 
-    return ChannelTenIlPermission.extend('ChannelTenIlPermission', {
-
-    }, BasePermission.prototype);
+  return ChannelTenIlPermission.extend('ChannelTenIlPermission', {},
+      BasePermission.prototype);
 });

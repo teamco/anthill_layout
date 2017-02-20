@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function definePinterestEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define Pinterest event manager
-     * @class PinterestEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var PinterestEventManager = function PinterestEventManager() {
+  /**
+   * Define Pinterest event manager
+   * @class PinterestEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var PinterestEventManager = function PinterestEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return PinterestEventManager.extend('PinterestEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return PinterestEventManager.extend('PinterestEventManager', {},
+      WidgetContentEventManager.prototype);
 });

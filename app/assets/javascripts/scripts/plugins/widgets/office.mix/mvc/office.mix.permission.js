@@ -7,20 +7,20 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineOfficeMixPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class OfficeMixPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var OfficeMixPermission = function OfficeMixPermission() {
-    };
+  /**
+   * Define Permissions
+   * @class OfficeMixPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var OfficeMixPermission = function OfficeMixPermission() {
+  };
 
-    return OfficeMixPermission.extend(
-        'OfficeMixPermission', {}, 
-        BasePermission.prototype
-    );
+  return OfficeMixPermission.extend(
+      'OfficeMixPermission', {},
+      BasePermission.prototype
+  );
 });

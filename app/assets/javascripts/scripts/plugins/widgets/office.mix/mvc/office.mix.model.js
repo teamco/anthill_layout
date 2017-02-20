@@ -6,44 +6,45 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineOfficeMixModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define OfficeMix model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class OfficeMixModel
+   * @constructor
+   */
+  var OfficeMixModel = function OfficeMixModel() {
+
     /**
-     * Define OfficeMix model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class OfficeMixModel
-     * @constructor
+     * Define preferences
+     * @property OfficeMixModel
+     * @type {{officemixEmbedCode: {type: string, disabled: boolean, value:
+     *     string, visible: boolean}}}
      */
-    var OfficeMixModel = function OfficeMixModel() {
-
-        /**
-         * Define preferences
-         * @property OfficeMixModel
-         * @type {{officemixEmbedCode: {type: string, disabled: boolean, value: string, visible: boolean}}}
-         */
-        this.preferences = {
-            officemixEmbedCode: {
-                type: 'textarea',
-                disabled: false,
-                value: '<iframe width="608" height="392" src="https://mix.office.com/embed/1otxpj7hz6kbx" frameborder="0" allowfullscreen></iframe>',
-                visible: true
-            }
-        };
-
-        /**
-         * Define rules
-         * @property OfficeMixModel
-         * @type {{}}
-         */
-        this.rules = {};
+    this.preferences = {
+      officemixEmbedCode: {
+        type: 'textarea',
+        disabled: false,
+        value: '<iframe width="608" height="392" src="https://mix.office.com/embed/1otxpj7hz6kbx" frameborder="0" allowfullscreen></iframe>',
+        visible: true
+      }
     };
 
-    return OfficeMixModel.extend('OfficeMixModel', {
+    /**
+     * Define rules
+     * @property OfficeMixModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        // Setter
+  return OfficeMixModel.extend('OfficeMixModel', {
 
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    // Setter
+
+  }, BaseModel.prototype, WidgetContentModel.prototype);
 });

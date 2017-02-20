@@ -7,20 +7,20 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineEbaumsWorldPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class EbaumsWorldPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var EbaumsWorldPermission = function EbaumsWorldPermission() {
-    };
+  /**
+   * Define Permissions
+   * @class EbaumsWorldPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var EbaumsWorldPermission = function EbaumsWorldPermission() {
+  };
 
-    return EbaumsWorldPermission.extend(
-        'EbaumsWorldPermission', {}, 
-        BasePermission.prototype
-    );
+  return EbaumsWorldPermission.extend(
+      'EbaumsWorldPermission', {},
+      BasePermission.prototype
+  );
 });

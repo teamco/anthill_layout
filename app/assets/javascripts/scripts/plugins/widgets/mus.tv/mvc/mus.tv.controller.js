@@ -6,93 +6,82 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineMusTvController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define mustv controller
+   * @class MusTvController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var MusTvController = function MusTvController() {
+  };
+
+  return MusTvController.extend('MusTvController', {
+
     /**
-     * Define mustv controller
-     * @class MusTvController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf MusTvController
      */
-    var MusTvController = function MusTvController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
 
-    return MusTvController.extend('MusTvController', {
+      /**
+       * Get url
+       * @type {string|*}
+       */
+      var url = this.model.getPrefs('mustvEmbedCode'),
+          embed = this.controller.getEmbedCode(url);
 
-        /**
-         * Set embedded content
-         * @memberOf MusTvController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
+      if (embed) {
+        this.view.elements.$mustv.renderEmbeddedContent(embed);
+      }
+    },
 
-            /**
-             * Get url
-             * @type {string|*}
-             */
-            var url = this.model.getPrefs('mustvEmbedCode'),
-                embed = this.controller.getEmbedCode(url);
+    /**
+     * Validate mustv
+     * @memberOf MusTvController
+     * @param {string} url
+     * @return {string|boolean}
+     */
+    getEmbedCode: function getEmbedCode(url) {
 
-            if (embed) {
-                this.view.elements.$mustv.renderEmbeddedContent(embed);
-            }
-        },
+      if (!url) {
+        this.scope.logger.debug('Initial state');
+        return false;
+      }
 
-        /**
-         * Validate mustv
-         * @memberOf MusTvController
-         * @param {string} url
-         * @return {string|boolean}
-         */
-        getEmbedCode: function getEmbedCode(url) {
+      var mask = this.model.getConfig('mask'),
+          regex = this.model.getConfig('regex');
 
-            if (!url) {
-                this.scope.logger.debug('Initial state');
-                return false;
-            }
+      if (!url.match(regex)) {
+        this.scope.logger.warn('Invalid mustv url');
+        return false;
+      }
 
-            var mask = this.model.getConfig('mask'),
-                regex = this.model.getConfig('regex');
-
-            if (!url.match(regex)) {
-                this.scope.logger.warn('Invalid mustv url');
-                return false;
-            }
-
-            if (url.match(/iframe/)) {
-
-                /**
-                 * Embed iframe fix
-                 * @type {string}
-                 */
-                url = $(url).attr('src');
-            }
-
-            return url.replace(regex, mask.replace(/\{videoId}/g, '$1')).
-                replace(/embed\/embed/, 'embed');
-        },
+      if (url.match(/iframe/)) {
 
         /**
-         * Add MusTv rule
-         * @memberOf MusTvController
-         * @param e
+         * Embed iframe fix
+         * @type {string}
          */
-        addMusTvRule: function addMusTvRule(e) {
+        url = $(url).attr('src');
+      }
 
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
+      return url.replace(regex, mask.replace(/\{videoId}/g, '$1')).
+          replace(/embed\/embed/, 'embed');
+    },
 
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
+    /**
+     * Add MusTv rule
+     * @memberOf MusTvController
+     * @param {Event} e
+     */
+    addMusTvRule: function addMusTvRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

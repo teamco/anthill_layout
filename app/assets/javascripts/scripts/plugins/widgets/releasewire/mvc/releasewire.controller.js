@@ -6,56 +6,40 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineReleasewireController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define Releasewire controller
+   * @class ReleasewireController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var ReleasewireController = function ReleasewireController() {
+  };
+
+  return ReleasewireController.extend('ReleasewireController', {
+
     /**
-     * Define Releasewire controller
-     * @class ReleasewireController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf ReleasewireController
      */
-    var ReleasewireController = function ReleasewireController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
+      this.view.get$item().renderEmbeddedContent(
+          this.model.getPrefs('releasewireEmbedCode')
+      );
+    },
 
-    return ReleasewireController.extend('ReleasewireController', {
+    /**
+     * Add Releasewire rule
+     * @memberOf ReleasewireController
+     * @param {Event} e
+     */
+    addReleasewireRule: function addReleasewireRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-        /**
-         * Set embedded content
-         * @memberOf ReleasewireController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
-            this.view.get$item().renderEmbeddedContent(
-                this.model.getPrefs('releasewireEmbedCode')
-            );
-        },
-
-        /**
-         * Add Releasewire rule
-         * @memberOf ReleasewireController
-         * @param e
-         */
-        addReleasewireRule: function addReleasewireRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target);
-
-            /**
-             * Get scope
-             * @type {Releasewire|{name: string}}
-             */
-            var scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

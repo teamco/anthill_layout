@@ -7,20 +7,20 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineInterludePermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class InterludePermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var InterludePermission = function InterludePermission() {
-    };
+  /**
+   * Define Permissions
+   * @class InterludePermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var InterludePermission = function InterludePermission() {
+  };
 
-    return InterludePermission.extend(
-        'InterludePermission', {}, 
-        BasePermission.prototype
-    );
+  return InterludePermission.extend(
+      'InterludePermission', {},
+      BasePermission.prototype
+  );
 });

@@ -6,38 +6,37 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/rules/widget.base.rules'
+  'plugins/plugin.element',
+  'plugins/rules/widget.base.rules'
 ], function defineTwitsRulesElement(PluginElement, BaseWidgetRules) {
 
-    /**
-     * Define Twits Rules Element
-     * @param view
-     * @param opts
-     * @returns {TwitsRulesElement}
-     * @constructor
-     * @class TwitsRulesElement
-     * @extends PluginElement
-     * @extends BaseWidgetRules
-     */
-    var TwitsRulesElement = function TwitsRulesElement(view, opts) {
+  /**
+   * Define Twits Rules Element
+   * @param view
+   * @param opts
+   * @returns {TwitsRulesElement}
+   * @constructor
+   * @class TwitsRulesElement
+   * @extends PluginElement
+   * @extends BaseWidgetRules
+   */
+  var TwitsRulesElement = function TwitsRulesElement(view, opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBaseRulesData(
-            opts.data,
-            opts.rules.widget,
-            opts.rules.content
-        );
+    this.renderBaseRulesData(
+        opts.data,
+        opts.rules.widget,
+        opts.rules.content
+    );
 
-        return this;
-    };
+    return this;
+  };
 
-    return TwitsRulesElement.extend('TwitsRulesElement', {
-
-    }, PluginElement.prototype, BaseWidgetRules.prototype);
+  return TwitsRulesElement.extend('TwitsRulesElement', {},
+      PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

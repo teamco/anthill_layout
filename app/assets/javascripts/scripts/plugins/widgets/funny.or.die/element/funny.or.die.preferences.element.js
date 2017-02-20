@@ -6,35 +6,35 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
-], function defineFunnyOrDiePreferencesElement(PluginElement, WidgetPreferences) {
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
+], function defineFunnyOrDiePreferencesElement(PluginElement,
+    WidgetPreferences) {
 
-    /**
-     * Define FunnyOrDie Preferences Element
-     * @param view
-     * @param opts
-     * @returns {FunnyOrDiePreferencesElement}
-     * @constructor
-     * @class FunnyOrDiePreferencesElement
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     */
-    var FunnyOrDiePreferencesElement = function FunnyOrDiePreferencesElement(view, opts) {
+  /**
+   * Define FunnyOrDie Preferences Element
+   * @param view
+   * @param opts
+   * @returns {FunnyOrDiePreferencesElement}
+   * @constructor
+   * @class FunnyOrDiePreferencesElement
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   */
+  var FunnyOrDiePreferencesElement = function FunnyOrDiePreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return FunnyOrDiePreferencesElement.extend('FunnyOrDiePreferencesElement', {
-
-
-    }, PluginElement.prototype, WidgetPreferences.prototype);
+  return FunnyOrDiePreferencesElement.extend('FunnyOrDiePreferencesElement', {},
+      PluginElement.prototype, WidgetPreferences.prototype);
 
 });

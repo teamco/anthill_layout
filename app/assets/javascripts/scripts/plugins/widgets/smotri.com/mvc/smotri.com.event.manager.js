@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineSmotriComEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define SmotriCom event manager
-     * @class SmotriComEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var SmotriComEventManager = function SmotriComEventManager() {
+  /**
+   * Define SmotriCom event manager
+   * @class SmotriComEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var SmotriComEventManager = function SmotriComEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return SmotriComEventManager.extend('SmotriComEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return SmotriComEventManager.extend('SmotriComEventManager', {},
+      WidgetContentEventManager.prototype);
 });

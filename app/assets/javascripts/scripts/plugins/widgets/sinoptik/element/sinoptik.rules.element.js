@@ -6,39 +6,39 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/rules/widget.base.rules'
+  'plugins/plugin.element',
+  'plugins/rules/widget.base.rules'
 ], function defineSinoptikRulesElement(PluginElement, BaseWidgetRules) {
 
-    /**
-     * Define Sinoptik Rules Element
-     * @param view
-     * @param opts
-     * @returns {SinoptikRulesElement}
-     * @constructor
-     * @class SinoptikRulesElement
-     * @extends PluginElement
-     * @extends BaseWidgetRules
-     */
-    var SinoptikRulesElement = function SinoptikRulesElement(view, opts) {
+  /**
+   * Define Sinoptik Rules Element
+   * @param view
+   * @param opts
+   * @returns {SinoptikRulesElement}
+   * @constructor
+   * @class SinoptikRulesElement
+   * @extends PluginElement
+   * @extends BaseWidgetRules
+   */
+  var SinoptikRulesElement = function SinoptikRulesElement(view, opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBaseRulesData(
-            opts.data,
-            opts.rules.widget,
-            opts.rules.content
-        );
-
-        return this;
-    };
-
-    return SinoptikRulesElement.extend(
-        'SinoptikRulesElement', {}, 
-        PluginElement.prototype, 
-        BaseWidgetRules.prototype
+    this.renderBaseRulesData(
+        opts.data,
+        opts.rules.widget,
+        opts.rules.content
     );
+
+    return this;
+  };
+
+  return SinoptikRulesElement.extend(
+      'SinoptikRulesElement', {},
+      PluginElement.prototype,
+      BaseWidgetRules.prototype
+  );
 });

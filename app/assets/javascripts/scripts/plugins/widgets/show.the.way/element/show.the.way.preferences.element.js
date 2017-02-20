@@ -6,35 +6,37 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
-], function defineShowTheWayPreferencesElement(PluginElement, WidgetPreferences) {
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
+], function defineShowTheWayPreferencesElement(PluginElement,
+    WidgetPreferences) {
 
-    /**
-     * Define ShowTheWay Preferences Element
-     * @constructor
-     * @class ShowTheWayPreferencesElement
-     * @param {ShowTheWayView} view
-     * @param opts
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     * @returns {ShowTheWayPreferencesElement}
-     */
-    var ShowTheWayPreferencesElement = function ShowTheWayPreferencesElement(view, opts) {
+  /**
+   * Define ShowTheWay Preferences Element
+   * @constructor
+   * @class ShowTheWayPreferencesElement
+   * @param {ShowTheWayView} view
+   * @param opts
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   * @returns {ShowTheWayPreferencesElement}
+   */
+  var ShowTheWayPreferencesElement = function ShowTheWayPreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return ShowTheWayPreferencesElement.extend(
-        'ShowTheWayPreferencesElement', {}, 
-        PluginElement.prototype, 
-        WidgetPreferences.prototype
-    );
+  return ShowTheWayPreferencesElement.extend(
+      'ShowTheWayPreferencesElement', {},
+      PluginElement.prototype,
+      WidgetPreferences.prototype
+  );
 });

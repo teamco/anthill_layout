@@ -6,96 +6,96 @@
  */
 
 define([
-    'modules/API'
+  'modules/API'
 ], function defineWidgetAPI(BaseAPI) {
 
+  /**
+   * Define Widget API
+   * @class WidgetAPI
+   * @extends BaseAPI
+   * @constructor
+   */
+  var WidgetAPI = function WidgetAPI() {
+  };
+
+  return WidgetAPI.extend('WidgetAPI', {
+
     /**
-     * Define Widget API
-     * @class WidgetAPI
-     * @extends BaseAPI
-     * @constructor
+     * Init drag api
+     * @memberOf WidgetAPI
      */
-    var WidgetAPI = function WidgetAPI() {
-    };
+    initDrag: function initDrag() {
+      this._setInteraction('initDraggable');
+    },
 
-    return WidgetAPI.extend('WidgetAPI', {
+    /**
+     * Enable drag api
+     * @memberOf WidgetAPI
+     */
+    enableDrag: function initDrag() {
+      this._setInteraction('enableDraggable');
+    },
 
-        /**
-         * Init drag api
-         * @memberOf WidgetAPI
-         */
-        initDrag: function initDrag() {
-            this._setInteraction('initDraggable');
-        },
+    /**
+     * Disable drag api
+     * @memberOf WidgetAPI
+     */
+    disableDrag: function initDrag() {
+      this._setInteraction('disableDraggable');
+    },
 
-        /**
-         * Enable drag api
-         * @memberOf WidgetAPI
-         */
-        enableDrag: function initDrag() {
-            this._setInteraction('enableDraggable');
-        },
+    /**
+     * Destroy drag api
+     * @memberOf WidgetAPI
+     */
+    destroyDrag: function destroyDrag() {
+      this._setInteraction('destroyDraggable');
+    },
 
-        /**
-         * Disable drag api
-         * @memberOf WidgetAPI
-         */
-        disableDrag: function initDrag() {
-            this._setInteraction('disableDraggable');
-        },
+    /**
+     * Init resize api
+     * @memberOf WidgetAPI
+     */
+    initResize: function initResize() {
+      this._setInteraction('initResizable');
+    },
 
-        /**
-         * Destroy drag api
-         * @memberOf WidgetAPI
-         */
-        destroyDrag: function destroyDrag() {
-            this._setInteraction('destroyDraggable');
-        },
+    /**
+     * Enable resize api
+     * @memberOf WidgetAPI
+     */
+    enableResize: function enableResize() {
+      this._setInteraction('enableResizable');
+    },
 
-        /**
-         * Init resize api
-         * @memberOf WidgetAPI
-         */
-        initResize: function initResize() {
-            this._setInteraction('initResizable');
-        },
+    /**
+     * Disable resize api
+     * @memberOf WidgetAPI
+     */
+    disableResize: function disableResize() {
+      this._setInteraction('disableResizable');
+    },
 
-        /**
-         * Enable resize api
-         * @memberOf WidgetAPI
-         */
-        enableResize: function enableResize() {
-            this._setInteraction('enableResizable');
-        },
+    /**
+     * Destroy resize api
+     * @memberOf WidgetAPI
+     */
+    destroyResize: function destroyResize() {
+      this._setInteraction('destroyResizable');
+    },
 
-        /**
-         * Disable resize api
-         * @memberOf WidgetAPI
-         */
-        disableResize: function disableResize() {
-            this._setInteraction('disableResizable');
-        },
+    /**
+     * Set interaction
+     * @memberOf WidgetAPI
+     * @param {String} interaction
+     * @private
+     */
+    _setInteraction: function _setInteraction(interaction) {
+      var scope = this.scope;
+      scope.observer.publish(
+          scope.eventmanager.eventList[interaction]
+      );
+    }
 
-        /**
-         * Destroy resize api
-         * @memberOf WidgetAPI
-         */
-        destroyResize: function destroyResize() {
-            this._setInteraction('destroyResizable');
-        },
-
-        /**
-         * Set interaction
-         * @memberOf WidgetAPI
-         * @param {String} interaction
-         * @private
-         */
-        _setInteraction: function _setInteraction(interaction) {
-            var scope = this.scope;
-            scope.observer.publish(
-                scope.eventmanager.eventList[interaction]
-            );
-        }
-
-    }, BaseAPI.prototype);
+  }, BaseAPI.prototype);
 });

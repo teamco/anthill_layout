@@ -6,56 +6,41 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
-], function defineAccuweatherWidgetController(PluginBase, WidgetContentController) {
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
+], function defineAccuweatherWidgetController(PluginBase,
+    WidgetContentController) {
+
+  /**
+   * Define AccuweatherWidget controller
+   * @class AccuweatherWidgetController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var AccuweatherWidgetController = function AccuweatherWidgetController() {
+  };
+
+  return AccuweatherWidgetController.extend('AccuweatherWidgetController', {
 
     /**
-     * Define AccuweatherWidget controller
-     * @class AccuweatherWidgetController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf AccuweatherWidgetController
      */
-    var AccuweatherWidgetController = function AccuweatherWidgetController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
+      this.view.get$item().renderEmbeddedContent(
+          this.model.getPrefs('accuweatherwidgetHtmlCode')
+      );
+    },
 
-    return AccuweatherWidgetController.extend('AccuweatherWidgetController', {
+    /**
+     * Add AccuweatherWidget rule
+     * @memberOf AccuweatherWidgetController
+     * @param {Event} e
+     */
+    addAccuweatherWidgetRule: function addAccuweatherWidgetRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-        /**
-         * Set embedded content
-         * @memberOf AccuweatherWidgetController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
-            this.view.get$item().renderEmbeddedContent(
-                this.model.getPrefs('accuweatherwidgetHtmlCode')
-            );
-        },
-
-        /**
-         * Add AccuweatherWidget rule
-         * @memberOf AccuweatherWidgetController
-         * @param e
-         */
-        addAccuweatherWidgetRule: function addAccuweatherWidgetRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target);
-
-            /**
-             * Get scope
-             * @type {AccuweatherWidget|{name: string}}
-             */
-            var scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

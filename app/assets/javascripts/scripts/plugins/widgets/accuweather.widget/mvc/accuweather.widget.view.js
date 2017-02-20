@@ -7,101 +7,104 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/accuweather.widget/element/accuweather.widget.element',
-    'plugins/widgets/accuweather.widget/element/accuweather.widget.preferences.element',
-    'plugins/widgets/accuweather.widget/element/accuweather.widget.rules.element'
-], function defineAccuweatherWidgetView(BaseView, Header, Footer, AccuweatherWidgetElement, AccuweatherWidgetPreferencesElement, AccuweatherWidgetRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/accuweather.widget/element/accuweather.widget.element',
+  'plugins/widgets/accuweather.widget/element/accuweather.widget.preferences.element',
+  'plugins/widgets/accuweather.widget/element/accuweather.widget.rules.element'
+], function defineAccuweatherWidgetView(BaseView, Header, Footer,
+    AccuweatherWidgetElement, AccuweatherWidgetPreferencesElement,
+    AccuweatherWidgetRulesElement) {
+
+  /**
+   * Define view
+   * @class AccuweatherWidgetView
+   * @extends BaseView
+   * @constructor
+   */
+  var AccuweatherWidgetView = function AccuweatherWidgetView() {
+  };
+
+  return AccuweatherWidgetView.extend('AccuweatherWidgetView', {
 
     /**
-     * Define view
-     * @class AccuweatherWidgetView
-     * @extends BaseView
-     * @constructor
+     * Render AccuweatherWidget element
+     * @memberOf AccuweatherWidgetView
      */
-    var AccuweatherWidgetView = function AccuweatherWidgetView() {
-    };
+    renderAccuweatherWidget: function renderAccuweatherWidget() {
 
-    return AccuweatherWidgetView.extend('AccuweatherWidgetView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render AccuweatherWidget element
-         * @memberOf AccuweatherWidgetView
-         */
-        renderAccuweatherWidget: function renderAccuweatherWidget() {
+      /**
+       * Define $accuweatherwidget
+       * @type {AccuweatherWidgetElement}
+       */
+      this.elements.$accuweatherwidget = new AccuweatherWidgetElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $accuweatherwidget
-             * @type {AccuweatherWidgetElement}
-             */
-            this.elements.$accuweatherwidget = new AccuweatherWidgetElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf AccuweatherWidgetView
+     * @returns {AccuweatherWidgetPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define AccuweatherWidget Preferences Element
+       * @type {AccuweatherWidgetPreferencesElement}
+       */
+      this.elements.$preferences =
+          new AccuweatherWidgetPreferencesElement(this, {
+            data: this.controller.getPreferences()
+          });
 
-        /**
-         * Render Prefs
-         * @memberOf AccuweatherWidgetView
-         * @returns {AccuweatherWidgetPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define AccuweatherWidget Preferences Element
-             * @type {AccuweatherWidgetPreferencesElement}
-             */
-            this.elements.$preferences = new AccuweatherWidgetPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf AccuweatherWidgetView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {AccuweatherWidgetRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
-
-        /**
-         * Render Rules
-         * @memberOf AccuweatherWidgetView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {AccuweatherWidgetRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define AccuweatherWidget Rules Element
-             * @type {AccuweatherWidgetRulesElement}
-             */
-            this.elements.$rules = new AccuweatherWidgetRulesElement(this, {
-                data: this.controller.getRules(),
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render AccuweatherWidget
-         * @memberOf AccuweatherWidgetView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderAccuweatherWidget.bind(this)
-            );
+      /**
+       * Define AccuweatherWidget Rules Element
+       * @type {AccuweatherWidgetRulesElement}
+       */
+      this.elements.$rules = new AccuweatherWidgetRulesElement(this, {
+        data: this.controller.getRules(),
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype);
+      return this.get$rules();
+    },
+
+    /**
+     * Render AccuweatherWidget
+     * @memberOf AccuweatherWidgetView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderAccuweatherWidget.bind(this)
+      );
+    }
+
+  }, BaseView.prototype);
 });

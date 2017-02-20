@@ -6,206 +6,207 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
-], function defineWebrtcVideoChatController(PluginBase, WidgetContentController) {
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
+], function defineWebrtcVideoChatController(PluginBase,
+    WidgetContentController) {
+
+  /**
+   * Define WebrtcVideoChat controller
+   * @class WebrtcVideoChatController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var WebrtcVideoChatController = function WebrtcVideoChatController() {
+  };
+
+  return WebrtcVideoChatController.extend('WebrtcVideoChatController', {
 
     /**
-     * Define WebrtcVideoChat controller
-     * @class WebrtcVideoChatController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf WebrtcVideoChatController
      */
-    var WebrtcVideoChatController = function WebrtcVideoChatController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
+      this.view.elements.$webrtcvideochat.renderEmbeddedContent(
+          this.model.getPrefs('webrtcvideochatPubNub'),
+          this.model.getPrefs('webrtcvideochatWebRtc')
+      );
+    },
 
-    return WebrtcVideoChatController.extend('WebrtcVideoChatController', {
+    /**
+     * Define chat login
+     * @memberOf WebrtcVideoChatController
+     * @param {string} user
+     */
+    chatLogin: function chatLogin(user) {
 
-        /**
-         * Set embedded content
-         * @memberOf WebrtcVideoChatController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
-            this.view.elements.$webrtcvideochat.renderEmbeddedContent(
-                this.model.getPrefs('webrtcvideochatPubNub'),
-                this.model.getPrefs('webrtcvideochatWebRtc')
-            );
-        },
+      var phone = window.phone = PHONE({
+        number: user || "Anonymous", // listen on username line else Anonymous
+        publish_key: this.model.getPrefs('webrtcvideochatPublish'),
+        subscribe_key: this.model.getPrefs('webrtcvideochatSubscribe')
+      });
 
-        /**
-         * Define chat login
-         * @memberOf WebrtcVideoChatController
-         * @param {string} user
-         */
-        chatLogin: function chatLogin(user) {
+      /**
+       * Get scope
+       * @type {WebrtcVideoChat}
+       */
+      var scope = this;
 
-            var phone = window.phone = PHONE({
-                number: user || "Anonymous", // listen on username line else Anonymous
-                publish_key: this.model.getPrefs('webrtcvideochatPublish'),
-                subscribe_key: this.model.getPrefs('webrtcvideochatSubscribe')
-            });
+      phone.ready(function () {
+        scope.observer.publish(
+            scope.eventmanager.eventList.chatReady
+        );
+      });
 
-            /**
-             * Get scope
-             * @type {WebrtcVideoChat}
-             */
-            var scope = this;
+      phone.receive(function (session) {
+        scope.observer.publish(
+            scope.eventmanager.eventList.chatReceive,
+            session
+        );
+      });
+    },
 
-            phone.ready(function () {
-                scope.observer.publish(
-                    scope.eventmanager.eventList.chatReady
-                );
-            });
+    /**
+     * Define chat receive
+     * @memberOf WebrtcVideoChatController
+     * @param session
+     */
+    chatReceive: function chatReceive(session) {
 
-            phone.receive(function (session) {
-                scope.observer.publish(
-                    scope.eventmanager.eventList.chatReceive,
-                    session
-                );
-            });
-        },
+      /**
+       * Get scope
+       * @type {WebrtcVideoChat}
+       */
+      var scope = this;
 
-        /**
-         * Define chat receive
-         * @memberOf WebrtcVideoChatController
-         * @param session
-         */
-        chatReceive: function chatReceive(session) {
+      session.connected(function (session) {
+        scope.observer.publish(
+            scope.eventmanager.eventList.chatConnected,
+            session
+        );
+      });
 
-            /**
-             * Get scope
-             * @type {WebrtcVideoChat}
-             */
-            var scope = this;
+      session.ended(function (session) {
+        scope.observer.publish(
+            scope.eventmanager.eventList.chatReady,
+            session
+        );
+      });
+    },
 
-            session.connected(function (session) {
-                scope.observer.publish(
-                    scope.eventmanager.eventList.chatConnected,
-                    session
-                );
-            });
+    /**
+     * Define chat connected
+     * @memberOf WebrtcVideoChatController
+     * @param session
+     */
+    chatConnected: function chatConnected(session) {
+      this.view.get$item().appendVideo(session.video);
+      this.logger.debug('Chat connected', session);
+    },
 
-            session.ended(function (session) {
-                scope.observer.publish(
-                    scope.eventmanager.eventList.chatReady,
-                    session
-                );
-            });
-        },
+    /**
+     * Define chat ended
+     * @memberOf WebrtcVideoChatController
+     * @param session
+     */
+    chatEnded: function chatEnded(session) {
+      this.logger.debug('Chat ended', session);
+      this.observer.publish(
+          this.eventmanager.eventList.setEmbeddedContent
+      );
+    },
 
-        /**
-         * Define chat connected
-         * @memberOf WebrtcVideoChatController
-         * @param session
-         */
-        chatConnected: function chatConnected(session) {
-            this.view.get$item().appendVideo(session.video);
-            this.logger.debug('Chat connected', session);
-        },
+    /**
+     * Define chat ready
+     * @memberOf WebrtcVideoChatController
+     */
+    chatReady: function chatReady() {
+      this.logger.debug('Chat ready');
+    },
 
-        /**
-         * Define chat ended
-         * @memberOf WebrtcVideoChatController
-         * @param session
-         */
-        chatEnded: function chatEnded(session) {
-            this.logger.debug('Chat ended', session);
-            this.observer.publish(
-                this.eventmanager.eventList.setEmbeddedContent
-            );
-        },
+    /**
+     * Define do login
+     * @memberOf WebrtcVideoChatController
+     * @param {Event} e
+     */
+    doLogin: function doLogin(e) {
 
-        /**
-         * Define chat ready
-         * @memberOf WebrtcVideoChatController
-         */
-        chatReady: function chatReady() {
-            this.logger.debug('Chat ready');
-        },
+      /**
+       * Get scope
+       * @type {WebrtcVideoChat}
+       */
+      var scope = this.scope,
+          login = scope.view.get$item().fetchValue('$loginField');
 
-        /**
-         * Define do login
-         * @memberOf WebrtcVideoChatController
-         * @param e
-         */
-        doLogin: function doLogin(e) {
+      scope.logger.debug('Login received', e, login);
 
-            /**
-             * Get scope
-             * @type {WebrtcVideoChat}
-             */
-            var scope = this.scope,
-                login = scope.view.get$item().fetchValue('$loginField');
+      if (login.length) {
+        scope.observer.publish(
+            scope.eventmanager.eventList.chatLogin,
+            login
+        );
+      }
+    },
 
-            scope.logger.debug('Login received', e, login);
+    /**
+     * Define do call
+     * @memberOf WebrtcVideoChatController
+     * @param {Event} e
+     */
+    doCall: function doCall(e) {
 
-            if (login.length) {
-                scope.observer.publish(
-                    scope.eventmanager.eventList.chatLogin,
-                    login
-                );
-            }
-        },
+      /**
+       * Get scope
+       * @type {WebrtcVideoChat}
+       */
+      var scope = this.scope,
+          call = scope.view.get$item().fetchValue('$callField');
 
-        /**
-         * Define do call
-         * @memberOf WebrtcVideoChatController
-         * @param e
-         */
-        doCall: function doCall(e) {
+      scope.logger.debug('Call received', e, call);
 
-            /**
-             * Get scope
-             * @type {WebrtcVideoChat}
-             */
-            var scope = this.scope,
-                call = scope.view.get$item().fetchValue('$callField');
+      if (call.length) {
+        scope.observer.publish(
+            scope.eventmanager.eventList.chatCall,
+            call
+        );
+      }
+    },
 
-            scope.logger.debug('Call received', e, call);
+    /**
+     * Define chat call
+     * @memberOf WebrtcVideoChatController
+     * @param {string} user
+     */
+    chatCall: function chatCall(user) {
 
-            if (call.length) {
-                scope.observer.publish(
-                    scope.eventmanager.eventList.chatCall,
-                    call
-                );
-            }
-        },
+      if (!window.phone) {
+        this.logger.warn('Login first');
+        return false;
+      }
 
-        /**
-         * Define chat call
-         * @memberOf WebrtcVideoChatController
-         * @param {string} user
-         */
-        chatCall: function chatCall(user) {
+      phone.dial(user);
+    },
 
-            if (!window.phone) {
-                this.logger.warn('Login first');
-                return false;
-            }
+    /**
+     * Add WebrtcVideoChat rule
+     * @memberOf WebrtcVideoChatController
+     * @param {Event} e
+     */
+    addWebrtcVideoChatRule: function addWebrtcVideoChatRule(e) {
 
-            phone.dial(user);
-        },
+      /**
+       * Define $button
+       * @type {*|jQuery|HTMLElement}
+       */
+      var $button = $(e.target),
+          scope = this.scope;
 
-        /**
-         * Add WebrtcVideoChat rule
-         * @memberOf WebrtcVideoChatController
-         * @param e
-         */
-        addWebrtcVideoChatRule: function addWebrtcVideoChatRule(e) {
+      scope.observer.publish(
+          scope.eventmanager.eventList.publishRule,
+          [$button.attr('value'), this.scope.name]
+      );
+    }
 
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), this.scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

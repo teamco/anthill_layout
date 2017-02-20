@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineCoubEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define Coub event manager
-     * @class CoubEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var CoubEventManager = function CoubEventManager() {
+  /**
+   * Define Coub event manager
+   * @class CoubEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var CoubEventManager = function CoubEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return CoubEventManager.extend('CoubEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return CoubEventManager.extend('CoubEventManager', {},
+      WidgetContentEventManager.prototype);
 });

@@ -6,35 +6,35 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
-], function defineClocklinkPreferencesElement(PluginElement, WidgetPreferences) {
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
+], function defineClocklinkPreferencesElement(PluginElement,
+    WidgetPreferences) {
 
-    /**
-     * Define Clocklink Preferences Element
-     * @constructor
-     * @class ClocklinkPreferencesElement
-     * @param {ClocklinkView} view
-     * @param opts
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     * @returns {ClocklinkPreferencesElement}
-     */
-    var ClocklinkPreferencesElement = function ClocklinkPreferencesElement(view, opts) {
+  /**
+   * Define Clocklink Preferences Element
+   * @constructor
+   * @class ClocklinkPreferencesElement
+   * @param {ClocklinkView} view
+   * @param opts
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   * @returns {ClocklinkPreferencesElement}
+   */
+  var ClocklinkPreferencesElement = function ClocklinkPreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return ClocklinkPreferencesElement.extend('ClocklinkPreferencesElement', {
-
-
-    }, PluginElement.prototype, WidgetPreferences.prototype);
+  return ClocklinkPreferencesElement.extend('ClocklinkPreferencesElement', {},
+      PluginElement.prototype, WidgetPreferences.prototype);
 
 });

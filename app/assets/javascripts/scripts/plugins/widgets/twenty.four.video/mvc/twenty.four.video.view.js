@@ -7,108 +7,110 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/twenty.four.video/element/twenty.four.video.element',
-    'plugins/widgets/twenty.four.video/element/twenty.four.video.preferences.element',
-    'plugins/widgets/twenty.four.video/element/twenty.four.video.rules.element'
-], function defineTwentyFourVideoView(BaseView, Header, Footer, TwentyFourVideoElement, TwentyFourVideoPreferencesElement, TwentyFourVideoRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/twenty.four.video/element/twenty.four.video.element',
+  'plugins/widgets/twenty.four.video/element/twenty.four.video.preferences.element',
+  'plugins/widgets/twenty.four.video/element/twenty.four.video.rules.element'
+], function defineTwentyFourVideoView(BaseView, Header, Footer,
+    TwentyFourVideoElement, TwentyFourVideoPreferencesElement,
+    TwentyFourVideoRulesElement) {
+
+  /**
+   * Define view
+   * @class TwentyFourVideoView
+   * @extends BaseView
+   * @constructor
+   */
+  var TwentyFourVideoView = function TwentyFourVideoView() {
+  };
+
+  return TwentyFourVideoView.extend('TwentyFourVideoView', {
 
     /**
-     * Define view
-     * @class TwentyFourVideoView
-     * @extends BaseView
-     * @constructor
+     * Render twentyfourvideo element
+     * @memberOf TwentyFourVideoView
      */
-    var TwentyFourVideoView = function TwentyFourVideoView() {
-    };
+    renderTwentyFourVideo: function renderTwentyFourVideo() {
 
-    return TwentyFourVideoView.extend('TwentyFourVideoView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render twentyfourvideo element
-         * @memberOf TwentyFourVideoView
-         */
-        renderTwentyFourVideo: function renderTwentyFourVideo() {
+      /**
+       * Define $twentyfourvideo
+       * @type {TwentyFourVideoElement}
+       */
+      this.elements.$twentyfourvideo = new TwentyFourVideoElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $twentyfourvideo
-             * @type {TwentyFourVideoElement}
-             */
-            this.elements.$twentyfourvideo = new TwentyFourVideoElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf TwentyFourVideoView
+     * @returns {TwentyFourVideoPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define TwentyFourVideo Preferences Element
+       * @type {TwentyFourVideoPreferencesElement}
+       */
+      this.elements.$preferences = new TwentyFourVideoPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf TwentyFourVideoView
-         * @returns {TwentyFourVideoPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define TwentyFourVideo Preferences Element
-             * @type {TwentyFourVideoPreferencesElement}
-             */
-            this.elements.$preferences = new TwentyFourVideoPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf TwentyFourVideoView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {TwentyFourVideoRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
+      /**
+       * Define data
+       * @type {*|{}}
+       */
+      var data = this.controller.getRules();
 
-        /**
-         * Render Rules
-         * @memberOf TwentyFourVideoView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {TwentyFourVideoRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define data
-             * @type {*|{}}
-             */
-            var data = this.controller.getRules();
-
-            /**
-             * Define TwentyFourVideo Rules Element
-             * @type {TwentyFourVideoRulesElement}
-             */
-            this.elements.$rules = new TwentyFourVideoRulesElement(this, {
-                data: data,
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render twentyfourvideo
-         * @memberOf TwentyFourVideoView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderTwentyFourVideo.bind(this)
-            );
+      /**
+       * Define TwentyFourVideo Rules Element
+       * @type {TwentyFourVideoRulesElement}
+       */
+      this.elements.$rules = new TwentyFourVideoRulesElement(this, {
+        data: data,
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render twentyfourvideo
+     * @memberOf TwentyFourVideoView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderTwentyFourVideo.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

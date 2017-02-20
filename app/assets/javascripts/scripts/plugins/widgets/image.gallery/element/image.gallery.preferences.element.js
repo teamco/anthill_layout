@@ -6,35 +6,35 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
-], function defineImageGalleryPreferencesElement(PluginElement, WidgetPreferences) {
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
+], function defineImageGalleryPreferencesElement(PluginElement,
+    WidgetPreferences) {
 
-    /**
-     * Define ImageGallery Preferences Element
-     * @param view
-     * @param opts
-     * @returns {ImageGalleryPreferencesElement}
-     * @constructor
-     * @class ImageGalleryPreferencesElement
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     */
-    var ImageGalleryPreferencesElement = function ImageGalleryPreferencesElement(view, opts) {
+  /**
+   * Define ImageGallery Preferences Element
+   * @param view
+   * @param opts
+   * @returns {ImageGalleryPreferencesElement}
+   * @constructor
+   * @class ImageGalleryPreferencesElement
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   */
+  var ImageGalleryPreferencesElement = function ImageGalleryPreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return ImageGalleryPreferencesElement.extend('ImageGalleryPreferencesElement', {
-
-
-    }, PluginElement.prototype, WidgetPreferences.prototype);
+  return ImageGalleryPreferencesElement.extend('ImageGalleryPreferencesElement',
+      {}, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

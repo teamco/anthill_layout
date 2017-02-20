@@ -6,35 +6,35 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
-], function defineFlickrFeedsPreferencesElement(PluginElement, WidgetPreferences) {
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
+], function defineFlickrFeedsPreferencesElement(PluginElement,
+    WidgetPreferences) {
 
-    /**
-     * Define FlickrFeeds Preferences Element
-     * @param view
-     * @param opts
-     * @returns {FlickrFeedsPreferencesElement}
-     * @constructor
-     * @class FlickrFeedsPreferencesElement
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     */
-    var FlickrFeedsPreferencesElement = function FlickrFeedsPreferencesElement(view, opts) {
+  /**
+   * Define FlickrFeeds Preferences Element
+   * @param view
+   * @param opts
+   * @returns {FlickrFeedsPreferencesElement}
+   * @constructor
+   * @class FlickrFeedsPreferencesElement
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   */
+  var FlickrFeedsPreferencesElement = function FlickrFeedsPreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return FlickrFeedsPreferencesElement.extend('FlickrFeedsPreferencesElement', {
-
-
-    }, PluginElement.prototype, WidgetPreferences.prototype);
+  return FlickrFeedsPreferencesElement.extend('FlickrFeedsPreferencesElement',
+      {}, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

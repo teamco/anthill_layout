@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineMusTvPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class MusTvPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var MusTvPermission = function MusTvPermission() {
+  /**
+   * Define Permissions
+   * @class MusTvPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var MusTvPermission = function MusTvPermission() {
 
-    };
+  };
 
-    return MusTvPermission.extend('MusTvPermission', {
-
-    }, BasePermission.prototype);
+  return MusTvPermission.extend('MusTvPermission', {},
+      BasePermission.prototype);
 });

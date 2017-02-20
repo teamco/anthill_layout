@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineSportExpressPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class SportExpressPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var SportExpressPermission = function SportExpressPermission() {
+  /**
+   * Define Permissions
+   * @class SportExpressPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var SportExpressPermission = function SportExpressPermission() {
 
-    };
+  };
 
-    return SportExpressPermission.extend('SportExpressPermission', {
-
-    }, BasePermission.prototype);
+  return SportExpressPermission.extend('SportExpressPermission', {},
+      BasePermission.prototype);
 });

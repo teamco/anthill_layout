@@ -6,56 +6,56 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineVideopressElement(PluginElement) {
 
+  /**
+   * Define Videopress Element
+   * @param view
+   * @param opts
+   * @returns {VideopressElement}
+   * @constructor
+   * @class VideopressElement
+   * @extends PluginElement
+   */
+  var VideopressElement = function VideopressElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('videopress', {resource: '/widgets'});
+
+    return this;
+  };
+
+  return VideopressElement.extend('VideopressElement', {
+
     /**
-     * Define Videopress Element
-     * @param view
-     * @param opts
-     * @returns {VideopressElement}
-     * @constructor
-     * @class VideopressElement
-     * @extends PluginElement
+     * Render Embedded content
+     * @memberOf VideopressElement
+     * @param {string} embed
      */
-    var VideopressElement = function VideopressElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent(embed) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+      if (!embed) {
+        this.$.empty();
+        return false;
+      }
 
-        this.addCSS('videopress', {resource: '/widgets'});
+      var $element = this,
+          $embed = $(embed);
 
-        return this;
-    };
+      require([$embed[1].src], function _loadScript() {
 
-    return VideopressElement.extend('VideopressElement', {
+        $element.$.append(
+            $element.renderIframe(
+                $embed[0].src
+            )
+        );
+      });
+    }
 
-        /**
-         * Render Embedded content
-         * @memberOf VideopressElement
-         * @param {string} embed
-         */
-        renderEmbeddedContent: function renderEmbeddedContent(embed) {
-
-            if (!embed) {
-                this.$.empty();
-                return false;
-            }
-
-            var $element = this,
-                $embed = $(embed);
-
-            require([$embed[1].src], function _loadScript() {
-
-                $element.$.append(
-                    $element.renderIframe(
-                        $embed[0].src
-                    )
-                );
-            });
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 });

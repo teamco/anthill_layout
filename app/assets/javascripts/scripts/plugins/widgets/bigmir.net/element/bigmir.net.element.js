@@ -6,43 +6,43 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineBigmirNetElement(PluginElement) {
 
+  /**
+   * Define BigmirNet Element
+   * @param view
+   * @param opts
+   * @returns {BigmirNetElement}
+   * @constructor
+   * @class BigmirNetElement
+   * @extends PluginElement
+   */
+  var BigmirNetElement = function BigmirNetElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('bigmir.net', {resource: '/widgets'});
+
+    return this;
+  };
+
+  return BigmirNetElement.extend('BigmirNetElement', {
+
     /**
-     * Define BigmirNet Element
-     * @param view
-     * @param opts
-     * @returns {BigmirNetElement}
-     * @constructor
-     * @class BigmirNetElement
-     * @extends PluginElement
+     * Render Embedded content
+     * @memberOf BigmirNetElement
+     * @param {string} url
      */
-    var BigmirNetElement = function BigmirNetElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent(url) {
+      this.$.append(
+          this.renderIframe(url)
+      );
+    }
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
-
-        this.addCSS('bigmir.net', {resource: '/widgets'});
-
-        return this;
-    };
-
-    return BigmirNetElement.extend('BigmirNetElement', {
-
-        /**
-         * Render Embedded content
-         * @memberOf BigmirNetElement
-         * @param {string} url
-         */
-        renderEmbeddedContent: function renderEmbeddedContent(url) {
-            this.$.append(
-                this.renderIframe(url)
-            );
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 
 });

@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineMetaUaPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class MetaUaPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var MetaUaPermission = function MetaUaPermission() {
+  /**
+   * Define Permissions
+   * @class MetaUaPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var MetaUaPermission = function MetaUaPermission() {
 
-    };
+  };
 
-    return MetaUaPermission.extend('MetaUaPermission', {
-
-    }, BasePermission.prototype);
+  return MetaUaPermission.extend('MetaUaPermission', {},
+      BasePermission.prototype);
 });

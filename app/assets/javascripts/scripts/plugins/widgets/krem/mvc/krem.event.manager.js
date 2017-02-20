@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineKremEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define Krem event manager
-     * @class KremEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var KremEventManager = function KremEventManager() {
+  /**
+   * Define Krem event manager
+   * @class KremEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var KremEventManager = function KremEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return KremEventManager.extend('KremEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return KremEventManager.extend('KremEventManager', {},
+      WidgetContentEventManager.prototype);
 });

@@ -6,56 +6,40 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineCacooController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define Cacoo controller
+   * @class CacooController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var CacooController = function CacooController() {
+  };
+
+  return CacooController.extend('CacooController', {
+
     /**
-     * Define Cacoo controller
-     * @class CacooController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf CacooController
      */
-    var CacooController = function CacooController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
+      this.view.get$item().renderEmbeddedContent(
+          this.model.getPrefs('cacooEmbedCode')
+      );
+    },
 
-    return CacooController.extend('CacooController', {
+    /**
+     * Add Cacoo rule
+     * @memberOf CacooController
+     * @param {Event} e
+     */
+    addCacooRule: function addCacooRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-        /**
-         * Set embedded content
-         * @memberOf CacooController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
-            this.view.get$item().renderEmbeddedContent(
-                this.model.getPrefs('cacooEmbedCode')
-            );
-        },
-
-        /**
-         * Add Cacoo rule
-         * @memberOf CacooController
-         * @param e
-         */
-        addCacooRule: function addCacooRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target);
-
-            /**
-             * Get scope
-             * @type {Cacoo|{name: string}}
-             */
-            var scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

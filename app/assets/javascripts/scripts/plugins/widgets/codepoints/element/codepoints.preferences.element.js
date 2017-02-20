@@ -6,35 +6,37 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
-], function defineCodepointsPreferencesElement(PluginElement, WidgetPreferences) {
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
+], function defineCodepointsPreferencesElement(PluginElement,
+    WidgetPreferences) {
 
-    /**
-     * Define Codepoints Preferences Element
-     * @constructor
-     * @class CodepointsPreferencesElement
-     * @param {CodepointsView} view
-     * @param opts
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     * @returns {CodepointsPreferencesElement}
-     */
-    var CodepointsPreferencesElement = function CodepointsPreferencesElement(view, opts) {
+  /**
+   * Define Codepoints Preferences Element
+   * @constructor
+   * @class CodepointsPreferencesElement
+   * @param {CodepointsView} view
+   * @param opts
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   * @returns {CodepointsPreferencesElement}
+   */
+  var CodepointsPreferencesElement = function CodepointsPreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return CodepointsPreferencesElement.extend(
-        'CodepointsPreferencesElement', {}, 
-        PluginElement.prototype, 
-        WidgetPreferences.prototype
-    );
+  return CodepointsPreferencesElement.extend(
+      'CodepointsPreferencesElement', {},
+      PluginElement.prototype,
+      WidgetPreferences.prototype
+  );
 });

@@ -7,27 +7,26 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineEventsEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define Events event manager
-     * @class EventsEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var EventsEventManager = function EventsEventManager() {
+  /**
+   * Define Events event manager
+   * @class EventsEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var EventsEventManager = function EventsEventManager() {
 
-        this.updateEventList({
-            getEventData: 'get.event.data',
-            setActiveEvent: 'set.active.event',
-            updateEventsData: 'update.events.data',
-            removeEvent: 'remove.event'
-        });
-    };
+    this.updateEventList({
+      getEventData: 'get.event.data',
+      setActiveEvent: 'set.active.event',
+      updateEventsData: 'update.events.data',
+      removeEvent: 'remove.event'
+    });
+  };
 
-    return EventsEventManager.extend('EventsEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return EventsEventManager.extend('EventsEventManager', {},
+      WidgetContentEventManager.prototype);
 });

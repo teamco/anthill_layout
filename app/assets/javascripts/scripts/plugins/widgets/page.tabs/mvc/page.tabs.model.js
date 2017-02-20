@@ -6,60 +6,61 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function definePageTabsModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define PageTabs model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class PageTabsModel
+   * @constructor
+   */
+  var PageTabsModel = function PageTabsModel() {
+
     /**
-     * Define PageTabs model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class PageTabsModel
-     * @constructor
-     */
-    var PageTabsModel = function PageTabsModel() {
-
-        /**
-         /**
-         * Define preferences
-         * @property PageTabsModel
-         * @type {{
-         *      pagetabsSwipe: {type: string, disabled: boolean, value: boolean, visible: boolean}
+     /**
+     * Define preferences
+     * @property PageTabsModel
+     * @type {{
+         *      pagetabsSwipe: {type: string, disabled: boolean, value:
+         *     boolean, visible: boolean}
          * }}
-         */
-        this.preferences = {
-            pagetabsSwipe: {
-                type: 'checkbox',
-                disabled: false,
-                value: true,
-                visible: true
-            },
-            pagetabsSwipe1: {
-                type: 'text',
-                disabled: false,
-                value: 'Amir',
-                visible: true
-            }
-        };
-
-        /**
-         * Define rules
-         * @property PageTabsModel
-         * @type {{}}
-         */
-        this.rules = {};
+     */
+    this.preferences = {
+      pagetabsSwipe: {
+        type: 'checkbox',
+        disabled: false,
+        value: true,
+        visible: true
+      },
+      pagetabsSwipe1: {
+        type: 'text',
+        disabled: false,
+        value: 'Amir',
+        visible: true
+      }
     };
 
-    return PageTabsModel.extend('PageTabsModel', {
+    /**
+     * Define rules
+     * @property PageTabsModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        /**
-         * Set PageTabs swipe
-         * @memberOf PageTabsModel
-         * @param {boolean} swipe
-         */
-        setPagetabsSwipe: function setPagetabsSwipe(swipe) {
-            this.setPrefs('pagetabsSwipe', swipe);
-        }
+  return PageTabsModel.extend('PageTabsModel', {
 
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    /**
+     * Set PageTabs swipe
+     * @memberOf PageTabsModel
+     * @param {boolean} swipe
+     */
+    setPagetabsSwipe: function setPagetabsSwipe(swipe) {
+      this.setPrefs('pagetabsSwipe', swipe);
+    }
+
+  }, BaseModel.prototype, WidgetContentModel.prototype);
 });

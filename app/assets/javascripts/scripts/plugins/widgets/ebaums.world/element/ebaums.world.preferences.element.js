@@ -6,35 +6,37 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
-], function defineEbaumsWorldPreferencesElement(PluginElement, WidgetPreferences) {
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
+], function defineEbaumsWorldPreferencesElement(PluginElement,
+    WidgetPreferences) {
 
-    /**
-     * Define EbaumsWorld Preferences Element
-     * @constructor
-     * @class EbaumsWorldPreferencesElement
-     * @param {EbaumsWorldView} view
-     * @param opts
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     * @returns {EbaumsWorldPreferencesElement}
-     */
-    var EbaumsWorldPreferencesElement = function EbaumsWorldPreferencesElement(view, opts) {
+  /**
+   * Define EbaumsWorld Preferences Element
+   * @constructor
+   * @class EbaumsWorldPreferencesElement
+   * @param {EbaumsWorldView} view
+   * @param opts
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   * @returns {EbaumsWorldPreferencesElement}
+   */
+  var EbaumsWorldPreferencesElement = function EbaumsWorldPreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return EbaumsWorldPreferencesElement.extend(
-        'EbaumsWorldPreferencesElement', {}, 
-        PluginElement.prototype, 
-        WidgetPreferences.prototype
-    );
+  return EbaumsWorldPreferencesElement.extend(
+      'EbaumsWorldPreferencesElement', {},
+      PluginElement.prototype,
+      WidgetPreferences.prototype
+  );
 });

@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineJwplayerPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class JwplayerPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var JwplayerPermission = function JwplayerPermission() {
+  /**
+   * Define Permissions
+   * @class JwplayerPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var JwplayerPermission = function JwplayerPermission() {
 
-    };
+  };
 
-    return JwplayerPermission.extend('JwplayerPermission', {
-
-    }, BasePermission.prototype);
+  return JwplayerPermission.extend('JwplayerPermission', {},
+      BasePermission.prototype);
 });

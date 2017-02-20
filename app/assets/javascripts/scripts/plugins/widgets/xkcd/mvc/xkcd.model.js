@@ -6,53 +6,54 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineXkcdModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define Xkcd model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class XkcdModel
+   * @constructor
+   */
+  var XkcdModel = function XkcdModel() {
+
     /**
-     * Define Xkcd model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class XkcdModel
-     * @constructor
-     */
-    var XkcdModel = function XkcdModel() {
-
-        /**
-         * Define preferences
-         * @memberOf XkcdModel
-         * @type {{
-         *      xkcdEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
+     * Define preferences
+     * @memberOf XkcdModel
+     * @type {{
+         *      xkcdEmbedCode: {type: string, disabled: boolean, value:
+         *     undefined, visible: boolean}
          * }}
-         */
-        this.preferences = {
-            xkcdEmbedCode: {
-                type: 'textarea',
-                disabled: false,
-                value: undefined,
-                visible: true
-            }
-        };
-
-        /**
-         * Define rules
-         * @memberOf XkcdModel
-         * @type {{}}
-         */
-        this.rules = {};
+     */
+    this.preferences = {
+      xkcdEmbedCode: {
+        type: 'textarea',
+        disabled: false,
+        value: undefined,
+        visible: true
+      }
     };
 
-    return XkcdModel.extend('XkcdModel', {
+    /**
+     * Define rules
+     * @memberOf XkcdModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        /**
-         * Set Xkcd embed code
-         * @memberOf XkcdModel
-         * @param {string} embed
-         */
-        setXkcdEmbedCode: function setXkcdEmbedCode(embed) {
-            this.setPrefs('xkcdEmbedCode', embed);
-        }
+  return XkcdModel.extend('XkcdModel', {
 
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    /**
+     * Set Xkcd embed code
+     * @memberOf XkcdModel
+     * @param {string} embed
+     */
+    setXkcdEmbedCode: function setXkcdEmbedCode(embed) {
+      this.setPrefs('xkcdEmbedCode', embed);
+    }
+
+  }, BaseModel.prototype, WidgetContentModel.prototype);
 });

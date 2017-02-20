@@ -7,101 +7,102 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/kitchenbowl/element/kitchenbowl.element',
-    'plugins/widgets/kitchenbowl/element/kitchenbowl.preferences.element',
-    'plugins/widgets/kitchenbowl/element/kitchenbowl.rules.element'
-], function defineKitchenbowlView(BaseView, Header, Footer, KitchenbowlElement, KitchenbowlPreferencesElement, KitchenbowlRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/kitchenbowl/element/kitchenbowl.element',
+  'plugins/widgets/kitchenbowl/element/kitchenbowl.preferences.element',
+  'plugins/widgets/kitchenbowl/element/kitchenbowl.rules.element'
+], function defineKitchenbowlView(BaseView, Header, Footer, KitchenbowlElement,
+    KitchenbowlPreferencesElement, KitchenbowlRulesElement) {
+
+  /**
+   * Define view
+   * @class KitchenbowlView
+   * @extends BaseView
+   * @constructor
+   */
+  var KitchenbowlView = function KitchenbowlView() {
+  };
+
+  return KitchenbowlView.extend('KitchenbowlView', {
 
     /**
-     * Define view
-     * @class KitchenbowlView
-     * @extends BaseView
-     * @constructor
+     * Render Kitchenbowl element
+     * @memberOf KitchenbowlView
      */
-    var KitchenbowlView = function KitchenbowlView() {
-    };
+    renderKitchenbowl: function renderKitchenbowl() {
 
-    return KitchenbowlView.extend('KitchenbowlView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render Kitchenbowl element
-         * @memberOf KitchenbowlView
-         */
-        renderKitchenbowl: function renderKitchenbowl() {
+      /**
+       * Define $kitchenbowl
+       * @type {KitchenbowlElement}
+       */
+      this.elements.$kitchenbowl = new KitchenbowlElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $kitchenbowl
-             * @type {KitchenbowlElement}
-             */
-            this.elements.$kitchenbowl = new KitchenbowlElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf KitchenbowlView
+     * @returns {KitchenbowlPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define Kitchenbowl Preferences Element
+       * @type {KitchenbowlPreferencesElement}
+       */
+      this.elements.$preferences = new KitchenbowlPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf KitchenbowlView
-         * @returns {KitchenbowlPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define Kitchenbowl Preferences Element
-             * @type {KitchenbowlPreferencesElement}
-             */
-            this.elements.$preferences = new KitchenbowlPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf KitchenbowlView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {KitchenbowlRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
-
-        /**
-         * Render Rules
-         * @memberOf KitchenbowlView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {KitchenbowlRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define Kitchenbowl Rules Element
-             * @type {KitchenbowlRulesElement}
-             */
-            this.elements.$rules = new KitchenbowlRulesElement(this, {
-                data: this.controller.getRules(),
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render Kitchenbowl
-         * @memberOf KitchenbowlView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderKitchenbowl.bind(this)
-            );
+      /**
+       * Define Kitchenbowl Rules Element
+       * @type {KitchenbowlRulesElement}
+       */
+      this.elements.$rules = new KitchenbowlRulesElement(this, {
+        data: this.controller.getRules(),
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype);
+      return this.get$rules();
+    },
+
+    /**
+     * Render Kitchenbowl
+     * @memberOf KitchenbowlView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderKitchenbowl.bind(this)
+      );
+    }
+
+  }, BaseView.prototype);
 });

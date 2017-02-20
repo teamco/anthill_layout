@@ -6,46 +6,47 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineVideochartNetModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define VideochartNet model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class VideochartNetModel
+   * @constructor
+   */
+  var VideochartNetModel = function VideochartNetModel() {
+
     /**
-     * Define VideochartNet model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class VideochartNetModel
-     * @constructor
-     */
-    var VideochartNetModel = function VideochartNetModel() {
-
-        /**
-         * Define preferences
-         * @property VideochartNetModel
-         * @type {{
-         *      videochartnetUrl: {type: string, disabled: boolean, value: string, visible: boolean}
+     * Define preferences
+     * @property VideochartNetModel
+     * @type {{
+         *      videochartnetUrl: {type: string, disabled: boolean, value:
+         *     string, visible: boolean}
          * }}
-         */
-        this.preferences = {
-            videochartnetUrl: {
-                type: 'textarea',
-                disabled: false,
-                value: 'http://videochart.net/video/38438.3439b8745c7875284034421dfba3',
-                visible: true
-            }
-        };
-
-        /**
-         * Define rules
-         * @property VideochartNetModel
-         * @type {{}}
-         */
-        this.rules = {};
+     */
+    this.preferences = {
+      videochartnetUrl: {
+        type: 'textarea',
+        disabled: false,
+        value: 'http://videochart.net/video/38438.3439b8745c7875284034421dfba3',
+        visible: true
+      }
     };
 
-    return VideochartNetModel.extend('VideochartNetModel', {
+    /**
+     * Define rules
+     * @property VideochartNetModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        // Setter
+  return VideochartNetModel.extend('VideochartNetModel', {
 
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    // Setter
+
+  }, BaseModel.prototype, WidgetContentModel.prototype);
 });

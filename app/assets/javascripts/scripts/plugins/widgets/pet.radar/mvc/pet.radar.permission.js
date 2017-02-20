@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function definePetRadarPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class PetRadarPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var PetRadarPermission = function PetRadarPermission() {
+  /**
+   * Define Permissions
+   * @class PetRadarPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var PetRadarPermission = function PetRadarPermission() {
 
-    };
+  };
 
-    return PetRadarPermission.extend('PetRadarPermission', {
-
-    }, BasePermission.prototype);
+  return PetRadarPermission.extend('PetRadarPermission', {},
+      BasePermission.prototype);
 });

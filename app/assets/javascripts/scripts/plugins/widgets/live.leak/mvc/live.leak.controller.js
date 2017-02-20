@@ -6,92 +6,81 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineLiveLeakController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define LiveLeak controller
+   * @class LiveLeakController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var LiveLeakController = function LiveLeakController() {
+  };
+
+  return LiveLeakController.extend('LiveLeakController', {
+
     /**
-     * Define LiveLeak controller
-     * @class LiveLeakController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf LiveLeakController
      */
-    var LiveLeakController = function LiveLeakController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
 
-    return LiveLeakController.extend('LiveLeakController', {
+      /**
+       * Get url
+       * @type {string|*}
+       */
+      var url = this.model.getPrefs('liveleakUrl'),
+          embed = this.controller.getEmbedCode(url);
 
-        /**
-         * Set embedded content
-         * @memberOf LiveLeakController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
+      if (embed) {
+        this.view.elements.$liveleak.renderEmbeddedContent(embed);
+      }
+    },
 
-            /**
-             * Get url
-             * @type {string|*}
-             */
-            var url = this.model.getPrefs('liveleakUrl'),
-                embed = this.controller.getEmbedCode(url);
+    /**
+     * Validate LiveLeak
+     * @memberOf LiveLeakController
+     * @param {string} url
+     * @return {string|boolean}
+     */
+    getEmbedCode: function getEmbedCode(url) {
 
-            if (embed) {
-                this.view.elements.$liveleak.renderEmbeddedContent(embed);
-            }
-        },
+      if (!url) {
+        this.scope.logger.debug('Initial state');
+        return false;
+      }
 
-        /**
-         * Validate LiveLeak
-         * @memberOf LiveLeakController
-         * @param {string} url
-         * @return {string|boolean}
-         */
-        getEmbedCode: function getEmbedCode(url) {
+      // Convert to string
+      url += '';
 
-            if (!url) {
-                this.scope.logger.debug('Initial state');
-                return false;
-            }
+      if (url.match(/iframe/)) {
+        url = $(url).attr('src');
+      }
 
-            // Convert to string
-            url += '';
+      var mask = this.model.getConfig('mask'),
+          regex = url.match(
+              this.model.getConfig('regex')
+          );
 
-            if (url.match(/iframe/)) {
-                url = $(url).attr('src');
-            }
+      if (!regex || url.match(/^\[/)) {
+        this.scope.logger.warn('Invalid LiveLeak url');
+        return false;
+      }
 
-            var mask = this.model.getConfig('mask'),
-                regex = url.match(
-                    this.model.getConfig('regex')
-                );
+      return mask.replace(/\{id}/g, regex[1]);
+    },
 
-            if (!regex || url.match(/^\[/)) {
-                this.scope.logger.warn('Invalid LiveLeak url');
-                return false;
-            }
+    /**
+     * Add LiveLeak rule
+     * @memberOf LiveLeakController
+     * @param {Event} e
+     */
+    addLiveLeakRule: function addLiveLeakRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-            return mask.replace(/\{id}/g, regex[1]);
-        },
-
-        /**
-         * Add LiveLeak rule
-         * @memberOf LiveLeakController
-         * @param e
-         */
-        addLiveLeakRule: function addLiveLeakRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

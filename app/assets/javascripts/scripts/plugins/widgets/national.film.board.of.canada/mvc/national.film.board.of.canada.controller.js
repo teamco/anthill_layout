@@ -6,56 +6,42 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
-], function defineNationalFilmBoardOfCanadaController(PluginBase, WidgetContentController) {
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
+], function defineNationalFilmBoardOfCanadaController(PluginBase,
+    WidgetContentController) {
 
-    /**
-     * Define NationalFilmBoardOfCanada controller
-     * @class NationalFilmBoardOfCanadaController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
-     */
-    var NationalFilmBoardOfCanadaController = function NationalFilmBoardOfCanadaController() {
-    };
+  /**
+   * Define NationalFilmBoardOfCanada controller
+   * @class NationalFilmBoardOfCanadaController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var NationalFilmBoardOfCanadaController = function NationalFilmBoardOfCanadaController() {
+  };
 
-    return NationalFilmBoardOfCanadaController.extend('NationalFilmBoardOfCanadaController', {
+  return NationalFilmBoardOfCanadaController.extend(
+      'NationalFilmBoardOfCanadaController', {
 
         /**
          * Set embedded content
          * @memberOf NationalFilmBoardOfCanadaController
          */
         setEmbeddedContent: function setEmbeddedContent() {
-            this.view.get$item().renderEmbeddedContent(
-                this.model.getPrefs('nationalfilmboardofcanadaEmbedCode')
-            );
+          this.view.get$item().renderEmbeddedContent(
+              this.model.getPrefs('nationalfilmboardofcanadaEmbedCode')
+          );
         },
 
         /**
          * Add NationalFilmBoardOfCanada rule
          * @memberOf NationalFilmBoardOfCanadaController
-         * @param e
+         * @param {Event} e
          */
         addNationalFilmBoardOfCanadaRule: function addNationalFilmBoardOfCanadaRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target);
-
-            /**
-             * Get scope
-             * @type {NationalFilmBoardOfCanada|{name: string}}
-             */
-            var scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
+          this.addWidgetRule(e, this.scope.name);
         }
 
-    }, PluginBase.prototype, WidgetContentController.prototype);
+      }, PluginBase.prototype, WidgetContentController.prototype);
 });

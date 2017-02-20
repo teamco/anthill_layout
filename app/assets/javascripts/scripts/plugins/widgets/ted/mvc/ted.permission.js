@@ -7,20 +7,18 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineTedPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class TedPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var TedPermission = function TedPermission() {
+  /**
+   * Define Permissions
+   * @class TedPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var TedPermission = function TedPermission() {
 
-    };
+  };
 
-    return TedPermission.extend('TedPermission', {
-
-    }, BasePermission.prototype);
+  return TedPermission.extend('TedPermission', {}, BasePermission.prototype);
 });

@@ -7,23 +7,23 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineSinoptikEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define Sinoptik event manager
-     * @class SinoptikEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var SinoptikEventManager = function SinoptikEventManager() {
+  /**
+   * Define Sinoptik event manager
+   * @class SinoptikEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var SinoptikEventManager = function SinoptikEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return SinoptikEventManager.extend(
-        'SinoptikEventManager', {},
-        WidgetContentEventManager.prototype
-    );
+  return SinoptikEventManager.extend(
+      'SinoptikEventManager', {},
+      WidgetContentEventManager.prototype
+  );
 });

@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineVineCoEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define VineCo event manager
-     * @class VineCoEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var VineCoEventManager = function VineCoEventManager() {
+  /**
+   * Define VineCo event manager
+   * @class VineCoEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var VineCoEventManager = function VineCoEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return VineCoEventManager.extend('VineCoEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return VineCoEventManager.extend('VineCoEventManager', {},
+      WidgetContentEventManager.prototype);
 });

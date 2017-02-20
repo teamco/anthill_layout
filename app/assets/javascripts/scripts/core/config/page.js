@@ -18,8 +18,8 @@ define(
       'permission/page.permission'
     ],
     function definePage(AntHill, MVC, API, Controller, Model, View,
-                        EventManager,
-                        Permission) {
+        EventManager,
+        Permission) {
 
       /**
        * Define Page
@@ -31,7 +31,7 @@ define(
       var Page = function Page(opts) {
 
         /**
-         * Define layout modes
+     * Define layout modes
          * @property Page
          * @type {{
          *      snap2grid: string,

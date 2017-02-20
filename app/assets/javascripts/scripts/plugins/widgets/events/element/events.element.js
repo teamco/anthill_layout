@@ -6,179 +6,181 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineEventsElement(PluginElement) {
 
+  /**
+   * Define Events Element
+   * @param view
+   * @param opts
+   * @returns {EventsElement}
+   * @constructor
+   * @class EventsElement
+   * @extends PluginElement
+   * @extends Renderer
+   */
+  var EventsElement = function EventsElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('events', {
+      resource: '/widgets'
+    });
+
+    return this;
+  };
+
+  return EventsElement.extend('EventsElement', {
+
     /**
-     * Define Events Element
-     * @param view
-     * @param opts
-     * @returns {EventsElement}
-     * @constructor
-     * @class EventsElement
-     * @extends PluginElement
-     * @extends Renderer
+     * Render Embedded content
+     * @memberOf EventsElement
      */
-    var EventsElement = function EventsElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent() {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+      /**
+       * Get this
+       * @type {EventsElement}
+       */
+      var $element = this;
 
-        this.addCSS('events', {
-            resource: '/widgets'
-        });
+      /**
+       * Get scope
+       * @type {Events}
+       */
+      var scope = $element.view.scope;
 
-        return this;
-    };
+      /**
+       * Create $container
+       * @type {string}
+       */
+      var $container = '<div id="calendarik"></div>';
 
-    return EventsElement.extend('EventsElement', {
+      $element.view.controller.clearParentThumbnail();
 
-        /**
-         * Render Embedded content
-         * @memberOf EventsElement
-         */
-        renderEmbeddedContent: function renderEmbeddedContent() {
+      $element.$.append(
+          $container
+      );
 
-            /**
-             * Get this
-             * @type {EventsElement}
-             */
-            var $element = this;
-
-            /**
-             * Get scope
-             * @type {Events}
-             */
-            var scope = $element.view.scope;
-
-            /**
-             * Create $container
-             * @type {string}
-             */
-            var $container = '<div id="calendarik"></div>';
-
-            $element.view.controller.clearParentThumbnail();
-
-            $element.$.append(
-                $container
-            );
-
-            require([
-                'plugins/widgets/events/mvc/events.behavior',
-                'plugins/widgets/events/libraries/jquery.eventCalendar'
-            ], function showEvents(EventsBehavior) {
-
-                /**
-                 * Create calendar instance
-                 * @type {EventsBehavior}
-                 */
-                var showCalendar = new EventsBehavior($('#calendarik', $element.$), $element);
-                
-                showCalendar.initialize();                
-
-                $element.$.append(
-                    $('<a class="create_new_event" />').on('click', function () {
-                        scope.observer.publish(
-                            scope.eventmanager.eventList.getEventData, [1412013690000, $element]
-                        )
-                    }).text('ADD EVENT')
-                );
-            });
-        },
-
-        renderFormData: function renderFormData(event) {
-
-            $('.eventEditorContainer').remove();
-            
-            var hourList = [];
-
-            for (var i = 0; i < 24; i++) {
-                hourList.push({'type': 'text', 'value': i > 9 ? i + ':00' : '0' + i + ':00'});
-            }
-
-            var $form = $('<ul/>');
-            var $title = $('<li />').append(
-                this.renderTextField({
-                    name: 'eventTitle',
-                    text: '',
-                    placeholder: 'Title',
-                    value: event.title,
-                    disabled: false,
-                    visible: true
-                })
-            );
-            var $description = $('<li />').append(
-                this.renderTextArea({
-                    name: 'eventDescription',
-                    text: '',
-                    placeholder: 'Description',
-                    value: event.description,
-                    disabled: false,
-                    visible: true
-                })
-            );
-
-            var $date = $('<li />').append(
-                this.renderTextField({
-                    name: 'eventDate',
-                    text: '',
-                    placeholder: 'Date',
-                    value: event.date,
-                    disabled: false,
-                    visible: true,
-                    type: 'date'
-                })
-            );
-
-            
-
-            var $time = $('<li />').append(
-                this.renderCombobox(
-                    hourList,
-                    '00:00',
-                    '',
-                    'timePicker',
-                    undefined,
-                    true
-                )
-            );
-
-            var $buttons = $('<li />').append('<a class="cancel_button">Cancel</a><a class="save_button">Save</a>');
-
-            this.$.append(
-                $form.append([
-                    $title,
-                    $description,
-                    $date.find('input').datepicker({
-                        minDate: new Date()
-                    }),
-                    $time,
-                    $buttons
-                ]).attr('class', 'eventEditorContainer animated flipInX')
-            );
-
-        },
+      require([
+        'plugins/widgets/events/mvc/events.behavior',
+        'plugins/widgets/events/libraries/jquery.eventCalendar'
+      ], function showEvents(EventsBehavior) {
 
         /**
-         * Collect Event data
-         * @memberOf EventsElement
+         * Create calendar instance
+         * @type {EventsBehavior}
          */
-        collectEventData: function collectEventData(event, timestamp) {
+        var showCalendar = new EventsBehavior($('#calendarik',
+            $element.$), $element);
 
-            /**
-             * Get scope
-             * @type {Events}
-             */
-            var scope = this.view.scope;
+        showCalendar.initialize();
 
-            scope.observer.publish(
-                scope.eventmanager.eventList.updateEventsData,
-                [event, timestamp]
-            );
-        }
+        $element.$.append(
+            $('<a class="create_new_event" />').on('click', function () {
+              scope.observer.publish(
+                  scope.eventmanager.eventList.getEventData,
+                  [1412013690000, $element]
+              )
+            }).text('ADD EVENT')
+        );
+      });
+    },
 
-    }, PluginElement.prototype);
+    renderFormData: function renderFormData(event) {
+
+      $('.eventEditorContainer').remove();
+
+      var hourList = [];
+
+      for (var i = 0; i < 24; i++) {
+        hourList.push(
+            {'type': 'text', 'value': i > 9 ? i + ':00' : '0' + i + ':00'});
+      }
+
+      var $form = $('<ul/>');
+      var $title = $('<li />').append(
+          this.renderTextField({
+            name: 'eventTitle',
+            text: '',
+            placeholder: 'Title',
+            value: event.title,
+            disabled: false,
+            visible: true
+          })
+      );
+      var $description = $('<li />').append(
+          this.renderTextArea({
+            name: 'eventDescription',
+            text: '',
+            placeholder: 'Description',
+            value: event.description,
+            disabled: false,
+            visible: true
+          })
+      );
+
+      var $date = $('<li />').append(
+          this.renderTextField({
+            name: 'eventDate',
+            text: '',
+            placeholder: 'Date',
+            value: event.date,
+            disabled: false,
+            visible: true,
+            type: 'date'
+          })
+      );
+
+      var $time = $('<li />').append(
+          this.renderCombobox(
+              hourList,
+              '00:00',
+              '',
+              'timePicker',
+              undefined,
+              true
+          )
+      );
+
+      var $buttons = $('<li />').append(
+          '<a class="cancel_button">Cancel</a><a class="save_button">Save</a>');
+
+      this.$.append(
+          $form.append([
+            $title,
+            $description,
+            $date.find('input').datepicker({
+              minDate: new Date()
+            }),
+            $time,
+            $buttons
+          ]).attr('class', 'eventEditorContainer animated flipInX')
+      );
+
+    },
+
+    /**
+     * Collect Event data
+     * @memberOf EventsElement
+     */
+    collectEventData: function collectEventData(event, timestamp) {
+
+      /**
+       * Get scope
+       * @type {Events}
+       */
+      var scope = this.view.scope;
+
+      scope.observer.publish(
+          scope.eventmanager.eventList.updateEventsData,
+          [event, timestamp]
+      );
+    }
+
+  }, PluginElement.prototype);
 
 });

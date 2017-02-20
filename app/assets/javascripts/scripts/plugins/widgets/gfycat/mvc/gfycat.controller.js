@@ -6,56 +6,40 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineGfycatController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define Gfycat controller
+   * @class GfycatController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var GfycatController = function GfycatController() {
+  };
+
+  return GfycatController.extend('GfycatController', {
+
     /**
-     * Define Gfycat controller
-     * @class GfycatController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf GfycatController
      */
-    var GfycatController = function GfycatController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
+      this.view.get$item().renderEmbeddedContent(
+          this.model.getPrefs('gfycatUrl')
+      );
+    },
 
-    return GfycatController.extend('GfycatController', {
+    /**
+     * Add Gfycat rule
+     * @memberOf GfycatController
+     * @param {Event} e
+     */
+    addGfycatRule: function addGfycatRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-        /**
-         * Set embedded content
-         * @memberOf GfycatController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
-            this.view.get$item().renderEmbeddedContent(
-                this.model.getPrefs('gfycatUrl')
-            );
-        },
-
-        /**
-         * Add Gfycat rule
-         * @memberOf GfycatController
-         * @param e
-         */
-        addGfycatRule: function addGfycatRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target);
-
-            /**
-             * Get scope
-             * @type {Gfycat|{name: string}}
-             */
-            var scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

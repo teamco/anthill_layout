@@ -6,35 +6,37 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
-], function defineMetamorphicPreferencesElement(PluginElement, WidgetPreferences) {
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
+], function defineMetamorphicPreferencesElement(PluginElement,
+    WidgetPreferences) {
 
-    /**
-     * Define Metamorphic Preferences Element
-     * @constructor
-     * @class MetamorphicPreferencesElement
-     * @param {MetamorphicView} view
-     * @param opts
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     * @returns {MetamorphicPreferencesElement}
-     */
-    var MetamorphicPreferencesElement = function MetamorphicPreferencesElement(view, opts) {
+  /**
+   * Define Metamorphic Preferences Element
+   * @constructor
+   * @class MetamorphicPreferencesElement
+   * @param {MetamorphicView} view
+   * @param opts
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   * @returns {MetamorphicPreferencesElement}
+   */
+  var MetamorphicPreferencesElement = function MetamorphicPreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return MetamorphicPreferencesElement.extend(
-        'MetamorphicPreferencesElement', {}, 
-        PluginElement.prototype, 
-        WidgetPreferences.prototype
-    );
+  return MetamorphicPreferencesElement.extend(
+      'MetamorphicPreferencesElement', {},
+      PluginElement.prototype,
+      WidgetPreferences.prototype
+  );
 });

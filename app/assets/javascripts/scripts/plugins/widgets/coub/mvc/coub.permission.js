@@ -7,20 +7,18 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineCoubPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class CoubPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var CoubPermission = function CoubPermission() {
+  /**
+   * Define Permissions
+   * @class CoubPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var CoubPermission = function CoubPermission() {
 
-    };
+  };
 
-    return CoubPermission.extend('CoubPermission', {
-
-    }, BasePermission.prototype);
+  return CoubPermission.extend('CoubPermission', {}, BasePermission.prototype);
 });

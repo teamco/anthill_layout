@@ -6,40 +6,40 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineSpeakerDeckElement(PluginElement) {
 
+  /**
+   * Define SpeakerDeck Element
+   * @param view
+   * @param opts
+   * @returns {SpeakerDeckElement}
+   * @constructor
+   * @class SpeakerDeckElement
+   * @extends PluginElement
+   */
+  var SpeakerDeckElement = function SpeakerDeckElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('speaker.deck', {resource: '/widgets'});
+
+    return this;
+  };
+
+  return SpeakerDeckElement.extend('SpeakerDeckElement', {
+
     /**
-     * Define SpeakerDeck Element
-     * @param view
-     * @param opts
-     * @returns {SpeakerDeckElement}
-     * @constructor
-     * @class SpeakerDeckElement
-     * @extends PluginElement
+     * Render Embedded content
+     * @memberOf SpeakerDeckElement
+     * @param {string} embed
      */
-    var SpeakerDeckElement = function SpeakerDeckElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent(embed) {
+      this.addContent(embed);
+    }
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
-
-        this.addCSS('speaker.deck', {resource: '/widgets'});
-
-        return this;
-    };
-
-    return SpeakerDeckElement.extend('SpeakerDeckElement', {
-
-        /**
-         * Render Embedded content
-         * @memberOf SpeakerDeckElement
-         * @param {string} embed
-         */
-        renderEmbeddedContent: function renderEmbeddedContent(embed) {
-            this.addContent(embed);
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 });

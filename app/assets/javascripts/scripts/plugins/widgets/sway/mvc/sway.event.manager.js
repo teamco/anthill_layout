@@ -7,23 +7,23 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineSwayEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define Sway event manager
-     * @class SwayEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var SwayEventManager = function SwayEventManager() {
+  /**
+   * Define Sway event manager
+   * @class SwayEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var SwayEventManager = function SwayEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return SwayEventManager.extend(
-        'SwayEventManager', {},
-        WidgetContentEventManager.prototype
-    );
+  return SwayEventManager.extend(
+      'SwayEventManager', {},
+      WidgetContentEventManager.prototype
+  );
 });

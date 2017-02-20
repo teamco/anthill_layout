@@ -7,62 +7,62 @@
 
 define(['config/workspace'], function defineWorkspaceListeners(Workspace) {
 
-    /**
-     * Define Workspace Local listeners
-     * @memberOf Workspace
-     * @type {{
+  /**
+   * Define Workspace Local listeners
+   * @memberOf Workspace
+   * @type {{
      *      successRendered: {name: string, callback: Function},
      *      createPage: {name: string, callback: Function},
      *      afterLoadingItems: {name: string, callback: Function},
      *      resizePage: {name: string, callback: Function}
      * }}
-     */
-    Workspace.prototype.localListeners = {
+   */
+  Workspace.prototype.localListeners = {
 
-        successRendered: {
-            name: "success.rendered",
-            callback: function successRenderedCallback() {
+    successRendered: {
+      name: "success.rendered",
+      callback: function successRenderedCallback() {
 
-                this.view.renderWorkspace();
+        this.view.renderWorkspace();
 
-                this.observer.batchPublish(
-                    this.eventmanager.eventList.loadPreferences,
-                    this.eventmanager.eventList.updateSiteWidth
-                );
-            }
-        },
+        this.observer.batchPublish(
+            this.eventmanager.eventList.loadPreferences,
+            this.eventmanager.eventList.updateSiteWidth
+        );
+      }
+    },
 
-        createPage: {
-            name: 'create.page',
-            callback: function createPageCallback() {
+    createPage: {
+      name: 'create.page',
+      callback: function createPageCallback() {
 
-                this.observer.publish(
-                    this.eventmanager.eventList.setPageContainerDimensions
-                );
-            }
-        },
+        this.observer.publish(
+            this.eventmanager.eventList.setPageContainerDimensions
+        );
+      }
+    },
 
-        afterLoadingItems: {
-            name: 'after.loading.items',
-            callback: function afterLoadingItemsCallback() {
-                this.controller.switchPageOnHashChange();
-            }
-        },
+    afterLoadingItems: {
+      name: 'after.loading.items',
+      callback: function afterLoadingItemsCallback() {
+        this.controller.switchPageOnHashChange();
+      }
+    },
 
-        resizePage: {
-            name: 'resize.page',
-            callback: function resizePageCallback(page) {
+    resizePage: {
+      name: 'resize.page',
+      callback: function resizePageCallback(page) {
 
-                page.controller.updateLayout();
+        page.controller.updateLayout();
 
-                page.observer.publish(
-                    page.eventmanager.eventList.resizeWidgets
-                );
+        page.observer.publish(
+            page.eventmanager.eventList.resizeWidgets
+        );
 
-                page.controller.updateHeight();
-            }
-        }
-    };
+        page.controller.updateHeight();
+      }
+    }
+  };
 
-    return Workspace;
+  return Workspace;
 });

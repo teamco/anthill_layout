@@ -6,56 +6,40 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineArcgisController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define Arcgis controller
+   * @class ArcgisController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var ArcgisController = function ArcgisController() {
+  };
+
+  return ArcgisController.extend('ArcgisController', {
+
     /**
-     * Define Arcgis controller
-     * @class ArcgisController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf ArcgisController
      */
-    var ArcgisController = function ArcgisController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
+      this.view.get$item().renderEmbeddedContent(
+          this.model.getPrefs('arcgisEmbedCode')
+      );
+    },
 
-    return ArcgisController.extend('ArcgisController', {
+    /**
+     * Add Arcgis rule
+     * @memberOf ArcgisController
+     * @param {Event} e
+     */
+    addArcgisRule: function addArcgisRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-        /**
-         * Set embedded content
-         * @memberOf ArcgisController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
-            this.view.get$item().renderEmbeddedContent(
-                this.model.getPrefs('arcgisEmbedCode')
-            );
-        },
-
-        /**
-         * Add Arcgis rule
-         * @memberOf ArcgisController
-         * @param e
-         */
-        addArcgisRule: function addArcgisRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target);
-
-            /**
-             * Get scope
-             * @type {Arcgis|{name: string}}
-             */
-            var scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

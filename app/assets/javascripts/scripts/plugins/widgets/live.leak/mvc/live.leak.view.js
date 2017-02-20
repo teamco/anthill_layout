@@ -7,108 +7,109 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/live.leak/element/live.leak.element',
-    'plugins/widgets/live.leak/element/live.leak.preferences.element',
-    'plugins/widgets/live.leak/element/live.leak.rules.element'
-], function defineLiveLeakView(BaseView, Header, Footer, LiveLeakElement, LiveLeakPreferencesElement, LiveLeakRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/live.leak/element/live.leak.element',
+  'plugins/widgets/live.leak/element/live.leak.preferences.element',
+  'plugins/widgets/live.leak/element/live.leak.rules.element'
+], function defineLiveLeakView(BaseView, Header, Footer, LiveLeakElement,
+    LiveLeakPreferencesElement, LiveLeakRulesElement) {
+
+  /**
+   * Define view
+   * @class LiveLeakView
+   * @extends BaseView
+   * @constructor
+   */
+  var LiveLeakView = function LiveLeakView() {
+  };
+
+  return LiveLeakView.extend('LiveLeakView', {
 
     /**
-     * Define view
-     * @class LiveLeakView
-     * @extends BaseView
-     * @constructor
+     * Render LiveLeak element
+     * @memberOf LiveLeakView
      */
-    var LiveLeakView = function LiveLeakView() {
-    };
+    renderLiveLeak: function renderLiveLeak() {
 
-    return LiveLeakView.extend('LiveLeakView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render LiveLeak element
-         * @memberOf LiveLeakView
-         */
-        renderLiveLeak: function renderLiveLeak() {
+      /**
+       * Define $liveleak
+       * @type {LiveLeakElement}
+       */
+      this.elements.$liveleak = new LiveLeakElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $liveleak
-             * @type {LiveLeakElement}
-             */
-            this.elements.$liveleak = new LiveLeakElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf LiveLeakView
+     * @returns {LiveLeakPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define LiveLeak Preferences Element
+       * @type {LiveLeakPreferencesElement}
+       */
+      this.elements.$preferences = new LiveLeakPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf LiveLeakView
-         * @returns {LiveLeakPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define LiveLeak Preferences Element
-             * @type {LiveLeakPreferencesElement}
-             */
-            this.elements.$preferences = new LiveLeakPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf LiveLeakView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {LiveLeakRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
+      /**
+       * Define data
+       * @type {*|{}}
+       */
+      var data = this.controller.getRules();
 
-        /**
-         * Render Rules
-         * @memberOf LiveLeakView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {LiveLeakRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define data
-             * @type {*|{}}
-             */
-            var data = this.controller.getRules();
-
-            /**
-             * Define LiveLeak Rules Element
-             * @type {LiveLeakRulesElement}
-             */
-            this.elements.$rules = new LiveLeakRulesElement(this, {
-                data: data,
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render LiveLeak
-         * @memberOf LiveLeakView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderLiveLeak.bind(this)
-            );
+      /**
+       * Define LiveLeak Rules Element
+       * @type {LiveLeakRulesElement}
+       */
+      this.elements.$rules = new LiveLeakRulesElement(this, {
+        data: data,
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render LiveLeak
+     * @memberOf LiveLeakView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderLiveLeak.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

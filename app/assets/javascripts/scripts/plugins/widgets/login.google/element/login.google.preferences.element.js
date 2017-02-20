@@ -6,35 +6,35 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
-], function defineLoginGooglePreferencesElement(PluginElement, WidgetPreferences) {
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
+], function defineLoginGooglePreferencesElement(PluginElement,
+    WidgetPreferences) {
 
-    /**
-     * Define LoginGoogle Preferences Element
-     * @param view
-     * @param opts
-     * @returns {LoginGooglePreferencesElement}
-     * @constructor
-     * @class LoginGooglePreferencesElement
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     */
-    var LoginGooglePreferencesElement = function LoginGooglePreferencesElement(view, opts) {
+  /**
+   * Define LoginGoogle Preferences Element
+   * @param view
+   * @param opts
+   * @returns {LoginGooglePreferencesElement}
+   * @constructor
+   * @class LoginGooglePreferencesElement
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   */
+  var LoginGooglePreferencesElement = function LoginGooglePreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return LoginGooglePreferencesElement.extend('LoginGooglePreferencesElement', {
-
-
-    }, PluginElement.prototype, WidgetPreferences.prototype);
+  return LoginGooglePreferencesElement.extend('LoginGooglePreferencesElement',
+      {}, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

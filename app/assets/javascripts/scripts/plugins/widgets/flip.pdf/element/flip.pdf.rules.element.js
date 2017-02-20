@@ -6,38 +6,37 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/rules/widget.base.rules'
+  'plugins/plugin.element',
+  'plugins/rules/widget.base.rules'
 ], function defineFlipPdfRulesElement(PluginElement, BaseWidgetRules) {
 
-    /**
-     * Define FlipPdf Rules Element
-     * @param view
-     * @param opts
-     * @returns {FlipPdfRulesElement}
-     * @constructor
-     * @class FlipPdfRulesElement
-     * @extends PluginElement
-     * @extends BaseWidgetRules
-     */
-    var FlipPdfRulesElement = function FlipPdfRulesElement(view, opts) {
+  /**
+   * Define FlipPdf Rules Element
+   * @param view
+   * @param opts
+   * @returns {FlipPdfRulesElement}
+   * @constructor
+   * @class FlipPdfRulesElement
+   * @extends PluginElement
+   * @extends BaseWidgetRules
+   */
+  var FlipPdfRulesElement = function FlipPdfRulesElement(view, opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBaseRulesData(
-            opts.data,
-            opts.rules.widget,
-            opts.rules.content
-        );
+    this.renderBaseRulesData(
+        opts.data,
+        opts.rules.widget,
+        opts.rules.content
+    );
 
-        return this;
-    };
+    return this;
+  };
 
-    return FlipPdfRulesElement.extend('FlipPdfRulesElement', {
-
-    }, PluginElement.prototype, BaseWidgetRules.prototype);
+  return FlipPdfRulesElement.extend('FlipPdfRulesElement', {},
+      PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

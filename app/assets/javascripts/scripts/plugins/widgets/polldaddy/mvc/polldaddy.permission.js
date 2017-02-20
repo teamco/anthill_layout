@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function definePolldaddyPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class PolldaddyPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var PolldaddyPermission = function PolldaddyPermission() {
+  /**
+   * Define Permissions
+   * @class PolldaddyPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var PolldaddyPermission = function PolldaddyPermission() {
 
-    };
+  };
 
-    return PolldaddyPermission.extend('PolldaddyPermission', {
-
-    }, BasePermission.prototype);
+  return PolldaddyPermission.extend('PolldaddyPermission', {},
+      BasePermission.prototype);
 });

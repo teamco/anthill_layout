@@ -6,38 +6,37 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/rules/widget.base.rules'
+  'plugins/plugin.element',
+  'plugins/rules/widget.base.rules'
 ], function definePetRadarRulesElement(PluginElement, BaseWidgetRules) {
 
-    /**
-     * Define PetRadar Rules Element
-     * @param view
-     * @param opts
-     * @returns {PetRadarRulesElement}
-     * @constructor
-     * @class PetRadarRulesElement
-     * @extends PluginElement
-     * @extends BaseWidgetRules
-     */
-    var PetRadarRulesElement = function PetRadarRulesElement(view, opts) {
+  /**
+   * Define PetRadar Rules Element
+   * @param view
+   * @param opts
+   * @returns {PetRadarRulesElement}
+   * @constructor
+   * @class PetRadarRulesElement
+   * @extends PluginElement
+   * @extends BaseWidgetRules
+   */
+  var PetRadarRulesElement = function PetRadarRulesElement(view, opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBaseRulesData(
-            opts.data,
-            opts.rules.widget,
-            opts.rules.content
-        );
+    this.renderBaseRulesData(
+        opts.data,
+        opts.rules.widget,
+        opts.rules.content
+    );
 
-        return this;
-    };
+    return this;
+  };
 
-    return PetRadarRulesElement.extend('PetRadarRulesElement', {
-
-    }, PluginElement.prototype, BaseWidgetRules.prototype);
+  return PetRadarRulesElement.extend('PetRadarRulesElement', {},
+      PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

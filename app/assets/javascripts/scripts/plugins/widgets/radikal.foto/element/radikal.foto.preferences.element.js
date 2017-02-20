@@ -6,35 +6,35 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
-], function defineRadikalFotoPreferencesElement(PluginElement, WidgetPreferences) {
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
+], function defineRadikalFotoPreferencesElement(PluginElement,
+    WidgetPreferences) {
 
-    /**
-     * Define RadikalFoto Preferences Element
-     * @param view
-     * @param opts
-     * @returns {RadikalFotoPreferencesElement}
-     * @constructor
-     * @class RadikalFotoPreferencesElement
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     */
-    var RadikalFotoPreferencesElement = function RadikalFotoPreferencesElement(view, opts) {
+  /**
+   * Define RadikalFoto Preferences Element
+   * @param view
+   * @param opts
+   * @returns {RadikalFotoPreferencesElement}
+   * @constructor
+   * @class RadikalFotoPreferencesElement
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   */
+  var RadikalFotoPreferencesElement = function RadikalFotoPreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return RadikalFotoPreferencesElement.extend('RadikalFotoPreferencesElement', {
-
-
-    }, PluginElement.prototype, WidgetPreferences.prototype);
+  return RadikalFotoPreferencesElement.extend('RadikalFotoPreferencesElement',
+      {}, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

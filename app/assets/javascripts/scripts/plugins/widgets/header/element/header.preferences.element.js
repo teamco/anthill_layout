@@ -6,35 +6,33 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
 ], function defineHeaderPreferencesElement(PluginElement, WidgetPreferences) {
 
-    /**
-     * Define Header Preferences Element
-     * @param view
-     * @param opts
-     * @returns {HeaderPreferencesElement}
-     * @constructor
-     * @class HeaderPreferencesElement
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     */
-    var HeaderPreferencesElement = function HeaderPreferencesElement(view, opts) {
+  /**
+   * Define Header Preferences Element
+   * @param view
+   * @param opts
+   * @returns {HeaderPreferencesElement}
+   * @constructor
+   * @class HeaderPreferencesElement
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   */
+  var HeaderPreferencesElement = function HeaderPreferencesElement(view, opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return HeaderPreferencesElement.extend('HeaderPreferencesElement', {
-
-
-    }, PluginElement.prototype, WidgetPreferences.prototype);
+  return HeaderPreferencesElement.extend('HeaderPreferencesElement', {},
+      PluginElement.prototype, WidgetPreferences.prototype);
 
 });

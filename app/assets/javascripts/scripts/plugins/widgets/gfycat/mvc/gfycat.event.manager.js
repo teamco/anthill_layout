@@ -7,23 +7,23 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineGfycatEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define Gfycat event manager
-     * @class GfycatEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var GfycatEventManager = function GfycatEventManager() {
+  /**
+   * Define Gfycat event manager
+   * @class GfycatEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var GfycatEventManager = function GfycatEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return GfycatEventManager.extend(
-        'GfycatEventManager', {},
-        WidgetContentEventManager.prototype
-    );
+  return GfycatEventManager.extend(
+      'GfycatEventManager', {},
+      WidgetContentEventManager.prototype
+  );
 });

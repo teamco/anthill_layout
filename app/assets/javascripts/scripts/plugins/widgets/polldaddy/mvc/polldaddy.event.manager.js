@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function definePolldaddyEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define Polldaddy event manager
-     * @class PolldaddyEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var PolldaddyEventManager = function PolldaddyEventManager() {
+  /**
+   * Define Polldaddy event manager
+   * @class PolldaddyEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var PolldaddyEventManager = function PolldaddyEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return PolldaddyEventManager.extend('PolldaddyEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return PolldaddyEventManager.extend('PolldaddyEventManager', {},
+      WidgetContentEventManager.prototype);
 });

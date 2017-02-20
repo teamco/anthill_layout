@@ -7,23 +7,23 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineFastpicEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define Fastpic event manager
-     * @class FastpicEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var FastpicEventManager = function FastpicEventManager() {
+  /**
+   * Define Fastpic event manager
+   * @class FastpicEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var FastpicEventManager = function FastpicEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return FastpicEventManager.extend(
-        'FastpicEventManager', {},
-        WidgetContentEventManager.prototype
-    );
+  return FastpicEventManager.extend(
+      'FastpicEventManager', {},
+      WidgetContentEventManager.prototype
+  );
 });

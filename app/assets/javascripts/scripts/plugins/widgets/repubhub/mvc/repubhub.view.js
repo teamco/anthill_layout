@@ -7,101 +7,102 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/repubhub/element/repubhub.element',
-    'plugins/widgets/repubhub/element/repubhub.preferences.element',
-    'plugins/widgets/repubhub/element/repubhub.rules.element'
-], function defineRepubhubView(BaseView, Header, Footer, RepubhubElement, RepubhubPreferencesElement, RepubhubRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/repubhub/element/repubhub.element',
+  'plugins/widgets/repubhub/element/repubhub.preferences.element',
+  'plugins/widgets/repubhub/element/repubhub.rules.element'
+], function defineRepubhubView(BaseView, Header, Footer, RepubhubElement,
+    RepubhubPreferencesElement, RepubhubRulesElement) {
+
+  /**
+   * Define view
+   * @class RepubhubView
+   * @extends BaseView
+   * @constructor
+   */
+  var RepubhubView = function RepubhubView() {
+  };
+
+  return RepubhubView.extend('RepubhubView', {
 
     /**
-     * Define view
-     * @class RepubhubView
-     * @extends BaseView
-     * @constructor
+     * Render Repubhub element
+     * @memberOf RepubhubView
      */
-    var RepubhubView = function RepubhubView() {
-    };
+    renderRepubhub: function renderRepubhub() {
 
-    return RepubhubView.extend('RepubhubView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render Repubhub element
-         * @memberOf RepubhubView
-         */
-        renderRepubhub: function renderRepubhub() {
+      /**
+       * Define $repubhub
+       * @type {RepubhubElement}
+       */
+      this.elements.$repubhub = new RepubhubElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $repubhub
-             * @type {RepubhubElement}
-             */
-            this.elements.$repubhub = new RepubhubElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf RepubhubView
+     * @returns {RepubhubPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define Repubhub Preferences Element
+       * @type {RepubhubPreferencesElement}
+       */
+      this.elements.$preferences = new RepubhubPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf RepubhubView
-         * @returns {RepubhubPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define Repubhub Preferences Element
-             * @type {RepubhubPreferencesElement}
-             */
-            this.elements.$preferences = new RepubhubPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf RepubhubView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {RepubhubRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
-
-        /**
-         * Render Rules
-         * @memberOf RepubhubView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {RepubhubRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define Repubhub Rules Element
-             * @type {RepubhubRulesElement}
-             */
-            this.elements.$rules = new RepubhubRulesElement(this, {
-                data: this.controller.getRules(),
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render Repubhub
-         * @memberOf RepubhubView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderRepubhub.bind(this)
-            );
+      /**
+       * Define Repubhub Rules Element
+       * @type {RepubhubRulesElement}
+       */
+      this.elements.$rules = new RepubhubRulesElement(this, {
+        data: this.controller.getRules(),
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype);
+      return this.get$rules();
+    },
+
+    /**
+     * Render Repubhub
+     * @memberOf RepubhubView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderRepubhub.bind(this)
+      );
+    }
+
+  }, BaseView.prototype);
 });

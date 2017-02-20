@@ -7,108 +7,109 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/sound.cloud/element/sound.cloud.element',
-    'plugins/widgets/sound.cloud/element/sound.cloud.preferences.element',
-    'plugins/widgets/sound.cloud/element/sound.cloud.rules.element'
-], function defineSoundCloudView(BaseView, Header, Footer, SoundCloudElement, SoundCloudPreferencesElement, SoundCloudRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/sound.cloud/element/sound.cloud.element',
+  'plugins/widgets/sound.cloud/element/sound.cloud.preferences.element',
+  'plugins/widgets/sound.cloud/element/sound.cloud.rules.element'
+], function defineSoundCloudView(BaseView, Header, Footer, SoundCloudElement,
+    SoundCloudPreferencesElement, SoundCloudRulesElement) {
+
+  /**
+   * Define view
+   * @class SoundCloudView
+   * @extends BaseView
+   * @constructor
+   */
+  var SoundCloudView = function SoundCloudView() {
+  };
+
+  return SoundCloudView.extend('SoundCloudView', {
 
     /**
-     * Define view
-     * @class SoundCloudView
-     * @extends BaseView
-     * @constructor
+     * Render soundcloud element
+     * @memberOf SoundCloudView
      */
-    var SoundCloudView = function SoundCloudView() {
-    };
+    renderSoundCloud: function renderSoundCloud() {
 
-    return SoundCloudView.extend('SoundCloudView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render soundcloud element
-         * @memberOf SoundCloudView
-         */
-        renderSoundCloud: function renderSoundCloud() {
+      /**
+       * Define $soundcloud
+       * @type {SoundCloudElement}
+       */
+      this.elements.$soundcloud = new SoundCloudElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $soundcloud
-             * @type {SoundCloudElement}
-             */
-            this.elements.$soundcloud = new SoundCloudElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf SoundCloudView
+     * @returns {SoundCloudPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define SoundCloud Preferences Element
+       * @type {SoundCloudPreferencesElement}
+       */
+      this.elements.$preferences = new SoundCloudPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf SoundCloudView
-         * @returns {SoundCloudPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define SoundCloud Preferences Element
-             * @type {SoundCloudPreferencesElement}
-             */
-            this.elements.$preferences = new SoundCloudPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf SoundCloudView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {SoundCloudRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
+      /**
+       * Define data
+       * @type {*|{}}
+       */
+      var data = this.controller.getRules();
 
-        /**
-         * Render Rules
-         * @memberOf SoundCloudView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {SoundCloudRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define data
-             * @type {*|{}}
-             */
-            var data = this.controller.getRules();
-
-            /**
-             * Define SoundCloud Rules Element
-             * @type {SoundCloudRulesElement}
-             */
-            this.elements.$rules = new SoundCloudRulesElement(this, {
-                data: data,
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render soundcloud
-         * @memberOf SoundCloudView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderSoundCloud.bind(this)
-            );
+      /**
+       * Define SoundCloud Rules Element
+       * @type {SoundCloudRulesElement}
+       */
+      this.elements.$rules = new SoundCloudRulesElement(this, {
+        data: data,
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render soundcloud
+     * @memberOf SoundCloudView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderSoundCloud.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

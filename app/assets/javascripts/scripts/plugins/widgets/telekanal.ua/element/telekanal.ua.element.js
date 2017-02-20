@@ -6,43 +6,43 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineTelekanalUaElement(PluginElement) {
 
+  /**
+   * Define TelekanalUa Element
+   * @param view
+   * @param opts
+   * @returns {TelekanalUaElement}
+   * @constructor
+   * @class TelekanalUaElement
+   * @extends PluginElement
+   */
+  var TelekanalUaElement = function TelekanalUaElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('telekanal.ua', {resource: '/widgets'});
+
+    return this;
+  };
+
+  return TelekanalUaElement.extend('TelekanalUaElement', {
+
     /**
-     * Define TelekanalUa Element
-     * @param view
-     * @param opts
-     * @returns {TelekanalUaElement}
-     * @constructor
-     * @class TelekanalUaElement
-     * @extends PluginElement
+     * Render Embedded content
+     * @memberOf TelekanalUaElement
+     * @param {string} url
      */
-    var TelekanalUaElement = function TelekanalUaElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent(url) {
+      this.$.append(
+          this.renderIframe(url)
+      );
+    }
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
-
-        this.addCSS('telekanal.ua', {resource: '/widgets'});
-
-        return this;
-    };
-
-    return TelekanalUaElement.extend('TelekanalUaElement', {
-
-        /**
-         * Render Embedded content
-         * @memberOf TelekanalUaElement
-         * @param {string} url
-         */
-        renderEmbeddedContent: function renderEmbeddedContent(url) {
-            this.$.append(
-                this.renderIframe(url)
-            );
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 
 });

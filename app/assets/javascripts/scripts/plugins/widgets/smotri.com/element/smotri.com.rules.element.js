@@ -6,38 +6,37 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/rules/widget.base.rules'
+  'plugins/plugin.element',
+  'plugins/rules/widget.base.rules'
 ], function defineSmotriComRulesElement(PluginElement, BaseWidgetRules) {
 
-    /**
-     * Define SmotriCom Rules Element
-     * @param view
-     * @param opts
-     * @returns {SmotriComRulesElement}
-     * @constructor
-     * @class SmotriComRulesElement
-     * @extends PluginElement
-     * @extends BaseWidgetRules
-     */
-    var SmotriComRulesElement = function SmotriComRulesElement(view, opts) {
+  /**
+   * Define SmotriCom Rules Element
+   * @param view
+   * @param opts
+   * @returns {SmotriComRulesElement}
+   * @constructor
+   * @class SmotriComRulesElement
+   * @extends PluginElement
+   * @extends BaseWidgetRules
+   */
+  var SmotriComRulesElement = function SmotriComRulesElement(view, opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBaseRulesData(
-            opts.data,
-            opts.rules.widget,
-            opts.rules.content
-        );
+    this.renderBaseRulesData(
+        opts.data,
+        opts.rules.widget,
+        opts.rules.content
+    );
 
-        return this;
-    };
+    return this;
+  };
 
-    return SmotriComRulesElement.extend('SmotriComRulesElement', {
-
-    }, PluginElement.prototype, BaseWidgetRules.prototype);
+  return SmotriComRulesElement.extend('SmotriComRulesElement', {},
+      PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

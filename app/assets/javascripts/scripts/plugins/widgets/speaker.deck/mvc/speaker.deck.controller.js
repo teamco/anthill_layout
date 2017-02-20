@@ -6,56 +6,40 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineSpeakerDeckController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define SpeakerDeck controller
+   * @class SpeakerDeckController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var SpeakerDeckController = function SpeakerDeckController() {
+  };
+
+  return SpeakerDeckController.extend('SpeakerDeckController', {
+
     /**
-     * Define SpeakerDeck controller
-     * @class SpeakerDeckController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf SpeakerDeckController
      */
-    var SpeakerDeckController = function SpeakerDeckController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
+      this.view.get$item().renderEmbeddedContent(
+          this.model.getPrefs('speakerdeckEmbedCode')
+      );
+    },
 
-    return SpeakerDeckController.extend('SpeakerDeckController', {
+    /**
+     * Add SpeakerDeck rule
+     * @memberOf SpeakerDeckController
+     * @param {Event} e
+     */
+    addSpeakerDeckRule: function addSpeakerDeckRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-        /**
-         * Set embedded content
-         * @memberOf SpeakerDeckController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
-            this.view.get$item().renderEmbeddedContent(
-                this.model.getPrefs('speakerdeckEmbedCode')
-            );
-        },
-
-        /**
-         * Add SpeakerDeck rule
-         * @memberOf SpeakerDeckController
-         * @param e
-         */
-        addSpeakerDeckRule: function addSpeakerDeckRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target);
-
-            /**
-             * Get scope
-             * @type {SpeakerDeck|{name: string}}
-             */
-            var scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

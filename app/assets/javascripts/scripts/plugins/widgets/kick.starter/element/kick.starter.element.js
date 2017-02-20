@@ -6,43 +6,43 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineKickStarterElement(PluginElement) {
 
+  /**
+   * Define KickStarter Element
+   * @param view
+   * @param opts
+   * @returns {KickStarterElement}
+   * @constructor
+   * @class KickStarterElement
+   * @extends PluginElement
+   */
+  var KickStarterElement = function KickStarterElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('kick.starter', {resource: '/widgets'});
+
+    return this;
+  };
+
+  return KickStarterElement.extend('KickStarterElement', {
+
     /**
-     * Define KickStarter Element
-     * @param view
-     * @param opts
-     * @returns {KickStarterElement}
-     * @constructor
-     * @class KickStarterElement
-     * @extends PluginElement
+     * Render Embedded content
+     * @memberOf KickStarterElement
+     * @param {string} url
      */
-    var KickStarterElement = function KickStarterElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent(url) {
+      this.$.append(
+          this.renderIframe(url)
+      );
+    }
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
-
-        this.addCSS('kick.starter', {resource: '/widgets'});
-
-        return this;
-    };
-
-    return KickStarterElement.extend('KickStarterElement', {
-
-        /**
-         * Render Embedded content
-         * @memberOf KickStarterElement
-         * @param {string} url
-         */
-        renderEmbeddedContent: function renderEmbeddedContent(url) {
-            this.$.append(
-                this.renderIframe(url)
-            );
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 
 });

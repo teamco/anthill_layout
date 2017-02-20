@@ -7,108 +7,110 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/channel.ten.il/element/channel.ten.il.element',
-    'plugins/widgets/channel.ten.il/element/channel.ten.il.preferences.element',
-    'plugins/widgets/channel.ten.il/element/channel.ten.il.rules.element'
-], function defineChannelTenIlView(BaseView, Header, Footer, ChannelTenIlElement, ChannelTenIlPreferencesElement, ChannelTenIlRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/channel.ten.il/element/channel.ten.il.element',
+  'plugins/widgets/channel.ten.il/element/channel.ten.il.preferences.element',
+  'plugins/widgets/channel.ten.il/element/channel.ten.il.rules.element'
+], function defineChannelTenIlView(BaseView, Header, Footer,
+    ChannelTenIlElement, ChannelTenIlPreferencesElement,
+    ChannelTenIlRulesElement) {
+
+  /**
+   * Define view
+   * @class ChannelTenIlView
+   * @extends BaseView
+   * @constructor
+   */
+  var ChannelTenIlView = function ChannelTenIlView() {
+  };
+
+  return ChannelTenIlView.extend('ChannelTenIlView', {
 
     /**
-     * Define view
-     * @class ChannelTenIlView
-     * @extends BaseView
-     * @constructor
+     * Render channeltenil element
+     * @memberOf ChannelTenIlView
      */
-    var ChannelTenIlView = function ChannelTenIlView() {
-    };
+    renderChannelTenIl: function renderChannelTenIl() {
 
-    return ChannelTenIlView.extend('ChannelTenIlView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render channeltenil element
-         * @memberOf ChannelTenIlView
-         */
-        renderChannelTenIl: function renderChannelTenIl() {
+      /**
+       * Define $channeltenil
+       * @type {ChannelTenIlElement}
+       */
+      this.elements.$channeltenil = new ChannelTenIlElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $channeltenil
-             * @type {ChannelTenIlElement}
-             */
-            this.elements.$channeltenil = new ChannelTenIlElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf ChannelTenIlView
+     * @returns {ChannelTenIlPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define ChannelTenIl Preferences Element
+       * @type {ChannelTenIlPreferencesElement}
+       */
+      this.elements.$preferences = new ChannelTenIlPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf ChannelTenIlView
-         * @returns {ChannelTenIlPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define ChannelTenIl Preferences Element
-             * @type {ChannelTenIlPreferencesElement}
-             */
-            this.elements.$preferences = new ChannelTenIlPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf ChannelTenIlView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {ChannelTenIlRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
+      /**
+       * Define data
+       * @type {*|{}}
+       */
+      var data = this.controller.getRules();
 
-        /**
-         * Render Rules
-         * @memberOf ChannelTenIlView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {ChannelTenIlRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define data
-             * @type {*|{}}
-             */
-            var data = this.controller.getRules();
-
-            /**
-             * Define ChannelTenIl Rules Element
-             * @type {ChannelTenIlRulesElement}
-             */
-            this.elements.$rules = new ChannelTenIlRulesElement(this, {
-                data: data,
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render channeltenil
-         * @memberOf ChannelTenIlView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderChannelTenIl.bind(this)
-            );
+      /**
+       * Define ChannelTenIl Rules Element
+       * @type {ChannelTenIlRulesElement}
+       */
+      this.elements.$rules = new ChannelTenIlRulesElement(this, {
+        data: data,
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render channeltenil
+     * @memberOf ChannelTenIlView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderChannelTenIl.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineSharePermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class SharePermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var SharePermission = function SharePermission() {
+  /**
+   * Define Permissions
+   * @class SharePermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var SharePermission = function SharePermission() {
 
-    };
+  };
 
-    return SharePermission.extend('SharePermission', {
-
-    }, BasePermission.prototype);
+  return SharePermission.extend('SharePermission', {},
+      BasePermission.prototype);
 });

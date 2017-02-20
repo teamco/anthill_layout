@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineShareEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define Share event manager
-     * @class ShareEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var ShareEventManager = function ShareEventManager() {
+  /**
+   * Define Share event manager
+   * @class ShareEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var ShareEventManager = function ShareEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return ShareEventManager.extend('ShareEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return ShareEventManager.extend('ShareEventManager', {},
+      WidgetContentEventManager.prototype);
 });

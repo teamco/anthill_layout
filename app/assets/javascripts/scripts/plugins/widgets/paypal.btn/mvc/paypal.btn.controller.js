@@ -6,68 +6,68 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function definePaypalBtnController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define PaypalBtn controller
+   * @class PaypalBtnController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var PaypalBtnController = function PaypalBtnController() {
+  };
+
+  return PaypalBtnController.extend('PaypalBtnController', {
+
     /**
-     * Define PaypalBtn controller
-     * @class PaypalBtnController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf PaypalBtnController
      */
-    var PaypalBtnController = function PaypalBtnController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
+      this.view.get$item().renderEmbeddedContent({
+        merchant: this.model.getPrefs('paypalbtnMerchant'),
+        'data-btn': this.model.getPrefs('paypalbtnType'),
+        'data-name': this.model.getPrefs('paypalbtnName'),
+        'data-quantity': this.model.getPrefs('paypalbtnQuantity'),
+        'data-period': this.model.getPrefs('paypalbtnTypeOfPeriod'),
+        'data-amount': this.model.getPrefs('paypalbtnAmount'),
+        'data-currency': this.model.getPrefs('paypalbtnCurrency'),
+        'data-shipping': this.model.getPrefs('paypalbtnShipping'),
+        'data-tax': this.model.getPrefs('paypalbtnTax'),
+        'data-recurrence': this.model.getPrefs('paypalbtnRecurrences'),
+        'data-callback': this.model.getPrefs('paypalbtnCallbackUrl'),
+        'data-return': this.model.getPrefs('paypalbtnReturnUrl'),
+        'data-env': this.model.getPrefs('paypalbtnSandboxEnvironment')
+      });
+    },
 
-    return PaypalBtnController.extend('PaypalBtnController', {
+    /**
+     * Add PaypalBtn rule
+     * @memberOf PaypalBtnController
+     * @param {Event} e
+     */
+    addPaypalBtnRule: function addPaypalBtnRule(e) {
 
-        /**
-         * Set embedded content
-         * @memberOf PaypalBtnController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
-            this.view.get$item().renderEmbeddedContent({
-                merchant: this.model.getPrefs('paypalbtnMerchant'),
-                'data-btn': this.model.getPrefs('paypalbtnType'),
-                'data-name': this.model.getPrefs('paypalbtnName'),
-                'data-quantity': this.model.getPrefs('paypalbtnQuantity'),
-                'data-period': this.model.getPrefs('paypalbtnTypeOfPeriod'),
-                'data-amount': this.model.getPrefs('paypalbtnAmount'),
-                'data-currency': this.model.getPrefs('paypalbtnCurrency'),
-                'data-shipping': this.model.getPrefs('paypalbtnShipping'),
-                'data-tax': this.model.getPrefs('paypalbtnTax'),
-                'data-recurrence': this.model.getPrefs('paypalbtnRecurrences'),
-                'data-callback': this.model.getPrefs('paypalbtnCallbackUrl'),
-                'data-return': this.model.getPrefs('paypalbtnReturnUrl'),
-                'data-env': this.model.getPrefs('paypalbtnSandboxEnvironment')
-            });
-        },
+      /**
+       * Define $btn
+       * @type {*|jQuery|HTMLElement}
+       */
+      var $btn = $(e.target);
 
-        /**
-         * Add PaypalBtn rule
-         * @memberOf PaypalBtnController
-         * @param e
-         */
-        addPaypalBtnRule: function addPaypalBtnRule(e) {
+      /**
+       * Get scope
+       * @type {PaypalBtn|{name: string}}
+       */
+      var scope = this.scope;
 
-            /**
-             * Define $btn
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $btn = $(e.target);
+      scope.observer.publish(
+          scope.eventmanager.eventList.publishRule,
+          [$btn.attr('value'), scope.name]
+      );
+    }
 
-            /**
-             * Get scope
-             * @type {PaypalBtn|{name: string}}
-             */
-            var scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$btn.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

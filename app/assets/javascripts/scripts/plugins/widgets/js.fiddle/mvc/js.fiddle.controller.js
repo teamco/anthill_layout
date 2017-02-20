@@ -6,86 +6,75 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineJsFiddleController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define jsfiddle controller
+   * @class JsFiddleController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var JsFiddleController = function JsFiddleController() {
+  };
+
+  return JsFiddleController.extend('JsFiddleController', {
+
     /**
-     * Define jsfiddle controller
-     * @class JsFiddleController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf JsFiddleController
      */
-    var JsFiddleController = function JsFiddleController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
 
-    return JsFiddleController.extend('JsFiddleController', {
+      /**
+       * Get url
+       * @type {string|*}
+       */
+      var url = this.model.getPrefs('jsfiddleEmbedCode'),
+          embed = this.controller.getEmbedCode(url);
 
-        /**
-         * Set embedded content
-         * @memberOf JsFiddleController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
+      if (embed) {
+        this.view.elements.$jsfiddle.renderEmbeddedContent(embed);
+      }
+    },
 
-            /**
-             * Get url
-             * @type {string|*}
-             */
-            var url = this.model.getPrefs('jsfiddleEmbedCode'),
-                embed = this.controller.getEmbedCode(url);
+    /**
+     * Validate jsfiddle
+     * @memberOf JsFiddleController
+     * @param {string} embed
+     * @return {string|boolean}
+     */
+    getEmbedCode: function getEmbedCode(embed) {
 
-            if (embed) {
-                this.view.elements.$jsfiddle.renderEmbeddedContent(embed);
-            }
-        },
+      if (!embed) {
+        this.scope.logger.debug('Initial state');
+        return false;
+      }
 
-        /**
-         * Validate jsfiddle
-         * @memberOf JsFiddleController
-         * @param {string} embed
-         * @return {string|boolean}
-         */
-        getEmbedCode: function getEmbedCode(embed) {
+      // Convert to string
+      embed += '';
 
-            if (!embed) {
-                this.scope.logger.debug('Initial state');
-                return false;
-            }
+      if (embed.match(/^<iframe/)) {
 
-            // Convert to string
-            embed += '';
+        return $(embed).attr('src');
 
-            if (embed.match(/^<iframe/)) {
+      } else {
 
-                return $(embed).attr('src');
+        this.scope.logger.warn('Invalid JsFiddle embed code');
+        return false;
+      }
+    },
 
-            } else {
+    /**
+     * Add JsFiddle rule
+     * @memberOf JsFiddleController
+     * @param {Event} e
+     */
+    addJsFiddleRule: function addJsFiddleRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-                this.scope.logger.warn('Invalid JsFiddle embed code');
-                return false;
-            }
-        },
-
-        /**
-         * Add JsFiddle rule
-         * @memberOf JsFiddleController
-         * @param e
-         */
-        addJsFiddleRule: function addJsFiddleRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

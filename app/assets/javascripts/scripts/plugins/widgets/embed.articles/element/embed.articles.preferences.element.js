@@ -6,35 +6,37 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
-], function defineEmbedArticlesPreferencesElement(PluginElement, WidgetPreferences) {
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
+], function defineEmbedArticlesPreferencesElement(PluginElement,
+    WidgetPreferences) {
 
-    /**
-     * Define EmbedArticles Preferences Element
-     * @constructor
-     * @class EmbedArticlesPreferencesElement
-     * @param {EmbedArticlesView} view
-     * @param opts
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     * @returns {EmbedArticlesPreferencesElement}
-     */
-    var EmbedArticlesPreferencesElement = function EmbedArticlesPreferencesElement(view, opts) {
+  /**
+   * Define EmbedArticles Preferences Element
+   * @constructor
+   * @class EmbedArticlesPreferencesElement
+   * @param {EmbedArticlesView} view
+   * @param opts
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   * @returns {EmbedArticlesPreferencesElement}
+   */
+  var EmbedArticlesPreferencesElement = function EmbedArticlesPreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return EmbedArticlesPreferencesElement.extend(
-        'EmbedArticlesPreferencesElement', {}, 
-        PluginElement.prototype, 
-        WidgetPreferences.prototype
-    );
+  return EmbedArticlesPreferencesElement.extend(
+      'EmbedArticlesPreferencesElement', {},
+      PluginElement.prototype,
+      WidgetPreferences.prototype
+  );
 });

@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineLoginFacebookEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define LoginFacebook event manager
-     * @class LoginFacebookEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var LoginFacebookEventManager = function LoginFacebookEventManager() {
+  /**
+   * Define LoginFacebook event manager
+   * @class LoginFacebookEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var LoginFacebookEventManager = function LoginFacebookEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return LoginFacebookEventManager.extend('LoginFacebookEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return LoginFacebookEventManager.extend('LoginFacebookEventManager', {},
+      WidgetContentEventManager.prototype);
 });

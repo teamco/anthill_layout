@@ -7,108 +7,109 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/premiere.tv/element/premiere.tv.element',
-    'plugins/widgets/premiere.tv/element/premiere.tv.preferences.element',
-    'plugins/widgets/premiere.tv/element/premiere.tv.rules.element'
-], function definePremiereTvView(BaseView, Header, Footer, PremiereTvElement, PremiereTvPreferencesElement, PremiereTvRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/premiere.tv/element/premiere.tv.element',
+  'plugins/widgets/premiere.tv/element/premiere.tv.preferences.element',
+  'plugins/widgets/premiere.tv/element/premiere.tv.rules.element'
+], function definePremiereTvView(BaseView, Header, Footer, PremiereTvElement,
+    PremiereTvPreferencesElement, PremiereTvRulesElement) {
+
+  /**
+   * Define view
+   * @class PremiereTvView
+   * @extends BaseView
+   * @constructor
+   */
+  var PremiereTvView = function PremiereTvView() {
+  };
+
+  return PremiereTvView.extend('PremiereTvView', {
 
     /**
-     * Define view
-     * @class PremiereTvView
-     * @extends BaseView
-     * @constructor
+     * Render premieretv element
+     * @memberOf PremiereTvView
      */
-    var PremiereTvView = function PremiereTvView() {
-    };
+    renderPremiereTv: function renderPremiereTv() {
 
-    return PremiereTvView.extend('PremiereTvView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render premieretv element
-         * @memberOf PremiereTvView
-         */
-        renderPremiereTv: function renderPremiereTv() {
+      /**
+       * Define $premieretv
+       * @type {PremiereTvElement}
+       */
+      this.elements.$premieretv = new PremiereTvElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $premieretv
-             * @type {PremiereTvElement}
-             */
-            this.elements.$premieretv = new PremiereTvElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf PremiereTvView
+     * @returns {PremiereTvPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define PremiereTv Preferences Element
+       * @type {PremiereTvPreferencesElement}
+       */
+      this.elements.$preferences = new PremiereTvPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf PremiereTvView
-         * @returns {PremiereTvPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define PremiereTv Preferences Element
-             * @type {PremiereTvPreferencesElement}
-             */
-            this.elements.$preferences = new PremiereTvPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf PremiereTvView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {PremiereTvRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
+      /**
+       * Define data
+       * @type {*|{}}
+       */
+      var data = this.controller.getRules();
 
-        /**
-         * Render Rules
-         * @memberOf PremiereTvView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {PremiereTvRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define data
-             * @type {*|{}}
-             */
-            var data = this.controller.getRules();
-
-            /**
-             * Define PremiereTv Rules Element
-             * @type {PremiereTvRulesElement}
-             */
-            this.elements.$rules = new PremiereTvRulesElement(this, {
-                data: data,
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render premieretv
-         * @memberOf PremiereTvView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderPremiereTv.bind(this)
-            );
+      /**
+       * Define PremiereTv Rules Element
+       * @type {PremiereTvRulesElement}
+       */
+      this.elements.$rules = new PremiereTvRulesElement(this, {
+        data: data,
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render premieretv
+     * @memberOf PremiereTvView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderPremiereTv.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

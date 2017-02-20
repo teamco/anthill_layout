@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineTedEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define Ted event manager
-     * @class TedEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var TedEventManager = function TedEventManager() {
+  /**
+   * Define Ted event manager
+   * @class TedEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var TedEventManager = function TedEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return TedEventManager.extend('TedEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return TedEventManager.extend('TedEventManager', {},
+      WidgetContentEventManager.prototype);
 });

@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineRutubeEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define Rutube event manager
-     * @class RutubeEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var RutubeEventManager = function RutubeEventManager() {
+  /**
+   * Define Rutube event manager
+   * @class RutubeEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var RutubeEventManager = function RutubeEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return RutubeEventManager.extend('RutubeEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return RutubeEventManager.extend('RutubeEventManager', {},
+      WidgetContentEventManager.prototype);
 });

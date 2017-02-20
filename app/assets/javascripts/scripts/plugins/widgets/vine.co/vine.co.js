@@ -6,41 +6,42 @@
  */
 
 define([
-    'config/anthill',
-    'modules/MVC',
-    'plugins/widgets/vine.co/mvc/vine.co.controller',
-    'plugins/widgets/vine.co/mvc/vine.co.model',
-    'plugins/widgets/vine.co/mvc/vine.co.view',
-    'plugins/widgets/vine.co/mvc/vine.co.event.manager',
-    'plugins/widgets/vine.co/mvc/vine.co.permission'
-], function defineVineCo(AntHill, MVC, Controller, Model, View, EventManager, Permission) {
+  'config/anthill',
+  'modules/MVC',
+  'plugins/widgets/vine.co/mvc/vine.co.controller',
+  'plugins/widgets/vine.co/mvc/vine.co.model',
+  'plugins/widgets/vine.co/mvc/vine.co.view',
+  'plugins/widgets/vine.co/mvc/vine.co.event.manager',
+  'plugins/widgets/vine.co/mvc/vine.co.permission'
+], function defineVineCo(AntHill, MVC, Controller, Model, View, EventManager,
+    Permission) {
+
+  /**
+   * Define VineCo
+   * @param containment
+   * @param [opts]
+   * @constructor
+   * @class VineCo
+   * @extends AntHill
+   */
+  var VineCo = function VineCo(containment, opts) {
 
     /**
-     * Define VineCo
-     * @param containment
-     * @param [opts]
-     * @constructor
-     * @class VineCo
-     * @extends AntHill
+     * Define containment
+     * @memberOf VineCo
      */
-    var VineCo = function VineCo(containment, opts) {
+    this.containment = containment;
 
-        /**
-         * Define containment
-         * @memberOf VineCo
-         */
-        this.containment = containment;
+    /**
+     * Define referrer
+     * @memberOf VineCo
+     * @type {*}
+     */
+    this.referrer = undefined;
 
-        /**
-         * Define referrer
-         * @memberOf VineCo
-         * @type {*}
-         */
-        this.referrer = undefined;
-
-        /**
-         * Define defaults
-         * @type {{
+    /**
+     * Define defaults
+     * @type {{
          *      plugin: boolean,
          *      html: {
          *          style: string,
@@ -55,50 +56,48 @@ define([
          *          }
          *      }
          * }}
-         */
-        var DEFAULTS = {
-            plugin: true,
-            html: {
-                style: 'default',
-                header: false,
-                footer: false,
-                padding: {
-                    top: 0,
-                    right: 0,
-                    bottom: 0,
-                    left: 0
-                }
-            }
-        };
-
-        /**
-         * Define MVC
-         * @memberOf VineCo
-         * @type {MVC}
-         */
-        this.mvc = new MVC({
-            scope: this,
-            config: [
-                {uuid: this.containment.model.getContentUUID()},
-                DEFAULTS
-            ],
-            components: [
-                Controller,
-                Model,
-                View,
-                EventManager,
-                Permission
-            ],
-            render: true
-        });
-
-        this.observer.publish(
-            this.eventmanager.eventList.initWidget,
-            opts
-        );
+     */
+    var DEFAULTS = {
+      plugin: true,
+      html: {
+        style: 'default',
+        header: false,
+        footer: false,
+        padding: {
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0
+        }
+      }
     };
 
-    return VineCo.extend('VineCo', {
+    /**
+     * Define MVC
+     * @memberOf VineCo
+     * @type {MVC}
+     */
+    this.mvc = new MVC({
+      scope: this,
+      config: [
+        {uuid: this.containment.model.getContentUUID()},
+        DEFAULTS
+      ],
+      components: [
+        Controller,
+        Model,
+        View,
+        EventManager,
+        Permission
+      ],
+      render: true
+    });
 
-    }, AntHill.prototype);
+    this.observer.publish(
+        this.eventmanager.eventList.initWidget,
+        opts
+    );
+  };
+
+  return VineCo.extend('VineCo', {}, AntHill.prototype);
 });

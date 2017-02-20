@@ -7,101 +7,102 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/wikimapia/element/wikimapia.element',
-    'plugins/widgets/wikimapia/element/wikimapia.preferences.element',
-    'plugins/widgets/wikimapia/element/wikimapia.rules.element'
-], function defineWikimapiaView(BaseView, Header, Footer, WikimapiaElement, WikimapiaPreferencesElement, WikimapiaRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/wikimapia/element/wikimapia.element',
+  'plugins/widgets/wikimapia/element/wikimapia.preferences.element',
+  'plugins/widgets/wikimapia/element/wikimapia.rules.element'
+], function defineWikimapiaView(BaseView, Header, Footer, WikimapiaElement,
+    WikimapiaPreferencesElement, WikimapiaRulesElement) {
+
+  /**
+   * Define view
+   * @class WikimapiaView
+   * @extends BaseView
+   * @constructor
+   */
+  var WikimapiaView = function WikimapiaView() {
+  };
+
+  return WikimapiaView.extend('WikimapiaView', {
 
     /**
-     * Define view
-     * @class WikimapiaView
-     * @extends BaseView
-     * @constructor
+     * Render Wikimapia element
+     * @memberOf WikimapiaView
      */
-    var WikimapiaView = function WikimapiaView() {
-    };
+    renderWikimapia: function renderWikimapia() {
 
-    return WikimapiaView.extend('WikimapiaView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render Wikimapia element
-         * @memberOf WikimapiaView
-         */
-        renderWikimapia: function renderWikimapia() {
+      /**
+       * Define $wikimapia
+       * @type {WikimapiaElement}
+       */
+      this.elements.$wikimapia = new WikimapiaElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $wikimapia
-             * @type {WikimapiaElement}
-             */
-            this.elements.$wikimapia = new WikimapiaElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf WikimapiaView
+     * @returns {WikimapiaPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define Wikimapia Preferences Element
+       * @type {WikimapiaPreferencesElement}
+       */
+      this.elements.$preferences = new WikimapiaPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf WikimapiaView
-         * @returns {WikimapiaPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define Wikimapia Preferences Element
-             * @type {WikimapiaPreferencesElement}
-             */
-            this.elements.$preferences = new WikimapiaPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf WikimapiaView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {WikimapiaRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
-
-        /**
-         * Render Rules
-         * @memberOf WikimapiaView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {WikimapiaRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define Wikimapia Rules Element
-             * @type {WikimapiaRulesElement}
-             */
-            this.elements.$rules = new WikimapiaRulesElement(this, {
-                data: this.controller.getRules(),
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render Wikimapia
-         * @memberOf WikimapiaView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderWikimapia.bind(this)
-            );
+      /**
+       * Define Wikimapia Rules Element
+       * @type {WikimapiaRulesElement}
+       */
+      this.elements.$rules = new WikimapiaRulesElement(this, {
+        data: this.controller.getRules(),
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype);
+      return this.get$rules();
+    },
+
+    /**
+     * Render Wikimapia
+     * @memberOf WikimapiaView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderWikimapia.bind(this)
+      );
+    }
+
+  }, BaseView.prototype);
 });

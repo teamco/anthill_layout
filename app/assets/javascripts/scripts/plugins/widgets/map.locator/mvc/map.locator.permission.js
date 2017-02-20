@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineMapLocatorPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class MapLocatorPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var MapLocatorPermission = function MapLocatorPermission() {
+  /**
+   * Define Permissions
+   * @class MapLocatorPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var MapLocatorPermission = function MapLocatorPermission() {
 
-    };
+  };
 
-    return MapLocatorPermission.extend('MapLocatorPermission', {
-
-    }, BasePermission.prototype);
+  return MapLocatorPermission.extend('MapLocatorPermission', {},
+      BasePermission.prototype);
 });

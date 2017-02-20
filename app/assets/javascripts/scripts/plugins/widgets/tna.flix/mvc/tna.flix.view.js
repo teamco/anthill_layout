@@ -7,108 +7,109 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/tna.flix/element/tna.flix.element',
-    'plugins/widgets/tna.flix/element/tna.flix.preferences.element',
-    'plugins/widgets/tna.flix/element/tna.flix.rules.element'
-], function defineTnaFlixView(BaseView, Header, Footer, TnaFlixElement, TnaFlixPreferencesElement, TnaFlixRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/tna.flix/element/tna.flix.element',
+  'plugins/widgets/tna.flix/element/tna.flix.preferences.element',
+  'plugins/widgets/tna.flix/element/tna.flix.rules.element'
+], function defineTnaFlixView(BaseView, Header, Footer, TnaFlixElement,
+    TnaFlixPreferencesElement, TnaFlixRulesElement) {
+
+  /**
+   * Define view
+   * @class TnaFlixView
+   * @extends BaseView
+   * @constructor
+   */
+  var TnaFlixView = function TnaFlixView() {
+  };
+
+  return TnaFlixView.extend('TnaFlixView', {
 
     /**
-     * Define view
-     * @class TnaFlixView
-     * @extends BaseView
-     * @constructor
+     * Render tnaflix element
+     * @memberOf TnaFlixView
      */
-    var TnaFlixView = function TnaFlixView() {
-    };
+    renderTnaFlix: function renderTnaFlix() {
 
-    return TnaFlixView.extend('TnaFlixView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render tnaflix element
-         * @memberOf TnaFlixView
-         */
-        renderTnaFlix: function renderTnaFlix() {
+      /**
+       * Define $tnaflix
+       * @type {TnaFlixElement}
+       */
+      this.elements.$tnaflix = new TnaFlixElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $tnaflix
-             * @type {TnaFlixElement}
-             */
-            this.elements.$tnaflix = new TnaFlixElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf TnaFlixView
+     * @returns {TnaFlixPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define TnaFlix Preferences Element
+       * @type {TnaFlixPreferencesElement}
+       */
+      this.elements.$preferences = new TnaFlixPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf TnaFlixView
-         * @returns {TnaFlixPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define TnaFlix Preferences Element
-             * @type {TnaFlixPreferencesElement}
-             */
-            this.elements.$preferences = new TnaFlixPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf TnaFlixView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {TnaFlixRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
+      /**
+       * Define data
+       * @type {*|{}}
+       */
+      var data = this.controller.getRules();
 
-        /**
-         * Render Rules
-         * @memberOf TnaFlixView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {TnaFlixRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define data
-             * @type {*|{}}
-             */
-            var data = this.controller.getRules();
-
-            /**
-             * Define TnaFlix Rules Element
-             * @type {TnaFlixRulesElement}
-             */
-            this.elements.$rules = new TnaFlixRulesElement(this, {
-                data: data,
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render tnaflix
-         * @memberOf TnaFlixView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderTnaFlix.bind(this)
-            );
+      /**
+       * Define TnaFlix Rules Element
+       * @type {TnaFlixRulesElement}
+       */
+      this.elements.$rules = new TnaFlixRulesElement(this, {
+        data: data,
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render tnaflix
+     * @memberOf TnaFlixView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderTnaFlix.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

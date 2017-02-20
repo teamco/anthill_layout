@@ -6,38 +6,37 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/rules/widget.base.rules'
+  'plugins/plugin.element',
+  'plugins/rules/widget.base.rules'
 ], function definePornHostRulesElement(PluginElement, BaseWidgetRules) {
 
-    /**
-     * Define PornHost Rules Element
-     * @param view
-     * @param opts
-     * @returns {PornHostRulesElement}
-     * @constructor
-     * @class PornHostRulesElement
-     * @extends PluginElement
-     * @extends BaseWidgetRules
-     */
-    var PornHostRulesElement = function PornHostRulesElement(view, opts) {
+  /**
+   * Define PornHost Rules Element
+   * @param view
+   * @param opts
+   * @returns {PornHostRulesElement}
+   * @constructor
+   * @class PornHostRulesElement
+   * @extends PluginElement
+   * @extends BaseWidgetRules
+   */
+  var PornHostRulesElement = function PornHostRulesElement(view, opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBaseRulesData(
-            opts.data,
-            opts.rules.widget,
-            opts.rules.content
-        );
+    this.renderBaseRulesData(
+        opts.data,
+        opts.rules.widget,
+        opts.rules.content
+    );
 
-        return this;
-    };
+    return this;
+  };
 
-    return PornHostRulesElement.extend('PornHostRulesElement', {
-
-    }, PluginElement.prototype, BaseWidgetRules.prototype);
+  return PornHostRulesElement.extend('PornHostRulesElement', {},
+      PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineRdioEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define Rdio event manager
-     * @class RdioEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var RdioEventManager = function RdioEventManager() {
+  /**
+   * Define Rdio event manager
+   * @class RdioEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var RdioEventManager = function RdioEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return RdioEventManager.extend('RdioEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return RdioEventManager.extend('RdioEventManager', {},
+      WidgetContentEventManager.prototype);
 });

@@ -7,108 +7,109 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/spankwire/element/spankwire.element',
-    'plugins/widgets/spankwire/element/spankwire.preferences.element',
-    'plugins/widgets/spankwire/element/spankwire.rules.element'
-], function defineSpankwireView(BaseView, Header, Footer, SpankwireElement, SpankwirePreferencesElement, SpankwireRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/spankwire/element/spankwire.element',
+  'plugins/widgets/spankwire/element/spankwire.preferences.element',
+  'plugins/widgets/spankwire/element/spankwire.rules.element'
+], function defineSpankwireView(BaseView, Header, Footer, SpankwireElement,
+    SpankwirePreferencesElement, SpankwireRulesElement) {
+
+  /**
+   * Define view
+   * @class SpankwireView
+   * @extends BaseView
+   * @constructor
+   */
+  var SpankwireView = function SpankwireView() {
+  };
+
+  return SpankwireView.extend('SpankwireView', {
 
     /**
-     * Define view
-     * @class SpankwireView
-     * @extends BaseView
-     * @constructor
+     * Render spankwire element
+     * @memberOf SpankwireView
      */
-    var SpankwireView = function SpankwireView() {
-    };
+    renderSpankwire: function renderSpankwire() {
 
-    return SpankwireView.extend('SpankwireView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render spankwire element
-         * @memberOf SpankwireView
-         */
-        renderSpankwire: function renderSpankwire() {
+      /**
+       * Define $spankwire
+       * @type {SpankwireElement}
+       */
+      this.elements.$spankwire = new SpankwireElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $spankwire
-             * @type {SpankwireElement}
-             */
-            this.elements.$spankwire = new SpankwireElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf SpankwireView
+     * @returns {SpankwirePreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define Spankwire Preferences Element
+       * @type {SpankwirePreferencesElement}
+       */
+      this.elements.$preferences = new SpankwirePreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf SpankwireView
-         * @returns {SpankwirePreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define Spankwire Preferences Element
-             * @type {SpankwirePreferencesElement}
-             */
-            this.elements.$preferences = new SpankwirePreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf SpankwireView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {SpankwireRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
+      /**
+       * Define data
+       * @type {*|{}}
+       */
+      var data = this.controller.getRules();
 
-        /**
-         * Render Rules
-         * @memberOf SpankwireView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {SpankwireRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define data
-             * @type {*|{}}
-             */
-            var data = this.controller.getRules();
-
-            /**
-             * Define Spankwire Rules Element
-             * @type {SpankwireRulesElement}
-             */
-            this.elements.$rules = new SpankwireRulesElement(this, {
-                data: data,
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render spankwire
-         * @memberOf SpankwireView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderSpankwire.bind(this)
-            );
+      /**
+       * Define Spankwire Rules Element
+       * @type {SpankwireRulesElement}
+       */
+      this.elements.$rules = new SpankwireRulesElement(this, {
+        data: data,
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render spankwire
+     * @memberOf SpankwireView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderSpankwire.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

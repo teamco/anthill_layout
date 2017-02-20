@@ -6,43 +6,43 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineExtremeTubeElement(PluginElement) {
 
+  /**
+   * Define ExtremeTube Element
+   * @param view
+   * @param opts
+   * @returns {ExtremeTubeElement}
+   * @constructor
+   * @class ExtremeTubeElement
+   * @extends PluginElement
+   */
+  var ExtremeTubeElement = function ExtremeTubeElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('extreme.tube', {resource: '/widgets'});
+
+    return this;
+  };
+
+  return ExtremeTubeElement.extend('ExtremeTubeElement', {
+
     /**
-     * Define ExtremeTube Element
-     * @param view
-     * @param opts
-     * @returns {ExtremeTubeElement}
-     * @constructor
-     * @class ExtremeTubeElement
-     * @extends PluginElement
+     * Render Embedded content
+     * @memberOf ExtremeTubeElement
+     * @param {string} url
      */
-    var ExtremeTubeElement = function ExtremeTubeElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent(url) {
+      this.$.append(
+          this.renderIframe(url)
+      );
+    }
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
-
-        this.addCSS('extreme.tube', {resource: '/widgets'});
-
-        return this;
-    };
-
-    return ExtremeTubeElement.extend('ExtremeTubeElement', {
-
-        /**
-         * Render Embedded content
-         * @memberOf ExtremeTubeElement
-         * @param {string} url
-         */
-        renderEmbeddedContent: function renderEmbeddedContent(url) {
-            this.$.append(
-                this.renderIframe(url)
-            );
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 
 });

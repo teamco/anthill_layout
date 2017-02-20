@@ -6,56 +6,41 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
-], function defineAccuweatherVideosController(PluginBase, WidgetContentController) {
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
+], function defineAccuweatherVideosController(PluginBase,
+    WidgetContentController) {
+
+  /**
+   * Define AccuweatherVideos controller
+   * @class AccuweatherVideosController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var AccuweatherVideosController = function AccuweatherVideosController() {
+  };
+
+  return AccuweatherVideosController.extend('AccuweatherVideosController', {
 
     /**
-     * Define AccuweatherVideos controller
-     * @class AccuweatherVideosController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf AccuweatherVideosController
      */
-    var AccuweatherVideosController = function AccuweatherVideosController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
+      this.view.get$item().renderEmbeddedContent(
+          this.model.getPrefs('accuweathervideosEmbedCode')
+      );
+    },
 
-    return AccuweatherVideosController.extend('AccuweatherVideosController', {
+    /**
+     * Add AccuweatherVideos rule
+     * @memberOf AccuweatherVideosController
+     * @param {Event} e
+     */
+    addAccuweatherVideosRule: function addAccuweatherVideosRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-        /**
-         * Set embedded content
-         * @memberOf AccuweatherVideosController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
-            this.view.get$item().renderEmbeddedContent(
-                this.model.getPrefs('accuweathervideosEmbedCode')
-            );
-        },
-
-        /**
-         * Add AccuweatherVideos rule
-         * @memberOf AccuweatherVideosController
-         * @param e
-         */
-        addAccuweatherVideosRule: function addAccuweatherVideosRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target);
-
-            /**
-             * Get scope
-             * @type {AccuweatherVideos|{name: string}}
-             */
-            var scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

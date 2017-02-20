@@ -6,44 +6,45 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineFastpicModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define Fastpic model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class FastpicModel
+   * @constructor
+   */
+  var FastpicModel = function FastpicModel() {
+
     /**
-     * Define Fastpic model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class FastpicModel
-     * @constructor
+     * Define preferences
+     * @property FastpicModel
+     * @type {{fastpicImageUrl: {type: string, disabled: boolean, value:
+     *     string, visible: boolean}}}
      */
-    var FastpicModel = function FastpicModel() {
-
-        /**
-         * Define preferences
-         * @property FastpicModel
-         * @type {{fastpicImageUrl: {type: string, disabled: boolean, value: string, visible: boolean}}}
-         */
-        this.preferences = {
-            fastpicImageUrl: {
-                type: 'textarea',
-                disabled: false,
-                value: 'http://i66.fastpic.ru/big/2015/0315/7f/2681ec8b88c4af3178ed8b59cb5a617f.jpeg',
-                visible: true
-            }
-        };
-
-        /**
-         * Define rules
-         * @property FastpicModel
-         * @type {{}}
-         */
-        this.rules = {};
+    this.preferences = {
+      fastpicImageUrl: {
+        type: 'textarea',
+        disabled: false,
+        value: 'http://i66.fastpic.ru/big/2015/0315/7f/2681ec8b88c4af3178ed8b59cb5a617f.jpeg',
+        visible: true
+      }
     };
 
-    return FastpicModel.extend(
-        'FastpicModel', {},
-        BaseModel.prototype,
-        WidgetContentModel.prototype
-    );
+    /**
+     * Define rules
+     * @property FastpicModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
+
+  return FastpicModel.extend(
+      'FastpicModel', {},
+      BaseModel.prototype,
+      WidgetContentModel.prototype
+  );
 });

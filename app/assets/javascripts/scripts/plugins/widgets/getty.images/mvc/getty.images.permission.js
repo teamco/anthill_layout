@@ -7,20 +7,20 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineGettyImagesPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class GettyImagesPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var GettyImagesPermission = function GettyImagesPermission() {
-    };
+  /**
+   * Define Permissions
+   * @class GettyImagesPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var GettyImagesPermission = function GettyImagesPermission() {
+  };
 
-    return GettyImagesPermission.extend(
-        'GettyImagesPermission', {}, 
-        BasePermission.prototype
-    );
+  return GettyImagesPermission.extend(
+      'GettyImagesPermission', {},
+      BasePermission.prototype
+  );
 });

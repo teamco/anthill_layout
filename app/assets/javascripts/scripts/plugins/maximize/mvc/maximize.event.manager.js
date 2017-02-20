@@ -7,28 +7,28 @@
  */
 
 define([
-    'modules/Event'
+  'modules/Event'
 ], function defineMaximizeEventManager(BaseEvent) {
 
+  /**
+   * Define maximize event manager
+   * @class MaximizeEventManager
+   * @constructor
+   * @extends BaseEvent
+   */
+  var MaximizeEventManager = function MaximizeEventManager() {
+
     /**
-     * Define maximize event manager
-     * @class MaximizeEventManager
-     * @constructor
-     * @extends BaseEvent
+     * Define events
+     * @property MaximizeEventManager
+     * @type {{}}
      */
-    var MaximizeEventManager = function MaximizeEventManager() {
+    this.events = {};
 
-        /**
-         * Define events
-         * @property MaximizeEventManager
-         * @type {{}}
-         */
-        this.events = {};
-
-        /**
-         * Define event list
-         * @property MaximizeEventManager
-         * @type {{
+    /**
+     * Define event list
+     * @property MaximizeEventManager
+     * @type {{
          *      updateTranslations: string,
          *      loadModuleContent: string,
          *      storeItem: string,
@@ -36,18 +36,18 @@ define([
          *      prepareActiveComponent: string,
          *      defineInteraction: string
          * }}
-         */
-        this.eventList = {
-            updateTranslations: 'update.translations',
-            loadModuleContent: 'load.module.content',
-            defineInteraction: 'define.interaction',
-            storeItem: 'store.item',
-            prepareActiveComponent: 'prepare.active.component',
-            setActiveContent: 'set.active.content'
-        };
+     */
+    this.eventList = {
+      updateTranslations: 'update.translations',
+      loadModuleContent: 'load.module.content',
+      defineInteraction: 'define.interaction',
+      storeItem: 'store.item',
+      prepareActiveComponent: 'prepare.active.component',
+      setActiveContent: 'set.active.content'
     };
+  };
 
-    return MaximizeEventManager.extend(
-        'MaximizeEventManager', {}, BaseEvent.prototype
-    );
+  return MaximizeEventManager.extend(
+      'MaximizeEventManager', {}, BaseEvent.prototype
+  );
 });

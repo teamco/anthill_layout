@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function definePanelPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class PanelPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var PanelPermission = function PanelPermission() {
+  /**
+   * Define Permissions
+   * @class PanelPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var PanelPermission = function PanelPermission() {
 
-    };
+  };
 
-    return PanelPermission.extend('PanelPermission', {
-
-    }, BasePermission.prototype);
+  return PanelPermission.extend('PanelPermission', {},
+      BasePermission.prototype);
 });

@@ -7,23 +7,23 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineEmptyEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define Empty event manager
-     * @class EmptyEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var EmptyEventManager = function EmptyEventManager() {
+  /**
+   * Define Empty event manager
+   * @class EmptyEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var EmptyEventManager = function EmptyEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return EmptyEventManager.extend(
-        'EmptyEventManager', {},
-        WidgetContentEventManager.prototype
-    );
+  return EmptyEventManager.extend(
+      'EmptyEventManager', {},
+      WidgetContentEventManager.prototype
+  );
 });

@@ -6,38 +6,37 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/rules/widget.base.rules'
+  'plugins/plugin.element',
+  'plugins/rules/widget.base.rules'
 ], function defineRssRulesElement(PluginElement, BaseWidgetRules) {
 
-    /**
-     * Define Rss Rules Element
-     * @param view
-     * @param opts
-     * @returns {RssRulesElement}
-     * @constructor
-     * @class RssRulesElement
-     * @extends PluginElement
-     * @extends BaseWidgetRules
-     */
-    var RssRulesElement = function RssRulesElement(view, opts) {
+  /**
+   * Define Rss Rules Element
+   * @param view
+   * @param opts
+   * @returns {RssRulesElement}
+   * @constructor
+   * @class RssRulesElement
+   * @extends PluginElement
+   * @extends BaseWidgetRules
+   */
+  var RssRulesElement = function RssRulesElement(view, opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBaseRulesData(
-            opts.data,
-            opts.rules.widget,
-            opts.rules.content
-        );
+    this.renderBaseRulesData(
+        opts.data,
+        opts.rules.widget,
+        opts.rules.content
+    );
 
-        return this;
-    };
+    return this;
+  };
 
-    return RssRulesElement.extend('RssRulesElement', {
-
-    }, PluginElement.prototype, BaseWidgetRules.prototype);
+  return RssRulesElement.extend('RssRulesElement', {}, PluginElement.prototype,
+      BaseWidgetRules.prototype);
 
 });

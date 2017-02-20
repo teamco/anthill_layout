@@ -6,35 +6,37 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
-], function defineSketchfabPreferencesElement(PluginElement, WidgetPreferences) {
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
+], function defineSketchfabPreferencesElement(PluginElement,
+    WidgetPreferences) {
 
-    /**
-     * Define Sketchfab Preferences Element
-     * @constructor
-     * @class SketchfabPreferencesElement
-     * @param {SketchfabView} view
-     * @param opts
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     * @returns {SketchfabPreferencesElement}
-     */
-    var SketchfabPreferencesElement = function SketchfabPreferencesElement(view, opts) {
+  /**
+   * Define Sketchfab Preferences Element
+   * @constructor
+   * @class SketchfabPreferencesElement
+   * @param {SketchfabView} view
+   * @param opts
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   * @returns {SketchfabPreferencesElement}
+   */
+  var SketchfabPreferencesElement = function SketchfabPreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return SketchfabPreferencesElement.extend(
-        'SketchfabPreferencesElement', {}, 
-        PluginElement.prototype, 
-        WidgetPreferences.prototype
-    );
+  return SketchfabPreferencesElement.extend(
+      'SketchfabPreferencesElement', {},
+      PluginElement.prototype,
+      WidgetPreferences.prototype
+  );
 });

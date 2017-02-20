@@ -7,23 +7,23 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineIftttEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define Ifttt event manager
-     * @class IftttEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var IftttEventManager = function IftttEventManager() {
+  /**
+   * Define Ifttt event manager
+   * @class IftttEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var IftttEventManager = function IftttEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return IftttEventManager.extend(
-        'IftttEventManager', {},
-        WidgetContentEventManager.prototype
-    );
+  return IftttEventManager.extend(
+      'IftttEventManager', {},
+      WidgetContentEventManager.prototype
+  );
 });

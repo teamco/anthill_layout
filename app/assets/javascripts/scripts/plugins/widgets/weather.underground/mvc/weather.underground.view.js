@@ -7,101 +7,104 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/weather.underground/element/weather.underground.element',
-    'plugins/widgets/weather.underground/element/weather.underground.preferences.element',
-    'plugins/widgets/weather.underground/element/weather.underground.rules.element'
-], function defineWeatherUndergroundView(BaseView, Header, Footer, WeatherUndergroundElement, WeatherUndergroundPreferencesElement, WeatherUndergroundRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/weather.underground/element/weather.underground.element',
+  'plugins/widgets/weather.underground/element/weather.underground.preferences.element',
+  'plugins/widgets/weather.underground/element/weather.underground.rules.element'
+], function defineWeatherUndergroundView(BaseView, Header, Footer,
+    WeatherUndergroundElement, WeatherUndergroundPreferencesElement,
+    WeatherUndergroundRulesElement) {
+
+  /**
+   * Define view
+   * @class WeatherUndergroundView
+   * @extends BaseView
+   * @constructor
+   */
+  var WeatherUndergroundView = function WeatherUndergroundView() {
+  };
+
+  return WeatherUndergroundView.extend('WeatherUndergroundView', {
 
     /**
-     * Define view
-     * @class WeatherUndergroundView
-     * @extends BaseView
-     * @constructor
+     * Render WeatherUnderground element
+     * @memberOf WeatherUndergroundView
      */
-    var WeatherUndergroundView = function WeatherUndergroundView() {
-    };
+    renderWeatherUnderground: function renderWeatherUnderground() {
 
-    return WeatherUndergroundView.extend('WeatherUndergroundView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render WeatherUnderground element
-         * @memberOf WeatherUndergroundView
-         */
-        renderWeatherUnderground: function renderWeatherUnderground() {
+      /**
+       * Define $weatherunderground
+       * @type {WeatherUndergroundElement}
+       */
+      this.elements.$weatherunderground = new WeatherUndergroundElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $weatherunderground
-             * @type {WeatherUndergroundElement}
-             */
-            this.elements.$weatherunderground = new WeatherUndergroundElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf WeatherUndergroundView
+     * @returns {WeatherUndergroundPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define WeatherUnderground Preferences Element
+       * @type {WeatherUndergroundPreferencesElement}
+       */
+      this.elements.$preferences =
+          new WeatherUndergroundPreferencesElement(this, {
+            data: this.controller.getPreferences()
+          });
 
-        /**
-         * Render Prefs
-         * @memberOf WeatherUndergroundView
-         * @returns {WeatherUndergroundPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define WeatherUnderground Preferences Element
-             * @type {WeatherUndergroundPreferencesElement}
-             */
-            this.elements.$preferences = new WeatherUndergroundPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf WeatherUndergroundView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {WeatherUndergroundRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
-
-        /**
-         * Render Rules
-         * @memberOf WeatherUndergroundView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {WeatherUndergroundRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define WeatherUnderground Rules Element
-             * @type {WeatherUndergroundRulesElement}
-             */
-            this.elements.$rules = new WeatherUndergroundRulesElement(this, {
-                data: this.controller.getRules(),
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render WeatherUnderground
-         * @memberOf WeatherUndergroundView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderWeatherUnderground.bind(this)
-            );
+      /**
+       * Define WeatherUnderground Rules Element
+       * @type {WeatherUndergroundRulesElement}
+       */
+      this.elements.$rules = new WeatherUndergroundRulesElement(this, {
+        data: this.controller.getRules(),
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype);
+      return this.get$rules();
+    },
+
+    /**
+     * Render WeatherUnderground
+     * @memberOf WeatherUndergroundView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderWeatherUnderground.bind(this)
+      );
+    }
+
+  }, BaseView.prototype);
 });

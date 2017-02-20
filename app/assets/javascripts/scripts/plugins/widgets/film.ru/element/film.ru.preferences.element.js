@@ -6,35 +6,35 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
 ], function defineFilmRuPreferencesElement(PluginElement, WidgetPreferences) {
 
-    /**
-     * Define FilmRu Preferences Element
-     * @constructor
-     * @class FilmRuPreferencesElement
-     * @param {FilmRuView} view
-     * @param opts
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     * @returns {FilmRuPreferencesElement}
-     */
-    var FilmRuPreferencesElement = function FilmRuPreferencesElement(view, opts) {
+  /**
+   * Define FilmRu Preferences Element
+   * @constructor
+   * @class FilmRuPreferencesElement
+   * @param {FilmRuView} view
+   * @param opts
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   * @returns {FilmRuPreferencesElement}
+   */
+  var FilmRuPreferencesElement = function FilmRuPreferencesElement(view, opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return FilmRuPreferencesElement.extend(
-        'FilmRuPreferencesElement', {}, 
-        PluginElement.prototype, 
-        WidgetPreferences.prototype
-    );
+  return FilmRuPreferencesElement.extend(
+      'FilmRuPreferencesElement', {},
+      PluginElement.prototype,
+      WidgetPreferences.prototype
+  );
 });

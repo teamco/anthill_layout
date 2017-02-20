@@ -6,53 +6,54 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineVimeoModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define Vimeo model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class VimeoModel
+   * @constructor
+   */
+  var VimeoModel = function VimeoModel() {
+
     /**
-     * Define Vimeo model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class VimeoModel
-     * @constructor
-     */
-    var VimeoModel = function VimeoModel() {
-
-        /**
-         * Define preferences
-         * @memberOf VimeoModel
-         * @type {{
-         *      vimeoUrl: {type: string, disabled: boolean, value: undefined, visible: boolean}
+     * Define preferences
+     * @memberOf VimeoModel
+     * @type {{
+         *      vimeoUrl: {type: string, disabled: boolean, value: undefined,
+         *     visible: boolean}
          * }}
-         */
-        this.preferences = {
-            vimeoUrl: {
-                type: 'text',
-                disabled: false,
-                value: undefined,
-                visible: true
-            }
-        };
-
-        /**
-         * Define rules
-         * @memberOf VimeoModel
-         * @type {{}}
-         */
-        this.rules = {};
+     */
+    this.preferences = {
+      vimeoUrl: {
+        type: 'text',
+        disabled: false,
+        value: undefined,
+        visible: true
+      }
     };
 
-    return VimeoModel.extend('VimeoModel', {
+    /**
+     * Define rules
+     * @memberOf VimeoModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        /**
-         * Set Vimeo Url
-         * @memberOf VimeoModel
-         * @param {string} url
-         */
-        setVimeoUrl: function setVimeoUrl(url) {
-            this.setPrefs('vimeoUrl', url);
-        }
+  return VimeoModel.extend('VimeoModel', {
 
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    /**
+     * Set Vimeo Url
+     * @memberOf VimeoModel
+     * @param {string} url
+     */
+    setVimeoUrl: function setVimeoUrl(url) {
+      this.setPrefs('vimeoUrl', url);
+    }
+
+  }, BaseModel.prototype, WidgetContentModel.prototype);
 });

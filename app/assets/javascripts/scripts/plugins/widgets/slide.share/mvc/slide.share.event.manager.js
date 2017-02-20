@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineSlideShareEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define SlideShare event manager
-     * @class SlideShareEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var SlideShareEventManager = function SlideShareEventManager() {
+  /**
+   * Define SlideShare event manager
+   * @class SlideShareEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var SlideShareEventManager = function SlideShareEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return SlideShareEventManager.extend('SlideShareEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return SlideShareEventManager.extend('SlideShareEventManager', {},
+      WidgetContentEventManager.prototype);
 });

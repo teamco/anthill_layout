@@ -6,44 +6,45 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineSapoVideosModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define SapoVideos model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class SapoVideosModel
+   * @constructor
+   */
+  var SapoVideosModel = function SapoVideosModel() {
+
     /**
-     * Define SapoVideos model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class SapoVideosModel
-     * @constructor
+     * Define preferences
+     * @property SapoVideosModel
+     * @type {{sapovideosEmbedCode: {type: string, disabled: boolean, value:
+     *     string, visible: boolean}}}
      */
-    var SapoVideosModel = function SapoVideosModel() {
-
-        /**
-         * Define preferences
-         * @property SapoVideosModel
-         * @type {{sapovideosEmbedCode: {type: string, disabled: boolean, value: string, visible: boolean}}}
-         */
-        this.preferences = {
-            sapovideosEmbedCode: {
-                type: 'textarea',
-                disabled: false,
-                value: '<iframe src="http://rd3.videos.sapo.pt/playhtml?file=http://rd3.videos.sapo.pt/wjmdpVtN2JRLBTH1VpSJ/mov/1" frameborder="0" scrolling="no" width="640" height="360" webkitallowfullscreen mozallowfullscreen allowfullscreen ></iframe>',
-                visible: true
-            }
-        };
-
-        /**
-         * Define rules
-         * @property SapoVideosModel
-         * @type {{}}
-         */
-        this.rules = {};
+    this.preferences = {
+      sapovideosEmbedCode: {
+        type: 'textarea',
+        disabled: false,
+        value: '<iframe src="http://rd3.videos.sapo.pt/playhtml?file=http://rd3.videos.sapo.pt/wjmdpVtN2JRLBTH1VpSJ/mov/1" frameborder="0" scrolling="no" width="640" height="360" webkitallowfullscreen mozallowfullscreen allowfullscreen ></iframe>',
+        visible: true
+      }
     };
 
-    return SapoVideosModel.extend('SapoVideosModel', {
+    /**
+     * Define rules
+     * @property SapoVideosModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        // Setter
+  return SapoVideosModel.extend('SapoVideosModel', {
 
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    // Setter
+
+  }, BaseModel.prototype, WidgetContentModel.prototype);
 });

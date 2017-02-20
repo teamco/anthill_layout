@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineVidmeEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define Vidme event manager
-     * @class VidmeEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var VidmeEventManager = function VidmeEventManager() {
+  /**
+   * Define Vidme event manager
+   * @class VidmeEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var VidmeEventManager = function VidmeEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return VidmeEventManager.extend('VidmeEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return VidmeEventManager.extend('VidmeEventManager', {},
+      WidgetContentEventManager.prototype);
 });

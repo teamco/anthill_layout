@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineIssuuEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define Issuu event manager
-     * @class IssuuEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var IssuuEventManager = function IssuuEventManager() {
+  /**
+   * Define Issuu event manager
+   * @class IssuuEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var IssuuEventManager = function IssuuEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return IssuuEventManager.extend('IssuuEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return IssuuEventManager.extend('IssuuEventManager', {},
+      WidgetContentEventManager.prototype);
 });

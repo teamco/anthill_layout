@@ -6,56 +6,40 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineLearningAppsController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define LearningApps controller
+   * @class LearningAppsController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var LearningAppsController = function LearningAppsController() {
+  };
+
+  return LearningAppsController.extend('LearningAppsController', {
+
     /**
-     * Define LearningApps controller
-     * @class LearningAppsController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf LearningAppsController
      */
-    var LearningAppsController = function LearningAppsController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
+      this.view.get$item().renderEmbeddedContent(
+          this.model.getPrefs('learningappsEmbedCode')
+      );
+    },
 
-    return LearningAppsController.extend('LearningAppsController', {
+    /**
+     * Add LearningApps rule
+     * @memberOf LearningAppsController
+     * @param {Event} e
+     */
+    addLearningAppsRule: function addLearningAppsRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-        /**
-         * Set embedded content
-         * @memberOf LearningAppsController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
-            this.view.get$item().renderEmbeddedContent(
-                this.model.getPrefs('learningappsEmbedCode')
-            );
-        },
-
-        /**
-         * Add LearningApps rule
-         * @memberOf LearningAppsController
-         * @param e
-         */
-        addLearningAppsRule: function addLearningAppsRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target);
-
-            /**
-             * Get scope
-             * @type {LearningApps|{name: string}}
-             */
-            var scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

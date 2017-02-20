@@ -6,46 +6,47 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineClocklinkModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define Clocklink model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class ClocklinkModel
+   * @constructor
+   */
+  var ClocklinkModel = function ClocklinkModel() {
+
     /**
-     * Define Clocklink model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class ClocklinkModel
-     * @constructor
+     * Define preferences
+     * @property ClocklinkModel
+     * @type {{
+     *      clocklinkEmbedCode: {type: string, disabled: boolean, value:
+     *     undefined, visible: boolean}
+     * }}
      */
-    var ClocklinkModel = function ClocklinkModel() {
-
-        /**
-         * Define preferences
-         * @property ClocklinkModel
-         * @type {{
-         *      clocklinkEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
-         * }}
-         */
-        this.preferences = {
-            clocklinkEmbedCode: {
-                type: 'textarea',
-                disabled: false,
-                value: undefined,
-                visible: true
-            }
-        };
-
-        /**
-         * Define rules
-         * @property ClocklinkModel
-         * @type {{}}
-         */
-        this.rules = {};
+    this.preferences = {
+      clocklinkEmbedCode: {
+        type: 'textarea',
+        disabled: false,
+        value: undefined,
+        visible: true
+      }
     };
 
-    return ClocklinkModel.extend('ClocklinkModel', {
+    /**
+     * Define rules
+     * @property ClocklinkModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        // Setter
+  return ClocklinkModel.extend('ClocklinkModel', {
 
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    // Setter
+
+  }, BaseModel.prototype, WidgetContentModel.prototype);
 });

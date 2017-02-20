@@ -6,41 +6,42 @@
  */
 
 define([
-    'config/anthill',
-    'modules/MVC',
-    'plugins/widgets/swf/mvc/swf.controller',
-    'plugins/widgets/swf/mvc/swf.model',
-    'plugins/widgets/swf/mvc/swf.view',
-    'plugins/widgets/swf/mvc/swf.event.manager',
-    'plugins/widgets/swf/mvc/swf.permission'
-], function defineSwf(AntHill, MVC, Controller, Model, View, EventManager, Permission) {
+  'config/anthill',
+  'modules/MVC',
+  'plugins/widgets/swf/mvc/swf.controller',
+  'plugins/widgets/swf/mvc/swf.model',
+  'plugins/widgets/swf/mvc/swf.view',
+  'plugins/widgets/swf/mvc/swf.event.manager',
+  'plugins/widgets/swf/mvc/swf.permission'
+], function defineSwf(AntHill, MVC, Controller, Model, View, EventManager,
+    Permission) {
+
+  /**
+   * Define Swf
+   * @param containment
+   * @param [opts]
+   * @constructor
+   * @class Swf
+   * @extends AntHill
+   */
+  var Swf = function Swf(containment, opts) {
 
     /**
-     * Define Swf
-     * @param containment
-     * @param [opts]
-     * @constructor
-     * @class Swf
-     * @extends AntHill
+     * Define containment
+     * @memberOf Swf
      */
-    var Swf = function Swf(containment, opts) {
+    this.containment = containment;
 
-        /**
-         * Define containment
-         * @memberOf Swf
-         */
-        this.containment = containment;
+    /**
+     * Define referrer
+     * @memberOf Swf
+     * @type {*}
+     */
+    this.referrer = undefined;
 
-        /**
-         * Define referrer
-         * @memberOf Swf
-         * @type {*}
-         */
-        this.referrer = undefined;
-
-        /**
-         * Define defaults
-         * @type {{
+    /**
+     * Define defaults
+     * @type {{
          *      plugin: boolean,
          *      html: {
          *          style: string,
@@ -54,50 +55,48 @@ define([
          *          }
          *      }
          * }}
-         */
-        var DEFAULTS = {
-            plugin: true,
-            html: {
-                style: 'default',
-                header: false,
-                footer: false,
-                padding: {
-                    top: 0,
-                    right: 0,
-                    bottom: 0,
-                    left: 0
-                }
-            }
-        };
-
-        /**
-         * Define MVC
-         * @memberOf Swf
-         * @type {MVC}
-         */
-        this.mvc = new MVC({
-            scope: this,
-            config: [
-                {uuid: this.containment.model.getContentUUID()},
-                DEFAULTS
-            ],
-            components: [
-                Controller,
-                Model,
-                View,
-                EventManager,
-                Permission
-            ],
-            render: true
-        });
-
-        this.observer.publish(
-            this.eventmanager.eventList.initWidget,
-            opts
-        );
+     */
+    var DEFAULTS = {
+      plugin: true,
+      html: {
+        style: 'default',
+        header: false,
+        footer: false,
+        padding: {
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0
+        }
+      }
     };
 
-    return Swf.extend('Swf', {
+    /**
+     * Define MVC
+     * @memberOf Swf
+     * @type {MVC}
+     */
+    this.mvc = new MVC({
+      scope: this,
+      config: [
+        {uuid: this.containment.model.getContentUUID()},
+        DEFAULTS
+      ],
+      components: [
+        Controller,
+        Model,
+        View,
+        EventManager,
+        Permission
+      ],
+      render: true
+    });
 
-    }, AntHill.prototype);
+    this.observer.publish(
+        this.eventmanager.eventList.initWidget,
+        opts
+    );
+  };
+
+  return Swf.extend('Swf', {}, AntHill.prototype);
 });

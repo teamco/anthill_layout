@@ -6,35 +6,36 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
 ], function defineFastpicPreferencesElement(PluginElement, WidgetPreferences) {
 
-    /**
-     * Define Fastpic Preferences Element
-     * @constructor
-     * @class FastpicPreferencesElement
-     * @param {FastpicView} view
-     * @param opts
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     * @returns {FastpicPreferencesElement}
-     */
-    var FastpicPreferencesElement = function FastpicPreferencesElement(view, opts) {
+  /**
+   * Define Fastpic Preferences Element
+   * @constructor
+   * @class FastpicPreferencesElement
+   * @param {FastpicView} view
+   * @param opts
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   * @returns {FastpicPreferencesElement}
+   */
+  var FastpicPreferencesElement = function FastpicPreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return FastpicPreferencesElement.extend(
-        'FastpicPreferencesElement', {}, 
-        PluginElement.prototype, 
-        WidgetPreferences.prototype
-    );
+  return FastpicPreferencesElement.extend(
+      'FastpicPreferencesElement', {},
+      PluginElement.prototype,
+      WidgetPreferences.prototype
+  );
 });

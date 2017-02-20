@@ -4,91 +4,91 @@
 
 define(function defineSiteConfigImport() {
 
+  /**
+   * Define site import
+   * @class SiteConfigImport
+   * @extends BaseController
+   * @constructor
+   */
+  var SiteConfigImport = function SiteConfigImport() {
+  };
+
+  return SiteConfigImport.extend('SiteConfigImport', {
+
     /**
-     * Define site import
-     * @class SiteConfigImport
-     * @extends BaseController
-     * @constructor
+     * Import site data
+     * @memberOf SiteConfigImport
      */
-    var SiteConfigImport = function SiteConfigImport() {
-    };
+    importSiteData: function importSiteData() {
+      this.view.showImportData();
+    },
 
-    return SiteConfigImport.extend('SiteConfigImport', {
+    /**
+     * Approve import site data
+     * @memberOf SiteConfigImport
+     */
+    approveImportSiteData: function approveImportSiteData() {
 
-        /**
-         * Import site data
-         * @memberOf SiteConfigImport
-         */
-        importSiteData: function importSiteData() {
-            this.view.showImportData();
-        },
+      /**
+       * Get scope
+       * @type {SiteConfig}
+       */
+      var scope = this.scope;
 
-        /**
-         * Approve import site data
-         * @memberOf SiteConfigImport
-         */
-        approveImportSiteData: function approveImportSiteData() {
+      /**
+       * Get view elements
+       * @type {SiteConfigView.elements|{$import}}
+       */
+      var elements = scope.view.elements;
 
-            /**
-             * Get scope
-             * @type {SiteConfig}
-             */
-            var scope = this.scope;
+      /**
+       * Get $modal
+       * @type {ModalElement}
+       */
+      var $modal = scope.view.get$modal();
 
-            /**
-             * Get view elements
-             * @type {SiteConfigView.elements|{$import}}
-             */
-            var elements = scope.view.elements;
+      if (!$modal || $modal.$buttons.confirm.disabled) {
+        return false;
+      }
 
-            /**
-             * Get $modal
-             * @type {ModalElement}
-             */
-            var $modal = scope.view.get$modal();
+      this.root().model.setting.importData(
+          elements.$import.data,
+          true
+      );
 
-            if (!$modal || $modal.$buttons.confirm.disabled) {
-                return false;
-            }
+      $modal.$buttons.reload.enable();
+      $modal.$buttons.confirm.disable();
+      $modal.$buttons.reject.destroy();
+      $modal.$buttons.closeX.destroy();
+    },
 
-            this.root().model.setting.importData(
-                elements.$import.data,
-                true
-            );
+    /**
+     * Ready to import site data
+     * @memberOf SiteConfigImport
+     * @param {object} json
+     * @param {File} file
+     */
+    readyToImportSiteData: function readyToImportSiteData(json, file) {
+      this.view.showApproveImportData(json, file);
+    },
 
-            $modal.$buttons.reload.enable();
-            $modal.$buttons.confirm.disable();
-            $modal.$buttons.reject.destroy();
-            $modal.$buttons.closeX.destroy();
-        },
+    /**
+     * Reload site data
+     * @memberOf SiteConfigImport
+     */
+    reloadSiteData: function reloadSiteData() {
 
-        /**
-         * Ready to import site data
-         * @memberOf SiteConfigImport
-         * @param {object} json
-         * @param {File} file
-         */
-        readyToImportSiteData: function readyToImportSiteData(json, file) {
-            this.view.showApproveImportData(json, file);
-        },
+      /**
+       * Get $modal
+       * @type {ModalElement}
+       */
+      var $modal = this.scope.view.get$modal();
 
-        /**
-         * Reload site data
-         * @memberOf SiteConfigImport
-         */
-        reloadSiteData: function reloadSiteData() {
+      if (!$modal || $modal.$buttons.reload.disabled) {
+        return false;
+      }
 
-            /**
-             * Get $modal
-             * @type {ModalElement}
-             */
-            var $modal = this.scope.view.get$modal();
-
-            if (!$modal || $modal.$buttons.reload.disabled) {
-                return false;
-            }
-
-            document.location.reload(true);
-        }
-    });
+      document.location.reload(true);
+    }
+  });
 });

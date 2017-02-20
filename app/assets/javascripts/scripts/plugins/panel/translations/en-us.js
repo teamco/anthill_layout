@@ -7,7 +7,7 @@
  */
 
 define(function defineEnUs() {
-    return {
-        'panel.items': 'items'
-    };
+  return {
+    'panel.items': 'items'
+  };
 });

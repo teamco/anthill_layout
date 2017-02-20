@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineYapFilesPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class YapFilesPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var YapFilesPermission = function YapFilesPermission() {
+  /**
+   * Define Permissions
+   * @class YapFilesPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var YapFilesPermission = function YapFilesPermission() {
 
-    };
+  };
 
-    return YapFilesPermission.extend('YapFilesPermission', {
-
-    }, BasePermission.prototype);
+  return YapFilesPermission.extend('YapFilesPermission', {},
+      BasePermission.prototype);
 });

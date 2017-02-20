@@ -6,138 +6,138 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineSiteConfigContentElement(PluginElement) {
 
+  /**
+   * Define SiteConfig Content Element
+   * @param view
+   * @param opts
+   * @returns {SiteConfigContentElement}
+   * @constructor
+   * @class SiteConfigContentElement
+   * @type {function}
+   * @extends PluginElement
+   */
+  var SiteConfigContentElement = function SiteConfigContentElement(view, opts) {
+
+    this._config(view, opts, $('<li />')).build({
+      $container: opts.$container
+    });
+
     /**
-     * Define SiteConfig Content Element
-     * @param view
-     * @param opts
-     * @returns {SiteConfigContentElement}
-     * @constructor
-     * @class SiteConfigContentElement
-     * @type {function}
-     * @extends PluginElement
+     * Define page index
+     * @type {number}
      */
-    var SiteConfigContentElement = function SiteConfigContentElement(view, opts) {
+    this.index = opts.counter;
 
-        this._config(view, opts, $('<li />')).build({
-            $container: opts.$container
-        });
+    return this.init(opts.data);
+  };
 
-        /**
-         * Define page index
-         * @type {number}
-         */
-        this.index = opts.counter;
+  return SiteConfigContentElement.extend('SiteConfigContentElement', {
 
-        return this.init(opts.data);
-    };
+    /**
+     * Define inner content
+     * @memberOf WorkspaceDataContentElement
+     */
+    getTemplate: function getTemplate() {
+      $('<a class="site-config" />').
+          appendTo(this.$);
+    },
 
-    return SiteConfigContentElement.extend('SiteConfigContentElement', {
-
-        /**
-         * Define inner content
-         * @memberOf WorkspaceDataContentElement
-         */
-        getTemplate: function getTemplate() {
-            $('<a class="site-config" />').
-                appendTo(this.$);
-        },
-
-        /**
-         * Define init
-         * @memberOf SiteConfigContentElement
-         * @param {{
+    /**
+     * Define init
+     * @memberOf SiteConfigContentElement
+     * @param {{
          *      title: string,
          *      description: string,
          *      [event]: string
          * }} data
-         * @returns {SiteConfigContentElement}
-         */
-        init: function init(data) {
+     * @returns {SiteConfigContentElement}
+     */
+    init: function init(data) {
 
-            this.getTemplate();
-            this.setAttributes(data);
-            this.bindShowPrefs(data);
+      this.getTemplate();
+      this.setAttributes(data);
+      this.bindShowPrefs(data);
 
-            /**
-             * Define data
-             * @property SiteConfigContentElement
-             * @type {{name: string, description: string}}
-             */
-            this.data = {
-                name: data.title,
-                description: data.description
-            };
+      /**
+       * Define data
+       * @property SiteConfigContentElement
+       * @type {{name: string, description: string}}
+       */
+      this.data = {
+        name: data.title,
+        description: data.description
+      };
 
-            return this;
-        },
+      return this;
+    },
+
+    /**
+     * Get page $counter
+     * @memberOf SiteConfigContentElement
+     * @returns {*|jQuery|HTMLElement}
+     */
+    get$counter: function get$counter() {
+      return $('.counter', this.$);
+    },
+
+    /**
+     * Define attributes
+     * @memberOf SiteConfigContentElement
+     * @param data
+     */
+    setAttributes: function setAttributes(data) {
+
+      this.renderTooltip({
+        title: data.title,
+        description: data.description,
+        selector: this.$
+      });
+    },
+
+    /**
+     * Bind show prefs
+     * @memberOf SiteConfigContentElement
+     * @param data
+     */
+    bindShowPrefs: function bindShowPrefs(data) {
+
+      /**
+       * Define scope
+       * @type {SiteConfig}
+       */
+      var scope = this.view.scope;
+
+      /**
+       * Click prefs
+       * @private
+       * @param {Event} e
+       */
+      function _clickPreferences(e) {
+
+        e.preventDefault();
 
         /**
-         * Get page $counter
-         * @memberOf SiteConfigContentElement
-         * @returns {*|jQuery|HTMLElement}
+         * Get event name
+         * @type {string}
          */
-        get$counter: function get$counter() {
-            return $('.counter', this.$);
-        },
+        var event = scope.eventmanager.eventList[data.event];
 
-        /**
-         * Define attributes
-         * @memberOf SiteConfigContentElement
-         * @param data
-         */
-        setAttributes: function setAttributes(data) {
-
-            this.renderTooltip({
-                title: data.title,
-                description: data.description,
-                selector: this.$
-            });
-        },
-
-        /**
-         * Bind show prefs
-         * @memberOf SiteConfigContentElement
-         * @param data
-         */
-        bindShowPrefs: function bindShowPrefs(data) {
-
-            /**
-             * Define scope
-             * @type {SiteConfig}
-             */
-            var scope = this.view.scope;
-
-            /**
-             * Click prefs
-             * @private
-             * @param {Event} e
-             */
-            function _clickPreferences(e) {
-
-                e.preventDefault();
-
-                /**
-                 * Get event name
-                 * @type {string}
-                 */
-                var event = scope.eventmanager.eventList[data.event];
-
-                event ?
-                    scope.observer.publish(event, data) :
-                    scope.logger.warn(
-                        'Undefined preferences event',
-                        data.title,
-                        data.event
-                    );
-            }
-
-            this.$.off('click.config').on(
-                'click.config',
-                _clickPreferences.bind(this)
+        event ?
+            scope.observer.publish(event, data) :
+            scope.logger.warn(
+                'Undefined preferences event',
+                data.title,
+                data.event
             );
-        }
-    }, PluginElement.prototype);
+      }
+
+      this.$.off('click.config').on(
+          'click.config',
+          _clickPreferences.bind(this)
+      );
+    }
+  }, PluginElement.prototype);
 });

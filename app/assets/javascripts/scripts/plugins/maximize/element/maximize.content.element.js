@@ -6,141 +6,143 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineMaximizeContentElement(PluginElement) {
 
+  /**
+   * Define Maximize Content Element
+   * @param view
+   * @param opts
+   * @returns {MaximizeContentElement}
+   * @constructor
+   * @class MaximizeContentElement
+   * @extends PluginElement
+   * @extends Renderer
+   */
+  var MaximizeContentElement = function MaximizeContentElement(view, opts) {
+
+    this._config(view, opts, $('<li />')).build({
+      $container: opts.$container
+    });
+
+    this.getTemplate(opts.data);
+    this.setAttributes(opts.data);
+    this.bindLocate(opts.data);
+    this.bindMaximize(opts.data);
+
+    return this;
+  };
+
+  return MaximizeContentElement.extend('MaximizeContentElement', {
+
     /**
-     * Define Maximize Content Element
-     * @param view
-     * @param opts
-     * @returns {MaximizeContentElement}
-     * @constructor
-     * @class MaximizeContentElement
-     * @extends PluginElement
-     * @extends Renderer
+     * Define inner content
+     * @memberOf MaximizeContentElement
+     * @param data
      */
-    var MaximizeContentElement = function MaximizeContentElement(view, opts) {
+    getTemplate: function getTemplate(data) {
+      $('<a class="widget ' +
+          data.model.getConfig('preferences').resource.toClassName() +
+          '" href="#" />').
+          appendTo(this.$);
+    },
+    /**
+     * Define attributes
+     * @memberOf MaximizeContentElement
+     * @param data
+     */
+    setAttributes: function setAttributes(data) {
 
-        this._config(view, opts, $('<li />')).build({
-            $container: opts.$container
-        });
+      var preferences = data.model.getConfig('preferences');
 
-        this.getTemplate(opts.data);
-        this.setAttributes(opts.data);
-        this.bindLocate(opts.data);
-        this.bindMaximize(opts.data);
+      /**
+       * Get title
+       * @type {boolean|string}
+       */
+      var title = data.model.getItemTitle();
 
-        return this;
-    };
+      /**
+       * Get description
+       * @type {string}
+       */
+      var description = preferences.description || '';
 
-    return MaximizeContentElement.extend('MaximizeContentElement', {
+      /**
+       * Define data
+       * @memberOf MaximizeContentElement
+       * @type {{name: string, description: string}}
+       */
+      this.data = {
+        name: title,
+        description: description
+      };
 
-        /**
-         * Define inner content
-         * @memberOf MaximizeContentElement
-         * @param data
-         */
-        getTemplate: function getTemplate(data) {
-            $('<a class="widget ' + data.model.getConfig('preferences').resource.toClassName() + '" href="#" />').
-                appendTo(this.$);
-        },
-        /**
-         * Define attributes
-         * @memberOf MaximizeContentElement
-         * @param data
-         */
-        setAttributes: function setAttributes(data) {
+      this.renderTooltip({
+        title: title,
+        description: description,
+        selector: this.$
+      });
+    },
 
-            var preferences = data.model.getConfig('preferences');
+    /**
+     * Locate widget before showing prefs
+     * @memberOf MaximizeContentElement
+     * @param data
+     */
+    bindLocate: function bindLocate(data) {
 
-            /**
-             * Get title
-             * @type {boolean|string}
-             */
-            var title = data.model.getItemTitle();
+      /**
+       * Define scope
+       * @type {WidgetRules}
+       */
+      var scope = this.view.scope;
 
-            /**
-             * Get description
-             * @type {string}
-             */
-            var description = preferences.description || '';
+      // Get location event
+      var locateOn = 'mouseenter.prefs mouseleave.prefs';
 
-            /**
-             * Define data
-             * @memberOf MaximizeContentElement
-             * @type {{name: string, description: string}}
-             */
-            this.data = {
-                name: title,
-                description: description
-            };
+      this.$.off(locateOn).on(
+          locateOn,
+          scope.controller.locateElementItem.bind({
+            scope: scope,
+            uuid: data.model.getUUID()
+          })
+      );
+    },
 
-            this.renderTooltip({
-                title: title,
-                description: description,
-                selector: this.$
-            });
-        },
+    /**
+     * Bind maximize
+     * @memberOf MaximizeContentElement
+     * @param data
+     */
+    bindMaximize: function bindMaximize(data) {
 
-        /**
-         * Locate widget before showing prefs
-         * @memberOf MaximizeContentElement
-         * @param data
-         */
-        bindLocate: function bindLocate(data) {
+      /**
+       * Click maximize
+       * @param {Event} e
+       * @private
+       */
+      function _clickMaximize(e) {
 
-            /**
-             * Define scope
-             * @type {WidgetRules}
-             */
-            var scope = this.view.scope;
+        e.preventDefault();
 
-            // Get location event
-            var locateOn = 'mouseenter.prefs mouseleave.prefs';
+        scope.observer.publish(
+            scope.eventmanager.eventList.defineInteraction,
+            data
+        );
+      }
 
-            this.$.off(locateOn).on(
-                locateOn,
-                scope.controller.locateElementItem.bind({
-                    scope: scope,
-                    uuid: data.model.getUUID()
-                })
-            );
-        },
+      /**
+       * Define scope
+       * @type {Maximize}
+       */
+      var scope = this.view.scope;
 
-        /**
-         * Bind maximize
-         * @memberOf MaximizeContentElement
-         * @param data
-         */
-        bindMaximize: function bindMaximize(data) {
+      this.$.off('click.maximize').on(
+          'click.maximize',
+          _clickMaximize.bind(this)
+      );
+    }
 
-            /**
-             * Click maximize
-             * @param {Event} e
-             * @private
-             */
-            function _clickMaximize(e) {
-
-                e.preventDefault();
-
-                scope.observer.publish(
-                    scope.eventmanager.eventList.defineInteraction,
-                    data
-                );
-            }
-
-            /**
-             * Define scope
-             * @type {Maximize}
-             */
-            var scope = this.view.scope;
-
-            this.$.off('click.maximize').on(
-                'click.maximize',
-                _clickMaximize.bind(this)
-            );
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 
 });

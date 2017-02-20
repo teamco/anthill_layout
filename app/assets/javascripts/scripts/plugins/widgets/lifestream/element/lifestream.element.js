@@ -6,81 +6,81 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineLifestreamElement(PluginElement) {
 
+  /**
+   * Define Lifestream Element
+   * @param view
+   * @param opts
+   * @returns {LifestreamElement}
+   * @constructor
+   * @class LifestreamElement
+   * @extends PluginElement
+   */
+  var LifestreamElement = function LifestreamElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('lifestream', {resource: '/widgets'});
+
+    return this;
+  };
+
+  return LifestreamElement.extend('LifestreamElement', {
+
     /**
-     * Define Lifestream Element
-     * @param view
-     * @param opts
-     * @returns {LifestreamElement}
-     * @constructor
-     * @class LifestreamElement
-     * @extends PluginElement
+     * Render Embedded content
+     * @memberOf LifestreamElement
+     * @param {Array} data
      */
-    var LifestreamElement = function LifestreamElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent(data) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+      /**
+       * Get $element
+       * @type {LifestreamElement}
+       */
+      var $element = this,
+          count = 0;
 
-        this.addCSS('lifestream', {resource: '/widgets'});
+      require(
+          [
+            'jquery.timeago',
+            'plugins/widgets/lifestream/lib/jquery.lifestream.min'
+          ],
+          function loadStream() {
 
-        return this;
-    };
+            $element.$.lifestream({
+              limit: 400,
+              list: data,
+              feedloaded: function feedloaded() {
 
-    return LifestreamElement.extend('LifestreamElement', {
+                count++;
 
-        /**
-         * Render Embedded content
-         * @memberOf LifestreamElement
-         * @param {Array} data
-         */
-        renderEmbeddedContent: function renderEmbeddedContent(data) {
+                // Check if all the feeds have been loaded
+                if (count === data.length + 1) {
 
-            /**
-             * Get $element
-             * @type {LifestreamElement}
-             */
-            var $element = this,
-                count = 0;
+                  $('li', $element.$).each(function eachFeed() {
 
-            require(
-                [
-                    'jquery.timeago',
-                    'plugins/widgets/lifestream/lib/jquery.lifestream.min'
-                ],
-                function loadStream() {
+                    var element = $(this),
+                        date = new Date(element.data('time'));
 
-                    $element.$.lifestream({
-                        limit: 400,
-                        list: data,
-                        feedloaded: function feedloaded() {
-
-                            count++;
-
-                            // Check if all the feeds have been loaded
-                            if (count === data.length + 1) {
-
-                                $('li', $element.$).each(function eachFeed() {
-
-                                    var element = $(this),
-                                        date = new Date(element.data('time'));
-
-                                    element.append([
-                                        '<abbr class="timeago" title="',
-                                        date.toISO8601(date), '">', date, '</abbr>'
-                                    ].join(''));
-                                });
-                                $('.timeago', $element.$).timeago();
-                            }
-                        }
-                    });
+                    element.append([
+                      '<abbr class="timeago" title="',
+                      date.toISO8601(date), '">', date, '</abbr>'
+                    ].join(''));
+                  });
+                  $('.timeago', $element.$).timeago();
                 }
-            );
-        }
+              }
+            });
+          }
+      );
+    }
 
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 
 });

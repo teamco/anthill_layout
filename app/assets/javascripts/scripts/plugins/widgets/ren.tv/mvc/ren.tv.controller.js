@@ -6,56 +6,40 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineRenTvController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define RenTv controller
+   * @class RenTvController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var RenTvController = function RenTvController() {
+  };
+
+  return RenTvController.extend('RenTvController', {
+
     /**
-     * Define RenTv controller
-     * @class RenTvController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf RenTvController
      */
-    var RenTvController = function RenTvController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
+      this.view.get$item().renderEmbeddedContent(
+          this.model.getPrefs('rentvEmbedCode')
+      );
+    },
 
-    return RenTvController.extend('RenTvController', {
+    /**
+     * Add RenTv rule
+     * @memberOf RenTvController
+     * @param {Event} e
+     */
+    addRenTvRule: function addRenTvRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-        /**
-         * Set embedded content
-         * @memberOf RenTvController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
-            this.view.get$item().renderEmbeddedContent(
-                this.model.getPrefs('rentvEmbedCode')
-            );
-        },
-
-        /**
-         * Add RenTv rule
-         * @memberOf RenTvController
-         * @param e
-         */
-        addRenTvRule: function addRenTvRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target);
-
-            /**
-             * Get scope
-             * @type {RenTv|{name: string}}
-             */
-            var scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

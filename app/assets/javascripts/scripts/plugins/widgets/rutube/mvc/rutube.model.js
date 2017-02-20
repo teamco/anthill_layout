@@ -6,53 +6,54 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineRutubeModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define Rutube model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class RutubeModel
+   * @constructor
+   */
+  var RutubeModel = function RutubeModel() {
+
     /**
-     * Define Rutube model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class RutubeModel
-     * @constructor
-     */
-    var RutubeModel = function RutubeModel() {
-
-        /**
-         * Define preferences
-         * @memberOf RutubeModel
-         * @type {{
-         *      rutubeEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
+     * Define preferences
+     * @memberOf RutubeModel
+     * @type {{
+         *      rutubeEmbedCode: {type: string, disabled: boolean, value:
+         *     undefined, visible: boolean}
          * }}
-         */
-        this.preferences = {
-            rutubeEmbedCode: {
-                type: 'textarea',
-                disabled: false,
-                value: undefined,
-                visible: true
-            }
-        };
-
-        /**
-         * Define rules
-         * @memberOf RutubeModel
-         * @type {{}}
-         */
-        this.rules = {};
+     */
+    this.preferences = {
+      rutubeEmbedCode: {
+        type: 'textarea',
+        disabled: false,
+        value: undefined,
+        visible: true
+      }
     };
 
-    return RutubeModel.extend('RutubeModel', {
+    /**
+     * Define rules
+     * @memberOf RutubeModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        /**
-         * Set Rutube embed code
-         * @memberOf RutubeModel
-         * @param {string} embed
-         */
-        setRutubeEmbedCode: function setRutubeUrl(embed) {
-            this.setPrefs('rutubeEmbedCode', embed);
-        }
+  return RutubeModel.extend('RutubeModel', {
 
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    /**
+     * Set Rutube embed code
+     * @memberOf RutubeModel
+     * @param {string} embed
+     */
+    setRutubeEmbedCode: function setRutubeUrl(embed) {
+      this.setPrefs('rutubeEmbedCode', embed);
+    }
+
+  }, BaseModel.prototype, WidgetContentModel.prototype);
 });

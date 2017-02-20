@@ -7,108 +7,109 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/you.porn/element/you.porn.element',
-    'plugins/widgets/you.porn/element/you.porn.preferences.element',
-    'plugins/widgets/you.porn/element/you.porn.rules.element'
-], function defineYouPornView(BaseView, Header, Footer, YouPornElement, YouPornPreferencesElement, YouPornRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/you.porn/element/you.porn.element',
+  'plugins/widgets/you.porn/element/you.porn.preferences.element',
+  'plugins/widgets/you.porn/element/you.porn.rules.element'
+], function defineYouPornView(BaseView, Header, Footer, YouPornElement,
+    YouPornPreferencesElement, YouPornRulesElement) {
+
+  /**
+   * Define view
+   * @class YouPornView
+   * @extends BaseView
+   * @constructor
+   */
+  var YouPornView = function YouPornView() {
+  };
+
+  return YouPornView.extend('YouPornView', {
 
     /**
-     * Define view
-     * @class YouPornView
-     * @extends BaseView
-     * @constructor
+     * Render youporn element
+     * @memberOf YouPornView
      */
-    var YouPornView = function YouPornView() {
-    };
+    renderYouPorn: function renderYouPorn() {
 
-    return YouPornView.extend('YouPornView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render youporn element
-         * @memberOf YouPornView
-         */
-        renderYouPorn: function renderYouPorn() {
+      /**
+       * Define $youporn
+       * @type {YouPornElement}
+       */
+      this.elements.$youporn = new YouPornElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $youporn
-             * @type {YouPornElement}
-             */
-            this.elements.$youporn = new YouPornElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf YouPornView
+     * @returns {YouPornPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define YouPorn Preferences Element
+       * @type {YouPornPreferencesElement}
+       */
+      this.elements.$preferences = new YouPornPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf YouPornView
-         * @returns {YouPornPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define YouPorn Preferences Element
-             * @type {YouPornPreferencesElement}
-             */
-            this.elements.$preferences = new YouPornPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf YouPornView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {YouPornRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
+      /**
+       * Define data
+       * @type {*|{}}
+       */
+      var data = this.controller.getRules();
 
-        /**
-         * Render Rules
-         * @memberOf YouPornView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {YouPornRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define data
-             * @type {*|{}}
-             */
-            var data = this.controller.getRules();
-
-            /**
-             * Define YouPorn Rules Element
-             * @type {YouPornRulesElement}
-             */
-            this.elements.$rules = new YouPornRulesElement(this, {
-                data: data,
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render youporn
-         * @memberOf YouPornView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderYouPorn.bind(this)
-            );
+      /**
+       * Define YouPorn Rules Element
+       * @type {YouPornRulesElement}
+       */
+      this.elements.$rules = new YouPornRulesElement(this, {
+        data: data,
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render youporn
+     * @memberOf YouPornView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderYouPorn.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

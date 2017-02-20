@@ -7,23 +7,23 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineShowTheWayEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define ShowTheWay event manager
-     * @class ShowTheWayEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var ShowTheWayEventManager = function ShowTheWayEventManager() {
+  /**
+   * Define ShowTheWay event manager
+   * @class ShowTheWayEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var ShowTheWayEventManager = function ShowTheWayEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return ShowTheWayEventManager.extend(
-        'ShowTheWayEventManager', {},
-        WidgetContentEventManager.prototype
-    );
+  return ShowTheWayEventManager.extend(
+      'ShowTheWayEventManager', {},
+      WidgetContentEventManager.prototype
+  );
 });

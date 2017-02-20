@@ -7,103 +7,104 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/google.plus/element/google.plus.element',
-    'plugins/widgets/google.plus/element/google.plus.preferences.element',
-    'plugins/widgets/google.plus/element/google.plus.rules.element'
-], function defineGooglePlusView(BaseView, Header, Footer, GooglePlusElement, GooglePlusPreferencesElement, GooglePlusRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/google.plus/element/google.plus.element',
+  'plugins/widgets/google.plus/element/google.plus.preferences.element',
+  'plugins/widgets/google.plus/element/google.plus.rules.element'
+], function defineGooglePlusView(BaseView, Header, Footer, GooglePlusElement,
+    GooglePlusPreferencesElement, GooglePlusRulesElement) {
+
+  /**
+   * Define view
+   * @class GooglePlusView
+   * @extends BaseView
+   * @constructor
+   */
+  var GooglePlusView = function GooglePlusView() {
+  };
+
+  return GooglePlusView.extend('GooglePlusView', {
 
     /**
-     * Define view
-     * @class GooglePlusView
-     * @extends BaseView
-     * @constructor
+     * Render GooglePlus element
+     * @memberOf GooglePlusView
      */
-    var GooglePlusView = function GooglePlusView() {
-    };
+    renderGooglePlus: function renderGooglePlus() {
 
-    return GooglePlusView.extend('GooglePlusView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render GooglePlus element
-         * @memberOf GooglePlusView
-         */
-        renderGooglePlus: function renderGooglePlus() {
+      /**
+       * Define $googleplus
+       * @type {GooglePlusElement}
+       */
+      this.elements.$googleplus = new GooglePlusElement(this, {
+        $container: this.get$container().$,
+        id: true
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $googleplus
-             * @type {GooglePlusElement}
-             */
-            this.elements.$googleplus = new GooglePlusElement(this, {
-                $container: this.get$container().$,
-                id: true
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf GooglePlusView
+     * @returns {GooglePlusPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define GooglePlus Preferences Element
+       * @type {GooglePlusPreferencesElement}
+       */
+      this.elements.$preferences = new GooglePlusPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf GooglePlusView
-         * @returns {GooglePlusPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define GooglePlus Preferences Element
-             * @type {GooglePlusPreferencesElement}
-             */
-            this.elements.$preferences = new GooglePlusPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf GooglePlusView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {GooglePlusRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
-
-        /**
-         * Render Rules
-         * @memberOf GooglePlusView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {GooglePlusRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define GooglePlus Rules Element
-             * @type {GooglePlusRulesElement}
-             */
-            this.elements.$rules = new GooglePlusRulesElement(this, {
-                data: this.controller.getRules(),
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render GooglePlus
-         * @memberOf GooglePlusView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderGooglePlus.bind(this)
-            );
+      /**
+       * Define GooglePlus Rules Element
+       * @type {GooglePlusRulesElement}
+       */
+      this.elements.$rules = new GooglePlusRulesElement(this, {
+        data: this.controller.getRules(),
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render GooglePlus
+     * @memberOf GooglePlusView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderGooglePlus.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

@@ -6,44 +6,44 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineRenTvElement(PluginElement) {
 
+  /**
+   * Define RenTv Element
+   * @param view
+   * @param opts
+   * @returns {RenTvElement}
+   * @constructor
+   * @class RenTvElement
+   * @extends PluginElement
+   */
+  var RenTvElement = function RenTvElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('ren.tv', {resource: '/widgets'});
+
+    return this;
+  };
+
+  return RenTvElement.extend('RenTvElement', {
+
     /**
-     * Define RenTv Element
-     * @param view
-     * @param opts
-     * @returns {RenTvElement}
-     * @constructor
-     * @class RenTvElement
-     * @extends PluginElement
+     * Render Embedded content
+     * @memberOf RenTvElement
+     * @param {string} embed
      */
-    var RenTvElement = function RenTvElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent(embed) {
+      this.addContent(
+          this.renderIframe(
+              $(embed).attr('src')
+          )
+      );
+    }
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
-
-        this.addCSS('ren.tv', {resource: '/widgets'});
-
-        return this;
-    };
-
-    return RenTvElement.extend('RenTvElement', {
-
-        /**
-         * Render Embedded content
-         * @memberOf RenTvElement
-         * @param {string} embed
-         */
-        renderEmbeddedContent: function renderEmbeddedContent(embed) {
-            this.addContent(
-                this.renderIframe(
-                    $(embed).attr('src')
-                )
-            );
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 });

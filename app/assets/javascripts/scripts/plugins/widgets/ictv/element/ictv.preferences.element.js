@@ -6,35 +6,33 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
 ], function defineIctvPreferencesElement(PluginElement, WidgetPreferences) {
 
-    /**
-     * Define Ictv Preferences Element
-     * @param view
-     * @param opts
-     * @returns {IctvPreferencesElement}
-     * @constructor
-     * @class IctvPreferencesElement
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     */
-    var IctvPreferencesElement = function IctvPreferencesElement(view, opts) {
+  /**
+   * Define Ictv Preferences Element
+   * @param view
+   * @param opts
+   * @returns {IctvPreferencesElement}
+   * @constructor
+   * @class IctvPreferencesElement
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   */
+  var IctvPreferencesElement = function IctvPreferencesElement(view, opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return IctvPreferencesElement.extend('IctvPreferencesElement', {
-
-
-    }, PluginElement.prototype, WidgetPreferences.prototype);
+  return IctvPreferencesElement.extend('IctvPreferencesElement', {},
+      PluginElement.prototype, WidgetPreferences.prototype);
 
 });

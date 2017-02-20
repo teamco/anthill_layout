@@ -6,56 +6,40 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineIftttController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define Ifttt controller
+   * @class IftttController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var IftttController = function IftttController() {
+  };
+
+  return IftttController.extend('IftttController', {
+
     /**
-     * Define Ifttt controller
-     * @class IftttController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf IftttController
      */
-    var IftttController = function IftttController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
+      this.view.get$item().renderEmbeddedContent(
+          this.model.getPrefs('iftttEmbedCode')
+      );
+    },
 
-    return IftttController.extend('IftttController', {
+    /**
+     * Add Ifttt rule
+     * @memberOf IftttController
+     * @param {Event} e
+     */
+    addIftttRule: function addIftttRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-        /**
-         * Set embedded content
-         * @memberOf IftttController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
-            this.view.get$item().renderEmbeddedContent(
-                this.model.getPrefs('iftttEmbedCode')
-            );
-        },
-
-        /**
-         * Add Ifttt rule
-         * @memberOf IftttController
-         * @param e
-         */
-        addIftttRule: function addIftttRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target);
-
-            /**
-             * Get scope
-             * @type {Ifttt|{name: string}}
-             */
-            var scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

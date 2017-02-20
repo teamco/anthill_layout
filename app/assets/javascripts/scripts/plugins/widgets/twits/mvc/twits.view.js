@@ -7,108 +7,109 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/twits/element/twits.element',
-    'plugins/widgets/twits/element/twits.preferences.element',
-    'plugins/widgets/twits/element/twits.rules.element'
-], function defineTwitsView(BaseView, Header, Footer, TwitsElement, TwitsPreferencesElement, TwitsRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/twits/element/twits.element',
+  'plugins/widgets/twits/element/twits.preferences.element',
+  'plugins/widgets/twits/element/twits.rules.element'
+], function defineTwitsView(BaseView, Header, Footer, TwitsElement,
+    TwitsPreferencesElement, TwitsRulesElement) {
+
+  /**
+   * Define view
+   * @class TwitsView
+   * @extends BaseView
+   * @constructor
+   */
+  var TwitsView = function TwitsView() {
+  };
+
+  return TwitsView.extend('TwitsView', {
 
     /**
-     * Define view
-     * @class TwitsView
-     * @extends BaseView
-     * @constructor
+     * Render twits element
+     * @memberOf TwitsView
      */
-    var TwitsView = function TwitsView() {
-    };
+    renderTwits: function renderTwits() {
 
-    return TwitsView.extend('TwitsView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render twits element
-         * @memberOf TwitsView
-         */
-        renderTwits: function renderTwits() {
+      /**
+       * Define $twits
+       * @type {TwitsElement}
+       */
+      this.elements.$twits = new TwitsElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $twits
-             * @type {TwitsElement}
-             */
-            this.elements.$twits = new TwitsElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf TwitsView
+     * @returns {TwitsPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define Twits Preferences Element
+       * @type {TwitsPreferencesElement}
+       */
+      this.elements.$preferences = new TwitsPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf TwitsView
-         * @returns {TwitsPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define Twits Preferences Element
-             * @type {TwitsPreferencesElement}
-             */
-            this.elements.$preferences = new TwitsPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf TwitsView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {TwitsRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
+      /**
+       * Define data
+       * @type {*|{}}
+       */
+      var data = this.controller.getRules();
 
-        /**
-         * Render Rules
-         * @memberOf TwitsView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {TwitsRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define data
-             * @type {*|{}}
-             */
-            var data = this.controller.getRules();
-
-            /**
-             * Define Twits Rules Element
-             * @type {TwitsRulesElement}
-             */
-            this.elements.$rules = new TwitsRulesElement(this, {
-                data: data,
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render twits
-         * @memberOf TwitsView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderTwits.bind(this)
-            );
+      /**
+       * Define Twits Rules Element
+       * @type {TwitsRulesElement}
+       */
+      this.elements.$rules = new TwitsRulesElement(this, {
+        data: data,
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render twits
+     * @memberOf TwitsView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderTwits.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

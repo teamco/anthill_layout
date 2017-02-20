@@ -6,89 +6,78 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineClocklinkController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define Clocklink controller
+   * @class ClocklinkController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var ClocklinkController = function ClocklinkController() {
+  };
+
+  return ClocklinkController.extend('ClocklinkController', {
+
     /**
-     * Define Clocklink controller
-     * @class ClocklinkController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf ClocklinkController
      */
-    var ClocklinkController = function ClocklinkController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
+      this.view.elements.$clocklink.renderEmbeddedContent(
+          this.controller.parseEmbedCode()
+      );
+    },
 
-    return ClocklinkController.extend('ClocklinkController', {
+    /**
+     * Define embed code parser
+     * @memberOf ClocklinkController
+     * @returns {{type: string, code: string}}
+     */
+    parseEmbedCode: function parseEmbedCode() {
 
-        /**
-         * Set embedded content
-         * @memberOf ClocklinkController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
-            this.view.elements.$clocklink.renderEmbeddedContent(
-                this.controller.parseEmbedCode()
-            );
-        },
+      /**
+       * Get embed prefs
+       * @type {string}
+       */
+      var embedCode = this.model.getPrefs('clocklinkEmbedCode') || '',
 
-        /**
-         * Define embed code parser
-         * @memberOf ClocklinkController
-         * @returns {{type: string, code: string}}
-         */
-        parseEmbedCode: function parseEmbedCode() {
+          /**
+           * Define embed object
+           * @type {{type: string, code: string}}
+           */
+          embed = {code: embedCode};
 
-            /**
-             * Get embed prefs
-             * @type {string}
-             */
-            var embedCode = this.model.getPrefs('clocklinkEmbedCode') || '',
+      if (embedCode.length > 0) {
+        this.clearParentThumbnail();
+      }
 
-                /**
-                 * Define embed object
-                 * @type {{type: string, code: string}}
-                 */
-                embed = {code: embedCode};
+      if (embedCode.match(/^<iframe/)) {
+        embed.type = 'iframe';
+      }
 
-            if (embedCode.length > 0) {
-                this.clearParentThumbnail();
-            }
+      if (embedCode.match(/^<embed/)) {
+        embed.type = 'embed';
+      }
 
-            if (embedCode.match(/^<iframe/)) {
-                embed.type = 'iframe';
-            }
+      if (embedCode.match(/^<script/)) {
+        embed.type = 'script'
+      }
 
-            if (embedCode.match(/^<embed/)) {
-                embed.type = 'embed';
-            }
+      return embed;
+    },
 
-            if (embedCode.match(/^<script/)) {
-                embed.type = 'script'
-            }
+    /**
+     * Add Clocklink rule
+     * @memberOf ClocklinkController
+     * @param {Event} e
+     */
+    addClocklinkRule: function addClocklinkRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-            return embed;
-        },
-
-        /**
-         * Add Clocklink rule
-         * @memberOf ClocklinkController
-         * @param e
-         */
-        addClocklinkRule: function addClocklinkRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), this.scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

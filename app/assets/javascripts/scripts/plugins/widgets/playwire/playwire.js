@@ -6,41 +6,42 @@
  */
 
 define([
-    'config/anthill',
-    'modules/MVC',
-    'plugins/widgets/playwire/mvc/playwire.controller',
-    'plugins/widgets/playwire/mvc/playwire.model',
-    'plugins/widgets/playwire/mvc/playwire.view',
-    'plugins/widgets/playwire/mvc/playwire.event.manager',
-    'plugins/widgets/playwire/mvc/playwire.permission'
-], function definePlaywire(AntHill, MVC, Controller, Model, View, EventManager, Permission) {
+  'config/anthill',
+  'modules/MVC',
+  'plugins/widgets/playwire/mvc/playwire.controller',
+  'plugins/widgets/playwire/mvc/playwire.model',
+  'plugins/widgets/playwire/mvc/playwire.view',
+  'plugins/widgets/playwire/mvc/playwire.event.manager',
+  'plugins/widgets/playwire/mvc/playwire.permission'
+], function definePlaywire(AntHill, MVC, Controller, Model, View, EventManager,
+    Permission) {
+
+  /**
+   * Define Playwire
+   * @param containment
+   * @param [opts]
+   * @constructor
+   * @class Playwire
+   * @extends AntHill
+   */
+  var Playwire = function Playwire(containment, opts) {
 
     /**
-     * Define Playwire
-     * @param containment
-     * @param [opts]
-     * @constructor
-     * @class Playwire
-     * @extends AntHill
+     * Define containment
+     * @property Playwire
      */
-    var Playwire = function Playwire(containment, opts) {
+    this.containment = containment;
 
-        /**
-         * Define containment
-         * @property Playwire
-         */
-        this.containment = containment;
+    /**
+     * Define referrer
+     * @property Playwire
+     * @type {*}
+     */
+    this.referrer = undefined;
 
-        /**
-         * Define referrer
-         * @property Playwire
-         * @type {*}
-         */
-        this.referrer = undefined;
-
-        /**
-         * Define defaults
-         * @type {{
+    /**
+     * Define defaults
+     * @type {{
          *      plugin: boolean,
          *      html: {
          *          style: string,
@@ -55,48 +56,48 @@ define([
          *          }
          *      }
          * }}
-         */
-        var DEFAULTS = {
-            plugin: true,
-            html: {
-                style: 'default',
-                header: false,
-                footer: false,
-                padding: {
-                    top: 0,
-                    right: 0,
-                    bottom: 0,
-                    left: 0
-                }
-            }
-        };
-
-        /**
-         * Define MVC
-         * @property Playwire
-         * @type {MVC}
-         */
-        this.mvc = new MVC({
-            scope: this,
-            config: [
-                {uuid: this.containment.model.getContentUUID()},
-                DEFAULTS
-            ],
-            components: [
-                Controller,
-                Model,
-                View,
-                EventManager,
-                Permission
-            ],
-            render: true
-        });
-
-        this.observer.publish(
-            this.eventmanager.eventList.initWidget,
-            opts
-        );
+     */
+    var DEFAULTS = {
+      plugin: true,
+      html: {
+        style: 'default',
+        header: false,
+        footer: false,
+        padding: {
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0
+        }
+      }
     };
 
-    return Playwire.extend('Playwire', {}, AntHill.prototype);
+    /**
+     * Define MVC
+     * @property Playwire
+     * @type {MVC}
+     */
+    this.mvc = new MVC({
+      scope: this,
+      config: [
+        {uuid: this.containment.model.getContentUUID()},
+        DEFAULTS
+      ],
+      components: [
+        Controller,
+        Model,
+        View,
+        EventManager,
+        Permission
+      ],
+      render: true
+    });
+
+    this.observer.publish(
+        this.eventmanager.eventList.initWidget,
+        opts
+    );
+  };
+
+  return Playwire.extend('Playwire', {}, AntHill.prototype);
 });

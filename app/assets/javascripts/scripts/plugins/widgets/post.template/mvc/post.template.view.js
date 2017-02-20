@@ -7,102 +7,104 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/post.template/element/post.template.element',
-    'plugins/widgets/post.template/element/post.template.preferences.element',
-    'plugins/widgets/post.template/element/post.template.rules.element'
-], function definePostTemplateView(BaseView, Header, Footer, PostTemplateElement, PostTemplatePreferencesElement, PostTemplateRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/post.template/element/post.template.element',
+  'plugins/widgets/post.template/element/post.template.preferences.element',
+  'plugins/widgets/post.template/element/post.template.rules.element'
+], function definePostTemplateView(BaseView, Header, Footer,
+    PostTemplateElement, PostTemplatePreferencesElement,
+    PostTemplateRulesElement) {
+
+  /**
+   * Define view
+   * @class PostTemplateView
+   * @extends BaseView
+   * @constructor
+   */
+  var PostTemplateView = function PostTemplateView() {
+  };
+
+  return PostTemplateView.extend('PostTemplateView', {
 
     /**
-     * Define view
-     * @class PostTemplateView
-     * @extends BaseView
-     * @constructor
+     * Render post.template element
+     * @memberOf PostTemplateView
      */
-    var PostTemplateView = function PostTemplateView() {
-    };
+    renderPostTemplate: function renderPostTemplate() {
 
-    return PostTemplateView.extend('PostTemplateView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render post.template element
-         * @memberOf PostTemplateView
-         */
-        renderPostTemplate: function renderPostTemplate() {
+      /**
+       * Define $post.template
+       * @type {PostTemplateElement}
+       */
+      this.elements.$posttemplate = new PostTemplateElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $post.template
-             * @type {PostTemplateElement}
-             */
-            this.elements.$posttemplate = new PostTemplateElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf PostTemplateView
+     * @returns {PostTemplatePreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define PostTemplate Preferences Element
+       * @type {PostTemplatePreferencesElement}
+       */
+      this.elements.$preferences = new PostTemplatePreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf PostTemplateView
-         * @returns {PostTemplatePreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define PostTemplate Preferences Element
-             * @type {PostTemplatePreferencesElement}
-             */
-            this.elements.$preferences = new PostTemplatePreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf PostTemplateView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {PostTemplateRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
-
-        /**
-         * Render Rules
-         * @memberOf PostTemplateView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {PostTemplateRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define PostTemplate Rules Element
-             * @type {PostTemplateRulesElement}
-             */
-            this.elements.$rules = new PostTemplateRulesElement(this, {
-                data: this.controller.getRules(),
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render post.template
-         * @memberOf PostTemplateView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderPostTemplate.bind(this)
-            );
+      /**
+       * Define PostTemplate Rules Element
+       * @type {PostTemplateRulesElement}
+       */
+      this.elements.$rules = new PostTemplateRulesElement(this, {
+        data: this.controller.getRules(),
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render post.template
+     * @memberOf PostTemplateView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderPostTemplate.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

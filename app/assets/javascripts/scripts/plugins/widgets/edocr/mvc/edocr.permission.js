@@ -7,20 +7,20 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineEdocrPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class EdocrPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var EdocrPermission = function EdocrPermission() {
-    };
+  /**
+   * Define Permissions
+   * @class EdocrPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var EdocrPermission = function EdocrPermission() {
+  };
 
-    return EdocrPermission.extend(
-        'EdocrPermission', {}, 
-        BasePermission.prototype
-    );
+  return EdocrPermission.extend(
+      'EdocrPermission', {},
+      BasePermission.prototype
+  );
 });

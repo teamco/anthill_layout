@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineHowcastPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class HowcastPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var HowcastPermission = function HowcastPermission() {
+  /**
+   * Define Permissions
+   * @class HowcastPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var HowcastPermission = function HowcastPermission() {
 
-    };
+  };
 
-    return HowcastPermission.extend('HowcastPermission', {
-
-    }, BasePermission.prototype);
+  return HowcastPermission.extend('HowcastPermission', {},
+      BasePermission.prototype);
 });

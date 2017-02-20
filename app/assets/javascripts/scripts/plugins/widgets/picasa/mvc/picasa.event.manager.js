@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function definePicasaEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define Picasa event manager
-     * @class PicasaEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var PicasaEventManager = function PicasaEventManager() {
+  /**
+   * Define Picasa event manager
+   * @class PicasaEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var PicasaEventManager = function PicasaEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return PicasaEventManager.extend('PicasaEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return PicasaEventManager.extend('PicasaEventManager', {},
+      WidgetContentEventManager.prototype);
 });

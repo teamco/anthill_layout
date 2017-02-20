@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineDatepickerPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class DatepickerPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var DatepickerPermission = function DatepickerPermission() {
+  /**
+   * Define Permissions
+   * @class DatepickerPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var DatepickerPermission = function DatepickerPermission() {
 
-    };
+  };
 
-    return DatepickerPermission.extend('DatepickerPermission', {
-
-    }, BasePermission.prototype);
+  return DatepickerPermission.extend('DatepickerPermission', {},
+      BasePermission.prototype);
 });

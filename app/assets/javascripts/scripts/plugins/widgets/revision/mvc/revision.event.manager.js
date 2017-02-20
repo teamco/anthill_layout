@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineRevisionEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define Revision event manager
-     * @class RevisionEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var RevisionEventManager = function RevisionEventManager() {
+  /**
+   * Define Revision event manager
+   * @class RevisionEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var RevisionEventManager = function RevisionEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return RevisionEventManager.extend('RevisionEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return RevisionEventManager.extend('RevisionEventManager', {},
+      WidgetContentEventManager.prototype);
 });

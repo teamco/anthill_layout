@@ -6,64 +6,64 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineUrlWidgetElement(PluginElement) {
 
+  /**
+   * Define UrlWidget Element
+   * @param view
+   * @param opts
+   * @returns {UrlWidgetElement}
+   * @constructor
+   * @class UrlWidgetElement
+   * @extends PluginElement
+   */
+  var UrlWidgetElement = function UrlWidgetElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('url.widget', {resource: '/widgets'});
+
+    return this;
+  };
+
+  return UrlWidgetElement.extend('UrlWidgetElement', {
+
     /**
-     * Define UrlWidget Element
-     * @param view
-     * @param opts
-     * @returns {UrlWidgetElement}
-     * @constructor
-     * @class UrlWidgetElement
-     * @extends PluginElement
+     * Render Embedded content
+     * @memberOf UrlWidgetElement
+     * @param {string} url
+     * @param {boolean} isIframe
      */
-    var UrlWidgetElement = function UrlWidgetElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent(url, isIframe) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+      // Define $content instance
+      var $content = isIframe ?
+          this.renderIframe(url, {scrolling: 'yes'}) :
+          this.view.controller.fetchReadability(url);
 
-        this.addCSS('url.widget', {resource: '/widgets'});
+      this.updateEmbeddedContent($content);
+    },
 
-        return this;
-    };
+    /**
+     * Update Embedded content
+     * @memberOf UrlWidgetElement
+     * @param {string} content
+     */
+    updateEmbeddedContent: function updateEmbeddedContent(content) {
 
-    return UrlWidgetElement.extend('UrlWidgetElement', {
+      // Define $content
+      var $content = $(content);
 
-        /**
-         * Render Embedded content
-         * @memberOf UrlWidgetElement
-         * @param {string} url
-         * @param {boolean} isIframe
-         */
-        renderEmbeddedContent: function renderEmbeddedContent(url, isIframe) {
+      // Remove unnecessary scripts, links and css
+      $('script, style, link', $content).remove();
 
-            // Define $content instance
-            var $content = isIframe ?
-                this.renderIframe(url, {scrolling: 'yes'}) :
-                this.view.controller.fetchReadability(url);
+      this.$.empty().append($content);
+    }
 
-            this.updateEmbeddedContent($content);
-        },
-
-        /**
-         * Update Embedded content
-         * @memberOf UrlWidgetElement
-         * @param {string} content
-         */
-        updateEmbeddedContent: function updateEmbeddedContent(content) {
-
-            // Define $content
-            var $content = $(content);
-
-            // Remove unnecessary scripts, links and css
-            $('script, style, link', $content).remove();
-
-            this.$.empty().append($content);
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 
 });

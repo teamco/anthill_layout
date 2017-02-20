@@ -7,23 +7,23 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function definePortfoliumEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define Portfolium event manager
-     * @class PortfoliumEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var PortfoliumEventManager = function PortfoliumEventManager() {
+  /**
+   * Define Portfolium event manager
+   * @class PortfoliumEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var PortfoliumEventManager = function PortfoliumEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return PortfoliumEventManager.extend(
-        'PortfoliumEventManager', {},
-        WidgetContentEventManager.prototype
-    );
+  return PortfoliumEventManager.extend(
+      'PortfoliumEventManager', {},
+      WidgetContentEventManager.prototype
+  );
 });

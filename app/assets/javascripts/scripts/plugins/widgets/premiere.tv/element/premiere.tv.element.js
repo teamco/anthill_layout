@@ -6,45 +6,45 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function definePremiereTvElement(PluginElement) {
 
+  /**
+   * Define PremiereTv Element
+   * @param view
+   * @param opts
+   * @returns {PremiereTvElement}
+   * @constructor
+   * @class PremiereTvElement
+   * @extends PluginElement
+   */
+  var PremiereTvElement = function PremiereTvElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('premiere.tv', {resource: '/widgets'});
+
+    return this;
+  };
+
+  return PremiereTvElement.extend('PremiereTvElement', {
+
     /**
-     * Define PremiereTv Element
-     * @param view
-     * @param opts
-     * @returns {PremiereTvElement}
-     * @constructor
-     * @class PremiereTvElement
-     * @extends PluginElement
+     * Render Embedded content
+     * @memberOf PremiereTvElement
+     * @param {string} embed
      */
-    var PremiereTvElement = function PremiereTvElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent(embed) {
+      this.$.append(
+          this.renderObject(
+              embed.toHtml()
+          )
+      );
+    }
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
-
-        this.addCSS('premiere.tv', {resource: '/widgets'});
-
-        return this;
-    };
-
-    return PremiereTvElement.extend('PremiereTvElement', {
-
-        /**
-         * Render Embedded content
-         * @memberOf PremiereTvElement
-         * @param {string} embed
-         */
-        renderEmbeddedContent: function renderEmbeddedContent(embed) {
-            this.$.append(
-                this.renderObject(
-                    embed.toHtml()
-                )
-            );
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 
 });

@@ -7,102 +7,103 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/coub/element/coub.element',
-    'plugins/widgets/coub/element/coub.preferences.element',
-    'plugins/widgets/coub/element/coub.rules.element'
-], function defineCoubView(BaseView, Header, Footer, CoubElement, CoubPreferencesElement, CoubRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/coub/element/coub.element',
+  'plugins/widgets/coub/element/coub.preferences.element',
+  'plugins/widgets/coub/element/coub.rules.element'
+], function defineCoubView(BaseView, Header, Footer, CoubElement,
+    CoubPreferencesElement, CoubRulesElement) {
+
+  /**
+   * Define view
+   * @class CoubView
+   * @extends BaseView
+   * @constructor
+   */
+  var CoubView = function CoubView() {
+  };
+
+  return CoubView.extend('CoubView', {
 
     /**
-     * Define view
-     * @class CoubView
-     * @extends BaseView
-     * @constructor
+     * Render Coub element
+     * @memberOf CoubView
      */
-    var CoubView = function CoubView() {
-    };
+    renderCoub: function renderCoub() {
 
-    return CoubView.extend('CoubView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render Coub element
-         * @memberOf CoubView
-         */
-        renderCoub: function renderCoub() {
+      /**
+       * Define $coub
+       * @type {CoubElement}
+       */
+      this.elements.$coub = new CoubElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $coub
-             * @type {CoubElement}
-             */
-            this.elements.$coub = new CoubElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf CoubView
+     * @returns {CoubPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define Coub Preferences Element
+       * @type {CoubPreferencesElement}
+       */
+      this.elements.$preferences = new CoubPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf CoubView
-         * @returns {CoubPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define Coub Preferences Element
-             * @type {CoubPreferencesElement}
-             */
-            this.elements.$preferences = new CoubPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf CoubView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {CoubRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
-
-        /**
-         * Render Rules
-         * @memberOf CoubView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {CoubRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define Coub Rules Element
-             * @type {CoubRulesElement}
-             */
-            this.elements.$rules = new CoubRulesElement(this, {
-                data: this.controller.getRules(),
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render Coub
-         * @memberOf CoubView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderCoub.bind(this)
-            );
+      /**
+       * Define Coub Rules Element
+       * @type {CoubRulesElement}
+       */
+      this.elements.$rules = new CoubRulesElement(this, {
+        data: this.controller.getRules(),
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render Coub
+     * @memberOf CoubView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderCoub.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

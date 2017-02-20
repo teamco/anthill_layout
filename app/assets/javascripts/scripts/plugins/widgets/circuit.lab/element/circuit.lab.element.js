@@ -6,40 +6,40 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineCircuitLabElement(PluginElement) {
 
+  /**
+   * Define CircuitLab Element
+   * @param view
+   * @param opts
+   * @returns {CircuitLabElement}
+   * @constructor
+   * @class CircuitLabElement
+   * @extends PluginElement
+   */
+  var CircuitLabElement = function CircuitLabElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('circuit.lab', {resource: '/widgets'});
+
+    return this;
+  };
+
+  return CircuitLabElement.extend('CircuitLabElement', {
+
     /**
-     * Define CircuitLab Element
-     * @param view
-     * @param opts
-     * @returns {CircuitLabElement}
-     * @constructor
-     * @class CircuitLabElement
-     * @extends PluginElement
+     * Render Embedded content
+     * @memberOf CircuitLabElement
+     * @param {string} embed
      */
-    var CircuitLabElement = function CircuitLabElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent(embed) {
+      this.addContent(embed);
+    }
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
-
-        this.addCSS('circuit.lab', {resource: '/widgets'});
-
-        return this;
-    };
-
-    return CircuitLabElement.extend('CircuitLabElement', {
-
-        /**
-         * Render Embedded content
-         * @memberOf CircuitLabElement
-         * @param {string} embed
-         */
-        renderEmbeddedContent: function renderEmbeddedContent(embed) {
-            this.addContent(embed);
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 });

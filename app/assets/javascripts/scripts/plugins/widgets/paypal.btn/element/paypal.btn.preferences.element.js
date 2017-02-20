@@ -6,35 +6,37 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
-], function definePaypalBtnPreferencesElement(PluginElement, WidgetPreferences) {
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
+], function definePaypalBtnPreferencesElement(PluginElement,
+    WidgetPreferences) {
 
-    /**
-     * Define PaypalBtn Preferences Element
-     * @constructor
-     * @class PaypalBtnPreferencesElement
-     * @param {PaypalBtnView} view
-     * @param opts
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     * @returns {PaypalBtnPreferencesElement}
-     */
-    var PaypalBtnPreferencesElement = function PaypalBtnPreferencesElement(view, opts) {
+  /**
+   * Define PaypalBtn Preferences Element
+   * @constructor
+   * @class PaypalBtnPreferencesElement
+   * @param {PaypalBtnView} view
+   * @param opts
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   * @returns {PaypalBtnPreferencesElement}
+   */
+  var PaypalBtnPreferencesElement = function PaypalBtnPreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return PaypalBtnPreferencesElement.extend(
-        'PaypalBtnPreferencesElement', {}, 
-        PluginElement.prototype, 
-        WidgetPreferences.prototype
-    );
+  return PaypalBtnPreferencesElement.extend(
+      'PaypalBtnPreferencesElement', {},
+      PluginElement.prototype,
+      WidgetPreferences.prototype
+  );
 });

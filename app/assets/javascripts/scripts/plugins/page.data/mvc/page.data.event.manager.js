@@ -7,45 +7,45 @@
  */
 
 define([
-    'modules/Event'
+  'modules/Event'
 ], function definePageDataEventManager(BaseEvent) {
 
+  /**
+   * Define layout event manager
+   * @class PageDataEventManager
+   * @constructor
+   * @extends BaseEvent
+   */
+  var PageDataEventManager = function PageDataEventManager() {
+
     /**
-     * Define layout event manager
-     * @class PageDataEventManager
-     * @constructor
-     * @extends BaseEvent
+     * Define events
+     * @property PageDataEventManager
+     * @type {{}}
      */
-    var PageDataEventManager = function PageDataEventManager() {
+    this.events = {};
 
-        /**
-         * Define events
-         * @property PageDataEventManager
-         * @type {{}}
-         */
-        this.events = {};
-
-        /**
-         * Define event list
-         * @property PageDataEventManager
-         * @type {{
+    /**
+     * Define event list
+     * @property PageDataEventManager
+     * @type {{
          *      updateTranslations: string,
          *      loadModuleContent: string,
          *      prepareActiveComponent: string,
          *      storeItem: string,
          *      setActiveContent: string
          * }}
-         */
-        this.eventList = {
-            updateTranslations: 'update.translations',
-            loadModuleContent: 'load.module.content',
-            prepareActiveComponent: 'prepare.active.component',
-            storeItem: 'store.item',
-            setActiveContent: 'set.active.content'
-        };
+     */
+    this.eventList = {
+      updateTranslations: 'update.translations',
+      loadModuleContent: 'load.module.content',
+      prepareActiveComponent: 'prepare.active.component',
+      storeItem: 'store.item',
+      setActiveContent: 'set.active.content'
     };
+  };
 
-    return PageDataEventManager.extend(
-        'PageDataEventManager', {}, BaseEvent.prototype
-    );
+  return PageDataEventManager.extend(
+      'PageDataEventManager', {}, BaseEvent.prototype
+  );
 });

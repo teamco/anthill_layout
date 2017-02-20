@@ -7,20 +7,18 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function definePagePermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @extends BasePermission
-     * @class PagePermission
-     * @constructor
-     */
-    var PagePermission = function PagePermission() {
+  /**
+   * Define Permissions
+   * @extends BasePermission
+   * @class PagePermission
+   * @constructor
+   */
+  var PagePermission = function PagePermission() {
 
-    };
+  };
 
-    return PagePermission.extend('PagePermission', {
-
-    }, BasePermission.prototype);
+  return PagePermission.extend('PagePermission', {}, BasePermission.prototype);
 });

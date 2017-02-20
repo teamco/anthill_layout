@@ -6,44 +6,45 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineProchanModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define Prochan model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class ProchanModel
+   * @constructor
+   */
+  var ProchanModel = function ProchanModel() {
+
     /**
-     * Define Prochan model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class ProchanModel
-     * @constructor
+     * Define preferences
+     * @property ProchanModel
+     * @type {{prochanEmbedCode: {type: string, disabled: boolean, value:
+     *     string, visible: boolean}}}
      */
-    var ProchanModel = function ProchanModel() {
-
-        /**
-         * Define preferences
-         * @property ProchanModel
-         * @type {{prochanEmbedCode: {type: string, disabled: boolean, value: string, visible: boolean}}}
-         */
-        this.preferences = {
-            prochanEmbedCode: {
-                type: 'textarea',
-                disabled: false,
-                value: '<iframe width="640" height="360" src="http://www.prochan.com/embed?f=5a6_1465064752" frameborder="0" allowfullscreen></iframe>',
-                visible: true
-            }
-        };
-
-        /**
-         * Define rules
-         * @property ProchanModel
-         * @type {{}}
-         */
-        this.rules = {};
+    this.preferences = {
+      prochanEmbedCode: {
+        type: 'textarea',
+        disabled: false,
+        value: '<iframe width="640" height="360" src="http://www.prochan.com/embed?f=5a6_1465064752" frameborder="0" allowfullscreen></iframe>',
+        visible: true
+      }
     };
 
-    return ProchanModel.extend('ProchanModel', {
+    /**
+     * Define rules
+     * @property ProchanModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        // Setter
+  return ProchanModel.extend('ProchanModel', {
 
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    // Setter
+
+  }, BaseModel.prototype, WidgetContentModel.prototype);
 });

@@ -7,23 +7,23 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineVerseEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define Verse event manager
-     * @class VerseEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var VerseEventManager = function VerseEventManager() {
+  /**
+   * Define Verse event manager
+   * @class VerseEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var VerseEventManager = function VerseEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return VerseEventManager.extend(
-        'VerseEventManager', {},
-        WidgetContentEventManager.prototype
-    );
+  return VerseEventManager.extend(
+      'VerseEventManager', {},
+      WidgetContentEventManager.prototype
+  );
 });

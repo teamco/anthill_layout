@@ -7,101 +7,104 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/accuweather.videos/element/accuweather.videos.element',
-    'plugins/widgets/accuweather.videos/element/accuweather.videos.preferences.element',
-    'plugins/widgets/accuweather.videos/element/accuweather.videos.rules.element'
-], function defineAccuweatherVideosView(BaseView, Header, Footer, AccuweatherVideosElement, AccuweatherVideosPreferencesElement, AccuweatherVideosRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/accuweather.videos/element/accuweather.videos.element',
+  'plugins/widgets/accuweather.videos/element/accuweather.videos.preferences.element',
+  'plugins/widgets/accuweather.videos/element/accuweather.videos.rules.element'
+], function defineAccuweatherVideosView(BaseView, Header, Footer,
+    AccuweatherVideosElement, AccuweatherVideosPreferencesElement,
+    AccuweatherVideosRulesElement) {
+
+  /**
+   * Define view
+   * @class AccuweatherVideosView
+   * @extends BaseView
+   * @constructor
+   */
+  var AccuweatherVideosView = function AccuweatherVideosView() {
+  };
+
+  return AccuweatherVideosView.extend('AccuweatherVideosView', {
 
     /**
-     * Define view
-     * @class AccuweatherVideosView
-     * @extends BaseView
-     * @constructor
+     * Render AccuweatherVideos element
+     * @memberOf AccuweatherVideosView
      */
-    var AccuweatherVideosView = function AccuweatherVideosView() {
-    };
+    renderAccuweatherVideos: function renderAccuweatherVideos() {
 
-    return AccuweatherVideosView.extend('AccuweatherVideosView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render AccuweatherVideos element
-         * @memberOf AccuweatherVideosView
-         */
-        renderAccuweatherVideos: function renderAccuweatherVideos() {
+      /**
+       * Define $accuweathervideos
+       * @type {AccuweatherVideosElement}
+       */
+      this.elements.$accuweathervideos = new AccuweatherVideosElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $accuweathervideos
-             * @type {AccuweatherVideosElement}
-             */
-            this.elements.$accuweathervideos = new AccuweatherVideosElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf AccuweatherVideosView
+     * @returns {AccuweatherVideosPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define AccuweatherVideos Preferences Element
+       * @type {AccuweatherVideosPreferencesElement}
+       */
+      this.elements.$preferences =
+          new AccuweatherVideosPreferencesElement(this, {
+            data: this.controller.getPreferences()
+          });
 
-        /**
-         * Render Prefs
-         * @memberOf AccuweatherVideosView
-         * @returns {AccuweatherVideosPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define AccuweatherVideos Preferences Element
-             * @type {AccuweatherVideosPreferencesElement}
-             */
-            this.elements.$preferences = new AccuweatherVideosPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf AccuweatherVideosView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {AccuweatherVideosRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
-
-        /**
-         * Render Rules
-         * @memberOf AccuweatherVideosView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {AccuweatherVideosRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define AccuweatherVideos Rules Element
-             * @type {AccuweatherVideosRulesElement}
-             */
-            this.elements.$rules = new AccuweatherVideosRulesElement(this, {
-                data: this.controller.getRules(),
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render AccuweatherVideos
-         * @memberOf AccuweatherVideosView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderAccuweatherVideos.bind(this)
-            );
+      /**
+       * Define AccuweatherVideos Rules Element
+       * @type {AccuweatherVideosRulesElement}
+       */
+      this.elements.$rules = new AccuweatherVideosRulesElement(this, {
+        data: this.controller.getRules(),
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype);
+      return this.get$rules();
+    },
+
+    /**
+     * Render AccuweatherVideos
+     * @memberOf AccuweatherVideosView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderAccuweatherVideos.bind(this)
+      );
+    }
+
+  }, BaseView.prototype);
 });

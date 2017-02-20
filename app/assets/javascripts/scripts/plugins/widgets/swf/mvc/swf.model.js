@@ -6,101 +6,103 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineSwfModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define Swf model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class SwfModel
+   * @constructor
+   */
+  var SwfModel = function SwfModel() {
+
     /**
-     * Define Swf model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class SwfModel
-     * @constructor
-     */
-    var SwfModel = function SwfModel() {
-
-        /**
-         * Define preferences
-         * @memberOf SwfModel
-         * @type {{
-         *      swfUrl: {type: string, disabled: boolean, value: undefined, visible: boolean}
-         *      swfFlashVars: {type: string, disabled: boolean, value: undefined, visible: boolean}
-         *      swfParams: {type: string, disabled: boolean, value: undefined, visible: boolean}
-         *      swfAttributes: {type: string, disabled: boolean, value: undefined, visible: boolean}
+     * Define preferences
+     * @memberOf SwfModel
+     * @type {{
+         *      swfUrl: {type: string, disabled: boolean, value: undefined,
+         *     visible: boolean} swfFlashVars: {type: string, disabled:
+         *     boolean, value: undefined, visible: boolean} swfParams: {type:
+         *     string, disabled: boolean, value: undefined, visible: boolean}
+         *     swfAttributes: {type: string, disabled: boolean, value:
+         *     undefined, visible: boolean}
          * }}
-         */
-        this.preferences = {
-            swfUrl: {
-                type: 'text',
-                disabled: false,
-                value: undefined,
-                visible: true
-            },
-            swfFlashVars: {
-                type: 'textarea',
-                disabled: false,
-                value: undefined,
-                visible: true
-            },
-            swfParams: {
-                type: 'textarea',
-                disabled: false,
-                value: undefined,
-                visible: true
-            },
-            swfAttributes: {
-                type: 'textarea',
-                disabled: false,
-                value: undefined,
-                visible: true
-            }
-        };
-
-        /**
-         * Define rules
-         * @memberOf SwfModel
-         * @type {{}}
-         */
-        this.rules = {};
+     */
+    this.preferences = {
+      swfUrl: {
+        type: 'text',
+        disabled: false,
+        value: undefined,
+        visible: true
+      },
+      swfFlashVars: {
+        type: 'textarea',
+        disabled: false,
+        value: undefined,
+        visible: true
+      },
+      swfParams: {
+        type: 'textarea',
+        disabled: false,
+        value: undefined,
+        visible: true
+      },
+      swfAttributes: {
+        type: 'textarea',
+        disabled: false,
+        value: undefined,
+        visible: true
+      }
     };
 
-    return SwfModel.extend('SwfModel', {
+    /**
+     * Define rules
+     * @memberOf SwfModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        /**
-         * Set Swf Url
-         * @memberOf SwfModel
-         * @param {string} url
-         */
-        setSwfUrl: function setSwfUrl(url) {
-            this.setPrefs('swfUrl', url);
-        },
+  return SwfModel.extend('SwfModel', {
 
-        /**
-         * Set Swf params
-         * @memberOf SwfModel
-         * @param {string} params
-         */
-        setSwfParams: function setSwfParams(params) {
-            this.setPrefs('swfParams', params);
-        },
+    /**
+     * Set Swf Url
+     * @memberOf SwfModel
+     * @param {string} url
+     */
+    setSwfUrl: function setSwfUrl(url) {
+      this.setPrefs('swfUrl', url);
+    },
 
-        /**
-         * Set Swf flashvars
-         * @memberOf SwfModel
-         * @param {string} flashvars
-         */
-        setSwfFlashVars: function setSwfFlashVars(flashvars) {
-            this.setPrefs('swfFlashVars', flashvars);
-        },
+    /**
+     * Set Swf params
+     * @memberOf SwfModel
+     * @param {string} params
+     */
+    setSwfParams: function setSwfParams(params) {
+      this.setPrefs('swfParams', params);
+    },
 
-        /**
-         * Set Swf attributes
-         * @memberOf SwfModel
-         * @param {string} flashvars
-         */
-        setSwfAttributes: function setSwfAttributes(attributes) {
-            this.setPrefs('swfAttributes', attributes);
-        }
+    /**
+     * Set Swf flashvars
+     * @memberOf SwfModel
+     * @param {string} flashvars
+     */
+    setSwfFlashVars: function setSwfFlashVars(flashvars) {
+      this.setPrefs('swfFlashVars', flashvars);
+    },
 
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    /**
+     * Set Swf attributes
+     * @memberOf SwfModel
+     * @param {string} flashvars
+     */
+    setSwfAttributes: function setSwfAttributes(attributes) {
+      this.setPrefs('swfAttributes', attributes);
+    }
+
+  }, BaseModel.prototype, WidgetContentModel.prototype);
 });

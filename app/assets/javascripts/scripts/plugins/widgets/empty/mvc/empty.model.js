@@ -6,39 +6,39 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineEmptyModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define Empty model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class EmptyModel
+   * @constructor
+   */
+  var EmptyModel = function EmptyModel() {
+
     /**
-     * Define Empty model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class EmptyModel
-     * @constructor
+     * Define preferences
+     * @property EmptyModel
+     * @type {{}}
      */
-    var EmptyModel = function EmptyModel() {
-
-        /**
-         * Define preferences
-         * @property EmptyModel
-         * @type {{}}
-         */
-        this.preferences = {
-            // Preferences
-        };
-
-        /**
-         * Define rules
-         * @property EmptyModel
-         * @type {{}}
-         */
-        this.rules = {};
+    this.preferences = {
+      // Preferences
     };
 
-    return EmptyModel.extend('EmptyModel', {
+    /**
+     * Define rules
+     * @property EmptyModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        // Setter
+  return EmptyModel.extend('EmptyModel', {
 
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    // Setter
+
+  }, BaseModel.prototype, WidgetContentModel.prototype);
 });

@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineOnetvRuEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define OnetvRu event manager
-     * @class OnetvRuEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var OnetvRuEventManager = function OnetvRuEventManager() {
+  /**
+   * Define OnetvRu event manager
+   * @class OnetvRuEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var OnetvRuEventManager = function OnetvRuEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return OnetvRuEventManager.extend('OnetvRuEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return OnetvRuEventManager.extend('OnetvRuEventManager', {},
+      WidgetContentEventManager.prototype);
 });

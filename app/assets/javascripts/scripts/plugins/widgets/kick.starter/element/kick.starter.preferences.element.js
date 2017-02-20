@@ -6,35 +6,35 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
-], function defineKickStarterPreferencesElement(PluginElement, WidgetPreferences) {
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
+], function defineKickStarterPreferencesElement(PluginElement,
+    WidgetPreferences) {
 
-    /**
-     * Define KickStarter Preferences Element
-     * @param view
-     * @param opts
-     * @returns {KickStarterPreferencesElement}
-     * @constructor
-     * @class KickStarterPreferencesElement
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     */
-    var KickStarterPreferencesElement = function KickStarterPreferencesElement(view, opts) {
+  /**
+   * Define KickStarter Preferences Element
+   * @param view
+   * @param opts
+   * @returns {KickStarterPreferencesElement}
+   * @constructor
+   * @class KickStarterPreferencesElement
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   */
+  var KickStarterPreferencesElement = function KickStarterPreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return KickStarterPreferencesElement.extend('KickStarterPreferencesElement', {
-
-
-    }, PluginElement.prototype, WidgetPreferences.prototype);
+  return KickStarterPreferencesElement.extend('KickStarterPreferencesElement',
+      {}, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

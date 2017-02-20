@@ -7,20 +7,20 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineUrlWidgetPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class UrlWidgetPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var UrlWidgetPermission = function UrlWidgetPermission() {
-    };
+  /**
+   * Define Permissions
+   * @class UrlWidgetPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var UrlWidgetPermission = function UrlWidgetPermission() {
+  };
 
-    return UrlWidgetPermission.extend(
-        'UrlWidgetPermission', {}, 
-        BasePermission.prototype
-    );
+  return UrlWidgetPermission.extend(
+      'UrlWidgetPermission', {},
+      BasePermission.prototype
+  );
 });

@@ -7,20 +7,20 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineBingMapsPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class BingMapsPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var BingMapsPermission = function BingMapsPermission() {
-    };
+  /**
+   * Define Permissions
+   * @class BingMapsPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var BingMapsPermission = function BingMapsPermission() {
+  };
 
-    return BingMapsPermission.extend(
-        'BingMapsPermission', {}, 
-        BasePermission.prototype
-    );
+  return BingMapsPermission.extend(
+      'BingMapsPermission', {},
+      BasePermission.prototype
+  );
 });

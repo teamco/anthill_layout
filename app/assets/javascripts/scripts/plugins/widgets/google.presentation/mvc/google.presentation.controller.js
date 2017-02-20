@@ -6,52 +6,53 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
-], function defineGooglePresentationController(PluginBase, WidgetContentController) {
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
+], function defineGooglePresentationController(PluginBase,
+    WidgetContentController) {
+
+  /**
+   * Define GooglePresentation controller
+   * @class GooglePresentationController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var GooglePresentationController = function GooglePresentationController() {
+  };
+
+  return GooglePresentationController.extend('GooglePresentationController', {
 
     /**
-     * Define GooglePresentation controller
-     * @class GooglePresentationController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf GooglePresentationController
      */
-    var GooglePresentationController = function GooglePresentationController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
 
-    return GooglePresentationController.extend('GooglePresentationController', {
+      this.view.elements.$googlepresentation.renderEmbeddedContent(
+          this.model.getPrefs('googlepresentationEmbed')
+      );
+    },
 
-        /**
-         * Set embedded content
-         * @memberOf GooglePresentationController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
+    /**
+     * Add GooglePresentation rule
+     * @memberOf GooglePresentationController
+     * @param {Event} e
+     */
+    addGooglePresentationRule: function addGooglePresentationRule(e) {
 
-            this.view.elements.$googlepresentation.renderEmbeddedContent(
-                this.model.getPrefs('googlepresentationEmbed')
-            );
-        },
+      /**
+       * Define $button
+       * @type {*|jQuery|HTMLElement}
+       */
+      var $button = $(e.target),
+          scope = this.scope;
 
-        /**
-         * Add GooglePresentation rule
-         * @memberOf GooglePresentationController
-         * @param e
-         */
-        addGooglePresentationRule: function addGooglePresentationRule(e) {
+      scope.observer.publish(
+          scope.eventmanager.eventList.publishRule,
+          [$button.attr('value'), this.scope.name]
+      );
+    }
 
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), this.scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

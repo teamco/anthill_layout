@@ -6,35 +6,36 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
 ], function defineAnimotoPreferencesElement(PluginElement, WidgetPreferences) {
 
-    /**
-     * Define Animoto Preferences Element
-     * @param view
-     * @param opts
-     * @returns {AnimotoPreferencesElement}
-     * @constructor
-     * @class AnimotoPreferencesElement
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     */
-    var AnimotoPreferencesElement = function AnimotoPreferencesElement(view, opts) {
+  /**
+   * Define Animoto Preferences Element
+   * @param view
+   * @param opts
+   * @returns {AnimotoPreferencesElement}
+   * @constructor
+   * @class AnimotoPreferencesElement
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   */
+  var AnimotoPreferencesElement = function AnimotoPreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return AnimotoPreferencesElement.extend(
-        'AnimotoPreferencesElement', {},
-        PluginElement.prototype,
-        WidgetPreferences.prototype
-    );
+  return AnimotoPreferencesElement.extend(
+      'AnimotoPreferencesElement', {},
+      PluginElement.prototype,
+      WidgetPreferences.prototype
+  );
 });

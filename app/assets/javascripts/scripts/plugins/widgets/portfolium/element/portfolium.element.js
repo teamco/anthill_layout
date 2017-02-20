@@ -6,40 +6,40 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function definePortfoliumElement(PluginElement) {
 
+  /**
+   * Define Portfolium Element
+   * @param view
+   * @param opts
+   * @returns {PortfoliumElement}
+   * @constructor
+   * @class PortfoliumElement
+   * @extends PluginElement
+   */
+  var PortfoliumElement = function PortfoliumElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('portfolium', {resource: '/widgets'});
+
+    return this;
+  };
+
+  return PortfoliumElement.extend('PortfoliumElement', {
+
     /**
-     * Define Portfolium Element
-     * @param view
-     * @param opts
-     * @returns {PortfoliumElement}
-     * @constructor
-     * @class PortfoliumElement
-     * @extends PluginElement
+     * Render Embedded content
+     * @memberOf PortfoliumElement
+     * @param {string} embed
      */
-    var PortfoliumElement = function PortfoliumElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent(embed) {
+      this.addContent(embed);
+    }
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
-
-        this.addCSS('portfolium', {resource: '/widgets'});
-
-        return this;
-    };
-
-    return PortfoliumElement.extend('PortfoliumElement', {
-
-        /**
-         * Render Embedded content
-         * @memberOf PortfoliumElement
-         * @param {string} embed
-         */
-        renderEmbeddedContent: function renderEmbeddedContent(embed) {
-            this.addContent(embed);
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 });

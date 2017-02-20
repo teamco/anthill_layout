@@ -7,23 +7,23 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineOumyEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define Oumy event manager
-     * @class OumyEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var OumyEventManager = function OumyEventManager() {
+  /**
+   * Define Oumy event manager
+   * @class OumyEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var OumyEventManager = function OumyEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return OumyEventManager.extend(
-        'OumyEventManager', {},
-        WidgetContentEventManager.prototype
-    );
+  return OumyEventManager.extend(
+      'OumyEventManager', {},
+      WidgetContentEventManager.prototype
+  );
 });

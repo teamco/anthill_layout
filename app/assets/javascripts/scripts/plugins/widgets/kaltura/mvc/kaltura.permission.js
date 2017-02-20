@@ -7,20 +7,20 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineKalturaPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class KalturaPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var KalturaPermission = function KalturaPermission() {
-    };
+  /**
+   * Define Permissions
+   * @class KalturaPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var KalturaPermission = function KalturaPermission() {
+  };
 
-    return KalturaPermission.extend(
-        'KalturaPermission', {}, 
-        BasePermission.prototype
-    );
+  return KalturaPermission.extend(
+      'KalturaPermission', {},
+      BasePermission.prototype
+  );
 });

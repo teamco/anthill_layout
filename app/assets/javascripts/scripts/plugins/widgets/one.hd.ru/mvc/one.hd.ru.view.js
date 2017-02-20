@@ -7,108 +7,109 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/one.hd.ru/element/one.hd.ru.element',
-    'plugins/widgets/one.hd.ru/element/one.hd.ru.preferences.element',
-    'plugins/widgets/one.hd.ru/element/one.hd.ru.rules.element'
-], function defineOneHdRuView(BaseView, Header, Footer, OneHdRuElement, OneHdRuPreferencesElement, OneHdRuRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/one.hd.ru/element/one.hd.ru.element',
+  'plugins/widgets/one.hd.ru/element/one.hd.ru.preferences.element',
+  'plugins/widgets/one.hd.ru/element/one.hd.ru.rules.element'
+], function defineOneHdRuView(BaseView, Header, Footer, OneHdRuElement,
+    OneHdRuPreferencesElement, OneHdRuRulesElement) {
+
+  /**
+   * Define view
+   * @class OneHdRuView
+   * @extends BaseView
+   * @constructor
+   */
+  var OneHdRuView = function OneHdRuView() {
+  };
+
+  return OneHdRuView.extend('OneHdRuView', {
 
     /**
-     * Define view
-     * @class OneHdRuView
-     * @extends BaseView
-     * @constructor
+     * Render onehdru element
+     * @memberOf OneHdRuView
      */
-    var OneHdRuView = function OneHdRuView() {
-    };
+    renderOneHdRu: function renderOneHdRu() {
 
-    return OneHdRuView.extend('OneHdRuView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render onehdru element
-         * @memberOf OneHdRuView
-         */
-        renderOneHdRu: function renderOneHdRu() {
+      /**
+       * Define $onehdru
+       * @type {OneHdRuElement}
+       */
+      this.elements.$onehdru = new OneHdRuElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $onehdru
-             * @type {OneHdRuElement}
-             */
-            this.elements.$onehdru = new OneHdRuElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf OneHdRuView
+     * @returns {OneHdRuPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define OneHdRu Preferences Element
+       * @type {OneHdRuPreferencesElement}
+       */
+      this.elements.$preferences = new OneHdRuPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf OneHdRuView
-         * @returns {OneHdRuPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define OneHdRu Preferences Element
-             * @type {OneHdRuPreferencesElement}
-             */
-            this.elements.$preferences = new OneHdRuPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf OneHdRuView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {OneHdRuRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
+      /**
+       * Define data
+       * @type {*|{}}
+       */
+      var data = this.controller.getRules();
 
-        /**
-         * Render Rules
-         * @memberOf OneHdRuView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {OneHdRuRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define data
-             * @type {*|{}}
-             */
-            var data = this.controller.getRules();
-
-            /**
-             * Define OneHdRu Rules Element
-             * @type {OneHdRuRulesElement}
-             */
-            this.elements.$rules = new OneHdRuRulesElement(this, {
-                data: data,
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render onehdru
-         * @memberOf OneHdRuView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderOneHdRu.bind(this)
-            );
+      /**
+       * Define OneHdRu Rules Element
+       * @type {OneHdRuRulesElement}
+       */
+      this.elements.$rules = new OneHdRuRulesElement(this, {
+        data: data,
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render onehdru
+     * @memberOf OneHdRuView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderOneHdRu.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function definePikTvEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define PikTv event manager
-     * @class PikTvEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var PikTvEventManager = function PikTvEventManager() {
+  /**
+   * Define PikTv event manager
+   * @class PikTvEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var PikTvEventManager = function PikTvEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return PikTvEventManager.extend('PikTvEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return PikTvEventManager.extend('PikTvEventManager', {},
+      WidgetContentEventManager.prototype);
 });

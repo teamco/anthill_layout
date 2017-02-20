@@ -6,35 +6,33 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
 ], function defineRutubePreferencesElement(PluginElement, WidgetPreferences) {
 
-    /**
-     * Define Rutube Preferences Element
-     * @param view
-     * @param opts
-     * @returns {RutubePreferencesElement}
-     * @constructor
-     * @class RutubePreferencesElement
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     */
-    var RutubePreferencesElement = function RutubePreferencesElement(view, opts) {
+  /**
+   * Define Rutube Preferences Element
+   * @param view
+   * @param opts
+   * @returns {RutubePreferencesElement}
+   * @constructor
+   * @class RutubePreferencesElement
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   */
+  var RutubePreferencesElement = function RutubePreferencesElement(view, opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return RutubePreferencesElement.extend('RutubePreferencesElement', {
-
-
-    }, PluginElement.prototype, WidgetPreferences.prototype);
+  return RutubePreferencesElement.extend('RutubePreferencesElement', {},
+      PluginElement.prototype, WidgetPreferences.prototype);
 
 });

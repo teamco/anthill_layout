@@ -6,51 +6,40 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function definePikTvController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define piktv controller
+   * @class PikTvController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var PikTvController = function PikTvController() {
+  };
+
+  return PikTvController.extend('PikTvController', {
+
     /**
-     * Define piktv controller
-     * @class PikTvController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf PikTvController
      */
-    var PikTvController = function PikTvController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
+      this.view.elements.$piktv.renderEmbeddedContent(
+          this.model.getPrefs('piktvUrl')
+      );
+    },
 
-    return PikTvController.extend('PikTvController', {
+    /**
+     * Add PikTv rule
+     * @memberOf PikTvController
+     * @param {Event} e
+     */
+    addPikTvRule: function addPikTvRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-        /**
-         * Set embedded content
-         * @memberOf PikTvController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
-            this.view.elements.$piktv.renderEmbeddedContent(
-                this.model.getPrefs('piktvUrl')
-            );
-        },
-
-        /**
-         * Add PikTv rule
-         * @memberOf PikTvController
-         * @param e
-         */
-        addPikTvRule: function addPikTvRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

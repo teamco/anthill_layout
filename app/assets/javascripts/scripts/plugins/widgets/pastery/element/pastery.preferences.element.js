@@ -6,35 +6,36 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
 ], function definePasteryPreferencesElement(PluginElement, WidgetPreferences) {
 
-    /**
-     * Define Pastery Preferences Element
-     * @constructor
-     * @class PasteryPreferencesElement
-     * @param {PasteryView} view
-     * @param opts
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     * @returns {PasteryPreferencesElement}
-     */
-    var PasteryPreferencesElement = function PasteryPreferencesElement(view, opts) {
+  /**
+   * Define Pastery Preferences Element
+   * @constructor
+   * @class PasteryPreferencesElement
+   * @param {PasteryView} view
+   * @param opts
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   * @returns {PasteryPreferencesElement}
+   */
+  var PasteryPreferencesElement = function PasteryPreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return PasteryPreferencesElement.extend(
-        'PasteryPreferencesElement', {}, 
-        PluginElement.prototype, 
-        WidgetPreferences.prototype
-    );
+  return PasteryPreferencesElement.extend(
+      'PasteryPreferencesElement', {},
+      PluginElement.prototype,
+      WidgetPreferences.prototype
+  );
 });

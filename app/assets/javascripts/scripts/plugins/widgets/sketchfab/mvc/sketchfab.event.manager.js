@@ -7,23 +7,23 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineSketchfabEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define Sketchfab event manager
-     * @class SketchfabEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var SketchfabEventManager = function SketchfabEventManager() {
+  /**
+   * Define Sketchfab event manager
+   * @class SketchfabEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var SketchfabEventManager = function SketchfabEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return SketchfabEventManager.extend(
-        'SketchfabEventManager', {},
-        WidgetContentEventManager.prototype
-    );
+  return SketchfabEventManager.extend(
+      'SketchfabEventManager', {},
+      WidgetContentEventManager.prototype
+  );
 });

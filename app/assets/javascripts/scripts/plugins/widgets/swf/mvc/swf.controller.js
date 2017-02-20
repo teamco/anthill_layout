@@ -6,55 +6,44 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineSwfController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define swf controller
+   * @class SwfController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var SwfController = function SwfController() {
+  };
+
+  return SwfController.extend('SwfController', {
+
     /**
-     * Define swf controller
-     * @class SwfController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf SwfController
      */
-    var SwfController = function SwfController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
 
-    return SwfController.extend('SwfController', {
+      this.view.elements.$swf.renderEmbeddedContent({
+        url: this.model.getPrefs('swfUrl'),
+        flashvars: this.model.getPrefs('swfFlashVars'),
+        params: this.model.getPrefs('swfParams'),
+        attributes: this.model.getPrefs('swfAttributes')
+      });
+    },
 
-        /**
-         * Set embedded content
-         * @memberOf SwfController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
+    /**
+     * Add Swf rule
+     * @memberOf SwfController
+     * @param {Event} e
+     */
+    addSwfRule: function addSwfRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-            this.view.elements.$swf.renderEmbeddedContent({
-                url: this.model.getPrefs('swfUrl'),
-                flashvars: this.model.getPrefs('swfFlashVars'),
-                params: this.model.getPrefs('swfParams'),
-                attributes: this.model.getPrefs('swfAttributes')
-            });
-        },
-
-        /**
-         * Add Swf rule
-         * @memberOf SwfController
-         * @param e
-         */
-        addSwfRule: function addSwfRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

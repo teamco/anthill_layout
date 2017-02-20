@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineSportExpressEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define SportExpress event manager
-     * @class SportExpressEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var SportExpressEventManager = function SportExpressEventManager() {
+  /**
+   * Define SportExpress event manager
+   * @class SportExpressEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var SportExpressEventManager = function SportExpressEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return SportExpressEventManager.extend('SportExpressEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return SportExpressEventManager.extend('SportExpressEventManager', {},
+      WidgetContentEventManager.prototype);
 });

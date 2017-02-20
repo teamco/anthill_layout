@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineTnaFlixPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class TnaFlixPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var TnaFlixPermission = function TnaFlixPermission() {
+  /**
+   * Define Permissions
+   * @class TnaFlixPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var TnaFlixPermission = function TnaFlixPermission() {
 
-    };
+  };
 
-    return TnaFlixPermission.extend('TnaFlixPermission', {
-
-    }, BasePermission.prototype);
+  return TnaFlixPermission.extend('TnaFlixPermission', {},
+      BasePermission.prototype);
 });

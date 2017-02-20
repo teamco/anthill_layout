@@ -6,51 +6,40 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function definePhotobucketController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define photobucket controller
+   * @class PhotobucketController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var PhotobucketController = function PhotobucketController() {
+  };
+
+  return PhotobucketController.extend('PhotobucketController', {
+
     /**
-     * Define photobucket controller
-     * @class PhotobucketController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf PhotobucketController
      */
-    var PhotobucketController = function PhotobucketController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
+      this.view.elements.$photobucket.renderEmbeddedContent(
+          this.model.getPrefs('photobucketEmbedCode')
+      );
+    },
 
-    return PhotobucketController.extend('PhotobucketController', {
+    /**
+     * Add Photobucket rule
+     * @memberOf PhotobucketController
+     * @param {Event} e
+     */
+    addPhotobucketRule: function addPhotobucketRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-        /**
-         * Set embedded content
-         * @memberOf PhotobucketController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
-            this.view.elements.$photobucket.renderEmbeddedContent(
-                this.model.getPrefs('photobucketEmbedCode')
-            );
-        },
-
-        /**
-         * Add Photobucket rule
-         * @memberOf PhotobucketController
-         * @param e
-         */
-        addPhotobucketRule: function addPhotobucketRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

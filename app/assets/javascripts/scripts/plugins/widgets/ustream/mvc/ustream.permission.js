@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineUstreamPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class UstreamPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var UstreamPermission = function UstreamPermission() {
+  /**
+   * Define Permissions
+   * @class UstreamPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var UstreamPermission = function UstreamPermission() {
 
-    };
+  };
 
-    return UstreamPermission.extend('UstreamPermission', {
-
-    }, BasePermission.prototype);
+  return UstreamPermission.extend('UstreamPermission', {},
+      BasePermission.prototype);
 });

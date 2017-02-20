@@ -6,35 +6,37 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
-], function defineAOneHipHopPreferencesElement(PluginElement, WidgetPreferences) {
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
+], function defineAOneHipHopPreferencesElement(PluginElement,
+    WidgetPreferences) {
 
-    /**
-     * Define AOneHipHop Preferences Element
-     * @param view
-     * @param opts
-     * @returns {AOneHipHopPreferencesElement}
-     * @constructor
-     * @class AOneHipHopPreferencesElement
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     */
-    var AOneHipHopPreferencesElement = function AOneHipHopPreferencesElement(view, opts) {
+  /**
+   * Define AOneHipHop Preferences Element
+   * @param view
+   * @param opts
+   * @returns {AOneHipHopPreferencesElement}
+   * @constructor
+   * @class AOneHipHopPreferencesElement
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   */
+  var AOneHipHopPreferencesElement = function AOneHipHopPreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return AOneHipHopPreferencesElement.extend(
-        'AOneHipHopPreferencesElement', {},
-        PluginElement.prototype,
-        WidgetPreferences.prototype
-    );
+  return AOneHipHopPreferencesElement.extend(
+      'AOneHipHopPreferencesElement', {},
+      PluginElement.prototype,
+      WidgetPreferences.prototype
+  );
 });

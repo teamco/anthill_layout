@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineMobypictureEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define Mobypicture event manager
-     * @class MobypictureEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var MobypictureEventManager = function MobypictureEventManager() {
+  /**
+   * Define Mobypicture event manager
+   * @class MobypictureEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var MobypictureEventManager = function MobypictureEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return MobypictureEventManager.extend('MobypictureEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return MobypictureEventManager.extend('MobypictureEventManager', {},
+      WidgetContentEventManager.prototype);
 });

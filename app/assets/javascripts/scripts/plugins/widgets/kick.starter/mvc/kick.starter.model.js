@@ -6,53 +6,54 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineKickStarterModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define KickStarter model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class KickStarterModel
+   * @constructor
+   */
+  var KickStarterModel = function KickStarterModel() {
+
     /**
-     * Define KickStarter model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class KickStarterModel
-     * @constructor
+     * Define preferences
+     * @memberOf KickStarterModel
+     * @type {{
+     *      kickstarterEmbedCode: {type: string, disabled: boolean, value:
+     *     undefined, visible: boolean}
+     * }}
      */
-    var KickStarterModel = function KickStarterModel() {
-
-        /**
-         * Define preferences
-         * @memberOf KickStarterModel
-         * @type {{
-         *      kickstarterEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
-         * }}
-         */
-        this.preferences = {
-            kickstarterEmbedCode: {
-                type: 'textarea',
-                disabled: false,
-                value: undefined,
-                visible: true
-            }
-        };
-
-        /**
-         * Define rules
-         * @memberOf KickStarterModel
-         * @type {{}}
-         */
-        this.rules = {};
+    this.preferences = {
+      kickstarterEmbedCode: {
+        type: 'textarea',
+        disabled: false,
+        value: undefined,
+        visible: true
+      }
     };
 
-    return KickStarterModel.extend('KickStarterModel', {
+    /**
+     * Define rules
+     * @memberOf KickStarterModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        /**
-         * Set KickStarter embed code
-         * @memberOf KickStarterModel
-         * @param {string} embed
-         */
-        setKickstarterEmbedCode: function setKickstarterEmbedCode(embed) {
-            this.setPrefs('kickstarterEmbedCode', embed);
-        }
+  return KickStarterModel.extend('KickStarterModel', {
 
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    /**
+     * Set KickStarter embed code
+     * @memberOf KickStarterModel
+     * @param {string} embed
+     */
+    setKickstarterEmbedCode: function setKickstarterEmbedCode(embed) {
+      this.setPrefs('kickstarterEmbedCode', embed);
+    }
+
+  }, BaseModel.prototype, WidgetContentModel.prototype);
 });

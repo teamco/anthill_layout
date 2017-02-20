@@ -6,41 +6,42 @@
  */
 
 define([
-    'config/anthill',
-    'modules/MVC',
-    'plugins/widgets/share/mvc/share.controller',
-    'plugins/widgets/share/mvc/share.model',
-    'plugins/widgets/share/mvc/share.view',
-    'plugins/widgets/share/mvc/share.event.manager',
-    'plugins/widgets/share/mvc/share.permission'
-], function defineShare(AntHill, MVC, Controller, Model, View, EventManager, Permission) {
+  'config/anthill',
+  'modules/MVC',
+  'plugins/widgets/share/mvc/share.controller',
+  'plugins/widgets/share/mvc/share.model',
+  'plugins/widgets/share/mvc/share.view',
+  'plugins/widgets/share/mvc/share.event.manager',
+  'plugins/widgets/share/mvc/share.permission'
+], function defineShare(AntHill, MVC, Controller, Model, View, EventManager,
+    Permission) {
+
+  /**
+   * Define Share
+   * @param containment
+   * @param [opts]
+   * @constructor
+   * @class Share
+   * @extends AntHill
+   */
+  var Share = function Share(containment, opts) {
 
     /**
-     * Define Share
-     * @param containment
-     * @param [opts]
-     * @constructor
-     * @class Share
-     * @extends AntHill
+     * Define containment
+     * @memberOf Share
      */
-    var Share = function Share(containment, opts) {
+    this.containment = containment;
 
-        /**
-         * Define containment
-         * @memberOf Share
-         */
-        this.containment = containment;
+    /**
+     * Define referrer
+     * @memberOf Share
+     * @type {*}
+     */
+    this.referrer = undefined;
 
-        /**
-         * Define referrer
-         * @memberOf Share
-         * @type {*}
-         */
-        this.referrer = undefined;
-
-        /**
-         * Define defaults
-         * @type {{
+    /**
+     * Define defaults
+     * @type {{
          *      plugin: boolean,
          *      html: {
          *          style: string,
@@ -55,50 +56,48 @@ define([
          *          }
          *      }
          * }}
-         */
-        var DEFAULTS = {
-            plugin: true,
-            html: {
-                style: 'default',
-                header: false,
-                footer: false,
-                padding: {
-                    top: 0,
-                    right: 0,
-                    bottom: 0,
-                    left: 0
-                }
-            }
-        };
-
-        /**
-         * Define MVC
-         * @memberOf Share
-         * @type {MVC}
-         */
-        this.mvc = new MVC({
-            scope: this,
-            config: [
-                {uuid: this.containment.model.getContentUUID()},
-                DEFAULTS
-            ],
-            components: [
-                Controller,
-                Model,
-                View,
-                EventManager,
-                Permission
-            ],
-            render: true
-        });
-
-        this.observer.publish(
-            this.eventmanager.eventList.initWidget,
-            opts
-        );
+     */
+    var DEFAULTS = {
+      plugin: true,
+      html: {
+        style: 'default',
+        header: false,
+        footer: false,
+        padding: {
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0
+        }
+      }
     };
 
-    return Share.extend('Share', {
+    /**
+     * Define MVC
+     * @memberOf Share
+     * @type {MVC}
+     */
+    this.mvc = new MVC({
+      scope: this,
+      config: [
+        {uuid: this.containment.model.getContentUUID()},
+        DEFAULTS
+      ],
+      components: [
+        Controller,
+        Model,
+        View,
+        EventManager,
+        Permission
+      ],
+      render: true
+    });
 
-    }, AntHill.prototype);
+    this.observer.publish(
+        this.eventmanager.eventList.initWidget,
+        opts
+    );
+  };
+
+  return Share.extend('Share', {}, AntHill.prototype);
 });

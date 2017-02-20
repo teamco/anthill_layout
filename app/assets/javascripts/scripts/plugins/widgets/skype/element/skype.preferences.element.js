@@ -6,35 +6,35 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
 ], function defineSkypePreferencesElement(PluginElement, WidgetPreferences) {
 
-    /**
-     * Define Skype Preferences Element
-     * @constructor
-     * @class SkypePreferencesElement
-     * @param {SkypeView} view
-     * @param opts
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     * @returns {SkypePreferencesElement}
-     */
-    var SkypePreferencesElement = function SkypePreferencesElement(view, opts) {
+  /**
+   * Define Skype Preferences Element
+   * @constructor
+   * @class SkypePreferencesElement
+   * @param {SkypeView} view
+   * @param opts
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   * @returns {SkypePreferencesElement}
+   */
+  var SkypePreferencesElement = function SkypePreferencesElement(view, opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return SkypePreferencesElement.extend(
-        'SkypePreferencesElement', {}, 
-        PluginElement.prototype, 
-        WidgetPreferences.prototype
-    );
+  return SkypePreferencesElement.extend(
+      'SkypePreferencesElement', {},
+      PluginElement.prototype,
+      WidgetPreferences.prototype
+  );
 });

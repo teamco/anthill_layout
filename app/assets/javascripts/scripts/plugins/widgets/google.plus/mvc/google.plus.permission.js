@@ -7,20 +7,20 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineGooglePlusPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class GooglePlusPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var GooglePlusPermission = function GooglePlusPermission() {
-    };
+  /**
+   * Define Permissions
+   * @class GooglePlusPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var GooglePlusPermission = function GooglePlusPermission() {
+  };
 
-    return GooglePlusPermission.extend(
-        'GooglePlusPermission', {},
-        BasePermission.prototype
-    );
+  return GooglePlusPermission.extend(
+      'GooglePlusPermission', {},
+      BasePermission.prototype
+  );
 });

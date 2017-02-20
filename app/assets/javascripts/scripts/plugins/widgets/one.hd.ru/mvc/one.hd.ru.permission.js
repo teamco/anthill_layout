@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineOneHdRuPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class OneHdRuPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var OneHdRuPermission = function OneHdRuPermission() {
+  /**
+   * Define Permissions
+   * @class OneHdRuPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var OneHdRuPermission = function OneHdRuPermission() {
 
-    };
+  };
 
-    return OneHdRuPermission.extend('OneHdRuPermission', {
-
-    }, BasePermission.prototype);
+  return OneHdRuPermission.extend('OneHdRuPermission', {},
+      BasePermission.prototype);
 });

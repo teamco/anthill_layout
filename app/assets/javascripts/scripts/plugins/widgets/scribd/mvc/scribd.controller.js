@@ -6,90 +6,79 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineScribdController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define scribd controller
+   * @class ScribdController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var ScribdController = function ScribdController() {
+  };
+
+  return ScribdController.extend('ScribdController', {
+
     /**
-     * Define scribd controller
-     * @class ScribdController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf ScribdController
      */
-    var ScribdController = function ScribdController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
 
-    return ScribdController.extend('ScribdController', {
+      this.view.elements.$scribd.renderEmbeddedContent(
+          this.controller.getEmbedCode(
+              this.model.getPrefs('scribdEmbedCode')
+          )
+      );
+    },
 
-        /**
-         * Set embedded content
-         * @memberOf ScribdController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
+    /**
+     * Validate scribd
+     * @memberOf ScribdController
+     * @param {string} embed
+     * @return {string|boolean}
+     */
+    getEmbedCode: function getEmbedCode(embed) {
 
-            this.view.elements.$scribd.renderEmbeddedContent(
-                this.controller.getEmbedCode(
-                    this.model.getPrefs('scribdEmbedCode')
-                )
-            );
-        },
+      if (!embed) {
+        this.scope.logger.debug('Initial state');
+        return false;
+      }
 
-        /**
-         * Validate scribd
-         * @memberOf ScribdController
-         * @param {string} embed
-         * @return {string|boolean}
-         */
-        getEmbedCode: function getEmbedCode(embed) {
+      // Convert to string
+      embed += '';
 
-            if (!embed) {
-                this.scope.logger.debug('Initial state');
-                return false;
-            }
+      if (embed.match(/<iframe/)) {
 
-            // Convert to string
-            embed += '';
+        // Locate iframe
+        var $iframe = $($(embed)[1]);
 
-            if (embed.match(/<iframe/)) {
+        return {
+          src: $iframe.attr('src'),
+          id: $iframe.attr('id'),
+          'class': $iframe.attr('class'),
+          'data-auto-height': $iframe.attr('data-auto-height'),
+          'data-aspect-ratio': $iframe.attr('data-aspect-ratio')
+        };
 
-                // Locate iframe
-                var $iframe = $($(embed)[1]);
+      } else {
 
-                return {
-                    src: $iframe.attr('src'),
-                    id: $iframe.attr('id'),
-                    'class': $iframe.attr('class'),
-                    'data-auto-height': $iframe.attr('data-auto-height'),
-                    'data-aspect-ratio': $iframe.attr('data-aspect-ratio')
-                };
+        this.scope.logger.warn('Invalid Scribd embed code');
+        return false;
+      }
+    },
 
-            } else {
+    /**
+     * Add Scribd rule
+     * @memberOf ScribdController
+     * @param {Event} e
+     */
+    addScribdRule: function addScribdRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-                this.scope.logger.warn('Invalid Scribd embed code');
-                return false;
-            }
-        },
-
-        /**
-         * Add Scribd rule
-         * @memberOf ScribdController
-         * @param e
-         */
-        addScribdRule: function addScribdRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

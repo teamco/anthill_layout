@@ -7,23 +7,23 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineWikimapiaEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define Wikimapia event manager
-     * @class WikimapiaEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var WikimapiaEventManager = function WikimapiaEventManager() {
+  /**
+   * Define Wikimapia event manager
+   * @class WikimapiaEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var WikimapiaEventManager = function WikimapiaEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return WikimapiaEventManager.extend(
-        'WikimapiaEventManager', {},
-        WidgetContentEventManager.prototype
-    );
+  return WikimapiaEventManager.extend(
+      'WikimapiaEventManager', {},
+      WidgetContentEventManager.prototype
+  );
 });

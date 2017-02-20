@@ -6,53 +6,54 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineCollegeHumorModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define CollegeHumor model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class CollegeHumorModel
+   * @constructor
+   */
+  var CollegeHumorModel = function CollegeHumorModel() {
+
     /**
-     * Define CollegeHumor model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class CollegeHumorModel
-     * @constructor
+     * Define preferences
+     * @memberOf CollegeHumorModel
+     * @type {{
+     *      collegehumorEmbedCode: {type: string, disabled: boolean, value:
+     *     undefined, visible: boolean}
+     * }}
      */
-    var CollegeHumorModel = function CollegeHumorModel() {
-
-        /**
-         * Define preferences
-         * @memberOf CollegeHumorModel
-         * @type {{
-         *      collegehumorEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
-         * }}
-         */
-        this.preferences = {
-            collegehumorEmbedCode: {
-                type: 'textarea',
-                disabled: false,
-                value: undefined,
-                visible: true
-            }
-        };
-
-        /**
-         * Define rules
-         * @memberOf CollegeHumorModel
-         * @type {{}}
-         */
-        this.rules = {};
+    this.preferences = {
+      collegehumorEmbedCode: {
+        type: 'textarea',
+        disabled: false,
+        value: undefined,
+        visible: true
+      }
     };
 
-    return CollegeHumorModel.extend('CollegeHumorModel', {
+    /**
+     * Define rules
+     * @memberOf CollegeHumorModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        /**
-         * Set CollegeHumor embed code
-         * @memberOf CollegeHumorModel
-         * @param {string} embed
-         */
-        setCollegehumorEmbedCode: function setCollegehumorEmbedCode(embed) {
-            this.setPrefs('collegehumorEmbedCode', embed);
-        }
+  return CollegeHumorModel.extend('CollegeHumorModel', {
 
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    /**
+     * Set CollegeHumor embed code
+     * @memberOf CollegeHumorModel
+     * @param {string} embed
+     */
+    setCollegehumorEmbedCode: function setCollegehumorEmbedCode(embed) {
+      this.setPrefs('collegehumorEmbedCode', embed);
+    }
+
+  }, BaseModel.prototype, WidgetContentModel.prototype);
 });

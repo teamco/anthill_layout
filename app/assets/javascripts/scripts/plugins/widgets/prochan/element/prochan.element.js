@@ -6,44 +6,44 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineProchanElement(PluginElement) {
 
+  /**
+   * Define Prochan Element
+   * @param view
+   * @param opts
+   * @returns {ProchanElement}
+   * @constructor
+   * @class ProchanElement
+   * @extends PluginElement
+   */
+  var ProchanElement = function ProchanElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('prochan', {resource: '/widgets'});
+
+    return this;
+  };
+
+  return ProchanElement.extend('ProchanElement', {
+
     /**
-     * Define Prochan Element
-     * @param view
-     * @param opts
-     * @returns {ProchanElement}
-     * @constructor
-     * @class ProchanElement
-     * @extends PluginElement
+     * Render Embedded content
+     * @memberOf ProchanElement
+     * @param {string} embed
      */
-    var ProchanElement = function ProchanElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent(embed) {
+      this.addContent(
+          this.renderIframe(
+              $(embed).attr('src')
+          )
+      );
+    }
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
-
-        this.addCSS('prochan', {resource: '/widgets'});
-
-        return this;
-    };
-
-    return ProchanElement.extend('ProchanElement', {
-
-        /**
-         * Render Embedded content
-         * @memberOf ProchanElement
-         * @param {string} embed
-         */
-        renderEmbeddedContent: function renderEmbeddedContent(embed) {
-            this.addContent(
-                this.renderIframe(
-                    $(embed).attr('src')
-                )
-            );
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 });

@@ -6,102 +6,101 @@
  */
 
 define([
-    'config/anthill',
-    'modules/MVC',
-    'plugins/widgets/espreso.tv/mvc/espreso.tv.controller',
-    'plugins/widgets/espreso.tv/mvc/espreso.tv.model',
-    'plugins/widgets/espreso.tv/mvc/espreso.tv.view',
-    'plugins/widgets/espreso.tv/mvc/espreso.tv.event.manager',
-    'plugins/widgets/espreso.tv/mvc/espreso.tv.permission'
-], function defineEspresoTv(AntHill, MVC, Controller, Model, View, EventManager, Permission) {
+  'config/anthill',
+  'modules/MVC',
+  'plugins/widgets/espreso.tv/mvc/espreso.tv.controller',
+  'plugins/widgets/espreso.tv/mvc/espreso.tv.model',
+  'plugins/widgets/espreso.tv/mvc/espreso.tv.view',
+  'plugins/widgets/espreso.tv/mvc/espreso.tv.event.manager',
+  'plugins/widgets/espreso.tv/mvc/espreso.tv.permission'
+], function defineEspresoTv(AntHill, MVC, Controller, Model, View, EventManager,
+    Permission) {
+
+  /**
+   * Define EspresoTv
+   * @param containment
+   * @param [opts]
+   * @constructor
+   * @class EspresoTv
+   * @extends AntHill
+   */
+  var EspresoTv = function EspresoTv(containment, opts) {
 
     /**
-     * Define EspresoTv
-     * @param containment
-     * @param [opts]
-     * @constructor
-     * @class EspresoTv
-     * @extends AntHill
+     * Define containment
+     * @property EspresoTv
      */
-    var EspresoTv = function EspresoTv(containment, opts) {
+    this.containment = containment;
 
-        /**
-         * Define containment
-         * @property EspresoTv
-         */
-        this.containment = containment;
+    /**
+     * Define referrer
+     * @property EspresoTv
+     * @type {*}
+     */
+    this.referrer = undefined;
 
-        /**
-         * Define referrer
-         * @property EspresoTv
-         * @type {*}
-         */
-        this.referrer = undefined;
-
-        /**
-         * Define defaults
-         * @type {{
-         *      plugin: boolean,
-         *      html: {
-         *          style: string,
-         *          header: boolean,
-         *          footer: boolean,
-         *          padding: {
-         *              top: number,
-         *              right: number,
-         *              bottom: number,
-         *              left: number
-         *          }
-         *      },
-         *      regex: RegExp,
-         *      mask: string
-         * }}
-         */
-        var DEFAULTS = {
-            plugin: true,
-            html: {
-                style: 'default',
-                header: false,
-                footer: false,
-                padding: {
-                    top: 0,
-                    right: 0,
-                    bottom: 0,
-                    left: 0
-                }
-            },
-            regex: /^.*(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/ ]{11})/i,
-            mask: 'https://www.youtube.com/embed/{videoId}'
-        };
-
-        /**
-         * Define MVC
-         * @property EspresoTv
-         * @type {MVC}
-         */
-        this.mvc = new MVC({
-            scope: this,
-            config: [
-                {uuid: this.containment.model.getContentUUID()},
-                DEFAULTS
-            ],
-            components: [
-                Controller,
-                Model,
-                View,
-                EventManager,
-                Permission
-            ],
-            render: true
-        });
-
-        this.observer.publish(
-            this.eventmanager.eventList.initWidget,
-            opts
-        );
+    /**
+     * Define defaults
+     * @type {{
+     *      plugin: boolean,
+     *      html: {
+     *          style: string,
+     *          header: boolean,
+     *          footer: boolean,
+     *          padding: {
+     *              top: number,
+     *              right: number,
+     *              bottom: number,
+     *              left: number
+     *          }
+     *      },
+     *      regex: RegExp,
+     *      mask: string
+     * }}
+     */
+    var DEFAULTS = {
+      plugin: true,
+      html: {
+        style: 'default',
+        header: false,
+        footer: false,
+        padding: {
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0
+        }
+      },
+      regex: /^.*(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/ ]{11})/i,
+      mask: 'https://www.youtube.com/embed/{videoId}'
     };
 
-    return EspresoTv.extend('EspresoTv', {
+    /**
+     * Define MVC
+     * @property EspresoTv
+     * @type {MVC}
+     */
+    this.mvc = new MVC({
+      scope: this,
+      config: [
+        {uuid: this.containment.model.getContentUUID()},
+        DEFAULTS
+      ],
+      components: [
+        Controller,
+        Model,
+        View,
+        EventManager,
+        Permission
+      ],
+      render: true
+    });
 
-    }, AntHill.prototype);
+    this.observer.publish(
+        this.eventmanager.eventList.initWidget,
+        opts
+    );
+  };
+
+  return EspresoTv.extend('EspresoTv', {}, AntHill.prototype);
 });

@@ -6,56 +6,40 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineEbaumsWorldController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define EbaumsWorld controller
+   * @class EbaumsWorldController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var EbaumsWorldController = function EbaumsWorldController() {
+  };
+
+  return EbaumsWorldController.extend('EbaumsWorldController', {
+
     /**
-     * Define EbaumsWorld controller
-     * @class EbaumsWorldController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf EbaumsWorldController
      */
-    var EbaumsWorldController = function EbaumsWorldController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
+      this.view.get$item().renderEmbeddedContent(
+          this.model.getPrefs('ebaumsworldEmbedCode')
+      );
+    },
 
-    return EbaumsWorldController.extend('EbaumsWorldController', {
+    /**
+     * Add EbaumsWorld rule
+     * @memberOf EbaumsWorldController
+     * @param {Event} e
+     */
+    addEbaumsWorldRule: function addEbaumsWorldRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-        /**
-         * Set embedded content
-         * @memberOf EbaumsWorldController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
-            this.view.get$item().renderEmbeddedContent(
-                this.model.getPrefs('ebaumsworldEmbedCode')
-            );
-        },
-
-        /**
-         * Add EbaumsWorld rule
-         * @memberOf EbaumsWorldController
-         * @param e
-         */
-        addEbaumsWorldRule: function addEbaumsWorldRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target);
-
-            /**
-             * Get scope
-             * @type {EbaumsWorld|{name: string}}
-             */
-            var scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

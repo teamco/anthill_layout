@@ -7,102 +7,103 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/pet.radar/element/pet.radar.element',
-    'plugins/widgets/pet.radar/element/pet.radar.preferences.element',
-    'plugins/widgets/pet.radar/element/pet.radar.rules.element'
-], function definePetRadarView(BaseView, Header, Footer, PetRadarElement, PetRadarPreferencesElement, PetRadarRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/pet.radar/element/pet.radar.element',
+  'plugins/widgets/pet.radar/element/pet.radar.preferences.element',
+  'plugins/widgets/pet.radar/element/pet.radar.rules.element'
+], function definePetRadarView(BaseView, Header, Footer, PetRadarElement,
+    PetRadarPreferencesElement, PetRadarRulesElement) {
+
+  /**
+   * Define view
+   * @class PetRadarView
+   * @extends BaseView
+   * @constructor
+   */
+  var PetRadarView = function PetRadarView() {
+  };
+
+  return PetRadarView.extend('PetRadarView', {
 
     /**
-     * Define view
-     * @class PetRadarView
-     * @extends BaseView
-     * @constructor
+     * Render pet.radar element
+     * @memberOf PetRadarView
      */
-    var PetRadarView = function PetRadarView() {
-    };
+    renderPetRadar: function renderPetRadar() {
 
-    return PetRadarView.extend('PetRadarView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render pet.radar element
-         * @memberOf PetRadarView
-         */
-        renderPetRadar: function renderPetRadar() {
+      /**
+       * Define $pet.radar
+       * @type {PetRadarElement}
+       */
+      this.elements.$petradar = new PetRadarElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $pet.radar
-             * @type {PetRadarElement}
-             */
-            this.elements.$petradar = new PetRadarElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf PetRadarView
+     * @returns {PetRadarPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define PetRadar Preferences Element
+       * @type {PetRadarPreferencesElement}
+       */
+      this.elements.$preferences = new PetRadarPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf PetRadarView
-         * @returns {PetRadarPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define PetRadar Preferences Element
-             * @type {PetRadarPreferencesElement}
-             */
-            this.elements.$preferences = new PetRadarPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf PetRadarView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {PetRadarRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
-
-        /**
-         * Render Rules
-         * @memberOf PetRadarView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {PetRadarRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define PetRadar Rules Element
-             * @type {PetRadarRulesElement}
-             */
-            this.elements.$rules = new PetRadarRulesElement(this, {
-                data: this.controller.getRules(),
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render pet.radar
-         * @memberOf PetRadarView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderPetRadar.bind(this)
-            );
+      /**
+       * Define PetRadar Rules Element
+       * @type {PetRadarRulesElement}
+       */
+      this.elements.$rules = new PetRadarRulesElement(this, {
+        data: this.controller.getRules(),
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render pet.radar
+     * @memberOf PetRadarView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderPetRadar.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

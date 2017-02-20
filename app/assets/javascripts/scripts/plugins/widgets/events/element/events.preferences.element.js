@@ -6,35 +6,33 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
 ], function defineEventsPreferencesElement(PluginElement, WidgetPreferences) {
 
-    /**
-     * Define Events Preferences Element
-     * @param view
-     * @param opts
-     * @returns {EventsPreferencesElement}
-     * @constructor
-     * @class EventsPreferencesElement
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     */
-    var EventsPreferencesElement = function EventsPreferencesElement(view, opts) {
+  /**
+   * Define Events Preferences Element
+   * @param view
+   * @param opts
+   * @returns {EventsPreferencesElement}
+   * @constructor
+   * @class EventsPreferencesElement
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   */
+  var EventsPreferencesElement = function EventsPreferencesElement(view, opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return EventsPreferencesElement.extend('EventsPreferencesElement', {
-
-
-    }, PluginElement.prototype, WidgetPreferences.prototype);
+  return EventsPreferencesElement.extend('EventsPreferencesElement', {},
+      PluginElement.prototype, WidgetPreferences.prototype);
 
 });

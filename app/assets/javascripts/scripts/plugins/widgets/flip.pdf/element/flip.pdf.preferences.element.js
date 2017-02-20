@@ -6,35 +6,34 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
 ], function defineFlipPdfPreferencesElement(PluginElement, WidgetPreferences) {
 
-    /**
-     * Define FlipPdf Preferences Element
-     * @param view
-     * @param opts
-     * @returns {FlipPdfPreferencesElement}
-     * @constructor
-     * @class FlipPdfPreferencesElement
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     */
-    var FlipPdfPreferencesElement = function FlipPdfPreferencesElement(view, opts) {
+  /**
+   * Define FlipPdf Preferences Element
+   * @param view
+   * @param opts
+   * @returns {FlipPdfPreferencesElement}
+   * @constructor
+   * @class FlipPdfPreferencesElement
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   */
+  var FlipPdfPreferencesElement = function FlipPdfPreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return FlipPdfPreferencesElement.extend('FlipPdfPreferencesElement', {
-
-
-    }, PluginElement.prototype, WidgetPreferences.prototype);
+  return FlipPdfPreferencesElement.extend('FlipPdfPreferencesElement', {},
+      PluginElement.prototype, WidgetPreferences.prototype);
 
 });

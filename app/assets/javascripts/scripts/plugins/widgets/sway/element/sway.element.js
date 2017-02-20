@@ -6,44 +6,44 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineSwayElement(PluginElement) {
 
+  /**
+   * Define Sway Element
+   * @param view
+   * @param opts
+   * @returns {SwayElement}
+   * @constructor
+   * @class SwayElement
+   * @extends PluginElement
+   */
+  var SwayElement = function SwayElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('sway', {resource: '/widgets'});
+
+    return this;
+  };
+
+  return SwayElement.extend('SwayElement', {
+
     /**
-     * Define Sway Element
-     * @param view
-     * @param opts
-     * @returns {SwayElement}
-     * @constructor
-     * @class SwayElement
-     * @extends PluginElement
+     * Render Embedded content
+     * @memberOf SwayElement
+     * @param {string} embed
      */
-    var SwayElement = function SwayElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent(embed) {
+      this.addContent(
+          this.renderIframe(
+              $(embed).attr('src')
+          )
+      );
+    }
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
-
-        this.addCSS('sway', {resource: '/widgets'});
-
-        return this;
-    };
-
-    return SwayElement.extend('SwayElement', {
-
-        /**
-         * Render Embedded content
-         * @memberOf SwayElement
-         * @param {string} embed
-         */
-        renderEmbeddedContent: function renderEmbeddedContent(embed) {
-            this.addContent(
-                this.renderIframe(
-                    $(embed).attr('src')
-                )
-            );
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 });

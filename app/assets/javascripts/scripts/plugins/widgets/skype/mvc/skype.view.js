@@ -7,101 +7,102 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/skype/element/skype.element',
-    'plugins/widgets/skype/element/skype.preferences.element',
-    'plugins/widgets/skype/element/skype.rules.element'
-], function defineSkypeView(BaseView, Header, Footer, SkypeElement, SkypePreferencesElement, SkypeRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/skype/element/skype.element',
+  'plugins/widgets/skype/element/skype.preferences.element',
+  'plugins/widgets/skype/element/skype.rules.element'
+], function defineSkypeView(BaseView, Header, Footer, SkypeElement,
+    SkypePreferencesElement, SkypeRulesElement) {
+
+  /**
+   * Define view
+   * @class SkypeView
+   * @extends BaseView
+   * @constructor
+   */
+  var SkypeView = function SkypeView() {
+  };
+
+  return SkypeView.extend('SkypeView', {
 
     /**
-     * Define view
-     * @class SkypeView
-     * @extends BaseView
-     * @constructor
+     * Render Skype element
+     * @memberOf SkypeView
      */
-    var SkypeView = function SkypeView() {
-    };
+    renderSkype: function renderSkype() {
 
-    return SkypeView.extend('SkypeView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render Skype element
-         * @memberOf SkypeView
-         */
-        renderSkype: function renderSkype() {
+      /**
+       * Define $skype
+       * @type {SkypeElement}
+       */
+      this.elements.$skype = new SkypeElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $skype
-             * @type {SkypeElement}
-             */
-            this.elements.$skype = new SkypeElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf SkypeView
+     * @returns {SkypePreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define Skype Preferences Element
+       * @type {SkypePreferencesElement}
+       */
+      this.elements.$preferences = new SkypePreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf SkypeView
-         * @returns {SkypePreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define Skype Preferences Element
-             * @type {SkypePreferencesElement}
-             */
-            this.elements.$preferences = new SkypePreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf SkypeView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {SkypeRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
-
-        /**
-         * Render Rules
-         * @memberOf SkypeView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {SkypeRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define Skype Rules Element
-             * @type {SkypeRulesElement}
-             */
-            this.elements.$rules = new SkypeRulesElement(this, {
-                data: this.controller.getRules(),
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render Skype
-         * @memberOf SkypeView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderSkype.bind(this)
-            );
+      /**
+       * Define Skype Rules Element
+       * @type {SkypeRulesElement}
+       */
+      this.elements.$rules = new SkypeRulesElement(this, {
+        data: this.controller.getRules(),
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype);
+      return this.get$rules();
+    },
+
+    /**
+     * Render Skype
+     * @memberOf SkypeView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderSkype.bind(this)
+      );
+    }
+
+  }, BaseView.prototype);
 });

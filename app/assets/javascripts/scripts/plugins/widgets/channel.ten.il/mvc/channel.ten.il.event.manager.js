@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineChannelTenIlEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define ChannelTenIl event manager
-     * @class ChannelTenIlEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var ChannelTenIlEventManager = function ChannelTenIlEventManager() {
+  /**
+   * Define ChannelTenIl event manager
+   * @class ChannelTenIlEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var ChannelTenIlEventManager = function ChannelTenIlEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return ChannelTenIlEventManager.extend('ChannelTenIlEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return ChannelTenIlEventManager.extend('ChannelTenIlEventManager', {},
+      WidgetContentEventManager.prototype);
 });

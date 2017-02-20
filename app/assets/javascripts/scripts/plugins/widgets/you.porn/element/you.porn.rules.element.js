@@ -6,38 +6,37 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/rules/widget.base.rules'
+  'plugins/plugin.element',
+  'plugins/rules/widget.base.rules'
 ], function defineYouPornRulesElement(PluginElement, BaseWidgetRules) {
 
-    /**
-     * Define YouPorn Rules Element
-     * @param view
-     * @param opts
-     * @returns {YouPornRulesElement}
-     * @constructor
-     * @class YouPornRulesElement
-     * @extends PluginElement
-     * @extends BaseWidgetRules
-     */
-    var YouPornRulesElement = function YouPornRulesElement(view, opts) {
+  /**
+   * Define YouPorn Rules Element
+   * @param view
+   * @param opts
+   * @returns {YouPornRulesElement}
+   * @constructor
+   * @class YouPornRulesElement
+   * @extends PluginElement
+   * @extends BaseWidgetRules
+   */
+  var YouPornRulesElement = function YouPornRulesElement(view, opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBaseRulesData(
-            opts.data,
-            opts.rules.widget,
-            opts.rules.content
-        );
+    this.renderBaseRulesData(
+        opts.data,
+        opts.rules.widget,
+        opts.rules.content
+    );
 
-        return this;
-    };
+    return this;
+  };
 
-    return YouPornRulesElement.extend('YouPornRulesElement', {
-
-    }, PluginElement.prototype, BaseWidgetRules.prototype);
+  return YouPornRulesElement.extend('YouPornRulesElement', {},
+      PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

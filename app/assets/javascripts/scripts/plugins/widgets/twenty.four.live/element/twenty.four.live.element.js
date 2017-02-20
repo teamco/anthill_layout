@@ -6,46 +6,46 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineTwentyFourLiveElement(PluginElement) {
 
+  /**
+   * Define TwentyFourLive Element
+   * @param view
+   * @param opts
+   * @returns {TwentyFourLiveElement}
+   * @constructor
+   * @class TwentyFourLiveElement
+   * @extends PluginElement
+   */
+  var TwentyFourLiveElement = function TwentyFourLiveElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('twenty.four.live', {resource: '/widgets'});
+
+    return this;
+  };
+
+  return TwentyFourLiveElement.extend('TwentyFourLiveElement', {
+
     /**
-     * Define TwentyFourLive Element
-     * @param view
-     * @param opts
-     * @returns {TwentyFourLiveElement}
-     * @constructor
-     * @class TwentyFourLiveElement
-     * @extends PluginElement
+     * Render Embedded content
+     * @memberOf TwentyFourLiveElement
+     * @param {string} url
      */
-    var TwentyFourLiveElement = function TwentyFourLiveElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent(url) {
+      this.$.append(
+          this.renderIframe(url, {
+            id: "ytplayer",
+            type: "text/html"
+          })
+      );
+    }
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
-
-        this.addCSS('twenty.four.live', {resource: '/widgets'});
-
-        return this;
-    };
-
-    return TwentyFourLiveElement.extend('TwentyFourLiveElement', {
-
-        /**
-         * Render Embedded content
-         * @memberOf TwentyFourLiveElement
-         * @param {string} url
-         */
-        renderEmbeddedContent: function renderEmbeddedContent(url) {
-            this.$.append(
-                this.renderIframe(url, {
-                    id: "ytplayer",
-                    type: "text/html"
-                })
-            );
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 
 });

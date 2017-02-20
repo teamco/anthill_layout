@@ -7,31 +7,31 @@
  */
 
 define([
-    'modules/Event'
+  'modules/Event'
 ], function defineApplicationEventManager(BaseEvent) {
 
+  /**
+   * Define ApplicationEvent Manager
+   * @class ApplicationEventManager
+   * @extends BaseEvent
+   * @constructor
+   */
+  var ApplicationEventManager = function ApplicationEventManager() {
+
     /**
-     * Define ApplicationEvent Manager
-     * @class ApplicationEventManager
-     * @extends BaseEvent
-     * @constructor
+     * Define events
+     * @memberOf ApplicationEventManager
+     * @type {{}}
      */
-    var ApplicationEventManager = function ApplicationEventManager() {
+    this.events = {};
+  };
 
-        /**
-         * Define events
-         * @memberOf ApplicationEventManager
-         * @type {{}}
-         */
-        this.events = {};
-    };
+  return ApplicationEventManager.extend('ApplicationEventManager', {
 
-    return ApplicationEventManager.extend('ApplicationEventManager', {
-
-        /**
-         * Define event list
-         * @memberOf ApplicationEventManager
-         * @type {{
+    /**
+     * Define event list
+     * @memberOf ApplicationEventManager
+     * @type {{
          *      startSendLog: string,
          *      stopSendLog: string,
          *      beforeSendLog: string,
@@ -59,44 +59,44 @@ define([
          *      setAsLoaded: string,
          *      afterLoadingItems: string
          * }}
-         */
-        eventList: {
-            startSendLog: 'start.send.log',
-            stopSendLog: 'stop.send.log',
-            beforeSendLog: 'before.send.log',
-            afterSendLog: 'after.send.log',
-            loadApplication: 'load.application',
-            loadProduction: 'load.production',
-            handleVulnerabilities: 'handle.vulnerabilities',
-            afterHandleVulnerabilities: 'after.handle.vulnerabilities',
-            defineGlobalInstance: 'define.global.instance',
-            defineSetting: 'define.setting',
-            updateStorageVersion: 'update.storage.version',
-            afterUpdateStorage: 'after.update.storage',
-            setRoutes: 'set.routes',
+     */
+    eventList: {
+      startSendLog: 'start.send.log',
+      stopSendLog: 'stop.send.log',
+      beforeSendLog: 'before.send.log',
+      afterSendLog: 'after.send.log',
+      loadApplication: 'load.application',
+      loadProduction: 'load.production',
+      handleVulnerabilities: 'handle.vulnerabilities',
+      afterHandleVulnerabilities: 'after.handle.vulnerabilities',
+      defineGlobalInstance: 'define.global.instance',
+      defineSetting: 'define.setting',
+      updateStorageVersion: 'update.storage.version',
+      afterUpdateStorage: 'after.update.storage',
+      setRoutes: 'set.routes',
 
-            initResizeWindow: {
-                eventName: 'init.resize.window',
-                params: { single: true }
-            },
-            resizeWindow: 'resize.window',
-            resizeWindowPublisher: 'resize.window.publisher',
-            resizeWindowHooks: 'resize.window.hooks',
+      initResizeWindow: {
+        eventName: 'init.resize.window',
+        params: {single: true}
+      },
+      resizeWindow: 'resize.window',
+      resizeWindowPublisher: 'resize.window.publisher',
+      resizeWindowHooks: 'resize.window.hooks',
 
-            initScrollBehavior: {
-                eventName: 'init.scroll.behavior',
-                params: { single: true }
-            },
-            scrollPublisher: 'scroll.publisher',
+      initScrollBehavior: {
+        eventName: 'init.scroll.behavior',
+        params: {single: true}
+      },
+      scrollPublisher: 'scroll.publisher',
 
-            createWorkspace: 'create.workspace',
-            destroyWorkspace: 'destroy.workspace',
-            destroyWorkspaces: 'destroy.workspaces',
-            resizeWorkspace: 'resize.workspace',
-            resizeWorkspaces: 'resize.workspaces',
-            setAsLoaded: 'set.as.loaded',
-            afterLoadingItems: 'after.loading.items'
-        }
+      createWorkspace: 'create.workspace',
+      destroyWorkspace: 'destroy.workspace',
+      destroyWorkspaces: 'destroy.workspaces',
+      resizeWorkspace: 'resize.workspace',
+      resizeWorkspaces: 'resize.workspaces',
+      setAsLoaded: 'set.as.loaded',
+      afterLoadingItems: 'after.loading.items'
+    }
 
-    }, BaseEvent.prototype);
+  }, BaseEvent.prototype);
 });

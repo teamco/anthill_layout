@@ -7,101 +7,102 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/infogr.am/element/infogr.am.element',
-    'plugins/widgets/infogr.am/element/infogr.am.preferences.element',
-    'plugins/widgets/infogr.am/element/infogr.am.rules.element'
-], function defineInfogrAmView(BaseView, Header, Footer, InfogrAmElement, InfogrAmPreferencesElement, InfogrAmRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/infogr.am/element/infogr.am.element',
+  'plugins/widgets/infogr.am/element/infogr.am.preferences.element',
+  'plugins/widgets/infogr.am/element/infogr.am.rules.element'
+], function defineInfogrAmView(BaseView, Header, Footer, InfogrAmElement,
+    InfogrAmPreferencesElement, InfogrAmRulesElement) {
+
+  /**
+   * Define view
+   * @class InfogrAmView
+   * @extends BaseView
+   * @constructor
+   */
+  var InfogrAmView = function InfogrAmView() {
+  };
+
+  return InfogrAmView.extend('InfogrAmView', {
 
     /**
-     * Define view
-     * @class InfogrAmView
-     * @extends BaseView
-     * @constructor
+     * Render InfogrAm element
+     * @memberOf InfogrAmView
      */
-    var InfogrAmView = function InfogrAmView() {
-    };
+    renderInfogrAm: function renderInfogrAm() {
 
-    return InfogrAmView.extend('InfogrAmView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render InfogrAm element
-         * @memberOf InfogrAmView
-         */
-        renderInfogrAm: function renderInfogrAm() {
+      /**
+       * Define $infogram
+       * @type {InfogrAmElement}
+       */
+      this.elements.$infogram = new InfogrAmElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $infogram
-             * @type {InfogrAmElement}
-             */
-            this.elements.$infogram = new InfogrAmElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf InfogrAmView
+     * @returns {InfogrAmPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define InfogrAm Preferences Element
+       * @type {InfogrAmPreferencesElement}
+       */
+      this.elements.$preferences = new InfogrAmPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf InfogrAmView
-         * @returns {InfogrAmPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define InfogrAm Preferences Element
-             * @type {InfogrAmPreferencesElement}
-             */
-            this.elements.$preferences = new InfogrAmPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf InfogrAmView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {InfogrAmRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
-
-        /**
-         * Render Rules
-         * @memberOf InfogrAmView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {InfogrAmRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define InfogrAm Rules Element
-             * @type {InfogrAmRulesElement}
-             */
-            this.elements.$rules = new InfogrAmRulesElement(this, {
-                data: this.controller.getRules(),
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render InfogrAm
-         * @memberOf InfogrAmView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderInfogrAm.bind(this)
-            );
+      /**
+       * Define InfogrAm Rules Element
+       * @type {InfogrAmRulesElement}
+       */
+      this.elements.$rules = new InfogrAmRulesElement(this, {
+        data: this.controller.getRules(),
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype);
+      return this.get$rules();
+    },
+
+    /**
+     * Render InfogrAm
+     * @memberOf InfogrAmView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderInfogrAm.bind(this)
+      );
+    }
+
+  }, BaseView.prototype);
 });

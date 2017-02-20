@@ -7,31 +7,31 @@
  */
 
 define([
-    'modules/Event'
+  'modules/Event'
 ], function defineWidgetEventManager(BaseEvent) {
 
+  /**
+   * Define widget event manager
+   * @class WidgetEventManager
+   * @constructor
+   * @extends BaseEvent
+   */
+  var WidgetEventManager = function WidgetEventManager() {
+
     /**
-     * Define widget event manager
-     * @class WidgetEventManager
-     * @constructor
-     * @extends BaseEvent
+     * Define events
+     * @property WidgetEventManager
+     * @type {{}}
      */
-    var WidgetEventManager = function WidgetEventManager() {
+    this.events = {};
+  };
 
-        /**
-         * Define events
-         * @property WidgetEventManager
-         * @type {{}}
-         */
-        this.events = {};
-    };
+  return WidgetEventManager.extend('WidgetEventManager', {
 
-    return WidgetEventManager.extend('WidgetEventManager', {
-
-        /**
-         * Define event list
-         * @property WidgetEventManager
-         * @type {{
+    /**
+     * Define event list
+     * @property WidgetEventManager
+     * @type {{
          *      initDraggable: string,
          *      enableDraggable: string,
          *      disableDraggable: string,
@@ -97,101 +97,101 @@ define([
          *      scrollSpeedParallaxBehavior: string,
          *      commentableContent: string
          * }}
-         */
-        eventList: {
+     */
+    eventList: {
 
-            // Drag events
-            initDraggable: 'init.draggable',
-            enableDraggable: 'enable.draggable',
-            disableDraggable: 'disable.draggable',
-            destroyDraggable: 'destroy.draggable',
-            createDraggable: 'create.draggable',
-            startDraggable: 'start.draggable',
-            dragDraggable: {
-                eventName: 'drag.draggable',
-                params: { buffer: 50 }
-            },
-            stopDraggable: 'stop.draggable',
-            updateDraggable: 'update.draggable',
+      // Drag events
+      initDraggable: 'init.draggable',
+      enableDraggable: 'enable.draggable',
+      disableDraggable: 'disable.draggable',
+      destroyDraggable: 'destroy.draggable',
+      createDraggable: 'create.draggable',
+      startDraggable: 'start.draggable',
+      dragDraggable: {
+        eventName: 'drag.draggable',
+        params: {buffer: 50}
+      },
+      stopDraggable: 'stop.draggable',
+      updateDraggable: 'update.draggable',
 
-            // Resize events
-            initResizable: 'init.resizable',
-            enableResizable: 'enable.resizable',
-            disableResizable: 'disable.resizable',
-            destroyResizable: 'destroy.resizable',
-            createResizable: 'create.resizable',
-            startResizable: 'start.resizable',
-            resizeResizable: {
-                eventName: 'resize.resizable',
-                params: { buffer: 50 }
-            },
-            stopResizable: 'stop.resizable',
-            updateResizable: 'update.resizable',
+      // Resize events
+      initResizable: 'init.resizable',
+      enableResizable: 'enable.resizable',
+      disableResizable: 'disable.resizable',
+      destroyResizable: 'destroy.resizable',
+      createResizable: 'create.resizable',
+      startResizable: 'start.resizable',
+      resizeResizable: {
+        eventName: 'resize.resizable',
+        params: {buffer: 50}
+      },
+      stopResizable: 'stop.resizable',
+      updateResizable: 'update.resizable',
 
-            updateContainment: 'update.containment',
+      updateContainment: 'update.containment',
 
-            afterExpand: 'after.expand',
+      afterExpand: 'after.expand',
 
-            adoptDimensions: 'adopt.dimensions',
+      adoptDimensions: 'adopt.dimensions',
 
-            loadContent: 'load.content',
-            setContent: 'set.content',
-            afterSetContent: 'after.set.content',
-            afterRenderContent: 'after.render.content',
+      loadContent: 'load.content',
+      setContent: 'set.content',
+      afterSetContent: 'after.set.content',
+      afterRenderContent: 'after.render.content',
 
-            loadPreferences: 'load.preferences',
-            transferPreferences: 'transfer.preferences',
-            afterUpdatePreferences: 'after.update.preferences',
+      loadPreferences: 'load.preferences',
+      transferPreferences: 'transfer.preferences',
+      afterUpdatePreferences: 'after.update.preferences',
 
-            setLayerUp: 'set.layer.up',
-            setLayerDown: 'set.layer.down',
-            restoreLayerIndex: 'restore.layer.index',
-            updateLayerIndex: 'update.layer.index',
-            setAlwaysOnTop: 'set.always.on.top',
+      setLayerUp: 'set.layer.up',
+      setLayerDown: 'set.layer.down',
+      restoreLayerIndex: 'restore.layer.index',
+      updateLayerIndex: 'update.layer.index',
+      setAlwaysOnTop: 'set.always.on.top',
 
-            setOnClickUrl: 'set.on.click.url',
-            clearThumbnail: 'clear.thumbnail',
+      setOnClickUrl: 'set.on.click.url',
+      clearThumbnail: 'clear.thumbnail',
 
-            customClassName: 'custom.class.name',
+      customClassName: 'custom.class.name',
 
-            saveDom: 'save.dom',
+      saveDom: 'save.dom',
 
-            enlargeWidget: 'enlarge.widget',
-            reduceWidget: 'reduce.widget',
+      enlargeWidget: 'enlarge.widget',
+      reduceWidget: 'reduce.widget',
 
-            afterMaximize: 'after.maximize',
-            beforeMaximize: 'before.maximize',
+      afterMaximize: 'after.maximize',
+      beforeMaximize: 'before.maximize',
 
-            setZoomable: 'set.zoomable',
-            unsetZoomable: 'unset.zoomable',
+      setZoomable: 'set.zoomable',
+      unsetZoomable: 'unset.zoomable',
 
-            afterReduce: 'after.reduce',
-            beforeReduce: 'before.reduce',
+      afterReduce: 'after.reduce',
+      beforeReduce: 'before.reduce',
 
-            stretchHeight: 'stretch.height',
-            stretchWidth: 'stretch.width',
+      stretchHeight: 'stretch.height',
+      stretchWidth: 'stretch.width',
 
-            unsetStick: 'unset.stick',
-            setStickToCenterLeft: 'set.stick.to.center.left',
-            setStickToCenterTop: 'set.stick.to.center.top',
-            setStickToCenter: 'set.stick.to.center',
-            setStickToCenterBottom: 'set.stick.to.center.bottom',
-            setStickToCenterRight: 'set.stick.to.center.right',
-            setStickToTopLeft: 'set.stick.to.top.left',
-            setStickToBottomLeft: 'set.stick.to.bottom.left',
-            setStickToTopRight: 'set.stick.to.top.right',
-            setStickToBottomRight: 'set.stick.to.bottom.right',
+      unsetStick: 'unset.stick',
+      setStickToCenterLeft: 'set.stick.to.center.left',
+      setStickToCenterTop: 'set.stick.to.center.top',
+      setStickToCenter: 'set.stick.to.center',
+      setStickToCenterBottom: 'set.stick.to.center.bottom',
+      setStickToCenterRight: 'set.stick.to.center.right',
+      setStickToTopLeft: 'set.stick.to.top.left',
+      setStickToBottomLeft: 'set.stick.to.bottom.left',
+      setStickToTopRight: 'set.stick.to.top.right',
+      setStickToBottomRight: 'set.stick.to.bottom.right',
 
-            restoreWidgetSticker: 'restore.widget.sticker',
+      restoreWidgetSticker: 'restore.widget.sticker',
 
-            toggleFreeze: 'toggle.freeze',
-            toggleContentExpander: 'toggle.content.expander',
-            expandContent: 'expand.content',
-            collapseContent: 'collapse.content',
-            scrollContent: 'scroll.content',
-            scrollSpeedParallaxBehavior: 'scroll.speed.parallax.behavior',
-            commentableContent: 'commentable.content'
-        }
-        
-    }, BaseEvent.prototype);
+      toggleFreeze: 'toggle.freeze',
+      toggleContentExpander: 'toggle.content.expander',
+      expandContent: 'expand.content',
+      collapseContent: 'collapse.content',
+      scrollContent: 'scroll.content',
+      scrollSpeedParallaxBehavior: 'scroll.speed.parallax.behavior',
+      commentableContent: 'commentable.content'
+    }
+
+  }, BaseEvent.prototype);
 });

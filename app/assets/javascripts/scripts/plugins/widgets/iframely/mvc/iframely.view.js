@@ -7,101 +7,102 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/iframely/element/iframely.element',
-    'plugins/widgets/iframely/element/iframely.preferences.element',
-    'plugins/widgets/iframely/element/iframely.rules.element'
-], function defineIframelyView(BaseView, Header, Footer, IframelyElement, IframelyPreferencesElement, IframelyRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/iframely/element/iframely.element',
+  'plugins/widgets/iframely/element/iframely.preferences.element',
+  'plugins/widgets/iframely/element/iframely.rules.element'
+], function defineIframelyView(BaseView, Header, Footer, IframelyElement,
+    IframelyPreferencesElement, IframelyRulesElement) {
+
+  /**
+   * Define view
+   * @class IframelyView
+   * @extends BaseView
+   * @constructor
+   */
+  var IframelyView = function IframelyView() {
+  };
+
+  return IframelyView.extend('IframelyView', {
 
     /**
-     * Define view
-     * @class IframelyView
-     * @extends BaseView
-     * @constructor
+     * Render Iframely element
+     * @memberOf IframelyView
      */
-    var IframelyView = function IframelyView() {
-    };
+    renderIframely: function renderIframely() {
 
-    return IframelyView.extend('IframelyView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render Iframely element
-         * @memberOf IframelyView
-         */
-        renderIframely: function renderIframely() {
+      /**
+       * Define $iframely
+       * @type {IframelyElement}
+       */
+      this.elements.$iframely = new IframelyElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $iframely
-             * @type {IframelyElement}
-             */
-            this.elements.$iframely = new IframelyElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf IframelyView
+     * @returns {IframelyPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define Iframely Preferences Element
+       * @type {IframelyPreferencesElement}
+       */
+      this.elements.$preferences = new IframelyPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf IframelyView
-         * @returns {IframelyPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define Iframely Preferences Element
-             * @type {IframelyPreferencesElement}
-             */
-            this.elements.$preferences = new IframelyPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf IframelyView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {IframelyRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
-
-        /**
-         * Render Rules
-         * @memberOf IframelyView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {IframelyRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define Iframely Rules Element
-             * @type {IframelyRulesElement}
-             */
-            this.elements.$rules = new IframelyRulesElement(this, {
-                data: this.controller.getRules(),
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render Iframely
-         * @memberOf IframelyView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderIframely.bind(this)
-            );
+      /**
+       * Define Iframely Rules Element
+       * @type {IframelyRulesElement}
+       */
+      this.elements.$rules = new IframelyRulesElement(this, {
+        data: this.controller.getRules(),
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype);
+      return this.get$rules();
+    },
+
+    /**
+     * Render Iframely
+     * @memberOf IframelyView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderIframely.bind(this)
+      );
+    }
+
+  }, BaseView.prototype);
 });

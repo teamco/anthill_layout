@@ -7,108 +7,109 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/ustream/element/ustream.element',
-    'plugins/widgets/ustream/element/ustream.preferences.element',
-    'plugins/widgets/ustream/element/ustream.rules.element'
-], function defineUstreamView(BaseView, Header, Footer, UstreamElement, UstreamPreferencesElement, UstreamRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/ustream/element/ustream.element',
+  'plugins/widgets/ustream/element/ustream.preferences.element',
+  'plugins/widgets/ustream/element/ustream.rules.element'
+], function defineUstreamView(BaseView, Header, Footer, UstreamElement,
+    UstreamPreferencesElement, UstreamRulesElement) {
+
+  /**
+   * Define view
+   * @class UstreamView
+   * @extends BaseView
+   * @constructor
+   */
+  var UstreamView = function UstreamView() {
+  };
+
+  return UstreamView.extend('UstreamView', {
 
     /**
-     * Define view
-     * @class UstreamView
-     * @extends BaseView
-     * @constructor
+     * Render ustream element
+     * @memberOf UstreamView
      */
-    var UstreamView = function UstreamView() {
-    };
+    renderUstream: function renderUstream() {
 
-    return UstreamView.extend('UstreamView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render ustream element
-         * @memberOf UstreamView
-         */
-        renderUstream: function renderUstream() {
+      /**
+       * Define $ustream
+       * @type {UstreamElement}
+       */
+      this.elements.$ustream = new UstreamElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $ustream
-             * @type {UstreamElement}
-             */
-            this.elements.$ustream = new UstreamElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf UstreamView
+     * @returns {UstreamPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define Ustream Preferences Element
+       * @type {UstreamPreferencesElement}
+       */
+      this.elements.$preferences = new UstreamPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf UstreamView
-         * @returns {UstreamPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define Ustream Preferences Element
-             * @type {UstreamPreferencesElement}
-             */
-            this.elements.$preferences = new UstreamPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf UstreamView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {UstreamRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
+      /**
+       * Define data
+       * @type {*|{}}
+       */
+      var data = this.controller.getRules();
 
-        /**
-         * Render Rules
-         * @memberOf UstreamView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {UstreamRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define data
-             * @type {*|{}}
-             */
-            var data = this.controller.getRules();
-
-            /**
-             * Define Ustream Rules Element
-             * @type {UstreamRulesElement}
-             */
-            this.elements.$rules = new UstreamRulesElement(this, {
-                data: data,
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render ustream
-         * @memberOf UstreamView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderUstream.bind(this)
-            );
+      /**
+       * Define Ustream Rules Element
+       * @type {UstreamRulesElement}
+       */
+      this.elements.$rules = new UstreamRulesElement(this, {
+        data: data,
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render ustream
+     * @memberOf UstreamView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderUstream.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

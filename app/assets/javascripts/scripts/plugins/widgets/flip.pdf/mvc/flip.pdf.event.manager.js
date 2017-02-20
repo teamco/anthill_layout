@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineFlipPdfEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define FlipPdf event manager
-     * @class FlipPdfEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var FlipPdfEventManager = function FlipPdfEventManager() {
+  /**
+   * Define FlipPdf event manager
+   * @class FlipPdfEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var FlipPdfEventManager = function FlipPdfEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return FlipPdfEventManager.extend('FlipPdfEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return FlipPdfEventManager.extend('FlipPdfEventManager', {},
+      WidgetContentEventManager.prototype);
 });

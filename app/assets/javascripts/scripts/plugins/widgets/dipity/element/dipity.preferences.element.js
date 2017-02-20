@@ -6,35 +6,35 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
 ], function defineDipityPreferencesElement(PluginElement, WidgetPreferences) {
 
-    /**
-     * Define Dipity Preferences Element
-     * @constructor
-     * @class DipityPreferencesElement
-     * @param {DipityView} view
-     * @param opts
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     * @returns {DipityPreferencesElement}
-     */
-    var DipityPreferencesElement = function DipityPreferencesElement(view, opts) {
+  /**
+   * Define Dipity Preferences Element
+   * @constructor
+   * @class DipityPreferencesElement
+   * @param {DipityView} view
+   * @param opts
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   * @returns {DipityPreferencesElement}
+   */
+  var DipityPreferencesElement = function DipityPreferencesElement(view, opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return DipityPreferencesElement.extend(
-        'DipityPreferencesElement', {}, 
-        PluginElement.prototype, 
-        WidgetPreferences.prototype
-    );
+  return DipityPreferencesElement.extend(
+      'DipityPreferencesElement', {},
+      PluginElement.prototype,
+      WidgetPreferences.prototype
+  );
 });

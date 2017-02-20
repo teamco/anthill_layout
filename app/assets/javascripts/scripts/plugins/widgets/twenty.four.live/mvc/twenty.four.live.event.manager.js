@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineTwentyFourLiveEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define TwentyFourLive event manager
-     * @class TwentyFourLiveEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var TwentyFourLiveEventManager = function TwentyFourLiveEventManager() {
+  /**
+   * Define TwentyFourLive event manager
+   * @class TwentyFourLiveEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var TwentyFourLiveEventManager = function TwentyFourLiveEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return TwentyFourLiveEventManager.extend('TwentyFourLiveEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return TwentyFourLiveEventManager.extend('TwentyFourLiveEventManager', {},
+      WidgetContentEventManager.prototype);
 });

@@ -7,31 +7,31 @@
 
 define(function defineWidgetZoom() {
 
+  /**
+   * Define WidgetZoom
+   * @class WidgetZoom
+   * @constructor
+   * @extends AntHill
+   */
+  var WidgetZoom = function WidgetZoom() {
+  };
+
+  return WidgetZoom.extend('WidgetZoom', {
+
     /**
-     * Define WidgetZoom
-     * @class WidgetZoom
-     * @constructor
-     * @extends AntHill
+     * Define set zoom
+     * @memberOf WidgetZoom
      */
-    var WidgetZoom = function WidgetZoom() {
-    };
+    setZoomable: function setZoomable() {
+      this.view.get$item().setZoom(true);
+    },
 
-    return WidgetZoom.extend('WidgetZoom', {
-
-        /**
-         * Define set zoom
-         * @memberOf WidgetZoom
-         */
-        setZoomable: function setZoomable() {
-            this.view.get$item().setZoom(true);
-        },
-
-        /**
-         * Define unset zoom
-         * @memberOf WidgetZoom
-         */
-        unsetZoomable: function unsetZoomable() {
-            this.view.get$item().setZoom(false);
-        }
-    });
+    /**
+     * Define unset zoom
+     * @memberOf WidgetZoom
+     */
+    unsetZoomable: function unsetZoomable() {
+      this.view.get$item().setZoom(false);
+    }
+  });
 });

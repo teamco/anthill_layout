@@ -6,68 +6,68 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineCoubElement(PluginElement) {
 
+  /**
+   * Define Coub Element
+   * @param view
+   * @param opts
+   * @returns {CoubElement}
+   * @constructor
+   * @class CoubElement
+   * @extends PluginElement
+   */
+  var CoubElement = function CoubElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('coub', {resource: '/widgets'});
+
+    return this;
+  };
+
+  return CoubElement.extend('CoubElement', {
+
     /**
-     * Define Coub Element
-     * @param view
-     * @param opts
-     * @returns {CoubElement}
-     * @constructor
-     * @class CoubElement
-     * @extends PluginElement
+     * Render Embedded content
+     * @memberOf CoubElement
+     * @param {{
+     *      link: string,
+     *      start: boolean,
+     *      mute: boolean,
+     *      hide: boolean,
+     *      hd: boolean
+     * }} opts
      */
-    var CoubElement = function CoubElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent(opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+      if (!opts.link) {
+        return false;
+      }
 
-        this.addCSS('coub', {resource: '/widgets'});
+      var link = [
+        opts.link, '?', [
+          'muted=' + !!opts.mute,
+          'autostart=' + !!opts.start,
+          'originalSize=' + false,
+          'hideTopBar=' + !!opts.hide,
+          'startWithHD=' + !!opts.hd
+        ].join('&')
+      ].join('');
 
-        return this;
-    };
+      this.$.append(
+          $('<iframe />').attr({
+            src: link,
+            frameborder: 0,
+            scrolling: "no"
+          })
+      );
+    }
 
-    return CoubElement.extend('CoubElement', {
-
-        /**
-         * Render Embedded content
-         * @memberOf CoubElement
-         * @param {{
-         *      link: string,
-         *      start: boolean,
-         *      mute: boolean,
-         *      hide: boolean,
-         *      hd: boolean
-         * }} opts
-         */
-        renderEmbeddedContent: function renderEmbeddedContent(opts) {
-
-            if (!opts.link) {
-                return false;
-            }
-
-            var link = [
-                opts.link, '?', [
-                    'muted=' + !!opts.mute,
-                    'autostart=' + !!opts.start,
-                    'originalSize=' + false,
-                    'hideTopBar=' + !!opts.hide,
-                    'startWithHD=' + !!opts.hd
-                ].join('&')
-            ].join('');
-
-            this.$.append(
-                $('<iframe />').attr({
-                    src: link,
-                    frameborder: 0,
-                    scrolling: "no"
-                })
-            );
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 
 });

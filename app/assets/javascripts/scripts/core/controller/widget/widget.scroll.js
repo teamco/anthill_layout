@@ -5,32 +5,32 @@
  * Time: 8:45 PM
  */
 
-define(function defineWidgetScroll(){
+define(function defineWidgetScroll() {
+
+  /**
+   * Define WidgetScroll
+   * @class WidgetScroll
+   * @constructor
+   */
+  var WidgetScroll = function WidgetScroll() {
+  };
+
+  return WidgetScroll.extend('WidgetScroll', {
 
     /**
-     * Define WidgetScroll
-     * @class WidgetScroll
-     * @constructor
+     * Define scroll content
+     * @memberOf WidgetScroll
+     * @param {boolean} scrollable
      */
-    var WidgetScroll = function WidgetScroll() {
-    };
+    scrollContent: function scrollContent(scrollable) {
 
-    return WidgetScroll.extend('WidgetScroll', {
+      /**
+       * Define css action
+       * @type {string}
+       */
+      var action = (scrollable ? 'add' : 'remove') + 'Class';
 
-        /**
-         * Define scroll content
-         * @memberOf WidgetScroll
-         * @param {boolean} scrollable
-         */
-        scrollContent: function scrollContent(scrollable) {
-
-            /**
-             * Define css action
-             * @type {string}
-             */
-            var action = (scrollable ? 'add' : 'remove') + 'Class';
-
-            this.view.get$item().$[action]('scroll');
-        }
-    });
+      this.view.get$item().$[action]('scroll');
+    }
+  });
 });

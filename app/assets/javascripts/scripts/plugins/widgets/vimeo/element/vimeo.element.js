@@ -6,41 +6,41 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineVimeoElement(PluginElement) {
 
+  /**
+   * Define Vimeo Element
+   * @param view
+   * @param opts
+   * @returns {VimeoElement}
+   * @constructor
+   * @class VimeoElement
+   * @extends PluginElement
+   */
+  var VimeoElement = function VimeoElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('vimeo', {resource: '/widgets'});
+
+    return this;
+  };
+
+  return VimeoElement.extend('VimeoElement', {
+
     /**
-     * Define Vimeo Element
-     * @param view
-     * @param opts
-     * @returns {VimeoElement}
-     * @constructor
-     * @class VimeoElement
-     * @extends PluginElement
+     * Render Embedded content
+     * @memberOf VimeoElement
+     * @param {string} iframe
      */
-    var VimeoElement = function VimeoElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent(iframe) {
+      this.$.append(iframe);
+    }
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
-
-        this.addCSS('vimeo', {resource: '/widgets'});
-
-        return this;
-    };
-
-    return VimeoElement.extend('VimeoElement', {
-
-        /**
-         * Render Embedded content
-         * @memberOf VimeoElement
-         * @param {string} iframe
-         */
-        renderEmbeddedContent: function renderEmbeddedContent(iframe) {
-            this.$.append(iframe);
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 
 });

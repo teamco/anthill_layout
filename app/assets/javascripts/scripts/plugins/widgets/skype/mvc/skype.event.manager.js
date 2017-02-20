@@ -7,23 +7,23 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineSkypeEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define Skype event manager
-     * @class SkypeEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var SkypeEventManager = function SkypeEventManager() {
+  /**
+   * Define Skype event manager
+   * @class SkypeEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var SkypeEventManager = function SkypeEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return SkypeEventManager.extend(
-        'SkypeEventManager', {},
-        WidgetContentEventManager.prototype
-    );
+  return SkypeEventManager.extend(
+      'SkypeEventManager', {},
+      WidgetContentEventManager.prototype
+  );
 });

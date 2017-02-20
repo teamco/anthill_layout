@@ -7,38 +7,38 @@
  */
 
 define([
-    'modules/Event'
+  'modules/Event'
 ], function defineSiteConfigEventManager(BaseEvent) {
 
+  /**
+   * Define SiteConfig event manager
+   * @class SiteConfigEventManager
+   * @constructor
+   * @extends BaseEvent
+   */
+  var SiteConfigEventManager = function SiteConfigEventManager() {
+
     /**
-     * Define SiteConfig event manager
-     * @class SiteConfigEventManager
-     * @constructor
-     * @extends BaseEvent
+     * Define events
+     * @property SiteConfigEventManager
+     * @type {{}}
      */
-    var SiteConfigEventManager = function SiteConfigEventManager() {
+    this.events = {};
 
-        /**
-         * Define events
-         * @property SiteConfigEventManager
-         * @type {{}}
-         */
-        this.events = {};
+    /**
+     * Set subscribed flag
+     * @property SiteConfigEventManager
+     * @type {boolean}
+     */
+    this.subscribed = false;
+  };
 
-        /**
-         * Set subscribed flag
-         * @property SiteConfigEventManager
-         * @type {boolean}
-         */
-        this.subscribed = false;
-    };
+  return SiteConfigEventManager.extend('SiteConfigEventManager', {
 
-    return SiteConfigEventManager.extend('SiteConfigEventManager', {
-
-        /**
-         * Define event list
-         * @memberOf SiteConfigEventManager
-         * @type {{
+    /**
+     * Define event list
+     * @memberOf SiteConfigEventManager
+     * @type {{
          *      updateTranslations: string,
          *      loadModuleContent: string,
          *      cleanUpLocalStorage: string,
@@ -53,67 +53,68 @@ define([
          *      activateStorage: string,
          *      publishStorage: string
          * }}
-         */
-        eventList: {
-            updateTranslations: 'update.translations',
-            loadModuleContent: 'load.module.content',
-            cleanUpLocalStorage: 'clean.up.local.storage',
-            importSiteData: 'import.site.data',
-            approveImportSiteData: 'approve.import.site.data',
-            readyToImportSiteData: 'ready.to.import.site.data',
-            exportSiteData: 'export.site.data',
-            loadSitePreferences: 'load.site.preferences',
-            widgetGenerator: 'widget.generator',
-            widgetEditor: 'widget.editor',
-            setRoutes: 'set.routes',
-            activateStorage: 'activate.storage',
-            publishStorage: 'publish.storage'
-        },
+     */
+    eventList: {
+      updateTranslations: 'update.translations',
+      loadModuleContent: 'load.module.content',
+      cleanUpLocalStorage: 'clean.up.local.storage',
+      importSiteData: 'import.site.data',
+      approveImportSiteData: 'approve.import.site.data',
+      readyToImportSiteData: 'ready.to.import.site.data',
+      exportSiteData: 'export.site.data',
+      loadSitePreferences: 'load.site.preferences',
+      widgetGenerator: 'widget.generator',
+      widgetEditor: 'widget.editor',
+      setRoutes: 'set.routes',
+      activateStorage: 'activate.storage',
+      publishStorage: 'publish.storage'
+    },
 
-        /**
-         * Subscribe publish on
-         * @memberOf SiteConfigEventManager
-         * @param {Application} root
-         * @param {Function} [callback]
-         * @returns {{}|boolean}
-         */
-        subscribePublishOn: function subscribePublishOn(root, callback) {
+    /**
+     * Subscribe publish on
+     * @memberOf SiteConfigEventManager
+     * @param {Application} root
+     * @param {Function} [callback]
+     * @returns {{}|boolean}
+     */
+    subscribePublishOn: function subscribePublishOn(root, callback) {
 
-            if (this.subscribed) {
-                this.scope.logger.debug(
-                    'Events already subscribed',
-                    arguments
-                );
-                return false;
-            }
+      if (this.subscribed) {
+        this.scope.logger.debug(
+            'Events already subscribed',
+            arguments
+        );
+        return false;
+      }
 
-            /**
-             * Set subscribed flag
-             * @property SiteConfigEventManager
-             * @type {boolean}
-             */
-            this.subscribed = true;
+      /**
+       * Set subscribed flag
+       * @property SiteConfigEventManager
+       * @type {boolean}
+       */
+      this.subscribed = true;
 
-            /**
-             * Define event list
-             * @type {*}
-             */
-            var rootEventList = root.eventmanager.eventList;
+      /**
+       * Define event list
+       * @type {*}
+       */
+      var rootEventList = root.eventmanager.eventList;
 
-            /**
-             * Define events
-             * @type {{scope: Page, events: {eventName: string}[], callback: Function}}
-             */
-            var publish = {
-                scope: root,
-                events: [
-                    {eventName: rootEventList.afterUpdateStorage}
-                ],
-                callback: callback
-            };
+      /**
+       * Define events
+       * @type {{scope: Page, events: {eventName: string}[], callback:
+       *     Function}}
+       */
+      var publish = {
+        scope: root,
+        events: [
+          {eventName: rootEventList.afterUpdateStorage}
+        ],
+        callback: callback
+      };
 
-            this.publishOn(publish);
-        }
+      this.publishOn(publish);
+    }
 
-    }, BaseEvent.prototype);
+  }, BaseEvent.prototype);
 });

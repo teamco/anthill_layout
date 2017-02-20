@@ -6,41 +6,41 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineXHamsterElement(PluginElement) {
 
+  /**
+   * Define XHamster Element
+   * @param view
+   * @param opts
+   * @returns {XHamsterElement}
+   * @constructor
+   * @class XHamsterElement
+   * @extends PluginElement
+   */
+  var XHamsterElement = function XHamsterElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('x.hamster', {resource: '/widgets'});
+
+    return this;
+  };
+
+  return XHamsterElement.extend('XHamsterElement', {
+
     /**
-     * Define XHamster Element
-     * @param view
-     * @param opts
-     * @returns {XHamsterElement}
-     * @constructor
-     * @class XHamsterElement
-     * @extends PluginElement
+     * Render Embedded content
+     * @memberOf XHamsterElement
+     * @param {string} iframe
      */
-    var XHamsterElement = function XHamsterElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent(iframe) {
+      this.$.append(iframe);
+    }
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
-
-        this.addCSS('x.hamster', {resource: '/widgets'});
-
-        return this;
-    };
-
-    return XHamsterElement.extend('XHamsterElement', {
-
-        /**
-         * Render Embedded content
-         * @memberOf XHamsterElement
-         * @param {string} iframe
-         */
-        renderEmbeddedContent: function renderEmbeddedContent(iframe) {
-            this.$.append(iframe);
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 
 });

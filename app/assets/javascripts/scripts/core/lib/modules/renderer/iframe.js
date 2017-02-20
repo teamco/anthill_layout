@@ -4,58 +4,58 @@
 
 define(function defineIframeRenderer() {
 
+  /**
+   * Define IframeRenderer
+   * @class IframeRenderer
+   * @extends AntHill
+   * @constructor
+   */
+  var IframeRenderer = function IframeRenderer() {
+  };
+
+  return IframeRenderer.extend('IframeRenderer', {
+
     /**
-     * Define IframeRenderer
-     * @class IframeRenderer
-     * @extends AntHill
-     * @constructor
+     * Render iframe
+     * @memberOf IframeRenderer
+     * @param {string|boolean} src
+     * @param {object} [opts]
+     * @returns {*|jQuery}
      */
-    var IframeRenderer = function IframeRenderer() {
-    };
+    renderIframe: function renderIframe(src, opts) {
 
-    return IframeRenderer.extend('IframeRenderer', {
+      if (_.isUndefined(src)) {
 
-        /**
-         * Render iframe
-         * @memberOf IframeRenderer
-         * @param {string|boolean} src
-         * @param {object} [opts]
-         * @returns {*|jQuery}
-         */
-        renderIframe: function renderIframe(src, opts) {
+        // Initial state
+        return false;
+      }
 
-            if (_.isUndefined(src)) {
+      opts = opts || {};
 
-                // Initial state
-                return false;
-            }
+      var iframe = '<iframe webkitAllowFullScreen mozallowfullscreen allowfullscreen />',
+          attrs = {
+            src: src ? src.replace(/(http|https):/, '') : undefined,
+            frameborder: 0,
+            width: '100%',
+            height: '100%',
+            scrolling: opts.scrolling || 'no',
+            allowtransparency: true
+          };
 
-            opts = opts || {};
+      $.extend(attrs, opts);
 
-            var iframe = '<iframe webkitAllowFullScreen mozallowfullscreen allowfullscreen />',
-                attrs = {
-                    src: src ? src.replace(/(http|https):/, '') : undefined,
-                    frameborder: 0,
-                    width: '100%',
-                    height: '100%',
-                    scrolling: opts.scrolling || 'no',
-                    allowtransparency: true
-                };
+      /**
+       * Define $iframe
+       * @type {*|jQuery}
+       */
+      var $iframe = $(iframe).attr(attrs);
 
-            $.extend(attrs, opts);
+      this.checkVisibility(
+          $iframe,
+          this.base.defineBoolean(opts.visible, true, true)
+      );
 
-            /**
-             * Define $iframe
-             * @type {*|jQuery}
-             */
-            var $iframe = $(iframe).attr(attrs);
-
-            this.checkVisibility(
-                $iframe,
-                this.base.defineBoolean(opts.visible, true, true)
-            );
-
-            return $iframe;
-        }
-    });
+      return $iframe;
+    }
+  });
 });

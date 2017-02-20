@@ -7,108 +7,109 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/smotri.com/element/smotri.com.element',
-    'plugins/widgets/smotri.com/element/smotri.com.preferences.element',
-    'plugins/widgets/smotri.com/element/smotri.com.rules.element'
-], function defineSmotriComView(BaseView, Header, Footer, SmotriComElement, SmotriComPreferencesElement, SmotriComRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/smotri.com/element/smotri.com.element',
+  'plugins/widgets/smotri.com/element/smotri.com.preferences.element',
+  'plugins/widgets/smotri.com/element/smotri.com.rules.element'
+], function defineSmotriComView(BaseView, Header, Footer, SmotriComElement,
+    SmotriComPreferencesElement, SmotriComRulesElement) {
+
+  /**
+   * Define view
+   * @class SmotriComView
+   * @extends BaseView
+   * @constructor
+   */
+  var SmotriComView = function SmotriComView() {
+  };
+
+  return SmotriComView.extend('SmotriComView', {
 
     /**
-     * Define view
-     * @class SmotriComView
-     * @extends BaseView
-     * @constructor
+     * Render smotricom element
+     * @memberOf SmotriComView
      */
-    var SmotriComView = function SmotriComView() {
-    };
+    renderSmotriCom: function renderSmotriCom() {
 
-    return SmotriComView.extend('SmotriComView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render smotricom element
-         * @memberOf SmotriComView
-         */
-        renderSmotriCom: function renderSmotriCom() {
+      /**
+       * Define $smotricom
+       * @type {SmotriComElement}
+       */
+      this.elements.$smotricom = new SmotriComElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $smotricom
-             * @type {SmotriComElement}
-             */
-            this.elements.$smotricom = new SmotriComElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf SmotriComView
+     * @returns {SmotriComPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define SmotriCom Preferences Element
+       * @type {SmotriComPreferencesElement}
+       */
+      this.elements.$preferences = new SmotriComPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf SmotriComView
-         * @returns {SmotriComPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define SmotriCom Preferences Element
-             * @type {SmotriComPreferencesElement}
-             */
-            this.elements.$preferences = new SmotriComPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf SmotriComView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {SmotriComRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
+      /**
+       * Define data
+       * @type {*|{}}
+       */
+      var data = this.controller.getRules();
 
-        /**
-         * Render Rules
-         * @memberOf SmotriComView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {SmotriComRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define data
-             * @type {*|{}}
-             */
-            var data = this.controller.getRules();
-
-            /**
-             * Define SmotriCom Rules Element
-             * @type {SmotriComRulesElement}
-             */
-            this.elements.$rules = new SmotriComRulesElement(this, {
-                data: data,
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render smotricom
-         * @memberOf SmotriComView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderSmotriCom.bind(this)
-            );
+      /**
+       * Define SmotriCom Rules Element
+       * @type {SmotriComRulesElement}
+       */
+      this.elements.$rules = new SmotriComRulesElement(this, {
+        data: data,
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render smotricom
+     * @memberOf SmotriComView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderSmotriCom.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineJsFiddlePermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class JsFiddlePermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var JsFiddlePermission = function JsFiddlePermission() {
+  /**
+   * Define Permissions
+   * @class JsFiddlePermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var JsFiddlePermission = function JsFiddlePermission() {
 
-    };
+  };
 
-    return JsFiddlePermission.extend('JsFiddlePermission', {
-
-    }, BasePermission.prototype);
+  return JsFiddlePermission.extend('JsFiddlePermission', {},
+      BasePermission.prototype);
 });

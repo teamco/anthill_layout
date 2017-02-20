@@ -6,35 +6,34 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
 ], function defineIceFloePreferencesElement(PluginElement, WidgetPreferences) {
 
-    /**
-     * Define IceFloe Preferences Element
-     * @param view
-     * @param opts
-     * @returns {IceFloePreferencesElement}
-     * @constructor
-     * @class IceFloePreferencesElement
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     */
-    var IceFloePreferencesElement = function IceFloePreferencesElement(view, opts) {
+  /**
+   * Define IceFloe Preferences Element
+   * @param view
+   * @param opts
+   * @returns {IceFloePreferencesElement}
+   * @constructor
+   * @class IceFloePreferencesElement
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   */
+  var IceFloePreferencesElement = function IceFloePreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return IceFloePreferencesElement.extend('IceFloePreferencesElement', {
-
-
-    }, PluginElement.prototype, WidgetPreferences.prototype);
+  return IceFloePreferencesElement.extend('IceFloePreferencesElement', {},
+      PluginElement.prototype, WidgetPreferences.prototype);
 
 });

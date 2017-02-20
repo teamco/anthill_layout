@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineExtremeTubeEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define ExtremeTube event manager
-     * @class ExtremeTubeEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var ExtremeTubeEventManager = function ExtremeTubeEventManager() {
+  /**
+   * Define ExtremeTube event manager
+   * @class ExtremeTubeEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var ExtremeTubeEventManager = function ExtremeTubeEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return ExtremeTubeEventManager.extend('ExtremeTubeEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return ExtremeTubeEventManager.extend('ExtremeTubeEventManager', {},
+      WidgetContentEventManager.prototype);
 });

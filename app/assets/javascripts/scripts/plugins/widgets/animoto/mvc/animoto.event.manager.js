@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineAnimotoEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define Animoto event manager
-     * @class AnimotoEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var AnimotoEventManager = function AnimotoEventManager() {
+  /**
+   * Define Animoto event manager
+   * @class AnimotoEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var AnimotoEventManager = function AnimotoEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return AnimotoEventManager.extend('AnimotoEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return AnimotoEventManager.extend('AnimotoEventManager', {},
+      WidgetContentEventManager.prototype);
 });

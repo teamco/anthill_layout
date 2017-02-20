@@ -6,41 +6,42 @@
  */
 
 define([
-    'config/anthill',
-    'modules/MVC',
-    'plugins/widgets/twenty.three/mvc/twenty.three.controller',
-    'plugins/widgets/twenty.three/mvc/twenty.three.model',
-    'plugins/widgets/twenty.three/mvc/twenty.three.view',
-    'plugins/widgets/twenty.three/mvc/twenty.three.event.manager',
-    'plugins/widgets/twenty.three/mvc/twenty.three.permission'
-], function defineTwentyThree(AntHill, MVC, Controller, Model, View, EventManager, Permission) {
+  'config/anthill',
+  'modules/MVC',
+  'plugins/widgets/twenty.three/mvc/twenty.three.controller',
+  'plugins/widgets/twenty.three/mvc/twenty.three.model',
+  'plugins/widgets/twenty.three/mvc/twenty.three.view',
+  'plugins/widgets/twenty.three/mvc/twenty.three.event.manager',
+  'plugins/widgets/twenty.three/mvc/twenty.three.permission'
+], function defineTwentyThree(AntHill, MVC, Controller, Model, View,
+    EventManager, Permission) {
+
+  /**
+   * Define TwentyThree
+   * @param containment
+   * @param [opts]
+   * @constructor
+   * @class TwentyThree
+   * @extends AntHill
+   */
+  var TwentyThree = function TwentyThree(containment, opts) {
 
     /**
-     * Define TwentyThree
-     * @param containment
-     * @param [opts]
-     * @constructor
-     * @class TwentyThree
-     * @extends AntHill
+     * Define containment
+     * @memberOf TwentyThree
      */
-    var TwentyThree = function TwentyThree(containment, opts) {
+    this.containment = containment;
 
-        /**
-         * Define containment
-         * @memberOf TwentyThree
-         */
-        this.containment = containment;
+    /**
+     * Define referrer
+     * @memberOf TwentyThree
+     * @type {*}
+     */
+    this.referrer = undefined;
 
-        /**
-         * Define referrer
-         * @memberOf TwentyThree
-         * @type {*}
-         */
-        this.referrer = undefined;
-
-        /**
-         * Define defaults
-         * @type {{
+    /**
+     * Define defaults
+     * @type {{
          *      plugin: boolean,
          *      html: {
          *          style: string,
@@ -56,50 +57,48 @@ define([
          *      regex: RegExp,
          *      mask: string
          * }}
-         */
-        var DEFAULTS = {
-            plugin: true,
-            html: {
-                style: 'default',
-                header: false,
-                footer: false,
-                padding: {
-                    top: 0,
-                    right: 0,
-                    bottom: 0,
-                    left: 0
-                }
-            }
-        };
-
-        /**
-         * Define MVC
-         * @memberOf TwentyThree
-         * @type {MVC}
-         */
-        this.mvc = new MVC({
-            scope: this,
-            config: [
-                {uuid: this.containment.model.getContentUUID()},
-                DEFAULTS
-            ],
-            components: [
-                Controller,
-                Model,
-                View,
-                EventManager,
-                Permission
-            ],
-            render: true
-        });
-
-        this.observer.publish(
-            this.eventmanager.eventList.initWidget,
-            opts
-        );
+     */
+    var DEFAULTS = {
+      plugin: true,
+      html: {
+        style: 'default',
+        header: false,
+        footer: false,
+        padding: {
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0
+        }
+      }
     };
 
-    return TwentyThree.extend('TwentyThree', {
+    /**
+     * Define MVC
+     * @memberOf TwentyThree
+     * @type {MVC}
+     */
+    this.mvc = new MVC({
+      scope: this,
+      config: [
+        {uuid: this.containment.model.getContentUUID()},
+        DEFAULTS
+      ],
+      components: [
+        Controller,
+        Model,
+        View,
+        EventManager,
+        Permission
+      ],
+      render: true
+    });
 
-    }, AntHill.prototype);
+    this.observer.publish(
+        this.eventmanager.eventList.initWidget,
+        opts
+    );
+  };
+
+  return TwentyThree.extend('TwentyThree', {}, AntHill.prototype);
 });

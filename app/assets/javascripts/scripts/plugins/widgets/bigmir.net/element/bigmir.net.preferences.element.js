@@ -6,35 +6,37 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
-], function defineBigmirNetPreferencesElement(PluginElement, WidgetPreferences) {
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
+], function defineBigmirNetPreferencesElement(PluginElement,
+    WidgetPreferences) {
 
-    /**
-     * Define BigmirNet Preferences Element
-     * @param view
-     * @param opts
-     * @returns {BigmirNetPreferencesElement}
-     * @constructor
-     * @class BigmirNetPreferencesElement
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     */
-    var BigmirNetPreferencesElement = function BigmirNetPreferencesElement(view, opts) {
+  /**
+   * Define BigmirNet Preferences Element
+   * @param view
+   * @param opts
+   * @returns {BigmirNetPreferencesElement}
+   * @constructor
+   * @class BigmirNetPreferencesElement
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   */
+  var BigmirNetPreferencesElement = function BigmirNetPreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return BigmirNetPreferencesElement.extend(
-        'BigmirNetPreferencesElement', {},
-        PluginElement.prototype,
-        WidgetPreferences.prototype
-    );
+  return BigmirNetPreferencesElement.extend(
+      'BigmirNetPreferencesElement', {},
+      PluginElement.prototype,
+      WidgetPreferences.prototype
+  );
 });

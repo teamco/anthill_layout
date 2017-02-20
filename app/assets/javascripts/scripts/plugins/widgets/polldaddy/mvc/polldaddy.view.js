@@ -7,108 +7,109 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/polldaddy/element/polldaddy.element',
-    'plugins/widgets/polldaddy/element/polldaddy.preferences.element',
-    'plugins/widgets/polldaddy/element/polldaddy.rules.element'
-], function definePolldaddyView(BaseView, Header, Footer, PolldaddyElement, PolldaddyPreferencesElement, PolldaddyRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/polldaddy/element/polldaddy.element',
+  'plugins/widgets/polldaddy/element/polldaddy.preferences.element',
+  'plugins/widgets/polldaddy/element/polldaddy.rules.element'
+], function definePolldaddyView(BaseView, Header, Footer, PolldaddyElement,
+    PolldaddyPreferencesElement, PolldaddyRulesElement) {
+
+  /**
+   * Define view
+   * @class PolldaddyView
+   * @extends BaseView
+   * @constructor
+   */
+  var PolldaddyView = function PolldaddyView() {
+  };
+
+  return PolldaddyView.extend('PolldaddyView', {
 
     /**
-     * Define view
-     * @class PolldaddyView
-     * @extends BaseView
-     * @constructor
+     * Render polldaddy element
+     * @memberOf PolldaddyView
      */
-    var PolldaddyView = function PolldaddyView() {
-    };
+    renderPolldaddy: function renderPolldaddy() {
 
-    return PolldaddyView.extend('PolldaddyView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render polldaddy element
-         * @memberOf PolldaddyView
-         */
-        renderPolldaddy: function renderPolldaddy() {
+      /**
+       * Define $polldaddy
+       * @type {PolldaddyElement}
+       */
+      this.elements.$polldaddy = new PolldaddyElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $polldaddy
-             * @type {PolldaddyElement}
-             */
-            this.elements.$polldaddy = new PolldaddyElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf PolldaddyView
+     * @returns {PolldaddyPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define Polldaddy Preferences Element
+       * @type {PolldaddyPreferencesElement}
+       */
+      this.elements.$preferences = new PolldaddyPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf PolldaddyView
-         * @returns {PolldaddyPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define Polldaddy Preferences Element
-             * @type {PolldaddyPreferencesElement}
-             */
-            this.elements.$preferences = new PolldaddyPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf PolldaddyView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {PolldaddyRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
+      /**
+       * Define data
+       * @type {*|{}}
+       */
+      var data = this.controller.getRules();
 
-        /**
-         * Render Rules
-         * @memberOf PolldaddyView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {PolldaddyRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define data
-             * @type {*|{}}
-             */
-            var data = this.controller.getRules();
-
-            /**
-             * Define Polldaddy Rules Element
-             * @type {PolldaddyRulesElement}
-             */
-            this.elements.$rules = new PolldaddyRulesElement(this, {
-                data: data,
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render polldaddy
-         * @memberOf PolldaddyView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderPolldaddy.bind(this)
-            );
+      /**
+       * Define Polldaddy Rules Element
+       * @type {PolldaddyRulesElement}
+       */
+      this.elements.$rules = new PolldaddyRulesElement(this, {
+        data: data,
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render polldaddy
+     * @memberOf PolldaddyView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderPolldaddy.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

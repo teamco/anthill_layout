@@ -6,35 +6,35 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
 ], function defineEdocrPreferencesElement(PluginElement, WidgetPreferences) {
 
-    /**
-     * Define Edocr Preferences Element
-     * @constructor
-     * @class EdocrPreferencesElement
-     * @param {EdocrView} view
-     * @param opts
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     * @returns {EdocrPreferencesElement}
-     */
-    var EdocrPreferencesElement = function EdocrPreferencesElement(view, opts) {
+  /**
+   * Define Edocr Preferences Element
+   * @constructor
+   * @class EdocrPreferencesElement
+   * @param {EdocrView} view
+   * @param opts
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   * @returns {EdocrPreferencesElement}
+   */
+  var EdocrPreferencesElement = function EdocrPreferencesElement(view, opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return EdocrPreferencesElement.extend(
-        'EdocrPreferencesElement', {}, 
-        PluginElement.prototype, 
-        WidgetPreferences.prototype
-    );
+  return EdocrPreferencesElement.extend(
+      'EdocrPreferencesElement', {},
+      PluginElement.prototype,
+      WidgetPreferences.prototype
+  );
 });

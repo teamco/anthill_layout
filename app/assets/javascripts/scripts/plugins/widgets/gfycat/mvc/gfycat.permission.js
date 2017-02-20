@@ -7,20 +7,20 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineGfycatPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class GfycatPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var GfycatPermission = function GfycatPermission() {
-    };
+  /**
+   * Define Permissions
+   * @class GfycatPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var GfycatPermission = function GfycatPermission() {
+  };
 
-    return GfycatPermission.extend(
-        'GfycatPermission', {}, 
-        BasePermission.prototype
-    );
+  return GfycatPermission.extend(
+      'GfycatPermission', {},
+      BasePermission.prototype
+  );
 });

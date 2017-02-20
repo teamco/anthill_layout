@@ -6,35 +6,35 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
-], function defineKeezMoviesPreferencesElement(PluginElement, WidgetPreferences) {
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
+], function defineKeezMoviesPreferencesElement(PluginElement,
+    WidgetPreferences) {
 
-    /**
-     * Define KeezMovies Preferences Element
-     * @param view
-     * @param opts
-     * @returns {KeezMoviesPreferencesElement}
-     * @constructor
-     * @class KeezMoviesPreferencesElement
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     */
-    var KeezMoviesPreferencesElement = function KeezMoviesPreferencesElement(view, opts) {
+  /**
+   * Define KeezMovies Preferences Element
+   * @param view
+   * @param opts
+   * @returns {KeezMoviesPreferencesElement}
+   * @constructor
+   * @class KeezMoviesPreferencesElement
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   */
+  var KeezMoviesPreferencesElement = function KeezMoviesPreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return KeezMoviesPreferencesElement.extend('KeezMoviesPreferencesElement', {
-
-
-    }, PluginElement.prototype, WidgetPreferences.prototype);
+  return KeezMoviesPreferencesElement.extend('KeezMoviesPreferencesElement', {},
+      PluginElement.prototype, WidgetPreferences.prototype);
 
 });

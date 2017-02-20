@@ -6,35 +6,34 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
 ], function defineXHamsterPreferencesElement(PluginElement, WidgetPreferences) {
 
-    /**
-     * Define XHamster Preferences Element
-     * @param view
-     * @param opts
-     * @returns {XHamsterPreferencesElement}
-     * @constructor
-     * @class XHamsterPreferencesElement
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     */
-    var XHamsterPreferencesElement = function XHamsterPreferencesElement(view, opts) {
+  /**
+   * Define XHamster Preferences Element
+   * @param view
+   * @param opts
+   * @returns {XHamsterPreferencesElement}
+   * @constructor
+   * @class XHamsterPreferencesElement
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   */
+  var XHamsterPreferencesElement = function XHamsterPreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return XHamsterPreferencesElement.extend('XHamsterPreferencesElement', {
-
-
-    }, PluginElement.prototype, WidgetPreferences.prototype);
+  return XHamsterPreferencesElement.extend('XHamsterPreferencesElement', {},
+      PluginElement.prototype, WidgetPreferences.prototype);
 
 });

@@ -7,20 +7,20 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineScoffPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class ScoffPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var ScoffPermission = function ScoffPermission() {
-    };
+  /**
+   * Define Permissions
+   * @class ScoffPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var ScoffPermission = function ScoffPermission() {
+  };
 
-    return ScoffPermission.extend(
-        'ScoffPermission', {}, 
-        BasePermission.prototype
-    );
+  return ScoffPermission.extend(
+      'ScoffPermission', {},
+      BasePermission.prototype
+  );
 });

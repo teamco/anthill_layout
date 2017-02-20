@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineGeolocationMapPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class GeolocationMapPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    let GeolocationMapPermission = function GeolocationMapPermission() {
+  /**
+   * Define Permissions
+   * @class GeolocationMapPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  let GeolocationMapPermission = function GeolocationMapPermission() {
 
-    };
+  };
 
-    return GeolocationMapPermission.extend('GeolocationMapPermission', {
-
-    }, BasePermission.prototype);
+  return GeolocationMapPermission.extend('GeolocationMapPermission', {},
+      BasePermission.prototype);
 });

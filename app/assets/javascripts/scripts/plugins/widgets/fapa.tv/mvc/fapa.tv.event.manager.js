@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineFapaTvEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define FapaTv event manager
-     * @class FapaTvEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var FapaTvEventManager = function FapaTvEventManager() {
+  /**
+   * Define FapaTv event manager
+   * @class FapaTvEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var FapaTvEventManager = function FapaTvEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return FapaTvEventManager.extend('FapaTvEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return FapaTvEventManager.extend('FapaTvEventManager', {},
+      WidgetContentEventManager.prototype);
 });

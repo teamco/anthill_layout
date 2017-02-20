@@ -7,23 +7,23 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineCountDownEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define CountDown event manager
-     * @class CountDownEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var CountDownEventManager = function CountDownEventManager() {
+  /**
+   * Define CountDown event manager
+   * @class CountDownEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var CountDownEventManager = function CountDownEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return CountDownEventManager.extend(
-        'CountDownEventManager', {},
-        WidgetContentEventManager.prototype
-    );
+  return CountDownEventManager.extend(
+      'CountDownEventManager', {},
+      WidgetContentEventManager.prototype
+  );
 });

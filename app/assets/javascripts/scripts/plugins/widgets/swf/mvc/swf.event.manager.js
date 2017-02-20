@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineSwfEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define Swf event manager
-     * @class SwfEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var SwfEventManager = function SwfEventManager() {
+  /**
+   * Define Swf event manager
+   * @class SwfEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var SwfEventManager = function SwfEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return SwfEventManager.extend('SwfEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return SwfEventManager.extend('SwfEventManager', {},
+      WidgetContentEventManager.prototype);
 });

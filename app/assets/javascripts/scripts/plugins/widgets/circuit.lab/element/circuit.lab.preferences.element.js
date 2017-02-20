@@ -6,35 +6,37 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
-], function defineCircuitLabPreferencesElement(PluginElement, WidgetPreferences) {
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
+], function defineCircuitLabPreferencesElement(PluginElement,
+    WidgetPreferences) {
 
-    /**
-     * Define CircuitLab Preferences Element
-     * @constructor
-     * @class CircuitLabPreferencesElement
-     * @param {CircuitLabView} view
-     * @param opts
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     * @returns {CircuitLabPreferencesElement}
-     */
-    var CircuitLabPreferencesElement = function CircuitLabPreferencesElement(view, opts) {
+  /**
+   * Define CircuitLab Preferences Element
+   * @constructor
+   * @class CircuitLabPreferencesElement
+   * @param {CircuitLabView} view
+   * @param opts
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   * @returns {CircuitLabPreferencesElement}
+   */
+  var CircuitLabPreferencesElement = function CircuitLabPreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return CircuitLabPreferencesElement.extend(
-        'CircuitLabPreferencesElement', {}, 
-        PluginElement.prototype, 
-        WidgetPreferences.prototype
-    );
+  return CircuitLabPreferencesElement.extend(
+      'CircuitLabPreferencesElement', {},
+      PluginElement.prototype,
+      WidgetPreferences.prototype
+  );
 });

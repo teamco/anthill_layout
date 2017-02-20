@@ -7,23 +7,23 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineKalturaEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define Kaltura event manager
-     * @class KalturaEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var KalturaEventManager = function KalturaEventManager() {
+  /**
+   * Define Kaltura event manager
+   * @class KalturaEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var KalturaEventManager = function KalturaEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return KalturaEventManager.extend(
-        'KalturaEventManager', {},
-        WidgetContentEventManager.prototype
-    );
+  return KalturaEventManager.extend(
+      'KalturaEventManager', {},
+      WidgetContentEventManager.prototype
+  );
 });

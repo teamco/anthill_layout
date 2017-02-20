@@ -7,101 +7,102 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/tinymce/element/tinymce.element',
-    'plugins/widgets/tinymce/element/tinymce.preferences.element',
-    'plugins/widgets/tinymce/element/tinymce.rules.element'
-], function defineTinymceView(BaseView, Header, Footer, TinymceElement, TinymcePreferencesElement, TinymceRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/tinymce/element/tinymce.element',
+  'plugins/widgets/tinymce/element/tinymce.preferences.element',
+  'plugins/widgets/tinymce/element/tinymce.rules.element'
+], function defineTinymceView(BaseView, Header, Footer, TinymceElement,
+    TinymcePreferencesElement, TinymceRulesElement) {
+
+  /**
+   * Define view
+   * @class TinymceView
+   * @extends BaseView
+   * @constructor
+   */
+  var TinymceView = function TinymceView() {
+  };
+
+  return TinymceView.extend('TinymceView', {
 
     /**
-     * Define view
-     * @class TinymceView
-     * @extends BaseView
-     * @constructor
+     * Render Tinymce element
+     * @memberOf TinymceView
      */
-    var TinymceView = function TinymceView() {
-    };
+    renderTinymce: function renderTinymce() {
 
-    return TinymceView.extend('TinymceView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render Tinymce element
-         * @memberOf TinymceView
-         */
-        renderTinymce: function renderTinymce() {
+      /**
+       * Define $tinymce
+       * @type {TinymceElement}
+       */
+      this.elements.$tinymce = new TinymceElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $tinymce
-             * @type {TinymceElement}
-             */
-            this.elements.$tinymce = new TinymceElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf TinymceView
+     * @returns {TinymcePreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define Tinymce Preferences Element
+       * @type {TinymcePreferencesElement}
+       */
+      this.elements.$preferences = new TinymcePreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf TinymceView
-         * @returns {TinymcePreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define Tinymce Preferences Element
-             * @type {TinymcePreferencesElement}
-             */
-            this.elements.$preferences = new TinymcePreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf TinymceView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {TinymceRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
-
-        /**
-         * Render Rules
-         * @memberOf TinymceView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {TinymceRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define Tinymce Rules Element
-             * @type {TinymceRulesElement}
-             */
-            this.elements.$rules = new TinymceRulesElement(this, {
-                data: this.controller.getRules(),
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render Tinymce
-         * @memberOf TinymceView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderTinymce.bind(this)
-            );
+      /**
+       * Define Tinymce Rules Element
+       * @type {TinymceRulesElement}
+       */
+      this.elements.$rules = new TinymceRulesElement(this, {
+        data: this.controller.getRules(),
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype);
+      return this.get$rules();
+    },
+
+    /**
+     * Render Tinymce
+     * @memberOf TinymceView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderTinymce.bind(this)
+      );
+    }
+
+  }, BaseView.prototype);
 });

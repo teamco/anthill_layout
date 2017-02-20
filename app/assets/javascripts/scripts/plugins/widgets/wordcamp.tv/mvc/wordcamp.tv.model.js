@@ -6,53 +6,54 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineWordcampTvModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define WordcampTv model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class WordcampTvModel
+   * @constructor
+   */
+  var WordcampTvModel = function WordcampTvModel() {
+
     /**
-     * Define WordcampTv model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class WordcampTvModel
-     * @constructor
-     */
-    var WordcampTvModel = function WordcampTvModel() {
-
-        /**
-         * Define preferences
-         * @memberOf WordcampTvModel
-         * @type {{
-         *      wordcamptvEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
+     * Define preferences
+     * @memberOf WordcampTvModel
+     * @type {{
+         *      wordcamptvEmbedCode: {type: string, disabled: boolean, value:
+         *     undefined, visible: boolean}
          * }}
-         */
-        this.preferences = {
-            wordcamptvEmbedCode: {
-                type: 'textarea',
-                disabled: false,
-                value: undefined,
-                visible: true
-            }
-        };
-
-        /**
-         * Define rules
-         * @memberOf WordcampTvModel
-         * @type {{}}
-         */
-        this.rules = {};
+     */
+    this.preferences = {
+      wordcamptvEmbedCode: {
+        type: 'textarea',
+        disabled: false,
+        value: undefined,
+        visible: true
+      }
     };
 
-    return WordcampTvModel.extend('WordcampTvModel', {
+    /**
+     * Define rules
+     * @memberOf WordcampTvModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        /**
-         * Set WordcampTv embed code
-         * @memberOf WordcampTvModel
-         * @param {string} embed
-         */
-        setWordcamptvEmbedCode: function setWordcamptvEmbedCode(embed) {
-            this.setPrefs('wordcamptvEmbedCode', embed);
-        }
+  return WordcampTvModel.extend('WordcampTvModel', {
 
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    /**
+     * Set WordcampTv embed code
+     * @memberOf WordcampTvModel
+     * @param {string} embed
+     */
+    setWordcamptvEmbedCode: function setWordcamptvEmbedCode(embed) {
+      this.setPrefs('wordcamptvEmbedCode', embed);
+    }
+
+  }, BaseModel.prototype, WidgetContentModel.prototype);
 });

@@ -7,23 +7,23 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineClypItEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define ClypIt event manager
-     * @class ClypItEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var ClypItEventManager = function ClypItEventManager() {
+  /**
+   * Define ClypIt event manager
+   * @class ClypItEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var ClypItEventManager = function ClypItEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return ClypItEventManager.extend(
-        'ClypItEventManager', {},
-        WidgetContentEventManager.prototype
-    );
+  return ClypItEventManager.extend(
+      'ClypItEventManager', {},
+      WidgetContentEventManager.prototype
+  );
 });

@@ -6,43 +6,43 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineTedElement(PluginElement) {
 
+  /**
+   * Define Ted Element
+   * @param view
+   * @param opts
+   * @returns {TedElement}
+   * @constructor
+   * @class TedElement
+   * @extends PluginElement
+   */
+  var TedElement = function TedElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('ted', {resource: '/widgets'});
+
+    return this;
+  };
+
+  return TedElement.extend('TedElement', {
+
     /**
-     * Define Ted Element
-     * @param view
-     * @param opts
-     * @returns {TedElement}
-     * @constructor
-     * @class TedElement
-     * @extends PluginElement
+     * Render Embedded content
+     * @memberOf TedElement
+     * @param {string} url
      */
-    var TedElement = function TedElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent(url) {
+      this.$.append(
+          this.renderIframe(url)
+      );
+    }
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
-
-        this.addCSS('ted', {resource: '/widgets'});
-
-        return this;
-    };
-
-    return TedElement.extend('TedElement', {
-
-        /**
-         * Render Embedded content
-         * @memberOf TedElement
-         * @param {string} url
-         */
-        renderEmbeddedContent: function renderEmbeddedContent(url) {
-            this.$.append(
-                this.renderIframe(url)
-            );
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 
 });

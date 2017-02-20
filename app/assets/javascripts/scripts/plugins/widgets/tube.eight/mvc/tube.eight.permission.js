@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineTubeEightPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class TubeEightPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var TubeEightPermission = function TubeEightPermission() {
+  /**
+   * Define Permissions
+   * @class TubeEightPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var TubeEightPermission = function TubeEightPermission() {
 
-    };
+  };
 
-    return TubeEightPermission.extend('TubeEightPermission', {
-
-    }, BasePermission.prototype);
+  return TubeEightPermission.extend('TubeEightPermission', {},
+      BasePermission.prototype);
 });

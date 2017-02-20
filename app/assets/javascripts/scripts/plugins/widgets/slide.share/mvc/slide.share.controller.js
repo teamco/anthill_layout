@@ -6,52 +6,52 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineSlideShareController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define SlideShare controller
+   * @class SlideShareController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var SlideShareController = function SlideShareController() {
+  };
+
+  return SlideShareController.extend('SlideShareController', {
+
     /**
-     * Define SlideShare controller
-     * @class SlideShareController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf SlideShareController
      */
-    var SlideShareController = function SlideShareController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
 
-    return SlideShareController.extend('SlideShareController', {
+      this.view.elements.$slideshare.renderEmbeddedContent(
+          this.model.getPrefs('slideshareEmbed')
+      );
+    },
 
-        /**
-         * Set embedded content
-         * @memberOf SlideShareController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
+    /**
+     * Add SlideShare rule
+     * @memberOf SlideShareController
+     * @param {Event} e
+     */
+    addSlideShareRule: function addSlideShareRule(e) {
 
-            this.view.elements.$slideshare.renderEmbeddedContent(
-                this.model.getPrefs('slideshareEmbed')
-            );
-        },
+      /**
+       * Define $button
+       * @type {*|jQuery|HTMLElement}
+       */
+      var $button = $(e.target),
+          scope = this.scope;
 
-        /**
-         * Add SlideShare rule
-         * @memberOf SlideShareController
-         * @param e
-         */
-        addSlideShareRule: function addSlideShareRule(e) {
+      scope.observer.publish(
+          scope.eventmanager.eventList.publishRule,
+          [$button.attr('value'), this.scope.name]
+      );
+    }
 
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), this.scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

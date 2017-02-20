@@ -7,60 +7,60 @@
 
 define(function defineSliderRenderer() {
 
+  /**
+   * Define Slider Renderer
+   * @class SliderRenderer
+   * @extends BaseElement
+   * @constructor
+   */
+  var SliderRenderer = function SliderRenderer() {
+  };
+
+  return SliderRenderer.extend('SliderRenderer', {
+
     /**
-     * Define Slider Renderer
-     * @class SliderRenderer
-     * @extends BaseElement
-     * @constructor
+     * Render slider
+     * @memberOf SliderRenderer
+     * @param $container
+     * @param opts
      */
-    var SliderRenderer = function SliderRenderer() {
-    };
+    renderSlider: function renderSlider($container, opts) {
 
-    return SliderRenderer.extend('SliderRenderer', {
+      if (!$container) {
+        this.view.scope.logger.warn('Undefined $container', opts);
+        return false;
+      }
 
-        /**
-         * Render slider
-         * @memberOf SliderRenderer
-         * @param $container
-         * @param opts
-         */
-        renderSlider: function renderSlider($container, opts) {
+      if (!$container.slider) {
+        this.view.scope.logger.warn('Undefined slider');
+        return false;
+      }
 
-            if (!$container) {
-                this.view.scope.logger.warn('Undefined $container', opts);
-                return false;
-            }
+      $container.slider(opts);
 
-            if (!$container.slider) {
-                this.view.scope.logger.warn('Undefined slider');
-                return false;
-            }
+      var labels = opts.labels || [],
+          i = opts.min || 0,
+          l = labels.length;
 
-            $container.slider(opts);
+      for (i; i < l; i += (opts.step || 1)) {
 
-            var labels = opts.labels || [],
-                i = opts.min || 0,
-                l = labels.length;
+        // Calculate left position
+        var left = ( i / opts.max * 100 ).toFixed(2) + "%";
 
-            for (i; i < l; i += (opts.step || 1)) {
+        var $separator = $('<div class="ui-slider-tick separator" />').css({
+          left: left
+        });
 
-                // Calculate left position
-                var left = ( i / opts.max * 100 ).toFixed(2) + "%";
+        var $label = $('<div class="ui-slider-tick label" />').css({
+          left: left
+        }).text(labels[i]);
 
-                var $separator = $('<div class="ui-slider-tick separator" />').css({
-                    left: left
-                });
+        $container.append($separator, $label);
 
-                var $label = $('<div class="ui-slider-tick label" />').css({
-                    left: left
-                }).text(labels[i]);
-
-                $container.append($separator, $label);
-
-                $label.css({
-                    marginLeft: -(this.textMetrics($label).width / 2)
-                });
-            }
-        }
-    });
+        $label.css({
+          marginLeft: -(this.textMetrics($label).width / 2)
+        });
+      }
+    }
+  });
 });

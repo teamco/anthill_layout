@@ -6,100 +6,99 @@
  */
 
 define([
-    'config/anthill',
-    'modules/MVC',
-    'plugins/widgets/fire.pic/mvc/fire.pic.controller',
-    'plugins/widgets/fire.pic/mvc/fire.pic.model',
-    'plugins/widgets/fire.pic/mvc/fire.pic.view',
-    'plugins/widgets/fire.pic/mvc/fire.pic.event.manager',
-    'plugins/widgets/fire.pic/mvc/fire.pic.permission'
-], function defineFirePic(AntHill, MVC, Controller, Model, View, EventManager, Permission) {
+  'config/anthill',
+  'modules/MVC',
+  'plugins/widgets/fire.pic/mvc/fire.pic.controller',
+  'plugins/widgets/fire.pic/mvc/fire.pic.model',
+  'plugins/widgets/fire.pic/mvc/fire.pic.view',
+  'plugins/widgets/fire.pic/mvc/fire.pic.event.manager',
+  'plugins/widgets/fire.pic/mvc/fire.pic.permission'
+], function defineFirePic(AntHill, MVC, Controller, Model, View, EventManager,
+    Permission) {
+
+  /**
+   * Define FirePic
+   * @param containment
+   * @param [opts]
+   * @constructor
+   * @class FirePic
+   * @extends AntHill
+   */
+  var FirePic = function FirePic(containment, opts) {
 
     /**
-     * Define FirePic
-     * @param containment
-     * @param [opts]
-     * @constructor
-     * @class FirePic
-     * @extends AntHill
+     * Define containment
+     * @property FirePic
      */
-    var FirePic = function FirePic(containment, opts) {
+    this.containment = containment;
 
-        /**
-         * Define containment
-         * @property FirePic
-         */
-        this.containment = containment;
+    /**
+     * Define referrer
+     * @property FirePic
+     * @type {*}
+     */
+    this.referrer = undefined;
 
-        /**
-         * Define referrer
-         * @property FirePic
-         * @type {*}
-         */
-        this.referrer = undefined;
-
-        /**
-         * Define defaults
-         * @type {{
-         *      plugin: boolean,
-         *      html: {
-         *          style: string,
-         *          header: boolean,
-         *          footer: boolean,
-         *          padding: {
-         *              top: number,
-         *              right: number,
-         *              bottom: number,
-         *              left: number
-         *          }
-         *      },
-         *      regex: RegExp,
-         *      mask: string
-         * }}
-         */
-        var DEFAULTS = {
-            plugin: true,
-            html: {
-                style: 'default',
-                header: false,
-                footer: false,
-                padding: {
-                    top: 0,
-                    right: 0,
-                    bottom: 0,
-                    left: 0
-                }
-            }
-        };
-
-        /**
-         * Define MVC
-         * @property FirePic
-         * @type {MVC}
-         */
-        this.mvc = new MVC({
-            scope: this,
-            config: [
-                {uuid: this.containment.model.getContentUUID()},
-                DEFAULTS
-            ],
-            components: [
-                Controller,
-                Model,
-                View,
-                EventManager,
-                Permission
-            ],
-            render: true
-        });
-
-        this.observer.publish(
-            this.eventmanager.eventList.initWidget,
-            opts
-        );
+    /**
+     * Define defaults
+     * @type {{
+     *      plugin: boolean,
+     *      html: {
+     *          style: string,
+     *          header: boolean,
+     *          footer: boolean,
+     *          padding: {
+     *              top: number,
+     *              right: number,
+     *              bottom: number,
+     *              left: number
+     *          }
+     *      },
+     *      regex: RegExp,
+     *      mask: string
+     * }}
+     */
+    var DEFAULTS = {
+      plugin: true,
+      html: {
+        style: 'default',
+        header: false,
+        footer: false,
+        padding: {
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0
+        }
+      }
     };
 
-    return FirePic.extend('FirePic', {
+    /**
+     * Define MVC
+     * @property FirePic
+     * @type {MVC}
+     */
+    this.mvc = new MVC({
+      scope: this,
+      config: [
+        {uuid: this.containment.model.getContentUUID()},
+        DEFAULTS
+      ],
+      components: [
+        Controller,
+        Model,
+        View,
+        EventManager,
+        Permission
+      ],
+      render: true
+    });
 
-    }, AntHill.prototype);
+    this.observer.publish(
+        this.eventmanager.eventList.initWidget,
+        opts
+    );
+  };
+
+  return FirePic.extend('FirePic', {}, AntHill.prototype);
 });

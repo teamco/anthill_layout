@@ -6,86 +6,75 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineHowcastController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define howcast controller
+   * @class HowcastController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var HowcastController = function HowcastController() {
+  };
+
+  return HowcastController.extend('HowcastController', {
+
     /**
-     * Define howcast controller
-     * @class HowcastController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf HowcastController
      */
-    var HowcastController = function HowcastController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
 
-    return HowcastController.extend('HowcastController', {
+      /**
+       * Get url
+       * @type {string|*}
+       */
+      var url = this.model.getPrefs('howcastEmbedCode'),
+          embed = this.controller.getEmbedCode(url);
 
-        /**
-         * Set embedded content
-         * @memberOf HowcastController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
+      if (embed) {
+        this.view.elements.$howcast.renderEmbeddedContent(embed);
+      }
+    },
 
-            /**
-             * Get url
-             * @type {string|*}
-             */
-            var url = this.model.getPrefs('howcastEmbedCode'),
-                embed = this.controller.getEmbedCode(url);
+    /**
+     * Validate howcast
+     * @memberOf HowcastController
+     * @param {string} embed
+     * @return {string|boolean}
+     */
+    getEmbedCode: function getEmbedCode(embed) {
 
-            if (embed) {
-                this.view.elements.$howcast.renderEmbeddedContent(embed);
-            }
-        },
+      if (!embed) {
+        this.scope.logger.debug('Initial state');
+        return false;
+      }
 
-        /**
-         * Validate howcast
-         * @memberOf HowcastController
-         * @param {string} embed
-         * @return {string|boolean}
-         */
-        getEmbedCode: function getEmbedCode(embed) {
+      // Convert to string
+      embed += '';
 
-            if (!embed) {
-                this.scope.logger.debug('Initial state');
-                return false;
-            }
+      if (embed.match(/<object/)) {
 
-            // Convert to string
-            embed += '';
+        return $(embed).find('object');
 
-            if (embed.match(/<object/)) {
+      } else {
 
-                return $(embed).find('object');
+        this.scope.logger.warn('Invalid Howcast embed code');
+        return false;
+      }
+    },
 
-            } else {
+    /**
+     * Add Howcast rule
+     * @memberOf HowcastController
+     * @param {Event} e
+     */
+    addHowcastRule: function addHowcastRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-                this.scope.logger.warn('Invalid Howcast embed code');
-                return false;
-            }
-        },
-
-        /**
-         * Add Howcast rule
-         * @memberOf HowcastController
-         * @param e
-         */
-        addHowcastRule: function addHowcastRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

@@ -6,41 +6,42 @@
  */
 
 define([
-    'config/anthill',
-    'modules/MVC',
-    'plugins/widgets/odnoklassniki/mvc/odnoklassniki.controller',
-    'plugins/widgets/odnoklassniki/mvc/odnoklassniki.model',
-    'plugins/widgets/odnoklassniki/mvc/odnoklassniki.view',
-    'plugins/widgets/odnoklassniki/mvc/odnoklassniki.event.manager',
-    'plugins/widgets/odnoklassniki/mvc/odnoklassniki.permission'
-], function defineOdnoklassniki(AntHill, MVC, Controller, Model, View, EventManager, Permission) {
+  'config/anthill',
+  'modules/MVC',
+  'plugins/widgets/odnoklassniki/mvc/odnoklassniki.controller',
+  'plugins/widgets/odnoklassniki/mvc/odnoklassniki.model',
+  'plugins/widgets/odnoklassniki/mvc/odnoklassniki.view',
+  'plugins/widgets/odnoklassniki/mvc/odnoklassniki.event.manager',
+  'plugins/widgets/odnoklassniki/mvc/odnoklassniki.permission'
+], function defineOdnoklassniki(AntHill, MVC, Controller, Model, View,
+    EventManager, Permission) {
+
+  /**
+   * Define Odnoklassniki
+   * @param containment
+   * @param [opts]
+   * @constructor
+   * @class Odnoklassniki
+   * @extends AntHill
+   */
+  var Odnoklassniki = function Odnoklassniki(containment, opts) {
 
     /**
-     * Define Odnoklassniki
-     * @param containment
-     * @param [opts]
-     * @constructor
-     * @class Odnoklassniki
-     * @extends AntHill
+     * Define containment
+     * @property Odnoklassniki
      */
-    var Odnoklassniki = function Odnoklassniki(containment, opts) {
+    this.containment = containment;
 
-        /**
-         * Define containment
-         * @property Odnoklassniki
-         */
-        this.containment = containment;
+    /**
+     * Define referrer
+     * @property Odnoklassniki
+     * @type {*}
+     */
+    this.referrer = undefined;
 
-        /**
-         * Define referrer
-         * @property Odnoklassniki
-         * @type {*}
-         */
-        this.referrer = undefined;
-
-        /**
-         * Define defaults
-         * @type {{
+    /**
+     * Define defaults
+     * @type {{
          *      plugin: boolean,
          *      html: {
          *          style: string,
@@ -55,48 +56,48 @@ define([
          *          }
          *      }
          * }}
-         */
-        var DEFAULTS = {
-            plugin: true,
-            html: {
-                style: 'default',
-                header: false,
-                footer: false,
-                padding: {
-                    top: 0,
-                    right: 0,
-                    bottom: 0,
-                    left: 0
-                }
-            }
-        };
-
-        /**
-         * Define MVC
-         * @property Odnoklassniki
-         * @type {MVC}
-         */
-        this.mvc = new MVC({
-            scope: this,
-            config: [
-                {uuid: this.containment.model.getContentUUID()},
-                DEFAULTS
-            ],
-            components: [
-                Controller,
-                Model,
-                View,
-                EventManager,
-                Permission
-            ],
-            render: true
-        });
-
-        this.observer.publish(
-            this.eventmanager.eventList.initWidget,
-            opts
-        );
+     */
+    var DEFAULTS = {
+      plugin: true,
+      html: {
+        style: 'default',
+        header: false,
+        footer: false,
+        padding: {
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0
+        }
+      }
     };
 
-    return Odnoklassniki.extend('Odnoklassniki', {}, AntHill.prototype);
+    /**
+     * Define MVC
+     * @property Odnoklassniki
+     * @type {MVC}
+     */
+    this.mvc = new MVC({
+      scope: this,
+      config: [
+        {uuid: this.containment.model.getContentUUID()},
+        DEFAULTS
+      ],
+      components: [
+        Controller,
+        Model,
+        View,
+        EventManager,
+        Permission
+      ],
+      render: true
+    });
+
+    this.observer.publish(
+        this.eventmanager.eventList.initWidget,
+        opts
+    );
+  };
+
+  return Odnoklassniki.extend('Odnoklassniki', {}, AntHill.prototype);
 });

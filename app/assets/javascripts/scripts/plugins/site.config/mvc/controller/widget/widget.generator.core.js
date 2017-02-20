@@ -4,54 +4,54 @@
 
 define(function defineWidgetGeneratorCore() {
 
+  /**
+   * Define WidgetGeneratorCore
+   * @class WidgetGeneratorCore
+   * @extends SiteConfigWidgetGenerator
+   * @extends WidgetGeneratorForm
+   * @constructor
+   */
+  var WidgetGeneratorCore = function WidgetGeneratorCore() {
+  };
+
+  return WidgetGeneratorCore.extend('WidgetGeneratorCore', {
+
     /**
-     * Define WidgetGeneratorCore
-     * @class WidgetGeneratorCore
-     * @extends SiteConfigWidgetGenerator
-     * @extends WidgetGeneratorForm
-     * @constructor
+     * Define create widget step
+     * @memberOf WidgetGeneratorCore
      */
-    var WidgetGeneratorCore = function WidgetGeneratorCore() {
-    };
+    nextWidgetGenerator: function nextWidgetGenerator() {
 
-    return WidgetGeneratorCore.extend('WidgetGeneratorCore', {
+      /**
+       * Define panel
+       * @type {Panel}
+       */
+      var panel = this.getDesignTimePanel();
 
-        /**
-         * Define create widget step
-         * @memberOf WidgetGeneratorCore
-         */
-        nextWidgetGenerator: function nextWidgetGenerator() {
+      /**
+       * Get gallery
+       * @type {Gallery}
+       */
+      var gallery = panel.controller.getGallery();
 
-            /**
-             * Define panel
-             * @type {Panel}
-             */
-            var panel = this.getDesignTimePanel();
+      if (gallery) {
+        this.scope.view.showWidgetGenerator(
+            gallery.model.staticData.getDefaultData(),
+            gallery.model.dataTypes,
+            this.model.getConfig('widget')
+        );
+      }
+    },
 
-            /**
-             * Get gallery
-             * @type {Gallery}
-             */
-            var gallery = panel.controller.getGallery();
+    /**
+     * Generate new widget
+     * @memberOf WidgetGeneratorCore
+     */
+    generateNewWidget: function generateNewWidget() {
 
-            if (gallery) {
-                this.scope.view.showWidgetGenerator(
-                    gallery.model.staticData.getDefaultData(),
-                    gallery.model.dataTypes,
-                    this.model.getConfig('widget')
-                );
-            }
-        },
-
-        /**
-         * Generate new widget
-         * @memberOf WidgetGeneratorCore
-         */
-        generateNewWidget: function generateNewWidget() {
-
-            /**
-             * Get collector
-             * @type {{
+      /**
+       * Get collector
+       * @type {{
              *      category: string,
              *      collector: {},
              *      $modal: ModalElement,
@@ -59,83 +59,84 @@ define(function defineWidgetGeneratorCore() {
              *      validate: *,
              *      empty: number
              * }}
-             */
-            var data = this._collectFormWidgetData();
+       */
+      var data = this._collectFormWidgetData();
 
-            /**
-             * Get create new widget route
-             * @type {Routes.resources.createNewWidget|*}
-             */
-            var route = this.resources.createNewWidget;
+      /**
+       * Get create new widget route
+       * @type {Routes.resources.createNewWidget|*}
+       */
+      var route = this.resources.createNewWidget;
 
-            $.ajax({
+      $.ajax({
 
-                url: route[0],
-                method: route[1],
+        url: route[0],
+        method: route[1],
 
-                data: this.prepareXhrData({
-                    author_widget: data.collector,
-                    author_widget_clone: data.clone,
-                    author_widget_category: {
-                        name_index: data.category
-                    }
-                }),
+        data: this.prepareXhrData({
+          author_widget: data.collector,
+          author_widget_clone: data.clone,
+          author_widget_category: {
+            name_index: data.category
+          }
+        }),
 
-                beforeSend: this._beforeSendWidgetData.bind({
-                    controller: this,
-                    data: data
-                }),
+        beforeSend: this._beforeSendWidgetData.bind({
+          controller: this,
+          data: data
+        }),
 
-                error: this._onErrorSendWidgetData.bind({
-                    controller: this,
-                    data: data
-                })
+        error: this._onErrorSendWidgetData.bind({
+          controller: this,
+          data: data
+        })
 
-            }).done(
-                this.generateNewWidgetCallback.bind(this)
-            );
-        },
+      }).done(
+          this.generateNewWidgetCallback.bind(this)
+      );
+    },
 
-        /**
-         * Define callback for generate new widget
-         * @memberOf WidgetGeneratorCore
-         * @param data
-         * @param status
-         * @param xhr
-         */
-        generateNewWidgetCallback: function generateNewWidgetCallback(data, status, xhr) {
+    /**
+     * Define callback for generate new widget
+     * @memberOf WidgetGeneratorCore
+     * @param data
+     * @param status
+     * @param xhr
+     */
+    generateNewWidgetCallback: function generateNewWidgetCallback(data, status,
+        xhr) {
 
-            this._handleSuccessSendWidgetData(data, status, xhr);
+      this._handleSuccessSendWidgetData(data, status, xhr);
 
-            /**
-             * Get $modal
-             * @type {ModalElement|string}
-             */
-            var $modal = this.scope.view.get$modal(),
-                msg = this.i18n.t('widget.generated.ok').
-                    replace(/\{1}/, data.name);
+      /**
+       * Get $modal
+       * @type {ModalElement|string}
+       */
+      var $modal = this.scope.view.get$modal(),
+          msg = this.i18n.t('widget.generated.ok').
+              replace(/\{1}/, data.name);
 
-            // Show message
-            $modal.handleNotification(msg, 'success');
+      // Show message
+      $modal.handleNotification(msg, 'success');
 
-            /**
-             * Define panel
-             * @type {Panel}
-             */
-            var panel = this.getDesignTimePanel();
+      /**
+       * Define panel
+       * @type {Panel}
+       */
+      var panel = this.getDesignTimePanel();
 
-            /**
-             * Get gallery
-             * @type {Gallery}
-             */
-            var gallery = panel.controller.getGallery();
+      /**
+       * Get gallery
+       * @type {Gallery}
+       */
+      var gallery = panel.controller.getGallery();
 
-            if (gallery) {
-                gallery.model.staticData.addDefaultData(data);
-            }
+      if (gallery) {
+        gallery.model.staticData.addDefaultData(data);
+      }
 
-            this._clearWidgetForm();
-            this.loadWidgetsList();
-        }
-    });
+      this._clearWidgetForm();
+      this.loadWidgetsList();
+    }
+  });
 });

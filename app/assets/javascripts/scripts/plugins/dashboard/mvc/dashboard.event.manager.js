@@ -7,39 +7,39 @@
  */
 
 define([
-    'modules/Event'
+  'modules/Event'
 ], function defineDashboardEventManager(BaseEvent) {
 
+  /**
+   * Define dashboard event manager
+   * @class DashboardEventManager
+   * @constructor
+   * @extends BaseEvent
+   */
+  var DashboardEventManager = function DashboardEventManager() {
+
     /**
-     * Define dashboard event manager
-     * @class DashboardEventManager
-     * @constructor
-     * @extends BaseEvent
+     * Define events
+     * @property DashboardEventManager
+     * @type {{}}
      */
-    var DashboardEventManager = function DashboardEventManager() {
+    this.events = {};
 
-        /**
-         * Define events
-         * @property DashboardEventManager
-         * @type {{}}
-         */
-        this.events = {};
-
-        /**
-         * Define event list
-         * @property DashboardEventManager
-         * @type {{
+    /**
+     * Define event list
+     * @property DashboardEventManager
+     * @type {{
          *      updateTranslations: string,
          *      loadModuleContent: string
          * }}
-         */
-        this.eventList = {
-            updateTranslations: 'update.translations',
-            loadModuleContent: 'load.module.content'
-        };
+     */
+    this.eventList = {
+      updateTranslations: 'update.translations',
+      loadModuleContent: 'load.module.content'
     };
+  };
 
-    return DashboardEventManager.extend(
-        'DashboardEventManager', {}, BaseEvent.prototype
-    );
+  return DashboardEventManager.extend(
+      'DashboardEventManager', {}, BaseEvent.prototype
+  );
 });

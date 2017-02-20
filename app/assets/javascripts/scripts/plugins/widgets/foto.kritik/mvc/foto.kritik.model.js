@@ -6,53 +6,54 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineFotoKritikModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define FotoKritik model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class FotoKritikModel
+   * @constructor
+   */
+  var FotoKritikModel = function FotoKritikModel() {
+
     /**
-     * Define FotoKritik model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class FotoKritikModel
-     * @constructor
+     * Define preferences
+     * @property FotoKritikModel
+     * @type {{
+     *      fotokritikEmbedCode: {type: string, disabled: boolean, value:
+     *     undefined, visible: boolean}
+     * }}
      */
-    var FotoKritikModel = function FotoKritikModel() {
-
-        /**
-         * Define preferences
-         * @property FotoKritikModel
-         * @type {{
-         *      fotokritikEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
-         * }}
-         */
-        this.preferences = {
-            fotokritikEmbedCode: {
-                type: 'textarea',
-                disabled: false,
-                value: undefined,
-                visible: true
-            }
-        };
-
-        /**
-         * Define rules
-         * @property FotoKritikModel
-         * @type {{}}
-         */
-        this.rules = {};
+    this.preferences = {
+      fotokritikEmbedCode: {
+        type: 'textarea',
+        disabled: false,
+        value: undefined,
+        visible: true
+      }
     };
 
-    return FotoKritikModel.extend('FotoKritikModel', {
+    /**
+     * Define rules
+     * @property FotoKritikModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        /**
-         * Set FotoKritik embed code
-         * @memberOf FotoKritikModel
-         * @param {string} embed
-         */
-        setFotokritikEmbedCode: function setFotokritikEmbedCode(embed) {
-            this.setPrefs('fotokritikEmbedCode', embed);
-        }
+  return FotoKritikModel.extend('FotoKritikModel', {
 
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    /**
+     * Set FotoKritik embed code
+     * @memberOf FotoKritikModel
+     * @param {string} embed
+     */
+    setFotokritikEmbedCode: function setFotokritikEmbedCode(embed) {
+      this.setPrefs('fotokritikEmbedCode', embed);
+    }
+
+  }, BaseModel.prototype, WidgetContentModel.prototype);
 });

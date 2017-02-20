@@ -6,43 +6,43 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function definePastebinElement(PluginElement) {
 
+  /**
+   * Define Pastebin Element
+   * @param view
+   * @param opts
+   * @returns {PastebinElement}
+   * @constructor
+   * @class PastebinElement
+   * @extends PluginElement
+   */
+  var PastebinElement = function PastebinElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('pastebin', {resource: '/widgets'});
+
+    return this;
+  };
+
+  return PastebinElement.extend('PastebinElement', {
+
     /**
-     * Define Pastebin Element
-     * @param view
-     * @param opts
-     * @returns {PastebinElement}
-     * @constructor
-     * @class PastebinElement
-     * @extends PluginElement
+     * Render Embedded content
+     * @memberOf PastebinElement
+     * @param {string} url
      */
-    var PastebinElement = function PastebinElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent(url) {
+      this.$.append(
+          this.renderIframe(url)
+      );
+    }
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
-
-        this.addCSS('pastebin', {resource: '/widgets'});
-
-        return this;
-    };
-
-    return PastebinElement.extend('PastebinElement', {
-
-        /**
-         * Render Embedded content
-         * @memberOf PastebinElement
-         * @param {string} url
-         */
-        renderEmbeddedContent: function renderEmbeddedContent(url) {
-            this.$.append(
-                this.renderIframe(url)
-            );
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 
 });

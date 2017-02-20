@@ -6,53 +6,54 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineXHamsterModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define XHamster model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class XHamsterModel
+   * @constructor
+   */
+  var XHamsterModel = function XHamsterModel() {
+
     /**
-     * Define XHamster model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class XHamsterModel
-     * @constructor
-     */
-    var XHamsterModel = function XHamsterModel() {
-
-        /**
-         * Define preferences
-         * @memberOf XHamsterModel
-         * @type {{
-         *      xhamsterUrl: {type: string, disabled: boolean, value: undefined, visible: boolean}
+     * Define preferences
+     * @memberOf XHamsterModel
+     * @type {{
+         *      xhamsterUrl: {type: string, disabled: boolean, value:
+         *     undefined, visible: boolean}
          * }}
-         */
-        this.preferences = {
-            xhamsterUrl: {
-                type: 'text',
-                disabled: false,
-                value: undefined,
-                visible: true
-            }
-        };
-
-        /**
-         * Define rules
-         * @memberOf XHamsterModel
-         * @type {{}}
-         */
-        this.rules = {};
+     */
+    this.preferences = {
+      xhamsterUrl: {
+        type: 'text',
+        disabled: false,
+        value: undefined,
+        visible: true
+      }
     };
 
-    return XHamsterModel.extend('XHamsterModel', {
+    /**
+     * Define rules
+     * @memberOf XHamsterModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        /**
-         * Set XHamster Url
-         * @memberOf XHamsterModel
-         * @param {string} url
-         */
-        setXhamsterUrl: function setXhamsterUrl(url) {
-            this.setPrefs('xhamsterUrl', url);
-        }
+  return XHamsterModel.extend('XHamsterModel', {
 
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    /**
+     * Set XHamster Url
+     * @memberOf XHamsterModel
+     * @param {string} url
+     */
+    setXhamsterUrl: function setXhamsterUrl(url) {
+      this.setPrefs('xhamsterUrl', url);
+    }
+
+  }, BaseModel.prototype, WidgetContentModel.prototype);
 });

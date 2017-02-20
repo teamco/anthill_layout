@@ -6,44 +6,44 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineShoudioElement(PluginElement) {
 
+  /**
+   * Define Shoudio Element
+   * @param view
+   * @param opts
+   * @returns {ShoudioElement}
+   * @constructor
+   * @class ShoudioElement
+   * @extends PluginElement
+   */
+  var ShoudioElement = function ShoudioElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('shoudio', {resource: '/widgets'});
+
+    return this;
+  };
+
+  return ShoudioElement.extend('ShoudioElement', {
+
     /**
-     * Define Shoudio Element
-     * @param view
-     * @param opts
-     * @returns {ShoudioElement}
-     * @constructor
-     * @class ShoudioElement
-     * @extends PluginElement
+     * Render Embedded content
+     * @memberOf ShoudioElement
+     * @param {string} embed
      */
-    var ShoudioElement = function ShoudioElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent(embed) {
+      this.addContent(
+          this.renderIframe(
+              $(embed).attr('src')
+          )
+      );
+    }
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
-
-        this.addCSS('shoudio', {resource: '/widgets'});
-
-        return this;
-    };
-
-    return ShoudioElement.extend('ShoudioElement', {
-
-        /**
-         * Render Embedded content
-         * @memberOf ShoudioElement
-         * @param {string} embed
-         */
-        renderEmbeddedContent: function renderEmbeddedContent(embed) {
-            this.addContent(
-                this.renderIframe(
-                    $(embed).attr('src')
-                )
-            );
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 });

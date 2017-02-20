@@ -7,101 +7,102 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/lets.play/element/lets.play.element',
-    'plugins/widgets/lets.play/element/lets.play.preferences.element',
-    'plugins/widgets/lets.play/element/lets.play.rules.element'
-], function defineLetsPlayView(BaseView, Header, Footer, LetsPlayElement, LetsPlayPreferencesElement, LetsPlayRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/lets.play/element/lets.play.element',
+  'plugins/widgets/lets.play/element/lets.play.preferences.element',
+  'plugins/widgets/lets.play/element/lets.play.rules.element'
+], function defineLetsPlayView(BaseView, Header, Footer, LetsPlayElement,
+    LetsPlayPreferencesElement, LetsPlayRulesElement) {
+
+  /**
+   * Define view
+   * @class LetsPlayView
+   * @extends BaseView
+   * @constructor
+   */
+  var LetsPlayView = function LetsPlayView() {
+  };
+
+  return LetsPlayView.extend('LetsPlayView', {
 
     /**
-     * Define view
-     * @class LetsPlayView
-     * @extends BaseView
-     * @constructor
+     * Render LetsPlay element
+     * @memberOf LetsPlayView
      */
-    var LetsPlayView = function LetsPlayView() {
-    };
+    renderLetsPlay: function renderLetsPlay() {
 
-    return LetsPlayView.extend('LetsPlayView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render LetsPlay element
-         * @memberOf LetsPlayView
-         */
-        renderLetsPlay: function renderLetsPlay() {
+      /**
+       * Define $letsplay
+       * @type {LetsPlayElement}
+       */
+      this.elements.$letsplay = new LetsPlayElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $letsplay
-             * @type {LetsPlayElement}
-             */
-            this.elements.$letsplay = new LetsPlayElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf LetsPlayView
+     * @returns {LetsPlayPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define LetsPlay Preferences Element
+       * @type {LetsPlayPreferencesElement}
+       */
+      this.elements.$preferences = new LetsPlayPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf LetsPlayView
-         * @returns {LetsPlayPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define LetsPlay Preferences Element
-             * @type {LetsPlayPreferencesElement}
-             */
-            this.elements.$preferences = new LetsPlayPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf LetsPlayView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {LetsPlayRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
-
-        /**
-         * Render Rules
-         * @memberOf LetsPlayView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {LetsPlayRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define LetsPlay Rules Element
-             * @type {LetsPlayRulesElement}
-             */
-            this.elements.$rules = new LetsPlayRulesElement(this, {
-                data: this.controller.getRules(),
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render LetsPlay
-         * @memberOf LetsPlayView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderLetsPlay.bind(this)
-            );
+      /**
+       * Define LetsPlay Rules Element
+       * @type {LetsPlayRulesElement}
+       */
+      this.elements.$rules = new LetsPlayRulesElement(this, {
+        data: this.controller.getRules(),
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype);
+      return this.get$rules();
+    },
+
+    /**
+     * Render LetsPlay
+     * @memberOf LetsPlayView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderLetsPlay.bind(this)
+      );
+    }
+
+  }, BaseView.prototype);
 });

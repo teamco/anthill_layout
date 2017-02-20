@@ -7,17 +7,18 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineExternalWidgetPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class ExternalWidgetPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var ExternalWidgetPermission = function ExternalWidgetPermission() {
-    };
+  /**
+   * Define Permissions
+   * @class ExternalWidgetPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var ExternalWidgetPermission = function ExternalWidgetPermission() {
+  };
 
-    return ExternalWidgetPermission.extend('ExternalWidgetPermission', {}, BasePermission.prototype);
+  return ExternalWidgetPermission.extend('ExternalWidgetPermission', {},
+      BasePermission.prototype);
 });

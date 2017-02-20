@@ -7,22 +7,22 @@
 
 define(['config/page'], function definePagePermissions(Page) {
 
-    /**
-     * Define Page global permission
-     * @property Page
-     * @type {{
+  /**
+   * Define Page global permission
+   * @property Page
+   * @type {{
      *      development: {store: boolean},
      *      authorize: {store: boolean},
      *      consumption: {store: boolean},
      *      test: {store: boolean}
      * }}
-     */
-    Page.prototype.globalPermissions = {
-        development: {store: true},
-        authorize: {store: true},
-        consumption: {store: false},
-        test: {store: false}
-    };
+   */
+  Page.prototype.globalPermissions = {
+    development: {store: true},
+    authorize: {store: true},
+    consumption: {store: false},
+    test: {store: false}
+  };
 
-    return Page;
+  return Page;
 });

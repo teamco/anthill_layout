@@ -6,35 +6,34 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
 ], function defineYapFilesPreferencesElement(PluginElement, WidgetPreferences) {
 
-    /**
-     * Define YapFiles Preferences Element
-     * @param view
-     * @param opts
-     * @returns {YapFilesPreferencesElement}
-     * @constructor
-     * @class YapFilesPreferencesElement
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     */
-    var YapFilesPreferencesElement = function YapFilesPreferencesElement(view, opts) {
+  /**
+   * Define YapFiles Preferences Element
+   * @param view
+   * @param opts
+   * @returns {YapFilesPreferencesElement}
+   * @constructor
+   * @class YapFilesPreferencesElement
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   */
+  var YapFilesPreferencesElement = function YapFilesPreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return YapFilesPreferencesElement.extend('YapFilesPreferencesElement', {
-
-
-    }, PluginElement.prototype, WidgetPreferences.prototype);
+  return YapFilesPreferencesElement.extend('YapFilesPreferencesElement', {},
+      PluginElement.prototype, WidgetPreferences.prototype);
 
 });

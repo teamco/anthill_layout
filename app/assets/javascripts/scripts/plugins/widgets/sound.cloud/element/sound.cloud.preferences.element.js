@@ -6,35 +6,35 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
-], function defineSoundCloudPreferencesElement(PluginElement, WidgetPreferences) {
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
+], function defineSoundCloudPreferencesElement(PluginElement,
+    WidgetPreferences) {
 
-    /**
-     * Define SoundCloud Preferences Element
-     * @param view
-     * @param opts
-     * @returns {SoundCloudPreferencesElement}
-     * @constructor
-     * @class SoundCloudPreferencesElement
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     */
-    var SoundCloudPreferencesElement = function SoundCloudPreferencesElement(view, opts) {
+  /**
+   * Define SoundCloud Preferences Element
+   * @param view
+   * @param opts
+   * @returns {SoundCloudPreferencesElement}
+   * @constructor
+   * @class SoundCloudPreferencesElement
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   */
+  var SoundCloudPreferencesElement = function SoundCloudPreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return SoundCloudPreferencesElement.extend('SoundCloudPreferencesElement', {
-
-
-    }, PluginElement.prototype, WidgetPreferences.prototype);
+  return SoundCloudPreferencesElement.extend('SoundCloudPreferencesElement', {},
+      PluginElement.prototype, WidgetPreferences.prototype);
 
 });

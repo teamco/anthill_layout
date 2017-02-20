@@ -6,39 +6,39 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/rules/widget.base.rules'
+  'plugins/plugin.element',
+  'plugins/rules/widget.base.rules'
 ], function defineOraTvRulesElement(PluginElement, BaseWidgetRules) {
 
-    /**
-     * Define OraTv Rules Element
-     * @param view
-     * @param opts
-     * @returns {OraTvRulesElement}
-     * @constructor
-     * @class OraTvRulesElement
-     * @extends PluginElement
-     * @extends BaseWidgetRules
-     */
-    var OraTvRulesElement = function OraTvRulesElement(view, opts) {
+  /**
+   * Define OraTv Rules Element
+   * @param view
+   * @param opts
+   * @returns {OraTvRulesElement}
+   * @constructor
+   * @class OraTvRulesElement
+   * @extends PluginElement
+   * @extends BaseWidgetRules
+   */
+  var OraTvRulesElement = function OraTvRulesElement(view, opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBaseRulesData(
-            opts.data,
-            opts.rules.widget,
-            opts.rules.content
-        );
-
-        return this;
-    };
-
-    return OraTvRulesElement.extend(
-        'OraTvRulesElement', {}, 
-        PluginElement.prototype, 
-        BaseWidgetRules.prototype
+    this.renderBaseRulesData(
+        opts.data,
+        opts.rules.widget,
+        opts.rules.content
     );
+
+    return this;
+  };
+
+  return OraTvRulesElement.extend(
+      'OraTvRulesElement', {},
+      PluginElement.prototype,
+      BaseWidgetRules.prototype
+  );
 });

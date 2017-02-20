@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineMetaUaEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define MetaUa event manager
-     * @class MetaUaEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var MetaUaEventManager = function MetaUaEventManager() {
+  /**
+   * Define MetaUa event manager
+   * @class MetaUaEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var MetaUaEventManager = function MetaUaEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return MetaUaEventManager.extend('MetaUaEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return MetaUaEventManager.extend('MetaUaEventManager', {},
+      WidgetContentEventManager.prototype);
 });

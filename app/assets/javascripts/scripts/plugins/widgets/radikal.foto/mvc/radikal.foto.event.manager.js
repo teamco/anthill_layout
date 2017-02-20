@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineRadikalFotoEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define RadikalFoto event manager
-     * @class RadikalFotoEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var RadikalFotoEventManager = function RadikalFotoEventManager() {
+  /**
+   * Define RadikalFoto event manager
+   * @class RadikalFotoEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var RadikalFotoEventManager = function RadikalFotoEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return RadikalFotoEventManager.extend('RadikalFotoEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return RadikalFotoEventManager.extend('RadikalFotoEventManager', {},
+      WidgetContentEventManager.prototype);
 });

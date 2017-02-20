@@ -7,20 +7,20 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineMapQuestPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class MapQuestPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var MapQuestPermission = function MapQuestPermission() {
-    };
+  /**
+   * Define Permissions
+   * @class MapQuestPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var MapQuestPermission = function MapQuestPermission() {
+  };
 
-    return MapQuestPermission.extend(
-        'MapQuestPermission', {}, 
-        BasePermission.prototype
-    );
+  return MapQuestPermission.extend(
+      'MapQuestPermission', {},
+      BasePermission.prototype
+  );
 });

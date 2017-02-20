@@ -6,43 +6,43 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineKeezMoviesElement(PluginElement) {
 
+  /**
+   * Define KeezMovies Element
+   * @param view
+   * @param opts
+   * @returns {KeezMoviesElement}
+   * @constructor
+   * @class KeezMoviesElement
+   * @extends PluginElement
+   */
+  var KeezMoviesElement = function KeezMoviesElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('keez.movies', {resource: '/widgets'});
+
+    return this;
+  };
+
+  return KeezMoviesElement.extend('KeezMoviesElement', {
+
     /**
-     * Define KeezMovies Element
-     * @param view
-     * @param opts
-     * @returns {KeezMoviesElement}
-     * @constructor
-     * @class KeezMoviesElement
-     * @extends PluginElement
+     * Render Embedded content
+     * @memberOf KeezMoviesElement
+     * @param {string} url
      */
-    var KeezMoviesElement = function KeezMoviesElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent(url) {
+      this.$.append(
+          this.renderIframe(url)
+      );
+    }
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
-
-        this.addCSS('keez.movies', {resource: '/widgets'});
-
-        return this;
-    };
-
-    return KeezMoviesElement.extend('KeezMoviesElement', {
-
-        /**
-         * Render Embedded content
-         * @memberOf KeezMoviesElement
-         * @param {string} url
-         */
-        renderEmbeddedContent: function renderEmbeddedContent(url) {
-            this.$.append(
-                this.renderIframe(url)
-            );
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 
 });

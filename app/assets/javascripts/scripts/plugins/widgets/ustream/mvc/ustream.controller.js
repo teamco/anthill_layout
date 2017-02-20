@@ -6,86 +6,75 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineUstreamController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define ustream controller
+   * @class UstreamController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var UstreamController = function UstreamController() {
+  };
+
+  return UstreamController.extend('UstreamController', {
+
     /**
-     * Define ustream controller
-     * @class UstreamController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf UstreamController
      */
-    var UstreamController = function UstreamController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
 
-    return UstreamController.extend('UstreamController', {
+      /**
+       * Get url
+       * @type {string|*}
+       */
+      var url = this.model.getPrefs('ustreamEmbedCode'),
+          embed = this.controller.getEmbedCode(url);
 
-        /**
-         * Set embedded content
-         * @memberOf UstreamController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
+      if (embed) {
+        this.view.elements.$ustream.renderEmbeddedContent(embed);
+      }
+    },
 
-            /**
-             * Get url
-             * @type {string|*}
-             */
-            var url = this.model.getPrefs('ustreamEmbedCode'),
-                embed = this.controller.getEmbedCode(url);
+    /**
+     * Validate ustream
+     * @memberOf UstreamController
+     * @param {string} embed
+     * @return {string|boolean}
+     */
+    getEmbedCode: function getEmbedCode(embed) {
 
-            if (embed) {
-                this.view.elements.$ustream.renderEmbeddedContent(embed);
-            }
-        },
+      if (!embed) {
+        this.scope.logger.debug('Initial state');
+        return false;
+      }
 
-        /**
-         * Validate ustream
-         * @memberOf UstreamController
-         * @param {string} embed
-         * @return {string|boolean}
-         */
-        getEmbedCode: function getEmbedCode(embed) {
+      // Convert to string
+      embed += '';
 
-            if (!embed) {
-                this.scope.logger.debug('Initial state');
-                return false;
-            }
+      if (embed.match(/^<iframe/)) {
 
-            // Convert to string
-            embed += '';
+        return $(embed).attr('src');
 
-            if (embed.match(/^<iframe/)) {
+      } else {
 
-                return $(embed).attr('src');
+        this.scope.logger.warn('Invalid Ustream embed code');
+        return false;
+      }
+    },
 
-            } else {
+    /**
+     * Add Ustream rule
+     * @memberOf UstreamController
+     * @param {Event} e
+     */
+    addUstreamRule: function addUstreamRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-                this.scope.logger.warn('Invalid Ustream embed code');
-                return false;
-            }
-        },
-
-        /**
-         * Add Ustream rule
-         * @memberOf UstreamController
-         * @param e
-         */
-        addUstreamRule: function addUstreamRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

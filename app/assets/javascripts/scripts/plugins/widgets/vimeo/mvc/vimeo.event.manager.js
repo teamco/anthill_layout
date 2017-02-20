@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineVimeoEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define Vimeo event manager
-     * @class VimeoEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var VimeoEventManager = function VimeoEventManager() {
+  /**
+   * Define Vimeo event manager
+   * @class VimeoEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var VimeoEventManager = function VimeoEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return VimeoEventManager.extend('VimeoEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return VimeoEventManager.extend('VimeoEventManager', {},
+      WidgetContentEventManager.prototype);
 });

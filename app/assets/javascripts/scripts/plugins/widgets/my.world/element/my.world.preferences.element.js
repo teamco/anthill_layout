@@ -6,35 +6,34 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
 ], function defineMyWorldPreferencesElement(PluginElement, WidgetPreferences) {
 
-    /**
-     * Define MyWorld Preferences Element
-     * @param view
-     * @param opts
-     * @returns {MyWorldPreferencesElement}
-     * @constructor
-     * @class MyWorldPreferencesElement
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     */
-    var MyWorldPreferencesElement = function MyWorldPreferencesElement(view, opts) {
+  /**
+   * Define MyWorld Preferences Element
+   * @param view
+   * @param opts
+   * @returns {MyWorldPreferencesElement}
+   * @constructor
+   * @class MyWorldPreferencesElement
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   */
+  var MyWorldPreferencesElement = function MyWorldPreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return MyWorldPreferencesElement.extend('MyWorldPreferencesElement', {
-
-
-    }, PluginElement.prototype, WidgetPreferences.prototype);
+  return MyWorldPreferencesElement.extend('MyWorldPreferencesElement', {},
+      PluginElement.prototype, WidgetPreferences.prototype);
 
 });

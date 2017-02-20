@@ -7,20 +7,20 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineRepubhubPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class RepubhubPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var RepubhubPermission = function RepubhubPermission() {
-    };
+  /**
+   * Define Permissions
+   * @class RepubhubPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var RepubhubPermission = function RepubhubPermission() {
+  };
 
-    return RepubhubPermission.extend(
-        'RepubhubPermission', {}, 
-        BasePermission.prototype
-    );
+  return RepubhubPermission.extend(
+      'RepubhubPermission', {},
+      BasePermission.prototype
+  );
 });

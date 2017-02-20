@@ -7,101 +7,102 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/docs.com/element/docs.com.element',
-    'plugins/widgets/docs.com/element/docs.com.preferences.element',
-    'plugins/widgets/docs.com/element/docs.com.rules.element'
-], function defineDocsComView(BaseView, Header, Footer, DocsComElement, DocsComPreferencesElement, DocsComRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/docs.com/element/docs.com.element',
+  'plugins/widgets/docs.com/element/docs.com.preferences.element',
+  'plugins/widgets/docs.com/element/docs.com.rules.element'
+], function defineDocsComView(BaseView, Header, Footer, DocsComElement,
+    DocsComPreferencesElement, DocsComRulesElement) {
+
+  /**
+   * Define view
+   * @class DocsComView
+   * @extends BaseView
+   * @constructor
+   */
+  var DocsComView = function DocsComView() {
+  };
+
+  return DocsComView.extend('DocsComView', {
 
     /**
-     * Define view
-     * @class DocsComView
-     * @extends BaseView
-     * @constructor
+     * Render DocsCom element
+     * @memberOf DocsComView
      */
-    var DocsComView = function DocsComView() {
-    };
+    renderDocsCom: function renderDocsCom() {
 
-    return DocsComView.extend('DocsComView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render DocsCom element
-         * @memberOf DocsComView
-         */
-        renderDocsCom: function renderDocsCom() {
+      /**
+       * Define $docscom
+       * @type {DocsComElement}
+       */
+      this.elements.$docscom = new DocsComElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $docscom
-             * @type {DocsComElement}
-             */
-            this.elements.$docscom = new DocsComElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf DocsComView
+     * @returns {DocsComPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define DocsCom Preferences Element
+       * @type {DocsComPreferencesElement}
+       */
+      this.elements.$preferences = new DocsComPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf DocsComView
-         * @returns {DocsComPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define DocsCom Preferences Element
-             * @type {DocsComPreferencesElement}
-             */
-            this.elements.$preferences = new DocsComPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf DocsComView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {DocsComRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
-
-        /**
-         * Render Rules
-         * @memberOf DocsComView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {DocsComRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define DocsCom Rules Element
-             * @type {DocsComRulesElement}
-             */
-            this.elements.$rules = new DocsComRulesElement(this, {
-                data: this.controller.getRules(),
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render DocsCom
-         * @memberOf DocsComView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderDocsCom.bind(this)
-            );
+      /**
+       * Define DocsCom Rules Element
+       * @type {DocsComRulesElement}
+       */
+      this.elements.$rules = new DocsComRulesElement(this, {
+        data: this.controller.getRules(),
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype);
+      return this.get$rules();
+    },
+
+    /**
+     * Render DocsCom
+     * @memberOf DocsComView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderDocsCom.bind(this)
+      );
+    }
+
+  }, BaseView.prototype);
 });

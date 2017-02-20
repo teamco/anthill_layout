@@ -7,108 +7,109 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/stepashka/element/stepashka.element',
-    'plugins/widgets/stepashka/element/stepashka.preferences.element',
-    'plugins/widgets/stepashka/element/stepashka.rules.element'
-], function defineStepashkaView(BaseView, Header, Footer, StepashkaElement, StepashkaPreferencesElement, StepashkaRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/stepashka/element/stepashka.element',
+  'plugins/widgets/stepashka/element/stepashka.preferences.element',
+  'plugins/widgets/stepashka/element/stepashka.rules.element'
+], function defineStepashkaView(BaseView, Header, Footer, StepashkaElement,
+    StepashkaPreferencesElement, StepashkaRulesElement) {
+
+  /**
+   * Define view
+   * @class StepashkaView
+   * @extends BaseView
+   * @constructor
+   */
+  var StepashkaView = function StepashkaView() {
+  };
+
+  return StepashkaView.extend('StepashkaView', {
 
     /**
-     * Define view
-     * @class StepashkaView
-     * @extends BaseView
-     * @constructor
+     * Render stepashka element
+     * @memberOf StepashkaView
      */
-    var StepashkaView = function StepashkaView() {
-    };
+    renderStepashka: function renderStepashka() {
 
-    return StepashkaView.extend('StepashkaView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render stepashka element
-         * @memberOf StepashkaView
-         */
-        renderStepashka: function renderStepashka() {
+      /**
+       * Define $stepashka
+       * @type {StepashkaElement}
+       */
+      this.elements.$stepashka = new StepashkaElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $stepashka
-             * @type {StepashkaElement}
-             */
-            this.elements.$stepashka = new StepashkaElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf StepashkaView
+     * @returns {StepashkaPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define Stepashka Preferences Element
+       * @type {StepashkaPreferencesElement}
+       */
+      this.elements.$preferences = new StepashkaPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf StepashkaView
-         * @returns {StepashkaPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define Stepashka Preferences Element
-             * @type {StepashkaPreferencesElement}
-             */
-            this.elements.$preferences = new StepashkaPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf StepashkaView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {StepashkaRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
+      /**
+       * Define data
+       * @type {*|{}}
+       */
+      var data = this.controller.getRules();
 
-        /**
-         * Render Rules
-         * @memberOf StepashkaView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {StepashkaRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define data
-             * @type {*|{}}
-             */
-            var data = this.controller.getRules();
-
-            /**
-             * Define Stepashka Rules Element
-             * @type {StepashkaRulesElement}
-             */
-            this.elements.$rules = new StepashkaRulesElement(this, {
-                data: data,
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render stepashka
-         * @memberOf StepashkaView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderStepashka.bind(this)
-            );
+      /**
+       * Define Stepashka Rules Element
+       * @type {StepashkaRulesElement}
+       */
+      this.elements.$rules = new StepashkaRulesElement(this, {
+        data: data,
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render stepashka
+     * @memberOf StepashkaView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderStepashka.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

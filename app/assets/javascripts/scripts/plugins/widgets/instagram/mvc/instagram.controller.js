@@ -6,52 +6,52 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineInstagramController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define Instagram controller
+   * @class InstagramController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var InstagramController = function InstagramController() {
+  };
+
+  return InstagramController.extend('InstagramController', {
+
     /**
-     * Define Instagram controller
-     * @class InstagramController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf InstagramController
      */
-    var InstagramController = function InstagramController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
 
-    return InstagramController.extend('InstagramController', {
+      this.view.elements.$instagram.renderEmbeddedContent(
+          this.model.getPrefs('instagramEmbed')
+      );
+    },
 
-        /**
-         * Set embedded content
-         * @memberOf InstagramController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
+    /**
+     * Add Instagram rule
+     * @memberOf InstagramController
+     * @param {Event} e
+     */
+    addInstagramRule: function addInstagramRule(e) {
 
-            this.view.elements.$instagram.renderEmbeddedContent(
-                this.model.getPrefs('instagramEmbed')
-            );
-        },
+      /**
+       * Define $button
+       * @type {*|jQuery|HTMLElement}
+       */
+      var $button = $(e.target),
+          scope = this.scope;
 
-        /**
-         * Add Instagram rule
-         * @memberOf InstagramController
-         * @param e
-         */
-        addInstagramRule: function addInstagramRule(e) {
+      scope.observer.publish(
+          scope.eventmanager.eventList.publishRule,
+          [$button.attr('value'), this.scope.name]
+      );
+    }
 
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), this.scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

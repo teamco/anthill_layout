@@ -6,35 +6,37 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
-], function defineSportboxRuPreferencesElement(PluginElement, WidgetPreferences) {
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
+], function defineSportboxRuPreferencesElement(PluginElement,
+    WidgetPreferences) {
 
-    /**
-     * Define SportboxRu Preferences Element
-     * @constructor
-     * @class SportboxRuPreferencesElement
-     * @param {SportboxRuView} view
-     * @param opts
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     * @returns {SportboxRuPreferencesElement}
-     */
-    var SportboxRuPreferencesElement = function SportboxRuPreferencesElement(view, opts) {
+  /**
+   * Define SportboxRu Preferences Element
+   * @constructor
+   * @class SportboxRuPreferencesElement
+   * @param {SportboxRuView} view
+   * @param opts
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   * @returns {SportboxRuPreferencesElement}
+   */
+  var SportboxRuPreferencesElement = function SportboxRuPreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return SportboxRuPreferencesElement.extend(
-        'SportboxRuPreferencesElement', {}, 
-        PluginElement.prototype, 
-        WidgetPreferences.prototype
-    );
+  return SportboxRuPreferencesElement.extend(
+      'SportboxRuPreferencesElement', {},
+      PluginElement.prototype,
+      WidgetPreferences.prototype
+  );
 });

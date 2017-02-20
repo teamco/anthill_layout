@@ -6,43 +6,43 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineHowcastElement(PluginElement) {
 
+  /**
+   * Define Howcast Element
+   * @param view
+   * @param opts
+   * @returns {HowcastElement}
+   * @constructor
+   * @class HowcastElement
+   * @extends PluginElement
+   */
+  var HowcastElement = function HowcastElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('howcast', {resource: '/widgets'});
+
+    return this;
+  };
+
+  return HowcastElement.extend('HowcastElement', {
+
     /**
-     * Define Howcast Element
-     * @param view
-     * @param opts
-     * @returns {HowcastElement}
-     * @constructor
-     * @class HowcastElement
-     * @extends PluginElement
+     * Render Embedded content
+     * @memberOf HowcastElement
+     * @param {string} embed
      */
-    var HowcastElement = function HowcastElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent(embed) {
+      this.$.append(
+          this.renderObject(embed)
+      );
+    }
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
-
-        this.addCSS('howcast', {resource: '/widgets'});
-
-        return this;
-    };
-
-    return HowcastElement.extend('HowcastElement', {
-
-        /**
-         * Render Embedded content
-         * @memberOf HowcastElement
-         * @param {string} embed
-         */
-        renderEmbeddedContent: function renderEmbeddedContent(embed) {
-            this.$.append(
-                this.renderObject(embed)
-            );
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 
 });

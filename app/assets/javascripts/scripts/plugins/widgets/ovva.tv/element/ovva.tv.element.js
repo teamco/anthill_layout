@@ -6,44 +6,44 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineOvvaTvElement(PluginElement) {
 
+  /**
+   * Define OvvaTv Element
+   * @param view
+   * @param opts
+   * @returns {OvvaTvElement}
+   * @constructor
+   * @class OvvaTvElement
+   * @extends PluginElement
+   */
+  var OvvaTvElement = function OvvaTvElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('ovva.tv', {resource: '/widgets'});
+
+    return this;
+  };
+
+  return OvvaTvElement.extend('OvvaTvElement', {
+
     /**
-     * Define OvvaTv Element
-     * @param view
-     * @param opts
-     * @returns {OvvaTvElement}
-     * @constructor
-     * @class OvvaTvElement
-     * @extends PluginElement
+     * Render Embedded content
+     * @memberOf OvvaTvElement
+     * @param {string} embed
      */
-    var OvvaTvElement = function OvvaTvElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent(embed) {
+      this.$.append(
+          this.renderIframe(
+              $(embed).attr('src')
+          )
+      );
+    }
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
-
-        this.addCSS('ovva.tv', {resource: '/widgets'});
-
-        return this;
-    };
-
-    return OvvaTvElement.extend('OvvaTvElement', {
-
-        /**
-         * Render Embedded content
-         * @memberOf OvvaTvElement
-         * @param {string} embed
-         */
-        renderEmbeddedContent: function renderEmbeddedContent(embed) {
-            this.$.append(
-                this.renderIframe(
-                    $(embed).attr('src')
-                )
-            );
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 });

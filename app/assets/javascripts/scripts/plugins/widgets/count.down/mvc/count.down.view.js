@@ -7,101 +7,102 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/count.down/element/count.down.element',
-    'plugins/widgets/count.down/element/count.down.preferences.element',
-    'plugins/widgets/count.down/element/count.down.rules.element'
-], function defineCountDownView(BaseView, Header, Footer, CountDownElement, CountDownPreferencesElement, CountDownRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/count.down/element/count.down.element',
+  'plugins/widgets/count.down/element/count.down.preferences.element',
+  'plugins/widgets/count.down/element/count.down.rules.element'
+], function defineCountDownView(BaseView, Header, Footer, CountDownElement,
+    CountDownPreferencesElement, CountDownRulesElement) {
+
+  /**
+   * Define view
+   * @class CountDownView
+   * @extends BaseView
+   * @constructor
+   */
+  var CountDownView = function CountDownView() {
+  };
+
+  return CountDownView.extend('CountDownView', {
 
     /**
-     * Define view
-     * @class CountDownView
-     * @extends BaseView
-     * @constructor
+     * Render CountDown element
+     * @memberOf CountDownView
      */
-    var CountDownView = function CountDownView() {
-    };
+    renderCountDown: function renderCountDown() {
 
-    return CountDownView.extend('CountDownView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render CountDown element
-         * @memberOf CountDownView
-         */
-        renderCountDown: function renderCountDown() {
+      /**
+       * Define $countdown
+       * @type {CountDownElement}
+       */
+      this.elements.$countdown = new CountDownElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $countdown
-             * @type {CountDownElement}
-             */
-            this.elements.$countdown = new CountDownElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf CountDownView
+     * @returns {CountDownPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define CountDown Preferences Element
+       * @type {CountDownPreferencesElement}
+       */
+      this.elements.$preferences = new CountDownPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf CountDownView
-         * @returns {CountDownPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define CountDown Preferences Element
-             * @type {CountDownPreferencesElement}
-             */
-            this.elements.$preferences = new CountDownPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf CountDownView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {CountDownRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
-
-        /**
-         * Render Rules
-         * @memberOf CountDownView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {CountDownRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define CountDown Rules Element
-             * @type {CountDownRulesElement}
-             */
-            this.elements.$rules = new CountDownRulesElement(this, {
-                data: this.controller.getRules(),
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render CountDown
-         * @memberOf CountDownView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderCountDown.bind(this)
-            );
+      /**
+       * Define CountDown Rules Element
+       * @type {CountDownRulesElement}
+       */
+      this.elements.$rules = new CountDownRulesElement(this, {
+        data: this.controller.getRules(),
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype);
+      return this.get$rules();
+    },
+
+    /**
+     * Render CountDown
+     * @memberOf CountDownView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderCountDown.bind(this)
+      );
+    }
+
+  }, BaseView.prototype);
 });

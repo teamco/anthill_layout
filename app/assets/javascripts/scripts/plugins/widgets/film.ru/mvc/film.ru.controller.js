@@ -6,56 +6,40 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineFilmRuController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define FilmRu controller
+   * @class FilmRuController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var FilmRuController = function FilmRuController() {
+  };
+
+  return FilmRuController.extend('FilmRuController', {
+
     /**
-     * Define FilmRu controller
-     * @class FilmRuController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf FilmRuController
      */
-    var FilmRuController = function FilmRuController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
+      this.view.get$item().renderEmbeddedContent(
+          this.model.getPrefs('filmruEmbedCode')
+      );
+    },
 
-    return FilmRuController.extend('FilmRuController', {
+    /**
+     * Add FilmRu rule
+     * @memberOf FilmRuController
+     * @param {Event} e
+     */
+    addFilmRuRule: function addFilmRuRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-        /**
-         * Set embedded content
-         * @memberOf FilmRuController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
-            this.view.get$item().renderEmbeddedContent(
-                this.model.getPrefs('filmruEmbedCode')
-            );
-        },
-
-        /**
-         * Add FilmRu rule
-         * @memberOf FilmRuController
-         * @param e
-         */
-        addFilmRuRule: function addFilmRuRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target);
-
-            /**
-             * Get scope
-             * @type {FilmRu|{name: string}}
-             */
-            var scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

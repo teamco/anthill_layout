@@ -6,96 +6,86 @@
  */
 
 define([
-    'modules/Geolocation',
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
-], function defineSimpleWeatherController(BaseGeolocation, PluginBase, WidgetContentController) {
+  'modules/Geolocation',
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
+], function defineSimpleWeatherController(BaseGeolocation, PluginBase,
+    WidgetContentController) {
 
-    /**
-     * Define SimpleWeather controller
-     * @class SimpleWeatherController
-     * @extends BaseGeolocation
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
-     */
-    var SimpleWeatherController = function SimpleWeatherController() {
-    };
+  /**
+   * Define SimpleWeather controller
+   * @class SimpleWeatherController
+   * @extends BaseGeolocation
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var SimpleWeatherController = function SimpleWeatherController() {
+  };
 
-    return SimpleWeatherController.extend(
-        'SimpleWeatherController', {
+  return SimpleWeatherController.extend(
+      'SimpleWeatherController', {
 
-            /**
-             * Set embedded content
-             * @memberOf SimpleWeatherController
-             */
-            setEmbeddedContent: function setEmbeddedContent() {
+        /**
+         * Set embedded content
+         * @memberOf SimpleWeatherController
+         */
+        setEmbeddedContent: function setEmbeddedContent() {
 
-                var latitude = this.model.getPrefs('simpleweatherLatitude'),
-                    longitude = this.model.getPrefs('simpleweatherLongitude');
+          var latitude = this.model.getPrefs('simpleweatherLatitude'),
+              longitude = this.model.getPrefs('simpleweatherLongitude');
 
-                if (!latitude || !longitude) {
+          if (!latitude || !longitude) {
 
-                    this.observer.publish(
-                        this.eventmanager.eventList.getLocation
-                    );
+            this.observer.publish(
+                this.eventmanager.eventList.getLocation
+            );
 
-                    return false;
-                }
+            return false;
+          }
 
-                this.controller._setEmbeddedContent();
-            },
-
-            /**
-             * Set embedded content
-             * @memberOf SimpleWeatherController
-             * @private
-             */
-            _setEmbeddedContent: function _setEmbeddedContent() {
-                this.scope.view.elements.$simpleweather.renderEmbeddedContent({
-                    latitude: this.model.getPrefs('simpleweatherLatitude'),
-                    longitude: this.model.getPrefs('simpleweatherLongitude'),
-                    unit: this.model.getPrefs('simpleweatherUnit')
-                });
-            },
-
-            /**
-             * Get location
-             * @memberOf SimpleWeatherController
-             */
-            getLocation: function getLocation() {
-                this.controller.getPosition(
-                    function _setLocation(position) {
-                        this.model.setSimpleweatherLatitude(position.coords.latitude);
-                        this.model.setSimpleweatherLongitude(position.coords.longitude);
-                        this._setEmbeddedContent();
-                    }
-                );
-            },
-
-            /**
-             * Add SimpleWeather rule
-             * @memberOf SimpleWeatherController
-             * @param e
-             */
-            addSimpleWeatherRule: function addSimpleWeatherRule(e) {
-
-                /**
-                 * Define $button
-                 * @type {*|jQuery|HTMLElement}
-                 */
-                var $button = $(e.target),
-                    scope = this.scope;
-
-                scope.observer.publish(
-                    scope.eventmanager.eventList.publishRule,
-                    [$button.attr('value'), scope.name]
-                );
-            }
-
+          this.controller._setEmbeddedContent();
         },
-        BaseGeolocation.prototype,
-        PluginBase.prototype,
-        WidgetContentController.prototype
-    );
+
+        /**
+         * Set embedded content
+         * @memberOf SimpleWeatherController
+         * @private
+         */
+        _setEmbeddedContent: function _setEmbeddedContent() {
+          this.scope.view.elements.$simpleweather.renderEmbeddedContent({
+            latitude: this.model.getPrefs('simpleweatherLatitude'),
+            longitude: this.model.getPrefs('simpleweatherLongitude'),
+            unit: this.model.getPrefs('simpleweatherUnit')
+          });
+        },
+
+        /**
+         * Get location
+         * @memberOf SimpleWeatherController
+         */
+        getLocation: function getLocation() {
+          this.controller.getPosition(
+              function _setLocation(position) {
+                this.model.setSimpleweatherLatitude(position.coords.latitude);
+                this.model.setSimpleweatherLongitude(position.coords.longitude);
+                this._setEmbeddedContent();
+              }
+          );
+        },
+
+        /**
+         * Add SimpleWeather rule
+         * @memberOf SimpleWeatherController
+         * @param {Event} e
+         */
+        addSimpleWeatherRule: function addSimpleWeatherRule(e) {
+          this.addWidgetRule(e, this.scope.name);
+        }
+
+      },
+      BaseGeolocation.prototype,
+      PluginBase.prototype,
+      WidgetContentController.prototype
+  );
 });

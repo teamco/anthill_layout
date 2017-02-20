@@ -6,38 +6,38 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/rules/widget.base.rules'
+  'plugins/plugin.element',
+  'plugins/rules/widget.base.rules'
 ], function defineOnlineFriendsRulesElement(PluginElement, BaseWidgetRules) {
 
-    /**
-     * Define OnlineFriends Rules Element
-     * @param view
-     * @param opts
-     * @returns {OnlineFriendsRulesElement}
-     * @constructor
-     * @class OnlineFriendsRulesElement
-     * @extends PluginElement
-     * @extends BaseWidgetRules
-     */
-    var OnlineFriendsRulesElement = function OnlineFriendsRulesElement(view, opts) {
+  /**
+   * Define OnlineFriends Rules Element
+   * @param view
+   * @param opts
+   * @returns {OnlineFriendsRulesElement}
+   * @constructor
+   * @class OnlineFriendsRulesElement
+   * @extends PluginElement
+   * @extends BaseWidgetRules
+   */
+  var OnlineFriendsRulesElement = function OnlineFriendsRulesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBaseRulesData(
-            opts.data,
-            opts.rules.widget,
-            opts.rules.content
-        );
+    this.renderBaseRulesData(
+        opts.data,
+        opts.rules.widget,
+        opts.rules.content
+    );
 
-        return this;
-    };
+    return this;
+  };
 
-    return OnlineFriendsRulesElement.extend('OnlineFriendsRulesElement', {
-
-    }, PluginElement.prototype, BaseWidgetRules.prototype);
+  return OnlineFriendsRulesElement.extend('OnlineFriendsRulesElement', {},
+      PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

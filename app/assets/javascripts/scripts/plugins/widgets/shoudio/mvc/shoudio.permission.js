@@ -7,20 +7,20 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineShoudioPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class ShoudioPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var ShoudioPermission = function ShoudioPermission() {
-    };
+  /**
+   * Define Permissions
+   * @class ShoudioPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var ShoudioPermission = function ShoudioPermission() {
+  };
 
-    return ShoudioPermission.extend(
-        'ShoudioPermission', {}, 
-        BasePermission.prototype
-    );
+  return ShoudioPermission.extend(
+      'ShoudioPermission', {},
+      BasePermission.prototype
+  );
 });

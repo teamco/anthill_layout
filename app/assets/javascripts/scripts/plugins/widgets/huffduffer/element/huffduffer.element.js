@@ -6,40 +6,40 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineHuffdufferElement(PluginElement) {
 
+  /**
+   * Define Huffduffer Element
+   * @param view
+   * @param opts
+   * @returns {HuffdufferElement}
+   * @constructor
+   * @class HuffdufferElement
+   * @extends PluginElement
+   */
+  var HuffdufferElement = function HuffdufferElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('huffduffer', {resource: '/widgets'});
+
+    return this;
+  };
+
+  return HuffdufferElement.extend('HuffdufferElement', {
+
     /**
-     * Define Huffduffer Element
-     * @param view
-     * @param opts
-     * @returns {HuffdufferElement}
-     * @constructor
-     * @class HuffdufferElement
-     * @extends PluginElement
+     * Render Embedded content
+     * @memberOf HuffdufferElement
+     * @param {string} embed
      */
-    var HuffdufferElement = function HuffdufferElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent(embed) {
+      this.addContent(embed);
+    }
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
-
-        this.addCSS('huffduffer', {resource: '/widgets'});
-
-        return this;
-    };
-
-    return HuffdufferElement.extend('HuffdufferElement', {
-
-        /**
-         * Render Embedded content
-         * @memberOf HuffdufferElement
-         * @param {string} embed
-         */
-        renderEmbeddedContent: function renderEmbeddedContent(embed) {
-            this.addContent(embed);
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 });

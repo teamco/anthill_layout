@@ -7,101 +7,102 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/kaltura/element/kaltura.element',
-    'plugins/widgets/kaltura/element/kaltura.preferences.element',
-    'plugins/widgets/kaltura/element/kaltura.rules.element'
-], function defineKalturaView(BaseView, Header, Footer, KalturaElement, KalturaPreferencesElement, KalturaRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/kaltura/element/kaltura.element',
+  'plugins/widgets/kaltura/element/kaltura.preferences.element',
+  'plugins/widgets/kaltura/element/kaltura.rules.element'
+], function defineKalturaView(BaseView, Header, Footer, KalturaElement,
+    KalturaPreferencesElement, KalturaRulesElement) {
+
+  /**
+   * Define view
+   * @class KalturaView
+   * @extends BaseView
+   * @constructor
+   */
+  var KalturaView = function KalturaView() {
+  };
+
+  return KalturaView.extend('KalturaView', {
 
     /**
-     * Define view
-     * @class KalturaView
-     * @extends BaseView
-     * @constructor
+     * Render Kaltura element
+     * @memberOf KalturaView
      */
-    var KalturaView = function KalturaView() {
-    };
+    renderKaltura: function renderKaltura() {
 
-    return KalturaView.extend('KalturaView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render Kaltura element
-         * @memberOf KalturaView
-         */
-        renderKaltura: function renderKaltura() {
+      /**
+       * Define $kaltura
+       * @type {KalturaElement}
+       */
+      this.elements.$kaltura = new KalturaElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $kaltura
-             * @type {KalturaElement}
-             */
-            this.elements.$kaltura = new KalturaElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf KalturaView
+     * @returns {KalturaPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define Kaltura Preferences Element
+       * @type {KalturaPreferencesElement}
+       */
+      this.elements.$preferences = new KalturaPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf KalturaView
-         * @returns {KalturaPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define Kaltura Preferences Element
-             * @type {KalturaPreferencesElement}
-             */
-            this.elements.$preferences = new KalturaPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf KalturaView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {KalturaRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
-
-        /**
-         * Render Rules
-         * @memberOf KalturaView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {KalturaRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define Kaltura Rules Element
-             * @type {KalturaRulesElement}
-             */
-            this.elements.$rules = new KalturaRulesElement(this, {
-                data: this.controller.getRules(),
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render Kaltura
-         * @memberOf KalturaView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderKaltura.bind(this)
-            );
+      /**
+       * Define Kaltura Rules Element
+       * @type {KalturaRulesElement}
+       */
+      this.elements.$rules = new KalturaRulesElement(this, {
+        data: this.controller.getRules(),
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype);
+      return this.get$rules();
+    },
+
+    /**
+     * Render Kaltura
+     * @memberOf KalturaView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderKaltura.bind(this)
+      );
+    }
+
+  }, BaseView.prototype);
 });

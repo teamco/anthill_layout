@@ -6,35 +6,34 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
 ], function defineYoutubePreferencesElement(PluginElement, WidgetPreferences) {
 
-    /**
-     * Define Youtube Preferences Element
-     * @param view
-     * @param opts
-     * @returns {YoutubePreferencesElement}
-     * @constructor
-     * @class YoutubePreferencesElement
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     */
-    var YoutubePreferencesElement = function YoutubePreferencesElement(view, opts) {
+  /**
+   * Define Youtube Preferences Element
+   * @param view
+   * @param opts
+   * @returns {YoutubePreferencesElement}
+   * @constructor
+   * @class YoutubePreferencesElement
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   */
+  var YoutubePreferencesElement = function YoutubePreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return YoutubePreferencesElement.extend('YoutubePreferencesElement', {
-
-
-    }, PluginElement.prototype, WidgetPreferences.prototype);
+  return YoutubePreferencesElement.extend('YoutubePreferencesElement', {},
+      PluginElement.prototype, WidgetPreferences.prototype);
 
 });

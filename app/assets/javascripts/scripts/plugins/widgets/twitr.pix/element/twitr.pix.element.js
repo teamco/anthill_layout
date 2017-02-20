@@ -6,46 +6,46 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineTwitrPixElement(PluginElement) {
 
+  /**
+   * Define TwitrPix Element
+   * @param view
+   * @param opts
+   * @returns {TwitrPixElement}
+   * @constructor
+   * @class TwitrPixElement
+   * @extends PluginElement
+   */
+  var TwitrPixElement = function TwitrPixElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('twitr.pix', {resource: '/widgets'});
+
+    return this;
+  };
+
+  return TwitrPixElement.extend('TwitrPixElement', {
+
     /**
-     * Define TwitrPix Element
-     * @param view
-     * @param opts
-     * @returns {TwitrPixElement}
-     * @constructor
-     * @class TwitrPixElement
-     * @extends PluginElement
+     * Render Embedded content
+     * @memberOf TwitrPixElement
+     * @param {string} embed
      */
-    var TwitrPixElement = function TwitrPixElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent(embed) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+      if (!(embed && (embed + '').match(/^<a/))) {
+        return false;
+      }
 
-        this.addCSS('twitr.pix', {resource: '/widgets'});
+      this.$.append(embed);
+    }
 
-        return this;
-    };
-
-    return TwitrPixElement.extend('TwitrPixElement', {
-
-        /**
-         * Render Embedded content
-         * @memberOf TwitrPixElement
-         * @param {string} embed
-         */
-        renderEmbeddedContent: function renderEmbeddedContent(embed) {
-
-            if (!(embed && (embed + '').match(/^<a/))) {
-                return false;
-            }
-
-            this.$.append(embed);
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 
 });

@@ -7,108 +7,109 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/scribd/element/scribd.element',
-    'plugins/widgets/scribd/element/scribd.preferences.element',
-    'plugins/widgets/scribd/element/scribd.rules.element'
-], function defineScribdView(BaseView, Header, Footer, ScribdElement, ScribdPreferencesElement, ScribdRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/scribd/element/scribd.element',
+  'plugins/widgets/scribd/element/scribd.preferences.element',
+  'plugins/widgets/scribd/element/scribd.rules.element'
+], function defineScribdView(BaseView, Header, Footer, ScribdElement,
+    ScribdPreferencesElement, ScribdRulesElement) {
+
+  /**
+   * Define view
+   * @class ScribdView
+   * @extends BaseView
+   * @constructor
+   */
+  var ScribdView = function ScribdView() {
+  };
+
+  return ScribdView.extend('ScribdView', {
 
     /**
-     * Define view
-     * @class ScribdView
-     * @extends BaseView
-     * @constructor
+     * Render scribd element
+     * @memberOf ScribdView
      */
-    var ScribdView = function ScribdView() {
-    };
+    renderScribd: function renderScribd() {
 
-    return ScribdView.extend('ScribdView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render scribd element
-         * @memberOf ScribdView
-         */
-        renderScribd: function renderScribd() {
+      /**
+       * Define $scribd
+       * @type {ScribdElement}
+       */
+      this.elements.$scribd = new ScribdElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $scribd
-             * @type {ScribdElement}
-             */
-            this.elements.$scribd = new ScribdElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf ScribdView
+     * @returns {ScribdPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define Scribd Preferences Element
+       * @type {ScribdPreferencesElement}
+       */
+      this.elements.$preferences = new ScribdPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf ScribdView
-         * @returns {ScribdPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define Scribd Preferences Element
-             * @type {ScribdPreferencesElement}
-             */
-            this.elements.$preferences = new ScribdPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf ScribdView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {ScribdRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
+      /**
+       * Define data
+       * @type {*|{}}
+       */
+      var data = this.controller.getRules();
 
-        /**
-         * Render Rules
-         * @memberOf ScribdView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {ScribdRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define data
-             * @type {*|{}}
-             */
-            var data = this.controller.getRules();
-
-            /**
-             * Define Scribd Rules Element
-             * @type {ScribdRulesElement}
-             */
-            this.elements.$rules = new ScribdRulesElement(this, {
-                data: data,
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render scribd
-         * @memberOf ScribdView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderScribd.bind(this)
-            );
+      /**
+       * Define Scribd Rules Element
+       * @type {ScribdRulesElement}
+       */
+      this.elements.$rules = new ScribdRulesElement(this, {
+        data: data,
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render scribd
+     * @memberOf ScribdView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderScribd.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

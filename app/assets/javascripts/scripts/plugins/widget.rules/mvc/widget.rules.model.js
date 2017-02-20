@@ -6,54 +6,54 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model'
+  'modules/Model'
 ], function defineWidgetRulesModel(BaseModel) {
 
+  /**
+   * Define WidgetRules model
+   * @extends BaseModel
+   * @class WidgetRulesModel
+   * @constructor
+   */
+  var WidgetRulesModel = function WidgetRulesModel() {
+
     /**
-     * Define WidgetRules model
-     * @extends BaseModel
-     * @class WidgetRulesModel
-     * @constructor
+     * Define data
+     * @memberOf WidgetRulesModel
+     * @type {{}}
      */
-    var WidgetRulesModel = function WidgetRulesModel() {
+    this.data = {};
+  };
 
-        /**
-         * Define data
-         * @memberOf WidgetRulesModel
-         * @type {{}}
-         */
-        this.data = {};
-    };
+  return WidgetRulesModel.extend('WidgetRulesModel', {
 
-    return WidgetRulesModel.extend('WidgetRulesModel', {
+    /**
+     * Get items
+     * @memberOf WidgetRulesModel
+     * @param page
+     * @returns {*}
+     */
+    getWidgetRulesItems: function getWidgetRulesItems(page) {
+      return page.model.getItems();
+    },
 
-        /**
-         * Get items
-         * @memberOf WidgetRulesModel
-         * @param page
-         * @returns {*}
-         */
-        getWidgetRulesItems: function getWidgetRulesItems(page) {
-            return page.model.getItems();
-        },
+    /**
+     * Collect items
+     * @memberOf WidgetRulesModel
+     * @param item
+     */
+    collectItems: function collectItems(item) {
+      this.data[item.model.getUUID()] = item;
+    },
 
-        /**
-         * Collect items
-         * @memberOf WidgetRulesModel
-         * @param item
-         */
-        collectItems: function collectItems(item) {
-            this.data[item.model.getUUID()] = item;
-        },
+    /**
+     * Get data
+     * @memberOf WidgetRulesModel
+     * @returns {{}}
+     */
+    getCollectedItems: function getCollectedItems() {
+      return this.data;
+    }
 
-        /**
-         * Get data
-         * @memberOf WidgetRulesModel
-         * @returns {{}}
-         */
-        getCollectedItems: function getCollectedItems() {
-            return this.data;
-        }
-
-    }, BaseModel.prototype);
+  }, BaseModel.prototype);
 });

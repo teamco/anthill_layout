@@ -7,20 +7,20 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineWikimapiaPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class WikimapiaPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var WikimapiaPermission = function WikimapiaPermission() {
-    };
+  /**
+   * Define Permissions
+   * @class WikimapiaPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var WikimapiaPermission = function WikimapiaPermission() {
+  };
 
-    return WikimapiaPermission.extend(
-        'WikimapiaPermission', {}, 
-        BasePermission.prototype
-    );
+  return WikimapiaPermission.extend(
+      'WikimapiaPermission', {},
+      BasePermission.prototype
+  );
 });

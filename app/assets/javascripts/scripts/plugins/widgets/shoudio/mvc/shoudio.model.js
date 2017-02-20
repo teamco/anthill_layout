@@ -6,44 +6,44 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineShoudioModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define Shoudio model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class ShoudioModel
+   * @constructor
+   */
+  var ShoudioModel = function ShoudioModel() {
+
     /**
-     * Define Shoudio model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class ShoudioModel
-     * @constructor
+     * Define preferences
+     * @property ShoudioModel
+     * @type {{}}
      */
-    var ShoudioModel = function ShoudioModel() {
-
-        /**
-         * Define preferences
-         * @property ShoudioModel
-         * @type {{}}
-         */
-        this.preferences = {
-            shoudioEmbedCode: {
-                type: 'textarea',
-                disabled: false,
-                value: '<iframe src="//s3.amazonaws.com/noise.shoudio.com/gadget/map.html?c=pop" style="width: 300px; height: 454px; background:transparent;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" vspace="0" hspace="0" width="300" height="454"></iframe>',
-                visible: true
-            }
-        };
-
-        /**
-         * Define rules
-         * @property ShoudioModel
-         * @type {{}}
-         */
-        this.rules = {};
+    this.preferences = {
+      shoudioEmbedCode: {
+        type: 'textarea',
+        disabled: false,
+        value: '<iframe src="//s3.amazonaws.com/noise.shoudio.com/gadget/map.html?c=pop" style="width: 300px; height: 454px; background:transparent;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" vspace="0" hspace="0" width="300" height="454"></iframe>',
+        visible: true
+      }
     };
 
-    return ShoudioModel.extend('ShoudioModel', {
+    /**
+     * Define rules
+     * @property ShoudioModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        // Setter
+  return ShoudioModel.extend('ShoudioModel', {
 
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    // Setter
+
+  }, BaseModel.prototype, WidgetContentModel.prototype);
 });

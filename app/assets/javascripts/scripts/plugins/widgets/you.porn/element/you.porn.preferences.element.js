@@ -6,35 +6,34 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
 ], function defineYouPornPreferencesElement(PluginElement, WidgetPreferences) {
 
-    /**
-     * Define YouPorn Preferences Element
-     * @param view
-     * @param opts
-     * @returns {YouPornPreferencesElement}
-     * @constructor
-     * @class YouPornPreferencesElement
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     */
-    var YouPornPreferencesElement = function YouPornPreferencesElement(view, opts) {
+  /**
+   * Define YouPorn Preferences Element
+   * @param view
+   * @param opts
+   * @returns {YouPornPreferencesElement}
+   * @constructor
+   * @class YouPornPreferencesElement
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   */
+  var YouPornPreferencesElement = function YouPornPreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return YouPornPreferencesElement.extend('YouPornPreferencesElement', {
-
-
-    }, PluginElement.prototype, WidgetPreferences.prototype);
+  return YouPornPreferencesElement.extend('YouPornPreferencesElement', {},
+      PluginElement.prototype, WidgetPreferences.prototype);
 
 });

@@ -6,52 +6,41 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function definePdfController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define pdf controller
+   * @class PdfController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var PdfController = function PdfController() {
+  };
+
+  return PdfController.extend('PdfController', {
+
     /**
-     * Define pdf controller
-     * @class PdfController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf PdfController
      */
-    var PdfController = function PdfController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
 
-    return PdfController.extend('PdfController', {
+      this.view.elements.$pdf.renderEmbeddedContent(
+          this.model.getPrefs('pdfUrl')
+      );
+    },
 
-        /**
-         * Set embedded content
-         * @memberOf PdfController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
+    /**
+     * Add Pdf rule
+     * @memberOf PdfController
+     * @param {Event} e
+     */
+    addPdfRule: function addPdfRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-            this.view.elements.$pdf.renderEmbeddedContent(
-                this.model.getPrefs('pdfUrl')
-            );
-        },
-
-        /**
-         * Add Pdf rule
-         * @memberOf PdfController
-         * @param e
-         */
-        addPdfRule: function addPdfRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

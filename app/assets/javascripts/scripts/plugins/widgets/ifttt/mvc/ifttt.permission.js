@@ -7,20 +7,20 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineIftttPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class IftttPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var IftttPermission = function IftttPermission() {
-    };
+  /**
+   * Define Permissions
+   * @class IftttPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var IftttPermission = function IftttPermission() {
+  };
 
-    return IftttPermission.extend(
-        'IftttPermission', {}, 
-        BasePermission.prototype
-    );
+  return IftttPermission.extend(
+      'IftttPermission', {},
+      BasePermission.prototype
+  );
 });

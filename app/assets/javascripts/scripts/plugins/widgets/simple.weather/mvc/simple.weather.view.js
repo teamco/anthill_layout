@@ -7,109 +7,111 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/simple.weather/element/simple.weather.element',
-    'plugins/widgets/simple.weather/element/simple.weather.preferences.element',
-    'plugins/widgets/simple.weather/element/simple.weather.rules.element'
-], function defineSimpleWeatherView(BaseView, Header, Footer, SimpleWeatherElement, SimpleWeatherPreferencesElement, SimpleWeatherRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/simple.weather/element/simple.weather.element',
+  'plugins/widgets/simple.weather/element/simple.weather.preferences.element',
+  'plugins/widgets/simple.weather/element/simple.weather.rules.element'
+], function defineSimpleWeatherView(BaseView, Header, Footer,
+    SimpleWeatherElement, SimpleWeatherPreferencesElement,
+    SimpleWeatherRulesElement) {
+
+  /**
+   * Define view
+   * @class SimpleWeatherView
+   * @extends BaseView
+   * @constructor
+   */
+  var SimpleWeatherView = function SimpleWeatherView() {
+  };
+
+  return SimpleWeatherView.extend('SimpleWeatherView', {
 
     /**
-     * Define view
-     * @class SimpleWeatherView
-     * @extends BaseView
-     * @constructor
+     * Render $simpleweather element
+     * @memberOf SimpleWeatherView
      */
-    var SimpleWeatherView = function SimpleWeatherView() {
-    };
+    renderSimpleWeather: function renderSimpleWeather() {
 
-    return SimpleWeatherView.extend('SimpleWeatherView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render $simpleweather element
-         * @memberOf SimpleWeatherView
-         */
-        renderSimpleWeather: function renderSimpleWeather() {
+      /**
+       * Define $simpleweather
+       * @type {SimpleWeatherElement}
+       */
+      this.elements.$simpleweather = new SimpleWeatherElement(this, {
+        $container: this.get$container().$,
+        style: 'weather'
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $simpleweather
-             * @type {SimpleWeatherElement}
-             */
-            this.elements.$simpleweather = new SimpleWeatherElement(this, {
-                $container: this.get$container().$,
-                style: 'weather'
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf SimpleWeatherView
+     * @returns {SimpleWeatherPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define SimpleWeather Preferences Element
+       * @type {SimpleWeatherPreferencesElement}
+       */
+      this.elements.$preferences = new SimpleWeatherPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf SimpleWeatherView
-         * @returns {SimpleWeatherPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define SimpleWeather Preferences Element
-             * @type {SimpleWeatherPreferencesElement}
-             */
-            this.elements.$preferences = new SimpleWeatherPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf SimpleWeatherView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {SimpleWeatherRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
+      /**
+       * Define data
+       * @type {*|{}}
+       */
+      var data = this.controller.getRules();
 
-        /**
-         * Render Rules
-         * @memberOf SimpleWeatherView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {SimpleWeatherRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define data
-             * @type {*|{}}
-             */
-            var data = this.controller.getRules();
-
-            /**
-             * Define SimpleWeather Rules Element
-             * @type {SimpleWeatherRulesElement}
-             */
-            this.elements.$rules = new SimpleWeatherRulesElement(this, {
-                data: data,
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render SimpleWeather
-         * @memberOf SimpleWeatherView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderSimpleWeather.bind(this)
-            );
+      /**
+       * Define SimpleWeather Rules Element
+       * @type {SimpleWeatherRulesElement}
+       */
+      this.elements.$rules = new SimpleWeatherRulesElement(this, {
+        data: data,
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render SimpleWeather
+     * @memberOf SimpleWeatherView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderSimpleWeather.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

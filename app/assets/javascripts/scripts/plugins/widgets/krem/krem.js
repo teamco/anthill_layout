@@ -6,100 +6,99 @@
  */
 
 define([
-    'config/anthill',
-    'modules/MVC',
-    'plugins/widgets/krem/mvc/krem.controller',
-    'plugins/widgets/krem/mvc/krem.model',
-    'plugins/widgets/krem/mvc/krem.view',
-    'plugins/widgets/krem/mvc/krem.event.manager',
-    'plugins/widgets/krem/mvc/krem.permission'
-], function defineKrem(AntHill, MVC, Controller, Model, View, EventManager, Permission) {
+  'config/anthill',
+  'modules/MVC',
+  'plugins/widgets/krem/mvc/krem.controller',
+  'plugins/widgets/krem/mvc/krem.model',
+  'plugins/widgets/krem/mvc/krem.view',
+  'plugins/widgets/krem/mvc/krem.event.manager',
+  'plugins/widgets/krem/mvc/krem.permission'
+], function defineKrem(AntHill, MVC, Controller, Model, View, EventManager,
+    Permission) {
+
+  /**
+   * Define Krem
+   * @param containment
+   * @param [opts]
+   * @constructor
+   * @class Krem
+   * @extends AntHill
+   */
+  var Krem = function Krem(containment, opts) {
 
     /**
-     * Define Krem
-     * @param containment
-     * @param [opts]
-     * @constructor
-     * @class Krem
-     * @extends AntHill
+     * Define containment
+     * @memberOf Krem
      */
-    var Krem = function Krem(containment, opts) {
+    this.containment = containment;
 
-        /**
-         * Define containment
-         * @memberOf Krem
-         */
-        this.containment = containment;
+    /**
+     * Define referrer
+     * @memberOf Krem
+     * @type {*}
+     */
+    this.referrer = undefined;
 
-        /**
-         * Define referrer
-         * @memberOf Krem
-         * @type {*}
-         */
-        this.referrer = undefined;
-
-        /**
-         * Define defaults
-         * @type {{
-         *      plugin: boolean,
-         *      html: {
-         *          style: string,
-         *          header: boolean,
-         *          footer: boolean,
-         *          padding: {
-         *              top: number,
-         *              right: number,
-         *              bottom: number,
-         *              left: number
-         *          }
-         *      },
-         *      regex: RegExp,
-         *      mask: string
-         * }}
-         */
-        var DEFAULTS = {
-            plugin: true,
-            html: {
-                style: 'default',
-                header: false,
-                footer: false,
-                padding: {
-                    top: 0,
-                    right: 0,
-                    bottom: 0,
-                    left: 0
-                }
-            }
-        };
-
-        /**
-         * Define MVC
-         * @memberOf Krem
-         * @type {MVC}
-         */
-        this.mvc = new MVC({
-            scope: this,
-            config: [
-                {uuid: this.containment.model.getContentUUID()},
-                DEFAULTS
-            ],
-            components: [
-                Controller,
-                Model,
-                View,
-                EventManager,
-                Permission
-            ],
-            render: true
-        });
-
-        this.observer.publish(
-            this.eventmanager.eventList.initWidget,
-            opts
-        );
+    /**
+     * Define defaults
+     * @type {{
+     *      plugin: boolean,
+     *      html: {
+     *          style: string,
+     *          header: boolean,
+     *          footer: boolean,
+     *          padding: {
+     *              top: number,
+     *              right: number,
+     *              bottom: number,
+     *              left: number
+     *          }
+     *      },
+     *      regex: RegExp,
+     *      mask: string
+     * }}
+     */
+    var DEFAULTS = {
+      plugin: true,
+      html: {
+        style: 'default',
+        header: false,
+        footer: false,
+        padding: {
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0
+        }
+      }
     };
 
-    return Krem.extend('Krem', {
+    /**
+     * Define MVC
+     * @memberOf Krem
+     * @type {MVC}
+     */
+    this.mvc = new MVC({
+      scope: this,
+      config: [
+        {uuid: this.containment.model.getContentUUID()},
+        DEFAULTS
+      ],
+      components: [
+        Controller,
+        Model,
+        View,
+        EventManager,
+        Permission
+      ],
+      render: true
+    });
 
-    }, AntHill.prototype);
+    this.observer.publish(
+        this.eventmanager.eventList.initWidget,
+        opts
+    );
+  };
+
+  return Krem.extend('Krem', {}, AntHill.prototype);
 });

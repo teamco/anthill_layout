@@ -7,23 +7,23 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineRepubhubEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define Repubhub event manager
-     * @class RepubhubEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var RepubhubEventManager = function RepubhubEventManager() {
+  /**
+   * Define Repubhub event manager
+   * @class RepubhubEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var RepubhubEventManager = function RepubhubEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return RepubhubEventManager.extend(
-        'RepubhubEventManager', {},
-        WidgetContentEventManager.prototype
-    );
+  return RepubhubEventManager.extend(
+      'RepubhubEventManager', {},
+      WidgetContentEventManager.prototype
+  );
 });

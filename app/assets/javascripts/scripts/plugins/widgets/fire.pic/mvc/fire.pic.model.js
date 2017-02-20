@@ -6,53 +6,54 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineFirePicModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define FirePic model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class FirePicModel
+   * @constructor
+   */
+  var FirePicModel = function FirePicModel() {
+
     /**
-     * Define FirePic model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class FirePicModel
-     * @constructor
+     * Define preferences
+     * @property FirePicModel
+     * @type {{
+     *      firepicUrl: {type: string, disabled: boolean, value: undefined,
+     *     visible: boolean}
+     * }}
      */
-    var FirePicModel = function FirePicModel() {
-
-        /**
-         * Define preferences
-         * @property FirePicModel
-         * @type {{
-         *      firepicUrl: {type: string, disabled: boolean, value: undefined, visible: boolean}
-         * }}
-         */
-        this.preferences = {
-            firepicUrl: {
-                type: 'textarea',
-                disabled: false,
-                value: undefined,
-                visible: true
-            }
-        };
-
-        /**
-         * Define rules
-         * @property FirePicModel
-         * @type {{}}
-         */
-        this.rules = {};
+    this.preferences = {
+      firepicUrl: {
+        type: 'textarea',
+        disabled: false,
+        value: undefined,
+        visible: true
+      }
     };
 
-    return FirePicModel.extend('FirePicModel', {
+    /**
+     * Define rules
+     * @property FirePicModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        /**
-         * Set FirePic embed code
-         * @memberOf FirePicModel
-         * @param {string} url
-         */
-        setFirepicUrl: function setFirepicUrl(url) {
-            this.setPrefs('firepicUrl', url);
-        }
+  return FirePicModel.extend('FirePicModel', {
 
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    /**
+     * Set FirePic embed code
+     * @memberOf FirePicModel
+     * @param {string} url
+     */
+    setFirepicUrl: function setFirepicUrl(url) {
+      this.setPrefs('firepicUrl', url);
+    }
+
+  }, BaseModel.prototype, WidgetContentModel.prototype);
 });

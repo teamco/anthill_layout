@@ -6,35 +6,34 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
 ], function defineRedTubePreferencesElement(PluginElement, WidgetPreferences) {
 
-    /**
-     * Define RedTube Preferences Element
-     * @param view
-     * @param opts
-     * @returns {RedTubePreferencesElement}
-     * @constructor
-     * @class RedTubePreferencesElement
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     */
-    var RedTubePreferencesElement = function RedTubePreferencesElement(view, opts) {
+  /**
+   * Define RedTube Preferences Element
+   * @param view
+   * @param opts
+   * @returns {RedTubePreferencesElement}
+   * @constructor
+   * @class RedTubePreferencesElement
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   */
+  var RedTubePreferencesElement = function RedTubePreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return RedTubePreferencesElement.extend('RedTubePreferencesElement', {
-
-
-    }, PluginElement.prototype, WidgetPreferences.prototype);
+  return RedTubePreferencesElement.extend('RedTubePreferencesElement', {},
+      PluginElement.prototype, WidgetPreferences.prototype);
 
 });

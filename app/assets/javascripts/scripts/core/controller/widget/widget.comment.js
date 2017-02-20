@@ -7,52 +7,52 @@
 
 define(function defineWidgetComment() {
 
+  /**
+   * Define WidgetComment
+   * @class WidgetComment
+   * @extends AntHill
+   * @constructor
+   */
+  var WidgetComment = function WidgetComment() {
+  };
+
+  return WidgetComment.extend('WidgetComment', {
+
     /**
-     * Define WidgetComment
-     * @class WidgetComment
-     * @extends AntHill
-     * @constructor
+     * Define commentable content
+     * @memberOf WidgetComment
+     * @param {boolean} commentable
      */
-    var WidgetComment = function WidgetComment() {
-    };
+    commentableContent: function commentableContent(commentable) {
 
-    return WidgetComment.extend('WidgetComment', {
+      if (_.isUndefined(commentable)) {
+        return false;
+      }
 
-        /**
-         * Define commentable content
-         * @memberOf WidgetComment
-         * @param {boolean} commentable
-         */
-        commentableContent: function commentableContent(commentable) {
+      if (commentable) {
 
-            if (_.isUndefined(commentable)) {
-                return false;
-            }
+        this.view.contentComments();
 
-            if (commentable) {
+      } else if (this.view.elements.$comments) {
 
-                this.view.contentComments();
+        this.view.elements.$comments.destroy();
+      }
+    },
 
-            } else if (this.view.elements.$comments) {
+    /**
+     * Define post comment
+     * @memberOf WidgetComment
+     */
+    postComment: function postComment() {
+      debugger
+    },
 
-                this.view.elements.$comments.destroy();
-            }
-        },
-
-        /**
-         * Define post comment
-         * @memberOf WidgetComment
-         */
-        postComment: function postComment() {
-debugger
-        },
-
-        /**
-         * Define cancel comment
-         * @memberOf WidgetComment
-         */
-        cancelComment: function cancelComment() {
-debugger
-        }
-    });
+    /**
+     * Define cancel comment
+     * @memberOf WidgetComment
+     */
+    cancelComment: function cancelComment() {
+      debugger
+    }
+  });
 });

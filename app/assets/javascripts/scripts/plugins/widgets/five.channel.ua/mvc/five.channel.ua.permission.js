@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineFiveChannelUaPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class FiveChannelUaPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var FiveChannelUaPermission = function FiveChannelUaPermission() {
+  /**
+   * Define Permissions
+   * @class FiveChannelUaPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var FiveChannelUaPermission = function FiveChannelUaPermission() {
 
-    };
+  };
 
-    return FiveChannelUaPermission.extend('FiveChannelUaPermission', {
-
-    }, BasePermission.prototype);
+  return FiveChannelUaPermission.extend('FiveChannelUaPermission', {},
+      BasePermission.prototype);
 });

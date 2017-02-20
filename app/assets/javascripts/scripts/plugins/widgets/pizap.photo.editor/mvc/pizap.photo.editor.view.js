@@ -7,101 +7,104 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/pizap.photo.editor/element/pizap.photo.editor.element',
-    'plugins/widgets/pizap.photo.editor/element/pizap.photo.editor.preferences.element',
-    'plugins/widgets/pizap.photo.editor/element/pizap.photo.editor.rules.element'
-], function definePizapPhotoEditorView(BaseView, Header, Footer, PizapPhotoEditorElement, PizapPhotoEditorPreferencesElement, PizapPhotoEditorRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/pizap.photo.editor/element/pizap.photo.editor.element',
+  'plugins/widgets/pizap.photo.editor/element/pizap.photo.editor.preferences.element',
+  'plugins/widgets/pizap.photo.editor/element/pizap.photo.editor.rules.element'
+], function definePizapPhotoEditorView(BaseView, Header, Footer,
+    PizapPhotoEditorElement, PizapPhotoEditorPreferencesElement,
+    PizapPhotoEditorRulesElement) {
+
+  /**
+   * Define view
+   * @class PizapPhotoEditorView
+   * @extends BaseView
+   * @constructor
+   */
+  var PizapPhotoEditorView = function PizapPhotoEditorView() {
+  };
+
+  return PizapPhotoEditorView.extend('PizapPhotoEditorView', {
 
     /**
-     * Define view
-     * @class PizapPhotoEditorView
-     * @extends BaseView
-     * @constructor
+     * Render PizapPhotoEditor element
+     * @memberOf PizapPhotoEditorView
      */
-    var PizapPhotoEditorView = function PizapPhotoEditorView() {
-    };
+    renderPizapPhotoEditor: function renderPizapPhotoEditor() {
 
-    return PizapPhotoEditorView.extend('PizapPhotoEditorView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render PizapPhotoEditor element
-         * @memberOf PizapPhotoEditorView
-         */
-        renderPizapPhotoEditor: function renderPizapPhotoEditor() {
+      /**
+       * Define $pizapphotoeditor
+       * @type {PizapPhotoEditorElement}
+       */
+      this.elements.$pizapphotoeditor = new PizapPhotoEditorElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $pizapphotoeditor
-             * @type {PizapPhotoEditorElement}
-             */
-            this.elements.$pizapphotoeditor = new PizapPhotoEditorElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf PizapPhotoEditorView
+     * @returns {PizapPhotoEditorPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define PizapPhotoEditor Preferences Element
+       * @type {PizapPhotoEditorPreferencesElement}
+       */
+      this.elements.$preferences =
+          new PizapPhotoEditorPreferencesElement(this, {
+            data: this.controller.getPreferences()
+          });
 
-        /**
-         * Render Prefs
-         * @memberOf PizapPhotoEditorView
-         * @returns {PizapPhotoEditorPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define PizapPhotoEditor Preferences Element
-             * @type {PizapPhotoEditorPreferencesElement}
-             */
-            this.elements.$preferences = new PizapPhotoEditorPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf PizapPhotoEditorView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {PizapPhotoEditorRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
-
-        /**
-         * Render Rules
-         * @memberOf PizapPhotoEditorView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {PizapPhotoEditorRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define PizapPhotoEditor Rules Element
-             * @type {PizapPhotoEditorRulesElement}
-             */
-            this.elements.$rules = new PizapPhotoEditorRulesElement(this, {
-                data: this.controller.getRules(),
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render PizapPhotoEditor
-         * @memberOf PizapPhotoEditorView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderPizapPhotoEditor.bind(this)
-            );
+      /**
+       * Define PizapPhotoEditor Rules Element
+       * @type {PizapPhotoEditorRulesElement}
+       */
+      this.elements.$rules = new PizapPhotoEditorRulesElement(this, {
+        data: this.controller.getRules(),
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype);
+      return this.get$rules();
+    },
+
+    /**
+     * Render PizapPhotoEditor
+     * @memberOf PizapPhotoEditorView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderPizapPhotoEditor.bind(this)
+      );
+    }
+
+  }, BaseView.prototype);
 });

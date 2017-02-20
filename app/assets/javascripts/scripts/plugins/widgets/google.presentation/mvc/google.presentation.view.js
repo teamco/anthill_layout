@@ -7,102 +7,105 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/google.presentation/element/google.presentation.element',
-    'plugins/widgets/google.presentation/element/google.presentation.preferences.element',
-    'plugins/widgets/google.presentation/element/google.presentation.rules.element'
-], function defineGooglePresentationView(BaseView, Header, Footer, GooglePresentationElement, GooglePresentationPreferencesElement, GooglePresentationRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/google.presentation/element/google.presentation.element',
+  'plugins/widgets/google.presentation/element/google.presentation.preferences.element',
+  'plugins/widgets/google.presentation/element/google.presentation.rules.element'
+], function defineGooglePresentationView(BaseView, Header, Footer,
+    GooglePresentationElement, GooglePresentationPreferencesElement,
+    GooglePresentationRulesElement) {
+
+  /**
+   * Define view
+   * @class GooglePresentationView
+   * @extends BaseView
+   * @constructor
+   */
+  var GooglePresentationView = function GooglePresentationView() {
+  };
+
+  return GooglePresentationView.extend('GooglePresentationView', {
 
     /**
-     * Define view
-     * @class GooglePresentationView
-     * @extends BaseView
-     * @constructor
+     * Render GooglePresentation element
+     * @memberOf GooglePresentationView
      */
-    var GooglePresentationView = function GooglePresentationView() {
-    };
+    renderGooglePresentation: function renderGooglePresentation() {
 
-    return GooglePresentationView.extend('GooglePresentationView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render GooglePresentation element
-         * @memberOf GooglePresentationView
-         */
-        renderGooglePresentation: function renderGooglePresentation() {
+      /**
+       * Define $googlepresentation
+       * @type {GooglePresentationElement}
+       */
+      this.elements.$googlepresentation = new GooglePresentationElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $googlepresentation
-             * @type {GooglePresentationElement}
-             */
-            this.elements.$googlepresentation = new GooglePresentationElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf GooglePresentationView
+     * @returns {GooglePresentationPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define GooglePresentation Preferences Element
+       * @type {GooglePresentationPreferencesElement}
+       */
+      this.elements.$preferences =
+          new GooglePresentationPreferencesElement(this, {
+            data: this.controller.getPreferences()
+          });
 
-        /**
-         * Render Prefs
-         * @memberOf GooglePresentationView
-         * @returns {GooglePresentationPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define GooglePresentation Preferences Element
-             * @type {GooglePresentationPreferencesElement}
-             */
-            this.elements.$preferences = new GooglePresentationPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf GooglePresentationView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {GooglePresentationRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
-
-        /**
-         * Render Rules
-         * @memberOf GooglePresentationView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {GooglePresentationRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define GooglePresentation Rules Element
-             * @type {GooglePresentationRulesElement}
-             */
-            this.elements.$rules = new GooglePresentationRulesElement(this, {
-                data: this.controller.getRules(),
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render GooglePresentation
-         * @memberOf GooglePresentationView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderGooglePresentation.bind(this)
-            );
+      /**
+       * Define GooglePresentation Rules Element
+       * @type {GooglePresentationRulesElement}
+       */
+      this.elements.$rules = new GooglePresentationRulesElement(this, {
+        data: this.controller.getRules(),
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render GooglePresentation
+     * @memberOf GooglePresentationView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderGooglePresentation.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

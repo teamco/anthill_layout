@@ -6,35 +6,35 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
 ], function defineClypItPreferencesElement(PluginElement, WidgetPreferences) {
 
-    /**
-     * Define ClypIt Preferences Element
-     * @constructor
-     * @class ClypItPreferencesElement
-     * @param {ClypItView} view
-     * @param opts
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     * @returns {ClypItPreferencesElement}
-     */
-    var ClypItPreferencesElement = function ClypItPreferencesElement(view, opts) {
+  /**
+   * Define ClypIt Preferences Element
+   * @constructor
+   * @class ClypItPreferencesElement
+   * @param {ClypItView} view
+   * @param opts
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   * @returns {ClypItPreferencesElement}
+   */
+  var ClypItPreferencesElement = function ClypItPreferencesElement(view, opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return ClypItPreferencesElement.extend(
-        'ClypItPreferencesElement', {}, 
-        PluginElement.prototype, 
-        WidgetPreferences.prototype
-    );
+  return ClypItPreferencesElement.extend(
+      'ClypItPreferencesElement', {},
+      PluginElement.prototype,
+      WidgetPreferences.prototype
+  );
 });

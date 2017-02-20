@@ -6,144 +6,144 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineImageController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define image controller
+   * @class ImageController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var ImageController = function ImageController() {
+  };
+
+  return ImageController.extend('ImageController', {
+
     /**
-     * Define image controller
-     * @class ImageController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Check rendering content
+     * @memberOf ImageController
      */
-    var ImageController = function ImageController() {
-    };
+    checkEmbeddedContent: function checkEmbeddedContent() {
 
-    return ImageController.extend('ImageController', {
+      /**
+       * Define event
+       * @type {splitEmbeddedContent|setEmbeddedContent|string}
+       */
+      var event = this.model.getPrefs('imageSplitContent') ?
+          this.eventmanager.eventList.splitEmbeddedContent :
+          this.eventmanager.eventList.analyzeEmbeddedContent;
 
-        /**
-         * Check rendering content
-         * @memberOf ImageController
-         */
-        checkEmbeddedContent: function checkEmbeddedContent() {
+      this.observer.publish(event);
+    },
 
-            /**
-             * Define event
-             * @type {splitEmbeddedContent|setEmbeddedContent|string}
-             */
-            var event = this.model.getPrefs('imageSplitContent') ?
-                this.eventmanager.eventList.splitEmbeddedContent :
-                this.eventmanager.eventList.analyzeEmbeddedContent;
+    /**
+     * Set embedded content
+     * @memberOf ImageController
+     */
+    setEmbeddedContent: function setEmbeddedContent() {
 
-            this.observer.publish(event);
-        },
+      this.view.get$item().renderEmbeddedContent({
+        url: this.model.getPrefs('imageUrl'),
+        text: this.model.getPrefs('imageText'),
+        repeatX: this.model.getPrefs('imageRepeatX'),
+        repeatY: this.model.getPrefs('imageRepeatY'),
+        stretch: this.model.getPrefs('imageStretch'),
+        updateScaleHorizontal: this.model.getPrefs('imageScaleHorizontal'),
+        updateScaleVertical: this.model.getPrefs('imageScaleVertical'),
+        updateBlur: this.model.getPrefs('imageBlur'),
+        updateBrightness: this.model.getPrefs('imageBrightness'),
+        updateContrast: this.model.getPrefs('imageContrast'),
+        updateGrayscale: this.model.getPrefs('imageGrayscale'),
+        updateHueRotate: this.model.getPrefs('imageHueRotate'),
+        updateInvert: this.model.getPrefs('imageInvert'),
+        updateOpacity: this.model.getPrefs('imageOpacity'),
+        updateSaturate: this.model.getPrefs('imageSaturate'),
+        updateSepia: this.model.getPrefs('imageSepia'),
+        updateZoom: this.model.getPrefs('imageZoom'),
+        updateRotate: this.model.getPrefs('imageRotate'),
+        updateSkewY: this.model.getPrefs('imageSkewY'),
+        updateSkewX: this.model.getPrefs('imageSkewX'),
+        updateDropShadow: this.model.getPrefs('imageDropShadow')
+      });
+    },
 
-        /**
-         * Set embedded content
-         * @memberOf ImageController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
+    /**
+     * Split embedded content
+     * @memberOf ImageController
+     * @param subscribers
+     * @param {boolean|*} simulate
+     */
+    splitEmbeddedContent: function splitEmbeddedContent(subscribers, simulate) {
 
-            this.view.get$item().renderEmbeddedContent({
-                url: this.model.getPrefs('imageUrl'),
-                text: this.model.getPrefs('imageText'),
-                repeatX: this.model.getPrefs('imageRepeatX'),
-                repeatY: this.model.getPrefs('imageRepeatY'),
-                stretch: this.model.getPrefs('imageStretch'),
-                updateScaleHorizontal: this.model.getPrefs('imageScaleHorizontal'),
-                updateScaleVertical: this.model.getPrefs('imageScaleVertical'),
-                updateBlur: this.model.getPrefs('imageBlur'),
-                updateBrightness: this.model.getPrefs('imageBrightness'),
-                updateContrast: this.model.getPrefs('imageContrast'),
-                updateGrayscale: this.model.getPrefs('imageGrayscale'),
-                updateHueRotate: this.model.getPrefs('imageHueRotate'),
-                updateInvert: this.model.getPrefs('imageInvert'),
-                updateOpacity: this.model.getPrefs('imageOpacity'),
-                updateSaturate: this.model.getPrefs('imageSaturate'),
-                updateSepia: this.model.getPrefs('imageSepia'),
-                updateZoom: this.model.getPrefs('imageZoom'),
-                updateRotate: this.model.getPrefs('imageRotate'),
-                updateSkewY: this.model.getPrefs('imageSkewY'),
-                updateSkewX: this.model.getPrefs('imageSkewX'),
-                updateDropShadow: this.model.getPrefs('imageDropShadow')
-            });
-        },
+      subscribers = this.base.define(
+          subscribers,
+          this.controller.getSubscribers(
+              this.eventmanager.eventList.splitEmbeddedContent
+          )
+      );
 
-        /**
-         * Split embedded content
-         * @memberOf ImageController
-         * @param subscribers
-         * @param {boolean|*} simulate
-         */
-        splitEmbeddedContent: function splitEmbeddedContent(subscribers, simulate) {
+      this.view.get$item().renderSplitEmbeddedContent({
+        url: this.model.getPrefs('imageUrl'),
+        text: this.model.getPrefs('imageText'),
+        repeatX: this.model.getPrefs('imageRepeatX'),
+        repeatY: this.model.getPrefs('imageRepeatY'),
+        stretch: this.model.getPrefs('imageStretch'),
+        splitTo: subscribers.length,
+        simulate: this.base.defineBoolean(simulate, false, true)
+      });
+    },
 
-            subscribers = this.base.define(
-                subscribers,
-                this.controller.getSubscribers(
-                    this.eventmanager.eventList.splitEmbeddedContent
-                )
-            );
+    /**
+     * Update preview
+     * @memberOf ImageController
+     * @param {Event} event
+     */
+    updatePreview: function updatePreview(event) {
 
-            this.view.get$item().renderSplitEmbeddedContent({
-                url: this.model.getPrefs('imageUrl'),
-                text: this.model.getPrefs('imageText'),
-                repeatX: this.model.getPrefs('imageRepeatX'),
-                repeatY: this.model.getPrefs('imageRepeatY'),
-                stretch: this.model.getPrefs('imageStretch'),
-                splitTo: subscribers.length,
-                simulate: this.base.defineBoolean(simulate, false, true)
-            });
-        },
+      /**
+       * Get scope
+       * @type {Image|*}
+       */
+      var scope = this.scope,
+          $referrer = scope.referrer,
+          $modal = $referrer.view.get$modal();
 
-        /**
-         * Update preview
-         * @memberOf ImageController
-         * @param {Event} event
-         */
-        updatePreview: function updatePreview(event) {
+      /**
+       * Get prefs
+       * @type {ImagePreferencesElement}
+       */
+      var $preferences = scope.view.elements.$preferences;
 
-            /**
-             * Get scope
-             * @type {Image|*}
-             */
-            var scope = this.scope,
-                $referrer = scope.referrer,
-                $modal = $referrer.view.get$modal();
+      if ($preferences) {
+        $preferences.updatePreviewImage(
+            $modal,
+            event
+        );
+      }
+    },
 
-            /**
-             * Get prefs
-             * @type {ImagePreferencesElement}
-             */
-            var $preferences = scope.view.elements.$preferences;
+    /**
+     * Add Image rule
+     * @memberOf ImageController
+     * @param {Event} e
+     */
+    addImageRule: function addImageRule(e) {
 
-            if ($preferences) {
-                $preferences.updatePreviewImage(
-                    $modal,
-                    event
-                );
-            }
-        },
+      /**
+       * Define $button
+       * @type {*|jQuery|HTMLElement}
+       */
+      var $button = $(e.target),
+          scope = this.scope;
 
-        /**
-         * Add Image rule
-         * @memberOf ImageController
-         * @param e
-         */
-        addImageRule: function addImageRule(e) {
+      scope.observer.publish(
+          scope.eventmanager.eventList.publishRule,
+          [$button.attr('value'), this.scope.name]
+      );
+    }
 
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), this.scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

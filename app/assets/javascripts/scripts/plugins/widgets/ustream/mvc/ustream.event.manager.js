@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineUstreamEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define Ustream event manager
-     * @class UstreamEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var UstreamEventManager = function UstreamEventManager() {
+  /**
+   * Define Ustream event manager
+   * @class UstreamEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var UstreamEventManager = function UstreamEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return UstreamEventManager.extend('UstreamEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return UstreamEventManager.extend('UstreamEventManager', {},
+      WidgetContentEventManager.prototype);
 });

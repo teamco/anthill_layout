@@ -7,108 +7,109 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/empflix/element/empflix.element',
-    'plugins/widgets/empflix/element/empflix.preferences.element',
-    'plugins/widgets/empflix/element/empflix.rules.element'
-], function defineEmpflixView(BaseView, Header, Footer, EmpflixElement, EmpflixPreferencesElement, EmpflixRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/empflix/element/empflix.element',
+  'plugins/widgets/empflix/element/empflix.preferences.element',
+  'plugins/widgets/empflix/element/empflix.rules.element'
+], function defineEmpflixView(BaseView, Header, Footer, EmpflixElement,
+    EmpflixPreferencesElement, EmpflixRulesElement) {
+
+  /**
+   * Define view
+   * @class EmpflixView
+   * @extends BaseView
+   * @constructor
+   */
+  var EmpflixView = function EmpflixView() {
+  };
+
+  return EmpflixView.extend('EmpflixView', {
 
     /**
-     * Define view
-     * @class EmpflixView
-     * @extends BaseView
-     * @constructor
+     * Render empflix element
+     * @memberOf EmpflixView
      */
-    var EmpflixView = function EmpflixView() {
-    };
+    renderEmpflix: function renderEmpflix() {
 
-    return EmpflixView.extend('EmpflixView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render empflix element
-         * @memberOf EmpflixView
-         */
-        renderEmpflix: function renderEmpflix() {
+      /**
+       * Define $empflix
+       * @type {EmpflixElement}
+       */
+      this.elements.$empflix = new EmpflixElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $empflix
-             * @type {EmpflixElement}
-             */
-            this.elements.$empflix = new EmpflixElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf EmpflixView
+     * @returns {EmpflixPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define Empflix Preferences Element
+       * @type {EmpflixPreferencesElement}
+       */
+      this.elements.$preferences = new EmpflixPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf EmpflixView
-         * @returns {EmpflixPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define Empflix Preferences Element
-             * @type {EmpflixPreferencesElement}
-             */
-            this.elements.$preferences = new EmpflixPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf EmpflixView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {EmpflixRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
+      /**
+       * Define data
+       * @type {*|{}}
+       */
+      var data = this.controller.getRules();
 
-        /**
-         * Render Rules
-         * @memberOf EmpflixView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {EmpflixRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define data
-             * @type {*|{}}
-             */
-            var data = this.controller.getRules();
-
-            /**
-             * Define Empflix Rules Element
-             * @type {EmpflixRulesElement}
-             */
-            this.elements.$rules = new EmpflixRulesElement(this, {
-                data: data,
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render empflix
-         * @memberOf EmpflixView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderEmpflix.bind(this)
-            );
+      /**
+       * Define Empflix Rules Element
+       * @type {EmpflixRulesElement}
+       */
+      this.elements.$rules = new EmpflixRulesElement(this, {
+        data: data,
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render empflix
+     * @memberOf EmpflixView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderEmpflix.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

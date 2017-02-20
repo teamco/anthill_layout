@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineSyntaxHighlighterEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define SyntaxHighlighter event manager
-     * @class SyntaxHighlighterEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var SyntaxHighlighterEventManager = function SyntaxHighlighterEventManager() {
+  /**
+   * Define SyntaxHighlighter event manager
+   * @class SyntaxHighlighterEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var SyntaxHighlighterEventManager = function SyntaxHighlighterEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return SyntaxHighlighterEventManager.extend('SyntaxHighlighterEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return SyntaxHighlighterEventManager.extend('SyntaxHighlighterEventManager',
+      {}, WidgetContentEventManager.prototype);
 });

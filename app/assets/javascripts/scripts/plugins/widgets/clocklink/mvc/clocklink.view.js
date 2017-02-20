@@ -7,102 +7,103 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/clocklink/element/clocklink.element',
-    'plugins/widgets/clocklink/element/clocklink.preferences.element',
-    'plugins/widgets/clocklink/element/clocklink.rules.element'
-], function defineClocklinkView(BaseView, Header, Footer, ClocklinkElement, ClocklinkPreferencesElement, ClocklinkRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/clocklink/element/clocklink.element',
+  'plugins/widgets/clocklink/element/clocklink.preferences.element',
+  'plugins/widgets/clocklink/element/clocklink.rules.element'
+], function defineClocklinkView(BaseView, Header, Footer, ClocklinkElement,
+    ClocklinkPreferencesElement, ClocklinkRulesElement) {
+
+  /**
+   * Define view
+   * @class ClocklinkView
+   * @extends BaseView
+   * @constructor
+   */
+  var ClocklinkView = function ClocklinkView() {
+  };
+
+  return ClocklinkView.extend('ClocklinkView', {
 
     /**
-     * Define view
-     * @class ClocklinkView
-     * @extends BaseView
-     * @constructor
+     * Render Clocklink element
+     * @memberOf ClocklinkView
      */
-    var ClocklinkView = function ClocklinkView() {
-    };
+    renderClocklink: function renderClocklink() {
 
-    return ClocklinkView.extend('ClocklinkView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render Clocklink element
-         * @memberOf ClocklinkView
-         */
-        renderClocklink: function renderClocklink() {
+      /**
+       * Define $clocklink
+       * @type {ClocklinkElement}
+       */
+      this.elements.$clocklink = new ClocklinkElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $clocklink
-             * @type {ClocklinkElement}
-             */
-            this.elements.$clocklink = new ClocklinkElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf ClocklinkView
+     * @returns {ClocklinkPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define Clocklink Preferences Element
+       * @type {ClocklinkPreferencesElement}
+       */
+      this.elements.$preferences = new ClocklinkPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf ClocklinkView
-         * @returns {ClocklinkPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define Clocklink Preferences Element
-             * @type {ClocklinkPreferencesElement}
-             */
-            this.elements.$preferences = new ClocklinkPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf ClocklinkView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {ClocklinkRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
-
-        /**
-         * Render Rules
-         * @memberOf ClocklinkView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {ClocklinkRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define Clocklink Rules Element
-             * @type {ClocklinkRulesElement}
-             */
-            this.elements.$rules = new ClocklinkRulesElement(this, {
-                data: this.controller.getRules(),
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render Clocklink
-         * @memberOf ClocklinkView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderClocklink.bind(this)
-            );
+      /**
+       * Define Clocklink Rules Element
+       * @type {ClocklinkRulesElement}
+       */
+      this.elements.$rules = new ClocklinkRulesElement(this, {
+        data: this.controller.getRules(),
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render Clocklink
+     * @memberOf ClocklinkView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderClocklink.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

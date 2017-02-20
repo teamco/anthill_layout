@@ -7,65 +7,65 @@
  */
 
 define([
-    'modules/Element'
+  'modules/Element'
 ], function defineContent(BaseElement) {
 
+  /**
+   * Define content
+   * @param view
+   * @param opts
+   * @returns {WidgetContentElement}
+   * @class WidgetContentElement
+   * @constructor
+   * @extends BaseElement
+   */
+  var WidgetContentElement = function WidgetContentElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.setPadding();
+    this.setBackgroundImage(opts);
+
+    return this;
+  };
+
+  return WidgetContentElement.extend('WidgetContentElement', {
+
     /**
-     * Define content
-     * @param view
-     * @param opts
-     * @returns {WidgetContentElement}
-     * @class WidgetContentElement
-     * @constructor
-     * @extends BaseElement
+     * Set background image
+     * @memberOf WidgetContentElement
+     * @param {{resource: string}} opts
      */
-    var WidgetContentElement = function WidgetContentElement(view, opts) {
+    setBackgroundImage: function setBackgroundImage(opts) {
+      this.$.addClass(
+          opts.resource.replace(/\./g, '-')
+      );
+    },
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    /**
+     * Set padding
+     * @memberOf WidgetContentElement
+     */
+    setPadding: function setPadding() {
+      var padding = this.view.controller.getLocalPadding();
+      this.$.css(padding);
+    },
 
-        this.setPadding();
-        this.setBackgroundImage(opts);
+    /**
+     * Clean Metamorphic Content
+     * @memberOf WidgetContentElement
+     */
+    cleanMetamorphicContent: function cleanMetamorphicContent() {
 
-        return this;
-    };
+      if (!this.isMetamorphicElement()) {
+        return false;
+      }
 
-    return WidgetContentElement.extend('WidgetContentElement', {
+      $('> *', this.$).not(':hidden').remove();
+    }
 
-        /**
-         * Set background image
-         * @memberOf WidgetContentElement
-         * @param {{resource: string}} opts
-         */
-        setBackgroundImage: function setBackgroundImage(opts) {
-            this.$.addClass(
-                opts.resource.replace(/\./g, '-')
-            );
-        },
-
-        /**
-         * Set padding
-         * @memberOf WidgetContentElement
-         */
-        setPadding: function setPadding() {
-            var padding = this.view.controller.getLocalPadding();
-            this.$.css(padding);
-        },
-
-        /**
-         * Clean Metamorphic Content
-         * @memberOf WidgetContentElement
-         */
-        cleanMetamorphicContent: function cleanMetamorphicContent() {
-
-            if (!this.isMetamorphicElement()) {
-                return false;
-            }
-
-            $('> *', this.$).not(':hidden').remove();
-        }
-
-    }, BaseElement.prototype);
+  }, BaseElement.prototype);
 });

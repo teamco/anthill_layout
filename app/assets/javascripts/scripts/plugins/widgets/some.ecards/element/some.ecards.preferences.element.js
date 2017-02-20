@@ -6,35 +6,35 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
-], function defineSomeEcardsPreferencesElement(PluginElement, WidgetPreferences) {
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
+], function defineSomeEcardsPreferencesElement(PluginElement,
+    WidgetPreferences) {
 
-    /**
-     * Define SomeEcards Preferences Element
-     * @param view
-     * @param opts
-     * @returns {SomeEcardsPreferencesElement}
-     * @constructor
-     * @class SomeEcardsPreferencesElement
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     */
-    var SomeEcardsPreferencesElement = function SomeEcardsPreferencesElement(view, opts) {
+  /**
+   * Define SomeEcards Preferences Element
+   * @param view
+   * @param opts
+   * @returns {SomeEcardsPreferencesElement}
+   * @constructor
+   * @class SomeEcardsPreferencesElement
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   */
+  var SomeEcardsPreferencesElement = function SomeEcardsPreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return SomeEcardsPreferencesElement.extend('SomeEcardsPreferencesElement', {
-
-
-    }, PluginElement.prototype, WidgetPreferences.prototype);
+  return SomeEcardsPreferencesElement.extend('SomeEcardsPreferencesElement', {},
+      PluginElement.prototype, WidgetPreferences.prototype);
 
 });

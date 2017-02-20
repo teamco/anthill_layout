@@ -7,101 +7,105 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/facebook.embedded.posts/element/facebook.embedded.posts.element',
-    'plugins/widgets/facebook.embedded.posts/element/facebook.embedded.posts.preferences.element',
-    'plugins/widgets/facebook.embedded.posts/element/facebook.embedded.posts.rules.element'
-], function defineFacebookEmbeddedPostsView(BaseView, Header, Footer, FacebookEmbeddedPostsElement, FacebookEmbeddedPostsPreferencesElement, FacebookEmbeddedPostsRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/facebook.embedded.posts/element/facebook.embedded.posts.element',
+  'plugins/widgets/facebook.embedded.posts/element/facebook.embedded.posts.preferences.element',
+  'plugins/widgets/facebook.embedded.posts/element/facebook.embedded.posts.rules.element'
+], function defineFacebookEmbeddedPostsView(BaseView, Header, Footer,
+    FacebookEmbeddedPostsElement, FacebookEmbeddedPostsPreferencesElement,
+    FacebookEmbeddedPostsRulesElement) {
+
+  /**
+   * Define view
+   * @class FacebookEmbeddedPostsView
+   * @extends BaseView
+   * @constructor
+   */
+  var FacebookEmbeddedPostsView = function FacebookEmbeddedPostsView() {
+  };
+
+  return FacebookEmbeddedPostsView.extend('FacebookEmbeddedPostsView', {
 
     /**
-     * Define view
-     * @class FacebookEmbeddedPostsView
-     * @extends BaseView
-     * @constructor
+     * Render FacebookEmbeddedPosts element
+     * @memberOf FacebookEmbeddedPostsView
      */
-    var FacebookEmbeddedPostsView = function FacebookEmbeddedPostsView() {
-    };
+    renderFacebookEmbeddedPosts: function renderFacebookEmbeddedPosts() {
 
-    return FacebookEmbeddedPostsView.extend('FacebookEmbeddedPostsView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render FacebookEmbeddedPosts element
-         * @memberOf FacebookEmbeddedPostsView
-         */
-        renderFacebookEmbeddedPosts: function renderFacebookEmbeddedPosts() {
+      /**
+       * Define $facebookembeddedposts
+       * @type {FacebookEmbeddedPostsElement}
+       */
+      this.elements.$facebookembeddedposts =
+          new FacebookEmbeddedPostsElement(this, {
+            $container: this.get$container().$
+          });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $facebookembeddedposts
-             * @type {FacebookEmbeddedPostsElement}
-             */
-            this.elements.$facebookembeddedposts = new FacebookEmbeddedPostsElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf FacebookEmbeddedPostsView
+     * @returns {FacebookEmbeddedPostsPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define FacebookEmbeddedPosts Preferences Element
+       * @type {FacebookEmbeddedPostsPreferencesElement}
+       */
+      this.elements.$preferences =
+          new FacebookEmbeddedPostsPreferencesElement(this, {
+            data: this.controller.getPreferences()
+          });
 
-        /**
-         * Render Prefs
-         * @memberOf FacebookEmbeddedPostsView
-         * @returns {FacebookEmbeddedPostsPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define FacebookEmbeddedPosts Preferences Element
-             * @type {FacebookEmbeddedPostsPreferencesElement}
-             */
-            this.elements.$preferences = new FacebookEmbeddedPostsPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf FacebookEmbeddedPostsView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {FacebookEmbeddedPostsRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
-
-        /**
-         * Render Rules
-         * @memberOf FacebookEmbeddedPostsView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {FacebookEmbeddedPostsRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define FacebookEmbeddedPosts Rules Element
-             * @type {FacebookEmbeddedPostsRulesElement}
-             */
-            this.elements.$rules = new FacebookEmbeddedPostsRulesElement(this, {
-                data: this.controller.getRules(),
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render FacebookEmbeddedPosts
-         * @memberOf FacebookEmbeddedPostsView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderFacebookEmbeddedPosts.bind(this)
-            );
+      /**
+       * Define FacebookEmbeddedPosts Rules Element
+       * @type {FacebookEmbeddedPostsRulesElement}
+       */
+      this.elements.$rules = new FacebookEmbeddedPostsRulesElement(this, {
+        data: this.controller.getRules(),
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype);
+      return this.get$rules();
+    },
+
+    /**
+     * Render FacebookEmbeddedPosts
+     * @memberOf FacebookEmbeddedPostsView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderFacebookEmbeddedPosts.bind(this)
+      );
+    }
+
+  }, BaseView.prototype);
 });

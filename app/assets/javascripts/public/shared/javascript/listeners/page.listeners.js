@@ -7,12 +7,12 @@
 
 define(['config/page'], function definePageListeners(Page) {
 
-    /**
-     * Define Page Global listeners
-     * @memberOf Page
-     * @type {{}}
-     */
-    Page.prototype.globalListeners = {};
+  /**
+   * Define Page Global listeners
+   * @memberOf Page
+   * @type {{}}
+   */
+  Page.prototype.globalListeners = {};
 
-    return Page;
+  return Page;
 });

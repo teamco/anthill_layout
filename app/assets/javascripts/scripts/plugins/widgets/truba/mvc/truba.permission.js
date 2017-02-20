@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineTrubaPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class TrubaPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var TrubaPermission = function TrubaPermission() {
+  /**
+   * Define Permissions
+   * @class TrubaPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var TrubaPermission = function TrubaPermission() {
 
-    };
+  };
 
-    return TrubaPermission.extend('TrubaPermission', {
-
-    }, BasePermission.prototype);
+  return TrubaPermission.extend('TrubaPermission', {},
+      BasePermission.prototype);
 });

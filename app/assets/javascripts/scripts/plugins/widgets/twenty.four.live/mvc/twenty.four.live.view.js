@@ -7,108 +7,110 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/twenty.four.live/element/twenty.four.live.element',
-    'plugins/widgets/twenty.four.live/element/twenty.four.live.preferences.element',
-    'plugins/widgets/twenty.four.live/element/twenty.four.live.rules.element'
-], function defineTwentyFourLiveView(BaseView, Header, Footer, TwentyFourLiveElement, TwentyFourLivePreferencesElement, TwentyFourLiveRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/twenty.four.live/element/twenty.four.live.element',
+  'plugins/widgets/twenty.four.live/element/twenty.four.live.preferences.element',
+  'plugins/widgets/twenty.four.live/element/twenty.four.live.rules.element'
+], function defineTwentyFourLiveView(BaseView, Header, Footer,
+    TwentyFourLiveElement, TwentyFourLivePreferencesElement,
+    TwentyFourLiveRulesElement) {
+
+  /**
+   * Define view
+   * @class TwentyFourLiveView
+   * @extends BaseView
+   * @constructor
+   */
+  var TwentyFourLiveView = function TwentyFourLiveView() {
+  };
+
+  return TwentyFourLiveView.extend('TwentyFourLiveView', {
 
     /**
-     * Define view
-     * @class TwentyFourLiveView
-     * @extends BaseView
-     * @constructor
+     * Render twentyfourlive element
+     * @memberOf TwentyFourLiveView
      */
-    var TwentyFourLiveView = function TwentyFourLiveView() {
-    };
+    renderTwentyFourLive: function renderTwentyFourLive() {
 
-    return TwentyFourLiveView.extend('TwentyFourLiveView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render twentyfourlive element
-         * @memberOf TwentyFourLiveView
-         */
-        renderTwentyFourLive: function renderTwentyFourLive() {
+      /**
+       * Define $twentyfourlive
+       * @type {TwentyFourLiveElement}
+       */
+      this.elements.$twentyfourlive = new TwentyFourLiveElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $twentyfourlive
-             * @type {TwentyFourLiveElement}
-             */
-            this.elements.$twentyfourlive = new TwentyFourLiveElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf TwentyFourLiveView
+     * @returns {TwentyFourLivePreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define TwentyFourLive Preferences Element
+       * @type {TwentyFourLivePreferencesElement}
+       */
+      this.elements.$preferences = new TwentyFourLivePreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf TwentyFourLiveView
-         * @returns {TwentyFourLivePreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define TwentyFourLive Preferences Element
-             * @type {TwentyFourLivePreferencesElement}
-             */
-            this.elements.$preferences = new TwentyFourLivePreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf TwentyFourLiveView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {TwentyFourLiveRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
+      /**
+       * Define data
+       * @type {*|{}}
+       */
+      var data = this.controller.getRules();
 
-        /**
-         * Render Rules
-         * @memberOf TwentyFourLiveView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {TwentyFourLiveRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define data
-             * @type {*|{}}
-             */
-            var data = this.controller.getRules();
-
-            /**
-             * Define TwentyFourLive Rules Element
-             * @type {TwentyFourLiveRulesElement}
-             */
-            this.elements.$rules = new TwentyFourLiveRulesElement(this, {
-                data: data,
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render twentyfourlive
-         * @memberOf TwentyFourLiveView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderTwentyFourLive.bind(this)
-            );
+      /**
+       * Define TwentyFourLive Rules Element
+       * @type {TwentyFourLiveRulesElement}
+       */
+      this.elements.$rules = new TwentyFourLiveRulesElement(this, {
+        data: data,
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render twentyfourlive
+     * @memberOf TwentyFourLiveView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderTwentyFourLive.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

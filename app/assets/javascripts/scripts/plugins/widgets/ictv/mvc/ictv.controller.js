@@ -6,87 +6,76 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineIctvController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define ictv controller
+   * @class IctvController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var IctvController = function IctvController() {
+  };
+
+  return IctvController.extend('IctvController', {
+
     /**
-     * Define ictv controller
-     * @class IctvController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf IctvController
      */
-    var IctvController = function IctvController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
 
-    return IctvController.extend('IctvController', {
+      /**
+       * Get url
+       * @type {string|*}
+       */
+      var embed = this.controller.getEmbedCode(
+          this.model.getPrefs('ictvEmbedCode')
+      );
 
-        /**
-         * Set embedded content
-         * @memberOf IctvController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
+      if (embed) {
+        this.view.elements.$ictv.renderEmbeddedContent(embed);
+      }
+    },
 
-            /**
-             * Get url
-             * @type {string|*}
-             */
-            var embed = this.controller.getEmbedCode(
-                this.model.getPrefs('ictvEmbedCode')
-            );
+    /**
+     * Validate ictv
+     * @memberOf IctvController
+     * @param {string} embed
+     * @return {string|boolean}
+     */
+    getEmbedCode: function getEmbedCode(embed) {
 
-            if (embed) {
-                this.view.elements.$ictv.renderEmbeddedContent(embed);
-            }
-        },
+      if (!embed) {
+        this.scope.logger.debug('Initial state');
+        return false;
+      }
 
-        /**
-         * Validate ictv
-         * @memberOf IctvController
-         * @param {string} embed
-         * @return {string|boolean}
-         */
-        getEmbedCode: function getEmbedCode(embed) {
+      // Convert to string
+      embed += '';
 
-            if (!embed) {
-                this.scope.logger.debug('Initial state');
-                return false;
-            }
+      if (embed.match(/^<object/)) {
 
-            // Convert to string
-            embed += '';
+        return $(embed).find('param[name="flashvars"]').attr('value');
 
-            if (embed.match(/^<object/)) {
+      } else {
 
-                return $(embed).find('param[name="flashvars"]').attr('value');
+        this.scope.logger.warn('Invalid Ictv embed code');
+        return false;
+      }
+    },
 
-            } else {
+    /**
+     * Add Ictv rule
+     * @memberOf IctvController
+     * @param {Event} e
+     */
+    addIctvRule: function addIctvRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-                this.scope.logger.warn('Invalid Ictv embed code');
-                return false;
-            }
-        },
-
-        /**
-         * Add Ictv rule
-         * @memberOf IctvController
-         * @param e
-         */
-        addIctvRule: function addIctvRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

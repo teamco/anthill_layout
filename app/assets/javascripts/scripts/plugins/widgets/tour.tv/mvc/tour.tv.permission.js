@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineTourTvPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class TourTvPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var TourTvPermission = function TourTvPermission() {
+  /**
+   * Define Permissions
+   * @class TourTvPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var TourTvPermission = function TourTvPermission() {
 
-    };
+  };
 
-    return TourTvPermission.extend('TourTvPermission', {
-
-    }, BasePermission.prototype);
+  return TourTvPermission.extend('TourTvPermission', {},
+      BasePermission.prototype);
 });

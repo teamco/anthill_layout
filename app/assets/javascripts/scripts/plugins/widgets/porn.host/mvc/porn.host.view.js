@@ -7,108 +7,109 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/porn.host/element/porn.host.element',
-    'plugins/widgets/porn.host/element/porn.host.preferences.element',
-    'plugins/widgets/porn.host/element/porn.host.rules.element'
-], function definePornHostView(BaseView, Header, Footer, PornHostElement, PornHostPreferencesElement, PornHostRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/porn.host/element/porn.host.element',
+  'plugins/widgets/porn.host/element/porn.host.preferences.element',
+  'plugins/widgets/porn.host/element/porn.host.rules.element'
+], function definePornHostView(BaseView, Header, Footer, PornHostElement,
+    PornHostPreferencesElement, PornHostRulesElement) {
+
+  /**
+   * Define view
+   * @class PornHostView
+   * @extends BaseView
+   * @constructor
+   */
+  var PornHostView = function PornHostView() {
+  };
+
+  return PornHostView.extend('PornHostView', {
 
     /**
-     * Define view
-     * @class PornHostView
-     * @extends BaseView
-     * @constructor
+     * Render pornhost element
+     * @memberOf PornHostView
      */
-    var PornHostView = function PornHostView() {
-    };
+    renderPornHost: function renderPornHost() {
 
-    return PornHostView.extend('PornHostView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render pornhost element
-         * @memberOf PornHostView
-         */
-        renderPornHost: function renderPornHost() {
+      /**
+       * Define $pornhost
+       * @type {PornHostElement}
+       */
+      this.elements.$pornhost = new PornHostElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $pornhost
-             * @type {PornHostElement}
-             */
-            this.elements.$pornhost = new PornHostElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf PornHostView
+     * @returns {PornHostPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define PornHost Preferences Element
+       * @type {PornHostPreferencesElement}
+       */
+      this.elements.$preferences = new PornHostPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf PornHostView
-         * @returns {PornHostPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define PornHost Preferences Element
-             * @type {PornHostPreferencesElement}
-             */
-            this.elements.$preferences = new PornHostPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf PornHostView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {PornHostRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
+      /**
+       * Define data
+       * @type {*|{}}
+       */
+      var data = this.controller.getRules();
 
-        /**
-         * Render Rules
-         * @memberOf PornHostView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {PornHostRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define data
-             * @type {*|{}}
-             */
-            var data = this.controller.getRules();
-
-            /**
-             * Define PornHost Rules Element
-             * @type {PornHostRulesElement}
-             */
-            this.elements.$rules = new PornHostRulesElement(this, {
-                data: data,
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render pornhost
-         * @memberOf PornHostView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderPornHost.bind(this)
-            );
+      /**
+       * Define PornHost Rules Element
+       * @type {PornHostRulesElement}
+       */
+      this.elements.$rules = new PornHostRulesElement(this, {
+        data: data,
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render pornhost
+     * @memberOf PornHostView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderPornHost.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

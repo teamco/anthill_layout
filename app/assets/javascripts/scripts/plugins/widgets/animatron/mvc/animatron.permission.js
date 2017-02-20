@@ -7,20 +7,20 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineAnimatronPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class AnimatronPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var AnimatronPermission = function AnimatronPermission() {
-    };
+  /**
+   * Define Permissions
+   * @class AnimatronPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var AnimatronPermission = function AnimatronPermission() {
+  };
 
-    return AnimatronPermission.extend(
-        'AnimatronPermission', {}, 
-        BasePermission.prototype
-    );
+  return AnimatronPermission.extend(
+      'AnimatronPermission', {},
+      BasePermission.prototype
+  );
 });

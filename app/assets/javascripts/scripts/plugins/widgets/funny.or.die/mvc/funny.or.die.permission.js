@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineFunnyOrDiePermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class FunnyOrDiePermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var FunnyOrDiePermission = function FunnyOrDiePermission() {
+  /**
+   * Define Permissions
+   * @class FunnyOrDiePermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var FunnyOrDiePermission = function FunnyOrDiePermission() {
 
-    };
+  };
 
-    return FunnyOrDiePermission.extend('FunnyOrDiePermission', {
-
-    }, BasePermission.prototype);
+  return FunnyOrDiePermission.extend('FunnyOrDiePermission', {},
+      BasePermission.prototype);
 });

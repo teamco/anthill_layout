@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineAvatarPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class AvatarPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var AvatarPermission = function AvatarPermission() {
+  /**
+   * Define Permissions
+   * @class AvatarPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var AvatarPermission = function AvatarPermission() {
 
-    };
+  };
 
-    return AvatarPermission.extend('AvatarPermission', {
-
-    }, BasePermission.prototype);
+  return AvatarPermission.extend('AvatarPermission', {},
+      BasePermission.prototype);
 });

@@ -6,44 +6,44 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineAnimatronElement(PluginElement) {
 
+  /**
+   * Define Animatron Element
+   * @param view
+   * @param opts
+   * @returns {AnimatronElement}
+   * @constructor
+   * @class AnimatronElement
+   * @extends PluginElement
+   */
+  var AnimatronElement = function AnimatronElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('animatron', {resource: '/widgets'});
+
+    return this;
+  };
+
+  return AnimatronElement.extend('AnimatronElement', {
+
     /**
-     * Define Animatron Element
-     * @param view
-     * @param opts
-     * @returns {AnimatronElement}
-     * @constructor
-     * @class AnimatronElement
-     * @extends PluginElement
+     * Render Embedded content
+     * @memberOf AnimatronElement
+     * @param {string} embed
      */
-    var AnimatronElement = function AnimatronElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent(embed) {
+      this.addContent(
+          this.renderIframe(
+              $(embed).attr('src')
+          )
+      );
+    }
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
-
-        this.addCSS('animatron', {resource: '/widgets'});
-
-        return this;
-    };
-
-    return AnimatronElement.extend('AnimatronElement', {
-
-        /**
-         * Render Embedded content
-         * @memberOf AnimatronElement
-         * @param {string} embed
-         */
-        renderEmbeddedContent: function renderEmbeddedContent(embed) {
-            this.addContent(
-                this.renderIframe(
-                    $(embed).attr('src')
-                )
-            );
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 });

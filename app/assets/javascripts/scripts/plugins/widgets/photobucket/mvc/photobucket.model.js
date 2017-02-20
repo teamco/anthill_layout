@@ -6,53 +6,54 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function definePhotobucketModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define Photobucket model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class PhotobucketModel
+   * @constructor
+   */
+  var PhotobucketModel = function PhotobucketModel() {
+
     /**
-     * Define Photobucket model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class PhotobucketModel
-     * @constructor
-     */
-    var PhotobucketModel = function PhotobucketModel() {
-
-        /**
-         * Define preferences
-         * @memberOf PhotobucketModel
-         * @type {{
-         *      photobucketEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
+     * Define preferences
+     * @memberOf PhotobucketModel
+     * @type {{
+         *      photobucketEmbedCode: {type: string, disabled: boolean, value:
+         *     undefined, visible: boolean}
          * }}
-         */
-        this.preferences = {
-            photobucketEmbedCode: {
-                type: 'textarea',
-                disabled: false,
-                value: undefined,
-                visible: true
-            }
-        };
-
-        /**
-         * Define rules
-         * @memberOf PhotobucketModel
-         * @type {{}}
-         */
-        this.rules = {};
+     */
+    this.preferences = {
+      photobucketEmbedCode: {
+        type: 'textarea',
+        disabled: false,
+        value: undefined,
+        visible: true
+      }
     };
 
-    return PhotobucketModel.extend('PhotobucketModel', {
+    /**
+     * Define rules
+     * @memberOf PhotobucketModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        /**
-         * Set Photobucket embed code
-         * @memberOf PhotobucketModel
-         * @param {string} embed
-         */
-        setPhotobucketEmbedCode: function setPhotobucketEmbedCode(embed) {
-            this.setPrefs('photobucketEmbedCode', embed);
-        }
+  return PhotobucketModel.extend('PhotobucketModel', {
 
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    /**
+     * Set Photobucket embed code
+     * @memberOf PhotobucketModel
+     * @param {string} embed
+     */
+    setPhotobucketEmbedCode: function setPhotobucketEmbedCode(embed) {
+      this.setPrefs('photobucketEmbedCode', embed);
+    }
+
+  }, BaseModel.prototype, WidgetContentModel.prototype);
 });

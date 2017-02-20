@@ -6,56 +6,40 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineWistiaController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define Wistia controller
+   * @class WistiaController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var WistiaController = function WistiaController() {
+  };
+
+  return WistiaController.extend('WistiaController', {
+
     /**
-     * Define Wistia controller
-     * @class WistiaController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf WistiaController
      */
-    var WistiaController = function WistiaController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
+      this.view.get$item().renderEmbeddedContent(
+          this.model.getPrefs('wistiaEmbedCode')
+      );
+    },
 
-    return WistiaController.extend('WistiaController', {
+    /**
+     * Add Wistia rule
+     * @memberOf WistiaController
+     * @param {Event} e
+     */
+    addWistiaRule: function addWistiaRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-        /**
-         * Set embedded content
-         * @memberOf WistiaController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
-            this.view.get$item().renderEmbeddedContent(
-                this.model.getPrefs('wistiaEmbedCode')
-            );
-        },
-
-        /**
-         * Add Wistia rule
-         * @memberOf WistiaController
-         * @param e
-         */
-        addWistiaRule: function addWistiaRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target);
-
-            /**
-             * Get scope
-             * @type {Wistia|{name: string}}
-             */
-            var scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

@@ -6,41 +6,41 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineMetamorphicElement(PluginElement) {
 
+  /**
+   * Define Metamorphic Element
+   * @param view
+   * @param opts
+   * @returns {MetamorphicElement}
+   * @constructor
+   * @class MetamorphicElement
+   * @extends PluginElement
+   */
+  var MetamorphicElement = function MetamorphicElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('metamorphic', {resource: '/widgets'});
+
+    return this;
+  };
+
+  return MetamorphicElement.extend('MetamorphicElement', {
+
     /**
-     * Define Metamorphic Element
-     * @param view
-     * @param opts
-     * @returns {MetamorphicElement}
-     * @constructor
-     * @class MetamorphicElement
-     * @extends PluginElement
+     * Render Embedded content
+     * @memberOf MetamorphicElement
      */
-    var MetamorphicElement = function MetamorphicElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent() {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+      // Hide element
+      this.hide();
+    }
 
-        this.addCSS('metamorphic', {resource: '/widgets'});
-
-        return this;
-    };
-
-    return MetamorphicElement.extend('MetamorphicElement', {
-
-        /**
-         * Render Embedded content
-         * @memberOf MetamorphicElement
-         */
-        renderEmbeddedContent: function renderEmbeddedContent() {
-
-            // Hide element
-            this.hide();
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 });

@@ -6,39 +6,39 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/rules/widget.base.rules'
+  'plugins/plugin.element',
+  'plugins/rules/widget.base.rules'
 ], function defineSapOpenuiRulesElement(PluginElement, BaseWidgetRules) {
 
-    /**
-     * Define SapOpenui Rules Element
-     * @param view
-     * @param opts
-     * @returns {SapOpenuiRulesElement}
-     * @constructor
-     * @class SapOpenuiRulesElement
-     * @extends PluginElement
-     * @extends BaseWidgetRules
-     */
-    var SapOpenuiRulesElement = function SapOpenuiRulesElement(view, opts) {
+  /**
+   * Define SapOpenui Rules Element
+   * @param view
+   * @param opts
+   * @returns {SapOpenuiRulesElement}
+   * @constructor
+   * @class SapOpenuiRulesElement
+   * @extends PluginElement
+   * @extends BaseWidgetRules
+   */
+  var SapOpenuiRulesElement = function SapOpenuiRulesElement(view, opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBaseRulesData(
-            opts.data,
-            opts.rules.widget,
-            opts.rules.content
-        );
-
-        return this;
-    };
-
-    return SapOpenuiRulesElement.extend(
-        'SapOpenuiRulesElement', {}, 
-        PluginElement.prototype, 
-        BaseWidgetRules.prototype
+    this.renderBaseRulesData(
+        opts.data,
+        opts.rules.widget,
+        opts.rules.content
     );
+
+    return this;
+  };
+
+  return SapOpenuiRulesElement.extend(
+      'SapOpenuiRulesElement', {},
+      PluginElement.prototype,
+      BaseWidgetRules.prototype
+  );
 });

@@ -6,35 +6,33 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
 ], function defineUbrPreferencesElement(PluginElement, WidgetPreferences) {
 
-    /**
-     * Define Ubr Preferences Element
-     * @param view
-     * @param opts
-     * @returns {UbrPreferencesElement}
-     * @constructor
-     * @class UbrPreferencesElement
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     */
-    var UbrPreferencesElement = function UbrPreferencesElement(view, opts) {
+  /**
+   * Define Ubr Preferences Element
+   * @param view
+   * @param opts
+   * @returns {UbrPreferencesElement}
+   * @constructor
+   * @class UbrPreferencesElement
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   */
+  var UbrPreferencesElement = function UbrPreferencesElement(view, opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return UbrPreferencesElement.extend('UbrPreferencesElement', {
-
-
-    }, PluginElement.prototype, WidgetPreferences.prototype);
+  return UbrPreferencesElement.extend('UbrPreferencesElement', {},
+      PluginElement.prototype, WidgetPreferences.prototype);
 
 });

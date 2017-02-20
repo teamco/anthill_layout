@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function definePostTemplatePermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class PostTemplatePermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var PostTemplatePermission = function PostTemplatePermission() {
+  /**
+   * Define Permissions
+   * @class PostTemplatePermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var PostTemplatePermission = function PostTemplatePermission() {
 
-    };
+  };
 
-    return PostTemplatePermission.extend('PostTemplatePermission', {
-
-    }, BasePermission.prototype);
+  return PostTemplatePermission.extend('PostTemplatePermission', {},
+      BasePermission.prototype);
 });

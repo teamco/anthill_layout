@@ -7,110 +7,111 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/bar/element/bar.element',
-    'plugins/bar/element/bar.content.element'
-], function defineBarView(BaseView, Header, Footer, BarElement, BarContentElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/bar/element/bar.element',
+  'plugins/bar/element/bar.content.element'
+], function defineBarView(BaseView, Header, Footer, BarElement,
+    BarContentElement) {
+
+  /**
+   * Define view
+   * @class BarView
+   * @constructor
+   * @extends BaseView
+   */
+  var BarView = function BarView() {
+  };
+
+  return BarView.extend('BarView', {
 
     /**
-     * Define view
-     * @class BarView
-     * @constructor
-     * @extends BaseView
+     * Render Bar
+     * @memberOf BarView
      */
-    var BarView = function BarView() {
-    };
+    renderBar: function renderBar() {
 
-    return BarView.extend('BarView', {
+      if (this.isCached('$bar', BarElement)) {
+        return false;
+      }
 
-        /**
-         * Render Bar
-         * @memberOf BarView
-         */
-        renderBar: function renderBar() {
+      this.header(Header, this.get$container());
 
-            if (this.isCached('$bar', BarElement)) {
-                return false;
-            }
+      /**
+       * Define container
+       * @type {BarElement}
+       */
+      this.elements.$bar = new BarElement(this, {
+        $container: this.get$container().$,
+        style: 'panel-bar'
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
+    },
 
-            /**
-             * Define container
-             * @type {BarElement}
-             */
-            this.elements.$bar = new BarElement(this, {
-                $container: this.get$container().$,
-                style: 'panel-bar'
-            });
+    /**
+     * Render bar content
+     * @param data
+     * @param {Boolean} force
+     * @memberOf BarView
+     * @returns {boolean}
+     */
+    renderContent: function renderContent(data, force) {
 
-            this.footer(Footer, this.get$container());
-        },
+      if (this.isCachedItems() && !force) {
+        return false;
+      }
 
-        /**
-         * Render bar content
-         * @param data
-         * @param {Boolean} force
-         * @memberOf BarView
-         * @returns {boolean}
-         */
-        renderContent: function renderContent(data, force) {
+      this.updateElementItems();
 
-            if (this.isCachedItems() && !force) {
-                return false;
-            }
+      for (var index in data) {
 
-            this.updateElementItems();
+        if (data.hasOwnProperty(index)) {
 
-            for (var index in data) {
+          /**
+           * Define item
+           */
+          var item = data[index];
 
-                if (data.hasOwnProperty(index)) {
+          /**
+           * Define module resource
+           * @type {string}
+           */
+          var moduleResource = item.module.name.toDash();
 
-                    /**
-                     * Define item
-                     */
-                    var item = data[index];
+          /**
+           * Render item
+           * @type {BarContentElement}
+           */
+          var $item = new BarContentElement(this, {
+            style: _.compact([
+              'content',
+              item.activated ? 'activated' : null,
+              moduleResource
+            ]).join(' '),
+            resource: item,
+            cname: moduleResource,
+            $container: this.get$item().$
+          });
 
-                    /**
-                     * Define module resource
-                     * @type {string}
-                     */
-                    var moduleResource = item.module.name.toDash();
-
-                    /**
-                     * Render item
-                     * @type {BarContentElement}
-                     */
-                    var $item = new BarContentElement(this, {
-                        style: _.compact([
-                            'content',
-                            item.activated ? 'activated' : null,
-                            moduleResource
-                        ]).join(' '),
-                        resource: item,
-                        cname: moduleResource,
-                        $container: this.get$item().$
-                    });
-
-                    this.updateElementItems($item);
-                }
-            }
-        },
-
-        /**
-         * Render bar
-         * @memberOf BarView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderBar.bind(this)
-            );
+          this.updateElementItems($item);
         }
+      }
+    },
 
-    }, BaseView.prototype)
+    /**
+     * Render bar
+     * @memberOf BarView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderBar.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

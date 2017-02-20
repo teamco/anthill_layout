@@ -6,35 +6,33 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
 ], function defineScribdPreferencesElement(PluginElement, WidgetPreferences) {
 
-    /**
-     * Define Scribd Preferences Element
-     * @param view
-     * @param opts
-     * @returns {ScribdPreferencesElement}
-     * @constructor
-     * @class ScribdPreferencesElement
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     */
-    var ScribdPreferencesElement = function ScribdPreferencesElement(view, opts) {
+  /**
+   * Define Scribd Preferences Element
+   * @param view
+   * @param opts
+   * @returns {ScribdPreferencesElement}
+   * @constructor
+   * @class ScribdPreferencesElement
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   */
+  var ScribdPreferencesElement = function ScribdPreferencesElement(view, opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return ScribdPreferencesElement.extend('ScribdPreferencesElement', {
-
-
-    }, PluginElement.prototype, WidgetPreferences.prototype);
+  return ScribdPreferencesElement.extend('ScribdPreferencesElement', {},
+      PluginElement.prototype, WidgetPreferences.prototype);
 
 });

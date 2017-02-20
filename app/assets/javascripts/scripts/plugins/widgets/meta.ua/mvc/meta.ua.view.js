@@ -7,108 +7,109 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/meta.ua/element/meta.ua.element',
-    'plugins/widgets/meta.ua/element/meta.ua.preferences.element',
-    'plugins/widgets/meta.ua/element/meta.ua.rules.element'
-], function defineMetaUaView(BaseView, Header, Footer, MetaUaElement, MetaUaPreferencesElement, MetaUaRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/meta.ua/element/meta.ua.element',
+  'plugins/widgets/meta.ua/element/meta.ua.preferences.element',
+  'plugins/widgets/meta.ua/element/meta.ua.rules.element'
+], function defineMetaUaView(BaseView, Header, Footer, MetaUaElement,
+    MetaUaPreferencesElement, MetaUaRulesElement) {
+
+  /**
+   * Define view
+   * @class MetaUaView
+   * @extends BaseView
+   * @constructor
+   */
+  var MetaUaView = function MetaUaView() {
+  };
+
+  return MetaUaView.extend('MetaUaView', {
 
     /**
-     * Define view
-     * @class MetaUaView
-     * @extends BaseView
-     * @constructor
+     * Render meta element
+     * @memberOf MetaUaView
      */
-    var MetaUaView = function MetaUaView() {
-    };
+    renderMetaUa: function renderMetaUa() {
 
-    return MetaUaView.extend('MetaUaView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render meta element
-         * @memberOf MetaUaView
-         */
-        renderMetaUa: function renderMetaUa() {
+      /**
+       * Define $metaua
+       * @type {MetaUaElement}
+       */
+      this.elements.$metaua = new MetaUaElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $metaua
-             * @type {MetaUaElement}
-             */
-            this.elements.$metaua = new MetaUaElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf MetaUaView
+     * @returns {MetaUaPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define MetaUa Preferences Element
+       * @type {MetaUaPreferencesElement}
+       */
+      this.elements.$preferences = new MetaUaPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf MetaUaView
-         * @returns {MetaUaPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define MetaUa Preferences Element
-             * @type {MetaUaPreferencesElement}
-             */
-            this.elements.$preferences = new MetaUaPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf MetaUaView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {MetaUaRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
+      /**
+       * Define data
+       * @type {*|{}}
+       */
+      var data = this.controller.getRules();
 
-        /**
-         * Render Rules
-         * @memberOf MetaUaView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {MetaUaRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define data
-             * @type {*|{}}
-             */
-            var data = this.controller.getRules();
-
-            /**
-             * Define MetaUa Rules Element
-             * @type {MetaUaRulesElement}
-             */
-            this.elements.$rules = new MetaUaRulesElement(this, {
-                data: data,
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render meta
-         * @memberOf MetaUaView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderMetaUa.bind(this)
-            );
+      /**
+       * Define MetaUa Rules Element
+       * @type {MetaUaRulesElement}
+       */
+      this.elements.$rules = new MetaUaRulesElement(this, {
+        data: data,
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render meta
+     * @memberOf MetaUaView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderMetaUa.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

@@ -7,108 +7,109 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/rss/element/rss.element',
-    'plugins/widgets/rss/element/rss.preferences.element',
-    'plugins/widgets/rss/element/rss.rules.element'
-], function defineRssView(BaseView, Header, Footer, RssElement, RssPreferencesElement, RssRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/rss/element/rss.element',
+  'plugins/widgets/rss/element/rss.preferences.element',
+  'plugins/widgets/rss/element/rss.rules.element'
+], function defineRssView(BaseView, Header, Footer, RssElement,
+    RssPreferencesElement, RssRulesElement) {
+
+  /**
+   * Define view
+   * @class RssView
+   * @extends BaseView
+   * @constructor
+   */
+  var RssView = function RssView() {
+  };
+
+  return RssView.extend('RssView', {
 
     /**
-     * Define view
-     * @class RssView
-     * @extends BaseView
-     * @constructor
+     * Render rss element
+     * @memberOf RssView
      */
-    var RssView = function RssView() {
-    };
+    renderRss: function renderRss() {
 
-    return RssView.extend('RssView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render rss element
-         * @memberOf RssView
-         */
-        renderRss: function renderRss() {
+      /**
+       * Define $rss
+       * @type {RssElement}
+       */
+      this.elements.$rss = new RssElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $rss
-             * @type {RssElement}
-             */
-            this.elements.$rss = new RssElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf RssView
+     * @returns {RssPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define Rss Preferences Element
+       * @type {RssPreferencesElement}
+       */
+      this.elements.$preferences = new RssPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf RssView
-         * @returns {RssPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define Rss Preferences Element
-             * @type {RssPreferencesElement}
-             */
-            this.elements.$preferences = new RssPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf RssView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {RssRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
+      /**
+       * Define data
+       * @type {*|{}}
+       */
+      var data = this.controller.getRules();
 
-        /**
-         * Render Rules
-         * @memberOf RssView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {RssRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define data
-             * @type {*|{}}
-             */
-            var data = this.controller.getRules();
-
-            /**
-             * Define Rss Rules Element
-             * @type {RssRulesElement}
-             */
-            this.elements.$rules = new RssRulesElement(this, {
-                data: data,
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render rss
-         * @memberOf RssView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderRss.bind(this)
-            );
+      /**
+       * Define Rss Rules Element
+       * @type {RssRulesElement}
+       */
+      this.elements.$rules = new RssRulesElement(this, {
+        data: data,
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render rss
+     * @memberOf RssView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderRss.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

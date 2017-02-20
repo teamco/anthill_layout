@@ -6,86 +6,75 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineYapFilesController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define yapfiles controller
+   * @class YapFilesController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var YapFilesController = function YapFilesController() {
+  };
+
+  return YapFilesController.extend('YapFilesController', {
+
     /**
-     * Define yapfiles controller
-     * @class YapFilesController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf YapFilesController
      */
-    var YapFilesController = function YapFilesController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
 
-    return YapFilesController.extend('YapFilesController', {
+      /**
+       * Get url
+       * @type {string|*}
+       */
+      var url = this.model.getPrefs('yapfilesEmbedCode'),
+          embed = this.controller.getEmbedCode(url);
 
-        /**
-         * Set embedded content
-         * @memberOf YapFilesController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
+      if (embed) {
+        this.view.elements.$yapfiles.renderEmbeddedContent(embed);
+      }
+    },
 
-            /**
-             * Get url
-             * @type {string|*}
-             */
-            var url = this.model.getPrefs('yapfilesEmbedCode'),
-                embed = this.controller.getEmbedCode(url);
+    /**
+     * Validate yapfiles
+     * @memberOf YapFilesController
+     * @param {string} embed
+     * @return {string|boolean}
+     */
+    getEmbedCode: function getEmbedCode(embed) {
 
-            if (embed) {
-                this.view.elements.$yapfiles.renderEmbeddedContent(embed);
-            }
-        },
+      if (!embed) {
+        this.scope.logger.debug('Initial state');
+        return false;
+      }
 
-        /**
-         * Validate yapfiles
-         * @memberOf YapFilesController
-         * @param {string} embed
-         * @return {string|boolean}
-         */
-        getEmbedCode: function getEmbedCode(embed) {
+      // Convert to string
+      embed += '';
 
-            if (!embed) {
-                this.scope.logger.debug('Initial state');
-                return false;
-            }
+      if (embed.match(/^<object/)) {
 
-            // Convert to string
-            embed += '';
+        return $(embed);
 
-            if (embed.match(/^<object/)) {
+      } else {
 
-                return $(embed);
+        this.scope.logger.warn('Invalid YapFiles embed code');
+        return false;
+      }
+    },
 
-            } else {
+    /**
+     * Add YapFiles rule
+     * @memberOf YapFilesController
+     * @param {Event} e
+     */
+    addYapFilesRule: function addYapFilesRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-                this.scope.logger.warn('Invalid YapFiles embed code');
-                return false;
-            }
-        },
-
-        /**
-         * Add YapFiles rule
-         * @memberOf YapFilesController
-         * @param e
-         */
-        addYapFilesRule: function addYapFilesRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

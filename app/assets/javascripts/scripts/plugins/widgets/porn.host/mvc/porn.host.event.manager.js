@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function definePornHostEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define PornHost event manager
-     * @class PornHostEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var PornHostEventManager = function PornHostEventManager() {
+  /**
+   * Define PornHost event manager
+   * @class PornHostEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var PornHostEventManager = function PornHostEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return PornHostEventManager.extend('PornHostEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return PornHostEventManager.extend('PornHostEventManager', {},
+      WidgetContentEventManager.prototype);
 });

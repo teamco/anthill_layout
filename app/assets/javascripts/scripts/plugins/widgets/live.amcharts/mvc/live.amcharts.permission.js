@@ -7,20 +7,20 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineLiveAmchartsPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class LiveAmchartsPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var LiveAmchartsPermission = function LiveAmchartsPermission() {
-    };
+  /**
+   * Define Permissions
+   * @class LiveAmchartsPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var LiveAmchartsPermission = function LiveAmchartsPermission() {
+  };
 
-    return LiveAmchartsPermission.extend(
-        'LiveAmchartsPermission', {}, 
-        BasePermission.prototype
-    );
+  return LiveAmchartsPermission.extend(
+      'LiveAmchartsPermission', {},
+      BasePermission.prototype
+  );
 });

@@ -7,23 +7,23 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineLiveAmchartsEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define LiveAmcharts event manager
-     * @class LiveAmchartsEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var LiveAmchartsEventManager = function LiveAmchartsEventManager() {
+  /**
+   * Define LiveAmcharts event manager
+   * @class LiveAmchartsEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var LiveAmchartsEventManager = function LiveAmchartsEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return LiveAmchartsEventManager.extend(
-        'LiveAmchartsEventManager', {},
-        WidgetContentEventManager.prototype
-    );
+  return LiveAmchartsEventManager.extend(
+      'LiveAmchartsEventManager', {},
+      WidgetContentEventManager.prototype
+  );
 });

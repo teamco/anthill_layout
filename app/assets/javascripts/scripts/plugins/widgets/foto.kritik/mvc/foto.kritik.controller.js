@@ -6,86 +6,75 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineFotoKritikController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define fotokritik controller
+   * @class FotoKritikController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var FotoKritikController = function FotoKritikController() {
+  };
+
+  return FotoKritikController.extend('FotoKritikController', {
+
     /**
-     * Define fotokritik controller
-     * @class FotoKritikController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf FotoKritikController
      */
-    var FotoKritikController = function FotoKritikController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
 
-    return FotoKritikController.extend('FotoKritikController', {
+      /**
+       * Get url
+       * @type {string|*}
+       */
+      var url = this.model.getPrefs('fotokritikEmbedCode'),
+          embed = this.controller.getEmbedCode(url);
 
-        /**
-         * Set embedded content
-         * @memberOf FotoKritikController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
+      if (embed) {
+        this.view.elements.$fotokritik.renderEmbeddedContent(embed);
+      }
+    },
 
-            /**
-             * Get url
-             * @type {string|*}
-             */
-            var url = this.model.getPrefs('fotokritikEmbedCode'),
-                embed = this.controller.getEmbedCode(url);
+    /**
+     * Validate fotokritik
+     * @memberOf FotoKritikController
+     * @param {string} embed
+     * @return {string|boolean}
+     */
+    getEmbedCode: function getEmbedCode(embed) {
 
-            if (embed) {
-                this.view.elements.$fotokritik.renderEmbeddedContent(embed);
-            }
-        },
+      if (!embed) {
+        this.scope.logger.debug('Initial state');
+        return false;
+      }
 
-        /**
-         * Validate fotokritik
-         * @memberOf FotoKritikController
-         * @param {string} embed
-         * @return {string|boolean}
-         */
-        getEmbedCode: function getEmbedCode(embed) {
+      // Convert to string
+      embed += '';
 
-            if (!embed) {
-                this.scope.logger.debug('Initial state');
-                return false;
-            }
+      if (embed.match(/^<iframe/)) {
 
-            // Convert to string
-            embed += '';
+        return $(embed).attr('src');
 
-            if (embed.match(/^<iframe/)) {
+      } else {
 
-                return $(embed).attr('src');
+        this.scope.logger.warn('Invalid FotoKritik embed code');
+        return false;
+      }
+    },
 
-            } else {
+    /**
+     * Add FotoKritik rule
+     * @memberOf FotoKritikController
+     * @param {Event} e
+     */
+    addFotoKritikRule: function addFotoKritikRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-                this.scope.logger.warn('Invalid FotoKritik embed code');
-                return false;
-            }
-        },
-
-        /**
-         * Add FotoKritik rule
-         * @memberOf FotoKritikController
-         * @param e
-         */
-        addFotoKritikRule: function addFotoKritikRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

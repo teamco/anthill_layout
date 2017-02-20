@@ -6,53 +6,53 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineImageController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define image.gallery controller
+   * @class ImageGalleryController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var ImageGalleryController = function ImageGalleryController() {
+  };
+
+  return ImageGalleryController.extend('ImageGalleryController', {
+
     /**
-     * Define image.gallery controller
-     * @class ImageGalleryController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf ImageGalleryController
      */
-    var ImageGalleryController = function ImageGalleryController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
 
-    return ImageGalleryController.extend('ImageGalleryController', {
+      this.view.elements.$imagegallery.renderEmbeddedContent(
+          this.model.getPrefs('imageGalleryUrls'),
+          this.model.getPrefs('imageGalleryTexts')
+      );
+    },
 
-        /**
-         * Set embedded content
-         * @memberOf ImageGalleryController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
+    /**
+     * Add ImageGallery rule
+     * @memberOf ImageGalleryController
+     * @param {Event} e
+     */
+    addImageGalleryRule: function addImageGalleryRule(e) {
 
-            this.view.elements.$imagegallery.renderEmbeddedContent(
-                this.model.getPrefs('imageGalleryUrls'),
-                this.model.getPrefs('imageGalleryTexts')
-            );
-        },
+      /**
+       * Define $button
+       * @type {*|jQuery|HTMLElement}
+       */
+      var $button = $(e.target),
+          scope = this.scope;
 
-        /**
-         * Add ImageGallery rule
-         * @memberOf ImageGalleryController
-         * @param e
-         */
-        addImageGalleryRule: function addImageGalleryRule(e) {
+      scope.observer.publish(
+          scope.eventmanager.eventList.publishRule,
+          [$button.attr('value'), this.scope.name]
+      );
+    }
 
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), this.scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

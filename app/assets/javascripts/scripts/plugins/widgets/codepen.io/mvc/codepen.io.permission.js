@@ -7,20 +7,20 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineCodepenIoPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class CodepenIoPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var CodepenIoPermission = function CodepenIoPermission() {
-    };
+  /**
+   * Define Permissions
+   * @class CodepenIoPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var CodepenIoPermission = function CodepenIoPermission() {
+  };
 
-    return CodepenIoPermission.extend(
-        'CodepenIoPermission', {}, 
-        BasePermission.prototype
-    );
+  return CodepenIoPermission.extend(
+      'CodepenIoPermission', {},
+      BasePermission.prototype
+  );
 });

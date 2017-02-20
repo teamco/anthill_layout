@@ -7,101 +7,102 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/releasewire/element/releasewire.element',
-    'plugins/widgets/releasewire/element/releasewire.preferences.element',
-    'plugins/widgets/releasewire/element/releasewire.rules.element'
-], function defineReleasewireView(BaseView, Header, Footer, ReleasewireElement, ReleasewirePreferencesElement, ReleasewireRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/releasewire/element/releasewire.element',
+  'plugins/widgets/releasewire/element/releasewire.preferences.element',
+  'plugins/widgets/releasewire/element/releasewire.rules.element'
+], function defineReleasewireView(BaseView, Header, Footer, ReleasewireElement,
+    ReleasewirePreferencesElement, ReleasewireRulesElement) {
+
+  /**
+   * Define view
+   * @class ReleasewireView
+   * @extends BaseView
+   * @constructor
+   */
+  var ReleasewireView = function ReleasewireView() {
+  };
+
+  return ReleasewireView.extend('ReleasewireView', {
 
     /**
-     * Define view
-     * @class ReleasewireView
-     * @extends BaseView
-     * @constructor
+     * Render Releasewire element
+     * @memberOf ReleasewireView
      */
-    var ReleasewireView = function ReleasewireView() {
-    };
+    renderReleasewire: function renderReleasewire() {
 
-    return ReleasewireView.extend('ReleasewireView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render Releasewire element
-         * @memberOf ReleasewireView
-         */
-        renderReleasewire: function renderReleasewire() {
+      /**
+       * Define $releasewire
+       * @type {ReleasewireElement}
+       */
+      this.elements.$releasewire = new ReleasewireElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $releasewire
-             * @type {ReleasewireElement}
-             */
-            this.elements.$releasewire = new ReleasewireElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf ReleasewireView
+     * @returns {ReleasewirePreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define Releasewire Preferences Element
+       * @type {ReleasewirePreferencesElement}
+       */
+      this.elements.$preferences = new ReleasewirePreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf ReleasewireView
-         * @returns {ReleasewirePreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define Releasewire Preferences Element
-             * @type {ReleasewirePreferencesElement}
-             */
-            this.elements.$preferences = new ReleasewirePreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf ReleasewireView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {ReleasewireRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
-
-        /**
-         * Render Rules
-         * @memberOf ReleasewireView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {ReleasewireRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define Releasewire Rules Element
-             * @type {ReleasewireRulesElement}
-             */
-            this.elements.$rules = new ReleasewireRulesElement(this, {
-                data: this.controller.getRules(),
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render Releasewire
-         * @memberOf ReleasewireView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderReleasewire.bind(this)
-            );
+      /**
+       * Define Releasewire Rules Element
+       * @type {ReleasewireRulesElement}
+       */
+      this.elements.$rules = new ReleasewireRulesElement(this, {
+        data: this.controller.getRules(),
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype);
+      return this.get$rules();
+    },
+
+    /**
+     * Render Releasewire
+     * @memberOf ReleasewireView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderReleasewire.bind(this)
+      );
+    }
+
+  }, BaseView.prototype);
 });

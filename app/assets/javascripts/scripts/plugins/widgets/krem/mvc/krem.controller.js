@@ -6,86 +6,75 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineKremController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define krem controller
+   * @class KremController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var KremController = function KremController() {
+  };
+
+  return KremController.extend('KremController', {
+
     /**
-     * Define krem controller
-     * @class KremController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf KremController
      */
-    var KremController = function KremController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
 
-    return KremController.extend('KremController', {
+      /**
+       * Get url
+       * @type {string|*}
+       */
+      var url = this.model.getPrefs('kremEmbedCode'),
+          embed = this.controller.getEmbedCode(url);
 
-        /**
-         * Set embedded content
-         * @memberOf KremController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
+      if (embed) {
+        this.view.elements.$krem.renderEmbeddedContent(embed);
+      }
+    },
 
-            /**
-             * Get url
-             * @type {string|*}
-             */
-            var url = this.model.getPrefs('kremEmbedCode'),
-                embed = this.controller.getEmbedCode(url);
+    /**
+     * Validate krem
+     * @memberOf KremController
+     * @param {string} embed
+     * @return {string|boolean}
+     */
+    getEmbedCode: function getEmbedCode(embed) {
 
-            if (embed) {
-                this.view.elements.$krem.renderEmbeddedContent(embed);
-            }
-        },
+      if (!embed) {
+        this.scope.logger.debug('Initial state');
+        return false;
+      }
 
-        /**
-         * Validate krem
-         * @memberOf KremController
-         * @param {string} embed
-         * @return {string|boolean}
-         */
-        getEmbedCode: function getEmbedCode(embed) {
+      // Convert to string
+      embed += '';
 
-            if (!embed) {
-                this.scope.logger.debug('Initial state');
-                return false;
-            }
+      if (embed.match(/^<object/)) {
 
-            // Convert to string
-            embed += '';
+        return embed;
 
-            if (embed.match(/^<object/)) {
+      } else {
 
-                return embed;
+        this.scope.logger.warn('Invalid Krem embed code');
+        return false;
+      }
+    },
 
-            } else {
+    /**
+     * Add Krem rule
+     * @memberOf KremController
+     * @param {Event} e
+     */
+    addKremRule: function addKremRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-                this.scope.logger.warn('Invalid Krem embed code');
-                return false;
-            }
-        },
-
-        /**
-         * Add Krem rule
-         * @memberOf KremController
-         * @param e
-         */
-        addKremRule: function addKremRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

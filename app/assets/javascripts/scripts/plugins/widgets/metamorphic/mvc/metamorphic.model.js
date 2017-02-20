@@ -6,46 +6,46 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineMetamorphicModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define Metamorphic model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class MetamorphicModel
+   * @constructor
+   */
+  var MetamorphicModel = function MetamorphicModel() {
+
     /**
-     * Define Metamorphic model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class MetamorphicModel
-     * @constructor
+     * Define preferences
+     * @property MetamorphicModel
+     * @type {{}}
      */
-    var MetamorphicModel = function MetamorphicModel() {
+    this.preferences = {};
 
-        /**
-         * Define preferences
-         * @property MetamorphicModel
-         * @type {{}}
-         */
-        this.preferences = {};
+    /**
+     * Define rules
+     * @property MetamorphicModel
+     * @type {{}}
+     */
+    this.rules = {};
 
-        /**
-         * Define rules
-         * @property MetamorphicModel
-         * @type {{}}
-         */
-        this.rules = {};
+    if (!Object.keys(this.preferences).length) {
 
-        if (!Object.keys(this.preferences).length) {
+      /**
+       * Fetch prefs
+       * @type {*|{metamorphicAllowChangeContent, metamorphicType}|{}}
+       */
+      this.preferences = this.getMetamorphicPreferences(false);
+    }
+  };
 
-            /**
-             * Fetch prefs
-             * @type {*|{metamorphicAllowChangeContent, metamorphicType}|{}}
-             */
-            this.preferences = this.getMetamorphicPreferences(false);
-        }
-    };
-
-    return MetamorphicModel.extend(
-        'MetamorphicModel', {},
-        BaseModel.prototype,
-        WidgetContentModel.prototype
-    );
+  return MetamorphicModel.extend(
+      'MetamorphicModel', {},
+      BaseModel.prototype,
+      WidgetContentModel.prototype
+  );
 });

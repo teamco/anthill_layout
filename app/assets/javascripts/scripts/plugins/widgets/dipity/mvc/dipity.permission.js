@@ -7,20 +7,20 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineDipityPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class DipityPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var DipityPermission = function DipityPermission() {
-    };
+  /**
+   * Define Permissions
+   * @class DipityPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var DipityPermission = function DipityPermission() {
+  };
 
-    return DipityPermission.extend(
-        'DipityPermission', {}, 
-        BasePermission.prototype
-    );
+  return DipityPermission.extend(
+      'DipityPermission', {},
+      BasePermission.prototype
+  );
 });

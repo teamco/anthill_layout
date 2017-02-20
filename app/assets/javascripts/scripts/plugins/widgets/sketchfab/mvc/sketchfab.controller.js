@@ -6,56 +6,40 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineSketchfabController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define Sketchfab controller
+   * @class SketchfabController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var SketchfabController = function SketchfabController() {
+  };
+
+  return SketchfabController.extend('SketchfabController', {
+
     /**
-     * Define Sketchfab controller
-     * @class SketchfabController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf SketchfabController
      */
-    var SketchfabController = function SketchfabController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
+      this.view.get$item().renderEmbeddedContent(
+          this.model.getPrefs('sketchfabEmbedCode')
+      );
+    },
 
-    return SketchfabController.extend('SketchfabController', {
+    /**
+     * Add Sketchfab rule
+     * @memberOf SketchfabController
+     * @param {Event} e
+     */
+    addSketchfabRule: function addSketchfabRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-        /**
-         * Set embedded content
-         * @memberOf SketchfabController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
-            this.view.get$item().renderEmbeddedContent(
-                this.model.getPrefs('sketchfabEmbedCode')
-            );
-        },
-
-        /**
-         * Add Sketchfab rule
-         * @memberOf SketchfabController
-         * @param e
-         */
-        addSketchfabRule: function addSketchfabRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target);
-
-            /**
-             * Get scope
-             * @type {Sketchfab|{name: string}}
-             */
-            var scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

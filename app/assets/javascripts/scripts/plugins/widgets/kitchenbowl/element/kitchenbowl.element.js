@@ -6,40 +6,40 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineKitchenbowlElement(PluginElement) {
 
+  /**
+   * Define Kitchenbowl Element
+   * @param view
+   * @param opts
+   * @returns {KitchenbowlElement}
+   * @constructor
+   * @class KitchenbowlElement
+   * @extends PluginElement
+   */
+  var KitchenbowlElement = function KitchenbowlElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('kitchenbowl', {resource: '/widgets'});
+
+    return this;
+  };
+
+  return KitchenbowlElement.extend('KitchenbowlElement', {
+
     /**
-     * Define Kitchenbowl Element
-     * @param view
-     * @param opts
-     * @returns {KitchenbowlElement}
-     * @constructor
-     * @class KitchenbowlElement
-     * @extends PluginElement
+     * Render Embedded content
+     * @memberOf KitchenbowlElement
+     * @param {string} embed
      */
-    var KitchenbowlElement = function KitchenbowlElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent(embed) {
+      this.addContent(embed);
+    }
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
-
-        this.addCSS('kitchenbowl', {resource: '/widgets'});
-
-        return this;
-    };
-
-    return KitchenbowlElement.extend('KitchenbowlElement', {
-
-        /**
-         * Render Embedded content
-         * @memberOf KitchenbowlElement
-         * @param {string} embed
-         */
-        renderEmbeddedContent: function renderEmbeddedContent(embed) {
-            this.addContent(embed);
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 });

@@ -7,108 +7,109 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/fapa.tv/element/fapa.tv.element',
-    'plugins/widgets/fapa.tv/element/fapa.tv.preferences.element',
-    'plugins/widgets/fapa.tv/element/fapa.tv.rules.element'
-], function defineFapaTvView(BaseView, Header, Footer, FapaTvElement, FapaTvPreferencesElement, FapaTvRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/fapa.tv/element/fapa.tv.element',
+  'plugins/widgets/fapa.tv/element/fapa.tv.preferences.element',
+  'plugins/widgets/fapa.tv/element/fapa.tv.rules.element'
+], function defineFapaTvView(BaseView, Header, Footer, FapaTvElement,
+    FapaTvPreferencesElement, FapaTvRulesElement) {
+
+  /**
+   * Define view
+   * @class FapaTvView
+   * @extends BaseView
+   * @constructor
+   */
+  var FapaTvView = function FapaTvView() {
+  };
+
+  return FapaTvView.extend('FapaTvView', {
 
     /**
-     * Define view
-     * @class FapaTvView
-     * @extends BaseView
-     * @constructor
+     * Render fapatv element
+     * @memberOf FapaTvView
      */
-    var FapaTvView = function FapaTvView() {
-    };
+    renderFapaTv: function renderFapaTv() {
 
-    return FapaTvView.extend('FapaTvView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render fapatv element
-         * @memberOf FapaTvView
-         */
-        renderFapaTv: function renderFapaTv() {
+      /**
+       * Define $fapatv
+       * @type {FapaTvElement}
+       */
+      this.elements.$fapatv = new FapaTvElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $fapatv
-             * @type {FapaTvElement}
-             */
-            this.elements.$fapatv = new FapaTvElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf FapaTvView
+     * @returns {FapaTvPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define FapaTv Preferences Element
+       * @type {FapaTvPreferencesElement}
+       */
+      this.elements.$preferences = new FapaTvPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf FapaTvView
-         * @returns {FapaTvPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define FapaTv Preferences Element
-             * @type {FapaTvPreferencesElement}
-             */
-            this.elements.$preferences = new FapaTvPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf FapaTvView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {FapaTvRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
+      /**
+       * Define data
+       * @type {*|{}}
+       */
+      var data = this.controller.getRules();
 
-        /**
-         * Render Rules
-         * @memberOf FapaTvView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {FapaTvRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define data
-             * @type {*|{}}
-             */
-            var data = this.controller.getRules();
-
-            /**
-             * Define FapaTv Rules Element
-             * @type {FapaTvRulesElement}
-             */
-            this.elements.$rules = new FapaTvRulesElement(this, {
-                data: data,
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render fapatv
-         * @memberOf FapaTvView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderFapaTv.bind(this)
-            );
+      /**
+       * Define FapaTv Rules Element
+       * @type {FapaTvRulesElement}
+       */
+      this.elements.$rules = new FapaTvRulesElement(this, {
+        data: data,
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render fapatv
+     * @memberOf FapaTvView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderFapaTv.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineSimpleWeatherPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class SimpleWeatherPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var SimpleWeatherPermission = function SimpleWeatherPermission() {
+  /**
+   * Define Permissions
+   * @class SimpleWeatherPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var SimpleWeatherPermission = function SimpleWeatherPermission() {
 
-    };
+  };
 
-    return SimpleWeatherPermission.extend('SimpleWeatherPermission', {
-
-    }, BasePermission.prototype);
+  return SimpleWeatherPermission.extend('SimpleWeatherPermission', {},
+      BasePermission.prototype);
 });

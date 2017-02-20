@@ -6,43 +6,43 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineSmotriComElement(PluginElement) {
 
+  /**
+   * Define SmotriCom Element
+   * @param view
+   * @param opts
+   * @returns {SmotriComElement}
+   * @constructor
+   * @class SmotriComElement
+   * @extends PluginElement
+   */
+  var SmotriComElement = function SmotriComElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('smotri.com', {resource: '/widgets'});
+
+    return this;
+  };
+
+  return SmotriComElement.extend('SmotriComElement', {
+
     /**
-     * Define SmotriCom Element
-     * @param view
-     * @param opts
-     * @returns {SmotriComElement}
-     * @constructor
-     * @class SmotriComElement
-     * @extends PluginElement
+     * Render Embedded content
+     * @memberOf SmotriComElement
+     * @param {string} embed
      */
-    var SmotriComElement = function SmotriComElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent(embed) {
+      this.$.append(
+          this.renderObject(embed)
+      );
+    }
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
-
-        this.addCSS('smotri.com', {resource: '/widgets'});
-
-        return this;
-    };
-
-    return SmotriComElement.extend('SmotriComElement', {
-
-        /**
-         * Render Embedded content
-         * @memberOf SmotriComElement
-         * @param {string} embed
-         */
-        renderEmbeddedContent: function renderEmbeddedContent(embed) {
-            this.$.append(
-                this.renderObject(embed)
-            );
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 
 });

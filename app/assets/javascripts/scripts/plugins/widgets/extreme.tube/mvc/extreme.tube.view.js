@@ -7,108 +7,109 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/extreme.tube/element/extreme.tube.element',
-    'plugins/widgets/extreme.tube/element/extreme.tube.preferences.element',
-    'plugins/widgets/extreme.tube/element/extreme.tube.rules.element'
-], function defineExtremeTubeView(BaseView, Header, Footer, ExtremeTubeElement, ExtremeTubePreferencesElement, ExtremeTubeRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/extreme.tube/element/extreme.tube.element',
+  'plugins/widgets/extreme.tube/element/extreme.tube.preferences.element',
+  'plugins/widgets/extreme.tube/element/extreme.tube.rules.element'
+], function defineExtremeTubeView(BaseView, Header, Footer, ExtremeTubeElement,
+    ExtremeTubePreferencesElement, ExtremeTubeRulesElement) {
+
+  /**
+   * Define view
+   * @class ExtremeTubeView
+   * @extends BaseView
+   * @constructor
+   */
+  var ExtremeTubeView = function ExtremeTubeView() {
+  };
+
+  return ExtremeTubeView.extend('ExtremeTubeView', {
 
     /**
-     * Define view
-     * @class ExtremeTubeView
-     * @extends BaseView
-     * @constructor
+     * Render extremetube element
+     * @memberOf ExtremeTubeView
      */
-    var ExtremeTubeView = function ExtremeTubeView() {
-    };
+    renderExtremeTube: function renderExtremeTube() {
 
-    return ExtremeTubeView.extend('ExtremeTubeView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render extremetube element
-         * @memberOf ExtremeTubeView
-         */
-        renderExtremeTube: function renderExtremeTube() {
+      /**
+       * Define $extremetube
+       * @type {ExtremeTubeElement}
+       */
+      this.elements.$extremetube = new ExtremeTubeElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $extremetube
-             * @type {ExtremeTubeElement}
-             */
-            this.elements.$extremetube = new ExtremeTubeElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf ExtremeTubeView
+     * @returns {ExtremeTubePreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define ExtremeTube Preferences Element
+       * @type {ExtremeTubePreferencesElement}
+       */
+      this.elements.$preferences = new ExtremeTubePreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf ExtremeTubeView
-         * @returns {ExtremeTubePreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define ExtremeTube Preferences Element
-             * @type {ExtremeTubePreferencesElement}
-             */
-            this.elements.$preferences = new ExtremeTubePreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf ExtremeTubeView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {ExtremeTubeRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
+      /**
+       * Define data
+       * @type {*|{}}
+       */
+      var data = this.controller.getRules();
 
-        /**
-         * Render Rules
-         * @memberOf ExtremeTubeView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {ExtremeTubeRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define data
-             * @type {*|{}}
-             */
-            var data = this.controller.getRules();
-
-            /**
-             * Define ExtremeTube Rules Element
-             * @type {ExtremeTubeRulesElement}
-             */
-            this.elements.$rules = new ExtremeTubeRulesElement(this, {
-                data: data,
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render extremetube
-         * @memberOf ExtremeTubeView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderExtremeTube.bind(this)
-            );
+      /**
+       * Define ExtremeTube Rules Element
+       * @type {ExtremeTubeRulesElement}
+       */
+      this.elements.$rules = new ExtremeTubeRulesElement(this, {
+        data: data,
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render extremetube
+     * @memberOf ExtremeTubeView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderExtremeTube.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

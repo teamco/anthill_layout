@@ -7,20 +7,20 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineShowTheWayPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class ShowTheWayPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var ShowTheWayPermission = function ShowTheWayPermission() {
-    };
+  /**
+   * Define Permissions
+   * @class ShowTheWayPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var ShowTheWayPermission = function ShowTheWayPermission() {
+  };
 
-    return ShowTheWayPermission.extend(
-        'ShowTheWayPermission', {}, 
-        BasePermission.prototype
-    );
+  return ShowTheWayPermission.extend(
+      'ShowTheWayPermission', {},
+      BasePermission.prototype
+  );
 });

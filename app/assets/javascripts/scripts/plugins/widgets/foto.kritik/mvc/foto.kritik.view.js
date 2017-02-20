@@ -7,108 +7,109 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/foto.kritik/element/foto.kritik.element',
-    'plugins/widgets/foto.kritik/element/foto.kritik.preferences.element',
-    'plugins/widgets/foto.kritik/element/foto.kritik.rules.element'
-], function defineFotoKritikView(BaseView, Header, Footer, FotoKritikElement, FotoKritikPreferencesElement, FotoKritikRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/foto.kritik/element/foto.kritik.element',
+  'plugins/widgets/foto.kritik/element/foto.kritik.preferences.element',
+  'plugins/widgets/foto.kritik/element/foto.kritik.rules.element'
+], function defineFotoKritikView(BaseView, Header, Footer, FotoKritikElement,
+    FotoKritikPreferencesElement, FotoKritikRulesElement) {
+
+  /**
+   * Define view
+   * @class FotoKritikView
+   * @extends BaseView
+   * @constructor
+   */
+  var FotoKritikView = function FotoKritikView() {
+  };
+
+  return FotoKritikView.extend('FotoKritikView', {
 
     /**
-     * Define view
-     * @class FotoKritikView
-     * @extends BaseView
-     * @constructor
+     * Render fotokritik element
+     * @memberOf FotoKritikView
      */
-    var FotoKritikView = function FotoKritikView() {
-    };
+    renderFotoKritik: function renderFotoKritik() {
 
-    return FotoKritikView.extend('FotoKritikView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render fotokritik element
-         * @memberOf FotoKritikView
-         */
-        renderFotoKritik: function renderFotoKritik() {
+      /**
+       * Define $fotokritik
+       * @type {FotoKritikElement}
+       */
+      this.elements.$fotokritik = new FotoKritikElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $fotokritik
-             * @type {FotoKritikElement}
-             */
-            this.elements.$fotokritik = new FotoKritikElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf FotoKritikView
+     * @returns {FotoKritikPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define FotoKritik Preferences Element
+       * @type {FotoKritikPreferencesElement}
+       */
+      this.elements.$preferences = new FotoKritikPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf FotoKritikView
-         * @returns {FotoKritikPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define FotoKritik Preferences Element
-             * @type {FotoKritikPreferencesElement}
-             */
-            this.elements.$preferences = new FotoKritikPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf FotoKritikView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {FotoKritikRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
+      /**
+       * Define data
+       * @type {*|{}}
+       */
+      var data = this.controller.getRules();
 
-        /**
-         * Render Rules
-         * @memberOf FotoKritikView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {FotoKritikRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define data
-             * @type {*|{}}
-             */
-            var data = this.controller.getRules();
-
-            /**
-             * Define FotoKritik Rules Element
-             * @type {FotoKritikRulesElement}
-             */
-            this.elements.$rules = new FotoKritikRulesElement(this, {
-                data: data,
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render fotokritik
-         * @memberOf FotoKritikView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderFotoKritik.bind(this)
-            );
+      /**
+       * Define FotoKritik Rules Element
+       * @type {FotoKritikRulesElement}
+       */
+      this.elements.$rules = new FotoKritikRulesElement(this, {
+        data: data,
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render fotokritik
+     * @memberOf FotoKritikView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderFotoKritik.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

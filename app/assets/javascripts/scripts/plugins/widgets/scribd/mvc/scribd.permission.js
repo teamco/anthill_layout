@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineScribdPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class ScribdPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var ScribdPermission = function ScribdPermission() {
+  /**
+   * Define Permissions
+   * @class ScribdPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var ScribdPermission = function ScribdPermission() {
 
-    };
+  };
 
-    return ScribdPermission.extend('ScribdPermission', {
-
-    }, BasePermission.prototype);
+  return ScribdPermission.extend('ScribdPermission', {},
+      BasePermission.prototype);
 });

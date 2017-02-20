@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function definePicasaPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class PicasaPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var PicasaPermission = function PicasaPermission() {
+  /**
+   * Define Permissions
+   * @class PicasaPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var PicasaPermission = function PicasaPermission() {
 
-    };
+  };
 
-    return PicasaPermission.extend('PicasaPermission', {
-
-    }, BasePermission.prototype);
+  return PicasaPermission.extend('PicasaPermission', {},
+      BasePermission.prototype);
 });

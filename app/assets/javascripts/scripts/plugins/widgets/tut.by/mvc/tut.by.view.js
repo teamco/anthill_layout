@@ -7,101 +7,102 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/tut.by/element/tut.by.element',
-    'plugins/widgets/tut.by/element/tut.by.preferences.element',
-    'plugins/widgets/tut.by/element/tut.by.rules.element'
-], function defineTutByView(BaseView, Header, Footer, TutByElement, TutByPreferencesElement, TutByRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/tut.by/element/tut.by.element',
+  'plugins/widgets/tut.by/element/tut.by.preferences.element',
+  'plugins/widgets/tut.by/element/tut.by.rules.element'
+], function defineTutByView(BaseView, Header, Footer, TutByElement,
+    TutByPreferencesElement, TutByRulesElement) {
+
+  /**
+   * Define view
+   * @class TutByView
+   * @extends BaseView
+   * @constructor
+   */
+  var TutByView = function TutByView() {
+  };
+
+  return TutByView.extend('TutByView', {
 
     /**
-     * Define view
-     * @class TutByView
-     * @extends BaseView
-     * @constructor
+     * Render TutBy element
+     * @memberOf TutByView
      */
-    var TutByView = function TutByView() {
-    };
+    renderTutBy: function renderTutBy() {
 
-    return TutByView.extend('TutByView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render TutBy element
-         * @memberOf TutByView
-         */
-        renderTutBy: function renderTutBy() {
+      /**
+       * Define $tutby
+       * @type {TutByElement}
+       */
+      this.elements.$tutby = new TutByElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $tutby
-             * @type {TutByElement}
-             */
-            this.elements.$tutby = new TutByElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf TutByView
+     * @returns {TutByPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define TutBy Preferences Element
+       * @type {TutByPreferencesElement}
+       */
+      this.elements.$preferences = new TutByPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf TutByView
-         * @returns {TutByPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define TutBy Preferences Element
-             * @type {TutByPreferencesElement}
-             */
-            this.elements.$preferences = new TutByPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf TutByView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {TutByRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
-
-        /**
-         * Render Rules
-         * @memberOf TutByView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {TutByRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define TutBy Rules Element
-             * @type {TutByRulesElement}
-             */
-            this.elements.$rules = new TutByRulesElement(this, {
-                data: this.controller.getRules(),
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render TutBy
-         * @memberOf TutByView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderTutBy.bind(this)
-            );
+      /**
+       * Define TutBy Rules Element
+       * @type {TutByRulesElement}
+       */
+      this.elements.$rules = new TutByRulesElement(this, {
+        data: this.controller.getRules(),
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype);
+      return this.get$rules();
+    },
+
+    /**
+     * Render TutBy
+     * @memberOf TutByView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderTutBy.bind(this)
+      );
+    }
+
+  }, BaseView.prototype);
 });

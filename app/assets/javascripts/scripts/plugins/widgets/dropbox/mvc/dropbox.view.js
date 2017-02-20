@@ -7,108 +7,109 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/dropbox/element/dropbox.element',
-    'plugins/widgets/dropbox/element/dropbox.preferences.element',
-    'plugins/widgets/dropbox/element/dropbox.rules.element'
-], function defineDropboxView(BaseView, Header, Footer, DropboxElement, DropboxPreferencesElement, DropboxRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/dropbox/element/dropbox.element',
+  'plugins/widgets/dropbox/element/dropbox.preferences.element',
+  'plugins/widgets/dropbox/element/dropbox.rules.element'
+], function defineDropboxView(BaseView, Header, Footer, DropboxElement,
+    DropboxPreferencesElement, DropboxRulesElement) {
+
+  /**
+   * Define view
+   * @class DropboxView
+   * @extends BaseView
+   * @constructor
+   */
+  var DropboxView = function DropboxView() {
+  };
+
+  return DropboxView.extend('DropboxView', {
 
     /**
-     * Define view
-     * @class DropboxView
-     * @extends BaseView
-     * @constructor
+     * Render youtube element
+     * @memberOf DropboxView
      */
-    var DropboxView = function DropboxView() {
-    };
+    renderDropbox: function renderDropbox() {
 
-    return DropboxView.extend('DropboxView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render youtube element
-         * @memberOf DropboxView
-         */
-        renderDropbox: function renderDropbox() {
+      /**
+       * Define $youtube
+       * @type {DropboxElement}
+       */
+      this.elements.$dropbox = new DropboxElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $youtube
-             * @type {DropboxElement}
-             */
-            this.elements.$dropbox = new DropboxElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf DropboxView
+     * @returns {DropboxPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define Dropbox Preferences Element
+       * @type {DropboxPreferencesElement}
+       */
+      this.elements.$preferences = new DropboxPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf DropboxView
-         * @returns {DropboxPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define Dropbox Preferences Element
-             * @type {DropboxPreferencesElement}
-             */
-            this.elements.$preferences = new DropboxPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf DropboxView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {DropboxRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
+      /**
+       * Define data
+       * @type {*|{}}
+       */
+      var data = this.controller.getRules();
 
-        /**
-         * Render Rules
-         * @memberOf DropboxView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {DropboxRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define data
-             * @type {*|{}}
-             */
-            var data = this.controller.getRules();
-
-            /**
-             * Define Dropbox Rules Element
-             * @type {DropboxRulesElement}
-             */
-            this.elements.$rules = new DropboxRulesElement(this, {
-                data: data,
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render youtube
-         * @memberOf DropboxView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderDropbox.bind(this)
-            );
+      /**
+       * Define Dropbox Rules Element
+       * @type {DropboxRulesElement}
+       */
+      this.elements.$rules = new DropboxRulesElement(this, {
+        data: data,
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render youtube
+     * @memberOf DropboxView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderDropbox.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

@@ -8,126 +8,126 @@
 
 define(function defineI18n() {
 
+  /**
+   * Define translations
+   * @constructor
+   * @class i18n
+   * @param {string} lang
+   */
+  var i18n = function i18n(lang) {
+
     /**
-     * Define translations
-     * @constructor
-     * @class i18n
-     * @param {string} lang
+     * Define default
+     * @type {string}
      */
-    var i18n = function i18n(lang) {
+    var defaultLanguage = 'en-us';
 
-        /**
-         * Define default
-         * @type {string}
-         */
-        var defaultLanguage = 'en-us';
+    /**
+     * Define language
+     * @property i18n
+     * @type {string}
+     */
+    this.language = lang || defaultLanguage;
 
-        /**
-         * Define language
-         * @property i18n
-         * @type {string}
-         */
-        this.language = lang || defaultLanguage;
+    /**
+     * Define language types
+     * @type {Object}
+     */
+    var langTypes = {};
 
-        /**
-         * Define language types
-         * @type {Object}
-         */
-        var langTypes = {};
+    var scope = this,
+        data = langTypes[defaultLanguage],
+        language = scope.getCurrentLanguage();
 
-        var scope = this,
-            data = langTypes[defaultLanguage],
-            language = scope.getCurrentLanguage();
+    require(
+        ['modules/translations/' + language],
+        function loadTranslations(translation) {
 
-        require(
-            ['modules/translations/' + language],
-            function loadTranslations(translation) {
+          langTypes[language] = translation;
 
-                langTypes[language] = translation;
+          if (langTypes.hasOwnProperty(language)) {
 
-                if (langTypes.hasOwnProperty(language)) {
+            data = langTypes[language];
 
-                    data = langTypes[language];
+          } else {
 
-                } else {
+            console.warn('Unable to define language', language);
+          }
+        }
+    );
 
-                    console.warn('Unable to define language', language);
-                }
-            }
-        );
+    /**
+     * Get data by key
+     * @property i18n
+     * @param key
+     * @returns {*}
+     */
+    this.getData = function getData(key) {
 
-        /**
-         * Get data by key
-         * @property i18n
-         * @param key
-         * @returns {*}
-         */
-        this.getData = function getData(key) {
+      if (_.isUndefined(data)) {
+        console.warn('Undefined language', key);
+        return '';
+      }
 
-            if (_.isUndefined(data)) {
-                console.warn('Undefined language', key);
-                return '';
-            }
-
-            return data.hasOwnProperty(key) ?
-                data[key] : '';
-        };
-
-        /**
-         * Update data
-         * @property i18n
-         * @param translation
-         */
-        this.updateData = function updateData(translation) {
-
-            var index;
-
-            for (index in translation) {
-
-                if (translation.hasOwnProperty(index)) {
-
-                    data[index] = translation[index];
-                }
-            }
-        };
+      return data.hasOwnProperty(key) ?
+          data[key] : '';
     };
 
-    return i18n.extend('i18n', {
+    /**
+     * Update data
+     * @property i18n
+     * @param translation
+     */
+    this.updateData = function updateData(translation) {
 
-        /**
-         * Get current language
-         * @memberOf i18n
-         * @returns {string}
-         */
-        getCurrentLanguage: function getCurrentLanguage() {
-            return this.language;
-        },
+      var index;
 
-        /**
-         * Translate function
-         * @memberOf i18n
-         * @param {string} key
-         * @param {array} [params]
-         * @returns {string}
-         */
-        t: function t(key, params) {
+      for (index in translation) {
 
-            /**
-             * Get data
-             * @type {string|*}
-             */
-            var result = this.getData(key);
+        if (translation.hasOwnProperty(index)) {
 
-            if (typeof(params) === 'object') {
-                for (var i = 0, l = params.length; i < l; i++) {
-                    result = result.replace(
-                        new RegExp('\\{' + i + '\\}'),
-                        params[i]
-                    );
-                }
-            }
-
-            return result;
+          data[index] = translation[index];
         }
-    });
+      }
+    };
+  };
+
+  return i18n.extend('i18n', {
+
+    /**
+     * Get current language
+     * @memberOf i18n
+     * @returns {string}
+     */
+    getCurrentLanguage: function getCurrentLanguage() {
+      return this.language;
+    },
+
+    /**
+     * Translate function
+     * @memberOf i18n
+     * @param {string} key
+     * @param {array} [params]
+     * @returns {string}
+     */
+    t: function t(key, params) {
+
+      /**
+       * Get data
+       * @type {string|*}
+       */
+      var result = this.getData(key);
+
+      if (typeof(params) === 'object') {
+        for (var i = 0, l = params.length; i < l; i++) {
+          result = result.replace(
+              new RegExp('\\{' + i + '\\}'),
+              params[i]
+          );
+        }
+      }
+
+      return result;
+    }
+  });
 });

@@ -6,43 +6,43 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineSportExpressElement(PluginElement) {
 
+  /**
+   * Define SportExpress Element
+   * @param view
+   * @param opts
+   * @returns {SportExpressElement}
+   * @constructor
+   * @class SportExpressElement
+   * @extends PluginElement
+   */
+  var SportExpressElement = function SportExpressElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('sport.express', {resource: '/widgets'});
+
+    return this;
+  };
+
+  return SportExpressElement.extend('SportExpressElement', {
+
     /**
-     * Define SportExpress Element
-     * @param view
-     * @param opts
-     * @returns {SportExpressElement}
-     * @constructor
-     * @class SportExpressElement
-     * @extends PluginElement
+     * Render Embedded content
+     * @memberOf SportExpressElement
+     * @param {string} embed
      */
-    var SportExpressElement = function SportExpressElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent(embed) {
+      this.$.append(
+          this.renderObject(embed)
+      );
+    }
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
-
-        this.addCSS('sport.express', {resource: '/widgets'});
-
-        return this;
-    };
-
-    return SportExpressElement.extend('SportExpressElement', {
-
-        /**
-         * Render Embedded content
-         * @memberOf SportExpressElement
-         * @param {string} embed
-         */
-        renderEmbeddedContent: function renderEmbeddedContent(embed) {
-            this.$.append(
-                this.renderObject(embed)
-            );
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 
 });

@@ -6,44 +6,45 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineClypItModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define ClypIt model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class ClypItModel
+   * @constructor
+   */
+  var ClypItModel = function ClypItModel() {
+
     /**
-     * Define ClypIt model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class ClypItModel
-     * @constructor
+     * Define preferences
+     * @property ClypItModel
+     * @type {{clypitEmbedCode: {type: string, disabled: boolean, value:
+     *     string, visible: boolean}}}
      */
-    var ClypItModel = function ClypItModel() {
-
-        /**
-         * Define preferences
-         * @property ClypItModel
-         * @type {{clypitEmbedCode: {type: string, disabled: boolean, value: string, visible: boolean}}}
-         */
-        this.preferences = {
-            clypitEmbedCode: {
-                type: 'textarea',
-                disabled: false,
-                value: '<iframe width="100%" height="160" src="https://clyp.it/mehc1n22/widget" frameborder="0"></iframe>',
-                visible: true
-            }
-        };
-
-        /**
-         * Define rules
-         * @property ClypItModel
-         * @type {{}}
-         */
-        this.rules = {};
+    this.preferences = {
+      clypitEmbedCode: {
+        type: 'textarea',
+        disabled: false,
+        value: '<iframe width="100%" height="160" src="https://clyp.it/mehc1n22/widget" frameborder="0"></iframe>',
+        visible: true
+      }
     };
 
-    return ClypItModel.extend('ClypItModel', {
+    /**
+     * Define rules
+     * @property ClypItModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        // Setter
+  return ClypItModel.extend('ClypItModel', {
 
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    // Setter
+
+  }, BaseModel.prototype, WidgetContentModel.prototype);
 });

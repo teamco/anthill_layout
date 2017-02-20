@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineSlideSharePermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class SlideSharePermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var SlideSharePermission = function SlideSharePermission() {
+  /**
+   * Define Permissions
+   * @class SlideSharePermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var SlideSharePermission = function SlideSharePermission() {
 
-    };
+  };
 
-    return SlideSharePermission.extend('SlideSharePermission', {
-
-    }, BasePermission.prototype);
+  return SlideSharePermission.extend('SlideSharePermission', {},
+      BasePermission.prototype);
 });

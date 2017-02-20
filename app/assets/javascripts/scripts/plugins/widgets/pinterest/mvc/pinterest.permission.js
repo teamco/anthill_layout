@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function definePinterestPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class PinterestPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var PinterestPermission = function PinterestPermission() {
+  /**
+   * Define Permissions
+   * @class PinterestPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var PinterestPermission = function PinterestPermission() {
 
-    };
+  };
 
-    return PinterestPermission.extend('PinterestPermission', {
-
-    }, BasePermission.prototype);
+  return PinterestPermission.extend('PinterestPermission', {},
+      BasePermission.prototype);
 });

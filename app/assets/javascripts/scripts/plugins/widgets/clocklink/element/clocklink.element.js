@@ -6,118 +6,125 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineClocklinkElement(PluginElement) {
 
+  /**
+   * Define Clocklink Element
+   * @param view
+   * @param opts
+   * @returns {ClocklinkElement}
+   * @constructor
+   * @class ClocklinkElement
+   * @extends PluginElement
+   * @extends Renderer
+   */
+  var ClocklinkElement = function ClocklinkElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('clocklink', {resource: '/widgets'});
+
+    return this;
+  };
+
+  return ClocklinkElement.extend('ClocklinkElement', {
+
     /**
-     * Define Clocklink Element
-     * @param view
-     * @param opts
-     * @returns {ClocklinkElement}
-     * @constructor
-     * @class ClocklinkElement
-     * @extends PluginElement
-     * @extends Renderer
+     * Render Embedded content
+     * @memberOf ClocklinkElement
+     * @param {{type: string, code: string}} embed
      */
-    var ClocklinkElement = function ClocklinkElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent(embed) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
+      // Define $embed
+      var $embed = $(embed.code),
+          $content;
+
+      if (embed.type === 'embed') {
+
+        $content = this.renderEmbed(embed.code, {
+          height: $embed.attr('height'),
+          width: $embed.attr('width')
         });
+      }
 
-        this.addCSS('clocklink', {resource: '/widgets'});
+      if (embed.type === 'iframe') {
+        $content = this.renderIframe($embed.attr('src'));
+      }
 
-        return this;
-    };
+      if (embed.type === 'script') {
 
-    return ClocklinkElement.extend('ClocklinkElement', {
+        var embedPattern = '<embed src="http://www.clocklink.com/clocks/{0}?{1}" width="{2}" height="{3}" wmode="{4}" type="application/x-shockwave-flash">',
+            urlParams = [];
 
         /**
-         * Render Embedded content
-         * @memberOf ClocklinkElement
-         * @param {{type: string, code: string}} embed
+         * Get entity value
+         * @param value
+         * @returns {*}
+         * @private
          */
-        renderEmbeddedContent: function renderEmbeddedContent(embed) {
-
-            // Define $embed
-            var $embed = $(embed.code),
-                $content;
-
-            if (embed.type === 'embed') {
-
-                $content = this.renderEmbed(embed.code, {
-                    height: $embed.attr('height'),
-                    width: $embed.attr('width')
-                });
-            }
-
-            if (embed.type === 'iframe') {
-                $content = this.renderIframe($embed.attr('src'));
-            }
-
-            if (embed.type === 'script') {
-
-                var embedPattern = '<embed src="http://www.clocklink.com/clocks/{0}?{1}" width="{2}" height="{3}" wmode="{4}" type="application/x-shockwave-flash">',
-                    urlParams = [];
-
-                /**
-                 * Get entity value
-                 * @param value
-                 * @returns {*}
-                 * @private
-                 */
-                function _getEntityValue(value) {
-                    return value.split('=')[1].replace(/"/g, '');
-                }
-
-                /**
-                 * Get entity key
-                 * @param value
-                 * @returns {*}
-                 * @private
-                 */
-                function _getEntityKey(value) {
-                    return value.match(/obj.(\w+)/)[1];
-                }
-
-                /**
-                 * Update pattern
-                 * @param {RegExp} regex
-                 * @param value
-                 * @returns {*}
-                 * @private
-                 */
-                function _updatePattern(regex, value) {
-                    embedPattern = embedPattern.replace(
-                        regex, _getEntityValue(value)
-                    );
-                }
-
-                $.each($embed.last().text().split(';'), function _each(key, value) {
-
-                    if (value.match(/obj\./)) {
-
-                        if (value.match(/width/)) _updatePattern(/\{2}/, value);
-                        else if (value.match(/height/)) _updatePattern(/\{3}/, value);
-                        else if (value.match(/clockfile/)) _updatePattern(/\{0}/, value);
-                        else if (value.match(/mode/)) _updatePattern(/\{4}/, value);
-                        else urlParams.push(_getEntityKey(value) + '=' + _getEntityValue(value));
-                    }
-                });
-
-                // Generate embed
-                $embed = $(embedPattern.replace(/\{1}/, urlParams.join('&')));
-
-                $content = this.renderEmbed($embed, {
-                    height: $embed.attr('height'),
-                    width: $embed.attr('width')
-                });
-            }
-
-            this.$.append($content);
+        function _getEntityValue(value) {
+          return value.split('=')[1].replace(/"/g, '');
         }
 
-    }, PluginElement.prototype);
+        /**
+         * Get entity key
+         * @param value
+         * @returns {*}
+         * @private
+         */
+        function _getEntityKey(value) {
+          return value.match(/obj.(\w+)/)[1];
+        }
+
+        /**
+         * Update pattern
+         * @param {RegExp} regex
+         * @param value
+         * @returns {*}
+         * @private
+         */
+        function _updatePattern(regex, value) {
+          embedPattern = embedPattern.replace(
+              regex, _getEntityValue(value)
+          );
+        }
+
+        $.each($embed.last().text().split(';'), function _each(key, value) {
+
+          if (value.match(/obj\./)) {
+
+            if (value.match(/width/)) {
+              _updatePattern(/\{2}/, value);
+            } else if (value.match(/height/)) {
+              _updatePattern(/\{3}/, value);
+            } else if (value.match(/clockfile/)) {
+              _updatePattern(/\{0}/, value);
+            } else if (value.match(/mode/)) {
+              _updatePattern(/\{4}/, value);
+            } else {
+              urlParams.push(
+                  _getEntityKey(value) + '=' + _getEntityValue(value));
+            }
+          }
+        });
+
+        // Generate embed
+        $embed = $(embedPattern.replace(/\{1}/, urlParams.join('&')));
+
+        $content = this.renderEmbed($embed, {
+          height: $embed.attr('height'),
+          width: $embed.attr('width')
+        });
+      }
+
+      this.$.append($content);
+    }
+
+  }, PluginElement.prototype);
 
 });

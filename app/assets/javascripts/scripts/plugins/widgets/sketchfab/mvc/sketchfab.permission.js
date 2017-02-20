@@ -7,20 +7,20 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineSketchfabPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class SketchfabPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var SketchfabPermission = function SketchfabPermission() {
-    };
+  /**
+   * Define Permissions
+   * @class SketchfabPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var SketchfabPermission = function SketchfabPermission() {
+  };
 
-    return SketchfabPermission.extend(
-        'SketchfabPermission', {}, 
-        BasePermission.prototype
-    );
+  return SketchfabPermission.extend(
+      'SketchfabPermission', {},
+      BasePermission.prototype
+  );
 });

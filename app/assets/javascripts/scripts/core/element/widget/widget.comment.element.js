@@ -7,43 +7,43 @@
  */
 
 define([
-    'modules/Element',
-    'element/button.element'
+  'modules/Element',
+  'element/button.element'
 ], function defineComment(BaseElement, ButtonElement) {
 
+  /**
+   * Define Comment
+   * @param view
+   * @param opts
+   * @returns {WidgetCommentElement}
+   * @class WidgetCommentElement
+   * @constructor
+   * @extends BaseElement
+   */
+  var WidgetCommentElement = function WidgetCommentElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.defineContent(ButtonElement);
+
+    return this;
+  };
+
+  return WidgetCommentElement.extend('WidgetCommentElement', {
+
     /**
-     * Define Comment
-     * @param view
-     * @param opts
-     * @returns {WidgetCommentElement}
-     * @class WidgetCommentElement
-     * @constructor
-     * @extends BaseElement
+     * Define comments content
+     * @param {ButtonElement} ButtonElement
      */
-    var WidgetCommentElement = function WidgetCommentElement(view, opts) {
+    defineContent: function defineContent(ButtonElement) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+      this.renderCommentsForm(ButtonElement, {
+        visible: true
+      });
+    }
 
-        this.defineContent(ButtonElement);
-
-        return this;
-    };
-
-    return WidgetCommentElement.extend('WidgetCommentElement', {
-
-        /**
-         * Define comments content
-         * @param {ButtonElement} ButtonElement
-         */
-        defineContent: function defineContent(ButtonElement) {
-
-            this.renderCommentsForm(ButtonElement, {
-                visible: true
-            });
-        }
-
-    }, BaseElement.prototype);
+  }, BaseElement.prototype);
 });

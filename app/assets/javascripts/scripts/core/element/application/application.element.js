@@ -7,50 +7,50 @@
  */
 
 define([
-    'modules/Element'
+  'modules/Element'
 ], function defineApplicationElement(BaseElement) {
 
+  /**
+   * Define Application element
+   * @extends BaseElement
+   * @class ApplicationElement
+   * @param view
+   * @param opts
+   * @returns {*}
+   * @constructor
+   */
+  var ApplicationElement = function ApplicationElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    $(opts.$container).addClass(opts.mode);
+
+    return this;
+  };
+
+  return ApplicationElement.extend('ApplicationElement', {
+
     /**
-     * Define Application element
-     * @extends BaseElement
-     * @class ApplicationElement
-     * @param view
-     * @param opts
-     * @returns {*}
-     * @constructor
+     * Update uuid after loading
+     * @memberOf ApplicationElement
      */
-    var ApplicationElement = function ApplicationElement(view, opts) {
+    updateUUID: function updateUUID() {
+      this.$.attr({
+        id: this.view.createUUID()
+      })
+    },
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    /**
+     * Hide/Show scroll
+     * @memberOf ApplicationElement
+     * @param {boolean} hide
+     */
+    hideScroll: function hideScroll(hide) {
+      this.$[(hide ? 'add' : 'remove') + 'Class']('overflow-scroll');
+    }
 
-        $(opts.$container).addClass(opts.mode);
-
-        return this;
-    };
-
-    return ApplicationElement.extend('ApplicationElement', {
-
-        /**
-         * Update uuid after loading
-         * @memberOf ApplicationElement
-         */
-        updateUUID: function updateUUID() {
-            this.$.attr({
-                id: this.view.createUUID()
-            })
-        },
-
-        /**
-         * Hide/Show scroll
-         * @memberOf ApplicationElement
-         * @param {boolean} hide
-         */
-        hideScroll: function hideScroll(hide) {
-            this.$[(hide ? 'add' : 'remove') + 'Class']('overflow-scroll');
-        }
-
-    }, BaseElement.prototype);
+  }, BaseElement.prototype);
 });

@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineYoutubePermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class YoutubePermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var YoutubePermission = function YoutubePermission() {
+  /**
+   * Define Permissions
+   * @class YoutubePermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var YoutubePermission = function YoutubePermission() {
 
-    };
+  };
 
-    return YoutubePermission.extend('YoutubePermission', {
-
-    }, BasePermission.prototype);
+  return YoutubePermission.extend('YoutubePermission', {},
+      BasePermission.prototype);
 });

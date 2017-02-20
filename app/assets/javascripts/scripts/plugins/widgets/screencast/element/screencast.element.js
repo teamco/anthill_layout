@@ -6,46 +6,46 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineScreencastElement(PluginElement) {
 
+  /**
+   * Define Screencast Element
+   * @param view
+   * @param opts
+   * @returns {ScreencastElement}
+   * @constructor
+   * @class ScreencastElement
+   * @extends PluginElement
+   */
+  var ScreencastElement = function ScreencastElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('screencast', {resource: '/widgets'});
+
+    return this;
+  };
+
+  return ScreencastElement.extend('ScreencastElement', {
+
     /**
-     * Define Screencast Element
-     * @param view
-     * @param opts
-     * @returns {ScreencastElement}
-     * @constructor
-     * @class ScreencastElement
-     * @extends PluginElement
+     * Render Embedded content
+     * @memberOf ScreencastElement
+     * @param {{type, src}} embed
      */
-    var ScreencastElement = function ScreencastElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent(embed) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+      this.$.append(
+          embed.type === 'object' ?
+              this.renderObject(embed.src) :
+              embed.src
+      );
+    }
 
-        this.addCSS('screencast', {resource: '/widgets'});
-
-        return this;
-    };
-
-    return ScreencastElement.extend('ScreencastElement', {
-
-        /**
-         * Render Embedded content
-         * @memberOf ScreencastElement
-         * @param {{type, src}} embed
-         */
-        renderEmbeddedContent: function renderEmbeddedContent(embed) {
-
-            this.$.append(
-                embed.type === 'object' ?
-                    this.renderObject(embed.src) :
-                    embed.src
-            );
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 
 });

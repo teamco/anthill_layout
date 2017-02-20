@@ -7,25 +7,24 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineImageEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define Image event manager
-     * @class ImageEventManager
-     * @constructor
-     * @extends WidgetContentEventManager
-     * @extends BaseEvent
-     */
-    var ImageEventManager = function ImageEventManager() {
+  /**
+   * Define Image event manager
+   * @class ImageEventManager
+   * @constructor
+   * @extends WidgetContentEventManager
+   * @extends BaseEvent
+   */
+  var ImageEventManager = function ImageEventManager() {
 
-        this.updateEventList({
-            checkEmbeddedContent: 'check.embedded.content',
-            splitEmbeddedContent: 'split.embedded.content'
-        });
-    };
+    this.updateEventList({
+      checkEmbeddedContent: 'check.embedded.content',
+      splitEmbeddedContent: 'split.embedded.content'
+    });
+  };
 
-    return ImageEventManager.extend('ImageEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return ImageEventManager.extend('ImageEventManager', {},
+      WidgetContentEventManager.prototype);
 });

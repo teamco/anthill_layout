@@ -7,108 +7,109 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/twitr.pix/element/twitr.pix.element',
-    'plugins/widgets/twitr.pix/element/twitr.pix.preferences.element',
-    'plugins/widgets/twitr.pix/element/twitr.pix.rules.element'
-], function defineTwitrPixView(BaseView, Header, Footer, TwitrPixElement, TwitrPixPreferencesElement, TwitrPixRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/twitr.pix/element/twitr.pix.element',
+  'plugins/widgets/twitr.pix/element/twitr.pix.preferences.element',
+  'plugins/widgets/twitr.pix/element/twitr.pix.rules.element'
+], function defineTwitrPixView(BaseView, Header, Footer, TwitrPixElement,
+    TwitrPixPreferencesElement, TwitrPixRulesElement) {
+
+  /**
+   * Define view
+   * @class TwitrPixView
+   * @extends BaseView
+   * @constructor
+   */
+  var TwitrPixView = function TwitrPixView() {
+  };
+
+  return TwitrPixView.extend('TwitrPixView', {
 
     /**
-     * Define view
-     * @class TwitrPixView
-     * @extends BaseView
-     * @constructor
+     * Render twitrpix element
+     * @memberOf TwitrPixView
      */
-    var TwitrPixView = function TwitrPixView() {
-    };
+    renderTwitrPix: function renderTwitrPix() {
 
-    return TwitrPixView.extend('TwitrPixView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render twitrpix element
-         * @memberOf TwitrPixView
-         */
-        renderTwitrPix: function renderTwitrPix() {
+      /**
+       * Define $twitrpix
+       * @type {TwitrPixElement}
+       */
+      this.elements.$twitrpix = new TwitrPixElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $twitrpix
-             * @type {TwitrPixElement}
-             */
-            this.elements.$twitrpix = new TwitrPixElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf TwitrPixView
+     * @returns {TwitrPixPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define TwitrPix Preferences Element
+       * @type {TwitrPixPreferencesElement}
+       */
+      this.elements.$preferences = new TwitrPixPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf TwitrPixView
-         * @returns {TwitrPixPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define TwitrPix Preferences Element
-             * @type {TwitrPixPreferencesElement}
-             */
-            this.elements.$preferences = new TwitrPixPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf TwitrPixView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {TwitrPixRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
+      /**
+       * Define data
+       * @type {*|{}}
+       */
+      var data = this.controller.getRules();
 
-        /**
-         * Render Rules
-         * @memberOf TwitrPixView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {TwitrPixRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define data
-             * @type {*|{}}
-             */
-            var data = this.controller.getRules();
-
-            /**
-             * Define TwitrPix Rules Element
-             * @type {TwitrPixRulesElement}
-             */
-            this.elements.$rules = new TwitrPixRulesElement(this, {
-                data: data,
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render twitrpix
-         * @memberOf TwitrPixView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderTwitrPix.bind(this)
-            );
+      /**
+       * Define TwitrPix Rules Element
+       * @type {TwitrPixRulesElement}
+       */
+      this.elements.$rules = new TwitrPixRulesElement(this, {
+        data: data,
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render twitrpix
+     * @memberOf TwitrPixView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderTwitrPix.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

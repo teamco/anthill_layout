@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineMlkshkPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class MlkshkPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var MlkshkPermission = function MlkshkPermission() {
+  /**
+   * Define Permissions
+   * @class MlkshkPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var MlkshkPermission = function MlkshkPermission() {
 
-    };
+  };
 
-    return MlkshkPermission.extend('MlkshkPermission', {
-
-    }, BasePermission.prototype);
+  return MlkshkPermission.extend('MlkshkPermission', {},
+      BasePermission.prototype);
 });

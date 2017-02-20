@@ -6,35 +6,34 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
 ], function defineFreshTvPreferencesElement(PluginElement, WidgetPreferences) {
 
-    /**
-     * Define FreshTv Preferences Element
-     * @param view
-     * @param opts
-     * @returns {FreshTvPreferencesElement}
-     * @constructor
-     * @class FreshTvPreferencesElement
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     */
-    var FreshTvPreferencesElement = function FreshTvPreferencesElement(view, opts) {
+  /**
+   * Define FreshTv Preferences Element
+   * @param view
+   * @param opts
+   * @returns {FreshTvPreferencesElement}
+   * @constructor
+   * @class FreshTvPreferencesElement
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   */
+  var FreshTvPreferencesElement = function FreshTvPreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return FreshTvPreferencesElement.extend('FreshTvPreferencesElement', {
-
-
-    }, PluginElement.prototype, WidgetPreferences.prototype);
+  return FreshTvPreferencesElement.extend('FreshTvPreferencesElement', {},
+      PluginElement.prototype, WidgetPreferences.prototype);
 
 });

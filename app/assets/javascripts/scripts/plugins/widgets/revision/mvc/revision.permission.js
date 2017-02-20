@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineRevisionPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class RevisionPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var RevisionPermission = function RevisionPermission() {
+  /**
+   * Define Permissions
+   * @class RevisionPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var RevisionPermission = function RevisionPermission() {
 
-    };
+  };
 
-    return RevisionPermission.extend('RevisionPermission', {
-
-    }, BasePermission.prototype);
+  return RevisionPermission.extend('RevisionPermission', {},
+      BasePermission.prototype);
 });

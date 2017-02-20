@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineDropboxEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define Dropbox event manager
-     * @class DropboxEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var DropboxEventManager = function DropboxEventManager() {
+  /**
+   * Define Dropbox event manager
+   * @class DropboxEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var DropboxEventManager = function DropboxEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return DropboxEventManager.extend('DropboxEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return DropboxEventManager.extend('DropboxEventManager', {},
+      WidgetContentEventManager.prototype);
 });

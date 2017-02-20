@@ -7,101 +7,102 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/clyp.it/element/clyp.it.element',
-    'plugins/widgets/clyp.it/element/clyp.it.preferences.element',
-    'plugins/widgets/clyp.it/element/clyp.it.rules.element'
-], function defineClypItView(BaseView, Header, Footer, ClypItElement, ClypItPreferencesElement, ClypItRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/clyp.it/element/clyp.it.element',
+  'plugins/widgets/clyp.it/element/clyp.it.preferences.element',
+  'plugins/widgets/clyp.it/element/clyp.it.rules.element'
+], function defineClypItView(BaseView, Header, Footer, ClypItElement,
+    ClypItPreferencesElement, ClypItRulesElement) {
+
+  /**
+   * Define view
+   * @class ClypItView
+   * @extends BaseView
+   * @constructor
+   */
+  var ClypItView = function ClypItView() {
+  };
+
+  return ClypItView.extend('ClypItView', {
 
     /**
-     * Define view
-     * @class ClypItView
-     * @extends BaseView
-     * @constructor
+     * Render ClypIt element
+     * @memberOf ClypItView
      */
-    var ClypItView = function ClypItView() {
-    };
+    renderClypIt: function renderClypIt() {
 
-    return ClypItView.extend('ClypItView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render ClypIt element
-         * @memberOf ClypItView
-         */
-        renderClypIt: function renderClypIt() {
+      /**
+       * Define $clypit
+       * @type {ClypItElement}
+       */
+      this.elements.$clypit = new ClypItElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $clypit
-             * @type {ClypItElement}
-             */
-            this.elements.$clypit = new ClypItElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf ClypItView
+     * @returns {ClypItPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define ClypIt Preferences Element
+       * @type {ClypItPreferencesElement}
+       */
+      this.elements.$preferences = new ClypItPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf ClypItView
-         * @returns {ClypItPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define ClypIt Preferences Element
-             * @type {ClypItPreferencesElement}
-             */
-            this.elements.$preferences = new ClypItPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf ClypItView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {ClypItRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
-
-        /**
-         * Render Rules
-         * @memberOf ClypItView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {ClypItRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define ClypIt Rules Element
-             * @type {ClypItRulesElement}
-             */
-            this.elements.$rules = new ClypItRulesElement(this, {
-                data: this.controller.getRules(),
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render ClypIt
-         * @memberOf ClypItView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderClypIt.bind(this)
-            );
+      /**
+       * Define ClypIt Rules Element
+       * @type {ClypItRulesElement}
+       */
+      this.elements.$rules = new ClypItRulesElement(this, {
+        data: this.controller.getRules(),
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype);
+      return this.get$rules();
+    },
+
+    /**
+     * Render ClypIt
+     * @memberOf ClypItView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderClypIt.bind(this)
+      );
+    }
+
+  }, BaseView.prototype);
 });

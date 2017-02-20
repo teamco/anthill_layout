@@ -6,59 +6,48 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineFlickrFeedsController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define FlickrFeeds controller
+   * @class FlickrFeedsController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var FlickrFeedsController = function FlickrFeedsController() {
+  };
+
+  return FlickrFeedsController.extend('FlickrFeedsController', {
+
     /**
-     * Define FlickrFeeds controller
-     * @class FlickrFeedsController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf FlickrFeedsController
      */
-    var FlickrFeedsController = function FlickrFeedsController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
 
-    return FlickrFeedsController.extend('FlickrFeedsController', {
+      this.view.elements.$flickrfeeds.renderEmbeddedContent(
+          this.model.getListObjectBySelectedValue(), {
+            tags: this.model.getPrefs('flickrfeedsTags'),
+            user_id: this.model.getPrefs('flickrfeedsUserId'),
+            max_length: parseInt(
+                this.model.getPrefs('flickrfeedsMaxItems'),
+                10
+            )
+          }
+      );
+    },
 
-        /**
-         * Set embedded content
-         * @memberOf FlickrFeedsController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
+    /**
+     * Add FlickrFeeds rule
+     * @memberOf FlickrFeedsController
+     * @param {Event} e
+     */
+    addFlickrFeedsRule: function addFlickrFeedsRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-            this.view.elements.$flickrfeeds.renderEmbeddedContent(
-                this.model.getListObjectBySelectedValue(), {
-                    tags: this.model.getPrefs('flickrfeedsTags'),
-                    user_id: this.model.getPrefs('flickrfeedsUserId'),
-                    max_length: parseInt(
-                        this.model.getPrefs('flickrfeedsMaxItems'),
-                        10
-                    )
-                }
-            );
-        },
-
-        /**
-         * Add FlickrFeeds rule
-         * @memberOf FlickrFeedsController
-         * @param e
-         */
-        addFlickrFeedsRule: function addFlickrFeedsRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), this.scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

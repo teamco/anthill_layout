@@ -1,82 +1,82 @@
 define(function defineGistPreferences() {
 
+  /**
+   * Define Github Gist Preferences
+   * @class GithubGistPreferences
+   * @extends Renderer
+   * @constructor
+   */
+  var GithubGistPreferences = function GithubGistPreferences() {
+  };
+
+  return GithubGistPreferences.extend('GithubGistPreferences', {
+
     /**
-     * Define Github Gist Preferences
-     * @class GithubGistPreferences
-     * @extends Renderer
-     * @constructor
+     * Render Gist
+     * @memberOf GithubGistPreferences
+     * @returns {*|jQuery}
      */
-    var GithubGistPreferences = function GithubGistPreferences() {
-    };
+    renderGithubGist: function renderGithubGist() {
 
-    return GithubGistPreferences.extend('GithubGistPreferences', {
+      /**
+       * Get workspace
+       * @type {*|Workspace}
+       */
+      var workspace = this.view.controller.getWorkspace();
 
-        /**
-         * Render Gist
-         * @memberOf GithubGistPreferences
-         * @returns {*|jQuery}
-         */
-        renderGithubGist: function renderGithubGist() {
+      /**
+       * Get workspace prefs
+       * @type {{githubGistEmbedCode, activateGithubGist}}
+       */
+      var preferences = workspace.model.getConfig('preferences');
 
-            /**
-             * Get workspace
-             * @type {*|Workspace}
-             */
-            var workspace = this.view.controller.getWorkspace();
+      var $textarea = this.renderTextArea({
+        name: 'githubGistEmbedCode',
+        text: 'Github Gist Code',
+        placeholder: 'Paste Github Gist Embed Code here',
+        disabled: false,
+        visible: true,
+        value: preferences.githubGistEmbedCode || ''
+      });
 
-            /**
-             * Get workspace prefs
-             * @type {{githubGistEmbedCode, activateGithubGist}}
-             */
-            var preferences = workspace.model.getConfig('preferences');
+      var $checkbox = this.renderCheckbox({
+        name: 'activateGithubGist',
+        text: 'Activate',
+        checked: preferences.activateGithubGist,
+        value: preferences.activateGithubGist,
+        disabled: false,
+        visible: true
+      });
 
-            var $textarea = this.renderTextArea({
-                name: 'githubGistEmbedCode',
-                text: 'Github Gist Code',
-                placeholder: 'Paste Github Gist Embed Code here',
-                disabled: false,
-                visible: true,
-                value: preferences.githubGistEmbedCode || ''
-            });
+      return $('<div class="workspace-gist-prefs" />').append(
+          $textarea, $checkbox
+      );
+    },
 
-            var $checkbox = this.renderCheckbox({
-                name: 'activateGithubGist',
-                text: 'Activate',
-                checked: preferences.activateGithubGist,
-                value: preferences.activateGithubGist,
-                disabled: false,
-                visible: true
-            });
+    /**
+     * Load Github Gist Embed code
+     * @memberOf GithubGistPreferences
+     */
+    loadActivateGithubGist: function loadActivateGithubGist() {
 
-            return $('<div class="workspace-gist-prefs" />').append(
-                $textarea, $checkbox
-            );
-        },
+      this.logger.debug('Load Gist Embed code', arguments);
 
-        /**
-         * Load Github Gist Embed code
-         * @memberOf GithubGistPreferences
-         */
-        loadActivateGithubGist: function loadActivateGithubGist() {
+      /**
+       * Get prefs
+       * @type {{githubGistEmbedCode, activateGithubGist}}
+       */
+      var preferences = this.model.getConfig('preferences');
 
-            this.logger.debug('Load Gist Embed code', arguments);
+      /**
+       * Define embed code
+       * @type {string}
+       */
+      var embedCode = preferences.githubGistEmbedCode || '',
+          activate = preferences.activateGithubGist;
 
-            /**
-             * Get prefs
-             * @type {{githubGistEmbedCode, activateGithubGist}}
-             */
-            var preferences = this.model.getConfig('preferences');
-
-            /**
-             * Define embed code
-             * @type {string}
-             */
-            var embedCode = preferences.githubGistEmbedCode || '',
-                activate = preferences.activateGithubGist;
-
-            if (this.controller.isServiceActivated(embedCode, activate)) {
-                require([$(embedCode).attr('src')]);
-            }
-        }
-    });
+      if (this.controller.isServiceActivated(embedCode, activate)) {
+        require([$(embedCode).attr('src')]);
+      }
+    }
+  });
 });

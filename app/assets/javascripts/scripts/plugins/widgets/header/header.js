@@ -6,99 +6,98 @@
  */
 
 define([
-    'config/anthill',
-    'modules/MVC',
-    'plugins/widgets/header/mvc/header.controller',
-    'plugins/widgets/header/mvc/header.model',
-    'plugins/widgets/header/mvc/header.view',
-    'plugins/widgets/header/mvc/header.event.manager',
-    'plugins/widgets/header/mvc/header.permission'
-], function defineHeader(AntHill, MVC, Controller, Model, View, EventManager, Permission) {
+  'config/anthill',
+  'modules/MVC',
+  'plugins/widgets/header/mvc/header.controller',
+  'plugins/widgets/header/mvc/header.model',
+  'plugins/widgets/header/mvc/header.view',
+  'plugins/widgets/header/mvc/header.event.manager',
+  'plugins/widgets/header/mvc/header.permission'
+], function defineHeader(AntHill, MVC, Controller, Model, View, EventManager,
+    Permission) {
+
+  /**
+   * Define Header
+   * @param containment
+   * @param [opts]
+   * @constructor
+   * @class Header
+   * @extends AntHill
+   */
+  var Header = function Header(containment, opts) {
 
     /**
-     * Define Header
-     * @param containment
-     * @param [opts]
-     * @constructor
-     * @class Header
-     * @extends AntHill
+     * Define containment
+     * @memberOf Header
      */
-    var Header = function Header(containment, opts) {
+    this.containment = containment;
 
-        /**
-         * Define containment
-         * @memberOf Header
-         */
-        this.containment = containment;
+    /**
+     * Define referrer
+     * @memberOf Header
+     * @type {*}
+     */
+    this.referrer = undefined;
 
-        /**
-         * Define referrer
-         * @memberOf Header
-         * @type {*}
-         */
-        this.referrer = undefined;
-
-        /**
-         * Define defaults
-         * @type {{
-         *      plugin: boolean,
-         *      html: {
-         *          style: string,
-         *          header: boolean,
-         *          footer: boolean,
-         *          floating: boolean,
-         *          padding: {
-         *              top: number,
-         *              right: number,
-         *              bottom: number,
-         *              left: number
-         *          }
-         *      }
-         * }}
-         */
-        var DEFAULTS = {
-            plugin: true,
-            html: {
-                style: 'default',
-                header: false,
-                footer: false,
-                padding: {
-                    top: 0,
-                    right: 0,
-                    bottom: 0,
-                    left: 0
-                }
-            }
-        };
-
-        /**
-         * Define MVC
-         * @memberOf Header
-         * @type {MVC}
-         */
-        this.mvc = new MVC({
-            scope: this,
-            config: [
-                {uuid: this.containment.model.getContentUUID()},
-                DEFAULTS
-            ],
-            components: [
-                Controller,
-                Model,
-                View,
-                EventManager,
-                Permission
-            ],
-            render: true
-        });
-
-        this.observer.publish(
-            this.eventmanager.eventList.initWidget,
-            opts
-        );
+    /**
+     * Define defaults
+     * @type {{
+     *      plugin: boolean,
+     *      html: {
+     *          style: string,
+     *          header: boolean,
+     *          footer: boolean,
+     *          floating: boolean,
+     *          padding: {
+     *              top: number,
+     *              right: number,
+     *              bottom: number,
+     *              left: number
+     *          }
+     *      }
+     * }}
+     */
+    var DEFAULTS = {
+      plugin: true,
+      html: {
+        style: 'default',
+        header: false,
+        footer: false,
+        padding: {
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0
+        }
+      }
     };
 
-    return Header.extend('Header', {
+    /**
+     * Define MVC
+     * @memberOf Header
+     * @type {MVC}
+     */
+    this.mvc = new MVC({
+      scope: this,
+      config: [
+        {uuid: this.containment.model.getContentUUID()},
+        DEFAULTS
+      ],
+      components: [
+        Controller,
+        Model,
+        View,
+        EventManager,
+        Permission
+      ],
+      render: true
+    });
 
-    }, AntHill.prototype);
+    this.observer.publish(
+        this.eventmanager.eventList.initWidget,
+        opts
+    );
+  };
+
+  return Header.extend('Header', {}, AntHill.prototype);
 });

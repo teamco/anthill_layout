@@ -6,53 +6,54 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineTrubaModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define Truba model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class TrubaModel
+   * @constructor
+   */
+  var TrubaModel = function TrubaModel() {
+
     /**
-     * Define Truba model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class TrubaModel
-     * @constructor
-     */
-    var TrubaModel = function TrubaModel() {
-
-        /**
-         * Define preferences
-         * @memberOf TrubaModel
-         * @type {{
-         *      trubaUrl: {type: string, disabled: boolean, value: undefined, visible: boolean}
+     * Define preferences
+     * @memberOf TrubaModel
+     * @type {{
+         *      trubaUrl: {type: string, disabled: boolean, value: undefined,
+         *     visible: boolean}
          * }}
-         */
-        this.preferences = {
-            trubaUrl: {
-                type: 'text',
-                disabled: false,
-                value: undefined,
-                visible: true
-            }
-        };
-
-        /**
-         * Define rules
-         * @memberOf TrubaModel
-         * @type {{}}
-         */
-        this.rules = {};
+     */
+    this.preferences = {
+      trubaUrl: {
+        type: 'text',
+        disabled: false,
+        value: undefined,
+        visible: true
+      }
     };
 
-    return TrubaModel.extend('TrubaModel', {
+    /**
+     * Define rules
+     * @memberOf TrubaModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        /**
-         * Set Truba Url
-         * @memberOf TrubaModel
-         * @param {string} url
-         */
-        setTrubaUrl: function setTrubaUrl(url) {
-            this.setPrefs('trubaUrl', url);
-        }
+  return TrubaModel.extend('TrubaModel', {
 
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    /**
+     * Set Truba Url
+     * @memberOf TrubaModel
+     * @param {string} url
+     */
+    setTrubaUrl: function setTrubaUrl(url) {
+      this.setPrefs('trubaUrl', url);
+    }
+
+  }, BaseModel.prototype, WidgetContentModel.prototype);
 });

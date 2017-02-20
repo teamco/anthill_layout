@@ -6,21 +6,21 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineFlickrController(PluginBase, WidgetContentController) {
 
-    /**
-     * Define Flickr controller
-     * @class FlickrController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
-     */
-    var FlickrController = function FlickrController() {
-    };
+  /**
+   * Define Flickr controller
+   * @class FlickrController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var FlickrController = function FlickrController() {
+  };
 
-    return FlickrController.extend('FlickrController', {
+  return FlickrController.extend('FlickrController', {
 
         /**
          * Set embedded content
@@ -28,30 +28,22 @@ define([
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
-            this.view.elements.$flickr.renderEmbeddedContent(
-                this.model.getPrefs('flickrEmbed')
-            );
+          this.view.elements.$flickr.renderEmbeddedContent(
+              this.model.getPrefs('flickrEmbed')
+          );
         },
 
         /**
          * Add Flickr rule
          * @memberOf FlickrController
-         * @param e
+         * @param {Event} e
          */
         addFlickrRule: function addFlickrRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), this.scope.name]
-            );
+          this.addWidgetRule(e, this.scope.name);
         }
 
-    }, PluginBase.prototype, WidgetContentController.prototype);
+      },
+      PluginBase.prototype,
+      WidgetContentController.prototype
+  );
 });

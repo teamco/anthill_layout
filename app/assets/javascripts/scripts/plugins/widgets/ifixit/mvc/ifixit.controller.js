@@ -6,56 +6,40 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineIfixitController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define Ifixit controller
+   * @class IfixitController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var IfixitController = function IfixitController() {
+  };
+
+  return IfixitController.extend('IfixitController', {
+
     /**
-     * Define Ifixit controller
-     * @class IfixitController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf IfixitController
      */
-    var IfixitController = function IfixitController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
+      this.view.get$item().renderEmbeddedContent(
+          this.model.getPrefs('ifixitEmbedCode')
+      );
+    },
 
-    return IfixitController.extend('IfixitController', {
+    /**
+     * Add Ifixit rule
+     * @memberOf IfixitController
+     * @param {Event} e
+     */
+    addIfixitRule: function addIfixitRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-        /**
-         * Set embedded content
-         * @memberOf IfixitController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
-            this.view.get$item().renderEmbeddedContent(
-                this.model.getPrefs('ifixitEmbedCode')
-            );
-        },
-
-        /**
-         * Add Ifixit rule
-         * @memberOf IfixitController
-         * @param e
-         */
-        addIfixitRule: function addIfixitRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target);
-
-            /**
-             * Get scope
-             * @type {Ifixit|{name: string}}
-             */
-            var scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

@@ -7,101 +7,102 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/pastery/element/pastery.element',
-    'plugins/widgets/pastery/element/pastery.preferences.element',
-    'plugins/widgets/pastery/element/pastery.rules.element'
-], function definePasteryView(BaseView, Header, Footer, PasteryElement, PasteryPreferencesElement, PasteryRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/pastery/element/pastery.element',
+  'plugins/widgets/pastery/element/pastery.preferences.element',
+  'plugins/widgets/pastery/element/pastery.rules.element'
+], function definePasteryView(BaseView, Header, Footer, PasteryElement,
+    PasteryPreferencesElement, PasteryRulesElement) {
+
+  /**
+   * Define view
+   * @class PasteryView
+   * @extends BaseView
+   * @constructor
+   */
+  var PasteryView = function PasteryView() {
+  };
+
+  return PasteryView.extend('PasteryView', {
 
     /**
-     * Define view
-     * @class PasteryView
-     * @extends BaseView
-     * @constructor
+     * Render Pastery element
+     * @memberOf PasteryView
      */
-    var PasteryView = function PasteryView() {
-    };
+    renderPastery: function renderPastery() {
 
-    return PasteryView.extend('PasteryView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render Pastery element
-         * @memberOf PasteryView
-         */
-        renderPastery: function renderPastery() {
+      /**
+       * Define $pastery
+       * @type {PasteryElement}
+       */
+      this.elements.$pastery = new PasteryElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $pastery
-             * @type {PasteryElement}
-             */
-            this.elements.$pastery = new PasteryElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf PasteryView
+     * @returns {PasteryPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define Pastery Preferences Element
+       * @type {PasteryPreferencesElement}
+       */
+      this.elements.$preferences = new PasteryPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf PasteryView
-         * @returns {PasteryPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define Pastery Preferences Element
-             * @type {PasteryPreferencesElement}
-             */
-            this.elements.$preferences = new PasteryPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf PasteryView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {PasteryRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
-
-        /**
-         * Render Rules
-         * @memberOf PasteryView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {PasteryRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define Pastery Rules Element
-             * @type {PasteryRulesElement}
-             */
-            this.elements.$rules = new PasteryRulesElement(this, {
-                data: this.controller.getRules(),
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render Pastery
-         * @memberOf PasteryView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderPastery.bind(this)
-            );
+      /**
+       * Define Pastery Rules Element
+       * @type {PasteryRulesElement}
+       */
+      this.elements.$rules = new PasteryRulesElement(this, {
+        data: this.controller.getRules(),
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype);
+      return this.get$rules();
+    },
+
+    /**
+     * Render Pastery
+     * @memberOf PasteryView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderPastery.bind(this)
+      );
+    }
+
+  }, BaseView.prototype);
 });

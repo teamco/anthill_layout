@@ -7,20 +7,20 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineSapOpenuiPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class SapOpenuiPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var SapOpenuiPermission = function SapOpenuiPermission() {
-    };
+  /**
+   * Define Permissions
+   * @class SapOpenuiPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var SapOpenuiPermission = function SapOpenuiPermission() {
+  };
 
-    return SapOpenuiPermission.extend(
-        'SapOpenuiPermission', {}, 
-        BasePermission.prototype
-    );
+  return SapOpenuiPermission.extend(
+      'SapOpenuiPermission', {},
+      BasePermission.prototype
+  );
 });

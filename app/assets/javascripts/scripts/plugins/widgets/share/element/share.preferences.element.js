@@ -6,35 +6,33 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
 ], function defineSharePreferencesElement(PluginElement, WidgetPreferences) {
 
-    /**
-     * Define Share Preferences Element
-     * @param view
-     * @param opts
-     * @returns {SharePreferencesElement}
-     * @constructor
-     * @class SharePreferencesElement
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     */
-    var SharePreferencesElement = function SharePreferencesElement(view, opts) {
+  /**
+   * Define Share Preferences Element
+   * @param view
+   * @param opts
+   * @returns {SharePreferencesElement}
+   * @constructor
+   * @class SharePreferencesElement
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   */
+  var SharePreferencesElement = function SharePreferencesElement(view, opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return SharePreferencesElement.extend('SharePreferencesElement', {
-
-
-    }, PluginElement.prototype, WidgetPreferences.prototype);
+  return SharePreferencesElement.extend('SharePreferencesElement', {},
+      PluginElement.prototype, WidgetPreferences.prototype);
 
 });

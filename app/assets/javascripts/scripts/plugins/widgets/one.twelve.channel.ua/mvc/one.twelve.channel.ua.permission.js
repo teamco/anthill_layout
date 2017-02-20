@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineOneTwelveChannelUaPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class OneTwelveChannelUaPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var OneTwelveChannelUaPermission = function OneTwelveChannelUaPermission() {
+  /**
+   * Define Permissions
+   * @class OneTwelveChannelUaPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var OneTwelveChannelUaPermission = function OneTwelveChannelUaPermission() {
 
-    };
+  };
 
-    return OneTwelveChannelUaPermission.extend('OneTwelveChannelUaPermission', {
-
-    }, BasePermission.prototype);
+  return OneTwelveChannelUaPermission.extend('OneTwelveChannelUaPermission', {},
+      BasePermission.prototype);
 });

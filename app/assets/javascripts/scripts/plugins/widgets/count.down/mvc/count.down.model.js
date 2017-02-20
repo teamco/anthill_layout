@@ -6,39 +6,39 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineCountDownModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define CountDown model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class CountDownModel
+   * @constructor
+   */
+  var CountDownModel = function CountDownModel() {
+
     /**
-     * Define CountDown model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class CountDownModel
-     * @constructor
+     * Define preferences
+     * @property CountDownModel
+     * @type {{}}
      */
-    var CountDownModel = function CountDownModel() {
-
-        /**
-         * Define preferences
-         * @property CountDownModel
-         * @type {{}}
-         */
-        this.preferences = {
-            // Preferences
-        };
-
-        /**
-         * Define rules
-         * @property CountDownModel
-         * @type {{}}
-         */
-        this.rules = {};
+    this.preferences = {
+      // Preferences
     };
 
-    return CountDownModel.extend('CountDownModel', {
+    /**
+     * Define rules
+     * @property CountDownModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        // Setter
+  return CountDownModel.extend('CountDownModel', {
 
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    // Setter
+
+  }, BaseModel.prototype, WidgetContentModel.prototype);
 });

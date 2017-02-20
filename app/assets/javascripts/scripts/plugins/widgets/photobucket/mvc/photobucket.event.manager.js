@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function definePhotobucketEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define Photobucket event manager
-     * @class PhotobucketEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var PhotobucketEventManager = function PhotobucketEventManager() {
+  /**
+   * Define Photobucket event manager
+   * @class PhotobucketEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var PhotobucketEventManager = function PhotobucketEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return PhotobucketEventManager.extend('PhotobucketEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return PhotobucketEventManager.extend('PhotobucketEventManager', {},
+      WidgetContentEventManager.prototype);
 });

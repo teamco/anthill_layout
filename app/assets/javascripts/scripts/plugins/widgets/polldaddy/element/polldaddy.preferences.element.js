@@ -6,35 +6,35 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
-], function definePolldaddyPreferencesElement(PluginElement, WidgetPreferences) {
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
+], function definePolldaddyPreferencesElement(PluginElement,
+    WidgetPreferences) {
 
-    /**
-     * Define Polldaddy Preferences Element
-     * @param view
-     * @param opts
-     * @returns {PolldaddyPreferencesElement}
-     * @constructor
-     * @class PolldaddyPreferencesElement
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     */
-    var PolldaddyPreferencesElement = function PolldaddyPreferencesElement(view, opts) {
+  /**
+   * Define Polldaddy Preferences Element
+   * @param view
+   * @param opts
+   * @returns {PolldaddyPreferencesElement}
+   * @constructor
+   * @class PolldaddyPreferencesElement
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   */
+  var PolldaddyPreferencesElement = function PolldaddyPreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return PolldaddyPreferencesElement.extend('PolldaddyPreferencesElement', {
-
-
-    }, PluginElement.prototype, WidgetPreferences.prototype);
+  return PolldaddyPreferencesElement.extend('PolldaddyPreferencesElement', {},
+      PluginElement.prototype, WidgetPreferences.prototype);
 
 });

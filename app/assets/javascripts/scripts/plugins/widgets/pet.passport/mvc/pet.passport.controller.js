@@ -6,50 +6,50 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function definePetPassportController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define pet.passport controller
+   * @class PetPassportController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var PetPassportController = function PetPassportController() {
+  };
+
+  return PetPassportController.extend('PetPassportController', {
+
     /**
-     * Define pet.passport controller
-     * @class PetPassportController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf PetPassportController
      */
-    var PetPassportController = function PetPassportController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
 
-    return PetPassportController.extend('PetPassportController', {
+      this.view.elements.$petpassport.renderEmbeddedContent();
+    },
 
-        /**
-         * Set embedded content
-         * @memberOf PetPassportController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
+    /**
+     * Add PetPassport rule
+     * @memberOf PetPassportController
+     * @param {Event} e
+     */
+    addPetPassportRule: function addPetPassportRule(e) {
 
-            this.view.elements.$petpassport.renderEmbeddedContent();
-        },
+      /**
+       * Define $button
+       * @type {*|jQuery|HTMLElement}
+       */
+      var $button = $(e.target),
+          scope = this.scope;
 
-        /**
-         * Add PetPassport rule
-         * @memberOf PetPassportController
-         * @param e
-         */
-        addPetPassportRule: function addPetPassportRule(e) {
+      scope.observer.publish(
+          scope.eventmanager.eventList.publishRule,
+          [$button.attr('value'), this.scope.name]
+      );
+    }
 
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), this.scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

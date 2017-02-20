@@ -7,18 +7,19 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineExternalWidgetEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define ExternalWidget event manager
-     * @class ExternalWidgetEventManager
-     * @constructor
-     * @extends WidgetContentEventManager
-     * @extends BaseEvent
-     */
-    var ExternalWidgetEventManager = function ExternalWidgetEventManager() {
-    };
+  /**
+   * Define ExternalWidget event manager
+   * @class ExternalWidgetEventManager
+   * @constructor
+   * @extends WidgetContentEventManager
+   * @extends BaseEvent
+   */
+  var ExternalWidgetEventManager = function ExternalWidgetEventManager() {
+  };
 
-    return ExternalWidgetEventManager.extend('ExternalWidgetEventManager', {}, WidgetContentEventManager.prototype);
+  return ExternalWidgetEventManager.extend('ExternalWidgetEventManager', {},
+      WidgetContentEventManager.prototype);
 });

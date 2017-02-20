@@ -7,108 +7,109 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/isnare/element/isnare.element',
-    'plugins/widgets/isnare/element/isnare.preferences.element',
-    'plugins/widgets/isnare/element/isnare.rules.element'
-], function defineIsnareView(BaseView, Header, Footer, IsnareElement, IsnarePreferencesElement, IsnareRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/isnare/element/isnare.element',
+  'plugins/widgets/isnare/element/isnare.preferences.element',
+  'plugins/widgets/isnare/element/isnare.rules.element'
+], function defineIsnareView(BaseView, Header, Footer, IsnareElement,
+    IsnarePreferencesElement, IsnareRulesElement) {
+
+  /**
+   * Define view
+   * @class IsnareView
+   * @extends BaseView
+   * @constructor
+   */
+  var IsnareView = function IsnareView() {
+  };
+
+  return IsnareView.extend('IsnareView', {
 
     /**
-     * Define view
-     * @class IsnareView
-     * @extends BaseView
-     * @constructor
+     * Render isnare element
+     * @memberOf IsnareView
      */
-    var IsnareView = function IsnareView() {
-    };
+    renderIsnare: function renderIsnare() {
 
-    return IsnareView.extend('IsnareView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render isnare element
-         * @memberOf IsnareView
-         */
-        renderIsnare: function renderIsnare() {
+      /**
+       * Define $isnare
+       * @type {IsnareElement}
+       */
+      this.elements.$isnare = new IsnareElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $isnare
-             * @type {IsnareElement}
-             */
-            this.elements.$isnare = new IsnareElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf IsnareView
+     * @returns {IsnarePreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define Isnare Preferences Element
+       * @type {IsnarePreferencesElement}
+       */
+      this.elements.$preferences = new IsnarePreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf IsnareView
-         * @returns {IsnarePreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define Isnare Preferences Element
-             * @type {IsnarePreferencesElement}
-             */
-            this.elements.$preferences = new IsnarePreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf IsnareView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {IsnareRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
+      /**
+       * Define data
+       * @type {*|{}}
+       */
+      var data = this.controller.getRules();
 
-        /**
-         * Render Rules
-         * @memberOf IsnareView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {IsnareRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define data
-             * @type {*|{}}
-             */
-            var data = this.controller.getRules();
-
-            /**
-             * Define Isnare Rules Element
-             * @type {IsnareRulesElement}
-             */
-            this.elements.$rules = new IsnareRulesElement(this, {
-                data: data,
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render isnare
-         * @memberOf IsnareView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderIsnare.bind(this)
-            );
+      /**
+       * Define Isnare Rules Element
+       * @type {IsnareRulesElement}
+       */
+      this.elements.$rules = new IsnareRulesElement(this, {
+        data: data,
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render isnare
+     * @memberOf IsnareView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderIsnare.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

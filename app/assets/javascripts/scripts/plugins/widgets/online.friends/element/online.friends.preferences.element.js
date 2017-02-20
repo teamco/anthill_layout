@@ -6,35 +6,36 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
-], function defineOnlineFriendsPreferencesElement(PluginElement, WidgetPreferences) {
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
+], function defineOnlineFriendsPreferencesElement(PluginElement,
+    WidgetPreferences) {
 
-    /**
-     * Define OnlineFriends Preferences Element
-     * @param view
-     * @param opts
-     * @returns {OnlineFriendsPreferencesElement}
-     * @constructor
-     * @class OnlineFriendsPreferencesElement
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     */
-    var OnlineFriendsPreferencesElement = function OnlineFriendsPreferencesElement(view, opts) {
+  /**
+   * Define OnlineFriends Preferences Element
+   * @param view
+   * @param opts
+   * @returns {OnlineFriendsPreferencesElement}
+   * @constructor
+   * @class OnlineFriendsPreferencesElement
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   */
+  var OnlineFriendsPreferencesElement = function OnlineFriendsPreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return OnlineFriendsPreferencesElement.extend('OnlineFriendsPreferencesElement', {
-
-
-    }, PluginElement.prototype, WidgetPreferences.prototype);
+  return OnlineFriendsPreferencesElement.extend(
+      'OnlineFriendsPreferencesElement', {}, PluginElement.prototype,
+      WidgetPreferences.prototype);
 
 });

@@ -7,30 +7,29 @@
  */
 
 define([
-    'modules/Element'
+  'modules/Element'
 ], function defineFooterElement(BaseElement) {
 
-    /**
-     * Define Footer Element
-     * @param view
-     * @param opts
-     * @returns {*}
-     * @constructor
-     * @class FooterElement
-     * @extends BaseElement
-     */
-    var FooterElement = function FooterElement(view, opts) {
+  /**
+   * Define Footer Element
+   * @param view
+   * @param opts
+   * @returns {*}
+   * @constructor
+   * @class FooterElement
+   * @extends BaseElement
+   */
+  var FooterElement = function FooterElement(view, opts) {
 
-        if (!view.getConfigHTML('footer')) {
-            return this;
-        }
+    if (!view.getConfigHTML('footer')) {
+      return this;
+    }
 
-        return this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
-    };
+    return this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+  };
 
-    return FooterElement.extend('FooterElement', {
-    }, BaseElement.prototype);
+  return FooterElement.extend('FooterElement', {}, BaseElement.prototype);
 });

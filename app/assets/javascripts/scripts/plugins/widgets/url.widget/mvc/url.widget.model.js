@@ -6,54 +6,55 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineUrlWidgetModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define UrlWidget model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class UrlWidgetModel
+   * @constructor
+   */
+  var UrlWidgetModel = function UrlWidgetModel() {
+
     /**
-     * Define UrlWidget model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class UrlWidgetModel
-     * @constructor
-     */
-    var UrlWidgetModel = function UrlWidgetModel() {
-
-        /**
-         * Define preferences
-         * @property UrlWidgetModel
-         * @type {{
-         *      urlwidgetUrl: {type: string, disabled: boolean, value: undefined, visible: boolean},
-         *      urlwidgetShowInIframe: {type: string, disabled: boolean, value: undefined, visible: boolean}
+     * Define preferences
+     * @property UrlWidgetModel
+     * @type {{
+         *      urlwidgetUrl: {type: string, disabled: boolean, value:
+         *     undefined, visible: boolean}, urlwidgetShowInIframe: {type:
+         *     string, disabled: boolean, value: undefined, visible: boolean}
          * }}
-         */
-        this.preferences = {
-            urlwidgetUrlResource: {
-                type: 'textarea',
-                disabled: false,
-                value: 'http://www.w3schools.com',
-                visible: true
-            },
-            urlwidgetShowInIframe: {
-                type: 'checkbox',
-                disabled: false,
-                checked: true,
-                value: true,
-                visible: true
-            }
-        };
-
-        /**
-         * Define rules
-         * @property UrlWidgetModel
-         * @type {{}}
-         */
-        this.rules = {};
+     */
+    this.preferences = {
+      urlwidgetUrlResource: {
+        type: 'textarea',
+        disabled: false,
+        value: 'http://www.w3schools.com',
+        visible: true
+      },
+      urlwidgetShowInIframe: {
+        type: 'checkbox',
+        disabled: false,
+        checked: true,
+        value: true,
+        visible: true
+      }
     };
 
-    return UrlWidgetModel.extend('UrlWidgetModel', {
+    /**
+     * Define rules
+     * @property UrlWidgetModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        // Setter
+  return UrlWidgetModel.extend('UrlWidgetModel', {
 
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    // Setter
+
+  }, BaseModel.prototype, WidgetContentModel.prototype);
 });

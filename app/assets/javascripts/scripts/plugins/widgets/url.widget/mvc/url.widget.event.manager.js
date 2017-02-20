@@ -7,23 +7,23 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineUrlWidgetEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define UrlWidget event manager
-     * @class UrlWidgetEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var UrlWidgetEventManager = function UrlWidgetEventManager() {
+  /**
+   * Define UrlWidget event manager
+   * @class UrlWidgetEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var UrlWidgetEventManager = function UrlWidgetEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return UrlWidgetEventManager.extend(
-        'UrlWidgetEventManager', {},
-        WidgetContentEventManager.prototype
-    );
+  return UrlWidgetEventManager.extend(
+      'UrlWidgetEventManager', {},
+      WidgetContentEventManager.prototype
+  );
 });

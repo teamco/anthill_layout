@@ -7,23 +7,23 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineInterludeEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define Interlude event manager
-     * @class InterludeEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var InterludeEventManager = function InterludeEventManager() {
+  /**
+   * Define Interlude event manager
+   * @class InterludeEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var InterludeEventManager = function InterludeEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return InterludeEventManager.extend(
-        'InterludeEventManager', {},
-        WidgetContentEventManager.prototype
-    );
+  return InterludeEventManager.extend(
+      'InterludeEventManager', {},
+      WidgetContentEventManager.prototype
+  );
 });

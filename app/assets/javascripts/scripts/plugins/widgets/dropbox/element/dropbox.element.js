@@ -6,124 +6,125 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineDropboxElement(PluginElement) {
 
+  /**
+   * Define Dropbox Element
+   * @param view
+   * @param opts
+   * @returns {DropboxElement}
+   * @constructor
+   * @class DropboxElement
+   * @extends PluginElement
+   */
+  var DropboxElement = function DropboxElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('dropbox', {resource: '/widgets'});
+
     /**
-     * Define Dropbox Element
-     * @param view
-     * @param opts
-     * @returns {DropboxElement}
-     * @constructor
-     * @class DropboxElement
-     * @extends PluginElement
+     * Download
+     * @memberOf DropboxElement
+     * @type {string}
      */
-    var DropboxElement = function DropboxElement(view, opts) {
+    this.download = 'Download';
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    return this;
+  };
 
-        this.addCSS('dropbox', {resource: '/widgets'});
+  return DropboxElement.extend('DropboxElement', {
 
-        /**
-         * Download
-         * @memberOf DropboxElement
-         * @type {string}
-         */
-        this.download = 'Download';
+    /**
+     * Render Embedded content
+     * @memberOf DropboxElement
+     * @param {{url: string|*, download: boolean}} opts
+     */
+    renderEmbeddedContent: function renderEmbeddedContent(opts) {
 
-        return this;
-    };
+      if (opts.url) {
 
-    return DropboxElement.extend('DropboxElement', {
+        this.empty();
 
-        /**
-         * Render Embedded content
-         * @memberOf DropboxElement
-         * @param {{url: string|*, download: boolean}} opts
-         */
-        renderEmbeddedContent: function renderEmbeddedContent(opts) {
+        if (opts.download) {
 
-            if (opts.url) {
+          this.$.append(
+              $('<a />').addClass('download').attr({
+                href: opts.url,
+                title: opts.name || this.download
+              }).text(opts.name || this.download)
+          );
 
-                this.empty();
-
-                if (opts.download) {
-
-                    this.$.append(
-                        $('<a />').addClass('download').attr({
-                            href: opts.url,
-                            title: opts.name || this.download
-                        }).text(opts.name || this.download)
-                    );
-
-                } else {
-                    // TODO verify file type
-                }
-
-                return this;
-            }
-
-            if (!window.Dropbox) {
-                return false;
-            }
-
-            /**
-             * Define dropbox element
-             * @type {DropboxElement}
-             */
-            var $element = this;
-
-            var view = $element.view,
-                controller = view.controller;
-
-            controller.clearParentThumbnail();
-
-            require([
-                'https://www.dropbox.com/static/api/2/dropins.js'
-            ], function getDropboxApi() {
-
-                /**
-                 * Define dropbox button instance
-                 */
-                var $button = Dropbox.createChooseButton({
-
-                    success: function (data) {
-
-                        /**
-                         * Get response data
-                         * @type {{bytes, icon, link, name, thumbnailLink}}
-                         */
-                        var hash = data[0];
-
-                        controller.setHiddenPreferences('dropboxBytes', hash.bytes);
-                        controller.setHiddenPreferences('dropboxIcon', hash.icon);
-                        controller.setHiddenPreferences('dropboxUrl', hash.link);
-                        controller.setHiddenPreferences('dropboxFileName', hash.name);
-                        controller.setHiddenPreferences('dropboxThumbnail', hash.thumbnailLink);
-
-                        controller.store();
-
-                        /**
-                         * Get scope
-                         * @type {Dropbox}
-                         */
-                        var scope = view.scope;
-
-                        scope.observer.publish(
-                            scope.eventmanager.eventList.setEmbeddedContent
-                        );
-                    },
-                    linkType: 'direct'
-                });
-
-                $element.$.append($button);
-            });
-
+        } else {
+          // TODO verify file type
         }
 
-    }, PluginElement.prototype);
+        return this;
+      }
+
+      if (!window.Dropbox) {
+        return false;
+      }
+
+      /**
+       * Define dropbox element
+       * @type {DropboxElement}
+       */
+      var $element = this;
+
+      var view = $element.view,
+          controller = view.controller;
+
+      controller.clearParentThumbnail();
+
+      require([
+        'https://www.dropbox.com/static/api/2/dropins.js'
+      ], function getDropboxApi() {
+
+        /**
+         * Define dropbox button instance
+         */
+        var $button = Dropbox.createChooseButton({
+
+          success: function (data) {
+
+            /**
+             * Get response data
+             * @type {{bytes, icon, link, name, thumbnailLink}}
+             */
+            var hash = data[0];
+
+            controller.setHiddenPreferences('dropboxBytes', hash.bytes);
+            controller.setHiddenPreferences('dropboxIcon', hash.icon);
+            controller.setHiddenPreferences('dropboxUrl', hash.link);
+            controller.setHiddenPreferences('dropboxFileName', hash.name);
+            controller.setHiddenPreferences('dropboxThumbnail',
+                hash.thumbnailLink);
+
+            controller.store();
+
+            /**
+             * Get scope
+             * @type {Dropbox}
+             */
+            var scope = view.scope;
+
+            scope.observer.publish(
+                scope.eventmanager.eventList.setEmbeddedContent
+            );
+          },
+          linkType: 'direct'
+        });
+
+        $element.$.append($button);
+      });
+
+    }
+
+  }, PluginElement.prototype);
 
 });

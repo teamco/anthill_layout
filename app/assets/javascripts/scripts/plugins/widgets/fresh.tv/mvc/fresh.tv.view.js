@@ -7,108 +7,109 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/fresh.tv/element/fresh.tv.element',
-    'plugins/widgets/fresh.tv/element/fresh.tv.preferences.element',
-    'plugins/widgets/fresh.tv/element/fresh.tv.rules.element'
-], function defineFreshTvView(BaseView, Header, Footer, FreshTvElement, FreshTvPreferencesElement, FreshTvRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/fresh.tv/element/fresh.tv.element',
+  'plugins/widgets/fresh.tv/element/fresh.tv.preferences.element',
+  'plugins/widgets/fresh.tv/element/fresh.tv.rules.element'
+], function defineFreshTvView(BaseView, Header, Footer, FreshTvElement,
+    FreshTvPreferencesElement, FreshTvRulesElement) {
+
+  /**
+   * Define view
+   * @class FreshTvView
+   * @extends BaseView
+   * @constructor
+   */
+  var FreshTvView = function FreshTvView() {
+  };
+
+  return FreshTvView.extend('FreshTvView', {
 
     /**
-     * Define view
-     * @class FreshTvView
-     * @extends BaseView
-     * @constructor
+     * Render freshtv element
+     * @memberOf FreshTvView
      */
-    var FreshTvView = function FreshTvView() {
-    };
+    renderFreshTv: function renderFreshTv() {
 
-    return FreshTvView.extend('FreshTvView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render freshtv element
-         * @memberOf FreshTvView
-         */
-        renderFreshTv: function renderFreshTv() {
+      /**
+       * Define $freshtv
+       * @type {FreshTvElement}
+       */
+      this.elements.$freshtv = new FreshTvElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $freshtv
-             * @type {FreshTvElement}
-             */
-            this.elements.$freshtv = new FreshTvElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf FreshTvView
+     * @returns {FreshTvPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define FreshTv Preferences Element
+       * @type {FreshTvPreferencesElement}
+       */
+      this.elements.$preferences = new FreshTvPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf FreshTvView
-         * @returns {FreshTvPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define FreshTv Preferences Element
-             * @type {FreshTvPreferencesElement}
-             */
-            this.elements.$preferences = new FreshTvPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf FreshTvView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {FreshTvRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
+      /**
+       * Define data
+       * @type {*|{}}
+       */
+      var data = this.controller.getRules();
 
-        /**
-         * Render Rules
-         * @memberOf FreshTvView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {FreshTvRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define data
-             * @type {*|{}}
-             */
-            var data = this.controller.getRules();
-
-            /**
-             * Define FreshTv Rules Element
-             * @type {FreshTvRulesElement}
-             */
-            this.elements.$rules = new FreshTvRulesElement(this, {
-                data: data,
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render freshtv
-         * @memberOf FreshTvView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderFreshTv.bind(this)
-            );
+      /**
+       * Define FreshTv Rules Element
+       * @type {FreshTvRulesElement}
+       */
+      this.elements.$rules = new FreshTvRulesElement(this, {
+        data: data,
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render freshtv
+     * @memberOf FreshTvView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderFreshTv.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

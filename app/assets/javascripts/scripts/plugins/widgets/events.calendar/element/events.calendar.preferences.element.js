@@ -6,35 +6,36 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
-], function defineEventsCalendarPreferencesElement(PluginElement, WidgetPreferences) {
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
+], function defineEventsCalendarPreferencesElement(PluginElement,
+    WidgetPreferences) {
 
-    /**
-     * Define EventsCalendar Preferences Element
-     * @constructor
-     * @class EventsCalendarPreferencesElement
-     * @param {EventsCalendarView} view
-     * @param opts
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     * @returns {EventsCalendarPreferencesElement}
-     */
-    var EventsCalendarPreferencesElement = function EventsCalendarPreferencesElement(view, opts) {
+  /**
+   * Define EventsCalendar Preferences Element
+   * @constructor
+   * @class EventsCalendarPreferencesElement
+   * @param {EventsCalendarView} view
+   * @param opts
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   * @returns {EventsCalendarPreferencesElement}
+   */
+  var EventsCalendarPreferencesElement = function EventsCalendarPreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return EventsCalendarPreferencesElement.extend('EventsCalendarPreferencesElement', {
-
-
-    }, PluginElement.prototype, WidgetPreferences.prototype);
+  return EventsCalendarPreferencesElement.extend(
+      'EventsCalendarPreferencesElement', {}, PluginElement.prototype,
+      WidgetPreferences.prototype);
 
 });

@@ -6,56 +6,40 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineOfficeMixController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define OfficeMix controller
+   * @class OfficeMixController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var OfficeMixController = function OfficeMixController() {
+  };
+
+  return OfficeMixController.extend('OfficeMixController', {
+
     /**
-     * Define OfficeMix controller
-     * @class OfficeMixController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf OfficeMixController
      */
-    var OfficeMixController = function OfficeMixController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
+      this.view.get$item().renderEmbeddedContent(
+          this.model.getPrefs('officemixEmbedCode')
+      );
+    },
 
-    return OfficeMixController.extend('OfficeMixController', {
+    /**
+     * Add OfficeMix rule
+     * @memberOf OfficeMixController
+     * @param {Event} e
+     */
+    addOfficeMixRule: function addOfficeMixRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-        /**
-         * Set embedded content
-         * @memberOf OfficeMixController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
-            this.view.get$item().renderEmbeddedContent(
-                this.model.getPrefs('officemixEmbedCode')
-            );
-        },
-
-        /**
-         * Add OfficeMix rule
-         * @memberOf OfficeMixController
-         * @param e
-         */
-        addOfficeMixRule: function addOfficeMixRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target);
-
-            /**
-             * Get scope
-             * @type {OfficeMix|{name: string}}
-             */
-            var scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

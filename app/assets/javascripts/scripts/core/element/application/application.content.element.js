@@ -7,26 +7,26 @@
  */
 
 define([
-    'modules/Element'
+  'modules/Element'
 ], function defineApplicationContentElement(BaseElement) {
 
-    /**
-     * Define Application content element
-     * @param view
-     * @param opts
-     * @returns {*}
-     * @constructor
-     * @class ApplicationContentElement
-     * @extends BaseElement
-     */
-    var ApplicationContentElement = function ApplicationContentElement(view, opts) {
-        return this._config(view, opts, $('<ul />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
-    };
+  /**
+   * Define Application content element
+   * @param view
+   * @param opts
+   * @returns {*}
+   * @constructor
+   * @class ApplicationContentElement
+   * @extends BaseElement
+   */
+  var ApplicationContentElement = function ApplicationContentElement(view,
+      opts) {
+    return this._config(view, opts, $('<ul />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+  };
 
-    return ApplicationContentElement.extend('ApplicationContentElement', {
-
-    }, BaseElement.prototype);
+  return ApplicationContentElement.extend('ApplicationContentElement', {},
+      BaseElement.prototype);
 });

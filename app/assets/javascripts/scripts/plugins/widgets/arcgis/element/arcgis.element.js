@@ -6,45 +6,45 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineArcgisElement(PluginElement) {
 
+  /**
+   * Define Arcgis Element
+   * @param view
+   * @param opts
+   * @returns {ArcgisElement}
+   * @constructor
+   * @class ArcgisElement
+   * @extends PluginElement
+   */
+  var ArcgisElement = function ArcgisElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('arcgis', {resource: '/widgets'});
+
+    return this;
+  };
+
+  return ArcgisElement.extend('ArcgisElement', {
+
     /**
-     * Define Arcgis Element
-     * @param view
-     * @param opts
-     * @returns {ArcgisElement}
-     * @constructor
-     * @class ArcgisElement
-     * @extends PluginElement
+     * Render Embedded content
+     * @memberOf ArcgisElement
+     * @param {string} html
      */
-    var ArcgisElement = function ArcgisElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent(html) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+      this.$.append(
+          this.renderIframe(
+              $(html).attr('src')
+          )
+      );
+    }
 
-        this.addCSS('arcgis', {resource: '/widgets'});
-
-        return this;
-    };
-
-    return ArcgisElement.extend('ArcgisElement', {
-
-        /**
-         * Render Embedded content
-         * @memberOf ArcgisElement
-         * @param {string} html
-         */
-        renderEmbeddedContent: function renderEmbeddedContent(html) {
-
-            this.$.append(
-                this.renderIframe(
-                    $(html).attr('src')
-                )
-            );
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 });

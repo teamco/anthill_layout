@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineDailyMotionPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class DailyMotionPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var DailyMotionPermission = function DailyMotionPermission() {
+  /**
+   * Define Permissions
+   * @class DailyMotionPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var DailyMotionPermission = function DailyMotionPermission() {
 
-    };
+  };
 
-    return DailyMotionPermission.extend('DailyMotionPermission', {
-
-    }, BasePermission.prototype);
+  return DailyMotionPermission.extend('DailyMotionPermission', {},
+      BasePermission.prototype);
 });

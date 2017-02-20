@@ -6,49 +6,49 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineLoginController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define login controller
+   * @class LoginController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var LoginController = function LoginController() {
+  };
+
+  return LoginController.extend('LoginController', {
+
     /**
-     * Define login controller
-     * @class LoginController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf LoginController
      */
-    var LoginController = function LoginController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
+      this.view.elements.$login.renderEmbeddedContent();
+    },
 
-    return LoginController.extend('LoginController', {
+    /**
+     * Add Login rule
+     * @memberOf LoginController
+     * @param {Event} e
+     */
+    addLoginRule: function addLoginRule(e) {
 
-        /**
-         * Set embedded content
-         * @memberOf LoginController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
-            this.view.elements.$login.renderEmbeddedContent();
-        },
+      /**
+       * Define $button
+       * @type {*|jQuery|HTMLElement}
+       */
+      var $button = $(e.target),
+          scope = this.scope;
 
-        /**
-         * Add Login rule
-         * @memberOf LoginController
-         * @param e
-         */
-        addLoginRule: function addLoginRule(e) {
+      scope.observer.publish(
+          scope.eventmanager.eventList.publishRule,
+          [$button.attr('value'), this.scope.name]
+      );
+    }
 
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), this.scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

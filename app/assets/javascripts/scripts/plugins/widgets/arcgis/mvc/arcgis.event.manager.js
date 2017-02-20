@@ -7,23 +7,23 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineArcgisEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define Arcgis event manager
-     * @class ArcgisEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var ArcgisEventManager = function ArcgisEventManager() {
+  /**
+   * Define Arcgis event manager
+   * @class ArcgisEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var ArcgisEventManager = function ArcgisEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return ArcgisEventManager.extend(
-        'ArcgisEventManager', {},
-        WidgetContentEventManager.prototype
-    );
+  return ArcgisEventManager.extend(
+      'ArcgisEventManager', {},
+      WidgetContentEventManager.prototype
+  );
 });

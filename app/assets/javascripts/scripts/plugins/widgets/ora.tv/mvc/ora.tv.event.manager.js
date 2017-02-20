@@ -7,23 +7,23 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineOraTvEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define OraTv event manager
-     * @class OraTvEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var OraTvEventManager = function OraTvEventManager() {
+  /**
+   * Define OraTv event manager
+   * @class OraTvEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var OraTvEventManager = function OraTvEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return OraTvEventManager.extend(
-        'OraTvEventManager', {},
-        WidgetContentEventManager.prototype
-    );
+  return OraTvEventManager.extend(
+      'OraTvEventManager', {},
+      WidgetContentEventManager.prototype
+  );
 });

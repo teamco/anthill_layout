@@ -6,41 +6,42 @@
  */
 
 define([
-    'config/anthill',
-    'modules/MVC',
-    'plugins/widgets/youtube/mvc/youtube.controller',
-    'plugins/widgets/youtube/mvc/youtube.model',
-    'plugins/widgets/youtube/mvc/youtube.view',
-    'plugins/widgets/youtube/mvc/youtube.event.manager',
-    'plugins/widgets/youtube/mvc/youtube.permission'
-], function defineYoutube(AntHill, MVC, Controller, Model, View, EventManager, Permission) {
+  'config/anthill',
+  'modules/MVC',
+  'plugins/widgets/youtube/mvc/youtube.controller',
+  'plugins/widgets/youtube/mvc/youtube.model',
+  'plugins/widgets/youtube/mvc/youtube.view',
+  'plugins/widgets/youtube/mvc/youtube.event.manager',
+  'plugins/widgets/youtube/mvc/youtube.permission'
+], function defineYoutube(AntHill, MVC, Controller, Model, View, EventManager,
+    Permission) {
+
+  /**
+   * Define Youtube
+   * @param containment
+   * @param [opts]
+   * @constructor
+   * @class Youtube
+   * @extends AntHill
+   */
+  var Youtube = function Youtube(containment, opts) {
 
     /**
-     * Define Youtube
-     * @param containment
-     * @param [opts]
-     * @constructor
-     * @class Youtube
-     * @extends AntHill
+     * Define containment
+     * @memberOf Youtube
      */
-    var Youtube = function Youtube(containment, opts) {
+    this.containment = containment;
 
-        /**
-         * Define containment
-         * @memberOf Youtube
-         */
-        this.containment = containment;
+    /**
+     * Define referrer
+     * @memberOf Youtube
+     * @type {*}
+     */
+    this.referrer = undefined;
 
-        /**
-         * Define referrer
-         * @memberOf Youtube
-         * @type {*}
-         */
-        this.referrer = undefined;
-
-        /**
-         * Define defaults
-         * @type {{
+    /**
+     * Define defaults
+     * @type {{
          *      plugin: boolean,
          *      html: {
          *          style: string,
@@ -56,52 +57,50 @@ define([
          *      regex: RegExp,
          *      mask: string
          * }}
-         */
-        var DEFAULTS = {
-            plugin: true,
-            html: {
-                style: 'default',
-                header: false,
-                footer: false,
-                padding: {
-                    top: 0,
-                    right: 0,
-                    bottom: 0,
-                    left: 0
-                }
-            },
-            regex: /^.*(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/ ]{11})/i,
-            mask: 'https://www.youtube.com/embed/{videoId}'
-        };
-
-        /**
-         * Define MVC
-         * @memberOf Youtube
-         * @type {MVC}
-         */
-        this.mvc = new MVC({
-            scope: this,
-            config: [
-                {uuid: this.containment.model.getContentUUID()},
-                DEFAULTS
-            ],
-            components: [
-                Controller,
-                Model,
-                View,
-                EventManager,
-                Permission
-            ],
-            render: true
-        });
-
-        this.observer.publish(
-            this.eventmanager.eventList.initWidget,
-            opts
-        );
+     */
+    var DEFAULTS = {
+      plugin: true,
+      html: {
+        style: 'default',
+        header: false,
+        footer: false,
+        padding: {
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0
+        }
+      },
+      regex: /^.*(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/ ]{11})/i,
+      mask: 'https://www.youtube.com/embed/{videoId}'
     };
 
-    return Youtube.extend('Youtube', {
+    /**
+     * Define MVC
+     * @memberOf Youtube
+     * @type {MVC}
+     */
+    this.mvc = new MVC({
+      scope: this,
+      config: [
+        {uuid: this.containment.model.getContentUUID()},
+        DEFAULTS
+      ],
+      components: [
+        Controller,
+        Model,
+        View,
+        EventManager,
+        Permission
+      ],
+      render: true
+    });
 
-    }, AntHill.prototype);
+    this.observer.publish(
+        this.eventmanager.eventList.initWidget,
+        opts
+    );
+  };
+
+  return Youtube.extend('Youtube', {}, AntHill.prototype);
 });

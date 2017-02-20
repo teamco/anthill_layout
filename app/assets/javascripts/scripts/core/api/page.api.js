@@ -6,88 +6,88 @@
  */
 
 define([
-    'config/anthill',
-    'modules/API',
-    'config/widget'
+  'config/anthill',
+  'modules/API',
+  'config/widget'
 ], function definePageAPI(AntHill, BaseAPI, Widget) {
 
+  /**
+   * Define Page API
+   * @class PageAPI
+   * @extends BaseAPI
+   * @extends AntHill
+   * @constructor
+   */
+  var PageAPI = function PageAPI() {
+  };
+
+  return PageAPI.extend('PageAPI', {
+
     /**
-     * Define Page API
-     * @class PageAPI
-     * @extends BaseAPI
-     * @extends AntHill
-     * @constructor
+     * Create Widget API
+     * @memberOf PageAPI
+     * @param {*} args
+     * @param {Boolean} [render]
+     * @param {Boolean} [silent]
+     * @returns {*}
      */
-    var PageAPI = function PageAPI() {
-    };
+    createWidget: function createWidget(args, render, silent) {
 
-    return PageAPI.extend('PageAPI', {
+      /**
+       * Define scope
+       */
+      var scope = this.scope;
 
-        /**
-         * Create Widget API
-         * @memberOf PageAPI
-         * @param {*} args
-         * @param {Boolean} [render]
-         * @param {Boolean} [silent]
-         * @returns {*}
-         */
-        createWidget: function createWidget(args, render, silent) {
+      if (silent) {
+        scope.controller.allowAddWidget();
+      }
 
-            /**
-             * Define scope
-             */
-            var scope = this.scope;
+      if (!scope.controller.isAllowAddWidget()) {
+        scope.logger.warn(
+            this.i18n.t('not.allowed.add.widget'),
+            arguments
+        );
 
-            if (silent) {
-                scope.controller.allowAddWidget();
-            }
+        return false;
+      }
 
-            if (!scope.controller.isAllowAddWidget()) {
-                scope.logger.warn(
-                    this.i18n.t('not.allowed.add.widget'),
-                    arguments
-                );
+      scope.layout.observer.publish(
+          scope.layout.eventmanager.eventList.beforeNestedOrganizer,
+          silent
+      );
 
-                return false;
-            }
+      return scope.controller.updateWidgetsConfig(
+          this._createItem(Widget, args, render, silent)
+      );
+    },
 
-            scope.layout.observer.publish(
-                scope.layout.eventmanager.eventList.beforeNestedOrganizer,
-                silent
-            );
+    /**
+     * Destroy widget
+     * @memberOf PageAPI
+     * @param {Widget} widget
+     * @param {Boolean} [silent]
+     */
+    destroyWidget: function destroyWidget(widget, silent) {
+      var scope = this.scope;
+      scope.observer.publish(
+          scope.eventmanager.eventList.destroyWidget,
+          [widget, silent]
+      );
+    },
 
-            return scope.controller.updateWidgetsConfig(
-                this._createItem(Widget, args, render, silent)
-            );
-        },
+    /**
+     * Destroy widgets
+     * @memberOf PageAPI
+     * @param {[Widget]} [items]
+     * @param {Boolean} [silent]
+     */
+    destroyWidgets: function destroyWidgets(items, silent) {
+      var scope = this.scope;
+      scope.observer.publish(
+          scope.eventmanager.eventList.destroyWidgets,
+          [items, silent]
+      );
+    }
 
-        /**
-         * Destroy widget
-         * @memberOf PageAPI
-         * @param {Widget} widget
-         * @param {Boolean} [silent]
-         */
-        destroyWidget: function destroyWidget(widget, silent) {
-            var scope = this.scope;
-            scope.observer.publish(
-                scope.eventmanager.eventList.destroyWidget,
-                [widget, silent]
-            );
-        },
-
-        /**
-         * Destroy widgets
-         * @memberOf PageAPI
-         * @param {[Widget]} [items]
-         * @param {Boolean} [silent]
-         */
-        destroyWidgets: function destroyWidgets(items, silent) {
-            var scope = this.scope;
-            scope.observer.publish(
-                scope.eventmanager.eventList.destroyWidgets,
-                [items, silent]
-            );
-        }
-
-    }, AntHill.prototype, BaseAPI.prototype)
+  }, AntHill.prototype, BaseAPI.prototype)
 });

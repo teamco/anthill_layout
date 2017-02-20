@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineTsnUaEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define TsnUa event manager
-     * @class TsnUaEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var TsnUaEventManager = function TsnUaEventManager() {
+  /**
+   * Define TsnUa event manager
+   * @class TsnUaEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var TsnUaEventManager = function TsnUaEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return TsnUaEventManager.extend('TsnUaEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return TsnUaEventManager.extend('TsnUaEventManager', {},
+      WidgetContentEventManager.prototype);
 });

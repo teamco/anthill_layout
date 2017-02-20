@@ -7,101 +7,102 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/show.the.way/element/show.the.way.element',
-    'plugins/widgets/show.the.way/element/show.the.way.preferences.element',
-    'plugins/widgets/show.the.way/element/show.the.way.rules.element'
-], function defineShowTheWayView(BaseView, Header, Footer, ShowTheWayElement, ShowTheWayPreferencesElement, ShowTheWayRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/show.the.way/element/show.the.way.element',
+  'plugins/widgets/show.the.way/element/show.the.way.preferences.element',
+  'plugins/widgets/show.the.way/element/show.the.way.rules.element'
+], function defineShowTheWayView(BaseView, Header, Footer, ShowTheWayElement,
+    ShowTheWayPreferencesElement, ShowTheWayRulesElement) {
+
+  /**
+   * Define view
+   * @class ShowTheWayView
+   * @extends BaseView
+   * @constructor
+   */
+  var ShowTheWayView = function ShowTheWayView() {
+  };
+
+  return ShowTheWayView.extend('ShowTheWayView', {
 
     /**
-     * Define view
-     * @class ShowTheWayView
-     * @extends BaseView
-     * @constructor
+     * Render ShowTheWay element
+     * @memberOf ShowTheWayView
      */
-    var ShowTheWayView = function ShowTheWayView() {
-    };
+    renderShowTheWay: function renderShowTheWay() {
 
-    return ShowTheWayView.extend('ShowTheWayView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render ShowTheWay element
-         * @memberOf ShowTheWayView
-         */
-        renderShowTheWay: function renderShowTheWay() {
+      /**
+       * Define $showtheway
+       * @type {ShowTheWayElement}
+       */
+      this.elements.$showtheway = new ShowTheWayElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $showtheway
-             * @type {ShowTheWayElement}
-             */
-            this.elements.$showtheway = new ShowTheWayElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf ShowTheWayView
+     * @returns {ShowTheWayPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define ShowTheWay Preferences Element
+       * @type {ShowTheWayPreferencesElement}
+       */
+      this.elements.$preferences = new ShowTheWayPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf ShowTheWayView
-         * @returns {ShowTheWayPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define ShowTheWay Preferences Element
-             * @type {ShowTheWayPreferencesElement}
-             */
-            this.elements.$preferences = new ShowTheWayPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf ShowTheWayView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {ShowTheWayRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
-
-        /**
-         * Render Rules
-         * @memberOf ShowTheWayView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {ShowTheWayRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define ShowTheWay Rules Element
-             * @type {ShowTheWayRulesElement}
-             */
-            this.elements.$rules = new ShowTheWayRulesElement(this, {
-                data: this.controller.getRules(),
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render ShowTheWay
-         * @memberOf ShowTheWayView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderShowTheWay.bind(this)
-            );
+      /**
+       * Define ShowTheWay Rules Element
+       * @type {ShowTheWayRulesElement}
+       */
+      this.elements.$rules = new ShowTheWayRulesElement(this, {
+        data: this.controller.getRules(),
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype);
+      return this.get$rules();
+    },
+
+    /**
+     * Render ShowTheWay
+     * @memberOf ShowTheWayView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderShowTheWay.bind(this)
+      );
+    }
+
+  }, BaseView.prototype);
 });

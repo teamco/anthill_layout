@@ -6,35 +6,33 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
 ], function defineTrubaPreferencesElement(PluginElement, WidgetPreferences) {
 
-    /**
-     * Define Truba Preferences Element
-     * @param view
-     * @param opts
-     * @returns {TrubaPreferencesElement}
-     * @constructor
-     * @class TrubaPreferencesElement
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     */
-    var TrubaPreferencesElement = function TrubaPreferencesElement(view, opts) {
+  /**
+   * Define Truba Preferences Element
+   * @param view
+   * @param opts
+   * @returns {TrubaPreferencesElement}
+   * @constructor
+   * @class TrubaPreferencesElement
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   */
+  var TrubaPreferencesElement = function TrubaPreferencesElement(view, opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return TrubaPreferencesElement.extend('TrubaPreferencesElement', {
-
-
-    }, PluginElement.prototype, WidgetPreferences.prototype);
+  return TrubaPreferencesElement.extend('TrubaPreferencesElement', {},
+      PluginElement.prototype, WidgetPreferences.prototype);
 
 });

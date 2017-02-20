@@ -7,108 +7,109 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/xkcd/element/xkcd.element',
-    'plugins/widgets/xkcd/element/xkcd.preferences.element',
-    'plugins/widgets/xkcd/element/xkcd.rules.element'
-], function defineXkcdView(BaseView, Header, Footer, XkcdElement, XkcdPreferencesElement, XkcdRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/xkcd/element/xkcd.element',
+  'plugins/widgets/xkcd/element/xkcd.preferences.element',
+  'plugins/widgets/xkcd/element/xkcd.rules.element'
+], function defineXkcdView(BaseView, Header, Footer, XkcdElement,
+    XkcdPreferencesElement, XkcdRulesElement) {
+
+  /**
+   * Define view
+   * @class XkcdView
+   * @extends BaseView
+   * @constructor
+   */
+  var XkcdView = function XkcdView() {
+  };
+
+  return XkcdView.extend('XkcdView', {
 
     /**
-     * Define view
-     * @class XkcdView
-     * @extends BaseView
-     * @constructor
+     * Render xkcd element
+     * @memberOf XkcdView
      */
-    var XkcdView = function XkcdView() {
-    };
+    renderXkcd: function renderXkcd() {
 
-    return XkcdView.extend('XkcdView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render xkcd element
-         * @memberOf XkcdView
-         */
-        renderXkcd: function renderXkcd() {
+      /**
+       * Define $xkcd
+       * @type {XkcdElement}
+       */
+      this.elements.$xkcd = new XkcdElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $xkcd
-             * @type {XkcdElement}
-             */
-            this.elements.$xkcd = new XkcdElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf XkcdView
+     * @returns {XkcdPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define Xkcd Preferences Element
+       * @type {XkcdPreferencesElement}
+       */
+      this.elements.$preferences = new XkcdPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf XkcdView
-         * @returns {XkcdPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define Xkcd Preferences Element
-             * @type {XkcdPreferencesElement}
-             */
-            this.elements.$preferences = new XkcdPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf XkcdView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {XkcdRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
+      /**
+       * Define data
+       * @type {*|{}}
+       */
+      var data = this.controller.getRules();
 
-        /**
-         * Render Rules
-         * @memberOf XkcdView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {XkcdRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define data
-             * @type {*|{}}
-             */
-            var data = this.controller.getRules();
-
-            /**
-             * Define Xkcd Rules Element
-             * @type {XkcdRulesElement}
-             */
-            this.elements.$rules = new XkcdRulesElement(this, {
-                data: data,
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render xkcd
-         * @memberOf XkcdView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderXkcd.bind(this)
-            );
+      /**
+       * Define Xkcd Rules Element
+       * @type {XkcdRulesElement}
+       */
+      this.elements.$rules = new XkcdRulesElement(this, {
+        data: data,
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render xkcd
+     * @memberOf XkcdView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderXkcd.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

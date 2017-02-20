@@ -7,20 +7,18 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineRssPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class RssPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var RssPermission = function RssPermission() {
+  /**
+   * Define Permissions
+   * @class RssPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var RssPermission = function RssPermission() {
 
-    };
+  };
 
-    return RssPermission.extend('RssPermission', {
-
-    }, BasePermission.prototype);
+  return RssPermission.extend('RssPermission', {}, BasePermission.prototype);
 });

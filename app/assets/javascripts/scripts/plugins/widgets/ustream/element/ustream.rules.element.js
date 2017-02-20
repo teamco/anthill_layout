@@ -6,38 +6,37 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/rules/widget.base.rules'
+  'plugins/plugin.element',
+  'plugins/rules/widget.base.rules'
 ], function defineUstreamRulesElement(PluginElement, BaseWidgetRules) {
 
-    /**
-     * Define Ustream Rules Element
-     * @param view
-     * @param opts
-     * @returns {UstreamRulesElement}
-     * @constructor
-     * @class UstreamRulesElement
-     * @extends PluginElement
-     * @extends BaseWidgetRules
-     */
-    var UstreamRulesElement = function UstreamRulesElement(view, opts) {
+  /**
+   * Define Ustream Rules Element
+   * @param view
+   * @param opts
+   * @returns {UstreamRulesElement}
+   * @constructor
+   * @class UstreamRulesElement
+   * @extends PluginElement
+   * @extends BaseWidgetRules
+   */
+  var UstreamRulesElement = function UstreamRulesElement(view, opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBaseRulesData(
-            opts.data,
-            opts.rules.widget,
-            opts.rules.content
-        );
+    this.renderBaseRulesData(
+        opts.data,
+        opts.rules.widget,
+        opts.rules.content
+    );
 
-        return this;
-    };
+    return this;
+  };
 
-    return UstreamRulesElement.extend('UstreamRulesElement', {
-
-    }, PluginElement.prototype, BaseWidgetRules.prototype);
+  return UstreamRulesElement.extend('UstreamRulesElement', {},
+      PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

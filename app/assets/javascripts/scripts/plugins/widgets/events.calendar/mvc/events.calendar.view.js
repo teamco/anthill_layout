@@ -7,102 +7,104 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/events.calendar/element/events.calendar.element',
-    'plugins/widgets/events.calendar/element/events.calendar.preferences.element',
-    'plugins/widgets/events.calendar/element/events.calendar.rules.element'
-], function defineEventsCalendarView(BaseView, Header, Footer, EventsCalendarElement, EventsCalendarPreferencesElement, EventsCalendarRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/events.calendar/element/events.calendar.element',
+  'plugins/widgets/events.calendar/element/events.calendar.preferences.element',
+  'plugins/widgets/events.calendar/element/events.calendar.rules.element'
+], function defineEventsCalendarView(BaseView, Header, Footer,
+    EventsCalendarElement, EventsCalendarPreferencesElement,
+    EventsCalendarRulesElement) {
+
+  /**
+   * Define view
+   * @class EventsCalendarView
+   * @extends BaseView
+   * @constructor
+   */
+  var EventsCalendarView = function EventsCalendarView() {
+  };
+
+  return EventsCalendarView.extend('EventsCalendarView', {
 
     /**
-     * Define view
-     * @class EventsCalendarView
-     * @extends BaseView
-     * @constructor
+     * Render EventsCalendar element
+     * @memberOf EventsCalendarView
      */
-    var EventsCalendarView = function EventsCalendarView() {
-    };
+    renderEventsCalendar: function renderEventsCalendar() {
 
-    return EventsCalendarView.extend('EventsCalendarView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render EventsCalendar element
-         * @memberOf EventsCalendarView
-         */
-        renderEventsCalendar: function renderEventsCalendar() {
+      /**
+       * Define $eventscalendar
+       * @type {EventsCalendarElement}
+       */
+      this.elements.$eventscalendar = new EventsCalendarElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $eventscalendar
-             * @type {EventsCalendarElement}
-             */
-            this.elements.$eventscalendar = new EventsCalendarElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf EventsCalendarView
+     * @returns {EventsCalendarPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define EventsCalendar Preferences Element
+       * @type {EventsCalendarPreferencesElement}
+       */
+      this.elements.$preferences = new EventsCalendarPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf EventsCalendarView
-         * @returns {EventsCalendarPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define EventsCalendar Preferences Element
-             * @type {EventsCalendarPreferencesElement}
-             */
-            this.elements.$preferences = new EventsCalendarPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf EventsCalendarView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {EventsCalendarRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
-
-        /**
-         * Render Rules
-         * @memberOf EventsCalendarView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {EventsCalendarRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define EventsCalendar Rules Element
-             * @type {EventsCalendarRulesElement}
-             */
-            this.elements.$rules = new EventsCalendarRulesElement(this, {
-                data: this.controller.getRules(),
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render EventsCalendar
-         * @memberOf EventsCalendarView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderEventsCalendar.bind(this)
-            );
+      /**
+       * Define EventsCalendar Rules Element
+       * @type {EventsCalendarRulesElement}
+       */
+      this.elements.$rules = new EventsCalendarRulesElement(this, {
+        data: this.controller.getRules(),
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render EventsCalendar
+     * @memberOf EventsCalendarView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderEventsCalendar.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

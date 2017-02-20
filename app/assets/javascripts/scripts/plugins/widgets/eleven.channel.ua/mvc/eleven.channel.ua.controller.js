@@ -6,51 +6,41 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
-], function defineElevenChannelUaController(PluginBase, WidgetContentController) {
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
+], function defineElevenChannelUaController(PluginBase,
+    WidgetContentController) {
+
+  /**
+   * Define elevenchannelua controller
+   * @class ElevenChannelUaController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var ElevenChannelUaController = function ElevenChannelUaController() {
+  };
+
+  return ElevenChannelUaController.extend('ElevenChannelUaController', {
 
     /**
-     * Define elevenchannelua controller
-     * @class ElevenChannelUaController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf ElevenChannelUaController
      */
-    var ElevenChannelUaController = function ElevenChannelUaController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
+      this.view.elements.$elevenchannelua.renderEmbeddedContent(
+          this.model.getPrefs('elevenchanneluaEmbedCode')
+      );
+    },
 
-    return ElevenChannelUaController.extend('ElevenChannelUaController', {
+    /**
+     * Add ElevenChannelUa rule
+     * @memberOf ElevenChannelUaController
+     * @param {Event} e
+     */
+    addElevenChannelUaRule: function addElevenChannelUaRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-        /**
-         * Set embedded content
-         * @memberOf ElevenChannelUaController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
-            this.view.elements.$elevenchannelua.renderEmbeddedContent(
-                this.model.getPrefs('elevenchanneluaEmbedCode')
-            );
-        },
-
-        /**
-         * Add ElevenChannelUa rule
-         * @memberOf ElevenChannelUaController
-         * @param e
-         */
-        addElevenChannelUaRule: function addElevenChannelUaRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

@@ -7,90 +7,92 @@
  */
 define(function defineLibCss() {
 
+  /**
+   * Define Lib css
+   * @class LibCss
+   * @constructor
+   */
+  var LibCss = function LibCss() {
+  };
+
+  LibCss.extend('LibCss', {
+
     /**
-     * Define Lib css
-     * @class LibCss
-     * @constructor
+     * Define reset matrix css
+     * @memberOf LibCss
+     * @param $element
      */
-    var LibCss = function LibCss() {
-    };
+    resetMatrix: function resetMatrix($element) {
+      $element.attr({
+        style: $element.attr('style').
+            replace(
+                /matrix\(([+\-\d.]+), ([+\-\d.]+), ([+\-\d.]+), ([+\-\d.]+), ([+\-\d.]+), ([+\-\d.]+)\) /g,
+                '')
+      });
+    },
 
-    LibCss.extend('LibCss', {
+    /**
+     * Define element css
+     * @memberOf LibCss
+     * @param $element
+     * @param {string} value
+     * @param {string} type
+     */
+    defineCss: function defineCss(type, $element, value) {
 
-        /**
-         * Define reset matrix css
-         * @memberOf LibCss
-         * @param $element
-         */
-        resetMatrix: function resetMatrix($element) {
-            $element.attr({
-                style: $element.attr('style').
-                    replace(/matrix\(([+\-\d.]+), ([+\-\d.]+), ([+\-\d.]+), ([+\-\d.]+), ([+\-\d.]+), ([+\-\d.]+)\) /g, '')
-            });
-        },
+      if (!$element[0]) {
+        return false;
+      }
 
-        /**
-         * Define element css
-         * @memberOf LibCss
-         * @param $element
-         * @param {string} value
-         * @param {string} type
-         */
-        defineCss: function defineCss(type, $element, value) {
+      /**
+       * Define update css
+       * @private
+       */
+      function _updateCss(css) {
 
-            if (!$element[0]) {
-                return false;
-            }
+        // Define css
+        var style = {};
 
-            /**
-             * Define update css
-             * @private
-             */
-            function _updateCss(css) {
+        style[type] = css;
+        style['-webkit-' + type] = css;
 
-                // Define css
-                var style = {};
+        $element.css(style);
+      }
 
-                style[type] = css;
-                style['-webkit-' + type] = css;
+      var _f = $element[0].style[type],
+          _wf = $element[0].style['webkit' + type.capitalize()];
 
-                $element.css(style);
-            }
+      var _filter = _f.length ? _f : _wf.length ? _wf : 0;
 
-            var _f = $element[0].style[type],
-                _wf = $element[0].style['webkit' + type.capitalize()];
+      if (!_filter) {
 
-            var _filter = _f.length ? _f : _wf.length ? _wf : 0;
+        _updateCss(value);
+        return false;
+      }
 
-            if (!_filter) {
+      var _css = _filter.split(/ /g),
+          _value = [], i = 0, l = _css.length,
+          _updated = false;
 
-                _updateCss(value);
-                return false;
-            }
+      for (; i < l; i++) {
 
-            var _css = _filter.split(/ /g),
-                _value = [], i = 0, l = _css.length,
-                _updated = false;
+        var filter = _css[i];
 
-            for (; i < l; i++) {
-
-                var filter = _css[i];
-
-                if (filter.indexOf(value.match(/\w+/)[0]) !== -1) {
-                    filter = value;
-                    _updated = true;
-                }
-
-                _value.push(filter);
-            }
-
-            if (!_updated) {
-                _value.push(value);
-            }
-
-            _updateCss(_value.join(' '));
+        if (filter.indexOf(value.match(/\w+/)[0]) !== -1) {
+          filter = value;
+          _updated = true;
         }
-    });
 
-    return new LibCss();
+        _value.push(filter);
+      }
+
+      if (!_updated) {
+        _value.push(value);
+      }
+
+      _updateCss(_value.join(' '));
+    }
+  });
+
+  return new LibCss();
 });

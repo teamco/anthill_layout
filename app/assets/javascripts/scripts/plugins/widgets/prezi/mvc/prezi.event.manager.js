@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function definePreziEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define Prezi event manager
-     * @class PreziEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var PreziEventManager = function PreziEventManager() {
+  /**
+   * Define Prezi event manager
+   * @class PreziEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var PreziEventManager = function PreziEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return PreziEventManager.extend('PreziEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return PreziEventManager.extend('PreziEventManager', {},
+      WidgetContentEventManager.prototype);
 });

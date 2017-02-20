@@ -7,20 +7,20 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineFilmRuPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class FilmRuPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var FilmRuPermission = function FilmRuPermission() {
-    };
+  /**
+   * Define Permissions
+   * @class FilmRuPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var FilmRuPermission = function FilmRuPermission() {
+  };
 
-    return FilmRuPermission.extend(
-        'FilmRuPermission', {}, 
-        BasePermission.prototype
-    );
+  return FilmRuPermission.extend(
+      'FilmRuPermission', {},
+      BasePermission.prototype
+  );
 });

@@ -6,35 +6,35 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
 ], function defineArcgisPreferencesElement(PluginElement, WidgetPreferences) {
 
-    /**
-     * Define Arcgis Preferences Element
-     * @constructor
-     * @class ArcgisPreferencesElement
-     * @param {ArcgisView} view
-     * @param opts
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     * @returns {ArcgisPreferencesElement}
-     */
-    var ArcgisPreferencesElement = function ArcgisPreferencesElement(view, opts) {
+  /**
+   * Define Arcgis Preferences Element
+   * @constructor
+   * @class ArcgisPreferencesElement
+   * @param {ArcgisView} view
+   * @param opts
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   * @returns {ArcgisPreferencesElement}
+   */
+  var ArcgisPreferencesElement = function ArcgisPreferencesElement(view, opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return ArcgisPreferencesElement.extend(
-        'ArcgisPreferencesElement', {}, 
-        PluginElement.prototype, 
-        WidgetPreferences.prototype
-    );
+  return ArcgisPreferencesElement.extend(
+      'ArcgisPreferencesElement', {},
+      PluginElement.prototype,
+      WidgetPreferences.prototype
+  );
 });

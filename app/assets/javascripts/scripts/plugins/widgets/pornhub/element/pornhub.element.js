@@ -6,43 +6,43 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function definePornhubElement(PluginElement) {
 
+  /**
+   * Define Pornhub Element
+   * @param view
+   * @param opts
+   * @returns {PornhubElement}
+   * @constructor
+   * @class PornhubElement
+   * @extends PluginElement
+   */
+  var PornhubElement = function PornhubElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('pornhub', {resource: '/widgets'});
+
+    return this;
+  };
+
+  return PornhubElement.extend('PornhubElement', {
+
     /**
-     * Define Pornhub Element
-     * @param view
-     * @param opts
-     * @returns {PornhubElement}
-     * @constructor
-     * @class PornhubElement
-     * @extends PluginElement
+     * Render Embedded content
+     * @memberOf PornhubElement
+     * @param {string} url
      */
-    var PornhubElement = function PornhubElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent(url) {
+      this.$.append(
+          this.renderIframe(url)
+      );
+    }
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
-
-        this.addCSS('pornhub', {resource: '/widgets'});
-
-        return this;
-    };
-
-    return PornhubElement.extend('PornhubElement', {
-
-        /**
-         * Render Embedded content
-         * @memberOf PornhubElement
-         * @param {string} url
-         */
-        renderEmbeddedContent: function renderEmbeddedContent(url) {
-            this.$.append(
-                this.renderIframe(url)
-            );
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 
 });

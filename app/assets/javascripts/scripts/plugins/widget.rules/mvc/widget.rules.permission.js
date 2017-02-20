@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineWidgetRulesPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class WidgetRulesPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var WidgetRulesPermission = function WidgetRulesPermission() {
+  /**
+   * Define Permissions
+   * @class WidgetRulesPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var WidgetRulesPermission = function WidgetRulesPermission() {
 
-    };
+  };
 
-    return WidgetRulesPermission.extend('WidgetRulesPermission', {
-
-    }, BasePermission.prototype);
+  return WidgetRulesPermission.extend('WidgetRulesPermission', {},
+      BasePermission.prototype);
 });

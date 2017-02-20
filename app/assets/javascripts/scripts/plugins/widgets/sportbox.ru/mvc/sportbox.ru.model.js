@@ -6,44 +6,45 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineSportboxRuModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define SportboxRu model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class SportboxRuModel
+   * @constructor
+   */
+  var SportboxRuModel = function SportboxRuModel() {
+
     /**
-     * Define SportboxRu model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class SportboxRuModel
-     * @constructor
+     * Define preferences
+     * @property SportboxRuModel
+     * @type {{sportboxEmbedCode: {type: string, disabled: boolean, value:
+     *     string, visible: boolean}}}
      */
-    var SportboxRuModel = function SportboxRuModel() {
-
-        /**
-         * Define preferences
-         * @property SportboxRuModel
-         * @type {{sportboxEmbedCode: {type: string, disabled: boolean, value: string, visible: boolean}}}
-         */
-        this.preferences = {
-            sportboxEmbedCode: {
-                type: 'textarea',
-                disabled: false,
-                value: '<iframe src="http://news.sportbox.ru/vdl/poster/658447" width="450" height="253" scrolling="no" frameborder="0" style="width:100%; max-width:450px;"></iframe>',
-                visible: true
-            }
-        };
-
-        /**
-         * Define rules
-         * @property SportboxRuModel
-         * @type {{}}
-         */
-        this.rules = {};
+    this.preferences = {
+      sportboxEmbedCode: {
+        type: 'textarea',
+        disabled: false,
+        value: '<iframe src="http://news.sportbox.ru/vdl/poster/658447" width="450" height="253" scrolling="no" frameborder="0" style="width:100%; max-width:450px;"></iframe>',
+        visible: true
+      }
     };
 
-    return SportboxRuModel.extend('SportboxRuModel', {
+    /**
+     * Define rules
+     * @property SportboxRuModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        // Setter
+  return SportboxRuModel.extend('SportboxRuModel', {
 
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    // Setter
+
+  }, BaseModel.prototype, WidgetContentModel.prototype);
 });

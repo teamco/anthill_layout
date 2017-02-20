@@ -6,97 +6,98 @@
  */
 
 define([
-    'config/anthill',
-    'modules/MVC',
-    'plugins/widgets/map.quest/mvc/map.quest.controller',
-    'plugins/widgets/map.quest/mvc/map.quest.model',
-    'plugins/widgets/map.quest/mvc/map.quest.view',
-    'plugins/widgets/map.quest/mvc/map.quest.event.manager',
-    'plugins/widgets/map.quest/mvc/map.quest.permission'
-], function defineMapQuest(AntHill, MVC, Controller, Model, View, EventManager, Permission) {
+  'config/anthill',
+  'modules/MVC',
+  'plugins/widgets/map.quest/mvc/map.quest.controller',
+  'plugins/widgets/map.quest/mvc/map.quest.model',
+  'plugins/widgets/map.quest/mvc/map.quest.view',
+  'plugins/widgets/map.quest/mvc/map.quest.event.manager',
+  'plugins/widgets/map.quest/mvc/map.quest.permission'
+], function defineMapQuest(AntHill, MVC, Controller, Model, View, EventManager,
+    Permission) {
+
+  /**
+   * Define MapQuest
+   * @param containment
+   * @param [opts]
+   * @constructor
+   * @class MapQuest
+   * @extends AntHill
+   */
+  var MapQuest = function MapQuest(containment, opts) {
 
     /**
-     * Define MapQuest
-     * @param containment
-     * @param [opts]
-     * @constructor
-     * @class MapQuest
-     * @extends AntHill
+     * Define containment
+     * @property MapQuest
      */
-    var MapQuest = function MapQuest(containment, opts) {
+    this.containment = containment;
 
-        /**
-         * Define containment
-         * @property MapQuest
-         */
-        this.containment = containment;
+    /**
+     * Define referrer
+     * @property MapQuest
+     * @type {*}
+     */
+    this.referrer = undefined;
 
-        /**
-         * Define referrer
-         * @property MapQuest
-         * @type {*}
-         */
-        this.referrer = undefined;
-
-        /**
-         * Define defaults
-         * @type {{
-         *      plugin: boolean,
-         *      html: {
-         *          style: string,
-         *          header: boolean,
-         *          footer: boolean,
-         *          floating: boolean,
-         *          padding: {
-         *              top: number,
-         *              right: number,
-         *              bottom: number,
-         *              left: number
-         *          }
-         *      }
-         * }}
-         */
-        var DEFAULTS = {
-            plugin: true,
-            html: {
-                style: 'default',
-                header: false,
-                footer: false,
-                padding: {
-                    top: 0,
-                    right: 0,
-                    bottom: 0,
-                    left: 0
-                }
-            }
-        };
-
-        /**
-         * Define MVC
-         * @property MapQuest
-         * @type {MVC}
-         */
-        this.mvc = new MVC({
-            scope: this,
-            config: [
-                {uuid: this.containment.model.getContentUUID()},
-                DEFAULTS
-            ],
-            components: [
-                Controller,
-                Model,
-                View,
-                EventManager,
-                Permission
-            ],
-            render: true
-        });
-
-        this.observer.publish(
-            this.eventmanager.eventList.initWidget,
-            opts
-        );
+    /**
+     * Define defaults
+     * @type {{
+     *      plugin: boolean,
+     *      html: {
+     *          style: string,
+     *          header: boolean,
+     *          footer: boolean,
+     *          floating: boolean,
+     *          padding: {
+     *              top: number,
+     *              right: number,
+     *              bottom: number,
+     *              left: number
+     *          }
+     *      }
+     * }}
+     */
+    var DEFAULTS = {
+      plugin: true,
+      html: {
+        style: 'default',
+        header: false,
+        footer: false,
+        padding: {
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0
+        }
+      }
     };
 
-    return MapQuest.extend('MapQuest', {}, AntHill.prototype);
+    /**
+     * Define MVC
+     * @property MapQuest
+     * @type {MVC}
+     */
+    this.mvc = new MVC({
+      scope: this,
+      config: [
+        {uuid: this.containment.model.getContentUUID()},
+        DEFAULTS
+      ],
+      components: [
+        Controller,
+        Model,
+        View,
+        EventManager,
+        Permission
+      ],
+      render: true
+    });
+
+    this.observer.publish(
+        this.eventmanager.eventList.initWidget,
+        opts
+    );
+  };
+
+  return MapQuest.extend('MapQuest', {}, AntHill.prototype);
 });

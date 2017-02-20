@@ -7,20 +7,20 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineOumyPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class OumyPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var OumyPermission = function OumyPermission() {
-    };
+  /**
+   * Define Permissions
+   * @class OumyPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var OumyPermission = function OumyPermission() {
+  };
 
-    return OumyPermission.extend(
-        'OumyPermission', {}, 
-        BasePermission.prototype
-    );
+  return OumyPermission.extend(
+      'OumyPermission', {},
+      BasePermission.prototype
+  );
 });

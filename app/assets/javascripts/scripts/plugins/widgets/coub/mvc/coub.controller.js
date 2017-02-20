@@ -6,56 +6,45 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineCoubController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define Coub controller
+   * @class CoubController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var CoubController = function CoubController() {
+  };
+
+  return CoubController.extend('CoubController', {
+
     /**
-     * Define Coub controller
-     * @class CoubController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf CoubController
      */
-    var CoubController = function CoubController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
 
-    return CoubController.extend('CoubController', {
+      this.view.elements.$coub.renderEmbeddedContent({
+        link: this.model.getPrefs('coubLink'),
+        start: this.model.getPrefs('coubAutoStart'),
+        mute: this.model.getPrefs('coubMute'),
+        hide: this.model.getPrefs('coubHideTopBar'),
+        hd: this.model.getPrefs('coubStartWithHighDefinition')
+      });
+    },
 
-        /**
-         * Set embedded content
-         * @memberOf CoubController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
+    /**
+     * Add Coub rule
+     * @memberOf CoubController
+     * @param {Event} e
+     */
+    addCoubRule: function addCoubRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-            this.view.elements.$coub.renderEmbeddedContent({
-                link: this.model.getPrefs('coubLink'),
-                start: this.model.getPrefs('coubAutoStart'),
-                mute: this.model.getPrefs('coubMute'),
-                hide: this.model.getPrefs('coubHideTopBar'),
-                hd: this.model.getPrefs('coubStartWithHighDefinition')
-            });
-        },
-
-        /**
-         * Add Coub rule
-         * @memberOf CoubController
-         * @param e
-         */
-        addCoubRule: function addCoubRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), this.scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineKickStarterPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class KickStarterPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var KickStarterPermission = function KickStarterPermission() {
+  /**
+   * Define Permissions
+   * @class KickStarterPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var KickStarterPermission = function KickStarterPermission() {
 
-    };
+  };
 
-    return KickStarterPermission.extend('KickStarterPermission', {
-
-    }, BasePermission.prototype);
+  return KickStarterPermission.extend('KickStarterPermission', {},
+      BasePermission.prototype);
 });

@@ -6,50 +6,50 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineHeaderController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define header controller
+   * @class HeaderController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var HeaderController = function HeaderController() {
+  };
+
+  return HeaderController.extend('HeaderController', {
+
     /**
-     * Define header controller
-     * @class HeaderController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf HeaderController
      */
-    var HeaderController = function HeaderController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
 
-    return HeaderController.extend('HeaderController', {
+      this.view.elements.$header.renderEmbeddedContent();
+    },
 
-        /**
-         * Set embedded content
-         * @memberOf HeaderController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
+    /**
+     * Add Header rule
+     * @memberOf HeaderController
+     * @param {Event} e
+     */
+    addHeaderRule: function addHeaderRule(e) {
 
-            this.view.elements.$header.renderEmbeddedContent();
-        },
+      /**
+       * Define $button
+       * @type {*|jQuery|HTMLElement}
+       */
+      var $button = $(e.target),
+          scope = this.scope;
 
-        /**
-         * Add Header rule
-         * @memberOf HeaderController
-         * @param e
-         */
-        addHeaderRule: function addHeaderRule(e) {
+      scope.observer.publish(
+          scope.eventmanager.eventList.publishRule,
+          [$button.attr('value'), this.scope.name]
+      );
+    }
 
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), this.scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

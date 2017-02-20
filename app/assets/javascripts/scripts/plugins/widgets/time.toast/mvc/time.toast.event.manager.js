@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineTimeToastEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define TimeToast event manager
-     * @class TimeToastEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var TimeToastEventManager = function TimeToastEventManager() {
+  /**
+   * Define TimeToast event manager
+   * @class TimeToastEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var TimeToastEventManager = function TimeToastEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return TimeToastEventManager.extend('TimeToastEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return TimeToastEventManager.extend('TimeToastEventManager', {},
+      WidgetContentEventManager.prototype);
 });

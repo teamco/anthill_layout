@@ -6,38 +6,37 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/rules/widget.base.rules'
+  'plugins/plugin.element',
+  'plugins/rules/widget.base.rules'
 ], function defineEspresoTvRulesElement(PluginElement, BaseWidgetRules) {
 
-    /**
-     * Define EspresoTv Rules Element
-     * @param view
-     * @param opts
-     * @returns {EspresoTvRulesElement}
-     * @constructor
-     * @class EspresoTvRulesElement
-     * @extends PluginElement
-     * @extends BaseWidgetRules
-     */
-    var EspresoTvRulesElement = function EspresoTvRulesElement(view, opts) {
+  /**
+   * Define EspresoTv Rules Element
+   * @param view
+   * @param opts
+   * @returns {EspresoTvRulesElement}
+   * @constructor
+   * @class EspresoTvRulesElement
+   * @extends PluginElement
+   * @extends BaseWidgetRules
+   */
+  var EspresoTvRulesElement = function EspresoTvRulesElement(view, opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBaseRulesData(
-            opts.data,
-            opts.rules.widget,
-            opts.rules.content
-        );
+    this.renderBaseRulesData(
+        opts.data,
+        opts.rules.widget,
+        opts.rules.content
+    );
 
-        return this;
-    };
+    return this;
+  };
 
-    return EspresoTvRulesElement.extend('EspresoTvRulesElement', {
-
-    }, PluginElement.prototype, BaseWidgetRules.prototype);
+  return EspresoTvRulesElement.extend('EspresoTvRulesElement', {},
+      PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

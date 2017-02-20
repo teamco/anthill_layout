@@ -7,20 +7,20 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function definePortfoliumPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class PortfoliumPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var PortfoliumPermission = function PortfoliumPermission() {
-    };
+  /**
+   * Define Permissions
+   * @class PortfoliumPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var PortfoliumPermission = function PortfoliumPermission() {
+  };
 
-    return PortfoliumPermission.extend(
-        'PortfoliumPermission', {}, 
-        BasePermission.prototype
-    );
+  return PortfoliumPermission.extend(
+      'PortfoliumPermission', {},
+      BasePermission.prototype
+  );
 });

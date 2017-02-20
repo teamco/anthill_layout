@@ -6,86 +6,75 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineMixbookController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define mixbook controller
+   * @class MixbookController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var MixbookController = function MixbookController() {
+  };
+
+  return MixbookController.extend('MixbookController', {
+
     /**
-     * Define mixbook controller
-     * @class MixbookController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf MixbookController
      */
-    var MixbookController = function MixbookController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
 
-    return MixbookController.extend('MixbookController', {
+      /**
+       * Get url
+       * @type {string|*}
+       */
+      var url = this.model.getPrefs('mixbookEmbedCode'),
+          embed = this.controller.getEmbedCode(url);
 
-        /**
-         * Set embedded content
-         * @memberOf MixbookController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
+      if (embed) {
+        this.view.elements.$mixbook.renderEmbeddedContent(embed);
+      }
+    },
 
-            /**
-             * Get url
-             * @type {string|*}
-             */
-            var url = this.model.getPrefs('mixbookEmbedCode'),
-                embed = this.controller.getEmbedCode(url);
+    /**
+     * Validate mixbook
+     * @memberOf MixbookController
+     * @param {string} embed
+     * @return {string|boolean}
+     */
+    getEmbedCode: function getEmbedCode(embed) {
 
-            if (embed) {
-                this.view.elements.$mixbook.renderEmbeddedContent(embed);
-            }
-        },
+      if (!embed) {
+        this.scope.logger.debug('Initial state');
+        return false;
+      }
 
-        /**
-         * Validate mixbook
-         * @memberOf MixbookController
-         * @param {string} embed
-         * @return {string|boolean}
-         */
-        getEmbedCode: function getEmbedCode(embed) {
+      // Convert to string
+      embed += '';
 
-            if (!embed) {
-                this.scope.logger.debug('Initial state');
-                return false;
-            }
+      if (embed.match(/^<object/)) {
 
-            // Convert to string
-            embed += '';
+        return $(embed)[0];
 
-            if (embed.match(/^<object/)) {
+      } else {
 
-                return $(embed)[0];
+        this.scope.logger.warn('Invalid Mixbook embed code');
+        return false;
+      }
+    },
 
-            } else {
+    /**
+     * Add Mixbook rule
+     * @memberOf MixbookController
+     * @param {Event} e
+     */
+    addMixbookRule: function addMixbookRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-                this.scope.logger.warn('Invalid Mixbook embed code');
-                return false;
-            }
-        },
-
-        /**
-         * Add Mixbook rule
-         * @memberOf MixbookController
-         * @param e
-         */
-        addMixbookRule: function addMixbookRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

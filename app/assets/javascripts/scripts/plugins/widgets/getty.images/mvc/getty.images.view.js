@@ -7,101 +7,102 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/getty.images/element/getty.images.element',
-    'plugins/widgets/getty.images/element/getty.images.preferences.element',
-    'plugins/widgets/getty.images/element/getty.images.rules.element'
-], function defineGettyImagesView(BaseView, Header, Footer, GettyImagesElement, GettyImagesPreferencesElement, GettyImagesRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/getty.images/element/getty.images.element',
+  'plugins/widgets/getty.images/element/getty.images.preferences.element',
+  'plugins/widgets/getty.images/element/getty.images.rules.element'
+], function defineGettyImagesView(BaseView, Header, Footer, GettyImagesElement,
+    GettyImagesPreferencesElement, GettyImagesRulesElement) {
+
+  /**
+   * Define view
+   * @class GettyImagesView
+   * @extends BaseView
+   * @constructor
+   */
+  var GettyImagesView = function GettyImagesView() {
+  };
+
+  return GettyImagesView.extend('GettyImagesView', {
 
     /**
-     * Define view
-     * @class GettyImagesView
-     * @extends BaseView
-     * @constructor
+     * Render GettyImages element
+     * @memberOf GettyImagesView
      */
-    var GettyImagesView = function GettyImagesView() {
-    };
+    renderGettyImages: function renderGettyImages() {
 
-    return GettyImagesView.extend('GettyImagesView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render GettyImages element
-         * @memberOf GettyImagesView
-         */
-        renderGettyImages: function renderGettyImages() {
+      /**
+       * Define $gettyimages
+       * @type {GettyImagesElement}
+       */
+      this.elements.$gettyimages = new GettyImagesElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $gettyimages
-             * @type {GettyImagesElement}
-             */
-            this.elements.$gettyimages = new GettyImagesElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf GettyImagesView
+     * @returns {GettyImagesPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define GettyImages Preferences Element
+       * @type {GettyImagesPreferencesElement}
+       */
+      this.elements.$preferences = new GettyImagesPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf GettyImagesView
-         * @returns {GettyImagesPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define GettyImages Preferences Element
-             * @type {GettyImagesPreferencesElement}
-             */
-            this.elements.$preferences = new GettyImagesPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf GettyImagesView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {GettyImagesRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
-
-        /**
-         * Render Rules
-         * @memberOf GettyImagesView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {GettyImagesRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define GettyImages Rules Element
-             * @type {GettyImagesRulesElement}
-             */
-            this.elements.$rules = new GettyImagesRulesElement(this, {
-                data: this.controller.getRules(),
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render GettyImages
-         * @memberOf GettyImagesView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderGettyImages.bind(this)
-            );
+      /**
+       * Define GettyImages Rules Element
+       * @type {GettyImagesRulesElement}
+       */
+      this.elements.$rules = new GettyImagesRulesElement(this, {
+        data: this.controller.getRules(),
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype);
+      return this.get$rules();
+    },
+
+    /**
+     * Render GettyImages
+     * @memberOf GettyImagesView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderGettyImages.bind(this)
+      );
+    }
+
+  }, BaseView.prototype);
 });

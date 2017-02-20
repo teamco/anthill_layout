@@ -7,101 +7,103 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/webrtc.video.chat/element/webrtc.video.chat.element',
-    'plugins/widgets/webrtc.video.chat/element/webrtc.video.chat.preferences.element',
-    'plugins/widgets/webrtc.video.chat/element/webrtc.video.chat.rules.element'
-], function defineWebrtcVideoChatView(BaseView, Header, Footer, WebrtcVideoChatElement, WebrtcVideoChatPreferencesElement, WebrtcVideoChatRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/webrtc.video.chat/element/webrtc.video.chat.element',
+  'plugins/widgets/webrtc.video.chat/element/webrtc.video.chat.preferences.element',
+  'plugins/widgets/webrtc.video.chat/element/webrtc.video.chat.rules.element'
+], function defineWebrtcVideoChatView(BaseView, Header, Footer,
+    WebrtcVideoChatElement, WebrtcVideoChatPreferencesElement,
+    WebrtcVideoChatRulesElement) {
+
+  /**
+   * Define view
+   * @class WebrtcVideoChatView
+   * @extends BaseView
+   * @constructor
+   */
+  var WebrtcVideoChatView = function WebrtcVideoChatView() {
+  };
+
+  return WebrtcVideoChatView.extend('WebrtcVideoChatView', {
 
     /**
-     * Define view
-     * @class WebrtcVideoChatView
-     * @extends BaseView
-     * @constructor
+     * Render WebrtcVideoChat element
+     * @memberOf WebrtcVideoChatView
      */
-    var WebrtcVideoChatView = function WebrtcVideoChatView() {
-    };
+    renderWebrtcVideoChat: function renderWebrtcVideoChat() {
 
-    return WebrtcVideoChatView.extend('WebrtcVideoChatView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render WebrtcVideoChat element
-         * @memberOf WebrtcVideoChatView
-         */
-        renderWebrtcVideoChat: function renderWebrtcVideoChat() {
+      /**
+       * Define $webrtcvideochat
+       * @type {WebrtcVideoChatElement}
+       */
+      this.elements.$webrtcvideochat = new WebrtcVideoChatElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $webrtcvideochat
-             * @type {WebrtcVideoChatElement}
-             */
-            this.elements.$webrtcvideochat = new WebrtcVideoChatElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf WebrtcVideoChatView
+     * @returns {WebrtcVideoChatPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define WebrtcVideoChat Preferences Element
+       * @type {WebrtcVideoChatPreferencesElement}
+       */
+      this.elements.$preferences = new WebrtcVideoChatPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf WebrtcVideoChatView
-         * @returns {WebrtcVideoChatPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define WebrtcVideoChat Preferences Element
-             * @type {WebrtcVideoChatPreferencesElement}
-             */
-            this.elements.$preferences = new WebrtcVideoChatPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf WebrtcVideoChatView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {WebrtcVideoChatRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
-
-        /**
-         * Render Rules
-         * @memberOf WebrtcVideoChatView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {WebrtcVideoChatRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define WebrtcVideoChat Rules Element
-             * @type {WebrtcVideoChatRulesElement}
-             */
-            this.elements.$rules = new WebrtcVideoChatRulesElement(this, {
-                data: this.controller.getRules(),
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render WebrtcVideoChat
-         * @memberOf WebrtcVideoChatView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderWebrtcVideoChat.bind(this)
-            );
+      /**
+       * Define WebrtcVideoChat Rules Element
+       * @type {WebrtcVideoChatRulesElement}
+       */
+      this.elements.$rules = new WebrtcVideoChatRulesElement(this, {
+        data: this.controller.getRules(),
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype);
+      return this.get$rules();
+    },
+
+    /**
+     * Render WebrtcVideoChat
+     * @memberOf WebrtcVideoChatView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderWebrtcVideoChat.bind(this)
+      );
+    }
+
+  }, BaseView.prototype);
 });

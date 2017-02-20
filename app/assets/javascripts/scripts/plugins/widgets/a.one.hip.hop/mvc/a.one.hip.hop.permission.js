@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineAOneHipHopPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class AOneHipHopPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var AOneHipHopPermission = function AOneHipHopPermission() {
+  /**
+   * Define Permissions
+   * @class AOneHipHopPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var AOneHipHopPermission = function AOneHipHopPermission() {
 
-    };
+  };
 
-    return AOneHipHopPermission.extend('AOneHipHopPermission', {
-
-    }, BasePermission.prototype);
+  return AOneHipHopPermission.extend('AOneHipHopPermission', {},
+      BasePermission.prototype);
 });

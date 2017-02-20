@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineOnlineFriendsEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define OnlineFriends event manager
-     * @class OnlineFriendsEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var OnlineFriendsEventManager = function OnlineFriendsEventManager() {
+  /**
+   * Define OnlineFriends event manager
+   * @class OnlineFriendsEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var OnlineFriendsEventManager = function OnlineFriendsEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return OnlineFriendsEventManager.extend('OnlineFriendsEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return OnlineFriendsEventManager.extend('OnlineFriendsEventManager', {},
+      WidgetContentEventManager.prototype);
 });

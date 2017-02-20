@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineStepashkaEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define Stepashka event manager
-     * @class StepashkaEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var StepashkaEventManager = function StepashkaEventManager() {
+  /**
+   * Define Stepashka event manager
+   * @class StepashkaEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var StepashkaEventManager = function StepashkaEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return StepashkaEventManager.extend('StepashkaEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return StepashkaEventManager.extend('StepashkaEventManager', {},
+      WidgetContentEventManager.prototype);
 });

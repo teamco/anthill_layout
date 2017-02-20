@@ -7,23 +7,23 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineLaimTvEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define LaimTv event manager
-     * @class LaimTvEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var LaimTvEventManager = function LaimTvEventManager() {
+  /**
+   * Define LaimTv event manager
+   * @class LaimTvEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var LaimTvEventManager = function LaimTvEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return LaimTvEventManager.extend(
-        'LaimTvEventManager', {},
-        WidgetContentEventManager.prototype
-    );
+  return LaimTvEventManager.extend(
+      'LaimTvEventManager', {},
+      WidgetContentEventManager.prototype
+  );
 });

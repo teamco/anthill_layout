@@ -6,43 +6,43 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineTviElement(PluginElement) {
 
+  /**
+   * Define Tvi Element
+   * @param view
+   * @param opts
+   * @returns {TviElement}
+   * @constructor
+   * @class TviElement
+   * @extends PluginElement
+   */
+  var TviElement = function TviElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('tvi', {resource: '/widgets'});
+
+    return this;
+  };
+
+  return TviElement.extend('TviElement', {
+
     /**
-     * Define Tvi Element
-     * @param view
-     * @param opts
-     * @returns {TviElement}
-     * @constructor
-     * @class TviElement
-     * @extends PluginElement
+     * Render Embedded content
+     * @memberOf TviElement
+     * @param {string} url
      */
-    var TviElement = function TviElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent(url) {
+      this.$.append(
+          this.renderIframe(url)
+      );
+    }
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
-
-        this.addCSS('tvi', {resource: '/widgets'});
-
-        return this;
-    };
-
-    return TviElement.extend('TviElement', {
-
-        /**
-         * Render Embedded content
-         * @memberOf TviElement
-         * @param {string} url
-         */
-        renderEmbeddedContent: function renderEmbeddedContent(url) {
-            this.$.append(
-                this.renderIframe(url)
-            );
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 
 });

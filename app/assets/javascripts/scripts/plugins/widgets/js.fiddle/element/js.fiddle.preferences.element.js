@@ -6,35 +6,34 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
 ], function defineJsFiddlePreferencesElement(PluginElement, WidgetPreferences) {
 
-    /**
-     * Define JsFiddle Preferences Element
-     * @param view
-     * @param opts
-     * @returns {JsFiddlePreferencesElement}
-     * @constructor
-     * @class JsFiddlePreferencesElement
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     */
-    var JsFiddlePreferencesElement = function JsFiddlePreferencesElement(view, opts) {
+  /**
+   * Define JsFiddle Preferences Element
+   * @param view
+   * @param opts
+   * @returns {JsFiddlePreferencesElement}
+   * @constructor
+   * @class JsFiddlePreferencesElement
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   */
+  var JsFiddlePreferencesElement = function JsFiddlePreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return JsFiddlePreferencesElement.extend('JsFiddlePreferencesElement', {
-
-
-    }, PluginElement.prototype, WidgetPreferences.prototype);
+  return JsFiddlePreferencesElement.extend('JsFiddlePreferencesElement', {},
+      PluginElement.prototype, WidgetPreferences.prototype);
 
 });

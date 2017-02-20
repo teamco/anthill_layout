@@ -6,94 +6,83 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineScreencastController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define screencast controller
+   * @class ScreencastController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var ScreencastController = function ScreencastController() {
+  };
+
+  return ScreencastController.extend('ScreencastController', {
+
     /**
-     * Define screencast controller
-     * @class ScreencastController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf ScreencastController
      */
-    var ScreencastController = function ScreencastController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
 
-    return ScreencastController.extend('ScreencastController', {
+      /**
+       * Get url
+       * @type {string|*}
+       */
+      var url = this.model.getPrefs('screencastEmbedCode'),
+          embed = this.controller.getEmbedCode(url);
 
-        /**
-         * Set embedded content
-         * @memberOf ScreencastController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
+      if (embed) {
+        this.view.elements.$screencast.renderEmbeddedContent(embed);
+      }
+    },
 
-            /**
-             * Get url
-             * @type {string|*}
-             */
-            var url = this.model.getPrefs('screencastEmbedCode'),
-                embed = this.controller.getEmbedCode(url);
+    /**
+     * Validate screencast
+     * @memberOf ScreencastController
+     * @param {string} embed
+     * @return {string|boolean}
+     */
+    getEmbedCode: function getEmbedCode(embed) {
 
-            if (embed) {
-                this.view.elements.$screencast.renderEmbeddedContent(embed);
-            }
-        },
+      if (!embed) {
+        this.scope.logger.debug('Initial state');
+        return false;
+      }
 
-        /**
-         * Validate screencast
-         * @memberOf ScreencastController
-         * @param {string} embed
-         * @return {string|boolean}
-         */
-        getEmbedCode: function getEmbedCode(embed) {
+      // Convert to string
+      embed += '';
 
-            if (!embed) {
-                this.scope.logger.debug('Initial state');
-                return false;
-            }
+      if (embed.match(/<object/)) {
 
-            // Convert to string
-            embed += '';
+        return {
+          type: 'object',
+          src: $(embed)[2]
+        };
+      }
 
-            if (embed.match(/<object/)) {
+      if (embed.match(/<a/)) {
 
-                return {
-                    type: 'object',
-                    src: $(embed)[2]
-                };
-            }
+        return {
+          type: 'image',
+          src: $(embed)[2]
+        };
+      }
 
-            if (embed.match(/<a/)) {
+      this.scope.logger.warn('Invalid Screencast embed code');
+    },
 
-                return {
-                    type: 'image',
-                    src: $(embed)[2]
-                };
-            }
+    /**
+     * Add Screencast rule
+     * @memberOf ScreencastController
+     * @param {Event} e
+     */
+    addScreencastRule: function addScreencastRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-            this.scope.logger.warn('Invalid Screencast embed code');
-        },
-
-        /**
-         * Add Screencast rule
-         * @memberOf ScreencastController
-         * @param e
-         */
-        addScreencastRule: function addScreencastRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

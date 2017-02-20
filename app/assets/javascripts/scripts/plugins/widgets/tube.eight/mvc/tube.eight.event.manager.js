@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineTubeEightEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define TubeEight event manager
-     * @class TubeEightEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var TubeEightEventManager = function TubeEightEventManager() {
+  /**
+   * Define TubeEight event manager
+   * @class TubeEightEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var TubeEightEventManager = function TubeEightEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return TubeEightEventManager.extend('TubeEightEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return TubeEightEventManager.extend('TubeEightEventManager', {},
+      WidgetContentEventManager.prototype);
 });

@@ -7,102 +7,103 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/sap.openui/element/sap.openui.element',
-    'plugins/widgets/sap.openui/element/sap.openui.preferences.element',
-    'plugins/widgets/sap.openui/element/sap.openui.rules.element'
-], function defineSapOpenuiView(BaseView, Header, Footer, SapOpenuiElement, SapOpenuiPreferencesElement, SapOpenuiRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/sap.openui/element/sap.openui.element',
+  'plugins/widgets/sap.openui/element/sap.openui.preferences.element',
+  'plugins/widgets/sap.openui/element/sap.openui.rules.element'
+], function defineSapOpenuiView(BaseView, Header, Footer, SapOpenuiElement,
+    SapOpenuiPreferencesElement, SapOpenuiRulesElement) {
+
+  /**
+   * Define view
+   * @class SapOpenuiView
+   * @extends BaseView
+   * @constructor
+   */
+  var SapOpenuiView = function SapOpenuiView() {
+  };
+
+  return SapOpenuiView.extend('SapOpenuiView', {
 
     /**
-     * Define view
-     * @class SapOpenuiView
-     * @extends BaseView
-     * @constructor
+     * Render SapOpenui element
+     * @memberOf SapOpenuiView
      */
-    var SapOpenuiView = function SapOpenuiView() {
-    };
+    renderSapOpenui: function renderSapOpenui() {
 
-    return SapOpenuiView.extend('SapOpenuiView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render SapOpenui element
-         * @memberOf SapOpenuiView
-         */
-        renderSapOpenui: function renderSapOpenui() {
+      /**
+       * Define $sapopenui
+       * @type {SapOpenuiElement}
+       */
+      this.elements.$sapopenui = new SapOpenuiElement(this, {
+        $container: this.get$container().$,
+        id: true
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $sapopenui
-             * @type {SapOpenuiElement}
-             */
-            this.elements.$sapopenui = new SapOpenuiElement(this, {
-                $container: this.get$container().$,
-                id: true
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf SapOpenuiView
+     * @returns {SapOpenuiPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define SapOpenui Preferences Element
+       * @type {SapOpenuiPreferencesElement}
+       */
+      this.elements.$preferences = new SapOpenuiPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf SapOpenuiView
-         * @returns {SapOpenuiPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define SapOpenui Preferences Element
-             * @type {SapOpenuiPreferencesElement}
-             */
-            this.elements.$preferences = new SapOpenuiPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf SapOpenuiView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {SapOpenuiRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
-
-        /**
-         * Render Rules
-         * @memberOf SapOpenuiView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {SapOpenuiRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define SapOpenui Rules Element
-             * @type {SapOpenuiRulesElement}
-             */
-            this.elements.$rules = new SapOpenuiRulesElement(this, {
-                data: this.controller.getRules(),
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render SapOpenui
-         * @memberOf SapOpenuiView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderSapOpenui.bind(this)
-            );
+      /**
+       * Define SapOpenui Rules Element
+       * @type {SapOpenuiRulesElement}
+       */
+      this.elements.$rules = new SapOpenuiRulesElement(this, {
+        data: this.controller.getRules(),
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype);
+      return this.get$rules();
+    },
+
+    /**
+     * Render SapOpenui
+     * @memberOf SapOpenuiView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderSapOpenui.bind(this)
+      );
+    }
+
+  }, BaseView.prototype);
 });

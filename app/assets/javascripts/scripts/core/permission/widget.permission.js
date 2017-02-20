@@ -7,68 +7,68 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineWidgetPermission(BasePermission) {
 
+  /**
+   * Define Permissions
+   * @class WidgetPermission
+   * @extends BasePermission
+   * @constructor
+   */
+  var WidgetPermission = function WidgetPermission() {
+
+  };
+
+  return WidgetPermission.extend('WidgetPermission', {
+
     /**
-     * Define Permissions
-     * @class WidgetPermission
-     * @extends BasePermission
-     * @constructor
+     * Get draggable capabilities
+     * @memberOf WidgetPermission
+     * @returns {Array}
      */
-    var WidgetPermission = function WidgetPermission() {
+    draggableCapabilities: function draggableCapabilities() {
+      return this._checkCapability('draggable');
+    },
 
-    };
+    /**
+     * Get resizable capabilities
+     * @memberOf WidgetPermission
+     * @returns {Array}
+     */
+    resizableCapabilities: function resizableCapabilities() {
+      return this._checkCapability('resizable');
+    },
 
-    return WidgetPermission.extend('WidgetPermission', {
+    /**
+     * Check widget capabilities
+     * @memberOf WidgetPermission
+     * @param {String} capability
+     * @private
+     * @returns {*|boolean}
+     */
+    _checkCapability: function _checkCapability(capability) {
+      var scope = this.scope,
+          list = scope.eventmanager.eventList,
+          name = capability.capitalize();
+      if (!this.getCapability(capability)) {
+        scope.logger.warn('Unauthorized capability', capability);
+        return false;
+      }
 
-        /**
-         * Get draggable capabilities
-         * @memberOf WidgetPermission
-         * @returns {Array}
-         */
-        draggableCapabilities: function draggableCapabilities() {
-            return this._checkCapability('draggable');
-        },
+      if (list) {
+        var regex = new RegExp(capability, 'ig'),
+            res = $.map(list, function (k, v) {
+              return v.match(regex) ? v.replace(regex, '') : null
+            });
 
-        /**
-         * Get resizable capabilities
-         * @memberOf WidgetPermission
-         * @returns {Array}
-         */
-        resizableCapabilities: function resizableCapabilities() {
-            return this._checkCapability('resizable');
-        },
+        scope.logger.debug('Capabilities', name, res);
+        return res;
+      }
 
-        /**
-         * Check widget capabilities
-         * @memberOf WidgetPermission
-         * @param {String} capability
-         * @private
-         * @returns {*|boolean}
-         */
-        _checkCapability: function _checkCapability(capability) {
-            var scope = this.scope,
-                list = scope.eventmanager.eventList,
-                name = capability.capitalize();
-            if (!this.getCapability(capability)) {
-                scope.logger.warn('Unauthorized capability', capability);
-                return false;
-            }
+      scope.logger.warn('Undefined capability', capability);
 
-            if (list) {
-                var regex = new RegExp(capability, 'ig'),
-                    res = $.map(list, function (k, v) {
-                    return v.match(regex) ? v.replace(regex, '') : null
-                });
+    }
 
-                scope.logger.debug('Capabilities', name, res);
-                return res;
-            }
-
-            scope.logger.warn('Undefined capability', capability);
-
-        }
-
-    }, BasePermission.prototype);
+  }, BasePermission.prototype);
 });

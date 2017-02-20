@@ -6,35 +6,34 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
 ], function defineXVideosPreferencesElement(PluginElement, WidgetPreferences) {
 
-    /**
-     * Define XVideos Preferences Element
-     * @param view
-     * @param opts
-     * @returns {XVideosPreferencesElement}
-     * @constructor
-     * @class XVideosPreferencesElement
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     */
-    var XVideosPreferencesElement = function XVideosPreferencesElement(view, opts) {
+  /**
+   * Define XVideos Preferences Element
+   * @param view
+   * @param opts
+   * @returns {XVideosPreferencesElement}
+   * @constructor
+   * @class XVideosPreferencesElement
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   */
+  var XVideosPreferencesElement = function XVideosPreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return XVideosPreferencesElement.extend('XVideosPreferencesElement', {
-
-
-    }, PluginElement.prototype, WidgetPreferences.prototype);
+  return XVideosPreferencesElement.extend('XVideosPreferencesElement', {},
+      PluginElement.prototype, WidgetPreferences.prototype);
 
 });

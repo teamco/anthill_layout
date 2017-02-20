@@ -7,23 +7,23 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineWeatherUndergroundEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define WeatherUnderground event manager
-     * @class WeatherUndergroundEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var WeatherUndergroundEventManager = function WeatherUndergroundEventManager() {
+  /**
+   * Define WeatherUnderground event manager
+   * @class WeatherUndergroundEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var WeatherUndergroundEventManager = function WeatherUndergroundEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return WeatherUndergroundEventManager.extend(
-        'WeatherUndergroundEventManager', {},
-        WidgetContentEventManager.prototype
-    );
+  return WeatherUndergroundEventManager.extend(
+      'WeatherUndergroundEventManager', {},
+      WidgetContentEventManager.prototype
+  );
 });

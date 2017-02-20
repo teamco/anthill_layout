@@ -6,37 +6,34 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineHeaderModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define Header model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class HeaderModel
+   * @constructor
+   */
+  var HeaderModel = function HeaderModel() {
+
     /**
-     * Define Header model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class HeaderModel
-     * @constructor
+     * Define preferences
+     * @memberOf HeaderModel
+     * @type {{}}
      */
-    var HeaderModel = function HeaderModel() {
+    this.preferences = {};
 
-        /**
-         * Define preferences
-         * @memberOf HeaderModel
-         * @type {{}}
-         */
-        this.preferences = {
-        };
+    /**
+     * Define rules
+     * @memberOf HeaderModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        /**
-         * Define rules
-         * @memberOf HeaderModel
-         * @type {{}}
-         */
-        this.rules = {};
-    };
-
-    return HeaderModel.extend('HeaderModel', {
-
-
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+  return HeaderModel.extend('HeaderModel', {}, BaseModel.prototype,
+      WidgetContentModel.prototype);
 });

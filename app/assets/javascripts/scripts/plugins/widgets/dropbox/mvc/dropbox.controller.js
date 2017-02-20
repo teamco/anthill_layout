@@ -6,68 +6,57 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineDropboxController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define Dropbox controller
+   * @class DropboxController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var DropboxController = function DropboxController() {
+  };
+
+  return DropboxController.extend('DropboxController', {
+
     /**
-     * Define Dropbox controller
-     * @class DropboxController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf DropboxController
      */
-    var DropboxController = function DropboxController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
 
-    return DropboxController.extend('DropboxController', {
+      this.view.elements.$dropbox.renderEmbeddedContent({
+        url: this.model.getPrefs('dropboxUrl'),
+        download: this.model.getPrefs('dropboxDownload')
+      });
+    },
 
-        /**
-         * Set embedded content
-         * @memberOf DropboxController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
+    /**
+     * Set hidden preferences
+     * @memberOf DropboxController
+     * @param {string} preference
+     * @param value
+     */
+    setHiddenPreferences: function setHiddenPreferences(preference, value) {
+      this.model.setPrefs(preference, value);
 
-            this.view.elements.$dropbox.renderEmbeddedContent({
-                url: this.model.getPrefs('dropboxUrl'),
-                download: this.model.getPrefs('dropboxDownload')
-            });
-        },
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.transferContentPreferences,
+          [preference, value]
+      );
+    },
 
-        /**
-         * Set hidden preferences
-         * @memberOf DropboxController
-         * @param {string} preference
-         * @param value
-         */
-        setHiddenPreferences: function setHiddenPreferences(preference, value) {
-            this.model.setPrefs(preference, value);
+    /**
+     * Add Dropbox rule
+     * @memberOf DropboxController
+     * @param {Event} e
+     */
+    addDropboxRule: function addDropboxRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.transferContentPreferences,
-                [preference, value]
-            );
-        },
-
-        /**
-         * Add Dropbox rule
-         * @memberOf DropboxController
-         * @param e
-         */
-        addDropboxRule: function addDropboxRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

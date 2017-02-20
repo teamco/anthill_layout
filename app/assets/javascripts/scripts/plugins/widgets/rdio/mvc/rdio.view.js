@@ -7,108 +7,109 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/rdio/element/rdio.element',
-    'plugins/widgets/rdio/element/rdio.preferences.element',
-    'plugins/widgets/rdio/element/rdio.rules.element'
-], function defineRdioView(BaseView, Header, Footer, RdioElement, RdioPreferencesElement, RdioRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/rdio/element/rdio.element',
+  'plugins/widgets/rdio/element/rdio.preferences.element',
+  'plugins/widgets/rdio/element/rdio.rules.element'
+], function defineRdioView(BaseView, Header, Footer, RdioElement,
+    RdioPreferencesElement, RdioRulesElement) {
+
+  /**
+   * Define view
+   * @class RdioView
+   * @extends BaseView
+   * @constructor
+   */
+  var RdioView = function RdioView() {
+  };
+
+  return RdioView.extend('RdioView', {
 
     /**
-     * Define view
-     * @class RdioView
-     * @extends BaseView
-     * @constructor
+     * Render rdio element
+     * @memberOf RdioView
      */
-    var RdioView = function RdioView() {
-    };
+    renderRdio: function renderRdio() {
 
-    return RdioView.extend('RdioView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render rdio element
-         * @memberOf RdioView
-         */
-        renderRdio: function renderRdio() {
+      /**
+       * Define $rdio
+       * @type {RdioElement}
+       */
+      this.elements.$rdio = new RdioElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $rdio
-             * @type {RdioElement}
-             */
-            this.elements.$rdio = new RdioElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf RdioView
+     * @returns {RdioPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define Rdio Preferences Element
+       * @type {RdioPreferencesElement}
+       */
+      this.elements.$preferences = new RdioPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf RdioView
-         * @returns {RdioPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define Rdio Preferences Element
-             * @type {RdioPreferencesElement}
-             */
-            this.elements.$preferences = new RdioPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf RdioView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {RdioRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
+      /**
+       * Define data
+       * @type {*|{}}
+       */
+      var data = this.controller.getRules();
 
-        /**
-         * Render Rules
-         * @memberOf RdioView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {RdioRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define data
-             * @type {*|{}}
-             */
-            var data = this.controller.getRules();
-
-            /**
-             * Define Rdio Rules Element
-             * @type {RdioRulesElement}
-             */
-            this.elements.$rules = new RdioRulesElement(this, {
-                data: data,
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render rdio
-         * @memberOf RdioView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderRdio.bind(this)
-            );
+      /**
+       * Define Rdio Rules Element
+       * @type {RdioRulesElement}
+       */
+      this.elements.$rules = new RdioRulesElement(this, {
+        data: data,
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render rdio
+     * @memberOf RdioView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderRdio.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

@@ -6,67 +6,67 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineQuicktimeElement(PluginElement) {
 
+  /**
+   * Define Quicktime Element
+   * @param view
+   * @param opts
+   * @returns {QuicktimeElement}
+   * @constructor
+   * @class QuicktimeElement
+   * @extends PluginElement
+   */
+  var QuicktimeElement = function QuicktimeElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('quicktime', {resource: '/widgets'});
+
+    return this;
+  };
+
+  return QuicktimeElement.extend('QuicktimeElement', {
+
     /**
-     * Define Quicktime Element
-     * @param view
-     * @param opts
-     * @returns {QuicktimeElement}
-     * @constructor
-     * @class QuicktimeElement
-     * @extends PluginElement
+     * Render Embedded content
+     * @memberOf QuicktimeElement
+     * @param {string} url
      */
-    var QuicktimeElement = function QuicktimeElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent(url) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+      /**
+       * Define scope
+       * @type {QuicktimeElement}
+       */
+      var scope = this;
 
-        this.addCSS('quicktime', {resource: '/widgets'});
+      scope.$.append(
+          $('<div />').text(url).hide()
+      );
 
-        return this;
-    };
+      require([
 
-    return QuicktimeElement.extend('QuicktimeElement', {
+        'plugins/widgets/quicktime/lib/jquery.quicktime'
 
-        /**
-         * Render Embedded content
-         * @memberOf QuicktimeElement
-         * @param {string} url
-         */
-        renderEmbeddedContent: function renderEmbeddedContent(url) {
+      ], function defineQuicktime() {
 
-            /**
-             * Define scope
-             * @type {QuicktimeElement}
-             */
-            var scope = this;
+        $('div', scope.$).quicktime(
+            null,
+            {version: 7, update: false},
+            function (htmlOptions) {
+              $this = $(this);
+              htmlOptions.src = $this.text();
+              $this.before($.fn.quicktime.transform(htmlOptions));
+            }
+        );
+      });
+    }
 
-            scope.$.append(
-                $('<div />').text(url).hide()
-            );
-
-            require([
-
-                'plugins/widgets/quicktime/lib/jquery.quicktime'
-
-            ], function defineQuicktime() {
-
-                $('div', scope.$).quicktime(
-                    null,
-                    { version: 7, update: false },
-                    function (htmlOptions) {
-                        $this = $(this);
-                        htmlOptions.src = $this.text();
-                        $this.before($.fn.quicktime.transform(htmlOptions));
-                    }
-                );
-            });
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 
 });

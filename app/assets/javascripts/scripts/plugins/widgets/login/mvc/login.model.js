@@ -6,37 +6,34 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineLoginModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define Login model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class LoginModel
+   * @constructor
+   */
+  var LoginModel = function LoginModel() {
+
     /**
-     * Define Login model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class LoginModel
-     * @constructor
+     * Define preferences
+     * @memberOf LoginModel
+     * @type {{}}
      */
-    var LoginModel = function LoginModel() {
+    this.preferences = {};
 
-        /**
-         * Define preferences
-         * @memberOf LoginModel
-         * @type {{}}
-         */
-        this.preferences = {
-        };
+    /**
+     * Define rules
+     * @memberOf LoginModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        /**
-         * Define rules
-         * @memberOf LoginModel
-         * @type {{}}
-         */
-        this.rules = {};
-    };
-
-    return LoginModel.extend('LoginModel', {
-
-
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+  return LoginModel.extend('LoginModel', {}, BaseModel.prototype,
+      WidgetContentModel.prototype);
 });

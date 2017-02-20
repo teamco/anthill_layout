@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineMusTvEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define MusTv event manager
-     * @class MusTvEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var MusTvEventManager = function MusTvEventManager() {
+  /**
+   * Define MusTv event manager
+   * @class MusTvEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var MusTvEventManager = function MusTvEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return MusTvEventManager.extend('MusTvEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return MusTvEventManager.extend('MusTvEventManager', {},
+      WidgetContentEventManager.prototype);
 });

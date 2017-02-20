@@ -6,53 +6,54 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineQuicktimeModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define Quicktime model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class QuicktimeModel
+   * @constructor
+   */
+  var QuicktimeModel = function QuicktimeModel() {
+
     /**
-     * Define Quicktime model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class QuicktimeModel
-     * @constructor
-     */
-    var QuicktimeModel = function QuicktimeModel() {
-
-        /**
-         * Define preferences
-         * @memberOf QuicktimeModel
-         * @type {{
-         *      youtubeUrl: {type: string, disabled: boolean, value: undefined, visible: boolean}
+     * Define preferences
+     * @memberOf QuicktimeModel
+     * @type {{
+         *      youtubeUrl: {type: string, disabled: boolean, value: undefined,
+         *     visible: boolean}
          * }}
-         */
-        this.preferences = {
-            quicktimeUrl: {
-                type: 'text',
-                disabled: false,
-                value: undefined,
-                visible: true
-            }
-        };
-
-        /**
-         * Define rules
-         * @memberOf QuicktimeModel
-         * @type {{}}
-         */
-        this.rules = {};
+     */
+    this.preferences = {
+      quicktimeUrl: {
+        type: 'text',
+        disabled: false,
+        value: undefined,
+        visible: true
+      }
     };
 
-    return QuicktimeModel.extend('QuicktimeModel', {
+    /**
+     * Define rules
+     * @memberOf QuicktimeModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        /**
-         * Set Quicktime Url
-         * @memberOf QuicktimeModel
-         * @param {string} url
-         */
-        setQuicktimeUrl: function setQuicktimeUrl(url) {
-            this.setPrefs('quicktimeUrl', url);
-        }
+  return QuicktimeModel.extend('QuicktimeModel', {
 
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    /**
+     * Set Quicktime Url
+     * @memberOf QuicktimeModel
+     * @param {string} url
+     */
+    setQuicktimeUrl: function setQuicktimeUrl(url) {
+      this.setPrefs('quicktimeUrl', url);
+    }
+
+  }, BaseModel.prototype, WidgetContentModel.prototype);
 });

@@ -7,23 +7,23 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineSportliveEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define Sportlive event manager
-     * @class SportliveEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var SportliveEventManager = function SportliveEventManager() {
+  /**
+   * Define Sportlive event manager
+   * @class SportliveEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var SportliveEventManager = function SportliveEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return SportliveEventManager.extend(
-        'SportliveEventManager', {},
-        WidgetContentEventManager.prototype
-    );
+  return SportliveEventManager.extend(
+      'SportliveEventManager', {},
+      WidgetContentEventManager.prototype
+  );
 });

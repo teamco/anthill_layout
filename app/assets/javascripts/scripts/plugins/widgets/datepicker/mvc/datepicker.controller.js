@@ -6,52 +6,41 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineDatepickerController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define Datepicker controller
+   * @class DatepickerController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var DatepickerController = function DatepickerController() {
+  };
+
+  return DatepickerController.extend('DatepickerController', {
+
     /**
-     * Define Datepicker controller
-     * @class DatepickerController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf DatepickerController
      */
-    var DatepickerController = function DatepickerController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
+      this.view.elements.$datepicker.renderEmbeddedContent({
+        showWeek: this.model.getPrefs('datepickerShowWeek'),
+        firstDay: this.model.getPrefs('datepickerFirstDay')
+      });
+    },
 
-    return DatepickerController.extend('DatepickerController', {
+    /**
+     * Add Datepicker rule
+     * @memberOf DatepickerController
+     * @param {Event} e
+     */
+    addDatepickerRule: function addDatepickerRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-        /**
-         * Set embedded content
-         * @memberOf DatepickerController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
-            this.view.elements.$datepicker.renderEmbeddedContent({
-                showWeek: this.model.getPrefs('datepickerShowWeek'),
-                firstDay: this.model.getPrefs('datepickerFirstDay')
-            });
-        },
-
-        /**
-         * Add Datepicker rule
-         * @memberOf DatepickerController
-         * @param e
-         */
-        addDatepickerRule: function addDatepickerRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), this.scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

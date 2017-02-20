@@ -7,21 +7,21 @@
 
 define(['config/page'], function definePagePermissions(Page) {
 
-    /**
-     * Define Page Local permission
-     * @type {{
+  /**
+   * Define Page Local permission
+   * @type {{
      *      development: {},
      *      authorize: {},
      *      consumption: {},
      *      test: {}
      * }}
-     */
-    Page.prototype.localPermissions = {
-        development: {},
-        authorize: {},
-        consumption: {},
-        test: {}
-    };
+   */
+  Page.prototype.localPermissions = {
+    development: {},
+    authorize: {},
+    consumption: {},
+    test: {}
+  };
 
-    return Page;
+  return Page;
 });

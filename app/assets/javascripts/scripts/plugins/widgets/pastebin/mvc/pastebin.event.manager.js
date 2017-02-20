@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function definePastebinEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define Pastebin event manager
-     * @class PastebinEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var PastebinEventManager = function PastebinEventManager() {
+  /**
+   * Define Pastebin event manager
+   * @class PastebinEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var PastebinEventManager = function PastebinEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return PastebinEventManager.extend('PastebinEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return PastebinEventManager.extend('PastebinEventManager', {},
+      WidgetContentEventManager.prototype);
 });

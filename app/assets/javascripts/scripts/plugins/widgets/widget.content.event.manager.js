@@ -3,38 +3,38 @@
  */
 
 define([
-    'modules/Event'
+  'modules/Event'
 ], function defineWidgetContentEventManager(BaseEvent) {
 
+  /**
+   * Define Widget Content EventManager
+   * @class WidgetContentEventManager
+   * @extends BaseEvent
+   * @constructor
+   */
+  var WidgetContentEventManager = function WidgetContentEventManager() {
+  };
+
+  return WidgetContentEventManager.extend('WidgetContentEventManager', {
+
     /**
-     * Define Widget Content EventManager
-     * @class WidgetContentEventManager
-     * @extends BaseEvent
-     * @constructor
+     * Define events
+     * @property WidgetContentEventManager
+     * @type {{}}
      */
-    var WidgetContentEventManager = function WidgetContentEventManager() {
-    };
+    events: {},
 
-    return WidgetContentEventManager.extend('WidgetContentEventManager', {
+    /**
+     * Define on load events
+     * @property WidgetContentEventManager
+     * @type {Array}
+     */
+    onLoadEvents: [],
 
-        /**
-         * Define events
-         * @property WidgetContentEventManager
-         * @type {{}}
-         */
-        events: {},
-
-        /**
-         * Define on load events
-         * @property WidgetContentEventManager
-         * @type {Array}
-         */
-        onLoadEvents: [],
-
-        /**
-         * Define event list
-         * @property WidgetContentEventManager
-         * @type {{
+    /**
+     * Define event list
+     * @property WidgetContentEventManager
+     * @type {{
          *      initWidget: string,
          *      updateTranslations: string,
          *      defineContainer: string,
@@ -53,84 +53,84 @@ define([
          *      executeOnWidgetContentOnLoadEvent: string,
          *      fetchMetamorphicPreferences: string
          * }}
-         */
-        eventList: {
-            initWidget: 'init.widget',
-            updateTranslations: 'update.translations',
-            defineContainer: 'define.container',
-            defineReferrer: 'define.referrer',
-            setEmbeddedContent: 'set.embedded.content',
-            analyzeEmbeddedContent: 'analyze.embedded.content',
-            loadPreferences: 'load.preferences',
-            transferContentPreferences: 'transfer.content.preferences',
-            alternativeSavePreferences: 'alternative.save.preferences',
-            alternativeSaveAllPreferences: 'alternative.save.all.preferences',
-            loadRules: 'load.rules',
-            publishRule: 'publish.rule',
-            registerRules: 'register.rules',
-            transferRules: 'transfer.rules',
-            transferEvents: 'transfer.events',
-            executeOnWidgetEvent: 'execute.on.widget.event',
-            executeOnWidgetContentOnLoadEvent: 'execute.on.widget.content.on.load.event',
-            fetchMetamorphicPreferences: 'fetch.metamorphic.preferences'
-        },
+     */
+    eventList: {
+      initWidget: 'init.widget',
+      updateTranslations: 'update.translations',
+      defineContainer: 'define.container',
+      defineReferrer: 'define.referrer',
+      setEmbeddedContent: 'set.embedded.content',
+      analyzeEmbeddedContent: 'analyze.embedded.content',
+      loadPreferences: 'load.preferences',
+      transferContentPreferences: 'transfer.content.preferences',
+      alternativeSavePreferences: 'alternative.save.preferences',
+      alternativeSaveAllPreferences: 'alternative.save.all.preferences',
+      loadRules: 'load.rules',
+      publishRule: 'publish.rule',
+      registerRules: 'register.rules',
+      transferRules: 'transfer.rules',
+      transferEvents: 'transfer.events',
+      executeOnWidgetEvent: 'execute.on.widget.event',
+      executeOnWidgetContentOnLoadEvent: 'execute.on.widget.content.on.load.event',
+      fetchMetamorphicPreferences: 'fetch.metamorphic.preferences'
+    },
 
-        /**
-         * Update event list
-         * @memberOf WidgetContentEventManager
-         * @param events
-         */
-        updateEventList: function updateEventList(events) {
-            $.extend(this.eventList, events);
-        },
+    /**
+     * Update event list
+     * @memberOf WidgetContentEventManager
+     * @param events
+     */
+    updateEventList: function updateEventList(events) {
+      $.extend(this.eventList, events);
+    },
 
-        /**
-         * Execute events on load
-         * @memberOf WidgetContentEventManager
-         */
-        executeEventsOnLoad: function executeEventsOnLoad() {
+    /**
+     * Execute events on load
+     * @memberOf WidgetContentEventManager
+     */
+    executeEventsOnLoad: function executeEventsOnLoad() {
 
-            if (this.onLoadEvents.length === 0) {
-                return false;
-            }
+      if (this.onLoadEvents.length === 0) {
+        return false;
+      }
 
-            /**
-             * Define scope
-             * @type {*}
-             */
-            var scope = this.scope;
+      /**
+       * Define scope
+       * @type {*}
+       */
+      var scope = this.scope;
 
-            /**
-             * Get widget
-             * @type {Widget}
-             */
-            var widget = scope.controller.getContainment();
+      /**
+       * Get widget
+       * @type {Widget}
+       */
+      var widget = scope.controller.getContainment();
 
-            var rules = widget.model.getConfig('rules'),
-                publish = rules.publish || {},
-                subscribe = rules.subscribe || {},
-                lname = scope.name.toLowerCase(),
-                event;
+      var rules = widget.model.getConfig('rules'),
+          publish = rules.publish || {},
+          subscribe = rules.subscribe || {},
+          lname = scope.name.toLowerCase(),
+          event;
 
-            publish[lname] = scope.base.define(publish[lname], [], true);
+      publish[lname] = scope.base.define(publish[lname], [], true);
 
-            for (var i = 0, l = this.onLoadEvents.length; i < l; i++) {
+      for (var i = 0, l = this.onLoadEvents.length; i < l; i++) {
 
-                event = this.onLoadEvents[i];
+        event = this.onLoadEvents[i];
 
-                if (!publish[lname].join(':').match(new RegExp(event, 'gi'))) {
+        if (!publish[lname].join(':').match(new RegExp(event, 'gi'))) {
 
-                    publish[lname].push(event);
+          publish[lname].push(event);
 
-                    scope.observer.publish(
-                        scope.eventmanager.eventList.transferRules, {
-                            publish: publish,
-                            subscribe: subscribe
-                        }
-                    );
-                }
-            }
+          scope.observer.publish(
+              scope.eventmanager.eventList.transferRules, {
+                publish: publish,
+                subscribe: subscribe
+              }
+          );
         }
+      }
+    }
 
-    }, BaseEvent.prototype);
+  }, BaseEvent.prototype);
 });

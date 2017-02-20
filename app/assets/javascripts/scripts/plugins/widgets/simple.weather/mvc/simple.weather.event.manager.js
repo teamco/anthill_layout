@@ -7,24 +7,23 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineSimpleWeatherEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define SimpleWeather event manager
-     * @class SimpleWeatherEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var SimpleWeatherEventManager = function SimpleWeatherEventManager() {
+  /**
+   * Define SimpleWeather event manager
+   * @class SimpleWeatherEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var SimpleWeatherEventManager = function SimpleWeatherEventManager() {
 
-        this.updateEventList({
-            getLocation: 'get.location'
-        });
-    };
+    this.updateEventList({
+      getLocation: 'get.location'
+    });
+  };
 
-    return SimpleWeatherEventManager.extend('SimpleWeatherEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return SimpleWeatherEventManager.extend('SimpleWeatherEventManager', {},
+      WidgetContentEventManager.prototype);
 });

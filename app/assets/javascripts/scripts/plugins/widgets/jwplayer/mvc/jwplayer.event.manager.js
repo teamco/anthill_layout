@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineJwplayerEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define Jwplayer event manager
-     * @class JwplayerEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var JwplayerEventManager = function JwplayerEventManager() {
+  /**
+   * Define Jwplayer event manager
+   * @class JwplayerEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var JwplayerEventManager = function JwplayerEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return JwplayerEventManager.extend('JwplayerEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return JwplayerEventManager.extend('JwplayerEventManager', {},
+      WidgetContentEventManager.prototype);
 });

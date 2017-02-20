@@ -17,8 +17,8 @@ define(
       'controller/page/page.widget',
       'controller/page/page.maximize'
     ], function definePageController(AntHill, BaseController, BasePreferences,
-                                     Router, PageLayer, PageLayout, PageWidget,
-                                     PageItemMaximize) {
+        Router, PageLayer, PageLayout, PageWidget,
+        PageItemMaximize) {
       /**
        * Define page controller
        * @class PageController
@@ -53,8 +53,9 @@ define(
              * @param value
              */
             transferContentPreferences: function transferContentPreferences(index,
-                                                                            value) {
-              this.logger.debug('Preferences successfully transferred', index, value);
+                value) {
+              this.logger.debug('Preferences successfully transferred', index,
+                  value);
             },
 
             /**

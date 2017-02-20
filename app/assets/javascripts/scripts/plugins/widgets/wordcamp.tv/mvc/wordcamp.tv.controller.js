@@ -6,86 +6,75 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineWordcampTvController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define wordcamptv controller
+   * @class WordcampTvController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var WordcampTvController = function WordcampTvController() {
+  };
+
+  return WordcampTvController.extend('WordcampTvController', {
+
     /**
-     * Define wordcamptv controller
-     * @class WordcampTvController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf WordcampTvController
      */
-    var WordcampTvController = function WordcampTvController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
 
-    return WordcampTvController.extend('WordcampTvController', {
+      /**
+       * Get url
+       * @type {string|*}
+       */
+      var url = this.model.getPrefs('wordcamptvEmbedCode'),
+          embed = this.controller.getEmbedCode(url);
 
-        /**
-         * Set embedded content
-         * @memberOf WordcampTvController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
+      if (embed) {
+        this.view.elements.$wordcamptv.renderEmbeddedContent(embed);
+      }
+    },
 
-            /**
-             * Get url
-             * @type {string|*}
-             */
-            var url = this.model.getPrefs('wordcamptvEmbedCode'),
-                embed = this.controller.getEmbedCode(url);
+    /**
+     * Validate wordcamptv
+     * @memberOf WordcampTvController
+     * @param {string} embed
+     * @return {string|boolean}
+     */
+    getEmbedCode: function getEmbedCode(embed) {
 
-            if (embed) {
-                this.view.elements.$wordcamptv.renderEmbeddedContent(embed);
-            }
-        },
+      if (!embed) {
+        this.scope.logger.debug('Initial state');
+        return false;
+      }
 
-        /**
-         * Validate wordcamptv
-         * @memberOf WordcampTvController
-         * @param {string} embed
-         * @return {string|boolean}
-         */
-        getEmbedCode: function getEmbedCode(embed) {
+      // Convert to string
+      embed += '';
 
-            if (!embed) {
-                this.scope.logger.debug('Initial state');
-                return false;
-            }
+      if (embed.match(/^<embed/)) {
 
-            // Convert to string
-            embed += '';
+        return embed;
 
-            if (embed.match(/^<embed/)) {
+      } else {
 
-                return embed;
+        this.scope.logger.warn('Invalid WordcampTv embed code');
+        return false;
+      }
+    },
 
-            } else {
+    /**
+     * Add WordcampTv rule
+     * @memberOf WordcampTvController
+     * @param {Event} e
+     */
+    addWordcampTvRule: function addWordcampTvRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-                this.scope.logger.warn('Invalid WordcampTv embed code');
-                return false;
-            }
-        },
-
-        /**
-         * Add WordcampTv rule
-         * @memberOf WordcampTvController
-         * @param e
-         */
-        addWordcampTvRule: function addWordcampTvRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

@@ -7,101 +7,102 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/film.ru/element/film.ru.element',
-    'plugins/widgets/film.ru/element/film.ru.preferences.element',
-    'plugins/widgets/film.ru/element/film.ru.rules.element'
-], function defineFilmRuView(BaseView, Header, Footer, FilmRuElement, FilmRuPreferencesElement, FilmRuRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/film.ru/element/film.ru.element',
+  'plugins/widgets/film.ru/element/film.ru.preferences.element',
+  'plugins/widgets/film.ru/element/film.ru.rules.element'
+], function defineFilmRuView(BaseView, Header, Footer, FilmRuElement,
+    FilmRuPreferencesElement, FilmRuRulesElement) {
+
+  /**
+   * Define view
+   * @class FilmRuView
+   * @extends BaseView
+   * @constructor
+   */
+  var FilmRuView = function FilmRuView() {
+  };
+
+  return FilmRuView.extend('FilmRuView', {
 
     /**
-     * Define view
-     * @class FilmRuView
-     * @extends BaseView
-     * @constructor
+     * Render FilmRu element
+     * @memberOf FilmRuView
      */
-    var FilmRuView = function FilmRuView() {
-    };
+    renderFilmRu: function renderFilmRu() {
 
-    return FilmRuView.extend('FilmRuView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render FilmRu element
-         * @memberOf FilmRuView
-         */
-        renderFilmRu: function renderFilmRu() {
+      /**
+       * Define $filmru
+       * @type {FilmRuElement}
+       */
+      this.elements.$filmru = new FilmRuElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $filmru
-             * @type {FilmRuElement}
-             */
-            this.elements.$filmru = new FilmRuElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf FilmRuView
+     * @returns {FilmRuPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define FilmRu Preferences Element
+       * @type {FilmRuPreferencesElement}
+       */
+      this.elements.$preferences = new FilmRuPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf FilmRuView
-         * @returns {FilmRuPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define FilmRu Preferences Element
-             * @type {FilmRuPreferencesElement}
-             */
-            this.elements.$preferences = new FilmRuPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf FilmRuView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {FilmRuRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
-
-        /**
-         * Render Rules
-         * @memberOf FilmRuView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {FilmRuRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define FilmRu Rules Element
-             * @type {FilmRuRulesElement}
-             */
-            this.elements.$rules = new FilmRuRulesElement(this, {
-                data: this.controller.getRules(),
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render FilmRu
-         * @memberOf FilmRuView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderFilmRu.bind(this)
-            );
+      /**
+       * Define FilmRu Rules Element
+       * @type {FilmRuRulesElement}
+       */
+      this.elements.$rules = new FilmRuRulesElement(this, {
+        data: this.controller.getRules(),
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype);
+      return this.get$rules();
+    },
+
+    /**
+     * Render FilmRu
+     * @memberOf FilmRuView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderFilmRu.bind(this)
+      );
+    }
+
+  }, BaseView.prototype);
 });

@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineStepashkaPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class StepashkaPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var StepashkaPermission = function StepashkaPermission() {
+  /**
+   * Define Permissions
+   * @class StepashkaPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var StepashkaPermission = function StepashkaPermission() {
 
-    };
+  };
 
-    return StepashkaPermission.extend('StepashkaPermission', {
-
-    }, BasePermission.prototype);
+  return StepashkaPermission.extend('StepashkaPermission', {},
+      BasePermission.prototype);
 });

@@ -6,35 +6,35 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
-], function defineDailyMotionPreferencesElement(PluginElement, WidgetPreferences) {
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
+], function defineDailyMotionPreferencesElement(PluginElement,
+    WidgetPreferences) {
 
-    /**
-     * Define DailyMotion Preferences Element
-     * @param view
-     * @param opts
-     * @returns {DailyMotionPreferencesElement}
-     * @constructor
-     * @class DailyMotionPreferencesElement
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     */
-    var DailyMotionPreferencesElement = function DailyMotionPreferencesElement(view, opts) {
+  /**
+   * Define DailyMotion Preferences Element
+   * @param view
+   * @param opts
+   * @returns {DailyMotionPreferencesElement}
+   * @constructor
+   * @class DailyMotionPreferencesElement
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   */
+  var DailyMotionPreferencesElement = function DailyMotionPreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return DailyMotionPreferencesElement.extend('DailyMotionPreferencesElement', {
-
-
-    }, PluginElement.prototype, WidgetPreferences.prototype);
+  return DailyMotionPreferencesElement.extend('DailyMotionPreferencesElement',
+      {}, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

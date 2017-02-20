@@ -7,101 +7,102 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/aliez.tv/element/aliez.tv.element',
-    'plugins/widgets/aliez.tv/element/aliez.tv.preferences.element',
-    'plugins/widgets/aliez.tv/element/aliez.tv.rules.element'
-], function defineAliezTvView(BaseView, Header, Footer, AliezTvElement, AliezTvPreferencesElement, AliezTvRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/aliez.tv/element/aliez.tv.element',
+  'plugins/widgets/aliez.tv/element/aliez.tv.preferences.element',
+  'plugins/widgets/aliez.tv/element/aliez.tv.rules.element'
+], function defineAliezTvView(BaseView, Header, Footer, AliezTvElement,
+    AliezTvPreferencesElement, AliezTvRulesElement) {
+
+  /**
+   * Define view
+   * @class AliezTvView
+   * @extends BaseView
+   * @constructor
+   */
+  var AliezTvView = function AliezTvView() {
+  };
+
+  return AliezTvView.extend('AliezTvView', {
 
     /**
-     * Define view
-     * @class AliezTvView
-     * @extends BaseView
-     * @constructor
+     * Render AliezTv element
+     * @memberOf AliezTvView
      */
-    var AliezTvView = function AliezTvView() {
-    };
+    renderAliezTv: function renderAliezTv() {
 
-    return AliezTvView.extend('AliezTvView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render AliezTv element
-         * @memberOf AliezTvView
-         */
-        renderAliezTv: function renderAliezTv() {
+      /**
+       * Define $alieztv
+       * @type {AliezTvElement}
+       */
+      this.elements.$alieztv = new AliezTvElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $alieztv
-             * @type {AliezTvElement}
-             */
-            this.elements.$alieztv = new AliezTvElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf AliezTvView
+     * @returns {AliezTvPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define AliezTv Preferences Element
+       * @type {AliezTvPreferencesElement}
+       */
+      this.elements.$preferences = new AliezTvPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf AliezTvView
-         * @returns {AliezTvPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define AliezTv Preferences Element
-             * @type {AliezTvPreferencesElement}
-             */
-            this.elements.$preferences = new AliezTvPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf AliezTvView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {AliezTvRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
-
-        /**
-         * Render Rules
-         * @memberOf AliezTvView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {AliezTvRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define AliezTv Rules Element
-             * @type {AliezTvRulesElement}
-             */
-            this.elements.$rules = new AliezTvRulesElement(this, {
-                data: this.controller.getRules(),
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render AliezTv
-         * @memberOf AliezTvView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderAliezTv.bind(this)
-            );
+      /**
+       * Define AliezTv Rules Element
+       * @type {AliezTvRulesElement}
+       */
+      this.elements.$rules = new AliezTvRulesElement(this, {
+        data: this.controller.getRules(),
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype);
+      return this.get$rules();
+    },
+
+    /**
+     * Render AliezTv
+     * @memberOf AliezTvView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderAliezTv.bind(this)
+      );
+    }
+
+  }, BaseView.prototype);
 });

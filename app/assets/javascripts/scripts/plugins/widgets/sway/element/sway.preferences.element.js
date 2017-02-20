@@ -6,35 +6,35 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
 ], function defineSwayPreferencesElement(PluginElement, WidgetPreferences) {
 
-    /**
-     * Define Sway Preferences Element
-     * @constructor
-     * @class SwayPreferencesElement
-     * @param {SwayView} view
-     * @param opts
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     * @returns {SwayPreferencesElement}
-     */
-    var SwayPreferencesElement = function SwayPreferencesElement(view, opts) {
+  /**
+   * Define Sway Preferences Element
+   * @constructor
+   * @class SwayPreferencesElement
+   * @param {SwayView} view
+   * @param opts
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   * @returns {SwayPreferencesElement}
+   */
+  var SwayPreferencesElement = function SwayPreferencesElement(view, opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return SwayPreferencesElement.extend(
-        'SwayPreferencesElement', {}, 
-        PluginElement.prototype, 
-        WidgetPreferences.prototype
-    );
+  return SwayPreferencesElement.extend(
+      'SwayPreferencesElement', {},
+      PluginElement.prototype,
+      WidgetPreferences.prototype
+  );
 });

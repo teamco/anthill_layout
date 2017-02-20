@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function definePixivPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class PixivPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var PixivPermission = function PixivPermission() {
+  /**
+   * Define Permissions
+   * @class PixivPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var PixivPermission = function PixivPermission() {
 
-    };
+  };
 
-    return PixivPermission.extend('PixivPermission', {
-
-    }, BasePermission.prototype);
+  return PixivPermission.extend('PixivPermission', {},
+      BasePermission.prototype);
 });

@@ -6,35 +6,37 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
-], function defineVideochartNetPreferencesElement(PluginElement, WidgetPreferences) {
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
+], function defineVideochartNetPreferencesElement(PluginElement,
+    WidgetPreferences) {
 
-    /**
-     * Define VideochartNet Preferences Element
-     * @constructor
-     * @class VideochartNetPreferencesElement
-     * @param {VideochartNetView} view
-     * @param opts
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     * @returns {VideochartNetPreferencesElement}
-     */
-    var VideochartNetPreferencesElement = function VideochartNetPreferencesElement(view, opts) {
+  /**
+   * Define VideochartNet Preferences Element
+   * @constructor
+   * @class VideochartNetPreferencesElement
+   * @param {VideochartNetView} view
+   * @param opts
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   * @returns {VideochartNetPreferencesElement}
+   */
+  var VideochartNetPreferencesElement = function VideochartNetPreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return VideochartNetPreferencesElement.extend(
-        'VideochartNetPreferencesElement', {},
-        PluginElement.prototype,
-        WidgetPreferences.prototype
-    );
+  return VideochartNetPreferencesElement.extend(
+      'VideochartNetPreferencesElement', {},
+      PluginElement.prototype,
+      WidgetPreferences.prototype
+  );
 });

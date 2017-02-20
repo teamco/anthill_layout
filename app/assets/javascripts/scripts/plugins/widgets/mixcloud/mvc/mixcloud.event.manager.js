@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineMixcloudEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define Mixcloud event manager
-     * @class MixcloudEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var MixcloudEventManager = function MixcloudEventManager() {
+  /**
+   * Define Mixcloud event manager
+   * @class MixcloudEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var MixcloudEventManager = function MixcloudEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return MixcloudEventManager.extend('MixcloudEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return MixcloudEventManager.extend('MixcloudEventManager', {},
+      WidgetContentEventManager.prototype);
 });

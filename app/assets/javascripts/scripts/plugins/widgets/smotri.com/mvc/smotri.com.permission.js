@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineSmotriComPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class SmotriComPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var SmotriComPermission = function SmotriComPermission() {
+  /**
+   * Define Permissions
+   * @class SmotriComPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var SmotriComPermission = function SmotriComPermission() {
 
-    };
+  };
 
-    return SmotriComPermission.extend('SmotriComPermission', {
-
-    }, BasePermission.prototype);
+  return SmotriComPermission.extend('SmotriComPermission', {},
+      BasePermission.prototype);
 });

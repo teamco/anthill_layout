@@ -7,23 +7,23 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineMetamorphicEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define Metamorphic event manager
-     * @class MetamorphicEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var MetamorphicEventManager = function MetamorphicEventManager() {
+  /**
+   * Define Metamorphic event manager
+   * @class MetamorphicEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var MetamorphicEventManager = function MetamorphicEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return MetamorphicEventManager.extend(
-        'MetamorphicEventManager', {},
-        WidgetContentEventManager.prototype
-    );
+  return MetamorphicEventManager.extend(
+      'MetamorphicEventManager', {},
+      WidgetContentEventManager.prototype
+  );
 });

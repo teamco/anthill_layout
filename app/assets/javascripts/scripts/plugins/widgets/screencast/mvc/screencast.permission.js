@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineScreencastPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class ScreencastPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var ScreencastPermission = function ScreencastPermission() {
+  /**
+   * Define Permissions
+   * @class ScreencastPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var ScreencastPermission = function ScreencastPermission() {
 
-    };
+  };
 
-    return ScreencastPermission.extend('ScreencastPermission', {
-
-    }, BasePermission.prototype);
+  return ScreencastPermission.extend('ScreencastPermission', {},
+      BasePermission.prototype);
 });

@@ -6,35 +6,36 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
-], function defineGooglePresentationPreferencesElement(PluginElement, WidgetPreferences) {
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
+], function defineGooglePresentationPreferencesElement(PluginElement,
+    WidgetPreferences) {
 
-    /**
-     * Define GooglePresentation Preferences Element
-     * @param view
-     * @param opts
-     * @returns {GooglePresentationPreferencesElement}
-     * @constructor
-     * @class GooglePresentationPreferencesElement
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     */
-    var GooglePresentationPreferencesElement = function GooglePresentationPreferencesElement(view, opts) {
+  /**
+   * Define GooglePresentation Preferences Element
+   * @param view
+   * @param opts
+   * @returns {GooglePresentationPreferencesElement}
+   * @constructor
+   * @class GooglePresentationPreferencesElement
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   */
+  var GooglePresentationPreferencesElement = function GooglePresentationPreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return GooglePresentationPreferencesElement.extend('GooglePresentationPreferencesElement', {
-
-
-    }, PluginElement.prototype, WidgetPreferences.prototype);
+  return GooglePresentationPreferencesElement.extend(
+      'GooglePresentationPreferencesElement', {}, PluginElement.prototype,
+      WidgetPreferences.prototype);
 
 });

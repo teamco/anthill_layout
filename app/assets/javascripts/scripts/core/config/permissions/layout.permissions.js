@@ -7,21 +7,21 @@
 
 define(['config/layout'], function defineLayoutPermissions(Layout) {
 
-    /**
-     * Define Layout Local permission
-     * @type {{
+  /**
+   * Define Layout Local permission
+   * @type {{
      *      development: {},
      *      authorize: {},
      *      consumption: {},
      *      test: {}
      * }}
-     */
-    Layout.prototype.localPermissions = {
-        development: {},
-        authorize: {},
-        consumption: {},
-        test: {}
-    };
+   */
+  Layout.prototype.localPermissions = {
+    development: {},
+    authorize: {},
+    consumption: {},
+    test: {}
+  };
 
-    return Layout;
+  return Layout;
 });

@@ -7,23 +7,23 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineBingMapsEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define BingMaps event manager
-     * @class BingMapsEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var BingMapsEventManager = function BingMapsEventManager() {
+  /**
+   * Define BingMaps event manager
+   * @class BingMapsEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var BingMapsEventManager = function BingMapsEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return BingMapsEventManager.extend(
-        'BingMapsEventManager', {},
-        WidgetContentEventManager.prototype
-    );
+  return BingMapsEventManager.extend(
+      'BingMapsEventManager', {},
+      WidgetContentEventManager.prototype
+  );
 });

@@ -7,23 +7,23 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineOfficeMixEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define OfficeMix event manager
-     * @class OfficeMixEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var OfficeMixEventManager = function OfficeMixEventManager() {
+  /**
+   * Define OfficeMix event manager
+   * @class OfficeMixEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var OfficeMixEventManager = function OfficeMixEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return OfficeMixEventManager.extend(
-        'OfficeMixEventManager', {},
-        WidgetContentEventManager.prototype
-    );
+  return OfficeMixEventManager.extend(
+      'OfficeMixEventManager', {},
+      WidgetContentEventManager.prototype
+  );
 });

@@ -6,39 +6,39 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/rules/widget.base.rules'
+  'plugins/plugin.element',
+  'plugins/rules/widget.base.rules'
 ], function defineCacooRulesElement(PluginElement, BaseWidgetRules) {
 
-    /**
-     * Define Cacoo Rules Element
-     * @param view
-     * @param opts
-     * @returns {CacooRulesElement}
-     * @constructor
-     * @class CacooRulesElement
-     * @extends PluginElement
-     * @extends BaseWidgetRules
-     */
-    var CacooRulesElement = function CacooRulesElement(view, opts) {
+  /**
+   * Define Cacoo Rules Element
+   * @param view
+   * @param opts
+   * @returns {CacooRulesElement}
+   * @constructor
+   * @class CacooRulesElement
+   * @extends PluginElement
+   * @extends BaseWidgetRules
+   */
+  var CacooRulesElement = function CacooRulesElement(view, opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBaseRulesData(
-            opts.data,
-            opts.rules.widget,
-            opts.rules.content
-        );
-
-        return this;
-    };
-
-    return CacooRulesElement.extend(
-        'CacooRulesElement', {}, 
-        PluginElement.prototype, 
-        BaseWidgetRules.prototype
+    this.renderBaseRulesData(
+        opts.data,
+        opts.rules.widget,
+        opts.rules.content
     );
+
+    return this;
+  };
+
+  return CacooRulesElement.extend(
+      'CacooRulesElement', {},
+      PluginElement.prototype,
+      BaseWidgetRules.prototype
+  );
 });

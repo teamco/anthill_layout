@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineSomeEcardsEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define SomeEcards event manager
-     * @class SomeEcardsEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var SomeEcardsEventManager = function SomeEcardsEventManager() {
+  /**
+   * Define SomeEcards event manager
+   * @class SomeEcardsEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var SomeEcardsEventManager = function SomeEcardsEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return SomeEcardsEventManager.extend('SomeEcardsEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return SomeEcardsEventManager.extend('SomeEcardsEventManager', {},
+      WidgetContentEventManager.prototype);
 });

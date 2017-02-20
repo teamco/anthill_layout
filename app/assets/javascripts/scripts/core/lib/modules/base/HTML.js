@@ -8,51 +8,51 @@
 
 define(function defineLibHTML() {
 
+  /**
+   * Define LibHTML
+   * @class LibHTML
+   * @constructor
+   */
+  var LibHTML = function LibHTML() {
+  };
+
+  LibHTML.extend('LibHTML', {
+
     /**
-     * Define LibHTML
-     * @class LibHTML
-     * @constructor
+     * Escape HTML
+     * @memberOf LibHTML
+     * @param text
+     * @param escape
+     * @returns {*}
      */
-    var LibHTML = function LibHTML() {
-    };
+    escapeHTML: function escapeHTML(text, escape) {
+      var div = $('<div/>');
+      if (typeof(text) === 'string') {
+        return escape ?
+            // Escape the text with HTML encoding chars
+            div.text(text).html() :
+            // Unescape the text from HTML encoding chars
+            div.html(text).text();
+      } else {
+        return typeof text;
+      }
+    },
 
-    LibHTML.extend('LibHTML', {
+    /**
+     * Escape HTML Symbols
+     * @memberOf LibHTML
+     * @param text
+     * @param source
+     * @param target
+     * @returns {XML|string|void}
+     */
+    escapeHTMLSymbols: function escapeHTMLSymbols(text, source, target) {
+      return this.escapeHTML(text, 1).replace(
+          (new RegExp(source, 'gi')),
+          target
+      );
+    }
+  });
 
-        /**
-         * Escape HTML
-         * @memberOf LibHTML
-         * @param text
-         * @param escape
-         * @returns {*}
-         */
-        escapeHTML: function escapeHTML(text, escape) {
-            var div = $('<div/>');
-            if (typeof(text) === 'string') {
-                return escape ?
-                    // Escape the text with HTML encoding chars
-                    div.text(text).html() :
-                    // Unescape the text from HTML encoding chars
-                    div.html(text).text();
-            } else {
-                return typeof text;
-            }
-        },
-
-        /**
-         * Escape HTML Symbols
-         * @memberOf LibHTML
-         * @param text
-         * @param source
-         * @param target
-         * @returns {XML|string|void}
-         */
-        escapeHTMLSymbols: function escapeHTMLSymbols(text, source, target) {
-            return this.escapeHTML(text, 1).replace(
-                (new RegExp(source, 'gi')),
-                target
-            );
-        }
-    });
-
-    return new LibHTML();
+  return new LibHTML();
 });

@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineFreshTvPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class FreshTvPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var FreshTvPermission = function FreshTvPermission() {
+  /**
+   * Define Permissions
+   * @class FreshTvPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var FreshTvPermission = function FreshTvPermission() {
 
-    };
+  };
 
-    return FreshTvPermission.extend('FreshTvPermission', {
-
-    }, BasePermission.prototype);
+  return FreshTvPermission.extend('FreshTvPermission', {},
+      BasePermission.prototype);
 });

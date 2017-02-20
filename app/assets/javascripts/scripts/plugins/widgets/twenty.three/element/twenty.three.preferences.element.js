@@ -6,35 +6,35 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
-], function defineTwentyThreePreferencesElement(PluginElement, WidgetPreferences) {
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
+], function defineTwentyThreePreferencesElement(PluginElement,
+    WidgetPreferences) {
 
-    /**
-     * Define TwentyThree Preferences Element
-     * @param view
-     * @param opts
-     * @returns {TwentyThreePreferencesElement}
-     * @constructor
-     * @class TwentyThreePreferencesElement
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     */
-    var TwentyThreePreferencesElement = function TwentyThreePreferencesElement(view, opts) {
+  /**
+   * Define TwentyThree Preferences Element
+   * @param view
+   * @param opts
+   * @returns {TwentyThreePreferencesElement}
+   * @constructor
+   * @class TwentyThreePreferencesElement
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   */
+  var TwentyThreePreferencesElement = function TwentyThreePreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return TwentyThreePreferencesElement.extend('TwentyThreePreferencesElement', {
-
-
-    }, PluginElement.prototype, WidgetPreferences.prototype);
+  return TwentyThreePreferencesElement.extend('TwentyThreePreferencesElement',
+      {}, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

@@ -6,35 +6,35 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
-], function defineSlideSharePreferencesElement(PluginElement, WidgetPreferences) {
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
+], function defineSlideSharePreferencesElement(PluginElement,
+    WidgetPreferences) {
 
-    /**
-     * Define SlideShare Preferences Element
-     * @param view
-     * @param opts
-     * @returns {SlideSharePreferencesElement}
-     * @constructor
-     * @class SlideSharePreferencesElement
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     */
-    var SlideSharePreferencesElement = function SlideSharePreferencesElement(view, opts) {
+  /**
+   * Define SlideShare Preferences Element
+   * @param view
+   * @param opts
+   * @returns {SlideSharePreferencesElement}
+   * @constructor
+   * @class SlideSharePreferencesElement
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   */
+  var SlideSharePreferencesElement = function SlideSharePreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return SlideSharePreferencesElement.extend('SlideSharePreferencesElement', {
-
-
-    }, PluginElement.prototype, WidgetPreferences.prototype);
+  return SlideSharePreferencesElement.extend('SlideSharePreferencesElement', {},
+      PluginElement.prototype, WidgetPreferences.prototype);
 
 });

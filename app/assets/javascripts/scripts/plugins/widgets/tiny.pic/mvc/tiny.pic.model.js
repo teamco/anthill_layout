@@ -6,53 +6,54 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineTinyPicModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define TinyPic model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class TinyPicModel
+   * @constructor
+   */
+  var TinyPicModel = function TinyPicModel() {
+
     /**
-     * Define TinyPic model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class TinyPicModel
-     * @constructor
-     */
-    var TinyPicModel = function TinyPicModel() {
-
-        /**
-         * Define preferences
-         * @memberOf TinyPicModel
-         * @type {{
-         *      tinypicEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
+     * Define preferences
+     * @memberOf TinyPicModel
+     * @type {{
+         *      tinypicEmbedCode: {type: string, disabled: boolean, value:
+         *     undefined, visible: boolean}
          * }}
-         */
-        this.preferences = {
-            tinypicEmbedCode: {
-                type: 'textarea',
-                disabled: false,
-                value: undefined,
-                visible: true
-            }
-        };
-
-        /**
-         * Define rules
-         * @memberOf TinyPicModel
-         * @type {{}}
-         */
-        this.rules = {};
+     */
+    this.preferences = {
+      tinypicEmbedCode: {
+        type: 'textarea',
+        disabled: false,
+        value: undefined,
+        visible: true
+      }
     };
 
-    return TinyPicModel.extend('TinyPicModel', {
+    /**
+     * Define rules
+     * @memberOf TinyPicModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        /**
-         * Set TinyPic embed code
-         * @memberOf TinyPicModel
-         * @param {string} embed
-         */
-        setTinypicEmbedCode: function setTinypicEmbedCode(embed) {
-            this.setPrefs('tinypicEmbedCode', embed);
-        }
+  return TinyPicModel.extend('TinyPicModel', {
 
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    /**
+     * Set TinyPic embed code
+     * @memberOf TinyPicModel
+     * @param {string} embed
+     */
+    setTinypicEmbedCode: function setTinypicEmbedCode(embed) {
+      this.setPrefs('tinypicEmbedCode', embed);
+    }
+
+  }, BaseModel.prototype, WidgetContentModel.prototype);
 });

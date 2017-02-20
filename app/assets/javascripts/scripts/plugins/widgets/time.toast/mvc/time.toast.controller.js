@@ -6,86 +6,75 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineTimeToastController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define timetoast controller
+   * @class TimeToastController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var TimeToastController = function TimeToastController() {
+  };
+
+  return TimeToastController.extend('TimeToastController', {
+
     /**
-     * Define timetoast controller
-     * @class TimeToastController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf TimeToastController
      */
-    var TimeToastController = function TimeToastController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
 
-    return TimeToastController.extend('TimeToastController', {
+      /**
+       * Get url
+       * @type {string|*}
+       */
+      var url = this.model.getPrefs('timetoastEmbedCode'),
+          embed = this.controller.getEmbedCode(url);
 
-        /**
-         * Set embedded content
-         * @memberOf TimeToastController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
+      if (embed) {
+        this.view.elements.$timetoast.renderEmbeddedContent(embed);
+      }
+    },
 
-            /**
-             * Get url
-             * @type {string|*}
-             */
-            var url = this.model.getPrefs('timetoastEmbedCode'),
-                embed = this.controller.getEmbedCode(url);
+    /**
+     * Validate timetoast
+     * @memberOf TimeToastController
+     * @param {string} embed
+     * @return {string|boolean}
+     */
+    getEmbedCode: function getEmbedCode(embed) {
 
-            if (embed) {
-                this.view.elements.$timetoast.renderEmbeddedContent(embed);
-            }
-        },
+      if (!embed) {
+        this.scope.logger.debug('Initial state');
+        return false;
+      }
 
-        /**
-         * Validate timetoast
-         * @memberOf TimeToastController
-         * @param {string} embed
-         * @return {string|boolean}
-         */
-        getEmbedCode: function getEmbedCode(embed) {
+      // Convert to string
+      embed += '';
 
-            if (!embed) {
-                this.scope.logger.debug('Initial state');
-                return false;
-            }
+      if (embed.match(/^<object/)) {
 
-            // Convert to string
-            embed += '';
+        return $(embed)[0];
 
-            if (embed.match(/^<object/)) {
+      } else {
 
-                return $(embed)[0];
+        this.scope.logger.warn('Invalid TimeToast embed code');
+        return false;
+      }
+    },
 
-            } else {
+    /**
+     * Add TimeToast rule
+     * @memberOf TimeToastController
+     * @param {Event} e
+     */
+    addTimeToastRule: function addTimeToastRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-                this.scope.logger.warn('Invalid TimeToast embed code');
-                return false;
-            }
-        },
-
-        /**
-         * Add TimeToast rule
-         * @memberOf TimeToastController
-         * @param e
-         */
-        addTimeToastRule: function addTimeToastRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

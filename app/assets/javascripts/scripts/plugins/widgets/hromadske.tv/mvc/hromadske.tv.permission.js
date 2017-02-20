@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineHromadskeTvPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class HromadskeTvPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var HromadskeTvPermission = function HromadskeTvPermission() {
+  /**
+   * Define Permissions
+   * @class HromadskeTvPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var HromadskeTvPermission = function HromadskeTvPermission() {
 
-    };
+  };
 
-    return HromadskeTvPermission.extend('HromadskeTvPermission', {
-
-    }, BasePermission.prototype);
+  return HromadskeTvPermission.extend('HromadskeTvPermission', {},
+      BasePermission.prototype);
 });

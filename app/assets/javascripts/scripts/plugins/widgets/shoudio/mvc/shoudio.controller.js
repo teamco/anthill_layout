@@ -6,56 +6,40 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineShoudioController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define Shoudio controller
+   * @class ShoudioController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var ShoudioController = function ShoudioController() {
+  };
+
+  return ShoudioController.extend('ShoudioController', {
+
     /**
-     * Define Shoudio controller
-     * @class ShoudioController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf ShoudioController
      */
-    var ShoudioController = function ShoudioController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
+      this.view.get$item().renderEmbeddedContent(
+          this.model.getPrefs('shoudioEmbedCode')
+      );
+    },
 
-    return ShoudioController.extend('ShoudioController', {
+    /**
+     * Add Shoudio rule
+     * @memberOf ShoudioController
+     * @param {Event} e
+     */
+    addShoudioRule: function addShoudioRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-        /**
-         * Set embedded content
-         * @memberOf ShoudioController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
-            this.view.get$item().renderEmbeddedContent(
-                this.model.getPrefs('shoudioEmbedCode')
-            );
-        },
-
-        /**
-         * Add Shoudio rule
-         * @memberOf ShoudioController
-         * @param e
-         */
-        addShoudioRule: function addShoudioRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target);
-
-            /**
-             * Get scope
-             * @type {Shoudio|{name: string}}
-             */
-            var scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

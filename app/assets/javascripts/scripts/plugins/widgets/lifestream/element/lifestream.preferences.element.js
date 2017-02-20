@@ -6,35 +6,35 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
-], function defineLifestreamPreferencesElement(PluginElement, WidgetPreferences) {
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
+], function defineLifestreamPreferencesElement(PluginElement,
+    WidgetPreferences) {
 
-    /**
-     * Define Lifestream Preferences Element
-     * @param view
-     * @param opts
-     * @returns {LifestreamPreferencesElement}
-     * @constructor
-     * @class LifestreamPreferencesElement
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     */
-    var LifestreamPreferencesElement = function LifestreamPreferencesElement(view, opts) {
+  /**
+   * Define Lifestream Preferences Element
+   * @param view
+   * @param opts
+   * @returns {LifestreamPreferencesElement}
+   * @constructor
+   * @class LifestreamPreferencesElement
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   */
+  var LifestreamPreferencesElement = function LifestreamPreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return LifestreamPreferencesElement.extend('LifestreamPreferencesElement', {
-
-
-    }, PluginElement.prototype, WidgetPreferences.prototype);
+  return LifestreamPreferencesElement.extend('LifestreamPreferencesElement', {},
+      PluginElement.prototype, WidgetPreferences.prototype);
 
 });

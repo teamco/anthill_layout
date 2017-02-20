@@ -6,35 +6,34 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
 ], function definePetRadarPreferencesElement(PluginElement, WidgetPreferences) {
 
-    /**
-     * Define PetRadar Preferences Element
-     * @param view
-     * @param opts
-     * @returns {PetRadarPreferencesElement}
-     * @constructor
-     * @class PetRadarPreferencesElement
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     */
-    var PetRadarPreferencesElement = function PetRadarPreferencesElement(view, opts) {
+  /**
+   * Define PetRadar Preferences Element
+   * @param view
+   * @param opts
+   * @returns {PetRadarPreferencesElement}
+   * @constructor
+   * @class PetRadarPreferencesElement
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   */
+  var PetRadarPreferencesElement = function PetRadarPreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return PetRadarPreferencesElement.extend('PetRadarPreferencesElement', {
-
-
-    }, PluginElement.prototype, WidgetPreferences.prototype);
+  return PetRadarPreferencesElement.extend('PetRadarPreferencesElement', {},
+      PluginElement.prototype, WidgetPreferences.prototype);
 
 });

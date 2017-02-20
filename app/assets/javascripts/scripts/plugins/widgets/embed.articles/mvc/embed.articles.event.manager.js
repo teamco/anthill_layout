@@ -7,23 +7,23 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineEmbedArticlesEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define EmbedArticles event manager
-     * @class EmbedArticlesEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var EmbedArticlesEventManager = function EmbedArticlesEventManager() {
+  /**
+   * Define EmbedArticles event manager
+   * @class EmbedArticlesEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var EmbedArticlesEventManager = function EmbedArticlesEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return EmbedArticlesEventManager.extend(
-        'EmbedArticlesEventManager', {},
-        WidgetContentEventManager.prototype
-    );
+  return EmbedArticlesEventManager.extend(
+      'EmbedArticlesEventManager', {},
+      WidgetContentEventManager.prototype
+  );
 });

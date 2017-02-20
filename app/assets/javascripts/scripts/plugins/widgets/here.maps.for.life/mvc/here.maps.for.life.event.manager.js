@@ -7,23 +7,23 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineHereMapsForLifeEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define HereMapsForLife event manager
-     * @class HereMapsForLifeEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var HereMapsForLifeEventManager = function HereMapsForLifeEventManager() {
+  /**
+   * Define HereMapsForLife event manager
+   * @class HereMapsForLifeEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var HereMapsForLifeEventManager = function HereMapsForLifeEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return HereMapsForLifeEventManager.extend(
-        'HereMapsForLifeEventManager', {},
-        WidgetContentEventManager.prototype
-    );
+  return HereMapsForLifeEventManager.extend(
+      'HereMapsForLifeEventManager', {},
+      WidgetContentEventManager.prototype
+  );
 });

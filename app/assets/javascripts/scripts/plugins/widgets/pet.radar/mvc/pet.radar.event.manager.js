@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function definePetRadarEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define PetRadar event manager
-     * @class PetRadarEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var PetRadarEventManager = function PetRadarEventManager() {
+  /**
+   * Define PetRadar event manager
+   * @class PetRadarEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var PetRadarEventManager = function PetRadarEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return PetRadarEventManager.extend('PetRadarEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return PetRadarEventManager.extend('PetRadarEventManager', {},
+      WidgetContentEventManager.prototype);
 });

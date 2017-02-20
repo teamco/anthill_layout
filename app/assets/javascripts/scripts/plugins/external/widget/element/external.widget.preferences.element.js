@@ -6,35 +6,36 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
 ], function defineExternalPreferencesElement(PluginElement, WidgetPreferences) {
 
-    /**
-     * Define External Preferences Element
-     * @constructor
-     * @class ExternalPreferencesElement
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     * @param {ExternalView} view
-     * @param opts
-     * @returns {ExternalPreferencesElement}
-     */
-    var ExternalPreferencesElement = function ExternalPreferencesElement(view, opts) {
+  /**
+   * Define External Preferences Element
+   * @constructor
+   * @class ExternalPreferencesElement
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   * @param {ExternalView} view
+   * @param opts
+   * @returns {ExternalPreferencesElement}
+   */
+  var ExternalPreferencesElement = function ExternalPreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return ExternalPreferencesElement.extend(
-        'ExternalPreferencesElement', {},
-        PluginElement.prototype,
-        WidgetPreferences.prototype
-    );
+  return ExternalPreferencesElement.extend(
+      'ExternalPreferencesElement', {},
+      PluginElement.prototype,
+      WidgetPreferences.prototype
+  );
 });

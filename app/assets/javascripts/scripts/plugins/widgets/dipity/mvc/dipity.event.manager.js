@@ -7,23 +7,23 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineDipityEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define Dipity event manager
-     * @class DipityEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var DipityEventManager = function DipityEventManager() {
+  /**
+   * Define Dipity event manager
+   * @class DipityEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var DipityEventManager = function DipityEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return DipityEventManager.extend(
-        'DipityEventManager', {},
-        WidgetContentEventManager.prototype
-    );
+  return DipityEventManager.extend(
+      'DipityEventManager', {},
+      WidgetContentEventManager.prototype
+  );
 });

@@ -6,35 +6,35 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
 ], function defineTutByPreferencesElement(PluginElement, WidgetPreferences) {
 
-    /**
-     * Define TutBy Preferences Element
-     * @constructor
-     * @class TutByPreferencesElement
-     * @param {TutByView} view
-     * @param opts
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     * @returns {TutByPreferencesElement}
-     */
-    var TutByPreferencesElement = function TutByPreferencesElement(view, opts) {
+  /**
+   * Define TutBy Preferences Element
+   * @constructor
+   * @class TutByPreferencesElement
+   * @param {TutByView} view
+   * @param opts
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   * @returns {TutByPreferencesElement}
+   */
+  var TutByPreferencesElement = function TutByPreferencesElement(view, opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return TutByPreferencesElement.extend(
-        'TutByPreferencesElement', {}, 
-        PluginElement.prototype, 
-        WidgetPreferences.prototype
-    );
+  return TutByPreferencesElement.extend(
+      'TutByPreferencesElement', {},
+      PluginElement.prototype,
+      WidgetPreferences.prototype
+  );
 });

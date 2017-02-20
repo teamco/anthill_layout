@@ -7,23 +7,23 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineReleasewireEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define Releasewire event manager
-     * @class ReleasewireEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var ReleasewireEventManager = function ReleasewireEventManager() {
+  /**
+   * Define Releasewire event manager
+   * @class ReleasewireEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var ReleasewireEventManager = function ReleasewireEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return ReleasewireEventManager.extend(
-        'ReleasewireEventManager', {},
-        WidgetContentEventManager.prototype
-    );
+  return ReleasewireEventManager.extend(
+      'ReleasewireEventManager', {},
+      WidgetContentEventManager.prototype
+  );
 });

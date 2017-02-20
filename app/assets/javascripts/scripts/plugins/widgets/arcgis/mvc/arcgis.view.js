@@ -7,102 +7,103 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/arcgis/element/arcgis.element',
-    'plugins/widgets/arcgis/element/arcgis.preferences.element',
-    'plugins/widgets/arcgis/element/arcgis.rules.element'
-], function defineArcgisView(BaseView, Header, Footer, ArcgisElement, ArcgisPreferencesElement, ArcgisRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/arcgis/element/arcgis.element',
+  'plugins/widgets/arcgis/element/arcgis.preferences.element',
+  'plugins/widgets/arcgis/element/arcgis.rules.element'
+], function defineArcgisView(BaseView, Header, Footer, ArcgisElement,
+    ArcgisPreferencesElement, ArcgisRulesElement) {
+
+  /**
+   * Define view
+   * @class ArcgisView
+   * @extends BaseView
+   * @constructor
+   */
+  var ArcgisView = function ArcgisView() {
+  };
+
+  return ArcgisView.extend('ArcgisView', {
 
     /**
-     * Define view
-     * @class ArcgisView
-     * @extends BaseView
-     * @constructor
+     * Render Arcgis element
+     * @memberOf ArcgisView
      */
-    var ArcgisView = function ArcgisView() {
-    };
+    renderArcgis: function renderArcgis() {
 
-    return ArcgisView.extend('ArcgisView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render Arcgis element
-         * @memberOf ArcgisView
-         */
-        renderArcgis: function renderArcgis() {
+      /**
+       * Define $arcgis
+       * @type {ArcgisElement}
+       */
+      this.elements.$arcgis = new ArcgisElement(this, {
+        $container: this.get$container().$,
+        id: true
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $arcgis
-             * @type {ArcgisElement}
-             */
-            this.elements.$arcgis = new ArcgisElement(this, {
-                $container: this.get$container().$,
-                id: true
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf ArcgisView
+     * @returns {ArcgisPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define Arcgis Preferences Element
+       * @type {ArcgisPreferencesElement}
+       */
+      this.elements.$preferences = new ArcgisPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf ArcgisView
-         * @returns {ArcgisPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define Arcgis Preferences Element
-             * @type {ArcgisPreferencesElement}
-             */
-            this.elements.$preferences = new ArcgisPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf ArcgisView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {ArcgisRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
-
-        /**
-         * Render Rules
-         * @memberOf ArcgisView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {ArcgisRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define Arcgis Rules Element
-             * @type {ArcgisRulesElement}
-             */
-            this.elements.$rules = new ArcgisRulesElement(this, {
-                data: this.controller.getRules(),
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render Arcgis
-         * @memberOf ArcgisView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderArcgis.bind(this)
-            );
+      /**
+       * Define Arcgis Rules Element
+       * @type {ArcgisRulesElement}
+       */
+      this.elements.$rules = new ArcgisRulesElement(this, {
+        data: this.controller.getRules(),
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype);
+      return this.get$rules();
+    },
+
+    /**
+     * Render Arcgis
+     * @memberOf ArcgisView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderArcgis.bind(this)
+      );
+    }
+
+  }, BaseView.prototype);
 });

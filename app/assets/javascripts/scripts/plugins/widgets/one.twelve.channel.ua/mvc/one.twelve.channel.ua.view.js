@@ -7,108 +7,111 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/one.twelve.channel.ua/element/one.twelve.channel.ua.element',
-    'plugins/widgets/one.twelve.channel.ua/element/one.twelve.channel.ua.preferences.element',
-    'plugins/widgets/one.twelve.channel.ua/element/one.twelve.channel.ua.rules.element'
-], function defineOneTwelveChannelUaView(BaseView, Header, Footer, OneTwelveChannelUaElement, OneTwelveChannelUaPreferencesElement, OneTwelveChannelUaRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/one.twelve.channel.ua/element/one.twelve.channel.ua.element',
+  'plugins/widgets/one.twelve.channel.ua/element/one.twelve.channel.ua.preferences.element',
+  'plugins/widgets/one.twelve.channel.ua/element/one.twelve.channel.ua.rules.element'
+], function defineOneTwelveChannelUaView(BaseView, Header, Footer,
+    OneTwelveChannelUaElement, OneTwelveChannelUaPreferencesElement,
+    OneTwelveChannelUaRulesElement) {
+
+  /**
+   * Define view
+   * @class OneTwelveChannelUaView
+   * @extends BaseView
+   * @constructor
+   */
+  var OneTwelveChannelUaView = function OneTwelveChannelUaView() {
+  };
+
+  return OneTwelveChannelUaView.extend('OneTwelveChannelUaView', {
 
     /**
-     * Define view
-     * @class OneTwelveChannelUaView
-     * @extends BaseView
-     * @constructor
+     * Render onetwelvechannelua element
+     * @memberOf OneTwelveChannelUaView
      */
-    var OneTwelveChannelUaView = function OneTwelveChannelUaView() {
-    };
+    renderOneTwelveChannelUa: function renderOneTwelveChannelUa() {
 
-    return OneTwelveChannelUaView.extend('OneTwelveChannelUaView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render onetwelvechannelua element
-         * @memberOf OneTwelveChannelUaView
-         */
-        renderOneTwelveChannelUa: function renderOneTwelveChannelUa() {
+      /**
+       * Define $onetwelvechannelua
+       * @type {OneTwelveChannelUaElement}
+       */
+      this.elements.$onetwelvechannelua = new OneTwelveChannelUaElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $onetwelvechannelua
-             * @type {OneTwelveChannelUaElement}
-             */
-            this.elements.$onetwelvechannelua = new OneTwelveChannelUaElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf OneTwelveChannelUaView
+     * @returns {OneTwelveChannelUaPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define OneTwelveChannelUa Preferences Element
+       * @type {OneTwelveChannelUaPreferencesElement}
+       */
+      this.elements.$preferences =
+          new OneTwelveChannelUaPreferencesElement(this, {
+            data: this.controller.getPreferences()
+          });
 
-        /**
-         * Render Prefs
-         * @memberOf OneTwelveChannelUaView
-         * @returns {OneTwelveChannelUaPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define OneTwelveChannelUa Preferences Element
-             * @type {OneTwelveChannelUaPreferencesElement}
-             */
-            this.elements.$preferences = new OneTwelveChannelUaPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf OneTwelveChannelUaView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {OneTwelveChannelUaRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
+      /**
+       * Define data
+       * @type {*|{}}
+       */
+      var data = this.controller.getRules();
 
-        /**
-         * Render Rules
-         * @memberOf OneTwelveChannelUaView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {OneTwelveChannelUaRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define data
-             * @type {*|{}}
-             */
-            var data = this.controller.getRules();
-
-            /**
-             * Define OneTwelveChannelUa Rules Element
-             * @type {OneTwelveChannelUaRulesElement}
-             */
-            this.elements.$rules = new OneTwelveChannelUaRulesElement(this, {
-                data: data,
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render onetwelvechannelua
-         * @memberOf OneTwelveChannelUaView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderOneTwelveChannelUa.bind(this)
-            );
+      /**
+       * Define OneTwelveChannelUa Rules Element
+       * @type {OneTwelveChannelUaRulesElement}
+       */
+      this.elements.$rules = new OneTwelveChannelUaRulesElement(this, {
+        data: data,
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render onetwelvechannelua
+     * @memberOf OneTwelveChannelUaView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderOneTwelveChannelUa.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

@@ -6,53 +6,54 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineFlickrModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define Flickr model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class FlickrModel
+   * @constructor
+   */
+  var FlickrModel = function FlickrModel() {
+
     /**
-     * Define Flickr model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class FlickrModel
-     * @constructor
+     * Define preferences
+     * @property FlickrModel
+     * @type {{
+     *      flickEmbed: {type: string, disabled: boolean, value: undefined,
+     *     visible: boolean}
+     * }}
      */
-    var FlickrModel = function FlickrModel() {
-
-        /**
-         * Define preferences
-         * @property FlickrModel
-         * @type {{
-         *      flickEmbed: {type: string, disabled: boolean, value: undefined, visible: boolean}
-         * }}
-         */
-        this.preferences = {
-            flickrEmbed: {
-                type: 'textarea',
-                disabled: false,
-                value: undefined,
-                visible: true
-            }
-        };
-
-        /**
-         * Define rules
-         * @property FlickrModel
-         * @type {{}}
-         */
-        this.rules = {};
+    this.preferences = {
+      flickrEmbed: {
+        type: 'textarea',
+        disabled: false,
+        value: undefined,
+        visible: true
+      }
     };
 
-    return FlickrModel.extend('FlickrModel', {
+    /**
+     * Define rules
+     * @property FlickrModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        /**
-         * Set embed
-         * @memberOf FlickrModel
-         * @param {string} embed
-         */
-        setFlickrEmbed: function setFlickrEmbed(embed) {
-            this.setPrefs('flickrEmbed', embed);
-        }
+  return FlickrModel.extend('FlickrModel', {
 
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    /**
+     * Set embed
+     * @memberOf FlickrModel
+     * @param {string} embed
+     */
+    setFlickrEmbed: function setFlickrEmbed(embed) {
+      this.setPrefs('flickrEmbed', embed);
+    }
+
+  }, BaseModel.prototype, WidgetContentModel.prototype);
 });

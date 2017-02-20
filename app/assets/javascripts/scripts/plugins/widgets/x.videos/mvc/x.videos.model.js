@@ -6,53 +6,54 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineXVideosModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define XVideos model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class XVideosModel
+   * @constructor
+   */
+  var XVideosModel = function XVideosModel() {
+
     /**
-     * Define XVideos model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class XVideosModel
-     * @constructor
-     */
-    var XVideosModel = function XVideosModel() {
-
-        /**
-         * Define preferences
-         * @memberOf XVideosModel
-         * @type {{
-         *      xvideosUrl: {type: string, disabled: boolean, value: undefined, visible: boolean}
+     * Define preferences
+     * @memberOf XVideosModel
+     * @type {{
+         *      xvideosUrl: {type: string, disabled: boolean, value: undefined,
+         *     visible: boolean}
          * }}
-         */
-        this.preferences = {
-            xvideosUrl: {
-                type: 'text',
-                disabled: false,
-                value: undefined,
-                visible: true
-            }
-        };
-
-        /**
-         * Define rules
-         * @memberOf XVideosModel
-         * @type {{}}
-         */
-        this.rules = {};
+     */
+    this.preferences = {
+      xvideosUrl: {
+        type: 'text',
+        disabled: false,
+        value: undefined,
+        visible: true
+      }
     };
 
-    return XVideosModel.extend('XVideosModel', {
+    /**
+     * Define rules
+     * @memberOf XVideosModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        /**
-         * Set XVideos Url
-         * @memberOf XVideosModel
-         * @param {string} url
-         */
-        setXvideosUrl: function setXvideosUrl(url) {
-            this.setPrefs('xvideosUrl', url);
-        }
+  return XVideosModel.extend('XVideosModel', {
 
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    /**
+     * Set XVideos Url
+     * @memberOf XVideosModel
+     * @param {string} url
+     */
+    setXvideosUrl: function setXvideosUrl(url) {
+      this.setPrefs('xvideosUrl', url);
+    }
+
+  }, BaseModel.prototype, WidgetContentModel.prototype);
 });

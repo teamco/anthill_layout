@@ -6,115 +6,115 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function definePageTabsElement(PluginElement) {
 
+  /**
+   * Define PageTabs Item Element
+   * @param view
+   * @param opts
+   * @constructor
+   * @class PageTabsItemElement
+   * @extends PluginElement
+   * @returns {PageTabsItemElement}
+   */
+  var PageTabsItemElement = function PageTabsItemElement(view, opts) {
+
+    this._config(view, opts, $('<li role="presentation" />')).build({
+      $container: opts.$container
+    });
+
     /**
-     * Define PageTabs Item Element
-     * @param view
-     * @param opts
-     * @constructor
-     * @class PageTabsItemElement
-     * @extends PluginElement
-     * @returns {PageTabsItemElement}
+     * Define page tab item
+     * @property PageTabsItemElement
+     * @type {Page}
      */
-    var PageTabsItemElement = function PageTabsItemElement(view, opts) {
+    this.pageTab = opts.pageTab;
 
-        this._config(view, opts, $('<li role="presentation" />')).build({
-            $container: opts.$container
-        });
+    this.initContent();
 
-        /**
-         * Define page tab item
-         * @property PageTabsItemElement
-         * @type {Page}
-         */
-        this.pageTab = opts.pageTab;
+    return this;
+  };
 
-        this.initContent();
+  return PageTabsItemElement.extend('PageTabsItemElement', {
 
-        return this;
-    };
+    /**
+     * Init page tabs item
+     * @memberOf PageTabsItemElement
+     */
+    initContent: function initContent() {
 
-    return PageTabsItemElement.extend('PageTabsItemElement', {
+      /**
+       * Get prefs
+       * @type {*}
+       */
+      var preferences = this.pageTab.model.getConfig('preferences');
 
-        /**
-         * Init page tabs item
-         * @memberOf PageTabsItemElement
-         */
-        initContent: function initContent() {
+      /**
+       * Define title
+       * @property PageTabsItemElement
+       * @type {*|string}
+       */
+      this.title = this.pageTab.model.getItemTitle();
 
-            /**
-             * Get prefs
-             * @type {*}
-             */
-            var preferences = this.pageTab.model.getConfig('preferences');
+      /**
+       * Define description
+       * @property PageTabsItemElement
+       * @type {*|string}
+       */
+      this.description = preferences.description;
 
-            /**
-             * Define title
-             * @property PageTabsItemElement
-             * @type {*|string}
-             */
-            this.title = this.pageTab.model.getItemTitle();
+      /**
+       * Define pageUrl
+       * @property PageTabsItemElement
+       * @type {*}
+       */
+      this.pageUrl = preferences.pageUrl;
 
-            /**
-             * Define description
-             * @property PageTabsItemElement
-             * @type {*|string}
-             */
-            this.description = preferences.description;
+      this.$.append(
+          $('<a />').attr({
+            title: this.title
+          }).text(this.title)
+      );
 
-            /**
-             * Define pageUrl
-             * @property PageTabsItemElement
-             * @type {*}
-             */
-            this.pageUrl = preferences.pageUrl;
+      this.setTitle(this.title);
+      this.bindClick();
+    },
 
-            this.$.append(
-                $('<a />').attr({
-                    title: this.title
-                }).text(this.title)
-            );
+    /**
+     * Bind click to switch page
+     * @memberOf PageTabsItemElement
+     */
+    bindClick: function bindClick() {
 
-            this.setTitle(this.title);
-            this.bindClick();
-        },
+      this.$.off('click.pageTab').on(
+          'click.pageTab',
+          this.clickCallback.bind(this)
+      );
+    },
 
-        /**
-         * Bind click to switch page
-         * @memberOf PageTabsItemElement
-         */
-        bindClick: function bindClick() {
+    /**
+     * Tab click callback
+     * @memberOf PageTabsItemElement
+     * @param {Event} e
+     * @private
+     */
+    clickCallback: function clickCallback(e) {
 
-            this.$.off('click.pageTab').on(
-                'click.pageTab',
-                this.clickCallback.bind(this)
-            );
-        },
+      e.preventDefault();
+      e.stopPropagation();
 
-        /**
-         * Tab click callback
-         * @memberOf PageTabsItemElement
-         * @param {Event} e
-         * @private
-         */
-        clickCallback: function clickCallback(e) {
+      /**
+       * Get scope
+       * @type {PageTabs}
+       */
+      var scope = this.view.scope;
 
-            e.preventDefault();
-            e.stopPropagation();
+      scope.observer.publish(
+          scope.eventmanager.eventList.switchToPage,
+          [this, e]
+      );
+    }
 
-            /**
-             * Get scope
-             * @type {PageTabs}
-             */
-            var scope = this.view.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.switchToPage,
-                [this, e]
-            );
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 });

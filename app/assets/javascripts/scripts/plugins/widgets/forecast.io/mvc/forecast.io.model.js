@@ -6,44 +6,44 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineForecastIoModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define ForecastIo model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class ForecastIoModel
+   * @constructor
+   */
+  var ForecastIoModel = function ForecastIoModel() {
+
     /**
-     * Define ForecastIo model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class ForecastIoModel
-     * @constructor
+     * Define preferences
+     * @property ForecastIoModel
+     * @type {{}}
      */
-    var ForecastIoModel = function ForecastIoModel() {
-
-        /**
-         * Define preferences
-         * @property ForecastIoModel
-         * @type {{}}
-         */
-        this.preferences = {
-            forecastioEmbedCode: {
-                type: 'textarea',
-                disabled: false,
-                value: '<iframe id="forecast_embed" type="text/html" frameborder="0" height="245" width="100%" src="http://forecast.io/embed/#lat=42.3583&lon=-71.0603&name=Downtown Boston"></iframe>',
-                visible: true
-            }
-        };
-
-        /**
-         * Define rules
-         * @property ForecastIoModel
-         * @type {{}}
-         */
-        this.rules = {};
+    this.preferences = {
+      forecastioEmbedCode: {
+        type: 'textarea',
+        disabled: false,
+        value: '<iframe id="forecast_embed" type="text/html" frameborder="0" height="245" width="100%" src="http://forecast.io/embed/#lat=42.3583&lon=-71.0603&name=Downtown Boston"></iframe>',
+        visible: true
+      }
     };
 
-    return ForecastIoModel.extend('ForecastIoModel', {
+    /**
+     * Define rules
+     * @property ForecastIoModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        // Setter
+  return ForecastIoModel.extend('ForecastIoModel', {
 
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    // Setter
+
+  }, BaseModel.prototype, WidgetContentModel.prototype);
 });

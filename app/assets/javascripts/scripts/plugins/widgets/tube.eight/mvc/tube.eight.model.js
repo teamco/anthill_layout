@@ -6,53 +6,54 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineTubeEightModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define TubeEight model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class TubeEightModel
+   * @constructor
+   */
+  var TubeEightModel = function TubeEightModel() {
+
     /**
-     * Define TubeEight model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class TubeEightModel
-     * @constructor
-     */
-    var TubeEightModel = function TubeEightModel() {
-
-        /**
-         * Define preferences
-         * @memberOf TubeEightModel
-         * @type {{
-         *      tubeeightEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
+     * Define preferences
+     * @memberOf TubeEightModel
+     * @type {{
+         *      tubeeightEmbedCode: {type: string, disabled: boolean, value:
+         *     undefined, visible: boolean}
          * }}
-         */
-        this.preferences = {
-            tubeeightEmbedCode: {
-                type: 'textarea',
-                disabled: false,
-                value: undefined,
-                visible: true
-            }
-        };
-
-        /**
-         * Define rules
-         * @memberOf TubeEightModel
-         * @type {{}}
-         */
-        this.rules = {};
+     */
+    this.preferences = {
+      tubeeightEmbedCode: {
+        type: 'textarea',
+        disabled: false,
+        value: undefined,
+        visible: true
+      }
     };
 
-    return TubeEightModel.extend('TubeEightModel', {
+    /**
+     * Define rules
+     * @memberOf TubeEightModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        /**
-         * Set TubeEight embed code
-         * @memberOf TubeEightModel
-         * @param {string} embed
-         */
-        setTubeeightEmbedCode: function setTubeeightEmbedCode(embed) {
-            this.setPrefs('tubeeightEmbedCode', embed);
-        }
+  return TubeEightModel.extend('TubeEightModel', {
 
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    /**
+     * Set TubeEight embed code
+     * @memberOf TubeEightModel
+     * @param {string} embed
+     */
+    setTubeeightEmbedCode: function setTubeeightEmbedCode(embed) {
+      this.setPrefs('tubeeightEmbedCode', embed);
+    }
+
+  }, BaseModel.prototype, WidgetContentModel.prototype);
 });

@@ -7,108 +7,110 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/channel.two.il/element/channel.two.il.element',
-    'plugins/widgets/channel.two.il/element/channel.two.il.preferences.element',
-    'plugins/widgets/channel.two.il/element/channel.two.il.rules.element'
-], function defineChannelTwoIlView(BaseView, Header, Footer, ChannelTwoIlElement, ChannelTwoIlPreferencesElement, ChannelTwoIlRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/channel.two.il/element/channel.two.il.element',
+  'plugins/widgets/channel.two.il/element/channel.two.il.preferences.element',
+  'plugins/widgets/channel.two.il/element/channel.two.il.rules.element'
+], function defineChannelTwoIlView(BaseView, Header, Footer,
+    ChannelTwoIlElement, ChannelTwoIlPreferencesElement,
+    ChannelTwoIlRulesElement) {
+
+  /**
+   * Define view
+   * @class ChannelTwoIlView
+   * @extends BaseView
+   * @constructor
+   */
+  var ChannelTwoIlView = function ChannelTwoIlView() {
+  };
+
+  return ChannelTwoIlView.extend('ChannelTwoIlView', {
 
     /**
-     * Define view
-     * @class ChannelTwoIlView
-     * @extends BaseView
-     * @constructor
+     * Render channeltwoil element
+     * @memberOf ChannelTwoIlView
      */
-    var ChannelTwoIlView = function ChannelTwoIlView() {
-    };
+    renderChannelTwoIl: function renderChannelTwoIl() {
 
-    return ChannelTwoIlView.extend('ChannelTwoIlView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render channeltwoil element
-         * @memberOf ChannelTwoIlView
-         */
-        renderChannelTwoIl: function renderChannelTwoIl() {
+      /**
+       * Define $channeltwoil
+       * @type {ChannelTwoIlElement}
+       */
+      this.elements.$channeltwoil = new ChannelTwoIlElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $channeltwoil
-             * @type {ChannelTwoIlElement}
-             */
-            this.elements.$channeltwoil = new ChannelTwoIlElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf ChannelTwoIlView
+     * @returns {ChannelTwoIlPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define ChannelTwoIl Preferences Element
+       * @type {ChannelTwoIlPreferencesElement}
+       */
+      this.elements.$preferences = new ChannelTwoIlPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf ChannelTwoIlView
-         * @returns {ChannelTwoIlPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define ChannelTwoIl Preferences Element
-             * @type {ChannelTwoIlPreferencesElement}
-             */
-            this.elements.$preferences = new ChannelTwoIlPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf ChannelTwoIlView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {ChannelTwoIlRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
+      /**
+       * Define data
+       * @type {*|{}}
+       */
+      var data = this.controller.getRules();
 
-        /**
-         * Render Rules
-         * @memberOf ChannelTwoIlView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {ChannelTwoIlRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define data
-             * @type {*|{}}
-             */
-            var data = this.controller.getRules();
-
-            /**
-             * Define ChannelTwoIl Rules Element
-             * @type {ChannelTwoIlRulesElement}
-             */
-            this.elements.$rules = new ChannelTwoIlRulesElement(this, {
-                data: data,
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render channeltwoil
-         * @memberOf ChannelTwoIlView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderChannelTwoIl.bind(this)
-            );
+      /**
+       * Define ChannelTwoIl Rules Element
+       * @type {ChannelTwoIlRulesElement}
+       */
+      this.elements.$rules = new ChannelTwoIlRulesElement(this, {
+        data: data,
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render channeltwoil
+     * @memberOf ChannelTwoIlView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderChannelTwoIl.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

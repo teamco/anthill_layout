@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineHeaderPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class HeaderPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var HeaderPermission = function HeaderPermission() {
+  /**
+   * Define Permissions
+   * @class HeaderPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var HeaderPermission = function HeaderPermission() {
 
-    };
+  };
 
-    return HeaderPermission.extend('HeaderPermission', {
-
-    }, BasePermission.prototype);
+  return HeaderPermission.extend('HeaderPermission', {},
+      BasePermission.prototype);
 });

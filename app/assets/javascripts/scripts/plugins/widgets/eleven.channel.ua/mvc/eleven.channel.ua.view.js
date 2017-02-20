@@ -7,108 +7,110 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/eleven.channel.ua/element/eleven.channel.ua.element',
-    'plugins/widgets/eleven.channel.ua/element/eleven.channel.ua.preferences.element',
-    'plugins/widgets/eleven.channel.ua/element/eleven.channel.ua.rules.element'
-], function defineElevenChannelUaView(BaseView, Header, Footer, ElevenChannelUaElement, ElevenChannelUaPreferencesElement, ElevenChannelUaRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/eleven.channel.ua/element/eleven.channel.ua.element',
+  'plugins/widgets/eleven.channel.ua/element/eleven.channel.ua.preferences.element',
+  'plugins/widgets/eleven.channel.ua/element/eleven.channel.ua.rules.element'
+], function defineElevenChannelUaView(BaseView, Header, Footer,
+    ElevenChannelUaElement, ElevenChannelUaPreferencesElement,
+    ElevenChannelUaRulesElement) {
+
+  /**
+   * Define view
+   * @class ElevenChannelUaView
+   * @extends BaseView
+   * @constructor
+   */
+  var ElevenChannelUaView = function ElevenChannelUaView() {
+  };
+
+  return ElevenChannelUaView.extend('ElevenChannelUaView', {
 
     /**
-     * Define view
-     * @class ElevenChannelUaView
-     * @extends BaseView
-     * @constructor
+     * Render elevenchannelua element
+     * @memberOf ElevenChannelUaView
      */
-    var ElevenChannelUaView = function ElevenChannelUaView() {
-    };
+    renderElevenChannelUa: function renderElevenChannelUa() {
 
-    return ElevenChannelUaView.extend('ElevenChannelUaView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render elevenchannelua element
-         * @memberOf ElevenChannelUaView
-         */
-        renderElevenChannelUa: function renderElevenChannelUa() {
+      /**
+       * Define $elevenchannelua
+       * @type {ElevenChannelUaElement}
+       */
+      this.elements.$elevenchannelua = new ElevenChannelUaElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $elevenchannelua
-             * @type {ElevenChannelUaElement}
-             */
-            this.elements.$elevenchannelua = new ElevenChannelUaElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf ElevenChannelUaView
+     * @returns {ElevenChannelUaPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define ElevenChannelUa Preferences Element
+       * @type {ElevenChannelUaPreferencesElement}
+       */
+      this.elements.$preferences = new ElevenChannelUaPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf ElevenChannelUaView
-         * @returns {ElevenChannelUaPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define ElevenChannelUa Preferences Element
-             * @type {ElevenChannelUaPreferencesElement}
-             */
-            this.elements.$preferences = new ElevenChannelUaPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf ElevenChannelUaView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {ElevenChannelUaRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
+      /**
+       * Define data
+       * @type {*|{}}
+       */
+      var data = this.controller.getRules();
 
-        /**
-         * Render Rules
-         * @memberOf ElevenChannelUaView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {ElevenChannelUaRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define data
-             * @type {*|{}}
-             */
-            var data = this.controller.getRules();
-
-            /**
-             * Define ElevenChannelUa Rules Element
-             * @type {ElevenChannelUaRulesElement}
-             */
-            this.elements.$rules = new ElevenChannelUaRulesElement(this, {
-                data: data,
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render elevenchannelua
-         * @memberOf ElevenChannelUaView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderElevenChannelUa.bind(this)
-            );
+      /**
+       * Define ElevenChannelUa Rules Element
+       * @type {ElevenChannelUaRulesElement}
+       */
+      this.elements.$rules = new ElevenChannelUaRulesElement(this, {
+        data: data,
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render elevenchannelua
+     * @memberOf ElevenChannelUaView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderElevenChannelUa.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

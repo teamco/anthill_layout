@@ -6,53 +6,54 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineLivestreamModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define Livestream model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class LivestreamModel
+   * @constructor
+   */
+  var LivestreamModel = function LivestreamModel() {
+
     /**
-     * Define Livestream model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class LivestreamModel
-     * @constructor
+     * Define preferences
+     * @memberOf LivestreamModel
+     * @type {{
+     *      livestreamEmbedCode: {type: string, disabled: boolean, value:
+     *     undefined, visible: boolean}
+     * }}
      */
-    var LivestreamModel = function LivestreamModel() {
-
-        /**
-         * Define preferences
-         * @memberOf LivestreamModel
-         * @type {{
-         *      livestreamEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
-         * }}
-         */
-        this.preferences = {
-            livestreamEmbedCode: {
-                type: 'textarea',
-                disabled: false,
-                value: undefined,
-                visible: true
-            }
-        };
-
-        /**
-         * Define rules
-         * @memberOf LivestreamModel
-         * @type {{}}
-         */
-        this.rules = {};
+    this.preferences = {
+      livestreamEmbedCode: {
+        type: 'textarea',
+        disabled: false,
+        value: undefined,
+        visible: true
+      }
     };
 
-    return LivestreamModel.extend('LivestreamModel', {
+    /**
+     * Define rules
+     * @memberOf LivestreamModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        /**
-         * Set Livestream embed code
-         * @memberOf LivestreamModel
-         * @param {string} embed
-         */
-        setLivestreamEmbedCode: function setLivestreamEmbedCode(embed) {
-            this.setPrefs('livestreamEmbedCode', embed);
-        }
+  return LivestreamModel.extend('LivestreamModel', {
 
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    /**
+     * Set Livestream embed code
+     * @memberOf LivestreamModel
+     * @param {string} embed
+     */
+    setLivestreamEmbedCode: function setLivestreamEmbedCode(embed) {
+      this.setPrefs('livestreamEmbedCode', embed);
+    }
+
+  }, BaseModel.prototype, WidgetContentModel.prototype);
 });

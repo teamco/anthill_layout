@@ -6,53 +6,54 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineIctvModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define Ictv model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class IctvModel
+   * @constructor
+   */
+  var IctvModel = function IctvModel() {
+
     /**
-     * Define Ictv model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class IctvModel
-     * @constructor
+     * Define preferences
+     * @memberOf IctvModel
+     * @type {{
+     *      ictvEmbedCode: {type: string, disabled: boolean, value:
+     *     undefined, visible: boolean}
+     * }}
      */
-    var IctvModel = function IctvModel() {
-
-        /**
-         * Define preferences
-         * @memberOf IctvModel
-         * @type {{
-         *      ictvEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
-         * }}
-         */
-        this.preferences = {
-            ictvEmbedCode: {
-                type: 'textarea',
-                disabled: false,
-                value: undefined,
-                visible: true
-            }
-        };
-
-        /**
-         * Define rules
-         * @memberOf IctvModel
-         * @type {{}}
-         */
-        this.rules = {};
+    this.preferences = {
+      ictvEmbedCode: {
+        type: 'textarea',
+        disabled: false,
+        value: undefined,
+        visible: true
+      }
     };
 
-    return IctvModel.extend('IctvModel', {
+    /**
+     * Define rules
+     * @memberOf IctvModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        /**
-         * Set Ictv embed code
-         * @memberOf IctvModel
-         * @param {string} embed
-         */
-        setIctvEmbedCode: function setIctvEmbedCode(embed) {
-            this.setPrefs('ictvEmbedCode', embed);
-        }
+  return IctvModel.extend('IctvModel', {
 
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    /**
+     * Set Ictv embed code
+     * @memberOf IctvModel
+     * @param {string} embed
+     */
+    setIctvEmbedCode: function setIctvEmbedCode(embed) {
+      this.setPrefs('ictvEmbedCode', embed);
+    }
+
+  }, BaseModel.prototype, WidgetContentModel.prototype);
 });

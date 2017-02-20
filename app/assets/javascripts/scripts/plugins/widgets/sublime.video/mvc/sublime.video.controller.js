@@ -6,86 +6,75 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineSublimeVideoController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define sublimevideo controller
+   * @class SublimeVideoController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var SublimeVideoController = function SublimeVideoController() {
+  };
+
+  return SublimeVideoController.extend('SublimeVideoController', {
+
     /**
-     * Define sublimevideo controller
-     * @class SublimeVideoController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf SublimeVideoController
      */
-    var SublimeVideoController = function SublimeVideoController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
 
-    return SublimeVideoController.extend('SublimeVideoController', {
+      /**
+       * Get url
+       * @type {string|*}
+       */
+      var url = this.model.getPrefs('sublimevideoEmbedCode'),
+          embed = this.controller.getEmbedCode(url);
 
-        /**
-         * Set embedded content
-         * @memberOf SublimeVideoController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
+      if (embed) {
+        this.view.elements.$sublimevideo.renderEmbeddedContent(embed);
+      }
+    },
 
-            /**
-             * Get url
-             * @type {string|*}
-             */
-            var url = this.model.getPrefs('sublimevideoEmbedCode'),
-                embed = this.controller.getEmbedCode(url);
+    /**
+     * Validate sublimevideo
+     * @memberOf SublimeVideoController
+     * @param {string} embed
+     * @return {string|boolean}
+     */
+    getEmbedCode: function getEmbedCode(embed) {
 
-            if (embed) {
-                this.view.elements.$sublimevideo.renderEmbeddedContent(embed);
-            }
-        },
+      if (!embed) {
+        this.scope.logger.debug('Initial state');
+        return false;
+      }
 
-        /**
-         * Validate sublimevideo
-         * @memberOf SublimeVideoController
-         * @param {string} embed
-         * @return {string|boolean}
-         */
-        getEmbedCode: function getEmbedCode(embed) {
+      // Convert to string
+      embed += '';
 
-            if (!embed) {
-                this.scope.logger.debug('Initial state');
-                return false;
-            }
+      if (embed.match(/^<iframe/)) {
 
-            // Convert to string
-            embed += '';
+        return $(embed).attr('src');
 
-            if (embed.match(/^<iframe/)) {
+      } else {
 
-                return $(embed).attr('src');
+        this.scope.logger.warn('Invalid SublimeVideo embed code');
+        return false;
+      }
+    },
 
-            } else {
+    /**
+     * Add SublimeVideo rule
+     * @memberOf SublimeVideoController
+     * @param {Event} e
+     */
+    addSublimeVideoRule: function addSublimeVideoRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-                this.scope.logger.warn('Invalid SublimeVideo embed code');
-                return false;
-            }
-        },
-
-        /**
-         * Add SublimeVideo rule
-         * @memberOf SublimeVideoController
-         * @param e
-         */
-        addSublimeVideoRule: function addSublimeVideoRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

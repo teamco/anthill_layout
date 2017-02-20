@@ -6,35 +6,37 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
-], function defineInterludePreferencesElement(PluginElement, WidgetPreferences) {
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
+], function defineInterludePreferencesElement(PluginElement,
+    WidgetPreferences) {
 
-    /**
-     * Define Interlude Preferences Element
-     * @constructor
-     * @class InterludePreferencesElement
-     * @param {InterludeView} view
-     * @param opts
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     * @returns {InterludePreferencesElement}
-     */
-    var InterludePreferencesElement = function InterludePreferencesElement(view, opts) {
+  /**
+   * Define Interlude Preferences Element
+   * @constructor
+   * @class InterludePreferencesElement
+   * @param {InterludeView} view
+   * @param opts
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   * @returns {InterludePreferencesElement}
+   */
+  var InterludePreferencesElement = function InterludePreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return InterludePreferencesElement.extend(
-        'InterludePreferencesElement', {}, 
-        PluginElement.prototype, 
-        WidgetPreferences.prototype
-    );
+  return InterludePreferencesElement.extend(
+      'InterludePreferencesElement', {},
+      PluginElement.prototype,
+      WidgetPreferences.prototype
+  );
 });

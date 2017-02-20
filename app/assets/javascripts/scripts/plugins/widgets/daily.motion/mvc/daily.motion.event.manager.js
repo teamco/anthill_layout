@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineDailyMotionEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define DailyMotion event manager
-     * @class DailyMotionEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var DailyMotionEventManager = function DailyMotionEventManager() {
+  /**
+   * Define DailyMotion event manager
+   * @class DailyMotionEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var DailyMotionEventManager = function DailyMotionEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return DailyMotionEventManager.extend('DailyMotionEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return DailyMotionEventManager.extend('DailyMotionEventManager', {},
+      WidgetContentEventManager.prototype);
 });

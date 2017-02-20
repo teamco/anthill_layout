@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineEspresoTvPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class EspresoTvPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var EspresoTvPermission = function EspresoTvPermission() {
+  /**
+   * Define Permissions
+   * @class EspresoTvPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var EspresoTvPermission = function EspresoTvPermission() {
 
-    };
+  };
 
-    return EspresoTvPermission.extend('EspresoTvPermission', {
-
-    }, BasePermission.prototype);
+  return EspresoTvPermission.extend('EspresoTvPermission', {},
+      BasePermission.prototype);
 });

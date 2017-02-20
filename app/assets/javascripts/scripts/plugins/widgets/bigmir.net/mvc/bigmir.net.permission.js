@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineBigmirNetPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class BigmirNetPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var BigmirNetPermission = function BigmirNetPermission() {
+  /**
+   * Define Permissions
+   * @class BigmirNetPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var BigmirNetPermission = function BigmirNetPermission() {
 
-    };
+  };
 
-    return BigmirNetPermission.extend('BigmirNetPermission', {
-
-    }, BasePermission.prototype);
+  return BigmirNetPermission.extend('BigmirNetPermission', {},
+      BasePermission.prototype);
 });

@@ -7,101 +7,102 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/wistia/element/wistia.element',
-    'plugins/widgets/wistia/element/wistia.preferences.element',
-    'plugins/widgets/wistia/element/wistia.rules.element'
-], function defineWistiaView(BaseView, Header, Footer, WistiaElement, WistiaPreferencesElement, WistiaRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/wistia/element/wistia.element',
+  'plugins/widgets/wistia/element/wistia.preferences.element',
+  'plugins/widgets/wistia/element/wistia.rules.element'
+], function defineWistiaView(BaseView, Header, Footer, WistiaElement,
+    WistiaPreferencesElement, WistiaRulesElement) {
+
+  /**
+   * Define view
+   * @class WistiaView
+   * @extends BaseView
+   * @constructor
+   */
+  var WistiaView = function WistiaView() {
+  };
+
+  return WistiaView.extend('WistiaView', {
 
     /**
-     * Define view
-     * @class WistiaView
-     * @extends BaseView
-     * @constructor
+     * Render Wistia element
+     * @memberOf WistiaView
      */
-    var WistiaView = function WistiaView() {
-    };
+    renderWistia: function renderWistia() {
 
-    return WistiaView.extend('WistiaView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render Wistia element
-         * @memberOf WistiaView
-         */
-        renderWistia: function renderWistia() {
+      /**
+       * Define $wistia
+       * @type {WistiaElement}
+       */
+      this.elements.$wistia = new WistiaElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $wistia
-             * @type {WistiaElement}
-             */
-            this.elements.$wistia = new WistiaElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf WistiaView
+     * @returns {WistiaPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define Wistia Preferences Element
+       * @type {WistiaPreferencesElement}
+       */
+      this.elements.$preferences = new WistiaPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf WistiaView
-         * @returns {WistiaPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define Wistia Preferences Element
-             * @type {WistiaPreferencesElement}
-             */
-            this.elements.$preferences = new WistiaPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf WistiaView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {WistiaRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
-
-        /**
-         * Render Rules
-         * @memberOf WistiaView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {WistiaRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define Wistia Rules Element
-             * @type {WistiaRulesElement}
-             */
-            this.elements.$rules = new WistiaRulesElement(this, {
-                data: this.controller.getRules(),
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render Wistia
-         * @memberOf WistiaView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderWistia.bind(this)
-            );
+      /**
+       * Define Wistia Rules Element
+       * @type {WistiaRulesElement}
+       */
+      this.elements.$rules = new WistiaRulesElement(this, {
+        data: this.controller.getRules(),
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype);
+      return this.get$rules();
+    },
+
+    /**
+     * Render Wistia
+     * @memberOf WistiaView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderWistia.bind(this)
+      );
+    }
+
+  }, BaseView.prototype);
 });

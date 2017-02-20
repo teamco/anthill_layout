@@ -7,41 +7,41 @@
  */
 define(function defineLibFunction() {
 
+  /**
+   * Define Lib function
+   * @class LibFunction
+   * @constructor
+   */
+  var LibFunction = function LibFunction() {
+  };
+
+  LibFunction.extend('LibFunction', {
+
     /**
-     * Define Lib function
-     * @class LibFunction
-     * @constructor
+     * Define function creator
+     * @memberOf LibFunction
+     * @param opts
+     * @returns {Function}
      */
-    var LibFunction = function LibFunction() {
-    };
+    create: function create(opts) {
 
-    LibFunction.extend('LibFunction', {
+      /**
+       * Define function
+       * @type {Function}
+       */
+      var fn = new Function(opts.params, opts.body);
 
-        /**
-         * Define function creator
-         * @memberOf LibFunction
-         * @param opts
-         * @returns {Function}
-         */
-        create: function create(opts) {
+      if (opts.scope) {
 
-            /**
-             * Define function
-             * @type {Function}
-             */
-            var fn = new Function(opts.params, opts.body);
+        // Add function to scope
+        opts.scope[opts.name] = fn;
 
-            if (opts.scope) {
+        return opts.scope[opts.name];
+      }
 
-                // Add function to scope
-                opts.scope[opts.name] = fn;
+      return fn;
+    }
+  });
 
-                return opts.scope[opts.name];
-            }
-
-            return fn;
-        }
-    });
-
-    return new LibFunction();
+  return new LibFunction();
 });

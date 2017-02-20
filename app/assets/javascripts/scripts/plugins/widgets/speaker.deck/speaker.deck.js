@@ -6,41 +6,42 @@
  */
 
 define([
-    'config/anthill',
-    'modules/MVC',
-    'plugins/widgets/speaker.deck/mvc/speaker.deck.controller',
-    'plugins/widgets/speaker.deck/mvc/speaker.deck.model',
-    'plugins/widgets/speaker.deck/mvc/speaker.deck.view',
-    'plugins/widgets/speaker.deck/mvc/speaker.deck.event.manager',
-    'plugins/widgets/speaker.deck/mvc/speaker.deck.permission'
-], function defineSpeakerDeck(AntHill, MVC, Controller, Model, View, EventManager, Permission) {
+  'config/anthill',
+  'modules/MVC',
+  'plugins/widgets/speaker.deck/mvc/speaker.deck.controller',
+  'plugins/widgets/speaker.deck/mvc/speaker.deck.model',
+  'plugins/widgets/speaker.deck/mvc/speaker.deck.view',
+  'plugins/widgets/speaker.deck/mvc/speaker.deck.event.manager',
+  'plugins/widgets/speaker.deck/mvc/speaker.deck.permission'
+], function defineSpeakerDeck(AntHill, MVC, Controller, Model, View,
+    EventManager, Permission) {
+
+  /**
+   * Define SpeakerDeck
+   * @param containment
+   * @param [opts]
+   * @constructor
+   * @class SpeakerDeck
+   * @extends AntHill
+   */
+  var SpeakerDeck = function SpeakerDeck(containment, opts) {
 
     /**
-     * Define SpeakerDeck
-     * @param containment
-     * @param [opts]
-     * @constructor
-     * @class SpeakerDeck
-     * @extends AntHill
+     * Define containment
+     * @property SpeakerDeck
      */
-    var SpeakerDeck = function SpeakerDeck(containment, opts) {
+    this.containment = containment;
 
-        /**
-         * Define containment
-         * @property SpeakerDeck
-         */
-        this.containment = containment;
+    /**
+     * Define referrer
+     * @property SpeakerDeck
+     * @type {*}
+     */
+    this.referrer = undefined;
 
-        /**
-         * Define referrer
-         * @property SpeakerDeck
-         * @type {*}
-         */
-        this.referrer = undefined;
-
-        /**
-         * Define defaults
-         * @type {{
+    /**
+     * Define defaults
+     * @type {{
          *      plugin: boolean,
          *      html: {
          *          style: string,
@@ -55,48 +56,48 @@ define([
          *          }
          *      }
          * }}
-         */
-        var DEFAULTS = {
-            plugin: true,
-            html: {
-                style: 'default',
-                header: false,
-                footer: false,
-                padding: {
-                    top: 0,
-                    right: 0,
-                    bottom: 0,
-                    left: 0
-                }
-            }
-        };
-
-        /**
-         * Define MVC
-         * @property SpeakerDeck
-         * @type {MVC}
-         */
-        this.mvc = new MVC({
-            scope: this,
-            config: [
-                {uuid: this.containment.model.getContentUUID()},
-                DEFAULTS
-            ],
-            components: [
-                Controller,
-                Model,
-                View,
-                EventManager,
-                Permission
-            ],
-            render: true
-        });
-
-        this.observer.publish(
-            this.eventmanager.eventList.initWidget,
-            opts
-        );
+     */
+    var DEFAULTS = {
+      plugin: true,
+      html: {
+        style: 'default',
+        header: false,
+        footer: false,
+        padding: {
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0
+        }
+      }
     };
 
-    return SpeakerDeck.extend('SpeakerDeck', {}, AntHill.prototype);
+    /**
+     * Define MVC
+     * @property SpeakerDeck
+     * @type {MVC}
+     */
+    this.mvc = new MVC({
+      scope: this,
+      config: [
+        {uuid: this.containment.model.getContentUUID()},
+        DEFAULTS
+      ],
+      components: [
+        Controller,
+        Model,
+        View,
+        EventManager,
+        Permission
+      ],
+      render: true
+    });
+
+    this.observer.publish(
+        this.eventmanager.eventList.initWidget,
+        opts
+    );
+  };
+
+  return SpeakerDeck.extend('SpeakerDeck', {}, AntHill.prototype);
 });

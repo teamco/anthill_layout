@@ -6,30 +6,29 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineGalleryElement(PluginElement) {
 
-    /**
-     * Define Gallery Element
-     * @param view
-     * @param opts
-     * @returns {GalleryElement}
-     * @constructor
-     * @class GalleryElement
-     * @extends PluginElement
-     */
-    var GalleryElement = function GalleryElement(view, opts) {
+  /**
+   * Define Gallery Element
+   * @param view
+   * @param opts
+   * @returns {GalleryElement}
+   * @constructor
+   * @class GalleryElement
+   * @extends PluginElement
+   */
+  var GalleryElement = function GalleryElement(view, opts) {
 
-        this._config(view, opts, $('<ul />')).build({
-            $container: opts.$container
-        });
+    this._config(view, opts, $('<ul />')).build({
+      $container: opts.$container
+    });
 
-        this.addCSS('gallery');
+    this.addCSS('gallery');
 
-        return this;
-    };
+    return this;
+  };
 
-    return GalleryElement.extend('GalleryElement', {
-    }, PluginElement.prototype);
+  return GalleryElement.extend('GalleryElement', {}, PluginElement.prototype);
 
 });

@@ -6,86 +6,75 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineSportExpressController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define sportexpress controller
+   * @class SportExpressController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var SportExpressController = function SportExpressController() {
+  };
+
+  return SportExpressController.extend('SportExpressController', {
+
     /**
-     * Define sportexpress controller
-     * @class SportExpressController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf SportExpressController
      */
-    var SportExpressController = function SportExpressController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
 
-    return SportExpressController.extend('SportExpressController', {
+      /**
+       * Get url
+       * @type {string|*}
+       */
+      var url = this.model.getPrefs('sportexpressEmbedCode'),
+          embed = this.controller.getEmbedCode(url);
 
-        /**
-         * Set embedded content
-         * @memberOf SportExpressController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
+      if (embed) {
+        this.view.elements.$sportexpress.renderEmbeddedContent(embed);
+      }
+    },
 
-            /**
-             * Get url
-             * @type {string|*}
-             */
-            var url = this.model.getPrefs('sportexpressEmbedCode'),
-                embed = this.controller.getEmbedCode(url);
+    /**
+     * Validate sportexpress
+     * @memberOf SportExpressController
+     * @param {string} embed
+     * @return {string|boolean}
+     */
+    getEmbedCode: function getEmbedCode(embed) {
 
-            if (embed) {
-                this.view.elements.$sportexpress.renderEmbeddedContent(embed);
-            }
-        },
+      if (!embed) {
+        this.scope.logger.debug('Initial state');
+        return false;
+      }
 
-        /**
-         * Validate sportexpress
-         * @memberOf SportExpressController
-         * @param {string} embed
-         * @return {string|boolean}
-         */
-        getEmbedCode: function getEmbedCode(embed) {
+      // Convert to string
+      embed += '';
 
-            if (!embed) {
-                this.scope.logger.debug('Initial state');
-                return false;
-            }
+      if (embed.match(/^<object/)) {
 
-            // Convert to string
-            embed += '';
+        return $(embed)[0];
 
-            if (embed.match(/^<object/)) {
+      } else {
 
-                return $(embed)[0];
+        this.scope.logger.warn('Invalid SportExpress embed code');
+        return false;
+      }
+    },
 
-            } else {
+    /**
+     * Add SportExpress rule
+     * @memberOf SportExpressController
+     * @param {Event} e
+     */
+    addSportExpressRule: function addSportExpressRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-                this.scope.logger.warn('Invalid SportExpress embed code');
-                return false;
-            }
-        },
-
-        /**
-         * Add SportExpress rule
-         * @memberOf SportExpressController
-         * @param e
-         */
-        addSportExpressRule: function addSportExpressRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

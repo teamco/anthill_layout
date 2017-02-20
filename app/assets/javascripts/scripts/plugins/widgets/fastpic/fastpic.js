@@ -6,97 +6,98 @@
  */
 
 define([
-    'config/anthill',
-    'modules/MVC',
-    'plugins/widgets/fastpic/mvc/fastpic.controller',
-    'plugins/widgets/fastpic/mvc/fastpic.model',
-    'plugins/widgets/fastpic/mvc/fastpic.view',
-    'plugins/widgets/fastpic/mvc/fastpic.event.manager',
-    'plugins/widgets/fastpic/mvc/fastpic.permission'
-], function defineFastpic(AntHill, MVC, Controller, Model, View, EventManager, Permission) {
+  'config/anthill',
+  'modules/MVC',
+  'plugins/widgets/fastpic/mvc/fastpic.controller',
+  'plugins/widgets/fastpic/mvc/fastpic.model',
+  'plugins/widgets/fastpic/mvc/fastpic.view',
+  'plugins/widgets/fastpic/mvc/fastpic.event.manager',
+  'plugins/widgets/fastpic/mvc/fastpic.permission'
+], function defineFastpic(AntHill, MVC, Controller, Model, View, EventManager,
+    Permission) {
+
+  /**
+   * Define Fastpic
+   * @param containment
+   * @param [opts]
+   * @constructor
+   * @class Fastpic
+   * @extends AntHill
+   */
+  var Fastpic = function Fastpic(containment, opts) {
 
     /**
-     * Define Fastpic
-     * @param containment
-     * @param [opts]
-     * @constructor
-     * @class Fastpic
-     * @extends AntHill
+     * Define containment
+     * @property Fastpic
      */
-    var Fastpic = function Fastpic(containment, opts) {
+    this.containment = containment;
 
-        /**
-         * Define containment
-         * @property Fastpic
-         */
-        this.containment = containment;
+    /**
+     * Define referrer
+     * @property Fastpic
+     * @type {*}
+     */
+    this.referrer = undefined;
 
-        /**
-         * Define referrer
-         * @property Fastpic
-         * @type {*}
-         */
-        this.referrer = undefined;
-
-        /**
-         * Define defaults
-         * @type {{
-         *      plugin: boolean,
-         *      html: {
-         *          style: string,
-         *          header: boolean,
-         *          footer: boolean,
-         *          floating: boolean,
-         *          padding: {
-         *              top: number,
-         *              right: number,
-         *              bottom: number,
-         *              left: number
-         *          }
-         *      }
-         * }}
-         */
-        var DEFAULTS = {
-            plugin: true,
-            html: {
-                style: 'default',
-                header: false,
-                footer: false,
-                padding: {
-                    top: 0,
-                    right: 0,
-                    bottom: 0,
-                    left: 0
-                }
-            }
-        };
-
-        /**
-         * Define MVC
-         * @property Fastpic
-         * @type {MVC}
-         */
-        this.mvc = new MVC({
-            scope: this,
-            config: [
-                {uuid: this.containment.model.getContentUUID()},
-                DEFAULTS
-            ],
-            components: [
-                Controller,
-                Model,
-                View,
-                EventManager,
-                Permission
-            ],
-            render: true
-        });
-
-        this.observer.publish(
-            this.eventmanager.eventList.initWidget,
-            opts
-        );
+    /**
+     * Define defaults
+     * @type {{
+     *      plugin: boolean,
+     *      html: {
+     *          style: string,
+     *          header: boolean,
+     *          footer: boolean,
+     *          floating: boolean,
+     *          padding: {
+     *              top: number,
+     *              right: number,
+     *              bottom: number,
+     *              left: number
+     *          }
+     *      }
+     * }}
+     */
+    var DEFAULTS = {
+      plugin: true,
+      html: {
+        style: 'default',
+        header: false,
+        footer: false,
+        padding: {
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0
+        }
+      }
     };
 
-    return Fastpic.extend('Fastpic', {}, AntHill.prototype);
+    /**
+     * Define MVC
+     * @property Fastpic
+     * @type {MVC}
+     */
+    this.mvc = new MVC({
+      scope: this,
+      config: [
+        {uuid: this.containment.model.getContentUUID()},
+        DEFAULTS
+      ],
+      components: [
+        Controller,
+        Model,
+        View,
+        EventManager,
+        Permission
+      ],
+      render: true
+    });
+
+    this.observer.publish(
+        this.eventmanager.eventList.initWidget,
+        opts
+    );
+  };
+
+  return Fastpic.extend('Fastpic', {}, AntHill.prototype);
 });

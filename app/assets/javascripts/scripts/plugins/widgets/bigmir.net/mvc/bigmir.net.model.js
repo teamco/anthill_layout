@@ -6,53 +6,54 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineBigmirNetModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define BigmirNet model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class BigmirNetModel
+   * @constructor
+   */
+  var BigmirNetModel = function BigmirNetModel() {
+
     /**
-     * Define BigmirNet model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class BigmirNetModel
-     * @constructor
+     * Define preferences
+     * @memberOf BigmirNetModel
+     * @type {{
+     *      bigmirnetEmbedCode: {type: string, disabled: boolean, value:
+     *     undefined, visible: boolean}
+     * }}
      */
-    var BigmirNetModel = function BigmirNetModel() {
-
-        /**
-         * Define preferences
-         * @memberOf BigmirNetModel
-         * @type {{
-         *      bigmirnetEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
-         * }}
-         */
-        this.preferences = {
-            bigmirnetEmbedCode: {
-                type: 'textarea',
-                disabled: false,
-                value: undefined,
-                visible: true
-            }
-        };
-
-        /**
-         * Define rules
-         * @memberOf BigmirNetModel
-         * @type {{}}
-         */
-        this.rules = {};
+    this.preferences = {
+      bigmirnetEmbedCode: {
+        type: 'textarea',
+        disabled: false,
+        value: undefined,
+        visible: true
+      }
     };
 
-    return BigmirNetModel.extend('BigmirNetModel', {
+    /**
+     * Define rules
+     * @memberOf BigmirNetModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        /**
-         * Set BigmirNet embed code
-         * @memberOf BigmirNetModel
-         * @param {string} embed
-         */
-        setBigmirnetEmbedCode: function setBigmirnetEmbedCode(embed) {
-            this.setPrefs('bigmirnetEmbedCode', embed);
-        }
+  return BigmirNetModel.extend('BigmirNetModel', {
 
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    /**
+     * Set BigmirNet embed code
+     * @memberOf BigmirNetModel
+     * @param {string} embed
+     */
+    setBigmirnetEmbedCode: function setBigmirnetEmbedCode(embed) {
+      this.setPrefs('bigmirnetEmbedCode', embed);
+    }
+
+  }, BaseModel.prototype, WidgetContentModel.prototype);
 });

@@ -6,35 +6,33 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
 ], function defineMusTvPreferencesElement(PluginElement, WidgetPreferences) {
 
-    /**
-     * Define MusTv Preferences Element
-     * @param view
-     * @param opts
-     * @returns {MusTvPreferencesElement}
-     * @constructor
-     * @class MusTvPreferencesElement
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     */
-    var MusTvPreferencesElement = function MusTvPreferencesElement(view, opts) {
+  /**
+   * Define MusTv Preferences Element
+   * @param view
+   * @param opts
+   * @returns {MusTvPreferencesElement}
+   * @constructor
+   * @class MusTvPreferencesElement
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   */
+  var MusTvPreferencesElement = function MusTvPreferencesElement(view, opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return MusTvPreferencesElement.extend('MusTvPreferencesElement', {
-
-
-    }, PluginElement.prototype, WidgetPreferences.prototype);
+  return MusTvPreferencesElement.extend('MusTvPreferencesElement', {},
+      PluginElement.prototype, WidgetPreferences.prototype);
 
 });

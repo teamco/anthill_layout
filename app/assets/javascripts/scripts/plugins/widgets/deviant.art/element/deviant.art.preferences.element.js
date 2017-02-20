@@ -6,35 +6,35 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
-], function defineDeviantArtPreferencesElement(PluginElement, WidgetPreferences) {
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
+], function defineDeviantArtPreferencesElement(PluginElement,
+    WidgetPreferences) {
 
-    /**
-     * Define DeviantArt Preferences Element
-     * @param view
-     * @param opts
-     * @returns {DeviantArtPreferencesElement}
-     * @constructor
-     * @class DeviantArtPreferencesElement
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     */
-    var DeviantArtPreferencesElement = function DeviantArtPreferencesElement(view, opts) {
+  /**
+   * Define DeviantArt Preferences Element
+   * @param view
+   * @param opts
+   * @returns {DeviantArtPreferencesElement}
+   * @constructor
+   * @class DeviantArtPreferencesElement
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   */
+  var DeviantArtPreferencesElement = function DeviantArtPreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return DeviantArtPreferencesElement.extend('DeviantArtPreferencesElement', {
-
-
-    }, PluginElement.prototype, WidgetPreferences.prototype);
+  return DeviantArtPreferencesElement.extend('DeviantArtPreferencesElement', {},
+      PluginElement.prototype, WidgetPreferences.prototype);
 
 });

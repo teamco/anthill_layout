@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function definePremiereTvPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class PremiereTvPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var PremiereTvPermission = function PremiereTvPermission() {
+  /**
+   * Define Permissions
+   * @class PremiereTvPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var PremiereTvPermission = function PremiereTvPermission() {
 
-    };
+  };
 
-    return PremiereTvPermission.extend('PremiereTvPermission', {
-
-    }, BasePermission.prototype);
+  return PremiereTvPermission.extend('PremiereTvPermission', {},
+      BasePermission.prototype);
 });

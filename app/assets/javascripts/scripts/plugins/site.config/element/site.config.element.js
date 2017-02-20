@@ -6,30 +6,31 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineSiteConfigElement(PluginElement) {
 
-    /**
-     * Define SiteConfig Element
-     * @param view
-     * @param opts
-     * @constructor
-     * @class SiteConfigElement
-     * @type {Function}
-     * @extends PluginElement
-     * @returns {SiteConfigElement}
-     */
-    var SiteConfigElement = function SiteConfigElement(view, opts) {
+  /**
+   * Define SiteConfig Element
+   * @param view
+   * @param opts
+   * @constructor
+   * @class SiteConfigElement
+   * @type {Function}
+   * @extends PluginElement
+   * @returns {SiteConfigElement}
+   */
+  var SiteConfigElement = function SiteConfigElement(view, opts) {
 
-        this._config(view, opts, $('<ul />')).build({
-            $container: opts.$container
-        });
+    this._config(view, opts, $('<ul />')).build({
+      $container: opts.$container
+    });
 
-        this.addCSS('site.config');
-        this.addCSS('preferences');
+    this.addCSS('site.config');
+    this.addCSS('preferences');
 
-        return this;
-    };
+    return this;
+  };
 
-    return SiteConfigElement.extend('SiteConfigElement', {}, PluginElement.prototype);
+  return SiteConfigElement.extend('SiteConfigElement', {},
+      PluginElement.prototype);
 });

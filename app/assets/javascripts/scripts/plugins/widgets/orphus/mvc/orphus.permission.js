@@ -7,20 +7,20 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineOrphusPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class OrphusPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var OrphusPermission = function OrphusPermission() {
-    };
+  /**
+   * Define Permissions
+   * @class OrphusPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var OrphusPermission = function OrphusPermission() {
+  };
 
-    return OrphusPermission.extend(
-        'OrphusPermission', {}, 
-        BasePermission.prototype
-    );
+  return OrphusPermission.extend(
+      'OrphusPermission', {},
+      BasePermission.prototype
+  );
 });

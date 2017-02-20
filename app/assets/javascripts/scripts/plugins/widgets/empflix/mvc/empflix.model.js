@@ -6,53 +6,54 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineEmpflixModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define Empflix model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class EmpflixModel
+   * @constructor
+   */
+  var EmpflixModel = function EmpflixModel() {
+
     /**
-     * Define Empflix model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class EmpflixModel
-     * @constructor
+     * Define preferences
+     * @memberOf EmpflixModel
+     * @type {{
+     *      empflixEmbedCode: {type: string, disabled: boolean, value:
+     *     undefined, visible: boolean}
+     * }}
      */
-    var EmpflixModel = function EmpflixModel() {
-
-        /**
-         * Define preferences
-         * @memberOf EmpflixModel
-         * @type {{
-         *      empflixEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
-         * }}
-         */
-        this.preferences = {
-            empflixEmbedCode: {
-                type: 'textarea',
-                disabled: false,
-                value: undefined,
-                visible: true
-            }
-        };
-
-        /**
-         * Define rules
-         * @memberOf EmpflixModel
-         * @type {{}}
-         */
-        this.rules = {};
+    this.preferences = {
+      empflixEmbedCode: {
+        type: 'textarea',
+        disabled: false,
+        value: undefined,
+        visible: true
+      }
     };
 
-    return EmpflixModel.extend('EmpflixModel', {
+    /**
+     * Define rules
+     * @memberOf EmpflixModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        /**
-         * Set Empflix embed code
-         * @memberOf EmpflixModel
-         * @param {string} embed
-         */
-        setEmpflixEmbedCode: function setEmpflixEmbedCode(embed) {
-            this.setPrefs('empflixEmbedCode', embed);
-        }
+  return EmpflixModel.extend('EmpflixModel', {
 
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    /**
+     * Set Empflix embed code
+     * @memberOf EmpflixModel
+     * @param {string} embed
+     */
+    setEmpflixEmbedCode: function setEmpflixEmbedCode(embed) {
+      this.setPrefs('empflixEmbedCode', embed);
+    }
+
+  }, BaseModel.prototype, WidgetContentModel.prototype);
 });

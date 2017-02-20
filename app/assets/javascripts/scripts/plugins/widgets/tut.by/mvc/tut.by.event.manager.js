@@ -7,23 +7,23 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineTutByEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define TutBy event manager
-     * @class TutByEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var TutByEventManager = function TutByEventManager() {
+  /**
+   * Define TutBy event manager
+   * @class TutByEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var TutByEventManager = function TutByEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return TutByEventManager.extend(
-        'TutByEventManager', {},
-        WidgetContentEventManager.prototype
-    );
+  return TutByEventManager.extend(
+      'TutByEventManager', {},
+      WidgetContentEventManager.prototype
+  );
 });

@@ -6,59 +6,59 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineEmbedArticlesElement(PluginElement) {
 
+  /**
+   * Define EmbedArticles Element
+   * @param view
+   * @param opts
+   * @returns {EmbedArticlesElement}
+   * @constructor
+   * @class EmbedArticlesElement
+   * @extends PluginElement
+   */
+  var EmbedArticlesElement = function EmbedArticlesElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('embed.articles', {resource: '/widgets'});
+
+    return this;
+  };
+
+  return EmbedArticlesElement.extend('EmbedArticlesElement', {
+
     /**
-     * Define EmbedArticles Element
-     * @param view
-     * @param opts
-     * @returns {EmbedArticlesElement}
-     * @constructor
-     * @class EmbedArticlesElement
-     * @extends PluginElement
+     * Render Embedded content
+     * @memberOf EmbedArticlesElement
      */
-    var EmbedArticlesElement = function EmbedArticlesElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent(embed) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+      var embedArticle = $(embed)[0];
 
-        this.addCSS('embed.articles', {resource: '/widgets'});
+      var k = embedArticle.getAttribute("data-key"),
+          u = decodeURI(embedArticle.getAttribute("data-url"));
 
-        return this;
-    };
+      var filePath = [
+        'http://embedarticles.com/widget/embed/?u=', encodeURIComponent(u),
+        '&k=' + k + '&r=' + encodeURIComponent(window.location.href)
+      ].join('');
 
-    return EmbedArticlesElement.extend('EmbedArticlesElement', {
+      var md5 = this.base.lib.string.md5(u);
 
-        /**
-         * Render Embedded content
-         * @memberOf EmbedArticlesElement
-         */
-        renderEmbeddedContent: function renderEmbeddedContent(embed) {
+      this.addContent(
+          this.renderIframe(
+              filePath, {
+                id: 'ea_embed_article_' + md5,
+                name: 'embed_widget_' + md5
+              }
+          )
+      );
+    }
 
-            var embedArticle = $(embed)[0];
-
-            var k = embedArticle.getAttribute("data-key"),
-                u = decodeURI(embedArticle.getAttribute("data-url"));
-
-            var filePath = [
-                'http://embedarticles.com/widget/embed/?u=', encodeURIComponent(u),
-                '&k=' + k + '&r=' + encodeURIComponent(window.location.href)
-            ].join('');
-
-            var md5 = this.base.lib.string.md5(u);
-
-            this.addContent(
-                this.renderIframe(
-                    filePath, {
-                        id: 'ea_embed_article_' + md5,
-                        name: 'embed_widget_' + md5
-                    }
-                )
-            );
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 });

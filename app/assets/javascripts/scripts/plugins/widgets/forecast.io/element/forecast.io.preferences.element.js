@@ -6,35 +6,37 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
-], function defineForecastIoPreferencesElement(PluginElement, WidgetPreferences) {
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
+], function defineForecastIoPreferencesElement(PluginElement,
+    WidgetPreferences) {
 
-    /**
-     * Define ForecastIo Preferences Element
-     * @constructor
-     * @class ForecastIoPreferencesElement
-     * @param {ForecastIoView} view
-     * @param opts
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     * @returns {ForecastIoPreferencesElement}
-     */
-    var ForecastIoPreferencesElement = function ForecastIoPreferencesElement(view, opts) {
+  /**
+   * Define ForecastIo Preferences Element
+   * @constructor
+   * @class ForecastIoPreferencesElement
+   * @param {ForecastIoView} view
+   * @param opts
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   * @returns {ForecastIoPreferencesElement}
+   */
+  var ForecastIoPreferencesElement = function ForecastIoPreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return ForecastIoPreferencesElement.extend(
-        'ForecastIoPreferencesElement', {}, 
-        PluginElement.prototype, 
-        WidgetPreferences.prototype
-    );
+  return ForecastIoPreferencesElement.extend(
+      'ForecastIoPreferencesElement', {},
+      PluginElement.prototype,
+      WidgetPreferences.prototype
+  );
 });

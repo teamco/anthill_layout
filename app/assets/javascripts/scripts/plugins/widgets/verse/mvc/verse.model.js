@@ -6,44 +6,45 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineVerseModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define Verse model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class VerseModel
+   * @constructor
+   */
+  var VerseModel = function VerseModel() {
+
     /**
-     * Define Verse model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class VerseModel
-     * @constructor
+     * Define preferences
+     * @property VerseModel
+     * @type {{verseEmbedCode: {type: string, disabled: boolean, value: string,
+     *     visible: boolean}}}
      */
-    var VerseModel = function VerseModel() {
-
-        /**
-         * Define preferences
-         * @property VerseModel
-         * @type {{verseEmbedCode: {type: string, disabled: boolean, value: string, visible: boolean}}}
-         */
-        this.preferences = {
-            verseEmbedCode: {
-                type: 'textarea',
-                disabled: false,
-                value: '<iframe src="https://verse.com/stories-embed/116-the-last-move/" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>',
-                visible: true
-            }
-        };
-
-        /**
-         * Define rules
-         * @property VerseModel
-         * @type {{}}
-         */
-        this.rules = {};
+    this.preferences = {
+      verseEmbedCode: {
+        type: 'textarea',
+        disabled: false,
+        value: '<iframe src="https://verse.com/stories-embed/116-the-last-move/" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>',
+        visible: true
+      }
     };
 
-    return VerseModel.extend('VerseModel', {
+    /**
+     * Define rules
+     * @property VerseModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        // Setter
+  return VerseModel.extend('VerseModel', {
 
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    // Setter
+
+  }, BaseModel.prototype, WidgetContentModel.prototype);
 });

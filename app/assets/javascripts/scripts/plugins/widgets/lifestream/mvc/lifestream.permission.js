@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineLifestreamPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class LifestreamPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var LifestreamPermission = function LifestreamPermission() {
+  /**
+   * Define Permissions
+   * @class LifestreamPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var LifestreamPermission = function LifestreamPermission() {
 
-    };
+  };
 
-    return LifestreamPermission.extend('LifestreamPermission', {
-
-    }, BasePermission.prototype);
+  return LifestreamPermission.extend('LifestreamPermission', {},
+      BasePermission.prototype);
 });

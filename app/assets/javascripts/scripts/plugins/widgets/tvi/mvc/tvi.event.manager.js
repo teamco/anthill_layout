@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineTviEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define Tvi event manager
-     * @class TviEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var TviEventManager = function TviEventManager() {
+  /**
+   * Define Tvi event manager
+   * @class TviEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var TviEventManager = function TviEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return TviEventManager.extend('TviEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return TviEventManager.extend('TviEventManager', {},
+      WidgetContentEventManager.prototype);
 });

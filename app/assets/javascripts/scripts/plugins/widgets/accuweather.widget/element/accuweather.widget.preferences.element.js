@@ -6,35 +6,37 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
-], function defineAccuweatherWidgetPreferencesElement(PluginElement, WidgetPreferences) {
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
+], function defineAccuweatherWidgetPreferencesElement(PluginElement,
+    WidgetPreferences) {
 
-    /**
-     * Define AccuweatherWidget Preferences Element
-     * @constructor
-     * @class AccuweatherWidgetPreferencesElement
-     * @param {AccuweatherWidgetView} view
-     * @param opts
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     * @returns {AccuweatherWidgetPreferencesElement}
-     */
-    var AccuweatherWidgetPreferencesElement = function AccuweatherWidgetPreferencesElement(view, opts) {
+  /**
+   * Define AccuweatherWidget Preferences Element
+   * @constructor
+   * @class AccuweatherWidgetPreferencesElement
+   * @param {AccuweatherWidgetView} view
+   * @param opts
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   * @returns {AccuweatherWidgetPreferencesElement}
+   */
+  var AccuweatherWidgetPreferencesElement = function AccuweatherWidgetPreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return AccuweatherWidgetPreferencesElement.extend(
-        'AccuweatherWidgetPreferencesElement', {}, 
-        PluginElement.prototype, 
-        WidgetPreferences.prototype
-    );
+  return AccuweatherWidgetPreferencesElement.extend(
+      'AccuweatherWidgetPreferencesElement', {},
+      PluginElement.prototype,
+      WidgetPreferences.prototype
+  );
 });

@@ -7,101 +7,102 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/scoff/element/scoff.element',
-    'plugins/widgets/scoff/element/scoff.preferences.element',
-    'plugins/widgets/scoff/element/scoff.rules.element'
-], function defineScoffView(BaseView, Header, Footer, ScoffElement, ScoffPreferencesElement, ScoffRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/scoff/element/scoff.element',
+  'plugins/widgets/scoff/element/scoff.preferences.element',
+  'plugins/widgets/scoff/element/scoff.rules.element'
+], function defineScoffView(BaseView, Header, Footer, ScoffElement,
+    ScoffPreferencesElement, ScoffRulesElement) {
+
+  /**
+   * Define view
+   * @class ScoffView
+   * @extends BaseView
+   * @constructor
+   */
+  var ScoffView = function ScoffView() {
+  };
+
+  return ScoffView.extend('ScoffView', {
 
     /**
-     * Define view
-     * @class ScoffView
-     * @extends BaseView
-     * @constructor
+     * Render Scoff element
+     * @memberOf ScoffView
      */
-    var ScoffView = function ScoffView() {
-    };
+    renderScoff: function renderScoff() {
 
-    return ScoffView.extend('ScoffView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render Scoff element
-         * @memberOf ScoffView
-         */
-        renderScoff: function renderScoff() {
+      /**
+       * Define $scoff
+       * @type {ScoffElement}
+       */
+      this.elements.$scoff = new ScoffElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $scoff
-             * @type {ScoffElement}
-             */
-            this.elements.$scoff = new ScoffElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf ScoffView
+     * @returns {ScoffPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define Scoff Preferences Element
+       * @type {ScoffPreferencesElement}
+       */
+      this.elements.$preferences = new ScoffPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf ScoffView
-         * @returns {ScoffPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define Scoff Preferences Element
-             * @type {ScoffPreferencesElement}
-             */
-            this.elements.$preferences = new ScoffPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf ScoffView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {ScoffRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
-
-        /**
-         * Render Rules
-         * @memberOf ScoffView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {ScoffRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define Scoff Rules Element
-             * @type {ScoffRulesElement}
-             */
-            this.elements.$rules = new ScoffRulesElement(this, {
-                data: this.controller.getRules(),
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render Scoff
-         * @memberOf ScoffView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderScoff.bind(this)
-            );
+      /**
+       * Define Scoff Rules Element
+       * @type {ScoffRulesElement}
+       */
+      this.elements.$rules = new ScoffRulesElement(this, {
+        data: this.controller.getRules(),
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype);
+      return this.get$rules();
+    },
+
+    /**
+     * Render Scoff
+     * @memberOf ScoffView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderScoff.bind(this)
+      );
+    }
+
+  }, BaseView.prototype);
 });

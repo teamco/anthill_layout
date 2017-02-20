@@ -6,35 +6,37 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
-], function definePizapPhotoEditorPreferencesElement(PluginElement, WidgetPreferences) {
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
+], function definePizapPhotoEditorPreferencesElement(PluginElement,
+    WidgetPreferences) {
 
-    /**
-     * Define PizapPhotoEditor Preferences Element
-     * @constructor
-     * @class PizapPhotoEditorPreferencesElement
-     * @param {PizapPhotoEditorView} view
-     * @param opts
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     * @returns {PizapPhotoEditorPreferencesElement}
-     */
-    var PizapPhotoEditorPreferencesElement = function PizapPhotoEditorPreferencesElement(view, opts) {
+  /**
+   * Define PizapPhotoEditor Preferences Element
+   * @constructor
+   * @class PizapPhotoEditorPreferencesElement
+   * @param {PizapPhotoEditorView} view
+   * @param opts
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   * @returns {PizapPhotoEditorPreferencesElement}
+   */
+  var PizapPhotoEditorPreferencesElement = function PizapPhotoEditorPreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return PizapPhotoEditorPreferencesElement.extend(
-        'PizapPhotoEditorPreferencesElement', {}, 
-        PluginElement.prototype, 
-        WidgetPreferences.prototype
-    );
+  return PizapPhotoEditorPreferencesElement.extend(
+      'PizapPhotoEditorPreferencesElement', {},
+      PluginElement.prototype,
+      WidgetPreferences.prototype
+  );
 });

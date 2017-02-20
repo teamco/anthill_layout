@@ -7,20 +7,20 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function definePasteryPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class PasteryPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var PasteryPermission = function PasteryPermission() {
-    };
+  /**
+   * Define Permissions
+   * @class PasteryPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var PasteryPermission = function PasteryPermission() {
+  };
 
-    return PasteryPermission.extend(
-        'PasteryPermission', {}, 
-        BasePermission.prototype
-    );
+  return PasteryPermission.extend(
+      'PasteryPermission', {},
+      BasePermission.prototype
+  );
 });

@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineScreencastEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define Screencast event manager
-     * @class ScreencastEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var ScreencastEventManager = function ScreencastEventManager() {
+  /**
+   * Define Screencast event manager
+   * @class ScreencastEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var ScreencastEventManager = function ScreencastEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return ScreencastEventManager.extend('ScreencastEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return ScreencastEventManager.extend('ScreencastEventManager', {},
+      WidgetContentEventManager.prototype);
 });

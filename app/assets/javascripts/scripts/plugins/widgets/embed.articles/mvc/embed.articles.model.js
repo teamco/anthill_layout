@@ -6,44 +6,45 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineEmbedArticlesModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define EmbedArticles model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class EmbedArticlesModel
+   * @constructor
+   */
+  var EmbedArticlesModel = function EmbedArticlesModel() {
+
     /**
-     * Define EmbedArticles model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class EmbedArticlesModel
-     * @constructor
+     * Define preferences
+     * @property EmbedArticlesModel
+     * @type {{embedarticlesEmbedCode: {type: string, disabled: boolean, value:
+     *     string, visible: boolean}}}
      */
-    var EmbedArticlesModel = function EmbedArticlesModel() {
-
-        /**
-         * Define preferences
-         * @property EmbedArticlesModel
-         * @type {{embedarticlesEmbedCode: {type: string, disabled: boolean, value: string, visible: boolean}}}
-         */
-        this.preferences = {
-            embedarticlesEmbedCode: {
-                type: 'textarea',
-                disabled: false,
-                value: '<a id="embed_articles" href="http://embedarticles.com" data-url="http%3A%2F%2Fyasmincorp.com%2F2015%2F10%2F23%2Fmahasiswa-ipb-ini-yang-harus-kamu-perhatikan-ketika-pertama-kali-beli-rumah%2F" data-key="null">Embed Articles</a><script type="text/javascript" src="//embedarticles.com/widget/embed.js"></script>',
-                visible: true
-            }
-        };
-
-        /**
-         * Define rules
-         * @property EmbedArticlesModel
-         * @type {{}}
-         */
-        this.rules = {};
+    this.preferences = {
+      embedarticlesEmbedCode: {
+        type: 'textarea',
+        disabled: false,
+        value: '<a id="embed_articles" href="http://embedarticles.com" data-url="http%3A%2F%2Fyasmincorp.com%2F2015%2F10%2F23%2Fmahasiswa-ipb-ini-yang-harus-kamu-perhatikan-ketika-pertama-kali-beli-rumah%2F" data-key="null">Embed Articles</a><script type="text/javascript" src="//embedarticles.com/widget/embed.js"></script>',
+        visible: true
+      }
     };
 
-    return EmbedArticlesModel.extend('EmbedArticlesModel', {
+    /**
+     * Define rules
+     * @property EmbedArticlesModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        // Setter
+  return EmbedArticlesModel.extend('EmbedArticlesModel', {
 
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    // Setter
+
+  }, BaseModel.prototype, WidgetContentModel.prototype);
 });

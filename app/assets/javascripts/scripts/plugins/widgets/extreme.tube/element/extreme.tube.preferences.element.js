@@ -6,35 +6,35 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
-], function defineExtremeTubePreferencesElement(PluginElement, WidgetPreferences) {
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
+], function defineExtremeTubePreferencesElement(PluginElement,
+    WidgetPreferences) {
 
-    /**
-     * Define ExtremeTube Preferences Element
-     * @param view
-     * @param opts
-     * @returns {ExtremeTubePreferencesElement}
-     * @constructor
-     * @class ExtremeTubePreferencesElement
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     */
-    var ExtremeTubePreferencesElement = function ExtremeTubePreferencesElement(view, opts) {
+  /**
+   * Define ExtremeTube Preferences Element
+   * @param view
+   * @param opts
+   * @returns {ExtremeTubePreferencesElement}
+   * @constructor
+   * @class ExtremeTubePreferencesElement
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   */
+  var ExtremeTubePreferencesElement = function ExtremeTubePreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return ExtremeTubePreferencesElement.extend('ExtremeTubePreferencesElement', {
-
-
-    }, PluginElement.prototype, WidgetPreferences.prototype);
+  return ExtremeTubePreferencesElement.extend('ExtremeTubePreferencesElement',
+      {}, PluginElement.prototype, WidgetPreferences.prototype);
 
 });

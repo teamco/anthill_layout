@@ -6,80 +6,69 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineTelekanalUaController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define telekanalua controller
+   * @class TelekanalUaController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var TelekanalUaController = function TelekanalUaController() {
+  };
+
+  return TelekanalUaController.extend('TelekanalUaController', {
+
     /**
-     * Define telekanalua controller
-     * @class TelekanalUaController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf TelekanalUaController
      */
-    var TelekanalUaController = function TelekanalUaController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
 
-    return TelekanalUaController.extend('TelekanalUaController', {
+      /**
+       * Get url
+       * @type {string|*}
+       */
+      var url = this.model.getPrefs('telekanaluaUrl'),
+          embed = this.controller.getEmbedCode(url);
 
-        /**
-         * Set embedded content
-         * @memberOf TelekanalUaController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
+      if (embed) {
+        this.view.elements.$telekanalua.renderEmbeddedContent(embed);
+      }
+    },
 
-            /**
-             * Get url
-             * @type {string|*}
-             */
-            var url = this.model.getPrefs('telekanaluaUrl'),
-                embed = this.controller.getEmbedCode(url);
+    /**
+     * Validate telekanalua
+     * @memberOf TelekanalUaController
+     * @param {string} url
+     * @return {string|boolean}
+     */
+    getEmbedCode: function getEmbedCode(url) {
 
-            if (embed) {
-                this.view.elements.$telekanalua.renderEmbeddedContent(embed);
-            }
-        },
+      if (!url) {
+        this.scope.logger.debug('Initial state');
+        return false;
+      }
 
-        /**
-         * Validate telekanalua
-         * @memberOf TelekanalUaController
-         * @param {string} url
-         * @return {string|boolean}
-         */
-        getEmbedCode: function getEmbedCode(url) {
+      // Convert to string
+      url += '';
 
-            if (!url) {
-                this.scope.logger.debug('Initial state');
-                return false;
-            }
+      if (url.match(/iframe/)) {
+        return $(url).attr('src');
+      }
+    },
 
-            // Convert to string
-            url += '';
+    /**
+     * Add TelekanalUa rule
+     * @memberOf TelekanalUaController
+     * @param {Event} e
+     */
+    addTelekanalUaRule: function addTelekanalUaRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-            if (url.match(/iframe/)) {
-                return $(url).attr('src');
-            }
-        },
-
-        /**
-         * Add TelekanalUa rule
-         * @memberOf TelekanalUaController
-         * @param e
-         */
-        addTelekanalUaRule: function addTelekanalUaRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

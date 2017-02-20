@@ -7,102 +7,104 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/image.gallery/element/image.gallery.element',
-    'plugins/widgets/image.gallery/element/image.gallery.preferences.element',
-    'plugins/widgets/image.gallery/element/image.gallery.rules.element'
-], function defineImageGalleryView(BaseView, Header, Footer, ImageGalleryElement, ImageGalleryPreferencesElement, ImageGalleryRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/image.gallery/element/image.gallery.element',
+  'plugins/widgets/image.gallery/element/image.gallery.preferences.element',
+  'plugins/widgets/image.gallery/element/image.gallery.rules.element'
+], function defineImageGalleryView(BaseView, Header, Footer,
+    ImageGalleryElement, ImageGalleryPreferencesElement,
+    ImageGalleryRulesElement) {
+
+  /**
+   * Define view
+   * @class ImageGalleryView
+   * @extends BaseView
+   * @constructor
+   */
+  var ImageGalleryView = function ImageGalleryView() {
+  };
+
+  return ImageGalleryView.extend('ImageGalleryView', {
 
     /**
-     * Define view
-     * @class ImageGalleryView
-     * @extends BaseView
-     * @constructor
+     * Render image.gallery element
+     * @memberOf ImageGalleryView
      */
-    var ImageGalleryView = function ImageGalleryView() {
-    };
+    renderImageGallery: function renderImageGallery() {
 
-    return ImageGalleryView.extend('ImageGalleryView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render image.gallery element
-         * @memberOf ImageGalleryView
-         */
-        renderImageGallery: function renderImageGallery() {
+      /**
+       * Define $image.gallery
+       * @type {ImageGalleryElement}
+       */
+      this.elements.$imagegallery = new ImageGalleryElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $image.gallery
-             * @type {ImageGalleryElement}
-             */
-            this.elements.$imagegallery = new ImageGalleryElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf ImageGalleryView
+     * @returns {ImageGalleryPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define ImageGallery Preferences Element
+       * @type {ImageGalleryPreferencesElement}
+       */
+      this.elements.$preferences = new ImageGalleryPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf ImageGalleryView
-         * @returns {ImageGalleryPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define ImageGallery Preferences Element
-             * @type {ImageGalleryPreferencesElement}
-             */
-            this.elements.$preferences = new ImageGalleryPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf ImageGalleryView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {ImageGalleryRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
-
-        /**
-         * Render Rules
-         * @memberOf ImageGalleryView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {ImageGalleryRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define ImageGallery Rules Element
-             * @type {ImageGalleryRulesElement}
-             */
-            this.elements.$rules = new ImageGalleryRulesElement(this, {
-                data: this.controller.getRules(),
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render image.gallery
-         * @memberOf ImageGalleryView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderImageGallery.bind(this)
-            );
+      /**
+       * Define ImageGallery Rules Element
+       * @type {ImageGalleryRulesElement}
+       */
+      this.elements.$rules = new ImageGalleryRulesElement(this, {
+        data: this.controller.getRules(),
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render image.gallery
+     * @memberOf ImageGalleryView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderImageGallery.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

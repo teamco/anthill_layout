@@ -6,35 +6,36 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
 ], function defineDocsComPreferencesElement(PluginElement, WidgetPreferences) {
 
-    /**
-     * Define DocsCom Preferences Element
-     * @constructor
-     * @class DocsComPreferencesElement
-     * @param {DocsComView} view
-     * @param opts
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     * @returns {DocsComPreferencesElement}
-     */
-    var DocsComPreferencesElement = function DocsComPreferencesElement(view, opts) {
+  /**
+   * Define DocsCom Preferences Element
+   * @constructor
+   * @class DocsComPreferencesElement
+   * @param {DocsComView} view
+   * @param opts
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   * @returns {DocsComPreferencesElement}
+   */
+  var DocsComPreferencesElement = function DocsComPreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return DocsComPreferencesElement.extend(
-        'DocsComPreferencesElement', {}, 
-        PluginElement.prototype, 
-        WidgetPreferences.prototype
-    );
+  return DocsComPreferencesElement.extend(
+      'DocsComPreferencesElement', {},
+      PluginElement.prototype,
+      WidgetPreferences.prototype
+  );
 });

@@ -7,20 +7,18 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function definePdfPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class PdfPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var PdfPermission = function PdfPermission() {
+  /**
+   * Define Permissions
+   * @class PdfPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var PdfPermission = function PdfPermission() {
 
-    };
+  };
 
-    return PdfPermission.extend('PdfPermission', {
-
-    }, BasePermission.prototype);
+  return PdfPermission.extend('PdfPermission', {}, BasePermission.prototype);
 });

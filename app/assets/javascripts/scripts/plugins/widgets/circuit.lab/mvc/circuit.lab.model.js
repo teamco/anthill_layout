@@ -6,44 +6,45 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineCircuitLabModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define CircuitLab model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class CircuitLabModel
+   * @constructor
+   */
+  var CircuitLabModel = function CircuitLabModel() {
+
     /**
-     * Define CircuitLab model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class CircuitLabModel
-     * @constructor
+     * Define preferences
+     * @property CircuitLabModel
+     * @type {{circuitlabHtmlCode: {type: string, disabled: boolean, value:
+     *     string, visible: boolean}}}
      */
-    var CircuitLabModel = function CircuitLabModel() {
-
-        /**
-         * Define preferences
-         * @property CircuitLabModel
-         * @type {{circuitlabHtmlCode: {type: string, disabled: boolean, value: string, visible: boolean}}}
-         */
-        this.preferences = {
-            circuitlabHtmlCode: {
-                type: 'textarea',
-                disabled: false,
-                value: '<a href="https://www.circuitlab.com/circuit/e38756/555-timer-as-astable-multivibrator-oscillator/"><img src="https://www.circuitlab.com/circuit/e38756/screenshot/540x405/"/></a>',
-                visible: true
-            }
-        };
-
-        /**
-         * Define rules
-         * @property CircuitLabModel
-         * @type {{}}
-         */
-        this.rules = {};
+    this.preferences = {
+      circuitlabHtmlCode: {
+        type: 'textarea',
+        disabled: false,
+        value: '<a href="https://www.circuitlab.com/circuit/e38756/555-timer-as-astable-multivibrator-oscillator/"><img src="https://www.circuitlab.com/circuit/e38756/screenshot/540x405/"/></a>',
+        visible: true
+      }
     };
 
-    return CircuitLabModel.extend('CircuitLabModel', {
+    /**
+     * Define rules
+     * @property CircuitLabModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        // Setter
+  return CircuitLabModel.extend('CircuitLabModel', {
 
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    // Setter
+
+  }, BaseModel.prototype, WidgetContentModel.prototype);
 });

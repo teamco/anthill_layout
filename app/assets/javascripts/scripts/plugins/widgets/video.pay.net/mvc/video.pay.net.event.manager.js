@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineVideoPayNetEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define VideoPayNet event manager
-     * @class VideoPayNetEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var VideoPayNetEventManager = function VideoPayNetEventManager() {
+  /**
+   * Define VideoPayNet event manager
+   * @class VideoPayNetEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var VideoPayNetEventManager = function VideoPayNetEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return VideoPayNetEventManager.extend('VideoPayNetEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return VideoPayNetEventManager.extend('VideoPayNetEventManager', {},
+      WidgetContentEventManager.prototype);
 });

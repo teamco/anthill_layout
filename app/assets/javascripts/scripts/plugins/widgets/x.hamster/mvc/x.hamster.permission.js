@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineXHamsterPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class XHamsterPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var XHamsterPermission = function XHamsterPermission() {
+  /**
+   * Define Permissions
+   * @class XHamsterPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var XHamsterPermission = function XHamsterPermission() {
 
-    };
+  };
 
-    return XHamsterPermission.extend('XHamsterPermission', {
-
-    }, BasePermission.prototype);
+  return XHamsterPermission.extend('XHamsterPermission', {},
+      BasePermission.prototype);
 });

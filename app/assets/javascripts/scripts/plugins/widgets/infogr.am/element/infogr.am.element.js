@@ -6,40 +6,40 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineInfogrAmElement(PluginElement) {
 
+  /**
+   * Define InfogrAm Element
+   * @param view
+   * @param opts
+   * @returns {InfogrAmElement}
+   * @constructor
+   * @class InfogrAmElement
+   * @extends PluginElement
+   */
+  var InfogrAmElement = function InfogrAmElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('infogr.am', {resource: '/widgets'});
+
+    return this;
+  };
+
+  return InfogrAmElement.extend('InfogrAmElement', {
+
     /**
-     * Define InfogrAm Element
-     * @param view
-     * @param opts
-     * @returns {InfogrAmElement}
-     * @constructor
-     * @class InfogrAmElement
-     * @extends PluginElement
+     * Render Embedded content
+     * @memberOf InfogrAmElement
+     * @param {string} embed
      */
-    var InfogrAmElement = function InfogrAmElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent(embed) {
+      this.addContent(embed);
+    }
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
-
-        this.addCSS('infogr.am', {resource: '/widgets'});
-
-        return this;
-    };
-
-    return InfogrAmElement.extend('InfogrAmElement', {
-
-        /**
-         * Render Embedded content
-         * @memberOf InfogrAmElement
-         * @param {string} embed
-         */
-        renderEmbeddedContent: function renderEmbeddedContent(embed) {
-            this.addContent(embed);
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 });

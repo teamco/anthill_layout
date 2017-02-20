@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineFirePicEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define FirePic event manager
-     * @class FirePicEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var FirePicEventManager = function FirePicEventManager() {
+  /**
+   * Define FirePic event manager
+   * @class FirePicEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var FirePicEventManager = function FirePicEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return FirePicEventManager.extend('FirePicEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return FirePicEventManager.extend('FirePicEventManager', {},
+      WidgetContentEventManager.prototype);
 });

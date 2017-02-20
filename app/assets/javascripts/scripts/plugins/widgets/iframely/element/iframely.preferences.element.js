@@ -6,35 +6,36 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
 ], function defineIframelyPreferencesElement(PluginElement, WidgetPreferences) {
 
-    /**
-     * Define Iframely Preferences Element
-     * @constructor
-     * @class IframelyPreferencesElement
-     * @param {IframelyView} view
-     * @param opts
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     * @returns {IframelyPreferencesElement}
-     */
-    var IframelyPreferencesElement = function IframelyPreferencesElement(view, opts) {
+  /**
+   * Define Iframely Preferences Element
+   * @constructor
+   * @class IframelyPreferencesElement
+   * @param {IframelyView} view
+   * @param opts
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   * @returns {IframelyPreferencesElement}
+   */
+  var IframelyPreferencesElement = function IframelyPreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return IframelyPreferencesElement.extend(
-        'IframelyPreferencesElement', {}, 
-        PluginElement.prototype, 
-        WidgetPreferences.prototype
-    );
+  return IframelyPreferencesElement.extend(
+      'IframelyPreferencesElement', {},
+      PluginElement.prototype,
+      WidgetPreferences.prototype
+  );
 });

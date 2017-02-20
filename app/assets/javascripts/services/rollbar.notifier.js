@@ -1,103 +1,104 @@
 define(function defineRollbarNotifierPreferences() {
 
+  /**
+   * Define  RollbarNotifier Preferences
+   * https://rollbar.com
+   * @class RollbarNotifierPreferences
+   * @extends Renderer
+   * @constructor
+   */
+  var RollbarNotifierPreferences = function RollbarNotifierPreferences() {
+  };
+
+  return RollbarNotifierPreferences.extend('RollbarNotifierPreferences', {
+
     /**
-     * Define  RollbarNotifier Preferences
-     * https://rollbar.com
-     * @class RollbarNotifierPreferences
-     * @extends Renderer
-     * @constructor
+     * Render RollbarNotifier
+     * @memberOf RollbarNotifierPreferences
+     * @returns {*|jQuery}
      */
-    var RollbarNotifierPreferences = function RollbarNotifierPreferences() {
-    };
+    renderRollbarNotifier: function renderRollbarNotifier() {
 
-    return RollbarNotifierPreferences.extend('RollbarNotifierPreferences', {
+      /**
+       * Get workspace
+       * @type {*|Workspace}
+       */
+      var workspace = this.view.controller.getWorkspace();
 
-        /**
-         * Render RollbarNotifier
-         * @memberOf RollbarNotifierPreferences
-         * @returns {*|jQuery}
-         */
-        renderRollbarNotifier: function renderRollbarNotifier() {
+      /**
+       * Get workspace prefs
+       * @type {{rollbarNotifierAccessToken, activateRollbarNotifier}}
+       */
+      var preferences = workspace.model.getConfig('preferences');
 
-            /**
-             * Get workspace
-             * @type {*|Workspace}
-             */
-            var workspace = this.view.controller.getWorkspace();
+      var $textarea = this.renderTextArea({
+        name: 'rollbarNotifierAccessToken',
+        text: 'Rollbar Notifier Access Token',
+        placeholder: 'Paste Rollbar Notifier Access Token here',
+        disabled: false,
+        visible: true,
+        value: preferences.rollbarNotifierAccessToken || ''
+      });
 
-            /**
-             * Get workspace prefs
-             * @type {{rollbarNotifierAccessToken, activateRollbarNotifier}}
-             */
-            var preferences = workspace.model.getConfig('preferences');
+      var $checkbox = this.renderCheckbox({
+        name: 'activateRollbarNotifier',
+        text: 'Activate',
+        checked: preferences.activateRollbarNotifier,
+        value: preferences.activateRollbarNotifier,
+        disabled: false,
+        visible: true
+      });
 
-            var $textarea = this.renderTextArea({
-                name: 'rollbarNotifierAccessToken',
-                text: 'Rollbar Notifier Access Token',
-                placeholder: 'Paste Rollbar Notifier Access Token here',
-                disabled: false,
-                visible: true,
-                value: preferences.rollbarNotifierAccessToken || ''
-            });
+      return $('<div class="workspace-rollbar-notifier-prefs" />').append(
+          $textarea, $checkbox
+      );
+    },
 
-            var $checkbox = this.renderCheckbox({
-                name: 'activateRollbarNotifier',
-                text: 'Activate',
-                checked: preferences.activateRollbarNotifier,
-                value: preferences.activateRollbarNotifier,
-                disabled: false,
-                visible: true
-            });
+    /**
+     * Load RollbarNotifier AccessToken
+     * @memberOf RollbarNotifierPreferences
+     */
+    loadActivateRollbarNotifier: function loadActivateRollbarNotifier() {
 
-            return $('<div class="workspace-rollbar-notifier-prefs" />').append(
-                $textarea, $checkbox
-            );
-        },
+      // Get scope
+      var scope = this;
 
-        /**
-         * Load RollbarNotifier AccessToken
-         * @memberOf RollbarNotifierPreferences
-         */
-        loadActivateRollbarNotifier: function loadActivateRollbarNotifier() {
+      scope.logger.debug('Load RollbarNotifier AccessToken', arguments);
 
-            // Get scope
-            var scope = this;
+      /**
+       * Get prefs
+       * @type {{rollbarNotifierAccessToken, activateRollbarNotifier}}
+       */
+      var preferences = scope.model.getConfig('preferences');
 
-            scope.logger.debug('Load RollbarNotifier AccessToken', arguments);
+      /**
+       * Get RollbarNotifier AccessToken
+       * @type {string}
+       */
+      var rollbarNotifierAccessToken = preferences.rollbarNotifierAccessToken,
+          activate = preferences.activateRollbarNotifier;
 
-            /**
-             * Get prefs
-             * @type {{rollbarNotifierAccessToken, activateRollbarNotifier}}
-             */
-            var preferences = scope.model.getConfig('preferences');
+      if (!scope.controller.isServiceActivated(rollbarNotifierAccessToken,
+              activate)) {
+        return false;
+      }
 
-            /**
-             * Get RollbarNotifier AccessToken
-             * @type {string}
-             */
-            var rollbarNotifierAccessToken = preferences.rollbarNotifierAccessToken,
-                activate = preferences.activateRollbarNotifier;
-
-            if (!scope.controller.isServiceActivated(rollbarNotifierAccessToken, activate)) {
-                return false;
-            }
-
-            var rollbarConfig = {
-                accessToken: rollbarNotifierAccessToken,
-                captureUncaught: true,
-                payload: {
-                    environment: "production"
-                }
-            };
-
-            require(
-                ['https://d37gvrvc0wt4s1.cloudfront.net/js/v1.3/rollbar.umd.nojson.min.js'],
-                function _loadRollbar(Rollbar) {
-
-                    var rollbar = Rollbar.init(rollbarConfig);
-                    scope.logger.debug('Loaded RollbarNotifier', rollbar, arguments);
-                }
-            );
+      var rollbarConfig = {
+        accessToken: rollbarNotifierAccessToken,
+        captureUncaught: true,
+        payload: {
+          environment: "production"
         }
-    });
+      };
+
+      require(
+          ['https://d37gvrvc0wt4s1.cloudfront.net/js/v1.3/rollbar.umd.nojson.min.js'],
+          function _loadRollbar(Rollbar) {
+
+            var rollbar = Rollbar.init(rollbarConfig);
+            scope.logger.debug('Loaded RollbarNotifier', rollbar, arguments);
+          }
+      );
+    }
+  });
 });

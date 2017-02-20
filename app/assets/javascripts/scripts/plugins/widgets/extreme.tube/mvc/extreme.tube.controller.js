@@ -6,86 +6,75 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineExtremeTubeController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define extremetube controller
+   * @class ExtremeTubeController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var ExtremeTubeController = function ExtremeTubeController() {
+  };
+
+  return ExtremeTubeController.extend('ExtremeTubeController', {
+
     /**
-     * Define extremetube controller
-     * @class ExtremeTubeController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf ExtremeTubeController
      */
-    var ExtremeTubeController = function ExtremeTubeController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
 
-    return ExtremeTubeController.extend('ExtremeTubeController', {
+      /**
+       * Get url
+       * @type {string|*}
+       */
+      var url = this.model.getPrefs('extremetubeEmbedCode'),
+          embed = this.controller.getEmbedCode(url);
 
-        /**
-         * Set embedded content
-         * @memberOf ExtremeTubeController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
+      if (embed) {
+        this.view.elements.$extremetube.renderEmbeddedContent(embed);
+      }
+    },
 
-            /**
-             * Get url
-             * @type {string|*}
-             */
-            var url = this.model.getPrefs('extremetubeEmbedCode'),
-                embed = this.controller.getEmbedCode(url);
+    /**
+     * Validate extremetube
+     * @memberOf ExtremeTubeController
+     * @param {string} embed
+     * @return {string|boolean}
+     */
+    getEmbedCode: function getEmbedCode(embed) {
 
-            if (embed) {
-                this.view.elements.$extremetube.renderEmbeddedContent(embed);
-            }
-        },
+      if (!embed) {
+        this.scope.logger.debug('Initial state');
+        return false;
+      }
 
-        /**
-         * Validate extremetube
-         * @memberOf ExtremeTubeController
-         * @param {string} embed
-         * @return {string|boolean}
-         */
-        getEmbedCode: function getEmbedCode(embed) {
+      // Convert to string
+      embed += '';
 
-            if (!embed) {
-                this.scope.logger.debug('Initial state');
-                return false;
-            }
+      if (embed.match(/^<iframe/)) {
 
-            // Convert to string
-            embed += '';
+        return $(embed).attr('src');
 
-            if (embed.match(/^<iframe/)) {
+      } else {
 
-                return $(embed).attr('src');
+        this.scope.logger.warn('Invalid ExtremeTube embed code');
+        return false;
+      }
+    },
 
-            } else {
+    /**
+     * Add ExtremeTube rule
+     * @memberOf ExtremeTubeController
+     * @param {Event} e
+     */
+    addExtremeTubeRule: function addExtremeTubeRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-                this.scope.logger.warn('Invalid ExtremeTube embed code');
-                return false;
-            }
-        },
-
-        /**
-         * Add ExtremeTube rule
-         * @memberOf ExtremeTubeController
-         * @param e
-         */
-        addExtremeTubeRule: function addExtremeTubeRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

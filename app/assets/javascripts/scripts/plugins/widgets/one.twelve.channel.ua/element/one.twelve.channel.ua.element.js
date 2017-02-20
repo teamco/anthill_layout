@@ -6,45 +6,46 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineOneTwelveChannelUaElement(PluginElement) {
 
+  /**
+   * Define OneTwelveChannelUa Element
+   * @param view
+   * @param opts
+   * @returns {OneTwelveChannelUaElement}
+   * @constructor
+   * @class OneTwelveChannelUaElement
+   * @extends PluginElement
+   */
+  var OneTwelveChannelUaElement = function OneTwelveChannelUaElement(view,
+      opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('one.twelve.channel.ua', {resource: '/widgets'});
+
+    return this;
+  };
+
+  return OneTwelveChannelUaElement.extend('OneTwelveChannelUaElement', {
+
     /**
-     * Define OneTwelveChannelUa Element
-     * @param view
-     * @param opts
-     * @returns {OneTwelveChannelUaElement}
-     * @constructor
-     * @class OneTwelveChannelUaElement
-     * @extends PluginElement
+     * Render Embedded content
+     * @memberOf OneTwelveChannelUaElement
+     * @param {string} embed
      */
-    var OneTwelveChannelUaElement = function OneTwelveChannelUaElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent(embed) {
+      this.$.append(
+          this.renderObject(
+              embed.toHtml()
+          )
+      );
+    }
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
-
-        this.addCSS('one.twelve.channel.ua', {resource: '/widgets'});
-
-        return this;
-    };
-
-    return OneTwelveChannelUaElement.extend('OneTwelveChannelUaElement', {
-
-        /**
-         * Render Embedded content
-         * @memberOf OneTwelveChannelUaElement
-         * @param {string} embed
-         */
-        renderEmbeddedContent: function renderEmbeddedContent(embed) {
-            this.$.append(
-                this.renderObject(
-                    embed.toHtml()
-                )
-            );
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 
 });

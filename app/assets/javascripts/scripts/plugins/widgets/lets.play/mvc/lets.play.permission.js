@@ -7,20 +7,20 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineLetsPlayPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class LetsPlayPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var LetsPlayPermission = function LetsPlayPermission() {
-    };
+  /**
+   * Define Permissions
+   * @class LetsPlayPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var LetsPlayPermission = function LetsPlayPermission() {
+  };
 
-    return LetsPlayPermission.extend(
-        'LetsPlayPermission', {}, 
-        BasePermission.prototype
-    );
+  return LetsPlayPermission.extend(
+      'LetsPlayPermission', {},
+      BasePermission.prototype
+  );
 });

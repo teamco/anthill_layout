@@ -7,108 +7,109 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/fire.pic/element/fire.pic.element',
-    'plugins/widgets/fire.pic/element/fire.pic.preferences.element',
-    'plugins/widgets/fire.pic/element/fire.pic.rules.element'
-], function defineFirePicView(BaseView, Header, Footer, FirePicElement, FirePicPreferencesElement, FirePicRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/fire.pic/element/fire.pic.element',
+  'plugins/widgets/fire.pic/element/fire.pic.preferences.element',
+  'plugins/widgets/fire.pic/element/fire.pic.rules.element'
+], function defineFirePicView(BaseView, Header, Footer, FirePicElement,
+    FirePicPreferencesElement, FirePicRulesElement) {
+
+  /**
+   * Define view
+   * @class FirePicView
+   * @extends BaseView
+   * @constructor
+   */
+  var FirePicView = function FirePicView() {
+  };
+
+  return FirePicView.extend('FirePicView', {
 
     /**
-     * Define view
-     * @class FirePicView
-     * @extends BaseView
-     * @constructor
+     * Render firepic element
+     * @memberOf FirePicView
      */
-    var FirePicView = function FirePicView() {
-    };
+    renderFirePic: function renderFirePic() {
 
-    return FirePicView.extend('FirePicView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render firepic element
-         * @memberOf FirePicView
-         */
-        renderFirePic: function renderFirePic() {
+      /**
+       * Define $firepic
+       * @type {FirePicElement}
+       */
+      this.elements.$firepic = new FirePicElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $firepic
-             * @type {FirePicElement}
-             */
-            this.elements.$firepic = new FirePicElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf FirePicView
+     * @returns {FirePicPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define FirePic Preferences Element
+       * @type {FirePicPreferencesElement}
+       */
+      this.elements.$preferences = new FirePicPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf FirePicView
-         * @returns {FirePicPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define FirePic Preferences Element
-             * @type {FirePicPreferencesElement}
-             */
-            this.elements.$preferences = new FirePicPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf FirePicView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {FirePicRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
+      /**
+       * Define data
+       * @type {*|{}}
+       */
+      var data = this.controller.getRules();
 
-        /**
-         * Render Rules
-         * @memberOf FirePicView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {FirePicRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define data
-             * @type {*|{}}
-             */
-            var data = this.controller.getRules();
-
-            /**
-             * Define FirePic Rules Element
-             * @type {FirePicRulesElement}
-             */
-            this.elements.$rules = new FirePicRulesElement(this, {
-                data: data,
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render firepic
-         * @memberOf FirePicView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderFirePic.bind(this)
-            );
+      /**
+       * Define FirePic Rules Element
+       * @type {FirePicRulesElement}
+       */
+      this.elements.$rules = new FirePicRulesElement(this, {
+        data: data,
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render firepic
+     * @memberOf FirePicView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderFirePic.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

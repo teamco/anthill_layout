@@ -6,51 +6,40 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineTourTvController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define tourtv controller
+   * @class TourTvController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var TourTvController = function TourTvController() {
+  };
+
+  return TourTvController.extend('TourTvController', {
+
     /**
-     * Define tourtv controller
-     * @class TourTvController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf TourTvController
      */
-    var TourTvController = function TourTvController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
+      this.view.elements.$tourtv.renderEmbeddedContent(
+          this.model.getPrefs('tourtvEmbedCode')
+      );
+    },
 
-    return TourTvController.extend('TourTvController', {
+    /**
+     * Add TourTv rule
+     * @memberOf TourTvController
+     * @param {Event} e
+     */
+    addTourTvRule: function addTourTvRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-        /**
-         * Set embedded content
-         * @memberOf TourTvController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
-            this.view.elements.$tourtv.renderEmbeddedContent(
-                this.model.getPrefs('tourtvEmbedCode')
-            );
-        },
-
-        /**
-         * Add TourTv rule
-         * @memberOf TourTvController
-         * @param e
-         */
-        addTourTvRule: function addTourTvRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

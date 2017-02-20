@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function definePetPassportEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define PetPassport event manager
-     * @class PetPassportEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var PetPassportEventManager = function PetPassportEventManager() {
+  /**
+   * Define PetPassport event manager
+   * @class PetPassportEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var PetPassportEventManager = function PetPassportEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return PetPassportEventManager.extend('PetPassportEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return PetPassportEventManager.extend('PetPassportEventManager', {},
+      WidgetContentEventManager.prototype);
 });

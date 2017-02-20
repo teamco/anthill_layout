@@ -6,53 +6,54 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineSoundCloudModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define SoundCloud model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class SoundCloudModel
+   * @constructor
+   */
+  var SoundCloudModel = function SoundCloudModel() {
+
     /**
-     * Define SoundCloud model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class SoundCloudModel
-     * @constructor
-     */
-    var SoundCloudModel = function SoundCloudModel() {
-
-        /**
-         * Define preferences
-         * @memberOf SoundCloudModel
-         * @type {{
-         *      soundcloudEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
+     * Define preferences
+     * @memberOf SoundCloudModel
+     * @type {{
+         *      soundcloudEmbedCode: {type: string, disabled: boolean, value:
+         *     undefined, visible: boolean}
          * }}
-         */
-        this.preferences = {
-            soundcloudEmbedCode: {
-                type: 'textarea',
-                disabled: false,
-                value: undefined,
-                visible: true
-            }
-        };
-
-        /**
-         * Define rules
-         * @memberOf SoundCloudModel
-         * @type {{}}
-         */
-        this.rules = {};
+     */
+    this.preferences = {
+      soundcloudEmbedCode: {
+        type: 'textarea',
+        disabled: false,
+        value: undefined,
+        visible: true
+      }
     };
 
-    return SoundCloudModel.extend('SoundCloudModel', {
+    /**
+     * Define rules
+     * @memberOf SoundCloudModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        /**
-         * Set SoundCloud embed code
-         * @memberOf SoundCloudModel
-         * @param {string} embed
-         */
-        setSoundcloudEmbedCode: function setSoundcloudEmbedCode(embed) {
-            this.setPrefs('soundcloudEmbedCode', embed);
-        }
+  return SoundCloudModel.extend('SoundCloudModel', {
 
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    /**
+     * Set SoundCloud embed code
+     * @memberOf SoundCloudModel
+     * @param {string} embed
+     */
+    setSoundcloudEmbedCode: function setSoundcloudEmbedCode(embed) {
+      this.setPrefs('soundcloudEmbedCode', embed);
+    }
+
+  }, BaseModel.prototype, WidgetContentModel.prototype);
 });

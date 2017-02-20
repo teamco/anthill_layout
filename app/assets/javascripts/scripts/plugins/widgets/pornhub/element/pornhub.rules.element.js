@@ -6,38 +6,37 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/rules/widget.base.rules'
+  'plugins/plugin.element',
+  'plugins/rules/widget.base.rules'
 ], function definePornhubRulesElement(PluginElement, BaseWidgetRules) {
 
-    /**
-     * Define Pornhub Rules Element
-     * @param view
-     * @param opts
-     * @returns {PornhubRulesElement}
-     * @constructor
-     * @class PornhubRulesElement
-     * @extends PluginElement
-     * @extends BaseWidgetRules
-     */
-    var PornhubRulesElement = function PornhubRulesElement(view, opts) {
+  /**
+   * Define Pornhub Rules Element
+   * @param view
+   * @param opts
+   * @returns {PornhubRulesElement}
+   * @constructor
+   * @class PornhubRulesElement
+   * @extends PluginElement
+   * @extends BaseWidgetRules
+   */
+  var PornhubRulesElement = function PornhubRulesElement(view, opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBaseRulesData(
-            opts.data,
-            opts.rules.widget,
-            opts.rules.content
-        );
+    this.renderBaseRulesData(
+        opts.data,
+        opts.rules.widget,
+        opts.rules.content
+    );
 
-        return this;
-    };
+    return this;
+  };
 
-    return PornhubRulesElement.extend('PornhubRulesElement', {
-
-    }, PluginElement.prototype, BaseWidgetRules.prototype);
+  return PornhubRulesElement.extend('PornhubRulesElement', {},
+      PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

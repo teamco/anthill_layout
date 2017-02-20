@@ -7,108 +7,110 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/five.channel.ua/element/five.channel.ua.element',
-    'plugins/widgets/five.channel.ua/element/five.channel.ua.preferences.element',
-    'plugins/widgets/five.channel.ua/element/five.channel.ua.rules.element'
-], function defineFiveChannelUaView(BaseView, Header, Footer, FiveChannelUaElement, FiveChannelUaPreferencesElement, FiveChannelUaRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/five.channel.ua/element/five.channel.ua.element',
+  'plugins/widgets/five.channel.ua/element/five.channel.ua.preferences.element',
+  'plugins/widgets/five.channel.ua/element/five.channel.ua.rules.element'
+], function defineFiveChannelUaView(BaseView, Header, Footer,
+    FiveChannelUaElement, FiveChannelUaPreferencesElement,
+    FiveChannelUaRulesElement) {
+
+  /**
+   * Define view
+   * @class FiveChannelUaView
+   * @extends BaseView
+   * @constructor
+   */
+  var FiveChannelUaView = function FiveChannelUaView() {
+  };
+
+  return FiveChannelUaView.extend('FiveChannelUaView', {
 
     /**
-     * Define view
-     * @class FiveChannelUaView
-     * @extends BaseView
-     * @constructor
+     * Render fivechannelua element
+     * @memberOf FiveChannelUaView
      */
-    var FiveChannelUaView = function FiveChannelUaView() {
-    };
+    renderFiveChannelUa: function renderFiveChannelUa() {
 
-    return FiveChannelUaView.extend('FiveChannelUaView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render fivechannelua element
-         * @memberOf FiveChannelUaView
-         */
-        renderFiveChannelUa: function renderFiveChannelUa() {
+      /**
+       * Define $fivechannelua
+       * @type {FiveChannelUaElement}
+       */
+      this.elements.$fivechannelua = new FiveChannelUaElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $fivechannelua
-             * @type {FiveChannelUaElement}
-             */
-            this.elements.$fivechannelua = new FiveChannelUaElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf FiveChannelUaView
+     * @returns {FiveChannelUaPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define FiveChannelUa Preferences Element
+       * @type {FiveChannelUaPreferencesElement}
+       */
+      this.elements.$preferences = new FiveChannelUaPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf FiveChannelUaView
-         * @returns {FiveChannelUaPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define FiveChannelUa Preferences Element
-             * @type {FiveChannelUaPreferencesElement}
-             */
-            this.elements.$preferences = new FiveChannelUaPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf FiveChannelUaView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {FiveChannelUaRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
+      /**
+       * Define data
+       * @type {*|{}}
+       */
+      var data = this.controller.getRules();
 
-        /**
-         * Render Rules
-         * @memberOf FiveChannelUaView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {FiveChannelUaRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define data
-             * @type {*|{}}
-             */
-            var data = this.controller.getRules();
-
-            /**
-             * Define FiveChannelUa Rules Element
-             * @type {FiveChannelUaRulesElement}
-             */
-            this.elements.$rules = new FiveChannelUaRulesElement(this, {
-                data: data,
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render fivechannelua
-         * @memberOf FiveChannelUaView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderFiveChannelUa.bind(this)
-            );
+      /**
+       * Define FiveChannelUa Rules Element
+       * @type {FiveChannelUaRulesElement}
+       */
+      this.elements.$rules = new FiveChannelUaRulesElement(this, {
+        data: data,
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render fivechannelua
+     * @memberOf FiveChannelUaView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderFiveChannelUa.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

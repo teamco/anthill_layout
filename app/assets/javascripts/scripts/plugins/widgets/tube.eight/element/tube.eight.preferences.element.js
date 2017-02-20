@@ -6,35 +6,35 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
-], function defineTubeEightPreferencesElement(PluginElement, WidgetPreferences) {
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
+], function defineTubeEightPreferencesElement(PluginElement,
+    WidgetPreferences) {
 
-    /**
-     * Define TubeEight Preferences Element
-     * @param view
-     * @param opts
-     * @returns {TubeEightPreferencesElement}
-     * @constructor
-     * @class TubeEightPreferencesElement
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     */
-    var TubeEightPreferencesElement = function TubeEightPreferencesElement(view, opts) {
+  /**
+   * Define TubeEight Preferences Element
+   * @param view
+   * @param opts
+   * @returns {TubeEightPreferencesElement}
+   * @constructor
+   * @class TubeEightPreferencesElement
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   */
+  var TubeEightPreferencesElement = function TubeEightPreferencesElement(view,
+      opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return TubeEightPreferencesElement.extend('TubeEightPreferencesElement', {
-
-
-    }, PluginElement.prototype, WidgetPreferences.prototype);
+  return TubeEightPreferencesElement.extend('TubeEightPreferencesElement', {},
+      PluginElement.prototype, WidgetPreferences.prototype);
 
 });

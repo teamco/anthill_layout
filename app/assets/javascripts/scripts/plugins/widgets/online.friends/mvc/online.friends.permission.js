@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineOnlineFriendsPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class OnlineFriendsPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var OnlineFriendsPermission = function OnlineFriendsPermission() {
+  /**
+   * Define Permissions
+   * @class OnlineFriendsPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var OnlineFriendsPermission = function OnlineFriendsPermission() {
 
-    };
+  };
 
-    return OnlineFriendsPermission.extend('OnlineFriendsPermission', {
-
-    }, BasePermission.prototype);
+  return OnlineFriendsPermission.extend('OnlineFriendsPermission', {},
+      BasePermission.prototype);
 });

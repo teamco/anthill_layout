@@ -7,23 +7,23 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineDocsComEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define DocsCom event manager
-     * @class DocsComEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var DocsComEventManager = function DocsComEventManager() {
+  /**
+   * Define DocsCom event manager
+   * @class DocsComEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var DocsComEventManager = function DocsComEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return DocsComEventManager.extend(
-        'DocsComEventManager', {},
-        WidgetContentEventManager.prototype
-    );
+  return DocsComEventManager.extend(
+      'DocsComEventManager', {},
+      WidgetContentEventManager.prototype
+  );
 });

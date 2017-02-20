@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function definePostToolEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define PostTool event manager
-     * @class PostToolEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var PostToolEventManager = function PostToolEventManager() {
+  /**
+   * Define PostTool event manager
+   * @class PostToolEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var PostToolEventManager = function PostToolEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return PostToolEventManager.extend('PostToolEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return PostToolEventManager.extend('PostToolEventManager', {},
+      WidgetContentEventManager.prototype);
 });

@@ -6,43 +6,43 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function definePornHostElement(PluginElement) {
 
+  /**
+   * Define PornHost Element
+   * @param view
+   * @param opts
+   * @returns {PornHostElement}
+   * @constructor
+   * @class PornHostElement
+   * @extends PluginElement
+   */
+  var PornHostElement = function PornHostElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('porn.host', {resource: '/widgets'});
+
+    return this;
+  };
+
+  return PornHostElement.extend('PornHostElement', {
+
     /**
-     * Define PornHost Element
-     * @param view
-     * @param opts
-     * @returns {PornHostElement}
-     * @constructor
-     * @class PornHostElement
-     * @extends PluginElement
+     * Render Embedded content
+     * @memberOf PornHostElement
+     * @param {string} url
      */
-    var PornHostElement = function PornHostElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent(url) {
+      this.$.append(
+          this.renderIframe(url)
+      );
+    }
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
-
-        this.addCSS('porn.host', {resource: '/widgets'});
-
-        return this;
-    };
-
-    return PornHostElement.extend('PornHostElement', {
-
-        /**
-         * Render Embedded content
-         * @memberOf PornHostElement
-         * @param {string} url
-         */
-        renderEmbeddedContent: function renderEmbeddedContent(url) {
-            this.$.append(
-                this.renderIframe(url)
-            );
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 
 });

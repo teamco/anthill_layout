@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineOnePlusOneEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define OnePlusOne event manager
-     * @class OnePlusOneEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var OnePlusOneEventManager = function OnePlusOneEventManager() {
+  /**
+   * Define OnePlusOne event manager
+   * @class OnePlusOneEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var OnePlusOneEventManager = function OnePlusOneEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return OnePlusOneEventManager.extend('OnePlusOneEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return OnePlusOneEventManager.extend('OnePlusOneEventManager', {},
+      WidgetContentEventManager.prototype);
 });

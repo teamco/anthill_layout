@@ -6,41 +6,41 @@
  */
 
 define([
-    'modules/API',
-    'config/page'
+  'modules/API',
+  'config/page'
 ], function defineWorkspaceAPI(BaseAPI, Page) {
 
+  /**
+   * Define Workspace API
+   * @class WorkspaceAPI
+   * @extends BaseAPI
+   * @constructor
+   */
+  var WorkspaceAPI = function WorkspaceAPI() {
+  };
+
+  return WorkspaceAPI.extend('WorkspaceAPI', {
+
     /**
-     * Define Workspace API
-     * @class WorkspaceAPI
-     * @extends BaseAPI
-     * @constructor
+     * Create Page API
+     * @memberOf WorkspaceAPI
+     * @param {*} args
+     * @param {Boolean} [render]
+     * @param {Boolean} [silent]
+     * @returns {*}
      */
-    var WorkspaceAPI = function WorkspaceAPI() {
-    };
+    createPage: function createPage(args, render, silent) {
 
-    return WorkspaceAPI.extend('WorkspaceAPI', {
+      /**
+       * Define page
+       * @type {Page}
+       */
+      var page = this._createItem(Page, args, render, silent);
 
-        /**
-         * Create Page API
-         * @memberOf WorkspaceAPI
-         * @param {*} args
-         * @param {Boolean} [render]
-         * @param {Boolean} [silent]
-         * @returns {*}
-         */
-        createPage: function createPage(args, render, silent) {
+      page.logger.debug('Created page');
 
-            /**
-             * Define page
-             * @type {Page}
-             */
-            var page = this._createItem(Page, args, render, silent);
+      return page;
+    }
 
-            page.logger.debug('Created page');
-
-            return page;
-        }
-
-    }, BaseAPI.prototype);
+  }, BaseAPI.prototype);
 });

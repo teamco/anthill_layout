@@ -7,101 +7,103 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/odnoklassniki/element/odnoklassniki.element',
-    'plugins/widgets/odnoklassniki/element/odnoklassniki.preferences.element',
-    'plugins/widgets/odnoklassniki/element/odnoklassniki.rules.element'
-], function defineOdnoklassnikiView(BaseView, Header, Footer, OdnoklassnikiElement, OdnoklassnikiPreferencesElement, OdnoklassnikiRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/odnoklassniki/element/odnoklassniki.element',
+  'plugins/widgets/odnoklassniki/element/odnoklassniki.preferences.element',
+  'plugins/widgets/odnoklassniki/element/odnoklassniki.rules.element'
+], function defineOdnoklassnikiView(BaseView, Header, Footer,
+    OdnoklassnikiElement, OdnoklassnikiPreferencesElement,
+    OdnoklassnikiRulesElement) {
+
+  /**
+   * Define view
+   * @class OdnoklassnikiView
+   * @extends BaseView
+   * @constructor
+   */
+  var OdnoklassnikiView = function OdnoklassnikiView() {
+  };
+
+  return OdnoklassnikiView.extend('OdnoklassnikiView', {
 
     /**
-     * Define view
-     * @class OdnoklassnikiView
-     * @extends BaseView
-     * @constructor
+     * Render Odnoklassniki element
+     * @memberOf OdnoklassnikiView
      */
-    var OdnoklassnikiView = function OdnoklassnikiView() {
-    };
+    renderOdnoklassniki: function renderOdnoklassniki() {
 
-    return OdnoklassnikiView.extend('OdnoklassnikiView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render Odnoklassniki element
-         * @memberOf OdnoklassnikiView
-         */
-        renderOdnoklassniki: function renderOdnoklassniki() {
+      /**
+       * Define $odnoklassniki
+       * @type {OdnoklassnikiElement}
+       */
+      this.elements.$odnoklassniki = new OdnoklassnikiElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $odnoklassniki
-             * @type {OdnoklassnikiElement}
-             */
-            this.elements.$odnoklassniki = new OdnoklassnikiElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf OdnoklassnikiView
+     * @returns {OdnoklassnikiPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define Odnoklassniki Preferences Element
+       * @type {OdnoklassnikiPreferencesElement}
+       */
+      this.elements.$preferences = new OdnoklassnikiPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf OdnoklassnikiView
-         * @returns {OdnoklassnikiPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define Odnoklassniki Preferences Element
-             * @type {OdnoklassnikiPreferencesElement}
-             */
-            this.elements.$preferences = new OdnoklassnikiPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf OdnoklassnikiView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {OdnoklassnikiRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
-
-        /**
-         * Render Rules
-         * @memberOf OdnoklassnikiView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {OdnoklassnikiRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define Odnoklassniki Rules Element
-             * @type {OdnoklassnikiRulesElement}
-             */
-            this.elements.$rules = new OdnoklassnikiRulesElement(this, {
-                data: this.controller.getRules(),
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render Odnoklassniki
-         * @memberOf OdnoklassnikiView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderOdnoklassniki.bind(this)
-            );
+      /**
+       * Define Odnoklassniki Rules Element
+       * @type {OdnoklassnikiRulesElement}
+       */
+      this.elements.$rules = new OdnoklassnikiRulesElement(this, {
+        data: this.controller.getRules(),
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype);
+      return this.get$rules();
+    },
+
+    /**
+     * Render Odnoklassniki
+     * @memberOf OdnoklassnikiView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderOdnoklassniki.bind(this)
+      );
+    }
+
+  }, BaseView.prototype);
 });

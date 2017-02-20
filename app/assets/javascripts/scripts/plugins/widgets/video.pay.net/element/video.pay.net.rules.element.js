@@ -6,38 +6,37 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/rules/widget.base.rules'
+  'plugins/plugin.element',
+  'plugins/rules/widget.base.rules'
 ], function defineVideoPayNetRulesElement(PluginElement, BaseWidgetRules) {
 
-    /**
-     * Define VideoPayNet Rules Element
-     * @param view
-     * @param opts
-     * @returns {VideoPayNetRulesElement}
-     * @constructor
-     * @class VideoPayNetRulesElement
-     * @extends PluginElement
-     * @extends BaseWidgetRules
-     */
-    var VideoPayNetRulesElement = function VideoPayNetRulesElement(view, opts) {
+  /**
+   * Define VideoPayNet Rules Element
+   * @param view
+   * @param opts
+   * @returns {VideoPayNetRulesElement}
+   * @constructor
+   * @class VideoPayNetRulesElement
+   * @extends PluginElement
+   * @extends BaseWidgetRules
+   */
+  var VideoPayNetRulesElement = function VideoPayNetRulesElement(view, opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBaseRulesData(
-            opts.data,
-            opts.rules.widget,
-            opts.rules.content
-        );
+    this.renderBaseRulesData(
+        opts.data,
+        opts.rules.widget,
+        opts.rules.content
+    );
 
-        return this;
-    };
+    return this;
+  };
 
-    return VideoPayNetRulesElement.extend('VideoPayNetRulesElement', {
-
-    }, PluginElement.prototype, BaseWidgetRules.prototype);
+  return VideoPayNetRulesElement.extend('VideoPayNetRulesElement', {},
+      PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

@@ -7,23 +7,23 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineCodepenIoEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define CodepenIo event manager
-     * @class CodepenIoEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var CodepenIoEventManager = function CodepenIoEventManager() {
+  /**
+   * Define CodepenIo event manager
+   * @class CodepenIoEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var CodepenIoEventManager = function CodepenIoEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return CodepenIoEventManager.extend(
-        'CodepenIoEventManager', {},
-        WidgetContentEventManager.prototype
-    );
+  return CodepenIoEventManager.extend(
+      'CodepenIoEventManager', {},
+      WidgetContentEventManager.prototype
+  );
 });

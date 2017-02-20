@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineMyWorldPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class MyWorldPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var MyWorldPermission = function MyWorldPermission() {
+  /**
+   * Define Permissions
+   * @class MyWorldPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var MyWorldPermission = function MyWorldPermission() {
 
-    };
+  };
 
-    return MyWorldPermission.extend('MyWorldPermission', {
-
-    }, BasePermission.prototype);
+  return MyWorldPermission.extend('MyWorldPermission', {},
+      BasePermission.prototype);
 });

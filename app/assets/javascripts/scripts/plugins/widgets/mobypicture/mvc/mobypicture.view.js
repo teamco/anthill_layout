@@ -7,108 +7,109 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/mobypicture/element/mobypicture.element',
-    'plugins/widgets/mobypicture/element/mobypicture.preferences.element',
-    'plugins/widgets/mobypicture/element/mobypicture.rules.element'
-], function defineMobypictureView(BaseView, Header, Footer, MobypictureElement, MobypicturePreferencesElement, MobypictureRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/mobypicture/element/mobypicture.element',
+  'plugins/widgets/mobypicture/element/mobypicture.preferences.element',
+  'plugins/widgets/mobypicture/element/mobypicture.rules.element'
+], function defineMobypictureView(BaseView, Header, Footer, MobypictureElement,
+    MobypicturePreferencesElement, MobypictureRulesElement) {
+
+  /**
+   * Define view
+   * @class MobypictureView
+   * @extends BaseView
+   * @constructor
+   */
+  var MobypictureView = function MobypictureView() {
+  };
+
+  return MobypictureView.extend('MobypictureView', {
 
     /**
-     * Define view
-     * @class MobypictureView
-     * @extends BaseView
-     * @constructor
+     * Render mobypicture element
+     * @memberOf MobypictureView
      */
-    var MobypictureView = function MobypictureView() {
-    };
+    renderMobypicture: function renderMobypicture() {
 
-    return MobypictureView.extend('MobypictureView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render mobypicture element
-         * @memberOf MobypictureView
-         */
-        renderMobypicture: function renderMobypicture() {
+      /**
+       * Define $mobypicture
+       * @type {MobypictureElement}
+       */
+      this.elements.$mobypicture = new MobypictureElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $mobypicture
-             * @type {MobypictureElement}
-             */
-            this.elements.$mobypicture = new MobypictureElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf MobypictureView
+     * @returns {MobypicturePreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define Mobypicture Preferences Element
+       * @type {MobypicturePreferencesElement}
+       */
+      this.elements.$preferences = new MobypicturePreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf MobypictureView
-         * @returns {MobypicturePreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define Mobypicture Preferences Element
-             * @type {MobypicturePreferencesElement}
-             */
-            this.elements.$preferences = new MobypicturePreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf MobypictureView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {MobypictureRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
+      /**
+       * Define data
+       * @type {*|{}}
+       */
+      var data = this.controller.getRules();
 
-        /**
-         * Render Rules
-         * @memberOf MobypictureView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {MobypictureRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define data
-             * @type {*|{}}
-             */
-            var data = this.controller.getRules();
-
-            /**
-             * Define Mobypicture Rules Element
-             * @type {MobypictureRulesElement}
-             */
-            this.elements.$rules = new MobypictureRulesElement(this, {
-                data: data,
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render mobypicture
-         * @memberOf MobypictureView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderMobypicture.bind(this)
-            );
+      /**
+       * Define Mobypicture Rules Element
+       * @type {MobypictureRulesElement}
+       */
+      this.elements.$rules = new MobypictureRulesElement(this, {
+        data: data,
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render mobypicture
+     * @memberOf MobypictureView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderMobypicture.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

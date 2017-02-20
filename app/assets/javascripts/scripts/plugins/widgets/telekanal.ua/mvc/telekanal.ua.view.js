@@ -7,108 +7,109 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/telekanal.ua/element/telekanal.ua.element',
-    'plugins/widgets/telekanal.ua/element/telekanal.ua.preferences.element',
-    'plugins/widgets/telekanal.ua/element/telekanal.ua.rules.element'
-], function defineTelekanalUaView(BaseView, Header, Footer, TelekanalUaElement, TelekanalUaPreferencesElement, TelekanalUaRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/telekanal.ua/element/telekanal.ua.element',
+  'plugins/widgets/telekanal.ua/element/telekanal.ua.preferences.element',
+  'plugins/widgets/telekanal.ua/element/telekanal.ua.rules.element'
+], function defineTelekanalUaView(BaseView, Header, Footer, TelekanalUaElement,
+    TelekanalUaPreferencesElement, TelekanalUaRulesElement) {
+
+  /**
+   * Define view
+   * @class TelekanalUaView
+   * @extends BaseView
+   * @constructor
+   */
+  var TelekanalUaView = function TelekanalUaView() {
+  };
+
+  return TelekanalUaView.extend('TelekanalUaView', {
 
     /**
-     * Define view
-     * @class TelekanalUaView
-     * @extends BaseView
-     * @constructor
+     * Render telekanalua element
+     * @memberOf TelekanalUaView
      */
-    var TelekanalUaView = function TelekanalUaView() {
-    };
+    renderTelekanalUa: function renderTelekanalUa() {
 
-    return TelekanalUaView.extend('TelekanalUaView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render telekanalua element
-         * @memberOf TelekanalUaView
-         */
-        renderTelekanalUa: function renderTelekanalUa() {
+      /**
+       * Define $telekanalua
+       * @type {TelekanalUaElement}
+       */
+      this.elements.$telekanalua = new TelekanalUaElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $telekanalua
-             * @type {TelekanalUaElement}
-             */
-            this.elements.$telekanalua = new TelekanalUaElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf TelekanalUaView
+     * @returns {TelekanalUaPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define TelekanalUa Preferences Element
+       * @type {TelekanalUaPreferencesElement}
+       */
+      this.elements.$preferences = new TelekanalUaPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf TelekanalUaView
-         * @returns {TelekanalUaPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define TelekanalUa Preferences Element
-             * @type {TelekanalUaPreferencesElement}
-             */
-            this.elements.$preferences = new TelekanalUaPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf TelekanalUaView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {TelekanalUaRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
+      /**
+       * Define data
+       * @type {*|{}}
+       */
+      var data = this.controller.getRules();
 
-        /**
-         * Render Rules
-         * @memberOf TelekanalUaView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {TelekanalUaRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define data
-             * @type {*|{}}
-             */
-            var data = this.controller.getRules();
-
-            /**
-             * Define TelekanalUa Rules Element
-             * @type {TelekanalUaRulesElement}
-             */
-            this.elements.$rules = new TelekanalUaRulesElement(this, {
-                data: data,
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render telekanalua
-         * @memberOf TelekanalUaView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderTelekanalUa.bind(this)
-            );
+      /**
+       * Define TelekanalUa Rules Element
+       * @type {TelekanalUaRulesElement}
+       */
+      this.elements.$rules = new TelekanalUaRulesElement(this, {
+        data: data,
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render telekanalua
+     * @memberOf TelekanalUaView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderTelekanalUa.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

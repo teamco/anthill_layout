@@ -3,68 +3,68 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineSiteConfigCleanUpElement(PluginElement) {
 
+  /**
+   * Define SiteConfigCleanUpElement
+   * @class SiteConfigCleanUpElement
+   * @constructor
+   * @param {SiteConfigView} view
+   * @param opts
+   * @extends PluginElement
+   * @returns {SiteConfigCleanUpElement}
+   */
+  var SiteConfigCleanUpElement = function SiteConfigCleanUpElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container
+    });
+
+    this.prettifyJSON();
+
+    return this;
+  };
+
+  return SiteConfigCleanUpElement.extend('SiteConfigCleanUpElement', {
+
     /**
-     * Define SiteConfigCleanUpElement
-     * @class SiteConfigCleanUpElement
-     * @constructor
-     * @param {SiteConfigView} view
-     * @param opts
-     * @extends PluginElement
-     * @returns {SiteConfigCleanUpElement}
+     * Prettify JSON
+     * @memberOf SiteConfigCleanUpElement
+     * @returns {XML|string}
      */
-    var SiteConfigCleanUpElement = function SiteConfigCleanUpElement(view, opts) {
+    prettifyJSON: function prettifyJSON() {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container
-        });
+      /**
+       * Load pretty print functionality
+       * @private
+       */
+      function _loadPrettyPrint() {
 
-        this.prettifyJSON();
+        $(prettyPrint(data)).appendTo(this.$);
+        this.adoptModalDialogPosition();
+      }
 
-        return this;
-    };
+      /**
+       * Get scope
+       * @type {SiteConfig|AntHill}
+       */
+      var scope = this.view.scope,
+          data = scope.controller.root().model.setting.load();
 
-    return SiteConfigCleanUpElement.extend('SiteConfigCleanUpElement', {
+      if (window.prettyPrint) {
 
-        /**
-         * Prettify JSON
-         * @memberOf SiteConfigCleanUpElement
-         * @returns {XML|string}
-         */
-        prettifyJSON: function prettifyJSON() {
+        // Load cached version
+        _loadPrettyPrint.bind(this)();
 
-            /**
-             * Load pretty print functionality
-             * @private
-             */
-            function _loadPrettyPrint() {
+      } else {
 
-                $(prettyPrint(data)).appendTo(this.$);
-                this.adoptModalDialogPosition();
-            }
+        require(
+            ['lib/packages/pretty.print'],
+            _loadPrettyPrint.bind(this)
+        );
+      }
+    }
 
-            /**
-             * Get scope
-             * @type {SiteConfig|AntHill}
-             */
-            var scope = this.view.scope,
-                data = scope.controller.root().model.setting.load();
-
-            if (window.prettyPrint) {
-
-                // Load cached version
-                _loadPrettyPrint.bind(this)();
-
-            } else {
-
-                require(
-                    ['lib/packages/pretty.print'],
-                    _loadPrettyPrint.bind(this)
-                );
-            }
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 });

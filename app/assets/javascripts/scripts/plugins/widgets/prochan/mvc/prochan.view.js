@@ -7,101 +7,102 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/prochan/element/prochan.element',
-    'plugins/widgets/prochan/element/prochan.preferences.element',
-    'plugins/widgets/prochan/element/prochan.rules.element'
-], function defineProchanView(BaseView, Header, Footer, ProchanElement, ProchanPreferencesElement, ProchanRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/prochan/element/prochan.element',
+  'plugins/widgets/prochan/element/prochan.preferences.element',
+  'plugins/widgets/prochan/element/prochan.rules.element'
+], function defineProchanView(BaseView, Header, Footer, ProchanElement,
+    ProchanPreferencesElement, ProchanRulesElement) {
+
+  /**
+   * Define view
+   * @class ProchanView
+   * @extends BaseView
+   * @constructor
+   */
+  var ProchanView = function ProchanView() {
+  };
+
+  return ProchanView.extend('ProchanView', {
 
     /**
-     * Define view
-     * @class ProchanView
-     * @extends BaseView
-     * @constructor
+     * Render Prochan element
+     * @memberOf ProchanView
      */
-    var ProchanView = function ProchanView() {
-    };
+    renderProchan: function renderProchan() {
 
-    return ProchanView.extend('ProchanView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render Prochan element
-         * @memberOf ProchanView
-         */
-        renderProchan: function renderProchan() {
+      /**
+       * Define $prochan
+       * @type {ProchanElement}
+       */
+      this.elements.$prochan = new ProchanElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $prochan
-             * @type {ProchanElement}
-             */
-            this.elements.$prochan = new ProchanElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf ProchanView
+     * @returns {ProchanPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define Prochan Preferences Element
+       * @type {ProchanPreferencesElement}
+       */
+      this.elements.$preferences = new ProchanPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf ProchanView
-         * @returns {ProchanPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define Prochan Preferences Element
-             * @type {ProchanPreferencesElement}
-             */
-            this.elements.$preferences = new ProchanPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf ProchanView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {ProchanRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
-
-        /**
-         * Render Rules
-         * @memberOf ProchanView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {ProchanRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define Prochan Rules Element
-             * @type {ProchanRulesElement}
-             */
-            this.elements.$rules = new ProchanRulesElement(this, {
-                data: this.controller.getRules(),
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render Prochan
-         * @memberOf ProchanView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderProchan.bind(this)
-            );
+      /**
+       * Define Prochan Rules Element
+       * @type {ProchanRulesElement}
+       */
+      this.elements.$rules = new ProchanRulesElement(this, {
+        data: this.controller.getRules(),
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype);
+      return this.get$rules();
+    },
+
+    /**
+     * Render Prochan
+     * @memberOf ProchanView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderProchan.bind(this)
+      );
+    }
+
+  }, BaseView.prototype);
 });

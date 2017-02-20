@@ -6,56 +6,40 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineCodepenIoController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define CodepenIo controller
+   * @class CodepenIoController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var CodepenIoController = function CodepenIoController() {
+  };
+
+  return CodepenIoController.extend('CodepenIoController', {
+
     /**
-     * Define CodepenIo controller
-     * @class CodepenIoController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf CodepenIoController
      */
-    var CodepenIoController = function CodepenIoController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
+      this.view.get$item().renderEmbeddedContent(
+          this.model.getPrefs('codepenioEmbedCode')
+      );
+    },
 
-    return CodepenIoController.extend('CodepenIoController', {
+    /**
+     * Add CodepenIo rule
+     * @memberOf CodepenIoController
+     * @param {Event} e
+     */
+    addCodepenIoRule: function addCodepenIoRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-        /**
-         * Set embedded content
-         * @memberOf CodepenIoController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
-            this.view.get$item().renderEmbeddedContent(
-                this.model.getPrefs('codepenioEmbedCode')
-            );
-        },
-
-        /**
-         * Add CodepenIo rule
-         * @memberOf CodepenIoController
-         * @param e
-         */
-        addCodepenIoRule: function addCodepenIoRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target);
-
-            /**
-             * Get scope
-             * @type {CodepenIo|{name: string}}
-             */
-            var scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

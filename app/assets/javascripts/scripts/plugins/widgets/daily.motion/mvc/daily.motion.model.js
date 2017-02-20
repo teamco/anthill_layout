@@ -6,53 +6,54 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineDailyMotionModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define DailyMotion model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class DailyMotionModel
+   * @constructor
+   */
+  var DailyMotionModel = function DailyMotionModel() {
+
     /**
-     * Define DailyMotion model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class DailyMotionModel
-     * @constructor
+     * Define preferences
+     * @memberOf DailyMotionModel
+     * @type {{
+     *      dailymotionUrl: {type: string, disabled: boolean, value:
+     *     undefined, visible: boolean}
+     * }}
      */
-    var DailyMotionModel = function DailyMotionModel() {
-
-        /**
-         * Define preferences
-         * @memberOf DailyMotionModel
-         * @type {{
-         *      dailymotionUrl: {type: string, disabled: boolean, value: undefined, visible: boolean}
-         * }}
-         */
-        this.preferences = {
-            dailymotionUrl: {
-                type: 'text',
-                disabled: false,
-                value: undefined,
-                visible: true
-            }
-        };
-
-        /**
-         * Define rules
-         * @memberOf DailyMotionModel
-         * @type {{}}
-         */
-        this.rules = {};
+    this.preferences = {
+      dailymotionUrl: {
+        type: 'text',
+        disabled: false,
+        value: undefined,
+        visible: true
+      }
     };
 
-    return DailyMotionModel.extend('DailyMotionModel', {
+    /**
+     * Define rules
+     * @memberOf DailyMotionModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        /**
-         * Set DailyMotion Url
-         * @memberOf DailyMotionModel
-         * @param {string} url
-         */
-        setDailymotionUrl: function setDailymotionUrl(url) {
-            this.setPrefs('dailymotionUrl', url);
-        }
+  return DailyMotionModel.extend('DailyMotionModel', {
 
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    /**
+     * Set DailyMotion Url
+     * @memberOf DailyMotionModel
+     * @param {string} url
+     */
+    setDailymotionUrl: function setDailymotionUrl(url) {
+      this.setPrefs('dailymotionUrl', url);
+    }
+
+  }, BaseModel.prototype, WidgetContentModel.prototype);
 });

@@ -6,51 +6,52 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineEventsModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define Events model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class EventsModel
+   * @constructor
+   */
+  var EventsModel = function EventsModel() {
+
     /**
-     * Define Events model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class EventsModel
-     * @constructor
+     * Define preferences
+     * @property EventsModel
+     * @type {{eventsJson: {type: string, disabled: boolean, value: undefined,
+     *     visible: boolean}}}
      */
-    var EventsModel = function EventsModel() {
-
-        /**
-         * Define preferences
-         * @property EventsModel
-         * @type {{eventsJson: {type: string, disabled: boolean, value: undefined, visible: boolean}}}
-         */
-        this.preferences = {
-            eventsJson: {
-                type: 'textarea',
-                disabled: false,
-                value: undefined,
-                visible: true
-            }
-        };
-
-        /**
-         * Define rules
-         * @property EventsModel
-         * @type {{}}
-         */
-        this.rules = {};
+    this.preferences = {
+      eventsJson: {
+        type: 'textarea',
+        disabled: false,
+        value: undefined,
+        visible: true
+      }
     };
 
-    return EventsModel.extend('EventsModel', {
+    /**
+     * Define rules
+     * @property EventsModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        /**
-         * Set events json
-         * @memberOf EventsModel
-         * @param {string} json
-         */
-        setEventsJson: function setEventsJson(json) {
-            this.setPrefs('eventsJson', json);
-        }
+  return EventsModel.extend('EventsModel', {
 
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    /**
+     * Set events json
+     * @memberOf EventsModel
+     * @param {string} json
+     */
+    setEventsJson: function setEventsJson(json) {
+      this.setPrefs('eventsJson', json);
+    }
+
+  }, BaseModel.prototype, WidgetContentModel.prototype);
 });

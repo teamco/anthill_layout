@@ -7,23 +7,23 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineSportboxRuEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define SportboxRu event manager
-     * @class SportboxRuEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var SportboxRuEventManager = function SportboxRuEventManager() {
+  /**
+   * Define SportboxRu event manager
+   * @class SportboxRuEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var SportboxRuEventManager = function SportboxRuEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return SportboxRuEventManager.extend(
-        'SportboxRuEventManager', {},
-        WidgetContentEventManager.prototype
-    );
+  return SportboxRuEventManager.extend(
+      'SportboxRuEventManager', {},
+      WidgetContentEventManager.prototype
+  );
 });

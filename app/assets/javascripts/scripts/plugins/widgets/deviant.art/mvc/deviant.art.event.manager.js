@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineDeviantArtEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define DeviantArt event manager
-     * @class DeviantArtEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var DeviantArtEventManager = function DeviantArtEventManager() {
+  /**
+   * Define DeviantArt event manager
+   * @class DeviantArtEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var DeviantArtEventManager = function DeviantArtEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return DeviantArtEventManager.extend('DeviantArtEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return DeviantArtEventManager.extend('DeviantArtEventManager', {},
+      WidgetContentEventManager.prototype);
 });

@@ -7,101 +7,102 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/interlude/element/interlude.element',
-    'plugins/widgets/interlude/element/interlude.preferences.element',
-    'plugins/widgets/interlude/element/interlude.rules.element'
-], function defineInterludeView(BaseView, Header, Footer, InterludeElement, InterludePreferencesElement, InterludeRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/interlude/element/interlude.element',
+  'plugins/widgets/interlude/element/interlude.preferences.element',
+  'plugins/widgets/interlude/element/interlude.rules.element'
+], function defineInterludeView(BaseView, Header, Footer, InterludeElement,
+    InterludePreferencesElement, InterludeRulesElement) {
+
+  /**
+   * Define view
+   * @class InterludeView
+   * @extends BaseView
+   * @constructor
+   */
+  var InterludeView = function InterludeView() {
+  };
+
+  return InterludeView.extend('InterludeView', {
 
     /**
-     * Define view
-     * @class InterludeView
-     * @extends BaseView
-     * @constructor
+     * Render Interlude element
+     * @memberOf InterludeView
      */
-    var InterludeView = function InterludeView() {
-    };
+    renderInterlude: function renderInterlude() {
 
-    return InterludeView.extend('InterludeView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render Interlude element
-         * @memberOf InterludeView
-         */
-        renderInterlude: function renderInterlude() {
+      /**
+       * Define $interlude
+       * @type {InterludeElement}
+       */
+      this.elements.$interlude = new InterludeElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $interlude
-             * @type {InterludeElement}
-             */
-            this.elements.$interlude = new InterludeElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf InterludeView
+     * @returns {InterludePreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define Interlude Preferences Element
+       * @type {InterludePreferencesElement}
+       */
+      this.elements.$preferences = new InterludePreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf InterludeView
-         * @returns {InterludePreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define Interlude Preferences Element
-             * @type {InterludePreferencesElement}
-             */
-            this.elements.$preferences = new InterludePreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf InterludeView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {InterludeRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
-
-        /**
-         * Render Rules
-         * @memberOf InterludeView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {InterludeRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define Interlude Rules Element
-             * @type {InterludeRulesElement}
-             */
-            this.elements.$rules = new InterludeRulesElement(this, {
-                data: this.controller.getRules(),
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render Interlude
-         * @memberOf InterludeView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderInterlude.bind(this)
-            );
+      /**
+       * Define Interlude Rules Element
+       * @type {InterludeRulesElement}
+       */
+      this.elements.$rules = new InterludeRulesElement(this, {
+        data: this.controller.getRules(),
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype);
+      return this.get$rules();
+    },
+
+    /**
+     * Render Interlude
+     * @memberOf InterludeView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderInterlude.bind(this)
+      );
+    }
+
+  }, BaseView.prototype);
 });

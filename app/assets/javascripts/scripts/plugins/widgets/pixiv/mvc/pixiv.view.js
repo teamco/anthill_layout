@@ -7,108 +7,109 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/pixiv/element/pixiv.element',
-    'plugins/widgets/pixiv/element/pixiv.preferences.element',
-    'plugins/widgets/pixiv/element/pixiv.rules.element'
-], function definePixivView(BaseView, Header, Footer, PixivElement, PixivPreferencesElement, PixivRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/pixiv/element/pixiv.element',
+  'plugins/widgets/pixiv/element/pixiv.preferences.element',
+  'plugins/widgets/pixiv/element/pixiv.rules.element'
+], function definePixivView(BaseView, Header, Footer, PixivElement,
+    PixivPreferencesElement, PixivRulesElement) {
+
+  /**
+   * Define view
+   * @class PixivView
+   * @extends BaseView
+   * @constructor
+   */
+  var PixivView = function PixivView() {
+  };
+
+  return PixivView.extend('PixivView', {
 
     /**
-     * Define view
-     * @class PixivView
-     * @extends BaseView
-     * @constructor
+     * Render pixiv element
+     * @memberOf PixivView
      */
-    var PixivView = function PixivView() {
-    };
+    renderPixiv: function renderPixiv() {
 
-    return PixivView.extend('PixivView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render pixiv element
-         * @memberOf PixivView
-         */
-        renderPixiv: function renderPixiv() {
+      /**
+       * Define $pixiv
+       * @type {PixivElement}
+       */
+      this.elements.$pixiv = new PixivElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $pixiv
-             * @type {PixivElement}
-             */
-            this.elements.$pixiv = new PixivElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf PixivView
+     * @returns {PixivPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define Pixiv Preferences Element
+       * @type {PixivPreferencesElement}
+       */
+      this.elements.$preferences = new PixivPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf PixivView
-         * @returns {PixivPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define Pixiv Preferences Element
-             * @type {PixivPreferencesElement}
-             */
-            this.elements.$preferences = new PixivPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf PixivView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {PixivRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
+      /**
+       * Define data
+       * @type {*|{}}
+       */
+      var data = this.controller.getRules();
 
-        /**
-         * Render Rules
-         * @memberOf PixivView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {PixivRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define data
-             * @type {*|{}}
-             */
-            var data = this.controller.getRules();
-
-            /**
-             * Define Pixiv Rules Element
-             * @type {PixivRulesElement}
-             */
-            this.elements.$rules = new PixivRulesElement(this, {
-                data: data,
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render pixiv
-         * @memberOf PixivView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderPixiv.bind(this)
-            );
+      /**
+       * Define Pixiv Rules Element
+       * @type {PixivRulesElement}
+       */
+      this.elements.$rules = new PixivRulesElement(this, {
+        data: data,
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render pixiv
+     * @memberOf PixivView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderPixiv.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

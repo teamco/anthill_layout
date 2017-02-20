@@ -7,101 +7,102 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/ovva.tv/element/ovva.tv.element',
-    'plugins/widgets/ovva.tv/element/ovva.tv.preferences.element',
-    'plugins/widgets/ovva.tv/element/ovva.tv.rules.element'
-], function defineOvvaTvView(BaseView, Header, Footer, OvvaTvElement, OvvaTvPreferencesElement, OvvaTvRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/ovva.tv/element/ovva.tv.element',
+  'plugins/widgets/ovva.tv/element/ovva.tv.preferences.element',
+  'plugins/widgets/ovva.tv/element/ovva.tv.rules.element'
+], function defineOvvaTvView(BaseView, Header, Footer, OvvaTvElement,
+    OvvaTvPreferencesElement, OvvaTvRulesElement) {
+
+  /**
+   * Define view
+   * @class OvvaTvView
+   * @extends BaseView
+   * @constructor
+   */
+  var OvvaTvView = function OvvaTvView() {
+  };
+
+  return OvvaTvView.extend('OvvaTvView', {
 
     /**
-     * Define view
-     * @class OvvaTvView
-     * @extends BaseView
-     * @constructor
+     * Render OvvaTv element
+     * @memberOf OvvaTvView
      */
-    var OvvaTvView = function OvvaTvView() {
-    };
+    renderOvvaTv: function renderOvvaTv() {
 
-    return OvvaTvView.extend('OvvaTvView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render OvvaTv element
-         * @memberOf OvvaTvView
-         */
-        renderOvvaTv: function renderOvvaTv() {
+      /**
+       * Define $ovvatv
+       * @type {OvvaTvElement}
+       */
+      this.elements.$ovvatv = new OvvaTvElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $ovvatv
-             * @type {OvvaTvElement}
-             */
-            this.elements.$ovvatv = new OvvaTvElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf OvvaTvView
+     * @returns {OvvaTvPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define OvvaTv Preferences Element
+       * @type {OvvaTvPreferencesElement}
+       */
+      this.elements.$preferences = new OvvaTvPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf OvvaTvView
-         * @returns {OvvaTvPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define OvvaTv Preferences Element
-             * @type {OvvaTvPreferencesElement}
-             */
-            this.elements.$preferences = new OvvaTvPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf OvvaTvView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {OvvaTvRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
-
-        /**
-         * Render Rules
-         * @memberOf OvvaTvView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {OvvaTvRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define OvvaTv Rules Element
-             * @type {OvvaTvRulesElement}
-             */
-            this.elements.$rules = new OvvaTvRulesElement(this, {
-                data: this.controller.getRules(),
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render OvvaTv
-         * @memberOf OvvaTvView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderOvvaTv.bind(this)
-            );
+      /**
+       * Define OvvaTv Rules Element
+       * @type {OvvaTvRulesElement}
+       */
+      this.elements.$rules = new OvvaTvRulesElement(this, {
+        data: this.controller.getRules(),
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype);
+      return this.get$rules();
+    },
+
+    /**
+     * Render OvvaTv
+     * @memberOf OvvaTvView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderOvvaTv.bind(this)
+      );
+    }
+
+  }, BaseView.prototype);
 });

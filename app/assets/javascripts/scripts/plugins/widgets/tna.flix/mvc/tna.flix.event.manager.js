@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineTnaFlixEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define TnaFlix event manager
-     * @class TnaFlixEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var TnaFlixEventManager = function TnaFlixEventManager() {
+  /**
+   * Define TnaFlix event manager
+   * @class TnaFlixEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var TnaFlixEventManager = function TnaFlixEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return TnaFlixEventManager.extend('TnaFlixEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return TnaFlixEventManager.extend('TnaFlixEventManager', {},
+      WidgetContentEventManager.prototype);
 });

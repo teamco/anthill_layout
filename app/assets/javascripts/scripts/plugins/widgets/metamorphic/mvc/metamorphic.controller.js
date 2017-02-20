@@ -6,54 +6,38 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineMetamorphicController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define Metamorphic controller
+   * @class MetamorphicController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var MetamorphicController = function MetamorphicController() {
+  };
+
+  return MetamorphicController.extend('MetamorphicController', {
+
     /**
-     * Define Metamorphic controller
-     * @class MetamorphicController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf MetamorphicController
      */
-    var MetamorphicController = function MetamorphicController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
+      this.view.get$item().renderEmbeddedContent();
+    },
 
-    return MetamorphicController.extend('MetamorphicController', {
+    /**
+     * Add Metamorphic rule
+     * @memberOf MetamorphicController
+     * @param {Event} e
+     */
+    addMetamorphicRule: function addMetamorphicRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-        /**
-         * Set embedded content
-         * @memberOf MetamorphicController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
-            this.view.get$item().renderEmbeddedContent();
-        },
-
-        /**
-         * Add Metamorphic rule
-         * @memberOf MetamorphicController
-         * @param e
-         */
-        addMetamorphicRule: function addMetamorphicRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target);
-
-            /**
-             * Get scope
-             * @type {Metamorphic|{name: string}}
-             */
-            var scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

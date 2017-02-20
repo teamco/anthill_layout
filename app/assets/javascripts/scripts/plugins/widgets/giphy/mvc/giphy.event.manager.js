@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineGiphyEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define Giphy event manager
-     * @class GiphyEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var GiphyEventManager = function GiphyEventManager() {
+  /**
+   * Define Giphy event manager
+   * @class GiphyEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var GiphyEventManager = function GiphyEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return GiphyEventManager.extend('GiphyEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return GiphyEventManager.extend('GiphyEventManager', {},
+      WidgetContentEventManager.prototype);
 });

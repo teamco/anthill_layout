@@ -6,53 +6,54 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineRadikalFotoModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define RadikalFoto model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class RadikalFotoModel
+   * @constructor
+   */
+  var RadikalFotoModel = function RadikalFotoModel() {
+
     /**
-     * Define RadikalFoto model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class RadikalFotoModel
-     * @constructor
-     */
-    var RadikalFotoModel = function RadikalFotoModel() {
-
-        /**
-         * Define preferences
-         * @memberOf RadikalFotoModel
-         * @type {{
-         *      radikalfotoUrl: {type: string, disabled: boolean, value: undefined, visible: boolean}
+     * Define preferences
+     * @memberOf RadikalFotoModel
+     * @type {{
+         *      radikalfotoUrl: {type: string, disabled: boolean, value:
+         *     undefined, visible: boolean}
          * }}
-         */
-        this.preferences = {
-            radikalfotoUrl: {
-                type: 'textarea',
-                disabled: false,
-                value: undefined,
-                visible: true
-            }
-        };
-
-        /**
-         * Define rules
-         * @memberOf RadikalFotoModel
-         * @type {{}}
-         */
-        this.rules = {};
+     */
+    this.preferences = {
+      radikalfotoUrl: {
+        type: 'textarea',
+        disabled: false,
+        value: undefined,
+        visible: true
+      }
     };
 
-    return RadikalFotoModel.extend('RadikalFotoModel', {
+    /**
+     * Define rules
+     * @memberOf RadikalFotoModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        /**
-         * Set RadikalFoto embed code
-         * @memberOf RadikalFotoModel
-         * @param {string} embed
-         */
-        setRadikalfotoUrl: function setRadikalfotoUrl(embed) {
-            this.setPrefs('radikalfotoUrl', embed);
-        }
+  return RadikalFotoModel.extend('RadikalFotoModel', {
 
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    /**
+     * Set RadikalFoto embed code
+     * @memberOf RadikalFotoModel
+     * @param {string} embed
+     */
+    setRadikalfotoUrl: function setRadikalfotoUrl(embed) {
+      this.setPrefs('radikalfotoUrl', embed);
+    }
+
+  }, BaseModel.prototype, WidgetContentModel.prototype);
 });

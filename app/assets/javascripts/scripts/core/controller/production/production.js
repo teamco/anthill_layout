@@ -1,33 +1,33 @@
 define(function defineProduction() {
 
+  /**
+   * Define Production mode
+   * @class Production
+   * @constructor
+   * @extends BaseController
+   */
+  var Production = function Production() {
+  };
+
+  return Production.extend('Production', {
+
     /**
-     * Define Production mode
-     * @class Production
-     * @constructor
-     * @extends BaseController
+     * Define is production checker
+     * @memberOf Production
      */
-    var Production = function Production() {
-    };
+    isProduction: function isProduction() {
 
-    return Production.extend('Production', {
+      // TODO until production
+      return window.location.hostname !== 'localhost' ||
+          this.getEnvironment() === 'production';
+    },
 
-        /**
-         * Define is production checker
-         * @memberOf Production
-         */
-        isProduction: function isProduction() {
-
-            // TODO until production
-            return window.location.hostname !== 'localhost' ||
-                this.getEnvironment() === 'production';
-        },
-
-        /**
-         * Define load production mode
-         * @memberOf Production
-         */
-        loadProduction: function loadProduction() {
-            // TODO
-        }
-    });
+    /**
+     * Define load production mode
+     * @memberOf Production
+     */
+    loadProduction: function loadProduction() {
+      // TODO
+    }
+  });
 });

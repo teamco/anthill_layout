@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineCollegeHumorPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class CollegeHumorPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var CollegeHumorPermission = function CollegeHumorPermission() {
+  /**
+   * Define Permissions
+   * @class CollegeHumorPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var CollegeHumorPermission = function CollegeHumorPermission() {
 
-    };
+  };
 
-    return CollegeHumorPermission.extend('CollegeHumorPermission', {
-
-    }, BasePermission.prototype);
+  return CollegeHumorPermission.extend('CollegeHumorPermission', {},
+      BasePermission.prototype);
 });

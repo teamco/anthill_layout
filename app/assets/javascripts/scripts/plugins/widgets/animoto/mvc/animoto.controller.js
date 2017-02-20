@@ -6,94 +6,83 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineAnimotoController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define animoto controller
+   * @class AnimotoController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var AnimotoController = function AnimotoController() {
+  };
+
+  return AnimotoController.extend('AnimotoController', {
+
     /**
-     * Define animoto controller
-     * @class AnimotoController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf AnimotoController
      */
-    var AnimotoController = function AnimotoController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
 
-    return AnimotoController.extend('AnimotoController', {
+      /**
+       * Get url
+       * @type {string|*}
+       */
+      var url = this.model.getPrefs('animotoEmbedCode'),
+          embed = this.controller.getEmbedCode(url);
 
-        /**
-         * Set embedded content
-         * @memberOf AnimotoController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
+      if (embed) {
+        this.view.elements.$animoto.renderEmbeddedContent(embed);
+      }
+    },
 
-            /**
-             * Get url
-             * @type {string|*}
-             */
-            var url = this.model.getPrefs('animotoEmbedCode'),
-                embed = this.controller.getEmbedCode(url);
+    /**
+     * Validate animoto
+     * @memberOf AnimotoController
+     * @param {string} embed
+     * @return {string|boolean}
+     */
+    getEmbedCode: function getEmbedCode(embed) {
 
-            if (embed) {
-                this.view.elements.$animoto.renderEmbeddedContent(embed);
-            }
-        },
+      if (!embed) {
+        this.scope.logger.debug('Initial state');
+        return false;
+      }
 
-        /**
-         * Validate animoto
-         * @memberOf AnimotoController
-         * @param {string} embed
-         * @return {string|boolean}
-         */
-        getEmbedCode: function getEmbedCode(embed) {
+      var $embed = $(embed);
 
-            if (!embed) {
-                this.scope.logger.debug('Initial state');
-                return false;
-            }
+      if (embed.match(/iframe/)) {
 
-            var $embed = $(embed);
+        return {
+          type: 'iframe',
+          id: $embed.attr('id'),
+          movie: $embed.attr('src')
+        };
+      }
 
-            if (embed.match(/iframe/)) {
+      if (embed.match(/object/)) {
 
-                return {
-                    type: 'iframe',
-                    id: $embed.attr('id'),
-                    movie: $embed.attr('src')
-                };
-            }
+        return {
+          type: 'object',
+          id: $embed.attr('id'),
+          classid: $embed.attr('classid'),
+          movie: $embed.find('param[name="movie"]').val()
+        };
+      }
+    },
 
-            if (embed.match(/object/)) {
+    /**
+     * Add Animoto rule
+     * @memberOf AnimotoController
+     * @param {Event} e
+     */
+    addAnimotoRule: function addAnimotoRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-                return {
-                    type: 'object',
-                    id: $embed.attr('id'),
-                    classid: $embed.attr('classid'),
-                    movie: $embed.find('param[name="movie"]').val()
-                };
-            }
-        },
-
-        /**
-         * Add Animoto rule
-         * @memberOf AnimotoController
-         * @param e
-         */
-        addAnimotoRule: function addAnimotoRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

@@ -6,45 +6,45 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineChannelTenIlElement(PluginElement) {
 
+  /**
+   * Define ChannelTenIl Element
+   * @param view
+   * @param opts
+   * @returns {ChannelTenIlElement}
+   * @constructor
+   * @class ChannelTenIlElement
+   * @extends PluginElement
+   */
+  var ChannelTenIlElement = function ChannelTenIlElement(view, opts) {
+
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
+
+    this.addCSS('channel.ten.il', {resource: '/widgets'});
+
+    return this;
+  };
+
+  return ChannelTenIlElement.extend('ChannelTenIlElement', {
+
     /**
-     * Define ChannelTenIl Element
-     * @param view
-     * @param opts
-     * @returns {ChannelTenIlElement}
-     * @constructor
-     * @class ChannelTenIlElement
-     * @extends PluginElement
+     * Render Embedded content
+     * @memberOf ChannelTenIlElement
+     * @param {string} embed
      */
-    var ChannelTenIlElement = function ChannelTenIlElement(view, opts) {
+    renderEmbeddedContent: function renderEmbeddedContent(embed) {
+      this.$.append(
+          this.renderObject(
+              $(embed)[0]
+          )
+      );
+    }
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
-
-        this.addCSS('channel.ten.il', {resource: '/widgets'});
-
-        return this;
-    };
-
-    return ChannelTenIlElement.extend('ChannelTenIlElement', {
-
-        /**
-         * Render Embedded content
-         * @memberOf ChannelTenIlElement
-         * @param {string} embed
-         */
-        renderEmbeddedContent: function renderEmbeddedContent(embed) {
-            this.$.append(
-                this.renderObject(
-                    $(embed)[0]
-                )
-            );
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 
 });

@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineLayoutPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @extends BasePermission
-     * @class LayoutPermission
-     * @constructor
-     */
-    var LayoutPermission = function LayoutPermission() {
+  /**
+   * Define Permissions
+   * @extends BasePermission
+   * @class LayoutPermission
+   * @constructor
+   */
+  var LayoutPermission = function LayoutPermission() {
 
-    };
+  };
 
-    return LayoutPermission.extend('LayoutPermission', {
-
-    }, BasePermission.prototype);
+  return LayoutPermission.extend('LayoutPermission', {},
+      BasePermission.prototype);
 });

@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineFlipPdfPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class FlipPdfPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var FlipPdfPermission = function FlipPdfPermission() {
+  /**
+   * Define Permissions
+   * @class FlipPdfPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var FlipPdfPermission = function FlipPdfPermission() {
 
-    };
+  };
 
-    return FlipPdfPermission.extend('FlipPdfPermission', {
-
-    }, BasePermission.prototype);
+  return FlipPdfPermission.extend('FlipPdfPermission', {},
+      BasePermission.prototype);
 });

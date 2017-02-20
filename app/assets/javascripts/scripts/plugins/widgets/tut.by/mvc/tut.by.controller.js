@@ -6,56 +6,40 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineTutByController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define TutBy controller
+   * @class TutByController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var TutByController = function TutByController() {
+  };
+
+  return TutByController.extend('TutByController', {
+
     /**
-     * Define TutBy controller
-     * @class TutByController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf TutByController
      */
-    var TutByController = function TutByController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
+      this.view.get$item().renderEmbeddedContent(
+          this.model.getPrefs('tutbyEmbedCode')
+      );
+    },
 
-    return TutByController.extend('TutByController', {
+    /**
+     * Add TutBy rule
+     * @memberOf TutByController
+     * @param {Event} e
+     */
+    addTutByRule: function addTutByRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-        /**
-         * Set embedded content
-         * @memberOf TutByController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
-            this.view.get$item().renderEmbeddedContent(
-                this.model.getPrefs('tutbyEmbedCode')
-            );
-        },
-
-        /**
-         * Add TutBy rule
-         * @memberOf TutByController
-         * @param e
-         */
-        addTutByRule: function addTutByRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target);
-
-            /**
-             * Get scope
-             * @type {TutBy|{name: string}}
-             */
-            var scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

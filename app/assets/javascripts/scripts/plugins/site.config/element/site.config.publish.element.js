@@ -3,39 +3,39 @@
  */
 
 define([
-    'plugins/plugin.element'
+  'plugins/plugin.element'
 ], function defineSiteConfigPublishElement(PluginElement) {
 
+  /**
+   * Define SiteConfigPublishElement
+   * @class SiteConfigPublishElement
+   * @constructor
+   * @param {SiteConfigView} view
+   * @param opts
+   * @extends PluginElement
+   * @extends Renderer
+   * @returns {SiteConfigPublishElement}
+   */
+  var SiteConfigPublishElement = function SiteConfigPublishElement(view, opts) {
+
+    this._config(view, opts, $('<div class="publish" />')).build({
+      $container: opts.$container
+    });
+
+    this.renderContent();
+
+    return this;
+  };
+
+  return SiteConfigPublishElement.extend('SiteConfigPublishElement', {
+
     /**
-     * Define SiteConfigPublishElement
-     * @class SiteConfigPublishElement
-     * @constructor
-     * @param {SiteConfigView} view
-     * @param opts
-     * @extends PluginElement
-     * @extends Renderer
-     * @returns {SiteConfigPublishElement}
+     * Render content
+     * @memberOf SiteConfigPublishElement
      */
-    var SiteConfigPublishElement = function SiteConfigPublishElement(view, opts) {
+    renderContent: function renderContent() {
+      // TODO
+    }
 
-        this._config(view, opts, $('<div class="publish" />')).build({
-            $container: opts.$container
-        });
-
-        this.renderContent();
-
-        return this;
-    };
-
-    return SiteConfigPublishElement.extend('SiteConfigPublishElement', {
-
-        /**
-         * Render content
-         * @memberOf SiteConfigPublishElement
-         */
-        renderContent: function renderContent() {
-            // TODO
-        }
-
-    }, PluginElement.prototype);
+  }, PluginElement.prototype);
 });

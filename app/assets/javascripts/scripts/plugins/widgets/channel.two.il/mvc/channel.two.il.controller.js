@@ -6,51 +6,40 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineChannelTwoIlController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define channeltwoil controller
+   * @class ChannelTwoIlController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var ChannelTwoIlController = function ChannelTwoIlController() {
+  };
+
+  return ChannelTwoIlController.extend('ChannelTwoIlController', {
+
     /**
-     * Define channeltwoil controller
-     * @class ChannelTwoIlController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf ChannelTwoIlController
      */
-    var ChannelTwoIlController = function ChannelTwoIlController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
+      this.view.elements.$channeltwoil.renderEmbeddedContent(
+          this.model.getPrefs('channeltwoilEmbedCode')
+      );
+    },
 
-    return ChannelTwoIlController.extend('ChannelTwoIlController', {
+    /**
+     * Add ChannelTwoIl rule
+     * @memberOf ChannelTwoIlController
+     * @param {Event} e
+     */
+    addChannelTwoIlRule: function addChannelTwoIlRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-        /**
-         * Set embedded content
-         * @memberOf ChannelTwoIlController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
-            this.view.elements.$channeltwoil.renderEmbeddedContent(
-                this.model.getPrefs('channeltwoilEmbedCode')
-            );
-        },
-
-        /**
-         * Add ChannelTwoIl rule
-         * @memberOf ChannelTwoIlController
-         * @param e
-         */
-        addChannelTwoIlRule: function addChannelTwoIlRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

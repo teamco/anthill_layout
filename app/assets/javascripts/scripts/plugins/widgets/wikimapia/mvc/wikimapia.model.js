@@ -6,44 +6,45 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineWikimapiaModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define Wikimapia model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class WikimapiaModel
+   * @constructor
+   */
+  var WikimapiaModel = function WikimapiaModel() {
+
     /**
-     * Define Wikimapia model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class WikimapiaModel
-     * @constructor
+     * Define preferences
+     * @property WikimapiaModel
+     * @type {{wikimapiaEmbedCode: {type: string, disabled: boolean, value:
+     *     string, visible: boolean}}}
      */
-    var WikimapiaModel = function WikimapiaModel() {
-
-        /**
-         * Define preferences
-         * @property WikimapiaModel
-         * @type {{wikimapiaEmbedCode: {type: string, disabled: boolean, value: string, visible: boolean}}}
-         */
-        this.preferences = {
-            wikimapiaEmbedCode: {
-                type: 'textarea',
-                disabled: false,
-                value: '<iframe src="http://wikimapia.org/#lat=32.081229&lon=34.814043&z=15&l=&ifr=1&m=b" width="390" height="390" frameborder="0"></iframe>',
-                visible: true
-            }
-        };
-
-        /**
-         * Define rules
-         * @property WikimapiaModel
-         * @type {{}}
-         */
-        this.rules = {};
+    this.preferences = {
+      wikimapiaEmbedCode: {
+        type: 'textarea',
+        disabled: false,
+        value: '<iframe src="http://wikimapia.org/#lat=32.081229&lon=34.814043&z=15&l=&ifr=1&m=b" width="390" height="390" frameborder="0"></iframe>',
+        visible: true
+      }
     };
 
-    return WikimapiaModel.extend(
-        'WikimapiaModel', {},
-        BaseModel.prototype,
-        WidgetContentModel.prototype
-    );
+    /**
+     * Define rules
+     * @property WikimapiaModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
+
+  return WikimapiaModel.extend(
+      'WikimapiaModel', {},
+      BaseModel.prototype,
+      WidgetContentModel.prototype
+  );
 });

@@ -7,20 +7,18 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineXkcdPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class XkcdPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var XkcdPermission = function XkcdPermission() {
+  /**
+   * Define Permissions
+   * @class XkcdPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var XkcdPermission = function XkcdPermission() {
 
-    };
+  };
 
-    return XkcdPermission.extend('XkcdPermission', {
-
-    }, BasePermission.prototype);
+  return XkcdPermission.extend('XkcdPermission', {}, BasePermission.prototype);
 });

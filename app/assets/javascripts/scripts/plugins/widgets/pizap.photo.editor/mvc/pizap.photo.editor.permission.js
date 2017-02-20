@@ -7,20 +7,20 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function definePizapPhotoEditorPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class PizapPhotoEditorPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var PizapPhotoEditorPermission = function PizapPhotoEditorPermission() {
-    };
+  /**
+   * Define Permissions
+   * @class PizapPhotoEditorPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var PizapPhotoEditorPermission = function PizapPhotoEditorPermission() {
+  };
 
-    return PizapPhotoEditorPermission.extend(
-        'PizapPhotoEditorPermission', {}, 
-        BasePermission.prototype
-    );
+  return PizapPhotoEditorPermission.extend(
+      'PizapPhotoEditorPermission', {},
+      BasePermission.prototype
+  );
 });

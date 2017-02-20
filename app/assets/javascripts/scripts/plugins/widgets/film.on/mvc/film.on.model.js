@@ -6,51 +6,52 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineFilmOnModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define FilmOn model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class FilmOnModel
+   * @constructor
+   */
+  var FilmOnModel = function FilmOnModel() {
+
     /**
-     * Define FilmOn model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class FilmOnModel
-     * @constructor
+     * Define preferences
+     * @property FilmOnModel
+     * @type {{filmonChannelId: {type: string, disabled: boolean, value:
+     *     undefined, visible: boolean}}}
      */
-    var FilmOnModel = function FilmOnModel() {
-
-        /**
-         * Define preferences
-         * @property FilmOnModel
-         * @type {{filmonChannelId: {type: string, disabled: boolean, value: undefined, visible: boolean}}}
-         */
-        this.preferences = {
-            filmonChannelId: {
-                type: 'text',
-                disabled: false,
-                value: undefined,
-                visible: true
-            }
-        };
-
-        /**
-         * Define rules
-         * @property FilmOnModel
-         * @type {{}}
-         */
-        this.rules = {};
+    this.preferences = {
+      filmonChannelId: {
+        type: 'text',
+        disabled: false,
+        value: undefined,
+        visible: true
+      }
     };
 
-    return FilmOnModel.extend('FilmOnModel', {
+    /**
+     * Define rules
+     * @property FilmOnModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        /**
-         * Set FilmOn Url
-         * @memberOf FilmOnModel
-         * @param {number} channel
-         */
-        setFilmonChannelId: function setFilmonChannelId(channel) {
-            this.setPrefs('filmonChannelId', channel);
-        }
+  return FilmOnModel.extend('FilmOnModel', {
 
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    /**
+     * Set FilmOn Url
+     * @memberOf FilmOnModel
+     * @param {number} channel
+     */
+    setFilmonChannelId: function setFilmonChannelId(channel) {
+      this.setPrefs('filmonChannelId', channel);
+    }
+
+  }, BaseModel.prototype, WidgetContentModel.prototype);
 });

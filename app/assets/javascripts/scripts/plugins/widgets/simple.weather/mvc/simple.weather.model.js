@@ -6,92 +6,92 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineSimpleWeatherModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define SimpleWeather model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class SimpleWeatherModel
+   * @constructor
+   */
+  var SimpleWeatherModel = function SimpleWeatherModel() {
+
     /**
-     * Define SimpleWeather model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class SimpleWeatherModel
-     * @constructor
-     */
-    var SimpleWeatherModel = function SimpleWeatherModel() {
-
-        /**
-         * Define preferences
-         * @memberOf SimpleWeatherModel
-         * @type {{
+     * Define preferences
+     * @memberOf SimpleWeatherModel
+     * @type {{
          * }}
-         */
-        this.preferences = {
-            simpleweatherUnit: {
-                type: 'combobox',
-                disabled: false,
-                list: [
-                    {
-                        type: 'text',
-                        value: 'Celsius'
-                    },
-                    {
-                        type: 'text',
-                        value: 'Fahrenheit'
-                    }
-                ],
-                value: 'Celsius',
-                visible: true
-            },
-            simpleweatherLatitude: {
-                type: 'text',
-                disabled: false,
-                value: undefined,
-                visible: true
-            },
-            simpleweatherLongitude: {
-                type: 'text',
-                disabled: false,
-                value: undefined,
-                visible: true
-            }
-        };
-
-        /**
-         * Define rules
-         * @memberOf SimpleWeatherModel
-         * @type {{}}
-         */
-        this.rules = {};
+     */
+    this.preferences = {
+      simpleweatherUnit: {
+        type: 'combobox',
+        disabled: false,
+        list: [
+          {
+            type: 'text',
+            value: 'Celsius'
+          },
+          {
+            type: 'text',
+            value: 'Fahrenheit'
+          }
+        ],
+        value: 'Celsius',
+        visible: true
+      },
+      simpleweatherLatitude: {
+        type: 'text',
+        disabled: false,
+        value: undefined,
+        visible: true
+      },
+      simpleweatherLongitude: {
+        type: 'text',
+        disabled: false,
+        value: undefined,
+        visible: true
+      }
     };
 
-    return SimpleWeatherModel.extend('SimpleWeatherModel', {
+    /**
+     * Define rules
+     * @memberOf SimpleWeatherModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        /**
-         * Set Simple weather Latitude
-         * @memberOf SimpleWeatherModel
-         * @param {number} latitude
-         */
-        setSimpleweatherLatitude: function setSimpleweatherLatitude(latitude) {
-            this.setPrefs('simpleweatherLatitude', latitude);
-        },
+  return SimpleWeatherModel.extend('SimpleWeatherModel', {
 
-        /**
-         * Set Simple weather Longitude
-         * @memberOf SimpleWeatherModel
-         * @param {number} longitude
-         */
-        setSimpleweatherLongitude: function setSimpleweatherLongitude(longitude) {
-            this.setPrefs('simpleweatherLongitude', longitude);
-        },
+    /**
+     * Set Simple weather Latitude
+     * @memberOf SimpleWeatherModel
+     * @param {number} latitude
+     */
+    setSimpleweatherLatitude: function setSimpleweatherLatitude(latitude) {
+      this.setPrefs('simpleweatherLatitude', latitude);
+    },
 
-        /**
-         * Set Simple weather unit
-         * @memberOf SimpleWeatherModel
-         * @param {string} unit
-         */
-        setSimpleweatherUnit: function setSimpleweatherUnit(unit) {
-            this.setPrefs('simpleweatherUnit', unit);
-        }
+    /**
+     * Set Simple weather Longitude
+     * @memberOf SimpleWeatherModel
+     * @param {number} longitude
+     */
+    setSimpleweatherLongitude: function setSimpleweatherLongitude(longitude) {
+      this.setPrefs('simpleweatherLongitude', longitude);
+    },
 
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    /**
+     * Set Simple weather unit
+     * @memberOf SimpleWeatherModel
+     * @param {string} unit
+     */
+    setSimpleweatherUnit: function setSimpleweatherUnit(unit) {
+      this.setPrefs('simpleweatherUnit', unit);
+    }
+
+  }, BaseModel.prototype, WidgetContentModel.prototype);
 });

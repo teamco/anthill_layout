@@ -7,20 +7,18 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineUbrPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class UbrPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var UbrPermission = function UbrPermission() {
+  /**
+   * Define Permissions
+   * @class UbrPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var UbrPermission = function UbrPermission() {
 
-    };
+  };
 
-    return UbrPermission.extend('UbrPermission', {
-
-    }, BasePermission.prototype);
+  return UbrPermission.extend('UbrPermission', {}, BasePermission.prototype);
 });

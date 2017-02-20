@@ -7,101 +7,102 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/fastpic/element/fastpic.element',
-    'plugins/widgets/fastpic/element/fastpic.preferences.element',
-    'plugins/widgets/fastpic/element/fastpic.rules.element'
-], function defineFastpicView(BaseView, Header, Footer, FastpicElement, FastpicPreferencesElement, FastpicRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/fastpic/element/fastpic.element',
+  'plugins/widgets/fastpic/element/fastpic.preferences.element',
+  'plugins/widgets/fastpic/element/fastpic.rules.element'
+], function defineFastpicView(BaseView, Header, Footer, FastpicElement,
+    FastpicPreferencesElement, FastpicRulesElement) {
+
+  /**
+   * Define view
+   * @class FastpicView
+   * @extends BaseView
+   * @constructor
+   */
+  var FastpicView = function FastpicView() {
+  };
+
+  return FastpicView.extend('FastpicView', {
 
     /**
-     * Define view
-     * @class FastpicView
-     * @extends BaseView
-     * @constructor
+     * Render Fastpic element
+     * @memberOf FastpicView
      */
-    var FastpicView = function FastpicView() {
-    };
+    renderFastpic: function renderFastpic() {
 
-    return FastpicView.extend('FastpicView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render Fastpic element
-         * @memberOf FastpicView
-         */
-        renderFastpic: function renderFastpic() {
+      /**
+       * Define $fastpic
+       * @type {FastpicElement}
+       */
+      this.elements.$fastpic = new FastpicElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $fastpic
-             * @type {FastpicElement}
-             */
-            this.elements.$fastpic = new FastpicElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf FastpicView
+     * @returns {FastpicPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define Fastpic Preferences Element
+       * @type {FastpicPreferencesElement}
+       */
+      this.elements.$preferences = new FastpicPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf FastpicView
-         * @returns {FastpicPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define Fastpic Preferences Element
-             * @type {FastpicPreferencesElement}
-             */
-            this.elements.$preferences = new FastpicPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf FastpicView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {FastpicRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
-
-        /**
-         * Render Rules
-         * @memberOf FastpicView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {FastpicRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define Fastpic Rules Element
-             * @type {FastpicRulesElement}
-             */
-            this.elements.$rules = new FastpicRulesElement(this, {
-                data: this.controller.getRules(),
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render Fastpic
-         * @memberOf FastpicView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderFastpic.bind(this)
-            );
+      /**
+       * Define Fastpic Rules Element
+       * @type {FastpicRulesElement}
+       */
+      this.elements.$rules = new FastpicRulesElement(this, {
+        data: this.controller.getRules(),
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype);
+      return this.get$rules();
+    },
+
+    /**
+     * Render Fastpic
+     * @memberOf FastpicView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderFastpic.bind(this)
+      );
+    }
+
+  }, BaseView.prototype);
 });

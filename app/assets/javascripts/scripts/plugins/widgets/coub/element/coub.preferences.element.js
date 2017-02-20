@@ -6,35 +6,33 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
 ], function defineCoubPreferencesElement(PluginElement, WidgetPreferences) {
 
-    /**
-     * Define Coub Preferences Element
-     * @param view
-     * @param opts
-     * @returns {CoubPreferencesElement}
-     * @constructor
-     * @class CoubPreferencesElement
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     */
-    var CoubPreferencesElement = function CoubPreferencesElement(view, opts) {
+  /**
+   * Define Coub Preferences Element
+   * @param view
+   * @param opts
+   * @returns {CoubPreferencesElement}
+   * @constructor
+   * @class CoubPreferencesElement
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   */
+  var CoubPreferencesElement = function CoubPreferencesElement(view, opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return CoubPreferencesElement.extend('CoubPreferencesElement', {
-
-
-    }, PluginElement.prototype, WidgetPreferences.prototype);
+  return CoubPreferencesElement.extend('CoubPreferencesElement', {},
+      PluginElement.prototype, WidgetPreferences.prototype);
 
 });

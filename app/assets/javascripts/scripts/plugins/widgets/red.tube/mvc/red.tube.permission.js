@@ -7,20 +7,19 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineRedTubePermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class RedTubePermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var RedTubePermission = function RedTubePermission() {
+  /**
+   * Define Permissions
+   * @class RedTubePermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var RedTubePermission = function RedTubePermission() {
 
-    };
+  };
 
-    return RedTubePermission.extend('RedTubePermission', {
-
-    }, BasePermission.prototype);
+  return RedTubePermission.extend('RedTubePermission', {},
+      BasePermission.prototype);
 });

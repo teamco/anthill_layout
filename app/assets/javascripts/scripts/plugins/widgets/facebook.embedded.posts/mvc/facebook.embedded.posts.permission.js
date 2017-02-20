@@ -7,20 +7,20 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineFacebookEmbeddedPostsPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class FacebookEmbeddedPostsPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var FacebookEmbeddedPostsPermission = function FacebookEmbeddedPostsPermission() {
-    };
+  /**
+   * Define Permissions
+   * @class FacebookEmbeddedPostsPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var FacebookEmbeddedPostsPermission = function FacebookEmbeddedPostsPermission() {
+  };
 
-    return FacebookEmbeddedPostsPermission.extend(
-        'FacebookEmbeddedPostsPermission', {}, 
-        BasePermission.prototype
-    );
+  return FacebookEmbeddedPostsPermission.extend(
+      'FacebookEmbeddedPostsPermission', {},
+      BasePermission.prototype
+  );
 });

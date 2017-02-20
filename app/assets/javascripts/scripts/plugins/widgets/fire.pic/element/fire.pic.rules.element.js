@@ -6,38 +6,37 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/rules/widget.base.rules'
+  'plugins/plugin.element',
+  'plugins/rules/widget.base.rules'
 ], function defineFirePicRulesElement(PluginElement, BaseWidgetRules) {
 
-    /**
-     * Define FirePic Rules Element
-     * @param view
-     * @param opts
-     * @returns {FirePicRulesElement}
-     * @constructor
-     * @class FirePicRulesElement
-     * @extends PluginElement
-     * @extends BaseWidgetRules
-     */
-    var FirePicRulesElement = function FirePicRulesElement(view, opts) {
+  /**
+   * Define FirePic Rules Element
+   * @param view
+   * @param opts
+   * @returns {FirePicRulesElement}
+   * @constructor
+   * @class FirePicRulesElement
+   * @extends PluginElement
+   * @extends BaseWidgetRules
+   */
+  var FirePicRulesElement = function FirePicRulesElement(view, opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBaseRulesData(
-            opts.data,
-            opts.rules.widget,
-            opts.rules.content
-        );
+    this.renderBaseRulesData(
+        opts.data,
+        opts.rules.widget,
+        opts.rules.content
+    );
 
-        return this;
-    };
+    return this;
+  };
 
-    return FirePicRulesElement.extend('FirePicRulesElement', {
-
-    }, PluginElement.prototype, BaseWidgetRules.prototype);
+  return FirePicRulesElement.extend('FirePicRulesElement', {},
+      PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

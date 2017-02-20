@@ -6,51 +6,40 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineIsnareController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define isnare controller
+   * @class IsnareController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var IsnareController = function IsnareController() {
+  };
+
+  return IsnareController.extend('IsnareController', {
+
     /**
-     * Define isnare controller
-     * @class IsnareController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf IsnareController
      */
-    var IsnareController = function IsnareController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
+      this.view.elements.$isnare.renderEmbeddedContent(
+          this.model.getPrefs('isnareEmbedCode')
+      );
+    },
 
-    return IsnareController.extend('IsnareController', {
+    /**
+     * Add Isnare rule
+     * @memberOf IsnareController
+     * @param {Event} e
+     */
+    addIsnareRule: function addIsnareRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-        /**
-         * Set embedded content
-         * @memberOf IsnareController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
-            this.view.elements.$isnare.renderEmbeddedContent(
-                this.model.getPrefs('isnareEmbedCode')
-            );
-        },
-
-        /**
-         * Add Isnare rule
-         * @memberOf IsnareController
-         * @param e
-         */
-        addIsnareRule: function addIsnareRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

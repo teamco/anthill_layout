@@ -6,53 +6,54 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineFiveChannelUaModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define FiveChannelUa model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class FiveChannelUaModel
+   * @constructor
+   */
+  var FiveChannelUaModel = function FiveChannelUaModel() {
+
     /**
-     * Define FiveChannelUa model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class FiveChannelUaModel
-     * @constructor
+     * Define preferences
+     * @property FiveChannelUaModel
+     * @type {{
+     *      fivechanneluaUrl: {type: string, disabled: boolean, value:
+     *     undefined, visible: boolean}
+     * }}
      */
-    var FiveChannelUaModel = function FiveChannelUaModel() {
-
-        /**
-         * Define preferences
-         * @property FiveChannelUaModel
-         * @type {{
-         *      fivechanneluaUrl: {type: string, disabled: boolean, value: undefined, visible: boolean}
-         * }}
-         */
-        this.preferences = {
-            fivechanneluaUrl: {
-                type: 'text',
-                value: 'https://www.youtube.com/watch?v=nCqonUIeymU',
-                disabled: true,
-                visible: true
-            }
-        };
-
-        /**
-         * Define rules
-         * @property FiveChannelUaModel
-         * @type {{}}
-         */
-        this.rules = {};
+    this.preferences = {
+      fivechanneluaUrl: {
+        type: 'text',
+        value: 'https://www.youtube.com/watch?v=nCqonUIeymU',
+        disabled: true,
+        visible: true
+      }
     };
 
-    return FiveChannelUaModel.extend('FiveChannelUaModel', {
+    /**
+     * Define rules
+     * @property FiveChannelUaModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        /**
-         * Set FiveChannelUa Url
-         * @memberOf FiveChannelUaModel
-         * @param {string} url
-         */
-        setFivechanneluaUrl: function setFivechanneluaUrl(url) {
-            this.setPrefs('fivechanneluaUrl', url);
-        }
+  return FiveChannelUaModel.extend('FiveChannelUaModel', {
 
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    /**
+     * Set FiveChannelUa Url
+     * @memberOf FiveChannelUaModel
+     * @param {string} url
+     */
+    setFivechanneluaUrl: function setFivechanneluaUrl(url) {
+      this.setPrefs('fivechanneluaUrl', url);
+    }
+
+  }, BaseModel.prototype, WidgetContentModel.prototype);
 });

@@ -7,20 +7,20 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineVideopressPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class VideopressPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var VideopressPermission = function VideopressPermission() {
-    };
+  /**
+   * Define Permissions
+   * @class VideopressPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var VideopressPermission = function VideopressPermission() {
+  };
 
-    return VideopressPermission.extend(
-        'VideopressPermission', {}, 
-        BasePermission.prototype
-    );
+  return VideopressPermission.extend(
+      'VideopressPermission', {},
+      BasePermission.prototype
+  );
 });

@@ -7,102 +7,103 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/pet.passport/element/pet.passport.element',
-    'plugins/widgets/pet.passport/element/pet.passport.preferences.element',
-    'plugins/widgets/pet.passport/element/pet.passport.rules.element'
-], function definePetPassportView(BaseView, Header, Footer, PetPassportElement, PetPassportPreferencesElement, PetPassportRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/pet.passport/element/pet.passport.element',
+  'plugins/widgets/pet.passport/element/pet.passport.preferences.element',
+  'plugins/widgets/pet.passport/element/pet.passport.rules.element'
+], function definePetPassportView(BaseView, Header, Footer, PetPassportElement,
+    PetPassportPreferencesElement, PetPassportRulesElement) {
+
+  /**
+   * Define view
+   * @class PetPassportView
+   * @extends BaseView
+   * @constructor
+   */
+  var PetPassportView = function PetPassportView() {
+  };
+
+  return PetPassportView.extend('PetPassportView', {
 
     /**
-     * Define view
-     * @class PetPassportView
-     * @extends BaseView
-     * @constructor
+     * Render pet.passport element
+     * @memberOf PetPassportView
      */
-    var PetPassportView = function PetPassportView() {
-    };
+    renderPetPassport: function renderPetPassport() {
 
-    return PetPassportView.extend('PetPassportView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render pet.passport element
-         * @memberOf PetPassportView
-         */
-        renderPetPassport: function renderPetPassport() {
+      /**
+       * Define $pet.passport
+       * @type {PetPassportElement}
+       */
+      this.elements.$petpassport = new PetPassportElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $pet.passport
-             * @type {PetPassportElement}
-             */
-            this.elements.$petpassport = new PetPassportElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf PetPassportView
+     * @returns {PetPassportPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define PetPassport Preferences Element
+       * @type {PetPassportPreferencesElement}
+       */
+      this.elements.$preferences = new PetPassportPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf PetPassportView
-         * @returns {PetPassportPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define PetPassport Preferences Element
-             * @type {PetPassportPreferencesElement}
-             */
-            this.elements.$preferences = new PetPassportPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf PetPassportView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {PetPassportRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
-
-        /**
-         * Render Rules
-         * @memberOf PetPassportView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {PetPassportRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define PetPassport Rules Element
-             * @type {PetPassportRulesElement}
-             */
-            this.elements.$rules = new PetPassportRulesElement(this, {
-                data: this.controller.getRules(),
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render pet.passport
-         * @memberOf PetPassportView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderPetPassport.bind(this)
-            );
+      /**
+       * Define PetPassport Rules Element
+       * @type {PetPassportRulesElement}
+       */
+      this.elements.$rules = new PetPassportRulesElement(this, {
+        data: this.controller.getRules(),
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render pet.passport
+     * @memberOf PetPassportView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderPetPassport.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

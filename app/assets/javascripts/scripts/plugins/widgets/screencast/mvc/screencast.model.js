@@ -6,53 +6,54 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model',
-    'plugins/widgets/widget.content.model'
+  'modules/Model',
+  'plugins/widgets/widget.content.model'
 ], function defineScreencastModel(BaseModel, WidgetContentModel) {
 
+  /**
+   * Define Screencast model
+   * @extends BaseModel
+   * @extends WidgetContentModel
+   * @class ScreencastModel
+   * @constructor
+   */
+  var ScreencastModel = function ScreencastModel() {
+
     /**
-     * Define Screencast model
-     * @extends BaseModel
-     * @extends WidgetContentModel
-     * @class ScreencastModel
-     * @constructor
-     */
-    var ScreencastModel = function ScreencastModel() {
-
-        /**
-         * Define preferences
-         * @memberOf ScreencastModel
-         * @type {{
-         *      screencastEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
+     * Define preferences
+     * @memberOf ScreencastModel
+     * @type {{
+         *      screencastEmbedCode: {type: string, disabled: boolean, value:
+         *     undefined, visible: boolean}
          * }}
-         */
-        this.preferences = {
-            screencastEmbedCode: {
-                type: 'textarea',
-                disabled: false,
-                value: undefined,
-                visible: true
-            }
-        };
-
-        /**
-         * Define rules
-         * @memberOf ScreencastModel
-         * @type {{}}
-         */
-        this.rules = {};
+     */
+    this.preferences = {
+      screencastEmbedCode: {
+        type: 'textarea',
+        disabled: false,
+        value: undefined,
+        visible: true
+      }
     };
 
-    return ScreencastModel.extend('ScreencastModel', {
+    /**
+     * Define rules
+     * @memberOf ScreencastModel
+     * @type {{}}
+     */
+    this.rules = {};
+  };
 
-        /**
-         * Set Screencast embed code
-         * @memberOf ScreencastModel
-         * @param {string} embed
-         */
-        setScreencastEmbedCode: function setScreencastEmbedCode(embed) {
-            this.setPrefs('screencastEmbedCode', embed);
-        }
+  return ScreencastModel.extend('ScreencastModel', {
 
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+    /**
+     * Set Screencast embed code
+     * @memberOf ScreencastModel
+     * @param {string} embed
+     */
+    setScreencastEmbedCode: function setScreencastEmbedCode(embed) {
+      this.setPrefs('screencastEmbedCode', embed);
+    }
+
+  }, BaseModel.prototype, WidgetContentModel.prototype);
 });

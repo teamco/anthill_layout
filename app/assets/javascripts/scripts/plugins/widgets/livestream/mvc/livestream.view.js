@@ -7,108 +7,109 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/livestream/element/livestream.element',
-    'plugins/widgets/livestream/element/livestream.preferences.element',
-    'plugins/widgets/livestream/element/livestream.rules.element'
-], function defineLivestreamView(BaseView, Header, Footer, LivestreamElement, LivestreamPreferencesElement, LivestreamRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/livestream/element/livestream.element',
+  'plugins/widgets/livestream/element/livestream.preferences.element',
+  'plugins/widgets/livestream/element/livestream.rules.element'
+], function defineLivestreamView(BaseView, Header, Footer, LivestreamElement,
+    LivestreamPreferencesElement, LivestreamRulesElement) {
+
+  /**
+   * Define view
+   * @class LivestreamView
+   * @extends BaseView
+   * @constructor
+   */
+  var LivestreamView = function LivestreamView() {
+  };
+
+  return LivestreamView.extend('LivestreamView', {
 
     /**
-     * Define view
-     * @class LivestreamView
-     * @extends BaseView
-     * @constructor
+     * Render livestream element
+     * @memberOf LivestreamView
      */
-    var LivestreamView = function LivestreamView() {
-    };
+    renderLivestream: function renderLivestream() {
 
-    return LivestreamView.extend('LivestreamView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render livestream element
-         * @memberOf LivestreamView
-         */
-        renderLivestream: function renderLivestream() {
+      /**
+       * Define $livestream
+       * @type {LivestreamElement}
+       */
+      this.elements.$livestream = new LivestreamElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $livestream
-             * @type {LivestreamElement}
-             */
-            this.elements.$livestream = new LivestreamElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf LivestreamView
+     * @returns {LivestreamPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define Livestream Preferences Element
+       * @type {LivestreamPreferencesElement}
+       */
+      this.elements.$preferences = new LivestreamPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf LivestreamView
-         * @returns {LivestreamPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define Livestream Preferences Element
-             * @type {LivestreamPreferencesElement}
-             */
-            this.elements.$preferences = new LivestreamPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf LivestreamView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {LivestreamRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
+      /**
+       * Define data
+       * @type {*|{}}
+       */
+      var data = this.controller.getRules();
 
-        /**
-         * Render Rules
-         * @memberOf LivestreamView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {LivestreamRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define data
-             * @type {*|{}}
-             */
-            var data = this.controller.getRules();
-
-            /**
-             * Define Livestream Rules Element
-             * @type {LivestreamRulesElement}
-             */
-            this.elements.$rules = new LivestreamRulesElement(this, {
-                data: data,
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render livestream
-         * @memberOf LivestreamView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderLivestream.bind(this)
-            );
+      /**
+       * Define Livestream Rules Element
+       * @type {LivestreamRulesElement}
+       */
+      this.elements.$rules = new LivestreamRulesElement(this, {
+        data: data,
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render livestream
+     * @memberOf LivestreamView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderLivestream.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

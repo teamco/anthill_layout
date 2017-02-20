@@ -6,38 +6,37 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/rules/widget.base.rules'
+  'plugins/plugin.element',
+  'plugins/rules/widget.base.rules'
 ], function defineLifestreamRulesElement(PluginElement, BaseWidgetRules) {
 
-    /**
-     * Define Lifestream Rules Element
-     * @param view
-     * @param opts
-     * @returns {LifestreamRulesElement}
-     * @constructor
-     * @class LifestreamRulesElement
-     * @extends PluginElement
-     * @extends BaseWidgetRules
-     */
-    var LifestreamRulesElement = function LifestreamRulesElement(view, opts) {
+  /**
+   * Define Lifestream Rules Element
+   * @param view
+   * @param opts
+   * @returns {LifestreamRulesElement}
+   * @constructor
+   * @class LifestreamRulesElement
+   * @extends PluginElement
+   * @extends BaseWidgetRules
+   */
+  var LifestreamRulesElement = function LifestreamRulesElement(view, opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBaseRulesData(
-            opts.data,
-            opts.rules.widget,
-            opts.rules.content
-        );
+    this.renderBaseRulesData(
+        opts.data,
+        opts.rules.widget,
+        opts.rules.content
+    );
 
-        return this;
-    };
+    return this;
+  };
 
-    return LifestreamRulesElement.extend('LifestreamRulesElement', {
-
-    }, PluginElement.prototype, BaseWidgetRules.prototype);
+  return LifestreamRulesElement.extend('LifestreamRulesElement', {},
+      PluginElement.prototype, BaseWidgetRules.prototype);
 
 });

@@ -7,108 +7,109 @@
  */
 
 define([
-    'modules/View',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/widgets/a.one.hip.hop/element/a.one.hip.hop.element',
-    'plugins/widgets/a.one.hip.hop/element/a.one.hip.hop.preferences.element',
-    'plugins/widgets/a.one.hip.hop/element/a.one.hip.hop.rules.element'
-], function defineAOneHipHopView(BaseView, Header, Footer, AOneHipHopElement, AOneHipHopPreferencesElement, AOneHipHopRulesElement) {
+  'modules/View',
+  'element/header.element',
+  'element/footer.element',
+  'plugins/widgets/a.one.hip.hop/element/a.one.hip.hop.element',
+  'plugins/widgets/a.one.hip.hop/element/a.one.hip.hop.preferences.element',
+  'plugins/widgets/a.one.hip.hop/element/a.one.hip.hop.rules.element'
+], function defineAOneHipHopView(BaseView, Header, Footer, AOneHipHopElement,
+    AOneHipHopPreferencesElement, AOneHipHopRulesElement) {
+
+  /**
+   * Define view
+   * @class AOneHipHopView
+   * @extends BaseView
+   * @constructor
+   */
+  var AOneHipHopView = function AOneHipHopView() {
+  };
+
+  return AOneHipHopView.extend('AOneHipHopView', {
 
     /**
-     * Define view
-     * @class AOneHipHopView
-     * @extends BaseView
-     * @constructor
+     * Render aonehiphop element
+     * @memberOf AOneHipHopView
      */
-    var AOneHipHopView = function AOneHipHopView() {
-    };
+    renderAOneHipHop: function renderAOneHipHop() {
 
-    return AOneHipHopView.extend('AOneHipHopView', {
+      this.header(Header, this.get$container());
 
-        /**
-         * Render aonehiphop element
-         * @memberOf AOneHipHopView
-         */
-        renderAOneHipHop: function renderAOneHipHop() {
+      /**
+       * Define $aonehiphop
+       * @type {AOneHipHopElement}
+       */
+      this.elements.$aonehiphop = new AOneHipHopElement(this, {
+        $container: this.get$container().$
+      });
 
-            this.header(Header, this.get$container());
+      this.footer(Footer, this.get$container());
 
-            /**
-             * Define $aonehiphop
-             * @type {AOneHipHopElement}
-             */
-            this.elements.$aonehiphop = new AOneHipHopElement(this, {
-                $container: this.get$container().$
-            });
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+      );
+    },
 
-            this.footer(Footer, this.get$container());
+    /**
+     * Render Prefs
+     * @memberOf AOneHipHopView
+     * @returns {AOneHipHopPreferencesElement}
+     */
+    renderPreferences: function renderPreferences() {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.analyzeEmbeddedContent
-            );
-        },
+      /**
+       * Define AOneHipHop Preferences Element
+       * @type {AOneHipHopPreferencesElement}
+       */
+      this.elements.$preferences = new AOneHipHopPreferencesElement(this, {
+        data: this.controller.getPreferences()
+      });
 
-        /**
-         * Render Prefs
-         * @memberOf AOneHipHopView
-         * @returns {AOneHipHopPreferencesElement}
-         */
-        renderPreferences: function renderPreferences() {
+      return this.get$preferences();
+    },
 
-            /**
-             * Define AOneHipHop Preferences Element
-             * @type {AOneHipHopPreferencesElement}
-             */
-            this.elements.$preferences = new AOneHipHopPreferencesElement(this, {
-                data: this.controller.getPreferences()
-            });
+    /**
+     * Render Rules
+     * @memberOf AOneHipHopView
+     * @param widgetRules
+     * @param contentRules
+     * @returns {AOneHipHopRulesElement}
+     */
+    renderRules: function renderRules(widgetRules, contentRules) {
 
-            return this.get$preferences();
-        },
+      /**
+       * Define data
+       * @type {*|{}}
+       */
+      var data = this.controller.getRules();
 
-        /**
-         * Render Rules
-         * @memberOf AOneHipHopView
-         * @param widgetRules
-         * @param contentRules
-         * @returns {AOneHipHopRulesElement}
-         */
-        renderRules: function renderRules(widgetRules, contentRules) {
-
-            /**
-             * Define data
-             * @type {*|{}}
-             */
-            var data = this.controller.getRules();
-
-            /**
-             * Define AOneHipHop Rules Element
-             * @type {AOneHipHopRulesElement}
-             */
-            this.elements.$rules = new AOneHipHopRulesElement(this, {
-                data: data,
-                rules: {
-                    widget: widgetRules,
-                    content: contentRules
-                }
-            });
-
-            return this.get$rules();
-        },
-
-        /**
-         * Render aonehiphop
-         * @memberOf AOneHipHopView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderAOneHipHop.bind(this)
-            );
+      /**
+       * Define AOneHipHop Rules Element
+       * @type {AOneHipHopRulesElement}
+       */
+      this.elements.$rules = new AOneHipHopRulesElement(this, {
+        data: data,
+        rules: {
+          widget: widgetRules,
+          content: contentRules
         }
+      });
 
-    }, BaseView.prototype)
+      return this.get$rules();
+    },
+
+    /**
+     * Render aonehiphop
+     * @memberOf AOneHipHopView
+     */
+    render: function render() {
+
+      this.scope.observer.publish(
+          this.scope.eventmanager.eventList.successRendered,
+          this.renderAOneHipHop.bind(this)
+      );
+    }
+
+  }, BaseView.prototype)
 
 });

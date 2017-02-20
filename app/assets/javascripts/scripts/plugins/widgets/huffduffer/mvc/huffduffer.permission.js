@@ -7,20 +7,20 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineHuffdufferPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class HuffdufferPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var HuffdufferPermission = function HuffdufferPermission() {
-    };
+  /**
+   * Define Permissions
+   * @class HuffdufferPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var HuffdufferPermission = function HuffdufferPermission() {
+  };
 
-    return HuffdufferPermission.extend(
-        'HuffdufferPermission', {}, 
-        BasePermission.prototype
-    );
+  return HuffdufferPermission.extend(
+      'HuffdufferPermission', {},
+      BasePermission.prototype
+  );
 });

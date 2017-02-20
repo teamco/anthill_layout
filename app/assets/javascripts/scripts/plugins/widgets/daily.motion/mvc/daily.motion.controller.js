@@ -6,87 +6,76 @@
  */
 
 define([
-    'plugins/plugin.controller',
-    'plugins/widgets/widget.content.controller'
+  'plugins/plugin.controller',
+  'plugins/widgets/widget.content.controller'
 ], function defineDailyMotionController(PluginBase, WidgetContentController) {
 
+  /**
+   * Define dailymotion controller
+   * @class DailyMotionController
+   * @extends PluginController
+   * @extends WidgetContentController
+   * @constructor
+   */
+  var DailyMotionController = function DailyMotionController() {
+  };
+
+  return DailyMotionController.extend('DailyMotionController', {
+
     /**
-     * Define dailymotion controller
-     * @class DailyMotionController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * Set embedded content
+     * @memberOf DailyMotionController
      */
-    var DailyMotionController = function DailyMotionController() {
-    };
+    setEmbeddedContent: function setEmbeddedContent() {
 
-    return DailyMotionController.extend('DailyMotionController', {
+      /**
+       * Get url
+       * @type {string|*}
+       */
+      var url = this.model.getPrefs('dailymotionUrl'),
+          embed = this.controller.getEmbedCode(url);
 
-        /**
-         * Set embedded content
-         * @memberOf DailyMotionController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
+      if (embed) {
+        this.view.elements.$dailymotion.renderEmbeddedContent(embed);
+      }
+    },
 
-            /**
-             * Get url
-             * @type {string|*}
-             */
-            var url = this.model.getPrefs('dailymotionUrl'),
-                embed = this.controller.getEmbedCode(url);
+    /**
+     * Validate dailymotion
+     * @memberOf DailyMotionController
+     * @param {string} url
+     * @return {string|boolean}
+     */
+    getEmbedCode: function getEmbedCode(url) {
 
-            if (embed) {
-                this.view.elements.$dailymotion.renderEmbeddedContent(embed);
-            }
-        },
+      if (!url) {
+        this.scope.logger.debug('Initial state');
+        return false;
+      }
 
-        /**
-         * Validate dailymotion
-         * @memberOf DailyMotionController
-         * @param {string} url
-         * @return {string|boolean}
-         */
-        getEmbedCode: function getEmbedCode(url) {
+      // Convert to string
+      url += '';
 
-            if (!url) {
-                this.scope.logger.debug('Initial state');
-                return false;
-            }
+      if (url.match(/iframe/)) {
+        return $(url)[0].src;
+      }
 
-            // Convert to string
-            url += '';
+      var mask = this.model.getConfig('mask'),
+          regex = url.match(
+              this.model.getConfig('regex')
+          );
 
-            if (url.match(/iframe/)) {
-                return $(url)[0].src;
-            }
+      return mask.replace(/\{id}/g, regex[1]);
+    },
 
-            var mask = this.model.getConfig('mask'),
-                regex = url.match(
-                    this.model.getConfig('regex')
-                );
+    /**
+     * Add DailyMotion rule
+     * @memberOf DailyMotionController
+     * @param {Event} e
+     */
+    addDailyMotionRule: function addDailyMotionRule(e) {
+      this.addWidgetRule(e, this.scope.name);
+    }
 
-            return mask.replace(/\{id}/g, regex[1]);
-        },
-
-        /**
-         * Add DailyMotion rule
-         * @memberOf DailyMotionController
-         * @param e
-         */
-        addDailyMotionRule: function addDailyMotionRule(e) {
-
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.name]
-            );
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
+  }, PluginBase.prototype, WidgetContentController.prototype);
 });

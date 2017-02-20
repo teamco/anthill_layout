@@ -7,20 +7,20 @@
  */
 
 define([
-    'modules/Permission'
+  'modules/Permission'
 ], function defineVideochartNetPermission(BasePermission) {
 
-    /**
-     * Define Permissions
-     * @class VideochartNetPermission
-     * @constructor
-     * @extends BasePermission
-     */
-    var VideochartNetPermission = function VideochartNetPermission() {
-    };
+  /**
+   * Define Permissions
+   * @class VideochartNetPermission
+   * @constructor
+   * @extends BasePermission
+   */
+  var VideochartNetPermission = function VideochartNetPermission() {
+  };
 
-    return VideochartNetPermission.extend(
-        'VideochartNetPermission', {},
-        BasePermission.prototype
-    );
+  return VideochartNetPermission.extend(
+      'VideochartNetPermission', {},
+      BasePermission.prototype
+  );
 });

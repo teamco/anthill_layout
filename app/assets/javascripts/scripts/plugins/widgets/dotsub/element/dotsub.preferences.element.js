@@ -6,35 +6,35 @@
  */
 
 define([
-    'plugins/plugin.element',
-    'plugins/preferences/widget.preferences'
+  'plugins/plugin.element',
+  'plugins/preferences/widget.preferences'
 ], function defineDotsubPreferencesElement(PluginElement, WidgetPreferences) {
 
-    /**
-     * Define Dotsub Preferences Element
-     * @constructor
-     * @class DotsubPreferencesElement
-     * @param {DotsubView} view
-     * @param opts
-     * @extends PluginElement
-     * @extends WidgetPreferences
-     * @returns {DotsubPreferencesElement}
-     */
-    var DotsubPreferencesElement = function DotsubPreferencesElement(view, opts) {
+  /**
+   * Define Dotsub Preferences Element
+   * @constructor
+   * @class DotsubPreferencesElement
+   * @param {DotsubView} view
+   * @param opts
+   * @extends PluginElement
+   * @extends WidgetPreferences
+   * @returns {DotsubPreferencesElement}
+   */
+  var DotsubPreferencesElement = function DotsubPreferencesElement(view, opts) {
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: true
-        });
+    this._config(view, opts, $('<div />')).build({
+      $container: opts.$container,
+      destroy: true
+    });
 
-        this.renderBasePrefsData(opts.data);
+    this.renderBasePrefsData(opts.data);
 
-        return this;
-    };
+    return this;
+  };
 
-    return DotsubPreferencesElement.extend(
-        'DotsubPreferencesElement', {}, 
-        PluginElement.prototype, 
-        WidgetPreferences.prototype
-    );
+  return DotsubPreferencesElement.extend(
+      'DotsubPreferencesElement', {},
+      PluginElement.prototype,
+      WidgetPreferences.prototype
+  );
 });

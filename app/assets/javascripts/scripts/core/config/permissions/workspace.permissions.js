@@ -7,21 +7,21 @@
 
 define(['config/workspace'], function defineWorkspacePermissions(Workspace) {
 
-    /**
-     * Define Workspace Local permission
-     * @type {{
+  /**
+   * Define Workspace Local permission
+   * @type {{
      *      development: {},
      *      authorize: {},
      *      consumption: {},
      *      test: {}
      * }}
-     */
-    Workspace.prototype.localPermissions = {
-        development: {},
-        authorize: {},
-        consumption: {},
-        test: {}
-    };
+   */
+  Workspace.prototype.localPermissions = {
+    development: {},
+    authorize: {},
+    consumption: {},
+    test: {}
+  };
 
-    return Workspace;
+  return Workspace;
 });

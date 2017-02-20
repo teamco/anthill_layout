@@ -7,22 +7,21 @@
  */
 
 define([
-    'plugins/widgets/widget.content.event.manager'
+  'plugins/widgets/widget.content.event.manager'
 ], function defineYoutubeEventManager(WidgetContentEventManager) {
 
-    /**
-     * Define Youtube event manager
-     * @class YoutubeEventManager
-     * @constructor
-     * @extends BaseEvent
-     * @extends WidgetContentEventManager
-     */
-    var YoutubeEventManager = function YoutubeEventManager() {
+  /**
+   * Define Youtube event manager
+   * @class YoutubeEventManager
+   * @constructor
+   * @extends BaseEvent
+   * @extends WidgetContentEventManager
+   */
+  var YoutubeEventManager = function YoutubeEventManager() {
 
-        this.updateEventList({});
-    };
+    this.updateEventList({});
+  };
 
-    return YoutubeEventManager.extend('YoutubeEventManager', {
-
-    }, WidgetContentEventManager.prototype);
+  return YoutubeEventManager.extend('YoutubeEventManager', {},
+      WidgetContentEventManager.prototype);
 });

@@ -4,71 +4,71 @@
 
 define(function defineSiteConfigPublish() {
 
+  /**
+   * Define SiteConfig Publish
+   * @class SiteConfigPublish
+   * @extends BaseController
+   * @constructor
+   */
+  var SiteConfigPublish = function SiteConfigPublish() {
+  };
+
+  return SiteConfigPublish.extend('SiteConfigPublish', {
+
     /**
-     * Define SiteConfig Publish
-     * @class SiteConfigPublish
-     * @extends BaseController
-     * @constructor
+     * Define publish storage
+     * @memberOf SiteConfigPublish
      */
-    var SiteConfigPublish = function SiteConfigPublish() {
-    };
+    publishStorage: function publishStorage() {
+      this.view.publishConfirmation();
+    },
 
-    return SiteConfigPublish.extend('SiteConfigPublish', {
+    /**
+     * Define approve publish storage
+     * @memberOf SiteConfigPublish
+     */
+    approvePublish: function approvePublish() {
 
-        /**
-         * Define publish storage
-         * @memberOf SiteConfigPublish
-         */
-        publishStorage: function publishStorage() {
-            this.view.publishConfirmation();
-        },
+      /**
+       * Get scope
+       * @type {SiteConfig}
+       */
+      var scope = this.scope;
 
-        /**
-         * Define approve publish storage
-         * @memberOf SiteConfigPublish
-         */
-        approvePublish: function approvePublish() {
+      /**
+       * Define $modal
+       * @type {ModalElement}
+       */
+      var $modal = scope.view.elements.$modal;
 
-            /**
-             * Get scope
-             * @type {SiteConfig}
-             */
-            var scope = this.scope;
+      if (!scope.base.isDefined($modal)) {
+        scope.logger.warn('Undefined $modal');
+        return false;
+      }
 
-            /**
-             * Define $modal
-             * @type {ModalElement}
-             */
-            var $modal = scope.view.elements.$modal;
+      /**
+       * Get root config
+       * @type {{activate: boolean, mode: string}}
+       */
+      var config = this.root().model.getConfig();
 
-            if (!scope.base.isDefined($modal)) {
-                scope.logger.warn('Undefined $modal');
-                return false;
-            }
+      /**
+       * Get create update site route
+       * @type {{string[]}}
+       */
+      var route = scope.model.getConfig('routes/publishSiteStorage'),
+          key = config.appName,
+          opts = {
+            dataType: 'json',
+            url: route[0].replace(/\{id}/, key),
+            method: route[1]
+          };
 
-            /**
-             * Get root config
-             * @type {{activate: boolean, mode: string}}
-             */
-            var config = this.root().model.getConfig();
+      $.ajax(opts).done(function (data, type, xhr) {
 
-            /**
-             * Get create update site route
-             * @type {{string[]}}
-             */
-            var route = scope.model.getConfig('routes/publishSiteStorage'),
-                key = config.appName,
-                opts = {
-                    dataType: 'json',
-                    url: route[0].replace(/\{id}/, key),
-                    method: route[1]
-                };
-
-            $.ajax(opts).done(function (data, type, xhr) {
-
-                scope.logger.debug(data.notice, arguments);
-                $modal.selfDestroy();
-            });
-        }
-    });
+        scope.logger.debug(data.notice, arguments);
+        $modal.selfDestroy();
+      });
+    }
+  });
 });
