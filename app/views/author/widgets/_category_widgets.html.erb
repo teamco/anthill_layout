@@ -1,14 +1,24 @@
 <div class="panel panel-warning">
   <div class="panel-heading">
-    <button type="button" class="pull-left glyphicon glyphicon-minus" data-toggle="collapse" data-target="#toggle-widgets-<%= item[:category].id %>"></button>
+    <button type="button"
+            class="pull-left glyphicon glyphicon-minus"
+            data-toggle="collapse"
+            data-target="#toggle-widgets-<%= item[:category].id %>"></button>
     <h3 class="panel-title">
-      <span class="pull-left category-title"><%= item[:category].name_value %></span>
+      <span class="pull-left category-title">
+        <%= item[:category].name_value %>
+      </span>
       <span class="badge"><%= item[:widgets].length %></span>
     </h3>
   </div>
   <div class="panel-body">
-    <div class="collapse in row" id="toggle-widgets-<%= item[:category].id %>" aria-expanded="true">
+    <div class="collapse in row"
+         id="toggle-widgets-<%= item[:category].id %>"
+         aria-expanded="true">
       <% render_loop(item[:widgets], 'widget') %>
     </div>
+  </div>
+  <div class="panel-footer m-20">
+    <%= cancel_button(name: t('back')) -%>
   </div>
 </div>
