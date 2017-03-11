@@ -197,7 +197,7 @@ module Author::AuthorHelper
     end
   end
 
-  def pretty_print(content, selector='.json-view', compressed)
+  def pretty_print(content, selector = '.json-view', compressed)
     javascript_tag compressed ?
       "$(prettyPrint(JSON.parse(LZString.decompressFromBase64('#{content}')))).appendTo('#{selector}');".html_safe :
       "$(prettyPrint(JSON.parse('#{content}'))).appendTo('#{selector}');".html_safe
@@ -207,7 +207,7 @@ module Author::AuthorHelper
     "<pre><code>#{JSON.pretty_generate(JSON.parse(json))}</code></pre>".html_safe
   end
 
-  def bind_events(selectors=[], force=nil)
+  def bind_events(selectors = [], force = nil)
     pretty_print = selectors.map { |x| "$param=$tr.find('li#{x}>div');$(prettyPrint(JSON.parse($param.text()))).appendTo($param.empty());" }
     javascript_tag [
       "var $table=$('##{controller_name}');",

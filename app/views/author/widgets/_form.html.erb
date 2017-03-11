@@ -12,3 +12,6 @@
       <%= render_submit(f) -%>
     </div>
 <% end %>
+<%= javascript_tag do %>
+    $('#author_widget_thumbnail').on('change', function(e){$('.edit_author_widget > img').attr('src', e.target.value);});
+<% end %>
