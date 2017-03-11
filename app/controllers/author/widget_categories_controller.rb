@@ -10,23 +10,24 @@ class Author::WidgetCategoriesController < Author::AuthorController
   # GET /author/widget_categories
   # GET /author/widget_categories.json
   def index
-    @author_widget_categories = WidgetCategory.fetch_data(current_user)
+    @author_widget_categories = WidgetCategory.fetch_data(current_user).includes(:author_widgets)
   end
 
   # GET /author/widget_categories/1
   # GET /author/widget_categories/1.json
   def show
+    # TODO
   end
 
   # GET /author/widget_categories/new
   def new
     @author_widget_category = WidgetCategory.new
-    render '/partials/form', locals: {title: 'id'}
+    render '/partials/form', locals: { title: 'id' }
   end
 
   # GET /author/widget_categories/1/edit
   def edit
-    render '/partials/form', locals: {title: 'name_value'}
+    render '/partials/form', locals: { title: 'name_value' }
   end
 
   # POST /author/widget_categories
@@ -72,13 +73,13 @@ class Author::WidgetCategoriesController < Author::AuthorController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_author_widget_category
-      @author_widget_category = WidgetCategory.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_author_widget_category
+    @author_widget_category = WidgetCategory.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def author_widget_category_params
-      params.require(:author_widget_category).permit(:name_index, :name_value)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def author_widget_category_params
+    params.require(:author_widget_category).permit(:name_index, :name_value)
+  end
 end
