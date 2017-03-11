@@ -42,30 +42,30 @@ module Author::AuthorHelper
   def link_to_destroy(item, name, destroy_path=nil, style='btn btn-danger')
     title = controller_name.humanize.singularize.downcase
     link_to (destroy_path.nil? ?
-        send("author_#{controller_name.singularize}_path", item) :
-        destroy_path),
-            class: style,
-            method: :delete,
-            data: {confirm: "#{t('delete_confirm', item: title, name: name)}"} do
+      send("author_#{controller_name.singularize}_path", item) :
+      destroy_path),
+      class: style,
+      method: :delete,
+      data: { confirm: "#{t('delete_confirm', item: title, name: name)}" } do
       "<i class=\"glyphicon glyphicon-trash\"></i>#{t('delete', item: nil)}".html_safe
     end
   end
 
   def link_to_edit(item, edit_path=nil, style='btn btn-default', method=:get)
     link_to (edit_path.nil? ?
-        send("edit_author_#{controller_name.singularize}_path", item) :
-        edit_path),
-            title: t('edit'),
-            method: method,
-            class: style do
-              "<i class=\"glyphicon glyphicon-pencil\"></i>#{t('edit')}".html_safe
-            end
+      send("edit_author_#{controller_name.singularize}_path", item) :
+      edit_path),
+      title: t('edit'),
+      method: method,
+      class: style do
+        "<i class=\"glyphicon glyphicon-pencil\"></i>#{t('edit')}".html_safe
+      end
   end
 
   def render_loop(collection, partial)
     collection.blank? ?
-        (concat "<p class=\"no-data\">#{t('no_data_in_collection', items: controller_name.gsub(/_controller/, '').titleize.humanize)}</p>".html_safe) :
-        collection.each { |item| concat render partial, item: item }
+      (concat "<p class=\"no-data\">#{t('no_data_in_collection', items: controller_name.gsub(/_controller/, '').titleize.humanize)}</p>".html_safe) :
+      collection.each { |item| concat render partial, item: item }
   end
 
   def render_title
@@ -80,7 +80,7 @@ module Author::AuthorHelper
   def render_text(name, value)
     content_tag(:div, class: 'input-group') do
       concat label_tag name, nil, class: 'input-group-addon text-left'
-      concat text_field_tag(name, value, {disabled: true, class: 'form-control'})
+      concat text_field_tag(name, value, { disabled: true, class: 'form-control' })
     end
   end
 
@@ -92,11 +92,11 @@ module Author::AuthorHelper
     content_tag(:div, class: 'input-group') do
       concat label_tag name, nil, class: 'input-group-addon text-left'
       concat send(type, name, value,
-                  disabled: disabled,
-                  autofocus: autofocus,
-                  class: 'form-control',
-                  placeholder: "Enter #{name.to_s.humanize}"
-             )
+        disabled: disabled,
+        autofocus: autofocus,
+        class: 'form-control',
+        placeholder: "Enter #{name.to_s.humanize}"
+      )
     end
   end
 
@@ -109,7 +109,7 @@ module Author::AuthorHelper
 
   def render_radio_button(f, name, value, checked=false, disabled=false)
     content_tag(:div, class: 'field') do
-      concat f.radio_button(name, value, {disabled: disabled, checked: checked})
+      concat f.radio_button(name, value, { disabled: disabled, checked: checked })
       concat f.label name
     end
   end
@@ -127,23 +127,23 @@ module Author::AuthorHelper
   def render_collection_field(f, name, opts)
     content_tag(:div, class: 'input-group') do
       concat f.label opts[:id], name, class: 'input-group-addon text-left'
-      concat f.collection_select(opts[:id], opts[:collection], opts[:index], opts[:value], opts[:html] || {}, {class: 'form-control'})
+      concat f.collection_select(opts[:id], opts[:collection], opts[:index], opts[:value], opts[:html] || {}, { class: 'form-control' })
     end unless opts[:collection].nil?
   end
 
   def render_select_field(f, name, opts)
     content_tag(:div, class: 'input-group') do
       concat f.label opts[:id], name, class: 'input-group-addon text-left'
-      concat f.select(opts[:id], opts[:collection], opts[:html] || {}, {class: 'form-control'})
+      concat f.select(opts[:id], opts[:collection], opts[:html] || {}, { class: 'form-control' })
     end unless opts[:collection].nil?
   end
 
   def render_submit(f)
-    f.submit nil, {class: 'btn btn-warning'}
+    f.submit nil, { class: 'btn btn-warning' }
   end
 
   def cancel_button
-    link_to t('cancel'), send("author_#{controller_name}_path"), {title: t('cancel'), class: 'btn btn-default'}
+    link_to t('cancel'), send("author_#{controller_name}_path"), { title: t('cancel'), class: 'btn btn-default' }
   end
 
   def render_notification(item)
@@ -156,10 +156,10 @@ module Author::AuthorHelper
   def render_form
     content_tag(:div) do
       concat render partial: "/author/#{controller_name}/form",
-                    locals: {
-                        item: instance_variable_get("@author_#{controller_name.singularize}"),
-                        types: @author_site_types
-                    }
+        locals: {
+          item: instance_variable_get("@author_#{controller_name.singularize}"),
+          types: @author_site_types
+        }
     end
   end
 
@@ -168,12 +168,7 @@ module Author::AuthorHelper
   def render_field(type, f, name, disabled, autofocus=false)
     content_tag(:div, class: 'input-group') do
       concat f.label name, class: 'input-group-addon text-left'
-      concat f.send(type, name, {
-          disabled: disabled,
-          autofocus: autofocus,
-          class: 'form-control',
-          placeholder: "Enter #{name.to_s.humanize}"
-      })
+      concat f.send(type, name, disabled: disabled, autofocus: autofocus, class: 'form-control', placeholder: "Enter #{name.to_s.humanize}")
     end
   end
 
@@ -204,8 +199,8 @@ module Author::AuthorHelper
 
   def pretty_print(content, selector='.json-view', compressed)
     javascript_tag compressed ?
-                       "$(prettyPrint(JSON.parse(LZString.decompressFromBase64('#{content}')))).appendTo('#{selector}');".html_safe :
-                       "$(prettyPrint(JSON.parse('#{content}'))).appendTo('#{selector}');".html_safe
+      "$(prettyPrint(JSON.parse(LZString.decompressFromBase64('#{content}')))).appendTo('#{selector}');".html_safe :
+      "$(prettyPrint(JSON.parse('#{content}'))).appendTo('#{selector}');".html_safe
   end
 
   def json_pre(json)
@@ -215,20 +210,20 @@ module Author::AuthorHelper
   def bind_events(selectors=[], force=nil)
     pretty_print = selectors.map { |x| "$param=$tr.find('li#{x}>div');$(prettyPrint(JSON.parse($param.text()))).appendTo($param.empty());" }
     javascript_tag [
-                       "var $table=$('##{controller_name}');",
-                       "$table.find('td>span').on('click.toggleTr',function(){",
-                       "var $span=$(this),$tr=$span.parents('tr:first').next();",
-                       "if($tr.hasClass('hide')){",
-                       "$tr.removeClass('hide');",
-                       "$span.removeClass('glyphicon-plus').addClass('glyphicon-minus');",
-                       'var $param;',
-                       pretty_print.join,
-                       '}else{',
-                       "$tr.addClass('hide');",
-                       "$span.removeClass('glyphicon-minus').addClass('glyphicon-plus');",
-                       '}});',
-                       "#{'$table.find(\'td>span\').trigger(\'click.toggleTr\')' unless force.nil? }"
-                   ].join
+      "var $table=$('##{controller_name}');",
+      "$table.find('td>span').on('click.toggleTr',function(){",
+      "var $span=$(this),$tr=$span.parents('tr:first').next();",
+      "if($tr.hasClass('hide')){",
+      "$tr.removeClass('hide');",
+      "$span.removeClass('glyphicon-plus').addClass('glyphicon-minus');",
+      'var $param;',
+      pretty_print.join,
+      '}else{',
+      "$tr.addClass('hide');",
+      "$span.removeClass('glyphicon-minus').addClass('glyphicon-plus');",
+      '}});',
+      "#{'$table.find(\'td>span\').trigger(\'click.toggleTr\')' unless force.nil? }"
+    ].join
   end
 
   def published(item)

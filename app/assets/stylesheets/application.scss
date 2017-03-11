@@ -260,8 +260,7 @@ body.mini-navbar .logo-element {
 }
 
 .admin-dashboard .panel-title {
-  padding-top: 1px;
-  font-size: 16px;
+  color: #333;
 }
 
 .admin-dashboard .panel-title .badge {
@@ -270,7 +269,6 @@ body.mini-navbar .logo-element {
 }
 
 .admin-dashboard .category-title {
-  text-shadow: 1px 1px 1px #999;
   padding-left: 10px;
   font-size: 16px;
 }
@@ -297,17 +295,7 @@ body.mini-navbar .logo-element {
 }
 
 .group-addon {
-  float: left;
-  background: #eee;
-  margin-left: -15px;
-  margin-right: 10px;
-  padding: 0 10px 0 15px;
-  line-height: 38px;
-  height: auto;
-  margin-top: -11px;
-  border: 1px none #e5e6e7;
-  border-right-style: solid;
-  border-top-left-radius: 3px;
+  padding: 0 10px 0 5px;
 }
 
 .admin-dashboard textarea {
@@ -417,6 +405,11 @@ body.mini-navbar .logo-element {
 .admin-dashboard form img {
   margin: 10px 0 20px;
   width: 300px;
+}
+
+.admin-dashboard form.edit_author_widget img {
+  width: auto;
+  height: auto;
 }
 
 .dropdown-submenu {

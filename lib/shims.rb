@@ -21,4 +21,23 @@ module Shims
       return false
     end
   end
+
+  def uri?(url)
+    uri = URI.parse(url)
+    %w(http https).include?(uri.scheme)
+  end
+
+  def live?(url)
+    uri = URI(url)
+    request = Net::HTTP.new uri.host
+    begin
+      response = request.request_head uri.path
+      logger.info ">>>>> Live: #{response.inspect}"
+      response.code.to_i == 200
+    rescue
+      @create_status = 'Connection error'
+      logger.info ">>>>> URI not live - rescue: #{@create_status}"
+      false
+    end
+  end
 end

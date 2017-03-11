@@ -13,12 +13,14 @@ require "#{Rails.root}/lib/tasks/widget_generator.rb"
 require "#{Rails.root}/lib/base_lib.rb"
 require "#{Rails.root}/lib/proxy_connection.rb"
 require "#{Rails.root}/lib/shims.rb"
+require "#{Rails.root}/lib/image_base.rb"
 
 class Author::WidgetsController < Author::AuthorController
 
   include Author
   include Magick
   include Shims
+  include ImageBase
 
   before_action :authenticate_user!, except: [:show]
   before_action :fetch_widgets_data, only: [:index, :all]
@@ -245,27 +247,22 @@ class Author::WidgetsController < Author::AuthorController
 
   def fetch_widgets_data
     @categories = WidgetCategory.fetch_data(current_user)
-    @category = WidgetCategory.fetch_data(current_user).where(
-      id: params[:widget_category_id]
-    ).first
+    @category = @categories.where(id: params[:widget_category_id]).first
     @json_data ||= {
       user: current_user,
       categories: [],
       widgets: [],
-      widgets_all: Widget.fetch_data(
-        current_user,
-        @categories.where(id: params[:widget_category_id]).first
-      ),
+      widgets_all: Widget.fetch_data(current_user, @category),
       site_widgets: [],
-      site_storage: SiteStorage.find_by_key(params[:site_storage_id])
+      site_storage: SiteStorage.where(key: params[:site_storage_id]).first
     }
 
     @author_widgets = @json_data[:widgets_all]
-    unless @json_data[:site_storage].nil?
-      @json_data[:site_storage].author_widgets.includes(
-        :author_site_storage_widgets
-      )
-    end
+    # unless @json_data[:site_storage].nil?
+    #   @json_data[:site_storage].author_widgets.includes(
+    #     :author_site_storage_widgets
+    #   )
+    # end
 
     update_json_data unless @author_widgets.blank?
   end
@@ -275,18 +272,17 @@ class Author::WidgetsController < Author::AuthorController
       widgets = c.author_widgets.fetch_category_site_widgets(
         c, @json_data[:site_storage]
       )
-      if widgets.length > 0
-        @json_data[:site_widgets] << {
-          category: c,
-          widgets: widgets
-        }
-      end
+      next if widgets.empty?
+      @json_data[:site_widgets] << {
+        category: c,
+        widgets: widgets
+      }
     end
   end
 
   def fetch_external_widget_data
     return unless request.xhr?
-    url = nil || (params[:author_widget][:url] if request.post? || request.put?)
+    url = '' || (params[:author_widget][:url] if request.post? || request.put?)
     external = {
       name: '',
       description: '',
@@ -296,7 +292,7 @@ class Author::WidgetsController < Author::AuthorController
       height: '',
       thumbnail: ''
     }
-    if url =~ URI::regexp
+    if url.to_s =~ URI::regexp
       proxy = Crawler::NetHttp.new
       json = proxy.request_response(url)
       external = JSON.parse(json) if json?(json)
@@ -315,17 +311,14 @@ class Author::WidgetsController < Author::AuthorController
       @widget_lib.set_clone(@clone_from)
       @widget_lib.do_it
       logger.info '>>>>> Generate Css'
-
-      if uri?
-        logger.info '>>>>> URI not live' unless live?
-        thumbnail = to_base64
+      if uri?(@author_widget.thumbnail)
+        thumbnail = to_base64(@author_widget.thumbnail)
+        @author_widget.thumbnail = thumbnail unless thumbnail.is_a? String
       else
-        thumbnail = to_image
+        thumbnail = to_image(@author_widget.thumbnail)
       end
-
       @widget_lib.generate_css(thumbnail)
       generate = true
-
     rescue
       logger.info '>>>>> Rescue: Remove widget'
       @widget_lib.remove_widget_dir
@@ -333,44 +326,6 @@ class Author::WidgetsController < Author::AuthorController
       generate = false
     end
     generate
-  end
-
-  def uri?
-    uri = URI.parse(@author_widget.thumbnail)
-    %w(http https).include?(uri.scheme)
-  end
-
-  def live?
-    uri = URI(@author_widget.thumbnail)
-    request = Net::HTTP.new uri.host
-    begin
-      response = request.request_head uri.path
-      logger.info ">>>>> Live: #{response.inspect}"
-      response.code.to_i == 200
-    rescue
-      @create_status = 'Connection error'
-      logger.info ">>>>> Rescue: #{@create_status}"
-      false
-    end
-  end
-
-  def to_base64
-    logger.info '>>>>> Start to->base64'
-    img = BaseLib.img.allowed?(@author_widget.thumbnail)
-    logger.info ">>>>> Allowed: #{img.inspect}"
-    if img
-      data_uri = BaseLib.img.data_uri(img)
-      @author_widget.thumbnail = data_uri
-      data_uri
-    else
-      logger.info ">>>>> Rescue Data-Uri: #{@author_widget.thumbnail}"
-      @author_widget.thumbnail
-    end
-  end
-
-  def to_image
-    logger.info 'Start to->image'
-    @create_status = BaseLib.img.to_img(@author_widget.thumbnail)
   end
 
   def set_author_widget_category
@@ -392,7 +347,8 @@ class Author::WidgetsController < Author::AuthorController
     @clone_from = clone_from.first.resource || 'empty'
   end
 
-  # Never trust parameters from the scary internet, only allow the white list through.
+  # Never trust parameters from the scary internet, only allow the white list
+  # through.
   def author_widget_params
     params.require(:author_widget).permit(
       :name,

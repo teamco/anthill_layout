@@ -4,6 +4,7 @@
     <%= render_text_field(f, :name) %>
     <%= render_text_area(f, :description) %>
     <%= render_text_area(f, :thumbnail) %>
+    <%= image_tag item.thumbnail %>
     <%= render_number_field(f, :width) %>
     <%= render_number_field(f, :height) %>
     <div class="panel-footer m-20">
