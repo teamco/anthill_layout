@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: author_site_versions
+#
+#  id              :integer          not null, primary key
+#  version         :integer
+#  site_storage_id :integer
+#  activated       :boolean          default(FALSE)
+#  content         :text
+#  item_id         :integer
+#  screenshot      :text
+#  published       :boolean          default(FALSE)
+#  deployed        :boolean          default(FALSE)
+#
+
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 # This model initially had no columns defined.  If you add columns to the

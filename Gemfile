@@ -21,6 +21,7 @@ gem 'informant-rails'
 gem 'pg', '>=0.19.0.pre20160409114042'
 
 group :test, :development do
+  gem 'annotate', require: false
   gem 'xilence', require: false
   gem 'meta_request', require: false
   gem 'pry-rails', require: false

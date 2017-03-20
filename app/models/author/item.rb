@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: author_items
+#
+#  id         :integer          not null, primary key
+#  user_id    :integer          not null
+#  visible    :boolean          default(TRUE)
+#  public     :boolean          default(FALSE)
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 class Author::Item < ActiveRecord::Base
   belongs_to :user, class_name: 'User', foreign_key: :user_id
   has_one :author_site_type, class_name: 'Author::SiteType'

@@ -1,3 +1,12 @@
+# == Schema Information
+#
+# Table name: author_site_types
+#
+#  id      :integer          not null, primary key
+#  name    :string
+#  item_id :integer
+#
+
 class Author::SiteType < ActiveRecord::Base
 
   has_many :author_site_storages,
