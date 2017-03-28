@@ -110,6 +110,8 @@
 
 .panel-container.navbar-default .panel-content .nav > li.content a > span {
     margin-left: 10px;
+    font-size: 14px;
+    line-height: 1.42857143;
 }
 
 .panel-container.navbar-default .scroll-cover .nav > li.content > a:hover,

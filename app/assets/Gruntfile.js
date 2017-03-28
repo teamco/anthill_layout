@@ -49,7 +49,8 @@ module.exports = function(grunt) {
         {from: '^/assets/services/(.*)$', to: '/javascripts/services/$1'},
         {from: '^/assets/stylesheets/(.*)$', to: '/stylesheets/$1'},
         {from: '^/fonts/(glyphicons-halflings-regular.*)$', to: '/javascripts/scripts/core/lib/packages/bootstrap/fonts/$1'},
-        {from: '^/fonts/(fontawesome-webfont.*)$', to: '/javascripts/scripts/core/lib/packages/font-awesome/fonts/$1'}
+        {from: '^/fonts/(fontawesome-webfont.*)$', to: '/javascripts/scripts/core/lib/packages/font-awesome/fonts/$1'},
+        {from: '^/author/site_storages/shared/widgets.json', to: '[{}]'},
       ],
       local: {
         options: {
@@ -105,10 +106,10 @@ module.exports = function(grunt) {
       target: {
         files: {
           'stylesheets/output.css': [
+            'javascripts/scripts/core/lib/packages/font-awesome/font-awesome.min.css',
             'javascripts/scripts/core/lib/packages/bootstrap/css/animate.css',
             'javascripts/scripts/core/lib/packages/bootstrap/css/bootstrap-theme.min.css',
             'javascripts/scripts/core/lib/packages/bootstrap/css/bootstrap.min.css',
-            'javascripts/scripts/core/lib/packages/font-awesome/font-awesome.min.css',
             'javascripts/scripts/core/stylesheets/general.css',
             'javascripts/scripts/core/stylesheets/cover.css',
             'javascripts/scripts/core/stylesheets/jquery-ui.min.css',
