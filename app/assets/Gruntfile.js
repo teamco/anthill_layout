@@ -49,8 +49,7 @@ module.exports = function(grunt) {
         {from: '^/assets/services/(.*)$', to: '/javascripts/services/$1'},
         {from: '^/assets/stylesheets/(.*)$', to: '/stylesheets/$1'},
         {from: '^/fonts/(glyphicons-halflings-regular.*)$', to: '/javascripts/scripts/core/lib/packages/bootstrap/fonts/$1'},
-        {from: '^/fonts/(fontawesome-webfont.*)$', to: '/javascripts/scripts/core/lib/packages/font-awesome/fonts/$1'},
-        {from: '^/author/site_storages/shared/widgets.json', to: '[{}]'},
+        {from: '^/fonts/(fontawesome-webfont.*)$', to: '/javascripts/scripts/core/lib/packages/font-awesome/fonts/$1'}
       ],
       local: {
         options: {
