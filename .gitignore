@@ -34,3 +34,9 @@ db/*.sqlite3
 app/assets/.idea
 public/assets
 target
+
+app/assets/.sass-cache/
+app/assets/node_modules/
+app/assets/stylesheets/output.css
+app/assets/stylesheets/shared.css*
+

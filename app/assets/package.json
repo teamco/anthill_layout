@@ -1,0 +1,30 @@
+{
+  "name": "anthill",
+  "version": "1.0.0",
+  "description": "Multi-layer content manager",
+  "main": "Gruntfile.js",
+  "dependencies": {
+    "grunt": "^1.0.1",
+    "grunt-cli": "^1.2.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-open": "^0.2.3",
+    "serve-index": "^1.8.0",
+    "load-grunt-tasks": "^3.5.2",
+    "serve-static": "^1.12.1",
+    "grunt-exec": "^2.0.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.0",
+    "babel-preset-env": "^1.2.2",
+    "grunt-connect-rewrite": "^0.2.1",
+    "grunt-connect-route": "^0.3.4",
+    "grunt-contrib-connect": "^1.0.2",
+    "grunt-contrib-cssmin": "^2.0.0",
+    "grunt-contrib-sass": "^1.0.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "vladimir Tkach",
+  "license": "ISC"
+}
