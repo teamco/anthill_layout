@@ -25,6 +25,6 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "vladimir Tkach",
+  "author": "Vladimir Tkach",
   "license": "ISC"
 }
