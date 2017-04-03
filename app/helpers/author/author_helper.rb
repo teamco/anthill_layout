@@ -28,6 +28,14 @@ module Author::AuthorHelper
     action_name == action
   end
 
+  def is_new?
+    is_action? 'new'
+  end
+
+  def is_edit?
+    is_action? 'edit'
+  end
+
   def th(names=[])
     "<tr>#{names.map { |n| "<th>#{n}</th>" }.join}</tr>".html_safe
   end
@@ -120,8 +128,8 @@ module Author::AuthorHelper
     end
   end
 
-  def render_number_field(f, name, disabled=false)
-    render_field(:number_field, f, name, disabled)
+  def render_number_field(f, name, disabled=false, autofocus=false, css='')
+    render_field(:number_field, f, name, disabled, autofocus, css)
   end
 
   def render_collection_field(f, name, opts)
@@ -167,10 +175,11 @@ module Author::AuthorHelper
 
   private
 
-  def render_field(type, f, name, disabled, autofocus=false)
-    content_tag(:div, class: 'input-group') do
+  def render_field(type, f, name, disabled, autofocus=false, css='')
+    content_tag(:div, class: "input-group #{css}") do
       concat f.label name, class: 'input-group-addon text-left'
-      concat f.send(type, name, disabled: disabled, autofocus: autofocus, class: 'form-control', placeholder: "Enter #{name.to_s.humanize}")
+      concat f.send(type, name, disabled: disabled, autofocus: autofocus,
+        class: 'form-control', placeholder: "Enter #{name.to_s.humanize}")
     end
   end
 

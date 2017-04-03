@@ -15,6 +15,11 @@
     <div class="collapse in row"
          id="toggle-widgets-<%= item[:category].id %>"
          aria-expanded="true">
+      <% unless @category.nil? %>
+          <div class="col-lg-3 col-sm-6 col-xs-12">
+            <%= render 'author/author/ibox_new', url: create_in_category_url(@category) %>
+          </div>
+      <% end %>
       <% render_loop(item[:widgets], 'widget') %>
     </div>
   </div>

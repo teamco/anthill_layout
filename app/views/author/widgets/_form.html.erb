@@ -1,15 +1,19 @@
 <%= form_for(item) do |f| %>
     <%= render_notification(item) %>
-    <%= render_text_field(f, :resource) %>
+    <div class="input-group ">
+      <label class="input-group-addon text-left">Category</label>
+      <input class="form-control" type="text" disabled="disabled"
+             value="<%= @category.name_value %>"/>
+    </div>
+    <%= render_text_field(f, :resource, is_edit?) %>
     <%= render_text_field(f, :name) %>
     <%= render_text_area(f, :description) %>
     <%= render_text_area(f, :thumbnail) %>
-    <%= image_tag item.thumbnail %>
-    <%= render_number_field(f, :width) %>
+    <%= image_tag item.thumbnail unless item.thumbnail.nil? %>
+    <%= render_number_field(f, :width, false, false, 'm2') %>
     <%= render_number_field(f, :height) %>
     <div class="panel-footer m-20">
-      <%= cancel_button(redirect_url: author_widget_category_widgets_path(
-          item.author_widget_category)) -%>
+      <%= cancel_button(redirect_url: redirect_on_cancel(item)) -%>
       <%= render_submit(f) -%>
     </div>
 <% end %>

@@ -27,6 +27,7 @@ class Author::WidgetsController < Author::AuthorController
   before_action :set_author_widget, only: [:show, :edit, :update, :destroy]
   before_action :set_author_widget_category, only: [:create, :update, :destroy]
   before_action :set_clone_from, only: [:create]
+  before_action :fetch_category_data, only: [:new, :edit]
 
   layout 'author'
 
@@ -60,6 +61,7 @@ class Author::WidgetsController < Author::AuthorController
   # GET /author/widgets/new
   def new
     @author_widget = Widget.new
+
     render '/partials/form', locals: { title: 'id' }
   end
 
@@ -245,9 +247,13 @@ class Author::WidgetsController < Author::AuthorController
     }
   end
 
-  def fetch_widgets_data
+  def fetch_category_data
     @categories = WidgetCategory.fetch_data(current_user)
     @category = @categories.where(id: params[:widget_category_id]).first
+  end
+
+  def fetch_widgets_data
+    fetch_category_data
     @json_data ||= {
       user: current_user,
       categories: [],
