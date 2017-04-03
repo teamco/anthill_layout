@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '~>2.4.0'
+ruby '~> 2.4.0'
 
 
 # case RUBY_PLATFORM
@@ -18,7 +18,7 @@ gem 'pismo'
 gem 'iframely'
 gem 'mechanize'
 gem 'informant-rails'
-gem 'pg', '>=0.19.0.pre20160409114042'
+gem 'pg', '>=0.20'
 
 group :test, :development do
   gem 'annotate', require: false
