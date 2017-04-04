@@ -128,7 +128,7 @@ module Author::AuthorHelper
     end
   end
 
-  def render_number_field(f, name, disabled=false, autofocus=false, css='')
+  def render_number_field(f, name, disabled=false, autofocus=false, css='col-xs-6')
     render_field(:number_field, f, name, disabled, autofocus, css)
   end
 
