@@ -13,7 +13,7 @@
     <%= render_number_field(f, :width, false, false, 'pull-left col-xs-6') %>
     <%= render_number_field(f, :height) %>
     <div class="panel-footer m-20">
-      <%= cancel_button(redirect_url: redirect_on_cancel(item)) -%>
+      <%= cancel_button(redirect_url: redirect_on_cancel(@category)) -%>
       <%= render_submit(f) -%>
     </div>
 <% end %>

@@ -4,10 +4,10 @@ module Author::WidgetsHelper
     " style=\"background-image:url('#{item.external_resource}images/#{item.resource}.png');\"".html_safe if item.is_external?
   end
 
-  def redirect_on_cancel(item)
-    item.author_widget_category.nil? ?
+  def redirect_on_cancel(category)
+    category.nil? ?
       author_widgets_path :
-      author_widget_category_widgets_path(item.author_widget_category)
+      author_widget_category_widgets_path(category)
   end
 
   def create_in_category_url(category)
