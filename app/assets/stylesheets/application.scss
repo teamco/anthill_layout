@@ -407,9 +407,11 @@ body.mini-navbar .logo-element {
   width: 300px;
 }
 
+.admin-dashboard form.new_author_widget img,
 .admin-dashboard form.edit_author_widget img {
   width: 64px;
   height: 64px;
+  float: right;
 }
 
 .dropdown-submenu {

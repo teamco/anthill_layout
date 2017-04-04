@@ -76,10 +76,10 @@ define([
               '<', cell, ' class="', style, '">',
               cell === 'th' ?
                   style : index === 'thumbnail' && cell === 'td' ?
-                      '<img alt="' + index + '" src="' + row[index] + '"/>' :
-                      index === 'name' ?
-                          '<span>' + row[index] + '</span>' :
-                          row[index],
+                  '<img alt="' + index + '" src="' + row[index] + '"/>' :
+                  index === 'name' ?
+                      '<span>' + row[index] + '</span>' :
+                      row[index],
               '</', cell, '>'
             ].join('');
 
@@ -504,8 +504,13 @@ define([
          * Get $modal
          * @type {ModalElement}
          */
-        var $modal = $element.view.elements.$modal,
-            widget = data.widget;
+        var $modal = $element.view.elements.$modal;
+
+        /**
+         * Get widget
+         * @type {Object}
+         */
+        var widget = data.widget;
 
         if (!widget.name.length) {
           $element.view.scope.logger.warn('Unable to parse url', data, status,
