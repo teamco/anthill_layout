@@ -159,7 +159,8 @@ define([
         );
 
         console[k](hash[k]);
-        Rollbar[k](hash[k]);
+
+        this.rollBarNotification(k, hash[k]);
       }
 
       console.info(
@@ -170,6 +171,17 @@ define([
       console.groupEnd();
 
       return true;
+    },
+
+    /**
+     * Rollbar notification (https://rollbar.com).
+     * @param {string} type Logger type.
+     * @param {*} args Logger arguments.
+     */
+    rollBarNotification: function rollBarNotification(type, args) {
+      if (window.Rollbar) {
+        window.Rollbar[type](args);
+      }
     },
 
     /**
