@@ -79,6 +79,9 @@ class UserLog < ActiveRecord::Base
     (user ?
         user.user_logs.create!(opts) :
         create!(opts)) if except(cname, aname)
+
+    Rollbar.log(opts)
+
   end
 
   def self.fetch_data(user)
