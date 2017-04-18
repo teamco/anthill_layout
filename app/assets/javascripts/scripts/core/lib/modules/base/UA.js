@@ -43,6 +43,7 @@ define(function defineLibString() {
     /**
      * Get browser version
      * @param {RegExp} regexp
+     * @memberOf LibUserAgent
      * @returns {*}
      * @private
      */
@@ -50,6 +51,15 @@ define(function defineLibString() {
       if (this.browser[0].match(regexp)) {
         return this.browser[1];
       }
+    },
+
+    /**
+     * Check isLocalhost.
+     * @memberOf LibUserAgent
+     * @returns {boolean}
+     */
+    isLocalHost: function isLocalHost() {
+       return !!window.location.hostname.match(/localhost/);
     },
 
     /**

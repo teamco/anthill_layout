@@ -179,7 +179,7 @@ define([
      * @param {*} args Logger arguments.
      */
     rollBarNotification: function rollBarNotification(type, args) {
-      if (window.Rollbar) {
+      if (window.Rollbar && !this.base.lib.ua.isLocalHost) {
         window.Rollbar[type](args);
       }
     },

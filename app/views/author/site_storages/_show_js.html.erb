@@ -1,3 +1,4 @@
+<%= javascript_include_tag('general.config') %>
 <%= javascript_include_tag(
         'scripts/core/lib/require',
         'data-resource': storage[:key],
@@ -17,8 +18,10 @@
 
 <%= javascript_tag defer: 'defer', id: 'preload' do %>
     (function(){
-    window.localStorage['<%= storage[:key] %>'] = '<%= storage[:content] %>';
-    var script = document.getElementById('preload');
-    script.parentNode.removeChild(script);
+      config().rollBarLoader(
+        '37e120d64e0147aca32623f8fdd5dc71',
+        '<%= Rails.env %>'
+      );
+      config().localStorage('<%= storage[:key] %>', '<%= storage[:content] %>');
     })();
 <% end -%>

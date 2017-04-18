@@ -114,7 +114,7 @@ define(function defineBehaviorErrorHandler() {
       this.scope.logger[isXhrError ? 'warn' : 'debug'](arguments);
       this.scope.logger.rollBarNotification(
           isXhrError ? 'warn' : 'debug',
-          arguments
+          [status, description]
       );
 
       this.scope.view.get$item().hideLoader();
