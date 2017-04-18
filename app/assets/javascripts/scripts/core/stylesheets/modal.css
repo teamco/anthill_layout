@@ -67,4 +67,5 @@ body.modal-open {
 .modal .modal-body > span {
     margin-bottom: 1rem;
     display: inline-block;
+    width: 100%;
 }
