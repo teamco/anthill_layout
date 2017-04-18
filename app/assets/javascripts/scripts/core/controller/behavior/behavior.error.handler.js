@@ -112,11 +112,6 @@ define(function defineBehaviorErrorHandler() {
       }
 
       this.scope.logger[isXhrError ? 'warn' : 'debug'](arguments);
-      this.scope.logger.rollBarNotification(
-          isXhrError ? 'warn' : 'debug',
-          [status, description]
-      );
-
       this.scope.view.get$item().hideLoader();
     }
   });
