@@ -55,7 +55,7 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.5.1)
       public_suffix (~> 2.0, >= 2.0.2)
-    airbrussh (1.1.2)
+    airbrussh (1.2.0)
       sshkit (>= 1.6.1, != 1.7.0)
     annotate (2.7.1)
       activerecord (>= 3.2, < 6.0)
@@ -148,7 +148,7 @@ GEM
       multipart-post (>= 1.2, < 3)
     fast-stemmer (1.0.2)
     ffi (1.9.18)
-    flay (2.8.1)
+    flay (2.9.0)
       erubis (~> 2.7.0)
       path_expander (~> 1.0)
       ruby_parser (~> 3.0)
@@ -161,8 +161,8 @@ GEM
       sass (>= 3.2)
     formatador (0.2.5)
     get_process_mem (0.2.1)
-    globalid (0.3.7)
-      activesupport (>= 4.1.0)
+    globalid (0.4.0)
+      activesupport (>= 4.2.0)
     gravtastic (3.2.6)
     guard (2.14.1)
       formatador (>= 0.2.4)
@@ -388,6 +388,8 @@ GEM
       railties (>= 4.2.0, < 5.1)
     rkelly-remix (0.0.7)
     rmagick (2.16.0)
+    rollbar (2.14.1)
+      multi_json
     rubocop (0.48.1)
       parser (>= 2.3.3.1, < 3.0)
       powerpack (~> 0.1)
@@ -398,7 +400,7 @@ GEM
       rake (>= 0.8.1)
     ruby-progressbar (1.8.1)
     ruby_dep (1.5.0)
-    ruby_parser (3.8.4)
+    ruby_parser (3.9.0)
       sexp_processor (~> 4.1)
     rubycritic (3.2.0)
       flay (~> 2.8)
@@ -423,7 +425,7 @@ GEM
     sdoc (0.4.2)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
-    sexp_processor (4.8.0)
+    sexp_processor (4.9.0)
     shellany (0.0.1)
     slop (3.6.0)
     spoon (0.0.6)
@@ -454,12 +456,12 @@ GEM
       thread_safe (~> 0.1)
     tzinfo-data (1.2017.2)
       tzinfo (>= 1.0.0)
-    uglifier (3.1.13)
+    uglifier (3.2.0)
       execjs (>= 0.3.0, < 3)
     unf (0.1.4)
       unf_ext
-    unf_ext (0.0.7.2)
-    unicode-display_width (1.1.3)
+    unf_ext (0.0.7.4)
+    unicode-display_width (1.2.1)
     uniform_notifier (1.10.0)
     uuid (2.3.8)
       macaddr (~> 1.0)
@@ -538,6 +540,7 @@ DEPENDENCIES
   rake
   request-log-analyzer
   rmagick
+  rollbar
   rubocop
   ruby-debug-ide (>= 0.6.1.beta2)
   rubycritic
@@ -556,9 +559,6 @@ DEPENDENCIES
   will_paginate
   wirble
   xilence
-
-RUBY VERSION
-   ruby 2.4.0p0
 
 BUNDLED WITH
    1.14.6

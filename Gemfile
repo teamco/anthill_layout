@@ -19,6 +19,7 @@ gem 'iframely'
 gem 'mechanize'
 gem 'informant-rails'
 gem 'pg', '>=0.20'
+gem 'rollbar'
 
 group :test, :development do
   gem 'annotate', require: false
