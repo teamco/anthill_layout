@@ -141,7 +141,7 @@ define([
       i = 0;
       var l = content.length;
 
-      if (l === 0) {
+      if (!l) {
         return false;
       }
 
@@ -159,6 +159,7 @@ define([
         );
 
         console[k](hash[k]);
+        Rollbar[k](hash[k]);
       }
 
       console.info(

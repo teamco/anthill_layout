@@ -57,6 +57,8 @@ define(function defineBehaviorErrorHandler() {
               }
             }, 'danger');
 
+            Rollbar.error(arguments);
+
             return false;
           }
     },
@@ -110,6 +112,7 @@ define(function defineBehaviorErrorHandler() {
       }
 
       this.scope.logger[isXhrError ? 'warn' : 'debug'](arguments);
+      Rollbar[isXhrError ? 'warn' : 'debug'](arguments);
 
       this.scope.view.get$item().hideLoader();
     }
