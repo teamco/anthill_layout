@@ -55,11 +55,10 @@ define(['config/workspace'], function defineWorkspaceListeners(Workspace) {
 
         page.controller.updateLayout();
 
-        page.observer.publish(
-            page.eventmanager.eventList.resizeWidgets
+        page.observer.batchPublish(
+            page.eventmanager.eventList.resizeWidgets,
+            page.eventmanager.eventList.updateHeight
         );
-
-        page.controller.updateHeight();
       }
     }
   };

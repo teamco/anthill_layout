@@ -39,7 +39,7 @@ define(function defineWorkspacePage() {
         /**
          * Switch page on hash change
          * @memberOf WorkspacePage
-         * @param {Event} e
+         * @param {Event} [e]
          */
         switchPageOnHashChange: function switchPageOnHashChange(e) {
 

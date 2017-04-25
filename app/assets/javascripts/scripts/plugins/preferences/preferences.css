@@ -151,7 +151,6 @@
 }
 
 .modal .widget {
-    float: left;
     width: 60px;
     height: 60px;
     background-repeat: no-repeat;
@@ -159,11 +158,14 @@
     background-size: 48px;
     cursor: pointer;
     margin-right: 2px;
+    margin-bottom: 2px;
     border-radius: 10px;
+    border-color: transparent;
 }
 
 .modal .widget:hover {
     background-color: #f1f1f1;
+    border-color: #dedede;
 }
 
 .modal .tab-content .nav > li > a {
