@@ -14,8 +14,11 @@ postgresql: &postgresql
   password: <%= ENV['POSTGRESS_PWD'] %>
 
 default: &default
-  <<: *mysql # if RUBY_PLATFORM =~ /mswin|mingw|cygwin/
-  # <<: *postgresql unless RUBY_PLATFORM =~ /mswin|mingw|cygwin/
+  <% if RUBY_PLATFORM =~ /mswin|mingw|cygwin/ %>
+    <<: *mysql 
+  <% else %>  
+    <<: *postgresql
+  <% end %>  
 
 development:
   <<: *default
