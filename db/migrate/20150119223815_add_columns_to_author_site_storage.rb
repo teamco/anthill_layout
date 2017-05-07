@@ -1,4 +1,4 @@
-class AddColumnsToAuthorSiteStorage < ActiveRecord::Migration
+class AddColumnsToAuthorSiteStorage < ActiveRecord::Migration[5.0]
   def change
     add_column :author_site_storages, :user_id, :integer, index: true
     add_column :author_site_versions, :user_id, :integer, index: true

@@ -1,4 +1,4 @@
-class AuthorSiteStoragesUsers < ActiveRecord::Migration
+class AuthorSiteStoragesUsers < ActiveRecord::Migration[5.0]
   def change
     create_table :author_site_storages_users, id: false do |t|
       t.belongs_to :site_storage, index: true

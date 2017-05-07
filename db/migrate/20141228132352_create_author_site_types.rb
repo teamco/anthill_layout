@@ -1,4 +1,4 @@
-class CreateAuthorSiteTypes < ActiveRecord::Migration
+class CreateAuthorSiteTypes < ActiveRecord::Migration[5.0]
   def change
     create_table :author_site_types do |t|
       t.string :name

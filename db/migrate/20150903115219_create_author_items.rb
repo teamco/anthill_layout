@@ -1,4 +1,4 @@
-class CreateAuthorItems < ActiveRecord::Migration
+class CreateAuthorItems < ActiveRecord::Migration[5.0]
   def change
     remove_index :author_site_storages, :creator_id
     remove_column :author_site_storages, :visible

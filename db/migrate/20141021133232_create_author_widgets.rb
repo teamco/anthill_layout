@@ -1,4 +1,4 @@
-class CreateAuthorWidgets < ActiveRecord::Migration
+class CreateAuthorWidgets < ActiveRecord::Migration[5.0]
   def change
     create_table :author_widgets do |t|
       t.integer :widget_category_id

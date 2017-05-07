@@ -1,4 +1,4 @@
-class CreateAuthorSiteStorages < ActiveRecord::Migration
+class CreateAuthorSiteStorages < ActiveRecord::Migration[5.0]
   def change
     create_table :author_site_storages do |t|
       t.string :uuid

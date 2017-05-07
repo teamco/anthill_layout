@@ -1,4 +1,4 @@
-class UpdateFetchData < ActiveRecord::Migration
+class UpdateFetchData < ActiveRecord::Migration[5.0]
   def change
     add_column :author_widget_categories, :visible, :boolean, default: true
     add_column :author_widget_categories, :public, :boolean, default: true

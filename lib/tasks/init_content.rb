@@ -179,7 +179,8 @@ module WidgetLib
       puts '--- Combine CSS'
       combined = "#{widget.css_path}/combined.css"
       File.delete(combined) if File.exist? combined if force
-      system("cat #{widget.css_path}/widgets/*.css #{force ? '>': '>>'} #{combined}")
+      cli = RUBY_PLATFORM =~ /mswin|mingw|cygwin/ ? 'type' : 'cat'
+      system("#{cli} #{widget.css_path}/widgets/*.css #{force ? '>': '>>'} #{combined}")
       puts '--- Delete uncombined CSS'
       FileUtils.rm_rf("#{widget.css_path}/widgets")
     end

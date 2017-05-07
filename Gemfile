@@ -18,7 +18,9 @@ gem 'pismo'
 gem 'iframely'
 gem 'mechanize'
 gem 'informant-rails'
-gem 'pg', '>=0.20'
+gem 'pg', '>=0.20' unless RUBY_PLATFORM =~ /mswin|mingw|cygwin/
+gem 'mysql2' if RUBY_PLATFORM =~ /mswin|mingw|cygwin/
+gem 'sys-proctable' if RUBY_PLATFORM =~ /mswin|mingw|cygwin/
 gem 'rollbar'
 
 group :test, :development do
@@ -36,7 +38,7 @@ group :test, :development do
   gem 'request-log-analyzer', require: false
   gem 'brakeman', require: false
   gem 'rubocop', require: false
-  gem 'rubycritic', require: false
+  gem 'rubycritic', require: false unless RUBY_PLATFORM =~ /mswin|mingw|cygwin/
   gem 'traceroute', require: false
   gem 'guard', require: false
   gem 'guard-livereload', '~> 2.5', require: false
@@ -44,7 +46,7 @@ group :test, :development do
 end
 
 gem 'derailed', group: :development
-gem 'stackprof', group: :development
+gem 'stackprof', group: :development unless RUBY_PLATFORM =~ /mswin|mingw|cygwin/
 
 group :console do
   gem 'awesome_print', require: 'ap'
@@ -84,11 +86,11 @@ gem 'coffee-rails'
 gem 'data-confirm-modal', git: 'https://github.com/ifad/data-confirm-modal'
 
 gem 'jbuilder'
-gem 'therubyracer'
+gem 'therubyracer' unless RUBY_PLATFORM =~ /mswin|mingw|cygwin/
 
 gem 'gravtastic'
 
-gem 'devise'
+gem 'devise', git: 'https://github.com/gogovan/devise.git', branch: 'rails-5.1'
 gem 'devise_lastseenable'
 gem 'omniauth'
 # gem 'omniauth-digitalocean'

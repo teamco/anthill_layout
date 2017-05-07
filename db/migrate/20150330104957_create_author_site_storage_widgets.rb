@@ -1,4 +1,4 @@
-class CreateAuthorSiteStorageWidgets < ActiveRecord::Migration
+class CreateAuthorSiteStorageWidgets < ActiveRecord::Migration[5.0]
   def change
     create_table :author_site_storage_widgets, force: true do |t|
       t.integer :site_storage_id, index: true
