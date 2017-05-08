@@ -1,4 +1,4 @@
-class CreateErrorLogs < ActiveRecord::Migration
+class CreateErrorLogs < ActiveRecord::Migration[5.0]
   def change
     create_table :error_logs do |t|
       t.integer :user_log_id, index: true

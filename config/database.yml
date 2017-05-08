@@ -1,9 +1,24 @@
-default: &default
+mysql: &mysql
+  adapter: mysql2
+  encoding: utf8
+  username: teamco
+  password: 09051972
+  host: 127.0.0.1
+  port: 3306
+
+postgresql: &postgresql
   adapter: postgresql
   encoding: unicode
   pool: 5
   username: <%= ENV['POSTGRESS_USER'] %>
   password: <%= ENV['POSTGRESS_PWD'] %>
+
+default: &default
+  <% if RUBY_PLATFORM =~ /mswin|mingw|cygwin/ %>
+    <<: *mysql 
+  <% else %>  
+    <<: *postgresql
+  <% end %>  
 
 development:
   <<: *default

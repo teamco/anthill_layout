@@ -1,4 +1,16 @@
 GIT
+  remote: https://github.com/gogovan/devise.git
+  revision: 931ae3985872ea1f0039cd3a749779c0023a622a
+  branch: rails-5.1
+  specs:
+    devise (4.2.0)
+      bcrypt (~> 3.0)
+      orm_adapter (~> 0.1)
+      railties (>= 4.1.0, < 5.2)
+      responders
+      warden (~> 1.2.3)
+
+GIT
   remote: https://github.com/ifad/data-confirm-modal
   revision: ffb29b28d033438a86fb8681e156c5e460cea3ca
   specs:
@@ -16,39 +28,39 @@ GIT
 GEM
   remote: https://rubygems.org/
   specs:
-    actioncable (5.0.2)
-      actionpack (= 5.0.2)
-      nio4r (>= 1.2, < 3.0)
+    actioncable (5.1.0)
+      actionpack (= 5.1.0)
+      nio4r (~> 2.0)
       websocket-driver (~> 0.6.1)
-    actionmailer (5.0.2)
-      actionpack (= 5.0.2)
-      actionview (= 5.0.2)
-      activejob (= 5.0.2)
+    actionmailer (5.1.0)
+      actionpack (= 5.1.0)
+      actionview (= 5.1.0)
+      activejob (= 5.1.0)
       mail (~> 2.5, >= 2.5.4)
       rails-dom-testing (~> 2.0)
-    actionpack (5.0.2)
-      actionview (= 5.0.2)
-      activesupport (= 5.0.2)
+    actionpack (5.1.0)
+      actionview (= 5.1.0)
+      activesupport (= 5.1.0)
       rack (~> 2.0)
       rack-test (~> 0.6.3)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.0, >= 1.0.2)
-    actionview (5.0.2)
-      activesupport (= 5.0.2)
+    actionview (5.1.0)
+      activesupport (= 5.1.0)
       builder (~> 3.1)
-      erubis (~> 2.7.0)
+      erubi (~> 1.4)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.0, >= 1.0.3)
-    activejob (5.0.2)
-      activesupport (= 5.0.2)
+    activejob (5.1.0)
+      activesupport (= 5.1.0)
       globalid (>= 0.3.6)
-    activemodel (5.0.2)
-      activesupport (= 5.0.2)
-    activerecord (5.0.2)
-      activemodel (= 5.0.2)
-      activesupport (= 5.0.2)
-      arel (~> 7.0)
-    activesupport (5.0.2)
+    activemodel (5.1.0)
+      activesupport (= 5.1.0)
+    activerecord (5.1.0)
+      activemodel (= 5.1.0)
+      activesupport (= 5.1.0)
+      arel (~> 8.0)
+    activesupport (5.1.0)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (~> 0.7)
       minitest (~> 5.1)
@@ -60,14 +72,11 @@ GEM
     annotate (2.7.1)
       activerecord (>= 3.2, < 6.0)
       rake (>= 10.4, < 12.0)
-    arel (7.1.4)
+    arel (8.0.0)
     ast (2.3.0)
     awesome_print (1.7.0)
-    axiom-types (0.1.1)
-      descendants_tracker (~> 0.0.4)
-      ice_nine (~> 0.11.0)
-      thread_safe (~> 0.3, >= 0.3.1)
     bcrypt (3.1.11)
+    bcrypt (3.1.11-x64-mingw32)
     benchmark-ips (2.7.2)
     bindex (0.5.0)
     brakeman (3.6.1)
@@ -91,11 +100,7 @@ GEM
     chronic (0.10.2)
     code_analyzer (0.4.7)
       sexp_processor
-    codeclimate-engine-rb (0.4.0)
-      virtus (~> 1.0)
     coderay (1.1.1)
-    coercible (1.0.0)
-      descendants_tracker (~> 0.0.1)
     coffee-rails (4.2.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.2.x)
@@ -119,14 +124,6 @@ GEM
       rack (>= 1)
       rake (> 10, < 13)
       thor (~> 0.19)
-    descendants_tracker (0.0.4)
-      thread_safe (~> 0.3, >= 0.3.1)
-    devise (4.2.1)
-      bcrypt (~> 3.0)
-      orm_adapter (~> 0.1)
-      railties (>= 4.1.0, < 5.1)
-      responders
-      warden (~> 1.2.3)
     devise_lastseenable (0.0.6)
       devise
       rails (>= 3.0.4)
@@ -140,23 +137,16 @@ GEM
       json
       oauth
       querystring
-    equalizer (0.0.11)
+    erubi (1.6.0)
     erubis (2.7.0)
     eventmachine (1.2.3)
+    eventmachine (1.2.3-x64-mingw32)
     execjs (2.7.0)
     faraday (0.11.0)
       multipart-post (>= 1.2, < 3)
     fast-stemmer (1.0.2)
     ffi (1.9.18)
-    flay (2.9.0)
-      erubis (~> 2.7.0)
-      path_expander (~> 1.0)
-      ruby_parser (~> 3.0)
-      sexp_processor (~> 4.0)
-    flog (4.6.1)
-      path_expander (~> 1.0)
-      ruby_parser (~> 3.1, > 3.1.0)
-      sexp_processor (~> 4.8)
+    ffi (1.9.18-x64-mingw32)
     font-awesome-sass (4.7.0)
       sass (>= 3.2)
     formatador (0.2.5)
@@ -186,7 +176,6 @@ GEM
       domain_name (~> 0.5)
     http_parser.rb (0.6.0)
     i18n (0.8.1)
-    ice_nine (0.11.2)
     iframely (0.1.0)
       faraday
       hashie
@@ -214,9 +203,6 @@ GEM
       addressable
       faraday
       json (>= 1.8)
-    launchy (2.4.3)
-      addressable (~> 2.3)
-    libv8 (3.16.14.19)
     listen (3.1.5)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -226,7 +212,7 @@ GEM
     lumberjack (1.0.11)
     macaddr (1.7.1)
       systemu (~> 2.6.2)
-    mail (2.6.4)
+    mail (2.6.5)
       mime-types (>= 1.16, < 4)
     mechanize (2.7.5)
       domain_name (~> 0.5, >= 0.5.1)
@@ -238,10 +224,10 @@ GEM
       ntlm-http (~> 0.1, >= 0.1.1)
       webrobots (>= 0.0.9, < 0.2)
     memory_profiler (0.9.8)
-    meta_request (0.4.0)
+    meta_request (0.4.2)
       callsite (~> 0.0, >= 0.0.11)
       rack-contrib (~> 1.1)
-      railties (>= 3.0.0, < 5.1.0)
+      railties (>= 3.0.0, < 5.2.0)
     method_source (0.8.2)
     mime-types (3.1)
       mime-types-data (~> 3.2015)
@@ -251,6 +237,8 @@ GEM
     multi_json (1.12.1)
     multi_xml (0.6.0)
     multipart-post (2.0.0)
+    mysql2 (0.4.6)
+    mysql2 (0.4.6-x64-mingw32)
     nenv (0.3.0)
     net-http-digest_auth (1.4.1)
     net-http-persistent (2.9.4)
@@ -259,6 +247,8 @@ GEM
     net-ssh (4.1.0)
     nio4r (2.0.0)
     nokogiri (1.7.1)
+      mini_portile2 (~> 2.1.0)
+    nokogiri (1.7.1-x64-mingw32)
       mini_portile2 (~> 2.1.0)
     nokogumbo (1.4.10)
       nokogiri
@@ -301,8 +291,6 @@ GEM
     parallel (0.7.1)
     parser (2.4.0.0)
       ast (~> 2.2)
-    path_expander (1.0.1)
-    pg (0.20.0)
     pismo (0.7.4)
       awesome_print
       chronic
@@ -332,17 +320,17 @@ GEM
       rack (>= 0.9.1)
     rack-test (0.6.3)
       rack (>= 1.0)
-    rails (5.0.2)
-      actioncable (= 5.0.2)
-      actionmailer (= 5.0.2)
-      actionpack (= 5.0.2)
-      actionview (= 5.0.2)
-      activejob (= 5.0.2)
-      activemodel (= 5.0.2)
-      activerecord (= 5.0.2)
-      activesupport (= 5.0.2)
+    rails (5.1.0)
+      actioncable (= 5.1.0)
+      actionmailer (= 5.1.0)
+      actionpack (= 5.1.0)
+      actionview (= 5.1.0)
+      activejob (= 5.1.0)
+      activemodel (= 5.1.0)
+      activerecord (= 5.1.0)
+      activesupport (= 5.1.0)
       bundler (>= 1.3.0, < 2.0)
-      railties (= 5.0.2)
+      railties (= 5.1.0)
       sprockets-rails (>= 2.0.0)
     rails-console-tweaks (1.0.2)
       rails (>= 3.0)
@@ -364,9 +352,9 @@ GEM
       ruby-progressbar
     rails_serve_static_assets (0.0.5)
     rails_stdout_logging (0.0.5)
-    railties (5.0.2)
-      actionpack (= 5.0.2)
-      activesupport (= 5.0.2)
+    railties (5.1.0)
+      actionpack (= 5.1.0)
+      activesupport (= 5.1.0)
       method_source
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
@@ -378,15 +366,11 @@ GEM
       ffi (>= 0.5.0)
     rdiscount (2.1.8)
     rdoc (4.3.0)
-    reek (4.6.1)
-      codeclimate-engine-rb (~> 0.4.0)
-      parser (>= 2.3.1.2, < 2.5)
-      rainbow (~> 2.0)
-    ref (2.0.0)
     request-log-analyzer (1.13.4)
     require_all (1.4.0)
-    responders (2.3.0)
-      railties (>= 4.2.0, < 5.1)
+    responders (2.4.0)
+      actionpack (>= 4.2.0, < 5.3)
+      railties (>= 4.2.0, < 5.3)
     rkelly-remix (0.0.7)
     rmagick (2.16.0)
     rollbar (2.14.1)
@@ -401,17 +385,6 @@ GEM
       rake (>= 0.8.1)
     ruby-progressbar (1.8.1)
     ruby_dep (1.5.0)
-    ruby_parser (3.9.0)
-      sexp_processor (~> 4.1)
-    rubycritic (3.2.0)
-      flay (~> 2.8)
-      flog (~> 4.4)
-      launchy (= 2.4.3)
-      parser (= 2.4.0)
-      rainbow (~> 2.1)
-      reek (~> 4.4)
-      ruby_parser (~> 3.8)
-      virtus (~> 1.0)
     sanitize (4.4.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.4.4)
@@ -443,11 +416,9 @@ GEM
     sshkit (1.13.1)
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
-    stackprof (0.2.10)
+    sys-proctable (1.1.4-universal-aix-5)
+    sys-proctable (1.1.4-universal-mingw32)
     systemu (2.6.5)
-    therubyracer (0.12.3)
-      libv8 (~> 3.16.14.15)
-      ref
     thor (0.19.4)
     thread_safe (0.3.6)
     tilt (2.0.7)
@@ -462,15 +433,11 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.4)
+    unf_ext (0.0.7.4-x64-mingw32)
     unicode-display_width (1.2.1)
     uniform_notifier (1.10.0)
     uuid (2.3.8)
       macaddr (~> 1.0)
-    virtus (1.0.5)
-      axiom-types (~> 0.1)
-      coercible (~> 1.0)
-      descendants_tracker (~> 0.0, >= 0.0.3)
-      equalizer (~> 0.0, >= 0.0.9)
     warden (1.2.7)
       rack (>= 1.0)
     web-console (3.5.0)
@@ -489,6 +456,7 @@ GEM
 
 PLATFORMS
   ruby
+  x64-mingw32
 
 DEPENDENCIES
   annotate
@@ -502,7 +470,7 @@ DEPENDENCIES
   data_uri
   debase (>= 0.2.2.beta7)
   derailed
-  devise
+  devise!
   devise_lastseenable
   embedly
   font-awesome-sass
@@ -520,6 +488,7 @@ DEPENDENCIES
   koala
   mechanize
   meta_request
+  mysql2
   omniauth
   omniauth-aliexpress!
   omniauth-bitbucket
@@ -527,7 +496,6 @@ DEPENDENCIES
   omniauth-github
   omniauth-linkedin-oauth2
   omniauth-twitter
-  pg (>= 0.20)
   pismo
   prmd
   pry-rails
@@ -544,13 +512,11 @@ DEPENDENCIES
   rollbar
   rubocop
   ruby-debug-ide (>= 0.6.1.beta2)
-  rubycritic
   sass-rails
   sdoc (>= 0.4.0)
   spring
   sprockets
-  stackprof
-  therubyracer
+  sys-proctable
   traceroute
   tzinfo
   tzinfo-data
