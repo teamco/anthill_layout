@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 # ruby '~> 2.4.0'
 
+windows_os = RUBY_PLATFORM =~ /mswin|mingw|cygwin/
 
 # case RUBY_PLATFORM
 #   when /darwin|linux/
@@ -18,9 +19,9 @@ gem 'pismo'
 gem 'iframely'
 gem 'mechanize'
 gem 'informant-rails'
-gem 'pg', '>=0.20' unless RUBY_PLATFORM =~ /mswin|mingw|cygwin/
-gem 'mysql2' if RUBY_PLATFORM =~ /mswin|mingw|cygwin/
-gem 'sys-proctable' if RUBY_PLATFORM =~ /mswin|mingw|cygwin/
+gem 'pg', '>=0.20' unless windows_os
+gem 'mysql2' if windows_os
+gem 'sys-proctable' if windows_os
 gem 'rollbar'
 
 group :test, :development do
@@ -38,7 +39,7 @@ group :test, :development do
   gem 'request-log-analyzer', require: false
   gem 'brakeman', require: false
   gem 'rubocop', require: false
-  gem 'rubycritic', require: false unless RUBY_PLATFORM =~ /mswin|mingw|cygwin/
+  gem 'rubycritic', require: false unless windows_os
   gem 'traceroute', require: false
   gem 'guard', require: false
   gem 'guard-livereload', '~> 2.5', require: false
@@ -46,7 +47,7 @@ group :test, :development do
 end
 
 gem 'derailed', group: :development
-gem 'stackprof', group: :development unless RUBY_PLATFORM =~ /mswin|mingw|cygwin/
+gem 'stackprof', group: :development unless windows_os
 
 group :console do
   gem 'awesome_print', require: 'ap'
@@ -86,7 +87,7 @@ gem 'coffee-rails'
 gem 'data-confirm-modal', git: 'https://github.com/ifad/data-confirm-modal'
 
 gem 'jbuilder'
-gem 'therubyracer' unless RUBY_PLATFORM =~ /mswin|mingw|cygwin/
+gem 'therubyracer' unless windows_os
 
 gem 'gravtastic'
 
