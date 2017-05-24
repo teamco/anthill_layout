@@ -78,7 +78,6 @@ define(
 
               this.cleanElementItems();
               this.updateElementItems();
-
               this.renderCreatePage();
 
               this.renderFilter(
@@ -172,22 +171,22 @@ define(
              * Render create page wizard
              * @memberOf WorkspaceDataView
              * @param {{
-                 *      workspace: Workspace,
-                 *      style: string,
-                 *      [type]: string,
-                 *      title: string,
-                 *      text: string,
-                 *      $html
-                 * }} opts
+             *      workspace: Workspace,
+             *      style: string,
+             *      [type]: string,
+             *      title: string,
+             *      text: string,
+             *      $html
+             * }} opts
              */
             renderCreatePageWizard: function renderCreatePageWizard(opts) {
 
               /**
                * Define buttons
                * @type {{
-                     *      approve: {text: string, events: {click: string}},
-                     *      reject: {text: string, events: {click: string[]}}
-                     * }}
+               *      approve: {text: string, events: {click: string}},
+               *      reject: {text: string, events: {click: string[]}}
+               * }}
                */
               var buttons = {
                 approve: {

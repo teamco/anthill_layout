@@ -13,9 +13,11 @@ define([
   'element/header.element',
   'element/footer.element',
   'plugins/page.data/element/page.data.content.element',
-  'plugins/page.data/element/page.data.element'
+  'plugins/page.data/element/page.data.element',
+  'plugins/page.data/element/page.content.rules.element'
 ], function definePageDataView(AntHill, BaseView, BasePreferencesElement,
-    Header, Footer, PageDataContentElement, PageDataElement) {
+    Header, Footer, PageDataContentElement, PageDataElement,
+    PageContentRulesElement) {
 
   /**
    * Define view
@@ -61,6 +63,7 @@ define([
 
           this.cleanElementItems();
           this.updateElementItems();
+          this.renderContentRules();
 
           this.renderFilter(
               this.updateFooterContent.bind(this)
@@ -103,6 +106,74 @@ define([
           });
 
           this.updateFooterContent();
+        },
+
+        /**
+         * Render Content Rules
+         * @method renderContentRules
+         * @memberOf PageDataView
+         */
+        renderContentRules: function renderContentRules() {
+
+          /**
+           * Render content rules
+           * @type {PageContentRulesElement}
+           */
+          this.elements.$contentRules = new PageContentRulesElement(this, {
+            $container: this.get$item().$,
+            events: {
+              click: ['prepareShowContentRules']
+            }
+          });
+        },
+
+        /**
+         * Render page content rules wizard
+         * @method renderPageContentRulesWizard
+         * @memberOf PageDataView
+         * @param {{
+         *      page: Page,
+         *      style: string,
+         *      [type]: string,
+         *      title: string,
+         *      text: string,
+         *      $html
+         * }} opts
+         */
+        renderPageContentRulesWizard: function renderPageContentRulesWizard(opts) {
+
+          /**
+           * Define buttons
+           * @type {{
+           *      approve: {text: string, events: {click: string}},
+           *      reject: {text: string, events: {click: string[]}}
+           * }}
+           */
+          var buttons = {
+            approve: {
+              text: 'OK',
+              type: 'success',
+              events: {
+                click: 'approveEditRules'
+              }
+            },
+            reject: {
+              text: 'Cancel',
+              events: {
+                click: ['rejectModalEvent']
+              }
+            }
+          };
+
+          this.modalDialog({
+            style: opts.style,
+            type: opts.type || 'info',
+            title: opts.title,
+            text: opts.page.model.getUUID(),
+            html: opts.$html,
+            cover: true,
+            buttons: buttons
+          });
         },
 
         /**

@@ -357,11 +357,12 @@ define([
      * @memberOf BaseElement
      * @param {String} type
      * @param {{
-         *      [type]: string,
-         *      [rel]: string,
-         *      [media]: string,
-         *      [resource]: string
-         * }} [opts]
+     *      [type]: string,
+     *      [url]: string,
+     *      [rel]: string,
+     *      [media]: string,
+     *      [resource]: string
+     * }} [opts]
      */
     addCSS: function addCSS(type, opts) {
 
@@ -387,8 +388,8 @@ define([
        * Create url
        * @type {string}
        */
-      var url = this.pluginPath + opts.resource + ('/' + type).repeat(2) +
-          '.css';
+      var url = opts.url ? opts.url :
+          this.pluginPath + opts.resource + ('/' + type).repeat(2) + '.css';
 
       if (item.controller.isWidget() && item.controller.isExternalContent()) {
         url = item.controller.fetchExternalResource() + type + '.css';
@@ -486,7 +487,7 @@ define([
              *      id: string
              * }}
        */
-      var link = document.createElement("link");
+      var link = document.createElement('link');
 
       link.type = opts.type || defaults.type;
       link.rel = opts.rel || defaults.rel;
@@ -499,7 +500,7 @@ define([
         return link;
       }
 
-      document.getElementsByTagName("head")[0].appendChild(link);
+      document.getElementsByTagName('head')[0].appendChild(link);
 
       return link;
     },

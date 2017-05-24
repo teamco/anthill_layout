@@ -86,14 +86,22 @@ define(function defineBehaviorErrorHandler() {
        * @private
        */
       function _formatStatusText() {
-        if (xhr.statusText ===
-            'parsererror') {
-          return 'Requested JSON parse failed';
+        let msg;
+        switch (xhr.statusText) {
+          case 'parsererror':
+            msg = 'Requested JSON parse failed';
+            break;
+          case 'timeout':
+            msg = 'Time out error';
+            break;
+          case 'abort':
+            msg = 'Ajax request aborted';
+            break;
+          default:
+            msg = 'Uncaught Error. ' + xhr.responseText;
+            break;
         }
-        if (xhr.statusText === 'timeout') return 'Time out error';
-        return xhr.statusText === 'abort' ?
-            'Ajax request aborted' :
-            ('Uncaught Error. ' + xhr.responseText);
+        return msg;
       }
 
       /**

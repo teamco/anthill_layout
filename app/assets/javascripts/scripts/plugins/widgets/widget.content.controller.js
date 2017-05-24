@@ -8,7 +8,7 @@
 define([
   'plugins/preferences/preferences.controller',
   'plugins/preferences/widget.content.preferences.controller',
-  'plugins/rules/widget.content.controller.rules'
+  'plugins/rules/widget/widget.content.controller.rules'
 ], function defineWidgetContentControllerBase(PreferencesController,
     WidgetContentPreferencesController, WidgetContentControllerRules) {
 

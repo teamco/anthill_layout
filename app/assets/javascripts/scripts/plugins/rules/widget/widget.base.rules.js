@@ -6,12 +6,12 @@
  */
 
 define([
-  'plugins/rules/rules',
-  'plugins/rules/renderer/add.rule.renderer',
-  'plugins/rules/renderer/base.rules.data.renderer',
-  'plugins/rules/renderer/content.rules.renderer',
-  'plugins/rules/renderer/subscribe.rules.renderer',
-  'plugins/rules/renderer/widget.rules.renderer'
+  'plugins/rules/widget/rules',
+  'plugins/rules/widget/renderer/add.rule.renderer',
+  'plugins/rules/widget/renderer/base.rules.data.renderer',
+  'plugins/rules/widget/renderer/content.rules.renderer',
+  'plugins/rules/widget/renderer/subscribe.rules.renderer',
+  'plugins/rules/widget/renderer/widget.rules.renderer'
 ], function defineBaseWidgetRules(BaseRules, addRuleRenderer,
     baseRulesDataRenderer, contentRulesRenderer, subscribeRulesRenderer,
     widgetRulesRenderer) {

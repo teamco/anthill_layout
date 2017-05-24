@@ -2,7 +2,7 @@
     height: 100%;
     width: 100%;
     overflow: hidden;
-    padding: 0px 8px 0px 8px;
+    padding: 0 8px 0 8px;
 }
 .widget .content .share .addthis_toolbox {
     padding: 1px;
@@ -10,7 +10,7 @@
     margin: 3px;
     border-radius: 5px;
     border: solid 4px white;
-    -webkit-box-shadow: 0px 0px 3px 0px rgba(50, 50, 50, 0.51);
-    -moz-box-shadow: 0px 0px 3px 0px rgba(50, 50, 50, 0.51);
-    box-shadow: 0px 0px 3px 0px rgba(50, 50, 50, 0.51);
+    -webkit-box-shadow: 0 0 3px 0 rgba(50, 50, 50, 0.51);
+    -moz-box-shadow: 0 0 3px 0 rgba(50, 50, 50, 0.51);
+    box-shadow: 0 0 3px 0 rgba(50, 50, 50, 0.51);
 }

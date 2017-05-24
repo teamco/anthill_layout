@@ -351,8 +351,40 @@ define([
                 url, true, false
               ]
           );
-        }
+        },
 
+        /**
+         * Prepare to create page
+         * @method prepareShowContentRules
+         * @memberOf PageDataController
+         */
+        prepareShowContentRules: function prepareShowContentRules() {
+
+          /**
+           * Get scope
+           * @type {PageData}
+           */
+          var scope = this.scope;
+
+          /**
+           * Get view
+           * @type {PageDataView}
+           */
+          var view = scope.view;
+
+          /**
+           * Get workspace
+           * @type {Page}
+           */
+          var page = this.getPage();
+
+          view.renderPageContentRulesWizard({
+            style: 'page-rules',
+            title: 'Page content rules',
+            page: page,
+            $html: view.elements.$contentRules.renderWizard(page)
+          });
+        }
       },
       AntHill.prototype,
       Router.prototype,

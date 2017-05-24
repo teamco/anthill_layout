@@ -9,7 +9,7 @@
 define([
   'config/anthill',
   'modules/View',
-  'plugins/rules/rules',
+  'plugins/rules/widget/rules',
   'element/header.element',
   'element/footer.element',
   'plugins/widget.rules/element/widget.rules.content.element',

@@ -7,7 +7,7 @@
 
 define([
   'plugins/plugin.element',
-  'plugins/rules/widget.base.rules'
+  'plugins/rules/widget/widget.base.rules'
 ], function defineChannelTenIlRulesElement(PluginElement, BaseWidgetRules) {
 
   /**

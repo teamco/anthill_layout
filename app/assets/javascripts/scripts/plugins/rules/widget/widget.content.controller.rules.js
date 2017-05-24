@@ -6,7 +6,7 @@
  */
 
 define([
-  'plugins/rules/widget.subscribe'
+  'plugins/rules/widget/widget.subscribe'
 ], function defineWidgetContentControllerRulesBase(WidgetSubscribe) {
 
   /**

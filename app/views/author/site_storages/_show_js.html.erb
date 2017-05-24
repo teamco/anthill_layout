@@ -1,4 +1,4 @@
-<%= javascript_include_tag(
+<%#= javascript_include_tag(
         '//d2wy8f7a9ursnm.cloudfront.net/bugsnag-3.min.js',
         'data-apikey': 'b840eb2e5e5caa11b8e47016f6a82c37'
     ) %>
@@ -22,10 +22,10 @@
 
 <%= javascript_tag defer: 'defer', id: 'preload' do %>
     (function(){
-      config().rollBarLoader(
-        '37e120d64e0147aca32623f8fdd5dc71',
-        '<%= Rails.env %>'
-      );
+      //config().rollBarLoader(
+      //  '37e120d64e0147aca32623f8fdd5dc71',
+      //  '<%= Rails.env %>'
+      //);
       config().localStorage('<%= storage[:key] %>', '<%= storage[:content] %>');
     })();
 <% end -%>
