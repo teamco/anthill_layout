@@ -39,7 +39,7 @@ module.exports = function(grunt) {
   grunt.initConfig({
     connect: {
       options: {
-        port: 3000,
+        port: 3001,
         hostname: 'localhost',
         logger: 'dev'
       },
@@ -2629,7 +2629,7 @@ module.exports = function(grunt) {
     },
     open: {
       dev: {
-        path: 'http://localhost:3000/index.html',
+        path: 'http://localhost:3001/index.html',
         app: 'chrome'
       }
     },

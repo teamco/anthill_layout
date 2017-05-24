@@ -21,8 +21,8 @@ define(['config/workspace'], function defineWorkspacePermissions(Workspace) {
    */
   Workspace.prototype.globalPermissions = {
     development: {
-      createDesignTimePanel: true,
-      createRunTimePanel: true,
+      createDesignTimePanel: false,
+      createRunTimePanel: false,
       store: true
     },
     authorize: {
