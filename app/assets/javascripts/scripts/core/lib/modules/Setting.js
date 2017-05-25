@@ -172,6 +172,7 @@ define([
     /**
      * Get Storage
      * @memberOf Setting
+     * @method getStorage
      * @returns {*}
      */
     getStorage: function getStorage() {
@@ -196,7 +197,6 @@ define([
      * @param {boolean} activate
      */
     importData: function importData(data, activate) {
-
       this.activateOnSave(activate);
       this.updateData(data);
     },
@@ -266,7 +266,6 @@ define([
       opts.token = this.token;
 
       this.importData(opts, false);
-
       this.scope.logger.debug('Save', opts);
     },
 
@@ -301,7 +300,6 @@ define([
       }
 
       this.scope.logger.debug('Load', data);
-
       return data;
     },
 
@@ -324,18 +322,20 @@ define([
      */
     decompress: function decompress(compress) {
       this.scope.logger.debug('decompress', compress);
-      return LZString.decompressFromBase64(compress)
+      return LZString.decompressFromBase64(compress);
     },
 
     /**
      * Define server side storage
      * @memberOf Setting
+     * @type {function}
+     * @method serverStorage
      * @returns {{
-         *      setting: Setting,
-         *      setItem: Function,
-         *      getItem: Function
-         *      clear: Function
-         * }}
+     *      setting: Setting,
+     *      setItem: Function,
+     *      getItem: Function
+     *      clear: Function
+     * }}
      */
     serverStorage: function serverStorage() {
 
@@ -440,7 +440,7 @@ define([
         clear: function clear() {
           this.setting.save();
         }
-      }
+      };
     },
 
     /**

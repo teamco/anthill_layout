@@ -81,7 +81,8 @@ module.exports = function(grunt) {
             middlewares.push(serveIndex(directory));
 
             middlewares.unshift(function(req, res, next) {
-              if (req.url === '/author/site_storages/shared/widgets.json') {
+
+              if (req.url === '/author/site_storages/grunt/widgets.json') {
                 res.end(JSON.stringify({
                       'categories': [
                         {
@@ -2555,8 +2556,19 @@ module.exports = function(grunt) {
                       ]
                     })
                 );
+                return next();
+
+              } else if (req.url === '/sites/grunt' && req.method === 'PUT') {
+                req.on('data', function(rawData) {
+                  var data = JSON.parse('{"' +
+                      decodeURI(rawData).replace(/"/g, '\\"').
+                      replace(/&/g, '","').replace(/=/g, '":"') + '"}');
+                  res.end(JSON.stringify(data));
+                  return next();
+                });
+              } else {
+                return next();
               }
-              return next();
             });
 
             return middlewares;

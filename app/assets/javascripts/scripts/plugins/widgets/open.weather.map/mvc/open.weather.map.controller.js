@@ -94,7 +94,7 @@ define([
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
             _setLocation.bind(this),
-            this.controller.errorHandler
+            this.controller.errorHandler.bind(this)
         );
       } else {
         this.controller.errorHandler({});
