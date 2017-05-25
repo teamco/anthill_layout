@@ -230,6 +230,13 @@ define(
                 style: 'workspace-data-prefs preferences',
                 title: 'Page preferences',
                 buttons: {
+                  grid: {
+                    text: 'Grid',
+                    type: 'warning',
+                    events: {
+                      click: 'showPageGrid'
+                    }
+                  },
                   locate: {
                     text: 'Locate',
                     type: 'default',

@@ -126,6 +126,7 @@ requirejs.config({
     'controller/layout/layout.empty.columns': {deps: ['extends/function']},
     'controller/layout/layout.empty.rows': {deps: ['extends/function']},
     'controller/layout/layout.expand': {deps: ['extends/function']},
+    'controller/layout/layout.grid': {deps: ['extends/function']},
     'controller/layout/layout.intersect': {deps: ['extends/function']},
     'controller/layout/layout.overlapping': {deps: ['extends/function']},
 

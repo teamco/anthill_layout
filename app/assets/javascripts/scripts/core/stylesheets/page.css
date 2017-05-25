@@ -49,3 +49,7 @@
     /*overflow-x: hidden;*/
     /*overflow-y: auto;*/
 }
+
+.pages > .page.grid {
+    background-image: linear-gradient(50deg, transparent 25%, rgba(0, 0, 0, .2));
+}

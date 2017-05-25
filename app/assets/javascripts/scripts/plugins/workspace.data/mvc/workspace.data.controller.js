@@ -240,6 +240,30 @@ define(
             },
 
             /**
+             * showPageGrid
+             * @method showPageGrid
+             * @memberOf WorkspaceDataController
+             */
+            showPageGrid: function showPageGrid() {
+
+              /**
+               * Get page
+               * @type {Page}
+               */
+              var page = this.getPage();
+
+              /**
+               * Get layout
+               * @type {Layout}
+               */
+              var layout = page.controller.getLayout();
+
+              layout.observer.publish(
+                  layout.eventmanager.eventList.toggleGrid
+              );
+            },
+
+            /**
              * Update widgets counter
              * @memberOf WorkspaceDataController
              */

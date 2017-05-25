@@ -15,9 +15,10 @@ define([
   'controller/layout/layout.empty.rows',
   'controller/layout/layout.empty.columns',
   'controller/layout/layout.expand',
+  'controller/layout/layout.grid',
   'permission/layout.permission'
 ], function defineLayout(AntHill, MVC, Controller, EventManager, Overlapping,
-    LayoutEmptyRows, LayoutEmptyColumns, LayoutExpand, Permission) {
+    LayoutEmptyRows, LayoutEmptyColumns, LayoutExpand, LayoutGrid, Permission) {
 
   /**
    * Define Layout
@@ -130,6 +131,13 @@ define([
      * @type {LayoutExpand}
      */
     this.expand = new LayoutExpand(this);
+
+    /**
+     * Define grid
+     * @property Layout
+     * @type {LayoutExpand}
+     */
+    this.grid = new LayoutGrid(this);
 
     this.observer.publish(
         this.eventmanager.eventList.successCreated

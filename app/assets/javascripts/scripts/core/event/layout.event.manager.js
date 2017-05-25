@@ -32,17 +32,18 @@ define([
      * Define event list
      * @memberOf LayoutEventManager
      * @type {{
-         *      updateNumberOfColumns: string,
-         *      updateMinCellWidth: string,
-         *      beforeNestedOrganizer: string,
-         *      afterNestedOrganizer: string,
-         *      beforeExpand: string,
-         *      onExpand: string,
-         *      afterExpand: string,
-         *      setOrganizeMode: string,
-         *      setBehaviorMode: string,
-         *      setEmptySpacesMode: string
-         * }}
+     *      updateNumberOfColumns: string,
+     *      updateMinCellWidth: string,
+     *      beforeNestedOrganizer: string,
+     *      afterNestedOrganizer: string,
+     *      beforeExpand: string,
+     *      onExpand: string,
+     *      afterExpand: string,
+     *      setOrganizeMode: string,
+     *      setBehaviorMode: string,
+     *      setEmptySpacesMode: string,
+     *      toggleGrid: string
+     * }}
      */
     eventList: {
       updateNumberOfColumns: 'update.number.of.columns',
@@ -54,7 +55,8 @@ define([
       afterExpand: 'after.expand',
       setOrganizeMode: 'set.organize.mode',
       setBehaviorMode: 'set.behavior.mode',
-      setEmptySpacesMode: 'set.empty.spaces.mode'
+      setEmptySpacesMode: 'set.empty.spaces.mode',
+      toggleGrid: 'toggle.grid'
     }
 
   }, BaseEvent.prototype);

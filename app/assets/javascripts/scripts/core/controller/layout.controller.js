@@ -191,8 +191,18 @@ define([
         getGridWidth: function getGridWidth() {
           var config = this.scope.config.grid,
               cell = this.minCellWidth();
-
           return (cell + config.margin) * config.columns;
+        },
+
+        /**
+         * Toggle page grid
+         * @method toggleGrid
+         * @memberOf LayoutController
+         */
+        toggleGrid: function toggleGrid() {
+          var config = this.config.grid,
+              cellWidth = this.controller.minCellWidth() + config.margin;
+          this.grid.toggleGrid(this.controller.getContainment(), cellWidth);
         },
 
         /**
