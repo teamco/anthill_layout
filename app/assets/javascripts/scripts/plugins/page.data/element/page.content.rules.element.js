@@ -89,6 +89,9 @@ define(
              */
             renderWizard: function renderWizard(page) {
 
+              require(['plugins/page.data/element/page.rules'], function() {
+
+              });
             }
           },
           PluginElement.prototype

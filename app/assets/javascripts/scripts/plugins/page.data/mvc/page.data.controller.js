@@ -384,6 +384,15 @@ define([
             page: page,
             $html: view.elements.$contentRules.renderWizard(page)
           });
+        },
+
+        /**
+         * approveEditRules
+         * @method approveEditRules
+         * @memberOf PageDataController
+         */
+        approveEditRules: function approveEditRules() {
+
         }
       },
       AntHill.prototype,
