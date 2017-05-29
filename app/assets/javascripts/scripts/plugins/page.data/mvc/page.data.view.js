@@ -14,10 +14,10 @@ define([
   'element/footer.element',
   'plugins/page.data/element/page.data.content.element',
   'plugins/page.data/element/page.data.element',
-  'plugins/page.data/element/page.content.rules.element'
+  'plugins/page.data/element/page.data.rules.element'
 ], function definePageDataView(AntHill, BaseView, BasePreferencesElement,
     Header, Footer, PageDataContentElement, PageDataElement,
-    PageContentRulesElement) {
+    PageDataRulesElement) {
 
   /**
    * Define view
@@ -63,7 +63,7 @@ define([
 
           this.cleanElementItems();
           this.updateElementItems();
-          this.renderContentRules();
+          this.renderDataRules();
 
           this.renderFilter(
               this.updateFooterContent.bind(this)
@@ -109,17 +109,17 @@ define([
         },
 
         /**
-         * Render Content Rules
-         * @method renderContentRules
+         * Render Data Rules
+         * @method renderDataRules
          * @memberOf PageDataView
          */
-        renderContentRules: function renderContentRules() {
+        renderDataRules: function renderDataRules() {
 
           /**
-           * Render content rules
-           * @type {PageContentRulesElement}
+           * $contentRules
+           * @type {PageDataRulesElement}
            */
-          this.elements.$contentRules = new PageContentRulesElement(this, {
+          this.elements.$contentRules = new PageDataRulesElement(this, {
             $container: this.get$item().$,
             events: {
               click: ['prepareShowContentRules']

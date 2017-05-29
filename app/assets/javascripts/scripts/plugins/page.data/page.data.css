@@ -14,9 +14,12 @@ ul.page-data .content > a.page-rules {
 
 .modal.page-rules {
     width: 80%;
-    height: 80%;
 }
 
 .modal.page-rules .modal-dialog {
     width: auto;
+}
+
+.modal.page-rules .modal-dialog .canvas-rules {
+    height: 400px;
 }

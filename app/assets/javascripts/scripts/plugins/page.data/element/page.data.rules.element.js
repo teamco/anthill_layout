@@ -9,24 +9,23 @@ define(
     ['plugins/plugin.element'],
 
     /**
-     * Define PageContentRulesElement
+     * Define PageDataRulesElement
      * @param {PluginElement} PluginElement
      * @returns {*}
      */
-    function definePageContentRulesElement(PluginElement) {
+    function definePageDataRulesElement(PluginElement) {
 
       /**
        * Define WorkspaceData AddPage Element
        * @constructor
-       * @class PageContentRulesElement
+       * @class PageDataRulesElement
        * @extends Renderer
        * @extends PluginElement
        * @param {WorkspaceDataView} view
        * @param opts
-       * @returns {PageContentRulesElement}
+       * @returns {PageDataRulesElement}
        */
-      var PageContentRulesElement = function PageContentRulesElement(view,
-          opts) {
+      var PageDataRulesElement = function PageDataRulesElement(view, opts) {
 
         this._config(view, opts, $('<li class="content" />')).build({
           $container: opts.$container,
@@ -35,14 +34,14 @@ define(
 
         /**
          * Define title
-         * @memberOf PageContentRulesElement
+         * @memberOf PageDataRulesElement
          * @type {string}
          */
         this.title = 'Show page content visual rules';
 
         /**
          * Define description
-         * @memberOf PageContentRulesElement
+         * @memberOf PageDataRulesElement
          * @type {string}
          */
         this.description =
@@ -51,8 +50,8 @@ define(
         return this.init();
       };
 
-      return PageContentRulesElement.extend(
-          'PageContentRulesElement', {
+      return PageDataRulesElement.extend(
+          'PageDataRulesElement', {
 
             /**
              * Define inner content
@@ -64,8 +63,8 @@ define(
 
             /**
              * Define Init
-             * @memberOf PageContentRulesElement
-             * @returns {PageContentRulesElement}
+             * @memberOf PageDataRulesElement
+             * @returns {PageDataRulesElement}
              */
             init: function init() {
 
@@ -83,15 +82,24 @@ define(
 
             /**
              * Render content rules wizard
-             * @memberOf PageContentRulesElement
+             * @memberOf PageDataRulesElement
              * @param {Page} page
              * @returns {*|jQuery|HTMLElement}
              */
             renderWizard: function renderWizard(page) {
 
-              require(['plugins/page.data/element/page.rules'], function() {
+              var uuid = this.base.lib.generator.UUID();
+              var $html = $('<div class="canvas-rules" />').attr({id: uuid});
 
+              require(['lib/packages/go'], function() {
+                require(['plugins/rules/page/page.rules'],
+                    function(GenerateRules) {
+                      var rules = new GenerateRules(uuid, page);
+                    }
+                );
               });
+
+              return $html;
             }
           },
           PluginElement.prototype

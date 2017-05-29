@@ -309,8 +309,12 @@ define([
     /**
      * Build element
      * @memberOf BaseElement
-     * @param {{$container, [append]: boolean, [destroy]: boolean, [callback]}}
-     *     opts
+     * @param {{
+     *    $container,
+     *    [append]: boolean,
+     *    [destroy]: boolean,
+     *    [callback]: function
+     * }} opts
      * @returns {*}
      */
     build: function build(opts) {
@@ -331,7 +335,7 @@ define([
          */
         this.$container = $(opts.$container);
 
-        this.destroyB4Create(!!opts.destroy);
+        this.destroyB4Create(opts.destroy);
 
         this.$[append ? 'appendTo' : 'prependTo'](opts.$container);
 
@@ -357,11 +361,11 @@ define([
      * @memberOf BaseElement
      * @param {String} type
      * @param {{
-     *      [type]: string,
-     *      [url]: string,
-     *      [rel]: string,
-     *      [media]: string,
-     *      [resource]: string
+     *    [type]: string,
+     *    [url]: string,
+     *    [rel]: string,
+     *    [media]: string,
+     *    [resource]: string
      * }} [opts]
      */
     addCSS: function addCSS(type, opts) {
@@ -480,12 +484,12 @@ define([
       /**
        * Init Link
        * @type {HTMLElement|{
-             *      type: string,
-             *      rel: string,
-             *      media: string,
-             *      href: string,
-             *      id: string
-             * }}
+       *    type: string,
+       *    rel: string,
+       *    media: string,
+       *    href: string,
+       *    id: string
+       * }}
        */
       var link = document.createElement('link');
 

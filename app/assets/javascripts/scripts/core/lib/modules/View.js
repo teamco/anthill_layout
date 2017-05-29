@@ -385,24 +385,24 @@ define([
      * Generic modal dialog window
      * @memberOf BaseView
      * @param {{
-         *      [style]: String,
-         *      $container,
-         *      [cover]: Boolean,
-         *      [coverOpacity]: Number,
-         *      [autoclose]: Boolean,
-         *      [closeX]: Boolean,
-         *      [css],
-         *      [opacityOff]: Number,
-         *      [opacityOn]: Number,
-         *      [title]: String,
-         *      [type]: String ('info', 'success', 'warning', 'danger'),
-         *      [html]: *,
-         *      [text]: String,
-         *      [draggable]: Boolean,
-         *      [items],
-         *      [position]: String ('tl/tc/tr', 'cl/cc/cr'. 'bl/bc/br'),
-         *      [buttons]
-         * }} opts
+     *      [style]: String,
+     *      $container,
+     *      [cover]: Boolean,
+     *      [coverOpacity]: Number,
+     *      [autoclose]: Boolean,
+     *      [closeX]: Boolean,
+     *      [css],
+     *      [opacityOff]: Number,
+     *      [opacityOn]: Number,
+     *      [title]: String,
+     *      [type]: String ('info', 'success', 'warning', 'danger'),
+     *      [html]: *,
+     *      [text]: String,
+     *      [draggable]: Boolean,
+     *      [items],
+     *      [position]: String ('tl/tc/tr', 'cl/cc/cr'. 'bl/bc/br'),
+     *      [buttons]
+     * }} opts
      */
     modalDialog: function modalDialog(opts) {
 
@@ -445,8 +445,15 @@ define([
      * Generic button
      * @memberOf BaseView
      * @param {Function|ButtonElement} ButtonElement
-     * @param {$container, [$htmlElement], style, text, type, disabled, events}
-     *     opts
+     * @param {{
+     *    $container,
+     *    [$htmlElement],
+     *    style,
+     *    text,
+     *    type,
+     *    disabled,
+     *    events
+     * }} opts
      * @param {*} store
      */
     button: function button(ButtonElement, opts, store) {
