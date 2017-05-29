@@ -4,11 +4,11 @@
 /*jslint node: true */
 'use strict';
 
-var createFolderGlobs = function(fileTypePatterns) {
+const createFolderGlobs = function(fileTypePatterns) {
   fileTypePatterns =
       Array.isArray(fileTypePatterns) ? fileTypePatterns : [fileTypePatterns];
-  var ignore = ['node', 'node_modules'];
-  var fs = require('fs');
+  const ignore = ['node', 'node_modules'];
+  const fs = require('fs');
   return fs.readdirSync(process.cwd()).map(function(file) {
     if (ignore.indexOf(file) !== -1 || !file.indexOf('.') ||
         !fs.lstatSync(file).isDirectory()) {
@@ -25,13 +25,13 @@ var createFolderGlobs = function(fileTypePatterns) {
 
 module.exports = function(grunt) {
 
-  var serveStatic = require('serve-static');
-  var serveIndex = require('serve-index');
+  const serveStatic = require('serve-static');
+  const serveIndex = require('serve-index');
 
   // load all grunt tasks
   require('load-grunt-tasks')(grunt);
-  var proxySnippet = require('grunt-connect-proxy/lib/utils').proxyRequest;
-  var rewriteRulesSnippet = require(
+  const proxySnippet = require('grunt-connect-proxy/lib/utils').proxyRequest;
+  const rewriteRulesSnippet = require(
       'grunt-connect-rewrite/lib/utils').rewriteRequest;
 
   // Project configuration.
@@ -61,7 +61,7 @@ module.exports = function(grunt) {
         options: {
           middleware: function(connect, options) {
             // inject a custom middleware into the array of default middlewares.
-            var middlewares = [];
+            const middlewares = [];
 
             // RewriteRules support
             middlewares.push(rewriteRulesSnippet);
@@ -70,7 +70,7 @@ module.exports = function(grunt) {
               options.base = [options.base];
             }
 
-            var directory = options.directory ||
+            const directory = options.directory ||
                 options.base[options.base.length - 1];
             options.base.forEach(function(base) {
               // Serve static files.
@@ -2560,7 +2560,7 @@ module.exports = function(grunt) {
 
               } else if (req.url === '/sites/grunt' && req.method === 'PUT') {
                 req.on('data', function(rawData) {
-                  var data = JSON.parse('{"' +
+                  const data = JSON.parse('{"' +
                       decodeURI(rawData).replace(/"/g, '\\"').
                       replace(/&/g, '","').replace(/=/g, '":"') + '"}');
                   res.end(JSON.stringify(data));

@@ -25,7 +25,7 @@ define(function definePageRulesVisualizer() {
           key: widget.model.getUUID(),
           figure: 'RoundedRectangle',
           title: prefs.title,
-          desc: prefs.description,
+          description: prefs.description,
           color: '#dedede',
           path: imgPath + prefs.resource + '.png'
         };
@@ -39,18 +39,51 @@ define(function definePageRulesVisualizer() {
      * @param {Page} page
      */
     getWidgetPublishedRules: function getWidgetPublishedRules(page) {
+
+      /**
+       * _node
+       * @param widget
+       * @param rule
+       * @param {string} color
+       * @param {array} subscribers
+       * @returns {{
+       *    key: string,
+       *    title: *,
+       *    uuid: (*|String),
+       *    color: *,
+       *    count: (number|Number)
+       * }}
+       * @private
+       */
+      function _node(widget, rule, color, subscribers) {
+        return {
+          key: rule + ':' + widget.model.getUUID(),
+          title: rule,
+          uuid: widget.model.getUUID(),
+          color: color,
+          count: (subscribers[rule] || []).length
+        };
+      }
+
       var widgets = page.model.getItems();
       return _.filter(_.map(widgets, function(widget) {
-        var publish = widget.model.getConfig('rules').publish || {};
+        var rules = widget.model.getConfig('rules'),
+            publish = rules.publish || {},
+            subscribers = rules.subscribers || {},
+            resource = widget.model.getConfig('preferences/resource'),
+            resourceRules = publish[resource.toCamel().toLowerCase()],
+            data = [];
         if (publish.widget) {
-          return _.map(publish.widget, function(rule) {
-            return {
-              key: rule,
-              uuid: widget.model.getUUID(),
-              color: 'lightgreen'
-            };
+          data = _.map(publish.widget, function(rule) {
+            return _node(widget, rule, 'lightgreen', subscribers);
           });
         }
+        if (resourceRules) {
+          return data.concat(_.map(resourceRules, function(rule) {
+            return _node(widget, rule, 'lightblue', subscribers);
+          }));
+        }
+        return data;
       }), Boolean);
     },
 
@@ -68,7 +101,7 @@ define(function definePageRulesVisualizer() {
         if (subscribers) {
           return _.map(publish.widget, function(rule) {
             return {
-              key: rule,
+              key: rule + ':' + widget.model.getUUID(),
               subscribers: subscribers
             };
           });

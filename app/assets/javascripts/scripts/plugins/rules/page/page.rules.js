@@ -55,9 +55,8 @@ define(['plugins/rules/page/page.rules.visualizer'],
         /**
          * @method onClick
          * @memberOf GenerateRules
-         * @param e
          */
-        onClick: function onClick(e) {
+        onClick: function onClick() {
           this.diagram.startTransaction('no highlighteds');
           this.diagram.clearHighlighteds();
           this.diagram.commitTransaction('no highlighteds');
@@ -70,27 +69,38 @@ define(['plugins/rules/page/page.rules.visualizer'],
          */
         defineTemplate: function defineTemplate() {
           var _make = go.GraphObject.make;
-          return _make(go.Node, 'Auto',
+          var node = _make(go.Node, 'Auto',
               {click: this.showConnections},
               _make(go.Shape, new go.Binding('figure', 'figure'),
-                  {strokeWidth: 1, stroke: null},
+                  {strokeWidth: 0.5},
                   new go.Binding('fill', 'color'),
                   new go.Binding('stroke', 'isHighlighted', function(h) {
                     return h ? 'red' : 'black';
-                  }).ofObject()),
-              _make(go.Picture,
-                  {width: 32, height: 32, alignment: go.Spot.Left, margin: 5}, {
-                    sourceCrossOrigin: function() {
-                      return 'use-credentials';
-                    }
-                  },
-                  new go.Binding('source', 'path')),
-              _make(go.TextBlock, {
-                    margin: new go.Margin(10, 10, 10, 40),
-                    font: 'normal 14px Tahoma'
-                  },
-                  new go.Binding('text', 'title'))
+                  }).ofObject())
           );
+
+          node.add(_make(go.Picture, {
+                width: 32,
+                height: 32,
+                alignment: go.Spot.Center,
+                opacity: 0.5,
+                margin: new go.Margin(10, 10)
+              }, {
+                sourceCrossOrigin: function() {
+                  return 'use-credentials';
+                }
+              },
+              new go.Binding('source', 'path'))
+          );
+
+          node.add(_make(go.TextBlock, {
+                margin: new go.Margin(5, 10),
+                font: 'normal 14px Tahoma'
+              },
+              new go.Binding('text', 'title'))
+          );
+
+          return node;
         },
 
         /**
@@ -109,31 +119,41 @@ define(['plugins/rules/page/page.rules.visualizer'],
          * @param {Object} rule
          */
         updateDiagram: function(rule) {
-          var _make = go.GraphObject.make;
-          var node = _make(go.Node, 'Auto',
-              {click: this.showConnections},
-              _make(go.Shape, 'Rectangle',
-                  {strokeWidth: 1, stroke: null, fill: rule.color},
-                  {click: this.showConnections}
-              ),
-              _make(go.TextBlock, {
-                margin: 10,
-                font: 'normal 12px Tahoma',
-                text: rule.key
-              }));
-
-          this.diagram.add(node);
-          this.updateLink(this.diagram.findNodeForKey(rule.uuid), node);
+          this.diagram.model.addNodeData({
+            key: rule.key,
+            figure: 'Rectangle',
+            color: rule.color,
+            title: rule.title + ' (' + rule.count + ')',
+            description: rule.title.humanize()
+          });
+          this.updateLink(
+              this.diagram.findNodeForKey(rule.uuid),
+              this.diagram.findNodeForKey(rule.key),
+              'blue'
+          );
         },
 
-        updateLink: function updateLink(from, to) {
+        updateLink: function updateLink(from, to, opts) {
+          opts = opts || {};
+          var color = opts.color || 'black';
           var _make = go.GraphObject.make;
           this.diagram.add(
-              _make(go.Link, {fromNode: from, toNode: to},
-                  _make(go.Shape,
-                      {isPanelMain: true, stroke: 'black', strokeWidth: 1}),
-                  _make(go.Shape,
-                      {toArrow: 'standard', stroke: null, strokeWidth: 0})
+              _make(go.Link, {
+                    fromNode: from,
+                    toNode: to,
+                    routing: go.Link.Normal,
+                    curve: go.Link.Bezier
+                  },
+                  _make(go.Shape, {
+                    isPanelMain: true,
+                    stroke: color,
+                    strokeWidth: 2
+                  }),
+                  _make(go.Shape, {
+                    toArrow: 'standard',
+                    stroke: null,
+                    strokeWidth: 0
+                  })
               )
           );
         },
@@ -159,11 +179,18 @@ define(['plugins/rules/page/page.rules.visualizer'],
          * @memberOf GenerateRules
          */
         updateSubscriberRules: function updatePublishedRules() {
-          var subscribers = this.getWidgetSubscriberRules(this.page);
+          var subscribed = this.getWidgetSubscriberRules(this.page);
           var that = this;
-          _.each(subscribers, function(subscriber) {
-            _.each(subscriber, function(event, index) {
-              that.updateLink(this.diagram.findNodeForKey(uuid), node);
+          _.each(subscribed, function(sData) {
+            _.each(sData, function(data) {
+              _.each(data.subscribers, function(uuids) {
+                _.each(uuids, function(uuid) {
+                  that.updateLink(
+                      that.diagram.findNodeForKey(data.key),
+                      that.diagram.findNodeForKey(uuid)
+                  );
+                });
+              });
             });
           });
         },
