@@ -96,8 +96,9 @@ define(function definePageRulesVisualizer() {
     getWidgetSubscriberRules: function getWidgetSubscriberRules(page) {
       var widgets = page.model.getItems();
       return _.filter(_.map(widgets, function(widget) {
-        var subscribers = widget.model.getConfig('rules').subscribers;
-        var publish = widget.model.getConfig('rules').publish || {};
+        var rules = widget.model.getConfig('rules'),
+            subscribers = rules.subscribers,
+            publish = rules.publish || {};
         if (subscribers) {
           return _.map(publish.widget, function(rule) {
             return {
