@@ -9,6 +9,7 @@ define(['plugins/rules/page/page.rules.visualizer'],
        * GenerateRules
        * @class GenerateRules
        * @param {string} id
+       * @param {Page} page
        * @constructor
        */
       var GenerateRules = function GenerateRules(id, page) {
@@ -62,6 +63,11 @@ define(['plugins/rules/page/page.rules.visualizer'],
           this.diagram.commitTransaction('no highlighteds');
         },
 
+        updateConnectivity: function updateConnectivity(node, link, port) {
+          // node.findObject('SHAPE').fill =
+          //     (node.findLinksInto().count > 0) ? 'red' : 'green';
+        },
+
         /**
          * @method defineTemplate
          * @memberOf GenerateRules
@@ -69,8 +75,11 @@ define(['plugins/rules/page/page.rules.visualizer'],
          */
         defineTemplate: function defineTemplate() {
           var _make = go.GraphObject.make;
-          var node = _make(go.Node, 'Auto',
-              {click: this.showConnections},
+          var node = _make(go.Node, 'Auto', {
+                click: this.showConnections,
+                linkConnected: this.updateConnectivity,
+                linkDisconnected: this.updateConnectivity
+              },
               _make(go.Shape, new go.Binding('figure', 'figure'),
                   {strokeWidth: 0.5},
                   new go.Binding('fill', 'color'),
@@ -128,15 +137,29 @@ define(['plugins/rules/page/page.rules.visualizer'],
           });
           this.updateLink(
               this.diagram.findNodeForKey(rule.uuid),
-              this.diagram.findNodeForKey(rule.key),
-              'blue'
+              this.diagram.findNodeForKey(rule.key), {
+                event: false
+              }
           );
         },
 
+        /**
+         * @method updateLink
+         * @memberOf GenerateRules
+         * @param from
+         * @param to
+         * @param opts
+         */
         updateLink: function updateLink(from, to, opts) {
           opts = opts || {};
-          var color = opts.color || 'black';
-          var _make = go.GraphObject.make;
+          var color = opts.color || 'black',
+              event = opts.event,
+              _make = go.GraphObject.make;
+
+          if (event && from.findLinksOutOf().count === 1) {
+            return false;
+          }
+
           this.diagram.add(
               _make(go.Link, {
                     fromNode: from,
@@ -187,7 +210,9 @@ define(['plugins/rules/page/page.rules.visualizer'],
                 _.each(uuids, function(uuid) {
                   that.updateLink(
                       that.diagram.findNodeForKey(data.key),
-                      that.diagram.findNodeForKey(uuid)
+                      that.diagram.findNodeForKey(uuid), {
+                        event: true
+                      }
                   );
                 });
               });

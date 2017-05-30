@@ -5,8 +5,8 @@
   "repository": "https://github.com/teamco/anthill_layout",
   "main": "Gruntfile.js",
   "dependencies": {
-    "fsevents": "*",
     "grunt": "*",
+    "grunt-connect-proxy": "*",
     "grunt-contrib-watch": "*",
     "grunt-exec": "*",
     "grunt-open": "*",
@@ -15,8 +15,6 @@
     "serve-static": "*"
   },
   "devDependencies": {
-    "babel-cli": "*",
-    "babel-preset-env": "*",
     "grunt-connect-rewrite": "*",
     "grunt-connect-route": "*",
     "grunt-contrib-connect": "*",
