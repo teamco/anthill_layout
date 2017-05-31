@@ -71,8 +71,10 @@ gem 'rack-attack'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 gem 'rmagick'
-# gem 'font-awesome-less'
+
 gem 'font-awesome-sass'#, git: 'https://github.com/teamco/font-awesome-sass.git'
+gem 'bootstrap-sass', '~> 3.3.6'
+gem 'sass-rails', '>= 3.2'
 
 gem 'i18n'
 gem 'uuid'
@@ -108,7 +110,6 @@ gem 'omniauth-aliexpress', git: 'https://github.com/pinglamb/omniauth-aliexpress
 
 gem 'koala'
 gem 'sprockets'
-gem 'sass-rails'
 # gem 'cancan'
 
 gem 'puma_worker_killer'

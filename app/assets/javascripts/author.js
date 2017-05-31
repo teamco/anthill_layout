@@ -1,7 +1,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require data-confirm-modal
-//= require scripts/core/lib/packages/bootstrap/bootstrap.min
+//= require bootstrap-sprockets
 //= require scripts/core/lib/packages/html2canvas.min
 //= require scripts/core/lib/jquery/metis.menu/metisMenu.min
 //= require scripts/core/lib/jquery/jquery.slimscroll.min

@@ -74,6 +74,8 @@ GEM
       rake (>= 10.4, < 12.0)
     arel (8.0.0)
     ast (2.3.0)
+    autoprefixer-rails (7.1.1)
+      execjs
     awesome_print (1.7.0)
     axiom-types (0.1.1)
       descendants_tracker (~> 0.0.4)
@@ -83,6 +85,9 @@ GEM
     bcrypt (3.1.11-x64-mingw32)
     benchmark-ips (2.7.2)
     bindex (0.5.0)
+    bootstrap-sass (3.3.7)
+      autoprefixer-rails (>= 5.2.1)
+      sass (>= 3.3.4)
     brakeman (3.6.2)
     builder (3.2.3)
     bullet (5.5.1)
@@ -195,7 +200,7 @@ GEM
     http-cookie (1.0.3)
       domain_name (~> 0.5)
     http_parser.rb (0.6.0)
-    i18n (0.8.1)
+    i18n (0.8.4)
     ice_nine (0.11.2)
     iframely (0.1.0)
       faraday
@@ -267,7 +272,7 @@ GEM
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (4.1.0)
-    nio4r (2.0.0)
+    nio4r (2.1.0)
     nokogiri (1.7.2)
       mini_portile2 (~> 2.1.0)
     nokogiri (1.7.2-x64-mingw32)
@@ -509,6 +514,7 @@ PLATFORMS
 DEPENDENCIES
   annotate
   awesome_print
+  bootstrap-sass (~> 3.3.6)
   brakeman
   bullet
   byebug
@@ -561,7 +567,7 @@ DEPENDENCIES
   rubocop
   ruby-debug-ide (>= 0.6.1.beta2)
   rubycritic
-  sass-rails
+  sass-rails (>= 3.2)
   sdoc (>= 0.4.0)
   spring
   sprockets

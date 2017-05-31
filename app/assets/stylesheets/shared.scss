@@ -1,8 +1,10 @@
 /*
  *= require_self
- *= require 'font-awesome-import'
- *= require_directory '../javascripts/scripts/core/lib/packages/bootstrap/css'
  */
+@import "font-awesome-sprockets";
+@import "font-awesome";
+@import "bootstrap-sprockets";
+@import "bootstrap";
 
 body {
   -webkit-font-smoothing: antialiased;
