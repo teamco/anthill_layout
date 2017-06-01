@@ -47,25 +47,74 @@ define(['plugins/rules/page/page.rules.visualizer'],
           this.diagram.initialContentAlignment = go.Spot.Center;
           this.diagram.nodeTemplate = this.defineTemplate();
           this.diagram.model = this.updateModel();
-          this.diagram.click = this.onClick.bind(this);
+          this.diagram.undoManager.isEnabled = true;
+
+          this.diagram.addDiagramListener('ObjectSingleClicked',
+              this.objectSingleClicked.bind(this));
+          this.diagram.ModelChanged = this.modelChanged.bind(this);
+          this.diagram.addDiagramListener('ChangedSelection',
+              this.changedSelection.bind(this));
 
           this.updatePublishedRules();
           this.updateSubscriberRules();
         },
 
         /**
-         * @method onClick
+         * Whenever a GoJS transaction has finished modifying the model
+         * @method modelChanged
          * @memberOf GenerateRules
+         * @param {Event} e
          */
-        onClick: function onClick() {
-          this.diagram.startTransaction('no highlighteds');
-          this.diagram.clearHighlighteds();
-          this.diagram.commitTransaction('no highlighteds');
+        modelChanged: function modelChanged(e) {
+          if (e.isTransactionFinished) {
+            //saveModel();
+          }
         },
 
+        /**
+         * Update model when the Diagram.selection changes
+         * @method changedSelection
+         * @memberOf GenerateRules
+         */
+        changedSelection: function changedSelection() {
+          this.diagram.model.selectedNodeData = null;
+          var it = this.diagram.selection.iterator;
+          while (it.next()) {
+            var node = it.value;
+            // Ignore a selected link or a deleted node
+            if (node instanceof go.Node && node.data) {
+              this.diagram.model.selectedNodeData = node.data;
+              break;
+            }
+          }
+        },
+
+        /**
+         * @method objectSingleClicked
+         * @memberOf GenerateRules
+         * @param {Event} e
+         */
+        objectSingleClicked: function objectSingleClicked(e) {
+          var part = e.subject.part;
+          if (part instanceof go.Link) {
+          } else {
+            this.diagram.clearHighlighteds();
+          }
+        },
+
+        /**
+         * updateConnectivity
+         * @method updateConnectivity
+         * @memberOf GenerateRules
+         * @param node
+         * @param link
+         * @param port
+         */
         updateConnectivity: function updateConnectivity(node, link, port) {
-          // node.findObject('SHAPE').fill =
-          //     (node.findLinksInto().count > 0) ? 'red' : 'green';
+          var shape = node.findObject('shape'),
+              condition = node.findLinksInto().count;
+          shape.stroke = condition ? 'lightcoral' : 'green';
+          shape.strokeWidth = 2;
         },
 
         /**
@@ -76,17 +125,28 @@ define(['plugins/rules/page/page.rules.visualizer'],
         defineTemplate: function defineTemplate() {
           var _make = go.GraphObject.make;
           var node = _make(go.Node, 'Auto', {
-                click: this.showConnections,
-                linkConnected: this.updateConnectivity,
-                linkDisconnected: this.updateConnectivity
+                click: this.showConnections
               },
-              _make(go.Shape, new go.Binding('figure', 'figure'),
-                  {strokeWidth: 0.5},
+              _make(go.Shape, new go.Binding('figure', 'figure'), {
+                    name: 'shape',
+                    strokeWidth: 0.5,
+                    portId: '',
+                    cursor: 'pointer',
+                    fromLinkable: true,
+                    toLinkable: true,
+                    fromLinkableSelfNode: true,
+                    toLinkableSelfNode: true,
+                    fromLinkableDuplicates: true,
+                    toLinkableDuplicates: true
+                  },
                   new go.Binding('fill', 'color'),
                   new go.Binding('stroke', 'isHighlighted', function(h) {
                     return h ? 'red' : 'black';
                   }).ofObject())
           );
+
+          node.linkConnected = this.updateConnectivity;
+          node.linkDisconnected = this.updateConnectivity;
 
           node.add(_make(go.Picture, {
                 width: 32,
@@ -104,7 +164,8 @@ define(['plugins/rules/page/page.rules.visualizer'],
 
           node.add(_make(go.TextBlock, {
                 margin: new go.Margin(5, 10),
-                font: 'normal 14px Tahoma'
+                font: 'normal 14px Tahoma',
+                cursor: 'pointer'
               },
               new go.Binding('text', 'title'))
           );
@@ -165,7 +226,9 @@ define(['plugins/rules/page/page.rules.visualizer'],
                     fromNode: from,
                     toNode: to,
                     routing: go.Link.Normal,
-                    curve: go.Link.Bezier
+                    curve: go.Link.Bezier,
+                    relinkableFrom: true,
+                    relinkableTo: true
                   },
                   _make(go.Shape, {
                     isPanelMain: true,
@@ -173,7 +236,7 @@ define(['plugins/rules/page/page.rules.visualizer'],
                     strokeWidth: 2
                   }),
                   _make(go.Shape, {
-                    toArrow: 'standard',
+                    toArrow: 'Standard',
                     stroke: null,
                     strokeWidth: 0
                   })
