@@ -3280,6 +3280,8 @@ module.exports = function(grunt) {
             'javascripts/scripts/core/lib/packages/bootstrap/css/animate.css',
             'javascripts/scripts/core/lib/packages/bootstrap/css/bootstrap-theme.min.css',
             'javascripts/scripts/core/lib/packages/bootstrap/css/bootstrap.min.css',
+            'javascripts/scripts/core/stylesheets/shared.css',
+            'javascripts/scripts/core/stylesheets/style.min.css',
             'javascripts/scripts/core/stylesheets/general.css',
             'javascripts/scripts/core/stylesheets/cover.css',
             'javascripts/scripts/core/stylesheets/jquery-ui.min.css',
@@ -3303,7 +3305,8 @@ module.exports = function(grunt) {
           require: ['font-awesome-sass', 'bootstrap-sass']
         },
         files: {
-          'stylesheets/shared.css': 'stylesheets/shared.scss'
+          'stylesheets/shared.css': 'stylesheets/shared.scss',
+          'stylesheets/style.min.css': 'stylesheets/style.min.scss'
         }
       },
       dev: {
@@ -3312,7 +3315,8 @@ module.exports = function(grunt) {
           require: ['font-awesome-sass', 'bootstrap-sass']
         },
         files: {
-          'stylesheets/shared.css': 'stylesheets/shared.scss'
+          'stylesheets/shared.css': 'stylesheets/shared.scss',
+          'stylesheets/style.min.css': 'stylesheets/style.min.scss'
         }
       }
     },
@@ -3337,7 +3341,7 @@ module.exports = function(grunt) {
 
   const _osTask = isWindows ? 'win' : 'mac';
   const _browser = 'open:' + _osTask;
-  grunt.registerTask('default', ['cssmin', 'sass:dist', _browser, 'watch']);
+  grunt.registerTask('default', ['sass:dist', 'cssmin', _browser, 'watch']);
   grunt.registerTask('rails', ['exec:rails', 'default']);
   grunt.registerTask('python', ['exec:python', 'default']);
   grunt.registerTask('server',
