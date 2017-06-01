@@ -31,6 +31,7 @@ requirejs.config({
 
     modernizr: 'lib/modernizr',
 
+    bootstrap: 'lib/packages/bootstrap/bootstrap.min',
     'bootstrap-dialog': 'lib/packages/bootstrap/plugins/dialog/bootstrap-dialog.min',
 
     _: 'lib/_/underscore-min',
@@ -92,6 +93,7 @@ requirejs.config({
       ]
     },
 
+    bootstrap: {deps: ["jquery"]},
     'bootstrap-dialog': {deps: ['jquery'], exports: 'BootstrapDialog'},
 
     'config/listeners': {deps: ['extends/function']},

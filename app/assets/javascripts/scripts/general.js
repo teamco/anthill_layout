@@ -32,6 +32,7 @@
              */
             var loaderJs = [
 
+                'bootstrap',
                 '_',
                 'lz-string',
                 'jquery.ujs',

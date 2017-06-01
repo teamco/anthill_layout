@@ -23,6 +23,10 @@ const createFolderGlobs = function(fileTypePatterns) {
   }).concat(fileTypePatterns);
 };
 
+const _os = process.platform;
+const isWindows = _os === 'win32';
+console.log('This platform is ' + _os);
+
 module.exports = function(grunt) {
 
   const serveStatic = require('serve-static');
@@ -3231,7 +3235,7 @@ module.exports = function(grunt) {
                 req.on('data', function(rawData) {
                   const data = JSON.parse('{"' +
                       decodeURI(rawData).replace(/"/g, '\\"').
-                          replace(/&/g, '","').replace(/=/g, '":"') + '"}');
+                      replace(/&/g, '","').replace(/=/g, '":"') + '"}');
                   res.end(JSON.stringify(data));
                   return next();
                 });
@@ -3294,7 +3298,9 @@ module.exports = function(grunt) {
     sass: {
       dist: {
         options: {
-          style: 'compressed'
+          style: 'compressed',
+          includePaths: [],
+          require: ['font-awesome-sass', 'bootstrap-sass']
         },
         files: {
           'stylesheets/shared.css': 'stylesheets/shared.scss'
@@ -3302,7 +3308,8 @@ module.exports = function(grunt) {
       },
       dev: {
         options: {
-          style: 'expanded'
+          style: 'expanded',
+          require: ['font-awesome-sass', 'bootstrap-sass']
         },
         files: {
           'stylesheets/shared.css': 'stylesheets/shared.scss'
@@ -3310,11 +3317,11 @@ module.exports = function(grunt) {
       }
     },
     open: {
-      devWin: {
+      win: {
         path: 'http://localhost:3001/index.html',
         app: 'chrome'
       },
-      devMac: {
+      mac: {
         path: 'http://localhost:3001/index.html'
       }
     },
@@ -3328,18 +3335,13 @@ module.exports = function(grunt) {
     }
   });
 
-  grunt.registerTask('defaultWin', [
-    'cssmin', 'sass:dist', 'open:devWin', 'watch'
-  ]);
-  grunt.registerTask('defaultMac', [
-    'cssmin', 'sass:dist', 'open:devMac', 'watch'
-  ]);
+  const _osTask = isWindows ? 'win' : 'mac';
+  const _browser = 'open:' + _osTask;
+  grunt.registerTask('default', ['cssmin', 'sass:dist', _browser, 'watch']);
   grunt.registerTask('rails', ['exec:rails', 'default']);
   grunt.registerTask('python', ['exec:python', 'default']);
-  grunt.registerTask('server-win',
-      ['configureRewriteRules', 'connect:local', 'defaultWin']);
-  grunt.registerTask('server-mac',
-      ['configureRewriteRules', 'connect:local', 'defaultMac']);
+  grunt.registerTask('server',
+      ['configureRewriteRules', 'connect:local', 'default']);
 
   grunt.loadNpmTasks('grunt-open');
   grunt.loadNpmTasks('grunt-exec');
