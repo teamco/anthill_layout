@@ -86,7 +86,7 @@ define(function defineBehaviorErrorHandler() {
        * @private
        */
       function _formatStatusText() {
-        let msg;
+        var msg;
         switch (xhr.statusText) {
           case 'parsererror':
             msg = 'Requested JSON parse failed';
