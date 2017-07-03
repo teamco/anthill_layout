@@ -6,7 +6,7 @@ class Author::SiteStoragesController < Author::AuthorController
 
   before_action :authenticate_user!, except: [:show]
   before_action :set_author_site_storage,
-                only: [:show, :edit, :update, :destroy]
+      only: [:show, :edit, :update, :destroy]
 
   layout :resolve_layout
 
@@ -29,8 +29,8 @@ class Author::SiteStoragesController < Author::AuthorController
           params[:version],
           @versions,
           params[:mode].nil? ?
-              {id: params[:site_type_id]} :
-              {name: params[:mode]}
+              { id: params[:site_type_id] } :
+              { name: params[:mode] }
       )
 
       @storage.deep_merge!(config)
@@ -42,13 +42,13 @@ class Author::SiteStoragesController < Author::AuthorController
   def new
     @author_site_types = SiteType.order(:name)
     @author_site_storage = SiteStorage.new
-    render '/partials/form', locals: {title: 'key'}
+    render '/partials/form', locals: { title: 'key' }
   end
 
   # GET /author/site_storages/1/edit
   def edit
     @widget_categories = WidgetCategory.order(:name_value).includes(:author_widgets)
-    render '/partials/form', locals: {title: 'key'}
+    render '/partials/form', locals: { title: 'key' }
   end
 
   # POST /author/site_storages
@@ -104,22 +104,7 @@ class Author::SiteStoragesController < Author::AuthorController
       else
         notice = t('success_update')
         if request.xhr?
-          data = {
-              storage: {
-                  key: @author_site_storage.key,
-                  content: @activated.content
-              },
-              version: @activated.version,
-              activated: @activated.activated,
-              deployed: @activated.deployed,
-              mode: SiteType.get_mode(@author_site_storage, params[:mode]),
-              notice: notice,
-              updated_by: current_user.original_email,
-              updated_at: @activated.author_item.updated_at.strftime('%Y %b %d %I:%M:%S%p %Z')
-          }
-          format.json {
-            render json: data, status: :ok
-          }
+          format.json { render json: @author_site_storage.update_xhr(@activated, params[:mode]), status: :ok }
         else
           format.html { redirect_to author_site_storages_path, notice: notice }
           format.json { render :index, status: :ok, location: @author_site_storage }
@@ -191,8 +176,8 @@ class Author::SiteStoragesController < Author::AuthorController
     last = @author_site_storage.get_last_version
     published = @author_site_storage.get_published_version
     current = params[:version].nil? ?
-        activated :
-        versions.where(version: params[:version]).first
+                  activated :
+                  versions.where(version: params[:version]).first
 
     @versions = {
         all: versions,

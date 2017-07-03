@@ -15,43 +15,42 @@ require 'uuid'
 class Author::SiteStorage < ActiveRecord::Base
 
   has_many :author_site_versions,
-           class_name: 'Author::SiteVersion',
-           dependent: :destroy
+      class_name: 'Author::SiteVersion',
+      dependent: :destroy
 
   has_many :author_site_storage_widgets,
-           class_name: 'Author::SiteStorageWidget'
+      class_name: 'Author::SiteStorageWidget'
 
   has_many :author_widgets,
-           class_name: 'Author::Widget',
-           through: :author_site_storage_widgets
+      class_name: 'Author::Widget',
+      through: :author_site_storage_widgets
 
   belongs_to :author_site_type,
-             class_name: 'Author::SiteType',
-             foreign_key: :site_type_id
+      class_name: 'Author::SiteType',
+      foreign_key: :site_type_id
 
   has_many :vulnerability_storages,
-           class_name: 'VulnerabilityStorage',
-           foreign_key: :site_storage_id,
-           dependent: :destroy
+      class_name: 'VulnerabilityStorage',
+      foreign_key: :site_storage_id,
+      dependent: :destroy
 
   belongs_to :author_item,
-             class_name: 'Author::Item',
-             foreign_key: :item_id
+      class_name: 'Author::Item',
+      foreign_key: :item_id
 
   has_one :creator,
-          source: :user,
-          class_name: 'User',
-          through: :author_item
+      source: :user,
+      class_name: 'User',
+      through: :author_item
 
   has_and_belongs_to_many :users,
-                          class_name: 'User'
+      class_name: 'User'
 
   enum layout_type: [:js, :template]
 
-  scope :of_user, -> (user, visible=true, public=true) {
-    joins(:author_item).
-        where('visible=? AND (public=? OR user_id=?)', visible, public, user.id)
-  }
+  scope :of_user, (-> (user, visible = true, public = true) {
+    joins(:author_item).where('visible=? AND (public=? OR user_id=?)', visible, public, user.id)
+  })
 
   accepts_nested_attributes_for :author_site_storage_widgets, allow_destroy: true
   accepts_nested_attributes_for :author_site_versions, allow_destroy: true
@@ -60,10 +59,7 @@ class Author::SiteStorage < ActiveRecord::Base
 
   attr_accessor :content
 
-  validates :key,
-            presence: true,
-            uniqueness: true,
-            format: {with: /\A[a-z]+\z/}
+  validates :key, presence: true, uniqueness: true, format: { with: /\A[a-z]+\z/ }
 
   def to_param
     key.parameterize
@@ -114,7 +110,7 @@ class Author::SiteStorage < ActiveRecord::Base
     versions = site.author_site_versions
     version = versions.last
     versions.build(
-        version: version.nil? ? 1 : version.version + 1,
+        version: (version.nil? ? 1 : version.version + 1),
         activated: true,
         item_id: Author::Item.create_and_get.id
     )
@@ -199,7 +195,7 @@ class Author::SiteStorage < ActiveRecord::Base
 
   def activate_site_version(version=nil)
     if version.nil?
-      puts t('undefined_version')
+      logger.warn t('undefined_version')
       version = get_last_version
     end
     version.deactivate unless version.is_current?(get_activated_version)
@@ -208,13 +204,22 @@ class Author::SiteStorage < ActiveRecord::Base
 
   def deactivate_site_version(version=nil)
     activated = get_activated_version
-
-    puts t('undefined_activation') if activated.nil?
-    puts t('undefined_version') if version.nil?
-    puts t('deactivate_nonactive_version') unless version.is_current?(activated)
-
+    logger.warn t('undefined_activation') if activated.nil?
+    logger.warn t('undefined_version') if version.nil?
+    logger.warn t('deactivate_nonactive_version') unless version.is_current?(activated)
     version.deactivate
   end
 
-
+  def update_xhr(activated, mode)
+    {
+        storage: { key: self.key, content: activated.content },
+        version: activated.version,
+        activated: activated.activated,
+        deployed: activated.deployed,
+        mode: SiteType.get_mode(self, mode),
+        notice: notice,
+        updated_by: current_user.original_email,
+        updated_at: activated.author_item.updated_at.strftime('%Y %b %d %I:%M:%S%p %Z')
+    }
+  end
 end
