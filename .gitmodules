@@ -1,0 +1,3 @@
+[submodule "app/assets/javascripts/scripts/plugins/widgets/animoto"]
+	path = app/assets/javascripts/scripts/plugins/widgets/animoto
+	url = https://github.com/teamco/animoto
