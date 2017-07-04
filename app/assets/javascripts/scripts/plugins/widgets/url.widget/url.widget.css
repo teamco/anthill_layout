@@ -1,9 +1,0 @@
-.widget .content .url-widget {
-    height: 100%;
-    width: 100%;
-    overflow: auto;
-}
-
-.widget .content .url-widget iframe {
-    overflow: auto;
-}
