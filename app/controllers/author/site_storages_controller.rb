@@ -6,7 +6,7 @@ class Author::SiteStoragesController < Author::AuthorController
 
   before_action :authenticate_user!, except: [:show]
   before_action :set_author_site_storage,
-      only: [:show, :edit, :update, :destroy]
+    only: [:show, :edit, :update, :destroy]
 
   layout :resolve_layout
 
@@ -26,11 +26,11 @@ class Author::SiteStoragesController < Author::AuthorController
       @storage = @author_site_storage.get_storage_data
 
       config = @author_site_storage.get_storage_configuration(
-          params[:version],
-          @versions,
-          params[:mode].nil? ?
-              { id: params[:site_type_id] } :
-              { name: params[:mode] }
+        params[:version],
+        @versions,
+        params[:mode].nil? ?
+          { id: params[:site_type_id] } :
+          { name: params[:mode] }
       )
 
       @storage.deep_merge!(config)
@@ -82,19 +82,20 @@ class Author::SiteStoragesController < Author::AuthorController
   def update
     if request.xhr?
       version = @author_site_storage.build_new_version(
-          params[:author_site_storage][:content],
-          params[:activate],
-          params[:screenshot]
+        params[:author_site_storage][:content],
+        params[:activate],
+        params[:screenshot]
       )
     else
-      version = @author_site_storage.author_site_versions.where(id: params[:author_site_storage][:activated_version]).first
+      id = params[:author_site_storage][:activated_version]
+      version = @author_site_storage.author_site_versions.where(id: id).first
       params[:author_site_storage].delete :activated_version
     end
 
     @activated = @author_site_storage.update_handler(
-        version, params[:author_site_storage],
-        author_site_storage_params,
-        request.xhr?
+      version, params[:author_site_storage],
+      author_site_storage_params,
+      request.xhr?
     )
 
     respond_to do |format|
@@ -104,7 +105,7 @@ class Author::SiteStoragesController < Author::AuthorController
       else
         notice = t('success_update')
         if request.xhr?
-          format.json { render json: @author_site_storage.update_xhr(@activated, params[:mode]), status: :ok }
+          format.json { render json: @author_site_storage.update_xhr(@activated, params[:mode]), status: notice }
         else
           format.html { redirect_to author_site_storages_path, notice: notice }
           format.json { render :index, status: :ok, location: @author_site_storage }
@@ -138,22 +139,15 @@ class Author::SiteStoragesController < Author::AuthorController
 
   def update_activation
 
-    mode = SiteType.where(
-        name: params[:author_site_type][:name]
-    ).first
+    mode = SiteType.where(name: params[:author_site_type][:name]).first
 
     updated = update_version_activation(params[:author_site_version][:version])
 
     if mode.nil?
-      puts t('undefined_mode')
+      logger.warn t('undefined_mode')
       updated = false
     else
-      updated = @author_site_storage.update(
-          {
-              site_type_id: mode.id,
-              user_id: current_user.id
-          }
-      ) unless @author_site_storage.author_site_type == mode if updated
+      updated = @author_site_storage.update(site_type_id: mode.id, user_id: current_user.id) unless @author_site_storage.author_site_type == mode if updated
     end
 
     updated
@@ -175,17 +169,16 @@ class Author::SiteStoragesController < Author::AuthorController
     activated = @author_site_storage.get_activated_version
     last = @author_site_storage.get_last_version
     published = @author_site_storage.get_published_version
-    current = params[:version].nil? ?
-                  activated :
-                  versions.where(version: params[:version]).first
+    current = activated
+    current = versions.where(version: params[:version]).first unless params[:version].nil?
 
     @versions = {
-        all: versions,
-        current: current,
-        activated: activated,
-        deployed: activated.deployed,
-        last: last,
-        published: published
+      all: versions,
+      current: current,
+      activated: activated,
+      deployed: activated.deployed,
+      last: last,
+      published: published
     }
     @target_path = get_target_url(@author_site_storage.key) unless @author_site_storage.nil?
   end
@@ -193,29 +186,17 @@ class Author::SiteStoragesController < Author::AuthorController
   # Never trust parameters from the scary internet, only allow the white list through.
   def author_site_storage_params
     params.require(:author_site_storage).permit(
-        :key,
-        :site_type_id,
-        :mode,
-        :public,
-        :layout_type,
-        :content,
-        :activated_version,
-        author_item_attributes: [
-            :public,
-            :visible,
-            :id
-        ],
-        author_site_storage_widget_ids: [],
-        author_site_versions_attributes: [
-            :id,
-            :version,
-            :activated,
-            :deployed,
-            :published
-        ],
-        author_site_types_attributes: [
-            :name
-        ]
+      :key,
+      :site_type_id,
+      :mode,
+      :public,
+      :layout_type,
+      :content,
+      :activated_version,
+      author_site_storage_widget_ids: [],
+      author_item_attributes: %i(public visible id),
+      author_site_versions_attributes: %i(id version activated deployed published),
+      author_site_types_attributes: %i(name)
     )
   end
 
