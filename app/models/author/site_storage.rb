@@ -61,15 +61,15 @@ module Author
     end
 
     def get_published_version
-      author_site_versions.find(published: true).includes(:author_site_storage)
+      author_site_versions.find_by(published: true)
     end
 
     def get_activated_version
-      author_site_versions.find(activated: true).includes(:author_site_storage)
+      author_site_versions.find_by(activated: true)
     end
 
     def get_version(version)
-      author_site_versions.find(version: version).includes(:author_site_storage)
+      author_site_versions.find_by(version: version)
     end
 
     def self.build_data(params)
