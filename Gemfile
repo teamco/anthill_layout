@@ -2,48 +2,47 @@ source 'https://rubygems.org'
 # ruby '~> 2.4.0'
 
 windows_os = RUBY_PLATFORM =~ /mswin|mingw|cygwin/
+linux_os = RUBY_PLATFORM =~ /x86_64-linux/
 
 # case RUBY_PLATFORM
 #   when /darwin|linux/
 gem 'rails', '>= 5.0.0'
 
-gem 'embedly'
 gem 'bullet'
-gem 'rake'
-# gem 'requirejs-rails'
-# gem 'keen'
-gem 'will_paginate'
-
-gem 'puma'
-gem 'pismo'
+gem 'embedly'
 gem 'iframely'
-gem 'mechanize'
 gem 'informant-rails'
-gem 'pg', '>=0.20' unless windows_os
-gem 'mysql2' if windows_os
-gem 'sys-proctable' if windows_os
+gem 'mechanize'
+gem 'mysql2' if windows_os || linux_os
+gem 'pg', '>=0.20' unless windows_os || linux_os
+gem 'pismo'
+gem 'puma'
+gem 'rake'
 gem 'rollbar'
+gem 'sys-proctable' if windows_os
+gem 'will_paginate'
 
 group :test, :development do
   gem 'annotate', require: false
-  gem 'xilence', require: false
-  gem 'meta_request', require: false
-  gem 'pry-rails', require: false
-  gem 'prmd', require: false
-  gem 'ruby-debug-ide', '>=0.6.1.beta2', require: false
-  gem 'debase', '>=0.2.2.beta7', require: false
-  gem 'spring', require: false
-  gem 'wirble', require: false
-  gem 'capistrano-rails', require: false
-  gem 'rails_best_practices', require: false
-  gem 'request-log-analyzer', require: false
   gem 'brakeman', require: false
-  gem 'rubocop', require: false
-  gem 'rubycritic', require: false unless windows_os
-  gem 'traceroute', require: false
+  gem 'byebug', require: false
+  gem 'capistrano-rails', require: false
+  gem 'debase', '>=0.2.2.beta7', require: false
   gem 'guard', require: false
   gem 'guard-livereload', '~> 2.5', require: false
-  gem 'byebug', require: false
+  gem 'meta_request', require: false
+  gem 'prmd', require: false
+  gem 'pry-rails', require: false
+  gem 'rails_best_practices', require: false
+  gem 'request-log-analyzer', require: false
+  gem 'rubocop', require: false
+  gem 'rubocop-github', require: false
+  gem 'ruby-debug-ide', '>=0.6.1.beta2', require: false
+  gem 'rubycritic', require: false unless windows_os
+  gem 'spring', require: false
+  gem 'traceroute', require: false
+  gem 'wirble', require: false
+  gem 'xilence', require: false
 end
 
 gem 'derailed', group: :development
@@ -54,7 +53,7 @@ group :console do
   gem 'hirb'
   gem 'interactive_editor'
   gem 'rails-console-tweaks'
-  gem 'web-console' #, '~> 2.0'
+  gem 'web-console'
 end
 
 group :doc do
@@ -72,43 +71,40 @@ gem 'rack-attack'
 gem 'jquery-rails'
 gem 'rmagick'
 
-gem 'font-awesome-sass'#, git: 'https://github.com/teamco/font-awesome-sass.git'
 gem 'bootstrap-sass', '~> 3.3.6'
+gem 'coffee-rails'
+gem 'data_uri'
+gem 'font-awesome-sass'
+gem 'github_api'
 gem 'sass-rails', '>= 3.2'
 
-gem 'github_api'
-
 gem 'i18n'
-gem 'uuid'
-gem 'tzinfo-data'
 gem 'tzinfo'
-gem 'data_uri'
+gem 'tzinfo-data'
+gem 'uuid'
 
 gem 'uglifier'
-gem 'coffee-rails'
 
-# gem 'turbolinks'
-gem 'data-confirm-modal', git: 'https://github.com/ifad/data-confirm-modal'
-
+gem 'data-confirm-modal'
 gem 'jbuilder'
 gem 'therubyracer' unless windows_os
 
 gem 'gravtastic'
 
-gem 'devise', git: 'https://github.com/gogovan/devise.git', branch: 'rails-5.1'
+gem 'devise'
 gem 'devise_lastseenable'
 gem 'omniauth'
 # gem 'omniauth-digitalocean'
+gem 'omniauth-aliexpress', git: 'https://github.com/pinglamb/omniauth-aliexpress'
+gem 'omniauth-bitbucket'
+gem 'omniauth-facebook'
+gem 'omniauth-github'
+gem 'omniauth-linkedin-oauth2'
 gem 'omniauth-twitter'
 # gem 'omniauth-amazon'
 # gem 'omniauth-weibo-oauth2'
-gem 'omniauth-facebook'
 # gem 'omniauth-instagram'
 # gem 'omniauth-google'
-gem 'omniauth-linkedin-oauth2'
-gem 'omniauth-github'
-gem 'omniauth-bitbucket'
-gem 'omniauth-aliexpress', git: 'https://github.com/pinglamb/omniauth-aliexpress'
 
 gem 'koala'
 gem 'sprockets'

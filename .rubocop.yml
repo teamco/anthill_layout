@@ -16,3 +16,14 @@ Style/Documentation:
 
 Metrics/MethodLength:
   Max: 30
+
+Style/StringLiterals:
+  EnforcedStyle: single_quotes
+  SupportedStyles:
+    - single_quotes
+    - double_quotes
+
+inherit_gem:
+  rubocop-github:
+    - config/default.yml
+    - config/rails.yml

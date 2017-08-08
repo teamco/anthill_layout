@@ -22,8 +22,7 @@ module Anthill
 
     # config.assets.initialize_on_precompile = false
 
-    # config.autoload_paths << Rails.root.join('lib')
-
+    config.autoload_paths << Rails.root.join('lib')
     config.action_view.field_error_proc = Proc.new { |html_tag, instance| html_tag }
   end
 end

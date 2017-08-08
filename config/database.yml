@@ -1,8 +1,8 @@
 mysql: &mysql
   adapter: mysql2
   encoding: utf8
-  username: teamco
-  password: 09051972
+  username: <%= ENV['MYSQL_USER'] %>
+  password: <%= ENV['MYSQL_PWD'] %>
   host: 127.0.0.1
   port: 3306
 
@@ -14,9 +14,9 @@ postgresql: &postgresql
   password: <%= ENV['POSTGRESS_PWD'] %>
 
 default: &default
-  <% if RUBY_PLATFORM =~ /mswin|mingw|cygwin/ %>
-    <<: *mysql 
-  <% else %>  
+  <% if RUBY_PLATFORM =~ /x86_64-linux/ %>
+    <<: *mysql
+  <% else %>
     <<: *postgresql
   <% end %>  
 
