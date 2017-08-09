@@ -24,20 +24,14 @@ Rails.application.routes.draw do
     resources :site_types
 
     get 'widgets/all', to: 'widgets#all', as: 'widgets_all'
-    resources :widgets do
-      resources :widget_categories
-    end
+    resources(:widgets) {resources :widget_categories}
 
     resources :site_storages do
       resources :site_versions do
         # put 'publish', to: 'site_versions#publish'
-        resources :site_types do
-          get '', to: 'site_storages#show_version'
-        end
+        resources(:site_types) {get '', to: 'site_storages#show_version'}
       end
-      resources :site_types do
-        get '', to: 'site_storages#show'
-      end
+      resources(:site_types) {get '', to: 'site_storages#show'}
       resources :widgets
       get 'users', to: 'users#site_users'
     end
@@ -86,9 +80,7 @@ Rails.application.routes.draw do
 
 
   get '/author', to: 'author/author#index'
-
   get '/embedly', to: 'public/embedly#show'
-
   get '/widget/fetch_embedded_content', to: 'author/widgets#fetch_embedded_content'
 
   root 'author/author#index'

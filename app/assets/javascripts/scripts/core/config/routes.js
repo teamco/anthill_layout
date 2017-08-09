@@ -52,7 +52,7 @@ define(function defineRoutes() {
 
       /**
        * Define token
-       * @type {Object|{authenticity_token: string}}
+       * @type {Number|Object|{authenticity_token: string}}
        */
       var data = {authenticity_token: ''}, index;
 

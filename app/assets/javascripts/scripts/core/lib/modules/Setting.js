@@ -399,6 +399,7 @@ define([
 
             url: route[0] + key,
             method: route[1],
+            timeout: 30000,
 
             data: scope.controller.prepareXhrData({
               author_site_storage: {

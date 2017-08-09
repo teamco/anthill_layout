@@ -96,7 +96,7 @@ module Author
       site_version = {
           version: versions.last.version + 1,
           content: content,
-          activated: activate == "true",
+          activated: activate == true.to_s,
           screenshot: screenshot
       }
 
@@ -181,7 +181,7 @@ module Author
       version.deactivate
     end
 
-    def update_xhr(activated, mode, user, notice)
+    def update_xhr(activated, mode, notice)
       {
           storage: {key: self.key, content: activated.content},
           version: activated.version,
@@ -189,7 +189,7 @@ module Author
           deployed: activated.deployed,
           mode: SiteType.get_mode(self, mode),
           notice: notice,
-          updated_by: user.original_email,
+          updated_by: User.current.original_email,
           updated_at: activated.author_item.updated_at.strftime("%Y %b %d %I:%M:%S%p %Z")
       }
     end
