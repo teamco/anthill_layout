@@ -14,7 +14,7 @@ postgresql: &postgresql
   password: <%= ENV['POSTGRESS_PWD'] %>
 
 default: &default
-  <% if ENV['PATH'] =~ /teamco/ %>
+  <% unless (ENV['PATH'] =~ /teamco/).nil? %>
     <<: *mysql
   <% else %>
     <<: *postgresql
