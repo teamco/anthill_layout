@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 # ruby '~> 2.4.0'
 
 windows_os = RUBY_PLATFORM =~ /mswin|mingw|cygwin/
-teamco = ENV['PATH'] =~ /teamco/
+teamco = Socket.gethostname =~ /teamco/
 
 # case RUBY_PLATFORM
 #   when /darwin|linux/
@@ -14,7 +14,7 @@ gem 'iframely'
 gem 'informant-rails'
 gem 'mechanize'
 gem 'mysql2' unless teamco.nil?
-gem 'pg', '>=0.20' if teamco.nil?
+gem 'pg'
 gem 'pismo'
 gem 'puma'
 gem 'rake'
