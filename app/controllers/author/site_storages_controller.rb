@@ -105,7 +105,8 @@ class Author::SiteStoragesController < Author::AuthorController
       else
         notice = t('success_update')
         if request.xhr?
-          format.json { render json: @author_site_storage.update_xhr(@activated, params[:mode]), status: notice }
+          json_response = @author_site_storage.update_xhr(@activated, params[:mode], current_user, notice)
+          format.json { render json: json_response, status: notice }
         else
           format.html { redirect_to author_site_storages_path, notice: notice }
           format.json { render :index, status: :ok, location: @author_site_storage }

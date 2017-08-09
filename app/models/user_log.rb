@@ -33,6 +33,8 @@
 
 class UserLog < ActiveRecord::Base
 
+  include ExternalLogger
+
   belongs_to :user
   delegate :email, to: :user, prefix: true
 
@@ -80,7 +82,7 @@ class UserLog < ActiveRecord::Base
         user.user_logs.create!(opts) :
         create!(opts)) if except(cname, aname)
 
-    Rollbar.log(opts)
+    rollbar(opts, 'log')
 
   end
 

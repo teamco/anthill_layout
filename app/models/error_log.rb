@@ -15,6 +15,8 @@
 
 class ErrorLog < ActiveRecord::Base
 
+  include ExternalLogger
+
   belongs_to :user_log
   has_one :user, through: :user_log
 
@@ -69,7 +71,7 @@ class ErrorLog < ActiveRecord::Base
 
   def create_error(log)
     create!(log)
-    Rollbar.error(log)
+    rollbar(log, 'error')
   end
 
 end

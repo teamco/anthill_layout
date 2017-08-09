@@ -44,7 +44,7 @@ module Author
       user = User.current
       return fetch_data(user) if key.nil?
 
-      site_storage = Author::SiteStorage.fetch_data(user).find_by(key: key)
+      site_storage = SiteStorage.fetch_data(user).find_by(key: key)
       site_storage.author_widgets.of_user(user, visible, public, name: :asc) unless site_storage.nil?
     end
 
@@ -62,7 +62,7 @@ module Author
       widget = new(params)
       widget.uuid = uuid.generate
       widget.widget_category_id = category.id
-      widget.item_id = Author::Item.create_and_get.id
+      widget.item_id = Item.create_and_get.id
       widget
     end
   end

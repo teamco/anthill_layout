@@ -76,10 +76,7 @@ module Author
 
     def self.get_storage_versions(site_key)
       user = defined?(Rails::Console) ? User.first : User.current
-      Author::SiteStorage.fetch_data(user).
-          where(key: site_key).
-          includes(:author_item).
-          first.author_site_versions
+      SiteStorage.fetch_data(user).find_by(key: site_key).author_site_versions
     end
 
     def handle_activation(activate)

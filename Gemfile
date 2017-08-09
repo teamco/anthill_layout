@@ -2,7 +2,6 @@ source 'https://rubygems.org'
 # ruby '~> 2.4.0'
 
 windows_os = RUBY_PLATFORM =~ /mswin|mingw|cygwin/
-linux_os = RUBY_PLATFORM =~ /x86_64-linux/
 teamco = ENV['PATH'] =~ /teamco/
 
 # case RUBY_PLATFORM
@@ -14,12 +13,12 @@ gem 'embedly'
 gem 'iframely'
 gem 'informant-rails'
 gem 'mechanize'
-gem 'mysql2' if windows_os || (linux_os && teamco)
-gem 'pg', '>=0.20' unless windows_os || (linux_os && teamco)
+gem 'mysql2' if teamco
+gem 'pg', '>=0.20' unless teamco
 gem 'pismo'
 gem 'puma'
 gem 'rake'
-gem 'rollbar'
+# gem 'rollbar'
 gem 'sys-proctable' if windows_os
 gem 'will_paginate'
 

@@ -114,7 +114,7 @@ module Author
       }
 
       config = {}
-      config[:mode] = Author::SiteType.where(mode_args).first.name.to_sym
+      config[:mode] = SiteType.where(mode_args).first.name.to_sym
 
       if version.nil? && last_version_if[config[:mode]]
         current = versions[:last]
@@ -181,7 +181,7 @@ module Author
       version.deactivate
     end
 
-    def update_xhr(activated, mode)
+    def update_xhr(activated, mode, user, notice)
       {
           storage: {key: self.key, content: activated.content},
           version: activated.version,
@@ -189,7 +189,7 @@ module Author
           deployed: activated.deployed,
           mode: SiteType.get_mode(self, mode),
           notice: notice,
-          updated_by: current_user.original_email,
+          updated_by: user.original_email,
           updated_at: activated.author_item.updated_at.strftime("%Y %b %d %I:%M:%S%p %Z")
       }
     end

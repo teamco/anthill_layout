@@ -14,7 +14,7 @@ postgresql: &postgresql
   password: <%= ENV['POSTGRESS_PWD'] %>
 
 default: &default
-  <% if RUBY_PLATFORM =~ /x86_64-linux/ %>
+  <% if ENV['PATH'] =~ /teamco/ %>
     <<: *mysql
   <% else %>
     <<: *postgresql

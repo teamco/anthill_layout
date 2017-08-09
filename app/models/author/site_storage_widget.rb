@@ -18,7 +18,7 @@ module Author
     after_save :remove_nulls
 
     def remove_nulls
-      nulls = Author::SiteStorageWidget.where(site_storage_id: nil)
+      nulls = SiteStorageWidget.where(site_storage_id: nil)
       nulls.destroy_all
     end
   end
