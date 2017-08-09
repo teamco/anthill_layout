@@ -13,13 +13,12 @@ gem 'embedly'
 gem 'iframely'
 gem 'informant-rails'
 gem 'mechanize'
-gem 'mysql2' if teamco
-gem 'pg', '>=0.20' unless teamco
+gem 'mysql2' unless teamco.nil?
+gem 'pg', '>=0.20' if teamco.nil?
 gem 'pismo'
 gem 'puma'
 gem 'rake'
 # gem 'rollbar'
-gem 'sys-proctable' if windows_os
 gem 'will_paginate'
 
 group :test, :development do
@@ -87,7 +86,7 @@ gem 'uglifier'
 
 gem 'data-confirm-modal'
 gem 'jbuilder'
-gem 'therubyracer' unless windows_os
+gem 'therubyracer'
 
 gem 'gravtastic'
 
