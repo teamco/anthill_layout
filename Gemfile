@@ -14,8 +14,8 @@ gem 'embedly'
 gem 'iframely'
 gem 'informant-rails'
 gem 'mechanize'
-gem 'mysql2' if windows_os || (linux_os && teamco)
-gem 'pg', '>=0.20' unless windows_os || (linux_os && teamco)
+gem 'mysql2' if linux_os && teamco
+gem 'pg', '>=0.20' unless linux_os && teamco
 gem 'pismo'
 gem 'puma'
 gem 'rake'
