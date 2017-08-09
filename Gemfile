@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 # ruby '~> 2.4.0'
-
+require 'socket'
 windows_os = RUBY_PLATFORM =~ /mswin|mingw|cygwin/
 teamco = Socket.gethostname =~ /teamco/
 
