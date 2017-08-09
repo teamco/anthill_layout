@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 
 windows_os = RUBY_PLATFORM =~ /mswin|mingw|cygwin/
 linux_os = RUBY_PLATFORM =~ /x86_64-linux/
+teamco = ENV['PATH'] =~ /teamco/
 
 # case RUBY_PLATFORM
 #   when /darwin|linux/
@@ -13,8 +14,8 @@ gem 'embedly'
 gem 'iframely'
 gem 'informant-rails'
 gem 'mechanize'
-gem 'mysql2' if windows_os || linux_os
-gem 'pg', '>=0.20' unless windows_os || linux_os
+gem 'mysql2' if windows_os || (linux_os && teamco)
+gem 'pg', '>=0.20' unless windows_os || (linux_os && teamco)
 gem 'pismo'
 gem 'puma'
 gem 'rake'
