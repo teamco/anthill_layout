@@ -59,7 +59,7 @@ en:
   success_activation: "Site storage version was successfully activated"
   undefined_activation: "Undefined activated storage"
   undefined_mode: "Undefined storage mode"
-  success_delete: "Item was successfully destroyed"
+  success_destroy: "Item was successfully destroyed"
   success_update: "Item was successfully updated"
   success_create: "Item was successfully created"
   more_info: "More info"

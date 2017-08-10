@@ -133,6 +133,8 @@ body.mini-navbar .logo-element {
   border-radius: 50%;
   margin-right: 10px;
   margin-top: -2px;
+  overflow: hidden;
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAAGXcA1uAAAACXBIWXMAAAsSAAALEgHS3X78AAACCUlEQVR4nK2WyytFURTG7+VKHgMZSCaS14QREQaeU2SgpJSxDOQ/YGJs6D+QV3mMvQaEKK9CykDKNWCCcrscv6V92OfY+xynrPru2nuvb61v7X32PfcmHMeJuZaQj529ww1cxdekubGu/StiojlE44mYZt80oq+4HFXjh8UkV1IZZnpqaVXemXsVPRruwM2S+p6ANSNaQO9KjbN+dUWgEnelphKsp6GjIIlzbSydHypvTbgENdr8KXATyNfS1jPDPDUvtCZAXMb1+NZkH9ugjWTHPY1W3ChIgQVDm2Jz8Oatz85mv/ZAlTtciZpuuvfQtoe4RhZrY62dpA2bQqahi0erApXScil9a8eBe/AbBbJJegtK2AVNapzUycYECM3aLW3wx03H2q9Nh8GkMQFiC24r5j2pCdYn8D0or34nsDiH0yv7bQXOAUkNroI8MNsd8u7hL3eJ6gW4cVAHysEtmEZxLVTgD8WXcH2+5WrQpS7FPShFLBVZgAJFhuJ+KwbdYDGyAF09ICIvqKoAWhpYjypsB/KaKQviqBrCuYgswA5eEJHzvgYZFlonPGPxUAElcoOIfPd2DSJDxNeD8kMFlMg+Ih8Ggb2w3LBnIGc7BkYs3Cs4s/gpmjgJFYCcj5sBg2GdaTYg0F6UcmSDCCY9AhDk1+w0QmGbdYB76vUisqL/yTiLab+p/2WfEj3WFIjPQx8AAAAASUVORK5CYII=);
 }
 
 .user-menu > .dropdown-toggle {

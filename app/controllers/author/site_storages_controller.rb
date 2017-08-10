@@ -19,12 +19,10 @@ class Author::SiteStoragesController < Author::AuthorController
   # GET /author/site_storages/1
   # GET /author/site_storages/1.json
   def show
-
     @storage = {}
-
+    return @storage if @author_site_storage.nil?
     if File.exist?(@target_path)
       @storage = @author_site_storage.get_storage_data
-
       config = @author_site_storage.get_storage_configuration(
           params[:version],
           @versions,
@@ -32,49 +30,33 @@ class Author::SiteStoragesController < Author::AuthorController
               {id: params[:site_type_id]} :
               {name: params[:mode]}
       )
-
       @storage.deep_merge!(config)
-
-    end unless @author_site_storage.nil?
+    end
   end
 
   # GET /author/site_storages/new
   def new
     @author_site_types = SiteType.order(:name)
     @author_site_storage = SiteStorage.new
-    render '/partials/form', locals: {title: 'key'}
+    render_form(title: 'key')
   end
 
   # GET /author/site_storages/1/edit
   def edit
     @widget_categories = WidgetCategory.order(:name_value).includes(:author_widgets)
-    render '/partials/form', locals: {title: 'key'}
+    render_form(title: 'key')
   end
 
   # POST /author/site_storages
   # POST /author/site_storages.json
   def create
-
     @author_site_storage = SiteStorage.build_data(author_site_storage_params)
-
     target = get_target_url(@author_site_storage.key)
     FileUtils.cp_r "#{Rails.root}/lib/tasks/site/default_js", target
-
-    respond_to do |format|
-      if File.exist?(target)
-        if @author_site_storage.save
-          format.html {redirect_to author_site_storages_path, notice: t('success_create')}
-          format.json {render :index, status: :created, location: @author_site_storage}
-        else
-          FileUtils.rm_r(target)
-          format.html {redirect_to author_site_storages_path, notice: :error}
-          format.json {render json: @author_site_storage.errors, status: :unprocessable_entity}
-        end
-      else
-        format.html {redirect_to author_site_storages_path, notice: :error}
-        format.json {render json: @author_site_storage.errors, status: :not_found}
-      end
-    end
+    return respond_with_error(:not_found) unless File.exist?(target)
+    return respond_default if @author_site_storage.save
+    FileUtils.rm_r(target)
+    respond_with_error
   end
 
   # PATCH/PUT /author/site_storages/1
@@ -90,12 +72,7 @@ class Author::SiteStoragesController < Author::AuthorController
   # DELETE /author/site_storages/1.json
   def destroy
     FileUtils.rm_r(@target_path) if File.exist?(@target_path)
-
-    @author_site_storage.destroy
-    respond_to do |format|
-      format.html {redirect_to author_site_storages_url, notice: t('success_delete')}
-      format.json {head :no_content}
-    end
+    @author_site_storage.destroy ? respond_default(author_site_storages_url) : respond_with_error
   end
 
   private
@@ -133,13 +110,13 @@ class Author::SiteStoragesController < Author::AuthorController
   end
 
   def update_activation
-    mode = SiteType.where(name: params[:author_site_type][:name]).first
+    mode = SiteType.find_by(name: params[:author_site_type][:name])
     updated = update_version_activation(params[:author_site_version][:version])
     if mode.nil?
       logger.warn t('undefined_mode')
       updated = false
-    else
-      updated = @author_site_storage.update(site_type_id: mode.id, user_id: current_user.id) unless @author_site_storage.author_site_type == mode if updated
+    elsif updated && @author_site_storage.author_site_type != mode
+      updated = @author_site_storage.update(site_type_id: mode.id, user_id: current_user.id)
     end
     updated
   end
@@ -152,7 +129,7 @@ class Author::SiteStoragesController < Author::AuthorController
   def set_author_site_storage
     @author_site_types = SiteType.order(:name)
     key = params[:key] || params[:id] || params[:site_storage_id]
-    @author_site_storage = SiteStorage.where(key: key).first
+    @author_site_storage = SiteStorage.find_by(key: key)
 
     return if @author_site_storage.nil?
 
