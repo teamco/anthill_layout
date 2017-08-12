@@ -78,7 +78,7 @@ module WidgetLib
 
         puts '>>> Finish copy'
 
-        files_list = Dir.glob("#{path}#{@file_name}/**/*").select { |e| File.file? e }
+        files_list = Dir.glob("#{path}#{@file_name}/**/*").select {|e| File.file? e}
 
         files_list.each do |f|
           puts ">>> Rename: #{f}"
@@ -172,8 +172,9 @@ module WidgetLib
         return false
       end
 
-      Dir.mkdir "#{css_path}/widgets" unless File.exists? "#{css_path}/widgets"
-      Dir.mkdir "#{css_path}/images" unless File.exists? "#{css_path}/images"
+      create_dir("#{css_path}/widgets")
+      create_dir("#{css_path}/images")
+      create_dir("#{widgets_path}/#{@file_name}/images")
 
       path = "#{css_path}/widgets/#{@file_name}.css"
       delete_css
@@ -181,23 +182,26 @@ module WidgetLib
 
       File.open("#{path}", 'w') do |f|
         pattern = @file_name.gsub(/\./, '-')
-        f.write(".widget.#{pattern}{background-image:url('/assets/scripts/plugins/stylesheets/images/#{@file_name}.png');}")
+        f.write(".widget.#{pattern}{background-image:url('/assets/javascripts/scripts/plugins/widgets/#{@file_name}/images/#{@file_name}.png');}")
       end
 
-      puts "--- Create image from Base64: #{@file_name}.png"
-      begin
-        image = ImageList.new
-        resized = @img.resize(
-            image.from_blob(
-                Base64.decode64(
-                    thumbnail['data:image/png;base64,'.length .. -1]
-                )
-            )
-        )
-        delete_image
-        resized.write("#{css_path}/images/#{@file_name}.png")
-      rescue
-        puts '+++ Unable to convert image'
+      img_path = "#{widgets_path}#{@file_name}/images/#{@file_name}.png"
+      puts "--- Create image from Base64: #{img_path}"
+      unless File.exists? img_path
+        begin
+          image = ImageList.new
+          resized = @img.resize(
+              image.from_blob(
+                  Base64.decode64(
+                      thumbnail['data:image/png;base64,'.length .. -1]
+                  )
+              )
+          )
+          #delete_image
+          resized.write("#{widgets_path}/#{@file_name}/images/#{@file_name}.png")
+        rescue
+          puts '+++ Unable to convert image'
+        end
       end
     end
 
@@ -212,7 +216,7 @@ module WidgetLib
     private
 
     def camel_case(separator)
-      @cname.scan(/\w+/).join('_').gsub(/\d+/, '').split('_').map { |e| e.capitalize }.join(separator)
+      @cname.scan(/\w+/).join('_').gsub(/\d+/, '').split('_').map {|e| e.capitalize}.join(separator)
     end
 
     def check_exist
@@ -229,5 +233,8 @@ module WidgetLib
       end
     end
 
+    def create_dir(path)
+      Dir.mkdir path unless File.exists? path
+    end
   end
 end

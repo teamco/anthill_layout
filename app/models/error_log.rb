@@ -15,7 +15,7 @@
 
 class ErrorLog < ActiveRecord::Base
 
-  include ExternalLogger
+  include Base::ExternalLogger
 
   belongs_to :user_log
   has_one :user, through: :user_log
