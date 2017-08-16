@@ -8,6 +8,10 @@ module WidgetLib
 
     include Magick
 
+    PLUGINS_PATH = './app/assets/javascripts/scripts/plugins/'
+    WIDGETS_PATH = "#{PLUGINS_PATH}widgets/"
+    CSS_PATH = "#{PLUGINS_PATH}stylesheets"
+
     def initialize
       @img = BaseImage.new
     end
@@ -60,25 +64,23 @@ module WidgetLib
     end
 
     def remove_widget_dir
-      FileUtils.rm_rf "#{widgets_path}#{@file_name}" if check_exist
+      FileUtils.rm_rf "#{WIDGETS_PATH}#{@file_name}" if check_exist
     end
 
     def do_it
-      path = widgets_path
-
       unless check_exist
 
         src_pattern = @clone
-        puts ">>> Start copy [#{path}#{src_pattern}] to [#{path}#{@file_name}]"
+        puts ">>> Start copy [#{WIDGETS_PATH}#{src_pattern}] to [#{WIDGETS_PATH}#{@file_name}]"
 
         FileUtils.cp_r(
-            "#{path}#{src_pattern}",
-            "#{path}#{@file_name}"
+            "#{WIDGETS_PATH}#{src_pattern}",
+            "#{WIDGETS_PATH}#{@file_name}"
         )
 
         puts '>>> Finish copy'
 
-        files_list = Dir.glob("#{path}#{@file_name}/**/*").select {|e| File.file? e}
+        files_list = Dir.glob("#{WIDGETS_PATH}#{@file_name}/**/*").select {|e| File.file? e}
 
         files_list.each do |f|
           puts ">>> Rename: #{f}"
@@ -146,7 +148,7 @@ module WidgetLib
     end
 
     def delete_css
-      path = "#{css_path}/widgets/#{@file_name}.css"
+      path = "#{CSS_PATH}/widgets/#{@file_name}.css"
       exist_file = File.exist?(path)
 
       if exist_file
@@ -156,7 +158,7 @@ module WidgetLib
     end
 
     def delete_image
-      path = "#{css_path}/images/#{@file_name}.png"
+      path = "#{CSS_PATH}/images/#{@file_name}.png"
       exist_file = File.exist?(path)
 
       if exist_file
@@ -172,20 +174,20 @@ module WidgetLib
         return false
       end
 
-      create_dir("#{css_path}/widgets")
-      create_dir("#{css_path}/images")
-      create_dir("#{widgets_path}/#{@file_name}/images")
+      create_dir("#{CSS_PATH}/widgets")
+      create_dir("#{CSS_PATH}/images")
+      create_dir("#{WIDGETS_PATH}/#{@file_name}/images")
 
-      path = "#{css_path}/widgets/#{@file_name}.css"
+      path = "#{CSS_PATH}/widgets/#{@file_name}.css"
       delete_css
       puts "--- Create CSS file: #{@file_name}.css"
 
       File.open("#{path}", 'w') do |f|
         pattern = @file_name.gsub(/\./, '-')
-        f.write(".widget.#{pattern}{background-image:url('/assets/javascripts/scripts/plugins/widgets/#{@file_name}/images/#{@file_name}.png');}")
+        f.write(".widget.#{pattern}{background-image:url('/assets/scripts/plugins/widgets/#{@file_name}/images/#{@file_name}.png');}")
       end
 
-      img_path = "#{widgets_path}#{@file_name}/images/#{@file_name}.png"
+      img_path = "#{WIDGETS_PATH}#{@file_name}/images/#{@file_name}.png"
       puts "--- Create image from Base64: #{img_path}"
       unless File.exists? img_path
         begin
@@ -198,19 +200,11 @@ module WidgetLib
               )
           )
           #delete_image
-          resized.write("#{widgets_path}/#{@file_name}/images/#{@file_name}.png")
+          resized.write("#{WIDGETS_PATH}/#{@file_name}/images/#{@file_name}.png")
         rescue
           puts '+++ Unable to convert image'
         end
       end
-    end
-
-    def widgets_path
-      './app/assets/javascripts/scripts/plugins/widgets/'
-    end
-
-    def css_path
-      './app/assets/javascripts/scripts/plugins/stylesheets'
     end
 
     private
@@ -220,7 +214,7 @@ module WidgetLib
     end
 
     def check_exist
-      path = widgets_path
+      path = WIDGETS_PATH
       exist_dir = File.exist?("#{path}#{@file_name}")
       puts "Widget exist: #{path}#{@file_name}" if exist_dir
       exist_dir
