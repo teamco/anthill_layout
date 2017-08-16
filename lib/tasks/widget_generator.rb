@@ -8,7 +8,8 @@ module WidgetLib
 
     include Magick
 
-    PLUGINS_PATH = './app/assets/javascripts/scripts/plugins/'
+    TASKS_PATH = "#{Rails.root}/lib/tasks/"
+    PLUGINS_PATH = "#{Rails.root}/app/assets/javascripts/scripts/plugins/"
     WIDGETS_PATH = "#{PLUGINS_PATH}widgets/"
     CSS_PATH = "#{PLUGINS_PATH}stylesheets"
 
@@ -47,15 +48,7 @@ module WidgetLib
       do_it if confirm == 'y'
     end
 
-    def get_cname
-      @cname
-    end
-
-    def get_file_name
-      @file_name
-    end
-
-    def set_file_name(name)
+    def file_name(name)
       @file_name = name
     end
 
@@ -102,7 +95,7 @@ module WidgetLib
     end
 
     def update_json(hash)
-      path = "#{Rails.root}/lib/tasks/widgets_list.json"
+      path = "#{TASKS_PATH}/widgets_list.json"
       widgets_list = JSON.parse(File.read(path)) rescue []
       puts "--- Store: #{hash[:name]}"
       widgets_list << hash
@@ -115,7 +108,7 @@ module WidgetLib
     def update_seed
       seed = false
       begin
-        path = "#{Rails.root}/lib/tasks/widgets_list.json"
+        path = "#{TASKS_PATH}/widgets_list.json"
         hash = Author::Widget.includes(:author_widget_category).all.map do |w|
           {
               name: w[:name],
@@ -171,7 +164,6 @@ module WidgetLib
       end
 
       create_dir("#{CSS_PATH}/widgets")
-      create_dir("#{CSS_PATH}/images")
       create_dir("#{WIDGETS_PATH}/#{@file_name}/images")
 
       path = "#{CSS_PATH}/widgets/#{@file_name}.css"
@@ -191,7 +183,7 @@ module WidgetLib
           resized = @img.resize(
               image.from_blob(
                   Base64.decode64(
-                      thumbnail['data:image/png;base64,'.length .. -1]
+                      thumbnail['data:image/png;base64,'.length..-1]
                   )
               )
           )
@@ -210,9 +202,8 @@ module WidgetLib
     end
 
     def check_exist
-      path = WIDGETS_PATH
-      exist_dir = File.exist?("#{path}#{@file_name}")
-      puts "Widget exist: #{path}#{@file_name}" if exist_dir
+      exist_dir = File.exist?("#{WIDGETS_PATH}#{@file_name}")
+      puts "Widget exist: #{WIDGETS_PATH}#{@file_name}" if exist_dir
       exist_dir
     end
 
