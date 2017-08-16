@@ -51,10 +51,6 @@ module WidgetLib
       @cname
     end
 
-    def get_class_name
-      @class_name
-    end
-
     def get_file_name
       @file_name
     end
