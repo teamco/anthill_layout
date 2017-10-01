@@ -2,6 +2,7 @@ namespace :setup do
 
   desc 'Init setup'
   task init: :environment do
+    system('git submodule update --init --recursive')
     Rake::Task['setup:clean'].execute
     Rake::Task['setup:migrate'].execute
   end

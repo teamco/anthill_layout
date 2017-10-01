@@ -24,7 +24,7 @@ module WidgetLib
       raise ScriptError.new("Wrong class name: #{@cname}") if cname.empty?
       @class_name = camel_case ''
       @thumbnail = ''
-      set_file_name((camel_case '.').downcase)
+      file_name((camel_case '.').downcase)
     end
 
     def set_clone(clone)
@@ -164,7 +164,7 @@ module WidgetLib
       end
 
       create_dir("#{CSS_PATH}/widgets")
-      create_dir("#{WIDGETS_PATH}/#{@file_name}/images")
+      create_dir("#{WIDGETS_PATH}#{@file_name}/images")
 
       path = "#{CSS_PATH}/widgets/#{@file_name}.css"
       delete_css
