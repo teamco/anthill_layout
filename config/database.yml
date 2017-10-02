@@ -15,7 +15,11 @@ postgresql: &postgresql
 
 default: &default
   <% unless (ENV['PATH'] =~ /teamco/).nil? %>
-    <<: *mysql
+    <% if (RUBY_PLATFORM =~ /darwin/).nil? %>
+      <<: *mysql
+    <% else %>
+      <<: *postgresql
+    <% end %>
   <% else %>
     <<: *postgresql
   <% end %>  

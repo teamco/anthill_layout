@@ -229,7 +229,7 @@ module WidgetLib
         widget.destroy
       end
       widget_lib = WidgetLib::Generate.new
-      widget_lib.set_file_name(resource)
+      widget_lib.file_name(resource)
       widget_lib.remove_widget_dir
       widget_lib.delete_css
       widget_lib.update_seed

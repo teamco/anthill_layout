@@ -41,3 +41,5 @@ app/assets/stylesheets/output.css
 app/assets/stylesheets/shared.css*
 app/assets/stylesheets/style.min.css*
 app/assets/package-lock.json
+
+Gemfile.lock
