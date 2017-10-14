@@ -30,7 +30,7 @@ class ErrorLog < ActiveRecord::Base
         user.user_logs.order('updated_at DESC').limit(1).first
     end if user_log.nil?
 
-    create_error({
+    self.create_error({
       user_log_id: user_log.try(:id),
       name: (e.name rescue ''),
       message: e.cause,
@@ -50,7 +50,7 @@ class ErrorLog < ActiveRecord::Base
         user.user_logs.order('updated_at DESC').limit(1).first
     end
 
-    create_error({
+    self.create_error({
       user_log_id: user_log.try(:id),
       name: log['type'],
       message: log['message'],
@@ -69,7 +69,7 @@ class ErrorLog < ActiveRecord::Base
 
   private
 
-  def create_error(log)
+  def self.create_error(log)
     create!(log)
     rollbar(log, 'error')
   end
