@@ -39,13 +39,14 @@ class ApplicationController < ActionController::Base
   private
 
   def handle_error(e, status, template)
-    if is_localhost?
+    if localhost?
       logger.error "Status: #{status.inspect}"
       logger.error "Template: #{template.inspect}"
       raise e
     else
       log = ErrorLog.handle_error(current_user, e, @user_log)
-      redirect_to error_log_path(log) and return
+      raise e if error_logs?
+      redirect_to error_log_path(log)
     end
   end
 
@@ -60,10 +61,14 @@ class ApplicationController < ActionController::Base
         controller_name,
         action_name,
         current_user
-    ) unless is_localhost?
+    ) unless localhost?
   end
 
-  def is_localhost?
+  def error_logs?
+    controller_name == 'error_logs'
+  end
+
+  def localhost?
     request.domain == 'localhost'
   end
 end
