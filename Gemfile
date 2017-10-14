@@ -17,7 +17,6 @@ gem 'pg'
 gem 'pismo'
 gem 'puma'
 gem 'rake'
-# gem 'rollbar'
 gem 'will_paginate'
 
 group :test, :development do
