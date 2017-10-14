@@ -71,7 +71,7 @@ class ErrorLog < ActiveRecord::Base
 
   def self.create_error(log)
     create!(log)
-    rollbar(log, 'error')
+    # rollbar(log, 'error')
   end
 
 end
