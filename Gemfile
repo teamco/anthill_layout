@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 ruby '2.4.1'
 require 'socket'
-windows_os = RUBY_PLATFORM =~ /mswin|mingw|cygwin/
 teamco = Socket.gethostname =~ /teamco/
 
 # case RUBY_PLATFORM
@@ -37,7 +36,7 @@ group :test, :development do
   gem 'rubocop', require: false
   gem 'rubocop-github', require: false
   gem 'ruby-debug-ide', '>=0.6.1.beta2', require: false
-  gem 'rubycritic', require: false unless windows_os
+  gem 'rubycritic', require: false
   gem 'spring', require: false
   gem 'traceroute', require: false
   gem 'wirble', require: false
@@ -45,7 +44,7 @@ group :test, :development do
 end
 
 gem 'derailed', group: :development
-gem 'stackprof', group: :development unless windows_os
+gem 'stackprof', group: :development
 
 group :console do
   gem 'awesome_print', require: 'ap'
