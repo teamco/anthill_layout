@@ -82,7 +82,7 @@ class UserLog < ActiveRecord::Base
         user.user_logs.create!(opts) :
         create!(opts)) if except(cname, aname)
 
-    rollbar(opts, 'log')
+    # rollbar(opts, 'log')
 
   end
 
