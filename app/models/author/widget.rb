@@ -19,7 +19,7 @@
 require 'uuid'
 
 module Author
-  class Widget < ActiveRecord::Base
+  class Widget < ApplicationRecord
 
     include Base::AnthillModel
 

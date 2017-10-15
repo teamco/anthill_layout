@@ -14,7 +14,7 @@
 #
 
 module Author
-  class SiteVersion < ActiveRecord::Base
+  class SiteVersion < ApplicationRecord
 
     include Base::AnthillModel
     belongs_to :author_site_storage, class_name: 'Author::SiteStorage', foreign_key: :site_storage_id

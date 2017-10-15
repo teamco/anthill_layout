@@ -8,7 +8,7 @@
 #
 
 module Author
-  class SiteType < ActiveRecord::Base
+  class SiteType < ApplicationRecord
 
     include Base::AnthillModel
     has_many :author_site_storages, class_name: 'Author::SiteStorage', dependent: :destroy

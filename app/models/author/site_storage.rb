@@ -13,7 +13,7 @@
 require 'uuid'
 
 module Author
-  class SiteStorage < ActiveRecord::Base
+  class SiteStorage < ApplicationRecord
 
     include Base::AnthillModel
     has_many :author_site_versions, class_name: 'Author::SiteVersion', dependent: :destroy

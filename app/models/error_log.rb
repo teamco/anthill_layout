@@ -13,7 +13,7 @@
 #  updated_at  :datetime         not null
 #
 
-class ErrorLog < ActiveRecord::Base
+class ErrorLog < ApplicationRecord
 
   include Base::ExternalLogger
 

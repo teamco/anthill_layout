@@ -8,7 +8,7 @@
 #  item_id    :integer
 #
 module Author
-  class WidgetCategory < ActiveRecord::Base
+  class WidgetCategory < ApplicationRecord
 
     include Base::AnthillModel
     has_many :author_widgets, class_name: 'Author::Widget', dependent: :destroy

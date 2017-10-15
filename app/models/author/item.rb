@@ -11,7 +11,7 @@
 #
 
 module Author
-  class Item < ActiveRecord::Base
+  class Item < ApplicationRecord
     belongs_to :user, class_name: 'User', foreign_key: :user_id
     has_one :author_site_type, class_name: 'Author::SiteType'
     has_one :author_site_storage, class_name: 'Author::SiteStorage'

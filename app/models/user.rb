@@ -34,7 +34,7 @@
 #  original_email         :string
 #
 
-class User < ActiveRecord::Base
+class User < ApplicationRecord
 
   include Gravtastic
   gravtastic

@@ -31,7 +31,7 @@
 #  updated_at      :datetime         not null
 #
 
-class UserLog < ActiveRecord::Base
+class UserLog < ApplicationRecord
 
   include Base::ExternalLogger
 
