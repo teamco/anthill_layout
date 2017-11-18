@@ -1,4 +1,4 @@
-define(function defineScriptPreferences() {
+defineP(function defineScriptPreferences() {
 
   /**
    * Define Inject Script Preferences

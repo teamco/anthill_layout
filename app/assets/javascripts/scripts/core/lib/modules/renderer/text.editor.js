@@ -1,7 +1,7 @@
 /**
  * Created by teamco on 7/10/14.
  */
-defineP(['tinyMCE'], function defineTextEditorRenderer(tinyMCE) {
+defineP(['tinymce'], function defineTextEditorRenderer(tinyMCE) {
 
   /**
    * Define TextEditorRenderer

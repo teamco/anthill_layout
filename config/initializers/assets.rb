@@ -32,6 +32,7 @@ Rails.application.config.assets.precompile += ['public/*']
 Rails.application.config.assets.precompile += ['public/*/css/*.css']
 Rails.application.config.assets.precompile += ['public/*/javascripts/*']
 Rails.application.config.assets.precompile += ['scripts/*']
+Rails.application.config.assets.precompile += ['services/*']
 Rails.application.config.assets.precompile += ['scripts/plugins/widgets/**']
 Rails.application.config.assets.precompile += %w( scripts/plugins/**/*.css )
 Rails.application.config.assets.precompile += %w( general.css )

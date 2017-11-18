@@ -1,4 +1,4 @@
-define(function defineVirtualSpiritsPreferences() {
+defineP(function defineVirtualSpiritsPreferences() {
 
   /**
    * Define Virtual Spirits Preferences

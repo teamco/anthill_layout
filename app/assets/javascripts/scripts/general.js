@@ -13,6 +13,22 @@
       var methods = ['define', 'require'],
           _router = window._router || {};
 
+      /**
+       * @method _filter
+       * @param keys
+       * @param module
+       * @param ext
+       * @private
+       */
+      function _filter(keys, module, ext) {
+        var data = keys.filter(function(key) {
+          return key.match(new RegExp(module + ext));
+        });
+        return data.filter(function(x, i, a) {
+          return a.indexOf(x) === i;
+        });
+      }
+
       methods.forEach(function(method) {
         var _method = method + 'P';
 
@@ -21,24 +37,34 @@
          */
         window[_method] = function() {
           if (mode === 'production') {
-            var modules = arguments[0];
-            if (!Array.isArray(modules)) {
-              modules = [modules];
-            }
-            var keys = Object.keys(_router);
-            for (var i = 0; i < modules.length; i++) {
-              var module = modules[i];
-              var route = keys.filter(function(key) {
-                return key.match(new RegExp(module + '.min.js'));
-              });
-              if (!route.length) {
-                route = keys.filter(function(key) {
-                  return key.match(new RegExp(module + '.js'));
-                });
+            var modules = [];
+            if (typeof arguments[0] !== 'function') {
+              modules = arguments[0];
+              if (!Array.isArray(modules)) {
+                modules = [modules];
               }
-              modules[i] = _router[route[0]].replace(/\.js/, '').replace(/scripts\/core\//, '');
+              var keys = Object.keys(_router);
+              for (var i = 0; i < modules.length; i++) {
+                var module = modules[i];
+                var route = _filter(keys, module, '\\.min\\.js');
+                if (!route.length) {
+                  route = _filter(keys, module, '\\.js');
+                  if (route.length > 1) {
+                    window['console'].warn('Fix', route, module);
+                  }
+                }
+                if (!_router[route[0]]) {
+                  window['console'].warn('Unable to find module:', module);
+                } else {
+                  var filter = _router[route[0]].replace(/\.js/, '');
+                  filter = filter.replace(/scripts\/core\//, '');
+                  filter = filter.replace(/scripts\/plugins\//, '../../plugins/');
+                  filter = filter.replace(/plugins\/plugin\./, '../plugin.');
+                  modules[i] = filter;
+                }
+              }
+              arguments[0] = modules;
             }
-            arguments[0] = modules;
           }
           return this[method].apply(this, arguments);
         };

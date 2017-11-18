@@ -11,13 +11,13 @@ defineP(['config/workspace'], function defineWorkspacePermissions(Workspace) {
    * Define Workspace global permission
    * @property Workspace
    * @type {{
-     *      development: {createDesignTimePanel: boolean, createRunTimePanel:
-     *     boolean, store: boolean}, authorize: {createDesignTimePanel:
-     *     boolean, createRunTimePanel: boolean, store: boolean}, consumption:
-     *     {createDesignTimePanel: boolean, createRunTimePanel: boolean, store:
-     *     boolean}, test: {createDesignTimePanel: boolean, createRunTimePanel:
-     *     boolean, store: boolean}
-     * }}
+   *      development: {createDesignTimePanel: boolean, createRunTimePanel:
+   *     boolean, store: boolean}, authorize: {createDesignTimePanel:
+   *     boolean, createRunTimePanel: boolean, store: boolean}, consumption:
+   *     {createDesignTimePanel: boolean, createRunTimePanel: boolean, store:
+   *     boolean}, test: {createDesignTimePanel: boolean, createRunTimePanel:
+   *     boolean, store: boolean}
+   * }}
    */
   Workspace.prototype.globalPermissions = {
     development: {

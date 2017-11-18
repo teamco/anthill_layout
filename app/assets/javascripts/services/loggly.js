@@ -1,4 +1,4 @@
-define(function defineLogglyPreferences() {
+defineP(function defineLogglyPreferences() {
 
   /**
    * Define Loggly Preferences
@@ -91,7 +91,7 @@ define(function defineLogglyPreferences() {
           return false;
         }
 
-        require(['http://cloudfront.loggly.com/js/loggly.tracker-2.1.min.js'],
+        requireP(['http://cloudfront.loggly.com/js/loggly.tracker-2.1.min.js'],
             function _loadLoggly() {
 
               var _LTracker = window._LTracker || [];

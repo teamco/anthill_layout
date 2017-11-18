@@ -6,27 +6,23 @@
  * To change this template use File | Settings | File Templates.
  */
 
-define(['require'], function definePermissions(require) {
+requireP(
+    [
+      'public/grunt/javascript/permissions/application.permissions',
+      'public/grunt/javascript/permissions/workspace.permissions',
+      'public/grunt/javascript/permissions/page.permissions',
+      'public/grunt/javascript/permissions/layout.permissions',
+      'public/grunt/javascript/permissions/widget.permissions'
+    ],
 
-  require(
-      [
-        './permissions/application.permissions',
-        './permissions/workspace.permissions',
-        './permissions/page.permissions',
-        './permissions/layout.permissions',
-        './permissions/widget.permissions'
-      ],
-
-      /**
-       * Define permissions
-       * @param {Application} Application
-       * @param {Workspace} Workspace
-       * @param {Page} Page
-       * @param {Layout} Layout
-       * @param {Widget} Widget
-       */
-      function defineRequiredModules(Application, Workspace, Page, Layout,
-          Widget) {
-      }
-  );
-});
+    /**
+     * Define permissions
+     * @param {Application} Application
+     * @param {Workspace} Workspace
+     * @param {Page} Page
+     * @param {Layout} Layout
+     * @param {Widget} Widget
+     */
+    function defineRequiredModules(Application, Workspace, Page, Layout, Widget) {
+    }
+);

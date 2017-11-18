@@ -14,21 +14,21 @@ defineP([
    * Define global events
    * @memberOf Workspace
    * @type {{
-     *      createDesignTimePanel: string,
-     *      createRunTimePanel: string,
-     *      loadActivateGoogleAnalytics: string,
-     *      loadActivateSnapEngage: string,
-     *      loadActivateRaygunIO: string,
-     *      loadGithubGist: string,
-     *      loadActivateBigmirNet: string,
-     *      loadActivateYahooFlurry: string,
-     *      loadActivateRollbarNotifier: string,
-     *      loadActivateRapidEngage: string,
-     *      loadActivateDoorbell: string,
-     *      loadActivateWoopra: string,
-     *      loadActivateVirtualSpirits: string,
-     *      loadActivateLoggly: string
-     * }}
+   *      createDesignTimePanel: string,
+   *      createRunTimePanel: string,
+   *      loadActivateGoogleAnalytics: string,
+   *      loadActivateSnapEngage: string,
+   *      loadActivateRaygunIO: string,
+   *      loadGithubGist: string,
+   *      loadActivateBigmirNet: string,
+   *      loadActivateYahooFlurry: string,
+   *      loadActivateRollbarNotifier: string,
+   *      loadActivateRapidEngage: string,
+   *      loadActivateDoorbell: string,
+   *      loadActivateWoopra: string,
+   *      loadActivateVirtualSpirits: string,
+   *      loadActivateLoggly: string
+   * }}
    */
   Workspace.prototype.globalEvents = {
     createDesignTimePanel: 'create.design.time.panel',
@@ -119,19 +119,19 @@ defineP([
    * Define Workspace Global listeners
    * @memberOf Workspace
    * @type {{
-     *      successRendered: {name: string, callback: function},
-     *      createDesignTimePanel: {name: string, callback: function},
-     *      createRunTimePanel: {name: string, callback: function}
-     * }}
+   *      successRendered: {name: string, callback: function},
+   *      createDesignTimePanel: {name: string, callback: function},
+   *      createRunTimePanel: {name: string, callback: function}
+   * }}
    */
   Workspace.prototype.globalListeners = {
     successRendered: {
-      name: "success.rendered",
+      name: 'success.rendered',
       callback: function successRenderedCallback() {
 
         this.permission.check({
           capability: 'createDesignTimePanel',
-          callback: function () {
+          callback: function() {
 
             this.observer.publish(
                 this.eventmanager.eventList.createDesignTimePanel
@@ -142,7 +142,7 @@ defineP([
 
         this.permission.check({
           capability: 'createRunTimePanel',
-          callback: function () {
+          callback: function() {
 
             this.observer.publish(
                 this.eventmanager.eventList.createRunTimePanel
@@ -171,8 +171,7 @@ defineP([
           'plugins/workspace.data/workspace.data',
           'plugins/widget.rules/widget.rules',
           'plugins/site.config/site.config'
-        ], function definePanel(Panel, Bar, Gallery, PageData, WorkspaceData,
-            WidgetRules, SiteConfig) {
+        ], function definePanel(Panel, Bar, Gallery, PageData, WorkspaceData, WidgetRules, SiteConfig) {
 
           /**
            * Init panel plugin
@@ -189,7 +188,8 @@ defineP([
                 }
               }
             },
-            modules: [Gallery, PageData, WidgetRules, WorkspaceData,
+            modules: [
+              Gallery, PageData, WidgetRules, WorkspaceData,
               SiteConfig],
             packages: [Bar]
           }, app);

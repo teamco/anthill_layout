@@ -11,11 +11,11 @@ defineP(['config/page'], function definePagePermissions(Page) {
    * Define Page global permission
    * @property Page
    * @type {{
-     *      development: {store: boolean},
-     *      authorize: {store: boolean},
-     *      consumption: {store: boolean},
-     *      test: {store: boolean}
-     * }}
+   *      development: {store: boolean},
+   *      authorize: {store: boolean},
+   *      consumption: {store: boolean},
+   *      test: {store: boolean}
+   * }}
    */
   Page.prototype.globalPermissions = {
     development: {store: true},

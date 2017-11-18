@@ -1,4 +1,4 @@
-define(function defineRapidEngagePreferences() {
+defineP(function defineRapidEngagePreferences() {
 
   /**
    * Define RapidEngage Preferences

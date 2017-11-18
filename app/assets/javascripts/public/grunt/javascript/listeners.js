@@ -6,28 +6,22 @@
  * To change this template use File | Settings | File Templates.
  */
 
-define(['require'], function defineListeners(require) {
+requireP([
+      'public/grunt/javascript/listeners/application.listeners',
+      'public/grunt/javascript/listeners/workspace.listeners',
+      'public/grunt/javascript/listeners/page.listeners',
+      'public/grunt/javascript/listeners/layout.listeners',
+      'public/grunt/javascript/listeners/widget.listeners'
+    ],
 
-      require(
-          [
-            './listeners/application.listeners',
-            './listeners/workspace.listeners',
-            './listeners/page.listeners',
-            './listeners/layout.listeners',
-            './listeners/widget.listeners'
-          ],
-
-          /**
-           * Define listeners
-           * @param {Application} Application
-           * @param {Workspace} Workspace
-           * @param {Page} Page
-           * @param {Layout} Layout
-           * @param {Widget} Widget
-           */
-          function defineRequiredModules(Application, Workspace, Page, Layout,
-              Widget) {
-          }
-      );
+    /**
+     * Define listeners
+     * @param {Application} Application
+     * @param {Workspace} Workspace
+     * @param {Page} Page
+     * @param {Layout} Layout
+     * @param {Widget} Widget
+     */
+    function defineRequiredModules(Application, Workspace, Page, Layout, Widget) {
     }
 );

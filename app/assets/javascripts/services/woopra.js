@@ -1,4 +1,4 @@
-define(function defineWoopraPreferences() {
+defineP(function defineWoopraPreferences() {
 
   /**
    * Define  Woopra Preferences

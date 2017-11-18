@@ -14,7 +14,7 @@ defineP([
   'modules/base/Css',
   'modules/base/RequirePatch'
 ], function defineBase(arr, fn, gen, hash, html, num, dt, str, img, ua, file,
-    event, css, rpatch) {
+                       event, css, rpatch) {
 
   /**
    * Define base utils
@@ -26,21 +26,21 @@ defineP([
     /**
      * Define shims
      * @type {Object|{
-         *      array: LibArray,
-         *      function: LibFunction,
-         *      generator: LibGenerator,
-         *      hash: LibHash,
-         *      html: LibHTML,
-         *      number: LibNumber,
-         *      datetime: LibDateTime,
-         *      string: LibString,
-         *      image: LibImage,
-         *      ua: LibUserAgent,
-         *      file: LibFile,
-         *      event: LibEvent,
-         *      css: LibCss,
-         *      rpatch: LibRequirePatch
-         * }}
+     *      array: LibArray,
+     *      function: LibFunction,
+     *      generator: LibGenerator,
+     *      hash: LibHash,
+     *      html: LibHTML,
+     *      number: LibNumber,
+     *      datetime: LibDateTime,
+     *      string: LibString,
+     *      image: LibImage,
+     *      ua: LibUserAgent,
+     *      file: LibFile,
+     *      event: LibEvent,
+     *      css: LibCss,
+     *      rpatch: LibRequirePatch
+     * }}
      */
     var Shims = {
       'array': arr,
@@ -316,10 +316,10 @@ defineP([
      * @param {Boolean} [force]
      * @returns {*}
      */
-    defineP: function defineP(o, value, force) {
+    define: function define(o, value, force) {
       if (!this.isDefined(o)) {
         o = value;
-      } else if (typeof(o) !== typeof(value) && !!force) {
+      } else if (typeof(o) !== typeof(value) && force) {
         o = value;
       }
       return o;
@@ -364,14 +364,14 @@ defineP([
       var _poll = function _poll() {
 
         // Define timeout instance
-        wait = setTimeout(function () {
+        wait = setTimeout(function() {
 
           timeout--;
           if (conditionFn()) {
 
             // External file loaded
             callbackFn();
-            clearTimeout(wait)
+            clearTimeout(wait);
 
           } else if (timeout > 0) {
 

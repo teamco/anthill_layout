@@ -388,6 +388,13 @@ defineP([
        */
       var item = scope.controller.getContainment();
 
+      if (!item) {
+        scope.logger.warn('Item with no containment', arguments);
+        return false;
+      }
+
+      item.logger.log('Add custom css', arguments);
+
       /**
        * Create url
        * @type {string}

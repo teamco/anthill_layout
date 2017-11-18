@@ -1,4 +1,4 @@
-define(function defineGoogleAnalyticsPreferences() {
+defineP(function defineGoogleAnalyticsPreferences() {
 
   /**
    * Define  Google Analytics Preferences

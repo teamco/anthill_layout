@@ -43,6 +43,7 @@ defineP([
     getEventList: function getEventList() {
       return this.scope.eventmanager.events;
     },
+
     /**
      * Get event UUID
      * @memberOf Observer
@@ -66,6 +67,7 @@ defineP([
       }
       return uuid;
     },
+
     /**
      * Get event name
      * @memberOf Observer
@@ -73,9 +75,7 @@ defineP([
      * @return {{}}
      */
     getEventName: function getEventName(eventUUID) {
-
       var events = this.getEventList();
-
       if (events.hasOwnProperty(eventUUID)) {
         return events[eventUUID];
       }
@@ -162,7 +162,7 @@ defineP([
       this.listeners[opts.eventName].push(opts);
 
       // Sort by priority
-      this.listeners[opts.eventName].sort(function (a, b) {
+      this.listeners[opts.eventName].sort(function(a, b) {
         return priority[b.priority || defaultPriority] -
             priority[a.priority || defaultPriority];
       });
@@ -190,44 +190,23 @@ defineP([
         var content = scope.controller.getContent();
 
         if (content) {
-
-          return content.observer.unRegister.
-              bind(content.observer)(event, uuid);
-
+          return content.observer.unRegister.bind(content.observer)(event, uuid);
         } else {
-
-          scope.logger.warn(
-              'Undefined event',
-              this.listeners,
-              event,
-              uuid
-          );
-
+          scope.logger.warn('Undefined event', this.listeners, event, uuid);
           return false;
         }
       }
 
       for (var i = 0, l = listener.length; i < l; i++) {
-
         if (listener[i].eventUUID === uuid) {
-
           delete listener[i];
           listener.splice(i, 1);
-
-          scope.logger.info(
-              'Successfully unregistered event',
-              [event, uuid]
-          );
-
+          scope.logger.info('Successfully unregistered event', [event, uuid]);
           return uuid;
         }
       }
 
-      this.scope.logger.warn(
-          'Unable to delete undefined event',
-          [event, uuid]
-      );
-
+      this.scope.logger.warn('Unable to delete undefined event', [event, uuid]);
       return false;
     },
 
@@ -255,14 +234,9 @@ defineP([
      * @memberOf Observer
      */
     batchPublish: function batchPublish() {
-
-      for (var i = 0, l = arguments.length; i < l; i++) {
-        this.publish.apply(
-            this,
-            this.base.isString(arguments[i]) ?
-                [arguments[i]] : arguments[i]
-        );
-      }
+      arguments.forEach(function(arg) {
+        this.publish.apply(this, this.base.isString(arg) ? [arg] : arg);
+      });
     },
 
     /**
@@ -297,7 +271,6 @@ defineP([
       }
 
       this.fireEvent(this.base.define(events, [], true), args);
-
       scope.logger.timer(eventName, false);
     },
 
@@ -309,36 +282,33 @@ defineP([
      * @return {boolean}
      */
     fireEvent: function fireEvent(events, args) {
-
-      var i = 0, l = events.length;
-
-      for (i; i < l; i += 1) {
-        if (this.base.isDefined(events[i])) {
-          if (false === this.executeEvent(this.scope, events[i], args)) {
+      events.forEach(function(event) {
+        if (this.base.isDefined(event)) {
+          if (!this.executeEvent(this.scope, event, args)) {
             return false;
           }
         }
-      }
+      });
     },
 
     /**
      * Execute event
      * @memberOf Observer
-     * @param {*} [scope]               Run callback in default scope
+     * @param {*} [scope]         Run callback in default scope
      * @param {{
-         *      state: *,                   Private internal hash
-         *      callback: Function,         Callback fn
-         *      scope: *,                   Override default scope
-         *      eventName: string,
-         *      eventUUID: string,
-         *      params: {
-         *          single: boolean,        Single run auto unbind
-         *          buffer: number,         Single run in timeout range in ms
-         *          timeout: number,        Last call in timeout range in ms
-         *          delay: number           Run after timeout in ms
-         *      }
-         * }} opts
-     * @param {[]} [args]            Callback params
+     *      state: *,             Private internal hash
+     *      callback: Function,   Callback fn
+     *      scope: *,             Override default scope
+     *      eventName: string,
+     *      eventUUID: string,
+     *      params: {
+     *        single: boolean,    Single run auto unbind
+     *        buffer: number,     Single run in timeout range in ms
+     *        timeout: number,    Last call in timeout range in ms
+     *        delay: number       Run after timeout in ms
+     *      }
+     * }} opts
+     * @param {[]} [args]         Callback params
      * @return
      */
     executeEvent: function executeEvent(scope, opts, args) {
@@ -354,7 +324,7 @@ defineP([
         // break event execution
         if (opts.state.lastExecutionAt
             && ((opts.state.lastCallAt - opts.state.lastExecutionAt) <
-            opts.params.buffer)) {
+                opts.params.buffer)) {
           return;
         }
 
@@ -383,16 +353,11 @@ defineP([
        * @returns {*}
        */
       var executeCallback = function executeCallback() {
-
         opts.state.lastExecutionAt = opts.state.lastCallAt;
-
         if (base.isFunction(opts.callback)) {
-
           opts.callback.eventName = opts.eventName;
           return opts.callback.apply(scope, args);
-
         } else {
-
           scope.logger.warn('Undefined callback', opts);
           return false;
         }
@@ -400,13 +365,21 @@ defineP([
 
       // Fire event only when timeout is over, each event fill reset timeout
       if (opts.params.timeout) {
-
         if (opts.state.inTimeout) {
           return false;
         }
 
+        /**
+         * Handle super
+         * @method executeCallbackB4Timeout
+         * @type {executeCallback}
+         * @override executeCallback
+         */
         var executeCallbackB4Timeout = executeCallback;
 
+        /**
+         * @method executeCallback
+         */
         executeCallback = function executeCallback() {
           opts.state.inTimeout = true;
 

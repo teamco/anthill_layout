@@ -6,28 +6,22 @@
  * To change this template use File | Settings | File Templates.
  */
 
-defineP(['require'], function defineListeners(require) {
+requireP([
+      'public/shared/javascript/listeners/application.listeners',
+      'public/shared/javascript/listeners/workspace.listeners',
+      'public/shared/javascript/listeners/page.listeners',
+      'public/shared/javascript/listeners/layout.listeners',
+      'public/shared/javascript/listeners/widget.listeners'
+    ],
 
-      requireP(
-          [
-            './listeners/application.listeners',
-            './listeners/workspace.listeners',
-            './listeners/page.listeners',
-            './listeners/layout.listeners',
-            './listeners/widget.listeners'
-          ],
-
-          /**
-           * Define listeners
-           * @param {Application} Application
-           * @param {Workspace} Workspace
-           * @param {Page} Page
-           * @param {Layout} Layout
-           * @param {Widget} Widget
-           */
-          function defineRequiredModules(Application, Workspace, Page, Layout,
-              Widget) {
-          }
-      );
+    /**
+     * Define listeners
+     * @param {Application} Application
+     * @param {Workspace} Workspace
+     * @param {Page} Page
+     * @param {Layout} Layout
+     * @param {Widget} Widget
+     */
+    function defineRequiredModules(Application, Workspace, Page, Layout, Widget) {
     }
 );

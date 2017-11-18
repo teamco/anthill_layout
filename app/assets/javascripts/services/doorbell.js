@@ -1,4 +1,4 @@
-define(function defineDoorbellPreferences() {
+defineP(function defineDoorbellPreferences() {
 
   /**
    * Define  Doorbell Preferences

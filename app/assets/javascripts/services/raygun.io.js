@@ -1,4 +1,4 @@
-define(function defineRaygunIO() {
+defineP(function defineRaygunIO() {
 
   /**
    * Define RaygunIO Preferences
@@ -82,7 +82,7 @@ define(function defineRaygunIO() {
 
       if (this.controller.isServiceActivated(apiKey, activate)) {
 
-        require([path], function _loadRaygun() {
+        requireP([path], function _loadRaygun() {
           Raygun.init(apiKey).attach();
         });
       }

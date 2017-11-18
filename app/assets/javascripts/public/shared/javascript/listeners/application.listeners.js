@@ -12,13 +12,13 @@ defineP(['config/application'],
        * Define Application Global listeners
        * @memberOf Application
        * @type {{
-     *      defineGlobalInstance: {name: string, callback: function}
-     * }}
+       *      defineGlobalInstance: {name: string, callback: function}
+       * }}
        */
       Application.prototype.globalListeners = {
 
         defineGlobalInstance: {
-          name: 'defineP.global.instance',
+          name: 'define.global.instance',
           callback: function defineGlobalInstanceCallback() {
             if (this.controller.isDevelopmentMode()) {
               window[this.controller.getAppName()] = this;

@@ -1,4 +1,4 @@
-define(function defineScriptPreferences() {
+defineP(function defineScriptPreferences() {
 
   /**
    * Define Yahoo Flurry Preferences
@@ -75,7 +75,7 @@ define(function defineScriptPreferences() {
 
       if (this.controller.isServiceActivated(yahooFlurryAppKey, activate)) {
 
-        require(
+        requireP(
             ['https://cdn.flurry.com/js/flurry.js'],
             function _loadYahooFlurry() {
               FlurryAgent.startSession(yahooFlurryAppKey);

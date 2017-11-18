@@ -1,4 +1,4 @@
-define(function defineRollbarNotifierPreferences() {
+defineP(function defineRollbarNotifierPreferences() {
 
   /**
    * Define  RollbarNotifier Preferences
@@ -91,7 +91,7 @@ define(function defineRollbarNotifierPreferences() {
         }
       };
 
-      require(
+      requireP(
           ['https://d37gvrvc0wt4s1.cloudfront.net/js/v1.3/rollbar.umd.nojson.min.js'],
           function _loadRollbar(Rollbar) {
 

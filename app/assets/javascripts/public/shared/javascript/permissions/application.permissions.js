@@ -12,11 +12,11 @@ defineP(['config/application'],
        * Define Application global permission
        * @property Application
        * @type {{
-     *      development: {store: boolean},
-     *      authorize: {store: boolean},
-     *      consumption: {store: boolean},
-     *      test: {store: boolean}
-     * }}
+       *      development: {store: boolean},
+       *      authorize: {store: boolean},
+       *      consumption: {store: boolean},
+       *      test: {store: boolean}
+       * }}
        */
       Application.prototype.globalPermissions = {
         development: {store: true},

@@ -42,8 +42,8 @@ defineP([
     this.eventList = {
       updateTranslations: 'update.translations',
       showContent: 'show.content',
-      defineModules: 'defineP.modules',
-      definePackages: 'defineP.packages',
+      defineModules: 'define.modules',
+      definePackages: 'define.packages',
       openPanel: 'open.panel',
       closePanel: 'close.panel',
       refreshModulesContent: 'refresh.modules.content',

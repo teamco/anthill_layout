@@ -6,27 +6,22 @@
  * To change this template use File | Settings | File Templates.
  */
 
-defineP(['require'], function definePermissions(require) {
+requireP([
+      'public/shared/javascript/permissions/application.permissions',
+      'public/shared/javascript/permissions/workspace.permissions',
+      'public/shared/javascript/permissions/page.permissions',
+      'public/shared/javascript/permissions/layout.permissions',
+      'public/shared/javascript/permissions/widget.permissions'
+    ],
 
-  requireP(
-      [
-        './permissions/application.permissions',
-        './permissions/workspace.permissions',
-        './permissions/page.permissions',
-        './permissions/layout.permissions',
-        './permissions/widget.permissions'
-      ],
-
-      /**
-       * Define permissions
-       * @param {Application} Application
-       * @param {Workspace} Workspace
-       * @param {Page} Page
-       * @param {Layout} Layout
-       * @param {Widget} Widget
-       */
-      function defineRequiredModules(Application, Workspace, Page, Layout,
-          Widget) {
-      }
-  );
-});
+    /**
+     * Define permissions
+     * @param {Application} Application
+     * @param {Workspace} Workspace
+     * @param {Page} Page
+     * @param {Layout} Layout
+     * @param {Widget} Widget
+     */
+    function defineRequiredModules(Application, Workspace, Page, Layout, Widget) {
+    }
+);

@@ -1,4 +1,4 @@
-define(function defineGistPreferences() {
+defineP(function defineGistPreferences() {
 
   /**
    * Define Github Gist Preferences
@@ -75,7 +75,7 @@ define(function defineGistPreferences() {
           activate = preferences.activateGithubGist;
 
       if (this.controller.isServiceActivated(embedCode, activate)) {
-        require([$(embedCode).attr('src')]);
+        requireP([$(embedCode).attr('src')]);
       }
     }
   });

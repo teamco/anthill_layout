@@ -26,7 +26,7 @@ requirejs.config({
 
     services: '/assets/services',
 
-    tinyMCE: 'lib/packages/tinymce/tinymce.min',
+    tinymce: 'lib/packages/tinymce/tinymce.min',
     moment: 'lib/packages/moment',
 
     modernizr: 'lib/modernizr',
@@ -67,7 +67,7 @@ requirejs.config({
   },
 
   shim: {
-    tinyMCE: {
+    tinymce: {
       exports: 'tinyMCE',
       init: function () {
         this.tinyMCE.DOM.events.domLoaded = true;

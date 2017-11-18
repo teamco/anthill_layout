@@ -1,4 +1,4 @@
-define(function defineSnapEngagePreferences() {
+defineP(function defineSnapEngagePreferences() {
 
   /**
    * Define  SnapEngage Preferences
