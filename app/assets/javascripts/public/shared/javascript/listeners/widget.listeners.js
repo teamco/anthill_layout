@@ -5,7 +5,7 @@
  * Time: 10:35 PM
  */
 
-define(['config/widget'], function defineWidgetListeners(Widget) {
+defineP(['config/widget'], function defineWidgetListeners(Widget) {
 
   /**
    * Define Widget Global listeners

@@ -5,7 +5,7 @@
  * Time: 11:48 AM
  */
 
-define([
+defineP([
   'plugins/plugin.element',
   'plugins/preferences/site.preferences'
 ], function defineSiteConfigPreferencesElement(PluginElement, SitePreferences) {

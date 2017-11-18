@@ -5,7 +5,7 @@
  * Time: 1:11 PM
  */
 
-define([
+defineP([
   'modules/Preferences'
 ], function definePreferencesController(BasePreferences) {
 

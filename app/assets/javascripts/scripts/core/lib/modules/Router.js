@@ -2,7 +2,7 @@
  * Created by teamco on 6/10/14.
  */
 
-define(function defineRouter() {
+defineP(function defineRouter() {
 
   /**
    * Define router

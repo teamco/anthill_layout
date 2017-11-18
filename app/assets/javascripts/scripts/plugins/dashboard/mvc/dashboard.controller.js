@@ -5,7 +5,7 @@
  * Time: 11:03 AM
  */
 
-define([
+defineP([
   'config/anthill',
   'plugins/plugin.controller'
 ], function defineDashboardController(AntHill, PluginBase) {

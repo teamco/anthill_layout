@@ -1,7 +1,7 @@
 /**
  * Created by teamco on 4/1/14.
  */
-define(function defineWidgetSubscribe() {
+defineP(function defineWidgetSubscribe() {
 
   /**
    * Define widget subscribe events

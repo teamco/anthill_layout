@@ -5,7 +5,7 @@
  * Time: 12:41 PM
  */
 
-define(function defineWorkspacePage() {
+defineP(function defineWorkspacePage() {
 
   /**
    * Define WorkspacePage controller

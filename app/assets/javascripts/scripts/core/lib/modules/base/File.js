@@ -5,7 +5,7 @@
  * Time: 9:24 PM
  * To change this template use File | Settings | File Templates.
  */
-define(function defineLibFile() {
+defineP(function defineLibFile() {
 
   /**
    * Define LibFile

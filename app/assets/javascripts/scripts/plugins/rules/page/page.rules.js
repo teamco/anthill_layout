@@ -2,7 +2,7 @@
  * Created by teamco on 27/05/2017.
  */
 
-define(['plugins/rules/page/page.rules.visualizer'],
+defineP(['plugins/rules/page/page.rules.visualizer'],
     function definePageRules(PageRulesVisualizer) {
 
       /**

@@ -2,7 +2,7 @@
  * Created by teamco on 10/1/14.
  */
 
-define(function defineGalleryWidgets() {
+defineP(function defineGalleryWidgets() {
 
   /**
    * Define gallery widgets

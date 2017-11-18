@@ -5,7 +5,7 @@
  * Time: 12:59 PM
  */
 
-define([
+defineP([
   'config/anthill'
 ], function defineMixin(AntHill) {
 

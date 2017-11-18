@@ -6,7 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 
-define([
+defineP([
   'plugins/widgets/widget.content.event.manager'
 ], function defineExternalWidgetEventManager(WidgetContentEventManager) {
 

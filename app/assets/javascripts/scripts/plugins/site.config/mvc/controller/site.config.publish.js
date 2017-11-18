@@ -2,7 +2,7 @@
  * Created by teamco on 11/4/14.
  */
 
-define(function defineSiteConfigPublish() {
+defineP(function defineSiteConfigPublish() {
 
   /**
    * Define SiteConfig Publish

@@ -1,7 +1,7 @@
 /**
  * Created by teamco on 3/19/14.
  */
-define(function defineBaseRules() {
+defineP(function defineBaseRules() {
 
   /**
    * Define base prefs

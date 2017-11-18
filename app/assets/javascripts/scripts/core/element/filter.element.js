@@ -2,7 +2,7 @@
  * Created by teamco on 3/25/14.
  */
 
-define([
+defineP([
   'modules/Element'
 ], function defineFilter(BaseElement) {
 

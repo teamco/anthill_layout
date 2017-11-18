@@ -4,7 +4,7 @@
  * Date: 2/25/15
  * Time: 6:35 PM
  */
-define(['config/layout'], function definePageLayout(Layout) {
+defineP(['config/layout'], function definePageLayout(Layout) {
 
   /**
    * Define PageLayout

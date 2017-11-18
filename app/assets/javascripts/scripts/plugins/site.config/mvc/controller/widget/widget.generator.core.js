@@ -2,7 +2,7 @@
  * Created by teamco on 7/15/15.
  */
 
-define(function defineWidgetGeneratorCore() {
+defineP(function defineWidgetGeneratorCore() {
 
   /**
    * Define WidgetGeneratorCore

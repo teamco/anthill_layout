@@ -6,7 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 
-define([
+defineP([
   'modules/Event'
 ], function definePanelEventManager(BaseEvent) {
 
@@ -42,8 +42,8 @@ define([
     this.eventList = {
       updateTranslations: 'update.translations',
       showContent: 'show.content',
-      defineModules: 'define.modules',
-      definePackages: 'define.packages',
+      defineModules: 'defineP.modules',
+      definePackages: 'defineP.packages',
       openPanel: 'open.panel',
       closePanel: 'close.panel',
       refreshModulesContent: 'refresh.modules.content',

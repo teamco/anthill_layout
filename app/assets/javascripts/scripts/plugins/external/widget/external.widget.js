@@ -4,7 +4,7 @@
  * Date: 2/23/14
  * Time: 11:02 AM
  */
-define([
+defineP([
   'config/anthill',
   'modules/MVC'
 ], function defineExternal(AntHill, MVC) {

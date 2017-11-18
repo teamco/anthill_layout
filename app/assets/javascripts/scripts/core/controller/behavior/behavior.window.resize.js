@@ -5,7 +5,7 @@
  * Time: 8:38 PM
  */
 
-define([], function defineBehaviorWindowResize() {
+defineP([], function defineBehaviorWindowResize() {
 
   /**
    * Define Behavior Window resize

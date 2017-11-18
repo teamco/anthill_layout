@@ -2,7 +2,7 @@
  * Created by teamco on 7/31/14.
  */
 
-define([
+defineP([
   'plugins/plugin.element'
 ], function defineSiteConfigApproveImportElement(PluginElement) {
 

@@ -5,7 +5,7 @@
  * Time: 10:32 PM
  */
 
-define([
+defineP([
   'config/workspace',
   'controller/workspace.controller'
 ], function defineWorkspaceListeners(Workspace, WorkspaceController) {
@@ -163,7 +163,7 @@ define([
          */
         var app = this.controller.root();
 
-        require([
+        requireP([
           'plugins/panel/panel',
           'plugins/bar/bar',
           'plugins/gallery/gallery',
@@ -219,7 +219,7 @@ define([
          */
         var app = this.controller.root();
 
-        require([
+        requireP([
           'plugins/panel/panel',
           'plugins/bar/bar',
           'plugins/maximize/maximize',

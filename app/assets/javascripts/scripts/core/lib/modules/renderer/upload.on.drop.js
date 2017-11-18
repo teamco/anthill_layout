@@ -2,7 +2,7 @@
  * Created by teamco on 8/18/14.
  */
 
-define(function defineUploadOnDrop() {
+defineP(function defineUploadOnDrop() {
 
   /**
    * Define upload on drop

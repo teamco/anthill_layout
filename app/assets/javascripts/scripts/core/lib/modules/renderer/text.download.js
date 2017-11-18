@@ -2,7 +2,7 @@
  * Created by teamco on 7/23/14.
  */
 
-define([], function defineTextDownloadRenderer() {
+defineP([], function defineTextDownloadRenderer() {
 
   /**
    * Define TextDownloadRenderer

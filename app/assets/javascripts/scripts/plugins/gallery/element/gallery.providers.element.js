@@ -2,7 +2,7 @@
  * Created by teamco on 3/25/14.
  */
 
-define([
+defineP([
   'plugins/plugin.element'
 ], function defineProviders(PluginElement) {
 

@@ -4,7 +4,7 @@
 
 /**
  * General config.
- * @returns {{localStorage: _localStorage, dm: _define, rm: _require}}
+ * @returns {{localStorage: _localStorage}}
  */
 function config() {
 

@@ -6,7 +6,7 @@
  * Project: JetBrains RubyMine
  **/
 
-define([
+defineP([
   'config/anthill'
 ], function defineObserver(AntHill) {
 

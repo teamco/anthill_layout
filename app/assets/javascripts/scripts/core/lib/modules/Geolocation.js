@@ -5,7 +5,7 @@
  * Time: 11:06 AM
  */
 
-define(function defineBaseGeolocation() {
+defineP(function defineBaseGeolocation() {
 
   /**
    * Define BaseGeolocation

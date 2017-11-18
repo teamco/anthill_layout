@@ -6,7 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 
-define(function defineI18n() {
+defineP(function defineI18n() {
 
   /**
    * Define translations
@@ -39,7 +39,7 @@ define(function defineI18n() {
         data = langTypes[defaultLanguage],
         language = scope.getCurrentLanguage();
 
-    require(
+    requireP(
         ['modules/translations/' + language],
         function loadTranslations(translation) {
 
@@ -51,7 +51,7 @@ define(function defineI18n() {
 
           } else {
 
-            console.warn('Unable to define language', language);
+            console.warn('Unable to defineP language', language);
           }
         }
     );

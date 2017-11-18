@@ -5,7 +5,7 @@
  * Time: 11:03 AM
  */
 
-define([
+defineP([
   'config/anthill',
   'modules/Router',
   'plugins/plugin.controller'

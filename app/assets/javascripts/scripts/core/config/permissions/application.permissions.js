@@ -5,7 +5,7 @@
  * Time: 11:34 PM
  */
 
-define(['config/application'],
+defineP(['config/application'],
     function defineApplicationPermissions(Application) {
 
       /**

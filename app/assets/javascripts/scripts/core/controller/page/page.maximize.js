@@ -1,7 +1,7 @@
 /**
  * Created by teamco on 7/9/14.
  */
-define(function definePageItemMaximize() {
+defineP(function definePageItemMaximize() {
 
   /**
    * Define PageItemMaximize

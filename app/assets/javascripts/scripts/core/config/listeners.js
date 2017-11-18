@@ -6,7 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 
-define([
+defineP([
   'config/listeners/application.listeners',
   'config/listeners/workspace.listeners',
   'config/listeners/page.listeners',

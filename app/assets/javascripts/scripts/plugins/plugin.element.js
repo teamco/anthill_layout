@@ -1,4 +1,4 @@
-define(['modules/Element'], function definePluginElement(BaseElement) {
+defineP(['modules/Element'], function definePluginElement(BaseElement) {
 
   /**
    * Define Plugin element

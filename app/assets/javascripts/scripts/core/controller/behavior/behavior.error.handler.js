@@ -5,7 +5,7 @@
  * Time: 8:38 PM
  */
 
-define(function defineBehaviorErrorHandler() {
+defineP(function defineBehaviorErrorHandler() {
 
   /**
    * Define Error handler

@@ -1,4 +1,4 @@
-define(
+defineP(
     [
       'config/anthill',
       'modules/MVC',

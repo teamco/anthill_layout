@@ -2,7 +2,7 @@
  * Created by teamco on 7/31/14.
  */
 
-define([
+defineP([
   'plugins/plugin.element',
   'plugins/gallery/element/gallery.providers.element'
 ], function defineSiteConfigWidgetsListElement(PluginElement,

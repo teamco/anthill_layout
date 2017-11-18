@@ -1,4 +1,4 @@
-define(function definePageRulesVisualizer() {
+defineP(function definePageRulesVisualizer() {
 
   /**
    * PageRulesVisualizer

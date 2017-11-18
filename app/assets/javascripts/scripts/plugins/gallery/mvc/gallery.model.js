@@ -5,7 +5,7 @@
  * Time: 11:06 PM
  * To change this template use File | Settings | File Templates.
  */
-define([
+defineP([
   'config/anthill',
   'modules/Model',
   'plugins/gallery/mvc/model/gallery.widgets'

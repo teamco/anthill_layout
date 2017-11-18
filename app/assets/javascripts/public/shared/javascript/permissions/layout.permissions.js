@@ -5,7 +5,7 @@
  * Time: 11:42 PM
  */
 
-define(['config/layout'], function defineLayoutPermissions(Layout) {
+defineP(['config/layout'], function defineLayoutPermissions(Layout) {
 
   /**
    * Define Layout global permission

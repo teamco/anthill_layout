@@ -6,7 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 
-define([
+defineP([
   'config/anthill',
   'modules/Element',
   'element/button.element'
@@ -255,7 +255,7 @@ define([
             return false;
           }
 
-          view.scope.logger.warn('Unable to define draggable', this);
+          view.scope.logger.warn('Unable to defineP draggable', this);
           return false;
         }
 

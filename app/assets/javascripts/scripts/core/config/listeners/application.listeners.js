@@ -5,7 +5,7 @@
  * Time: 10:26 PM
  */
 
-define(['config/application'],
+defineP(['config/application'],
     function defineApplicationListeners(Application) {
 
       /**

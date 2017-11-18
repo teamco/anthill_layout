@@ -2,7 +2,7 @@
  * Created by teamco on 10/30/14.
  */
 
-define(function defineTextFieldRenderer() {
+defineP(function defineTextFieldRenderer() {
 
   /**
    * Define ValidationRenderer

@@ -1,4 +1,4 @@
-define([
+defineP([
   'services/google.analytics',
   'services/snap.engage',
   'services/raygun.io',

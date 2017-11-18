@@ -6,7 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 
-define([
+defineP([
   'modules/Event'
 ], function defineBarEventManager(BaseEvent) {
 
@@ -37,7 +37,7 @@ define([
     this.eventList = {
       updateTranslations: 'update.translations',
       showContent: 'show.content',
-      defineModules: 'define.modules'
+      defineModules: 'defineP.modules'
     };
   };
 

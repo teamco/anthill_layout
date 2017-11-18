@@ -6,7 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 
-define([], function defineEnUs() {
+defineP([], function defineEnUs() {
 
   return {
     'gallery.provider': 'Provider',

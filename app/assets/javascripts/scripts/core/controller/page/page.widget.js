@@ -5,7 +5,7 @@
  * Time: 6:29 PM
  */
 
-define([
+defineP([
   'controller/page/page.widget.copy'
 ], function definePageWidget(PageWidgetCopy) {
 

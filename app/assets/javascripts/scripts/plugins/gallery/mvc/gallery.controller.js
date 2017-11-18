@@ -5,7 +5,7 @@
  * Time: 11:03 AM
  */
 
-define([
+defineP([
   'plugins/plugin.controller',
   'config/routes'
 ], function defineGalleryController(PluginBase, Routes) {

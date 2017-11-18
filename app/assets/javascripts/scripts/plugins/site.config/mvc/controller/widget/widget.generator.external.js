@@ -2,7 +2,7 @@
  * Created by teamco on 7/15/15.
  */
 
-define(function defineWidgetGeneratorExternal() {
+defineP(function defineWidgetGeneratorExternal() {
 
   /**
    * Define WidgetGeneratorExternal

@@ -5,7 +5,7 @@
  * Time: 5:51 PM
  */
 
-define(function defineSliderRenderer() {
+defineP(function defineSliderRenderer() {
 
   /**
    * Define Slider Renderer

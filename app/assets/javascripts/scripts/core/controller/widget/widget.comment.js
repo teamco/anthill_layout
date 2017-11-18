@@ -5,7 +5,7 @@
  * Time: 8:48 PM
  */
 
-define(function defineWidgetComment() {
+defineP(function defineWidgetComment() {
 
   /**
    * Define WidgetComment

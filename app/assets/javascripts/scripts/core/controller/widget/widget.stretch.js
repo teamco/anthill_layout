@@ -2,7 +2,7 @@
  * Created by teamco on 7/3/14.
  */
 
-define(function defineWidgetStretch() {
+defineP(function defineWidgetStretch() {
 
   /**
    * Define widget stretch

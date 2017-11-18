@@ -5,7 +5,7 @@
  * Time: 11:36 AM
  */
 
-define(function defineWidgetStick() {
+defineP(function defineWidgetStick() {
 
   /**
    * Define widget stick

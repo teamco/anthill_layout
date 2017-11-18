@@ -1,4 +1,4 @@
-define(function defineWidgetParallax() {
+defineP(function defineWidgetParallax() {
 
   /**
    * Define WidgetParallax

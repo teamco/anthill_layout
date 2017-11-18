@@ -5,7 +5,7 @@
  * Time: 10:32 PM
  */
 
-define(['config/workspace'], function defineWorkspaceListeners(Workspace) {
+defineP(['config/workspace'], function defineWorkspaceListeners(Workspace) {
 
   /**
    * Define Workspace Local listeners

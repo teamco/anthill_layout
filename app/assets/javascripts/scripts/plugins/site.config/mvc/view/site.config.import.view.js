@@ -4,7 +4,7 @@
  * Date: 5/2/15
  * Time: 9:03 AM
  */
-define([
+defineP([
   'plugins/site.config/element/site.config.import.file.element',
   'plugins/site.config/element/site.config.approve.import.element'
 ], function defineSiteConfigImportView(SiteConfigImportFileElement,

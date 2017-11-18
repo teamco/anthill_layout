@@ -5,7 +5,7 @@
  * Time: 8:50 PM
  */
 
-define([
+defineP([
   'plugins/preferences/preferences',
   'plugins/preferences/site.preferences/meta.data',
   'plugins/preferences/site.preferences/site.width',

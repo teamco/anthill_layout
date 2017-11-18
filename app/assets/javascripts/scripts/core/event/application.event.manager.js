@@ -6,7 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 
-define([
+defineP([
   'modules/Event'
 ], function defineApplicationEventManager(BaseEvent) {
 
@@ -69,8 +69,8 @@ define([
       loadProduction: 'load.production',
       handleVulnerabilities: 'handle.vulnerabilities',
       afterHandleVulnerabilities: 'after.handle.vulnerabilities',
-      defineGlobalInstance: 'define.global.instance',
-      defineSetting: 'define.setting',
+      defineGlobalInstance: 'defineP.global.instance',
+      defineSetting: 'defineP.setting',
       updateStorageVersion: 'update.storage.version',
       afterUpdateStorage: 'after.update.storage',
       setRoutes: 'set.routes',

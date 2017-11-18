@@ -4,7 +4,7 @@
  * Date: 5/2/15
  * Time: 8:52 AM
  */
-define([
+defineP([
   'plugins/site.config/element/site.config.cleanup.element'
 ], function defineSiteConfigCleanupView(SiteConfigCleanUpElement) {
 

@@ -5,7 +5,7 @@
  * Time: 11:48 AM
  */
 
-define([
+defineP([
   'plugins/plugin.element',
   'plugins/preferences/pages.preferences'
 ], function defineWorkspaceDataPreferencesElement(PluginElement,

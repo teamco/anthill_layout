@@ -1,4 +1,4 @@
-define(function defineProduction() {
+defineP(function defineProduction() {
 
   /**
    * Define Production mode

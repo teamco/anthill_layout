@@ -1,4 +1,4 @@
-define([
+defineP([
   'modules/base/Array',
   'modules/base/Function',
   'modules/base/Generator',
@@ -316,7 +316,7 @@ define([
      * @param {Boolean} [force]
      * @returns {*}
      */
-    define: function define(o, value, force) {
+    defineP: function defineP(o, value, force) {
       if (!this.isDefined(o)) {
         o = value;
       } else if (typeof(o) !== typeof(value) && !!force) {

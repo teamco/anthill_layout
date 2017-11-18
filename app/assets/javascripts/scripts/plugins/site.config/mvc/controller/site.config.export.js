@@ -2,7 +2,7 @@
  * Created by teamco on 11/4/14.
  */
 
-define(function defineSiteConfigExport() {
+defineP(function defineSiteConfigExport() {
 
   /**
    * Define site Export

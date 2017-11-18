@@ -6,9 +6,9 @@
  * To change this template use File | Settings | File Templates.
  */
 
-define(['require'], function defineListeners(require) {
+defineP(['require'], function defineListeners(require) {
 
-      require(
+      requireP(
           [
             './listeners/application.listeners',
             './listeners/workspace.listeners',

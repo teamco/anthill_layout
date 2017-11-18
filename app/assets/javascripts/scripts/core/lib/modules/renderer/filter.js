@@ -9,7 +9,7 @@
  * Created by teamco on 7/10/14.
  */
 
-define(function defineFilterRenderer() {
+defineP(function defineFilterRenderer() {
 
   /**
    * Define FilterRenderer

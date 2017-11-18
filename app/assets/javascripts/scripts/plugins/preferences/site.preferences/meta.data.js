@@ -1,7 +1,7 @@
 /**
  * Created by teamco on 26/03/2016.
  */
-define(function defineSiteConfigMetaDataPreferences() {
+defineP(function defineSiteConfigMetaDataPreferences() {
 
   /**
    * Define SiteConfig MetaData Preferences

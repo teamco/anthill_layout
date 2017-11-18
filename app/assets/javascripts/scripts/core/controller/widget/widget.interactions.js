@@ -5,7 +5,7 @@
  * Time: 9:25 PM
  */
 
-define([
+defineP([
   'controller/widget/widget.drag',
   'controller/widget/widget.resize'
 ], function defineWidgetInteractions(Draggable, Resizable) {
@@ -53,7 +53,7 @@ define([
 
       if (typeof scope.view.get$item().$[type] !== 'function') {
 
-        scope.logger.warn('Unable to define', type, config);
+        scope.logger.warn('Unable to defineP', type, config);
         return false;
       }
 

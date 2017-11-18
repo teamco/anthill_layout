@@ -5,7 +5,7 @@
  * Time: 11:23 PM
  */
 
-define(function defineRoutes() {
+defineP(function defineRoutes() {
 
   /**
    * Define Routes

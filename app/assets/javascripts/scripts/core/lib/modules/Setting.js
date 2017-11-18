@@ -1,4 +1,4 @@
-define([
+defineP([
   'config/anthill',
   'modules/Router'
 ], function defineSetting(AntHill, Router) {

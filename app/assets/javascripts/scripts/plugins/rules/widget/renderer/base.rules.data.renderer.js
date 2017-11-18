@@ -1,4 +1,4 @@
-define(function defineBaseRulesDataRenderer() {
+defineP(function defineBaseRulesDataRenderer() {
 
   return {
 

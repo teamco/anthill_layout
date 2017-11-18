@@ -2,7 +2,7 @@
  * Created by teamco on 7/9/14.
  */
 
-define(function definePageLayer() {
+defineP(function definePageLayer() {
 
   /**
    * Define page layer

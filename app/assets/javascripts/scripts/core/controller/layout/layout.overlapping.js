@@ -5,7 +5,7 @@
  * Time: 11:57 PM
  */
 
-define([
+defineP([
   'config/anthill',
   'controller/layout/layout.intersect'
 ], function defineLayoutOverlapping(AntHill, Intersect) {

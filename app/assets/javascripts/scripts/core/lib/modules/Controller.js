@@ -6,7 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 
-define([
+defineP([
   'config/anthill',
   'controller/behavior/behavior.crud',
   'controller/behavior/behavior.window.resize'

@@ -2,7 +2,7 @@
  * Created by teamco on 7/10/14.
  */
 
-define(function defineSourceRenderer() {
+defineP(function defineSourceRenderer() {
 
   /**
    * Define SourceRenderer
@@ -32,7 +32,7 @@ define(function defineSourceRenderer() {
           $code = $source.find('code');
 
       try {
-        require([
+        requireP([
           'lib/packages/highlight/vkbeautify',
           'lib/packages/highlight/highlight.pack'
         ], function () {

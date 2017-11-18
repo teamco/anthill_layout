@@ -5,7 +5,7 @@
  * Time: 9:17 PM
  * To change this template use File | Settings | File Templates.
  */
-define(
+defineP(
     [
       'config/anthill',
       'modules/Controller',

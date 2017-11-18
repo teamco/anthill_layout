@@ -2,7 +2,7 @@
  * Created by teamco on 8/12/15.
  */
 
-define(function defineFixVulnerabilities() {
+defineP(function defineFixVulnerabilities() {
 
   /**
    * Define fixes for vulnerabilities

@@ -5,7 +5,7 @@
  * Time: 11:50 PM
  */
 
-define(['config/widget'], function defineWidgetPermissions(Widget) {
+defineP(['config/widget'], function defineWidgetPermissions(Widget) {
 
   /**
    * Define Widget Local permission

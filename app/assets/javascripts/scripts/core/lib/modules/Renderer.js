@@ -4,7 +4,7 @@
  * Date: 3/3/14
  * Time: 12:14 AM
  */
-define([
+defineP([
   'config/anthill',
   'modules/renderer/check.box',
   'modules/renderer/combo.box',

@@ -5,7 +5,7 @@
  * Time: 10:34 PM
  */
 
-define(['config/layout'], function defineLayoutListeners(Layout) {
+defineP(['config/layout'], function defineLayoutListeners(Layout) {
 
   /**
    * Define Layout global listeners

@@ -1,4 +1,4 @@
-define(function defineLayoutGrid() {
+defineP(function defineLayoutGrid() {
 
   /**
    * Define LayoutGrid

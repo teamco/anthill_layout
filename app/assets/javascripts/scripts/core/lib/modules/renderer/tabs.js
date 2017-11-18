@@ -1,7 +1,7 @@
 /**
  * Created by teamco on 7/10/14.
  */
-define(function defineTabsRenderer() {
+defineP(function defineTabsRenderer() {
 
   /**
    * Define TabsRenderer

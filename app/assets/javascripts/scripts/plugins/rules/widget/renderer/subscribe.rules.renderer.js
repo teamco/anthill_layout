@@ -1,4 +1,4 @@
-define(function defineSubscribeRulesRenderer() {
+defineP(function defineSubscribeRulesRenderer() {
 
   return {
 

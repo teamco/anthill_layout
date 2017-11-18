@@ -5,7 +5,7 @@
  * Time: 1:26 PM
  */
 
-define(function defineWidgetContentPreferencesController() {
+defineP(function defineWidgetContentPreferencesController() {
 
   /**
    * Define widget content prefs controller

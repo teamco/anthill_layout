@@ -2,7 +2,7 @@
  * Created by teamco on 5/21/14.
  */
 
-define(function defineWidgetOverlapping() {
+defineP(function defineWidgetOverlapping() {
 
   /**
    * Define Widget Overlapping

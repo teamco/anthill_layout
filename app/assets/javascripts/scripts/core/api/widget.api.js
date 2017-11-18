@@ -5,7 +5,7 @@
  * Time: 7:22 PM
  */
 
-define([
+defineP([
   'modules/API'
 ], function defineWidgetAPI(BaseAPI) {
 

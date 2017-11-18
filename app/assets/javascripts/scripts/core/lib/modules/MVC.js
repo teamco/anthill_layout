@@ -6,7 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 
-define([
+defineP([
   'config/anthill',
   'modules/Observer',
   'modules/Logger'
@@ -109,7 +109,7 @@ define([
       successRenderHeader: 'success.render.header',
       successRenderFooter: 'success.render.footer',
       bindModelObserver: 'bind.model.observer',
-      defineGenericGetter: 'define.generic.getter',
+      defineGenericGetter: 'defineP.generic.getter',
       openUrlOnEvent: 'open.url.on.event',
       successCreateElement: 'success.create.element',
       successBuildElement: 'success.build.element',

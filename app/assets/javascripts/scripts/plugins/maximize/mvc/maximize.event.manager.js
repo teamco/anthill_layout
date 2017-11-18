@@ -6,7 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 
-define([
+defineP([
   'modules/Event'
 ], function defineMaximizeEventManager(BaseEvent) {
 
@@ -40,7 +40,7 @@ define([
     this.eventList = {
       updateTranslations: 'update.translations',
       loadModuleContent: 'load.module.content',
-      defineInteraction: 'define.interaction',
+      defineInteraction: 'defineP.interaction',
       storeItem: 'store.item',
       prepareActiveComponent: 'prepare.active.component',
       setActiveContent: 'set.active.content'

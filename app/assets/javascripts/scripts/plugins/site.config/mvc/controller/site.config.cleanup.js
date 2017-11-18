@@ -1,7 +1,7 @@
 /**
  * Created by teamco on 11/4/14.
  */
-define(function defineSiteConfigCleanup() {
+defineP(function defineSiteConfigCleanup() {
 
   /**
    * Define SiteConfig Cleanup

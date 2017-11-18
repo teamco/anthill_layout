@@ -1,4 +1,4 @@
-define(function defineConfig() {
+defineP(function defineConfig() {
   return {
     html: {
       container: 'body',

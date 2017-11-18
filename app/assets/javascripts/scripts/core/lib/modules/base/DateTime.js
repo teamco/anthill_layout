@@ -6,7 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 
-define(function defineLibDateTime() {
+defineP(function defineLibDateTime() {
 
   /**
    * Define Date time

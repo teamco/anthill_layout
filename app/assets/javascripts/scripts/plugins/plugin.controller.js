@@ -4,7 +4,7 @@
  * Date: 2/23/14
  * Time: 10:28 PM
  */
-define([
+defineP([
   'config/anthill',
   'modules/Controller'
 ], function definePluginControllerBase(AntHill, BaseController) {

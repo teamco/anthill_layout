@@ -5,7 +5,7 @@
  * Time: 8:38 PM
  */
 
-define([
+defineP([
   'config/anthill'
 ], function defineBehaviorCrud(AntHill) {
 

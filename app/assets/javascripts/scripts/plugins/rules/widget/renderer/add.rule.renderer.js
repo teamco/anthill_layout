@@ -1,4 +1,4 @@
-define(function defineAddRuleRenderer() {
+defineP(function defineAddRuleRenderer() {
 
   return {
 

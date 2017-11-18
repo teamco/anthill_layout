@@ -5,7 +5,7 @@
  * Time: 8:33 PM
  */
 
-define(function defineWidgetExpand() {
+defineP(function defineWidgetExpand() {
 
   /**
    * Define WidgetExpand

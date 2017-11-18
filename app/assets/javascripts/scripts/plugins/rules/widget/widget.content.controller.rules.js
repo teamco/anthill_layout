@@ -5,7 +5,7 @@
  * Time: 11:46 PM
  */
 
-define([
+defineP([
   'plugins/rules/widget/widget.subscribe'
 ], function defineWidgetContentControllerRulesBase(WidgetSubscribe) {
 

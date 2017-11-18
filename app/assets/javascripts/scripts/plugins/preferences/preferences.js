@@ -2,7 +2,7 @@
  * Created by teamco on 3/19/14.
  */
 
-define(function defineBasePreferencesElement() {
+defineP(function defineBasePreferencesElement() {
 
   /**
    * Define BasePreferencesElement

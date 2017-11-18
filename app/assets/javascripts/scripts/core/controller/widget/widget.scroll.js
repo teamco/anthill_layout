@@ -5,7 +5,7 @@
  * Time: 8:45 PM
  */
 
-define(function defineWidgetScroll() {
+defineP(function defineWidgetScroll() {
 
   /**
    * Define WidgetScroll

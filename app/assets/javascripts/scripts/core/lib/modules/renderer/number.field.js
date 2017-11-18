@@ -2,7 +2,7 @@
  * Created by teamco on 7/10/14.
  */
 
-define(function defineNumberFieldRenderer() {
+defineP(function defineNumberFieldRenderer() {
 
   /**
    * Define NumberFieldRenderer

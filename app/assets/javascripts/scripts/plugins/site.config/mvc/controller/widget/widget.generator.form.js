@@ -1,7 +1,7 @@
 /**
  * Created by teamco on 7/15/15.
  */
-define(function defineWidgetGeneratorForm() {
+defineP(function defineWidgetGeneratorForm() {
 
   /**
    * Define WidgetGeneratorForm

@@ -4,7 +4,7 @@
  * Date: 5/9/13
  * Time: 11:48 AM
  */
-define([
+defineP([
   'plugins/plugin.element'
 ], function definePanelContentContainerElement(PluginElement) {
 

@@ -5,7 +5,7 @@
  * Time: 7:39 PM
  */
 
-define([
+defineP([
   'plugins/rules/widget/rules',
   'plugins/rules/widget/renderer/add.rule.renderer',
   'plugins/rules/widget/renderer/base.rules.data.renderer',

@@ -2,7 +2,7 @@
  * Created by teamco on 11/4/14.
  */
 
-define(function defineSiteConfigPreferences() {
+defineP(function defineSiteConfigPreferences() {
 
   /**
    * Define SiteConfig Preferences

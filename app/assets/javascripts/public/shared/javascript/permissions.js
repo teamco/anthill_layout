@@ -6,9 +6,9 @@
  * To change this template use File | Settings | File Templates.
  */
 
-define(['require'], function definePermissions(require) {
+defineP(['require'], function definePermissions(require) {
 
-  require(
+  requireP(
       [
         './permissions/application.permissions',
         './permissions/workspace.permissions',

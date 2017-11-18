@@ -5,7 +5,7 @@
  * Time: 10:14 PM
  */
 
-define(function defineLayoutIntersect() {
+defineP(function defineLayoutIntersect() {
 
   /**
    * Define Intersect

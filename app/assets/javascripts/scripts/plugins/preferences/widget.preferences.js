@@ -5,7 +5,7 @@
  * Time: 7:39 PM
  */
 
-define([
+defineP([
   'plugins/preferences/preferences'
 ], function defineWidgetPreferences(BasePreferencesElement) {
 

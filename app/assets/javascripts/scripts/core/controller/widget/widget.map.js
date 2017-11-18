@@ -5,7 +5,7 @@
  * Time: 11:47 PM
  */
 
-define([
+defineP([
   'config/anthill',
   'controller/widget/widget.overlapping'
 ], function defineWidgetMap(AntHill, WidgetOverlapping) {

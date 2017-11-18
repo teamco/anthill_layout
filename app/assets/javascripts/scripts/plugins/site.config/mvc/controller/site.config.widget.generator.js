@@ -2,7 +2,7 @@
  * Created by teamco on 11/4/14.
  */
 
-define([
+defineP([
       'plugins/site.config/mvc/controller/widget/widget.generator.form',
       'plugins/site.config/mvc/controller/widget/widget.generator.core',
       'plugins/site.config/mvc/controller/widget/widget.generator.external',

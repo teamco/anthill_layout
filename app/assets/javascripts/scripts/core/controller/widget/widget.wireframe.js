@@ -5,7 +5,7 @@
  * Time: 12:24 AM
  */
 
-define([
+defineP([
   'config/anthill'
 ], function defineWidgetWireframe(AntHill) {
 

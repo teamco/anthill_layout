@@ -5,7 +5,7 @@
  * Time: 3:22 PM
  */
 
-define([
+defineP([
   'config/anthill'
 ], function defineLayoutEmptyColumns(AntHill) {
 

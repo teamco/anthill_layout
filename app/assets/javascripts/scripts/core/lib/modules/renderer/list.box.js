@@ -2,7 +2,7 @@
  * Created by teamco on 7/10/14.
  */
 
-define(function defineListBoxRenderer() {
+defineP(function defineListBoxRenderer() {
 
   /**
    * Define ListBoxRenderer

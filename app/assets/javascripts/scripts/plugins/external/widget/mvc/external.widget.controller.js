@@ -5,7 +5,7 @@
  * Time: 11:03 AM
  */
 
-define([
+defineP([
   'plugins/plugin.controller',
   'plugins/widgets/widget.content.controller'
 ], function defineExternalWidgetController(PluginBase,

@@ -5,7 +5,7 @@
  * Time: 10:26 PM
  */
 
-define(['config/application'],
+defineP(['config/application'],
     function defineApplicationListeners(Application) {
 
       /**
@@ -18,7 +18,7 @@ define(['config/application'],
       Application.prototype.globalListeners = {
 
         defineGlobalInstance: {
-          name: 'define.global.instance',
+          name: 'defineP.global.instance',
           callback: function defineGlobalInstanceCallback() {
             if (this.controller.isDevelopmentMode()) {
               window[this.controller.getAppName()] = this;

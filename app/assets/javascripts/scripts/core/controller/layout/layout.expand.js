@@ -5,7 +5,7 @@
  * Time: 12:21 AM
  */
 
-define(function defineLayoutExpand() {
+defineP(function defineLayoutExpand() {
 
   /**
    * Define LayoutExpand

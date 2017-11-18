@@ -5,7 +5,7 @@
  * Time: 11:41 PM
  */
 
-define(['config/page'], function definePagePermissions(Page) {
+defineP(['config/page'], function definePagePermissions(Page) {
 
   /**
    * Define Page global permission

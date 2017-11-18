@@ -6,7 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 
-define(function defineLibString() {
+defineP(function defineLibString() {
 
   /**
    * Define LibUserAgent

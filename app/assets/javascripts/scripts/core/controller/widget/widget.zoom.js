@@ -5,7 +5,7 @@
  * Time: 9:15 PM
  */
 
-define(function defineWidgetZoom() {
+defineP(function defineWidgetZoom() {
 
   /**
    * Define WidgetZoom

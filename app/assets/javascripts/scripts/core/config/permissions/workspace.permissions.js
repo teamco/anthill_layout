@@ -5,7 +5,7 @@
  * Time: 11:39 PM
  */
 
-define(['config/workspace'], function defineWorkspacePermissions(Workspace) {
+defineP(['config/workspace'], function defineWorkspacePermissions(Workspace) {
 
   /**
    * Define Workspace Local permission

@@ -5,7 +5,7 @@
  * Time: 5:40 PM
  */
 
-define([
+defineP([
   'controller/widget/widget.expand',
   'controller/widget/widget.scroll',
   'controller/widget/widget.comment'
@@ -107,7 +107,7 @@ define([
 
           widget.logger.debug('Load widget content', path);
 
-          require([path], function _getDependencies(Content) {
+          requireP([path], function _getDependencies(Content) {
 
             if (isInternal) {
               widget.controller.destroyContent();
