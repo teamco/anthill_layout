@@ -70,7 +70,7 @@ Rails.application.routes.draw do
 
   get '/readability_content/:url', to: 'author/widgets#readability_content'
 
-  get '/:key/:mode(/:version)', to: 'author/site_storages#show', as: 'version'
+  get '/sites/:key/:mode(/:version)', to: 'author/site_storages#show', as: 'version'
 
   put '/sites/:key', to: 'author/site_storages#update'
   put '/sites/activate/:key/:version', to: 'author/site_versions#activate'

@@ -8,61 +8,6 @@
 
 (function addFunctionMethods() {
 
-  if (!Function.prototype.bind) {
-
-    /**
-     * Define bind
-     * @memberOf Function
-     * @param oThis
-     * @returns {fBound}
-     */
-    Function.prototype.bind = function bind(oThis) {
-
-      if (typeof this !== "function") {
-        // closest thing possible to the ECMAScript 5 internal IsCallable
-        // function
-        throw new TypeError("Function.prototype.bind - what is trying to be bound is not callable");
-      }
-
-      var aArgs = Array.prototype.slice.call(arguments, 1),
-          fToBind = this,
-
-          /**
-           * Define fNOP
-           * @class fNOP
-           * @constructor
-           */
-          fNOP = function fNOP() {
-          },
-
-          /**
-           * Define fBound
-           * @returns {*}
-           */
-          fBound = function fBound() {
-            return fToBind.apply(this instanceof fNOP && oThis
-                    ? this
-                    : oThis,
-                aArgs.concat(Array.prototype.slice.call(arguments))
-            );
-          };
-
-      /**
-       * Set fNOP prototype
-       * @type {Object}
-       */
-      fNOP.prototype = this.prototype;
-
-      /**
-       * Set fBound prototype
-       * @type {fNOP}
-       */
-      fBound.prototype = new fNOP();
-
-      return fBound;
-    };
-  }
-
   // http://www.crockford.com/javascript/inheritance.html
 
   // First, the method method, which adds an instance method to a class.

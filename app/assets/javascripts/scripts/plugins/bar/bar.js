@@ -13,8 +13,7 @@ define([
   'plugins/bar/mvc/bar.view',
   'plugins/bar/mvc/bar.event.manager',
   'plugins/bar/mvc/bar.permission'
-], function defineBar(AntHill, MVC, Controller, Model, View, EventManager,
-    Permission) {
+], function defineBar(AntHill, MVC, Controller, Model, View, EventManager, Permission) {
 
   /**
    * Define Bar

@@ -1,4 +1,4 @@
-define([
+defineP([
   'config/anthill',
   'api/application.api',
   'modules/MVC',
@@ -7,14 +7,13 @@ define([
   'view/application.view',
   'event/application.event.manager',
   'permission/application.permission'
-], function defineApp(AntHill, API, MVC, Controller, Model, View, EventManager,
-    Permission) {
+], function defineApp(AntHill, API, MVC, Controller, Model, View, EventManager, Permission) {
 
   /**
    * Define Application
    * @class Application
    * @extends AntHill
-   * @param {{}} opts
+   * @param {{config}} opts
    * @constructor
    */
   var Application = function Application(opts) {

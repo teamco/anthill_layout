@@ -34,12 +34,12 @@ requirejs.config({
     bootstrap: 'lib/packages/bootstrap/bootstrap.min',
     'bootstrap-dialog': 'lib/packages/bootstrap/plugins/dialog/bootstrap-dialog.min',
 
-    _: 'lib/_/underscore-min',
+    underscore: 'lib/_/underscore.min',
 
     html2canvas: 'lib/packages/html2canvas.min',
 
     'lz-string': 'lib/lz-string',
-    jquery: 'lib/jquery/jquery-3.2.1.min',
+    jquery: 'lib/jquery/jquery.min',
     'jquery.ujs': 'lib/jquery/jquery_ujs',
     'jquery.timeago': 'lib/jquery/jquery.timeago',
     'jquery.ui': 'lib/jquery/jquery-ui.min',

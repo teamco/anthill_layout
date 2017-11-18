@@ -26,7 +26,7 @@ define([
      * Define plugin path
      * @memberOf BaseElement
      */
-    pluginPath: '../../assets/scripts/plugins',
+    pluginPath: '../../../assets/scripts/plugins',
 
     /**
      * Element config before build

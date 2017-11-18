@@ -66,6 +66,8 @@ gem 'rack-attack'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
+# gem 'requirejs-rails'
+
 gem 'rmagick'
 
 gem 'bootstrap-sass', '~> 3.3.6'

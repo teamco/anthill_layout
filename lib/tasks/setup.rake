@@ -30,4 +30,9 @@ namespace :setup do
     Rake::Task['db:seed'].execute
   end
 
+  desc 'Map static resources'
+  task map: :environment do
+    Rake::Task['map:resources'].execute
+  end
+
 end

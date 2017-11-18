@@ -3,8 +3,16 @@
         'data-apikey': 'b840eb2e5e5caa11b8e47016f6a82c37'
     ) %>
 <%= javascript_include_tag('general.config') %>
-<%= javascript_include_tag(
-        'scripts/core/lib/require',
+<%= javascript_tag id: 'preload' do %>
+    <% if Rails.env == 'production' %>
+        window._router = JSON.parse('<%= storage[:router] %>'.replace(/&quot;/g, '"'));
+    <% end %>
+    (function(){
+    config().localStorage('<%= storage[:key] %>', '<%= storage[:content] %>');
+    })();
+<% end -%>
+<%= javascript_include_tag('scripts/core/lib/require',
+        'defer': 'defer',
         'data-resource': storage[:key],
         'data-user': current_user.nil? ? 'guest' : current_user.email,
         'data-current': storage[:show],
@@ -15,17 +23,7 @@
         'data-environment': Rails.env,
         'data-deployed': storage[:deployed],
         'data-uuid': storage[:uuid],
-        'data-config': 'core/config/main',
-        'data-main': javascript_path("scripts/general#{minified}"),
+        'data-config': javascript_path('scripts/core/config/main'),
+        'data-main': javascript_path('scripts/general'),
         'id': 'require-init'
     ) %>
-
-<%= javascript_tag defer: 'defer', id: 'preload' do %>
-    (function(){
-      //config().rollBarLoader(
-      //  '37e120d64e0147aca32623f8fdd5dc71',
-      //  '<%= Rails.env %>'
-      //);
-      config().localStorage('<%= storage[:key] %>', '<%= storage[:content] %>');
-    })();
-<% end -%>

@@ -5,7 +5,7 @@
  * Time: 2:43 PM
  */
 
-define([
+defineP([
   'modules/Base',
   'modules/i18n'
 ], function defineAntHill(Base, i18n) {

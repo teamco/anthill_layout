@@ -3,15 +3,15 @@ module Author::SiteStoragesHelper
   def render_activated_version(f)
     render_collection_field(
         f, 'Version', {
-             id: :activated_version,
-             collection: @versions[:all],
-             index: :id,
-             value: :version,
-             html: {
-                 selected: @versions[:activated].nil? ?
-                     nil : @versions[:activated].id
-             }
-         }
+        id: :activated_version,
+        collection: @versions[:all],
+        index: :id,
+        value: :version,
+        html: {
+            selected: @versions[:activated].nil? ?
+                          nil : @versions[:activated].id
+        }
+    }
     ) if @versions[:all].length > 0 if action_name == 'edit'
   end
 
@@ -44,13 +44,13 @@ module Author::SiteStoragesHelper
     av == pv && (av != '?' || pv != '?')
   end
 
-  def render_as(layout='js', collection, user)
-        "<div>#{layout}: #{collection.inspect}</div>".html_safe
+  def render_as(layout = 'js', collection, user)
+    "<div>#{layout}: #{collection.inspect}</div>".html_safe
     stylesheet_link_tag 'general', media: 'all' if layout == 'js'
     stylesheet_link_tag("public/#{collection[:key]}/css/general")
     render "show_#{layout}",
            storage: collection,
-           minified: collection[:deployed] && collection[:mode] != 'development' ? '.min' : '',
+           minified: Rails.env == 'production' ? '.min' : '',
            current_user: user
   end
 end

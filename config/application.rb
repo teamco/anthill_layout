@@ -21,6 +21,7 @@ module Anthill
     # config.i18n.default_locale = :de
 
     # config.assets.initialize_on_precompile = false
+    config.load_defaults 5.1
 
     config.autoload_paths << Rails.root.join('lib')
     config.action_view.field_error_proc = Proc.new { |html_tag, instance| html_tag }
