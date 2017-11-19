@@ -35,7 +35,7 @@ class UserLog < ApplicationRecord
 
   include Base::ExternalLogger
 
-  belongs_to :user
+  belongs_to :user, optional: true
   delegate :email, to: :user, prefix: true
 
   has_one :error_log, dependent: :destroy
@@ -46,7 +46,7 @@ class UserLog < ApplicationRecord
         {controller: 'user_logs', action: 'index'},
         {controller: 'error_logs', action: 'index'}
     ]
-    log_except.each { |x| return false if (x[:action] == aname || aname.nil?) if (x[:controller] == cname) }
+    log_except.each {|x| return false if (x[:action] == aname || aname.nil?) if (x[:controller] == cname)}
     true
   end
 
@@ -78,9 +78,13 @@ class UserLog < ApplicationRecord
         content_type: response.content_type
     }
 
-    (user ?
-        user.user_logs.create!(opts) :
-        create!(opts)) if except(cname, aname)
+    if except(cname, aname)
+      if user
+        user.user_logs.create!(opts)
+      else
+        create!(opts)
+      end
+    end
 
     # rollbar(opts, 'log')
 
