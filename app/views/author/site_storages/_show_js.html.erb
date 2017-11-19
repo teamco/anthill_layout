@@ -1,10 +1,9 @@
-<%#= javascript_include_tag(
-        '//d2wy8f7a9ursnm.cloudfront.net/bugsnag-3.min.js',
-        'data-apikey': 'b840eb2e5e5caa11b8e47016f6a82c37'
-    ) %>
+<% prod = 'production' %>
+<% cons = 'consumption' %>
+<%= javascript_include_tag "app.#{storage[:mode] == cons ? 'published' : 'draft'}" %>
 <%= javascript_include_tag('general.config') %>
 <%= javascript_tag id: 'preload' do %>
-    <% if Rails.env == 'production' %>
+    <% if Rails.env == prod %>
         window._router = JSON.parse('<%= storage[:router] %>'.replace(/&quot;/g, '"'));
     <% end %>
     (function(){

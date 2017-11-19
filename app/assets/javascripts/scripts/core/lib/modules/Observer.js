@@ -218,14 +218,11 @@ defineP([
      * @return {boolean}
      */
     unEvent: function unEvent(eventName, eventUUID) {
-
       eventUUID = this.unRegister(eventName, eventUUID);
-
       if (eventUUID) {
         delete this.scope.eventmanager.events[eventUUID];
         return true;
       }
-
       return false;
     },
 
@@ -234,9 +231,9 @@ defineP([
      * @memberOf Observer
      */
     batchPublish: function batchPublish() {
-      arguments.forEach(function(arg) {
+      Object.assign([], arguments).forEach(function(arg) {
         this.publish.apply(this, this.base.isString(arg) ? [arg] : arg);
-      });
+      }.bind(this));
     },
 
     /**
@@ -288,7 +285,7 @@ defineP([
             return false;
           }
         }
-      });
+      }.bind(this));
     },
 
     /**

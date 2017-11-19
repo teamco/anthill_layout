@@ -17,12 +17,13 @@
        * @method _filter
        * @param keys
        * @param module
-       * @param ext
+       * @param [ext]
        * @private
        */
       function _filter(keys, module, ext) {
+        ext = ext || '';
         var data = keys.filter(function(key) {
-          return key.match(new RegExp(module + ext));
+          return key.match(new RegExp((module + ext + '.js').replace(/\./g, '\\.')));
         });
         return data.filter(function(x, i, a) {
           return a.indexOf(x) === i;
@@ -46,11 +47,16 @@
               var keys = Object.keys(_router);
               for (var i = 0; i < modules.length; i++) {
                 var module = modules[i];
-                var route = _filter(keys, module, '\\.min\\.js');
+                var route = _filter(keys, module, '.min');
                 if (!route.length) {
-                  route = _filter(keys, module, '\\.js');
+                  route = _filter(keys, module);
                   if (route.length > 1) {
-                    window['console'].warn('Fix', route, module);
+                    if (module === 'element/header.element') {
+                      module = 'scripts/core/' + module;
+                      route = _filter(keys, module);
+                    } else {
+                      window['console'].warn('Fix', route, module);
+                    }
                   }
                 }
                 if (!_router[route[0]]) {
@@ -102,11 +108,9 @@
        */
       var loaderJs = [
 
-        'jquery',
-        'bootstrap',
+        // 'bootstrap',
         'underscore',
         'lz-string',
-        'jquery.ujs',
         'jquery.resizestop',
         'jquery.zoomooz',
 
@@ -125,7 +129,7 @@
       ];
 
       if (mode !== 'consumption') {
-        loaderJs.unshift('jquery.ui');
+        //loaderJs.unshift('jquery-ui');
       }
 
       requireP(loaderJs, function init() {

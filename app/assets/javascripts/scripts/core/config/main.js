@@ -9,40 +9,27 @@ requirejs.config({
     'public': '/assets/public',
 
     config: 'config',
-
     api: 'api',
-
     controller: 'controller',
     model: 'model',
     view: 'view',
-
     event: 'event',
     permission: 'permission',
-
     'extends': 'lib/extends',
-
     modules: 'lib/modules',
     plugins: '/assets/scripts/plugins',
-
     services: '/assets/services',
-
     tinymce: 'lib/packages/tinymce/tinymce.min',
     moment: 'lib/packages/moment',
-
     modernizr: 'lib/modernizr',
 
-    bootstrap: 'lib/packages/bootstrap/bootstrap.min',
     'bootstrap-dialog': 'lib/packages/bootstrap/plugins/dialog/bootstrap-dialog.min',
 
     underscore: 'lib/_/underscore.min',
-
     html2canvas: 'lib/packages/html2canvas.min',
 
     'lz-string': 'lib/lz-string',
-    jquery: 'lib/jquery/jquery.min',
-    'jquery.ujs': 'lib/jquery/jquery_ujs',
     'jquery.timeago': 'lib/jquery/jquery.timeago',
-    'jquery.ui': 'lib/jquery/jquery-ui.min',
     'jquery.resizestop': 'lib/jquery/jquery.resizestop',
     'jquery.zoomooz': 'lib/jquery/jquery.zoomooz.min',
 
@@ -74,16 +61,6 @@ requirejs.config({
         return this.tinyMCE;
       }
     },
-    jquery: {
-      exports: '$'
-    },
-    'jquery.ujs': {deps: ['jquery']},
-    'jquery.ui': {deps: ['jquery']},
-    'jquery.resizestop': {deps: ['jquery']},
-    'jquery.zoomooz': {deps: ['jquery']},
-    'extends/function': {deps: ['jquery']},
-    'extends/string': {deps: ['jquery']},
-    'extends/array': {deps: ['jquery']},
 
     'lib/modules/MVC': {
       deps: [
@@ -93,8 +70,7 @@ requirejs.config({
       ]
     },
 
-    bootstrap: {deps: ["jquery"]},
-    'bootstrap-dialog': {deps: ['jquery'], exports: 'BootstrapDialog'},
+    'bootstrap-dialog': {exports: 'BootstrapDialog'},
 
     'config/listeners': {deps: ['extends/function']},
     'config/listeners/application.listeners': {deps: ['extends/function']},

@@ -34,10 +34,7 @@
         html2canvas: 'lib/packages/html2canvas.min',
 
         'lz-string': 'lib/lz-string',
-        jquery: 'lib/jquery/jquery-3.1.1.min',
-        'jquery.ujs': 'lib/jquery/jquery_ujs',
         'jquery.timeago': 'lib/jquery/jquery.timeago',
-        'jquery.ui': 'lib/jquery/jquery-ui.min',
         'jquery.resizestop': 'lib/jquery/jquery.resizestop',
         'jquery.zoomooz': 'lib/jquery/jquery.zoomooz.min',
 
@@ -74,8 +71,7 @@
         jquery: {
             exports: '$'
         },
-        'jquery.ujs': {deps: ['jquery']},
-        'jquery.ui': {deps: ['jquery']},
+        'jquery-ui': {deps: ['jquery']},
         'jquery.resizestop': {deps: ['jquery']},
         'jquery.zoomooz': {deps: ['jquery']},
         'extends/function': {deps: ['jquery']},

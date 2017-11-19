@@ -66,6 +66,7 @@ gem 'rack-attack'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 # gem 'requirejs-rails'
 
 gem 'rmagick'

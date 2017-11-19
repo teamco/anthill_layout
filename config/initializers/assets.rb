@@ -24,6 +24,8 @@ def asset_iterator(assets, except = nil)
 end
 
 Rails.application.config.assets.precompile += %w( scripts/core/lib/require.js )
+Rails.application.config.assets.precompile += %w( app.draft.js )
+Rails.application.config.assets.precompile += %w( app.published.js )
 Rails.application.config.assets.precompile += %w( general.config.js )
 Rails.application.config.assets.precompile += %w( scripts/core/lib/lz-string.js )
 Rails.application.config.assets.precompile += %w( scripts/core/lib/packages/pretty.print.js )
