@@ -10,7 +10,7 @@ module UserLogsHelper
         "#{expand}#{user_log.id}</td>",
         "<td class=\"name\">#{link_to user_log.user_email, 'user_log.user.id' unless user_log.user.nil?}</td>",
         "<td>#{user_log.method}</td>",
-        "<td>#{link_to nil, user_log.request_uri}</td>",
+        "<td><span class=\"break\">#{link_to nil, user_log.request_uri}</span></td>",
         "<td class=\"nw c\">#{user_log.created_at.strftime('%Y %b %d %I:%M:%S %p')}</td></tr>"
     ].join.html_safe
   end

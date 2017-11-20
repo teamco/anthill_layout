@@ -70,7 +70,6 @@ gem 'jquery-ui-rails'
 # gem 'requirejs-rails'
 
 gem 'rmagick'
-
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'coffee-rails'
 gem 'data_uri'

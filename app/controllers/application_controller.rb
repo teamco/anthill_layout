@@ -39,15 +39,15 @@ class ApplicationController < ActionController::Base
   private
 
   def handle_error(e, status, template)
-    if localhost?
+    # if localhost?
       logger.error "Status: #{status.inspect}"
       logger.error "Template: #{template.inspect}"
       raise e
-    else
-      log = ErrorLog.handle_error(current_user, e, @user_log)
-      raise e if error_logs?
-      redirect_to error_log_path(log)
-    end
+    # else
+    #   log = ErrorLog.handle_error(current_user, e, @user_log)
+    #   raise e if error_logs?
+    #   redirect_to error_log_path(log)
+    # end
   end
 
   def current_user

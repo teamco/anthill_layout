@@ -367,8 +367,19 @@ img {
 
 .anthill table th {
   text-align: center;
+  background: #dedede;
+  border-left: 1px solid #cccc;
 }
 
 .anthill table td {
-  white-space: nowrap;
+  border-left: 1px solid #dedede;
+}
+
+.anthill table th:first-child,
+.anthill table td:first-child {
+  border-left: none;
+}
+
+.anthill table td span.break {
+  word-break: break-all;
 }
