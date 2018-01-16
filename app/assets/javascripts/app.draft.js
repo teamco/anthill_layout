@@ -1,4 +1,3 @@
-//= require jquery3
 //= require jquery-ui/core
 //= require jquery-ui/labels
 //= require jquery-ui/position
@@ -9,6 +8,3 @@
 //= require jquery-ui/widgets/resizable
 //= require jquery-ui/widgets/selectable
 //= require jquery-ui/widgets/sortable
-//= require jquery_ujs
-//= require data-confirm-modal
-//= require bootstrap-sprockets

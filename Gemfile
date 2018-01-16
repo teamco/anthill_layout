@@ -55,7 +55,7 @@ end
 
 group :doc do
   gem 'jsduck', require: false
-  gem 'sdoc', '>= 0.4.0'
+  gem 'sdoc', '>= 0.4.0', require: false
 end
 
 group :production do
@@ -70,6 +70,7 @@ gem 'jquery-ui-rails'
 # gem 'requirejs-rails'
 
 gem 'rmagick'
+
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'coffee-rails'
 gem 'data_uri'

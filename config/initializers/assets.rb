@@ -24,6 +24,7 @@ def asset_iterator(assets, except = nil)
 end
 
 Rails.application.config.assets.precompile += %w( scripts/core/lib/require.js )
+Rails.application.config.assets.precompile += %w( app.js )
 Rails.application.config.assets.precompile += %w( app.draft.js )
 Rails.application.config.assets.precompile += %w( app.published.js )
 Rails.application.config.assets.precompile += %w( general.config.js )
@@ -35,7 +36,9 @@ Rails.application.config.assets.precompile += ['public/*/css/*.css']
 Rails.application.config.assets.precompile += ['public/*/javascripts/*']
 Rails.application.config.assets.precompile += ['scripts/*']
 Rails.application.config.assets.precompile += ['services/*']
-Rails.application.config.assets.precompile += ['scripts/plugins/widgets/**']
+Rails.application.config.assets.precompile += ['scripts/plugins/widgets/**/*.css']
+Rails.application.config.assets.precompile += ['scripts/plugins/widgets/**/*.js']
+Rails.application.config.assets.precompile += ['scripts/plugins/widgets/**/*.png']
 Rails.application.config.assets.precompile += %w( scripts/plugins/**/*.css )
 Rails.application.config.assets.precompile += %w( general.css )
 

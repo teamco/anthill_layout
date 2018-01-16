@@ -15,6 +15,7 @@ module MapResources
       @map[ns] = {}
       modules.each do |c|
         name = c.gsub("#{const_map}/", '')
+        name.sub!(/scripts\/core\//, '')
         is_a?(name)
         if File.file?(c) && @not_gz && (@js || @css || @img)
           key = name.sub(/-(?=[^-]*$)\w+/, '')
@@ -30,10 +31,10 @@ module MapResources
     private
 
     def is_a?(name)
-      @not_gz = matcher(name, /.gz/) && (matcher(name, /.js.gz/) || matcher(name, /.css.gz/))
-      @js = !matcher(name, /.js/)
-      @css = !matcher(name, /.css/)
-      @img = !matcher(name, /.png/)
+      @not_gz = matcher(name, /\.gz/) && (matcher(name, /\.js\.gz/) || matcher(name, /\.css\.gz/))
+      @js = !matcher(name, /\.js/)
+      @css = !matcher(name, /\.css/)
+      @img = !matcher(name, /\.png/)
     end
 
     def check_exist(path)

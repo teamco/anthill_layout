@@ -17,16 +17,15 @@
        * @method _filter
        * @param module
        * @param [ext]
+       * @returns {Array}
        * @private
        */
       function _filter(module, ext) {
-        ext = ext || '';
-        var data = Object.keys(_router).filter(function(key) {
-          return key.match(new RegExp((module + ext + '.js').replace(/\./g, '\\.')));
-        });
-
-        // Unique array
-        return data.filter(function(x, i, a) {
+        var amd = module + (ext || '') + '.js',
+            data = _router[amd] ? [_router[amd]] : false;
+        return data || Object.keys(_router).filter(function(key) {
+          return key.match(new RegExp(amd.replace(/\./g, '\\.')));
+        }).filter(function(x, i, a) {
           return a.indexOf(x) === i;
         });
       }
@@ -45,44 +44,46 @@
               if (!Array.isArray(modules)) {
                 modules = [modules];
               }
-              for (var i = 0; i < modules.length; i++) {
-                var module = modules[i];
+              Object.assign([], modules).forEach(function(module, i) {
                 var route = _filter(module, '.min');
                 if (!route.length) {
                   route = _filter(module);
-                  if (route.length > 1) {
-                    if (module === 'element/header.element') {
-                      module = 'scripts/core/' + module;
-                      route = _filter(module);
-                    } else {
-                      window['console'].warn('Fix', route, module);
+                }
+                if (route[1]) {
+                  window['console'].warn('Fix:', route, module);
+                } else if (route.length === 1) {
+                  var _map = _router[route[0]];
+                  if (!_map) {
+                    _map = route[0];
+                  }
+                  _map = _map.replace(/\.js/, '');
+                  if (_map.match(/scripts\/plugins/)) {
+                    _map = '../../' + _map;
+                    if (_map.match(/mvc|\/element/)) {
+                      _map = '../' + _map;
                     }
+                    if (_map.match(/widgets/)) {
+                      _map = '../' + _map;
+                    }
+                    // if (_map.match(/\.\.\/widgets\//)) {
+                    //   _map = _map.replace(/\.\.\/widgets\//, '../../../plugins/widgets/');
+                    // }
+                    // if (_map.match(/\.\.\/plugins\/plugin\./)) {
+                    //   _map = _map.replace(/\.\.\/plugins\/plugin\./, '../../../plugins/plugin./');
+                    // }
+                    // if (_map.match(/\.\.\/bar/)) {
+                    //   _map = _map.replace(/\.\.\/bar/, '../../../plugins/bar');
+                    // }
+                    // if (_map.match(/\.\.\/gallery/)) {
+                    //   _map = _map.replace(/\.\.\/gallery/, '../../../plugins/gallery');
+                    // }
+                    window['console'].warn('Module:', _map);
                   }
-                }
-                if (!_router[route[0]]) {
-                  window['console'].warn('Unable to find module:', module);
+                  modules[i] = _map;
                 } else {
-                  var filter = _router[route[0]].replace(/\.js/, '');
-                  filter = filter.replace(/scripts\/core\//, '');
-                  filter = filter.replace(/scripts\/plugins/, '../..');
-                  filter = filter.replace(/\/bar\//, '/scripts/plugins/bar/');
-                  filter = filter.replace(/\/dashboard\//, '/scripts/plugins/dashboard/');
-                  filter = filter.replace(/\/gallery\//, '/scripts/plugins/gallery/');
-                  filter = filter.replace(/\/maximize\//, '/scripts/plugins/maximize/');
-                  filter = filter.replace(/\/page\.data\//, '/scripts/plugins/page.data/');
-                  filter = filter.replace(/\/panel\//, '/plugins/panel/');
-                  filter = filter.replace(/\/preferences\//, '/scripts/plugins/preferences/');
-                  filter = filter.replace(/\/rules\//, '/scripts/plugins/rules/');
-                  filter = filter.replace(/\/site\.config\//, '/scripts/plugins/site.config/');
-                  filter = filter.replace(/\/widget\.rules\//, '/scripts/plugins/widget.rules/');
-                  filter = filter.replace(/\/widgets\//, '/../plugins/widgets/');
-                  filter = filter.replace(/\/workspace\.data\//, '/scripts/plugins/workspace.data/');
-                  if (module.match(/plugin/)) {
-                    window['console'].warn('plugin', _router[route[0]], filter);
-                  }
-                  modules[i] = filter;
+                  window['console'].error('Unable to find module:', module);
                 }
-              }
+              });
               arguments[0] = modules;
             }
           }
