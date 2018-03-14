@@ -41,7 +41,7 @@ defineP(function defineSourceRenderer() {
         });
 
         this.createLinkCss({
-          href: '../../assets/scripts/core/lib/packages/highlight/styles/agate.css'
+          href: '/assets/scripts/core/lib/packages/highlight/styles/agate.css'
         });
 
         this.initMonitor($source, opts.monitor);

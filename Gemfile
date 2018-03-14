@@ -24,9 +24,9 @@ group :test, :development do
   gem 'brakeman', require: false
   gem 'byebug', require: false
   gem 'capistrano-rails', require: false
-  gem 'debase', '>=0.2.2.beta7', require: false
+  gem 'debase', require: false
   gem 'guard', require: false
-  gem 'guard-livereload', '~> 2.5', require: false
+  gem 'guard-livereload', require: false
   gem 'meta_request', require: false
   gem 'prmd', require: false
   gem 'pry-rails', require: false
@@ -34,7 +34,7 @@ group :test, :development do
   gem 'request-log-analyzer', require: false
   gem 'rubocop', require: false
   gem 'rubocop-github', require: false
-  gem 'ruby-debug-ide', '>=0.6.1.beta2', require: false
+  gem 'ruby-debug-ide', require: false
   gem 'rubycritic', require: false
   gem 'spring', require: false
   gem 'traceroute', require: false
@@ -55,7 +55,7 @@ end
 
 group :doc do
   gem 'jsduck', require: false
-  gem 'sdoc', '>= 0.4.0', require: false
+  gem 'sdoc', require: false
 end
 
 group :production do
@@ -71,12 +71,12 @@ gem 'jquery-ui-rails'
 
 gem 'rmagick'
 
-gem 'bootstrap-sass', '~> 3.3.6'
+gem 'bootstrap-sass'
 gem 'coffee-rails'
 gem 'data_uri'
 gem 'font-awesome-sass'
 gem 'github_api'
-gem 'sass-rails', '>= 3.2'
+gem 'sass-rails'
 
 gem 'i18n'
 gem 'tzinfo'

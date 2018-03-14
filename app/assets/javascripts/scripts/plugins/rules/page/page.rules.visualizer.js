@@ -20,14 +20,14 @@ defineP(function definePageRulesVisualizer() {
       var widgets = page.model.getItems();
       return _.map(widgets, function(widget) {
         var prefs = widget.model.getConfig('preferences'),
-            imgPath = '/assets/scripts/plugins/stylesheets/images/';
+            imgPath = '/assets/scripts/plugins/widgets/{0}/images/{1}';
         return {
           key: widget.model.getUUID(),
           figure: 'RoundedRectangle',
           title: prefs.title,
           description: prefs.description,
           color: '#dedede',
-          path: imgPath + prefs.resource + '.png'
+          path: imgPath.replace(/\{0}/, prefs.resource).replace(/\{1}/, prefs.resource + '.png')
         };
       });
     },

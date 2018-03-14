@@ -25,7 +25,7 @@ defineP([
     });
 
     this.addCSS('widget.rules');
-    this.addCSS('', {url: '../../assets/scripts/plugins/rules/widget/rules.css'});
+    this.addCSS('', {url: '/assets/scripts/plugins/rules/widget/rules.css'});
 
     return this;
   };
