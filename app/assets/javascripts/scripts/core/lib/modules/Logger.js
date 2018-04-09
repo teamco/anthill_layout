@@ -7,18 +7,19 @@
  */
 const caller = require('caller-id');
 
+/**
+ * @constructor
+ * @class Logger
+ */
 module.exports = class Logger {
 
   /**
-   * Define Logger
-   * @class LoggerJs
-   * @extends AntHill
-   * @constructor Logger
+   * @constructor
+   * @param scope
    */
   constructor(scope) {
 
     /**
-     * Define scope
      * @property Logger
      * @type {*}
      */
@@ -35,7 +36,7 @@ module.exports = class Logger {
 
   /**
    * Set config
-   * @memberOf LoggerJs
+   * @property Logger
    * @param config
    */
   setConfig(config) {
@@ -54,7 +55,7 @@ module.exports = class Logger {
 
   /**
    * Show Log
-   * @memberOf LoggerJs
+   * @property Logger.showLog
    * @returns {boolean}
    */
   showLog() {
@@ -63,7 +64,7 @@ module.exports = class Logger {
 
   /**
    * Check if log available
-   * @memberOf LoggerJs
+   * @property Logger.isLoggable
    * @return {Boolean}
    */
   isLoggable() {
@@ -72,7 +73,7 @@ module.exports = class Logger {
 
   /**
    * Puts (internal function)
-   * @memberOf LoggerJs
+   * @property Logger.puts
    * @param {string} type
    * @returns {boolean}
    */
@@ -167,7 +168,7 @@ module.exports = class Logger {
 
   /**
    * Stack trace parser
-   * @memberOf LoggerJs
+   * @property Logger.stackIt
    * @param {Array} stacks
    * @returns {Array}
    */
@@ -184,7 +185,7 @@ module.exports = class Logger {
 
   /**
    * Timer
-   * @memberOf LoggerJs
+   * @property Logger.timer
    * @param {string} name
    * @param {boolean} start
    */
@@ -203,7 +204,7 @@ module.exports = class Logger {
 
   /**
    * Define available logs
-   * @memberOf LoggerJs
+   * @property Logger.defineLogs
    */
   defineLogs() {
 

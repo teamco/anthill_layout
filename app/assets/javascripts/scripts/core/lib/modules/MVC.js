@@ -544,7 +544,7 @@ module.exports = class MVC extends AntHill {
 
         if (scopeListener.hasOwnProperty(index)) {
 
-          /**                                                     ß
+          /**
            * Define local instance of an event
            * @type {*}
            */

@@ -11,12 +11,15 @@
  */
 const AntHill = require('../../config/anthill.js');
 
+/**
+ * Define Base API
+ * @class BaseAPI
+ * @extends AntHill
+ */
 module.exports = class BaseAPI extends AntHill {
 
   /**
-   * Define Base API
    * @constructor
-   * @class BaseAPI
    * @param {string} name
    */
   constructor(name) {

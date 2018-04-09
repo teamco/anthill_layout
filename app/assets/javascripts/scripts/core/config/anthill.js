@@ -4,11 +4,13 @@
  * Date: 3/5/14
  * Time: 2:43 PM
  */
+
+/**
+ * @class AntHill
+ */
 module.exports = class AntHill {
 
   /**
-   * Define AntHill
-   * @class AntHill
    * @param {string} name
    * @param [scope]
    * @constructor
@@ -49,19 +51,18 @@ module.exports = class AntHill {
     }
 
     /**
-     * Init observer
-     * @property AntHill
-     * @type {Observer}
-     */
-    this.observer = new Observer(this.scope || this);
-
-    /**
      * Init config
      * @property AntHill
      * @type {Object}
      */
     this.config = {};
 
+    /**
+     * Init observer
+     * @property AntHill
+     * @type {Observer}
+     */
+    this.observer = new Observer(this.scope || this);
     /**
      * Init logger
      * @property Anthill
