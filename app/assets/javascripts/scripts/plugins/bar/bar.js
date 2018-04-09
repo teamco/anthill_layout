@@ -64,7 +64,7 @@ defineP([
     /**
      * Define MVC
      * @property Bar
-     * @type {MVC}
+     * @type {MVCJs}
      */
     this.mvc = new MVC({
       scope: this,

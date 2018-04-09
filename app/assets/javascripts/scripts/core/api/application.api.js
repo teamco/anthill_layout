@@ -5,33 +5,35 @@
  * Time: 7:22 PM
  */
 
-defineP([
-  'modules/API',
-  'config/workspace'
-], function defineApplicationAPI(BaseAPI, Workspace) {
+/**
+ * @constant BaseAPI
+ * @type {BaseAPI}
+ */
+const BaseAPI = require('../lib/modules/API.js');
+
+//   'config/workspace'
+
+module.exports = class ApplicationAPI extends BaseAPI {
 
   /**
    * Define Application API
-   * @class ApplicationAPI
+   * @class ApplicationApiJs
    * @extends BaseAPI
    * @constructor
    */
-  var ApplicationAPI = function ApplicationAPI() {
-  };
+  constructor() {
+    super('ApplicationAPI');
+  }
 
-  return ApplicationAPI.extend('ApplicationAPI', {
-
-    /**
-     * Create Workspace API
-     * @memberOf ApplicationAPI
-     * @param {*} args
-     * @param {Boolean} [render]
-     * @param {Boolean} [silent]
-     * @returns {*}
-     */
-    createWorkspace: function createWorkspace(args, render, silent) {
-      return this._createItem(Workspace, args, render, silent);
-    }
-
-  }, BaseAPI.prototype);
-});
+  /**
+   * Create Workspace API
+   * @memberOf ApplicationApiJs
+   * @param {*} args
+   * @param {Boolean} [render]
+   * @param {Boolean} [silent]
+   * @returns {*}
+   */
+  createWorkspace(args, render, silent) {
+    return this._createItem(Workspace, args, render, silent);
+  }
+};

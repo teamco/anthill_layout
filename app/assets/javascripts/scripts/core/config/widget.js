@@ -133,7 +133,7 @@ defineP([
     /**
      * Define MVC
      * @property Widget
-     * @type {MVC}
+     * @type {MVCJs}
      */
     this.mvc = new MVC({
       scope: this,

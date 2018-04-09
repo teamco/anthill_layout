@@ -174,7 +174,7 @@ defineP(
         /**
          * Define MVC
          * @property Page
-         * @type {MVC}
+         * @type {MVCJs}
          */
         this.mvc = new MVC({
           scope: this,

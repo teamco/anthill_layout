@@ -6,31 +6,34 @@
  * To change this template use File | Settings | File Templates.
  */
 
-defineP([
-  'config/anthill',
-  'modules/Observer',
-  'modules/Logger'
-], function defineMVC(AntHill, Observer, Logger) {
+/**
+ * @constant AntHill
+ * @type {AntHill}
+ */
+const AntHill = require('../../config/anthill.js');
 
-  /**
-   * Define MVC
-   * @class MVC
-   * @param opts
-   * @constructor
-   * @extends AntHill
-   */
-  var MVC = function MVC(opts) {
+/**
+ * @class MVC
+ * @param opts
+ * @constructor
+ * @extends AntHill
+ */
+module.exports = class MVC extends AntHill {
+
+  constructor(opts) {
+
+    super('MVC', opts.scope);
 
     /**
      * Define scope
-     * @property MVC
-     * @type {{}}
+     * @property MVC.scope
+     * @type {{eventmanager, config}}
      */
-    this.scope = opts.scope;
+    this.scope = opts.scope || {};
 
     /**
      * Define MVC Relationship from -> to
-     * @property MVC
+     * @property MVC.RELATIONS
      * @type {Array}
      */
     this.RELATIONS = [
@@ -42,7 +45,7 @@ defineP([
      * Define local defaults
      * @type {string[]}
      */
-    var singular = [
+    const singular = [
           'Workspace',
           'Page',
           'Widget'
@@ -55,11 +58,11 @@ defineP([
 
     /**
      * Define reserved methods
-     * @property MVC
+     * @property MVC.RESERVED
      * @type {{
-         *      create: {singular: Array},
-         *      destroy: {singular: Array, plural: Array}
-         * }}
+     *      create: {singular: Array},
+     *      destroy: {singular: Array, plural: Array}
+     * }}
      */
     this.RESERVED = {
       resize: {
@@ -77,27 +80,27 @@ defineP([
 
     /**
      * Define default listeners
-     * @property MVC
+     * @property MVC.DEFAULT_LISTENERS
      * @type {{
-         *      beforeInitConfig: string,
-         *      afterInitConfig: string,
-         *      successCreated: string,
-         *      successRendered: string,
-         *      afterCreateItem: string,
-         *      afterDestroyItem: string,
-         *      afterDestroyItems: string,
-         *      afterResizeWindow: string,
-         *      successRenderHeader: string,
-         *      successRenderFooter: string,
-         *      bindModelObserver: string,
-         *      defineGenericGetter: string,
-         *      openUrlOnEvent: string,
-         *      successCreateElement: string,
-         *      successBuildElement: string,
-         *      successDestroyElement: string
-         * }}
+     *      beforeInitConfig: string,
+     *      afterInitConfig: string,
+     *      successCreated: string,
+     *      successRendered: string,
+     *      afterCreateItem: string,
+     *      afterDestroyItem: string,
+     *      afterDestroyItems: string,
+     *      afterResizeWindow: string,
+     *      successRenderHeader: string,
+     *      successRenderFooter: string,
+     *      bindModelObserver: string,
+     *      defineGenericGetter: string,
+     *      openUrlOnEvent: string,
+     *      successCreateElement: string,
+     *      successBuildElement: string,
+     *      successDestroyElement: string
+     * }}
      */
-    this.defaultListeners = {
+    this.DEFAULT_LISTENERS = {
       beforeInitConfig: 'before.init.config',
       afterInitConfig: 'after.init.config',
       successCreated: 'success.created',
@@ -120,74 +123,66 @@ defineP([
      * Reset opts
      * @type {*}
      */
-    opts = this.base.define(opts, {}, true);
+    opts = opts || {};
 
     /**
      * Apply Configure
      * Define selfConfig
      * @type {*}
      */
-    var selfConfig = this.base.define(opts.config[0], {}, true);
+    const selfConfig = opts.config[0] || {};
 
     /**
      * Define selfDefaults
      * @type {*}
      */
-    var selfDefaults = this.base.define(opts.config[1], {}, true);
+    const selfDefaults = opts.config[1] || {};
 
     /**
      * Define scope config
      * @property MVC.scope
-     * @type {mvc.scope.config}
+     * @type {*}
      */
-    this.scope.config = this.base.lib.hash.extendHash(
-        selfConfig,
-        selfDefaults
-    );
+    this.scope.config = Object.assign({}, selfConfig, selfDefaults);
 
     /**
      * Define mvc components
      * @property MVC
      * @type {mvc.components}
      */
-    this.components = this.base.define(
-        opts.components,
-        [opts.components],
-        true
-    );
+    this.components = opts.components || [opts.components];
 
     /**
      * Define mvc config
      * @property MVC
      * @type {mvc.config}
      */
-    this.config = this.base.define(selfConfig, {}, true);
+    this.config = selfConfig || {};
 
     /**
      * Define mvc force creating components
      * @property MVC
      * @type {Boolean}
      */
-    this.force = this.base.defineBoolean(opts.force, false, true);
+    this.force = typeof opts.force === 'undefined' ? false : opts.force;
 
     /**
      * Define mvc render
      * @property MVC
      * @type {Boolean}
      */
-    this.render = this.base.defineBoolean(opts.render, true, true);
+    this.render = typeof opts.render === 'undefined' ? true : opts.render;
 
-    var config = {},
-        scope = this.scope;
+    let config = {};
 
     /**
      * Define event manager
-     * @memberOf BaseEvent
+     * @property BaseEvent
      * @type {Object}
      */
-    scope.eventmanager = {};
+    this.scope.eventmanager = {};
 
-    $.extend(true, config, scope.config);
+    Object.assign(config, this.scope.config);
 
     this.init();
 
@@ -196,603 +191,497 @@ defineP([
      * @property BaseEvent.eventmanager
      * @type {Object}
      */
-    var eventList = scope.eventmanager.eventList;
+    const eventList = this.scope.eventmanager.eventList;
 
     if (eventList) {
 
       // Publish before InitConfig event
-      scope.observer.publish(
-          eventList.beforeInitConfig, [
-            'Config before create',
-            config
-          ]
-      );
+      this.scope.observer.publish(eventList.beforeInitConfig, ['Config before create', config]);
 
       // Publish after InitConfig event
-      scope.observer.publish(
-          eventList.afterInitConfig, [
-            'Config after create',
-            scope.config
-          ]
-      );
+      this.scope.observer.publish(eventList.afterInitConfig, ['Config after create', this.scope.config]);
     }
-  };
+  }
 
-  return MVC.extend('MVC', {
+  /**
+   * Init MVC
+   * @property MVC
+   */
+  init() {
+    this.defineContainment();
+    this.applyLogger();
+    this.applyConfig();
+    this.applyMVC();
+    this.applyEventManager();
+    this.applyPermissions();
+  }
 
-    /**
-     * Init MVC
-     * @memberOf MVC
-     */
-    init: function init() {
+  /**
+   * Define parent node
+   * @property MVC
+   */
+  defineContainment() {
 
-      /**
-       * Define containment
-       * @type {mvc.defineContainment}
-       */
-      this.defineContainment();
+    const scope = this.scope,
+        config = scope.config;
 
-      /**
-       * Define mvc applyLogger
-       * @type {mvc.applyLogger}
-       */
-      this.applyLogger();
-
-      /**
-       * Define mvc applyConfig
-       * @type {mvc.applyConfig}
-       */
-      this.applyConfig();
+    if (config.containment) {
 
       /**
-       * Define mvc applyMVC
-       * @type {mvc.applyMVC}
+       * Define parent node
+       * @property AntHill
+       * @type {*}
        */
-      this.applyMVC();
+      scope.containment = config.containment;
+      delete config.containment;
+    }
+  }
+
+  /**
+   * Define MVC
+   * @property MVC
+   * @param {Function|String} mvcPattern
+   * @param {Boolean} [force]
+   * @returns {*}
+   */
+  defineMVC(mvcPattern, force) {
+
+    const scope = this.scope;
+    let name = mvcPattern;
+
+    if (mvcPattern) {
 
       /**
-       * Define mvc applyObserver
-       * @type {mvc.applyObserver}
+       * Define name space
+       * @type {string}
        */
-      this.applyObserver();
+      name = mvcPattern.name.replace(scope.name, '').toLowerCase();
 
       /**
-       * Define mvc applyEventManager
-       * @type {mvc.applyEventManager}
+       * Define pattern
+       * @type {*}
        */
-      this.applyEventManager();
+      scope[name] = new mvcPattern();
+
+    } else if (force) {
 
       /**
-       * Define mvc applyPermissions
-       * @type {mvc.applyPermissions}
+       * Define scope name
+       * @type {string}
        */
-      this.applyPermissions();
-    },
+      const scopeName = scope.name.toLowerCase();
 
-    /**
-     * Define parent node
-     * @memberOf MVC
-     */
-    defineContainment: function defineContainment() {
+      /**
+       * Define function
+       * @type {Function}
+       */
+      const fn = new Function(scopeName, [
+            'return function ', mvcPattern,
+            '(', scopeName, ') { this.scope = ', scopeName, '; };'
+          ].join('')
+      );
 
-      var scope = this.scope,
-          config = scope.config;
+      scope[name.toLowerCase()] = new (new fn(scope))(scope);
+    }
 
-      if (this.base.isDefined(config.containment)) {
+    return name;
+  }
 
-        /**
-         * Define parent node
-         * @memberOf AntHill
-         * @type {*}
-         */
-        scope.containment = config.containment;
-        delete config.containment;
-      }
-    },
+  /**
+   * Set relation between MVC components
+   * @property MVC
+   */
+  setRelation() {
+    const relations = this.RELATIONS,
+        l = relations.length,
+        scope = this.scope;
+    let from, to;
 
-    /**
-     * Define MVC
-     * @memberOf MVC
-     * @param {Function|String} mvcPattern
-     * @param {Boolean} [force]
-     * @returns {*}
-     */
-    defineMVC: function defineMVC(mvcPattern, force) {
-
-      var base = this.base,
-          scope = this.scope,
-          name = mvcPattern;
-
-      if (base.isFunction(mvcPattern)) {
+    for (let i = 0; i < l; i += 1) {
+      const relation = relations[i];
+      from = relation[0].toLowerCase();
+      to = relation[1].toLowerCase();
+      if (scope[from] && scope[to]) {
 
         /**
-         * Define name space
-         * @type {string}
-         */
-        name = mvcPattern.prototype.name.replace(scope.name, '').toLowerCase();
-
-        /**
-         * Define pattern
-         * @type {*}
-         */
-        scope[name] = new mvcPattern();
-
-      } else if (force) {
-
-        /**
-         * Define scope name
-         * @type {string}
-         */
-        var scopeName = scope.name.toLowerCase();
-
-        /**
-         * Define function
-         * @type {Function}
-         */
-        var fn = new Function(
-            scopeName,
-            [
-              'return function ', mvcPattern,
-              '(', scopeName, ') { this.scope = ', scopeName, '; };'
-            ].join('')
-        );
-
-        scope[name.toLowerCase()] = new (new fn(scope))(scope);
-      }
-
-      return name;
-    },
-
-    /**
-     * Set relation between MVC components
-     * @memberOf MVC
-     */
-    setRelation: function setRelation() {
-      var relations = this.RELATIONS,
-          i = 0, l = relations.length,
-          from, to,
-          scope = this.scope,
-          base = this.base;
-
-      for (i; i < l; i += 1) {
-        var relation = relations[i];
-        from = relation[0].toLowerCase();
-        to = relation[1].toLowerCase();
-        if (base.isDefined(scope[from]) &&
-            base.isDefined(scope[to])) {
-
-          /**
-           * Define relation
-           * @property {BaseController|BaseModel|BaseView}
-           */
-          scope[from][to] = scope[to];
-        }
-      }
-
-    },
-
-    /**
-     * Apply MVC
-     * @memberOf MVC
-     * @returns {boolean}
-     */
-    applyMVC: function applyMVC() {
-      var i = 0,
-          l = this.components.length;
-
-      for (i; i < l; i += 1) {
-
-        /**
-         * Get mvc component
-         * @type {*}
-         */
-        var mvc = this.components[i];
-
-        if (!this.base.isDefined(mvc)) {
-          this.scope.logger.warn('Undefined pattern', i, this.components);
-          return false;
-        }
-
-        var pattern = this.defineMVC(mvc, this.force).toLowerCase(),
-            ref = this.scope[pattern];
-
-        /**
-         * Define scope
-         * @type {mvc.scope}
+         * Define relation
          * @property {BaseController|BaseModel|BaseView}
          */
-        ref.scope = this.scope;
-
-        this.applyMVCShims(pattern);
+        scope[from][to] = scope[to];
       }
+    }
+  }
 
-      this.setRelation();
-    },
+  /**
+   * Apply MVC
+   * @property MVC
+   * @returns {boolean}
+   */
+  applyMVC() {
+    const l = this.components.length;
 
-    /**
-     * Apply MVC shims
-     * @memberOf MVC
-     * @param pattern
-     */
-    applyMVCShims: function applyMVCShims(pattern) {
+    for (let i = 0; i < l; i += 1) {
 
-      // Get scope
-      var scope = this.scope;
+      /**
+       * Get mvc component
+       * @type {*}
+       */
+      const mvc = this.components[i];
 
-      if (pattern === 'view') {
-
-        /**
-         * Define elements
-         * @property BaseView
-         * @type {Object}
-         */
-        scope.view.elements = {};
-      }
-
-      if (pattern === 'model' &&
-          scope.controller.isWidgetContent()) {
-
-        /**
-         * Define preferences
-         * @memberOf BaseModel
-         * @type {Object}
-         */
-        scope.model.preferences = this.base.define(
-            scope.model.preferences,
-            {}, true
-        );
-      }
-    },
-
-    /**
-     * Apply config
-     * @memberOf MVC
-     */
-    applyConfig: function applyConfig() {
-      var base = this.base,
-          scope = this.scope,
-          timestamp = base.lib.datetime.timestamp(
-              this.config.timestamp
-          ),
-          config = scope.config;
-
-      config.uuid = base.lib.generator.UUID(this.config.uuid);
-      config.timestamp = timestamp;
-
-      if (this.render) {
-        config.html = base.define(config.html, {}, true);
-        config.html.selector = scope.name.toDash();
-      }
-    },
-
-    /**
-     * Apply event manager
-     * @memberOf MVC
-     */
-    applyEventManager: function applyEventManager() {
-
-      var scope = this.scope,
-          base = this.base,
-          eventmanager = scope.eventmanager;
-
-      if (!base.isDefined(eventmanager)) {
-
-        scope.logger.warn('Undefined Event manager');
+      if (!mvc) {
+        this.scope.logger.warn('Undefined pattern', i, this.components);
         return false;
       }
 
-      this.applyGlobalEvents();
-
-      eventmanager.scope = scope;
-      eventmanager.abstract = base.define(
-          eventmanager.abstract, {}, true
-      );
-
-      var eventList = eventmanager.eventList,
-          index;
-
-      for (index in eventList) {
-
-        if (eventList.hasOwnProperty(index)) {
-
-          var event = eventList[index],
-              callback = scope.controller[index];
-
-          if (!base.isDefined(callback)) {
-            var method = index.toPoint().split('.'),
-                key = method[0];
-
-            method.shift();
-            method = ('.' + method.join('.')).toCamel();
-
-            if (this.RESERVED.hasOwnProperty(key)) {
-
-              if ($.inArray(method, this.RESERVED[key].singular) > -1) {
-
-                eventmanager.abstract[key + 'Item'] = index;
-                callback = scope.controller[key + 'Item'];
-
-              } else if ($.inArray(method, this.RESERVED[key].plural) > -1) {
-
-                eventmanager.abstract[key + 'Items'] = index;
-                callback = scope.controller[key + 'Items'];
-
-              } else {
-
-                this.scope.logger.warn(
-                    'Undefined Event Callback', [
-                      scope.controller,
-                      key + method
-                    ]
-                );
-              }
-            }
-          }
-
-          eventmanager.subscribe({
-            event: event,
-            callback: callback
-          }, true);
-        }
-      }
-
-      this.applyDefaultListeners();
-
-      scope.logger.debug('Subscribe events', eventmanager);
-
-      this.applyListeners('local');
-      this.applyListeners('global');
-    },
-
-    /**
-     * Apply default listeners
-     * @memberOf MVC
-     */
-    applyDefaultListeners: function applyDefaultListeners() {
+      const pattern = this.defineMVC(mvc, this.force).toLowerCase(),
+          ref = this.scope[pattern];
 
       /**
-       * Local instance of default listeners
+       * Define scope
        * @type {*}
+       * @property {BaseController|BaseModel|BaseView}
        */
-      var listeners = this.defaultListeners;
+      ref.scope = this.scope;
 
-      for (var index in listeners) {
+      this.applyMVCShims(pattern);
+    }
 
-        if (listeners.hasOwnProperty(index)) {
-          this.scope.eventmanager.subscribe({
-            event: listeners[index],
-            callback: this.scope.controller[index]
-          }, true);
-        }
-      }
-    },
+    this.setRelation();
+  }
 
-    /**
-     * Apply global events
-     * @memberOf MVC
-     */
-    applyGlobalEvents: function applyGlobalEvents() {
+  /**
+   * Apply MVC shims
+   * @property MVC
+   * @param pattern
+   */
+  applyMVCShims(pattern) {
 
-      // Get scope
-      var scope = this.scope,
-          index, event,
-          eventManager = scope.eventmanager;
+    // Get scope
+    const scope = this.scope;
 
-      if (scope.globalEvents) {
+    if (pattern === 'view') {
 
-        for (index in scope.globalEvents) {
+      /**
+       * Define elements
+       * @property BaseView
+       * @type {Object}
+       */
+      scope.view.elements = {};
+    }
 
-          if (scope.globalEvents.hasOwnProperty(index)) {
+    if (pattern === 'model' && scope.controller.isWidgetContent()) {
 
-            event = scope.globalEvents[index];
+      /**
+       * Define preferences
+       * @property BaseModel
+       * @type {Object}
+       */
+      scope.model.preferences = scope.model.preferences || {};
+    }
+  }
 
-            if (eventManager.eventList.hasOwnProperty(index)) {
+  /**
+   * Apply config
+   * @property MVC
+   */
+  applyConfig() {
+    const scope = this.scope,
+        timestamp = this.utils.ts.timestamp(this.config.timestamp),
+        config = scope.config;
 
-              scope.logger.warn('Event already defined', index, event);
+    config.uuid = this.utils.gen.UUID(this.config.uuid);
+    config.timestamp = timestamp;
+
+    if (this.render) {
+      config.html = config.html || {};
+      config.html.selector = this.utils.str.toDash(scope.name);
+    }
+  }
+
+  /**
+   * Apply event manager
+   * @property MVC
+   */
+  applyEventManager() {
+
+    const scope = this.scope,
+        eventmanager = scope.eventmanager;
+
+    if (!eventmanager) {
+
+      scope.logger.warn('Undefined Event manager');
+      return false;
+    }
+
+    this.applyGlobalEvents();
+
+    eventmanager.scope = scope;
+    eventmanager.abstract = eventmanager.abstract || {};
+
+    const eventList = eventmanager.eventList;
+
+    for (let index in eventList) {
+
+      if (eventList.hasOwnProperty(index)) {
+
+        const event = eventList[index];
+        let callback = scope.controller[index];
+
+        if (!callback) {
+          let method = index.toPoint().split('.'),
+              key = method[0];
+
+          method.shift();
+          method = ('.' + method.join('.')).toCamel();
+
+          if (this.RESERVED.hasOwnProperty(key)) {
+
+            if (this.RESERVED[key].singular.indexOf(method) > -1) {
+
+              eventmanager.abstract[key + 'Item'] = index;
+              callback = scope.controller[key + 'Item'];
+
+            } else if (this.RESERVED[key].plural.indexOf(method) > -1) {
+
+              eventmanager.abstract[key + 'Items'] = index;
+              callback = scope.controller[key + 'Items'];
 
             } else {
 
-              scope.logger.debug('Add event', index, event);
-              eventManager.eventList[index] = event;
+              this.scope.logger.warn('Undefined Event Callback', [scope.controller, key + method]);
             }
           }
         }
+
+        eventmanager.subscribe({
+          event: event,
+          callback: callback
+        }, true);
       }
-    },
-
-    /**
-     * Apply listeners
-     * @memberOf MVC
-     */
-    applyListeners: function applyListeners(type) {
-
-      var index, event,
-          scope = this.scope,
-          listener = type + 'Listeners';
-
-      /**
-       * Define scope listener
-       * @type {globalListeners|localListeners}
-       */
-      var scopeListener = scope[listener];
-
-      if (typeof scopeListener === 'object') {
-
-        for (index in scopeListener) {
-
-          if (scopeListener.hasOwnProperty(index)) {
-
-            /**                                                     ß
-             * Define local instance of an event
-             * @type {*}
-             */
-            event = scopeListener[index];
-
-            if (!this.base.isArray(event)) {
-              event = [event];
-            }
-
-            for (var i = 0, l = event.length; i < l; i++) {
-
-              scope.eventmanager.subscribe({
-                event: {
-                  eventName: event[i].name,
-                  params: event[i].params,
-                  scope: event[i].scope
-                },
-                callback: event[i].callback
-              }, false);
-            }
-          }
-        }
-      }
-
-      scope.logger.debug('Apply ' + type + ' listeners', scope[listener]);
-    },
-
-    /**
-     * Define permissions
-     * @memberOf MVC
-     * @returns {boolean}
-     */
-    applyPermissions: function applyPermissions() {
-
-      if (!this.scope.config.hasOwnProperty('plugin')) {
-        this._applyPermissions('local');
-        this._applyPermissions('global');
-      }
-
-      /**
-       * Get scope
-       * @type {mvc.scope|{permission, controller, logger}}
-       */
-      var scope = this.scope;
-
-      /**
-       * Get permissions
-       * @type {BasePermission|{capability}}
-       */
-      var permission = scope.permission;
-
-      if (scope.controller.checkCondition({
-            condition: !this.base.isDefined(permission),
-            type: 'warn',
-            msg: 'Undefined permission'
-          })) {
-        return false;
-      }
-
-      /**
-       * Define capability
-       * @property BasePermission
-       * @type {{}}
-       */
-      permission.capability = {};
-
-      _.isFunction(permission.config) ?
-          permission.config() :
-          scope.logger.warn('Force created permissions', permission);
-
-      scope.logger.debug('Local permissions', permission);
-    },
-
-    /**
-     * Apply global permissions
-     * @memberOf MVC
-     * @returns {*|boolean}
-     */
-    _applyPermissions: function _applyPermissions(type) {
-
-      var base = this.base,
-          scope = this.scope,
-          mode = scope.controller.getMode(),
-          permission = type + 'Permissions';
-
-      /**
-       * Define permission params
-       * @type {globalPermissions|localPermissions}
-       */
-      var scopePermission = scope[permission];
-
-      if (scope.controller.checkCondition({
-            condition: !base.isDefined(mode),
-            type: 'warn',
-            msg: 'Undefined ' + type + ' mode'
-          })) {
-        return false;
-      }
-
-      if (scope.controller.checkCondition({
-            condition: !base.isDefined(scopePermission),
-            type: 'warn',
-            msg: 'Undefined ' + type + ' permission'
-          })) {
-
-        scope.constructor.prototype[permission] = {};
-      }
-
-      // Define capability
-      var capabilities = scopePermission[mode];
-
-      if (scope.controller.checkCondition({
-            condition: !base.isDefined(capabilities),
-            type: 'warn',
-            msg: 'Undefined ' + type + ' capabilities',
-            args: mode
-          })) {
-
-        scope.constructor.prototype[permission][mode] = {};
-      }
-
-      scope.logger.debug('Apply ' + type + ' permissions', capabilities);
-
-      if (!base.isDefined(scope.config.permission)) {
-        scope.config.permission = {};
-      }
-
-      $.extend(scope.config.permission, capabilities);
-    },
-
-    /**
-     * Apply Observer
-     * @memberOf MVC
-     */
-    applyObserver: function applyObserver() {
-
-      var scope = this.scope;
-
-      /**
-       * Define observer
-       * @type {Observer}
-       */
-      scope.observer = new Observer();
-
-      // Define observer scope
-      scope.observer.scope = scope;
-    },
-
-    /**
-     * Apply Logger
-     * @memberOf MVC
-     */
-    applyLogger: function applyLogger() {
-
-      var scope = this.scope,
-          base = this.base,
-          config = scope.config.logger;
-
-      /**
-       * Define Logger
-       * @type {Logger}
-       */
-      scope.logger = new Logger(scope);
-
-      if (base.isDefined(config)) {
-        Logger.prototype.config = config || {};
-      }
-
-      scope.logger.defineLogs();
     }
 
-  }, AntHill.prototype);
-});
+    this.applyDefaultListeners();
+
+    scope.logger.debug('Subscribe events', eventmanager);
+
+    this.applyListeners('local');
+    this.applyListeners('global');
+  }
+
+  /**
+   * Apply default listeners
+   * @property MVC
+   */
+  applyDefaultListeners() {
+
+    /**
+     * Local instance of default listeners
+     * @type {*}
+     */
+    const listeners = this.defaultListeners;
+
+    for (let index in listeners) {
+
+      if (listeners.hasOwnProperty(index)) {
+        this.scope.eventmanager.subscribe({
+          event: listeners[index],
+          callback: this.scope.controller[index]
+        }, true);
+      }
+    }
+  }
+
+  /**
+   * Apply global events
+   * @property MVC
+   */
+  applyGlobalEvents() {
+
+    // Get scope
+    const scope = this.scope,
+        eventManager = scope.eventmanager;
+
+    if (scope.globalEvents) {
+
+      for (let index in scope.globalEvents) {
+
+        if (scope.globalEvents.hasOwnProperty(index)) {
+
+          let event = scope.globalEvents[index];
+
+          if (eventManager.eventList.hasOwnProperty(index)) {
+
+            scope.logger.warn('Event already defined', index, event);
+
+          } else {
+
+            scope.logger.debug('Add event', index, event);
+            eventManager.eventList[index] = event;
+          }
+        }
+      }
+    }
+  }
+
+  /**
+   * Apply listeners
+   * @property MVC
+   */
+  applyListeners(type) {
+
+    const scope = this.scope,
+        listener = type + 'Listeners';
+
+    /**
+     * Define scope listener
+     * @type {globalListeners|localListeners}
+     */
+    const scopeListener = scope[listener];
+
+    if (typeof scopeListener === 'object') {
+
+      for (let index in scopeListener) {
+
+        if (scopeListener.hasOwnProperty(index)) {
+
+          /**                                                     ß
+           * Define local instance of an event
+           * @type {*}
+           */
+          let event = scopeListener[index];
+
+          if (typeof event === 'string') {
+            event = [event];
+          }
+
+          for (let i = 0, l = event.length; i < l; i++) {
+
+            scope.eventmanager.subscribe({
+              event: {
+                eventName: event[i].name,
+                params: event[i].params,
+                scope: event[i].scope
+              },
+              callback: event[i].callback
+            }, false);
+          }
+        }
+      }
+    }
+
+    scope.logger.debug('Apply ' + type + ' listeners', scope[listener]);
+  }
+
+  /**
+   * Define permissions
+   * @property MVC
+   * @returns {boolean}
+   */
+  applyPermissions() {
+
+    if (!this.scope.config.hasOwnProperty('plugin')) {
+      this._applyPermissions('local');
+      this._applyPermissions('global');
+    }
+
+    /**
+     * Get scope
+     * @type {mvc.scope|{permission, controller, logger}}
+     */
+    const scope = this.scope;
+
+    /**
+     * Get permissions
+     * @type {BasePermission|{capability}}
+     */
+    const permission = scope.permission;
+
+    if (!permission) {
+      scope.logger.warn('Undefined permissions', permission);
+      return false;
+    }
+
+    /**
+     * Define capability
+     * @property BasePermission
+     * @type {{}}
+     */
+    permission.capability = {};
+
+    permission.config ?
+        permission.config() :
+        scope.logger.warn('Force created permissions', permission);
+
+    scope.logger.debug('Local permissions', permission);
+  }
+
+  /**
+   * Apply global permissions
+   * @property MVC
+   * @returns {*|boolean}
+   */
+  _applyPermissions(type) {
+
+    const scope = this.scope;
+
+    if (!scope.controller) {
+      scope.logger.warn('Controller must be defined for using permissions', type);
+      return false;
+    }
+
+    const mode = scope.controller.getMode(),
+        permission = type + 'Permissions';
+
+    /**
+     * Define permission params
+     * @type {globalPermissions|localPermissions}
+     */
+    const scopePermission = scope[permission];
+
+    if (scope.controller.checkCondition({
+      condition: typeof mode !== 'undefined',
+      type: 'warn',
+      msg: 'Undefined ' + type + ' mode'
+    })) {
+      return false;
+    }
+
+    if (scope.controller.checkCondition({
+      condition: typeof scopePermission !== 'undefined',
+      type: 'warn',
+      msg: 'Undefined ' + type + ' permission'
+    })) {
+
+      scope.constructor.prototype[permission] = {};
+    }
+
+    // Define capability
+    const capabilities = scopePermission[mode];
+
+    if (scope.controller.checkCondition({
+      condition: typeof capabilities !== 'undefined',
+      type: 'warn',
+      msg: 'Undefined ' + type + ' capabilities',
+      args: mode
+    })) {
+
+      scope.constructor.prototype[permission][mode] = {};
+    }
+
+    scope.logger.debug('Apply ' + type + ' permissions', capabilities);
+
+    if (!scope.config.permission) {
+      scope.config.permission = {};
+    }
+
+    Object.assign(scope.config.permission, capabilities);
+  }
+
+  /**
+   * Apply Logger
+   * @property MVC.applyLogger
+   */
+  applyLogger() {
+    this.scope.logger.setConfig(this.scope.config.logger || {});
+  }
+};

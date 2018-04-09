@@ -143,7 +143,7 @@ defineP(function defineFilterRenderer() {
 
       /**
        * Get logger
-       * @type {Logger}
+       * @type {LoggerJs}
        */
       var logger = $filter.view.scope.logger;
 

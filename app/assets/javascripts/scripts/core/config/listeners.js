@@ -18,7 +18,7 @@ defineP([
 
   /**
    * Define logger instance
-   * @type {Logger}
+   * @type {LoggerJs}
    */
   var logger = new Logger({
     config: {

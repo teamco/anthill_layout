@@ -1,22 +1,38 @@
-defineP([
-  'config/anthill',
-  'api/application.api',
-  'modules/MVC',
-  'controller/application.controller',
-  'model/application.model',
-  'view/application.view',
-  'event/application.event.manager',
-  'permission/application.permission'
-], function defineApp(AntHill, API, MVC, Controller, Model, View, EventManager, Permission) {
+/**
+ * @constant AntHill
+ * @type {AntHill}
+ */
+const AntHill = require('./anthill.js');
+
+// 'controller/application.controller',
+  // 'model/application.model',
+  // 'view/application.view',
+  // 'event/application.event.manager',
+  // 'permission/application.permission'
+
+module.exports = class Application extends AntHill {
 
   /**
    * Define Application
    * @class Application
-   * @extends AntHill
    * @param {{config}} opts
    * @constructor
    */
-  var Application = function Application(opts) {
+  constructor(opts) {
+
+    super('Application');
+
+    /**
+     * @constant ApplicationAPI
+     * @type {ApplicationAPI}
+     */
+    const ApplicationAPI = require('../api/application.api.js');
+
+    /**
+     * @constant MVC
+     * @type {MVC}
+     */
+    const MVC = require('../lib/modules/MVC.js');
 
     /**
      * Default config
@@ -27,7 +43,7 @@ defineP([
      *          limit: number,
      *          counter: number
      *      },
-     *      sendLog: true,
+     *      sendLog: boolean,
      *      appName: string,
      *      version: number,
      *      mode: string,
@@ -61,7 +77,7 @@ defineP([
      *      }
      * }}
      */
-    var DEFAULTS = {
+    const DEFAULTS = {
       workspace: {
         plural: false,
         limit: 1,
@@ -147,12 +163,12 @@ defineP([
       scope: this,
       config: [opts.config, DEFAULTS],
       components: [
-        API,
-        Controller,
-        Model,
-        View,
-        EventManager,
-        Permission
+        ApplicationAPI,
+        // Controller,
+        // Model,
+        // View,
+        // EventManager,
+        // Permission
       ],
       render: true
     });
@@ -162,21 +178,19 @@ defineP([
      * @property Application.config
      * @type {{updateSiteContent: string[]}}
      */
-    this.config.routes = {
-      updateSiteContent: ['/sites/', 'put'],
-      handleVulnerabilities: ['/vulnerability_storages', 'post']
-    };
+    // this.config.routes = {
+    //   updateSiteContent: ['/sites/', 'put'],
+    //   handleVulnerabilities: ['/vulnerability_storages', 'post']
+    // };
 
-    this.observer.batchPublish(
-        this.eventmanager.eventList.defineSetting,
-        this.eventmanager.eventList.setRoutes,
-        this.eventmanager.eventList.initResizeWindow,
-        this.eventmanager.eventList.successCreated,
-        this.eventmanager.eventList.loadApplication,
-        this.eventmanager.eventList.defineGlobalInstance,
-        this.eventmanager.eventList.initScrollBehavior
-    );
-  };
-
-  return Application.extend('Application', {}, AntHill.prototype);
-});
+    // this.observer.batchPublish(
+    //     this.eventmanager.eventList.defineSetting,
+    //     this.eventmanager.eventList.setRoutes,
+    //     this.eventmanager.eventList.initResizeWindow,
+    //     this.eventmanager.eventList.successCreated,
+    //     this.eventmanager.eventList.loadApplication,
+    //     this.eventmanager.eventList.defineGlobalInstance,
+    //     this.eventmanager.eventList.initScrollBehavior
+    // );
+  }
+}

@@ -111,3 +111,8 @@ gem 'sprockets'
 # gem 'cancan'
 
 gem 'puma_worker_killer'
+
+gem 'sprockets-es6'
+gem 'babel-source'
+gem 'babel-transpiler'
+gem 'browserify-rails', '>=4.2.0'

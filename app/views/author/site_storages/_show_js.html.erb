@@ -1,16 +1,4 @@
-<% prod = 'production' %>
-<% cons = 'consumption' %>
-<%= javascript_include_tag "app.#{storage[:mode] == cons ? 'published' : 'draft'}" %>
-<%= javascript_include_tag('general.config') %>
-<%= javascript_tag id: 'preload' do %>
-    <% if Rails.env == prod %>
-        window._router = JSON.parse('<%= storage[:router] %>'.replace(/&quot;/g, '"'));
-    <% end %>
-    (function(){
-    config().localStorage('<%= storage[:key] %>', '<%= storage[:content] %>');
-    })();
-<% end -%>
-<%= javascript_include_tag('scripts/core/lib/require',
+<%= javascript_include_tag('scripts/general',
         'defer': 'defer',
         'data-resource': storage[:key],
         'data-user': current_user.nil? ? 'guest' : current_user.email,
@@ -22,7 +10,6 @@
         'data-environment': Rails.env,
         'data-deployed': storage[:deployed],
         'data-uuid': storage[:uuid],
-        'data-config': javascript_path('scripts/core/config/main'),
         'data-main': javascript_path('scripts/general'),
         'id': 'require-init'
     ) %>

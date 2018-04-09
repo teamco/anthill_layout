@@ -91,7 +91,7 @@ defineP([
     /**
      * Define MVC
      * @property Layout
-     * @type {MVC}
+     * @type {MVCJs}
      */
     this.mvc = new MVC({
       scope: this,

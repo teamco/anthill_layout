@@ -4,53 +4,56 @@
  * Date: 3/5/14
  * Time: 2:43 PM
  */
-
-defineP([
-  'modules/Base',
-  'modules/i18n'
-], function defineAntHill(Base, i18n) {
+module.exports = class AntHill {
 
   /**
    * Define AntHill
    * @class AntHill
+   * @param {string} name
+   * @param [scope]
    * @constructor
    */
-  var AntHill = function AntHill() {
+  constructor(name, scope) {
 
     /**
-     * Init a new deferred object
-     * @property AntHill
-     * @type {object}
+     * @constant Base
+     * @type {Base}
      */
-    this.deferred = $.Deferred();
+    const Base = require('../lib/modules/Base.js');
 
     /**
-     * Init API
-     * @property AntHill
-     * @type {BaseAPI}
+     * @constant Observer
+     * @type {Observer}
      */
-    this.api = undefined;
+    const Observer = require('../lib/modules/Observer.js');
+
+    /**
+     * @constant Logger
+     * @type {Logger}
+     */
+    const Logger = require('../lib/modules/Logger.js');
+
+    /**
+     * Init scope name.
+     * @property AntHill
+     * @type {string}
+     */
+    this.name = name;
+
+    if (scope) {
+
+      /**
+       * Init scope.
+       */
+      this.scope = scope;
+    }
 
     /**
      * Init observer
      * @property AntHill
      * @type {Observer}
      */
-    this.observer = undefined;
-
-    /**
-     * Init event manager
-     * @property AntHill
-     * @type {BaseEvent}
-     */
-    this.eventmanager = undefined;
-
-    /**
-     * Define permissions
-     * @property AntHill
-     * @type {BasePermission}
-     */
-    this.permission = undefined;
+    this.observer = new Observer(this.scope || this);
 
     /**
      * Init config
@@ -60,48 +63,17 @@ defineP([
     this.config = {};
 
     /**
-     * Init model
-     * @property AntHill
-     * @type {BaseModel}
-     */
-    this.model = undefined;
-
-    /**
-     * Init view
-     * @property AntHill
-     * @type {BaseView}
-     */
-    this.view = undefined;
-
-    /**
-     * Init controller
-     * @property AntHill
-     * @type {BaseController}
-     */
-    this.controller = undefined;
-
-    /**
      * Init logger
      * @property Anthill
      * @type {Logger}
      */
-    this.logger = undefined;
-  };
-
-  return AntHill.extend('AntHill', {
+    this.logger = new Logger(this.scope || this);
 
     /**
-     * Define base
+     * Init underscore.
      * @property AntHill
      * @type {Base}
      */
-    base: new Base(),
-
-    /**
-     * Define translations
-     * @property AntHill
-     * @type {i18n}
-     */
-    i18n: new i18n('en-us')
-  });
-});
+    this.utils = new Base();
+  }
+};

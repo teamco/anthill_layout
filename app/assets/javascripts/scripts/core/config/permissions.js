@@ -18,7 +18,7 @@ defineP(
 
     /**
      * Define permissions
-     * @param {Logger} Logger
+     * @param {LoggerJs} Logger
      * @param {Application} Application
      * @param {Workspace} Workspace
      * @param {Page} Page
@@ -30,7 +30,7 @@ defineP(
 
       /**
        * Define logger instance
-       * @type {Logger}
+       * @type {LoggerJs}
        */
       var logger = new Logger({
         config: {

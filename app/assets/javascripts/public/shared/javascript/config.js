@@ -1,8 +1,6 @@
-defineP(function defineConfig() {
-  return {
-    html: {
-      container: 'body',
-      header: true
-    }
+module.exports = {
+  html: {
+    container: 'body',
+    header: true
   }
-});
+};

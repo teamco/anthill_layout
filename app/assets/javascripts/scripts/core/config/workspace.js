@@ -13,7 +13,7 @@ defineP(
     /**
      * Define Workspace
      * @param {AntHill} AntHill
-     * @param {MVC} MVC
+     * @param {MVCJs} MVC
      * @param {WorkspaceAPI} API
      * @param {WorkspaceController} Controller
      * @param {WorkspaceModel} Model
@@ -96,7 +96,7 @@ defineP(
         /**
          * Define MVC
          * @property Workspace
-         * @type {MVC}
+         * @type {MVCJs}
          */
         this.mvc = new MVC({
           scope: this,

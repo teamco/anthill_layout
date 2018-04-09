@@ -5,27 +5,33 @@
  * Time: 10:26 PM
  */
 
-defineP(['config/application'],
-    function defineApplicationListeners(Application) {
+/**
+ * @constant Application
+ * @type {Application}
+ */
+const Application = require('../../../../scripts/core/config/application.js');
 
-      /**
-       * Define Application Global listeners
-       * @memberOf Application
-       * @type {{
-       *      defineGlobalInstance: {name: string, callback: function}
-       * }}
-       */
-      Application.prototype.globalListeners = {
+/**
+ * @method applicationGlobalListeners
+ */
+module.exports = () => {
 
-        defineGlobalInstance: {
-          name: 'define.global.instance',
-          callback: function defineGlobalInstanceCallback() {
-            if (this.controller.isDevelopmentMode()) {
-              window[this.controller.getAppName()] = this;
-            }
-          }
+  /**
+   * Define Application Global listeners
+   * @memberOf Application
+   * @type {{
+   *    defineGlobalInstance: {name: string, callback}
+   * }}
+   */
+  Application.prototype.globalListeners = {
+
+    defineGlobalInstance: {
+      name: 'define.global.instance',
+      callback: function defineGlobalInstanceCallback() {
+        if (this.controller.isDevelopmentMode()) {
+          window[this.controller.getAppName()] = this;
         }
-      };
-
-      return Application;
-    });
+      }
+    }
+  };
+};
