@@ -84,7 +84,7 @@ defineP([
               });
 
               this.scope.observer.publish(
-                  this.scope.eventmanager.eventList.storeItem,
+                  this.scope.eventManager.eventList.storeItem,
                   data[index]
               );
 
@@ -170,7 +170,7 @@ defineP([
         render: function render() {
 
           this.scope.observer.publish(
-              this.scope.eventmanager.eventList.successRendered,
+              this.scope.eventManager.eventList.successRendered,
               this.renderWidgetRules.bind(this)
           );
         }

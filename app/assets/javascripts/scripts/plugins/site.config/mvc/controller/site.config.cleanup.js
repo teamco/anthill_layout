@@ -29,7 +29,7 @@ defineP(function defineSiteConfigCleanup() {
 
       scope.view.cleanUpConfirmation();
 
-      scope.eventmanager.subscribePublishOn(
+      scope.eventManager.subscribePublishOn(
           scope.controller.root(),
           function _afterUpdateStorageCallback() {
 

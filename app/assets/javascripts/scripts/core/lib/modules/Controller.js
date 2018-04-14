@@ -192,7 +192,7 @@ defineP([
           if (this.scope === root) {
 
             root.observer.publish(
-                root.eventmanager.eventList.setAsLoaded
+                root.eventManager.eventList.setAsLoaded
             );
           }
         },
@@ -372,7 +372,7 @@ defineP([
           this.logger.debug('Successfully created');
 
           this.observer.publish(
-              this.eventmanager.eventList.defineGenericGetter
+              this.eventManager.eventList.defineGenericGetter
           );
         },
 
@@ -545,7 +545,7 @@ defineP([
 
           // Get event
           var eventName = 'load' + name.capitalize(),
-              event = this.scope.eventmanager.eventList[eventName];
+              event = this.scope.eventManager.eventList[eventName];
 
           if (!event) {
             this.scope.logger.debug('Undefined custom event', name, eventName);

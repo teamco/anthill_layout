@@ -31,7 +31,7 @@ defineP(['modules/Element'], function definePluginElement(BaseElement) {
             event.preventDefault();
 
             scope.observer.publish(
-                scope.eventmanager.eventList.prepareActiveComponent,
+                scope.eventManager.eventList.prepareActiveComponent,
                 [config, true, event, callback]
             );
           }

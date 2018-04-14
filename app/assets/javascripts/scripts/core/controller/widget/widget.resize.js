@@ -140,7 +140,7 @@ defineP([
       var scope = this.scope;
 
       scope.observer.publish(
-          scope.eventmanager.eventList.createResizable,
+          scope.eventManager.eventList.createResizable,
           [event.type, arguments]
       );
     },
@@ -164,7 +164,7 @@ defineP([
       scope.wireframe.resizeSticker();
 
       scope.observer.publish(
-          scope.eventmanager.eventList.startResizable,
+          scope.eventManager.eventList.startResizable,
           [event.type, arguments]
       );
     },
@@ -185,7 +185,7 @@ defineP([
       this.debugUI(event, ui);
 
       scope.observer.publish(
-          scope.eventmanager.eventList.stopResizable,
+          scope.eventManager.eventList.stopResizable,
           [event.type, arguments]
       );
       scope.wireframe.hide();
@@ -207,7 +207,7 @@ defineP([
       this.debugUI(event, ui);
 
       scope.observer.publish(
-          scope.eventmanager.eventList.resizeResizable,
+          scope.eventManager.eventList.resizeResizable,
           [event.type, arguments]
       );
     }

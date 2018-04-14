@@ -37,7 +37,7 @@ module.exports = class Observer {
    * @returns {*}
    */
   getEventListgetEventList() {
-    return this.scope.eventmanager.events;
+    return this.scope.eventManager.events;
   }
 
   /**
@@ -208,7 +208,7 @@ module.exports = class Observer {
   unEvent(eventName, eventUUID) {
     eventUUID = this.unRegister(eventName, eventUUID);
     if (eventUUID) {
-      delete this.scope.eventmanager.events[eventUUID];
+      delete this.scope.eventManager.events[eventUUID];
       return true;
     }
     return false;

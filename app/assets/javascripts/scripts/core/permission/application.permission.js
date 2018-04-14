@@ -6,20 +6,24 @@
  * To change this template use File | Settings | File Templates.
  */
 
-defineP([
-  'modules/Permission'
-], function defineApplicationPermission(BasePermission) {
+/**
+ * @constant BasePermission
+ * @type {BasePermission}
+ */
+const BasePermission = require('../lib/modules/Permission.js');
+
+/**
+ * Define Permissions
+ * @extends BasePermission
+ * @class ApplicationPermission
+ */
+module.exports = class ApplicationPermission extends BasePermission {
 
   /**
-   * Define Permissions
-   * @extends BasePermission
-   * @class ApplicationPermission
    * @constructor
+   * @param scope
    */
-  var ApplicationPermission = function ApplicationPermission() {
-
-  };
-
-  return ApplicationPermission.extend('ApplicationPermission', {},
-      BasePermission.prototype);
-});
+  constructor(scope) {
+    super('ApplicationPermission', scope);
+  }
+};

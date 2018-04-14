@@ -6,348 +6,320 @@
  * To change this template use File | Settings | File Templates.
  */
 
-defineP([
-  'config/anthill'
-], function defineBaseEvent(AntHill) {
+/**
+ * @constant AntHill
+ * @type {AntHill}
+ */
+const AntHill = require('../../config/anthill.js');
+
+/**
+ * @class BaseEvent
+ * @extends AntHill
+ */
+module.exports = class BaseEvent extends AntHill {
 
   /**
    * BaseEvent constructor
-   * @class BaseEvent
-   * @extends AntHill
    * @constructor
+   * @param [scope]
    */
-  var BaseEvent = function BaseEvent() {
+  constructor(scope) {
 
-    /**
-     * Define event list
-     * @property BaseEvent
-     * @type {undefined}
-     */
-    this.eventList = undefined;
-
-    /**
-     * Define events
-     * @property BaseEvent
-     * @type {undefined}
-     */
-    this.events = undefined;
-
-    /**
-     * Define scope
-     * @property BaseEvent
-     * @type {undefined}
-     */
-    this.scope = undefined;
+    super(scope || 'BaseEvent');
 
     /**
      * Define event to unsubscribe
      * @property BaseEvent
      * @type {{}}
      */
-    this.unSubscribe = {}
+    this.unSubscribe = {};
+  }
 
-  };
+  /**
+   * Define event as unSubscribe ready
+   * @property BaseEvent
+   * @param {string} eventName
+   * @param {string} eventUUID
+   */
+  defineEventUnSubscribe(eventName, eventUUID) {
 
-  return BaseEvent.extend('BaseEvent', {
+    // Init unSubscribe
+    this.unSubscribe = this.unSubscribe || {};
+    this.unSubscribe[eventName] = eventUUID;
+  }
 
-    /**
-     * Define event as unSubscribe ready
-     * @memberOf BaseEvent
-     * @param {string} eventName
-     * @param {string} eventUUID
-     */
-    defineEventUnSubscribe: function defineEventUnSubscribe(eventName,
-        eventUUID) {
+  /**
+   * Detach event as unsubscribe ready
+   * @property BaseEvent
+   * @param scope
+   * @param {string} eventName
+   */
+  detachEventUnSubscribe(scope, eventName) {
 
-      // Init unSubscribe
-      this.unSubscribe = this.unSubscribe || {};
-      this.unSubscribe[eventName] = eventUUID;
-    },
+    if (!this.unSubscribe) {
+      return false;
+    }
 
-    /**
-     * Detach event as unsubscribe ready
-     * @memberOf BaseEvent
-     * @param scope
-     * @param {string} eventName
-     */
-    detachEventUnSubscribe: function detachEventUnSubscribe(scope, eventName) {
+    // Remove before subscribe
+    this.removeListener({
+      scope: scope,
+      eventName: eventName,
+      eventUUID: this.unSubscribe[eventName]
+    });
+  }
 
-      if (!this.unSubscribe) {
-        return false;
-      }
+  /**
+   * Check if event was available in event list
+   * @property BaseEvent
+   * @param {string} event
+   * @returns {boolean}
+   */
+  isEvent(event) {
+    return this.eventList.hasOwnProperty(event);
+  }
 
-      // Remove before subscribe
-      this.removeListener({
-        scope: scope,
-        eventName: eventName,
-        eventUUID: this.unSubscribe[eventName]
-      });
-    },
+  /**
+   * Find event in a whole project
+   * @property BaseEvent
+   * @param {*} root
+   * @param {string} uuid
+   * @return {*}
+   */
+  findItemByEventUUID(root, uuid) {
 
-    /**
-     * Check if event was available in event list
-     * @memberOf BaseEvent
-     * @param {string} event
-     * @returns {boolean}
-     */
-    isEvent: function isEvent(event) {
-      return this.eventList.hasOwnProperty(event);
-    },
+    if (!root) {
+      this.scope.logger.error('Undefined root', root);
+    }
 
-    /**
-     * Find event in a whole project
-     * @memberOf BaseEvent
-     * @param {*} root
-     * @param {string} uuid
-     * @return {*}
-     */
-    findItemByEventUUID: function findItemByEventUUID(root, uuid) {
+    if (!root.observer) {
+      this.scope.logger.error('Undefined observer', root);
+      return false;
+    }
 
-      if (!root) {
-        this.scope.logger.error('Undefined root', root);
-      }
+    // Get child node
+    let child = root.observer.getEventName(uuid);
 
-      if (!root.observer) {
-        this.scope.logger.error('Undefined observer', root);
-        return false;
-      }
+    if (child) {
+      return root;
+    }
 
-      // Get child node
-      var child = root.observer.getEventName(uuid);
+    if (typeof(root.controller.getContent) === 'function') {
+
+      child = root.controller.getContent().observer.getEventName(uuid);
 
       if (child) {
         return root;
       }
-
-      if (typeof(root.controller.getContent) === 'function') {
-
-        child = root.controller.getContent().observer.getEventName(uuid);
-
-        if (child) {
-          return root;
-        }
-      }
-
-      // Get all items
-      var items = root.model.getItems();
-
-      for (var index in items) {
-
-        if (items.hasOwnProperty(index)) {
-
-          var item = items[index];
-
-          // Recursive search
-          var search = item.eventmanager.findItemByEventUUID(
-              item, uuid
-          );
-
-          if (search) {
-            return item;
-          }
-        }
-      }
-    },
-
-    /**
-     * Get event list
-     * @memberOf BaseEvent
-     * @returns {{}}
-     */
-    getEvents: function getEvents() {
-      return this.eventList;
-    },
-
-    /**
-     * Add event listener
-     * @memberOf BaseEvent
-     * @param {{eventName, eventUUID}} opts
-     * @returns {*}
-     */
-    addListener: function addListener(opts) {
-      var scope = this.scope,
-          observer = scope.observer,
-          events = this.events,
-          base = this.base;
-
-      opts = base.define(opts, {}, true);
-
-      if (base.lib.hash.isHashEmpty(opts)) return false;
-
-      observer.addEvent(opts.eventName);
-      events[observer.onEvent(opts)] = opts.eventName;
-
-      return opts.eventUUID;
-    },
-
-    /**
-     * Remove event listener
-     * @memberOf BaseEvent
-     * @param {{eventName, eventUUID, scope}} opts
-     * @returns {*}
-     */
-    removeListener: function removeListener(opts) {
-
-      var scope = this.scope,
-          observer = opts.scope.observer,
-          events = opts.scope.eventmanager.events;
-
-      if (!opts.eventUUID) {
-        scope.logger.debug('Event not subscribed', opts);
-        return false;
-      }
-
-      observer.unRegister(opts.eventName, opts.eventUUID);
-      delete events[opts.eventUUID];
-      delete scope.eventmanager.unSubscribe[opts.eventName];
-    },
-
-    isSubscribed: function isSubscribed() {
-      // TODO
-    },
-
-    /**
-     * Subscribe event
-     * @memberOf BaseEvent
-     * @param {{event, callback, [params], [eventName], [scope]}} opts
-     * @param {boolean} internal
-     * @returns {boolean|string}
-     */
-    subscribe: function subscribe(opts, internal) {
-
-      var base = this.base, event;
-      opts = base.define(opts, {}, true);
-      internal = base.defineBoolean(internal, false, true);
-
-      if (base.isString(opts.event)) {
-        opts.eventName = opts.event;
-      } else {
-        opts.eventName = opts.event.eventName;
-        opts.params = opts.event.params;
-        opts.callback = base.define(opts.event.callback, opts.callback);
-        opts.scope = opts.event.scope;
-      }
-
-      var eventKey = (opts.eventName + '').toCamel();
-
-      if (!base.isDefined(opts.eventName)) {
-        this.scope.logger.warn('Undefined event', opts);
-        return false;
-      }
-
-      if (!internal && !this.eventList.hasOwnProperty(eventKey)) {
-        this.scope.logger.warn('Untrusted external event', opts);
-        return false;
-      }
-
-      if (!internal && base.isObject(opts.event) &&
-          !base.isDefined(opts.params)) {
-        opts.params = this.scope.observer.listeners[
-            this.eventList[eventKey]
-            ][0].params;
-      }
-
-      this.eventList[eventKey] = opts.eventName;
-
-      return this.addListener({
-        eventName: opts.eventName,
-        callback: opts.callback,
-        scope: opts.scope,
-        params: opts.params
-      });
-    },
-
-    /**
-     * Bind element events
-     * @memberOf BaseEvent
-     * @param {string|Array} events
-     * @param {string} on
-     * @returns {boolean}
-     */
-    onEvent: function onEvent(events, on) {
-      var scope = this.scope,
-          controller = scope.controller;
-
-      if (typeof(events) === 'string') {
-        events = [events];
-      }
-
-      for (var i = 0, l = events.length; i < l; i++) {
-
-        var event = events[i],
-            method = controller[events[i]];
-
-        if (scope.controller.checkCondition({
-              condition: !scope.base.isFunction(method),
-              msg: 'Undefined method',
-              type: 'warn',
-              args: [controller, event, on]
-            })) {
-          continue;
-        }
-
-        this.$.on(
-            [on, event].join('.'),
-            method.bind(controller)
-        );
-      }
-    },
-
-    /**
-     * Subscribe to external published events
-     * @memberOf BaseEvent
-     * @param data
-     * @return {Array}
-     */
-    publishOn: function publishOn(data) {
-
-      var eventUUIDs = [];
-
-      for (var i = 0, l = data.events.length; i < l; i++) {
-
-        /**
-         * Define event opts
-         * @memberOf publishOn
-         */
-        var event = data.events[i];
-
-        eventUUIDs.push(
-            data.scope.eventmanager.subscribe({
-              event: {
-                eventName: event.eventName,
-                params: event.params,
-                scope: event.scope
-              },
-              callback: data.callback
-            }, false)
-        );
-      }
-
-      return eventUUIDs;
-    },
-
-    /**
-     * Re-Emmit event
-     * @memberOf BaseEvent
-     * @param {string} name
-     */
-    reEmmit: function reEmmit(name) {
-      var evt = document.createEvent('Event');
-      evt.initEvent(name, false, false);
-      window.dispatchEvent(evt);
-    },
-
-    /**
-     * Find events bound on an element
-     * @memberOf BaseEvent
-     * @param {BaseElement} $element
-     * @returns {*}
-     */
-    eventsBound: function eventsBound($element) {
-
-      // Lookup events for this particular Element
-      return $._data($element.$[0], 'events');
     }
 
-  }, AntHill.prototype);
-});
+    // Get all items
+    const items = root.model.getItems();
+
+    for (let index in items) {
+
+      if (items.hasOwnProperty(index)) {
+
+        const item = items[index];
+
+        // Recursive search
+        const search = item.eventManager.findItemByEventUUID(item, uuid);
+
+        if (search) {
+          return item;
+        }
+      }
+    }
+  }
+
+  /**
+   * Get event list
+   * @property BaseEvent
+   * @returns {{}}
+   */
+  getEvents() {
+    return this.eventList;
+  }
+
+  /**
+   * Add event listener
+   * @property BaseEvent
+   * @param {{eventName, eventUUID}} opts
+   * @returns {*}
+   */
+  addListener(opts) {
+    const scope = this.scope,
+        observer = scope.observer,
+        events = this.events,
+        base = this.base;
+
+    opts = base.define(opts, {}, true);
+
+    if (base._.isEmpty(opts)) {
+      this.logger.warn('Empty opts', opts);
+      return false;
+    }
+
+    observer.addEvent(opts.eventName);
+    events[observer.onEvent(opts)] = opts.eventName;
+
+    return opts.eventUUID;
+  }
+
+  /**
+   * Remove event listener
+   * @property BaseEvent
+   * @param {{eventName, eventUUID, scope}} opts
+   * @returns {*}
+   */
+  removeListener(opts) {
+    const scope = this.scope,
+        observer = opts.scope.observer,
+        events = opts.scope.eventManager.events;
+
+    if (!opts.eventUUID) {
+      scope.logger.debug('Event not subscribed', opts);
+      return false;
+    }
+
+    observer.unRegister(opts.eventName, opts.eventUUID);
+    delete events[opts.eventUUID];
+    delete scope.eventManager.unSubscribe[opts.eventName];
+  }
+
+  /**
+   * isSubscribed event
+   * @property BaseEvent
+   */
+  isSubscribed() {
+    // TODO
+  }
+
+  /**
+   * Subscribe event
+   * @property BaseEvent
+   * @param {{event, callback, [params], [eventName], [scope]}} opts
+   * @param {boolean} internal
+   * @returns {boolean|string}
+   */
+  subscribe(opts, internal) {
+    const base = this.base;
+    opts = base.define(opts, {}, true);
+    internal = base.defineBoolean(internal, false, true);
+
+    if (base.isString(opts.event)) {
+      opts.eventName = opts.event;
+    } else {
+      opts.eventName = opts.event.eventName;
+      opts.params = opts.event.params;
+      opts.callback = base.define(opts.event.callback, opts.callback);
+      opts.scope = opts.event.scope;
+    }
+
+    const eventKey = (opts.eventName + '').toCamel();
+
+    if (!opts.eventName) {
+      this.scope.logger.warn('Undefined event', opts);
+      return false;
+    }
+
+    if (!internal && !this.eventList.hasOwnProperty(eventKey)) {
+      this.scope.logger.warn('Untrusted external event', opts);
+      return false;
+    }
+
+    if (!internal && base.isObject(opts.event) && !base.isDefined(opts.params)) {
+      opts.params = this.scope.observer.listeners[this.eventList[eventKey]][0].params;
+    }
+
+    this.eventList[eventKey] = opts.eventName;
+
+    return this.addListener({
+      eventName: opts.eventName,
+      callback: opts.callback,
+      scope: opts.scope,
+      params: opts.params
+    });
+  }
+
+  /**
+   * Bind element events
+   * @property BaseEvent
+   * @param {string|Array} events
+   * @param {string} on
+   * @returns {boolean}
+   */
+  onEvent(events, on) {
+    const scope = this.scope,
+        controller = scope.controller;
+
+    if (typeof(events) === 'string') {
+      events = [events];
+    }
+
+    for (let i = 0, l = events.length; i < l; i++) {
+      const event = events[i],
+          method = controller[events[i]];
+
+      if (typeof method !== 'function') {
+        this.logger.warn('Undefined method', event, method);
+        continue;
+      }
+
+      this.$.on([on, event].join('.'), method.bind(controller));
+    }
+  }
+
+  /**
+   * Subscribe to external published events
+   * @property BaseEvent
+   * @param data
+   * @return {Array}
+   */
+  publishOn(data) {
+    let eventUUIDs = [];
+
+    for (let i = 0, l = data.events.length; i < l; i++) {
+
+      /**
+       * Define event opts
+       * @property publishOn
+       */
+      const event = data.events[i];
+
+      eventUUIDs.push(
+          data.scope.eventManager.subscribe({
+            event: {
+              eventName: event.eventName,
+              params: event.params,
+              scope: event.scope
+            },
+            callback: data.callback
+          }, false)
+      );
+    }
+
+    return eventUUIDs;
+  }
+
+  /**
+   * Re-Emmit event
+   * @property BaseEvent
+   * @param {string} name
+   */
+  reEmmit(name) {
+    const evt = document.createEvent('Event');
+    evt.initEvent(name, false, false);
+    window.dispatchEvent(evt);
+  }
+
+  /**
+   * Find events bound on an element
+   * @property BaseEvent
+   * @param {BaseElement} $element
+   * @returns {*}
+   */
+  eventsBound($element) {
+    // Lookup events for this particular Element
+    return $._data($element.$[0], 'events');
+  }
+}

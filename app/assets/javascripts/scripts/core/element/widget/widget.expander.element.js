@@ -52,7 +52,7 @@ defineP([
       this.$.on('click.expand', function expand(e) {
 
         scope.observer.publish(
-            scope.eventmanager.eventList.expandContent,
+            scope.eventManager.eventList.expandContent,
             e
         );
       });

@@ -73,7 +73,7 @@ defineP([
         var panel = this.controller.getDesignTimePanel();
 
         panel.observer.publish(
-            panel.eventmanager.eventList.closePanel,
+            panel.eventManager.eventList.closePanel,
             panel.active
         );
 
@@ -125,7 +125,7 @@ defineP([
       if (page.maximized === widget) {
 
         widget.observer.publish(
-            widget.eventmanager.eventList.reduceWidget
+            widget.eventManager.eventList.reduceWidget
         );
 
       } else {
@@ -133,12 +133,12 @@ defineP([
         if (page.maximized.observer) {
 
           page.maximized.observer.publish(
-              page.maximized.eventmanager.eventList.reduceWidget
+              page.maximized.eventManager.eventList.reduceWidget
           );
         }
 
         widget.observer.publish(
-            widget.eventmanager.eventList.enlargeWidget
+            widget.eventManager.eventList.enlargeWidget
         );
       }
     }

@@ -197,7 +197,7 @@ defineP([
       function _clickPrefs(event) {
         event.preventDefault();
         scope.observer.publish(
-            scope.eventmanager.eventList.preparePreferences,
+            scope.eventManager.eventList.preparePreferences,
             config
         );
       }

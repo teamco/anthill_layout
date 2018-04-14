@@ -146,11 +146,11 @@ defineP(function defineWidgetSubscribe() {
       var widget = this.scope.controller.getContainment();
 
       widget.observer.publish(
-          widget.eventmanager.eventList.saveDom
+          widget.eventManager.eventList.saveDom
       );
 
       widget.observer.publish(
-          widget.eventmanager.eventList.stopDraggable,
+          widget.eventManager.eventList.stopDraggable,
           'stopDraggable'
       );
     },
@@ -168,11 +168,11 @@ defineP(function defineWidgetSubscribe() {
       var widget = this.scope.controller.getContainment();
 
       widget.observer.publish(
-          widget.eventmanager.eventList.saveDom
+          widget.eventManager.eventList.saveDom
       );
 
       widget.observer.publish(
-          widget.eventmanager.eventList.stopResizable,
+          widget.eventManager.eventList.stopResizable,
           'stopResizable'
       );
     },
@@ -191,7 +191,7 @@ defineP(function defineWidgetSubscribe() {
       var widget = this.referrer;
 
       var subscribers = widget.controller.getSubscribers(
-          widget.eventmanager.eventList.splitEmbeddedContent
+          widget.eventManager.eventList.splitEmbeddedContent
       );
 
       /**
@@ -203,7 +203,7 @@ defineP(function defineWidgetSubscribe() {
       scope.model.copyPrefs(widget);
 
       scope.observer.publish(
-          scope.eventmanager.eventList.splitEmbeddedContent,
+          scope.eventManager.eventList.splitEmbeddedContent,
           [subscribers, true]
       );
 
@@ -234,7 +234,7 @@ defineP(function defineWidgetSubscribe() {
             scope.model.copyPrefs(content.referrer);
 
             scope.observer.publish(
-                scope.eventmanager.eventList.setEmbeddedContent
+                scope.eventManager.eventList.setEmbeddedContent
             );
           },
 

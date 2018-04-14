@@ -52,7 +52,7 @@ defineP([
         var scope = this.scope;
 
         scope.observer.publish(
-            scope.eventmanager.eventList.loadModuleContent, [
+            scope.eventManager.eventList.loadModuleContent, [
               true, true
             ]
         );
@@ -152,7 +152,7 @@ defineP([
     render: function render() {
 
       this.scope.observer.publish(
-          this.scope.eventmanager.eventList.successRendered,
+          this.scope.eventManager.eventList.successRendered,
           this.renderGallery.bind(this)
       );
     }

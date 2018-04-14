@@ -253,7 +253,7 @@ defineP([
       if (this.save) {
         layout.logger.debug('Finish nested organizer');
         layout.observer.publish(
-            layout.eventmanager.eventList.afterNestedOrganizer
+            layout.eventManager.eventList.afterNestedOrganizer
         );
       }
     },

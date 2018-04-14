@@ -6,10 +6,12 @@ const AntHill = require('./anthill.js');
 
 // 'controller/application.controller',
   // 'model/application.model',
-  // 'view/application.view',
-  // 'event/application.event.manager',
-  // 'permission/application.permission'
+  // 'view/application.view'
 
+/**
+ * @class Application
+ * @extends AntHill
+ */
 module.exports = class Application extends AntHill {
 
   /**
@@ -27,6 +29,24 @@ module.exports = class Application extends AntHill {
      * @type {ApplicationAPI}
      */
     const ApplicationAPI = require('../api/application.api.js');
+
+    /**
+     * @constant ApplicationEventManager
+     * @type {ApplicationEventManager}
+     */
+    const ApplicationEventManager = require('../event/application.event.manager.js');
+
+    /**
+     * @constant ApplicationEventManager
+     * @type {ApplicationPermission}
+     */
+    const ApplicationPermission = require('../permission/application.permission.js');
+
+    /**
+     * @constant ApplicationModel
+     * @type {ApplicationModel}
+     */
+    const ApplicationModel = require('../model/application.model.js');
 
     /**
      * @constant MVC
@@ -165,10 +185,10 @@ module.exports = class Application extends AntHill {
       components: [
         ApplicationAPI,
         // Controller,
-        // Model,
+        ApplicationModel,
         // View,
-        // EventManager,
-        // Permission
+        ApplicationEventManager,
+        ApplicationPermission
       ],
       render: true
     });
@@ -184,13 +204,13 @@ module.exports = class Application extends AntHill {
     // };
 
     // this.observer.batchPublish(
-    //     this.eventmanager.eventList.defineSetting,
-    //     this.eventmanager.eventList.setRoutes,
-    //     this.eventmanager.eventList.initResizeWindow,
-    //     this.eventmanager.eventList.successCreated,
-    //     this.eventmanager.eventList.loadApplication,
-    //     this.eventmanager.eventList.defineGlobalInstance,
-    //     this.eventmanager.eventList.initScrollBehavior
+    //     this.eventManager.eventList.defineSetting,
+    //     this.eventManager.eventList.setRoutes,
+    //     this.eventManager.eventList.initResizeWindow,
+    //     this.eventManager.eventList.successCreated,
+    //     this.eventManager.eventList.loadApplication,
+    //     this.eventManager.eventList.defineGlobalInstance,
+    //     this.eventManager.eventList.initScrollBehavior
     // );
   }
 }

@@ -74,7 +74,7 @@ defineP([
       var scope = this.view.scope;
 
       scope.observer.publish(
-          scope.eventmanager.eventList.updatePagesOrder,
+          scope.eventManager.eventList.updatePagesOrder,
           [this.$.sortable('toArray', {attribute: 'rel'})]
       );
 

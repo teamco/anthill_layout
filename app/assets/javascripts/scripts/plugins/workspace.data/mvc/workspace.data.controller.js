@@ -103,7 +103,7 @@ defineP(
               var swipe = this.model.getConfig('switch');
 
               this.observer.publish(
-                  this.eventmanager.eventList.setActiveContent,
+                  this.eventManager.eventList.setActiveContent,
                   config.uuid
               );
 
@@ -116,7 +116,7 @@ defineP(
                 var workspace = this.view.controller.getWorkspace();
 
                 workspace.observer.publish(
-                    workspace.eventmanager.eventList.switchToPage,
+                    workspace.eventManager.eventList.switchToPage,
                     [this.activeContent, false]
                 );
               }
@@ -192,7 +192,7 @@ defineP(
              * @param page
              */
             definePublisher: function definePublisher(page) {
-              this.scope.eventmanager.subscribePublishOn(
+              this.scope.eventManager.subscribePublishOn(
                   page,
                   this.updateCounter.bind(this.scope)
               );
@@ -259,7 +259,7 @@ defineP(
               var layout = page.controller.getLayout();
 
               layout.observer.publish(
-                  layout.eventmanager.eventList.toggleGrid
+                  layout.eventManager.eventList.toggleGrid
               );
             },
 
@@ -326,7 +326,7 @@ defineP(
 
               // Unset active content
               scope.observer.publish(
-                  scope.eventmanager.eventList.setActiveContent
+                  scope.eventManager.eventList.setActiveContent
               );
 
               /**
@@ -373,7 +373,7 @@ defineP(
               );
 
               workspace.observer.publish(
-                  workspace.eventmanager.eventList.switchToPage,
+                  workspace.eventManager.eventList.switchToPage,
                   [page, true]
               );
 
@@ -384,7 +384,7 @@ defineP(
               var panel = this.getDesignTimePanel();
 
               panel.observer.publish(
-                  panel.eventmanager.eventList.refreshModulesContent
+                  panel.eventManager.eventList.refreshModulesContent
               );
             },
 
@@ -414,7 +414,7 @@ defineP(
                 page = $item.page;
 
                 page.observer.publish(
-                    page.eventmanager.eventList.transferPreferences,
+                    page.eventManager.eventList.transferPreferences,
                     ['order', i]
                 );
               }
@@ -426,7 +426,7 @@ defineP(
               var ws = page.controller.getContainment();
 
               ws.observer.publish(
-                  ws.eventmanager.eventList.afterPageOrder,
+                  ws.eventManager.eventList.afterPageOrder,
                   order
               );
             },
@@ -445,7 +445,7 @@ defineP(
               var scope = this.scope;
 
               scope.observer.publish(
-                  scope.eventmanager.eventList.switchToActivePage,
+                  scope.eventManager.eventList.switchToActivePage,
                   scope.activeContent
               );
             },
@@ -481,7 +481,7 @@ defineP(
               var ws = page.controller.getContainment();
 
               ws.observer.publish(
-                  ws.eventmanager.eventList.switchToPage, [
+                  ws.eventManager.eventList.switchToPage, [
                     page,
                     false
                   ]

@@ -11,9 +11,6 @@
  */
 const Application = require('../../../../scripts/core/config/application.js');
 
-/**
- * @method applicationGlobalListeners
- */
 module.exports = () => {
 
   /**

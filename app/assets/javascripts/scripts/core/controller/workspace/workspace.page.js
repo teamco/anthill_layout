@@ -56,7 +56,7 @@ defineP(function defineWorkspacePage() {
           if (window.location.hash.length) {
 
             scope.observer.publish(
-                scope.eventmanager.eventList.switchToPage,
+                scope.eventManager.eventList.switchToPage,
                 page
             );
 
@@ -78,7 +78,7 @@ defineP(function defineWorkspacePage() {
             }
 
             scope.observer.publish(
-                scope.eventmanager.eventList.switchToPage,
+                scope.eventManager.eventList.switchToPage,
                 page
             );
           }
@@ -134,7 +134,7 @@ defineP(function defineWorkspacePage() {
               page = pages[index];
 
               page.layout.observer.publish(
-                  page.layout.eventmanager.eventList.updateMinCellWidth
+                  page.layout.eventManager.eventList.updateMinCellWidth
               );
             }
           }
@@ -150,7 +150,7 @@ defineP(function defineWorkspacePage() {
           this.logger.debug('Before switch to page', page);
 
           this.observer.publish(
-              this.eventmanager.eventList.resetPagesHeightBeforeSwitch
+              this.eventManager.eventList.resetPagesHeightBeforeSwitch
           );
 
           /**
@@ -188,7 +188,7 @@ defineP(function defineWorkspacePage() {
             if (showContent) {
 
               page.observer.publish(
-                  page.eventmanager.eventList.showWidgetContent,
+                  page.eventManager.eventList.showWidgetContent,
                   item[0]
               );
 
@@ -204,7 +204,7 @@ defineP(function defineWorkspacePage() {
               wurl = '/' + page.controller.getItemIdentity(widget);
 
               widget.observer.publish(
-                  widget.eventmanager.eventList.enlargeWidget,
+                  widget.eventManager.eventList.enlargeWidget,
                   true
               );
             }
@@ -215,7 +215,7 @@ defineP(function defineWorkspacePage() {
             widget = page.maximized;
 
             widget.observer.publish(
-                widget.eventmanager.eventList.reduceWidget
+                widget.eventManager.eventList.reduceWidget
             );
           }
 
@@ -242,7 +242,7 @@ defineP(function defineWorkspacePage() {
             }
 
             this.observer.publish(
-                this.eventmanager.eventList.beforeSwitchToPage,
+                this.eventManager.eventList.beforeSwitchToPage,
                 page
             );
 
@@ -279,7 +279,7 @@ defineP(function defineWorkspacePage() {
           this.switchPage = false;
 
           page.observer.publish(
-              page.eventmanager.eventList.updateHeight
+              page.eventManager.eventList.updateHeight
           );
 
           this.view.get$item().defineActivePage(
@@ -311,13 +311,13 @@ defineP(function defineWorkspacePage() {
 
           scope.view.elements.$pages.swipeTo(page);
           scope.observer.publish(
-              scope.eventmanager.eventList.updateMetaData,
+              scope.eventManager.eventList.updateMetaData,
               page
           );
 
           page.view.get$item().showLoader();
           page.observer.publish(
-              page.eventmanager.eventList.loadItemsContent
+              page.eventManager.eventList.loadItemsContent
           );
         },
 
@@ -394,7 +394,7 @@ defineP(function defineWorkspacePage() {
 
           // Transfer layout
           currentPage.observer.publish(
-              currentPage.eventmanager.eventList.createLayout,
+              currentPage.eventManager.eventList.createLayout,
               clonePage.model.getConfig('layout')
           );
 

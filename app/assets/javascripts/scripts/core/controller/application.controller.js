@@ -77,18 +77,18 @@ defineP(
                 var workspace = this.controller.getWorkspace();
 
                 workspace.observer.publish(
-                    workspace.eventmanager.eventList.switchToPage,
+                    workspace.eventManager.eventList.switchToPage,
                     page
                 );
 
                 page.view.get$item().showLoader();
                 page.observer.publish(
-                    page.eventmanager.eventList.loadItemsContent
+                    page.eventManager.eventList.loadItemsContent
                 );
               }
 
               this.observer.publish(
-                  this.eventmanager.eventList.loadProduction
+                  this.eventManager.eventList.loadProduction
               );
             },
 
@@ -191,7 +191,7 @@ defineP(
 
               $(window).on('resizestop', function _resizeStop(e) {
                 scope.observer.publish(
-                    scope.eventmanager.eventList.resizeWindowPublisher, e
+                    scope.eventManager.eventList.resizeWindowPublisher, e
                 );
               });
             },
@@ -214,7 +214,7 @@ defineP(
                   'scroll.parallax resize.parallax',
                   function _scroll(e) {
                     scope.observer.publish(
-                        scope.eventmanager.eventList.scrollPublisher, e
+                        scope.eventManager.eventList.scrollPublisher, e
                     );
                   }
               );
@@ -238,7 +238,7 @@ defineP(
 
               if (e.target === window && this.model.getConfig('isResized')) {
                 this.observer.publish(
-                    this.eventmanager.eventList.resizeWindow, e
+                    this.eventManager.eventList.resizeWindow, e
                 );
               }
             },
@@ -252,7 +252,7 @@ defineP(
               this.logger.debug('Start resize window', e);
 
               this.observer.publish(
-                  this.eventmanager.eventList.resizeWindowHooks
+                  this.eventManager.eventList.resizeWindowHooks
               );
             },
 
@@ -334,21 +334,21 @@ defineP(
                 }),
                 error: function () {
                   scope.observer.publish(
-                      scope.eventmanager.eventList.stopSendLog,
+                      scope.eventManager.eventList.stopSendLog,
                       arguments
                   );
                 }
               };
 
               scope.observer.publish(
-                  scope.eventmanager.eventList.beforeSendLog,
+                  scope.eventManager.eventList.beforeSendLog,
                   [arguments, opts]
               );
 
               $.ajax(opts).done(
                   function done(data, type, xhr) {
                     scope.observer.publish(
-                        scope.eventmanager.eventList.afterSendLog,
+                        scope.eventManager.eventList.afterSendLog,
                         [arguments, opts]
                     );
                   }

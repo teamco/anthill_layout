@@ -163,7 +163,7 @@ defineP([
       var scope = this.scope;
 
       scope.observer.publish(
-          scope.eventmanager.eventList.prepareActiveComponent, [
+          scope.eventManager.eventList.prepareActiveComponent, [
             {uuid: this.uuid},
             false, event,
             scope.controller.locateModuleItem.bind(scope)
@@ -207,7 +207,7 @@ defineP([
         callback) {
 
       this.observer.publish(
-          this.eventmanager.eventList.setActiveContent,
+          this.eventManager.eventList.setActiveContent,
           config.uuid
       );
 
@@ -283,7 +283,7 @@ defineP([
       }
 
       content.observer.publish(
-          content.eventmanager.eventList.defineReferrer,
+          content.eventManager.eventList.defineReferrer,
           this.scope
       );
     },
@@ -332,7 +332,7 @@ defineP([
       scope.logger.debug('Refresh content');
 
       panel.observer.publish(
-          panel.eventmanager.eventList.showContent,
+          panel.eventManager.eventList.showContent,
           [moduleName, true]
       );
     },
@@ -354,7 +354,7 @@ defineP([
        * Get event manager
        * @type {PageEventManager}
        */
-      var pageEventManager = page.eventmanager;
+      var pageEventManager = page.eventManager;
 
       pageEventManager.subscribe({
         event: {
@@ -386,7 +386,7 @@ defineP([
        * Get event manager
        * @type {WorkspaceEventManager}
        */
-      var workspaceEventManager = workspace.eventmanager;
+      var workspaceEventManager = workspace.eventManager;
 
       workspaceEventManager.subscribe({
         event: {

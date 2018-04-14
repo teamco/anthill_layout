@@ -6,156 +6,134 @@
  * To change this template use File | Settings | File Templates.
  */
 
-defineP([
-  'config/anthill'
-], function defineCRUD(AntHill) {
+/**
+ * @constant AntHill
+ * @type {AntHill}
+ */
+const AntHill = require('../../config/anthill.js');
+
+/**
+ * Define abstract CRUD
+ * @class CRUD
+ * @type {CRUD}
+ */
+module.exports = class CRUD extends AntHill {
 
   /**
-   * Define abstract CRUD
-   * @class CRUD
    * @constructor
    */
-  var CRUD = function CRUD() {
+  constructor(name) {
+    super(name || 'CRUD');
+  }
 
-    /**
-     * Define scope
-     * @property CRUD
-     * @type {undefined}
-     */
-    this.scope = undefined;
+  /**
+   * Create item
+   * @memberOf CRUD
+   * @param opts
+   * @returns {*}
+   */
+  createItem(opts) {
+    return this.updateCollector(this.item, opts);
+  }
 
-    /**
-     * Define base
-     * @property CRUD
-     * @type {undefined}
-     */
-    this.base = undefined;
-  };
+  /**
+   * Destroy items
+   * @memberOf CRUD
+   * @param item
+   * @returns {*}
+   */
+  destroyItem(item) {
+    const scope = this.scope,
+        base = this.base,
+        namespace = item.name.toLowerCase();
 
-  return CRUD.extend('CRUD', {
-
-    /**
-     * Create item
-     * @memberOf CRUD
-     * @param opts
-     * @returns {*}
-     */
-    createItem: function createItem(opts) {
-      return this.updateCollector(
-          this.item,
-          opts
-      );
-    },
-
-    /**
-     * Destroy items
-     * @memberOf CRUD
-     * @param item
-     * @returns {*}
-     */
-    destroyItem: function destroyItem(item) {
-
-      var scope = this.scope,
-          base = this.base,
-          namespace = item.name.toLowerCase();
-
-      if (!base.isDefined(item)) {
-        scope.logger.warn('Undefined ' + namespace, item);
-        return false;
-      }
-
-      var model = item.model;
-
-      if (!base.isDefined(model)) {
-        scope.logger.warn('Uninitialized ' + namespace, item);
-        return false;
-      }
-
-      var items = scope.items,
-          index = model.getUUID(),
-          onDestroy = this.base.define(model.onDestroy, [], true),
-          itemEventManager = item.eventmanager,
-          i = 0, l = onDestroy.length;
-
-      for (i; i < l; i += 1) {
-        item.observer.publish(
-            item.eventmanager.eventList['destroy' + onDestroy[i]]
-        );
-      }
-
-      if (itemEventManager.abstract.hasOwnProperty('destroyItems')) {
-        if (itemEventManager.eventList.hasOwnProperty(
-                itemEventManager.abstract['destroyItems']
-            )) {
-          item.observer.publish(
-              itemEventManager.eventList[itemEventManager.abstract.destroyItems]
-          );
-        }
-      }
-
-      this.destroyItemView(item);
-
-      if (items.hasOwnProperty(index)) {
-        delete items[index];
-      }
-
-      this.scope[namespace] = base.lib.hash.firstHashElement(items) || {};
-
-      return items;
-    },
-
-    /**
-     * Destroy items
-     * @memberOf CRUD
-     * @returns {*}
-     */
-    destroyItems: function destroyItems() {
-
-      var index,
-          items = this.scope.items || {};
-
-      for (index in items) {
-        if (items.hasOwnProperty(index)) {
-          this.destroyItem(items[index])
-        }
-      }
-
-      return items;
-    },
-
-    /**
-     * Destroy item view
-     * @memberOf CRUD
-     * @param item
-     * @returns {*}
-     */
-    destroyItemView: function destroyItemView(item) {
-      var scope = this.scope,
-          base = this.base,
-          namespace = item.name.toLowerCase();
-
-      if (!base.isDefined(item)) {
-        scope.logger.warn('Undefined ' + namespace, item);
-        return false;
-      }
-
-      var elements = item.view.elements,
-          index, $element;
-
-      for (index in elements) {
-        if (elements.hasOwnProperty(index)) {
-
-          /**
-           * Define element
-           * @type {BaseElement}
-           */
-          $element = elements[index];
-          $element.unbindElement().destroy();
-        }
-      }
-
-      return item;
+    if (!base.isDefined(item)) {
+      scope.logger.warn('Undefined ' + namespace, item);
+      return false;
     }
 
-  }, AntHill.prototype);
-});
+    const model = item.model;
+
+    if (!base.isDefined(model)) {
+      scope.logger.warn('Uninitialized ' + namespace, item);
+      return false;
+    }
+
+    const items = scope.items,
+        index = model.getUUID(),
+        onDestroy = this.base.define(model.onDestroy, [], true),
+        eventManager = item.eventManager,
+        l = onDestroy.length;
+
+    for (let i = 0; i < l; i += 1) {
+      item.observer.publish(eventManager.eventList['destroy' + onDestroy[i]]);
+    }
+
+    if (eventManager.abstract.hasOwnProperty('destroyItems')) {
+      if (eventManager.eventList.hasOwnProperty(eventManager.abstract['destroyItems'])) {
+        item.observer.publish(eventManager.eventList[eventManager.abstract.destroyItems]);
+      }
+    }
+
+    this.destroyItemView(item);
+
+    if (items.hasOwnProperty(index)) {
+      delete items[index];
+    }
+
+    scope[namespace] = base.lib.hash.firstHashElement(items) || {};
+
+    return items;
+  }
+
+  /**
+   * Destroy items
+   * @memberOf CRUD
+   * @returns {*}
+   */
+  destroyItems() {
+
+    const items = this.scope.items || {};
+
+    for (let index in items) {
+      if (items.hasOwnProperty(index)) {
+        this.destroyItem(items[index]);
+      }
+    }
+
+    return items;
+  }
+
+  /**
+   * Destroy item view
+   * @memberOf CRUD
+   * @param item
+   * @returns {*}
+   */
+  destroyItemView(item) {
+    const scope = this.scope,
+        base = this.base,
+        namespace = item.name.toLowerCase();
+
+    if (!base.isDefined(item)) {
+      scope.logger.warn('Undefined ' + namespace, item);
+      return false;
+    }
+
+    const elements = item.view.elements;
+
+    for (let index in elements) {
+      if (elements.hasOwnProperty(index)) {
+
+        /**
+         * Define element
+         * @type {BaseElement}
+         */
+        let $element = elements[index];
+        $element.unbindElement().destroy();
+      }
+    }
+
+    return item;
+  }
+}

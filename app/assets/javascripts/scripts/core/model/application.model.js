@@ -6,73 +6,77 @@
  * To change this template use File | Settings | File Templates.
  */
 
-defineP([
-  'modules/Model',
-  'modules/Setting',
-  'config/workspace'
-], function defineApplicationModel(BaseModel, Setting, Workspace) {
+/**
+ * @constant BaseModel
+ * @type {BaseModel}
+ */
+const BaseModel = require('../lib/modules/Model.js');
+
+/**
+ * @constant ApplicationModel
+ * @type {ApplicationModel}
+ * @extends BaseModel
+ */
+module.exports = class ApplicationModel extends BaseModel {
 
   /**
-   * Define Application model
-   * @extends BaseModel
-   * @class ApplicationModel
+   * @param scope
    * @constructor
    */
-  var ApplicationModel = function ApplicationModel() {
+  constructor(scope) {
+
+    super('ApplicationModel', scope);
 
     /**
      * Define item
      * @property ApplicationModel
      * @type {Workspace}
      */
-    this.item = Workspace;
-  };
+    this.item = require('../config/workspace.js');
+  }
 
-  return ApplicationModel.extend('ApplicationModel', {
-
-    /**
-     * Define global setting
-     * @memberOf ApplicationModel
-     */
-    initGlobalSetting: function initGlobalSetting() {
-
-      /**
-       * Get scope
-       * @type {Application}
-       */
-      var scope = this.scope;
-
-      /**
-       * Define setting
-       * @memberOf ApplicationModel
-       * @type {Setting}
-       */
-      this.setting = new Setting(
-          scope,
-          scope.controller.getAppName()
-      );
-
-      scope.logger.debug('Define setting', this.setting);
-    },
+  /**
+   * Define global setting
+   * @property ApplicationModel
+   */
+  initGlobalSetting() {
 
     /**
-     * Define load workspaces
-     * @memberOf ApplicationModel
+     * Get scope
+     * @type {Application|{controller}}
      */
-    loadWorkspaces: function loadWorkspaces() {
+    const scope = this.scope;
 
-      this.scope.controller.setAsLoading(true);
+    /**
+     * @constant Setting
+     * @type {Setting}
+     */
+    const Setting = require('../lib/modules/Setting.js');
 
-      /**
-       * Get collector
-       * @type {object}
-       */
-      var collector = this.getCollector(this.item);
+    /**
+     * Define setting
+     * @property ApplicationModel
+     * @type {Setting}
+     */
+    this.setting = new Setting(scope, scope.controller.getAppName());
 
-      return collector ?
-          this.loadData(this.item, collector, true) : -1;
-    }
+    scope.logger.debug('Define setting', this.setting);
+  }
 
-  }, BaseModel.prototype);
+  /**
+   * Define load workspaces
+   * @property ApplicationModel
+   */
+  loadWorkspaces() {
 
-});
+    this.scope.controller.setAsLoading(true);
+
+    /**
+     * Get collector
+     * @type {object}
+     */
+    const collector = this.getCollector(this.item);
+
+    return collector ? this.loadData(this.item, collector, true) : -1;
+  }
+};

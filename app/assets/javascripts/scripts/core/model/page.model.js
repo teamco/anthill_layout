@@ -204,7 +204,7 @@ defineP([
       var scope = this.scope;
 
       scope.observer.publish(
-          scope.eventmanager.eventList.updateLayoutConfig
+          scope.eventManager.eventList.updateLayoutConfig
       );
     },
 
@@ -224,7 +224,7 @@ defineP([
       var scope = this.scope;
 
       scope.observer.publish(
-          scope.eventmanager.eventList.updatePageScrollHeight,
+          scope.eventManager.eventList.updatePageScrollHeight,
           height
       );
     },
@@ -255,7 +255,7 @@ defineP([
       this._setItemInfoPreferences('siteDescription', description);
 
       scope.observer.publish(
-          scope.eventmanager.eventList.updateSiteDescription
+          scope.eventManager.eventList.updateSiteDescription
       );
     },
 
@@ -275,7 +275,7 @@ defineP([
       this._setItemInfoPreferences('siteKeywords', keywords);
 
       scope.observer.publish(
-          scope.eventmanager.eventList.updateSiteKeywords
+          scope.eventManager.eventList.updateSiteKeywords
       );
     },
 
@@ -342,7 +342,7 @@ defineP([
       var scope = this.scope;
 
       scope.observer.publish(
-          scope.eventmanager.eventList.updatePadding, {top: +top}
+          scope.eventManager.eventList.updatePadding, {top: +top}
       );
     },
 
@@ -362,7 +362,7 @@ defineP([
       var scope = this.scope;
 
       scope.observer.publish(
-          scope.eventmanager.eventList.updatePadding, {right: +right}
+          scope.eventManager.eventList.updatePadding, {right: +right}
       );
     },
 
@@ -382,7 +382,7 @@ defineP([
       var scope = this.scope;
 
       scope.observer.publish(
-          scope.eventmanager.eventList.updatePadding, {bottom: +bottom}
+          scope.eventManager.eventList.updatePadding, {bottom: +bottom}
       );
     },
 
@@ -402,7 +402,7 @@ defineP([
       var scope = this.scope;
 
       scope.observer.publish(
-          scope.eventmanager.eventList.updatePadding, {left: +left}
+          scope.eventManager.eventList.updatePadding, {left: +left}
       );
     },
 
@@ -426,7 +426,7 @@ defineP([
       var scope = this.scope;
 
       scope.observer.publish(
-          scope.eventmanager.eventList.updateItemInteractions,
+          scope.eventManager.eventList.updateItemInteractions,
           outline
       );
     },

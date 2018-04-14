@@ -69,7 +69,7 @@ defineP([
       var panel = this.view.scope.containment;
 
       var publish = panel.observer.publish.bind(panel.observer),
-          event = panel.eventmanager.eventList;
+          event = panel.eventManager.eventList;
 
       this.$.on(
           'click.toggle',

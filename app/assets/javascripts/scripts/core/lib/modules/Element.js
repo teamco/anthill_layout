@@ -108,7 +108,7 @@ defineP([
       // Get scope
       var scope = this.view.scope;
       scope.observer.publish(
-          scope.eventmanager.eventList.successCreateElement,
+          scope.eventManager.eventList.successCreateElement,
           this
       );
 
@@ -136,7 +136,7 @@ defineP([
       $.each(
           this.base.define(this.events, [], true),
           function each(index, event) {
-            scope.eventmanager.onEvent.bind({
+            scope.eventManager.onEvent.bind({
               scope: scope,
               $: $element
             })(event, index);
@@ -297,7 +297,7 @@ defineP([
         // Get scope
         var scope = this.view.scope;
         scope.observer.publish(
-            scope.eventmanager.eventList.successDestroyElement,
+            scope.eventManager.eventList.successDestroyElement,
             this
         );
 
@@ -349,7 +349,7 @@ defineP([
       // Get scope
       var scope = this.view.scope;
       scope.observer.publish(
-          scope.eventmanager.eventList.successBuildElement,
+          scope.eventManager.eventList.successBuildElement,
           this
       );
 

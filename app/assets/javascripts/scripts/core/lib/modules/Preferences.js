@@ -134,8 +134,8 @@ defineP(function defineBasePreferences() {
         }
 
         var event = isContentPrefs ?
-            scope.eventmanager.eventList.transferContentPreferences :
-            containment.eventmanager.eventList.transferPreferences;
+            scope.eventManager.eventList.transferContentPreferences :
+            containment.eventManager.eventList.transferPreferences;
 
         /**
          * Transform input name

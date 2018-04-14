@@ -74,7 +74,7 @@ defineP([
 
       var scope = this.scope,
           observer = scope.observer,
-          eventList = scope.eventmanager.eventList;
+          eventList = scope.eventManager.eventList;
 
       observer.publish(eventList.initDraggable);
       observer.publish(eventList.initResizable);
@@ -406,7 +406,7 @@ defineP([
       var page = this.getContainment();
 
       page.observer.publish(
-          page.eventmanager.eventList.updateHeight
+          page.eventManager.eventList.updateHeight
       );
     },
 

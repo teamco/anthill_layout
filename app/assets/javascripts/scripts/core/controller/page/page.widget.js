@@ -182,7 +182,7 @@ defineP([
               this.view.get$item().hideLoader();
 
               this.observer.publish(
-                  this.eventmanager.eventList.setLoadedContent,
+                  this.eventManager.eventList.setLoadedContent,
                   true
               );
 
@@ -238,7 +238,7 @@ defineP([
               item = items[index];
 
               item.observer.publish(
-                  item.eventmanager.eventList.updateContainment, [
+                  item.eventManager.eventList.updateContainment, [
                     ['draggable', 'resizable'],
                     containment
                   ]
@@ -266,7 +266,7 @@ defineP([
           if (this.ready === items) {
 
             this.observer.publish(
-                this.eventmanager.eventList.setLoadedContent,
+                this.eventManager.eventList.setLoadedContent,
                 true
             );
           }

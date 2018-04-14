@@ -41,7 +41,7 @@ defineP(['config/layout'], function definePageLayout(Layout) {
           var layout = this.layout;
 
           layout.observer.publish(
-              layout.eventmanager.eventList.updateNumberOfColumns,
+              layout.eventManager.eventList.updateNumberOfColumns,
               preferences.layoutColumns
           );
         },
@@ -65,8 +65,8 @@ defineP(['config/layout'], function definePageLayout(Layout) {
             scope.view.get$item().setPadding(padding);
           } else {
 
-            scope.eventmanager.subscribe({
-              event: scope.eventmanager.eventList.successRendered,
+            scope.eventManager.subscribe({
+              event: scope.eventManager.eventList.successRendered,
               callback: function _setPadding() {
                 scope.view.get$item().setPadding(padding);
               }
@@ -95,8 +95,8 @@ defineP(['config/layout'], function definePageLayout(Layout) {
             scope.view.get$item().updateDimensions();
           } else {
 
-            scope.eventmanager.subscribe({
-              event: scope.eventmanager.eventList.successRendered,
+            scope.eventManager.subscribe({
+              event: scope.eventManager.eventList.successRendered,
               callback: function _setPageScroll() {
                 scope.view.get$item().updateDimensions();
               }
@@ -118,7 +118,7 @@ defineP(['config/layout'], function definePageLayout(Layout) {
           var layout = this.controller.getLayout();
 
           layout.observer.publish(
-              layout.eventmanager.eventList.onExpand,
+              layout.eventManager.eventList.onExpand,
               widget
           );
         },
@@ -169,7 +169,7 @@ defineP(['config/layout'], function definePageLayout(Layout) {
           var layout = this.scope.layout;
 
           layout.observer.publish(
-              layout.eventmanager.eventList.updateMinCellWidth
+              layout.eventManager.eventList.updateMinCellWidth
           );
 
           this.updateWidgetsConfig();

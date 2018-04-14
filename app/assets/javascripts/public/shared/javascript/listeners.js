@@ -6,6 +6,10 @@
  * To change this template use File | Settings | File Templates.
  */
 
+/**
+ * @constant applicationGlobalListeners
+ * @type {Application.prototype.globalListeners}
+ */
 const applicationGlobalListeners = require('./listeners/application.listeners.js');
 
 // 'public/shared/javascript/listeners/workspace.listeners',
@@ -13,9 +17,6 @@ const applicationGlobalListeners = require('./listeners/application.listeners.js
 // 'public/shared/javascript/listeners/layout.listeners',
 // 'public/shared/javascript/listeners/widget.listeners'
 
-/**
- * Define listeners
- */
 (() => {
   applicationGlobalListeners();
 })();

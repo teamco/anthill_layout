@@ -67,7 +67,7 @@ defineP([
       var scope = this.scope;
 
       scope.observer.publish(
-          scope.eventmanager.eventList.updatePagesWidth
+          scope.eventManager.eventList.updatePagesWidth
       );
     },
 
@@ -87,7 +87,7 @@ defineP([
       this._setItemInfoPreferences('siteTitle', title);
 
       scope.observer.publish(
-          scope.eventmanager.eventList.updateSiteTitle
+          scope.eventManager.eventList.updateSiteTitle
       );
     },
 
@@ -107,7 +107,7 @@ defineP([
       this._setItemInfoPreferences('siteAuthor', author);
 
       scope.observer.publish(
-          scope.eventmanager.eventList.updateSiteAuthor
+          scope.eventManager.eventList.updateSiteAuthor
       );
     },
 
@@ -127,7 +127,7 @@ defineP([
       this._setItemInfoPreferences('siteDescription', description);
 
       scope.observer.publish(
-          scope.eventmanager.eventList.updateSiteDescription
+          scope.eventManager.eventList.updateSiteDescription
       );
     },
 
@@ -147,7 +147,7 @@ defineP([
       this._setItemInfoPreferences('siteKeywords', keywords);
 
       scope.observer.publish(
-          scope.eventmanager.eventList.updateSiteKeywords
+          scope.eventManager.eventList.updateSiteKeywords
       );
     },
 
@@ -165,7 +165,7 @@ defineP([
       var scope = this.scope;
 
       scope.observer.publish(
-          scope.eventmanager.eventList.clonePage,
+          scope.eventManager.eventList.clonePage,
           itemUUID
       );
     },

@@ -6,61 +6,66 @@
  * To change this template use File | Settings | File Templates.
  */
 
-defineP([
-  'modules/Event'
-], function defineApplicationEventManager(BaseEvent) {
+/**
+ * @constant BaseEvent
+ * @type {BaseEvent}
+ */
+const BaseEvent = require('../lib/modules/Event.js');
+
+/**
+ * @class ApplicationEventManager
+ * @extends BaseEvent
+ */
+module.exports = class ApplicationEventManager extends BaseEvent {
 
   /**
    * Define ApplicationEvent Manager
-   * @class ApplicationEventManager
-   * @extends BaseEvent
    * @constructor
    */
-  var ApplicationEventManager = function ApplicationEventManager() {
+  constructor() {
+
+    super('ApplicationEventManager');
 
     /**
      * Define events
-     * @memberOf ApplicationEventManager
+     * @property ApplicationEventManager
      * @type {{}}
      */
     this.events = {};
-  };
-
-  return ApplicationEventManager.extend('ApplicationEventManager', {
 
     /**
      * Define event list
-     * @memberOf ApplicationEventManager
+     * @property ApplicationEventManager
      * @type {{
-         *      startSendLog: string,
-         *      stopSendLog: string,
-         *      beforeSendLog: string,
-         *      afterSendLog: string,
-         *      loadApplication: string,
-         *      loadProduction: string,
-         *      handleVulnerabilities: string,
-         *      afterHandleVulnerabilities: string,
-         *      defineGlobalInstance: string,
-         *      defineSetting: string,
-         *      updateStorageVersion: string,
-         *      afterUpdateStorage: string,
-         *      setRoutes: string,
-         *      initResizeWindow: string,
-         *      resizeWindowPublisher: string,
-         *      resizeWindow: {eventName: string, params: {buffer: number}},
-         *      resizeWindowHooks: string,
-         *      initScrollBehavior: string,
-         *      scrollPublisher: string,
-         *      createWorkspace: string,
-         *      destroyWorkspace: string,
-         *      destroyWorkspaces: string,
-         *      resizeWorkspaces: string,
-         *      resizeWorkspace: string,
-         *      setAsLoaded: string,
-         *      afterLoadingItems: string
-         * }}
+     *      startSendLog: string,
+     *      stopSendLog: string,
+     *      beforeSendLog: string,
+     *      afterSendLog: string,
+     *      loadApplication: string,
+     *      loadProduction: string,
+     *      handleVulnerabilities: string,
+     *      afterHandleVulnerabilities: string,
+     *      defineGlobalInstance: string,
+     *      defineSetting: string,
+     *      updateStorageVersion: string,
+     *      afterUpdateStorage: string,
+     *      setRoutes: string,
+     *      initResizeWindow: string,
+     *      resizeWindowPublisher: string,
+     *      resizeWindow: {eventName: string, params: {buffer: number}},
+     *      resizeWindowHooks: string,
+     *      initScrollBehavior: string,
+     *      scrollPublisher: string,
+     *      createWorkspace: string,
+     *      destroyWorkspace: string,
+     *      destroyWorkspaces: string,
+     *      resizeWorkspaces: string,
+     *      resizeWorkspace: string,
+     *      setAsLoaded: string,
+     *      afterLoadingItems: string
+     * }}
      */
-    eventList: {
+    this.eventList = {
       startSendLog: 'start.send.log',
       stopSendLog: 'stop.send.log',
       beforeSendLog: 'before.send.log',
@@ -96,7 +101,6 @@ defineP([
       resizeWorkspaces: 'resize.workspaces',
       setAsLoaded: 'set.as.loaded',
       afterLoadingItems: 'after.loading.items'
-    }
-
-  }, BaseEvent.prototype);
-});
+    };
+  }
+}

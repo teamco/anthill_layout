@@ -793,7 +793,7 @@ defineP([
       this._setItemInfoPreferences('stretchWidth', stretch);
 
       scope.observer.publish(
-          scope.eventmanager.eventList.stretchWidth,
+          scope.eventManager.eventList.stretchWidth,
           stretch
       );
     },
@@ -815,7 +815,7 @@ defineP([
       this._setItemInfoPreferences('stretchHeight', stretch);
 
       scope.observer.publish(
-          scope.eventmanager.eventList.stretchHeight,
+          scope.eventManager.eventList.stretchHeight,
           stretch
       );
     },
@@ -836,7 +836,7 @@ defineP([
       var scope = this.scope;
 
       scope.observer.publish(
-          scope.eventmanager.eventList[eventName]
+          scope.eventManager.eventList[eventName]
       );
     },
 
@@ -946,7 +946,7 @@ defineP([
       this.scope.config.preferences.alwaysOnTop = ontop;
 
       scope.observer.publish(
-          scope.eventmanager.eventList.setAlwaysOnTop,
+          scope.eventManager.eventList.setAlwaysOnTop,
           ontop
       );
     },
@@ -965,7 +965,7 @@ defineP([
       var scope = this.scope;
 
       scope.observer.publish(
-          scope.eventmanager.eventList[eventName],
+          scope.eventManager.eventList[eventName],
           false
       );
     },
@@ -984,7 +984,7 @@ defineP([
       var scope = this.scope;
 
       scope.observer.publish(
-          scope.eventmanager.eventList[eventName],
+          scope.eventManager.eventList[eventName],
           false
       );
     },
@@ -1014,7 +1014,7 @@ defineP([
       var scope = this.scope;
 
       scope.observer.publish(
-          scope.eventmanager.eventList.setOnClickUrl,
+          scope.eventManager.eventList.setOnClickUrl,
           url
       );
     },
@@ -1044,7 +1044,7 @@ defineP([
 
       if (!maximizable) {
         scope.observer.publish(
-            scope.eventmanager.eventList.reduceWidget
+            scope.eventManager.eventList.reduceWidget
         );
       }
     },
@@ -1066,7 +1066,7 @@ defineP([
       var eventName = (zoomable ? '' : 'un') + 'setZoomable';
 
       scope.observer.publish(
-          scope.eventmanager.eventList[eventName]
+          scope.eventManager.eventList[eventName]
       );
     },
 
@@ -1104,7 +1104,7 @@ defineP([
       var scope = this.scope;
 
       scope.observer.publish(
-          scope.eventmanager.eventList.toggleFreeze,
+          scope.eventManager.eventList.toggleFreeze,
           freeze
       );
     },
@@ -1125,7 +1125,7 @@ defineP([
       var scope = this.scope;
 
       scope.observer.publish(
-          scope.eventmanager.eventList.toggleContentExpander,
+          scope.eventManager.eventList.toggleContentExpander,
           expandable
       );
     },
@@ -1146,7 +1146,7 @@ defineP([
       var scope = this.scope;
 
       scope.observer.publish(
-          scope.eventmanager.eventList.scrollContent,
+          scope.eventManager.eventList.scrollContent,
           scrollable
       );
     },
@@ -1167,7 +1167,7 @@ defineP([
       var scope = this.scope;
 
       scope.observer.publish(
-          scope.eventmanager.eventList.commentableContent,
+          scope.eventManager.eventList.commentableContent,
           commentable
       );
     },
@@ -1194,7 +1194,7 @@ defineP([
       var scope = this.scope;
 
       scope.observer.publish(
-          scope.eventmanager.eventList.customClassName,
+          scope.eventManager.eventList.customClassName,
           [name, currentClassName]
       );
     },
@@ -1215,7 +1215,7 @@ defineP([
       var scope = this.scope;
 
       scope.observer.publish(
-          scope.eventmanager.eventList.scrollSpeedParallaxBehavior,
+          scope.eventManager.eventList.scrollSpeedParallaxBehavior,
           speed
       );
     },
@@ -1258,7 +1258,7 @@ defineP([
           false : page.view.get$item().$;
 
       scope.observer.publish(
-          scope.eventmanager.eventList.updateContainment, [
+          scope.eventManager.eventList.updateContainment, [
             ['draggable', 'resizable'],
             containment
           ]

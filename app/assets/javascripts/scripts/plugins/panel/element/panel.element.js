@@ -73,7 +73,7 @@ defineP([
           scope = view.scope;
 
       scope.observer.publish(
-          scope.eventmanager.eventList.showContent,
+          scope.eventManager.eventList.showContent,
           resource
       );
     },

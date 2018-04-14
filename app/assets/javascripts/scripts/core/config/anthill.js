@@ -24,18 +24,6 @@ module.exports = class AntHill {
     const Base = require('../lib/modules/Base.js');
 
     /**
-     * @constant Observer
-     * @type {Observer}
-     */
-    const Observer = require('../lib/modules/Observer.js');
-
-    /**
-     * @constant Logger
-     * @type {Logger}
-     */
-    const Logger = require('../lib/modules/Logger.js');
-
-    /**
      * Init scope name.
      * @property AntHill
      * @type {string}
@@ -48,27 +36,41 @@ module.exports = class AntHill {
        * Init scope.
        */
       this.scope = scope;
+
+    } else {
+
+      /**
+       * @constant Observer
+       * @type {Observer}
+       */
+      const Observer = require('../lib/modules/Observer.js');
+
+      /**
+       * @constant Logger
+       * @type {Logger}
+       */
+      const Logger = require('../lib/modules/Logger.js');
+
+      /**
+       * Init config
+       * @property AntHill
+       * @type {Object}
+       */
+      this.config = {};
+
+      /**
+       * Init observer
+       * @property AntHill
+       * @type {Observer}
+       */
+      this.observer = new Observer(this.scope || this);
+      /**
+       * Init logger
+       * @property Anthill
+       * @type {Logger}
+       */
+      this.logger = new Logger(this.scope || this);
     }
-
-    /**
-     * Init config
-     * @property AntHill
-     * @type {Object}
-     */
-    this.config = {};
-
-    /**
-     * Init observer
-     * @property AntHill
-     * @type {Observer}
-     */
-    this.observer = new Observer(this.scope || this);
-    /**
-     * Init logger
-     * @property Anthill
-     * @type {Logger}
-     */
-    this.logger = new Logger(this.scope || this);
 
     /**
      * Init underscore.

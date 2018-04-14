@@ -98,7 +98,7 @@ defineP([
        * Define event list
        * @type {*}
        */
-      var rootEventList = root.eventmanager.eventList;
+      var rootEventList = root.eventManager.eventList;
 
       /**
        * Define events

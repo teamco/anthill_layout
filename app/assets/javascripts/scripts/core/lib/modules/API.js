@@ -100,7 +100,7 @@ module.exports = class BaseAPI extends AntHill {
     }
 
     scope.observer.publish(
-        scope.eventmanager.eventList['create' + scope.model.getItemName()],
+        scope.eventManager.eventList['create' + scope.model.getItemName()],
         [args, scope.silent]
     );
 

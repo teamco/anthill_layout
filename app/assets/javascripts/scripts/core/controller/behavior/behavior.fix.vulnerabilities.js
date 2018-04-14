@@ -30,7 +30,7 @@ defineP(function defineFixVulnerabilities() {
         window.top.location = window.location;
 
         this.scope.observer.publish(
-            this.scope.eventmanager.eventList.handleVulnerabilities,
+            this.scope.eventManager.eventList.handleVulnerabilities,
             'ClickJacking'
         );
       }
@@ -74,7 +74,7 @@ defineP(function defineFixVulnerabilities() {
 
             this.logger.debug(arguments);
             this.observer.publish(
-                this.eventmanager.eventList.afterHandleVulnerabilities,
+                this.eventManager.eventList.afterHandleVulnerabilities,
                 data
             );
 

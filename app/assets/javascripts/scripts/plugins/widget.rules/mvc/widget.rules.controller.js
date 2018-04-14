@@ -59,7 +59,7 @@ defineP([
 
       // set active content
       scope.observer.publish(
-          scope.eventmanager.eventList.setActiveContent,
+          scope.eventManager.eventList.setActiveContent,
           uuid
       );
 
@@ -72,8 +72,8 @@ defineP([
         var widget = this.getPage().model.getItemByUUID(uuid);
 
         return this.scope.activeContent.view.renderRules(
-            widget.eventmanager.getEvents(),
-            widget.controller.getContent().eventmanager.getEvents()
+            widget.eventManager.getEvents(),
+            widget.controller.getContent().eventManager.getEvents()
         );
       }
     },
@@ -157,7 +157,7 @@ defineP([
           for (var i = 0, l = rules.length; i < l; i++) {
 
             scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
+                scope.eventManager.eventList.publishRule,
                 [rules[i], index]
             );
           }
@@ -235,7 +235,7 @@ defineP([
       this.scope.view.get$modal().selfDestroy();
 
       panel.observer.publish(
-          panel.eventmanager.eventList.openPanel, [
+          panel.eventManager.eventList.openPanel, [
             'page-data', event,
             this.prepareTriggerShowModalData.bind({
               widget: widget,

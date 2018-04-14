@@ -48,10 +48,10 @@ defineP(function defineWidgetParallax() {
           viewPortHeight = $page.getHeight(),
           $element = this.controller.getView().get$item(),
           elementHeight = $element.getHeight,
-          eventName = root.eventmanager.eventList.scrollPublisher;
+          eventName = root.eventManager.eventList.scrollPublisher;
 
       // Detach event
-      this.eventmanager.detachEventUnSubscribe(root, eventName);
+      this.eventManager.detachEventUnSubscribe(root, eventName);
 
       if (!prefs.allowParallax) {
         this.logger.debug('Parallax does not allowed', speed);
@@ -66,7 +66,7 @@ defineP(function defineWidgetParallax() {
        * Fetch event uuid
        * @type {String}
        */
-      var eventUUID = root.eventmanager.subscribe({
+      var eventUUID = root.eventManager.subscribe({
         event: {
           eventName: eventName,
           scope: this
@@ -101,7 +101,7 @@ defineP(function defineWidgetParallax() {
       }, true);
 
       // Store event
-      this.eventmanager.defineEventUnSubscribe(eventName, eventUUID);
+      this.eventManager.defineEventUnSubscribe(eventName, eventUUID);
     },
 
     /**

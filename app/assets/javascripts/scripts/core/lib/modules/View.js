@@ -270,7 +270,7 @@ defineP([
       var scope = this.scope;
 
       scope.observer.publish(
-          scope.eventmanager.eventList.successRenderHeader, [
+          scope.eventManager.eventList.successRenderHeader, [
             this.elements.$header,
             this.getConfigHTML('header')
           ]
@@ -308,7 +308,7 @@ defineP([
       var scope = this.scope;
 
       scope.observer.publish(
-          scope.eventmanager.eventList.successRenderFooter, [
+          scope.eventManager.eventList.successRenderFooter, [
             this.elements.$footer,
             this.getConfigHTML('footer')
           ]

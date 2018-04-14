@@ -52,7 +52,7 @@ defineP([
       }
 
       scope.layout.observer.publish(
-          scope.layout.eventmanager.eventList.beforeNestedOrganizer,
+          scope.layout.eventManager.eventList.beforeNestedOrganizer,
           silent
       );
 
@@ -70,7 +70,7 @@ defineP([
     destroyWidget: function destroyWidget(widget, silent) {
       var scope = this.scope;
       scope.observer.publish(
-          scope.eventmanager.eventList.destroyWidget,
+          scope.eventManager.eventList.destroyWidget,
           [widget, silent]
       );
     },
@@ -84,7 +84,7 @@ defineP([
     destroyWidgets: function destroyWidgets(items, silent) {
       var scope = this.scope;
       scope.observer.publish(
-          scope.eventmanager.eventList.destroyWidgets,
+          scope.eventManager.eventList.destroyWidgets,
           [items, silent]
       );
     }

@@ -123,7 +123,7 @@ defineP([
       var scope = this.scope;
 
       scope.observer.publish(
-          scope.eventmanager.eventList.createDraggable,
+          scope.eventManager.eventList.createDraggable,
           arguments
       );
     },
@@ -148,7 +148,7 @@ defineP([
       scope.wireframe.dragSticker();
 
       scope.observer.publish(
-          scope.eventmanager.eventList.startDraggable,
+          scope.eventManager.eventList.startDraggable,
           arguments
       );
     },
@@ -170,7 +170,7 @@ defineP([
       this.debugUI(event, ui);
 
       scope.observer.publish(
-          scope.eventmanager.eventList.stopDraggable,
+          scope.eventManager.eventList.stopDraggable,
           [event.type, arguments]
       );
 
@@ -194,7 +194,7 @@ defineP([
       this.debugUI(event, ui);
 
       scope.observer.publish(
-          scope.eventmanager.eventList.dragDraggable,
+          scope.eventManager.eventList.dragDraggable,
           [event.type, arguments]
       );
     }

@@ -56,7 +56,7 @@ defineP([
       );
 
       this.observer.publish(
-          this.eventmanager.eventList.afterCreateItem
+          this.eventManager.eventList.afterCreateItem
       );
     },
 
@@ -107,7 +107,7 @@ defineP([
       });
 
       scope.observer.publish(
-          scope.eventmanager.eventList.afterDestroyItems
+          scope.eventManager.eventList.afterDestroyItems
       );
     },
 
@@ -148,7 +148,7 @@ defineP([
 
       if (count === 1) {
         scope.observer.publish(
-            scope.eventmanager.eventList.afterDestroyItem
+            scope.eventManager.eventList.afterDestroyItem
         );
       }
     },
@@ -174,7 +174,7 @@ defineP([
 
       this.base.defineBoolean(silent, false, true) ?
           this.observer.publish(
-              this.eventmanager.eventList.approveItemsDestroy,
+              this.eventManager.eventList.approveItemsDestroy,
               items
           ) : this.view.destroyWidgetsModalDialog(items);
     },

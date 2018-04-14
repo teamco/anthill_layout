@@ -93,7 +93,7 @@ defineP([
     _setInteraction: function _setInteraction(interaction) {
       var scope = this.scope;
       scope.observer.publish(
-          scope.eventmanager.eventList[interaction]
+          scope.eventManager.eventList[interaction]
       );
     }
 

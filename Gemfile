@@ -111,6 +111,8 @@ gem 'sprockets'
 # gem 'cancan'
 
 gem 'puma_worker_killer'
+gem 'unicorn'
+gem 'rack-handlers'
 
 gem 'sprockets-es6'
 gem 'babel-source'

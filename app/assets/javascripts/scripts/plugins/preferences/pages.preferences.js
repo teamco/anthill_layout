@@ -580,16 +580,16 @@ defineP([
         $widget.popover('hide');
 
         scope.observer.publish(
-            scope.eventmanager.eventList.switchToActivePage
+            scope.eventManager.eventList.switchToActivePage
         );
 
         panel.observer.publish(
-            panel.eventmanager.eventList.openPanel,
+            panel.eventManager.eventList.openPanel,
             [module, e]
         );
 
         panel.observer.publish(
-            panel.eventmanager.eventList.openPanel,
+            panel.eventManager.eventList.openPanel,
             [module, e, callback]
         );
       }

@@ -49,7 +49,7 @@ defineP([
      */
     _checkCapability: function _checkCapability(capability) {
       var scope = this.scope,
-          list = scope.eventmanager.eventList,
+          list = scope.eventManager.eventList,
           name = capability.capitalize();
       if (!this.getCapability(capability)) {
         scope.logger.warn('Unauthorized capability', capability);

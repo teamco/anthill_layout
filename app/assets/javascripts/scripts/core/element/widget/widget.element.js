@@ -94,7 +94,7 @@ defineP([
           $widget.addClass(content);
 
           scope.observer.publish(
-              scope.eventmanager.eventList.disableDraggable
+              scope.eventManager.eventList.disableDraggable
           );
         });
       });
@@ -119,7 +119,7 @@ defineP([
           $widget.off('dblclick.widget');
 
           scope.observer.publish(
-              scope.eventmanager.eventList.enableDraggable
+              scope.eventManager.eventList.enableDraggable
           );
         }
       });
@@ -248,7 +248,7 @@ defineP([
       }, duration, function afterEnlarge() {
 
         scope.observer.publish(
-            scope.eventmanager.eventList.afterMaximize
+            scope.eventManager.eventList.afterMaximize
         );
 
       }.bind(scope)).addClass(this.maximize);
@@ -281,7 +281,7 @@ defineP([
       }, duration, function afterReduce() {
 
         scope.observer.publish(
-            scope.eventmanager.eventList.afterReduce
+            scope.eventManager.eventList.afterReduce
         );
 
       }.bind(scope)).removeClass(this.maximize);
@@ -381,10 +381,10 @@ defineP([
         return this._setPosition();
       }
 
-      if (stick && scope.eventmanager.isEvent(stick)) {
+      if (stick && scope.eventManager.isEvent(stick)) {
 
         scope.observer.publish(
-            scope.eventmanager.eventList[stick]
+            scope.eventManager.eventList[stick]
         );
 
       } else {
@@ -490,7 +490,7 @@ defineP([
 
       this.$.on('click.openUrl', function openUrl() {
         scope.observer.publish(
-            scope.eventmanager.eventList.openUrlOnEvent,
+            scope.eventManager.eventList.openUrlOnEvent,
             [url, false, false]
         )
       });
@@ -552,7 +552,7 @@ defineP([
         var scope = this.scope;
 
 //                scope.observer.publish(
-//                    scope.eventmanager.eventList.provideStats,
+//                    scope.eventManager.eventList.provideStats,
 //                    e
 //                );
       }

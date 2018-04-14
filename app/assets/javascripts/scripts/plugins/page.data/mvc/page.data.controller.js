@@ -72,7 +72,7 @@ defineP([
           var page = this.controller.getPage();
 
           workspacesData.observer.publish(
-              workspacesData.eventmanager.eventList.setActiveContent,
+              workspacesData.eventManager.eventList.setActiveContent,
               page.model.getUUID()
           );
 
@@ -93,7 +93,7 @@ defineP([
             var panel = this.controller.getDesignTimePanel();
 
             panel.observer.publish(
-                panel.eventmanager.eventList.closePanel,
+                panel.eventManager.eventList.closePanel,
                 panel.active
             );
 
@@ -211,7 +211,7 @@ defineP([
           this.scope.view.get$modal().selfDestroy();
 
           panel.observer.publish(
-              panel.eventmanager.eventList.openPanel, [
+              panel.eventManager.eventList.openPanel, [
                 'widget-rules', event,
                 this.prepareTriggerShowModalData.bind({
                   widget: widget,
@@ -234,7 +234,7 @@ defineP([
           var content = this.scope.activeContent;
 
           content.observer.publish(
-              content.eventmanager.eventList.executeOnWidgetEvent,
+              content.eventManager.eventList.executeOnWidgetEvent,
               'restoreLayerIndex'
           );
         },
@@ -252,7 +252,7 @@ defineP([
           var content = this.scope.activeContent;
 
           content.observer.publish(
-              content.eventmanager.eventList.executeOnWidgetEvent,
+              content.eventManager.eventList.executeOnWidgetEvent,
               'restoreWidgetSticker'
           );
         },
@@ -347,7 +347,7 @@ defineP([
               e);
 
           scope.observer.publish(
-              scope.eventmanager.eventList.openUrlOnEvent, [
+              scope.eventManager.eventList.openUrlOnEvent, [
                 url, true, false
               ]
           );

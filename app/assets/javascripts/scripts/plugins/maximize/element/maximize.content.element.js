@@ -126,7 +126,7 @@ defineP([
         e.preventDefault();
 
         scope.observer.publish(
-            scope.eventmanager.eventList.defineInteraction,
+            scope.eventManager.eventList.defineInteraction,
             data
         );
       }

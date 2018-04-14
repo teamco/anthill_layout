@@ -53,8 +53,8 @@ defineP([
           if (page) {
 
             scope.observer.batchPublish(
-                scope.eventmanager.eventList.loadContent,
-                scope.eventmanager.eventList.loadPreferences
+                scope.eventManager.eventList.loadContent,
+                scope.eventManager.eventList.loadPreferences
             );
 
             scope.logger.debug('Content start loading');
@@ -114,7 +114,7 @@ defineP([
             }
 
             widget.observer.publish(
-                widget.eventmanager.eventList.setContent,
+                widget.eventManager.eventList.setContent,
                 [Content, {
                   events: widget.contentEvents || {},
                   rules: widget.contentRules || {}
@@ -243,14 +243,14 @@ defineP([
                   ];
 
           plugin.observer.publish(
-              plugin.eventmanager.eventList.updateTranslations, [
+              plugin.eventManager.eventList.updateTranslations, [
                 translationPath.join(''),
                 function _successRenderedExtendedCallback() {
 
                   callback(plugin);
 
                   widget.observer.publish(
-                      widget.eventmanager.eventList.afterRenderContent
+                      widget.eventManager.eventList.afterRenderContent
                   );
                 }
               ]
@@ -341,7 +341,7 @@ defineP([
           this.content = new Content(this, opts);
 
           this.observer.publish(
-              this.eventmanager.eventList.afterSetContent,
+              this.eventManager.eventList.afterSetContent,
               opts
           );
         },
@@ -374,7 +374,7 @@ defineP([
           var page = this.controller.getContainment();
 
           page.observer.publish(
-              page.eventmanager.eventList.updateLoadedContent,
+              page.eventManager.eventList.updateLoadedContent,
               this
           );
         },

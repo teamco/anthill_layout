@@ -5,25 +5,30 @@
  * Time: 11:34 PM
  */
 
-defineP(['config/application'],
-    function defineApplicationPermissions(Application) {
+/**
+ * @constant Application
+ * @type {Application}
+ */
+const Application = require('../../../../scripts/core/config/application.js');
 
-      /**
-       * Define Application global permission
-       * @property Application
-       * @type {{
-       *      development: {store: boolean},
-       *      authorize: {store: boolean},
-       *      consumption: {store: boolean},
-       *      test: {store: boolean}
-       * }}
-       */
-      Application.prototype.globalPermissions = {
-        development: {store: true},
-        authorize: {store: true},
-        consumption: {store: false},
-        test: {store: false}
-      };
+module.exports = () => {
 
-      return Application;
-    });
+  /**
+   * Define Application global permission
+   * @property Application
+   * @type {{
+   *      development: {store: boolean},
+   *      authorize: {store: boolean},
+   *      consumption: {store: boolean},
+   *      test: {store: boolean}
+   * }}
+   */
+  Application.prototype.globalPermissions = {
+    development: {store: true},
+    authorize: {store: true},
+    consumption: {store: false},
+    test: {store: false}
+  };
+
+  return Application;
+};

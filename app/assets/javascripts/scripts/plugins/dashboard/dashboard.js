@@ -86,11 +86,11 @@ defineP([
     });
 
     this.observer.publish(
-        this.eventmanager.eventList.successCreated
+        this.eventManager.eventList.successCreated
     );
 
     this.observer.publish(
-        this.eventmanager.eventList.updateTranslations,
+        this.eventManager.eventList.updateTranslations,
         ['plugins/dashboard/translations/en-us']
     );
   };

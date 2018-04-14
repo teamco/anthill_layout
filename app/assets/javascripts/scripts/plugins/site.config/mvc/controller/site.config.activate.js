@@ -80,12 +80,12 @@ defineP(function defineSiteConfigActivate() {
             }
 
             root.observer.publish(
-                root.eventmanager.eventList.updateStorageVersion,
+                root.eventManager.eventList.updateStorageVersion,
                 [data.version, data.activated]
             );
 
             root.observer.publish(
-                root.eventmanager.eventList.afterUpdateStorage
+                root.eventManager.eventList.afterUpdateStorage
             );
 
             if (_.isFunction(callback)) {

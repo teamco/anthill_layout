@@ -27,7 +27,7 @@ module.exports = class MVC extends AntHill {
     /**
      * Define scope
      * @property MVC.scope
-     * @type {{eventmanager, config}}
+     * @type {{eventManager, config}}
      */
     this.scope = opts.scope || {};
 
@@ -180,7 +180,7 @@ module.exports = class MVC extends AntHill {
      * @property BaseEvent
      * @type {Object}
      */
-    this.scope.eventmanager = {};
+    this.scope.eventManager = {};
 
     Object.assign(config, this.scope.config);
 
@@ -188,10 +188,10 @@ module.exports = class MVC extends AntHill {
 
     /**
      * Define local instance of eventList
-     * @property BaseEvent.eventmanager
+     * @property BaseEvent.eventManager
      * @type {Object}
      */
-    const eventList = this.scope.eventmanager.eventList;
+    const eventList = this.scope.eventManager.eventList;
 
     if (eventList) {
 
@@ -208,8 +208,8 @@ module.exports = class MVC extends AntHill {
    * @property MVC
    */
   init() {
-    this.defineContainment();
     this.applyLogger();
+    this.defineContainment();
     this.applyConfig();
     this.applyMVC();
     this.applyEventManager();
@@ -369,6 +369,11 @@ module.exports = class MVC extends AntHill {
       scope.view.elements = {};
     }
 
+    if (!scope.controller) {
+      scope.logger.warn('Undefined controller');
+      return false;
+    }
+
     if (pattern === 'model' && scope.controller.isWidgetContent()) {
 
       /**
@@ -405,9 +410,9 @@ module.exports = class MVC extends AntHill {
   applyEventManager() {
 
     const scope = this.scope,
-        eventmanager = scope.eventmanager;
+        eventManager = scope.eventManager;
 
-    if (!eventmanager) {
+    if (!eventManager) {
 
       scope.logger.warn('Undefined Event manager');
       return false;
@@ -415,54 +420,63 @@ module.exports = class MVC extends AntHill {
 
     this.applyGlobalEvents();
 
-    eventmanager.scope = scope;
-    eventmanager.abstract = eventmanager.abstract || {};
+    eventManager.scope = scope;
+    eventManager.abstract = eventManager.abstract || {};
 
-    const eventList = eventmanager.eventList;
+    const eventList = eventManager.eventList;
 
     for (let index in eventList) {
 
       if (eventList.hasOwnProperty(index)) {
 
         const event = eventList[index];
-        let callback = scope.controller[index];
+        const controller = scope.controller;
 
-        if (!callback) {
-          let method = index.toPoint().split('.'),
-              key = method[0];
+        if (controller) {
 
-          method.shift();
-          method = ('.' + method.join('.')).toCamel();
+          let callback = controller[index];
 
-          if (this.RESERVED.hasOwnProperty(key)) {
+          if (!callback) {
+            let method = index.toPoint().split('.'),
+                key = method[0];
 
-            if (this.RESERVED[key].singular.indexOf(method) > -1) {
+            method.shift();
+            method = ('.' + method.join('.')).toCamel();
 
-              eventmanager.abstract[key + 'Item'] = index;
-              callback = scope.controller[key + 'Item'];
+            if (this.RESERVED.hasOwnProperty(key)) {
 
-            } else if (this.RESERVED[key].plural.indexOf(method) > -1) {
+              if (this.RESERVED[key].singular.indexOf(method) > -1) {
 
-              eventmanager.abstract[key + 'Items'] = index;
-              callback = scope.controller[key + 'Items'];
+                eventManager.abstract[key + 'Item'] = index;
+                callback = scope.controller[key + 'Item'];
 
-            } else {
+              } else if (this.RESERVED[key].plural.indexOf(method) > -1) {
 
-              this.scope.logger.warn('Undefined Event Callback', [scope.controller, key + method]);
+                eventManager.abstract[key + 'Items'] = index;
+                callback = scope.controller[key + 'Items'];
+
+              } else {
+
+                scope.logger.warn('Undefined Event Callback', [scope.controller, key + method]);
+              }
             }
           }
-        }
 
-        eventmanager.subscribe({
-          event: event,
-          callback: callback
-        }, true);
+          eventManager.subscribe({
+            event: event,
+            callback: callback
+          }, true);
+
+        } else {
+
+          scope.logger.warn('Controller is not defined', event);
+        }
       }
     }
 
     this.applyDefaultListeners();
 
-    scope.logger.debug('Subscribe events', eventmanager);
+    scope.logger.debug('Subscribe events', eventManager);
 
     this.applyListeners('local');
     this.applyListeners('global');
@@ -483,7 +497,7 @@ module.exports = class MVC extends AntHill {
     for (let index in listeners) {
 
       if (listeners.hasOwnProperty(index)) {
-        this.scope.eventmanager.subscribe({
+        this.scope.eventManager.subscribe({
           event: listeners[index],
           callback: this.scope.controller[index]
         }, true);
@@ -499,7 +513,7 @@ module.exports = class MVC extends AntHill {
 
     // Get scope
     const scope = this.scope,
-        eventManager = scope.eventmanager;
+        eventManager = scope.eventManager;
 
     if (scope.globalEvents) {
 
@@ -556,7 +570,7 @@ module.exports = class MVC extends AntHill {
 
           for (let i = 0, l = event.length; i < l; i++) {
 
-            scope.eventmanager.subscribe({
+            scope.eventManager.subscribe({
               event: {
                 eventName: event[i].name,
                 params: event[i].params,
@@ -592,7 +606,7 @@ module.exports = class MVC extends AntHill {
 
     /**
      * Get permissions
-     * @type {BasePermission|{capability}}
+     * @type {BasePermission|{capability, init}}
      */
     const permission = scope.permission;
 
@@ -601,16 +615,9 @@ module.exports = class MVC extends AntHill {
       return false;
     }
 
-    /**
-     * Define capability
-     * @property BasePermission
-     * @type {{}}
-     */
-    permission.capability = {};
-
     permission.config ?
-        permission.config() :
-        scope.logger.warn('Force created permissions', permission);
+        permission.init() :
+        scope.logger.warn('No permissions config', permission);
 
     scope.logger.debug('Local permissions', permission);
   }

@@ -140,7 +140,7 @@ defineP([
     this.grid = new LayoutGrid(this);
 
     this.observer.publish(
-        this.eventmanager.eventList.successCreated
+        this.eventManager.eventList.successCreated
     );
   };
 

@@ -6,823 +6,768 @@
  * To change this template use File | Settings | File Templates.
  */
 
-defineP([
-  'config/anthill',
-  'modules/CRUD'
-], function initModel(AntHill, CRUD) {
+/**
+ * @constant CRUD
+ * @type {CRUD}
+ */
+const CRUD = require('./CRUD.js');
+
+/**
+ * Define Base model
+ * @class BaseModel
+ * @extends CRUD
+ */
+module.exports = class BaseModel extends CRUD {
 
   /**
-   * Define Base model
-   * @class BaseModel
-   * @extends CRUD
-   * @extends AntHill
    * @constructor
+   * @param {string} name
    */
-  var BaseModel = function BaseModel() {
+  constructor(name) {
+    super(name || 'BaseModel');
+  }
+
+  /**
+   * Create a two way data-binding between model and controller
+   * @memberOf BaseModel
+   * @param {object} obj
+   * @param {string} property
+   * @param {function} fnCallback
+   * Example:
+   *      user = {};
+   *      inputElem = document.getElementById("foo");
+   *      bindModelInput(user,'name',inputElem);
+   *      user.name = "Joe";
+   *      alert("input value is now "+inputElem.value) //input is now
+   *     'Joe'; inputElem.value = 'Bob'; alert("user.name is now
+   *     "+user.name) //model is now 'Bob';
+   */
+  bindModelObserver(obj, property, fnCallback) {
+    Object.defineProperty(obj, property, {
+      get: function get() {
+        return fnCallback();
+      },
+      set: function set(newValue) {
+        fnCallback(newValue);
+      },
+      configurable: true
+    });
+  }
+
+  /**
+   * Get scope config
+   * @memberOf BaseModel
+   * @param {String} [key]
+   * @returns {*}
+   */
+  getConfig(key) {
+    const scope = this.scope,
+        config = scope.config;
+    let reference = scope.config;
+
+    if (this.base._.isUndefined(key)) {
+      return config;
+    }
 
     /**
-     * Define scope
-     * @property BaseModel
-     * @type {undefined}
+     * Split key by slash
+     * @type {Array}
      */
-    this.scope = undefined;
+    const path = key.split('/');
 
-    /**
-     * Define skipPreferencesOn
-     * @property BaseModel
-     * @type {undefined}
-     */
-    this.skipPreferencesOn = undefined;
+    for (let i = 0, l = path.length; i < l; i++) {
 
-    /**
-     * Define setting
-     * @property BaseModel
-     * @type {undefined}
-     */
-    this.setting = undefined;
+      /**
+       * Get config node
+       */
+      const node = path[i];
 
-    /**
-     * Define item
-     * @property BaseModel
-     * @type {undefined}
-     */
-    this.item = undefined;
-  };
+      if (reference.hasOwnProperty(node)) {
 
-  return BaseModel.extend(
-      'BaseModel', {
+        scope.logger.debug('Get config by key', node);
+        reference = reference[node];
 
-        /**
-         * Create a two way data-binding between model and controller
-         * @memberOf BaseModel
-         * @param {object} obj
-         * @param {string} property
-         * @param {function} fnCallback
-         * Example:
-         *      user = {};
-         *      inputElem = document.getElementById("foo");
-         *      bindModelInput(user,'name',inputElem);
-         *      user.name = "Joe";
-         *      alert("input value is now "+inputElem.value) //input is now
-         *     'Joe'; inputElem.value = 'Bob'; alert("user.name is now
-         *     "+user.name) //model is now 'Bob';
-         */
-        bindModelObserver: function bindModelObserver(obj, property,
-            fnCallback) {
-          Object.defineProperty(obj, property, {
-            get: function get() {
-              return fnCallback();
-            },
-            set: function set(newValue) {
-              fnCallback(newValue);
-            },
-            configurable: true
-          });
-        },
+      } else {
+        scope.logger.warn('Undefined config key', node);
+        return false;
+      }
+    }
 
-        /**
-         * Get scope config
-         * @memberOf BaseModel
-         * @param {String} [key]
-         * @returns {*}
-         */
-        getConfig: function getConfig(key) {
-          var scope = this.scope,
-              config = scope.config,
-              reference = scope.config;
+    scope.logger.debug('Get config', reference);
 
-          if (_.isUndefined(key)) {
-            return config;
-          }
+    return reference;
+  }
 
-          /**
-           * Split key by slash
-           * @type {Array}
-           */
-          var path = key.split('/');
+  /**
+   * Set scope config
+   * @memberOf BaseModel
+   * @param {String} [key]
+   * @param {*} [value]
+   * @returns {scope.config}
+   */
+  setConfig(key, value) {
 
-          for (var i = 0, l = path.length; i < l; i++) {
+    const scope = this.scope,
+        config = scope.config;
 
-            /**
-             * Get config node
-             */
-            var node = path[i];
+    if (config.hasOwnProperty(key)) {
+      scope.logger.debug('Update config', key, value);
+      config[key] = value;
+    }
 
-            if (reference.hasOwnProperty(node)) {
+    scope.logger.debug('Set config new data', key, value);
+    config[key] = value;
 
-              scope.logger.debug('Get config by key', node);
-              reference = reference[node];
+    return this.getConfig(key);
+  }
 
-            } else {
-              scope.logger.warn('Undefined config key', node);
-              return false;
-            }
-          }
+  /**
+   * Get scope namespace
+   * @memberOf BaseModel
+   * @param {*} node
+   * @returns {string}
+   */
+  getNameSpace(node) {
+    const base = this.base,
+        scope = base.isDefined(node) ? node : this.scope,
+        constructor = base.isFunction(scope) ? scope : scope.constructor;
+    return constructor.prototype.name.toLowerCase();
+  }
 
-          scope.logger.debug('Get config', reference);
+  /**
+   * Get first item
+   * @memberOf BaseModel
+   * @returns {*}
+   */
+  getFirstItem() {
 
-          return reference;
-        },
+    const items = this.getItems();
+    let item;
 
-        /**
-         * Set scope config
-         * @memberOf BaseModel
-         * @param {String} [key]
-         * @param {*} [value]
-         * @returns {scope.config}
-         */
-        setConfig: function setConfig(key, value) {
+    for (let index in items) {
+      if (items.hasOwnProperty(index)) {
 
-          var scope = this.scope,
-              config = scope.config;
+        // Get item
+        item = items[index];
 
-          if (config.hasOwnProperty(key)) {
-            scope.logger.debug('Update config', key, value);
-            config[key] = value;
-          }
+        if (item.model.getConfig('order') === 1) {
+          break;
+        }
+      }
+    }
+    return item;
+  }
 
-          scope.logger.debug('Set config new data', key, value);
-          config[key] = value;
+  /**
+   * Find item in a whole project
+   * @memberOf BaseModel
+   * @param {*} root
+   * @param {string} uuid
+   * @return {*}
+   */
+  findItemByUUID(root, uuid) {
 
-          return this.getConfig(key);
-        },
+    if (!root) {
+      this.scope.logger.error('Undefined root', root);
+    }
 
-        /**
-         * Get scope namespace
-         * @memberOf BaseModel
-         * @param {*} node
-         * @returns {string}
-         */
-        getNameSpace: function getNameSpace(node) {
-          var base = this.base,
-              scope = base.isDefined(node) ?
-                  node : this.scope,
-              constructor = base.isFunction(scope) ?
-                  scope : scope.constructor;
+    // Get child node
+    const child = root.model.getItemByUUID(uuid);
 
-          return constructor.prototype.name.toLowerCase();
-        },
+    if (child) {
+      return child;
+    }
 
-        /**
-         * Get first item
-         * @memberOf BaseModel
-         * @returns {*}
-         */
-        getFirstItem: function getFirstItem() {
+    // Get all items
+    const items = root.model.getItems();
 
-          var items = this.getItems(),
-              index, item;
+    for (let index in items) {
 
-          for (index in items) {
+      if (items.hasOwnProperty(index)) {
 
-            if (items.hasOwnProperty(index)) {
+        const item = items[index];
 
-              // Get item
-              item = items[index];
+        // Recursive search
+        const search = item.model.findItemByUUID(item, uuid);
 
-              if (item.model.getConfig('order') === 1) {
-                return item;
-              }
-            }
-          }
-        },
+        if (search) {
+          return search;
+        }
+      }
+    }
+  }
 
-        /**
-         * Find item in a whole project
-         * @memberOf BaseModel
-         * @param {*} root
-         * @param {string} uuid
-         * @return {*}
-         */
-        findItemByUUID: function findItemByUUID(root, uuid) {
+  /**
+   * Get parent items
+   * @memberOf BaseModel
+   * @returns {*}
+   */
+  getParentItems() {
+    return this.scope.controller.getContainment().items;
+  }
 
-          if (!root) {
-            this.scope.logger.error('Undefined root', root);
-          }
+  /**
+   * Get items
+   * @memberOf BaseModel
+   * @returns {*}
+   */
+  getItems() {
+    return this.scope.items;
+  }
 
-          // Get child node
-          var child = root.model.getItemByUUID(uuid);
+  /**
+   * Get all items apart of item
+   * @memberOf BaseModel
+   * @param {{model}} item
+   * @returns {Array}
+   */
+  getItemsApartOf(item) {
 
-          if (child) {
-            return child;
-          }
+    const items = this.getItems(),
+        nodes = [],
+        uuid = item.model.getUUID();
 
-          // Get all items
-          var items = root.model.getItems();
+    for (let index in items) {
 
-          for (var index in items) {
+      if (items.hasOwnProperty(index)) {
 
-            if (items.hasOwnProperty(index)) {
+        let node = items[index];
+        let nodeUUID = node.model.getUUID();
 
-              var item = items[index];
+        if (uuid !== nodeUUID) {
+          nodes.push(node);
+        }
+      }
+    }
+    return nodes;
+  }
 
-              // Recursive search
-              var search = item.model.findItemByUUID(
-                  item, uuid
-              );
+  /**
+   * Get UUID
+   * @memberOf BaseModel
+   * @param {{model, name}} [node]
+   * @returns {String}
+   */
+  getUUID(node) {
+    return this.base.isDefined(node) ?
+        node.model ? node.model.getUUID() : 'Undefined ' + node.name :
+        this.getConfig('uuid');
+  }
 
-              if (search) {
-                return search;
-              }
-            }
-          }
-        },
+  /**
+   * Get content UUID
+   * @memberOf BaseModel
+   */
+  getContentUUID() {
+    return [this.getUUID(), 'content'].join('-');
+  }
 
-        /**
-         * Get parent items
-         * @memberOf BaseModel
-         * @returns {*}
-         */
-        getParentItems: function getParentItems() {
-          return this.scope.controller.getContainment().items;
-        },
+  /**
+   * Get item from collector by UUID
+   * @memberOf BaseModel
+   * @param {string} uuid
+   * @returns {*}
+   */
+  getItemByUUID(uuid) {
 
-        /**
-         * Get items
-         * @memberOf BaseModel
-         * @returns {*}
-         */
-        getItems: function getItems() {
-          return this.scope.items;
-        },
+    const base = this.base,
+        items = this.getItems(),
+        item = items[uuid];
 
-        /**
-         * Get all items apart of item
-         * @memberOf BaseModel
-         * @param {{model}} item
-         * @returns {Array}
-         */
-        getItemsApartOf: function getItemsApartOf(item) {
+    if (base.isDefined(item)) {
+      return item;
+    }
 
-          var items = this.getItems(),
-              nodes = [], index, node, nodeUUID,
-              uuid = item.model.getUUID();
+    this.scope.logger.debug('Undefined item');
+  }
 
-          for (index in items) {
+  /**
+   * Get item from collector by title
+   * @memberOf BaseModel
+   * @param {string} title
+   * @returns {*}
+   */
+  getItemByTitle(title) {
 
-            if (items.hasOwnProperty(index)) {
+    const items = this.getItems();
 
-              node = items[index];
-              nodeUUID = node.model.getUUID();
+    for (let index in items) {
 
-              if (uuid !== nodeUUID) {
-                nodes.push(node);
-              }
-            }
-          }
-          return nodes;
-        },
+      if (items.hasOwnProperty(index)) {
 
         /**
-         * Get UUID
-         * @memberOf BaseModel
-         * @param {{model}} [node]
-         * @returns {String}
+         * Get item
+         * @type {Page|Widget|*}
          */
-        getUUID: function getUUID(node) {
-          return this.base.isDefined(node) ?
-              node.model ?
-                  node.model.getUUID() :
-                  'Undefined ' + node.name :
-              this.getConfig('uuid');
-        },
-
-        /**
-         * Get content UUID
-         * @memberOf BaseModel
-         */
-        getContentUUID: function getContentUUID() {
-          return [
-            this.getUUID(), 'content'
-          ].join('-');
-        },
-
-        /**
-         * Get item from collector by UUID
-         * @memberOf BaseModel
-         * @param {string} uuid
-         * @returns {*}
-         */
-        getItemByUUID: function getItemByUUID(uuid) {
-
-          var base = this.base,
-              items = this.getItems(),
-              item = items[uuid];
-
-          if (base.isDefined(item)) {
-            return item;
-          }
-
-          this.scope.logger.debug('Undefined item');
-        },
-
-        /**
-         * Get item from collector by title
-         * @memberOf BaseModel
-         * @param {string} title
-         * @returns {*}
-         */
-        getItemByTitle: function getItemByTitle(title) {
-
-          var items = this.getItems(),
-              index, item;
-
-          for (index in items) {
-
-            if (items.hasOwnProperty(index)) {
-
-              /**
-               * Get item
-               * @type {Page|Widget|*}
-               */
-              item = items[index];
-
-              /**
-               * Get item title
-               * @type {*|string}
-               */
-              var itemTitle = this.getItemTitle(item);
-
-              if (itemTitle &&
-                  (itemTitle.toClassName() === title.toClassName())) {
-                return item;
-              }
-            }
-          }
-
-          this.scope.logger.debug('Unable locate item by title', items, title);
-        },
-
-        /**
-         * Get current item
-         * @memberOf BaseModel
-         * @returns {*}
-         */
-        getCurrentItem: function getCurrentItem() {
-
-          var scope = this.scope,
-              sname = this.getItemNameSpace();
-
-          if (sname === 'object') {
-            scope.logger.error(
-                'Unable to locate current item'
-            );
-          }
-
-          return scope[sname];
-        },
+        const item = items[index];
 
         /**
          * Get item title
-         * @memberOf BaseModel
-         * @param {Page|Widget} [node]
-         * @returns {string}
+         * @type {*|string}
          */
-        getItemTitle: function getItemTitle(node) {
+        const itemTitle = this.getItemTitle(item);
 
-          // Reset node
-          node = node || this.scope;
-
-          /**
-           * Get prefs
-           * @type {*}
-           */
-          var preferences = node.model.getConfig('preferences') || {},
-              uuid = node.model.getUUID();
-
-          var title = this.base.define(
-              preferences.title,
-              uuid,
-              true
-          );
-
-          var resource = preferences.resource,
-              isDefault = resource ?
-                  resource.humanize().toLowerCase() === title.toLowerCase() :
-                  false;
-
-          return $.trim(title).length > 0 && !isDefault ?
-              title : uuid;
-        },
-
-        /**
-         * Reset collector
-         * @memberOf BaseModel
-         * @returns {*}
-         */
-        resetItems: function resetItems() {
-          this.scope.items = {};
-          return this.getItems();
-        },
-
-        /**
-         * Delete widget from collector
-         * @memberOf BaseModel
-         * @param uuid
-         * @returns {*}
-         */
-        deleteItem: function deleteItem(uuid) {
-          delete this.scope.controller.getContainment().items[uuid];
-          return this.getParentItems();
-        },
-
-        /**
-         * Update collector
-         * @memberOf BaseModel
-         * @param {string} uuid
-         * @param hash
-         * returns {*}
-         */
-        updateItem: function updateItem(uuid, hash) {
-          var item = this.getItemByUUID(uuid);
-          $.extend(true, item, hash);
+        if (itemTitle &&
+            (itemTitle.toClassName() === title.toClassName())) {
           return item;
-        },
+        }
+      }
+    }
+
+    this.scope.logger.debug('Unable locate item by title', items, title);
+  }
+
+  /**
+   * Get current item
+   * @memberOf BaseModel
+   * @returns {*}
+   */
+  getCurrentItem() {
+
+    const scope = this.scope,
+        sName = this.getItemNameSpace();
+
+    if (sName === 'object') {
+      scope.logger.error('Unable to locate current item');
+    }
+
+    return scope[sName];
+  }
+
+  /**
+   * Get item title
+   * @memberOf BaseModel
+   * @param {{model}} [node]
+   * @returns {string}
+   */
+  getItemTitle(node) {
+
+    // Reset node
+    node = node || this.scope;
+
+    /**
+     * Get prefs
+     * @type {*}
+     */
+    const preferences = node.model.getConfig('preferences') || {},
+        uuid = node.model.getUUID();
+
+    const title = preferences.title || uuid;
+
+    const resource = preferences.resource,
+        isDefault = resource ?
+            resource.humanize().toLowerCase() === title.toLowerCase() : false;
+
+    return title.trim().length > 0 && !isDefault ? title : uuid;
+  }
+
+  /**
+   * Reset collector
+   * @memberOf BaseModel
+   * @returns {*}
+   */
+  resetItems() {
+    this.scope.items = {};
+    return this.getItems();
+  }
+
+  /**
+   * Delete widget from collector
+   * @memberOf BaseModel
+   * @param uuid
+   * @returns {*}
+   */
+  deleteItem(uuid) {
+    delete this.scope.controller.getContainment().items[uuid];
+    return this.getParentItems();
+  }
+
+  /**
+   * Update collector
+   * @memberOf BaseModel
+   * @param {string} uuid
+   * @param hash
+   * returns {*}
+   */
+  updateItem(uuid, hash) {
+    const item = this.getItemByUUID(uuid);
+    Object.assign(item, hash);
+    return item;
+  }
+
+  /**
+   * Add item to collector
+   * @memberOf BaseModel
+   * @param {{model}} node
+   * @param {boolean} [force]
+   * @returns {*}
+   */
+  setItem(node, force) {
+    const base = this.base;
+
+    node = base.define(node, {}, true);
+    force = base.defineBoolean(force, false, true);
+
+    const uuid = node.model.getUUID(),
+        item = base.isDefined(this.getItemByUUID(uuid));
+    if (force || !item) {
+      this.getItems()[uuid] = node;
+    } else if (item) {
+      this.scope.logger.warn('Item already in collector');
+    }
+    return this.getItemByUUID(uuid);
+  }
+
+  /**
+   * Get Scope constructor name
+   * @memberOf BaseModel
+   * @returns {string}
+   */
+  getScopeName() {
+    const scope = this.scope;
+    scope.logger.debug('Get scope name', scope);
+    return scope.name;
+  }
+
+  /**
+   * Get Item constructor name
+   * @memberOf BaseModel
+   * @returns {string}
+   */
+  getItemName() {
+    this.scope.logger.debug('Get item name', this.item);
+    if (this.hasOwnProperty('item') && this.base._.isFunction(this.item)) {
+      return this.item.prototype.name;
+    }
+
+    this.scope.logger.debug('Undefined item');
+  }
+
+  /**
+   * Get Item constructor namespace
+   * @memberOf BaseModel
+   * @returns {string}
+   */
+  getItemNameSpace() {
+    return this.getItemName().toLowerCase();
+  }
+
+  /**
+   * Get items order
+   * @memberOf BaseModel
+   * @returns {*}
+   */
+  getOrder() {
+    return this.getConfig('order');
+  }
+
+  /**
+   * Set rules on loading
+   * @memberOf BaseModel
+   * @param rules
+   */
+  setRules(rules) {
+
+    /**
+     * Local rules storage
+     * @memberOf BaseModel
+     * @type {{}}
+     */
+    this.rules = rules;
+  }
+
+  /**
+   * Set Title
+   * @memberOf BaseModel
+   * @param {string} title
+   */
+  setTitle(title) {
+    this._setItemInfoPreferences('title', title);
+  }
+
+  /**
+   * Set Description
+   * @memberOf BaseModel
+   * @param {string} description
+   */
+  setDescription(description) {
+    this._setItemInfoPreferences('description', description);
+  }
+
+  /**
+   * Set item info preferences
+   * @memberOf BaseModel
+   * @param {string} index
+   * @param value
+   * @protected
+   */
+  _setItemInfoPreferences(
+      index,
+      value) {
+
+    // Get scope
+    const scope = this.scope;
+
+    if (!scope.model.getConfig('preferences')) {
+      scope.logger.warn('Root hasn\'t preferences, check field type');
+      return false;
+    }
+
+    // Update config
+    scope.config.preferences[index] = value;
+
+    scope.observer.publish(
+        scope.eventManager.eventList.afterUpdatePreferences,
+        arguments
+    );
+  }
+
+  /**
+   * Check items limit
+   * @memberOf BaseModel
+   * @param {Function} constructor
+   * @param {Number} limit
+   * @returns {boolean}
+   */
+  checkLimit(constructor, limit) {
+    const base = this.base,
+        namespace = this.getNameSpace(constructor);
+
+    limit = base.isDefined(limit) ?
+        limit :
+        this.getConfig(namespace).limit;
+
+    if (!base.isDefined(limit)) {
+      return false;
+    }
+
+    return base.lib.hash.hashLength(this.getItems()) >= limit;
+
+  }
+
+  /**
+   * Update items collector
+   * @memberOf BaseModel
+   * @param {Function} Constructor
+   * @param {{}} opts
+   * @returns {*}
+   */
+  updateCollector(Constructor, opts) {
+
+    const namespace = this.getNameSpace(Constructor),
+        scope = this.scope,
+        cname = Constructor.prototype.name,
+        base = this.base;
+
+    let node = scope[cname.toLowerCase()];
+
+    this.setConfig(namespace,
+        base.define(scope.config[namespace], {}, true));
+
+    /**
+     * Define limit
+     * @type {number}
+     */
+    const limit = this.getConfig(namespace).limit;
+
+    if (this.checkLimit(Constructor, limit)) {
+
+      scope.logger.warn(
+          cname + ': Maximum limit reached',
+          limit
+      );
+      node.model.setConfig('limit', true);
+
+    } else {
+
+      /**
+       * Init node
+       * @type {Function}
+       */
+      node = new Constructor(base.define(opts, {}, true));
+
+      if (base.isDefined(node.model)) {
+
+        this.setItem(node);
+
+      } else {
+
+        scope.logger.warn(
+            cname + ' was created with some errors',
+            node
+        );
+      }
+
+      /**
+       * Update counter
+       * @type {Number}
+       */
+      scope.config[namespace].counter =
+          base.lib.hash.hashLength(this.getItems());
+
+      node.model.setConfig('order', scope.config[namespace].counter);
+
+      /**
+       * Store item
+       * @type {*}
+       */
+      scope[cname.toLowerCase()] = node;
+
+      node.model.setConfig('limit', false);
+    }
+
+    return node;
+  }
+
+  /**
+   * Get collector
+   * @memberOf BaseModel
+   * @param {Workspace|Page|Widget|{name}} Item
+   * @returns {*}
+   */
+  getCollector(Item) {
+
+    /**
+     * Get root
+     * @type {{model}} Application
+     */
+    const root = this.scope.controller.root();
+
+    const data = root.model.setting.load(),
+        collector = this.base.define(data.collector, {}, true);
+
+    return collector[Item.name.toLowerCase()];
+  }
+
+  /**
+   * Load data
+   * @memberOf BaseModel
+   * @param {Workspace|Page|Widget} Item
+   * @param {object} collector
+   * @param {boolean} [isRoot]
+   * @returns {*}
+   */
+  loadData(Item, collector, isRoot) {
+
+    /**
+     * Check sync
+     * @param {string} uuid
+     * @param index
+     * @returns {boolean}
+     */
+    function _inContainment(uuid, index) {
+      return uuid === collector[index].containment || isRoot;
+    }
+
+    const base = this.base,
+        scope = this.scope,
+        name = Item.name.toLowerCase();
+
+    isRoot = base.defineBoolean(isRoot, false, true);
+
+    if (!base.isDefined(collector)) {
+
+      scope.logger.debug('Initial load', name);
+      scope.observer.publish(
+          scope.eventManager.eventList.afterLoadingItems
+      );
+
+      return false;
+    }
+
+    const root = scope.controller.root();
+        let counter = 0;
+
+    for (let key in collector) {
+
+      if (collector.hasOwnProperty(key) && _inContainment(this.getUUID(), key)) {
+        counter++;
+      }
+    }
+
+    // Init counter
+    root.loadingDataCounter = scope.loadingDataCounter || 0;
+    root.loadingDataCounter += counter;
+
+    for (let index in collector) {
+
+      if (collector.hasOwnProperty(index) && _inContainment(this.getUUID(), index)) {
+
+        const node = base.define(collector[index], {}, true);
+
+        // Create item
+        scope.api['create' + this.getItemName()](node, true, true);
 
         /**
-         * Add item to collector
-         * @memberOf BaseModel
-         * @param {{model}} node
-         * @param {boolean} [force]
-         * @returns {*}
+         * Define current item
+         * @type {*}
          */
-        setItem: function setItem(node, force) {
-          var base = this.base;
+        const item = scope[name];
 
-          node = base.define(node, {}, true);
-          force = base.defineBoolean(force, false, true);
+        if (item.model) {
 
-          var uuid = node.model.getUUID(),
-              item = base.isDefined(this.getItemByUUID(uuid));
-          if (force || !item) {
-            this.getItems()[uuid] = node;
-          } else if (item) {
-            this.scope.logger.warn('Item already in collector');
+          if (isRoot && node.containment) {
+            scope.controller.loadConfig(node.containment);
           }
-          return this.getItemByUUID(uuid);
-        },
-
-        /**
-         * Get Scope constructor name
-         * @memberOf BaseModel
-         * @returns {string}
-         */
-        getScopeName: function getScopeName() {
-          var scope = this.scope;
-          scope.logger.debug('Get scope name', scope);
-          return scope.name;
-        },
-
-        /**
-         * Get Item constructor name
-         * @memberOf BaseModel
-         * @returns {string}
-         */
-        getItemName: function getItemName() {
-          this.scope.logger.debug('Get item name', this.item);
-          if (this.hasOwnProperty('item') && _.isFunction(this.item)) {
-            return this.item.prototype.name;
-          }
-
-          this.scope.logger.debug('Undefined item');
-        },
-
-        /**
-         * Get Item constructor namespace
-         * @memberOf BaseModel
-         * @returns {string}
-         */
-        getItemNameSpace: function getItemNameSpace() {
-          return this.getItemName().toLowerCase();
-        },
-
-        /**
-         * Get items order
-         * @memberOf BaseModel
-         * @returns {*}
-         */
-        getOrder: function getOrder() {
-          return this.getConfig('order');
-        },
-
-        /**
-         * Set rules on loading
-         * @memberOf BaseModel
-         * @param rules
-         */
-        setRules: function setRules(rules) {
 
           /**
-           * Local rules storage
-           * @memberOf BaseModel
-           * @type {{}}
-           */
-          this.rules = rules;
-        },
-
-        /**
-         * Set Title
-         * @memberOf BaseModel
-         * @param {string} title
-         */
-        setTitle: function setTitle(title) {
-          this._setItemInfoPreferences('title', title);
-        },
-
-        /**
-         * Set Description
-         * @memberOf BaseModel
-         * @param {string} description
-         */
-        setDescription: function setDescription(description) {
-          this._setItemInfoPreferences('description', description);
-        },
-
-        /**
-         * Set item info preferences
-         * @memberOf BaseModel
-         * @param {string} index
-         * @param value
-         * @protected
-         */
-        _setItemInfoPreferences: function _setItemInfoPreferences(index,
-            value) {
-
-          // Get scope
-          var scope = this.scope;
-
-          if (!scope.model.getConfig('preferences')) {
-            scope.logger.warn('Root hasn\'t preferences, check field type');
-            return false;
-          }
-
-          // Update config
-          scope.config.preferences[index] = value;
-
-          scope.observer.publish(
-              scope.eventmanager.eventList.afterUpdatePreferences,
-              arguments
-          );
-        },
-
-        /**
-         * Check items limit
-         * @memberOf BaseModel
-         * @param {Function} constructor
-         * @param {Number} limit
-         * @returns {boolean}
-         */
-        checkLimit: function checkLimit(constructor, limit) {
-          var base = this.base,
-              namespace = this.getNameSpace(constructor);
-
-          limit = base.isDefined(limit) ?
-              limit :
-              this.getConfig(namespace).limit;
-
-          if (!base.isDefined(limit)) {
-            return false;
-          }
-
-          return base.lib.hash.hashLength(this.getItems()) >= limit;
-
-        },
-
-        /**
-         * Update items collector
-         * @memberOf BaseModel
-         * @param {Function} Constructor
-         * @param {{}} opts
-         * @returns {*}
-         */
-        updateCollector: function updateCollector(Constructor, opts) {
-
-          var namespace = this.getNameSpace(Constructor),
-              scope = this.scope,
-              cname = Constructor.prototype.name,
-              node = scope[cname.toLowerCase()],
-              base = this.base;
-
-          this.setConfig(namespace,
-              base.define(scope.config[namespace], {}, true));
-
-          /**
-           * Define limit
+           * Reduce counter
+           * @memberOf Application
            * @type {number}
            */
-          var limit = this.getConfig(namespace).limit;
+          root.loadingDataCounter -= 1;
 
-          if (this.checkLimit(Constructor, limit)) {
+          // Get child item
+          const child = item.model.item;
 
-            scope.logger.warn(
-                cname + ': Maximum limit reached',
-                limit
-            );
-            node.model.setConfig('limit', true);
+          if (child) {
+
+            /**
+             * Get fn name
+             * @type {string}
+             */
+            const fName = 'load' + child.prototype.name + 's';
+
+            typeof item.model[fName] === 'function' ?
+                item.model[fName].apply(item.model) :
+                item.logger.warn('Unable execute model method', fName);
 
           } else {
 
-            /**
-             * Init node
-             * @type {Function}
-             */
-            node = new Constructor(base.define(opts, {}, true));
-
-            if (base.isDefined(node.model)) {
-
-              this.setItem(node);
-
-            } else {
-
-              scope.logger.warn(
-                  cname + ' was created with some errors',
-                  node
-              );
-            }
-
-            /**
-             * Update counter
-             * @type {Number}
-             */
-            scope.config[namespace].counter =
-                base.lib.hash.hashLength(this.getItems());
-
-            node.model.setConfig('order', scope.config[namespace].counter);
-
-            /**
-             * Store item
-             * @type {*}
-             */
-            scope[cname.toLowerCase()] = node;
-
-            node.model.setConfig('limit', false);
+            item.logger.debug('Node with no items', item);
           }
-
-          return node;
-        },
-
-        /**
-         * Get collector
-         * @memberOf BaseModel
-         * @param {Workspace|Page|Widget} Item
-         * @returns {*}
-         */
-        getCollector: function getCollector(Item) {
-
-          /**
-           * Get root
-           * @type Application
-           */
-          var root = this.scope.controller.root();
-
-          var data = root.model.setting.load(),
-              collector = this.base.define(data.collector, {}, true);
-
-          return collector[Item.prototype.name.toLowerCase()];
-        },
-
-        /**
-         * Load data
-         * @memberOf BaseModel
-         * @param {Workspace|Page|Widget} Item
-         * @param {object} collector
-         * @param {boolean} [isRoot]
-         * @returns {*}
-         */
-        loadData: function loadData(Item, collector, isRoot) {
-
-          /**
-           * Check sync
-           * @param index
-           * @returns {boolean}
-           */
-          function _inContainment(index) {
-            return this.getUUID() === collector[index].containment || isRoot;
-          }
-
-          var index, node,
-              base = this.base,
-              scope = this.scope,
-              name = Item.prototype.name.toLowerCase();
-
-          isRoot = base.defineBoolean(isRoot, false, true);
-
-          if (!base.isDefined(collector)) {
-
-            scope.logger.debug('Initial load', name);
-            scope.observer.publish(
-                scope.eventmanager.eventList.afterLoadingItems
-            );
-
-            return false;
-          }
-
-          var root = scope.controller.root(),
-              key, counter = 0;
-
-          for (key in collector) {
-
-            if (collector.hasOwnProperty(key) &&
-                _inContainment.bind(this)(key)) {
-              counter++;
-            }
-          }
-
-          // Init counter
-          root.loadingDataCounter =
-              base.define(scope.loadingDataCounter, 0, true);
-          root.loadingDataCounter += counter;
-
-          for (index in collector) {
-
-            if (collector.hasOwnProperty(index) &&
-                _inContainment.bind(this)(index)) {
-
-              node = base.define(collector[index], {}, true);
-
-              // Create item
-              scope.api['create' + this.getItemName()](
-                  node, true, true
-              );
-
-              /**
-               * Define current item
-               * @type {*}
-               */
-              var item = scope[name];
-
-              if (item.model) {
-
-                if (isRoot && node.containment) {
-                  scope.controller.loadConfig(node.containment);
-                }
-
-                /**
-                 * Reduce counter
-                 * @memberOf Application
-                 * @type {number}
-                 */
-                root.loadingDataCounter -= 1;
-
-                // Get child item
-                var child = item.model.item;
-
-                if (child) {
-
-                  /**
-                   * Get fn name
-                   * @type {string}
-                   */
-                  var fName = 'load' + child.prototype.name + 's';
-
-                  typeof item.model[fName] === 'function' ?
-                      item.model[fName].apply(item.model) :
-                      item.logger.warn('Unable execute model method', fName);
-
-                } else {
-
-                  item.logger.debug('Node with no items', item);
-                }
-              }
-            }
-          }
-
-          if (!root.loadingDataCounter && scope === root) {
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.afterLoadingItems
-            );
-          }
-
-          return collector;
-        },
-
-        /**
-         * Check if transfer preferences should be skipped
-         * @memberOf BaseModel
-         * @param {string} index
-         * @returns {boolean}
-         */
-        checkSkipPreferencesOn: function checkSkipPreferencesOn(index) {
-
-          /**
-           * Define skipTransfer
-           * @type {boolean}
-           */
-          var skipTransfer = this.skipPreferencesOn &&
-              this.skipPreferencesOn.indexOf(index) > -1;
-
-          if (skipTransfer) {
-            this.scope.logger.debug(
-                'Transfer preferences should be skipped'
-            );
-          }
-
-          return skipTransfer;
         }
+      }
+    }
 
-      },
-      AntHill.prototype,
-      CRUD.prototype
-  );
-});
+    if (!root.loadingDataCounter && scope === root) {
+      scope.observer.publish(scope.eventManager.eventList.afterLoadingItems);
+    }
+
+    return collector;
+  }
+
+  /**
+   * Check if transfer preferences should be skipped
+   * @memberOf BaseModel
+   * @param {string} index
+   * @returns {boolean}
+   */
+  checkSkipPreferencesOn(index) {
+
+    /**
+     * Define skipTransfer
+     * @type {boolean}
+     */
+    const skipTransfer = this.skipPreferencesOn &&
+        this.skipPreferencesOn.indexOf(index) > -1;
+
+    if (skipTransfer) {
+      this.scope.logger.debug(
+          'Transfer preferences should be skipped'
+      );
+    }
+
+    return skipTransfer;
+  }
+}

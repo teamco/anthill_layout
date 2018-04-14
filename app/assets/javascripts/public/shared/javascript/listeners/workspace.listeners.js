@@ -134,7 +134,7 @@ defineP([
           callback: function() {
 
             this.observer.publish(
-                this.eventmanager.eventList.createDesignTimePanel
+                this.eventManager.eventList.createDesignTimePanel
             );
 
           }.bind(this)
@@ -145,7 +145,7 @@ defineP([
           callback: function() {
 
             this.observer.publish(
-                this.eventmanager.eventList.createRunTimePanel
+                this.eventManager.eventList.createRunTimePanel
             );
 
           }.bind(this)

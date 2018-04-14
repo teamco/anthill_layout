@@ -203,7 +203,7 @@ defineP([
     this.expanded = false;
 
     this.observer.publish(
-        this.eventmanager.eventList.successCreated
+        this.eventManager.eventList.successCreated
     );
   };
 

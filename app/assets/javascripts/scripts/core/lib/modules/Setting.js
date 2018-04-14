@@ -1,17 +1,29 @@
-defineP([
-  'config/anthill',
-  'modules/Router'
-], function defineSetting(AntHill, Router) {
+/**
+ * @constant Router
+ * @type {Router}
+ */
+const Router = require('./Router.js');
+
+/**
+ * @constant LZString
+ */
+const LZString = require('../lz-string.js');
+
+/**
+ * Define Setting
+ * @class Setting
+ * @extends Router
+ */
+module.exports = class Setting extends Router {
 
   /**
-   * Define Setting
-   * @class Setting
    * @param {*} scope
    * @param {String} name
    * @constructor
-   * @extends AntHill
    */
-  var Setting = function Setting(scope, name) {
+  constructor(scope, name) {
+
+    super(name || 'Setting', scope);
 
     /**
      * Define scope
@@ -30,7 +42,10 @@ defineP([
     /**
      * Define storage modes
      * @property Setting
-     * @type {{localStorage: Storage, serverStorage: Storage}}
+     * @type {{
+     *    localStorage: Storage,
+     *    serverStorage: {setting: Setting, setItem: Function, getItem: Function, clear: Function}
+     * }}
      */
     this.STORAGE_MODES = {
       localStorage: window.localStorage,
@@ -41,11 +56,11 @@ defineP([
      * Define setting storage
      * @property Setting
      * @type {{
-         *      development: Storage,
-         *      authorize: Storage,
-         *      consumption: Storage,
-         *      test: Storage
-         * }}
+     *    development: {setting: Setting, setItem: Function, getItem: Function, clear: Function},
+     *    authorize: {setting: Setting, setItem: Function, getItem: Function, clear: Function},
+     *    consumption: {setting: Setting, setItem: Function, getItem: Function, clear: Function},
+     *    test: Storage
+     * }}
      */
     this.storage = {
       development: this.STORAGE_MODES.serverStorage,
@@ -63,399 +78,393 @@ defineP([
 
     this.activateOnSave(false);
 
-    /**
-     * Get storage namespace
-     * @property Setting
-     * @returns {String}
-     */
-    this.getNameSpace = function getNameSpace() {
-      return name;
-    };
-
     this.init();
-  };
+    this._name = name;
+  }
 
-  return Setting.extend('Setting', {
+  /**
+   * @method getNameSpace
+   * @property Setting
+   * @return {String|*}
+   */
+  getNameSpace() {
+    return this._name;
+  }
 
-    /**
-     * Activate on save
-     * @memberOf Setting
-     * @param {boolean} activate
-     */
-    activateOnSave: function activateOnSave(activate) {
-
-      /**
-       * Define activate
-       * @property Setting
-       * @type {boolean}
-       */
-      this.activate = activate;
-    },
-
-    /**
-     * Set initial state
-     * @memberOf Setting
-     * @param {boolean} state
-     */
-    setInitialState: function setInitialState(state) {
-
-      /**
-       * Change state
-       * @property Setting
-       * @type {boolean}
-       */
-      this.initial = state;
-    },
+  /**
+   * Activate on save
+   * @property Setting
+   * @param {boolean} activate
+   */
+  activateOnSave(activate) {
 
     /**
-     * Get initial state
-     * @memberOf Setting
-     * @returns {boolean}
+     * Define activate
+     * @property Setting
+     * @type {boolean}
      */
-    getInitialState: function getInitialState() {
-      return this.initial;
-    },
+    this.activate = activate;
+  }
+
+  /**
+   * Set initial state
+   * @property Setting
+   * @param {boolean} state
+   */
+  setInitialState(state) {
 
     /**
-     * Get token
-     * @memberOf Setting
-     * @returns {String}
+     * Change state
+     * @property Setting
+     * @type {boolean}
      */
-    getToken: function getToken() {
-      return this.token;
-    },
+    this.initial = state;
+  }
+
+  /**
+   * Get initial state
+   * @property Setting
+   * @returns {boolean}
+   */
+  getInitialState() {
+    return this.initial;
+  }
+
+  /**
+   * Get token
+   * @property Setting
+   * @returns {String}
+   */
+  getToken() {
+    return this.token;
+  }
+
+  /**
+   * Init storage
+   * @property Setting
+   */
+  init() {
+
+    this.setInitialState(true);
 
     /**
-     * Init storage
-     * @memberOf Setting
+     * Load storage
+     * @property Setting
+     * @type {{token: string}}
      */
-    init: function init() {
-
-      this.setInitialState(true);
-
-      /**
-       * Load storage
-       * @memberOf Setting
-       * @type {{token: string}}
-       */
-      var storage = this.load();
-
-      /**
-       * Define base
-       * @type {*}
-       */
-      var base = this.base;
-
-      if (!base.isDefined(storage.token)) {
-
-        /**
-         * Define token
-         * @property Setting
-         * @type {String}
-         */
-        this.token = base.lib.generator.UUID();
-
-        this.save(storage);
-      }
-
-      this.setInitialState(false);
-    },
+    const storage = this.load();
 
     /**
-     * Clear local storage
-     * @memberOf Setting
+     * Define base
+     * @type {*}
      */
-    clear: function clear() {
-      this.getStorage().clear();
-    },
+    const base = this.base;
 
-    /**
-     * Get Storage
-     * @memberOf Setting
-     * @method getStorage
-     * @returns {*}
-     */
-    getStorage: function getStorage() {
-
-      /**
-       * Define storage
-       * @type {*}
-       */
-      var storage = this.storage[this.mode];
-
-      if (this.getInitialState() || this.scope.model.getConfig('loading')) {
-        storage = this.cache;
-      }
-
-      return storage;
-    },
-
-    /**
-     * Import data
-     * @memberOf Setting
-     * @param data
-     * @param {boolean} activate
-     */
-    importData: function importData(data, activate) {
-      this.activateOnSave(activate);
-      this.updateData(data);
-    },
-
-    /**
-     * Update data
-     * @memberOf Setting
-     * @param data
-     */
-    updateData: function updateData(data) {
-
-      /**
-       * Set data
-       * @type {*}
-       */
-      this.getStorage().setItem(
-          this.getNameSpace(),
-          this.compress(
-              JSON.stringify(data)
-          )
-      );
-    },
-
-    /**
-     * Save
-     * @memberOf Setting
-     * @param [opts]
-     */
-    save: function save(opts) {
-
-      /**
-       * Init opts
-       * @type {*}
-       */
-      opts = this.base.define(opts, {}, true);
-
-      var data = this.load(),
-          _dt = this.base.lib.datetime;
-
-      if (this.base.isDefined(data.createdAt)) {
-
-        /**
-         * Load created at
-         * @type {*}
-         */
-        opts.createdAt = data.createdAt;
-
-      } else {
-
-        /**
-         * Define created at
-         * @type {*}
-         */
-        opts.createdAt = _dt.timestamp();
-      }
-
-      /**
-       * Define updated at
-       * @type {*}
-       */
-      opts.updatedAt = _dt.timestamp();
+    if (!base.isDefined(storage.token)) {
 
       /**
        * Define token
-       * @type {*}
+       * @property Setting
+       * @type {String}
        */
-      opts.token = this.token;
+      this.token = base.lib.generator.UUID();
 
-      this.importData(opts, false);
-      this.scope.logger.debug('Save', opts);
-    },
-
-    /**
-     * Load
-     * @memberOf Setting
-     */
-    load: function load() {
-
-      /**
-       * Define compressed data
-       * @type {string|*}
-       */
-      var compressed = this.getStorage().getItem(
-          this.getNameSpace()
-      ), data;
-
-      try {
-
-        /**
-         * Define data
-         * @type {*}
-         */
-        data = JSON.parse(
-            this.decompress(compressed) || '{}'
-        );
-
-      } catch (e) {
-
-        this.scope.logger.warn('Unable to parse JSON', e);
-        data = {};
-      }
-
-      this.scope.logger.debug('Load', data);
-      return data;
-    },
-
-    /**
-     * Compress json
-     * @memberOf Setting
-     * @param {string} json
-     * @returns {string}
-     */
-    compress: function compress(json) {
-      this.scope.logger.debug('compress', json);
-      return LZString.compressToBase64(json);
-    },
-
-    /**
-     * Decompress json
-     * @memberOf Setting
-     * @param {string} compress
-     * @returns {string}
-     */
-    decompress: function decompress(compress) {
-      this.scope.logger.debug('decompress', compress);
-      return LZString.decompressFromBase64(compress);
-    },
-
-    /**
-     * Define server side storage
-     * @memberOf Setting
-     * @type {function}
-     * @method serverStorage
-     * @returns {{
-     *      setting: Setting,
-     *      setItem: Function,
-     *      getItem: Function
-     *      clear: Function
-     * }}
-     */
-    serverStorage: function serverStorage() {
-
-      return {
-
-        /**
-         * Define scope
-         * @type {Setting}
-         */
-        setting: this,
-
-        /**
-         * Set storage item
-         * @memberOf {STORAGE_MODES}
-         */
-        setItem: function setItem(key, value) {
-
-          function _send(opts) {
-            $.ajax(opts).done(
-                function _done(data, type, xhr) {
-
-                  setting.cache.setItem(key, value);
-                  setting.activateOnSave(false);
-
-                  scope.logger.debug(data.notice, arguments);
-
-                  scope.observer.publish(
-                      scope.eventmanager.eventList.updateStorageVersion,
-                      [data.version, data.activated]
-                  );
-
-                  scope.observer.publish(
-                      scope.eventmanager.eventList.afterUpdateStorage
-                  );
-                }
-            );
-          }
-
-          /**
-           * Get setting
-           * @type {Setting}
-           */
-          var setting = this.setting;
-
-          /**
-           * Get scope
-           * @type {Application}
-           */
-          var scope = setting.scope;
-
-          /**
-           * Get create update site route
-           * @type {string[]}
-           */
-          var route = scope.config.routes.updateSiteContent;
-
-          // Define opts
-          var opts = {
-
-            dataType: 'json',
-
-            url: route[0] + key,
-            method: route[1],
-            timeout: 30000,
-
-            data: scope.controller.prepareXhrData({
-              author_site_storage: {
-                content: value
-              },
-              mode: this.setting.mode,
-              activate: this.setting.activate
-            })
-          };
-
-          setting.makeScreenshot(
-              !scope.controller.isDevelopmentMode(),
-              document.body,
-              function _makeScreenshot(imgSrc) {
-                opts.data.screenshot = imgSrc;
-                _send(opts);
-              }
-          );
-        },
-
-        /**
-         * Get storage item
-         * @memberOf {STORAGE_MODES}
-         * @return {string}
-         */
-        getItem: function getItem(key) {
-
-          /**
-           * Get cached data
-           * @type {string}
-           */
-          return this.setting.cache.getItem(key);
-        },
-
-        /**
-         * Clear storage
-         * @memberOf {STORAGE_MODES}
-         */
-        clear: function clear() {
-          this.setting.save();
-        }
-      };
-    },
-
-    /**
-     * Define screenshot maker
-     * @memberOf Setting
-     * @param {boolean} make
-     * @param [domElement]
-     * @param {function} callback
-     */
-    makeScreenshot: function makeScreenshot(make, domElement, callback) {
-      make ?
-          this.base.lib.image.resizeThumbnail(domElement, callback) :
-          callback();
+      this.save(storage);
     }
 
-  }, AntHill.prototype, Router);
-});
+    this.setInitialState(false);
+  }
+
+  /**
+   * Clear local storage
+   * @property Setting
+   */
+  clear() {
+    this.getStorage().clear();
+  }
+
+  /**
+   * Get Storage
+   * @property Setting
+   * @method getStorage
+   * @returns {*}
+   */
+  getStorage() {
+
+    /**
+     * Define storage
+     * @type {*}
+     */
+    let storage = this.storage[this.mode];
+
+    if (this.getInitialState() || this.scope.model.getConfig('loading')) {
+      storage = this.cache;
+    }
+
+    return storage;
+  }
+
+  /**
+   * Import data
+   * @property Setting
+   * @param data
+   * @param {boolean} activate
+   */
+  importData(data, activate) {
+    this.activateOnSave(activate);
+    this.updateData(data);
+  }
+
+  /**
+   * Update data
+   * @property Setting
+   * @param data
+   */
+  updateData(data) {
+
+    /**
+     * Set data
+     * @type {*}
+     */
+    this.getStorage().setItem(
+        this.getNameSpace(),
+        this.compress(
+            JSON.stringify(data)
+        )
+    );
+  }
+
+  /**
+   * Save
+   * @property Setting
+   * @param [opts]
+   */
+  save(opts) {
+
+    /**
+     * Init opts
+     * @type {*}
+     */
+    opts = opts || {};
+
+    const data = this.load(),
+        _dt = this.base.lib.datetime;
+
+    if (data.createdAt) {
+
+      /**
+       * Load created at
+       * @type {*}
+       */
+      opts.createdAt = data.createdAt;
+
+    } else {
+
+      /**
+       * Define created at
+       * @type {*}
+       */
+      opts.createdAt = _dt.timestamp();
+    }
+
+    /**
+     * Define updated at
+     * @type {*}
+     */
+    opts.updatedAt = _dt.timestamp();
+
+    /**
+     * Define token
+     * @type {*}
+     */
+    opts.token = this.token;
+
+    this.importData(opts, false);
+    this.scope.logger.debug('Save', opts);
+  }
+
+  /**
+   * Load
+   * @property Setting
+   */
+  load() {
+
+    /**
+     * Define compressed data
+     * @type {string|*}
+     */
+    const compressed = this.getStorage().getItem(
+        this.getNameSpace()
+    );
+    let data;
+
+    try {
+
+      /**
+       * Define data
+       * @type {*}
+       */
+      data = JSON.parse(
+          this.decompress(compressed) || '{}'
+      );
+
+    } catch (e) {
+
+      this.scope.logger.warn('Unable to parse JSON', e);
+      data = {};
+    }
+
+    this.scope.logger.debug('Load', data);
+    return data;
+  }
+
+  /**
+   * Compress json
+   * @property Setting
+   * @param {string} json
+   * @returns {string}
+   */
+  compress(json) {
+    this.scope.logger.debug('compress', json);
+    return LZString.compressToBase64(json);
+  }
+
+  /**
+   * Decompress json
+   * @property Setting
+   * @param {string} compress
+   * @returns {string}
+   */
+  decompress(compress) {
+    this.scope.logger.debug('decompress', compress);
+    return LZString.decompressFromBase64(compress);
+  }
+
+  /**
+   * Define server side storage
+   * @property Setting
+   * @type {function}
+   * @method serverStorage
+   * @return {*}
+   */
+  serverStorage() {
+
+    return {
+
+      /**
+       * Define setting
+       */
+      setting: this,
+
+      /**
+       * Set storage item
+       * @property {STORAGE_MODES}
+       */
+      setItem(key, value) {
+
+        /**
+         * @method _send
+         * @param opts
+         * @private
+         */
+        function _send(opts) {
+          $.ajax(opts).done(
+              function _done(data, type, xhr) {
+
+                setting.cache.setItem(key, value);
+                setting.activateOnSave(false);
+
+                scope.logger.debug(data.notice, arguments);
+
+                scope.observer.publish(
+                    scope.eventManager.eventList.updateStorageVersion,
+                    [data.version, data.activated]
+                );
+
+                scope.observer.publish(scope.eventManager.eventList.afterUpdateStorage);
+              }
+          );
+        }
+
+        /**
+         * Get setting
+         * @type {Setting}
+         */
+        const setting = this.setting;
+
+        /**
+         * Get scope
+         * @type {Application|{controller, eventManager}}
+         */
+        const scope = setting.scope;
+
+        /**
+         * Get create update site route
+         * @type {string[]}
+         */
+        const route = scope.config.routes.updateSiteContent;
+
+        // Define opts
+        const opts = {
+
+          dataType: 'json',
+
+          url: route[0] + key,
+          method: route[1],
+          timeout: 30000,
+
+          data: scope.controller.prepareXhrData({
+            author_site_storage: {
+              content: value
+            },
+            mode: this.setting.mode,
+            activate: this.setting.activate
+          })
+        };
+
+        setting.makeScreenshot(
+            !scope.controller.isDevelopmentMode(),
+            document.body,
+            imgSrc => {
+              opts.data.screenshot = imgSrc;
+              _send(opts);
+            }
+        );
+      },
+
+      /**
+       * Get storage item
+       * @property {STORAGE_MODES}
+       * @return {string}
+       */
+      getItem(key) {
+
+        /**
+         * Get cached data
+         * @type {string}
+         */
+        return this.setting.cache.getItem(key);
+      },
+
+      /**
+       * Clear storage
+       * @property {STORAGE_MODES}
+       */
+      clear() {
+        this.setting.save();
+      }
+    };
+  }
+
+  /**
+   * Define screenshot maker
+   * @property Setting
+   * @param {boolean} make
+   * @param [domElement]
+   * @param {function} callback
+   */
+  makeScreenshot(make, domElement, callback) {
+    make ? this.base.lib.image.resizeThumbnail(domElement, callback) : callback();
+  }
+
+};

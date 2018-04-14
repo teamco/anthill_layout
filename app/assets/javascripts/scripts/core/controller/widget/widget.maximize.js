@@ -71,7 +71,7 @@ defineP(function defineWidgetMaximize() {
       }
 
       scope.observer.publish(
-          scope.eventmanager.eventList.beforeReduce
+          scope.eventManager.eventList.beforeReduce
       );
 
       setTimeout(function () {
@@ -104,7 +104,7 @@ defineP(function defineWidgetMaximize() {
       }
 
       scope.observer.publish(
-          scope.eventmanager.eventList.beforeMaximize
+          scope.eventManager.eventList.beforeMaximize
       );
 
       setTimeout(function () {
@@ -127,12 +127,12 @@ defineP(function defineWidgetMaximize() {
       var page = this.controller.getContainment();
 
       page.observer.publish(
-          page.eventmanager.eventList.disableItemInteractions,
+          page.eventManager.eventList.disableItemInteractions,
           this
       );
 
       page.observer.publish(
-          page.eventmanager.eventList.updateHashOnMaximize,
+          page.eventManager.eventList.updateHashOnMaximize,
           this
       );
 
@@ -162,11 +162,11 @@ defineP(function defineWidgetMaximize() {
       var page = this.controller.getContainment();
 
       page.observer.publish(
-          page.eventmanager.eventList.enableItemInteractions
+          page.eventManager.eventList.enableItemInteractions
       );
 
       page.observer.publish(
-          page.eventmanager.eventList.updateHashOnReduce,
+          page.eventManager.eventList.updateHashOnReduce,
           this
       );
     },
