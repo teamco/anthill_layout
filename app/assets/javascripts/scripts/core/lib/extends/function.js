@@ -88,7 +88,7 @@
 
       /**
        * Get function name
-       * @returns {String}
+       * @returns {string}
        */
       get: function get() {
         var funcNameRegex = /function\s+(.{1,})\s*\(/,

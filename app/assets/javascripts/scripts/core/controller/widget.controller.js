@@ -234,7 +234,7 @@ defineP(
                  *      [type]: String
                  *      $source
                  * }} opts
-             * @param {String} type
+             * @param {string} type
              */
             behaviorMode: function behaviorMode(opts, type) {
 
@@ -246,7 +246,7 @@ defineP(
 
               /**
                * Set event type
-               * @type {String}
+               * @type {string}
                */
               opts.type = type;
 

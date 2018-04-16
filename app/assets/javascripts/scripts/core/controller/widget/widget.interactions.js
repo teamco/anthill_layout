@@ -112,7 +112,7 @@ defineP([
     /**
      * Get Interaction
      * @memberOf WidgetInteractions
-     * @param {String} event
+     * @param {string} event
      * @returns {*}
      */
     getInteraction: function getInteraction(event) {
@@ -186,7 +186,7 @@ defineP([
     /**
      * Debug interactions
      * @memberOf WidgetInteractions
-     * @param {String} interaction
+     * @param {string} interaction
      */
     debugInteractions: function debugInteractions(interaction) {
       this.logger.debug('Debug interactions', interaction);
@@ -211,7 +211,7 @@ defineP([
     /**
      * Grid sticker on drag
      * @memberOf WidgetInteractions
-     * @param {String} type
+     * @param {string} type
      */
     dragDraggable: function dragDraggable(type) {
 
@@ -228,7 +228,7 @@ defineP([
     /**
      * Stop drag
      * @memberOf WidgetInteractions
-     * @param {String} type
+     * @param {string} type
      */
     stopDraggable: function stopDraggable(type) {
 
@@ -245,7 +245,7 @@ defineP([
     /**
      * Create resize
      * @memberOf WidgetInteractions
-     * @param {String} type
+     * @param {string} type
      */
     createResizable: function createResizable(type) {
       this.logger.debug('Create resize', arguments);
@@ -254,7 +254,7 @@ defineP([
     /**
      * Resize start
      * @memberOf WidgetInteractions
-     * @param {String} type
+     * @param {string} type
      */
     startResizable: function startResizable(type) {
       this.logger.debug('Start resize', arguments);
@@ -263,7 +263,7 @@ defineP([
     /**
      * Grid sticker on resize
      * @memberOf WidgetInteractions
-     * @param {String} type
+     * @param {string} type
      */
     resizeResizable: function resizeResizable(type) {
 
@@ -280,7 +280,7 @@ defineP([
     /**
      * Resize stop
      * @memberOf WidgetInteractions
-     * @param {String} type
+     * @param {string} type
      * @param {*} [opts]
      * @param [args]
      */

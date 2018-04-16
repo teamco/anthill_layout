@@ -35,26 +35,14 @@ module.exports = class Workspace extends AntHill {
     /**
      * Define default config
      * @type {{
-     *      preferences: {},
-     *      limit: boolean,
-     *      SEOSeparator: string,
-     *      isResized: boolean,
-     *      type: string,
-     *      order: number,
-     *      page: {
-     *          counter: number,
-     *          limit: number,
-     *          animate: boolean,
-     *          onDestroyShowPrevious: boolean
-     *      },
-     *      html: {
-     *          style: string,
-     *          header: boolean,
-     *          footer: boolean,
-     *          stretch: boolean,
-     *          padding: {top: number, right: number, bottom: number,
-     *     left: number}
-     *      }
+     *  preferences: (*|{staticWidth: boolean, siteWidthSlider: string}),
+     *  SEOSeparator: string,
+     *  limit: boolean,
+     *  isResized: boolean,
+     *  type: string,
+     *  order: number,
+     *  page: {plural: boolean, counter: number, limit: number, animateSwipe: boolean, showInTabs: boolean, onDestroyShowPrevious: boolean},
+     *  html: {style: string, header: boolean, footer: boolean, stretch: boolean, padding: {top: number, right: number, bottom: number, left: number}}
      * }}
      */
     const DEFAULTS = {
@@ -91,12 +79,7 @@ module.exports = class Workspace extends AntHill {
       }
     };
 
-    /**
-     * Define MVC
-     * @property Workspace
-     * @type {MVC}
-     */
-    this.mvc = new MVC({
+    new MVC({
       scope: this,
       config: [opts.config, DEFAULTS],
       components: [
@@ -147,6 +130,5 @@ module.exports = class Workspace extends AntHill {
     //     this.eventManager.eventList.bindHashChange
     // );
   }
-
 };
  

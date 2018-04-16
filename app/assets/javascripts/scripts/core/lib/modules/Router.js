@@ -19,7 +19,7 @@ module.exports = class Router extends AntHill {
    * @param {string} name
    */
   constructor(name) {
-    super(name || 'Router')
+    super(name || 'Router', null, false);
   }
 
   /**
@@ -114,7 +114,7 @@ module.exports = class Router extends AntHill {
 
     /**
      * Get workspace
-     * @type {Workspace}
+     * @type {Workspace|{observer}}
      */
     workspace = workspace || this.getWorkspace();
 

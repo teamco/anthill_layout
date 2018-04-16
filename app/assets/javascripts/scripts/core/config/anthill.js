@@ -13,9 +13,10 @@ module.exports = class AntHill {
   /**
    * @param {string} name
    * @param [scope]
+   * @param {boolean} [isItemConstructor]
    * @constructor
    */
-  constructor(name, scope) {
+  constructor(name, scope, isItemConstructor) {
 
     /**
      * @constant Base
@@ -37,7 +38,15 @@ module.exports = class AntHill {
        */
       this.scope = scope;
 
-    } else {
+    }
+
+    /**
+     * Reset instance
+     * @type {boolean}
+     */
+    isItemConstructor = typeof  isItemConstructor === 'undefined' ? true : isItemConstructor;
+
+    if (isItemConstructor) {
 
       /**
        * @constant Observer

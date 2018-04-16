@@ -111,7 +111,7 @@ defineP([], function defineComboBoxRenderer() {
 
         /**
          * Define value
-         * @type {String}
+         * @type {string}
          */
         var value = $selected.text();
 

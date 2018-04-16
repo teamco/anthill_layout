@@ -4,6 +4,7 @@
     "transform": [
       [
         "babelify",
+        "require-globify",
         {
           "presets": [
             "es2015"

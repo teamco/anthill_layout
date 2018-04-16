@@ -25,7 +25,7 @@ defineP(function defineEventLinkRenderer() {
 
       /**
        * Create UUID
-       * @type {String}
+       * @type {string}
        */
       var uuid = this.base.lib.generator.UUID() + '-event',
           checked = !!opts.checked;

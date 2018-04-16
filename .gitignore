@@ -15,7 +15,6 @@ capybara-*.html
 rerun.txt
 pickle-email-*.html
 /node_modules
-package-lock.json
 
 # TODO Comment out these rules if you are OK with secrets being uploaded to the repo
 # config/initializers/secret_token.rb
@@ -45,3 +44,4 @@ app/assets/stylesheets/style.min.css*
 app/assets/package-lock.json
 
 Gemfile.lock
+!/package-lock.json

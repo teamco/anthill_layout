@@ -12777,7 +12777,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	/**
 	* Converts the id into a 24 byte hex string for printing
 	*
-	* @return {String} return the 24 byte hex string representation.
+	* @return {string} return the 24 byte hex string representation.
 	* @ignore
 	*/
 	ObjectID.prototype.toString = function () {
@@ -12787,7 +12787,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	/**
 	* Converts to a string representation of this Id.
 	*
-	* @return {String} return the 24 byte hex string representation.
+	* @return {string} return the 24 byte hex string representation.
 	* @ignore
 	*/
 	ObjectID.prototype.inspect = ObjectID.prototype.toString;
@@ -12795,7 +12795,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	/**
 	* Converts to its JSON representation.
 	*
-	* @return {String} return the 24 byte hex string representation.
+	* @return {string} return the 24 byte hex string representation.
 	* @ignore
 	*/
 	ObjectID.prototype.toJSON = function () {
@@ -13021,7 +13021,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * Access the wrapped string value.
 	 *
 	 * @method
-	 * @return {String} returns the wrapped string.
+	 * @return {string} returns the wrapped string.
 	 */
 	Symbol.prototype.valueOf = function () {
 	  return this.value;

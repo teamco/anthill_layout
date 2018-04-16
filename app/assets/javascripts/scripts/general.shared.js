@@ -24,16 +24,6 @@ const Application = require('./core/config/application.js');
         environment = dataset.environment;
 
     /**
-     * @method _localJs
-     * @param file
-     * @return {string}
-     * @private
-     */
-    function _localJs(file) {
-      return './../public/' + site + '/javascript/' + file;
-    }
-
-    /**
      * Define Setup
      * @returns Application
      * @private
@@ -44,23 +34,25 @@ const Application = require('./core/config/application.js');
         //loaderJs.unshift('jquery-ui');
       }
 
-      // const config = require(_localJs('config.js'));
-      //
-      // Object.assign(config, {
-      //   user: user,
-      //   uuid: uuid,
-      //   version: version,
-      //   activate: activated === 'true',
-      //   environment: environment,
-      //   appName: site,
-      //   mode: mode
-      // });
+      const config = require('../public/shared/javascript/config.js');
+      const listeners = require('../public/shared/javascript/listeners.js');
+      const permissions = require('../public/shared/javascript/permissions.js');
+
+      Object.assign(config, {
+        user: user,
+        uuid: uuid,
+        version: version,
+        activate: activated === 'true',
+        environment: environment,
+        appName: site,
+        mode: mode
+      });
 
       /**
        * Define application
        * @type {Application}
        */
-      window.anthill = new Application({config: {}});
+      new Application({config: config || {}});
     }
 
     _setup();

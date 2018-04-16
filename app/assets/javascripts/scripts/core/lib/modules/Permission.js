@@ -20,10 +20,12 @@ module.exports = class BasePermission extends AntHill {
 
   /**
    * @constructor
+   * @param {string} name
+   * @param scope
    */
-  constructor(name) {
+  constructor(name, scope) {
 
-    super(name || 'BasePermission');
+    super(name || 'BasePermission', scope, false);
 
     /**
      * Define capability
@@ -92,7 +94,7 @@ module.exports = class BasePermission extends AntHill {
   /**
    * Get capabilities
    * @property BasePermission
-   * @param {String} key
+   * @param {string} key
    * @returns {*}
    */
   getCapability(key) {

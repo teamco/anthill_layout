@@ -24,6 +24,6 @@ module.exports = class ApplicationPermission extends BasePermission {
    * @param scope
    */
   constructor(scope) {
-    super('ApplicationPermission', scope);
+    super('ApplicationPermission', scope, false);
   }
 };

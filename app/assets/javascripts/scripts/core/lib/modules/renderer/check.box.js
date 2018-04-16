@@ -2,88 +2,91 @@
  * Created by teamco on 7/10/14.
  */
 
-defineP(function defineCheckBoxRenderer() {
+/**
+ * @constant AntHill
+ * @type {AntHill}
+ */
+const AntHill = require('../../../config/anthill.js');
+
+/**
+ * Define CheckBoxRenderer
+ * @class CheckBoxRenderer
+ */
+module.exports = class CheckBoxRenderer extends AntHill {
 
   /**
-   * Define CheckBoxRenderer
-   * @class CheckBoxRenderer
-   * @extends LabelRenderer
-   * @extends ToolTipRenderer
-   * @extends AntHill
    * @constructor
+   * @param {string} name
    */
-  var CheckBoxRenderer = function CheckBoxRenderer() {
-  };
+  constructor(name) {
+    super(name || 'CheckBoxRenderer', null, false);
+  }
 
-  return CheckBoxRenderer.extend('CheckBoxRenderer', {
+  /**
+   * Render checkbox
+   * @memberOf CheckBoxRenderer
+   * @param {{
+   *      text: string,
+   *      name: string,
+   *      value,
+   *      [checked]: boolean,
+   *      [disabled]: boolean,
+   *      [monitor],
+   *      [tooltip],
+   *      [visible]
+   * }} opts
+   * @returns {*}
+   */
+  renderCheckbox(opts) {
 
     /**
-     * Render checkbox
-     * @memberOf CheckBoxRenderer
-     * @param {{
-     *      text: string,
-     *      name: string,
-     *      value,
-     *      [checked]: boolean,
-     *      [disabled]: boolean,
-     *      [monitor],
-     *      [tooltip],
-     *      [visible]
-     * }} opts
-     * @returns {*}
+     * Create UUID
+     * @type {string}
      */
-    renderCheckbox: function renderCheckbox(opts) {
+    const uuid = this.base.lib.generator.UUID() + '-checkbox',
+        checked = this.base.defineBoolean(opts.checked, false, true);
 
-      /**
-       * Create UUID
-       * @type {String}
-       */
-      var uuid = this.base.lib.generator.UUID() + '-checkbox',
-          checked = this.base.defineBoolean(opts.checked, false, true);
+    /**
+     * Define $input
+     * @type {Object}
+     */
+    const $input = $('<input />').attr({
+      name: opts.name,
+      type: 'checkbox',
+      id: uuid,
+      title: opts.value,
+      checked: checked,
+      disabled: this.base.defineBoolean(opts.disabled, false, true)
+    }).val(opts.value);
 
-      /**
-       * Define $input
-       * @type {Object}
-       */
-      var $input = $('<input />').attr({
-        name: opts.name,
-        type: 'checkbox',
-        id: uuid,
-        title: opts.value,
-        checked: checked,
-        disabled: this.base.defineBoolean(opts.disabled, false, true)
-      }).val(opts.value);
+    $input.prop('checked', checked);
 
-      $input.prop('checked', checked);
+    this.initMonitor($input, opts.monitor);
+    this.checkVisibility($input, opts.visible);
 
-      this.initMonitor($input, opts.monitor);
-      this.checkVisibility($input, opts.visible);
+    const $template = $([
+      '<div class="input-group">',
+      '<span class="input-group-addon"></span>',
+      '<input type="text" class="form-control" disabled="disabled" value="', opts.text, '">',
+      '</div>'
+    ].join(''));
 
-      var $template = $([
-        '<div class="input-group">',
-        '<span class="input-group-addon"></span>',
-        '<input type="text" class="form-control" disabled="disabled" value="',
-        opts.text, '">',
-        '</div>'
-      ].join(''));
+    $template.find('.input-group-addon').append($input);
 
-      $template.find('.input-group-addon').append($input);
+    /**
+     * Get tooltip
+     * @type {string|*}
+     */
+    const tooltip = opts.tooltip;
 
-      /**
-       * Get tooltip
-       * @type {string|*}
-       */
-      var tooltip = opts.tooltip;
-
-      if (tooltip) {
-        this.renderTooltip({
-          title: opts.text.humanize(),
-          description: opts.tooltip,
-          selector: $template
-        });
-      }
-
-      return $template;
+    if (tooltip) {
+      this.renderTooltip({
+        title: opts.text.humanize(),
+        description: opts.tooltip,
+        selector: $template
+      });
     }
-  });
-});
+
+    return $template;
+  }
+};

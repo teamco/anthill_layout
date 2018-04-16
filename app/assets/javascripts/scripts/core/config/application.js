@@ -5,8 +5,7 @@
 const AntHill = require('./anthill.js');
 
 // 'controller/application.controller',
-  // 'model/application.model',
-  // 'view/application.view'
+// 'view/application.view'
 
 /**
  * @class Application
@@ -22,7 +21,7 @@ module.exports = class Application extends AntHill {
    */
   constructor(opts) {
 
-    super('Application');
+    super('Application', null, true);
 
     /**
      * @constant ApplicationAPI
@@ -56,45 +55,21 @@ module.exports = class Application extends AntHill {
 
     /**
      * Default config
-     * Ex. logger.namespace: 'Application'
-     *
+     * @example {logger.namespace: 'Application'}
      * @type {{
-     *      workspace: {
-     *          limit: number,
-     *          counter: number
-     *      },
-     *      sendLog: boolean,
-     *      appName: string,
-     *      version: number,
-     *      mode: string,
-     *      environment: string,
-     *      type: string,
-     *      activate: boolean,
-     *      isResized: boolean,
-     *      loading: boolean,
-     *      logger: {
-     *          show: boolean,
-     *          namespaces: string|boolean,
-     *          type: {
-     *              debug: boolean,
-     *              log: boolean,
-     *              info: boolean,
-     *              error: boolean,
-     *              warn: boolean
-     *          }
-     *      },
-     *      html: {
-     *          style: string,
-     *          header: boolean,
-     *          footer: boolean,
-     *          stretch: boolean,
-     *          padding: {
-     *              top: number,
-     *              right: number,
-     *              bottom: number,
-     *              left: number
-     *          }
-     *      }
+     *  workspace: {plural: boolean, limit: number, counter: number},
+     *  sendLog: boolean,
+     *  appName: string,
+     *  version: number,
+     *  environment: string,
+     *  mode: string,
+     *  type: string,
+     *  activate: boolean,
+     *  isResized: boolean,
+     *  loading: boolean,
+     *  limit: boolean,
+     *  logger: {handle: boolean, show: boolean, namespaces: boolean, type: {debug: boolean, log: boolean, info: boolean, error: boolean, warn: boolean}},
+     *  html: {style: string, header: boolean, footer: boolean, stretch: boolean, padding: {top: number, right: number, bottom: number, left: number}}
      * }}
      */
     const DEFAULTS = {
@@ -174,12 +149,7 @@ module.exports = class Application extends AntHill {
      */
     this.workspace = {};
 
-    /**
-     * Define MVC
-     * @property Application
-     * @type {MVC}
-     */
-    this.mvc = new MVC({
+    new MVC({
       scope: this,
       config: [opts.config, DEFAULTS],
       components: [
@@ -213,4 +183,4 @@ module.exports = class Application extends AntHill {
     //     this.eventManager.eventList.initScrollBehavior
     // );
   }
-}
+};

@@ -21,10 +21,9 @@ module.exports = () => {
    * }}
    */
   Application.prototype.globalListeners = {
-
     defineGlobalInstance: {
       name: 'define.global.instance',
-      callback: function defineGlobalInstanceCallback() {
+      callback: () => {
         if (this.controller.isDevelopmentMode()) {
           window[this.controller.getAppName()] = this;
         }

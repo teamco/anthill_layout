@@ -119,7 +119,7 @@ defineP([
     /**
      * Update opened
      * @memberOf PanelController
-     * @param {String} resource
+     * @param {string} resource
      */
     setBehavior: function setBehavior(resource) {
 
@@ -147,7 +147,7 @@ defineP([
 
       /**
        * Define active panel
-       * @type {String}
+       * @type {string}
        */
       this.setActiveResource(resource);
 

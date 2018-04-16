@@ -20,8 +20,8 @@ module.exports = class LibGenerator {
    * Generate UUID
    * @description RFC4122 Description "http://www.ietf.org/rfc/rfc4122.txt"
    * @memberOf LibGenerator
-   * @param {String} [uuid]
-   * @returns {String}
+   * @param {string} [uuid]
+   * @returns {string}
    */
   UUID(uuid) {
 
@@ -54,7 +54,7 @@ module.exports = class LibGenerator {
   /**
    * Invert CSS color [color|background-color]
    * @memberOf LibGenerator
-   * @param {String} cssType
+   * @param {string} cssType
    */
   invertColor(cssType) {
     // Create RGBColor object

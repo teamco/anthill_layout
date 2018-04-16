@@ -22,9 +22,10 @@ module.exports = class BaseModel extends CRUD {
   /**
    * @constructor
    * @param {string} name
+   * @param scope
    */
-  constructor(name) {
-    super(name || 'BaseModel');
+  constructor(name, scope) {
+    super(name || 'BaseModel', scope, false);
   }
 
   /**
@@ -57,7 +58,7 @@ module.exports = class BaseModel extends CRUD {
   /**
    * Get scope config
    * @memberOf BaseModel
-   * @param {String} [key]
+   * @param {string} [key]
    * @returns {*}
    */
   getConfig(key) {
@@ -101,7 +102,7 @@ module.exports = class BaseModel extends CRUD {
   /**
    * Set scope config
    * @memberOf BaseModel
-   * @param {String} [key]
+   * @param {string} [key]
    * @param {*} [value]
    * @returns {scope.config}
    */
@@ -246,7 +247,7 @@ module.exports = class BaseModel extends CRUD {
    * Get UUID
    * @memberOf BaseModel
    * @param {{model, name}} [node]
-   * @returns {String}
+   * @returns {string}
    */
   getUUID(node) {
     return this.base.isDefined(node) ?

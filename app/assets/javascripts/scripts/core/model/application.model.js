@@ -25,7 +25,7 @@ module.exports = class ApplicationModel extends BaseModel {
    */
   constructor(scope) {
 
-    super('ApplicationModel', scope);
+    super('ApplicationModel', scope ,false);
 
     /**
      * Define item

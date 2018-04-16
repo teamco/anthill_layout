@@ -23,38 +23,48 @@ module.exports = class Base {
      * @property Base.gen
      * @type {LibGenerator}
      */
-    this.gen = new (require('./base/Generator.js'))
+    this.gen = new (require('./base/Generator.js'));
 
     /**
      * @property Base.str
      * @type {LibString}
      */
-    this.str = new (require('./base/String.js'))
+    this.str = new (require('./base/String.js'));
+  }
+
+  /**
+   * Get static method
+   * @param {string|array} component
+   * @return {*}
+   */
+  getStatic(component) {
+    component = component.split('.');
+    return this[component[0]].constructor[component[1]];
   }
 
   /**
    * Get object type
-   * @memberOf Base
+   * @property Base
    * @param obj
-   * @returns {String}
+   * @returns {string}
    */
-  getType(obj) {
+  static getType(obj) {
     return Object.prototype.toString.call(obj).match(/^\[object (.*)\]$/)[1];
   }
 
   /**
    * Check if uuid has uuid format
-   * @memberOf Base
+   * @property Base
    * @param {string} uuid
    * @returns {Array|{index: number, input: string}|*}
    */
-  isUUID(uuid) {
+  static isUUID(uuid) {
     return uuid.match(/^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i);
   }
 
   /**
    * Check if url
-   * @memberOf Base
+   * @property Base
    * @param {string} [url]
    * @returns {Array|{index: number, input: string}|*}
    */
@@ -108,7 +118,7 @@ module.exports = class Base {
 
   /**
    * Define isBase64 matcher
-   * @memberOf Base
+   * @property Base
    * @param {string} s
    * @returns {boolean}
    */
@@ -127,7 +137,7 @@ module.exports = class Base {
    * data URI - MDN https://developer.mozilla.org/en-US/docs/data_URIs
    * The "data" URL scheme: http://tools.ietf.org/html/rfc2397
    * Valid URL Characters: http://tools.ietf.org/html/rfc2396#section2
-   * @memberOf Base
+   * @property Base
    * @param {string} [s]
    * @returns {boolean}
    */

@@ -12,16 +12,9 @@ module.exports = class Observer {
    * Define observer
    * @constructor
    * @param scope
-   * @class ObserverJs
+   * @class Observer
    */
   constructor(scope) {
-
-    /**
-     * Define scope
-     * @property Observer
-     * @type {{}}
-     */
-    this.scope = scope;
 
     /**
      * Define listeners
@@ -29,20 +22,26 @@ module.exports = class Observer {
      * @type {{}}
      */
     this.listeners = {};
+
+    /**
+     * Define local scope
+     * @property Observer
+     */
+    this.scope = scope;
   }
 
   /**
    * Get events list
-   * @memberOf ObserverJs
+   * @property Observer
    * @returns {*}
    */
-  getEventListgetEventList() {
+  getEventList() {
     return this.scope.eventManager.events;
   }
 
   /**
    * Get event UUID
-   * @memberOf ObserverJs
+   * @property Observer
    * @param {string} eventName
    * @returns {[]}
    */
@@ -50,11 +49,11 @@ module.exports = class Observer {
     let index, uuid = [];
     for (index in this.listeners) {
       if (this.listeners.hasOwnProperty(index)) {
-        var events = this.listeners[index],
-            event, i = 0, l = events.length;
+        const events = this.listeners[index],
+            l = events.length;
 
-        for (i; i < l; i += 1) {
-          event = events[i];
+        for (let i = 0; i < l; i += 1) {
+          const event = events[i];
           if (event.eventName === eventName) {
             uuid.push(event.eventUUID);
           }
@@ -66,7 +65,7 @@ module.exports = class Observer {
 
   /**
    * Get event name
-   * @memberOf ObserverJs
+   * @property Observer
    * @param {string} eventUUID
    * @return {{}}
    */
@@ -81,7 +80,7 @@ module.exports = class Observer {
 
   /**
    * Execute function after specific timeout
-   * @memberOf ObserverJs
+   * @property Observer
    * @param {Function} fnCallback
    * @param {Number} [msTimeout]
    * @param {*} [thisScope]
@@ -102,7 +101,7 @@ module.exports = class Observer {
 
   /**
    * Add event
-   * @memberOf ObserverJs
+   * @property Observer
    * @param {string} eventName
    * @return {{}}
    */
@@ -114,7 +113,7 @@ module.exports = class Observer {
 
   /**
    * Remove event
-   * @memberOf ObserverJs
+   * @property Observer
    * @param {string} eventName
    */
   removeEvent(eventName) {
@@ -123,7 +122,7 @@ module.exports = class Observer {
 
   /**
    * On event
-   * @memberOf ObserverJs
+   * @property Observer
    * @param {{eventUUID, params, state, priority, eventName}} opts
    * @return {string}
    */
@@ -200,7 +199,7 @@ module.exports = class Observer {
 
   /**
    * Un event
-   * @memberOf ObserverJs
+   * @property Observer
    * @param {string} eventName
    * @param {string} eventUUID
    * @return {boolean}
@@ -216,7 +215,7 @@ module.exports = class Observer {
 
   /**
    * Batch events publisher
-   * @memberOf ObserverJs
+   * @property Observer
    */
   batchPublish() {
     Object.assign([], arguments).forEach((arg) => this.publish.apply(this, typeof arg === 'string' ? [arg] : arg));
@@ -224,7 +223,7 @@ module.exports = class Observer {
 
   /**
    * Publish event
-   * @memberOf ObserverJs
+   * @property Observer
    * @param {string} eventName
    * @param {*} [args]
    */
@@ -258,7 +257,7 @@ module.exports = class Observer {
 
   /**
    * Fire event
-   * @memberOf ObserverJs
+   * @property Observer
    * @param {[]} events
    * @param {[]} [args]
    * @return {boolean}
@@ -273,7 +272,7 @@ module.exports = class Observer {
 
   /**
    * Execute event
-   * @memberOf ObserverJs
+   * @property Observer
    * @param {*} [scope]         Run callback in default scope
    * @param {{
    *      state: *,             Private internal hash
@@ -350,7 +349,7 @@ module.exports = class Observer {
       /**
        * Handle super
        * @method executeCallbackB4Timeout
-       * @type {executeCallback}
+       * @type {function}
        * @override executeCallback
        */
       const executeCallbackB4Timeout = executeCallback;
@@ -394,4 +393,4 @@ module.exports = class Observer {
 
     return executeCallback.apply(this);
   }
-}
+};

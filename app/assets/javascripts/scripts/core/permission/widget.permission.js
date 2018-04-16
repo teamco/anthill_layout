@@ -43,7 +43,7 @@ defineP([
     /**
      * Check widget capabilities
      * @memberOf WidgetPermission
-     * @param {String} capability
+     * @param {string} capability
      * @private
      * @returns {*|boolean}
      */

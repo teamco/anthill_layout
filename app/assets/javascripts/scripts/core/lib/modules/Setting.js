@@ -17,13 +17,13 @@ const LZString = require('../lz-string.js');
 module.exports = class Setting extends Router {
 
   /**
+   * @param {string} name
    * @param {*} scope
-   * @param {String} name
    * @constructor
    */
-  constructor(scope, name) {
+  constructor(name, scope) {
 
-    super(name || 'Setting', scope);
+    super(name || 'Setting', scope, false);
 
     /**
      * Define scope
@@ -35,7 +35,7 @@ module.exports = class Setting extends Router {
     /**
      * Define setting mode
      * @property Setting
-     * @type {String}
+     * @type {string}
      */
     this.mode = this.scope.controller.getMode();
 
@@ -133,7 +133,7 @@ module.exports = class Setting extends Router {
   /**
    * Get token
    * @property Setting
-   * @returns {String}
+   * @returns {string}
    */
   getToken() {
     return this.token;
@@ -165,7 +165,7 @@ module.exports = class Setting extends Router {
       /**
        * Define token
        * @property Setting
-       * @type {String}
+       * @type {string}
        */
       this.token = base.lib.generator.UUID();
 

@@ -48,6 +48,7 @@ module Author::SiteStoragesHelper
     stylesheet_link_tag("public/#{collection[:key]}/css/general")
     render "show_#{layout}",
            storage: collection,
+           script_src: "scripts/general.#{collection[:key]}",
            minified: Rails.env == 'production' ? '.min' : '',
            current_user: user
   end

@@ -21,9 +21,10 @@ module.exports = class BaseAPI extends AntHill {
   /**
    * @constructor
    * @param {string} name
+   * @param scope
    */
-  constructor(name) {
-    super(name || 'BaseAPI');
+  constructor(name, scope) {
+    super(name || 'BaseAPI', scope, false);
   }
 
   /**
@@ -53,8 +54,8 @@ module.exports = class BaseAPI extends AntHill {
    * @memberOf BaseAPI
    * @param arg1
    * @param arg2
-   * @param {String} prefix
-   * @param {String} [suffix]
+   * @param {string} prefix
+   * @param {string} [suffix]
    * @private
    */
   _executeReference(arg1, arg2, prefix, suffix) {

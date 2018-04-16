@@ -338,7 +338,7 @@ defineP([
         /**
          * Get Config Logger
          * @memberOf BaseController
-         * @param {String} log
+         * @param {string} log
          * @param {Object} hash
          */
         getConfigLog: function getConfigLog(log, hash) {
@@ -982,7 +982,7 @@ defineP([
 
                 /**
                  * Define containment
-                 * @type {String}
+                 * @type {string}
                  */
                 collector[uuid].containment =
                     item.containment.model.getConfig('uuid');

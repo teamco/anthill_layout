@@ -64,7 +64,7 @@ defineP(function defineWidgetParallax() {
 
       /**
        * Fetch event uuid
-       * @type {String}
+       * @type {string}
        */
       var eventUUID = root.eventManager.subscribe({
         event: {

@@ -87,7 +87,7 @@ defineP([
     /**
      * Set interaction
      * @memberOf WidgetAPI
-     * @param {String} interaction
+     * @param {string} interaction
      * @private
      */
     _setInteraction: function _setInteraction(interaction) {

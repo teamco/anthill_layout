@@ -79,7 +79,7 @@ defineP([
 
     /**
      * Get instance
-     * @param {String} type
+     * @param {string} type
      * @returns {*}
      * @private
      */
@@ -91,7 +91,7 @@ defineP([
 
     /**
      * Check if this has instance
-     * @param {String} type
+     * @param {string} type
      * @returns {boolean}
      * @private
      */

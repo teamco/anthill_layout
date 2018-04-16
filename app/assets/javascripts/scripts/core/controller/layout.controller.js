@@ -243,7 +243,7 @@ defineP([
         /**
          * Get layout Behavior mode
          * @memberOf LayoutController
-         * @returns {String}
+         * @returns {string}
          */
         getBehaviorMode: function getBehaviorMode() {
           return this.scope.config.mode;
@@ -253,7 +253,7 @@ defineP([
          * Set layout Behavior mode
          * @memberOf LayoutController
          * @param {string} mode
-         * @returns {String}
+         * @returns {string}
          */
         setBehaviorMode: function setBehaviorMode(mode) {
           this.logger.warn(
@@ -321,7 +321,7 @@ defineP([
         /**
          * Set behavior empty spaces mode
          * @memberOf LayoutController
-         * @param {String} mode
+         * @param {string} mode
          */
         setEmptySpacesMode: function setEmptySpacesMode(mode) {
           this.controller._setLayoutMode('emptySpaces', mode);
@@ -330,7 +330,7 @@ defineP([
         /**
          * Set behavior organize mode
          * @memberOf LayoutController
-         * @param {String} mode
+         * @param {string} mode
          */
         setOrganizeMode: function setOrganizeMode(mode) {
           this.controller._setLayoutMode('organize', mode);

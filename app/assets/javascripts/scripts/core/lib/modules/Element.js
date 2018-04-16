@@ -52,14 +52,14 @@ defineP([
       /**
        * Define style
        * @property BaseElement
-       * @type {String}
+       * @type {string}
        */
       this.style = opts.style || view.createStyle();
 
       /**
        * Define id
        * @property BaseElement
-       * @type {String}
+       * @type {string}
        */
       this.id = view.renderUUID(opts.uuid);
 
@@ -359,7 +359,7 @@ defineP([
     /**
      * Dynamic CSS
      * @memberOf BaseElement
-     * @param {String} type
+     * @param {string} type
      * @param {{
      *    [type]: string,
      *    [url]: string,
@@ -712,7 +712,7 @@ defineP([
     /**
      * Get CSS attribute
      * @memberOf BaseElement
-     * @param {String} value
+     * @param {string} value
      * @returns {Number}
      */
     getCSS: function getCSS(value) {

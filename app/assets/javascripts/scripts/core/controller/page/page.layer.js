@@ -43,7 +43,7 @@ defineP(function definePageLayer() {
 
           /**
            * Get widget UUID
-           * @type {String}
+           * @type {string}
            */
           uuid = widget.model.getUUID();
 

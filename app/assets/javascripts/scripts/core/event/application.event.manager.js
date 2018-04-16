@@ -24,7 +24,7 @@ module.exports = class ApplicationEventManager extends BaseEvent {
    */
   constructor() {
 
-    super('ApplicationEventManager');
+    super('ApplicationEventManager', null, false);
 
     /**
      * Define events
@@ -37,32 +37,32 @@ module.exports = class ApplicationEventManager extends BaseEvent {
      * Define event list
      * @property ApplicationEventManager
      * @type {{
-     *      startSendLog: string,
-     *      stopSendLog: string,
-     *      beforeSendLog: string,
-     *      afterSendLog: string,
-     *      loadApplication: string,
-     *      loadProduction: string,
-     *      handleVulnerabilities: string,
-     *      afterHandleVulnerabilities: string,
-     *      defineGlobalInstance: string,
-     *      defineSetting: string,
-     *      updateStorageVersion: string,
-     *      afterUpdateStorage: string,
-     *      setRoutes: string,
-     *      initResizeWindow: string,
-     *      resizeWindowPublisher: string,
-     *      resizeWindow: {eventName: string, params: {buffer: number}},
-     *      resizeWindowHooks: string,
-     *      initScrollBehavior: string,
-     *      scrollPublisher: string,
-     *      createWorkspace: string,
-     *      destroyWorkspace: string,
-     *      destroyWorkspaces: string,
-     *      resizeWorkspaces: string,
-     *      resizeWorkspace: string,
-     *      setAsLoaded: string,
-     *      afterLoadingItems: string
+     *  startSendLog: string,
+     *  stopSendLog: string,
+     *  beforeSendLog: string,
+     *  afterSendLog: string,
+     *  loadApplication: string,
+     *  loadProduction: string,
+     *  handleVulnerabilities: string,
+     *  afterHandleVulnerabilities: string,
+     *  defineGlobalInstance: string,
+     *  defineSetting: string,
+     *  updateStorageVersion: string,
+     *  afterUpdateStorage: string,
+     *  setRoutes: string,
+     *  initResizeWindow: {eventName: string, params: {single: boolean}},
+     *  resizeWindow: string,
+     *  resizeWindowPublisher: string,
+     *  resizeWindowHooks: string,
+     *  initScrollBehavior: {eventName: string, params: {single: boolean}},
+     *  scrollPublisher: string,
+     *  createWorkspace: string,
+     *  destroyWorkspace: string,
+     *  destroyWorkspaces: string,
+     *  resizeWorkspace: string,
+     *  resizeWorkspaces: string,
+     *  setAsLoaded: string,
+     *  afterLoadingItems: string
      * }}
      */
     this.eventList = {
@@ -103,4 +103,4 @@ module.exports = class ApplicationEventManager extends BaseEvent {
       afterLoadingItems: 'after.loading.items'
     };
   }
-}
+};

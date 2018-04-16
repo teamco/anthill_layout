@@ -383,7 +383,7 @@ defineP([
 
             /**
              * Define uuid
-             * @type {String}
+             * @type {string}
              */
             uuid = widget.model.getUUID();
 

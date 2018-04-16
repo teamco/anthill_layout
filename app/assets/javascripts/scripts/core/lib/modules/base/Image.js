@@ -23,9 +23,9 @@ defineP(function defineLibImage() {
      * @ mozilla for `canvas.toDataURL()`
      *
      * @memberOf LibImage
-     * @param    {String}   url
+     * @param    {string}   url
      * @param    {Function} callback
-     * @param    {String}   [outputFormat='image/png']
+     * @param    {string}   [outputFormat='image/png']
      * @param    {float}    [quality=0.0 to 1.0]
      * @url      https://gist.github.com/HaNdTriX/7704632/
      * @docs     https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement#Methods

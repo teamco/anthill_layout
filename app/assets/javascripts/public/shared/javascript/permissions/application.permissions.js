@@ -17,10 +17,10 @@ module.exports = () => {
    * Define Application global permission
    * @property Application
    * @type {{
-   *      development: {store: boolean},
-   *      authorize: {store: boolean},
-   *      consumption: {store: boolean},
-   *      test: {store: boolean}
+   *  development: {store: boolean},
+   *  authorize: {store: boolean},
+   *  consumption: {store: boolean},
+   *  test: {store: boolean}
    * }}
    */
   Application.prototype.globalPermissions = {
@@ -29,6 +29,4 @@ module.exports = () => {
     consumption: {store: false},
     test: {store: false}
   };
-
-  return Application;
 };

@@ -349,7 +349,7 @@ defineP([
     /**
      * Check if interaction is: resize
      * @memberOf WidgetMap
-     * @param {String} type
+     * @param {string} type
      * @returns {*|Array|{index: number, input: string}}
      */
     isResize: function isResize(type) {
@@ -359,7 +359,7 @@ defineP([
     /**
      * Check if interaction is: drag
      * @memberOf WidgetMap
-     * @param {String} type
+     * @param {string} type
      * @returns {*|Array|{index: number, input: string}}
      */
     isDrag: function isDrag(type) {
@@ -369,7 +369,7 @@ defineP([
     /**
      * Check if interaction is: stop {drag|resize}
      * @memberOf WidgetMap
-     * @param {String} type
+     * @param {string} type
      * @returns {*|Array|{index: number, input: string}}
      */
     isStop: function isStop(type) {
@@ -381,7 +381,7 @@ defineP([
      * @memberOf WidgetMap
      * @param {Boolean} animateCfg
      * @param {Boolean} animateOpts
-     * @param {String} type
+     * @param {string} type
      * @returns {Boolean}
      */
     animateOnStop: function animateOnStop(type, animateCfg, animateOpts) {
@@ -405,7 +405,7 @@ defineP([
      * Get overlapping behavior on stop interaction
      * @memberOf WidgetMap
      * @param {Boolean} overlapping
-     * @param {String} type
+     * @param {string} type
      * @returns {Boolean}
      */
     overlappingOnStop: function overlappingOnStop(type, overlapping) {

@@ -38,7 +38,7 @@ defineP(['tinymce'], function defineTextEditorRenderer(tinyMCE) {
 
       /**
        * Create UUID
-       * @type {String}
+       * @type {string}
        */
       var uuid = this.base.lib.generator.UUID() + '-tinymce-content',
           $input;

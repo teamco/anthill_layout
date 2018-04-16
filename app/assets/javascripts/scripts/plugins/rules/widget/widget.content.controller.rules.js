@@ -483,7 +483,7 @@ defineP([
 
       /**
        * Define event name
-       * @type {String}
+       * @type {string}
        */
       var ename = event.toCamel();
 
@@ -511,7 +511,7 @@ defineP([
 
       /**
        * Define scope uuid
-       * @type {String}
+       * @type {string}
        */
       var sUUID = scope.model.getUUID();
 

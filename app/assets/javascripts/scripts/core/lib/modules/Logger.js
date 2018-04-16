@@ -5,7 +5,6 @@
  * Time: 10:29 PM
  * To change this template use File | Settings | File Templates.
  */
-const caller = require('caller-id');
 
 /**
  * @constructor
@@ -148,6 +147,11 @@ module.exports = class Logger {
 
     console.groupCollapsed(scope);
 
+    /**
+     * @constant caller
+     */
+    const caller = require('caller-id');
+
     for (i; i < l; i += 1) {
 
       hash = content[i];
@@ -155,7 +159,7 @@ module.exports = class Logger {
       const k = Object.keys(hash)[0];
 
       hash[k]['caller'] = caller.getData();
-      hash[k]['line'] = this.stackIt(((new Error).stack + '').split('\n'));
+      hash[k]['line'] = Logger.stackIt(((new Error).stack + '').split('\n'));
 
       console[k](hash[k]);
     }
@@ -172,7 +176,7 @@ module.exports = class Logger {
    * @param {Array} stacks
    * @returns {Array}
    */
-  stackIt(stacks) {
+  static stackIt(stacks) {
 
     let log = [];
 

@@ -21,11 +21,12 @@ module.exports = class BaseEvent extends AntHill {
   /**
    * BaseEvent constructor
    * @constructor
+   * @param {string} [name]
    * @param [scope]
    */
-  constructor(scope) {
+  constructor(name, scope) {
 
-    super(scope || 'BaseEvent');
+    super(name || 'BaseEvent', scope, false);
 
     /**
      * Define event to unsubscribe

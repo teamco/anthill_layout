@@ -20,10 +20,11 @@ const AntHill = require('../../config/anthill.js');
 module.exports = class CRUD extends AntHill {
 
   /**
+   * @param {string} name
    * @constructor
    */
   constructor(name) {
-    super(name || 'CRUD');
+    super(name || 'CRUD', null, false);
   }
 
   /**
@@ -136,4 +137,4 @@ module.exports = class CRUD extends AntHill {
 
     return item;
   }
-}
+};

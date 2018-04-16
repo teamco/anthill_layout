@@ -22,7 +22,7 @@ module.exports = class MVC extends AntHill {
 
   constructor(opts) {
 
-    super('MVC', opts.scope);
+    super('MVC', opts.scope, false);
 
     /**
      * Define scope
@@ -255,13 +255,14 @@ module.exports = class MVC extends AntHill {
        * Define name space
        * @type {string}
        */
-      name = mvcPattern.name.replace(scope.name, '').toLowerCase();
+      name = mvcPattern.name.replace(scope.name, '');
+      name = name.match(/[a-z]/g) ? name.toCamelCase() : name.toLowerCase();
 
       /**
        * Define pattern
        * @type {*}
        */
-      scope[name] = new mvcPattern();
+      scope[name] = new mvcPattern(scope);
 
     } else if (force) {
 
@@ -333,7 +334,7 @@ module.exports = class MVC extends AntHill {
         return false;
       }
 
-      const pattern = this.defineMVC(mvc, this.force).toLowerCase(),
+      const pattern = this.defineMVC(mvc, this.force),
           ref = this.scope[pattern];
 
       /**
@@ -399,7 +400,7 @@ module.exports = class MVC extends AntHill {
 
     if (this.render) {
       config.html = config.html || {};
-      config.html.selector = this.utils.str.toDash(scope.name);
+      config.html.selector = scope.name.toDash();
     }
   }
 
@@ -441,7 +442,7 @@ module.exports = class MVC extends AntHill {
                 key = method[0];
 
             method.shift();
-            method = ('.' + method.join('.')).toCamel();
+            method = ('.' + method.join('.')).toCamelCase();
 
             if (this.RESERVED.hasOwnProperty(key)) {
 

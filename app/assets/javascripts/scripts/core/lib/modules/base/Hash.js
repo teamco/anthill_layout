@@ -45,7 +45,7 @@ defineP(function defineLibHash() {
      * Check if Hash(h) has Key(k)
      * @memberOf LibHash
      * @param {*} h
-     * @param {String} k
+     * @param {string} k
      * @returns {boolean}
      */
     isHashKey: function isHashKey(h, k) {
