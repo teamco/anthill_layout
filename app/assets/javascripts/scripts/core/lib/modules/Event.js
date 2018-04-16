@@ -150,12 +150,11 @@ module.exports = class BaseEvent extends AntHill {
   addListener(opts) {
     const scope = this.scope,
         observer = scope.observer,
-        events = this.events,
-        base = this.base;
+        events = this.events;
 
-    opts = base.define(opts, {}, true);
+    opts = opts||{};
 
-    if (base._.isEmpty(opts)) {
+    if (scope.utils._.isEmpty(opts)) {
       this.logger.warn('Empty opts', opts);
       return false;
     }
@@ -203,20 +202,19 @@ module.exports = class BaseEvent extends AntHill {
    * @returns {boolean|string}
    */
   subscribe(opts, internal) {
-    const base = this.base;
-    opts = base.define(opts, {}, true);
-    internal = base.defineBoolean(internal, false, true);
+    opts = opts || {};
+    internal = typeof internal === 'undefined' ? false : internal;
 
-    if (base.isString(opts.event)) {
+    if (this.utils._.isString(opts.event)) {
       opts.eventName = opts.event;
     } else {
       opts.eventName = opts.event.eventName;
       opts.params = opts.event.params;
-      opts.callback = base.define(opts.event.callback, opts.callback);
+      opts.callback = opts.event.callback || opts.callback;
       opts.scope = opts.event.scope;
     }
 
-    const eventKey = (opts.eventName + '').toCamel();
+    const eventKey = (opts.eventName + '').toCamelCase();
 
     if (!opts.eventName) {
       this.scope.logger.warn('Undefined event', opts);
@@ -228,7 +226,7 @@ module.exports = class BaseEvent extends AntHill {
       return false;
     }
 
-    if (!internal && base.isObject(opts.event) && !base.isDefined(opts.params)) {
+    if (!internal && opts.event && !opts.params) {
       opts.params = this.scope.observer.listeners[this.eventList[eventKey]][0].params;
     }
 
@@ -276,7 +274,7 @@ module.exports = class BaseEvent extends AntHill {
    * @param data
    * @return {Array}
    */
-  publishOn(data) {
+  static publishOn(data) {
     let eventUUIDs = [];
 
     for (let i = 0, l = data.events.length; i < l; i++) {
@@ -323,4 +321,4 @@ module.exports = class BaseEvent extends AntHill {
     // Lookup events for this particular Element
     return $._data($element.$[0], 'events');
   }
-}
+};

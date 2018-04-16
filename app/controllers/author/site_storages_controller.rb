@@ -37,7 +37,6 @@ class Author::SiteStoragesController < Author::AuthorController
         router = MapResources::JsMap.new
         @storage[:router] = router.map[:public_assets].to_json
       end
-      generate_public_config
     end
   end
 
@@ -156,16 +155,6 @@ class Author::SiteStoragesController < Author::AuthorController
         published: published
     }
     @target_path = get_target_url(@author_site_storage.key) unless @author_site_storage.nil?
-  end
-
-  # Generate public config file such as "general.<site>.js"
-  def generate_public_config
-    general_path = "#{Rails.root}/app/assets/javascripts/scripts"
-    unless File.exist?("#{general_path}/general.#{@storage[:key]}.js")
-      config = File.read("#{Rails.root}/lib/general.base.js")
-      content = config.gsub(/{{site}}/, @storage[:key])
-      File.open("#{general_path}/general.#{@storage[:key]}.js", 'w') {|file| file << content}
-    end
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

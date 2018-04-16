@@ -136,7 +136,7 @@ module.exports = class Observer {
         defaultPriority = 'normal';
 
     opts = opts || {};
-    opts.eventUUID = base.lib.generator.UUID();
+    opts.eventUUID = this.scope.utils.gen.UUID();
     opts.params = opts.params || {};
     opts.state = {};
     opts.priority = opts.priority || defaultPriority;

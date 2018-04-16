@@ -42,6 +42,12 @@ module.exports = class Application extends AntHill {
     const ApplicationPermission = require('../permission/application.permission.js');
 
     /**
+     * @constant ApplicationController
+     * @type {ApplicationController}
+     */
+    const ApplicationController = require('../controller/application.controller.js');
+
+    /**
      * @constant ApplicationModel
      * @type {ApplicationModel}
      */
@@ -154,7 +160,7 @@ module.exports = class Application extends AntHill {
       config: [opts.config, DEFAULTS],
       components: [
         ApplicationAPI,
-        // Controller,
+        ApplicationController,
         ApplicationModel,
         // View,
         ApplicationEventManager,

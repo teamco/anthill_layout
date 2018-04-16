@@ -79,6 +79,11 @@ module.exports = class AntHill {
        * @type {Logger}
        */
       this.logger = new Logger(this.scope || this);
+
+      this.controller = undefined;
+      this.model = undefined;
+      this.eventManager = undefined;
+      this.view = undefined;
     }
 
     /**

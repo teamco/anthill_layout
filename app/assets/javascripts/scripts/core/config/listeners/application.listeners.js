@@ -5,48 +5,35 @@
  * Time: 10:26 PM
  */
 
-defineP(['config/application'],
-    function defineApplicationListeners(Application) {
+module.exports = () => {
 
-      /**
-       * Define Application Local listeners
-       * @memberOf Application
-       * @type {{
-     *      successRendered: {name: string, callback: Function},
-     *      resizeWindow: {name: string, params: *, callback: Function},
-     *      resizeWindowHooks: [],
-     *      resizeWorkspace: {name: string, callback: Function}
-     * }}
-       */
-      Application.prototype.localListeners = {
+  /**
+   * Define Application Local listeners
+   * @memberOf Application
+   * @type {{
+   *  successRendered: {name: string, callback: (function(): (*|void))},
+   *  resizeWindow: {name: string, callback: (function(): (void|*|{title, description, event}|{}))},
+   *  resizeWindowHooks: Array,
+   *  resizeWorkspace: {name: string, callback: (function(*): (void|*|{title, description, event}|{}))}
+   * }}
+   */
+  Application.prototype.localListeners = {
 
-        successRendered: {
-          name: 'success.rendered',
-          callback: function successRenderedCallback() {
-            this.view.renderApplication();
-          }
-        },
+    successRendered: {
+      name: 'success.rendered',
+      callback: () => this.view.renderApplication()
+    },
 
-        resizeWindow: {
-          name: 'resize.window',
-          callback: function resizeWindowCallback() {
-            this.observer.publish(
-                this.eventManager.eventList.resizeWorkspaces
-            );
-          }
-        },
+    resizeWindow: {
+      name: 'resize.window',
+      callback: () => this.observer.publish(this.eventManager.eventList.resizeWorkspaces)
+    },
 
-        resizeWindowHooks: [],
+    resizeWindowHooks: [],
 
-        resizeWorkspace: {
-          name: 'resize.workspace',
-          callback: function resizeWorkspaceCallback(workspace) {
-            workspace.observer.publish(
-                workspace.eventManager.eventList.resizePages
-            );
-          }
-        }
-      };
-
-      return Application;
-    });
+    resizeWorkspace: {
+      name: 'resize.workspace',
+      callback: workspace => workspace.observer.publish(workspace.eventManager.eventList.resizePages)
+    }
+  };
+};

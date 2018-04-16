@@ -450,7 +450,7 @@ module.exports = class BaseModel extends CRUD {
    * @returns {string}
    */
   getItemNameSpace() {
-    return this.getItemName().toLowerCase();
+    return this.getItemName().toCamelCase();
   }
 
   /**

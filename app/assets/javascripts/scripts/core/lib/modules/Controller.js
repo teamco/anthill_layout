@@ -6,1004 +6,940 @@
  * To change this template use File | Settings | File Templates.
  */
 
-defineP([
-  'config/anthill',
-  'controller/behavior/behavior.crud',
-  'controller/behavior/behavior.window.resize'
-], function defineBaseController(AntHill, BehaviorCrud, BehaviorWindowResize) {
+/**
+ * Aggregation of base class and mixin classes.
+ * @type {(function(*, ...[*]): __Aggregate)|*|(function(): aggregate)}
+ */
+const aggregation = require('../extends/aggregation.js');
+
+/**
+ * @constant AntHill
+ * @type {AntHill}
+ */
+const AntHill = require('../../config/anthill.js');
+
+/**
+ * @constant BehaviorCrud
+ * @type {BehaviorCrud}
+ */
+const BehaviorCrud = require('../../controller/behavior/behavior.crud.js');
+
+/**
+ * @constant BehaviorWindowResize
+ * @type {BehaviorWindowResize}
+ */
+const BehaviorWindowResize = require('../../controller/behavior/behavior.window.resize.js');
+
+/**
+ * Define Base Controller
+ * @class BaseController
+ * @extends AntHill
+ */
+module.exports = class BaseController extends aggregation(AntHill, BehaviorCrud, BehaviorWindowResize) {
 
   /**
    * Define Base Controller
-   * @class BaseController
-   * @extends AntHill
-   * @extends BehaviorCrud
-   * @extends BehaviorWindowResize
    * @constructor BaseController
+   * @param {string} name
+   * @param scope
    */
-  var BaseController = function BaseController() {
+  constructor(name, scope) {
+    super(name || 'BaseController', scope, false);
+  }
+
+  /**
+   * Before init config
+   * @property BaseController
+   */
+  beforeInitConfig() {
+    this.logger.debug('Before init config', arguments);
+  }
+
+  /**
+   * After init config
+   * @property BaseController
+   */
+  afterInitConfig() {
+    this.logger.debug('After init config', arguments);
+  }
+
+  /**
+   * Success Create Element
+   * @property BaseController
+   * @param {BaseElement} $element
+   */
+  successCreateElement($element) {
+    this.logger.debug('Success build element', $element);
+  }
+
+  /**
+   * Success Build Element
+   * @property BaseController
+   * @param {BaseElement} $element
+   */
+  successBuildElement($element) {
+    this.logger.debug('Success build element', $element);
+  }
+
+  /**
+   * Success Destroy Element
+   * @property BaseController
+   * @param {BaseElement|{name}} $element
+   */
+  successDestroyElement($element) {
+    const comment = this.i18n.t('element.overwritten').replace(/\{0}/, $element.name);
+    this.logger.debug(comment, $element);
+  }
+
+  /**
+   * Get cache
+   * @property BaseController
+   * @param {string} [uuid]
+   * @returns {*}
+   */
+  getCache(uuid) {
 
     /**
-     * Define scope
-     * @property BaseController
+     * Get root
+     * @type {Application}
      */
-    this.scope = undefined;
+    const root = this.root();
+
+    return uuid ? root.cache[uuid] : root.cache;
+  }
+
+  /**
+   * Define environment getter
+   * @property BaseController
+   * @returns {string|environment|*}
+   */
+  getEnvironment() {
+    return this.root().config.environment;
+  }
+
+  /**
+   * Get cache
+   * @property BaseController
+   * @param {string} uuid
+   * @param {*} value
+   */
+  updateCache(uuid, value) {
+    this.root().cache[uuid] = value;
+  }
+
+  /**
+   * Get cache css
+   * @property BaseController
+   * @param {string} path
+   * @param {*} element
+   */
+  updateCacheCss(path, element) {
+
+    // Get cache
+    const cache = this.root().cache;
+
+    cache.css = cache.css || {};
+    cache.css[path] = element;
+  }
+
+  /**
+   * Define routes setter
+   * @property BaseController
+   */
+  setRoutes() {
+
+    const routes = this.model.getConfig('routes') || {};
+
+    for (let index in routes) {
+      if (routes.hasOwnProperty(index)) {
+        this.controller.setRoute(index, routes[index]);
+      }
+    }
+  }
+
+  /**
+   * Bind model observer
+   * @property BaseController
+   */
+  bindModelObserver() {
+    this.logger.debug('Bind model observer', arguments);
+    if (this.model) {
+      this.model.bindModelObserver.apply(this, arguments);
+    }
+  }
+
+  /**
+   * After loading items
+   * @property BaseController
+   */
+  afterLoadingItems() {
+    this.logger.debug(
+        'After loading items',
+        this.model.getItems()
+    );
+    this.controller.setAsLoading(false);
+  }
+
+  /**
+   * Set core loading attribute
+   * @property BaseController
+   * @param load
+   */
+  setAsLoading(load) {
 
     /**
-     * Define controller
-     * @property BaseController
+     * Get root
+     * @type {Application|{model, eventManager}}
      */
-    this.controller = undefined;
-  };
+    const root = this.root();
 
-  return BaseController.extend(
-      'BaseController', {
+    root.model.setConfig('loading', load);
+
+    if (this.scope === root) {
+      root.observer.publish(root.eventManager.eventList.setAsLoaded);
+    }
+  }
+
+  /**
+   * Set as loaded
+   * @property BaseController
+   */
+  setAsLoaded() {
+
+    this.logger.debug('Application was loaded');
+
+    /**
+     * Get item constructor name
+     * @type {string}
+     */
+    const namespace = this.model.getItemNameSpace();
+
+    /**
+     * Get workspace
+     * @type {WorkspaceController}
+     */
+    const wsc = this[namespace].controller;
+
+    if (wsc) {
+      wsc.switchPageOnHashChange();
+    }
+  }
+
+  /**
+   * Check if core already loaded
+   * @property BaseController
+   * @returns {boolean}
+   */
+  isLoading() {
+    return this.root().model.getConfig('loading');
+  }
+
+  /**
+   * Get Application mode
+   * @property BaseController
+   * @returns {*|number}
+   */
+  getMode() {
+    return this.root().config.mode;
+  }
+
+  /**
+   * Get parent node object
+   * @property BaseController
+   * @returns {*}
+   */
+  getContainment() {
+    return this.scope.containment;
+  }
+
+  /**
+   * Get Application Root
+   * @property BaseController
+   * @returns {*|string}
+   */
+  root() {
+
+    /**
+     * Define root instance
+     * @type {*}
+     */
+    let root = this.scope;
+    while (root.hasOwnProperty('containment')) {
+      root = root.containment;
+    }
+
+    return root;
+  }
+
+  /**
+   * Get Application name
+   * @property BaseController
+   * @returns {string}
+   */
+  getAppName() {
+    return this.root().model.getConfig('appName');
+  }
+
+  /**
+   * Get Workspace
+   * @property BaseController
+   * @param {string} [uuid]
+   * @returns {Workspace}
+   */
+  getWorkspace(uuid) {
+
+    /**
+     * Get root
+     * @type {Application|{model}}
+     */
+    const root = this.root();
+
+    return uuid ? root.model.getItemByUUID(uuid) : root.model.getCurrentItem();
+  }
+
+  /**
+   * Get Page
+   * @property BaseController
+   * @param {string} [uuid]
+   * @returns {Page}
+   */
+  getPage(uuid) {
+
+    /**
+     * Define workspace
+     * @type {Workspace|{model}}
+     */
+    const workspace = this.getWorkspace();
+
+    return uuid ? workspace.model.getItemByUUID(uuid) : workspace.model.getCurrentItem();
+  }
+
+  /**
+   * Get Widget
+   * @property BaseController
+   * @param {string} [uuid]
+   * @returns {*|Widget}
+   */
+  getWidget(uuid) {
+
+    /**
+     * Get page
+     * @type {Page|{model}}
+     */
+    const page = this.getPage();
+
+    return uuid ? page.model.getItemByUUID(uuid) : page.model.getCurrentItem();
+  }
+
+  /**
+   * Get Config Logger
+   * @property BaseController
+   * @param {string} log
+   * @param {Object} hash
+   */
+  getConfigLog(log, hash) {
+    this.logger.debug(log, hash);
+  }
+
+  /**
+   * Get scope view
+   * @property BaseController
+   * @returns {view}
+   */
+  getView() {
+    return this.scope.view;
+  }
+
+  /**
+   * Get scope model
+   * @property BaseController
+   * @returns {model}
+   */
+  getModel() {
+    return this.scope.model;
+  }
+
+  /**
+   * Success Created
+   * @property BaseController
+   */
+  successCreated() {
+    this.logger.debug('Successfully created');
+    this.observer.publish(this.eventManager.eventList.defineGenericGetter);
+  }
+
+  /**
+   * Define instance getter
+   * @property BaseController
+   */
+  defineGenericGetter() {
+
+    const containment = this.controller.getContainment(),
+        scope = this;
+
+    if (!containment) {
+      if (scope !== scope.controller.root()) {
+        scope.logger.warn('Undefined containment');
+      }
+      return false;
+    }
+
+    /**
+     * Get constructor prototype
+     * @type {BaseController}
+     */
+    const controller = containment.controller.constructor.prototype;
+    const fnName = 'get' + this.name;
+
+    if (this.base._.isFunction(controller[fnName])) {
+      scope.logger.debug('Getter already implemented', fnName);
+    } else if (scope.config.getter) {
+
+      /**
+       * Define generated getter
+       * @returns {*}
+       */
+      controller[fnName] = function genericGetter() {
+        return scope;
+      };
+
+    } else {
+      scope.logger.debug('Config getter was missing', scope);
+    }
+  }
+
+  /**
+   * Success Rendered
+   * @property BaseController
+   */
+  successRendered() {
+    const comment = this.i18n.t('success.rendered').replace(/\{0}/, this.name);
+    this.logger.debug(comment);
+  }
+
+  /**
+   * Success Render Footer
+   * @property BaseController
+   * @param {HeaderElement} $header
+   * @param {boolean} render
+   */
+  successRenderHeader($header, render) {
+    this.logger.debug('Success Render Header', render, $header);
+  }
+
+  /**
+   * Success Render Footer
+   * @property BaseController
+   * @param {FooterElement} $footer
+   * @param {boolean} render
+   */
+  successRenderFooter($footer, render) {
+    this.logger.debug('Success Render Footer', render, $footer);
+  }
+
+  /**
+   * Set item as current in parent node
+   * @property BaseController
+   */
+  setAsCurrent() {
+    this.getContainment().controller.setCurrentItem(this.scope);
+  }
+
+  /**
+   * Set current item
+   * @property BaseController
+   * @param {{}} item
+   * @returns {*}
+   */
+  setCurrentItem(item) {
+    const scope = this.scope;
+    scope[scope.model.getItemNameSpace()] = item;
+    return this.model.getCurrentItem();
+  }
+
+  /**
+   * Check condition
+   * @property BaseController
+   * @param {{condition, msg, [type], [args]}} opts
+   * @returns {boolean}
+   */
+  checkCondition(opts) {
+
+    /**
+     * Define logger
+     * @type {function}
+     */
+    const logger = this.scope.logger[opts.type || 'debug'];
+
+    if (opts.condition) {
+      opts.args ? logger(opts.msg, opts.args) : logger(opts.msg);
+      return true;
+    }
+    return false;
+  }
+
+  /**
+   * Get Development Mode
+   * @property BaseController
+   * @returns {Boolean}
+   */
+  isDevelopmentMode() {
+    return this.getMode() === 'development';
+  }
+
+  /**
+   * Get Authorize Mode
+   * @property BaseController
+   * @returns {Boolean}
+   */
+  isAuthorizeMode() {
+    return this.getMode() === 'authorize';
+  }
+
+  /**
+   * Get Consumption Mode
+   * @property BaseController
+   * @returns {boolean}
+   */
+  isConsumptionMode() {
+    return this.getMode() === 'consumption';
+  }
+
+  /**
+   * Get Custom Mode
+   * @property BaseController
+   * @returns {boolean}
+   */
+  isCustomMode() {
+    return this.getMode() === 'custom';
+  }
+
+  /**
+   * Get Custom publisher
+   * @property BaseController
+   * @returns {string|boolean}
+   */
+  getCustomPublisher(name) {
+
+    // Get event
+    const eventName = 'load' + name.capitalize(),
+        event = this.scope.eventManager.eventList[eventName];
+
+    if (!event) {
+      this.scope.logger.debug('Undefined custom event', name, eventName);
+      return false;
+    }
+
+    // Define custom event
+    const publishCustomEvent = event ? [
+      'this.scope.logger.debug(\'Publish custom event\',"' + event + '");',
+      'this.scope.observer.publish("' + event + '");'
+    ].join('') : '';
+
+    this.scope.logger.debug('Found custom publisher', publishCustomEvent, event);
+    return publishCustomEvent;
+  }
+
+  /**
+   * Load config preferences
+   * @property WorkspaceController
+   */
+  loadPreferences() {
+
+    // Get scope
+    const scope = this;
+
+    /**
+     * Get preferences
+     * @type {{}}
+     */
+    const prefs = scope.model.getConfig('preferences');
+
+    $.each(prefs, (index, value) => {
+
+      /**
+       * Define method name
+       * @type {string}
+       */
+      const setter = 'set' + index.toCamelCase().capitalize();
+
+      if (typeof(scope.model[setter]) !== 'function') {
 
         /**
-         * Before init config
-         * @memberOf BaseController
+         * Define setter
+         * @type {Function}
          */
-        beforeInitConfig: function beforeInitConfig() {
-          this.logger.debug('Before init config', arguments);
+        const fn = scope.base.lib.function.create({
+          name: setter,
+          params: index,
+          body: 'this._setItemInfoPreferences("' + index + '", ' + index + ');' +
+          scope.controller.getCustomPublisher(index),
+          scope: scope.model.constructor.prototype
+        });
+
+        scope.logger.debug('Define model setter', fn, index, setter);
+      }
+
+      scope.model[setter](value);
+    });
+  }
+
+  /**
+   * After update preferences
+   * @property BaseController
+   */
+  afterUpdatePreferences() {
+    this.logger.debug('After update preferences', arguments);
+  }
+
+  /**
+   * Transfer preferences to containment
+   * @property BaseController
+   * @param index
+   * @param value
+   */
+  transferPreferences(index, value) {
+
+    const widgetContent = this.controller.isWidgetContent(),
+        skipTransfer = this.model.checkSkipPreferencesOn(index);
+
+    if (widgetContent || skipTransfer) {
+      return false;
+    }
+
+    this.config.preferences[index] = value;
+  }
+
+  /**
+   * Get preferences
+   * @property BaseController
+   * @returns {{}}
+   */
+  getPreferences() {
+    return this.model.preferences;
+  }
+
+  /**
+   * Get rules
+   * @property BaseController
+   * @returns {{}}
+   */
+  getRules() {
+    return this.model.rules;
+  }
+
+  /**
+   * Open url in new window or in dialog
+   * @property BaseController
+   * @param {string} url
+   * @param {boolean} selfWindow
+   * @param {boolean} isDialog
+   */
+  openUrlOnEvent(url, selfWindow, isDialog) {
+
+    // Workaround to multiple clicks
+    this.openUrlEventHandler += 1;
+
+    if (this.openUrlEventHandler > 1) {
+
+      // Reset event handler
+      this.openUrlEventHandler = 0;
+      return false;
+    }
+
+    if (isDialog) {
+      // TODO
+      this.logger.debug('Open url in dialog', url);
+      return false;
+    }
+
+    this.logger.debug('Open url in new window', url);
+
+    if (selfWindow) {
+
+      window.location.href = url;
+
+    } else {
+
+      /**
+       * Define opened window instance
+       * @property AntHill
+       * @type {Window}
+       */
+      this.openedWindow = window.open(url);
+    }
+  }
+
+  /**
+   * Update site description
+   * @property BaseController
+   */
+  updateSiteDescription() {
+
+    /**
+     * Get $item
+     * @type {BaseElement}
+     */
+    const $item = this.controller.root().view.get$item();
+    const siteDescription = this.model.getConfig('preferences')['siteDescription'] || $item.getSiteDescription();
+    $item.setSiteDescription(siteDescription);
+  }
+
+  /**
+   * Update site keywords
+   * @property BaseController
+   */
+  updateSiteKeywords() {
+
+    /**
+     * Get $item
+     * @type {BaseElement}
+     */
+    const $item = this.controller.root().view.get$item();
+    const siteKeywords = this.model.getConfig('preferences')['siteKeywords'] || $item.getSiteKeywords();
+    $item.setSiteKeywords(siteKeywords);
+  }
+
+  /**
+   * Extend Config
+   * @property BaseController
+   * @param {{config, [dom]}} opts
+   * @returns {*}
+   */
+  extendConfig(opts) {
+    const base = this.base,
+        scope = this.scope;
+
+    opts.config = Object.assign({
+          html: {
+            container: [
+              '#', scope.model.getUUID(),
+              '-', scope.model.getScopeName().toLowerCase()
+            ].join('')
+          },
+          containment: scope
         },
-
-        /**
-         * After init config
-         * @memberOf BaseController
-         */
-        afterInitConfig: function afterInitConfig() {
-          this.logger.debug('After init config', arguments);
-        },
-
-        /**
-         * Success Create Element
-         * @memberOf BaseController
-         * @param {BaseElement} $element
-         */
-        successCreateElement: function successCreateElement($element) {
-          this.logger.debug('Success build element', $element);
-        },
-
-        /**
-         * Success Build Element
-         * @memberOf BaseController
-         * @param {BaseElement} $element
-         */
-        successBuildElement: function successBuildElement($element) {
-          this.logger.debug('Success build element', $element);
-        },
-
-        /**
-         * Success Destroy Element
-         * @memberOf BaseController
-         * @param {BaseElement|{name}} $element
-         */
-        successDestroyElement: function successDestroyElement($element) {
-          this.logger.debug(
-              this.i18n.t('element.overwritten').replace(/\{0}/, $element.name),
-              $element
-          );
-        },
-
-        /**
-         * Get cache
-         * @memberOf BaseController
-         * @param {string} [uuid]
-         * @returns {*}
-         */
-        getCache: function getCache(uuid) {
-
-          /**
-           * Get root
-           * @type {Application}
-           */
-          var root = this.root();
-
-          return uuid ? root.cache[uuid] : root.cache;
-        },
-
-        /**
-         * Define environment getter
-         * @memberOf BaseController
-         * @returns {string|environment|*}
-         */
-        getEnvironment: function getEnvironment() {
-          return this.root().config.environment;
-        },
-
-        /**
-         * Get cache
-         * @memberOf BaseController
-         * @param {string} uuid
-         * @param {*} value
-         */
-        updateCache: function updateCache(uuid, value) {
-          this.root().cache[uuid] = value;
-        },
-
-        /**
-         * Get cache css
-         * @memberOf BaseController
-         * @param {string} path
-         * @param {*} element
-         */
-        updateCacheCss: function updateCacheCss(path, element) {
-
-          // Get cache
-          var cache = this.root().cache;
-
-          cache.css = cache.css || {};
-          cache.css[path] = element;
-        },
-
-        /**
-         * Define routes setter
-         * @memberOf BaseController
-         */
-        setRoutes: function setRoutes() {
-
-          var routes = this.model.getConfig('routes') || {},
-              index;
-
-          for (index in routes) {
-            if (routes.hasOwnProperty(index)) {
-              this.controller.setRoute(index, routes[index]);
-            }
-          }
-        },
-
-        /**
-         * Bind model observer
-         * @memberOf BaseController
-         */
-        bindModelObserver: function bindModelObserver() {
-          this.logger.debug('Bind model observer', arguments);
-          if (this.model) {
-            this.model.bindModelObserver.apply(this, arguments);
-          }
-        },
-
-        /**
-         * After loading items
-         * @memberOf BaseController
-         */
-        afterLoadingItems: function afterLoadingItems() {
-          this.logger.debug(
-              'After loading items',
-              this.model.getItems()
-          );
-          this.controller.setAsLoading(false);
-        },
-
-        /**
-         * Set core loading attribute
-         * @memberOf BaseController
-         * @param load
-         */
-        setAsLoading: function setAsLoading(load) {
-
-          /**
-           * Get root
-           * @type {Application}
-           */
-          var root = this.root();
-
-          root.model.setConfig('loading', load);
-
-          if (this.scope === root) {
-
-            root.observer.publish(
-                root.eventManager.eventList.setAsLoaded
-            );
-          }
-        },
-
-        /**
-         * Set as loaded
-         * @memberOf BaseController
-         */
-        setAsLoaded: function setAsLoaded() {
-
-          this.logger.debug('Application was loaded');
-
-          /**
-           * Get item constructor name
-           * @type {string}
-           */
-          var namespace = this.model.getItemNameSpace();
-
-          /**
-           * Get workspace
-           * @type {WorkspaceController}
-           */
-          var wsc = this[namespace].controller;
-
-          if (wsc) {
-            wsc.switchPageOnHashChange();
-          }
-        },
-
-        /**
-         * Check if core already loaded
-         * @memberOf BaseController
-         * @returns {boolean}
-         */
-        isLoading: function isLoading() {
-          return this.root().model.getConfig('loading');
-        },
-
-        /**
-         * Get Application mode
-         * @memberOf BaseController
-         * @returns {*|number}
-         */
-        getMode: function getMode() {
-          return this.root().config.mode;
-        },
-
-        /**
-         * Get parent node object
-         * @memberOf BaseController
-         * @returns {*}
-         */
-        getContainment: function getContainment() {
-          return this.scope.containment;
-        },
-
-        /**
-         * Get Application Root
-         * @memberOf BaseController
-         * @returns {*|string}
-         */
-        root: function root() {
-
-          /**
-           * Define root instance
-           * @type {*}
-           */
-          var root = this.scope;
-          while (root.hasOwnProperty('containment')) {
-            root = root.containment;
-          }
-
-          return root;
-        },
-
-        /**
-         * Get Application name
-         * @memberOf BaseController
-         * @returns {string}
-         */
-        getAppName: function getAppName() {
-
-          return this.root().model.getConfig('appName');
-        },
-
-        /**
-         * Get Workspace
-         * @memberOf BaseController
-         * @param {string} [uuid]
-         * @returns {Workspace}
-         */
-        getWorkspace: function getWorkspace(uuid) {
-
-          /**
-           * Get root
-           * @type {Application}
-           */
-          var root = this.root();
-
-          return this.base.isDefined(uuid) ?
-              root.model.getItemByUUID(uuid) :
-              root.model.getCurrentItem();
-        },
-
-        /**
-         * Get Page
-         * @memberOf BaseController
-         * @param {string} [uuid]
-         * @returns {Page}
-         */
-        getPage: function getPage(uuid) {
-
-          /**
-           * Define workspace
-           * @type {Workspace}
-           */
-          var workspace = this.getWorkspace();
-
-          return this.base.isDefined(uuid) ?
-              workspace.model.getItemByUUID(uuid) :
-              workspace.model.getCurrentItem();
-        },
-
-        /**
-         * Get Widget
-         * @memberOf BaseController
-         * @param {string} [uuid]
-         * @returns {*|Widget}
-         */
-        getWidget: function getWidget(uuid) {
-
-          /**
-           * Get page
-           * @type {Page}
-           */
-          var page = this.getPage();
-
-          return this.base.isDefined(uuid) ?
-              page.model.getItemByUUID(uuid) :
-              page.model.getCurrentItem();
-        },
-
-        /**
-         * Get Config Logger
-         * @memberOf BaseController
-         * @param {string} log
-         * @param {Object} hash
-         */
-        getConfigLog: function getConfigLog(log, hash) {
-          this.logger.debug(log, hash);
-        },
-
-        /**
-         * Get scope view
-         * @memberOf BaseController
-         * @returns {view}
-         */
-        getView: function getView() {
-          return this.scope.view;
-        },
-
-        /**
-         * Get scope model
-         * @memberOf BaseController
-         * @returns {model}
-         */
-        getModel: function getModel() {
-          return this.scope.model;
-        },
-
-        /**
-         * Success Created
-         * @memberOf BaseController
-         */
-        successCreated: function successCreated() {
-
-          this.logger.debug('Successfully created');
-
-          this.observer.publish(
-              this.eventManager.eventList.defineGenericGetter
-          );
-        },
-
-        /**
-         * Define instance getter
-         * @memberOf BaseController
-         */
-        defineGenericGetter: function defineGenericGetter() {
-
-          var containment = this.controller.getContainment(),
-              scope = this;
-
-          if (!containment) {
-            if (scope !== scope.controller.root()) {
-              scope.logger.warn('Undefined containment');
-            }
-            return false;
-          }
-
-          /**
-           * Get constructor prototype
-           * @type {BaseController}
-           */
-          var controller = containment.controller.constructor.prototype;
-
-          var fnName = 'get' + this.name;
-
-          if (_.isFunction(controller[fnName])) {
-
-            scope.logger.debug('Getter already implemented', fnName);
-
-          } else if (scope.config.getter) {
-
-            /**
-             * Define generated getter
-             * @returns {*}
-             */
-            controller[fnName] = function genericGetter() {
-              return scope;
-            };
-
-          } else {
-
-            scope.logger.debug('Config getter was missing', scope);
-          }
-        },
-
-        /**
-         * Success Rendered
-         * @memberOf BaseController
-         */
-        successRendered: function successRendered() {
-          this.logger.debug(
-              this.i18n.t('success.rendered').replace(/\{0}/, this.name),
-              this
-          );
-        },
-
-        /**
-         * Success Render Footer
-         * @memberOf BaseController
-         * @param {HeaderElement} $header
-         * @param {boolean} render
-         */
-        successRenderHeader: function successRenderHeader($header, render) {
-          this.logger.debug(
-              'Success Render Header', render, $header
-          );
-        },
-
-        /**
-         * Success Render Footer
-         * @memberOf BaseController
-         * @param {FooterElement} $footer
-         * @param {boolean} render
-         */
-        successRenderFooter: function successRenderFooter($footer, render) {
-          this.logger.debug(
-              'Success Render Footer', render, $footer
-          );
-        },
-
-        /**
-         * Set item as current in parent node
-         * @memberOf BaseController
-         */
-        setAsCurrent: function setAsCurrent() {
-          this.getContainment().controller.setCurrentItem(
-              this.scope
-          );
-        },
-
-        /**
-         * Set current item
-         * @memberOf BaseController
-         * @param {{}} item
-         * @returns {*}
-         */
-        setCurrentItem: function setCurrentItem(item) {
-          var scope = this.scope;
-          scope[scope.model.getItemNameSpace()] = item;
-          return this.model.getCurrentItem();
-        },
-
-        /**
-         * Check condition
-         * @memberOf BaseController
-         * @param {{condition, msg, [type], [args]}} opts
-         * @returns {boolean}
-         */
-        checkCondition: function checkCondition(opts) {
-
-          /**
-           * Define logger
-           * @type {function}
-           */
-          var logger = this.scope.logger[opts.type || 'debug'];
-
-          if (opts.condition) {
-            opts.args ?
-                logger(opts.msg, opts.args) :
-                logger(opts.msg);
-            return true;
-          }
-          return false;
-        },
-
-        /**
-         * Get Development Mode
-         * @memberOf BaseController
-         * @returns {Boolean}
-         */
-        isDevelopmentMode: function isDevelopmentMode() {
-          return this.getMode() === 'development';
-        },
-
-        /**
-         * Get Authorize Mode
-         * @memberOf BaseController
-         * @returns {Boolean}
-         */
-        isAuthorizeMode: function isAuthorizeMode() {
-          return this.getMode() === 'authorize';
-        },
-
-        /**
-         * Get Consumption Mode
-         * @memberOf BaseController
-         * @returns {boolean}
-         */
-        isConsumptionMode: function isConsumptionMode() {
-          return this.getMode() === 'consumption';
-        },
-
-        /**
-         * Get Custom Mode
-         * @memberOf BaseController
-         * @returns {boolean}
-         */
-        isCustomMode: function isCustomMode() {
-          return this.getMode() === 'custom';
-        },
-
-        /**
-         * Get Custom publisher
-         * @memberOf BaseController
-         * @returns {string|boolean}
-         */
-        getCustomPublisher: function getCustomPublisher(name) {
-
-          // Get event
-          var eventName = 'load' + name.capitalize(),
-              event = this.scope.eventManager.eventList[eventName];
-
-          if (!event) {
-            this.scope.logger.debug('Undefined custom event', name, eventName);
-            return false;
-          }
-
-          // Define custom event
-          var publishCustomEvent = event ? [
-                'this.scope.logger.debug(\'Publish custom event\',"' + event +
-                '");',
-                'this.scope.observer.publish("' + event + '");'
-              ].join('') : '';
-
-          this.scope.logger.debug('Found custom publisher', publishCustomEvent,
-              event);
-
-          return publishCustomEvent;
-        },
-
-        /**
-         * Load config preferences
-         * @memberOf WorkspaceController
-         */
-        loadPreferences: function loadPreferences() {
-
-          // Get scope
-          var scope = this;
-
-          /**
-           * Get preferences
-           * @type {{}}
-           */
-          var prefs = scope.model.getConfig('preferences');
-
-          $.each(prefs, function each(index, value) {
-
-            /**
-             * Define method name
-             * @type {string}
-             */
-            var setter = 'set' + index.toCamel().capitalize();
-
-            if (typeof(scope.model[setter]) !== 'function') {
-
-              /**
-               * Define setter
-               * @type {Function}
-               */
-              var fn = scope.base.lib.function.create({
-                name: setter,
-                params: index,
-                body: 'this._setItemInfoPreferences("' + index + '", ' + index +
-                ');' + scope.controller.getCustomPublisher(index),
-                scope: scope.model.constructor.prototype
-              });
-
-              scope.logger.debug('Define model setter', fn, index, setter);
-            }
-
-            scope.model[setter](value);
-          });
-        },
-
-        /**
-         * After update preferences
-         * @memberOf BaseController
-         */
-        afterUpdatePreferences: function afterUpdatePreferences() {
-          this.logger.debug('After update preferences', arguments);
-        },
-
-        /**
-         * Transfer preferences to containment
-         * @memberOf BaseController
-         * @param index
-         * @param value
-         */
-        transferPreferences: function transferPreferences(index, value) {
-
-          var widgetContent = this.controller.isWidgetContent(),
-              skipTransfer = this.model.checkSkipPreferencesOn(index);
-
-          if (widgetContent || skipTransfer) {
-            return false;
-          }
-
-          this.config.preferences[index] = value;
-        },
-
-        /**
-         * Get preferences
-         * @memberOf BaseController
-         * @returns {{}}
-         */
-        getPreferences: function getPreferences() {
-          return this.model.preferences;
-        },
-
-        /**
-         * Get rules
-         * @memberOf BaseController
-         * @returns {{}}
-         */
-        getRules: function getRules() {
-          return this.model.rules;
-        },
-
-        /**
-         * Open url in new window or in dialog
-         * @memberOf BaseController
-         * @param {string} url
-         * @param {boolean} selfWindow
-         * @param {boolean} isDialog
-         */
-        openUrlOnEvent: function openUrlOnEvent(url, selfWindow, isDialog) {
-
-          // Workaround to multiple clicks
-          this.openUrlEventHandler += 1;
-
-          if (this.openUrlEventHandler > 1) {
-
-            // Reset event handler
-            this.openUrlEventHandler = 0;
-            return false;
-          }
-
-          if (isDialog) {
-            // TODO
-            this.logger.debug('Open url in dialog', url);
-            return false;
-          }
-
-          this.logger.debug('Open url in new window', url);
-
-          if (selfWindow) {
-
-            window.location.href = url;
-
-          } else {
-
-            /**
-             * Define opened window instance
-             * @property AntHill
-             * @type {Window}
-             */
-            this.openedWindow = window.open(url);
-          }
-        },
-
-        /**
-         * Update site description
-         * @memberOf BaseController
-         */
-        updateSiteDescription: function updateSiteDescription() {
-
-          /**
-           * Get $item
-           * @type {BaseElement}
-           */
-          var $item = this.controller.root().view.get$item();
-
-          var siteDescription = this.model.getConfig(
-                  'preferences')['siteDescription'] ||
-              $item.getSiteDescription();
-
-          $item.setSiteDescription(siteDescription);
-        },
-
-        /**
-         * Update site keywords
-         * @memberOf BaseController
-         */
-        updateSiteKeywords: function updateSiteKeywords() {
-
-          /**
-           * Get $item
-           * @type {BaseElement}
-           */
-          var $item = this.controller.root().view.get$item();
-
-          var siteKeywords = this.model.getConfig(
-                  'preferences')['siteKeywords'] ||
-              $item.getSiteKeywords();
-
-          $item.setSiteKeywords(siteKeywords);
-        },
-
-        /**
-         * Extend Config
-         * @memberOf BaseController
-         * @param {{config, [dom]}} opts
-         * @returns {*}
-         */
-        extendConfig: function extendConfig(opts) {
-          var base = this.base,
-              scope = this.scope;
-
-          opts.config = base.lib.hash.extendHash({
-            html: {
-              container: [
-                '#', scope.model.getUUID(),
-                '-', scope.model.getScopeName().toLowerCase()
-              ].join('')
-            },
-            containment: scope
-          }, opts.config);
-
-          scope.logger.debug('Configuration', opts.config);
-
-          return opts;
-        },
-
-        /**
-         * Check is root
-         * @memberOf BaseController
-         * @param [scope]
-         * @returns {boolean}
-         */
-        isRoot: function isRoot(scope) {
-          return (scope || this.scope) === this.root();
-        },
-
-        /**
-         * Check is workspace
-         * @memberOf BaseController
-         * @returns {boolean}
-         */
-        isWorkspace: function isWorkspace() {
-          return this.scope.model.getScopeName() === 'Workspace';
-        },
-
-        /**
-         * Check is page
-         * @memberOf BaseController
-         * @returns {boolean}
-         */
-        isPage: function isPage() {
-          return this.scope.model.getScopeName() === 'Page';
-        },
-
-        /**
-         * Check is widget
-         * @memberOf BaseController
-         * @param {Widget} [item]
-         * @returns {boolean}
-         */
-        isWidget: function isWidget(item) {
-          var model = (item || this.scope).model;
-          return model ? model.getScopeName() === 'Widget' : false;
-        },
-
-        /**
-         * Check if item is a core component
-         * @memberOf BaseController
-         * @returns {*|boolean}
-         */
-        isCoreComponent: function isCoreComponent() {
-          return this.isWidget() || this.isPage() || this.isWorkspace() ||
-              this.isRoot();
-        },
-
-        /**
-         * Check is widget content
-         * @memberOf BaseController
-         * @returns {boolean}
-         */
-        isWidgetContent: function isWidgetContent() {
-
-          // Get scope
-          var scope = this.scope;
-
-          /**
-           * Get widget
-           * @type {Widget}
-           */
-          var widget = scope.controller.getContainment();
-
-          if (widget) {
-            scope.logger.debug('Widget has content');
-            return widget.controller.isWidget();
-          }
-
-          scope.logger.info('Root is not widget content');
-          return false;
-        },
-
-        /**
-         * Store data after layout organize
-         * @memberOf BaseController
-         * @param [node]
-         * @param [data]
-         * @param {number} [counter]
-         */
-        store: function store(node, data, counter) {
-
-          /**
-           * Get scope
-           * @type {{permission, logger}}
-           */
-          var scope = this.scope;
-
-          if (!scope.permission.getCapability(this.store.name)) {
-            scope.logger[this.isConsumptionMode() ? 'debug' : 'warn'](
-                'Unable to save layout',
-                arguments
-            );
-            return false;
-          }
-
-          /**
-           * Define root
-           * @type {Application}
-           */
-          var root = this.root();
-
-          /**
-           * Define node
-           * @type {*}
-           */
-          node = this.base.define(
-              node,
-              root,
-              true
-          );
-
-          /**
-           * Define data
-           * @type {*}
-           */
-          data = this.base.define(data, {
-            collector: {}
-          }, true);
-
-          /**
-           * Define item list
-           * @type {*}
-           */
-          var items = node.model.getItems(),
-              index;
-
-          /**
-           * Define item name space
-           * @type {string}
-           */
-          var cname = node.model.getItemNameSpace();
-
-          if (node[cname].model) {
-
-            /**
-             * Define data
-             * @type {*}
-             */
-            data.collector[cname] = data.collector[cname] || {};
-
-            $.extend(
-                true,
-                data.collector[cname],
-                node.controller.collectItemProperties(
-                    !node[cname].model.getItems()
-                )
-            );
-          }
-
-          for (index in items) {
-
-            if (items.hasOwnProperty(index)) {
-
-              var item = items[index];
-
-              if (item.model && item.model.getItems()) {
-
-                this.store.bind(node.controller)(
-                    item,
-                    data,
-                    Object.keys(items).length
-                );
-              }
-            }
-          }
-
-          if (!counter) {
-            root.model.setting.save(data);
-          }
-        },
-
-        /**
-         * Get subscribers list
-         * @memberOf BaseController
-         * @param {string} event
-         * @return {Array}
-         */
-        getSubscribers: function getSubscribers(event) {
-
-          /**
-           * Define rules
-           * @type {{}}
-           */
-          var rules = this.model.rules || {};
-
-          return rules.subscribers ?
-              rules.subscribers[event] : []
-        },
-
-        /**
-         * Collect items data
-         * @memberOf BaseController
-         * @param {Boolean} collectDOM
-         * @returns {{}}
-         */
-        collectItemProperties: function collectItemProperties(collectDOM) {
-
-          var collector = {},
-              items = this.model.getItems();
-
-          if (items) {
-
-            for (var index in items) {
-
-              if (items.hasOwnProperty(index)) {
-
-                var item = items[index],
-                    uuid = item.model.getConfig('uuid');
-
-                collector[uuid] = {};
-
-                /**
-                 * Define config
-                 * @type {{}}
-                 */
-                collector[uuid].config = this.base.lib.hash.extendHash(
-                    item.model.getConfig(),
-                    collector[uuid].config
-                );
-
-                /**
-                 * Define containment
-                 * @type {string}
-                 */
-                collector[uuid].containment =
-                    item.containment.model.getConfig('uuid');
-
-                if (collectDOM) {
-
-                  /**
-                   * Collect DOM
-                   * @type {{}}
-                   */
-                  collector[uuid].dom = item.dom;
-                }
-              }
-            }
-          }
-
-          return collector;
+        opts.config);
+
+    scope.logger.debug('Configuration', opts.config);
+
+    return opts;
+  }
+
+  /**
+   * Check is root
+   * @property BaseController
+   * @param [scope]
+   * @returns {boolean}
+   */
+  isRoot(scope) {
+    return (scope || this.scope) === this.root();
+  }
+
+  /**
+   * Check is workspace
+   * @property BaseController
+   * @returns {boolean}
+   */
+  isWorkspace() {
+    return this.scope.model.getScopeName() === 'Workspace';
+  }
+
+  /**
+   * Check is page
+   * @property BaseController
+   * @returns {boolean}
+   */
+  isPage() {
+    return this.scope.model.getScopeName() === 'Page';
+  }
+
+  /**
+   * Check is widget
+   * @property BaseController
+   * @param {Widget} [item]
+   * @returns {boolean}
+   */
+  isWidget(item) {
+    const model = (item || this.scope).model;
+    return model ? model.getScopeName() === 'Widget' : false;
+  }
+
+  /**
+   * Check if item is a core component
+   * @property BaseController
+   * @returns {*|boolean}
+   */
+  isCoreComponent() {
+    return this.isWidget() || this.isPage() || this.isWorkspace() || this.isRoot();
+  }
+
+  /**
+   * Check is widget content
+   * @property BaseController
+   * @returns {boolean}
+   */
+  isWidgetContent() {
+
+    // Get scope
+    const scope = this.scope;
+
+    /**
+     * Get widget
+     * @type {Widget|{controller}}
+     */
+    const widget = scope.controller.getContainment();
+
+    if (widget) {
+      scope.logger.debug('Widget has content');
+      return widget.controller.isWidget();
+    }
+
+    scope.logger.info('Root is not widget content');
+    return false;
+  }
+
+  /**
+   * Store data after layout organize
+   * @property BaseController
+   * @param [node]
+   * @param [data]
+   * @param {number} [counter]
+   */
+  store(node, data, counter) {
+
+    /**
+     * Get scope
+     * @type {{permission, logger}}
+     */
+    const scope = this.scope;
+
+    if (!scope.permission.getCapability(this.store.name)) {
+      scope.logger[this.isConsumptionMode() ? 'debug' : 'warn']('Unable to save layout', arguments);
+      return false;
+    }
+
+    /**
+     * Define root
+     * @type {Application}
+     */
+    const root = this.root();
+
+    /**
+     * Define node
+     * @type {*}
+     */
+    node = node || root;
+
+    /**
+     * Define data
+     * @type {*}
+     */
+    data = data || {collector: {}};
+
+    /**
+     * Define item list
+     * @type {*}
+     */
+    const items = node.model.getItems();
+
+    /**
+     * Define item name space
+     * @type {string}
+     */
+    const cname = node.model.getItemNameSpace();
+
+    if (node[cname].model) {
+
+      /**
+       * Define data
+       * @type {*}
+       */
+      data.collector[cname] = data.collector[cname] || {};
+
+      Object.assign(
+          data.collector[cname],
+          node.controller.collectItemProperties(!node[cname].model.getItems())
+      );
+    }
+
+    for (let index in items) {
+      if (items.hasOwnProperty(index)) {
+        const item = items[index];
+        if (item.model && item.model.getItems()) {
+          this.store.bind(node.controller)(item, data, Object.keys(items).length);
         }
-      },
-      AntHill.prototype,
-      BehaviorCrud.prototype,
-      BehaviorWindowResize.prototype
-  );
-});
+      }
+    }
+
+    if (!counter) {
+      root.model.setting.save(data);
+    }
+  }
+
+  /**
+   * Get subscribers list
+   * @property BaseController
+   * @param {string} event
+   * @return {Array}
+   */
+  getSubscribers(event) {
+
+    /**
+     * Define rules
+     * @type {{}}
+     */
+    const rules = this.model.rules || {};
+    return rules.subscribers ? rules.subscribers[event] : [];
+  }
+
+  /**
+   * Collect items data
+   * @property BaseController
+   * @param {Boolean} collectDOM
+   * @returns {{}}
+   */
+  collectItemProperties(collectDOM) {
+
+    const collector = {},
+        items = this.model.getItems();
+
+    if (!items) {
+      this.scope.logger.warn('Model with no items');
+      return collector;
+    }
+
+    for (let index in items) {
+      if (items.hasOwnProperty(index)) {
+
+        const item = items[index],
+            uuid = item.model.getConfig('uuid');
+
+        collector[uuid] = {};
+
+        /**
+         * Define config
+         * @type {{}}
+         */
+        collector[uuid].config = Object.assign(item.model.getConfig(), collector[uuid].config);
+
+        /**
+         * Define containment
+         * @type {string}
+         */
+        collector[uuid].containment = item.containment.model.getConfig('uuid');
+
+        if (collectDOM) {
+
+          /**
+           * Collect DOM
+           * @type {{}}
+           */
+          collector[uuid].dom = item.dom;
+        }
+      }
+    }
+
+    return collector;
+  }
+};

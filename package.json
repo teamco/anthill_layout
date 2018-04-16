@@ -4,10 +4,10 @@
     "transform": [
       [
         "babelify",
-        "require-globify",
         {
           "presets": [
-            "es2015"
+            "es2015",
+            "stage-0"
           ]
         }
       ]
@@ -24,9 +24,10 @@
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
-    "babel-loader": "^7.1.4",
+    "babel-preset-env": "^1.6.1",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
+    "babelify": "^8.0.0",
     "browserify-shim": "^3.8.14",
     "caller-id": "^0.1.0"
   }
