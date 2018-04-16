@@ -132,7 +132,7 @@ module.exports = class Router extends AntHill {
         (workspace.model.getItemByTitle(pageMatch[1]) || workspace.model.getItemByUUID(pageMatch[1])) :
         currentPage;
 
-    if (this.base._.isUndefined(page)) {
+    if (this.utils._.isUndefined(page)) {
 
       workspace.observer.publish(workspace.eventManager.eventList.switchToPage, currentPage);
 
@@ -187,10 +187,7 @@ module.exports = class Router extends AntHill {
      */
     const hash = this.controller.getItemIdentity(widget.controller.getContainment());
 
-    this.controller.setHashLocation(''.concat(
-        hash, '/',
-        this.controller.getItemIdentity(widget)
-    ));
+    this.controller.setHashLocation(''.concat(hash, '/', this.controller.getItemIdentity(widget)));
   }
 
   /**

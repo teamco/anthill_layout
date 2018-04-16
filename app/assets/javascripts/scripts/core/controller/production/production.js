@@ -1,33 +1,24 @@
-defineP(function defineProduction() {
+/**
+ * Define Production mode
+ * @class ProductionController
+ */
+module.exports = class ProductionController {
 
   /**
-   * Define Production mode
-   * @class Production
-   * @constructor
-   * @extends BaseController
+   * Define is production checker
+   * @property Production
    */
-  var Production = function Production() {
-  };
+  isProduction() {
 
-  return Production.extend('Production', {
+    // TODO until production
+    return window.location.hostname !== 'localhost' || this.getEnvironment() === 'production';
+  }
 
-    /**
-     * Define is production checker
-     * @memberOf Production
-     */
-    isProduction: function isProduction() {
-
-      // TODO until production
-      return window.location.hostname !== 'localhost' ||
-          this.getEnvironment() === 'production';
-    },
-
-    /**
-     * Define load production mode
-     * @memberOf Production
-     */
-    loadProduction: function loadProduction() {
-      // TODO
-    }
-  });
-});
+  /**
+   * Define load production mode
+   * @property Production
+   */
+  loadProduction() {
+    // TODO
+  }
+};

@@ -31,11 +31,49 @@ const BehaviorCrud = require('../../controller/behavior/behavior.crud.js');
 const BehaviorWindowResize = require('../../controller/behavior/behavior.window.resize.js');
 
 /**
+ * @constant BehaviorErrorHandler
+ * @type {BehaviorErrorHandler}
+ */
+const BehaviorErrorHandler = require('../../controller/behavior/behavior.error.handler.js');
+
+/**
+ * @constant BehaviorFixVulnerabilities
+ * @type {BehaviorFixVulnerabilities}
+ */
+const BehaviorFixVulnerabilities = require('../../controller/behavior/behavior.fix.vulnerabilities.js');
+
+/**
+ * @constant ProductionController
+ * @type {ProductionController}
+ */
+const ProductionController = require('../../controller/production/production.js');
+
+/**
+ * @constant Routes
+ * @type {Routes}
+ */
+const Routes = require('../../config/routes.js');
+
+/**
+ * @constant Router
+ * @type {Router}
+ */
+const Router = require('../modules/Router.js');
+
+/**
  * Define Base Controller
  * @class BaseController
  * @extends AntHill
+ * @extends BehaviorCrud
+ * @extends BehaviorWindowResize
+ * @extends BehaviorErrorHandler
+ * @extends BehaviorFixVulnerabilities
+ * @extends ProductionController
+ * @extends Routes
+ * @extends Router
  */
-module.exports = class BaseController extends aggregation(AntHill, BehaviorCrud, BehaviorWindowResize) {
+module.exports = class BaseController extends aggregation(AntHill, BehaviorCrud, BehaviorWindowResize,
+    BehaviorErrorHandler, BehaviorFixVulnerabilities, ProductionController, Routes, Router) {
 
   /**
    * Define Base Controller

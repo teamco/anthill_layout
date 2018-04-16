@@ -5,122 +5,104 @@
  * Time: 8:38 PM
  */
 
-defineP(function defineBehaviorErrorHandler() {
+/**
+ * Define Error handler
+ * @class BehaviorErrorHandler
+ */
+module.exports = class BehaviorErrorHandler {
 
   /**
-   * Define Error handler
-   * @class BehaviorErrorHandler
-   * @constructor BehaviorErrorHandler
+   * Define Client ErrorHandler
+   * @property BehaviorErrorHandler
    */
-  var BehaviorErrorHandler = function BehaviorErrorHandler() {
+  defineClientErrorHandler() {
 
-    /**
-     * Define scope
-     * @property BehaviorErrorHandler
-     * @type {undefined}
-     */
-    this.scope = undefined;
-  };
+    const proxiedError = window.onerror,
+        scope = this.scope;
 
-  return BehaviorErrorHandler.extend('BehaviorErrorHandler', {
+    // Override previous handler.
+    window.onerror = (errorMsg, url, lineNumber, columnNumber, errorObject) => {
 
-    /**
-     * Define Client ErrorHandler
-     * @memberOf BehaviorErrorHandler
-     */
-    defineClientErrorHandler: function defineClientErrorHandler() {
+      if (proxiedError) {
 
-      var proxiedError = window.onerror,
-          scope = this.scope;
-
-      // Override previous handler.
-      window.onerror =
-          function errorHandler(errorMsg, url, lineNumber, columnNumber,
-              errorObject) {
-
-            if (proxiedError) {
-
-              // Call previous handler.
-              proxiedError.apply(this, arguments);
-            }
-
-            // Just let default handler run.
-            scope.view.handleNotificationsRenderer({
-              status: errorMsg,
-              statusText: [url, lineNumber, columnNumber].join(':'),
-              responseJSON: {
-                error: [
-                  '<pre><code>',
-                  (errorObject || {}).stack,
-                  '</code></pre>'
-                ].join('')
-              }
-            }, 'danger');
-
-            scope.logger.rollBarNotification('error', arguments);
-
-            return false;
-          }
-    },
-
-    /**
-     * Define error handler
-     * @memberOf BehaviorErrorHandler
-     */
-    _handleXhrLog: function _handleXhrLog(xhr, status, description) {
-
-      /**
-       * Define error message
-       * @returns {string}
-       * @private
-       */
-      function _formatStatus() {
-        if (xhr.status === 0) return 'Connection refused';
-        if (xhr.status === 404) return 'The requested page not found';
-        if (xhr.status === 500) return 'Internal Server Error';
+        // Call previous handler.
+        proxiedError.apply(this, arguments);
       }
 
-      /**
-       * Define status text
-       * @returns {string}
-       * @private
-       */
-      function _formatStatusText() {
-        var msg;
-        switch (xhr.statusText) {
-          case 'parsererror':
-            msg = 'Requested JSON parse failed';
-            break;
-          case 'timeout':
-            msg = 'Time out error';
-            break;
-          case 'abort':
-            msg = 'Ajax request aborted';
-            break;
-          default:
-            msg = 'Uncaught Error. ' + xhr.responseText;
-            break;
+      // Just let default handler run.
+      scope.view.handleNotificationsRenderer({
+        status: errorMsg,
+        statusText: [url, lineNumber, columnNumber].join(':'),
+        responseJSON: {
+          error: [
+            '<pre><code>',
+            (errorObject || {}).stack,
+            '</code></pre>'
+          ].join('')
         }
-        return msg;
-      }
+      }, 'danger');
 
-      /**
-       * Define isXhrError
-       * @type {boolean}
-       */
-      var isXhrError = ['timeout', 'error', 'abort', 'parsererror'].indexOf(
-              status) > -1;
+      return false;
+    };
+  }
 
-      if (isXhrError) {
-        this.scope.view.handleNotificationsRenderer({
-          status: [xhr.status, _formatStatus()].join(': '),
-          statusText: _formatStatusText(),
-          responseJSON: xhr.responseJSON
-        }, status);
-      }
+  /**
+   * Define error handler
+   * @property BehaviorErrorHandler
+   */
+  _handleXhrLog(xhr, status, description) {
 
-      this.scope.logger[isXhrError ? 'warn' : 'debug'](arguments);
-      this.scope.view.get$item().hideLoader();
+    /**
+     * Define error message
+     * @returns {string}
+     * @private
+     */
+    function _formatStatus() {
+      if (xhr.status === 0) return 'Connection refused';
+      if (xhr.status === 404) return 'The requested page not found';
+      if (xhr.status === 500) return 'Internal Server Error';
     }
-  });
-});
+
+    /**
+     * Define status text
+     * @returns {string}
+     * @private
+     */
+    function _formatStatusText() {
+      let msg;
+      switch (xhr.statusText) {
+        case 'parsererror':
+          msg = 'Requested JSON parse failed';
+          break;
+        case 'timeout':
+          msg = 'Time out error';
+          break;
+        case 'abort':
+          msg = 'Ajax request aborted';
+          break;
+        default:
+          msg = 'Uncaught Error. ' + xhr.responseText;
+          break;
+      }
+      return msg;
+    }
+
+    /**
+     * Define isXhrError
+     * @type {boolean}
+     */
+    const isXhrError = ['timeout', 'error', 'abort', 'parsererror'].indexOf(status) > -1;
+
+    if (isXhrError) {
+      this.scope.view.handleNotificationsRenderer({
+        status: [xhr.status, _formatStatus()].join(': '),
+        statusText: _formatStatusText(),
+        responseJSON: xhr.responseJSON
+      }, status);
+    }
+
+    this.scope.logger[isXhrError ? 'warn' : 'debug'](arguments);
+    this.scope.view.get$item().hideLoader();
+  }
+};
+  

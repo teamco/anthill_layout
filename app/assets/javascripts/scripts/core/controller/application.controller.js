@@ -5,14 +5,6 @@
  * Time: 9:17 PM
  * To change this template use File | Settings | File Templates.
  */
-// defineP(
-//     [
-//       'controller/behavior/behavior.error.handler',
-//       'controller/behavior/behavior.fix.vulnerabilities',
-//       'controller/production/production',
-//       'config/routes',
-//       'modules/Router'
-//     ],
 
 /**
  * @constant BaseController

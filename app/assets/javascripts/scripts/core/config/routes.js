@@ -5,88 +5,86 @@
  * Time: 11:23 PM
  */
 
-defineP(function defineRoutes() {
+/**
+ * Define Routes
+ * @class Routes
+ */
+module.exports = class Routes {
 
   /**
-   * Define Routes
-   * @class Routes
-   * @constructor
+   * @method initializer
+   * @property Routes
    */
-  var Routes = function Routes() {
-  };
-
-  return Routes.extend('Routes', {
+  initializer() {
 
     /**
-     * Define route resources
      * @property Routes
-     * @type {object}
+     * @type {{}}
      */
-    resources: {},
+    this.resources = {};
+  }
+
+  /**
+   * Define route setter
+   * @property Routes
+   * @param {string} route
+   * @param {[string, string]} data
+   */
+  setRoute(route, data) {
 
     /**
-     * Define route setter
-     * @memberOf Routes
-     * @param {string} route
-     * @param {[string, string]} data
+     * Define route
+     * @property Routes
+     * @type {string|string[]}
      */
-    setRoute: function setRoute(route, data) {
+    this.resources[route] = data;
+  }
 
-      /**
-       * Define route
-       * @memberOf Routes
-       * @type {string|string[]}
-       */
-      this.resources[route] = data;
-    },
+  /**
+   * Prepare XHR data before send
+   * @property Routes
+   * @param [collector]
+   * @return {Object|{authenticity_token: string}}
+   */
+  static prepareXhrData(collector) {
+
+    collector = collector || {};
 
     /**
-     * Prepare XHR data before send
-     * @memberOf Routes
-     * @param {object} [collector]
-     * @returns {{authenticity_token: string}}
+     * Define token
+     * @type {Number|Object|{authenticity_token: string}}
      */
-    prepareXhrData: function prepareXhrData(collector) {
+    const data = {authenticity_token: ''};
 
-      collector = collector || {};
+    data[Routes.getXCsrfParam()] = Routes.getXCsrfToken();
 
-      /**
-       * Define token
-       * @type {Number|Object|{authenticity_token: string}}
-       */
-      var data = {authenticity_token: ''}, index;
-
-      data[this.getXCsrfParam()] = this.getXCsrfToken();
-
-      for (index in collector) {
-        if (collector.hasOwnProperty(index)) {
-          if (data.hasOwnProperty(index)) {
-            throw new Error('Duplicate params', index);
-          } else {
-            data[index] = collector[index];
-          }
+    for (let index in collector) {
+      if (collector.hasOwnProperty(index)) {
+        if (data.hasOwnProperty(index)) {
+          throw new Error('Duplicate params', index);
         }
+        data[index] = collector[index];
       }
-
-      return data;
-    },
-
-    /**
-     * Get X-Csrf-Token param
-     * @memberOf Routes
-     * @returns {string}
-     */
-    getXCsrfParam: function getXCsrfParam() {
-      return $('meta[name="csrf-param"]').attr('content');
-    },
-
-    /**
-     * Get X-Csrf-Token
-     * @memberOf Routes
-     * @returns {string}
-     */
-    getXCsrfToken: function getXCsrfToken() {
-      return $('meta[name="csrf-token"]').attr('content');
     }
-  });
-});
+
+    return data;
+  }
+
+  /**
+   * Get X-Csrf-Token param
+   * @property Routes
+   * @returns {string}
+   */
+  static getXCsrfParam() {
+    return document.querySelector('meta[name="csrf-param"]').getAttribute('content');
+  }
+
+  /**
+   * Get X-Csrf-Token
+   * @property Routes
+   * @returns {string}
+   */
+  static getXCsrfToken() {
+    return document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+  }
+};
