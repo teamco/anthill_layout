@@ -6,135 +6,141 @@
  * To change this template use File | Settings | File Templates.
  */
 
-defineP([
-  'modules/View',
-  'element/application/application.element',
-  'element/header.element',
-  'element/footer.element',
-  'element/application/application.content.element',
-  'element/export.element'
-], function defineApplicationView(BaseView, ApplicationElement, Header, Footer,
-    ApplicationContentElement, ExportElement) {
+  // 'element/application/application.element',
+  // 'element/header.element',
+  // 'element/footer.element',
+  // 'element/application/application.content.element',
+  // 'element/export.element'
+
+/**
+ * Aggregation of base class and mixin classes.
+ * @type {(function(*, ...[*]): __Aggregate)|*|(function(): aggregate)}
+ */
+const aggregation = require('../lib/extends/aggregation.js');
+
+/**
+ * @constant BaseView
+ * @type {BaseView}
+ */
+const BaseView = require('../lib/modules/View.js');
+
+/**
+ * @class ApplicationView
+ * @extends BaseView
+ * @type {ApplicationView}
+ */
+module.exports = class ApplicationView extends aggregation(BaseView) {
 
   /**
-   * View
    * @constructor
-   * @class ApplicationView
-   * @extends BaseView
+   * @param {string} name
+   * @param scope
    */
-  var ApplicationView = function ApplicationView() {
-  };
+  constructor(name, scope) {
+    super('ApplicationView', scope, false);
+  }
 
-  return ApplicationView.extend('ApplicationView', {
-
-    /**
-     * Render Application
-     * @memberOf ApplicationView
-     */
-    renderApplication: function renderApplication() {
-
-      /**
-       * Define $application
-       * @type {ApplicationElement}
-       */
-      this.elements.$application = new ApplicationElement(this, {
-        $container: this.getConfigHTML().container,
-        mode: this.controller.getMode(),
-        id: true
-      });
-
-      this.header(Header, this.get$item());
-      this.workspaces();
-      this.footer(Footer, this.get$item());
-    },
+  /**
+   * Render Application
+   * @property ApplicationView
+   */
+  renderApplication() {
 
     /**
-     * Render Workspaces container
-     * @memberOf ApplicationView
+     * Define $application
+     * @type {ApplicationElement}
      */
-    workspaces: function workspaces() {
+    this.elements.$application = new ApplicationElement(this, {
+      $container: this.getConfigHTML().container,
+      mode: this.controller.getMode(),
+      id: true
+    });
 
-      /**
-       * Define $workspaces
-       * @type {ApplicationContentElement}
-       */
-      this.elements.$workspaces = new ApplicationContentElement(this, {
-        $container: this.get$item().$,
-        style: 'workspaces'
-      });
-    },
+    this.header(Header, this.get$item());
+    this.workspaces();
+    this.footer(Footer, this.get$item());
+  }
+
+  /**
+   * Render Workspaces container
+   * @property ApplicationView
+   */
+  workspaces() {
 
     /**
-     * Render export lin
-     * @memberOf ApplicationView
+     * Define $workspaces
+     * @type {ApplicationContentElement}
      */
-    renderExportLink: function renderExportLink(data) {
+    this.elements.$workspaces = new ApplicationContentElement(this, {
+      $container: this.get$item().$,
+      style: 'workspaces'
+    });
+  }
 
-      /**
-       * Define export element
-       * @type {ExportElement}
-       */
-      this.elements.$export = new ExportElement(this, {
-        $container: this.get$item().$,
-        style: 'export-url',
-        data: data
-      });
-    },
+  /**
+   * Render export lin
+   * @property ApplicationView
+   */
+  renderExportLink(data) {
 
     /**
-     * Handle notification renderer
-     * @memberOf ApplicationView
-     * @param xhr
-     * @param {string} status
+     * Define export element
+     * @type {ExportElement}
      */
-    handleNotificationsRenderer: function handleNotificationsRenderer(xhr,
-        status) {
+    this.elements.$export = new ExportElement(this, {
+      $container: this.get$item().$,
+      style: 'export-url',
+      data: data
+    });
+  }
 
-      /**
-       * Define buttons
-       * @type {*}
-       */
-      var buttons = {
-        reject: {
-          text: this.i18n.t('cancel'),
-          events: {
-            click: 'rejectModalEvent'
-          }
+  /**
+   * Handle notification renderer
+   * @property ApplicationView
+   * @param xhr
+   * @param {string} status
+   */
+  handleNotificationsRenderer(xhr, status) {
+
+    /**
+     * Define buttons
+     * @type {*}
+     */
+    const buttons = {
+      reject: {
+        text: this.i18n.t('cancel'),
+        events: {
+          click: 'rejectModalEvent'
         }
-      };
-
-      /**
-       * Define responseJSON
-       * @type {Ajax.Response.responseJSON|*}
-       */
-      var responseJSON = xhr.responseJSON;
-
-      this.modalDialog({
-        style: 'handle-' + status,
-        type: status,
-        title: xhr.status,
-        text: xhr.statusText,
-        html: (responseJSON || {}).error,
-        cover: true,
-        autoclose: status === 'danger',
-        buttons: buttons
-      });
-
-      this.controller.handleSendLog(xhr, status);
-    },
+      }
+    };
 
     /**
-     * Start rendering
-     * @memberOf ApplicationView
-     * @param {boolean} [silent]
+     * Define responseJSON
+     * @type {Ajax.Response.responseJSON|*}
      */
-    render: function render(silent) {
+    const responseJSON = xhr.responseJSON;
 
-      this.scope.observer.publish(
-          this.scope.eventManager.eventList.successRendered,
-          silent
-      );
-    }
+    this.modalDialog({
+      style: 'handle-' + status,
+      type: status,
+      title: xhr.status,
+      text: xhr.statusText,
+      html: (responseJSON || {}).error,
+      cover: true,
+      autoclose: status === 'danger',
+      buttons: buttons
+    });
 
-  }, BaseView.prototype)
-});
+    this.controller.handleSendLog(xhr, status);
+  }
+
+  /**
+   * Start rendering
+   * @property ApplicationView
+   * @param {boolean} [silent]
+   */
+  render(silent) {
+    this.scope.observer.publish(this.scope.eventManager.eventList.successRendered, silent);
+  }
+};

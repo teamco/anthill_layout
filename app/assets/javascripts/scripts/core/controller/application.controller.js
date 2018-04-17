@@ -7,22 +7,63 @@
  */
 
 /**
+ * Aggregation of base class and mixin classes.
+ * @type {(function(*, ...[*]): __Aggregate)|*|(function(): aggregate)}
+ */
+const aggregation = require('../lib/extends/aggregation.js');
+
+/**
  * @constant BaseController
  * @type {BaseController}
  */
 const BaseController = require('../lib/modules/Controller.js');
 
 /**
+ * @constant BehaviorErrorHandler
+ * @type {BehaviorErrorHandler}
+ */
+const BehaviorErrorHandler = require('./behavior/behavior.error.handler.js');
+
+/**
+ * @constant BehaviorFixVulnerabilities
+ * @type {BehaviorFixVulnerabilities}
+ */
+const BehaviorFixVulnerabilities = require('./behavior/behavior.fix.vulnerabilities.js');
+
+/**
+ * @constant ProductionController
+ * @type {ProductionController}
+ */
+const ProductionController = require('./production/production.js');
+
+/**
+ * @constant Routes
+ * @type {Routes}
+ */
+const Routes = require('../config/routes.js');
+
+/**
+ * @constant Router
+ * @type {Router}
+ */
+const Router = require('../lib/modules/Router.js');
+
+/**
  * Define application controller
  * @class ApplicationController
  * @extends BaseController
- * @constructor
+ * @extends BehaviorErrorHandler
+ * @extends BehaviorFixVulnerabilities
+ * @extends ProductionController
+ * @extends Routes
+ * @extends Router
  */
-module.exports = class ApplicationController extends BaseController {
+module.exports = class ApplicationController extends aggregation(BaseController, BehaviorErrorHandler,
+    BehaviorFixVulnerabilities, ProductionController, Routes, Router) {
 
   /**
-   * Define Base Controller
    * @constructor ApplicationController
+   * @param scope
    */
   constructor(scope) {
     super('ApplicationController', scope, false);
@@ -99,8 +140,9 @@ module.exports = class ApplicationController extends BaseController {
    * @param {number} version
    * @param {boolean} activated
    */
-  updateStorageVersion(version,
-                                                      activated) {
+  updateStorageVersion(
+      version,
+      activated) {
     this.logger.debug('Update storage version', version);
     this.model.setConfig('version', version);
     this.model.setConfig('activate', activated);
@@ -312,7 +354,7 @@ module.exports = class ApplicationController extends BaseController {
           backtrace: (xhr.responseJSON || {}).error
         }
       }),
-      error:() =>{
+      error: () => {
         scope.observer.publish(
             scope.eventManager.eventList.stopSendLog,
             arguments

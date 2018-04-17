@@ -4,9 +4,6 @@
  */
 const AntHill = require('./anthill.js');
 
-// 'controller/application.controller',
-// 'view/application.view'
-
 /**
  * @class Application
  * @extends AntHill
@@ -52,6 +49,12 @@ module.exports = class Application extends AntHill {
      * @type {ApplicationModel}
      */
     const ApplicationModel = require('../model/application.model.js');
+
+    /**
+     * @constant ApplicationView
+     * @type {ApplicationView}
+     */
+    const ApplicationView = require('../view/application.view.js');
 
     /**
      * @constant MVC
@@ -162,7 +165,7 @@ module.exports = class Application extends AntHill {
         ApplicationAPI,
         ApplicationController,
         ApplicationModel,
-        // View,
+        ApplicationView,
         ApplicationEventManager,
         ApplicationPermission
       ],
