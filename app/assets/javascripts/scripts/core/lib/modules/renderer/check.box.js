@@ -24,7 +24,7 @@ module.exports = class CheckBoxRenderer extends AntHill {
 
   /**
    * Render checkbox
-   * @memberOf CheckBoxRenderer
+   * @property CheckBoxRenderer
    * @param {{
    *      text: string,
    *      name: string,
@@ -43,8 +43,8 @@ module.exports = class CheckBoxRenderer extends AntHill {
      * Create UUID
      * @type {string}
      */
-    const uuid = this.base.lib.generator.UUID() + '-checkbox',
-        checked = this.base.defineBoolean(opts.checked, false, true);
+    const uuid = this.utils.gen.generator.UUID() + '-checkbox',
+        checked = this.utils.getStatic('setBoolean')(opts.checked, false, true);
 
     /**
      * Define $input

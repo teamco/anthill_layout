@@ -5,6 +5,9 @@
  */
 module.exports = class Base {
 
+  /**
+   * @constructor
+   */
   constructor() {
 
     /**
@@ -39,6 +42,11 @@ module.exports = class Base {
    * @return {boolean}
    */
   getStatic(component) {
+
+    /**
+     * @property Base
+     * @type {setBoolean, getType|*}
+     */
     const method = this.constructor[component];
     if (!method) {
       return false;
@@ -51,7 +59,7 @@ module.exports = class Base {
    * @property Base
    * @param instance
    * @param {boolean} value
-   * @return {*}
+   * @return {boolean}
    */
   static setBoolean(instance, value) {
     return typeof instance === 'undefined' ? value : instance;

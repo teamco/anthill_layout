@@ -4,6 +4,13 @@
  * Date: 3/3/14
  * Time: 12:14 AM
  */
+
+/**
+ * Aggregation of base class and mixin classes.
+ * @type {(function(*, ...[*]): __Aggregate)|*|(function(): aggregate)}
+ */
+const aggregation = require('../extends/aggregation.js');
+
 /**
  * @constant AntHill
  * @type {AntHill}
@@ -39,7 +46,7 @@ const AntHill = require('../../config/anthill.js');
  * @class Renderer
  * @extends AntHill
  */
-module.exports = class Renderer extends AntHill {
+module.exports = class Renderer extends aggregation(AntHill) {
 
   /**
    * @constructor

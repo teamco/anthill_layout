@@ -13,12 +13,6 @@
   // 'element/export.element'
 
 /**
- * Aggregation of base class and mixin classes.
- * @type {(function(*, ...[*]): __Aggregate)|*|(function(): aggregate)}
- */
-const aggregation = require('../lib/extends/aggregation.js');
-
-/**
  * @constant BaseView
  * @type {BaseView}
  */
@@ -29,7 +23,7 @@ const BaseView = require('../lib/modules/View.js');
  * @extends BaseView
  * @type {ApplicationView}
  */
-module.exports = class ApplicationView extends aggregation(BaseView) {
+module.exports = class ApplicationView extends BaseView {
 
   /**
    * @constructor

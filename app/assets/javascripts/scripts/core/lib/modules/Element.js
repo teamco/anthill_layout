@@ -27,7 +27,6 @@ const Renderer = require('../modules/Renderer.js');
 /**
  * Define Base element
  * @class BaseElement
- * @constructor
  * @extends AntHill
  */
 module.exports = class BaseElement extends aggregation(AntHill, Renderer) {
