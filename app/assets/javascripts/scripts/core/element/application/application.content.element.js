@@ -6,27 +6,30 @@
  * To change this template use File | Settings | File Templates.
  */
 
-defineP([
-  'modules/Element'
-], function defineApplicationContentElement(BaseElement) {
+/**
+ * @constant BaseElement
+ * @type {BaseElement|*}
+ */
+const BaseElement = require('../../lib/modules/Element.js');
+
+/**
+ * Define Application content element
+ * @class ApplicationContentElement
+ * @extends BaseElement
+ */
+module.exports = class ApplicationContentElement extends BaseElement {
 
   /**
-   * Define Application content element
    * @param view
    * @param opts
-   * @returns {*}
    * @constructor
-   * @class ApplicationContentElement
-   * @extends BaseElement
    */
-  var ApplicationContentElement = function ApplicationContentElement(view,
-      opts) {
-    return this._config(view, opts, $('<ul />')).build({
+  constructor(view, opts) {
+    super('ApplicationContentElement', view, false);
+
+    this._config(view, opts, $('<ul />')).build({
       $container: opts.$container,
       destroy: true
     });
-  };
-
-  return ApplicationContentElement.extend('ApplicationContentElement', {},
-      BaseElement.prototype);
-});
+  }
+};

@@ -467,6 +467,8 @@ module.exports = class BaseController extends aggregation(AntHill, BehaviorCrud,
    */
   checkCondition(opts) {
 
+    opts = opts || {};
+
     /**
      * Define logger
      * @type {function}

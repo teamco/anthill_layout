@@ -6,9 +6,19 @@
  * To change this template use File | Settings | File Templates.
  */
 
-defineP([
-  'modules/Element'
-], function defineApplicationElement(BaseElement) {
+/**
+ * @constant BaseElement
+ * @type {BaseElement|*}
+ */
+const BaseElement = require('../../lib/modules/Element.js');
+
+/**
+ * Define Application element
+ * @extends BaseElement
+ * @class ApplicationElement
+ * @constructor
+ */
+module.exports = class ApplicationElement extends BaseElement {
 
   /**
    * Define Application element
@@ -19,7 +29,8 @@ defineP([
    * @returns {*}
    * @constructor
    */
-  var ApplicationElement = function ApplicationElement(view, opts) {
+  constructor(view, opts) {
+    super('ApplicationElement', view, false);
 
     this._config(view, opts, $('<div />')).build({
       $container: opts.$container,
@@ -27,30 +38,14 @@ defineP([
     });
 
     $(opts.$container).addClass(opts.mode);
+  }
 
-    return this;
-  };
-
-  return ApplicationElement.extend('ApplicationElement', {
-
-    /**
-     * Update uuid after loading
-     * @memberOf ApplicationElement
-     */
-    updateUUID: function updateUUID() {
-      this.$.attr({
-        id: this.view.createUUID()
-      })
-    },
-
-    /**
-     * Hide/Show scroll
-     * @memberOf ApplicationElement
-     * @param {boolean} hide
-     */
-    hideScroll: function hideScroll(hide) {
-      this.$[(hide ? 'add' : 'remove') + 'Class']('overflow-scroll');
-    }
-
-  }, BaseElement.prototype);
-});
+  /**
+   * Hide/Show scroll
+   * @property ApplicationElement
+   * @param {boolean} hide
+   */
+  hideScroll(hide) {
+    this.$[(hide ? 'add' : 'remove') + 'Class']('overflow-scroll');
+  }
+};

@@ -86,7 +86,7 @@ module.exports = class BaseElement extends aggregation(AntHill, Renderer) {
      * @property BaseElement
      * @type {boolean}
      */
-    this.disabled = this.utils.getStatic('setBoolean')(opts.disabled, false);
+    this.disabled = this.utils.setBoolean(opts.disabled, false);
 
     /**
      * Define events
@@ -129,6 +129,14 @@ module.exports = class BaseElement extends aggregation(AntHill, Renderer) {
   }
 
   /**
+   * Update uuid after loading
+   * @property BaseElement
+   */
+  updateUUID() {
+    this.$.attr({id: this.view.createUUID()});
+  }
+
+  /**
    * Get $element by uuid
    * @param {string} uuid
    * @returns {*}
@@ -146,15 +154,12 @@ module.exports = class BaseElement extends aggregation(AntHill, Renderer) {
     const scope = this.view.scope,
         $element = this.$;
 
-    $.each(
-        this.base.define(this.events, [], true),
-        function each(index, event) {
-          scope.eventManager.onEvent.bind({
-            scope: scope,
-            $: $element
-          })(event, index);
-        }
-    );
+    $.each(this.events || [], (index, event) => {
+      scope.eventManager.onEvent.bind({
+        scope: scope,
+        $: $element
+      })(event, index);
+    });
   }
 
   /**
@@ -197,11 +202,9 @@ module.exports = class BaseElement extends aggregation(AntHill, Renderer) {
       'letter-spacing'
     ];
 
-    $(styles).each(function textMetricsLoop() {
-      const s = this.toString();
-      $div.css({
-        s: $element.css(s)
-      });
+    styles.forEach(style => {
+      const s = style.toString();
+      $div.css({s: $element.css(s)});
     });
 
     /**
@@ -228,7 +231,7 @@ module.exports = class BaseElement extends aggregation(AntHill, Renderer) {
    *      ['bl' 'bc' 'br']
    * @returns {opts.$item}
    */
-  setPosition(opts) {
+  static setPosition(opts) {
 
     const rectC = opts.$container[0].getBoundingClientRect(),
         cWidth = rectC.width,
@@ -305,7 +308,7 @@ module.exports = class BaseElement extends aggregation(AntHill, Renderer) {
    */
   destroyB4Create(destroy) {
 
-    if (this.utils.getStatic('setBoolean')(destroy, false)) {
+    if (this.utils.setBoolean(destroy, false)) {
 
       // Get scope
       const scope = this.view.scope;
@@ -357,10 +360,7 @@ module.exports = class BaseElement extends aggregation(AntHill, Renderer) {
 
     // Get scope
     const scope = this.view.scope;
-    scope.observer.publish(
-        scope.eventManager.eventList.successBuildElement,
-        this
-    );
+    scope.observer.publish(scope.eventManager.eventList.successBuildElement, this);
 
     return this;
   }
@@ -512,7 +512,6 @@ module.exports = class BaseElement extends aggregation(AntHill, Renderer) {
     link.href = opts.href;
 
     if ($('link[href="' + link.href + '"]').length) {
-
       this.view.scope.logger.warn('Link already exist');
       return link;
     }
@@ -720,9 +719,7 @@ module.exports = class BaseElement extends aggregation(AntHill, Renderer) {
    * @returns {Number}
    */
   getCSS(value) {
-    return this.base.lib.number.str2float(
-        this.$.css(value)
-    );
+    return this.util.num.str2float(this.$.css(value));
   }
 
   /**
@@ -923,13 +920,8 @@ module.exports = class BaseElement extends aggregation(AntHill, Renderer) {
    * @param $container
    */
   scrollCover($container) {
-
-    if ($('.scroll-cover', $container).length === 0) {
-
-      $('<div class="scroll-cover" />').appendTo($container).append(
-          this.$,
-          '<div class="clear" />'
-      );
+    if (!$('.scroll-cover', $container).length) {
+      $('<div class="scroll-cover" />').appendTo($container).append(this.$, '<div class="clear" />');
     }
   }
 
@@ -1052,13 +1044,10 @@ module.exports = class BaseElement extends aggregation(AntHill, Renderer) {
    */
   getFooter() {
 
-    const counter = Object.keys(this.view.elements.items || {}).length.
-            toString(),
+    const counter = Object.keys(this.view.elements.items || {}).length.toString(),
         $template = '<p class="text-center"><span class="badge" title="{0}">{0}</span>{1}</p>';
 
-    return $template.replace(/\{0}/g, counter).replace(
-        /\{1}/g, this.i18n.t('panel.items')
-    );
+    return $template.replace(/\{0}/g, counter).replace(/\{1}/g, this.i18n.t('panel.items'));
   }
 
   /**
@@ -1076,8 +1065,7 @@ module.exports = class BaseElement extends aggregation(AntHill, Renderer) {
    * @returns {number}
    */
   hasFlash() {
-    return $('object', this.$).length ||
-        $('embed', this.$).length;
+    return $('object', this.$).length || $('embed', this.$).length;
   }
 
   /**

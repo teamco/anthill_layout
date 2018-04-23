@@ -646,33 +646,21 @@ module.exports = class MVC extends AntHill {
      */
     const scopePermission = scope[permission];
 
-    if (scope.controller.checkCondition({
-      condition: typeof mode !== 'undefined',
-      type: 'warn',
-      msg: 'Undefined ' + type + ' mode'
-    })) {
+    if (!mode) {
+      scope.logger.warn('Undefined ' + type + ' mode');
       return false;
     }
 
-    if (scope.controller.checkCondition({
-      condition: typeof scopePermission !== 'undefined',
-      type: 'warn',
-      msg: 'Undefined ' + type + ' permission'
-    })) {
-
+    if (!scopePermission) {
+      scope.logger.warn('Undefined ' + type + ' permission');
       scope.constructor.prototype[permission] = {};
     }
 
     // Define capability
-    const capabilities = scopePermission[mode];
+    const capabilities = (scopePermission || {})[mode];
 
-    if (scope.controller.checkCondition({
-      condition: typeof capabilities !== 'undefined',
-      type: 'warn',
-      msg: 'Undefined ' + type + ' capabilities',
-      args: mode
-    })) {
-
+    if (!capabilities) {
+      scope.logger.warn('Undefined ' + type + ' capabilities', mode);
       scope.constructor.prototype[permission][mode] = {};
     }
 

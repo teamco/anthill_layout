@@ -5,11 +5,17 @@
  * Time: 10:26 PM
  */
 
+/**
+ * @constant Application
+ * @type {Application}
+ */
+const Application = require('../application.js');
+
 module.exports = () => {
 
   /**
    * Define Application Local listeners
-   * @memberOf Application
+   * @property Application
    * @type {{
    *  successRendered: {name: string, callback: (function(): (*|void))},
    *  resizeWindow: {name: string, callback: (function(): (void|*|{title, description, event}|{}))},

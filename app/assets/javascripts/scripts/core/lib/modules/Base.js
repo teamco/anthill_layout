@@ -33,6 +33,12 @@ module.exports = class Base {
      * @type {LibString}
      */
     this.str = new (require('./base/String.js'));
+
+    /**
+     * @property Base.str
+     * @type {LibNumber}
+     */
+    this.num = new (require('./base/Number.js'));
   }
 
   /**
@@ -45,7 +51,7 @@ module.exports = class Base {
 
     /**
      * @property Base
-     * @type {setBoolean, getType|*}
+     * @type {getType|*}
      */
     const method = this.constructor[component];
     if (!method) {
@@ -57,12 +63,12 @@ module.exports = class Base {
   /**
    * @method setBoolean
    * @property Base
-   * @param instance
-   * @param {boolean} value
+   * @param {boolean} instanceValue
+   * @param {boolean} defaultValue
    * @return {boolean}
    */
-  static setBoolean(instance, value) {
-    return typeof instance === 'undefined' ? value : instance;
+  setBoolean(instanceValue, defaultValue) {
+    return typeof instanceValue === 'undefined' ? defaultValue : instanceValue;
   }
 
   /**
@@ -71,8 +77,8 @@ module.exports = class Base {
    * @param obj
    * @returns {string}
    */
-  static getType(obj) {
-    return Object.prototype.toString.call(obj).match(/^\[object (.*)\]$/)[1];
+  getType(obj) {
+    return Object.prototype.toString.call(obj).match(/^\[object (.*)]$/)[1];
   }
 
   /**
@@ -81,7 +87,7 @@ module.exports = class Base {
    * @param {string} uuid
    * @returns {Array|{index: number, input: string}|*}
    */
-  static isUUID(uuid) {
+  isUUID(uuid) {
     return uuid.match(/^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i);
   }
 

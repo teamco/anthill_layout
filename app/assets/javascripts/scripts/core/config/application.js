@@ -20,6 +20,9 @@ module.exports = class Application extends AntHill {
 
     super('Application', null, true);
 
+    (require('./permissions/application.permissions.js'))();
+    (require('./listeners/application.listeners.js'))();
+
     /**
      * @constant ApplicationAPI
      * @type {ApplicationAPI}
@@ -31,12 +34,6 @@ module.exports = class Application extends AntHill {
      * @type {ApplicationEventManager}
      */
     const ApplicationEventManager = require('../event/application.event.manager.js');
-
-    /**
-     * @constant ApplicationEventManager
-     * @type {ApplicationPermission}
-     */
-    const ApplicationPermission = require('../permission/application.permission.js');
 
     /**
      * @constant ApplicationController
@@ -162,12 +159,11 @@ module.exports = class Application extends AntHill {
       scope: this,
       config: [opts.config, DEFAULTS],
       components: [
-        ApplicationAPI,
         ApplicationController,
+        ApplicationAPI,
         ApplicationModel,
         ApplicationView,
-        ApplicationEventManager,
-        ApplicationPermission
+        ApplicationEventManager
       ],
       render: true
     });

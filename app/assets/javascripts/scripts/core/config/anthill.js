@@ -89,7 +89,7 @@ module.exports = class AntHill {
     /**
      * Init underscore.
      * @property AntHill
-     * @type {Base}
+     * @type {Base|{setBoolean}}
      */
     this.utils = new Base();
   }

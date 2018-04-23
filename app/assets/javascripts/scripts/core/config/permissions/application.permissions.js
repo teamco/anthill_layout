@@ -5,24 +5,27 @@
  * Time: 11:34 PM
  */
 
-defineP(['config/application'],
-    function defineApplicationPermissions(Application) {
+/**
+ * @constant Application
+ * @type {Application}
+ */
+const Application = require('../application.js');
 
-      /**
-       * Define Application Local permission
-       * @type {{
-     *      development: {},
-     *      authorize: {},
-     *      consumption: {},
-     *      test: {}
-     * }}
-       */
-      Application.prototype.localPermissions = {
-        development: {},
-        authorize: {},
-        consumption: {},
-        test: {}
-      };
+module.exports = () => {
 
-      return Application;
-    });
+  /**
+   * Define Application Local permission
+   * @type {{
+   *  development: {},
+   *  authorize: {},
+   *  consumption: {},
+   *  test: {}
+   * }}
+   */
+  Application.prototype.localPermissions = {
+    development: {},
+    authorize: {},
+    consumption: {},
+    test: {}
+  };
+};

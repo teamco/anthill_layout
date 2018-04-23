@@ -41,6 +41,12 @@ module.exports = class ApplicationView extends BaseView {
   renderApplication() {
 
     /**
+     * @constant ApplicationElement
+     * @type {ApplicationElement|*}
+     */
+    const ApplicationElement = require('../element/application/application.element.js');
+
+    /**
      * Define $application
      * @type {ApplicationElement}
      */
@@ -50,9 +56,9 @@ module.exports = class ApplicationView extends BaseView {
       id: true
     });
 
-    this.header(Header, this.get$item());
+    //this.header(Header, this.get$item());
     this.workspaces();
-    this.footer(Footer, this.get$item());
+    //this.footer(Footer, this.get$item());
   }
 
   /**
@@ -60,6 +66,12 @@ module.exports = class ApplicationView extends BaseView {
    * @property ApplicationView
    */
   workspaces() {
+
+    /**
+     * @constant ApplicationContentElement
+     * @type {ApplicationContentElement|*}
+     */
+    const ApplicationContentElement = require('../element/application/application.content.element.js');
 
     /**
      * Define $workspaces
@@ -135,6 +147,7 @@ module.exports = class ApplicationView extends BaseView {
    * @param {boolean} [silent]
    */
   render(silent) {
-    this.scope.observer.publish(this.scope.eventManager.eventList.successRendered, silent);
+    const scope = this.scope;
+    scope.observer.publish(scope.eventManager.eventList.successRendered, silent);
   }
 };

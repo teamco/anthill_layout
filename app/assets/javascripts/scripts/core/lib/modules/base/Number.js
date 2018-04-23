@@ -6,102 +6,101 @@
  * To change this template use File | Settings | File Templates.
  */
 
-defineP(function defineLibNumber() {
+/**
+ /**
+ * Define LibNumber
+ * @class LibNumber
+ * @type {LibNumber}
+ */
+module.exports = class LibNumber {
 
   /**
-   * Define LibNumber
-   * @class LibNumber
    * @constructor
    */
-  var LibNumber = function LibNumber() {
-  };
-
-  LibNumber.extend('LibNumber', {
-
+  constructor() {
+   
     /**
      * Default number type
-     * @memberOf LibNumber
+     * @property LibNumber
      */
-    defaultNumberType: 10,
+    this.defaultNumberType = 10;
+  }
 
-    /**
-     * Convert String to Integer
-     * @memberOf LibNumber
-     * @param {string} s
-     * @param {number} t
-     * @returns {Number}
-     */
-    str2int: function str2int(s, t) {
-      var number = parseInt(s, t || this.defaultNumberType);
-      return typeof(number) === 'number' ? number : 0;
-    },
+  /**
+   * Convert String to Integer
+   * @property LibNumber
+   * @param {string} s
+   * @param {number} t
+   * @returns {Number}
+   */
+  str2int(s, t) {
+    const number = parseInt(s, t || this.defaultNumberType);
+    return typeof(number) === 'number' ? number : 0;
+  }
 
-    /**
-     * Convert String to Integer
-     * @memberOf LibNumber
-     * @param {string} s
-     * @returns {Number}
-     */
-    str2float: function str2float(s) {
-      var number = parseFloat(s);
-      return typeof(number) === 'number' ? number : 0;
-    },
+  /**
+   * Convert String to Integer
+   * @property LibNumber
+   * @param {string} s
+   * @returns {Number}
+   */
+  str2float(s) {
+    const number = parseFloat(s);
+    return typeof(number) === 'number' ? number : 0;
+  }
 
-    /**
-     * Check if number power of 2
-     * @memberOf LibNumber
-     * @param {number} n
-     * @returns {*|boolean}
-     */
-    isPowerOf2: function isPowerOf2(n) {
-      return n && !(n & (n - 1));
-    },
+  /**
+   * Check if number power of 2
+   * @property LibNumber
+   * @param {number} n
+   * @returns {*|boolean}
+   */
+  isPowerOf2(n) {
+    return n && !(n & (n - 1));
+  }
 
-    /**
-     * Check if number parity
-     * @memberOf LibNumber
-     * @param n
-     * @returns {boolean}
-     */
-    isParity: function isParity(n) {
-      return !(n & 1);
-    },
+  /**
+   * Check if number parity
+   * @property LibNumber
+   * @param n
+   * @returns {boolean}
+   */
+  isParity(n) {
+    return !(n & 1);
+  }
 
-    /**
-     * Get random number
-     * @memberOf LibNumber
-     * @param {number} min
-     * @param {number} max
-     * @returns {number}
-     */
-    getRnd: function getRnd(min, max) {
-      return Math.floor(Math.random() * (max - min + 1) + min);
-    },
+  /**
+   * Get random number
+   * @property LibNumber
+   * @param {number} min
+   * @param {number} max
+   * @returns {number}
+   */
+  getRnd(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min);
+  }
 
-    /**
-     * Numeric sort
-     * @memberOf LibNumber
-     * @param {Number} a
-     * @param {Number} b
-     * @returns {Number}
-     */
-    sortNumeric: function sortNumeric(a, b) {
-      return a - b;
-    },
+  /**
+   * Numeric sort
+   * @property LibNumber
+   * @param {Number} a
+   * @param {Number} b
+   * @returns {Number}
+   */
+  sortNumeric(a, b) {
+    return a - b;
+  }
 
-    /**
-     * Bytes to size
-     * @param {number} bytes
-     * @returns {string}
-     */
-    bytes2Size: function bytes2Size(bytes) {
-      if (!bytes) return '0 Byte';
-      var k = 1000;
-      var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
-      var i = Math.floor(Math.log(bytes) / Math.log(k));
-      return (bytes / Math.pow(k, i)).toPrecision(3) + ' ' + sizes[i];
-    }
-  });
-
-  return new LibNumber();
-});
+  /**
+   * Bytes to size
+   * @param {number} bytes
+   * @returns {string}
+   */
+  bytes2Size(bytes) {
+    if (!bytes) return '0 Byte';
+    const k = 1000;
+    const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    return (bytes / Math.pow(k, i)).toPrecision(3) + ' ' + sizes[i];
+  }
+};
