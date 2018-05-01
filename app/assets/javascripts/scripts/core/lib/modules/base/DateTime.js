@@ -9,17 +9,19 @@
 /**
  * Define Date time
  * @class LibDateTime
- * @constructor
  */
 module.exports = class LibDateTime {
 
+  /**
+   * @constructor
+   */
   constructor() {
 
     (function() {
 
       /**
        * Define toISO8601
-       * @memberOf Date
+       * @property Date
        * @param date
        * @returns {string}
        */
@@ -51,7 +53,7 @@ module.exports = class LibDateTime {
 
   /**
    * Get date
-   * @memberOf LibDateTime
+   * @property LibDateTime
    * @returns {Date}
    */
   getDate() {
@@ -60,7 +62,7 @@ module.exports = class LibDateTime {
 
   /**
    * Get timestamp
-   * @memberOf LibDateTime
+   * @property LibDateTime
    * @param [time]
    * @returns {*}
    */
@@ -70,7 +72,7 @@ module.exports = class LibDateTime {
 
   /**
    * Get timestamp utc
-   * @memberOf LibDateTime
+   * @property LibDateTime
    * @returns {number}
    */
   timestampUTC() {
@@ -130,7 +132,6 @@ module.exports = class LibDateTime {
   //      Date.prototype.format = function (mask, utc) {
   //          return dateFormat(this, mask, utc);
   //      };
-
   dateFormat() {
 
     const token = /d{1,4}|m{1,4}|yy(?:yy)?|([HhMsTt])\1?|[LloSZ]|"[^"]*"|'[^']*'/g,

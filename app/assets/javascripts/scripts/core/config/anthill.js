@@ -61,6 +61,12 @@ module.exports = class AntHill {
       const Logger = require('../lib/modules/Logger.js');
 
       /**
+       * @constant i18n
+       * @type {i18n}
+       */
+      const i18n = require('../lib/modules/i18n.js');
+
+      /**
        * Init config
        * @property AntHill
        * @type {Object}
@@ -73,12 +79,20 @@ module.exports = class AntHill {
        * @type {Observer}
        */
       this.observer = new Observer(this.scope || this);
+
       /**
        * Init logger
        * @property Anthill
        * @type {Logger}
        */
       this.logger = new Logger(this.scope || this);
+
+      /**
+       * Init logger
+       * @property Anthill
+       * @type {i18n}
+       */
+      this.i18n = new i18n('en-us');
 
       this.controller = undefined;
       this.model = undefined;

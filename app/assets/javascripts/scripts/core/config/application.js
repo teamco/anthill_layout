@@ -54,6 +54,12 @@ module.exports = class Application extends AntHill {
     const ApplicationView = require('../view/application.view.js');
 
     /**
+     * @constant ApplicationPermisson
+     * @type {ApplicationPermisson}
+     */
+    const ApplicationPermisson = require('../permission/application.permission.js');
+
+    /**
      * @constant MVC
      * @type {MVC}
      */
@@ -163,7 +169,8 @@ module.exports = class Application extends AntHill {
         ApplicationAPI,
         ApplicationModel,
         ApplicationView,
-        ApplicationEventManager
+        ApplicationEventManager,
+        ApplicationPermisson
       ],
       render: true
     });
@@ -173,19 +180,19 @@ module.exports = class Application extends AntHill {
      * @property Application.config
      * @type {{updateSiteContent: string[]}}
      */
-    // this.config.routes = {
-    //   updateSiteContent: ['/sites/', 'put'],
-    //   handleVulnerabilities: ['/vulnerability_storages', 'post']
-    // };
+    this.config.routes = {
+      updateSiteContent: ['/sites/', 'put'],
+      handleVulnerabilities: ['/vulnerability_storages', 'post']
+    };
 
-    // this.observer.batchPublish(
-    //     this.eventManager.eventList.defineSetting,
-    //     this.eventManager.eventList.setRoutes,
-    //     this.eventManager.eventList.initResizeWindow,
-    //     this.eventManager.eventList.successCreated,
-    //     this.eventManager.eventList.loadApplication,
-    //     this.eventManager.eventList.defineGlobalInstance,
-    //     this.eventManager.eventList.initScrollBehavior
-    // );
+    this.observer.batchPublish(
+        this.eventManager.eventList.defineSetting,
+        this.eventManager.eventList.setRoutes,
+        this.eventManager.eventList.initResizeWindow,
+        this.eventManager.eventList.successCreated,
+        this.eventManager.eventList.loadApplication,
+        this.eventManager.eventList.defineGlobalInstance,
+        this.eventManager.eventList.initScrollBehavior
+    );
   }
 };

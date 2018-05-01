@@ -94,7 +94,7 @@ module.exports = class BaseAPI extends AntHill {
      * Define silent
      * @type {Boolean}
      */
-    scope.silent = this.base.defineBoolean(silent, false, true);
+    scope.silent = this.utils.setBoolean(silent, false);
 
     if (this._isLimitReached()) {
       return false;
@@ -126,13 +126,10 @@ module.exports = class BaseAPI extends AntHill {
         cname = scope.model.getItemNameSpace(),
         itemConfig = scope.model.getConfig(cname);
 
-    return scope.controller.checkCondition({
-      condition: scope.model.getConfig('limit') &&
-      itemConfig.count >= itemConfig.limit,
-      type: 'warn',
-      msg: this.i18n.t('reached.maximum.limit'),
-      args: [cname, itemConfig]
-    });
+    if (scope.model.getConfig('limit') && itemConfig.count >= itemConfig.limit) {
+      scope.logger.warn(this.i18n.t('reached.maximum.limit'), [cname, itemConfig]);
+      return true;
+    }
   }
 
   /**
@@ -159,7 +156,7 @@ module.exports = class BaseAPI extends AntHill {
       return false;
     }
 
-    if (this.base.defineBoolean(render, false, true)) {
+    if (this.utils.setBoolean(render, false)) {
       itemScope.view.render(silent, where);
     }
 

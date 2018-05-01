@@ -6,21 +6,29 @@
  * To change this template use File | Settings | File Templates.
  */
 
-defineP(function defineI18n() {
+/**
+ * Define translations
+ * @class i18n
+ */
+module.exports = class i18n {
 
   /**
-   * Define translations
    * @constructor
-   * @class i18n
    * @param {string} lang
    */
-  var i18n = function i18n(lang) {
+  constructor(lang) {
+
+    /**
+     * @property i18n
+     * @type {string}
+     */
+    this.name = 'i18n';
 
     /**
      * Define default
      * @type {string}
      */
-    var defaultLanguage = 'en-us';
+    const defaultLanguage = 'en-us';
 
     /**
      * Define language
@@ -33,101 +41,82 @@ defineP(function defineI18n() {
      * Define language types
      * @type {Object}
      */
-    var langTypes = {};
-
-    var scope = this,
-        data = langTypes[defaultLanguage],
-        language = scope.getCurrentLanguage();
-
-    requireP(
-        ['modules/translations/' + language],
-        function loadTranslations(translation) {
-
-          langTypes[language] = translation;
-
-          if (langTypes.hasOwnProperty(language)) {
-
-            data = langTypes[language];
-
-          } else {
-
-            console.warn('Unable to defineP language', language);
-          }
-        }
-    );
+    let langTypes = {};
 
     /**
-     * Get data by key
+     * Define language data
      * @property i18n
-     * @param key
-     * @returns {*}
+     * @type {*}
      */
-    this.getData = function getData(key) {
+    this.data = langTypes[defaultLanguage];
 
-      if (_.isUndefined(data)) {
-        console.warn('Undefined language', key);
-        return '';
-      }
+    let language = this.getCurrentLanguage();
 
-      return data.hasOwnProperty(key) ?
-          data[key] : '';
-    };
+    langTypes[language] = require('./translations/en-us.js');
 
-    /**
-     * Update data
-     * @property i18n
-     * @param translation
-     */
-    this.updateData = function updateData(translation) {
-
-      var index;
-
-      for (index in translation) {
-
-        if (translation.hasOwnProperty(index)) {
-
-          data[index] = translation[index];
-        }
-      }
-    };
-  };
-
-  return i18n.extend('i18n', {
-
-    /**
-     * Get current language
-     * @memberOf i18n
-     * @returns {string}
-     */
-    getCurrentLanguage: function getCurrentLanguage() {
-      return this.language;
-    },
-
-    /**
-     * Translate function
-     * @memberOf i18n
-     * @param {string} key
-     * @param {array} [params]
-     * @returns {string}
-     */
-    t: function t(key, params) {
-
-      /**
-       * Get data
-       * @type {string|*}
-       */
-      var result = this.getData(key);
-
-      if (typeof(params) === 'object') {
-        for (var i = 0, l = params.length; i < l; i++) {
-          result = result.replace(
-              new RegExp('\\{' + i + '\\}'),
-              params[i]
-          );
-        }
-      }
-
-      return result;
+    if (langTypes.hasOwnProperty(language)) {
+      this.data = langTypes[language];
+    } else {
+      console.warn('Unable to define language', language);
     }
-  });
-});
+  }
+
+  /**
+   * @method getData
+   * @param translation
+   */
+  updateData(translation) {
+    for (let index in translation) {
+      if (translation.hasOwnProperty(index)) {
+        this.data[index] = translation[index];
+      }
+    }
+  }
+
+  /**
+   * @method getData
+   * @param key
+   * @return {string}
+   */
+  getData(key) {
+    if (!this.data) {
+      console.warn('Undefined language', key);
+      return '';
+    }
+
+    return this.data.hasOwnProperty(key) ? this.data[key] : '';
+  }
+
+  /**
+   * Get current language
+   * @property i18n
+   * @returns {string}
+   */
+  getCurrentLanguage() {
+    return this.language;
+  }
+
+  /**
+   * Translate function
+   * @property i18n
+   * @param {string} key
+   * @param {array} [params]
+   * @returns {string}
+   */
+  t(key, params) {
+
+    /**
+     * Get data
+     * @type {string|*}
+     */
+    let result = this.getData(key);
+
+    if (typeof(params) === 'object') {
+      for (let i = 0, l = params.length; i < l; i++) {
+        result = result.replace(new RegExp('\\{' + i + '\\}'), params[i]);
+      }
+    }
+
+    return result;
+  }
+};

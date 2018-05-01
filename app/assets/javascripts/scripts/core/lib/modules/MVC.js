@@ -14,14 +14,15 @@ const AntHill = require('../../config/anthill.js');
 
 /**
  * @class MVC
- * @param opts
- * @constructor
  * @extends AntHill
  */
 module.exports = class MVC extends AntHill {
 
+  /**
+   * @constructor
+   * @param opts
+   */
   constructor(opts) {
-
     super('MVC', opts.scope, false);
 
     /**
@@ -60,8 +61,9 @@ module.exports = class MVC extends AntHill {
      * Define reserved methods
      * @property MVC.RESERVED
      * @type {{
-     *      create: {singular: Array},
-     *      destroy: {singular: Array, plural: Array}
+     *  create: {singular: Array},
+     *  destroy: {singular: Array, plural: Array}
+     *  resize: {singular: Array, plural: Array}
      * }}
      */
     this.RESERVED = {
@@ -82,22 +84,22 @@ module.exports = class MVC extends AntHill {
      * Define default listeners
      * @property MVC.DEFAULT_LISTENERS
      * @type {{
-     *      beforeInitConfig: string,
-     *      afterInitConfig: string,
-     *      successCreated: string,
-     *      successRendered: string,
-     *      afterCreateItem: string,
-     *      afterDestroyItem: string,
-     *      afterDestroyItems: string,
-     *      afterResizeWindow: string,
-     *      successRenderHeader: string,
-     *      successRenderFooter: string,
-     *      bindModelObserver: string,
-     *      defineGenericGetter: string,
-     *      openUrlOnEvent: string,
-     *      successCreateElement: string,
-     *      successBuildElement: string,
-     *      successDestroyElement: string
+     *  beforeInitConfig: string,
+     *  afterInitConfig: string,
+     *  successCreated: string,
+     *  successRendered: string,
+     *  afterCreateItem: string,
+     *  afterDestroyItem: string,
+     *  afterDestroyItems: string,
+     *  afterResizeWindow: string,
+     *  successRenderHeader: string,
+     *  successRenderFooter: string,
+     *  bindModelObserver: string,
+     *  defineGenericGetter: string,
+     *  openUrlOnEvent: string,
+     *  successCreateElement: string,
+     *  successBuildElement: string,
+     *  successDestroyElement: string
      * }}
      */
     this.DEFAULT_LISTENERS = {
@@ -493,14 +495,24 @@ module.exports = class MVC extends AntHill {
      * Local instance of default listeners
      * @type {*}
      */
-    const listeners = this.defaultListeners;
+    const listeners = this.DEFAULT_LISTENERS;
+    const scope = this.scope;
+
+    /**
+     * @type {BaseController}
+     */
+    const controller = scope.controller;
+
+    if (!controller) {
+      scope.logger.warn('Controller is not defined yet');
+      return false;
+    }
 
     for (let index in listeners) {
-
       if (listeners.hasOwnProperty(index)) {
-        this.scope.eventManager.subscribe({
+        scope.eventManager.subscribe({
           event: listeners[index],
-          callback: this.scope.controller[index]
+          callback: controller[index]
         }, true);
       }
     }
@@ -612,13 +624,13 @@ module.exports = class MVC extends AntHill {
     const permission = scope.permission;
 
     if (!permission) {
-      scope.logger.warn('Undefined permissions', permission);
+      scope.logger.warn('Undefined permissions');
       return false;
     }
 
-    permission.config ?
+    permission.init ?
         permission.init() :
-        scope.logger.warn('No permissions config', permission);
+        scope.logger.warn('No permissions config (Extend BasePermission)', permission);
 
     scope.logger.debug('Local permissions', permission);
   }

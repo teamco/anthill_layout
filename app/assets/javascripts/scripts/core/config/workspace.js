@@ -122,11 +122,8 @@ module.exports = class Workspace extends AntHill {
      */
     this.items = {};
 
-    // this.observer.publish(
-    //     this.eventManager.eventList.successCreated
-    // );
-    //
-    // this.observer.publish(
+    // this.observer.batchPublish(
+    //     this.eventManager.eventList.successCreated,
     //     this.eventManager.eventList.bindHashChange
     // );
   }

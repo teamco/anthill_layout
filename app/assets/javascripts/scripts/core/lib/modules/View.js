@@ -90,7 +90,7 @@ module.exports = class BaseView extends AntHill {
    * @property BaseView
    * @returns {BaseElement}
    */
-  get$get$item() {
+  get$item() {
     return this.elements['$' + this.scope.name.toLowerCase()];
   }
 
@@ -99,7 +99,7 @@ module.exports = class BaseView extends AntHill {
    * @property BaseView
    * @returns {*}
    */
-  get$get$rules() {
+  get$rules() {
     return this.elements.$rules;
   }
 
@@ -437,7 +437,7 @@ module.exports = class BaseView extends AntHill {
    * @property BaseView
    * @returns {ModalElement}
    */
-  get$get$modal() {
+  get$modal() {
     return this.elements.$modal;
   }
 

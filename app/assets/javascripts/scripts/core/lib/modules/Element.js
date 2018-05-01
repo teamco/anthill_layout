@@ -826,7 +826,7 @@ module.exports = class BaseElement extends aggregation(AntHill, Renderer) {
    * @property BaseElement
    * @returns {*|jQuery|HTMLElement}
    */
-  get$get$items() {
+  get$items() {
 
     /**
      * Define scope;

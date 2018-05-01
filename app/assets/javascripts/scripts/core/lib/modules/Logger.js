@@ -40,13 +40,36 @@ module.exports = class Logger {
    */
   setConfig(config) {
 
-    if (config) {
+    /**
+     * @constant protoConfig
+     */
+    const protoConfig = this.constructor.prototype.config;
+
+    if (Object.keys(config || {}).length) {
 
       /**
        * Define config
        * @type {*}
        */
       this.config = config;
+
+      if (!Object.keys(protoConfig || {}).length) {
+
+        /**
+         * Define cross items logger config
+         * @property Logger
+         * @type {*}
+         */
+        this.constructor.prototype.config = config;
+      }
+
+    } else if (protoConfig) {
+
+      /**
+       * Define config
+       * @type {*}
+       */
+      this.config = protoConfig;
     }
 
     this.defineLogs();
@@ -212,7 +235,7 @@ module.exports = class Logger {
    */
   defineLogs() {
 
-    const availableLogs = Object.keys(this.config.type || {}),
+    const availableLogs = Object.keys((this.config || {}).type || {}),
         length = availableLogs.length;
 
     for (let i = 0; i < length; i += 1) {

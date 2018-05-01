@@ -292,7 +292,7 @@ module.exports = class Observer {
    */
   executeEvent(scope, opts, args) {
 
-    opts.state.lastCallAt = base.lib.datetime.timestamp();
+    opts.state.lastCallAt = this.scope.utils.ts.timestamp();
 
     // Capture multiple event as single event within buffer time frame
     if (opts.params.buffer) {
@@ -362,7 +362,7 @@ module.exports = class Observer {
 
         this.defer(opts.params.timeout, () => {
 
-          const currentTime = base.lib.datetime.timestamp();
+          const currentTime = this.scope.utils.ts.timestamp();
           const triggerTime = opts.state.lastCallAt + opts.params.timeout;
 
           /**

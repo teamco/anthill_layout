@@ -82,7 +82,19 @@ module.exports = class ApplicationController extends aggregation(BaseController,
     if (this.model.loadWorkspaces() === -1) {
 
       this.model.setConfig('loading', true);
-      this.api.createWorkspace([], true).api.createPage([], true);
+
+      /**
+       * Get current workspace
+       * @type {Workspace}
+       */
+      const workspace = this.api.createWorkspace([], true);
+
+      if (!Object.keys(workspace).length) {
+        this.logger.warn('Workspace not initialized yet');
+        return false;
+      }
+
+      workspace.api.createPage([], true);
       this.model.setConfig('loading', false);
 
       /**
@@ -90,12 +102,6 @@ module.exports = class ApplicationController extends aggregation(BaseController,
        * @type {Page}
        */
       const page = this.controller.getPage();
-
-      /**
-       * Get current workspace
-       * @type {Workspace}
-       */
-      const workspace = this.controller.getWorkspace();
 
       workspace.observer.publish(
           workspace.eventManager.eventList.switchToPage,
@@ -118,10 +124,7 @@ module.exports = class ApplicationController extends aggregation(BaseController,
    * @property ApplicationController
    */
   defineGlobalInstance() {
-    this.logger.debug(
-        'Define global instance',
-        this.controller.getAppName()
-    );
+    this.logger.debug('Define global instance', this.controller.getAppName());
   }
 
   /**
@@ -140,9 +143,7 @@ module.exports = class ApplicationController extends aggregation(BaseController,
    * @param {number} version
    * @param {boolean} activated
    */
-  updateStorageVersion(
-      version,
-      activated) {
+  updateStorageVersion(version, activated) {
     this.logger.debug('Update storage version', version);
     this.model.setConfig('version', version);
     this.model.setConfig('activate', activated);
@@ -232,14 +233,19 @@ module.exports = class ApplicationController extends aggregation(BaseController,
 
     scope.logger.debug('Init scroll');
 
-    scope.view.get$item().$.on(
-        'scroll.parallax resize.parallax',
-        function _scroll(e) {
-          scope.observer.publish(
-              scope.eventManager.eventList.scrollPublisher, e
-          );
-        }
-    );
+    /**
+     * @constant $item
+     * @type {BaseElement}
+     */
+    const $item = scope.view.get$item();
+
+    if (!$item) {
+      scope.logger.warn('Element not rendered yet');
+      return false;
+    }
+
+    $item.$.on('scroll.parallax resize.parallax', e =>
+        scope.observer.publish(scope.eventManager.eventList.scrollPublisher, e));
   }
 
   /**

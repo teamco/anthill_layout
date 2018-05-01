@@ -17,13 +17,12 @@ const LZString = require('../lz-string.js');
 module.exports = class Setting extends Router {
 
   /**
-   * @param {string} name
    * @param {*} scope
    * @constructor
    */
-  constructor(name, scope) {
+  constructor(scope) {
 
-    super(name || 'Setting', scope, false);
+    super('Setting', scope, false);
 
     /**
      * Define scope
@@ -154,20 +153,14 @@ module.exports = class Setting extends Router {
      */
     const storage = this.load();
 
-    /**
-     * Define base
-     * @type {*}
-     */
-    const base = this.base;
-
-    if (!base.isDefined(storage.token)) {
+    if (!storage.token) {
 
       /**
        * Define token
        * @property Setting
        * @type {string}
        */
-      this.token = base.lib.generator.UUID();
+      this.token = this.utils.gen.UUID();
 
       this.save(storage);
     }
@@ -248,7 +241,7 @@ module.exports = class Setting extends Router {
     opts = opts || {};
 
     const data = this.load(),
-        _dt = this.base.lib.datetime;
+        _dt = this.utils.ts;
 
     if (data.createdAt) {
 
@@ -293,9 +286,8 @@ module.exports = class Setting extends Router {
      * Define compressed data
      * @type {string|*}
      */
-    const compressed = this.getStorage().getItem(
-        this.getNameSpace()
-    );
+    const compressed = this.getStorage().getItem(this.getNameSpace());
+
     let data;
 
     try {
@@ -304,9 +296,7 @@ module.exports = class Setting extends Router {
        * Define data
        * @type {*}
        */
-      data = JSON.parse(
-          this.decompress(compressed) || '{}'
-      );
+      data = JSON.parse(this.decompress(compressed) || '{}');
 
     } catch (e) {
 
