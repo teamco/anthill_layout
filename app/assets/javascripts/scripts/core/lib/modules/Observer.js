@@ -263,7 +263,7 @@ module.exports = class Observer {
    * @return {boolean}
    */
   fireEvent(events, args) {
-    events.forEach((event) => {
+    events.forEach(event => {
       if (event && !this.executeEvent(this.scope, event, args)) {
         return false;
       }
@@ -273,21 +273,21 @@ module.exports = class Observer {
   /**
    * Execute event
    * @property Observer
-   * @param {*} [scope]         Run callback in default scope
+   * @param {*} [scope]     Run callback in default scope
    * @param {{
-   *      state: *,             Private internal hash
-   *      callback: Function,   Callback fn
-   *      scope: *,             Override default scope
-   *      eventName: string,
-   *      eventUUID: string,
-   *      params: {
-   *        single: boolean,    Single run auto unbind
-   *        buffer: number,     Single run in timeout range in ms
-   *        timeout: number,    Last call in timeout range in ms
-   *        delay: number       Run after timeout in ms
-   *      }
+   *  state: *,             Private internal hash
+   *  callback: Function,   Callback fn
+   *  scope: *,             Override default scope
+   *  eventName: string,
+   *  eventUUID: string,
+   *  params: {
+   *    single: boolean,    Single run auto unbind
+   *    buffer: number,     Single run in timeout range in ms
+   *    timeout: number,    Last call in timeout range in ms
+   *    delay: number       Run after timeout in ms
+   *  }
    * }} opts
-   * @param {[]} [args]         Callback params
+   * @param {[]} [args]     Callback params
    * @return
    */
   executeEvent(scope, opts, args) {
@@ -308,7 +308,7 @@ module.exports = class Observer {
     }
 
     // If args is not array -> force to array (else it will broke .apply())
-    if (typeof args === 'string') {
+    if (!Array.isArray(args)) {
       args = [args];
     }
 

@@ -33,7 +33,7 @@
       const listeners = require('./javascript/listeners.js');
       const permissions = require('./javascript/permissions.js');
 
-      Object.assign(config, {
+      const defaults = {
         user: user,
         uuid: uuid,
         version: version,
@@ -41,7 +41,7 @@
         environment: environment,
         appName: site,
         mode: mode
-      });
+      };
 
       /**
        * @constant Application
@@ -53,7 +53,7 @@
        * Define application
        * @type {Application}
        */
-      new Application({config: config || {}});
+      new Application({config: {...config, ...defaults} || {}});
     }
 
     _setup();

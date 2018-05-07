@@ -27,19 +27,23 @@ module.exports = () => {
 
     successRendered: {
       name: 'success.rendered',
-      callback: () => this.view.renderApplication()
+      callback() {
+        this.view.renderApplication();
+      }
     },
 
     resizeWindow: {
       name: 'resize.window',
-      callback: () => this.observer.publish(this.eventManager.eventList.resizeWorkspaces)
+      callback() {
+        this.observer.publish(this.eventManager.eventList.resizeWorkspaces);
+      }
     },
-
-    resizeWindowHooks: [],
 
     resizeWorkspace: {
       name: 'resize.workspace',
-      callback: workspace => workspace.observer.publish(workspace.eventManager.eventList.resizePages)
+      callback(workspace) {
+        workspace.observer.publish(workspace.eventManager.eventList.resizePages);
+      }
     }
   };
 };

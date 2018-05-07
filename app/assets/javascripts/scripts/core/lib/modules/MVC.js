@@ -145,7 +145,7 @@ module.exports = class MVC extends AntHill {
      * @property MVC.scope
      * @type {*}
      */
-    this.scope.config = Object.assign({}, selfConfig, selfDefaults);
+    this.scope.config = $.extend(true, {}, selfConfig, selfDefaults);
 
     /**
      * Define mvc components
@@ -577,21 +577,14 @@ module.exports = class MVC extends AntHill {
            */
           let event = scopeListener[index];
 
-          if (typeof event === 'string') {
-            event = [event];
-          }
-
-          for (let i = 0, l = event.length; i < l; i++) {
-
-            scope.eventManager.subscribe({
-              event: {
-                eventName: event[i].name,
-                params: event[i].params,
-                scope: event[i].scope
-              },
-              callback: event[i].callback
-            }, false);
-          }
+          scope.eventManager.subscribe({
+            event: {
+              eventName: event.name,
+              params: event.params,
+              scope: event.scope
+            },
+            callback: event.callback
+          }, false);
         }
       }
     }
@@ -682,7 +675,7 @@ module.exports = class MVC extends AntHill {
       scope.config.permission = {};
     }
 
-    Object.assign(scope.config.permission, capabilities);
+    scope.config.permission = {...scope.config.permission, ...capabilities};
   }
 
   /**

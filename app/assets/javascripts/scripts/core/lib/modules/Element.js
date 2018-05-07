@@ -7,18 +7,6 @@
  */
 
 /**
- * Aggregation of base class and mixin classes.
- * @type {(function(*, ...[*]): __Aggregate)|*|(function(): aggregate)}
- */
-const aggregation = require('../extends/aggregation.js');
-
-/**
- * @constant AntHill
- * @type {AntHill}
- */
-const AntHill = require('../../config/anthill.js');
-
-/**
  * @constant Renderer
  * @type {Renderer}
  */
@@ -29,7 +17,7 @@ const Renderer = require('../modules/Renderer.js');
  * @class BaseElement
  * @extends AntHill
  */
-module.exports = class BaseElement extends aggregation(AntHill, Renderer) {
+module.exports = class BaseElement extends Renderer {
 
   /**
    * @constructor
@@ -86,7 +74,7 @@ module.exports = class BaseElement extends aggregation(AntHill, Renderer) {
      * @property BaseElement
      * @type {boolean}
      */
-    this.disabled = this.utils.setBoolean(opts.disabled, false);
+    this.disabled = this.view.utils.setBoolean(opts.disabled, false);
 
     /**
      * Define events
@@ -119,10 +107,10 @@ module.exports = class BaseElement extends aggregation(AntHill, Renderer) {
       this.$.attr({id: this.id});
     }
 
-    this.view.controller.updateCache(this.id, this);
+    view.controller.updateCache(this.id, this);
 
     // Get scope
-    const scope = this.view.scope;
+    const scope = view.scope;
     scope.observer.publish(scope.eventManager.eventList.successCreateElement, this);
 
     return this;
@@ -308,7 +296,7 @@ module.exports = class BaseElement extends aggregation(AntHill, Renderer) {
    */
   destroyB4Create(destroy) {
 
-    if (this.utils.setBoolean(destroy, false)) {
+    if (this.view.utils.setBoolean(destroy, false)) {
 
       // Get scope
       const scope = this.view.scope;
@@ -351,7 +339,7 @@ module.exports = class BaseElement extends aggregation(AntHill, Renderer) {
 
       this.$[append ? 'appendTo' : 'prependTo'](opts.$container);
 
-      if (this.util._.isFunction(opts.callback)) {
+      if (this.view.utils._.isFunction(opts.callback)) {
         opts.callback();
       }
     }
@@ -557,7 +545,7 @@ module.exports = class BaseElement extends aggregation(AntHill, Renderer) {
           delete css[item.path];
         }
         if (link.length > 1) {
-          css[item.path] = this.utils._.reject(link, css => element.id === css.id);
+          css[item.path] = this.view.utils._.reject(link, css => element.id === css.id);
         }
       }
     }
@@ -719,7 +707,7 @@ module.exports = class BaseElement extends aggregation(AntHill, Renderer) {
    * @returns {Number}
    */
   getCSS(value) {
-    return this.util.num.str2float(this.$.css(value));
+    return this.view.utils.num.str2float(this.$.css(value));
   }
 
   /**

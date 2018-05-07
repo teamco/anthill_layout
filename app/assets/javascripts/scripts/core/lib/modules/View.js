@@ -162,7 +162,7 @@ module.exports = class BaseView extends AntHill {
    */
   renderUUID(id) {
     return id || [
-      this.base.lib.generator.UUID(),
+      this.utils.gen.UUID(),
       this.name.toDash()
     ].join('-');
   }
@@ -234,10 +234,7 @@ module.exports = class BaseView extends AntHill {
    * @returns {boolean}
    */
   isCachedItems() {
-
-    return this.base.lib.hash.hashLength(
-        this.elements.items || {}
-    ) > 0;
+    return !!Object.keys(this.elements.items || {}).length;
   }
 
   /**
@@ -464,36 +461,30 @@ module.exports = class BaseView extends AntHill {
      */
     const view = this;
 
-    $.each(
-        view.base.define(opts, {}, true),
-        function _eachButton(i, button) {
+    $.each(opts || {}, (i, button) => {
 
-          /**
-           * Define button
-           * @type {ButtonElement}
-           */
-          store[i] = new ButtonElement(view, {
-            $container: button.$container,
-            $htmlElement: button.$htmlElement,
-            style: i.toDash(),
-            type: button.type,
-            text: button.text,
-            disabled: button.disabled,
-            events: button.events
-          });
+      /**
+       * Define button
+       * @type {ButtonElement}
+       */
+      store[i] = new ButtonElement(view, {
+        $container: button.$container,
+        $htmlElement: button.$htmlElement,
+        style: i.toDash(),
+        type: button.type,
+        text: button.text,
+        disabled: button.disabled,
+        events: button.events
+      });
 
-          $.each(button.events || {}, function _eachEvent(key, event) {
-            store[i].$.on(
-                key + '.afterCallback',
-                store[i].afterEventsCallback.bind(store[i])
-            );
-          });
+      $.each(button.events || {}, (key, event) => {
+        store[i].$.on(key + '.afterCallback', store[i].afterEventsCallback.bind(store[i]));
+      });
 
-          view.scope.logger.debug(
-              'Button created', store[i]
-          );
-        }
-    );
+      view.scope.logger.debug(
+          'Button created', store[i]
+      );
+    });
   }
 
   /**
