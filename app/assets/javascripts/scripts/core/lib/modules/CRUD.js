@@ -29,7 +29,7 @@ module.exports = class CRUD extends AntHill {
 
   /**
    * Create item
-   * @memberOf CRUD
+   * @property CRUD
    * @param opts
    * @returns {*}
    */
@@ -39,7 +39,7 @@ module.exports = class CRUD extends AntHill {
 
   /**
    * Destroy items
-   * @memberOf CRUD
+   * @property CRUD
    * @param item
    * @returns {*}
    */
@@ -89,7 +89,7 @@ module.exports = class CRUD extends AntHill {
 
   /**
    * Destroy items
-   * @memberOf CRUD
+   * @property CRUD
    * @returns {*}
    */
   destroyItems() {
@@ -107,7 +107,7 @@ module.exports = class CRUD extends AntHill {
 
   /**
    * Destroy item view
-   * @memberOf CRUD
+   * @property CRUD
    * @param item
    * @returns {*}
    */

@@ -30,9 +30,7 @@ module.exports = class BehaviorCrud {
      * Define item
      * @type {*}
      */
-    const item = this.model.createItem(
-        this.controller.extendConfig(opts)
-    );
+    const item = this.model.createItem(this.controller.extendConfig(opts));
 
     this.logger.debug('Create ' + item.name, this.model.getUUID(item), item);
     this.observer.publish(this.eventManager.eventList.afterCreateItem);

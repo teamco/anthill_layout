@@ -29,7 +29,7 @@ module.exports = class ApplicationAPI extends BaseAPI {
 
   /**
    * Create Workspace API
-   * @memberOf ApplicationApi
+   * @property ApplicationApi
    * @param {*} args
    * @param {Boolean} [render]
    * @param {Boolean} [silent]
@@ -45,7 +45,7 @@ module.exports = class ApplicationAPI extends BaseAPI {
 
     /**
      * Define workspace
-     * @type {Workspace}
+     * @type {Workspace|{logger}}
      */
     const workspace = this._createItem(Workspace, args, render, silent);
     workspace.logger.debug('Created workspace');

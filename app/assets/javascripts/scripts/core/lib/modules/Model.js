@@ -396,14 +396,17 @@ module.exports = class BaseModel extends CRUD {
   /**
    * Add item to collector
    * @property BaseModel
-   * @param {{model}} node
+   * @param {{model, logger}} node
    * @param {boolean} [force]
    * @returns {*}
    */
   setItem(node, force) {
-    node = node || {};
     force = this.utils.setBoolean(force, false);
 
+    if (node && !node.model) {
+      node.logger.warn('Model should be defined');
+      return false;
+    }
     const uuid = node.model.getUUID(),
         item = this.getItemByUUID(uuid);
     if (force || !item) {
@@ -578,11 +581,13 @@ module.exports = class BaseModel extends CRUD {
       node = new Constructor(opts || {});
 
       if (node.model) {
-        this.setItem(node);
+        node.model.setConfig('order', scope.config[namespace].counter);
+        node.model.setConfig('limit', false);
       } else {
         scope.logger.warn(cname + ' was created with some errors (Model must be defined)', node);
-        return false;
       }
+
+      this.setItem(node);
 
       /**
        * Update counter
@@ -590,15 +595,11 @@ module.exports = class BaseModel extends CRUD {
        */
       scope.config[namespace].counter = Object.keys(this.getItems()).length;
 
-      node.model.setConfig('order', scope.config[namespace].counter);
-
       /**
        * Store item
        * @type {*}
        */
       scope[cname.toLowerCase()] = node;
-
-      node.model.setConfig('limit', false);
     }
 
     return node;

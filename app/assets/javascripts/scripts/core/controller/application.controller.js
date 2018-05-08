@@ -85,7 +85,7 @@ module.exports = class ApplicationController extends aggregation(BaseController,
 
       /**
        * Get current workspace
-       * @type {Workspace}
+       * @type {Workspace|{api, observer, eventManager}}
        */
       const workspace = this.api.createWorkspace([], true);
 
@@ -103,20 +103,18 @@ module.exports = class ApplicationController extends aggregation(BaseController,
        */
       const page = this.controller.getPage();
 
-      workspace.observer.publish(
-          workspace.eventManager.eventList.switchToPage,
-          page
-      );
+      workspace.observer.publish(workspace.eventManager.eventList.switchToPage, page);
 
-      page.view.get$item().showLoader();
-      page.observer.publish(
-          page.eventManager.eventList.loadItemsContent
-      );
+      if (page && page.view) {
+        page.view.get$item().showLoader();
+        page.observer.publish(page.eventManager.eventList.loadItemsContent);
+      } else {
+        page.logger.warn('View should be defined');
+        return false;
+      }
     }
 
-    this.observer.publish(
-        this.eventManager.eventList.loadProduction
-    );
+    this.observer.publish(this.eventManager.eventList.loadProduction);
   }
 
   /**

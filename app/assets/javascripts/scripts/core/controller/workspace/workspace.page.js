@@ -17,13 +17,17 @@ module.exports = class WorkspacePage {
    */
   setPageContainerDimensions() {
 
+    if (!this.view) {
+      this.logger.warn('View should be defined');
+      return false;
+    }
 
     /**
      * Get $pages
-     * @type {WorkspaceContentElement|number}
+     * @type {WorkspaceContentElement|{defineWidth}}
      */
-    const $pages = this.view.elements.$pages,
-        counter = this.model.getConfig('page/counter');
+    const $pages = this.view.elements.$pages;
+    const counter = this.model.getConfig('page/counter');
 
     $pages.defineWidth(counter);
   }
@@ -37,7 +41,7 @@ module.exports = class WorkspacePage {
 
     /**
      * Define scope
-     * @type {Workspace}
+     * @type {Workspace|{logger, observer}}
      */
     const scope = this.scope;
 
@@ -64,10 +68,7 @@ module.exports = class WorkspacePage {
         page = this.model.getFirstItem();
       }
 
-      scope.observer.publish(
-          scope.eventManager.eventList.switchToPage,
-          page
-      );
+      scope.observer.publish(scope.eventManager.eventList.switchToPage, page);
     }
   }
 
@@ -120,9 +121,7 @@ module.exports = class WorkspacePage {
          */
         page = pages[index];
 
-        page.layout.observer.publish(
-            page.layout.eventManager.eventList.updateMinCellWidth
-        );
+        page.layout.observer.publish(page.layout.eventManager.eventList.updateMinCellWidth);
       }
     }
   }
@@ -135,10 +134,7 @@ module.exports = class WorkspacePage {
   beforeSwitchToPage(page) {
 
     this.logger.debug('Before switch to page', page);
-
-    this.observer.publish(
-        this.eventManager.eventList.resetPagesHeightBeforeSwitch
-    );
+    this.observer.publish(this.eventManager.eventList.resetPagesHeightBeforeSwitch);
 
     /**
      * Define swipe page
@@ -154,9 +150,8 @@ module.exports = class WorkspacePage {
     const item = this.controller.getWidgetByHashLocation(page);
 
     let widget, content = '',
-        showContent, wurl = '',
-        purl = page ?
-            this.controller.getItemIdentity(page) : '';
+        showContent, wURL = '',
+        pURL = page ? this.controller.getItemIdentity(page) : '';
 
     if (item) {
 
@@ -174,10 +169,7 @@ module.exports = class WorkspacePage {
 
       if (showContent) {
 
-        page.observer.publish(
-            page.eventManager.eventList.showWidgetContent,
-            item[0]
-        );
+        page.observer.publish(page.eventManager.eventList.showWidgetContent, item[0]);
 
         /**
          * Get widget
@@ -188,27 +180,18 @@ module.exports = class WorkspacePage {
 
       if (this.controller.isWidget(widget)) {
 
-        wurl = '/' + page.controller.getItemIdentity(widget);
-
-        widget.observer.publish(
-            widget.eventManager.eventList.enlargeWidget,
-            true
-        );
+        wURL = '/' + page.controller.getItemIdentity(widget);
+        widget.observer.publish(widget.eventManager.eventList.enlargeWidget, true);
       }
 
     } else if (!item && this.controller.isWidget(page.maximized)) {
 
       // Define widget
       widget = page.maximized;
-
-      widget.observer.publish(
-          widget.eventManager.eventList.reduceWidget
-      );
+      widget.observer.publish(widget.eventManager.eventList.reduceWidget);
     }
 
-    this.controller.setHashLocation(
-        ''.concat(purl, wurl, '/', content)
-    );
+    this.controller.setHashLocation(''.concat(pURL, wURL, '/', content));
   }
 
   /**

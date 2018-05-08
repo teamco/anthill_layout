@@ -104,7 +104,7 @@ module.exports = class AntHill {
     /**
      * Init utils.
      * @property AntHill
-     * @type {module.Base}
+     * @type {module.Base|{setBoolean}}
      */
     this.utils = new Base();
   }

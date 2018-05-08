@@ -29,7 +29,7 @@ module.exports = class BaseAPI extends AntHill {
 
   /**
    * Create reference to function create [item] ...
-   * @memberOf BaseAPI
+   * @property BaseAPI
    * @param args
    * @param {Boolean} render
    * @returns {*}
@@ -40,7 +40,7 @@ module.exports = class BaseAPI extends AntHill {
 
   /**
    * Create reference to function destroy [items] ...
-   * @memberOf BaseAPI
+   * @property BaseAPI
    * @param {*} [items]
    * @param {Boolean} [silent]
    * @returns {*}
@@ -51,7 +51,7 @@ module.exports = class BaseAPI extends AntHill {
 
   /**
    * Execute reference function
-   * @memberOf BaseAPI
+   * @property BaseAPI
    * @param arg1
    * @param arg2
    * @param {string} prefix
@@ -76,7 +76,7 @@ module.exports = class BaseAPI extends AntHill {
 
   /**
    * Create item API
-   * @memberOf BaseAPI
+   * @property BaseAPI
    * @param {*} item
    * @param {*} args
    * @param {Boolean} [render]
@@ -112,7 +112,7 @@ module.exports = class BaseAPI extends AntHill {
 
   /**
    * Check if items limit was reached
-   * @memberOf BaseAPI
+   * @property BaseAPI
    * @returns {boolean}
    * @private
    */
@@ -134,7 +134,7 @@ module.exports = class BaseAPI extends AntHill {
 
   /**
    * Render item API
-   * @memberOf BaseAPI
+   * @property BaseAPI
    * @param {Function} item
    * @param {Boolean} [render]
    * @param {Boolean} [silent]

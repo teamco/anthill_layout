@@ -711,20 +711,18 @@ module.exports = class BaseController extends aggregation(AntHill, BehaviorCrud,
    * @returns {*}
    */
   extendConfig(opts) {
-    const base = this.base,
-        scope = this.scope;
+    const scope = this.scope;
+    const config = {
+      html: {
+        container: [
+          '#', scope.model.getUUID(),
+          '-', scope.model.getScopeName().toLowerCase()
+        ].join('')
+      },
+      containment: scope
+    };
 
-    opts.config = Object.assign({
-          html: {
-            container: [
-              '#', scope.model.getUUID(),
-              '-', scope.model.getScopeName().toLowerCase()
-            ].join('')
-          },
-          containment: scope
-        },
-        opts.config);
-
+    opts.config = $.extend(true, opts.config || {}, config);
     scope.logger.debug('Configuration', opts.config);
 
     return opts;
