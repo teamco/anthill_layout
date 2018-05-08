@@ -85,7 +85,7 @@ module.exports = class ApplicationController extends aggregation(BaseController,
 
       /**
        * Get current workspace
-       * @type {Workspace|{api, observer, eventManager}}
+       * @type {Workspace|{api, observer, eventManager, logger}}
        */
       const workspace = this.api.createWorkspace([], true);
 
@@ -105,11 +105,11 @@ module.exports = class ApplicationController extends aggregation(BaseController,
 
       workspace.observer.publish(workspace.eventManager.eventList.switchToPage, page);
 
-      if (page && page.view) {
+      if (page.view) {
         page.view.get$item().showLoader();
         page.observer.publish(page.eventManager.eventList.loadItemsContent);
       } else {
-        page.logger.warn('View should be defined');
+        workspace.logger.warn('PageView should be defined', page);
         return false;
       }
     }
@@ -168,15 +168,9 @@ module.exports = class ApplicationController extends aggregation(BaseController,
       beforeSend: (xhr, settings) => {
         this.scope.view.get$item().showLoader();
         if (this.utils._.isUndefined(settings.dataType)) {
-          xhr.setRequestHeader(
-              'accept',
-              '*/*;q=0.5, ' + settings.accepts.script
-          );
+          xhr.setRequestHeader('accept', '*/*;q=0.5, ' + settings.accepts.script);
         }
-        xhr.setRequestHeader(
-            'X-CSRF-Token',
-            this.getXCsrfToken()
-        );
+        xhr.setRequestHeader('X-CSRF-Token', this.getXCsrfToken());
       },
       success: this._handleXhrLog.bind(this),
       complete: this._handleXhrLog.bind(this),
@@ -192,7 +186,6 @@ module.exports = class ApplicationController extends aggregation(BaseController,
   loadConfig(uuid) {
     this.model.setConfig('uuid', uuid);
     this.scope.view.get$item().updateUUID();
-
     this.scope.logger.debug('Update uuid after loading', uuid);
   }
 
@@ -201,20 +194,8 @@ module.exports = class ApplicationController extends aggregation(BaseController,
    * @property ApplicationController
    */
   initResizeWindow() {
-
-    /**
-     * Get scope
-     * @type {module.Application}
-     */
-    const scope = this;
-
-    scope.logger.debug('Init window resize');
-
-    $(window).on('resizestop', function _resizeStop(e) {
-      scope.observer.publish(
-          scope.eventManager.eventList.resizeWindowPublisher, e
-      );
-    });
+    this.logger.debug('Init window resize');
+    $(window).on('resizestop', e => this.observer.publish(this.eventManager.eventList.resizeWindowPublisher, e));
   }
 
   /**
@@ -222,23 +203,16 @@ module.exports = class ApplicationController extends aggregation(BaseController,
    * @property ApplicationController
    */
   initScrollBehavior() {
-
-    /**
-     * Get scope
-     * @type {module.Application}
-     */
-    const scope = this;
-
-    scope.logger.debug('Init scroll');
+    this.logger.debug('Init scroll');
 
     /**
      * @constant $item
      * @type {BaseElement}
      */
-    const $item = scope.view.get$item();
+    const $item = this.view.get$item();
 
     if (!$item) {
-      scope.logger.warn('Element not rendered yet');
+      this.logger.warn('Element not rendered yet');
       return false;
     }
 
@@ -261,11 +235,8 @@ module.exports = class ApplicationController extends aggregation(BaseController,
    * @param {Event} e
    */
   resizeWindowPublisher(e) {
-
     if (e.target === window && this.model.getConfig('isResized')) {
-      this.observer.publish(
-          this.eventManager.eventList.resizeWindow, e
-      );
+      this.observer.publish(this.eventManager.eventList.resizeWindow, e);
     }
   }
 
@@ -276,10 +247,7 @@ module.exports = class ApplicationController extends aggregation(BaseController,
    */
   resizeWindow(e) {
     this.logger.debug('Start resize window', e);
-
-    this.observer.publish(
-        this.eventManager.eventList.resizeWindowHooks
-    );
+    this.observer.publish(this.eventManager.eventList.resizeWindowHooks);
   }
 
   /**
@@ -298,22 +266,26 @@ module.exports = class ApplicationController extends aggregation(BaseController,
 
     /**
      * Define local scope
-     * @type {module.Application}
+     * @type {module.Application|{model, view}}
      */
     const scope = this.scope;
 
     /**
      * Define setting
-     * @type {Setting}
+     * @type {module.Setting}
      */
-    const setting = scope.model.setting,
-        $modal = scope.view.elements.$modal;
+    const setting = scope.model.setting;
+
+    /**
+     * @constant $modal
+     * @type {ModalElement|{selfDestroy}}
+     */
+    const $modal = scope.view.elements.$modal;
 
     setting.clear();
-
     scope.logger.warn('localStorage', setting.getStorage());
 
-    if (this.base.isDefined($modal)) {
+    if ($modal) {
       $modal.selfDestroy();
     }
   }
@@ -327,7 +299,7 @@ module.exports = class ApplicationController extends aggregation(BaseController,
 
     /**
      * Get Application
-     * @type {module.Application}
+     * @type {module.Application|{logger, observer}}
      */
     const scope = this.scope;
 
@@ -358,27 +330,13 @@ module.exports = class ApplicationController extends aggregation(BaseController,
           backtrace: (xhr.responseJSON || {}).error
         }
       }),
-      error: () => {
-        scope.observer.publish(
-            scope.eventManager.eventList.stopSendLog,
-            arguments
-        );
-      }
+      error: () => scope.observer.publish(scope.eventManager.eventList.stopSendLog, arguments)
     };
 
-    scope.observer.publish(
-        scope.eventManager.eventList.beforeSendLog,
-        [arguments, opts]
-    );
+    scope.observer.publish(scope.eventManager.eventList.beforeSendLog, [arguments, opts]);
 
-    $.ajax(opts).done(
-        function done(data, type, xhr) {
-          scope.observer.publish(
-              scope.eventManager.eventList.afterSendLog,
-              [arguments, opts]
-          );
-        }
-    );
+    $.ajax(opts).done((data, type, xhr) =>
+        scope.observer.publish(scope.eventManager.eventList.afterSendLog, [arguments, opts]));
   }
 
   /**
@@ -387,8 +345,7 @@ module.exports = class ApplicationController extends aggregation(BaseController,
    */
   startSendLog() {
     this.model.setConfig('sendLog', true);
-    this.logger.debug('Start send log', arguments,
-        this.model.getConfig('sendLog'));
+    this.logger.debug('Start send log', arguments, this.model.getConfig('sendLog'));
   }
 
   /**
@@ -397,8 +354,7 @@ module.exports = class ApplicationController extends aggregation(BaseController,
    */
   stopSendLog() {
     this.model.setConfig('sendLog', false);
-    this.logger.debug('Stop send log', arguments,
-        this.model.getConfig('sendLog'));
+    this.logger.debug('Stop send log', arguments, this.model.getConfig('sendLog'));
   }
 
   /**

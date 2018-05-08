@@ -13,6 +13,7 @@ const LZString = require('../lz-string.js');
  * Define Setting
  * @class Setting
  * @extends Router
+ * @type {module.Setting}
  */
 module.exports = class Setting extends Router {
 

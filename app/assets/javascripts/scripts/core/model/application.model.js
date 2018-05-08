@@ -48,14 +48,14 @@ module.exports = class ApplicationModel extends BaseModel {
 
     /**
      * @constant Setting
-     * @type {Setting}
+     * @type {module.Setting}
      */
     const Setting = require('../lib/modules/Setting.js');
 
     /**
      * Define setting
      * @property ApplicationModel
-     * @type {Setting}
+     * @type {module.Setting}
      */
     this.setting = new Setting(scope, scope.controller.getAppName());
 
