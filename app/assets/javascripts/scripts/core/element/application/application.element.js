@@ -16,6 +16,7 @@ const BaseElement = require('../../lib/modules/Element.js');
  * Define Application element
  * @extends BaseElement
  * @class ApplicationElement
+ * @type {module.ApplicationElement}
  * @constructor
  */
 module.exports = class ApplicationElement extends BaseElement {

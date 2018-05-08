@@ -1,18 +1,18 @@
 /**
  * @constant AntHill
- * @type {AntHill}
+ * @type {module.AntHill}
  */
 const AntHill = require('./anthill.js');
 
 /**
  * @class Application
  * @extends AntHill
+ * @type {module.Application}
  */
 module.exports = class Application extends AntHill {
 
   /**
    * Define Application
-   * @class Application
    * @param {{config}} opts
    * @constructor
    */
@@ -25,43 +25,43 @@ module.exports = class Application extends AntHill {
 
     /**
      * @constant ApplicationAPI
-     * @type {ApplicationAPI}
+     * @type {module.ApplicationAPI}
      */
     const ApplicationAPI = require('../api/application.api.js');
 
     /**
      * @constant ApplicationEventManager
-     * @type {ApplicationEventManager}
+     * @type {module.ApplicationEventManager}
      */
     const ApplicationEventManager = require('../event/application.event.manager.js');
 
     /**
      * @constant ApplicationController
-     * @type {ApplicationController}
+     * @type {module.ApplicationController}
      */
     const ApplicationController = require('../controller/application.controller.js');
 
     /**
      * @constant ApplicationModel
-     * @type {ApplicationModel}
+     * @type {module.ApplicationModel}
      */
     const ApplicationModel = require('../model/application.model.js');
 
     /**
      * @constant ApplicationView
-     * @type {ApplicationView}
+     * @type {module.ApplicationView}
      */
     const ApplicationView = require('../view/application.view.js');
 
     /**
-     * @constant ApplicationPermisson
-     * @type {ApplicationPermisson}
+     * @constant ApplicationPermission
+     * @type {module.ApplicationPermission}
      */
-    const ApplicationPermisson = require('../permission/application.permission.js');
+    const ApplicationPermission = require('../permission/application.permission.js');
 
     /**
      * @constant MVC
-     * @type {MVC}
+     * @type {module.MVC}
      */
     const MVC = require('../lib/modules/MVC.js');
 
@@ -170,7 +170,7 @@ module.exports = class Application extends AntHill {
         ApplicationModel,
         ApplicationView,
         ApplicationEventManager,
-        ApplicationPermisson
+        ApplicationPermission
       ],
       render: true
     });

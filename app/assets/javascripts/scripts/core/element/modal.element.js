@@ -297,7 +297,7 @@ defineP([
 
         /**
          * Get app event manager
-         * @type {ApplicationEventManager}
+         * @type {module.ApplicationEventManager}
          */
         var appEventManager = this.view.controller.root().eventManager;
 

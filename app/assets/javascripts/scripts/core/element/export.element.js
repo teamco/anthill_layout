@@ -6,123 +6,122 @@
  * To change this template use File | Settings | File Templates.
  */
 
-defineP([
-  'modules/Element'
-], function defineExportElement(BaseElement) {
+/**
+ * @constant BaseElement
+ * @type {module.BaseElement}
+ */
+const BaseElement = require('../lib/modules/Element.js');
+
+/**
+ * Define Application export element
+ * @class ExportElement
+ * @extends module.BaseElement
+ */
+module.exports = class ExportElement extends BaseElement {
 
   /**
-   * Define Application export element
    * @param view
    * @param opts
-   * @returns {*}
    * @constructor
-   * @class ExportElement
-   * @extends BaseElement
    */
-  var ExportElement = function ExportElement(view, opts) {
+  constructor(view, opts) {
+    super('ExportElement', view, false);
 
-    this._config(view, opts, $('<a />')).build({
-      $container: opts.$container,
-      destroy: true
-    });
+    this._config(view, opts, $('<a />')).build(opts);
+    this.init(opts.data || {});
+  }
 
-    return this.init(opts.data || {});
-  };
-
-  return ExportElement.extend('ExportElement', {
+  /**
+   * Init export element
+   * @memberOf ExportElement
+   * @param {{
+   *  type: string,
+   *  [fileName]: string,
+   *  [title]: string,
+   *  content,
+   *  [autoload]: boolean
+   * }} data
+   * @returns {module.ExportElement}
+   */
+  init(data) {
 
     /**
-     * Init export element
-     * @memberOf ExportElement
-     * @param {{
-         *      type: string,
-         *      [fileName]: string,
-         *      [title]: string,
-         *      content,
-         *      [autoload]: boolean
-         * }} data
-     * @returns {ExportElement}
+     * Define scope
+     * @type {module.Application}
      */
-    init: function init(data) {
+    const scope = this.view.scope;
+
+    const lib = scope.base.lib,
+        fname = data.fileName || 'file.txt';
+
+    /**
+     * Define url
+     * @type {string}
+     */
+    let url;
+
+    try {
+
+      url = lib.file.createURL(
+          scope.base.isBase64(data.content) ?
+              data.content :
+              lib.string.utf8ToBase64(data.content),
+          data.type,
+          fname
+      );
+
+      scope.logger.debug('Blob URL', url);
+
+    } catch (e) {
+
+      scope.logger.warn('Unable to create Blob URL', e);
 
       /**
-       * Define scope
-       * @type {Application}
-       */
-      var scope = this.view.scope,
-          lib = scope.base.lib,
-          fname = data.fileName || 'file.txt';
-
-      /**
-       * Define url
+       * Define content
        * @type {string}
        */
-      var url;
+      const content = lib.string.base64.encode(
+          data.content
+      );
 
-      try {
+      if (content.length <= 50000) {
 
-        url = lib.file.createURL(
-            scope.base.isBase64(data.content) ?
-                data.content :
-                lib.string.utf8ToBase64(data.content),
-            data.type,
-            fname
-        );
+        try {
 
-        scope.logger.debug('Blob URL', url);
+          url = [
+            'data:', data.type,
+            ';charset=utf-8;base64,', content
+          ].join('');
 
-      } catch (e) {
+          scope.logger.debug('Data-URI URL', url);
 
-        scope.logger.warn('Unable to create Blob URL', e);
+        } catch (e) {
 
-        /**
-         * Define content
-         * @type {string}
-         */
-        var content = lib.string.base64.encode(
-            data.content
-        );
-
-        if (content.length <= 50000) {
-
-          try {
-
-            url = [
-              'data:', data.type,
-              ';charset=utf-8;base64,', content
-            ].join('');
-
-            scope.logger.debug('Data-URI URL', url);
-
-          } catch (e) {
-
-            scope.logger.warn('Unable to create URL', e);
-          }
-
-        } else {
-
-          scope.logger.warn('URL too long');
+          scope.logger.warn('Unable to create URL', e);
         }
+
+      } else {
+
+        scope.logger.warn('URL too long');
       }
-
-      if (url) {
-
-        this.$.attr({
-
-          href: url,
-          download: fname,
-          title: data.title || 'Download'
-
-        }).text(data.title || 'Download');
-
-        if (data.autoload) {
-
-          lib.event.simulate(this.$[0], 'click');
-        }
-      }
-
-      return this;
     }
 
-  }, BaseElement.prototype);
-});
+    if (url) {
+
+      this.$.attr({
+
+        href: url,
+        download: fname,
+        title: data.title || 'Download'
+
+      }).text(data.title || 'Download');
+
+      if (data.autoload) {
+
+        lib.event.simulate(this.$[0], 'click');
+      }
+    }
+
+    return this;
+  }
+};

@@ -4,6 +4,9 @@
  */
 module.exports = class LibString {
 
+  /**
+   * @constructor
+   */
   constructor() {
 
     String.prototype.repeat = undefined;

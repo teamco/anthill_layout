@@ -8,14 +8,15 @@
 
 /**
  * @constant Renderer
- * @type {Renderer}
+ * @type {module.Renderer}
  */
 const Renderer = require('../modules/Renderer.js');
 
 /**
  * Define Base element
  * @class BaseElement
- * @extends AntHill
+ * @type {module.BaseElement}
+ * @extends Renderer
  */
 module.exports = class BaseElement extends Renderer {
 
@@ -38,10 +39,10 @@ module.exports = class BaseElement extends Renderer {
    * Element config before build
    * @property BaseElement
    * @param {BaseView} view
-   * @param {{[style]: string, [uuid], [id]: boolean, [css], [events],
-   *  [opacity], [id]: boolean, [disabled]: boolean}} opts
+   * @param {{[style]: string, [uuid], [id]: boolean, [css], [events], [opacity], [id]: boolean,
+   *  [disabled]: boolean}} opts
    * @param $html
-   * @returns {*}
+   * @returns {module.BaseElement}
    * @protected
    */
   _config(view, opts, $html) {
@@ -320,6 +321,7 @@ module.exports = class BaseElement extends Renderer {
   build(opts) {
 
     opts = opts || {};
+    opts.destroy = typeof opts.destroy === 'undefined' ? true : opts.destroy;
 
     /**
      * Define append/prepend

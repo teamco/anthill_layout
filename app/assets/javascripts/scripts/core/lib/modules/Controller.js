@@ -14,7 +14,7 @@ const aggregation = require('../extends/aggregation.js');
 
 /**
  * @constant AntHill
- * @type {AntHill}
+ * @type {module.AntHill}
  */
 const AntHill = require('../../config/anthill.js');
 
@@ -103,7 +103,7 @@ module.exports = class BaseController extends aggregation(AntHill, BehaviorCrud,
 
     /**
      * Get root
-     * @type {Application}
+     * @type {module.Application}
      */
     const root = this.root();
 
@@ -825,7 +825,7 @@ module.exports = class BaseController extends aggregation(AntHill, BehaviorCrud,
 
     /**
      * Define root
-     * @type {Application}
+     * @type {module.Application}
      */
     const root = this.root();
 

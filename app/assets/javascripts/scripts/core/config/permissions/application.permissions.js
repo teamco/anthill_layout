@@ -7,7 +7,7 @@
 
 /**
  * @constant Application
- * @type {Application}
+ * @type {module.Application}
  */
 const Application = require('../application.js');
 

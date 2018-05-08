@@ -4,13 +4,14 @@
 
 /**
  * @constant AntHill
- * @type {AntHill}
+ * @type {module.AntHill}
  */
 const AntHill = require('../../../config/anthill.js');
 
 /**
  * Define CheckBoxRenderer
  * @class CheckBoxRenderer
+ * @type {module.CheckBoxRenderer}
  */
 module.exports = class CheckBoxRenderer extends AntHill {
 
@@ -26,14 +27,14 @@ module.exports = class CheckBoxRenderer extends AntHill {
    * Render checkbox
    * @property CheckBoxRenderer
    * @param {{
-   *      text: string,
-   *      name: string,
-   *      value,
-   *      [checked]: boolean,
-   *      [disabled]: boolean,
-   *      [monitor],
-   *      [tooltip],
-   *      [visible]
+   *  text: string,
+   *  name: string,
+   *  value,
+   *  [checked]: boolean,
+   *  [disabled]: boolean,
+   *  [monitor],
+   *  [tooltip],
+   *  [visible]
    * }} opts
    * @returns {*}
    */

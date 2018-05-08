@@ -8,7 +8,7 @@
 
 /**
  * @constant BasePermission
- * @type {BasePermission}
+ * @type {module.BasePermission}
  */
 const BasePermission = require('../lib/modules/Permission.js');
 

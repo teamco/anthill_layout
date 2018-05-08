@@ -7,6 +7,7 @@
 
 /**
  * @class AntHill
+ * @type {module.AntHill}
  */
 module.exports = class AntHill {
 
@@ -20,7 +21,7 @@ module.exports = class AntHill {
 
     /**
      * @constant Base
-     * @type {Base}
+     * @type {module.Base}
      */
     const Base = require('../lib/modules/Base.js');
 
@@ -50,19 +51,19 @@ module.exports = class AntHill {
 
       /**
        * @constant Observer
-       * @type {Observer}
+       * @type {module.Observer}
        */
       const Observer = require('../lib/modules/Observer.js');
 
       /**
        * @constant Logger
-       * @type {Logger}
+       * @type {module.Logger}
        */
       const Logger = require('../lib/modules/Logger.js');
 
       /**
        * @constant i18n
-       * @type {i18n}
+       * @type {module.i18n}
        */
       const i18n = require('../lib/modules/i18n.js');
 
@@ -76,21 +77,21 @@ module.exports = class AntHill {
       /**
        * Init observer
        * @property AntHill
-       * @type {Observer}
+       * @type {module.Observer}
        */
       this.observer = new Observer(this.scope || this);
 
       /**
        * Init logger
        * @property Anthill
-       * @type {Logger}
+       * @type {module.Logger}
        */
       this.logger = new Logger(this.scope || this);
 
       /**
        * Init logger
        * @property Anthill
-       * @type {i18n}
+       * @type {module.i18n}
        */
       this.i18n = new i18n('en-us');
 
@@ -101,9 +102,9 @@ module.exports = class AntHill {
     }
 
     /**
-     * Init underscore.
+     * Init utils.
      * @property AntHill
-     * @type {Base|{setBoolean}}
+     * @type {module.Base}
      */
     this.utils = new Base();
   }

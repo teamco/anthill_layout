@@ -57,7 +57,7 @@ defineP(['config/widget'], function defineWidgetListeners(Widget) {
 
         /**
          * Get root
-         * @type {Application}
+         * @type {module.Application}
          */
         var root = this.controller.root();
 

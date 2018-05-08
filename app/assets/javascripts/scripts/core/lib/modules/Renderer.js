@@ -13,7 +13,7 @@ const aggregation = require('../extends/aggregation.js');
 
 /**
  * @constant AntHill
- * @type {AntHill}
+ * @type {module.AntHill}
  */
 const AntHill = require('../../config/anthill.js');
 
@@ -44,6 +44,7 @@ const AntHill = require('../../config/anthill.js');
 /**
  * Define renderer
  * @class Renderer
+ * @type {module.Renderer}
  * @extends AntHill
  */
 module.exports = class Renderer extends aggregation(AntHill) {
@@ -57,7 +58,7 @@ module.exports = class Renderer extends aggregation(AntHill) {
 
     /**
      * @property Renderer
-     * @type {CheckBoxRenderer}
+     * @type {module.CheckBoxRenderer}
      */
     this.checkbox = new (require('./renderer/check.box.js'));
   }

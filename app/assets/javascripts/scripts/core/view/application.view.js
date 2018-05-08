@@ -6,12 +6,6 @@
  * To change this template use File | Settings | File Templates.
  */
 
-  // 'element/application/application.element',
-  // 'element/header.element',
-  // 'element/footer.element',
-  // 'element/application/application.content.element',
-  // 'element/export.element'
-
 /**
  * @constant BaseView
  * @type {BaseView}
@@ -21,7 +15,7 @@ const BaseView = require('../lib/modules/View.js');
 /**
  * @class ApplicationView
  * @extends BaseView
- * @type {ApplicationView}
+ * @type {module.ApplicationView}
  */
 module.exports = class ApplicationView extends BaseView {
 
@@ -42,13 +36,13 @@ module.exports = class ApplicationView extends BaseView {
 
     /**
      * @constant ApplicationElement
-     * @type {ApplicationElement|*}
+     * @type {module.ApplicationElement|*}
      */
     const ApplicationElement = require('../element/application/application.element.js');
 
     /**
      * Define $application
-     * @type {ApplicationElement}
+     * @type {module.ApplicationElement}
      */
     this.elements.$application = new ApplicationElement(this, {
       $container: this.getConfigHTML().container,
@@ -56,9 +50,9 @@ module.exports = class ApplicationView extends BaseView {
       id: true
     });
 
-    //this.header(Header, this.get$item());
+    this.footer(this.get$item());
     this.workspaces();
-    //this.footer(Footer, this.get$item());
+    this.header(this.get$item());
   }
 
   /**
@@ -69,13 +63,13 @@ module.exports = class ApplicationView extends BaseView {
 
     /**
      * @constant ApplicationContentElement
-     * @type {ApplicationContentElement|*}
+     * @type {module.ApplicationContentElement|*}
      */
     const ApplicationContentElement = require('../element/application/application.content.element.js');
 
     /**
      * Define $workspaces
-     * @type {ApplicationContentElement}
+     * @type {module.ApplicationContentElement}
      */
     this.elements.$workspaces = new ApplicationContentElement(this, {
       $container: this.get$item().$,
@@ -90,8 +84,14 @@ module.exports = class ApplicationView extends BaseView {
   renderExportLink(data) {
 
     /**
+     * @constant ExportElement
+     * @type {module.ExportElement}
+     */
+    const ExportElement = require('../element/export.element.js');
+
+    /**
      * Define export element
-     * @type {ExportElement}
+     * @type {module.ExportElement}
      */
     this.elements.$export = new ExportElement(this, {
       $container: this.get$item().$,

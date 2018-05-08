@@ -26,7 +26,7 @@ module.exports = class Logger {
 
     /**
      * @property Logger.utils
-     * @type {Base}
+     * @type {module.Base}
      */
     this.utils = new (require('./Base.js'));
 

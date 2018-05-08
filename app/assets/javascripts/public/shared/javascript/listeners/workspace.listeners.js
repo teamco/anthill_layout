@@ -159,7 +159,7 @@ defineP([
 
         /**
          * Define app
-         * @type {Application}
+         * @type {module.Application}
          */
         var app = this.controller.root();
 
@@ -215,7 +215,7 @@ defineP([
 
         /**
          * Define app
-         * @type {Application}
+         * @type {module.Application}
          */
         var app = this.controller.root();
 

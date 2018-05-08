@@ -6,30 +6,32 @@
  * To change this template use File | Settings | File Templates.
  */
 
-defineP([
-  'modules/Element'
-], function defineHeaderElement(BaseElement) {
+/**
+ * @constant BaseElement
+ * @type {module.BaseElement}
+ */
+const BaseElement = require('../lib/modules/Element.js');
+
+/**
+ * Define Header Element
+ * @class HeaderElement
+ * @type {module.HeaderElement}
+ * @extends BaseElement
+ */
+module.exports = class HeaderElement extends BaseElement {
 
   /**
-   * Define Header Element
    * @param view
    * @param opts
-   * @returns {*}
    * @constructor
-   * @class HeaderElement
-   * @extends BaseElement
    */
-  var HeaderElement = function HeaderElement(view, opts) {
+  constructor(view, opts) {
+    super('HeaderElement', view, false);
 
     if (!view.getConfigHTML('header')) {
       return this;
     }
 
-    return this._config(view, opts, $('<div />')).build({
-      $container: opts.$container,
-      destroy: true
-    });
-  };
-
-  return HeaderElement.extend('HeaderElement', {}, BaseElement.prototype);
-});
+    this._config(view, opts, $('<div />')).build(opts);
+  }
+};

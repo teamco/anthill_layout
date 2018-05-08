@@ -34,15 +34,8 @@ module.exports = class BehaviorCrud {
         this.controller.extendConfig(opts)
     );
 
-    this.logger.debug(
-        'Create ' + item.name,
-        this.model.getUUID(item),
-        item
-    );
-
-    this.observer.publish(
-        this.eventManager.eventList.afterCreateItem
-    );
+    this.logger.debug('Create ' + item.name, this.model.getUUID(item), item);
+    this.observer.publish(this.eventManager.eventList.afterCreateItem);
   }
 
   /**
@@ -54,11 +47,7 @@ module.exports = class BehaviorCrud {
         $modal = scope.view.elements.$modal;
 
     if ($modal) {
-      scope.logger.debug(
-          'Reject modal event',
-          $modal.item
-      );
-
+      scope.logger.debug('Reject modal event', $modal.item);
       $modal.selfDestroy();
     }
   }
@@ -72,12 +61,12 @@ module.exports = class BehaviorCrud {
     const scope = this.scope,
         $modal = scope.view.elements.$modal;
 
-    if (this.base.isDefined($modal)) {
+    if ($modal) {
       items = $modal.items;
       $modal.selfDestroy();
     }
 
-    const count = this.base.lib.hash.hashLength(items || {});
+    const count = items && Object.keys(items).length;
 
     if (this.checkCondition({
       condition: count === 0,

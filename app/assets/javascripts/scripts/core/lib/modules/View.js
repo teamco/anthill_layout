@@ -12,7 +12,7 @@
 // 'element/filter.element'
 /**
  * @constant AntHill
- * @type {AntHill}
+ * @type {module.AntHill}
  */
 const AntHill = require('../../config/anthill.js');
 
@@ -240,22 +240,24 @@ module.exports = class BaseView extends AntHill {
   /**
    * Render Header
    * @property BaseView
-   * @param {HeaderElement} HeaderElement
    * @param $container
-   * @returns {HeaderElement}
+   * @return {module.HeaderElement|HeaderElement}
    */
-  header(HeaderElement, $container) {
+  header($container) {
+
+    /**
+     * @constant HeaderElement
+     * @type {module.HeaderElement}
+     */
+    const HeaderElement = require('../../element/header.element.js');
 
     /**
      * Define $header
      * @property BaseView.elements
-     * @type {HeaderElement}
+     * @type {module.HeaderElement}
      */
     this.elements.$header = new HeaderElement(this, {
-      style: [
-        this.scope.name.toDash(),
-        'header'
-      ].join('-'),
+      style: [this.scope.name.toDash(), 'header'].join('-'),
       $container: $container.$,
       append: false
     });
@@ -279,22 +281,24 @@ module.exports = class BaseView extends AntHill {
   /**
    * Render Footer
    * @property BaseView
-   * @param {FooterElement} FooterElement
    * @param $container
-   * @returns {FooterElement}
+   * @returns {module.FooterElement}
    */
-  footer(FooterElement, $container) {
+  footer($container) {
+
+    /**
+     * @constant FooterElement
+     * @type {module.FooterElement}
+     */
+    const FooterElement = require('../../element/footer.element.js');
 
     /**
      * Define $footer
      * @property BaseView.elements
-     * @type {FooterElement}
+     * @type {module.FooterElement}
      */
     this.elements.$footer = new FooterElement(this, {
-      style: [
-        this.scope.name.toDash(),
-        'footer panel-footer'
-      ].join('-'),
+      style: [this.scope.name.toDash(), 'footer panel-footer'].join('-'),
       $container: $container.$
     });
 

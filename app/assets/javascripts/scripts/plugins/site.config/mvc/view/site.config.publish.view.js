@@ -44,7 +44,7 @@ defineP([
 
           /**
            * Get root
-           * @type {Application}
+           * @type {module.Application}
            */
           var root = this.controller.root();
 

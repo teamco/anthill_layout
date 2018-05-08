@@ -40,7 +40,7 @@ defineP(function defineSiteConfigActivate() {
 
       /**
        * Define root
-       * @type {Application}
+       * @type {module.Application}
        */
       var root = this.root();
 

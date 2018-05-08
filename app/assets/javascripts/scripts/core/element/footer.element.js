@@ -6,30 +6,32 @@
  * To change this template use File | Settings | File Templates.
  */
 
-defineP([
-  'modules/Element'
-], function defineFooterElement(BaseElement) {
+/**
+ * @constant BaseElement
+ * @type {module.BaseElement}
+ */
+const BaseElement = require('../lib/modules/Element.js');
+
+/**
+ * Define Footer Element
+ * @class FooterElement
+ * @type {module.FooterElement}
+ * @extends BaseElement
+ */
+module.exports = class FooterElement extends BaseElement {
 
   /**
-   * Define Footer Element
    * @param view
    * @param opts
-   * @returns {*}
    * @constructor
-   * @class FooterElement
-   * @extends BaseElement
    */
-  var FooterElement = function FooterElement(view, opts) {
+  constructor(view, opts) {
+    super('FooterElement', view, false);
 
     if (!view.getConfigHTML('footer')) {
       return this;
     }
 
-    return this._config(view, opts, $('<div />')).build({
-      $container: opts.$container,
-      destroy: true
-    });
-  };
-
-  return FooterElement.extend('FooterElement', {}, BaseElement.prototype);
-});
+    this._config(view, opts, $('<div />')).build(opts);
+  }
+};

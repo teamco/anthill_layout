@@ -14,37 +14,37 @@ const aggregation = require('../lib/extends/aggregation.js');
 
 /**
  * @constant BaseController
- * @type {BaseController}
+ * @type {module.BaseController}
  */
 const BaseController = require('../lib/modules/Controller.js');
 
 /**
  * @constant BehaviorErrorHandler
- * @type {BehaviorErrorHandler}
+ * @type {module.BehaviorErrorHandler}
  */
 const BehaviorErrorHandler = require('./behavior/behavior.error.handler.js');
 
 /**
  * @constant BehaviorFixVulnerabilities
- * @type {BehaviorFixVulnerabilities}
+ * @type {module.BehaviorFixVulnerabilities}
  */
 const BehaviorFixVulnerabilities = require('./behavior/behavior.fix.vulnerabilities.js');
 
 /**
  * @constant ProductionController
- * @type {ProductionController}
+ * @type {module.ProductionController}
  */
 const ProductionController = require('./production/production.js');
 
 /**
  * @constant Routes
- * @type {Routes}
+ * @type {module.Routes}
  */
 const Routes = require('../config/routes.js');
 
 /**
  * @constant Router
- * @type {Router}
+ * @type {module.Router}
  */
 const Router = require('../lib/modules/Router.js');
 
@@ -206,7 +206,7 @@ module.exports = class ApplicationController extends aggregation(BaseController,
 
     /**
      * Get scope
-     * @type {Application}
+     * @type {module.Application}
      */
     const scope = this;
 
@@ -227,7 +227,7 @@ module.exports = class ApplicationController extends aggregation(BaseController,
 
     /**
      * Get scope
-     * @type {Application}
+     * @type {module.Application}
      */
     const scope = this;
 
@@ -300,7 +300,7 @@ module.exports = class ApplicationController extends aggregation(BaseController,
 
     /**
      * Define local scope
-     * @type {Application}
+     * @type {module.Application}
      */
     const scope = this.scope;
 
@@ -329,7 +329,7 @@ module.exports = class ApplicationController extends aggregation(BaseController,
 
     /**
      * Get Application
-     * @type {Application}
+     * @type {module.Application}
      */
     const scope = this.scope;
 

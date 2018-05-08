@@ -8,13 +8,14 @@
 
 /**
  * @constant BaseElement
- * @type {BaseElement|*}
+ * @type {module.BaseElement}
  */
 const BaseElement = require('../../lib/modules/Element.js');
 
 /**
  * Define Application content element
  * @class ApplicationContentElement
+ * @type {module.ApplicationContentElement}
  * @extends BaseElement
  */
 module.exports = class ApplicationContentElement extends BaseElement {
@@ -26,10 +27,6 @@ module.exports = class ApplicationContentElement extends BaseElement {
    */
   constructor(view, opts) {
     super('ApplicationContentElement', view, false);
-
-    this._config(view, opts, $('<ul />')).build({
-      $container: opts.$container,
-      destroy: true
-    });
+    this._config(view, opts, $('<ul />')).build(opts);
   }
 };

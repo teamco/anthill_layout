@@ -17,7 +17,7 @@ const BaseAPI = require('../lib/modules/API.js');
  * Define Application API
  * @class ApplicationApi
  * @extends BaseAPI
- * @type {ApplicationAPI}
+ * @type {module.ApplicationAPI}
  */
 module.exports = class ApplicationAPI extends BaseAPI {
 

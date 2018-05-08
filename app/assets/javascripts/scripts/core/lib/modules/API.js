@@ -7,7 +7,7 @@
 
 /**
  * @constant AntHill
- * @type {AntHill}
+ * @type {module.AntHill}
  */
 const AntHill = require('../../config/anthill.js');
 

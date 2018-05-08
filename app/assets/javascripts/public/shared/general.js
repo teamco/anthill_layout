@@ -45,13 +45,13 @@
 
       /**
        * @constant Application
-       * @type {Application}
+       * @type {module.Application}
        */
       const Application = require('../../scripts/core/config/application.js');
 
       /**
        * Define application
-       * @type {Application}
+       * @type {module.Application}
        */
       new Application({config: {...config, ...defaults} || {}});
     }

@@ -8,7 +8,7 @@
 
 /**
  * @constant AntHill
- * @type {AntHill}
+ * @type {module.AntHill}
  */
 const AntHill = require('../../config/anthill.js');
 
@@ -145,37 +145,28 @@ module.exports = class MVC extends AntHill {
      * @property MVC.scope
      * @type {*}
      */
-    this.scope.config = $.extend(true, {}, selfConfig, selfDefaults);
+    this.scope.config = $.extend(true, {}, selfDefaults, selfConfig);
 
     /**
      * Define mvc components
      * @property MVC
      * @type {mvc.components}
      */
-    this.components = opts.components || [opts.components];
-
-    /**
-     * Define mvc config
-     * @property MVC
-     * @type {mvc.config}
-     */
-    this.config = selfConfig || {};
+    this.components = opts.components || [];
 
     /**
      * Define mvc force creating components
      * @property MVC
-     * @type {Boolean}
+     * @type {boolean}
      */
-    this.force = typeof opts.force === 'undefined' ? false : opts.force;
+    this.force = !!opts.force;
 
     /**
      * Define mvc render
      * @property MVC
-     * @type {Boolean}
+     * @type {boolean}
      */
     this.render = typeof opts.render === 'undefined' ? true : opts.render;
-
-    let config = {};
 
     /**
      * Define event manager
@@ -183,8 +174,6 @@ module.exports = class MVC extends AntHill {
      * @type {Object}
      */
     this.scope.eventManager = {};
-
-    Object.assign(config, this.scope.config);
 
     this.init();
 
@@ -198,7 +187,8 @@ module.exports = class MVC extends AntHill {
     if (eventList) {
 
       // Publish before InitConfig event
-      this.scope.observer.publish(eventList.beforeInitConfig, ['Config before create', config]);
+      this.scope.observer.publish(eventList.beforeInitConfig,
+          ['Config before create', Object.assign({}, this.scope.config)]);
 
       // Publish after InitConfig event
       this.scope.observer.publish(eventList.afterInitConfig, ['Config after create', this.scope.config]);
@@ -224,6 +214,9 @@ module.exports = class MVC extends AntHill {
    */
   defineContainment() {
 
+    /**
+     * @type {{containment, eventManager, config}}
+     */
     const scope = this.scope,
         config = scope.config;
 
@@ -243,7 +236,7 @@ module.exports = class MVC extends AntHill {
    * Define MVC
    * @property MVC
    * @param {Function|String} mvcPattern
-   * @param {Boolean} [force]
+   * @param {boolean} [force]
    * @returns {*}
    */
   defineMVC(mvcPattern, force) {
@@ -394,10 +387,10 @@ module.exports = class MVC extends AntHill {
    */
   applyConfig() {
     const scope = this.scope,
-        timestamp = this.utils.ts.timestamp(this.config.timestamp),
+        timestamp = this.utils.ts.timestamp(this.scope.config.timestamp),
         config = scope.config;
 
-    config.uuid = this.utils.gen.UUID(this.config.uuid);
+    config.uuid = this.utils.gen.UUID(this.scope.config.uuid);
     config.timestamp = timestamp;
 
     if (this.render) {

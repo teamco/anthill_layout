@@ -1,6 +1,7 @@
 module.exports = {
   html: {
     container: 'body',
-    header: true
+    header: true,
+    footer: true
   }
 };
