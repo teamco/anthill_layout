@@ -5,25 +5,33 @@
  * Time: 11:06 PM
  * To change this template use File | Settings | File Templates.
  */
-defineP([
-  'modules/Model',
-  'config/page'
-], function defineWorkspaceModel(BaseModel, Page) {
 
+/**
+ * @constant BaseModel
+ * @type {module.BaseModel}
+ */
+const BaseModel = require('../lib/modules/Model.js');
+
+/**
+ * @constant WorkspaceModel
+ * @type {module.WorkspaceModel}
+ * @extends BaseModel
+ */
+module.exports = class WorkspaceModel extends BaseModel {
+  
   /**
-   * Define Workspace model
-   * @extends BaseModel
-   * @class WorkspaceModel
+   * @param {Workspace} scope
    * @constructor
    */
-  var WorkspaceModel = function WorkspaceModel() {
+  constructor(scope) {
+    super('WorkspaceModel', scope, false);
 
     /**
-     * Define Page item
+     * Define item
      * @property WorkspaceModel
      * @type {Page}
      */
-    this.item = Page;
+    this.item = require('../config/page.js');
 
     /**
      * Skip transfer preferences
@@ -33,159 +41,156 @@ defineP([
     this.skipPreferencesOn = [
       'cloneItemContent'
     ];
-  };
+  }
 
-  return WorkspaceModel.extend('WorkspaceModel', {
+  /**
+   * Set static width
+   * @memberOf WorkspaceModel
+   * @param {boolean} width
+   */
+  setStaticWidth(width) {
 
-    /**
-     * Set static width
-     * @memberOf WorkspaceModel
-     * @param {boolean} width
-     */
-    setStaticWidth: function setStaticWidth(width) {
+    // Define config
+    const config = this.scope.config;
 
-      // Define config
-      var config = this.scope.config;
+    config.preferences.staticWidth = width;
+    config.isResized = !width;
+  }
 
-      config.preferences.staticWidth = width;
-      config.isResized = !width;
-    },
+  /**
+   * Set Site Width Slider
+   * @memberOf WorkspaceModel
+   * @param {number} width
+   */
+  setSiteWidthSlider(width) {
 
-    /**
-     * Set Site Width Slider
-     * @memberOf WorkspaceModel
-     * @param {number} width
-     */
-    setSiteWidthSlider: function setSiteWidthSlider(width) {
-
-      this._setItemInfoPreferences('siteWidthSlider', width);
-
-      /**
-       * Set local scope
-       * @type {Workspace}
-       */
-      var scope = this.scope;
-
-      scope.observer.publish(
-          scope.eventManager.eventList.updatePagesWidth
-      );
-    },
+    this._setItemInfoPreferences('siteWidthSlider', width);
 
     /**
-     * Set site title
-     * @memberOf WorkspaceModel
-     * @param {string} title
+     * Set local scope
+     * @type {Workspace}
      */
-    setSiteTitle: function setSiteTitle(title) {
+    const scope = this.scope;
 
-      /**
-       * Set local scope
-       * @type {Workspace}
-       */
-      var scope = this.scope;
+    scope.observer.publish(
+        scope.eventManager.eventList.updatePagesWidth
+    );
+  }
 
-      this._setItemInfoPreferences('siteTitle', title);
-
-      scope.observer.publish(
-          scope.eventManager.eventList.updateSiteTitle
-      );
-    },
+  /**
+   * Set site title
+   * @memberOf WorkspaceModel
+   * @param {string} title
+   */
+  setSiteTitle(title) {
 
     /**
-     * Set site author
-     * @memberOf WorkspaceModel
-     * @param {string} author
+     * Set local scope
+     * @type {Workspace}
      */
-    setSiteAuthor: function setSiteAuthor(author) {
+    const scope = this.scope;
 
-      /**
-       * Set local scope
-       * @type {Workspace}
-       */
-      var scope = this.scope;
+    this._setItemInfoPreferences('siteTitle', title);
 
-      this._setItemInfoPreferences('siteAuthor', author);
+    scope.observer.publish(
+        scope.eventManager.eventList.updateSiteTitle
+    );
+  }
 
-      scope.observer.publish(
-          scope.eventManager.eventList.updateSiteAuthor
-      );
-    },
+  /**
+   * Set site author
+   * @memberOf WorkspaceModel
+   * @param {string} author
+   */
+  setSiteAuthor(author) {
 
     /**
-     * Set site description
-     * @memberOf WorkspaceModel
-     * @param {string} description
+     * Set local scope
+     * @type {Workspace}
      */
-    setSiteDescription: function setSiteDescription(description) {
+    const scope = this.scope;
 
-      /**
-       * Set local scope
-       * @type {Workspace}
-       */
-      var scope = this.scope;
+    this._setItemInfoPreferences('siteAuthor', author);
 
-      this._setItemInfoPreferences('siteDescription', description);
+    scope.observer.publish(
+        scope.eventManager.eventList.updateSiteAuthor
+    );
+  }
 
-      scope.observer.publish(
-          scope.eventManager.eventList.updateSiteDescription
-      );
-    },
+  /**
+   * Set site description
+   * @memberOf WorkspaceModel
+   * @param {string} description
+   */
+  setSiteDescription(description) {
 
     /**
-     * Set site keywords
-     * @memberOf WorkspaceModel
-     * @param {string} keywords
+     * Set local scope
+     * @type {Workspace}
      */
-    setSiteKeywords: function setSiteKeywords(keywords) {
+    const scope = this.scope;
 
-      /**
-       * Set local scope
-       * @type {Workspace}
-       */
-      var scope = this.scope;
+    this._setItemInfoPreferences('siteDescription', description);
 
-      this._setItemInfoPreferences('siteKeywords', keywords);
+    scope.observer.publish(
+        scope.eventManager.eventList.updateSiteDescription
+    );
+  }
 
-      scope.observer.publish(
-          scope.eventManager.eventList.updateSiteKeywords
-      );
-    },
+  /**
+   * Set site keywords
+   * @memberOf WorkspaceModel
+   * @param {string} keywords
+   */
+  setSiteKeywords(keywords) {
 
     /**
-     * Define clone item content
-     * @memberOf WorkspaceModel
-     * @param {string} itemUUID
+     * Set local scope
+     * @type {Workspace}
      */
-    setCloneItemContent: function setCloneItemContent(itemUUID) {
+    const scope = this.scope;
 
-      /**
-       * Get scope
-       * @type {Workspace}
-       */
-      var scope = this.scope;
+    this._setItemInfoPreferences('siteKeywords', keywords);
 
-      scope.observer.publish(
-          scope.eventManager.eventList.clonePage,
-          itemUUID
-      );
-    },
+    scope.observer.publish(
+        scope.eventManager.eventList.updateSiteKeywords
+    );
+  }
+
+  /**
+   * Define clone item content
+   * @memberOf WorkspaceModel
+   * @param {string} itemUUID
+   */
+  setCloneItemContent(itemUUID) {
 
     /**
-     * Define load pages
-     * @memberOf WorkspaceModel
+     * Get scope
+     * @type {Workspace}
      */
-    loadPages: function loadPages() {
+    const scope = this.scope;
 
-      this.scope.controller.setAsLoading(true);
+    scope.observer.publish(
+        scope.eventManager.eventList.clonePage,
+        itemUUID
+    );
+  }
 
-      /**
-       * Get collector
-       * @type {object}
-       */
-      var collector = this.getCollector(this.item);
+  /**
+   * Define load pages
+   * @memberOf WorkspaceModel
+   */
+  loadPages() {
 
-      this.loadData(this.item, collector);
-    }
+    this.scope.controller.setAsLoading(true);
 
-  }, BaseModel.prototype);
-});
+    /**
+     * Get collector
+     * @type {object}
+     */
+    const collector = this.getCollector(this.item);
+
+    this.loadData(this.item, collector);
+  }
+};
+  

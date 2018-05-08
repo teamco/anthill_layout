@@ -5,16 +5,17 @@
  * Time: 11:39 PM
  */
 
-defineP(['config/workspace'], function defineWorkspacePermissions(Workspace) {
+/**
+ * @constant Workspace
+ * @type {module.Workspace}
+ */
+const Workspace = require('../workspace.js');
+
+module.exports = () => {
 
   /**
    * Define Workspace Local permission
-   * @type {{
-     *      development: {},
-     *      authorize: {},
-     *      consumption: {},
-     *      test: {}
-     * }}
+   * @type {{development: {}, authorize: {}, consumption: {}, test: {}}}
    */
   Workspace.prototype.localPermissions = {
     development: {},
@@ -22,6 +23,4 @@ defineP(['config/workspace'], function defineWorkspacePermissions(Workspace) {
     consumption: {},
     test: {}
   };
-
-  return Workspace;
-});
+};

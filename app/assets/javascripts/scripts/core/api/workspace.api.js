@@ -5,42 +5,51 @@
  * Time: 7:22 PM
  */
 
-defineP([
-  'modules/API',
-  'config/page'
-], function defineWorkspaceAPI(BaseAPI, Page) {
+/**
+ * @constant BaseAPI
+ * @type {module.BaseAPI}
+ */
+const BaseAPI = require('../lib/modules/API.js');
+
+/**
+ * Define Workspace API
+ * @class WorkspaceAPI
+ * @extends BaseAPI
+ * @type {module.WorkspaceAPI}
+ */
+module.exports = class WorkspaceAPI extends BaseAPI {
 
   /**
-   * Define Workspace API
-   * @class WorkspaceAPI
-   * @extends BaseAPI
+   * @param {Workspace} scope
    * @constructor
    */
-  var WorkspaceAPI = function WorkspaceAPI() {
-  };
+  constructor(scope) {
+    super('WorkspaceAPI', scope, false);
+  }
 
-  return WorkspaceAPI.extend('WorkspaceAPI', {
+  /**
+   * Create Page API
+   * @memberOf WorkspaceAPI
+   * @param {*} args
+   * @param {Boolean} [render]
+   * @param {Boolean} [silent]
+   * @returns {*}
+   */
+  createPage(args, render, silent) {
 
     /**
-     * Create Page API
-     * @memberOf WorkspaceAPI
-     * @param {*} args
-     * @param {Boolean} [render]
-     * @param {Boolean} [silent]
-     * @returns {*}
+     * @constant Page
+     * @type {module.Page}
      */
-    createPage: function createPage(args, render, silent) {
+    const Page = require('../config/page.js');
 
-      /**
-       * Define page
-       * @type {Page}
-       */
-      var page = this._createItem(Page, args, render, silent);
+    /**
+     * Define page
+     * @type {Page}
+     */
+    const page = this._createItem(Page, args, render, silent);
+    page.logger.debug('Created page');
 
-      page.logger.debug('Created page');
-
-      return page;
-    }
-
-  }, BaseAPI.prototype);
-});
+    return page;
+  }
+};

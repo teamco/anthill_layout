@@ -5,7 +5,13 @@
  * Time: 10:33 PM
  */
 
-defineP(['config/page'], function definePageListeners(Page) {
+/**
+ * @constant Page
+ * @type {module.Page}
+ */
+const Page = require('../../../../scripts/core/config/page.js');
+
+module.exports = () => {
 
   /**
    * Define Page Global listeners
@@ -13,6 +19,4 @@ defineP(['config/page'], function definePageListeners(Page) {
    * @type {{}}
    */
   Page.prototype.globalListeners = {};
-
-  return Page;
-});
+};

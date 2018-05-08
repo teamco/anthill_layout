@@ -5,146 +5,133 @@
  * Time: 12:45 PM
  */
 
-defineP(function defineWorkspaceSEO() {
+/**
+ * Define WorkspaceSEO
+ * @class WorkspaceSEO
+ */
+module.exports = class WorkspaceSEO {
 
   /**
-   * Define WorkspaceSEO
-   * @class WorkspaceSEO
-   * @extends BaseController
-   * @constructor
+   * Update metadata
+   * @property WorkspaceSEO
+   * @param {Page} page
    */
-  var WorkspaceSEO = function WorkspaceSEO() {
-  };
+  updateMetaData(page) {
 
-  return WorkspaceSEO.extend(
-      'WorkspaceSEO', {
+    this.observer.batchPublish(this.eventManager.eventList.updateSiteTitle);
 
-        /**
-         * Update metadata
-         * @memberOf WorkspaceSEO
-         * @param {Page} page
-         */
-        updateMetaData: function updateMetaData(page) {
+    page.observer.batchPublish(
+        page.eventManager.eventList.updateSiteDescription,
+        page.eventManager.eventList.updateSiteKeywords
+    );
+  }
 
-          this.observer.batchPublish(
-              this.eventManager.eventList.updateSiteTitle
-          );
+  /**
+   * Update site title
+   * @property WorkspaceSEO
+   */
+  updateSiteTitle() {
 
-          page.observer.batchPublish(
-              page.eventManager.eventList.updateSiteDescription,
-              page.eventManager.eventList.updateSiteKeywords
-          );
-        },
+    /**
+     * Define scope
+     * @type {Workspace}
+     */
+    const scope = this;
 
-        /**
-         * Update site title
-         * @memberOf WorkspaceSEO
-         */
-        updateSiteTitle: function updateSiteTitle() {
+    /**
+     * Define $item
+     * @type {WorkspaceElement}
+     */
+    const $item = scope.view.get$item();
 
-          /**
-           * Define scope
-           * @type {Workspace}
-           */
-          var scope = this;
+    let siteTitle = scope.model.getConfig('preferences')['siteTitle'] || $item.getSiteTitle();
 
-          /**
-           * Define $item
-           * @type {WorkspaceElement}
-           */
-          var $item = scope.view.get$item();
+    /**
+     * Define default title
+     * @type {Array}
+     */
+    const defaultTitle = siteTitle.split(
+        scope.model.getConfig('SEOSeparator')
+    );
 
-          var siteTitle = scope.model.getConfig('preferences')['siteTitle'] ||
-              $item.getSiteTitle();
+    siteTitle = defaultTitle[defaultTitle.length - 1];
 
-          /**
-           * Define default title
-           * @type {Array}
-           */
-          var defaultTitle = siteTitle.split(
+    /**
+     * Get current page
+     * @type {Page|string}
+     */
+    const page = scope.model.getCurrentItem();
+    let title = siteTitle;
+
+    /**
+     * Generate SEO title
+     * @param {string} itemTitle
+     * @param {string} parentTitle
+     * @returns {string}
+     * @private
+     */
+    function _generateTitle(itemTitle, parentTitle) {
+
+      return itemTitle && (itemTitle + '').length > 0 ?
+          [itemTitle, parentTitle].join(
               scope.model.getConfig('SEOSeparator')
-          );
+          ) : parentTitle;
+    }
 
-          siteTitle = defaultTitle[defaultTitle.length - 1];
+    if (page.model) {
 
-          /**
-           * Get current page
-           * @type {Page|string}
-           */
-          var page = scope.model.getCurrentItem(),
-              title = siteTitle;
+      /**
+       * Get page title
+       * @type {string}
+       */
+      const pageTitle = page.model.getItemTitle();
 
-          /**
-           * Generate SEO title
-           * @param {string} itemTitle
-           * @param {string} parentTitle
-           * @returns {string}
-           * @private
-           */
-          function _generateTitle(itemTitle, parentTitle) {
+      /**
+       * Define SEO title
+       * @type {string}
+       */
+      title = _generateTitle(pageTitle, siteTitle);
 
-            return itemTitle && (itemTitle + '').length > 0 ?
-                [itemTitle, parentTitle].join(
-                    scope.model.getConfig('SEOSeparator')
-                ) : parentTitle;
-          }
+      /**
+       * Get maximized widget
+       * @type {Widget}
+       */
+      const widget = this.controller.getWidgetByHashLocation(page);
 
-          if (page.model) {
-
-            /**
-             * Get page title
-             * @type {string}
-             */
-            var pageTitle = page.model.getItemTitle();
-
-            /**
-             * Define SEO title
-             * @type {string}
-             */
-            title = _generateTitle(pageTitle, siteTitle);
-
-            /**
-             * Get maximized widget
-             * @type {Widget}
-             */
-            var widget = this.controller.getWidgetByHashLocation(page);
-
-            if (widget && widget.model) {
-
-              /**
-               * Get widget title
-               * @type {string}
-               */
-              var widgetTitle = widget.model.getItemByTitle();
-
-              /**
-               * Define SEO title
-               * @type {string}
-               */
-              title = _generateTitle(widgetTitle, title);
-            }
-          }
-
-          $item.setSiteTitle(title);
-        },
+      if (widget && widget.model) {
 
         /**
-         * Update site author
-         * @memberOf WorkspaceSEO
+         * Get widget title
+         * @type {string}
          */
-        updateSiteAuthor: function updateSiteAuthor() {
+        const widgetTitle = widget.model.getItemByTitle();
 
-          /**
-           * Define $item
-           * @type {WorkspaceElement}
-           */
-          var $item = this.view.get$item();
-
-          var siteAuthor = this.model.getConfig('preferences')['siteAuthor'] ||
-              $item.getSiteAuthor();
-
-          $item.setSiteAuthor(siteAuthor);
-        }
+        /**
+         * Define SEO title
+         * @type {string}
+         */
+        title = _generateTitle(widgetTitle, title);
       }
-  );
-});
+    }
+
+    $item.setSiteTitle(title);
+  }
+
+  /**
+   * Update site author
+   * @property WorkspaceSEO
+   */
+  updateSiteAuthor() {
+
+    /**
+     * Define $item
+     * @type {WorkspaceElement}
+     */
+    const $item = this.view.get$item();
+
+    const siteAuthor = this.model.getConfig('preferences')['siteAuthor'] ||
+        $item.getSiteAuthor();
+
+    $item.setSiteAuthor(siteAuthor);
+  }
+};

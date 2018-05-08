@@ -23,7 +23,6 @@ module.exports = class ApplicationEventManager extends BaseEvent {
    * @constructor
    */
   constructor() {
-
     super('ApplicationEventManager', null, false);
 
     /**

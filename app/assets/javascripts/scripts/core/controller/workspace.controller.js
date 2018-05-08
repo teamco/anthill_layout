@@ -5,125 +5,121 @@
  * Time: 11:06 PM
  * To change this template use File | Settings | File Templates.
  */
-defineP(
-    [
-      'modules/Controller',
-      'modules/Preferences',
-      'modules/Router',
-      'controller/workspace/workspace.page',
-      'controller/workspace/workspace.seo',
-      'controller/workspace/workspace.services'
-    ],
+
+/**
+ * Aggregation of base class and mixin classes.
+ * @type {(function(*, ...[*]): __Aggregate)|*|(function(): aggregate)}
+ */
+const aggregation = require('../lib/extends/aggregation.js');
+
+/**
+ * @constant BaseController
+ * @type {module.BaseController}
+ */
+const BaseController = require('../lib/modules/Controller.js');
+
+/**
+ * @constant Router
+ * @type {module.Router}
+ */
+const Router = require('../lib/modules/Router.js');
+
+/**
+ * @constant WorkspacePage
+ * @type {module.WorkspacePage|*}
+ */
+const WorkspacePage = require('./workspace/workspace.page.js');
+
+/**
+ * @constant WorkspaceSEO
+ * @type {module.WorkspaceSEO|*}
+ */
+const WorkspaceSEO = require('./workspace/workspace.seo.js');
+
+/**
+ * Define workspace controller
+ * @class WorkspaceController
+ * @extends BasePreferences
+ * @extends WorkspacePage
+ * @extends WorkspaceSEO
+ * @type {module.WorkspaceController|{prototype}}
+ */
+module.exports = class WorkspaceController extends aggregation(BaseController, Router, WorkspacePage, WorkspaceSEO) {
+
+  /**
+   * @constructor
+   * @param {Workspace} scope
+   */
+  constructor(scope) {
+    super('WorkspaceController', scope, false);
+  }
+
+  /**
+   * Set page height
+   * @property WorkspaceController
+   */
+  bindHashChange() {
 
     /**
-     * Define WorkspaceController
-     * @param {BaseController} BaseController
-     * @param {BasePreferences} BasePreferences
-     * @param {Router} Router
-     * @param {WorkspacePage} WorkspacePage
-     * @param {WorkspaceSEO} WorkspaceSEO
-     * @param {WorkspaceServices} WorkspaceServices
-     * @returns {*}
+     * Get controller
+     * @type {WorkspaceController}
      */
-    function defineWorkspaceController(BaseController, BasePreferences, Router,
-        WorkspacePage, WorkspaceSEO, WorkspaceServices) {
+    const controller = this.controller;
 
-      /**
-       * Define workspace controller
-       * @class WorkspaceController
-       * @extends BaseController
-       * @extends BasePreferences
-       * @extends Router
-       * @extends WorkspacePage
-       * @extends WorkspaceSEO
-       * @extends WorkspaceServices
-       * @constructor
-       */
-      var WorkspaceController = function WorkspaceController() {
-      };
+    $(window).on('hashchange', controller.switchPageOnHashChange.bind(controller));
+  }
 
-      return WorkspaceController.extend(
-          'WorkspaceController', {
+  /**
+   * Adopt content width after adding new page
+   * @property WorkspaceController
+   */
+  adoptContentWidth() {
 
-            /**
-             * Set page height
-             * @memberOf WorkspaceController
-             */
-            bindHashChange: function bindHashChange() {
+    this.view.elements.$pages.adoptPagesWidth(
+        this.model.getItems(),
+        this.model.getConfig('page/counter')
+    );
+  }
 
-              /**
-               * Get controller
-               * @type {WorkspaceController}
-               */
-              var controller = this.controller;
+  /**
+   * Transfer preferences
+   * @property WorkspaceController
+   * @param {string} index
+   * @param value
+   */
+  transferContentPreferences(index, value) {
 
-              $(window).on(
-                  'hashchange',
-                  controller.switchPageOnHashChange.bind(controller)
-              );
-            },
+    this.observer.publish(
+        this.eventManager.eventList.transferPreferences,
+        [index, value]
+    );
+  }
 
-            /**
-             * Adopt content width after adding new page
-             * @memberOf WorkspaceController
-             */
-            adoptContentWidth: function adoptContentWidth() {
+  /**
+   * Update site width
+   * @property WorkspaceController
+   */
+  updateSiteWidth() {
 
-              this.view.elements.$pages.adoptPagesWidth(
-                  this.model.getItems(),
-                  this.model.getConfig('page/counter')
-              );
-            },
+    /**
+     * Define element
+     * @type {WorkspaceElement}
+     */
+    const $workspace = this.view.get$item();
 
-            /**
-             * Transfer preferences
-             * @memberOf WorkspaceController
-             * @param {string} index
-             * @param value
-             */
-            transferContentPreferences: function transferContentPreferences(index,
-                value) {
+    const preferences = this.model.getConfig('preferences'),
+        width = 0;
 
-              this.observer.publish(
-                  this.eventManager.eventList.transferPreferences,
-                  [index, value]
-              );
-            },
+    if (preferences.staticWidth) {
 
-            /**
-             * Update site width
-             * @memberOf WorkspaceController
-             */
-            updateSiteWidth: function updateSiteWidth() {
+      // Get site widths
+      width = parseInt(preferences.siteWidthSlider, 10) || width;
+      $workspace.updateWidth(width);
 
-              /**
-               * Define element
-               * @type {WorkspaceElement}
-               */
-              var $workspace = this.view.get$item();
+    } else {
 
-              var preferences = this.model.getConfig('preferences'),
-                  width = 0;
-
-              if (preferences.staticWidth) {
-
-                // Get site widths
-                width = parseInt(preferences.siteWidthSlider, 10) || width;
-                $workspace.updateWidth(width);
-
-              } else {
-
-                $workspace.unsetWidth();
-              }
-            }
-          },
-
-          BaseController.prototype,
-          BasePreferences.prototype,
-          Router.prototype,
-          WorkspacePage.prototype,
-          WorkspaceSEO.prototype,
-          WorkspaceServices.prototype
-      );
+      $workspace.unsetWidth();
     }
-);
+  }
+};
+      

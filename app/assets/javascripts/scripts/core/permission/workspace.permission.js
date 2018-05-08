@@ -6,20 +6,24 @@
  * To change this template use File | Settings | File Templates.
  */
 
-defineP([
-  'modules/Permission'
-], function defineWorkspacePermission(BasePermission) {
+/**
+ * @constant BasePermission
+ * @type {module.BasePermission}
+ */
+const BasePermission = require('../lib/modules/Permission.js');
+
+/**
+ * Define Permissions
+ * @extends BasePermission
+ * @class WorkspacePermission
+ */
+module.exports = class WorkspacePermission extends BasePermission {
 
   /**
-   * Define Permissions
-   * @class WorkspacePermission
-   * @extends BasePermission
    * @constructor
+   * @param scope
    */
-  var WorkspacePermission = function WorkspacePermission() {
-
-  };
-
-  return WorkspacePermission.extend('WorkspacePermission', {},
-      BasePermission.prototype);
-});
+  constructor(scope) {
+    super('WorkspacePermission', scope, false);
+  }
+};

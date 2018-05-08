@@ -5,16 +5,22 @@
  * Time: 11:41 PM
  */
 
-defineP(['config/page'], function definePagePermissions(Page) {
+/**
+ * @constant Page
+ * @type {module.Page}
+ */
+const Page = require('../page.js');
+
+module.exports = () => {
 
   /**
    * Define Page Local permission
    * @type {{
-     *      development: {},
-     *      authorize: {},
-     *      consumption: {},
-     *      test: {}
-     * }}
+   *  development: {},
+   *  authorize: {},
+   *  consumption: {},
+   *  test: {}
+   * }}
    */
   Page.prototype.localPermissions = {
     development: {},
@@ -22,6 +28,4 @@ defineP(['config/page'], function definePagePermissions(Page) {
     consumption: {},
     test: {}
   };
-
-  return Page;
-});
+};

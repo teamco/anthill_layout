@@ -7,7 +7,7 @@ const AntHill = require('./anthill.js');
 /**
  * @class Application
  * @extends AntHill
- * @type {module.Application}
+ * @type {module.Application|{prototype}}
  */
 module.exports = class Application extends AntHill {
 
@@ -17,7 +17,6 @@ module.exports = class Application extends AntHill {
    * @constructor
    */
   constructor(opts) {
-
     super('Application', null, true);
 
     (require('./permissions/application.permissions.js'))();

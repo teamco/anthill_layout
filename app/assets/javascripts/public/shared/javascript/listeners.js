@@ -6,11 +6,11 @@
  * To change this template use File | Settings | File Templates.
  */
 
-// 'public/shared/javascript/listeners/workspace.listeners',
-// 'public/shared/javascript/listeners/page.listeners',
 // 'public/shared/javascript/listeners/layout.listeners',
 // 'public/shared/javascript/listeners/widget.listeners'
 
 (() => {
   require('./listeners/application.listeners.js')();
+  require('./listeners/workspace.listeners.js')();
+  require('./listeners/page.listeners.js')();
 })();

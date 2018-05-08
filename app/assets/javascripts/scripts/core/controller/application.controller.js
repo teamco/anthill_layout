@@ -63,7 +63,7 @@ module.exports = class ApplicationController extends aggregation(BaseController,
 
   /**
    * @constructor ApplicationController
-   * @param scope
+   * @param {Application} scope
    */
   constructor(scope) {
     super('ApplicationController', scope, false);

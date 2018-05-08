@@ -408,7 +408,7 @@ module.exports = class MVC extends AntHill {
     const scope = this.scope,
         eventManager = scope.eventManager;
 
-    if (!eventManager) {
+    if (!eventManager || !eventManager.eventList) {
 
       scope.logger.warn('Undefined Event manager');
       return false;

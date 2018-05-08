@@ -8,23 +8,22 @@
 
 /**
  * @constant BaseModel
- * @type {BaseModel}
+ * @type {module.BaseModel}
  */
 const BaseModel = require('../lib/modules/Model.js');
 
 /**
  * @constant ApplicationModel
- * @type {ApplicationModel}
+ * @type {module.ApplicationModel}
  * @extends BaseModel
  */
 module.exports = class ApplicationModel extends BaseModel {
 
   /**
-   * @param scope
+   * @param {Application} scope
    * @constructor
    */
   constructor(scope) {
-
     super('ApplicationModel', scope ,false);
 
     /**

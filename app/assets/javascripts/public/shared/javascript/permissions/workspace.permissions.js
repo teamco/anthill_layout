@@ -5,18 +5,22 @@
  * Time: 11:39 PM
  */
 
-defineP(['config/workspace'], function defineWorkspacePermissions(Workspace) {
+/**
+ * @constant Workspace
+ * @type {module.Workspace}
+ */
+const Workspace = require('../../../../scripts/core/config/workspace.js');
+
+module.exports = () => {
 
   /**
    * Define Workspace global permission
    * @property Workspace
    * @type {{
-   *      development: {createDesignTimePanel: boolean, createRunTimePanel:
-   *     boolean, store: boolean}, authorize: {createDesignTimePanel:
-   *     boolean, createRunTimePanel: boolean, store: boolean}, consumption:
-   *     {createDesignTimePanel: boolean, createRunTimePanel: boolean, store:
-   *     boolean}, test: {createDesignTimePanel: boolean, createRunTimePanel:
-   *     boolean, store: boolean}
+   *  development: {createDesignTimePanel: boolean, createRunTimePanel: boolean, store: boolean},
+   *  authorize: {createDesignTimePanel: boolean, createRunTimePanel: boolean, store: boolean},
+   *  consumption: {createDesignTimePanel: boolean, createRunTimePanel: boolean, store: boolean},
+   *  test: {createDesignTimePanel: boolean, createRunTimePanel: boolean, store: boolean}
    * }}
    */
   Workspace.prototype.globalPermissions = {
@@ -41,6 +45,4 @@ defineP(['config/workspace'], function defineWorkspacePermissions(Workspace) {
       store: false
     }
   };
-
-  return Workspace;
-});
+};

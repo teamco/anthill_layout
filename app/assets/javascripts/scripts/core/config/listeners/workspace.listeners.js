@@ -5,26 +5,30 @@
  * Time: 10:32 PM
  */
 
-defineP(['config/workspace'], function defineWorkspaceListeners(Workspace) {
+/**
+ * @constant Workspace
+ * @type {module.Workspace}
+ */
+const Workspace = require('../../../../scripts/core/config/workspace.js');
+
+module.exports = () => {
 
   /**
    * Define Workspace Local listeners
    * @memberOf Workspace
    * @type {{
-     *      successRendered: {name: string, callback: Function},
-     *      createPage: {name: string, callback: Function},
-     *      afterLoadingItems: {name: string, callback: Function},
-     *      resizePage: {name: string, callback: Function}
-     * }}
+   *  successRendered: {name: string, callback: Function},
+   *  createPage: {name: string, callback: Function},
+   *  afterLoadingItems: {name: string, callback: Function},
+   *  resizePage: {name: string, callback: Function}
+   * }}
    */
   Workspace.prototype.localListeners = {
 
     successRendered: {
-      name: "success.rendered",
-      callback: function successRenderedCallback() {
-
+      name: 'success.rendered',
+      callback() {
         this.view.renderWorkspace();
-
         this.observer.batchPublish(
             this.eventManager.eventList.loadPreferences,
             this.eventManager.eventList.updateSiteWidth
@@ -34,27 +38,22 @@ defineP(['config/workspace'], function defineWorkspaceListeners(Workspace) {
 
     createPage: {
       name: 'create.page',
-      callback: function createPageCallback() {
-
-        this.observer.publish(
-            this.eventManager.eventList.setPageContainerDimensions
-        );
+      callback() {
+        this.observer.publish(this.eventManager.eventList.setPageContainerDimensions);
       }
     },
 
     afterLoadingItems: {
       name: 'after.loading.items',
-      callback: function afterLoadingItemsCallback() {
+      callback() {
         this.controller.switchPageOnHashChange();
       }
     },
 
     resizePage: {
       name: 'resize.page',
-      callback: function resizePageCallback(page) {
-
+      callback(page) {
         page.controller.updateLayout();
-
         page.observer.batchPublish(
             page.eventManager.eventList.resizeWidgets,
             page.eventManager.eventList.updateHeight
@@ -62,6 +61,4 @@ defineP(['config/workspace'], function defineWorkspaceListeners(Workspace) {
       }
     }
   };
-
-  return Workspace;
-});
+};

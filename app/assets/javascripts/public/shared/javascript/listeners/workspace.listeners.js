@@ -5,29 +5,38 @@
  * Time: 10:32 PM
  */
 
-defineP([
-  'config/workspace',
-  'controller/workspace.controller'
-], function defineWorkspaceListeners(Workspace, WorkspaceController) {
+/**
+ * @constant Workspace
+ * @type {module.Workspace}
+ */
+const Workspace = require('../../../../scripts/core/config/workspace.js');
+
+/**
+ * @constant WorkspaceController
+ * @type {module.WorkspaceController}
+ */
+const WorkspaceController = require('../../../../scripts/core/controller/workspace.controller.js');
+
+module.exports = () => {
 
   /**
    * Define global events
    * @memberOf Workspace
    * @type {{
-   *      createDesignTimePanel: string,
-   *      createRunTimePanel: string,
-   *      loadActivateGoogleAnalytics: string,
-   *      loadActivateSnapEngage: string,
-   *      loadActivateRaygunIO: string,
-   *      loadGithubGist: string,
-   *      loadActivateBigmirNet: string,
-   *      loadActivateYahooFlurry: string,
-   *      loadActivateRollbarNotifier: string,
-   *      loadActivateRapidEngage: string,
-   *      loadActivateDoorbell: string,
-   *      loadActivateWoopra: string,
-   *      loadActivateVirtualSpirits: string,
-   *      loadActivateLoggly: string
+   *  createDesignTimePanel: string,
+   *  createRunTimePanel: string,
+   *  loadActivateGoogleAnalytics: string,
+   *  loadActivateSnapEngage: string,
+   *  loadActivateRaygunIO: string,
+   *  loadGithubGist: string,
+   *  loadActivateBigmirNet: string,
+   *  loadActivateYahooFlurry: string,
+   *  loadActivateRollbarNotifier: string,
+   *  loadActivateRapidEngage: string,
+   *  loadActivateDoorbell: string,
+   *  loadActivateWoopra: string,
+   *  loadActivateVirtualSpirits: string,
+   *  loadActivateLoggly: string
    * }}
    */
   Workspace.prototype.globalEvents = {
@@ -50,56 +59,43 @@ defineP([
 
   /**
    * Create DesignTime panel
-   * @memberOf WorkspaceController
+   * @property WorkspaceController
    */
-  WorkspaceController.prototype.createDesignTimePanel =
-      function createDesignTimePanel() {
-        this.logger.debug('Create DesignTime panel', arguments);
-      };
+  WorkspaceController.prototype.createDesignTimePanel = () => this.logger.debug('Create DesignTime panel', arguments);
 
   /**
    * Create RunTime panel
-   * @memberOf WorkspaceController
+   * @property WorkspaceController
    */
-  WorkspaceController.prototype.createRunTimePanel =
-      function createRunTimePanel() {
-        this.logger.debug('Create RunTime panel', arguments);
-      };
+  WorkspaceController.prototype.createRunTimePanel = () => this.logger.debug('Create RunTime panel', arguments);
 
   /**
    * Get DesignTime panel
-   * @memberOf WorkspaceController
+   * @property WorkspaceController
    */
-  WorkspaceController.prototype.getDesignTimePanel =
-      function getDesignTimePanel() {
-        return this.getPanels().designTime;
-      };
+  WorkspaceController.prototype.getDesignTimePanel = () => this.getPanels().designTime;
 
   /**
    * Get RunTime panel
-   * @memberOf WorkspaceController
+   * @property WorkspaceController
    */
-  WorkspaceController.prototype.getRunTimePanel = function getRunTimePanel() {
-    return this.getPanels().runTime;
-  };
+  WorkspaceController.prototype.getRunTimePanel = () => this.getPanels().runTime;
 
   /**
    * Get panels
-   * @memberOf WorkspaceController
+   * @property WorkspaceController
    */
-  WorkspaceController.prototype.getPanels = function getPanels() {
-    return this.getContainment().panels || {};
-  };
+  WorkspaceController.prototype.getPanels = () => this.getContainment().panels || {};
 
   /**
    * Toggle panels
-   * @memberOf WorkspaceController
+   * @property WorkspaceController
    * @param {boolean} show
    */
-  WorkspaceController.prototype.togglePanels = function togglePanels(show) {
+  WorkspaceController.prototype.togglePanels = show => {
 
-    var index, panel,
-        panels = this.getPanels();
+    let index, panel;
+    const panels = this.getPanels();
 
     for (index in panels) {
 
@@ -119,49 +115,41 @@ defineP([
    * Define Workspace Global listeners
    * @memberOf Workspace
    * @type {{
-   *      successRendered: {name: string, callback: function},
-   *      createDesignTimePanel: {name: string, callback: function},
-   *      createRunTimePanel: {name: string, callback: function}
+   *  successRendered: {name: string, callback: Workspace.globalListeners.successRendered.successRenderedCallback},
+   *  createDesignTimePanel: {name: string, callback: Workspace.globalListeners.createDesignTimePanel.createDesignTimePanelCallback},
+   *  createRunTimePanel: {name: string, callback: Workspace.globalListeners.createRunTimePanel.createRunTimePanelCallback}
    * }}
    */
   Workspace.prototype.globalListeners = {
     successRendered: {
       name: 'success.rendered',
-      callback: function successRenderedCallback() {
+      callback() {
 
         this.permission.check({
           capability: 'createDesignTimePanel',
-          callback: function() {
-
-            this.observer.publish(
-                this.eventManager.eventList.createDesignTimePanel
-            );
-
-          }.bind(this)
+          callback() {
+            this.observer.publish(this.eventManager.eventList.createDesignTimePanel);
+          }
         });
 
         this.permission.check({
           capability: 'createRunTimePanel',
-          callback: function() {
-
-            this.observer.publish(
-                this.eventManager.eventList.createRunTimePanel
-            );
-
-          }.bind(this)
+          callback() {
+            this.observer.publish(this.eventManager.eventList.createRunTimePanel);
+          }
         });
       }
     },
 
     createDesignTimePanel: {
       name: 'create.design.time.panel',
-      callback: function createDesignTimePanelCallback() {
+      callback() {
 
         /**
          * Define app
          * @type {module.Application}
          */
-        var app = this.controller.root();
+        const app = this.controller.root();
 
         requireP([
           'plugins/panel/panel',
@@ -200,7 +188,7 @@ defineP([
            * Match regex
            * @type {Array|{index: number, input: string}}
            */
-          var widgetMatch = app.controller.isWidgetMatch2Hash();
+          const widgetMatch = app.controller.isWidgetMatch2Hash();
 
           if (widgetMatch && widgetMatch[2] === 'content') {
             app.panels.designTime.view.get$item().hide();
@@ -211,13 +199,13 @@ defineP([
 
     createRunTimePanel: {
       name: 'create.run.time.panel',
-      callback: function createRunTimePanelCallback() {
+      callback() {
 
         /**
          * Define app
          * @type {module.Application}
          */
-        var app = this.controller.root();
+        const app = this.controller.root();
 
         requireP([
           'plugins/panel/panel',
@@ -251,7 +239,7 @@ defineP([
            * Match regex
            * @type {Array|{index: number, input: string}}
            */
-          var widgetMatch = app.controller.isWidgetMatch2Hash();
+          const widgetMatch = app.controller.isWidgetMatch2Hash();
 
           if (widgetMatch && widgetMatch[2] === 'content') {
             app.panels.runTime.view.get$item().hide();
@@ -260,6 +248,4 @@ defineP([
       }
     }
   };
-
-  return Workspace;
-});
+};

@@ -77,7 +77,7 @@ module.exports = class BaseAPI extends AntHill {
   /**
    * Create item API
    * @memberOf BaseAPI
-   * @param {Function} item
+   * @param {*} item
    * @param {*} args
    * @param {Boolean} [render]
    * @param {Boolean} [silent]

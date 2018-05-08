@@ -6,12 +6,12 @@
  * To change this template use File | Settings | File Templates.
  */
 
-//       'public/shared/javascript/permissions/workspace.permissions',
-//       'public/shared/javascript/permissions/page.permissions',
 //       'public/shared/javascript/permissions/layout.permissions',
 //       'public/shared/javascript/permissions/widget.permissions'
 //     ],
 
 (() => {
   require('./permissions/application.permissions.js')();
+  require('./permissions/workspace.permissions.js')();
+  require('./permissions/page.permissions.js')();
 })();

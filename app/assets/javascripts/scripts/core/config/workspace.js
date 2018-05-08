@@ -23,12 +23,44 @@ module.exports = class Workspace extends AntHill {
    * @constructor
    */
   constructor(opts) {
+    super('Workspace', null, true);
 
-    super('Workspace');
+    (require('./permissions/workspace.permissions.js'))();
+    (require('./listeners/workspace.listeners.js'))();
+
+    /**
+     * @constant WorkspaceAPI
+     * @type {module.WorkspaceAPI}
+     */
+    const WorkspaceAPI = require('../api/workspace.api.js');
+
+    /**
+     * @constant WorkspaceController
+     * @type {module.WorkspaceController}
+     */
+    const WorkspaceController = require('../controller/workspace.controller.js');
+
+    /**
+     * @constant WorkspaceModel
+     * @type {module.WorkspaceModel}
+     */
+    const WorkspaceModel = require('../model/workspace.model.js');
+
+    /**
+     * @constant WorkspaceEventManager
+     * @type {module.WorkspaceEventManager}
+     */
+    const WorkspaceEventManager = require('../event/workspace.event.manager.js');
+
+    /**
+     * @constant WorkspacePermission
+     * @type {module.WorkspacePermission}
+     */
+    const WorkspacePermission = require('../permission/workspace.permission.js');
 
     /**
      * @constant MVC
-     * @type {MVC}
+     * @type {module.MVC}
      */
     const MVC = require('../lib/modules/MVC.js');
 
@@ -83,12 +115,12 @@ module.exports = class Workspace extends AntHill {
       scope: this,
       config: [opts.config, DEFAULTS],
       components: [
-        // API,
-        // Controller,
-        // Model,
+        WorkspaceController,
+        WorkspaceAPI,
+        WorkspaceModel,
         // View,
-        // EventManager,
-        // Permission
+        WorkspaceEventManager,
+        WorkspacePermission
       ]
     });
 

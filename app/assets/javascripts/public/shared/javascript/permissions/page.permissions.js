@@ -5,16 +5,22 @@
  * Time: 11:41 PM
  */
 
-defineP(['config/page'], function definePagePermissions(Page) {
+/**
+ * @constant Page
+ * @type {module.Page}
+ */
+const Page = require('../../../../scripts/core/config/page.js');
+
+module.exports = () => {
 
   /**
    * Define Page global permission
    * @property Page
    * @type {{
-   *      development: {store: boolean},
-   *      authorize: {store: boolean},
-   *      consumption: {store: boolean},
-   *      test: {store: boolean}
+   *  development: {store: boolean},
+   *  authorize: {store: boolean},
+   *  consumption: {store: boolean},
+   *  test: {store: boolean}
    * }}
    */
   Page.prototype.globalPermissions = {
@@ -23,6 +29,4 @@ defineP(['config/page'], function definePagePermissions(Page) {
     consumption: {store: false},
     test: {store: false}
   };
-
-  return Page;
-});
+};

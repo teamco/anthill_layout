@@ -7,11 +7,9 @@
 
 /**
  * @constant BaseAPI
- * @type {BaseAPI}
+ * @type {module.BaseAPI}
  */
 const BaseAPI = require('../lib/modules/API.js');
-
-//   'config/workspace'
 
 /**
  * Define Application API
@@ -22,7 +20,7 @@ const BaseAPI = require('../lib/modules/API.js');
 module.exports = class ApplicationAPI extends BaseAPI {
 
   /**
-   * @param scope
+   * @param {Application} scope
    * @constructor
    */
   constructor(scope) {
@@ -41,9 +39,17 @@ module.exports = class ApplicationAPI extends BaseAPI {
 
     /**
      * @constant Workspace
-     * @type {Workspace}
+     * @type {module.Workspace}
      */
     const Workspace = require('../config/workspace.js');
-    return this._createItem(Workspace, args, render, silent);
+
+    /**
+     * Define workspace
+     * @type {Workspace}
+     */
+    const workspace = this._createItem(Workspace, args, render, silent);
+    workspace.logger.debug('Created workspace');
+
+    return workspace;
   }
 };
