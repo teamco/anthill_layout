@@ -6,123 +6,122 @@
  * To change this template use File | Settings | File Templates.
  */
 
-defineP([
-  'modules/Element'
-], function defineWorkspaceElement(BaseElement) {
+/**
+ * @constant BaseElement
+ * @type {BaseElement|*}
+ */
+const BaseElement = require('../../lib/modules/Element.js');
+
+/**
+ * Define Workspace element
+ * @extends BaseElement
+ * @class WorkspaceElement
+ * @type {module.WorkspaceElement}
+ * @constructor
+ */
+module.exports = class WorkspaceElement extends BaseElement {
 
   /**
-   * Define Workspace Element
    * @param {WorkspaceView} view
    * @param opts
-   * @returns {*}
    * @constructor
-   * @class WorkspaceElement
-   * @extends BaseElement
    */
-  var WorkspaceElement = function Workspace(view, opts) {
-    return this._config(view, opts, $('<li />')).build({
-      $container: opts.$container
-    });
-  };
+  constructor(view, opts) {
+    super('WorkspaceElement', view, false);
+    this._config(view, opts, $('<li />')).build(opts);
+  }
 
-  return WorkspaceElement.extend('WorkspaceElement', {
+  /**
+   * Get site author
+   * @property WorkspaceElement
+   * @returns {string}
+   */
+  getSiteAuthor() {
+    return $('meta[name="author"]').attr('content');
+  }
 
-    /**
-     * Get site author
-     * @memberOf WorkspaceElement
-     * @returns {string}
-     */
-    getSiteAuthor: function getSiteAuthor() {
-      return $('meta[name="author"]').attr('content');
-    },
+  /**
+   * Set site author
+   * @property WorkspaceElement
+   * @param {string} author
+   */
+  setSiteAuthor(author) {
+    $('meta[name="author"]').attr('content', author);
+  }
 
-    /**
-     * Set site author
-     * @memberOf WorkspaceElement
-     * @param {string} author
-     */
-    setSiteAuthor: function setSiteAuthor(author) {
-      $('meta[name="author"]').attr('content', author);
-    },
+  /**
+   * Get site title
+   * @property WorkspaceElement
+   * @returns {jQuery|string}
+   */
+  getSiteTitle() {
+    return $('title').text();
+  }
 
-    /**
-     * Get site title
-     * @memberOf WorkspaceElement
-     * @returns {string}
-     */
-    getSiteTitle: function getSiteTitle() {
-      return $('title').text();
-    },
+  /**
+   * Set site title
+   * @property WorkspaceElement
+   * @param {string} title
+   */
+  setSiteTitle(title) {
+    $('title').text(title);
+  }
 
-    /**
-     * Set site title
-     * @memberOf WorkspaceElement
-     * @param {string} title
-     */
-    setSiteTitle: function setSiteTitle(title) {
-      $('title').text(title);
-    },
+  /**
+   * Set workspace width
+   * @property WorkspaceElement
+   * @param {number} width
+   */
+  updateWidth(width) {
 
-    /**
-     * Set workspace width
-     * @memberOf WorkspaceElement
-     * @param {number} width
-     */
-    updateWidth: function updateWidth(width) {
-
-      if (typeof(width) !== 'number') {
-        return false;
-      }
-
-      var style = this.$.attr('class'),
-          regex = /sw-\d{1,2}/;
-
-      style = style.match(regex) ?
-          style.replace(regex, 'sw-' + width) :
-          style + ' sw-' + width;
-
-      this.$.attr('class', style);
-    },
-
-    /**
-     * Unset workspace width
-     * @memberOf WorkspaceElement
-     */
-    unsetWidth: function unserWidth() {
-      this.$.attr(
-          'class',
-          this.$.attr('class').replace(/sw-\d{1,2}/, '')
-      );
-    },
-
-    /**
-     * Define active page
-     * @memberOf WorkspaceElement
-     * @param {{Page}} items
-     * @param {Page} item
-     */
-    defineActivePage: function defineActivePage(items, item) {
-
-      var index, page;
-
-      for (index in items) {
-
-        if (items.hasOwnProperty(index)) {
-
-          /**
-           * Get page
-           * @type {Page}
-           */
-          page = items[index];
-
-          if (page !== item) {
-            page.view.get$item().setVisibility(false);
-          }
-        }
-      }
-
-      item.view.get$item().setVisibility(true);
+    if (typeof(width) !== 'number') {
+      this.view.scope.logger.warn('Width should be numeric');
+      return false;
     }
 
-  }, BaseElement.prototype);
-});
+    let style = this.$.attr('class'),
+        regex = /sw-\d{1,2}/;
+
+    style = style.match(regex) ?
+        style.replace(regex, 'sw-' + width) :
+        style + ' sw-' + width;
+
+    this.$.attr('class', style);
+  }
+
+  /**
+   * Unset workspace width
+   * @property WorkspaceElement
+   */
+  unserWidth() {
+    this.$.attr('class', this.$.attr('class').replace(/sw-\d{1,2}/, ''));
+  }
+
+  /**
+   * Define active page
+   * @property WorkspaceElement
+   * @param {{Page}} items
+   * @param {Page} item
+   */
+  defineActivePage(items, item) {
+
+    let index, page;
+    for (index in items) {
+
+      if (items.hasOwnProperty(index)) {
+
+        /**
+         * Get page
+         * @type {Page}
+         */
+        page = items[index];
+
+        if (page !== item) {
+          page.view.get$item().setVisibility(false);
+        }
+      }
+    }
+
+    item.view.get$item().setVisibility(true);
+  }
+};

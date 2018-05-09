@@ -393,7 +393,7 @@ module.exports = class BaseController extends aggregation(AntHill, BehaviorCrud,
     const controller = containment.controller.constructor.prototype;
     const fnName = 'get' + this.name;
 
-    if (this.base._.isFunction(controller[fnName])) {
+    if (controller[fnName]) {
       scope.logger.debug('Getter already implemented', fnName);
     } else if (scope.config.getter) {
 

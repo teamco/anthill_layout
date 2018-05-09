@@ -1,6 +1,3 @@
-//       'api/workspace.api',
-//       'controller/workspace.controller',
-//       'model/workspace.model',
 //       'view/workspace.view',
 //       'event/workspace.event.manager',
 //       'permission/workspace.permission'
@@ -45,6 +42,12 @@ module.exports = class Workspace extends AntHill {
      * @type {module.WorkspaceModel}
      */
     const WorkspaceModel = require('../model/workspace.model.js');
+
+    /**
+     * @constant WorkspaceView
+     * @type {module.WorkspaceView}
+     */
+    const WorkspaceView = require('../view/workspace.view.js');
 
     /**
      * @constant WorkspaceEventManager
@@ -118,7 +121,7 @@ module.exports = class Workspace extends AntHill {
         WorkspaceController,
         WorkspaceAPI,
         WorkspaceModel,
-        // View,
+        WorkspaceView,
         WorkspaceEventManager,
         WorkspacePermission
       ]
@@ -154,10 +157,10 @@ module.exports = class Workspace extends AntHill {
      */
     this.items = {};
 
-    // this.observer.batchPublish(
-    //     this.eventManager.eventList.successCreated,
-    //     this.eventManager.eventList.bindHashChange
-    // );
+    this.observer.batchPublish(
+        this.eventManager.eventList.successCreated,
+        this.eventManager.eventList.bindHashChange
+    );
   }
 };
  

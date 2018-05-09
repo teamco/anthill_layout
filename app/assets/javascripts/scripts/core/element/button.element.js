@@ -5,120 +5,111 @@
  * Time: 11:48 AM
  */
 
-defineP([
-  'modules/Element'
-], function defineButtonElement(BaseElement) {
+/**
+ * @constant BaseElement
+ * @type {module.BaseElement}
+ */
+const BaseElement = require('../lib/modules/Element.js');
+
+/**
+ * Define Button Element
+ * @class ButtonElement
+ * @type {module.ButtonElement}
+ * @extends BaseElement
+ */
+module.exports = class ButtonElement extends BaseElement {
 
   /**
-   * Define Button Element
-   * @extends BaseElement
    * @param view
    * @param opts
-   * @returns {ButtonElement}
    * @constructor
-   * @class ButtonElement
-   * @type {Function}
    */
-  var ButtonElement = function ButtonElement(view, opts) {
-
+  constructor(view, opts) {
+    super('ButtonElement', view, false);
     this.setup(opts);
-
-    this._config(view, opts, this.getTemplate(opts.$htmlElement)).build({
-      $container: opts.$container,
-      destroy: true
-    });
-
+    this._config(view, opts, this.getTemplate(opts.$htmlElement)).build(opts);
     this.setContent();
-
     this.$.addClass('btn btn-' + this.type);
-
-    this.disabled ?
-        this.disable() :
-        this.enable();
-
+    this.disabled ? this.disable() : this.enable();
     return this;
-  };
+  }
 
-  return ButtonElement.extend('ButtonElement', {
+  /**
+   * Get Button Template
+   * @property ButtonElement
+   * @param $htmlElement
+   * @returns {*}
+   */
+  getTemplate($htmlElement) {
+    return $htmlElement ? $htmlElement : $('<button />');
+  }
 
-    /**
-     * Get Button Template
-     * @memberOf ButtonElement
-     * @param $htmlElement
-     * @returns {*}
-     */
-    getTemplate: function getTemplate($htmlElement) {
-      return $htmlElement ? $htmlElement : $('<button />');
-    },
-
-    /**
-     * Define setup
-     * @memberOf ButtonElement
-     * @param opts
-     */
-    setup: function setup(opts) {
-
-      /**
-       * Define text
-       * @property ButtonElement
-       */
-      this.text = opts.text;
-
-      /**
-       * Define type
-       * @type {string}
-       */
-      this.type = opts.type || 'default';
-    },
+  /**
+   * Define setup
+   * @property ButtonElement
+   * @param opts
+   */
+  setup(opts) {
 
     /**
-     * Set content
-     * @memberOf ButtonElement
+     * Define text
+     * @property ButtonElement
      */
-    setContent: function setContent() {
-      if (this.text) {
-        this.setText(this.text);
-      }
-    },
+    this.text = opts.text;
 
     /**
-     * Define disable
-     * @memberOf ButtonElement
+     * Define type
+     * @type {string}
      */
-    disable: function disable() {
+    this.type = opts.type || 'default';
+  }
 
-      this.$.addClass('disabled');
-
-      /**
-       * Define disabled
-       * @property ButtonElement
-       */
-      this.disabled = true;
-    },
-
-    /**
-     * Define enable
-     * @memberOf ButtonElement
-     */
-    enable: function enable() {
-
-      this.$.removeClass('disabled');
-
-      /**
-       * Define disabled
-       * @property ButtonElement
-       */
-      this.disabled = false;
-    },
-
-    /**
-     * Define after events callback
-     * @memberOf ButtonElement
-     * @param {n.Event} e
-     */
-    afterEventsCallback: function afterEventsCallback(e) {
-      this.view.scope.logger.debug('After events callback', e);
+  /**
+   * Set content
+   * @property ButtonElement
+   */
+  setContent() {
+    if (this.text) {
+      this.setText(this.text);
     }
+  }
 
-  }, BaseElement.prototype);
-});
+  /**
+   * Define disable
+   * @property ButtonElement
+   */
+  disable() {
+
+    this.$.addClass('disabled');
+
+    /**
+     * Define disabled
+     * @property ButtonElement
+     */
+    this.disabled = true;
+  }
+
+  /**
+   * Define enable
+   * @property ButtonElement
+   */
+  enable() {
+
+    this.$.removeClass('disabled');
+
+    /**
+     * Define disabled
+     * @property ButtonElement
+     */
+    this.disabled = false;
+  }
+
+  /**
+   * Define after events callback
+   * @property ButtonElement
+   * @param {n.Event} e
+   */
+  afterEventsCallback(e) {
+    this.view.scope.logger.debug('After events callback', e);
+  }
+};

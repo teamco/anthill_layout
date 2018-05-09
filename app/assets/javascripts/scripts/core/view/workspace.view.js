@@ -6,72 +6,81 @@
  * To change this template use File | Settings | File Templates.
  */
 
-defineP([
-  'modules/View',
-  'element/workspace/workspace.element',
-  'element/header.element',
-  'element/footer.element',
-  'element/workspace/workspace.content.element'
-], function defineWorkspaceView(BaseView, WorkspaceElement, Header, Footer,
-    WorkspaceContentElement) {
+/**
+ * @constant BaseView
+ * @type {BaseView}
+ */
+const BaseView = require('../lib/modules/View.js');
+
+/**
+ * @class WorkspaceView
+ * @extends BaseView
+ * @type {module.WorkspaceView}
+ */
+module.exports = class WorkspaceView extends BaseView {
 
   /**
-   * Define WorkspaceView
-   * @class WorkspaceView
-   * @extends BaseView
    * @constructor
+   * @param {string} name
+   * @param {Workspace} scope
    */
-  var WorkspaceView = function WorkspaceView() {
-  };
+  constructor(name, scope) {
+    super('WorkspaceView', scope, false);
+  }
 
-  return WorkspaceView.extend('WorkspaceView', {
-
-    /**
-     * Render workspace
-     * @memberOf WorkspaceView
-     */
-    renderWorkspace: function renderWorkspace() {
-
-      /**
-       * Define $workspace
-       * @type {WorkspaceElement}
-       */
-      this.elements.$workspace = new WorkspaceElement(this, {
-        $container: this.getContainerSelector()
-      });
-
-      this.header(Header, this.get$item());
-      this.pages();
-      this.footer(Footer, this.get$item());
-    },
+  /**
+   * Render workspace
+   * @property WorkspaceView
+   */
+  renderWorkspace() {
 
     /**
-     * Render pages
-     * @memberOf WorkspaceView
+     * @constant WorkspaceElement
+     * @type {module.WorkspaceElement}
      */
-    pages: function pages() {
-
-      /**
-       * Define $pages
-       * @type {WorkspaceContentElement}
-       */
-      this.elements.$pages = new WorkspaceContentElement(this, {
-        $container: this.get$item().$,
-        style: 'pages'
-      });
-    },
+    const WorkspaceElement = require('../element/workspace/workspace.element.js');
 
     /**
-     * Render workspace
-     * @memberOf WorkspaceView
-     * @param silent
+     * Define $workspace
+     * @type {module.WorkspaceElement}
      */
-    render: function render(silent) {
-      this.scope.observer.publish(
-          this.scope.eventManager.eventList.successRendered,
-          silent
-      );
-    }
-  }, BaseView.prototype)
+    this.elements.$workspace = new WorkspaceElement(this, {
+      $container: this.getContainerSelector()
+    });
 
-});
+    this.header(this.get$item());
+    this.pages();
+    this.footer(this.get$item());
+  }
+
+  /**
+   * Render pages
+   * @property WorkspaceView
+   */
+  pages() {
+
+    /**
+     * @constant WorkspaceContentElement
+     * @type {module.WorkspaceContentElement}
+     */
+    const WorkspaceContentElement = require('../element/workspace/workspace.content.element.js');
+
+    /**
+     * Define $pages
+     * @type {module.WorkspaceContentElement}
+     */
+    this.elements.$pages = new WorkspaceContentElement(this, {
+      $container: this.get$item().$,
+      style: 'pages'
+    });
+  }
+
+  /**
+   * Render workspace
+   * @property WorkspaceView
+   * @param silent
+   */
+  render(silent) {
+    this.scope.observer.publish(this.scope.eventManager.eventList.successRendered, silent);
+  }
+};

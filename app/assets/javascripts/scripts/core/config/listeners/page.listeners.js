@@ -11,7 +11,7 @@ defineP(['config/page'], function definePageListeners(Page) {
    * Define Page Local listeners
    * @memberOf Page
    * @type {{
-     *      successCreated: {name: string, callback: Function},
+   * successCreated: {name: string, callback: Function},
      *      successRendered: {name: string, callback: Function},
      *      createWidget: {name: string, callback: Function}
      *      resizeWidget: {name: string, callback: Function}

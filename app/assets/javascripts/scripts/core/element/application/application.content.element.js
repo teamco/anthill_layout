@@ -21,7 +21,7 @@ const BaseElement = require('../../lib/modules/Element.js');
 module.exports = class ApplicationContentElement extends BaseElement {
 
   /**
-   * @param view
+   * @param {ApplicationView} view
    * @param opts
    * @constructor
    */

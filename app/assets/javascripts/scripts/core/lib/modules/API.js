@@ -151,13 +151,12 @@ module.exports = class BaseAPI extends AntHill {
     const scope = this.scope,
         itemScope = scope[scope.model.getItemNameSpace()];
 
-    if (!itemScope.view) {
-      scope.logger.warn('Item doesn\'t created');
-      return false;
-    }
-
-    if (this.utils.setBoolean(render, false)) {
-      itemScope.view.render(silent, where);
+    if (itemScope.view) {
+      this.utils.setBoolean(render, false) ?
+          itemScope.view.render(silent, where) :
+          itemScope.logger.warn('Item doesn\'t rendered');
+    } else {
+      scope.logger.warn('Item with no View', itemScope);
     }
 
     return itemScope;

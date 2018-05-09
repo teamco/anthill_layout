@@ -197,9 +197,7 @@ module.exports = class BaseView extends AntHill {
    */
   getContainerSelector() {
     const containment = this.scope.controller.getContainment();
-    return containment.view.get$item().getElementContainer(
-        containment.model.getItemNameSpace()
-    );
+    return containment.view.get$item().getElementContainer(containment.model.getItemNameSpace());
   }
 
   /**§§§
@@ -321,23 +319,19 @@ module.exports = class BaseView extends AntHill {
   /**
    * Render Header
    * @property BaseView
-   * @param {HeaderElement} Header
    * @param {string} title
    */
-  renderHeader(Header, title) {
-    this.header(Header, this.get$container()).setText(title);
+  renderHeader(title) {
+    this.header(this.get$container()).setText(title);
   }
 
   /**
    * Render Footer
    * @property BaseView
-   * @param {FooterElement} Footer
    * @param {object} $element
    */
-  renderFooter(Footer, $element) {
-    this.footer(Footer, this.get$container()).setHtml(
-        $element.getFooter()
-    );
+  renderFooter($element) {
+    this.footer(this.get$container()).setHtml($element.getFooter());
   }
 
   /**
@@ -386,31 +380,37 @@ module.exports = class BaseView extends AntHill {
    * Generic modal dialog window
    * @property BaseView
    * @param {{
-   *      [style]: String,
-   *      $container,
-   *      [cover]: Boolean,
-   *      [coverOpacity]: Number,
-   *      [autoclose]: Boolean,
-   *      [closeX]: Boolean,
-   *      [css],
-   *      [opacityOff]: Number,
-   *      [opacityOn]: Number,
-   *      [title]: String,
-   *      [type]: String ('info', 'success', 'warning', 'danger'),
-   *      [html]: *,
-   *      [text]: String,
-   *      [draggable]: Boolean,
-   *      [items],
-   *      [position]: String ('tl/tc/tr', 'cl/cc/cr'. 'bl/bc/br'),
-   *      [buttons]
+   *  [style]: String,
+   *  $container,
+   *  [cover]: Boolean,
+   *  [coverOpacity]: Number,
+   *  [autoclose]: Boolean,
+   *  [closeX]: Boolean,
+   *  [css],
+   *  [opacityOff]: Number,
+   *  [opacityOn]: Number,
+   *  [title]: String,
+   *  [type]: String ('info', 'success', 'warning', 'danger'),
+   *  [html]: *,
+   *  [text]: String,
+   *  [draggable]: Boolean,
+   *  [items],
+   *  [position]: String ('tl/tc/tr', 'cl/cc/cr'. 'bl/bc/br'),
+   *  [buttons]
    * }} opts
    */
   modalDialog(opts) {
 
     /**
+     * @constant ModalElement
+     * @type {module.ModalElement}
+     */
+    const ModalElement = require('../../element/modal.element.js');
+
+    /**
      * Define $modal
      * @property BaseView.elements
-     * @type {ModalElement}
+     * @type {module.ModalElement}
      */
     this.elements.$modal = new ModalElement(this, {
       style: opts.style,
@@ -445,25 +445,24 @@ module.exports = class BaseView extends AntHill {
   /**
    * Generic button
    * @property BaseView
-   * @param {Function|ButtonElement} ButtonElement
    * @param {{
-   *    $container,
-   *    [$htmlElement],
-   *    style,
-   *    text,
-   *    type,
-   *    disabled,
-   *    events
+   *  $container,
+   *  [$htmlElement],
+   *  style,
+   *  text,
+   *  type,
+   *  disabled,
+   *  events
    * }} opts
    * @param {*} store
    */
-  button(ButtonElement, opts, store) {
+  button(opts, store) {
 
     /**
-     * Get BaseView
-     * @type {BaseView}
+     * @constant ButtonElement
+     * @type {module.ButtonElement}
      */
-    const view = this;
+    const ButtonElement = require('../../element/button.element.js');
 
     $.each(opts || {}, (i, button) => {
 
@@ -481,13 +480,10 @@ module.exports = class BaseView extends AntHill {
         events: button.events
       });
 
-      $.each(button.events || {}, (key, event) => {
-        store[i].$.on(key + '.afterCallback', store[i].afterEventsCallback.bind(store[i]));
-      });
+      $.each(button.events || {}, (key, event) =>
+          store[i].$.on(key + '.afterCallback', store[i].afterEventsCallback.bind(store[i])));
 
-      view.scope.logger.debug(
-          'Button created', store[i]
-      );
+      this.scope.logger.debug('Button created', store[i]);
     });
   }
 

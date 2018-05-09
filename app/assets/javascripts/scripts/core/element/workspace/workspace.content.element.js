@@ -6,119 +6,113 @@
  * To change this template use File | Settings | File Templates.
  */
 
-defineP([
-  'modules/Element'
-], function defineWorkspaceContent(BaseElement) {
+/**
+ * @constant BaseElement
+ * @type {module.BaseElement}
+ */
+const BaseElement = require('../../lib/modules/Element.js');
+
+/**
+ * Define Workspace content element
+ * @class WorkspaceContentElement
+ * @type {module.WorkspaceContentElement}
+ * @extends BaseElement
+ */
+module.exports = class WorkspaceContentElement extends BaseElement {
 
   /**
-   * Define Workspace Content
    * @param {WorkspaceView} view
    * @param opts
-   * @returns {*}
    * @constructor
-   * @class WorkspaceContentElement
-   * @extends BaseElement
    */
-  var WorkspaceContentElement = function WorkspaceContentElement(view, opts) {
-    return this._config(view, opts, $('<ul />')).build({
-      $container: opts.$container,
-      destroy: true
+  constructor(view, opts) {
+    super('WorkspaceContentElement', view, false);
+    this._config(view, opts, $('<ul />')).build(opts);
+  }
+
+  /**
+   * Define width after add page
+   * @property WorkspaceContentElement
+   * @param {number} to
+   */
+  defineWidth(to) {
+
+    this.$.css({
+      width: (100 * to) + '%'
     });
-  };
+  }
 
-  return WorkspaceContentElement.extend('WorkspaceContentElement', {
+  /**
+   * Define pages width after add page
+   * @property WorkspaceContentElement
+   * @param {*} items
+   * @param {number} counter
+   */
+  adoptPagesWidth(items, counter) {
 
-    /**
-     * Define width after add page
-     * @memberOf WorkspaceContentElement
-     * @param {number} to
-     */
-    defineWidth: function defineWidth(to) {
+    let index, $item;
+    for (index in items) {
 
-      this.$.css({
-        width: (100 * to) + '%'
-      });
-    },
+      if (items.hasOwnProperty(index)) {
 
-    /**
-     * Define pages width after add page
-     * @memberOf WorkspaceContentElement
-     * @param {*} items
-     * @param {number} counter
-     */
-    adoptPagesWidth: function adoptPagesWidth(items, counter) {
-
-      var index, $item;
-
-      for (index in items) {
-
-        if (items.hasOwnProperty(index)) {
-
-          /**
-           * Define page
-           * @type {Page}
-           */
-          $item = items[index].view.get$item();
-
-          $item.setWidth((100 / counter) + '%');
-        }
-      }
-    },
-
-    /**
-     * Swipe container to current page
-     * @memberOf WorkspaceContentElement
-     * @param {Page} page
-     */
-    swipeTo: function swipeTo(page) {
-
-      /**
-       * Define view
-       * @type {Workspace}
-       */
-      var scope = this.view.scope,
-          animate = page.model.getConfig('preferences').animateSwipe,
-          duration = 500;
-
-      /**
-       * Define on complete callback
-       * @private
-       */
-      function _completeCallback() {
-
-        scope.observer.publish(
-            scope.eventManager.eventList.afterSwitchToPage,
-            page
-        );
-      }
-
-      /**
-       * Get $pages
-       * @type {WorkspaceContentElement}
-       */
-      var $pages = this.view.elements.$pages;
-
-      /**
-       * Get pages order
-       * @type {number}
-       */
-      var order = page.model.getConfig('order') - 1,
-          css = {left: (-order * 100) + '%'};
-
-      if (_.isUndefined(animate) ?
-              scope.model.getConfig('page').animateSwipe : !!animate) {
-
-        $pages.$.stop().animate(css, {
-          duration: duration,
-          complete: _completeCallback
-        });
-
-      } else {
-
-        $pages.$.css(css);
-        _completeCallback();
+        /**
+         * Define page
+         * @type {Page}
+         */
+        $item = items[index].view.get$item();
+        $item.setWidth((100 / counter) + '%');
       }
     }
+  }
 
-  }, BaseElement.prototype);
-});
+  /**
+   * Swipe container to current page
+   * @property WorkspaceContentElement
+   * @param {Page} page
+   */
+  swipeTo(page) {
+
+    /**
+     * Define view
+     * @type {Workspace}
+     */
+    const scope = this.view.scope;
+    const animate = page.model.getConfig('preferences').animateSwipe,
+        duration = 500;
+
+    /**
+     * Define on complete callback
+     * @private
+     */
+    function _completeCallback() {
+      scope.observer.publish(scope.eventManager.eventList.afterSwitchToPage, page);
+    }
+
+    /**
+     * Get $pages
+     * @type {WorkspaceContentElement}
+     */
+    const $pages = this.view.elements.$pages;
+
+    /**
+     * Get pages order
+     * @type {number}
+     */
+    const order = page.model.getConfig('order') - 1,
+        css = {left: (-order * 100) + '%'};
+
+    if (_.isUndefined(animate) ?
+        scope.model.getConfig('page').animateSwipe : !!animate) {
+
+      $pages.$.stop().animate(css, {
+        duration: duration,
+        complete: _completeCallback
+      });
+
+    } else {
+
+      $pages.$.css(css);
+      _completeCallback();
+    }
+  }
+};

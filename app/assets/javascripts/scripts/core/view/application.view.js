@@ -22,7 +22,7 @@ module.exports = class ApplicationView extends BaseView {
   /**
    * @constructor
    * @param {string} name
-   * @param scope
+   * @param {Application} scope
    */
   constructor(name, scope) {
     super('ApplicationView', scope, false);
@@ -114,7 +114,7 @@ module.exports = class ApplicationView extends BaseView {
      */
     const buttons = {
       reject: {
-        text: this.i18n.t('cancel'),
+        text: this.scope.i18n.t('cancel'),
         events: {
           click: 'rejectModalEvent'
         }

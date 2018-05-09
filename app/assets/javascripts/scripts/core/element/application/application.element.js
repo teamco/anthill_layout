@@ -25,19 +25,14 @@ module.exports = class ApplicationElement extends BaseElement {
    * Define Application element
    * @extends BaseElement
    * @class ApplicationElement
-   * @param view
+   * @param {ApplicationView} view
    * @param opts
    * @returns {*}
    * @constructor
    */
   constructor(view, opts) {
     super('ApplicationElement', view, false);
-
-    this._config(view, opts, $('<div />')).build({
-      $container: opts.$container,
-      destroy: true
-    });
-
+    this._config(view, opts, $('<div />')).build(opts);
     $(opts.$container).addClass(opts.mode);
   }
 
