@@ -61,31 +61,41 @@ module.exports = () => {
    * Create DesignTime panel
    * @property WorkspaceController
    */
-  WorkspaceController.prototype.createDesignTimePanel = () => this.logger.debug('Create DesignTime panel', arguments);
+  WorkspaceController.prototype.createDesignTimePanel = function() {
+    this.logger.debug('Create DesignTime panel', arguments);
+  };
 
   /**
    * Create RunTime panel
    * @property WorkspaceController
    */
-  WorkspaceController.prototype.createRunTimePanel = () => this.logger.debug('Create RunTime panel', arguments);
+  WorkspaceController.prototype.createRunTimePanel = function() {
+    return this.logger.debug('Create RunTime panel', arguments);
+  };
 
   /**
    * Get DesignTime panel
    * @property WorkspaceController
    */
-  WorkspaceController.prototype.getDesignTimePanel = () => this.getPanels().designTime;
+  WorkspaceController.prototype.getDesignTimePanel = function() {
+    return this.getPanels().designTime;
+  };
 
   /**
    * Get RunTime panel
    * @property WorkspaceController
    */
-  WorkspaceController.prototype.getRunTimePanel = () => this.getPanels().runTime;
+  WorkspaceController.prototype.getRunTimePanel = function() {
+    return this.getPanels().runTime;
+  };
 
   /**
    * Get panels
    * @property WorkspaceController
    */
-  WorkspaceController.prototype.getPanels = () => this.getContainment().panels || {};
+  WorkspaceController.prototype.getPanels = function() {
+    return this.getContainment().panels || {};
+  };
 
   /**
    * Toggle panels
@@ -127,14 +137,14 @@ module.exports = () => {
 
         this.permission.check({
           capability: 'createDesignTimePanel',
-          callback() {
+          callback: () => {
             this.observer.publish(this.eventManager.eventList.createDesignTimePanel);
           }
         });
 
         this.permission.check({
           capability: 'createRunTimePanel',
-          callback() {
+          callback: () => {
             this.observer.publish(this.eventManager.eventList.createRunTimePanel);
           }
         });
