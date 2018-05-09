@@ -88,7 +88,7 @@ module.exports = class BaseView extends AntHill {
   /**
    * Get item.$
    * @property BaseView
-   * @returns {BaseElement}
+   * @returns {module.BaseElement|*}
    */
   get$item() {
     return this.elements['$' + this.scope.name.toLowerCase()];

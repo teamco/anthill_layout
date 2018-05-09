@@ -93,7 +93,7 @@ module.exports = class WorkspaceElement extends BaseElement {
    * Unset workspace width
    * @property WorkspaceElement
    */
-  unserWidth() {
+  unsetWidth() {
     this.$.attr('class', this.$.attr('class').replace(/sw-\d{1,2}/, ''));
   }
 

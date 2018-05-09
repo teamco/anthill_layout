@@ -103,21 +103,19 @@ module.exports = class WorkspaceController extends aggregation(BaseController, R
 
     /**
      * Define element
-     * @type {WorkspaceElement}
+     * @type {module.WorkspaceElement}
      */
     const $workspace = this.view.get$item();
 
-    const preferences = this.model.getConfig('preferences'),
-        width = 0;
+    const preferences = this.model.getConfig('preferences');
+    let width = 0;
 
     if (preferences.staticWidth) {
 
       // Get site widths
       width = parseInt(preferences.siteWidthSlider, 10) || width;
       $workspace.updateWidth(width);
-
     } else {
-
       $workspace.unsetWidth();
     }
   }
