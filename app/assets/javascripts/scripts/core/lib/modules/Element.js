@@ -215,12 +215,12 @@ module.exports = class BaseElement extends Renderer {
    * @property BaseElement
    * @param {{$container, $item, css, position: String}} opts
    * Position options:
-   *      ['tl' 'tc' 'tr']
-   *      ['cl' 'cc' 'cr']
-   *      ['bl' 'bc' 'br']
+   *  ['tl' 'tc' 'tr']
+   *  ['cl' 'cc' 'cr']
+   *  ['bl' 'bc' 'br']
    * @returns {opts.$item}
    */
-  static setPosition(opts) {
+  setPosition(opts) {
 
     const rectC = opts.$container[0].getBoundingClientRect(),
         cWidth = rectC.width,
