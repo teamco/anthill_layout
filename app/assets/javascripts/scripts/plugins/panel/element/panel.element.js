@@ -101,7 +101,7 @@ module.exports = class PanelElement extends PluginElement {
    * Define long header wrapper
    * @memberOf PanelElement
    */
-  getLongHeaderWrapper() {
+  setLongHeader() {
 
     const $tpl = $('<div class="profile-element text-center"><h1 class="logo-element"></h1></div>'),
         title = this.header.title;
@@ -116,7 +116,7 @@ module.exports = class PanelElement extends PluginElement {
    * Define short header wrapper
    * @memberOf PanelElement
    */
-  getShortHeaderWrapper() {
+  setShortHeader() {
 
     const $tpl = $('<div class="logo-element" />'),
         title = this.header.title;
