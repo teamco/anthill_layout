@@ -111,10 +111,7 @@ module.exports = class WorkspaceModel extends BaseModel {
     const scope = this.scope;
 
     this._setItemInfoPreferences('siteAuthor', author);
-
-    scope.observer.publish(
-        scope.eventManager.eventList.updateSiteAuthor
-    );
+    scope.observer.publish(scope.eventManager.eventList.updateSiteAuthor);
   }
 
   /**
@@ -131,10 +128,7 @@ module.exports = class WorkspaceModel extends BaseModel {
     const scope = this.scope;
 
     this._setItemInfoPreferences('siteDescription', description);
-
-    scope.observer.publish(
-        scope.eventManager.eventList.updateSiteDescription
-    );
+    scope.observer.publish(scope.eventManager.eventList.updateSiteDescription);
   }
 
   /**
@@ -151,10 +145,7 @@ module.exports = class WorkspaceModel extends BaseModel {
     const scope = this.scope;
 
     this._setItemInfoPreferences('siteKeywords', keywords);
-
-    scope.observer.publish(
-        scope.eventManager.eventList.updateSiteKeywords
-    );
+    scope.observer.publish(scope.eventManager.eventList.updateSiteKeywords);
   }
 
   /**
@@ -170,10 +161,7 @@ module.exports = class WorkspaceModel extends BaseModel {
      */
     const scope = this.scope;
 
-    scope.observer.publish(
-        scope.eventManager.eventList.clonePage,
-        itemUUID
-    );
+    scope.observer.publish(scope.eventManager.eventList.clonePage, itemUUID);
   }
 
   /**
@@ -189,7 +177,6 @@ module.exports = class WorkspaceModel extends BaseModel {
      * @type {object}
      */
     const collector = this.getCollector(this.item);
-
     this.loadData(this.item, collector);
   }
 };

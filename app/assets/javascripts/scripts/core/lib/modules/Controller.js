@@ -20,13 +20,13 @@ const AntHill = require('../../config/anthill.js');
 
 /**
  * @constant BehaviorCrud
- * @type {BehaviorCrud}
+ * @type {module.BehaviorCrud}
  */
 const BehaviorCrud = require('../../controller/behavior/behavior.crud.js');
 
 /**
  * @constant BehaviorWindowResize
- * @type {BehaviorWindowResize}
+ * @type {module.BehaviorWindowResize}
  */
 const BehaviorWindowResize = require('../../controller/behavior/behavior.window.resize.js');
 
@@ -51,7 +51,7 @@ module.exports = class BaseController extends aggregation(AntHill, BehaviorCrud,
 
   /**
    * Before init config
-   * @property BaseController
+   * @memberOf BaseController
    */
   beforeInitConfig() {
     this.logger.debug('Before init config', arguments);
@@ -59,7 +59,7 @@ module.exports = class BaseController extends aggregation(AntHill, BehaviorCrud,
 
   /**
    * After init config
-   * @property BaseController
+   * @memberOf BaseController
    */
   afterInitConfig() {
     this.logger.debug('After init config', arguments);
@@ -67,7 +67,7 @@ module.exports = class BaseController extends aggregation(AntHill, BehaviorCrud,
 
   /**
    * Success Create Element
-   * @property BaseController
+   * @memberOf BaseController
    * @param {BaseElement} $element
    */
   successCreateElement($element) {
@@ -76,7 +76,7 @@ module.exports = class BaseController extends aggregation(AntHill, BehaviorCrud,
 
   /**
    * Success Build Element
-   * @property BaseController
+   * @memberOf BaseController
    * @param {BaseElement} $element
    */
   successBuildElement($element) {
@@ -85,7 +85,7 @@ module.exports = class BaseController extends aggregation(AntHill, BehaviorCrud,
 
   /**
    * Success Destroy Element
-   * @property BaseController
+   * @memberOf BaseController
    * @param {BaseElement|{name}} $element
    */
   successDestroyElement($element) {
@@ -95,7 +95,7 @@ module.exports = class BaseController extends aggregation(AntHill, BehaviorCrud,
 
   /**
    * Get cache
-   * @property BaseController
+   * @memberOf BaseController
    * @param {string} [uuid]
    * @returns {*}
    */
@@ -112,7 +112,7 @@ module.exports = class BaseController extends aggregation(AntHill, BehaviorCrud,
 
   /**
    * Define environment getter
-   * @property BaseController
+   * @memberOf BaseController
    * @returns {string|environment|*}
    */
   getEnvironment() {
@@ -121,7 +121,7 @@ module.exports = class BaseController extends aggregation(AntHill, BehaviorCrud,
 
   /**
    * Get cache
-   * @property BaseController
+   * @memberOf BaseController
    * @param {string} uuid
    * @param {*} value
    */
@@ -131,7 +131,7 @@ module.exports = class BaseController extends aggregation(AntHill, BehaviorCrud,
 
   /**
    * Get cache css
-   * @property BaseController
+   * @memberOf BaseController
    * @param {string} path
    * @param {*} element
    */
@@ -146,7 +146,7 @@ module.exports = class BaseController extends aggregation(AntHill, BehaviorCrud,
 
   /**
    * Define routes setter
-   * @property BaseController
+   * @memberOf BaseController
    */
   setRoutes() {
 
@@ -161,7 +161,7 @@ module.exports = class BaseController extends aggregation(AntHill, BehaviorCrud,
 
   /**
    * Bind model observer
-   * @property BaseController
+   * @memberOf BaseController
    */
   bindModelObserver() {
     this.logger.debug('Bind model observer', arguments);
@@ -172,7 +172,7 @@ module.exports = class BaseController extends aggregation(AntHill, BehaviorCrud,
 
   /**
    * After loading items
-   * @property BaseController
+   * @memberOf BaseController
    */
   afterLoadingItems() {
     this.logger.debug(
@@ -184,7 +184,7 @@ module.exports = class BaseController extends aggregation(AntHill, BehaviorCrud,
 
   /**
    * Set core loading attribute
-   * @property BaseController
+   * @memberOf BaseController
    * @param load
    */
   setAsLoading(load) {
@@ -204,7 +204,7 @@ module.exports = class BaseController extends aggregation(AntHill, BehaviorCrud,
 
   /**
    * Set as loaded
-   * @property BaseController
+   * @memberOf BaseController
    */
   setAsLoaded() {
 
@@ -229,7 +229,7 @@ module.exports = class BaseController extends aggregation(AntHill, BehaviorCrud,
 
   /**
    * Check if core already loaded
-   * @property BaseController
+   * @memberOf BaseController
    * @returns {boolean}
    */
   isLoading() {
@@ -238,7 +238,7 @@ module.exports = class BaseController extends aggregation(AntHill, BehaviorCrud,
 
   /**
    * Get Application mode
-   * @property BaseController
+   * @memberOf BaseController
    * @returns {*|number}
    */
   getMode() {
@@ -247,7 +247,7 @@ module.exports = class BaseController extends aggregation(AntHill, BehaviorCrud,
 
   /**
    * Get parent node object
-   * @property BaseController
+   * @memberOf BaseController
    * @returns {*}
    */
   getContainment() {
@@ -256,7 +256,7 @@ module.exports = class BaseController extends aggregation(AntHill, BehaviorCrud,
 
   /**
    * Get Application Root
-   * @property BaseController
+   * @memberOf BaseController
    * @returns {*|string}
    */
   root() {
@@ -275,7 +275,7 @@ module.exports = class BaseController extends aggregation(AntHill, BehaviorCrud,
 
   /**
    * Get Application name
-   * @property BaseController
+   * @memberOf BaseController
    * @returns {string}
    */
   getAppName() {
@@ -284,7 +284,7 @@ module.exports = class BaseController extends aggregation(AntHill, BehaviorCrud,
 
   /**
    * Get Workspace
-   * @property BaseController
+   * @memberOf BaseController
    * @param {string} [uuid]
    * @returns {Workspace}
    */
@@ -301,7 +301,7 @@ module.exports = class BaseController extends aggregation(AntHill, BehaviorCrud,
 
   /**
    * Get Page
-   * @property BaseController
+   * @memberOf BaseController
    * @param {string} [uuid]
    * @returns {Page}
    */
@@ -318,7 +318,7 @@ module.exports = class BaseController extends aggregation(AntHill, BehaviorCrud,
 
   /**
    * Get Widget
-   * @property BaseController
+   * @memberOf BaseController
    * @param {string} [uuid]
    * @returns {*|Widget}
    */
@@ -335,7 +335,7 @@ module.exports = class BaseController extends aggregation(AntHill, BehaviorCrud,
 
   /**
    * Get Config Logger
-   * @property BaseController
+   * @memberOf BaseController
    * @param {string} log
    * @param {Object} hash
    */
@@ -345,7 +345,7 @@ module.exports = class BaseController extends aggregation(AntHill, BehaviorCrud,
 
   /**
    * Get scope view
-   * @property BaseController
+   * @memberOf BaseController
    * @returns {view}
    */
   getView() {
@@ -354,7 +354,7 @@ module.exports = class BaseController extends aggregation(AntHill, BehaviorCrud,
 
   /**
    * Get scope model
-   * @property BaseController
+   * @memberOf BaseController
    * @returns {model}
    */
   getModel() {
@@ -363,7 +363,7 @@ module.exports = class BaseController extends aggregation(AntHill, BehaviorCrud,
 
   /**
    * Success Created
-   * @property BaseController
+   * @memberOf BaseController
    */
   successCreated() {
     this.logger.debug('Successfully created');
@@ -372,7 +372,7 @@ module.exports = class BaseController extends aggregation(AntHill, BehaviorCrud,
 
   /**
    * Define instance getter
-   * @property BaseController
+   * @memberOf BaseController
    */
   defineGenericGetter() {
 
@@ -412,7 +412,7 @@ module.exports = class BaseController extends aggregation(AntHill, BehaviorCrud,
 
   /**
    * Success Rendered
-   * @property BaseController
+   * @memberOf BaseController
    */
   successRendered() {
     const comment = this.i18n.t('success.rendered').replace(/\{0}/, this.name);
@@ -421,7 +421,7 @@ module.exports = class BaseController extends aggregation(AntHill, BehaviorCrud,
 
   /**
    * Success Render Footer
-   * @property BaseController
+   * @memberOf BaseController
    * @param {HeaderElement} $header
    * @param {boolean} render
    */
@@ -431,7 +431,7 @@ module.exports = class BaseController extends aggregation(AntHill, BehaviorCrud,
 
   /**
    * Success Render Footer
-   * @property BaseController
+   * @memberOf BaseController
    * @param {FooterElement} $footer
    * @param {boolean} render
    */
@@ -441,7 +441,7 @@ module.exports = class BaseController extends aggregation(AntHill, BehaviorCrud,
 
   /**
    * Set item as current in parent node
-   * @property BaseController
+   * @memberOf BaseController
    */
   setAsCurrent() {
     this.getContainment().controller.setCurrentItem(this.scope);
@@ -449,7 +449,7 @@ module.exports = class BaseController extends aggregation(AntHill, BehaviorCrud,
 
   /**
    * Set current item
-   * @property BaseController
+   * @memberOf BaseController
    * @param {{}} item
    * @returns {*}
    */
@@ -461,7 +461,7 @@ module.exports = class BaseController extends aggregation(AntHill, BehaviorCrud,
 
   /**
    * Check condition
-   * @property BaseController
+   * @memberOf BaseController
    * @param {{condition, msg, [type], [args]}} opts
    * @returns {boolean}
    */
@@ -484,7 +484,7 @@ module.exports = class BaseController extends aggregation(AntHill, BehaviorCrud,
 
   /**
    * Get Development Mode
-   * @property BaseController
+   * @memberOf BaseController
    * @returns {Boolean}
    */
   isDevelopmentMode() {
@@ -493,7 +493,7 @@ module.exports = class BaseController extends aggregation(AntHill, BehaviorCrud,
 
   /**
    * Get Authorize Mode
-   * @property BaseController
+   * @memberOf BaseController
    * @returns {Boolean}
    */
   isAuthorizeMode() {
@@ -502,7 +502,7 @@ module.exports = class BaseController extends aggregation(AntHill, BehaviorCrud,
 
   /**
    * Get Consumption Mode
-   * @property BaseController
+   * @memberOf BaseController
    * @returns {boolean}
    */
   isConsumptionMode() {
@@ -511,7 +511,7 @@ module.exports = class BaseController extends aggregation(AntHill, BehaviorCrud,
 
   /**
    * Get Custom Mode
-   * @property BaseController
+   * @memberOf BaseController
    * @returns {boolean}
    */
   isCustomMode() {
@@ -520,7 +520,7 @@ module.exports = class BaseController extends aggregation(AntHill, BehaviorCrud,
 
   /**
    * Get Custom publisher
-   * @property BaseController
+   * @memberOf BaseController
    * @returns {string|boolean}
    */
   getCustomPublisher(name) {
@@ -546,7 +546,7 @@ module.exports = class BaseController extends aggregation(AntHill, BehaviorCrud,
 
   /**
    * Load config preferences
-   * @property WorkspaceController
+   * @memberOf WorkspaceController
    */
   loadPreferences() {
 
@@ -590,7 +590,7 @@ module.exports = class BaseController extends aggregation(AntHill, BehaviorCrud,
 
   /**
    * After update preferences
-   * @property BaseController
+   * @memberOf BaseController
    */
   afterUpdatePreferences() {
     this.logger.debug('After update preferences', arguments);
@@ -598,7 +598,7 @@ module.exports = class BaseController extends aggregation(AntHill, BehaviorCrud,
 
   /**
    * Transfer preferences to containment
-   * @property BaseController
+   * @memberOf BaseController
    * @param index
    * @param value
    */
@@ -616,7 +616,7 @@ module.exports = class BaseController extends aggregation(AntHill, BehaviorCrud,
 
   /**
    * Get preferences
-   * @property BaseController
+   * @memberOf BaseController
    * @returns {{}}
    */
   getPreferences() {
@@ -625,7 +625,7 @@ module.exports = class BaseController extends aggregation(AntHill, BehaviorCrud,
 
   /**
    * Get rules
-   * @property BaseController
+   * @memberOf BaseController
    * @returns {{}}
    */
   getRules() {
@@ -634,7 +634,7 @@ module.exports = class BaseController extends aggregation(AntHill, BehaviorCrud,
 
   /**
    * Open url in new window or in dialog
-   * @property BaseController
+   * @memberOf BaseController
    * @param {string} url
    * @param {boolean} selfWindow
    * @param {boolean} isDialog
@@ -667,7 +667,7 @@ module.exports = class BaseController extends aggregation(AntHill, BehaviorCrud,
 
       /**
        * Define opened window instance
-       * @property AntHill
+       * @memberOf AntHill
        * @type {Window}
        */
       this.openedWindow = window.open(url);
@@ -676,7 +676,7 @@ module.exports = class BaseController extends aggregation(AntHill, BehaviorCrud,
 
   /**
    * Update site description
-   * @property BaseController
+   * @memberOf BaseController
    */
   updateSiteDescription() {
 
@@ -691,7 +691,7 @@ module.exports = class BaseController extends aggregation(AntHill, BehaviorCrud,
 
   /**
    * Update site keywords
-   * @property BaseController
+   * @memberOf BaseController
    */
   updateSiteKeywords() {
 
@@ -706,7 +706,7 @@ module.exports = class BaseController extends aggregation(AntHill, BehaviorCrud,
 
   /**
    * Extend Config
-   * @property BaseController
+   * @memberOf BaseController
    * @param {{config, [dom]}} opts
    * @returns {*}
    */
@@ -730,7 +730,7 @@ module.exports = class BaseController extends aggregation(AntHill, BehaviorCrud,
 
   /**
    * Check is root
-   * @property BaseController
+   * @memberOf BaseController
    * @param [scope]
    * @returns {boolean}
    */
@@ -740,7 +740,7 @@ module.exports = class BaseController extends aggregation(AntHill, BehaviorCrud,
 
   /**
    * Check is workspace
-   * @property BaseController
+   * @memberOf BaseController
    * @returns {boolean}
    */
   isWorkspace() {
@@ -749,7 +749,7 @@ module.exports = class BaseController extends aggregation(AntHill, BehaviorCrud,
 
   /**
    * Check is page
-   * @property BaseController
+   * @memberOf BaseController
    * @returns {boolean}
    */
   isPage() {
@@ -758,7 +758,7 @@ module.exports = class BaseController extends aggregation(AntHill, BehaviorCrud,
 
   /**
    * Check is widget
-   * @property BaseController
+   * @memberOf BaseController
    * @param {Widget} [item]
    * @returns {boolean}
    */
@@ -769,7 +769,7 @@ module.exports = class BaseController extends aggregation(AntHill, BehaviorCrud,
 
   /**
    * Check if item is a core component
-   * @property BaseController
+   * @memberOf BaseController
    * @returns {*|boolean}
    */
   isCoreComponent() {
@@ -778,7 +778,7 @@ module.exports = class BaseController extends aggregation(AntHill, BehaviorCrud,
 
   /**
    * Check is widget content
-   * @property BaseController
+   * @memberOf BaseController
    * @returns {boolean}
    */
   isWidgetContent() {
@@ -803,7 +803,7 @@ module.exports = class BaseController extends aggregation(AntHill, BehaviorCrud,
 
   /**
    * Store data after layout organize
-   * @property BaseController
+   * @memberOf BaseController
    * @param [node]
    * @param [data]
    * @param {number} [counter]
@@ -881,7 +881,7 @@ module.exports = class BaseController extends aggregation(AntHill, BehaviorCrud,
 
   /**
    * Get subscribers list
-   * @property BaseController
+   * @memberOf BaseController
    * @param {string} event
    * @return {Array}
    */
@@ -897,7 +897,7 @@ module.exports = class BaseController extends aggregation(AntHill, BehaviorCrud,
 
   /**
    * Collect items data
-   * @property BaseController
+   * @memberOf BaseController
    * @param {Boolean} collectDOM
    * @returns {{}}
    */

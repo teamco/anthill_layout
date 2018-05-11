@@ -6,125 +6,126 @@
  * To change this template use File | Settings | File Templates.
  */
 
-defineP([
-  'modules/View',
-  'element/header.element',
-  'element/footer.element',
-  'plugins/panel/element/panel.content.element',
-  'plugins/panel/element/panel.content.container.element',
-  'plugins/panel/element/panel.element'
-], function definePanelView(BaseView, Header, Footer, PanelContentElement,
-    PanelContentContainer, Panel) {
+/**
+ * @constant BaseView
+ * @type {BaseView}
+ */
+const BaseView = require('../../../core/lib/modules/View.js');
+
+/**
+ * @class PanelView
+ * @type {module.PanelView}
+ */
+module.exports = class PanelView extends BaseView {
 
   /**
-   * Define view
-   * @class PanelView
    * @constructor
-   * @extends BaseView
+   * @param {string} name
+   * @param {Panel} scope
    */
-  var PanelView = function PanelView() {
-  };
+  constructor(name, scope) {
+    super(name || 'PanelView', scope, false);
+  }
 
-  return PanelView.extend('PanelView', {
-
-    /**
-     * Render Panel
-     * @memberOf PanelView
-     */
-    renderPanel: function renderPanel() {
-
-      if (this.isCached('$panel', Panel)) {
-        return false;
-      }
-
-      /**
-       * Define Panel element
-       * @property PanelView.elements
-       * @type {PanelElement}
-       */
-      this.elements.$panel = new Panel(this, {
-        $container: 'body',
-        style: [
-          'panel-container',
-          this.controller.getRenderAt()
-        ].join(' ')
-      });
-
-      this.renderContentContainer();
-
-      this.footer(Footer, this.get$item());
-
-      this.controller.renderPackages();
-
-    },
+  /**
+   * Render Panel
+   * @memberOf PanelView
+   */
+  renderPanel() {
 
     /**
-     * Render content container
-     * @memberOf PanelView
+     * @constant PanelElement
+     * @type {module.PanelElement|*}
      */
-    renderContentContainer: function renderContentContainer() {
+    const PanelElement = require('../element/panel.element.js');
 
-      /**
-       * Define Panel element
-       * @type {PanelContentContainerElement}
-       */
-      this.elements.$content = new PanelContentContainer(this, {
-        $container: this.get$item().getContentContainer(),
-        style: 'panel-content'
-      });
-    },
-
-    /**
-     * Render panel content
-     * @memberOf PanelView
-     * @param module
-     * @param {Boolean} [force]
-     * @returns {boolean}
-     */
-    renderContent: function renderContent(module, force) {
-
-      /**
-       * Define style
-       * @type {string}
-       */
-      var style = [
-            this.scope.model.getPanelEntityResourceName(module),
-            'content'
-          ].join('-'),
-          sname = '$' + style;
-
-      this.updateElementItems();
-
-      if ((this.isCachedItems() || this.elements.items.hasOwnProperty(sname)) &&
-          !force) {
-        return false;
-      }
-
-      /**
-       * Render item
-       * @type {PanelContentElement}
-       */
-      var $item = new PanelContentElement(this, {
-        style: style,
-        $container: this.elements.$content.$
-      });
-
-      module.view.defineContainer($item);
-
-      this.updateElementItems($item, sname);
-    },
-
-    /**
-     * Render panel
-     * @memberOf PanelView
-     */
-    render: function render() {
-
-      this.scope.observer.publish(
-          this.scope.eventManager.eventList.successRendered,
-          this.renderPanel.bind(this)
-      );
+    if (this.isCached('$panel', PanelElement)) {
+      return false;
     }
 
-  }, BaseView.prototype)
-});
+    /**
+     * Define Panel element
+     * @property PanelView.elements
+     * @type {module.PanelElement}
+     */
+    this.elements.$panel = new PanelElement(this, {
+      $container: 'body',
+      style: ['panel-container', this.controller.getRenderAt()].join(' ')
+    });
+
+    this.renderContentContainer();
+    this.footer(this.get$item());
+    this.controller.renderPackages();
+  }
+
+  /**
+   * Render content container
+   * @memberOf PanelView
+   */
+  renderContentContainer() {
+
+    /**
+     * @constant PanelContentContainerElement
+     * @type {module.PanelContentContainerElement|*}
+     */
+    const PanelContentContainerElement = require('../element/panel.content.container.element.js');
+
+    /**
+     * Define Panel element
+     * @type {module.PanelContentContainerElement}
+     */
+    this.elements.$content = new PanelContentContainerElement(this, {
+      $container: this.get$item().getContentContainer(),
+      style: 'panel-content'
+    });
+  }
+
+  /**
+   * Render panel content
+   * @memberOf PanelView
+   * @param module
+   * @param {Boolean} [force]
+   * @returns {boolean}
+   */
+  renderContent(module, force) {
+
+    /**
+     * Define style
+     * @type {string}
+     */
+    const style = [this.scope.model.getPanelEntityResourceName(module), 'content'].join('-'),
+        sname = '$' + style;
+
+    this.updateElementItems();
+
+    if ((this.isCachedItems() || this.elements.items.hasOwnProperty(sname)) && !force) {
+      return false;
+    }
+
+    /**
+     * @constant PanelContentElement
+     * @type {module.PanelContentElement|*}
+     */
+    const PanelContentElement = require('../element/panel.content.element.js');
+
+    /**
+     * Render item
+     * @type {module.PanelContentElement}
+     */
+    const $item = new PanelContentElement(this, {
+      style: style,
+      $container: this.elements.$content.$
+    });
+
+    module.view.defineContainer($item);
+    this.updateElementItems($item, sname);
+  }
+
+  /**
+   * Render panel
+   * @memberOf PanelView
+   */
+  render() {
+    this.scope.observer.publish(this.scope.eventManager.eventList.successRendered, this.renderPanel.bind(this));
+  }
+};

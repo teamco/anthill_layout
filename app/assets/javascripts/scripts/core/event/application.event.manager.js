@@ -21,9 +21,11 @@ module.exports = class ApplicationEventManager extends BaseEvent {
   /**
    * Define ApplicationEvent Manager
    * @constructor
+   * @param {string} name
+   * @param {Application} scope
    */
-  constructor() {
-    super('ApplicationEventManager', null, false);
+  constructor(name, scope) {
+    super(name || 'ApplicationEventManager', scope, false);
 
     /**
      * Define events
@@ -49,11 +51,11 @@ module.exports = class ApplicationEventManager extends BaseEvent {
      *  updateStorageVersion: string,
      *  afterUpdateStorage: string,
      *  setRoutes: string,
-     *  initResizeWindow: {eventName: string, params: {single: boolean}},
+     *  initResizeWindow: {name: string, params: {single: boolean}},
      *  resizeWindow: string,
      *  resizeWindowPublisher: string,
      *  resizeWindowHooks: string,
-     *  initScrollBehavior: {eventName: string, params: {single: boolean}},
+     *  initScrollBehavior: {name: string, params: {single: boolean}},
      *  scrollPublisher: string,
      *  createWorkspace: string,
      *  destroyWorkspace: string,
@@ -80,7 +82,7 @@ module.exports = class ApplicationEventManager extends BaseEvent {
       setRoutes: 'set.routes',
 
       initResizeWindow: {
-        eventName: 'init.resize.window',
+        name: 'init.resize.window',
         params: {single: true}
       },
       resizeWindow: 'resize.window',
@@ -88,7 +90,7 @@ module.exports = class ApplicationEventManager extends BaseEvent {
       resizeWindowHooks: 'resize.window.hooks',
 
       initScrollBehavior: {
-        eventName: 'init.scroll.behavior',
+        name: 'init.scroll.behavior',
         params: {single: true}
       },
       scrollPublisher: 'scroll.publisher',

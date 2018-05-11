@@ -56,7 +56,7 @@ module.exports = class WorkspaceController extends aggregation(BaseController, R
 
   /**
    * Set page height
-   * @property WorkspaceController
+   * @memberOf WorkspaceController
    */
   bindHashChange() {
 
@@ -71,33 +71,25 @@ module.exports = class WorkspaceController extends aggregation(BaseController, R
 
   /**
    * Adopt content width after adding new page
-   * @property WorkspaceController
+   * @memberOf WorkspaceController
    */
   adoptContentWidth() {
-
-    this.view.elements.$pages.adoptPagesWidth(
-        this.model.getItems(),
-        this.model.getConfig('page/counter')
-    );
+    this.view.elements.$pages.adoptPagesWidth(this.model.getItems(), this.model.getConfig('page/counter'));
   }
 
   /**
    * Transfer preferences
-   * @property WorkspaceController
+   * @memberOf WorkspaceController
    * @param {string} index
    * @param value
    */
   transferContentPreferences(index, value) {
-
-    this.observer.publish(
-        this.eventManager.eventList.transferPreferences,
-        [index, value]
-    );
+    this.observer.publish(this.eventManager.eventList.transferPreferences, [index, value]);
   }
 
   /**
    * Update site width
-   * @property WorkspaceController
+   * @memberOf WorkspaceController
    */
   updateSiteWidth() {
 

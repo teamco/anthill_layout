@@ -10,7 +10,7 @@ module.exports = class BehaviorFixVulnerabilities {
 
   /**
    * Define fix for ClickJacking
-   * @property BehaviorFixVulnerabilities
+   * @memberOf BehaviorFixVulnerabilities
    */
   fixClickJacking() {
 
@@ -24,23 +24,23 @@ module.exports = class BehaviorFixVulnerabilities {
 
   /**
    * Define after Handle Vulnerabilities
-   * @property BehaviorFixVulnerabilities
+   * @memberOf BehaviorFixVulnerabilities
    * @param data
    */
   afterHandleVulnerabilities(data) {
 
     // TODO
-    debugger
+    debugger;
   }
 
   /**
    * Define fix for ClickJacking
-   * @property BehaviorFixVulnerabilities
+   * @memberOf BehaviorFixVulnerabilities
    * @param {string} type
    */
   handleVulnerabilities(type) {
 
-    var route = this.model.getConfig('routes/handleVulnerabilities'),
+    const route = this.model.getConfig('routes/handleVulnerabilities'),
         appName = this.model.getConfig('appName');
 
     $.ajax({
@@ -67,4 +67,4 @@ module.exports = class BehaviorFixVulnerabilities {
         }.bind(this)
     );
   }
-}
+};

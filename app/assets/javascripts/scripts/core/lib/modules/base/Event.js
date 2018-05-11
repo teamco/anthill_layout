@@ -85,7 +85,7 @@ defineP(function defineLibEvent() {
 
         oEvent = document.createEvent(eventType);
 
-        if (eventType == 'HTMLEvents') {
+        if (eventType === 'HTMLEvents') {
 
           oEvent.initEvent(eventName, options.bubbles, options.cancelable);
 

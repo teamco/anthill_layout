@@ -34,8 +34,25 @@ module.exports = class Logger {
   }
 
   /**
+   * Stack trace parser
+   * @memberOf Logger.stackIt
+   * @param {Array} stacks
+   * @returns {Array}
+   */
+  static stackIt(stacks) {
+
+    let log = [];
+
+    for (let i = 1, l = stacks.length; i < l; i++) {
+      log.push(stacks[i].replace(/^\s+at |\s+$/g, ''));
+    }
+
+    return log;
+  }
+
+  /**
    * Set config
-   * @property Logger
+   * @memberOf Logger
    * @param config
    */
   setConfig(config) {
@@ -77,7 +94,7 @@ module.exports = class Logger {
 
   /**
    * Show Log
-   * @property Logger.showLog
+   * @memberOf Logger.showLog
    * @returns {boolean}
    */
   showLog() {
@@ -86,7 +103,7 @@ module.exports = class Logger {
 
   /**
    * Check if log available
-   * @property Logger.isLoggable
+   * @memberOf Logger.isLoggable
    * @return {Boolean}
    */
   isLoggable() {
@@ -95,7 +112,7 @@ module.exports = class Logger {
 
   /**
    * Puts (internal function)
-   * @property Logger.puts
+   * @memberOf Logger.puts
    * @param {string} type
    * @returns {boolean}
    */
@@ -194,25 +211,8 @@ module.exports = class Logger {
   }
 
   /**
-   * Stack trace parser
-   * @property Logger.stackIt
-   * @param {Array} stacks
-   * @returns {Array}
-   */
-  static stackIt(stacks) {
-
-    let log = [];
-
-    for (let i = 1, l = stacks.length; i < l; i++) {
-      log.push(stacks[i].replace(/^\s+at |\s+$/g, ''));
-    }
-
-    return log;
-  }
-
-  /**
    * Timer
-   * @property Logger.timer
+   * @memberOf Logger.timer
    * @param {string} name
    * @param {boolean} start
    */
@@ -231,7 +231,7 @@ module.exports = class Logger {
 
   /**
    * Define available logs
-   * @property Logger.defineLogs
+   * @memberOf Logger.defineLogs
    */
   defineLogs() {
 

@@ -21,9 +21,11 @@ module.exports = class WorkspaceEventManager extends BaseEvent {
   /**
    * Define workspace event manager
    * @constructor
+   * @param {string} name
+   * @param {Workspace} scope
    */
-  constructor() {
-    super('WorkspaceEventManager', null, false);
+  constructor(name, scope) {
+    super(name || 'WorkspaceEventManager', scope, false);
 
     /**
      * Define events

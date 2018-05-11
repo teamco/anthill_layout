@@ -108,4 +108,12 @@ module.exports = class AntHill {
      */
     this.utils = new Base();
   }
+
+  /**
+   * @method lazyRender
+   * @memberOf AntHill
+   */
+  lazyRender() {
+    this.view ? this.view.render() : this.logger.warn('View should be defined');
+  }
 };

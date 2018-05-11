@@ -21,7 +21,7 @@ module.exports = () => {
 
   /**
    * Define global events
-   * @memberOf Workspace
+   * @property Workspace
    * @type {{
    *  createDesignTimePanel: string,
    *  createRunTimePanel: string,
@@ -123,7 +123,7 @@ module.exports = () => {
 
   /**
    * Define Workspace Global listeners
-   * @memberOf Workspace
+   * @property Workspace
    * @type {{
    *  successRendered: {name: string, callback: Workspace.globalListeners.successRendered.successRenderedCallback},
    *  createDesignTimePanel: {name: string, callback: Workspace.globalListeners.createDesignTimePanel.createDesignTimePanelCallback},
@@ -157,53 +157,53 @@ module.exports = () => {
 
         /**
          * Define app
-         * @type {module.Application}
+         * @type {module.Application|{panels, controller, logger}}
          */
         const app = this.controller.root();
 
-        requireP([
-          'plugins/panel/panel',
-          'plugins/bar/bar',
-          'plugins/gallery/gallery',
-          'plugins/page.data/page.data',
-          'plugins/workspace.data/workspace.data',
-          'plugins/widget.rules/widget.rules',
-          'plugins/site.config/site.config'
-        ], function definePanel(Panel, Bar, Gallery, PageData, WorkspaceData, WidgetRules, SiteConfig) {
+        /**
+         * @constant Panel
+         * @type {module.Panel|*}
+         */
+        const Panel = require('../../../../scripts/plugins/panel/panel.js');
 
-          /**
-           * Init panel plugin
-           * @type {Panel}
-           */
-          app.panels.designTime = new Panel({
-            config: {
-              renderAt: 'right',
-              header: {
-                visible: true,
-                title: {
-                  short: 'DT',
-                  long: 'Designtime'
-                }
+        //   'plugins/bar/bar',
+        //   'plugins/gallery/gallery',
+        //   'plugins/page.data/page.data',
+        //   'plugins/workspace.data/workspace.data',
+        //   'plugins/widget.rules/widget.rules',
+        //   'plugins/site.config/site.config'
+
+        /**
+         * Init panel plugin
+         * @type {module.Panel}
+         */
+        app.panels.designTime = new Panel({
+          config: {
+            renderAt: 'right',
+            header: {
+              visible: true,
+              title: {
+                short: 'DT',
+                long: 'Design'
               }
-            },
-            modules: [
-              Gallery, PageData, WidgetRules, WorkspaceData,
-              SiteConfig],
-            packages: [Bar]
-          }, app);
+            }
+          },
+          modules: [/*Gallery, PageData, WidgetRules, WorkspaceData, SiteConfig*/],
+          packages: [/*Bar*/]
+        }, app);
 
-          app.panels.designTime.view.render();
+        app.panels.designTime.lazyRender();
 
-          /**
-           * Match regex
-           * @type {Array|{index: number, input: string}}
-           */
-          const widgetMatch = app.controller.isWidgetMatch2Hash();
+        /**
+         * Match regex
+         * @type {Array|{index: number, input: string}}
+         */
+        const widgetMatch = app.controller.isWidgetMatch2Hash();
 
-          if (widgetMatch && widgetMatch[2] === 'content') {
-            app.panels.designTime.view.get$item().hide();
-          }
-        });
+        if (widgetMatch && widgetMatch[2] === 'content') {
+          app.panels.designTime.view.get$item().hide();
+        }
       }
     },
 
@@ -213,48 +213,50 @@ module.exports = () => {
 
         /**
          * Define app
-         * @type {module.Application}
+         * @type {module.Application|{panels, controller, logger}}
          */
         const app = this.controller.root();
 
-        requireP([
-          'plugins/panel/panel',
-          'plugins/bar/bar',
-          'plugins/maximize/maximize',
-          'plugins/dashboard/dashboard'
-        ], function definePanel(Panel, Bar, Maximize, Dashboard) {
+        /**
+         * @constant Panel
+         * @type {module.Panel|{lazyRender}}
+         */
+        const Panel = require('../../../../scripts/plugins/panel/panel.js');
 
-          /**
-           * Init panel plugin
-           * @type {Panel}
-           */
-          app.panels.runTime = new Panel({
-            config: {
-              renderAt: 'left',
-              header: {
-                visible: true,
-                title: {
-                  short: 'RT',
-                  long: 'Runtime'
-                }
+        //   'plugins/bar/bar',
+        //   'plugins/maximize/maximize',
+        //   'plugins/dashboard/dashboard'
+
+        /**
+         * Init panel plugin
+         * @type {module.Panel}
+         */
+        app.panels.runTime = new Panel({
+          config: {
+            renderAt: 'left',
+            header: {
+              visible: true,
+              title: {
+                short: 'RT',
+                long: 'Runtime'
               }
-            },
-            modules: [Maximize, Dashboard],
-            packages: [Bar]
-          }, app);
+            }
+          },
+          modules: [/*Maximize, Dashboard*/],
+          packages: [/*Bar*/]
+        }, app);
 
-          app.panels.runTime.view.render();
+        app.panels.runTime.lazyRender();
 
-          /**
-           * Match regex
-           * @type {Array|{index: number, input: string}}
-           */
-          const widgetMatch = app.controller.isWidgetMatch2Hash();
+        /**
+         * Match regex
+         * @type {Array|{index: number, input: string}}
+         */
+        const widgetMatch = app.controller.isWidgetMatch2Hash();
 
-          if (widgetMatch && widgetMatch[2] === 'content') {
-            app.panels.runTime.view.get$item().hide();
-          }
-        });
+        if (widgetMatch && widgetMatch[2] === 'content') {
+          app.panels.runTime.view.get$item().hide();
+        }
       }
     }
   };

@@ -30,7 +30,7 @@ module.exports = class WorkspaceView extends BaseView {
 
   /**
    * Render workspace
-   * @property WorkspaceView
+   * @memberOf WorkspaceView
    */
   renderWorkspace() {
 
@@ -55,7 +55,7 @@ module.exports = class WorkspaceView extends BaseView {
 
   /**
    * Render pages
-   * @property WorkspaceView
+   * @memberOf WorkspaceView
    */
   pages() {
 
@@ -77,7 +77,7 @@ module.exports = class WorkspaceView extends BaseView {
 
   /**
    * Render workspace
-   * @property WorkspaceView
+   * @memberOf WorkspaceView
    * @param silent
    */
   render(silent) {

@@ -27,21 +27,21 @@ module.exports = class Setting extends Router {
 
     /**
      * Define scope
-     * @property Setting
+     * @memberOf Setting
      * @type {*}
      */
     this.scope = scope;
 
     /**
      * Define setting mode
-     * @property Setting
+     * @memberOf Setting
      * @type {string}
      */
     this.mode = this.scope.controller.getMode();
 
     /**
      * Define storage modes
-     * @property Setting
+     * @memberOf Setting
      * @type {{
      *    localStorage: Storage,
      *    serverStorage: {setting: Setting, setItem: Function, getItem: Function, clear: Function}
@@ -54,7 +54,7 @@ module.exports = class Setting extends Router {
 
     /**
      * Define setting storage
-     * @property Setting
+     * @memberOf Setting
      * @type {{
      *    development: {setting: Setting, setItem: Function, getItem: Function, clear: Function},
      *    authorize: {setting: Setting, setItem: Function, getItem: Function, clear: Function},
@@ -71,7 +71,7 @@ module.exports = class Setting extends Router {
 
     /**
      * Define cache
-     * @property Setting
+     * @memberOf Setting
      * @type {Storage}
      */
     this.cache = this.STORAGE_MODES.localStorage;
@@ -84,7 +84,7 @@ module.exports = class Setting extends Router {
 
   /**
    * @method getNameSpace
-   * @property Setting
+   * @memberOf Setting
    * @return {String|*}
    */
   getNameSpace() {
@@ -93,14 +93,14 @@ module.exports = class Setting extends Router {
 
   /**
    * Activate on save
-   * @property Setting
+   * @memberOf Setting
    * @param {boolean} activate
    */
   activateOnSave(activate) {
 
     /**
      * Define activate
-     * @property Setting
+     * @memberOf Setting
      * @type {boolean}
      */
     this.activate = activate;
@@ -108,14 +108,14 @@ module.exports = class Setting extends Router {
 
   /**
    * Set initial state
-   * @property Setting
+   * @memberOf Setting
    * @param {boolean} state
    */
   setInitialState(state) {
 
     /**
      * Change state
-     * @property Setting
+     * @memberOf Setting
      * @type {boolean}
      */
     this.initial = state;
@@ -123,7 +123,7 @@ module.exports = class Setting extends Router {
 
   /**
    * Get initial state
-   * @property Setting
+   * @memberOf Setting
    * @returns {boolean}
    */
   getInitialState() {
@@ -132,7 +132,7 @@ module.exports = class Setting extends Router {
 
   /**
    * Get token
-   * @property Setting
+   * @memberOf Setting
    * @returns {string}
    */
   getToken() {
@@ -141,7 +141,7 @@ module.exports = class Setting extends Router {
 
   /**
    * Init storage
-   * @property Setting
+   * @memberOf Setting
    */
   init() {
 
@@ -149,7 +149,7 @@ module.exports = class Setting extends Router {
 
     /**
      * Load storage
-     * @property Setting
+     * @memberOf Setting
      * @type {{token: string}}
      */
     const storage = this.load();
@@ -158,7 +158,7 @@ module.exports = class Setting extends Router {
 
       /**
        * Define token
-       * @property Setting
+       * @memberOf Setting
        * @type {string}
        */
       this.token = this.utils.gen.UUID();
@@ -171,7 +171,7 @@ module.exports = class Setting extends Router {
 
   /**
    * Clear local storage
-   * @property Setting
+   * @memberOf Setting
    */
   clear() {
     this.getStorage().clear();
@@ -179,7 +179,7 @@ module.exports = class Setting extends Router {
 
   /**
    * Get Storage
-   * @property Setting
+   * @memberOf Setting
    * @method getStorage
    * @returns {*}
    */
@@ -200,7 +200,7 @@ module.exports = class Setting extends Router {
 
   /**
    * Import data
-   * @property Setting
+   * @memberOf Setting
    * @param data
    * @param {boolean} activate
    */
@@ -211,7 +211,7 @@ module.exports = class Setting extends Router {
 
   /**
    * Update data
-   * @property Setting
+   * @memberOf Setting
    * @param data
    */
   updateData(data) {
@@ -230,7 +230,7 @@ module.exports = class Setting extends Router {
 
   /**
    * Save
-   * @property Setting
+   * @memberOf Setting
    * @param [opts]
    */
   save(opts) {
@@ -279,7 +279,7 @@ module.exports = class Setting extends Router {
 
   /**
    * Load
-   * @property Setting
+   * @memberOf Setting
    */
   load() {
 
@@ -311,7 +311,7 @@ module.exports = class Setting extends Router {
 
   /**
    * Compress json
-   * @property Setting
+   * @memberOf Setting
    * @param {string} json
    * @returns {string}
    */
@@ -322,7 +322,7 @@ module.exports = class Setting extends Router {
 
   /**
    * Decompress json
-   * @property Setting
+   * @memberOf Setting
    * @param {string} compress
    * @returns {string}
    */
@@ -333,7 +333,7 @@ module.exports = class Setting extends Router {
 
   /**
    * Define server side storage
-   * @property Setting
+   * @memberOf Setting
    * @type {function}
    * @method serverStorage
    * @return {*}
@@ -349,7 +349,7 @@ module.exports = class Setting extends Router {
 
       /**
        * Set storage item
-       * @property {STORAGE_MODES}
+       * @memberOf {STORAGE_MODES}
        */
       setItem(key, value) {
 
@@ -425,7 +425,7 @@ module.exports = class Setting extends Router {
 
       /**
        * Get storage item
-       * @property {STORAGE_MODES}
+       * @memberOf {STORAGE_MODES}
        * @return {string}
        */
       getItem(key) {
@@ -439,7 +439,7 @@ module.exports = class Setting extends Router {
 
       /**
        * Clear storage
-       * @property {STORAGE_MODES}
+       * @memberOf {STORAGE_MODES}
        */
       clear() {
         this.setting.save();
@@ -449,7 +449,7 @@ module.exports = class Setting extends Router {
 
   /**
    * Define screenshot maker
-   * @property Setting
+   * @memberOf Setting
    * @param {boolean} make
    * @param [domElement]
    * @param {function} callback

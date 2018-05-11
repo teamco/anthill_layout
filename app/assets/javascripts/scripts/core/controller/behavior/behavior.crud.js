@@ -14,7 +14,7 @@ module.exports = class BehaviorCrud {
 
   /**
    * Create Item
-   * @property BehaviorCrud
+   * @memberOf BehaviorCrud
    * @param {*} opts
    * @param {*|Boolean} silent
    */
@@ -38,7 +38,7 @@ module.exports = class BehaviorCrud {
 
   /**
    * Reject to modal event
-   * @property BehaviorCrud
+   * @memberOf BehaviorCrud
    */
   rejectModalEvent() {
     const scope = this.scope,
@@ -52,7 +52,7 @@ module.exports = class BehaviorCrud {
 
   /**
    * Approve to destroy items
-   * @property BehaviorCrud
+   * @memberOf BehaviorCrud
    * @param items
    */
   approveItemsDestroy(items) {
@@ -74,18 +74,14 @@ module.exports = class BehaviorCrud {
       return false;
     }
 
-    $.each(items, function each(uuid, item) {
-      scope.controller.approveItemDestroy(item, count);
-    });
+    $.each(items, (uuid, item) => scope.controller.approveItemDestroy(item, count));
 
-    scope.observer.publish(
-        scope.eventManager.eventList.afterDestroyItems
-    );
+    scope.observer.publish(scope.eventManager.eventList.afterDestroyItems);
   }
 
   /**
    * Approve to destroy item
-   * @property BehaviorCrud
+   * @memberOf BehaviorCrud
    * @param {*} item
    * @param {Number} [count]
    * @returns {boolean}
@@ -127,7 +123,7 @@ module.exports = class BehaviorCrud {
 
   /**
    * Destroy item
-   * @property BehaviorCrud
+   * @memberOf BehaviorCrud
    * @param item
    * @param {boolean} silent
    */
@@ -137,7 +133,7 @@ module.exports = class BehaviorCrud {
 
   /**
    * Destroy Items
-   * @property BehaviorCrud
+   * @memberOf BehaviorCrud
    * @param {Object} [items]
    * @param {Boolean} [silent]
    */
@@ -153,7 +149,7 @@ module.exports = class BehaviorCrud {
 
   /**
    * After create item event
-   * @property BehaviorCrud
+   * @memberOf BehaviorCrud
    */
   afterCreateItem() {
     this.logger.debug('After create item');
@@ -161,7 +157,7 @@ module.exports = class BehaviorCrud {
 
   /**
    * After destroy item event
-   * @property BehaviorCrud
+   * @memberOf BehaviorCrud
    */
   afterDestroyItem() {
     this.logger.debug('After destroy item');
@@ -169,7 +165,7 @@ module.exports = class BehaviorCrud {
 
   /**
    * After destroy item event
-   * @property BehaviorCrud
+   * @memberOf BehaviorCrud
    */
   afterDestroyItems() {
     this.logger.debug('After destroy items');

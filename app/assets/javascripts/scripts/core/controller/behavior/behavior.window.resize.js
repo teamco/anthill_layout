@@ -15,7 +15,7 @@ module.exports = class BehaviorWindowResize {
   /**
    * Get resize attributes
    * Get items are ready to be resized
-   * @property BehaviorWindowResize
+   * @memberOf BehaviorWindowResize
    * @returns {{event: string|*, items: *}}
    * @private
    */
@@ -52,7 +52,7 @@ module.exports = class BehaviorWindowResize {
 
   /**
    * Nested resize
-   * @property BehaviorWindowResize
+   * @memberOf BehaviorWindowResize
    * @param resize
    * @private
    */
@@ -81,11 +81,7 @@ module.exports = class BehaviorWindowResize {
            * @type {*}
            */
           const item = items[index];
-
-          scope.observer.publish(
-              resize.event,
-              item
-          );
+          scope.observer.publish(resize.event, item);
 
           /**
            * Define containment
@@ -101,29 +97,19 @@ module.exports = class BehaviorWindowResize {
 
   /**
    * Resize items on resize window
-   * @property BehaviorWindowResize
+   * @memberOf BehaviorWindowResize
    */
   resizeItems() {
-
-    this.logger.debug(
-        'Resize items',
-        this.model.getConfig('isResized')
-    );
-
-    this.controller._resizeNestedEventTrigger(
-        this.controller._getResizeAttributes()
-    );
+    this.logger.debug('Resize items', this.model.getConfig('isResized'));
+    this.controller._resizeNestedEventTrigger(this.controller._getResizeAttributes());
   }
 
   /**
    * Resize item on resize window
-   * @property BehaviorWindowResize
+   * @memberOf BehaviorWindowResize
    * @param item
    */
   resizeItem(item) {
-
-    this.controller._resizeNestedEventTrigger.bind(item.controller)(
-        item.controller._getResizeAttributes()
-    );
+    this.controller._resizeNestedEventTrigger(item.controller._getResizeAttributes());
   }
 };

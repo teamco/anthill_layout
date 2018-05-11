@@ -33,7 +33,7 @@ module.exports = class BaseView extends AntHill {
 
     /**
      * Define elements
-     * @property BaseView
+     * @memberOf BaseView
      * @type {Object}
      */
     this.elements = {};
@@ -41,8 +41,8 @@ module.exports = class BaseView extends AntHill {
 
   /**
    * Define update elements items
-   * @property BaseView
-   * @param {BaseElement} [$item]
+   * @memberOf BaseView
+   * @param [$item]
    * @param {string} [customId]
    */
   updateElementItems($item, customId) {
@@ -57,7 +57,7 @@ module.exports = class BaseView extends AntHill {
 
   /**
    * Clean elements items
-   * @property BaseView
+   * @memberOf BaseView
    */
   cleanElementItems() {
 
@@ -69,7 +69,7 @@ module.exports = class BaseView extends AntHill {
 
   /**
    * Get config HTML
-   * @property BaseView
+   * @memberOf BaseView
    * @param {string} [key]
    * @returns {*}
    */
@@ -87,7 +87,7 @@ module.exports = class BaseView extends AntHill {
 
   /**
    * Get item.$
-   * @property BaseView
+   * @memberOf BaseView
    * @returns {module.BaseElement|*}
    */
   get$item() {
@@ -96,7 +96,7 @@ module.exports = class BaseView extends AntHill {
 
   /**
    * Get items $rules
-   * @property BaseView
+   * @memberOf BaseView
    * @returns {*}
    */
   get$rules() {
@@ -105,7 +105,7 @@ module.exports = class BaseView extends AntHill {
 
   /**
    * Get items $preferences
-   * @property BaseView
+   * @memberOf BaseView
    * @returns {*}
    */
   get$get$preferences() {
@@ -114,7 +114,7 @@ module.exports = class BaseView extends AntHill {
 
   /**
    * Get item DOM Element
-   * @property BaseView
+   * @memberOf BaseView
    * @returns {BaseElement}
    */
   getDomElement() {
@@ -123,7 +123,7 @@ module.exports = class BaseView extends AntHill {
 
   /**
    * Get item DOM info
-   * @property BaseView
+   * @memberOf BaseView
    * @returns {ClientRect}
    */
   getDomData() {
@@ -132,58 +132,49 @@ module.exports = class BaseView extends AntHill {
 
   /**
    * Create style
-   * @property BaseView
+   * @memberOf BaseView
    * @returns {string}
    */
   createStyle() {
-    return [
-      this.getContainerClassName(),
-      this.getConfigHTML('style')
-    ].join(' ');
+    return [this.getContainerClassName(), this.getConfigHTML('style')].join(' ');
   }
 
   /**
    * Create UUID
-   * @property BaseView
+   * @memberOf BaseView
    * @returns {string}
    */
   createUUID() {
-    return [
-      this.scope.model.getUUID(),
-      this.getContainerClassName()
-    ].join('-');
+    return [this.scope.model.getUUID(), this.getContainerClassName()].join('-');
   }
 
   /**
    * Render UUID
-   * @property BaseView
+   * @memberOf BaseView
    * @param id
    * @returns {*|string}
    */
   renderUUID(id) {
-    return id || [
-      this.utils.gen.UUID(),
-      this.name.toDash()
-    ].join('-');
+    return id || [this.utils.gen.UUID(), this.scope.name.toDash()].join('-');
   }
 
   /**
    * Define $container
-   * @property BaseView
+   * @memberOf BaseView
    * @param $container
    */
   defineContainer($container) {
 
     /**
      * Define container
-     * @property BaseView.elements
+     * @memberOf BaseView.elements
      */
     this.elements.$container = $container;
   }
 
   /**
    * Get container class name
-   * @property BaseView
+   * @memberOf BaseView
    * @returns {string}
    */
   getContainerClassName() {
@@ -192,7 +183,7 @@ module.exports = class BaseView extends AntHill {
 
   /**
    * Get container selector
-   * @property BaseView
+   * @memberOf BaseView
    * @returns {*|jQuery}
    */
   getContainerSelector() {
@@ -202,7 +193,7 @@ module.exports = class BaseView extends AntHill {
 
   /**§§§
    * Check if element cached
-   * @property BaseView
+   * @memberOf BaseView
    * @param $element
    * @param Constructor
    * @returns {boolean}
@@ -216,11 +207,7 @@ module.exports = class BaseView extends AntHill {
     const cached = this.elements[$element] instanceof Constructor;
 
     if (cached) {
-
-      this.scope.logger.debug(
-          this.i18n.t('element.already.rendered').
-              replace(/\{0}/, Constructor.name)
-      );
+      this.scope.logger.debug(this.i18n.t('element.already.rendered').replace(/\{0}/, Constructor.name));
     }
 
     return cached;
@@ -228,7 +215,7 @@ module.exports = class BaseView extends AntHill {
 
   /**
    * Check if render force
-   * @property BaseView
+   * @memberOf BaseView
    * @returns {boolean}
    */
   isCachedItems() {
@@ -237,7 +224,7 @@ module.exports = class BaseView extends AntHill {
 
   /**
    * Render Header
-   * @property BaseView
+   * @memberOf BaseView
    * @param $container
    * @return {module.HeaderElement|HeaderElement}
    */
@@ -251,7 +238,7 @@ module.exports = class BaseView extends AntHill {
 
     /**
      * Define $header
-     * @property BaseView.elements
+     * @memberOf BaseView.elements
      * @type {module.HeaderElement}
      */
     this.elements.$header = new HeaderElement(this, {
@@ -266,19 +253,15 @@ module.exports = class BaseView extends AntHill {
      */
     const scope = this.scope;
 
-    scope.observer.publish(
-        scope.eventManager.eventList.successRenderHeader, [
-          this.elements.$header,
-          this.getConfigHTML('header')
-        ]
-    );
+    scope.observer.publish(scope.eventManager.eventList.successRenderHeader, [
+      this.elements.$header, this.getConfigHTML('header')]);
 
     return this.elements.$header;
   }
 
   /**
    * Render Footer
-   * @property BaseView
+   * @memberOf BaseView
    * @param $container
    * @returns {module.FooterElement}
    */
@@ -292,7 +275,7 @@ module.exports = class BaseView extends AntHill {
 
     /**
      * Define $footer
-     * @property BaseView.elements
+     * @memberOf BaseView.elements
      * @type {module.FooterElement}
      */
     this.elements.$footer = new FooterElement(this, {
@@ -306,19 +289,15 @@ module.exports = class BaseView extends AntHill {
      */
     const scope = this.scope;
 
-    scope.observer.publish(
-        scope.eventManager.eventList.successRenderFooter, [
-          this.elements.$footer,
-          this.getConfigHTML('footer')
-        ]
-    );
+    scope.observer.publish(scope.eventManager.eventList.successRenderFooter, [
+      this.elements.$footer, this.getConfigHTML('footer')]);
 
     return this.elements.$footer;
   }
 
   /**
    * Render Header
-   * @property BaseView
+   * @memberOf BaseView
    * @param {string} title
    */
   renderHeader(title) {
@@ -327,7 +306,7 @@ module.exports = class BaseView extends AntHill {
 
   /**
    * Render Footer
-   * @property BaseView
+   * @memberOf BaseView
    * @param {object} $element
    */
   renderFooter($element) {
@@ -336,7 +315,7 @@ module.exports = class BaseView extends AntHill {
 
   /**
    * Render filter
-   * @property BaseView
+   * @memberOf BaseView
    * @param {function} [callback]
    * @param {boolean} [enter]
    */
@@ -344,7 +323,7 @@ module.exports = class BaseView extends AntHill {
 
     /**
      * Define Search element
-     * @property BaseView.elements
+     * @memberOf BaseView.elements
      * @type {FilterElement}
      */
     this.elements.$filter = new Filter(this, {
@@ -357,7 +336,7 @@ module.exports = class BaseView extends AntHill {
 
   /**
    * Define get $container
-   * @property BaseView
+   * @memberOf BaseView
    * @returns {*}
    */
   get$get$container() {
@@ -378,7 +357,7 @@ module.exports = class BaseView extends AntHill {
 
   /**
    * Generic modal dialog window
-   * @property BaseView
+   * @memberOf BaseView
    * @param {{
    *  [style]: String,
    *  $container,
@@ -409,7 +388,7 @@ module.exports = class BaseView extends AntHill {
 
     /**
      * Define $modal
-     * @property BaseView.elements
+     * @memberOf BaseView.elements
      * @type {module.ModalElement}
      */
     this.elements.$modal = new ModalElement(this, {
@@ -435,7 +414,7 @@ module.exports = class BaseView extends AntHill {
 
   /**
    * Get $modal element
-   * @property BaseView
+   * @memberOf BaseView
    * @returns {ModalElement}
    */
   get$modal() {
@@ -444,7 +423,7 @@ module.exports = class BaseView extends AntHill {
 
   /**
    * Generic button
-   * @property BaseView
+   * @memberOf BaseView
    * @param {{
    *  $container,
    *  [$htmlElement],
@@ -489,7 +468,7 @@ module.exports = class BaseView extends AntHill {
 
   /**
    * Define cover
-   * @property BaseView
+   * @memberOf BaseView
    * @param CoverElement
    * @param opts
    * @returns {CoverElement}
@@ -505,7 +484,7 @@ module.exports = class BaseView extends AntHill {
 
   /**
    * Locate DOM element in array
-   * @property BaseView
+   * @memberOf BaseView
    * @param {Array} source
    * @param {string} type
    * @returns {*}
@@ -521,7 +500,7 @@ module.exports = class BaseView extends AntHill {
 
   /**
    * Update scroll cover
-   * @property BaseView
+   * @memberOf BaseView
    */
   updateScrollCover() {
     this.get$item().scrollCover(

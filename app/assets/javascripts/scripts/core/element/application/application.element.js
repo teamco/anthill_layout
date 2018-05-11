@@ -22,12 +22,8 @@ const BaseElement = require('../../lib/modules/Element.js');
 module.exports = class ApplicationElement extends BaseElement {
 
   /**
-   * Define Application element
-   * @extends BaseElement
-   * @class ApplicationElement
    * @param {ApplicationView} view
    * @param opts
-   * @returns {*}
    * @constructor
    */
   constructor(view, opts) {
@@ -38,7 +34,7 @@ module.exports = class ApplicationElement extends BaseElement {
 
   /**
    * Hide/Show scroll
-   * @property ApplicationElement
+   * @memberOf ApplicationElement
    * @param {boolean} hide
    */
   hideScroll(hide) {

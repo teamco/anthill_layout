@@ -36,7 +36,7 @@ module.exports = class ButtonElement extends BaseElement {
 
   /**
    * Get Button Template
-   * @property ButtonElement
+   * @memberOf ButtonElement
    * @param $htmlElement
    * @returns {*}
    */
@@ -46,14 +46,14 @@ module.exports = class ButtonElement extends BaseElement {
 
   /**
    * Define setup
-   * @property ButtonElement
+   * @memberOf ButtonElement
    * @param opts
    */
   setup(opts) {
 
     /**
      * Define text
-     * @property ButtonElement
+     * @memberOf ButtonElement
      */
     this.text = opts.text;
 
@@ -66,7 +66,7 @@ module.exports = class ButtonElement extends BaseElement {
 
   /**
    * Set content
-   * @property ButtonElement
+   * @memberOf ButtonElement
    */
   setContent() {
     if (this.text) {
@@ -76,7 +76,7 @@ module.exports = class ButtonElement extends BaseElement {
 
   /**
    * Define disable
-   * @property ButtonElement
+   * @memberOf ButtonElement
    */
   disable() {
 
@@ -84,14 +84,14 @@ module.exports = class ButtonElement extends BaseElement {
 
     /**
      * Define disabled
-     * @property ButtonElement
+     * @memberOf ButtonElement
      */
     this.disabled = true;
   }
 
   /**
    * Define enable
-   * @property ButtonElement
+   * @memberOf ButtonElement
    */
   enable() {
 
@@ -99,14 +99,14 @@ module.exports = class ButtonElement extends BaseElement {
 
     /**
      * Define disabled
-     * @property ButtonElement
+     * @memberOf ButtonElement
      */
     this.disabled = false;
   }
 
   /**
    * Define after events callback
-   * @property ButtonElement
+   * @memberOf ButtonElement
    * @param {n.Event} e
    */
   afterEventsCallback(e) {

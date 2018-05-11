@@ -33,7 +33,7 @@ module.exports = class WorkspaceElement extends BaseElement {
 
   /**
    * Get site author
-   * @property WorkspaceElement
+   * @memberOf WorkspaceElement
    * @returns {string}
    */
   getSiteAuthor() {
@@ -42,7 +42,7 @@ module.exports = class WorkspaceElement extends BaseElement {
 
   /**
    * Set site author
-   * @property WorkspaceElement
+   * @memberOf WorkspaceElement
    * @param {string} author
    */
   setSiteAuthor(author) {
@@ -51,7 +51,7 @@ module.exports = class WorkspaceElement extends BaseElement {
 
   /**
    * Get site title
-   * @property WorkspaceElement
+   * @memberOf WorkspaceElement
    * @returns {jQuery|string}
    */
   getSiteTitle() {
@@ -60,7 +60,7 @@ module.exports = class WorkspaceElement extends BaseElement {
 
   /**
    * Set site title
-   * @property WorkspaceElement
+   * @memberOf WorkspaceElement
    * @param {string} title
    */
   setSiteTitle(title) {
@@ -69,7 +69,7 @@ module.exports = class WorkspaceElement extends BaseElement {
 
   /**
    * Set workspace width
-   * @property WorkspaceElement
+   * @memberOf WorkspaceElement
    * @param {number} width
    */
   updateWidth(width) {
@@ -91,7 +91,7 @@ module.exports = class WorkspaceElement extends BaseElement {
 
   /**
    * Unset workspace width
-   * @property WorkspaceElement
+   * @memberOf WorkspaceElement
    */
   unsetWidth() {
     this.$.attr('class', this.$.attr('class').replace(/sw-\d{1,2}/, ''));
@@ -99,7 +99,7 @@ module.exports = class WorkspaceElement extends BaseElement {
 
   /**
    * Define active page
-   * @property WorkspaceElement
+   * @memberOf WorkspaceElement
    * @param {{Page}} items
    * @param {Page} item
    */

@@ -17,6 +17,12 @@ module.exports = class Observer {
   constructor(scope) {
 
     /**
+     * @property Observer
+     * @type {string}
+     */
+    this.name = 'Observer';
+
+    /**
      * Define listeners
      * @property Observer
      * @type {{}}
@@ -26,13 +32,14 @@ module.exports = class Observer {
     /**
      * Define local scope
      * @property Observer
+     * @type {module.AntHill}
      */
     this.scope = scope;
   }
 
   /**
    * Get events list
-   * @property Observer
+   * @memberOf Observer
    * @returns {*}
    */
   getEventList() {
@@ -41,11 +48,11 @@ module.exports = class Observer {
 
   /**
    * Get event UUID
-   * @property Observer
-   * @param {string} eventName
+   * @memberOf Observer
+   * @param {string} name
    * @returns {[]}
    */
-  getEventUUID(eventName) {
+  getEventUUID(name) {
     let index, uuid = [];
     for (index in this.listeners) {
       if (this.listeners.hasOwnProperty(index)) {
@@ -54,7 +61,7 @@ module.exports = class Observer {
 
         for (let i = 0; i < l; i += 1) {
           const event = events[i];
-          if (event.eventName === eventName) {
+          if (event.name === name) {
             uuid.push(event.eventUUID);
           }
         }
@@ -65,7 +72,7 @@ module.exports = class Observer {
 
   /**
    * Get event name
-   * @property Observer
+   * @memberOf Observer
    * @param {string} eventUUID
    * @return {{}}
    */
@@ -80,7 +87,7 @@ module.exports = class Observer {
 
   /**
    * Execute function after specific timeout
-   * @property Observer
+   * @memberOf Observer
    * @param {Function} fnCallback
    * @param {Number} [msTimeout]
    * @param {*} [thisScope]
@@ -101,29 +108,29 @@ module.exports = class Observer {
 
   /**
    * Add event
-   * @property Observer
-   * @param {string} eventName
+   * @memberOf Observer
+   * @param {string} name
    * @return {{}}
    */
-  addEvent(eventName) {
+  addEvent(name) {
     const listeners = this.listeners;
-    listeners[eventName] = listeners[eventName] || [];
-    return listeners[eventName];
+    listeners[name] = listeners[name] || [];
+    return listeners[name];
   }
 
   /**
    * Remove event
-   * @property Observer
-   * @param {string} eventName
+   * @memberOf Observer
+   * @param {string} name
    */
-  removeEvent(eventName) {
-    delete this.listeners[eventName];
+  removeEvent(name) {
+    delete this.listeners[name];
   }
 
   /**
    * On event
-   * @property Observer
-   * @param {{eventUUID, params, state, priority, eventName}} opts
+   * @memberOf Observer
+   * @param {{eventUUID, params, state, priority, name}} opts
    * @return {string}
    */
   onEvent(opts) {
@@ -145,13 +152,13 @@ module.exports = class Observer {
      * Define array of events
      * @type {[]}
      */
-    this.listeners[opts.eventName] = this.listeners[opts.eventName] || [];
+    this.listeners[opts.name] = this.listeners[opts.name] || [];
 
     // Push event item
-    this.listeners[opts.eventName].push(opts);
+    this.listeners[opts.name].push(opts);
 
     // Sort by priority
-    this.listeners[opts.eventName].sort((a, b) => priority[b.priority || defaultPriority] -
+    this.listeners[opts.name].sort((a, b) => priority[b.priority || defaultPriority] -
         priority[a.priority || defaultPriority]);
 
     return opts.eventUUID;
@@ -199,13 +206,13 @@ module.exports = class Observer {
 
   /**
    * Un event
-   * @property Observer
-   * @param {string} eventName
+   * @memberOf Observer
+   * @param {string} name
    * @param {string} eventUUID
    * @return {boolean}
    */
-  unEvent(eventName, eventUUID) {
-    eventUUID = this.unRegister(eventName, eventUUID);
+  unEvent(name, eventUUID) {
+    eventUUID = this.unRegister(name, eventUUID);
     if (eventUUID) {
       delete this.scope.eventManager.events[eventUUID];
       return true;
@@ -215,7 +222,7 @@ module.exports = class Observer {
 
   /**
    * Batch events publisher
-   * @property Observer
+   * @memberOf Observer
    */
   batchPublish() {
     Object.assign([], arguments).forEach((arg) => this.publish.apply(this, typeof arg === 'string' ? [arg] : arg));
@@ -223,18 +230,18 @@ module.exports = class Observer {
 
   /**
    * Publish event
-   * @property Observer
-   * @param {string} eventName
+   * @memberOf Observer
+   * @param {string} name
    * @param {*} [args]
    */
-  publish(eventName, args) {
+  publish(name, args) {
     const scope = this.scope;
 
-    if (!eventName) {
-      scope.logger.warn('Undefined event', eventName, args);
+    if (!name) {
+      scope.logger.warn('Undefined event', name, args);
     }
 
-    scope.logger.timer(eventName, true);
+    scope.logger.timer(name, true);
     args = args || [];
 
     if (typeof args === 'string') {
@@ -245,19 +252,19 @@ module.exports = class Observer {
      * Get events
      * @type {undefined|[]}
      */
-    const events = this.listeners[eventName];
+    const events = this.listeners[name];
 
     if (!events) {
-      scope.logger.warn('Undefined event', this.listeners, eventName);
+      scope.logger.warn('Undefined event', this.listeners, name);
     }
 
     this.fireEvent(events || [], args);
-    scope.logger.timer(eventName, false);
+    scope.logger.timer(name, false);
   }
 
   /**
    * Fire event
-   * @property Observer
+   * @memberOf Observer
    * @param {[]} events
    * @param {[]} [args]
    * @return {boolean}
@@ -272,13 +279,13 @@ module.exports = class Observer {
 
   /**
    * Execute event
-   * @property Observer
+   * @memberOf Observer
    * @param {*} [scope]     Run callback in default scope
    * @param {{
    *  state: *,             Private internal hash
    *  callback: Function,   Callback fn
    *  scope: *,             Override default scope
-   *  eventName: string,
+   *  name: string,
    *  eventUUID: string,
    *  params: {
    *    single: boolean,    Single run auto unbind
@@ -319,7 +326,7 @@ module.exports = class Observer {
 
     // Detach event automatically if have single option
     if (opts.params.single) {
-      this.unEvent(opts.eventName, opts.eventUUID);
+      this.unEvent(opts.name, opts.eventUUID);
     }
 
     /**
@@ -332,7 +339,7 @@ module.exports = class Observer {
     let executeCallback = () => {
       opts.state.lastExecutionAt = opts.state.lastCallAt;
       if (opts.callback) {
-        opts.callback.eventName = opts.eventName;
+        opts.callback.eventName = opts.name;
         return opts.callback.apply(scope, args);
       } else {
         scope.logger.warn('Undefined callback', opts);
@@ -385,9 +392,7 @@ module.exports = class Observer {
 
     // Run in defer if have delay
     if (opts.params.delay) {
-
       const executeCallbackB4Defer = executeCallback;
-
       executeCallback = () => this.defer(opts.params.delay, executeCallbackB4Defer, this);
     }
 

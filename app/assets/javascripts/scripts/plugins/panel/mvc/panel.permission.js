@@ -6,20 +6,24 @@
  * To change this template use File | Settings | File Templates.
  */
 
-defineP([
-  'modules/Permission'
-], function definePanelPermission(BasePermission) {
+/**
+ * @constant BasePermission
+ * @type {module.BasePermission}
+ */
+const BasePermission = require('../../../core/lib/modules/Permission.js');
+
+/**
+ * Define PanelPermission
+ * @extends BasePermission
+ * @class PanelPermission
+ */
+module.exports = class PanelPermission extends BasePermission {
 
   /**
-   * Define Permissions
-   * @class PanelPermission
    * @constructor
-   * @extends BasePermission
+   * @param {Panel} scope
    */
-  var PanelPermission = function PanelPermission() {
-
-  };
-
-  return PanelPermission.extend('PanelPermission', {},
-      BasePermission.prototype);
-});
+  constructor(scope) {
+    super('PanelPermission', scope, false);
+  }
+};

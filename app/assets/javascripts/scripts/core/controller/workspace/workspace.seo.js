@@ -13,14 +13,12 @@ module.exports = class WorkspaceSEO {
 
   /**
    * Update metadata
-   * @property WorkspaceSEO
+   * @memberOf WorkspaceSEO
    * @param {Page} page
    */
   updateMetaData(page) {
-
-    this.observer.batchPublish(this.eventManager.eventList.updateSiteTitle);
-
     page.observer.batchPublish(
+        this.eventManager.eventList.updateSiteTitle,
         page.eventManager.eventList.updateSiteDescription,
         page.eventManager.eventList.updateSiteKeywords
     );
@@ -28,31 +26,23 @@ module.exports = class WorkspaceSEO {
 
   /**
    * Update site title
-   * @property WorkspaceSEO
+   * @memberOf WorkspaceSEO
    */
   updateSiteTitle() {
-
-    /**
-     * Define scope
-     * @type {Workspace}
-     */
-    const scope = this;
 
     /**
      * Define $item
      * @type {WorkspaceElement}
      */
-    const $item = scope.view.get$item();
+    const $item = this.view.get$item();
 
-    let siteTitle = scope.model.getConfig('preferences')['siteTitle'] || $item.getSiteTitle();
+    let siteTitle = this.model.getConfig('preferences')['siteTitle'] || $item.getSiteTitle();
 
     /**
      * Define default title
      * @type {Array}
      */
-    const defaultTitle = siteTitle.split(
-        scope.model.getConfig('SEOSeparator')
-    );
+    const defaultTitle = siteTitle.split(this.model.getConfig('SEOSeparator'));
 
     siteTitle = defaultTitle[defaultTitle.length - 1];
 
@@ -60,7 +50,7 @@ module.exports = class WorkspaceSEO {
      * Get current page
      * @type {Page|string}
      */
-    const page = scope.model.getCurrentItem();
+    const page = this.model.getCurrentItem();
     let title = siteTitle;
 
     /**
@@ -73,9 +63,8 @@ module.exports = class WorkspaceSEO {
     function _generateTitle(itemTitle, parentTitle) {
 
       return itemTitle && (itemTitle + '').length > 0 ?
-          [itemTitle, parentTitle].join(
-              scope.model.getConfig('SEOSeparator')
-          ) : parentTitle;
+          [itemTitle, parentTitle].join(this.model.getConfig('SEOSeparator')) :
+          parentTitle;
     }
 
     if (page.model) {
@@ -90,7 +79,7 @@ module.exports = class WorkspaceSEO {
        * Define SEO title
        * @type {string}
        */
-      title = _generateTitle(pageTitle, siteTitle);
+      title = _generateTitle.call(this, pageTitle, siteTitle);
 
       /**
        * Get maximized widget
@@ -104,13 +93,13 @@ module.exports = class WorkspaceSEO {
          * Get widget title
          * @type {string}
          */
-        const widgetTitle = widget.model.getItemByTitle();
+        const widgetTitle = widget.model.getItemTitle();
 
         /**
          * Define SEO title
          * @type {string}
          */
-        title = _generateTitle(widgetTitle, title);
+        title = _generateTitle.call(this, widgetTitle, title);
       }
     }
 
@@ -119,7 +108,7 @@ module.exports = class WorkspaceSEO {
 
   /**
    * Update site author
-   * @property WorkspaceSEO
+   * @memberOf WorkspaceSEO
    */
   updateSiteAuthor() {
 
@@ -129,9 +118,7 @@ module.exports = class WorkspaceSEO {
      */
     const $item = this.view.get$item();
 
-    const siteAuthor = this.model.getConfig('preferences')['siteAuthor'] ||
-        $item.getSiteAuthor();
-
+    const siteAuthor = this.model.getConfig('preferences')['siteAuthor'] || $item.getSiteAuthor();
     $item.setSiteAuthor(siteAuthor);
   }
 };

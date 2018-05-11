@@ -32,7 +32,7 @@ module.exports = class WorkspaceContentElement extends BaseElement {
 
   /**
    * Define width after add page
-   * @property WorkspaceContentElement
+   * @memberOf WorkspaceContentElement
    * @param {number} to
    */
   defineWidth(to) {
@@ -44,7 +44,7 @@ module.exports = class WorkspaceContentElement extends BaseElement {
 
   /**
    * Define pages width after add page
-   * @property WorkspaceContentElement
+   * @memberOf WorkspaceContentElement
    * @param {*} items
    * @param {number} counter
    */
@@ -67,14 +67,14 @@ module.exports = class WorkspaceContentElement extends BaseElement {
 
   /**
    * Swipe container to current page
-   * @property WorkspaceContentElement
+   * @memberOf WorkspaceContentElement
    * @param {Page} page
    */
   swipeTo(page) {
 
     /**
      * Define view
-     * @type {Workspace}
+     * @type {Workspace|AntHill}
      */
     const scope = this.view.scope;
     const animate = page.model.getConfig('preferences').animateSwipe,
@@ -98,11 +98,10 @@ module.exports = class WorkspaceContentElement extends BaseElement {
      * Get pages order
      * @type {number}
      */
-    const order = page.model.getConfig('order') - 1,
-        css = {left: (-order * 100) + '%'};
+    const order = page.model.getConfig('order') - 1;
+    const css = {left: (-order * 100) + '%'};
 
-    if (_.isUndefined(animate) ?
-        scope.model.getConfig('page').animateSwipe : !!animate) {
+    if (!animate ? scope.model.getConfig('page').animateSwipe : !!animate) {
 
       $pages.$.stop().animate(css, {
         duration: duration,

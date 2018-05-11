@@ -43,7 +43,7 @@ module.exports = class Base {
 
   /**
    * Get static method
-   * @property Base
+   * @memberOf Base
    * @param {string|array} component
    * @return {boolean}
    */
@@ -62,7 +62,7 @@ module.exports = class Base {
 
   /**
    * @method setBoolean
-   * @property Base
+   * @memberOf Base
    * @param {boolean} instanceValue
    * @param {boolean} defaultValue
    * @return {boolean}
@@ -73,7 +73,7 @@ module.exports = class Base {
 
   /**
    * Get object type
-   * @property Base
+   * @memberOf Base
    * @param obj
    * @returns {string}
    */
@@ -83,7 +83,7 @@ module.exports = class Base {
 
   /**
    * Check if uuid has uuid format
-   * @property Base
+   * @memberOf Base
    * @param {string} uuid
    * @returns {Array|{index: number, input: string}|*}
    */
@@ -93,7 +93,7 @@ module.exports = class Base {
 
   /**
    * Check if url
-   * @property Base
+   * @memberOf Base
    * @param {string} [url]
    * @returns {Array|{index: number, input: string}|*}
    */
@@ -144,7 +144,7 @@ module.exports = class Base {
 
   /**
    * Define isBase64 matcher
-   * @property Base
+   * @memberOf Base
    * @param {string} s
    * @returns {boolean}
    */
@@ -163,7 +163,7 @@ module.exports = class Base {
    * data URI - MDN https://developer.mozilla.org/en-US/docs/data_URIs
    * The "data" URL scheme: http://tools.ietf.org/html/rfc2397
    * Valid URL Characters: http://tools.ietf.org/html/rfc2396#section2
-   * @property Base
+   * @memberOf Base
    * @param {string} [s]
    * @returns {boolean}
    */

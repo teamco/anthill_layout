@@ -4,32 +4,26 @@
  * Date: 5/9/13
  * Time: 11:48 AM
  */
-defineP([
-  'plugins/plugin.element'
-], function definePanelContentContainerElement(PluginElement) {
+/**
+ * @constant PluginElement
+ * @type {module.PluginElement}
+ */
+const PluginElement = require('../../plugin.element.js');
+
+/**
+ * Define PanelContentContainer Element
+ * @class PanelContentContainerElement
+ * @extends PluginElement
+ */
+module.exports = class PanelContentContainerElement extends PluginElement {
 
   /**
-   * Define Panel Content Container Element
-   * @param view
+   * @param {PanelView} view
    * @param opts
-   * @returns {PanelContentContainerElement}
    * @constructor
-   * @class PanelContentContainerElement
-   * @extends PluginElement
    */
-  var PanelContentContainerElement = function PanelContentContainerElement(view,
-      opts) {
-
-    this._config(view, opts, $('<li />')).build({
-      $container: opts.$container,
-      destroy: true
-    });
-
-    return this;
+  constructor(view, opts) {
+    super('PanelContentContainerElement', view, false);
+    this._config(view, opts, $('<li />')).build(opts);
   };
-
-  return PanelContentContainerElement.extend(
-      'PanelContentContainerElement', {},
-      PluginElement.prototype
-  );
-});
+};

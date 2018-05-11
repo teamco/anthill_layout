@@ -30,32 +30,64 @@ module.exports = class BaseEvent extends AntHill {
 
     /**
      * Define event to unsubscribe
-     * @property BaseEvent
+     * @memberOf BaseEvent
      * @type {{}}
      */
     this.unSubscribe = {};
   }
 
   /**
+   * Subscribe to external published events
+   * @memberOf BaseEvent
+   * @param data
+   * @return {Array}
+   */
+  static publishOn(data) {
+    let eventUUIDs = [];
+
+    for (let i = 0, l = data.events.length; i < l; i++) {
+
+      /**
+       * Define event opts
+       * @memberOf publishOn
+       */
+      const event = data.events[i];
+
+      eventUUIDs.push(
+          data.scope.eventManager.subscribe({
+            event: {
+              name: event.name,
+              params: event.params,
+              scope: event.scope
+            },
+            callback: data.callback
+          }, false)
+      );
+    }
+
+    return eventUUIDs;
+  }
+
+  /**
    * Define event as unSubscribe ready
-   * @property BaseEvent
-   * @param {string} eventName
+   * @memberOf BaseEvent
+   * @param {string} name
    * @param {string} eventUUID
    */
-  defineEventUnSubscribe(eventName, eventUUID) {
+  defineEventUnSubscribe(name, eventUUID) {
 
     // Init unSubscribe
     this.unSubscribe = this.unSubscribe || {};
-    this.unSubscribe[eventName] = eventUUID;
+    this.unSubscribe[name] = eventUUID;
   }
 
   /**
    * Detach event as unsubscribe ready
-   * @property BaseEvent
+   * @memberOf BaseEvent
    * @param scope
-   * @param {string} eventName
+   * @param {string} name
    */
-  detachEventUnSubscribe(scope, eventName) {
+  detachEventUnSubscribe(scope, name) {
 
     if (!this.unSubscribe) {
       return false;
@@ -64,14 +96,14 @@ module.exports = class BaseEvent extends AntHill {
     // Remove before subscribe
     this.removeListener({
       scope: scope,
-      eventName: eventName,
-      eventUUID: this.unSubscribe[eventName]
+      name: name,
+      eventUUID: this.unSubscribe[name]
     });
   }
 
   /**
    * Check if event was available in event list
-   * @property BaseEvent
+   * @memberOf BaseEvent
    * @param {string} event
    * @returns {boolean}
    */
@@ -81,7 +113,7 @@ module.exports = class BaseEvent extends AntHill {
 
   /**
    * Find event in a whole project
-   * @property BaseEvent
+   * @memberOf BaseEvent
    * @param {*} root
    * @param {string} uuid
    * @return {*}
@@ -134,7 +166,7 @@ module.exports = class BaseEvent extends AntHill {
 
   /**
    * Get event list
-   * @property BaseEvent
+   * @memberOf BaseEvent
    * @returns {{}}
    */
   getEvents() {
@@ -143,8 +175,8 @@ module.exports = class BaseEvent extends AntHill {
 
   /**
    * Add event listener
-   * @property BaseEvent
-   * @param {{eventName, eventUUID}} opts
+   * @memberOf BaseEvent
+   * @param {{name, eventUUID}} opts
    * @returns {*}
    */
   addListener(opts) {
@@ -159,16 +191,16 @@ module.exports = class BaseEvent extends AntHill {
       return false;
     }
 
-    observer.addEvent(opts.eventName);
-    events[observer.onEvent(opts)] = opts.eventName;
+    observer.addEvent(opts.name);
+    events[observer.onEvent(opts)] = opts.name;
 
     return opts.eventUUID;
   }
 
   /**
    * Remove event listener
-   * @property BaseEvent
-   * @param {{eventName, eventUUID, scope}} opts
+   * @memberOf BaseEvent
+   * @param {{name, eventUUID, scope}} opts
    * @returns {*}
    */
   removeListener(opts) {
@@ -181,14 +213,14 @@ module.exports = class BaseEvent extends AntHill {
       return false;
     }
 
-    observer.unRegister(opts.eventName, opts.eventUUID);
+    observer.unRegister(opts.name, opts.eventUUID);
     delete events[opts.eventUUID];
-    delete scope.eventManager.unSubscribe[opts.eventName];
+    delete scope.eventManager.unSubscribe[opts.name];
   }
 
   /**
    * isSubscribed event
-   * @property BaseEvent
+   * @memberOf BaseEvent
    */
   isSubscribed() {
     // TODO
@@ -196,8 +228,8 @@ module.exports = class BaseEvent extends AntHill {
 
   /**
    * Subscribe event
-   * @property BaseEvent
-   * @param {{event, callback, [params], [eventName], [scope]}} opts
+   * @memberOf BaseEvent
+   * @param {{event, callback, [params], [name], [scope]}} opts
    * @param {boolean} internal
    * @returns {boolean|string}
    */
@@ -206,17 +238,17 @@ module.exports = class BaseEvent extends AntHill {
     internal = typeof internal === 'undefined' ? false : internal;
 
     if (this.utils._.isString(opts.event)) {
-      opts.eventName = opts.event;
+      opts.name = opts.event;
     } else {
-      opts.eventName = opts.event.eventName;
+      opts.name = opts.event.name;
       opts.params = opts.event.params;
       opts.callback = opts.event.callback || opts.callback;
       opts.scope = opts.event.scope;
     }
 
-    const eventKey = (opts.eventName + '').toCamelCase();
+    const eventKey = (opts.name + '').toCamelCase();
 
-    if (!opts.eventName) {
+    if (!opts.name) {
       this.scope.logger.warn('Undefined event', opts);
       return false;
     }
@@ -230,10 +262,10 @@ module.exports = class BaseEvent extends AntHill {
       opts.params = this.scope.observer.listeners[this.eventList[eventKey]][0].params;
     }
 
-    this.eventList[eventKey] = opts.eventName;
+    this.eventList[eventKey] = opts.name;
 
     return this.addListener({
-      eventName: opts.eventName,
+      name: opts.name,
       callback: opts.callback,
       scope: opts.scope,
       params: opts.params
@@ -242,7 +274,7 @@ module.exports = class BaseEvent extends AntHill {
 
   /**
    * Bind element events
-   * @property BaseEvent
+   * @memberOf BaseEvent
    * @param {string|Array} events
    * @param {string} on
    * @returns {boolean}
@@ -269,40 +301,8 @@ module.exports = class BaseEvent extends AntHill {
   }
 
   /**
-   * Subscribe to external published events
-   * @property BaseEvent
-   * @param data
-   * @return {Array}
-   */
-  static publishOn(data) {
-    let eventUUIDs = [];
-
-    for (let i = 0, l = data.events.length; i < l; i++) {
-
-      /**
-       * Define event opts
-       * @property publishOn
-       */
-      const event = data.events[i];
-
-      eventUUIDs.push(
-          data.scope.eventManager.subscribe({
-            event: {
-              eventName: event.eventName,
-              params: event.params,
-              scope: event.scope
-            },
-            callback: data.callback
-          }, false)
-      );
-    }
-
-    return eventUUIDs;
-  }
-
-  /**
    * Re-Emmit event
-   * @property BaseEvent
+   * @memberOf BaseEvent
    * @param {string} name
    */
   reEmmit(name) {
@@ -313,7 +313,7 @@ module.exports = class BaseEvent extends AntHill {
 
   /**
    * Find events bound on an element
-   * @property BaseEvent
+   * @memberOf BaseEvent
    * @param {BaseElement} $element
    * @returns {*}
    */

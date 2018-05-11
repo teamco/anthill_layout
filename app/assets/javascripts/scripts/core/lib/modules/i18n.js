@@ -64,6 +64,7 @@ module.exports = class i18n {
   /**
    * @method getData
    * @param translation
+   * @memberOf i18n
    */
   updateData(translation) {
     for (let index in translation) {
@@ -76,6 +77,7 @@ module.exports = class i18n {
   /**
    * @method getData
    * @param key
+   * @memberOf i18n
    * @return {string}
    */
   getData(key) {
@@ -90,6 +92,7 @@ module.exports = class i18n {
   /**
    * Get current language
    * @property i18n
+   * @memberOf i18n
    * @returns {string}
    */
   getCurrentLanguage() {
@@ -98,7 +101,7 @@ module.exports = class i18n {
 
   /**
    * Translate function
-   * @property i18n
+   * @@memberOf i18n
    * @param {string} key
    * @param {array} [params]
    * @returns {string}
@@ -116,7 +119,6 @@ module.exports = class i18n {
         result = result.replace(new RegExp('\\{' + i + '\\}'), params[i]);
       }
     }
-
     return result;
   }
 };

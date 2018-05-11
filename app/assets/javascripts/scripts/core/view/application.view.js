@@ -25,12 +25,12 @@ module.exports = class ApplicationView extends BaseView {
    * @param {Application} scope
    */
   constructor(name, scope) {
-    super('ApplicationView', scope, false);
+    super(name || 'ApplicationView', scope, false);
   }
 
   /**
    * Render Application
-   * @property ApplicationView
+   * @memberOf ApplicationView
    */
   renderApplication() {
 
@@ -57,7 +57,7 @@ module.exports = class ApplicationView extends BaseView {
 
   /**
    * Render Workspaces container
-   * @property ApplicationView
+   * @memberOf ApplicationView
    */
   workspaces() {
 
@@ -79,7 +79,7 @@ module.exports = class ApplicationView extends BaseView {
 
   /**
    * Render export lin
-   * @property ApplicationView
+   * @memberOf ApplicationView
    */
   renderExportLink(data) {
 
@@ -102,7 +102,7 @@ module.exports = class ApplicationView extends BaseView {
 
   /**
    * Handle notification renderer
-   * @property ApplicationView
+   * @memberOf ApplicationView
    * @param xhr
    * @param {string} status
    */
@@ -143,7 +143,7 @@ module.exports = class ApplicationView extends BaseView {
 
   /**
    * Start rendering
-   * @property ApplicationView
+   * @memberOf ApplicationView
    * @param {boolean} [silent]
    */
   render(silent) {

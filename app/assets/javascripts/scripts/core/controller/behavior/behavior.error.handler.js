@@ -13,7 +13,7 @@ module.exports = class BehaviorErrorHandler {
 
   /**
    * Define Client ErrorHandler
-   * @property BehaviorErrorHandler
+   * @memberOf BehaviorErrorHandler
    */
   defineClientErrorHandler() {
 
@@ -48,7 +48,7 @@ module.exports = class BehaviorErrorHandler {
 
   /**
    * Define error handler
-   * @property BehaviorErrorHandler
+   * @memberOf BehaviorErrorHandler
    */
   _handleXhrLog(xhr, status, description) {
 

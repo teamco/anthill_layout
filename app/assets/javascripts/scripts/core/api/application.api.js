@@ -29,7 +29,7 @@ module.exports = class ApplicationAPI extends BaseAPI {
 
   /**
    * Create Workspace API
-   * @property ApplicationApi
+   * @memberOf ApplicationApi
    * @param {*} args
    * @param {Boolean} [render]
    * @param {Boolean} [silent]

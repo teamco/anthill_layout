@@ -30,7 +30,7 @@ module.exports = class ModalElement extends BaseElement {
 
     /**
      * Set button elements
-     * @property ModalElement
+     * @memberOf ModalElement
      */
     this.$buttons = {};
 
@@ -45,7 +45,7 @@ module.exports = class ModalElement extends BaseElement {
 
   /**
    * Setup modal dialog
-   * @property ModalElement
+   * @memberOf ModalElement
    * @param {BaseView} view
    * @param {{
    *  [style]: string,
@@ -74,62 +74,62 @@ module.exports = class ModalElement extends BaseElement {
 
     /**
      * Set modal title
-     * @property ModalElement
+     * @memberOf ModalElement
      * @type {string|*}
      */
     this.title = opts.title;
 
     /**
      * Set modal type ['danger', 'warning', 'success', 'info']
-     * @property ModalElement
+     * @memberOf ModalElement
      * @type {string|*}
      */
     this.type = opts.type;
 
     /**
      * Set modal html
-     * @property ModalElement
+     * @memberOf ModalElement
      * @type {string|*}
      */
     this.html = opts.html;
 
     /**
      * Set modal text
-     * @property ModalElement
+     * @memberOf ModalElement
      * @type {string|*}
      */
     this.text = opts.text;
 
     /**
      * Set modal item dependency (called from)
-     * @property ModalElement
+     * @memberOf ModalElement
      */
     this.items = opts.items;
 
     /**
      * Set modal style
-     * @property ModalElement
+     * @memberOf ModalElement
      * @type {string}
      */
     this.style = opts.style || '';
 
     /**
      * Set modal css
-     * @property ModalElement
+     * @memberOf ModalElement
      * @type {$modal.css}
      */
     this.css = opts.css || {};
 
     /**
      * Set hover opacity
-     * @property ModalElement
+     * @memberOf ModalElement
      * @type {*}
      */
     this.hover = view.utils.setBoolean(opts.hover, true);
 
     /**
      * Set modal parent container
-     * @property ModalElement
+     * @memberOf ModalElement
      * @type {*|jQuery|HTMLElement}
      */
     this.$container = opts.$container || $defaultContainer;
@@ -139,56 +139,56 @@ module.exports = class ModalElement extends BaseElement {
      *  ['tl' 'tc' 'tr']
      *  ['cl' 'cc' 'cr']
      *  ['bl' 'bc' 'br']
-     * @property ModalElement
+     * @memberOf ModalElement
      * @type {string}
      */
     this.position = opts.position || 'cc';
 
     /**
      * Adopt position on resize
-     * @property ModalElement
+     * @memberOf ModalElement
      * @type {boolean}
      */
     this.adoptOnResize = view.utils.setBoolean(opts.adoptOnResize, true);
 
     /**
      * Set modal is draggable condition
-     * @property ModalElement
+     * @memberOf ModalElement
      * @type {*}
      */
     this.draggable = view.utils.setBoolean(opts.draggable, true);
 
     /**
      * Set close X button
-     * @property ModalElement
+     * @memberOf ModalElement
      * @type {*}
      */
     this.closeX = view.utils.setBoolean(opts.closeX, true);
 
     /**
      * Set cover config
-     * @property ModalElement
+     * @memberOf ModalElement
      * @type {*}
      */
     this.cover = view.utils.setBoolean(opts.cover, true);
 
     /**
      * Set close modal on click cover
-     * @property ModalElement
+     * @memberOf ModalElement
      * @type {*}
      */
     this.autoclose = view.utils.setBoolean(opts.autoclose, false);
 
     /**
      * Set cover opacity
-     * @property ModalElement
+     * @memberOf ModalElement
      * @type {Number|*}
      */
     this.coverOpacity = opts.coverOpacity;
 
     /**
      * Set buttons config
-     * @property ModalElement
+     * @memberOf ModalElement
      * @type {*|{}}
      */
     this.buttons = opts.buttons || {};
@@ -196,7 +196,7 @@ module.exports = class ModalElement extends BaseElement {
 
   /**
    * Get template
-   * @property ModalElement
+   * @memberOf ModalElement
    * @returns {*|jQuery|HTMLElement}
    */
   getTemplate() {
@@ -214,7 +214,7 @@ module.exports = class ModalElement extends BaseElement {
 
   /**
    * Render inner content
-   * @property ModalElement
+   * @memberOf ModalElement
    */
   initBootstrapModal() {
 
@@ -271,7 +271,7 @@ module.exports = class ModalElement extends BaseElement {
 
   /**
    * Set focus
-   * @property ModalElement
+   * @memberOf ModalElement
    */
   setFocus() {
     if (this.html) {
@@ -281,7 +281,7 @@ module.exports = class ModalElement extends BaseElement {
 
   /**
    * Adopt position on resize
-   * @property ModalElement
+   * @memberOf ModalElement
    */
   adoptPositionOnResize() {
 
@@ -294,9 +294,7 @@ module.exports = class ModalElement extends BaseElement {
       const appEventManager = this.view.controller.root().eventManager;
 
       appEventManager.subscribe({
-        event: {
-          eventName: appEventManager.eventList.resizeWindow
-        },
+        event: {name: appEventManager.eventList.resizeWindow},
         callback() {
           this.setPosition({
             $container: this.$container,
@@ -310,7 +308,7 @@ module.exports = class ModalElement extends BaseElement {
 
   /**
    * Set close X button
-   * @property ModalElement
+   * @memberOf ModalElement
    * @returns {boolean|undefined}
    * @private
    */
@@ -332,7 +330,7 @@ module.exports = class ModalElement extends BaseElement {
 
   /**
    * Set buttons
-   * @property ModalElement
+   * @memberOf ModalElement
    */
   setButtons() {
     const $container = this._get$Buttons();
@@ -343,7 +341,7 @@ module.exports = class ModalElement extends BaseElement {
 
   /**
    * Unset buttons
-   * @property ModalElement
+   * @memberOf ModalElement
    */
   unsetButtons() {
     $.each(this.$buttons, (i, $button) => $button.destroy());
@@ -351,7 +349,7 @@ module.exports = class ModalElement extends BaseElement {
 
   /**
    * Set header
-   * @property ModalElement
+   * @memberOf ModalElement
    */
   setHeader() {
     const $header = this._get$Header();
@@ -364,7 +362,7 @@ module.exports = class ModalElement extends BaseElement {
 
   /**
    * Get HTML container
-   * @property ModalElement
+   * @memberOf ModalElement
    * @returns {*}
    */
   get$Body() {
@@ -373,7 +371,7 @@ module.exports = class ModalElement extends BaseElement {
 
   /**
    * Get notification container
-   * @property ModalElement
+   * @memberOf ModalElement
    * @returns {*}
    * @public
    */
@@ -383,7 +381,7 @@ module.exports = class ModalElement extends BaseElement {
 
   /**
    * Get buttons container
-   * @property ModalElement
+   * @memberOf ModalElement
    * @returns {*}
    * @private
    */
@@ -393,7 +391,7 @@ module.exports = class ModalElement extends BaseElement {
 
   /**
    * Get header container
-   * @property ModalElement
+   * @memberOf ModalElement
    * @returns {*}
    * @private
    */
@@ -403,7 +401,7 @@ module.exports = class ModalElement extends BaseElement {
 
   /**
    * Self destroy functionality
-   * @property ModalElement
+   * @memberOf ModalElement
    * @param {boolean} [backdrop]
    */
   selfDestroy(backdrop) {
@@ -418,7 +416,7 @@ module.exports = class ModalElement extends BaseElement {
 
   /**
    * Remove Bootstrap backdrop
-   * @property ModalElement
+   * @memberOf ModalElement
    */
   removeBackdrop() {
     $('.modal-backdrop').remove();
@@ -426,7 +424,7 @@ module.exports = class ModalElement extends BaseElement {
 
   /**
    * Define modal type
-   * @property ModalElement
+   * @memberOf ModalElement
    * @param {string} type
    */
   setModalType(type) {
@@ -435,7 +433,7 @@ module.exports = class ModalElement extends BaseElement {
 
   /**
    * Collect input fields (input/textarea)
-   * @property ModalElement
+   * @memberOf ModalElement
    * @param {{method: string, value: string}} [filter]
    * @returns {*|jQuery|HTMLElement}
    */
@@ -478,7 +476,7 @@ module.exports = class ModalElement extends BaseElement {
 
   /**
    * Define handle notifications
-   * @property ModalElement
+   * @memberOf ModalElement
    * @param {string} msg
    * @param {string} type
    */

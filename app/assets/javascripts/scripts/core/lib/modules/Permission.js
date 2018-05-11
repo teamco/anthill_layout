@@ -38,7 +38,7 @@ module.exports = class BasePermission extends AntHill {
   /**
    * Init capabilities
    * @method init
-   * @property BasePermission
+   * @memberOf BasePermission
    */
   init() {
     const permissions = this.scope.config.permission || {};
@@ -48,7 +48,7 @@ module.exports = class BasePermission extends AntHill {
   /**
    * Check permission rules
    * @method check
-   * @property BasePermission
+   * @memberOf BasePermission
    * @param {{[callback]: function, [fallback]: function, args: *|Array, capability: String}} opts
    */
   check(opts) {
@@ -73,7 +73,7 @@ module.exports = class BasePermission extends AntHill {
 
   /**
    * Set capabilities
-   * @property BasePermission
+   * @memberOf BasePermission
    * @param {string} key
    * @param {*} value
    * @returns {*}
@@ -93,7 +93,7 @@ module.exports = class BasePermission extends AntHill {
 
   /**
    * Get capabilities
-   * @property BasePermission
+   * @memberOf BasePermission
    * @param {string} key
    * @returns {*}
    */
@@ -103,7 +103,7 @@ module.exports = class BasePermission extends AntHill {
 
   /**
    * Check if function call is defined as authorized (via permissions)
-   * @property BasePermission
+   * @memberOf BasePermission
    * @param {Function} fn
    * @returns {boolean}
    */
@@ -117,7 +117,7 @@ module.exports = class BasePermission extends AntHill {
 
   /**
    * Check if function called via tunnel
-   * @property BasePermission
+   * @memberOf BasePermission
    * @param fn
    * @returns {boolean}
    */

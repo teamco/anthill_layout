@@ -30,14 +30,14 @@ module.exports = class BaseElement extends Renderer {
 
     /**
      * Define plugin path
-     * @property BaseElement
+     * @memberOf BaseElement
      */
     this.pluginPath = '/assets/scripts/plugins';
   }
 
   /**
    * Element config before build
-   * @property BaseElement
+   * @memberOf BaseElement
    * @param {BaseView} view
    * @param {{[style]: string, [uuid], [id]: boolean, [css], [events], [opacity], [id]: boolean,
    *  [disabled]: boolean}} opts
@@ -51,56 +51,56 @@ module.exports = class BaseElement extends Renderer {
 
     /**
      * Define view
-     * @property BaseElement
+     * @memberOf BaseElement
      * @type {BaseView}
      */
     this.view = view;
 
     /**
      * Define style
-     * @property BaseElement
+     * @memberOf BaseElement
      * @type {string}
      */
     this.style = opts.style || view.createStyle();
 
     /**
      * Define id
-     * @property BaseElement
+     * @memberOf BaseElement
      * @type {string}
      */
     this.id = view.renderUUID(opts.uuid);
 
     /**
      * Define disabled
-     * @property BaseElement
+     * @memberOf BaseElement
      * @type {boolean}
      */
     this.disabled = this.view.utils.setBoolean(opts.disabled, false);
 
     /**
      * Define events
-     * @property BaseElement
+     * @memberOf BaseElement
      * @type {*}
      */
     this.events = opts.events;
 
     /**
      * Define opacity
-     * @property BaseElement
+     * @memberOf BaseElement
      * @type {*|number}
      */
     this.opacity = opts.opacity || 1.0;
 
     /**
      * Define CSS
-     * @property BaseElement
+     * @memberOf BaseElement
      * @type {*}
      */
     this.css = opts.css || {};
 
     /**
      * Define jQuery element
-     * @property BaseElement
+     * @memberOf BaseElement
      */
     this.$ = $html.addClass(this.style).css(this.css);
 
@@ -119,7 +119,7 @@ module.exports = class BaseElement extends Renderer {
 
   /**
    * Update uuid after loading
-   * @property BaseElement
+   * @memberOf BaseElement
    */
   updateUUID() {
     this.$.attr({id: this.view.createUUID()});
@@ -136,7 +136,7 @@ module.exports = class BaseElement extends Renderer {
 
   /**
    * Bind element events
-   * @property BaseElement
+   * @memberOf BaseElement
    */
   bindEvents() {
 
@@ -153,7 +153,7 @@ module.exports = class BaseElement extends Renderer {
 
   /**
    * Get element container
-   * @property BaseElement
+   * @memberOf BaseElement
    * @param {string} title
    * @returns {*}
    */
@@ -163,7 +163,7 @@ module.exports = class BaseElement extends Renderer {
 
   /**
    * Get text metrics
-   * @property BaseElement
+   * @memberOf BaseElement
    * @param $element
    * @return {Object}
    */
@@ -212,7 +212,7 @@ module.exports = class BaseElement extends Renderer {
 
   /**
    * Centralize element into container
-   * @property BaseElement
+   * @memberOf BaseElement
    * @param {{$container, $item, css, position: String}} opts
    * Position options:
    *  ['tl' 'tc' 'tr']
@@ -292,7 +292,7 @@ module.exports = class BaseElement extends Renderer {
 
   /**
    * Destroy element before create
-   * @property BaseElement
+   * @memberOf BaseElement
    * @param {Boolean} destroy
    */
   destroyB4Create(destroy) {
@@ -309,7 +309,7 @@ module.exports = class BaseElement extends Renderer {
 
   /**
    * Build element
-   * @property BaseElement
+   * @memberOf BaseElement
    * @param {{
    *    $container,
    *    [append]: boolean,
@@ -332,7 +332,7 @@ module.exports = class BaseElement extends Renderer {
 
       /**
        * Define $container
-       * @property BaseElement
+       * @memberOf BaseElement
        * @type {*|jQuery|HTMLElement}
        */
       this.$container = $(opts.$container);
@@ -357,7 +357,7 @@ module.exports = class BaseElement extends Renderer {
 
   /**
    * Dynamic CSS
-   * @property BaseElement
+   * @memberOf BaseElement
    * @param {string} type
    * @param {{
      *    [type]: string,
@@ -468,7 +468,7 @@ module.exports = class BaseElement extends Renderer {
 
   /**
    * Create link css
-   * @property BaseElement
+   * @memberOf BaseElement
    * @param opts
    * @returns {HTMLElement|boolean} link
    */
@@ -513,7 +513,7 @@ module.exports = class BaseElement extends Renderer {
 
   /**
    * Destroy element
-   * @property BaseElement
+   * @memberOf BaseElement
    * @returns {*}
    */
   destroy() {
@@ -565,7 +565,7 @@ module.exports = class BaseElement extends Renderer {
 
   /**
    * Hide element
-   * @property BaseElement
+   * @memberOf BaseElement
    * @returns {*}
    */
   hide() {
@@ -575,7 +575,7 @@ module.exports = class BaseElement extends Renderer {
 
   /**
    * Clear element internal HTML
-   * @property BaseElement
+   * @memberOf BaseElement
    * @returns {*|Boolean}
    */
   empty() {
@@ -585,7 +585,7 @@ module.exports = class BaseElement extends Renderer {
 
   /**
    * Fade in effect
-   * @property BaseElement
+   * @memberOf BaseElement
    * @returns {*}
    */
   fadeIn() {
@@ -594,7 +594,7 @@ module.exports = class BaseElement extends Renderer {
 
   /**
    * Fade out effect
-   * @property BaseElement
+   * @memberOf BaseElement
    * @returns {*}
    */
   fadeOut() {
@@ -603,7 +603,7 @@ module.exports = class BaseElement extends Renderer {
 
   /**
    * Show element
-   * @property BaseElement
+   * @memberOf BaseElement
    * @returns {*}
    */
   show() {
@@ -612,7 +612,7 @@ module.exports = class BaseElement extends Renderer {
 
   /**
    * Remove element inline style
-   * @property BaseElement
+   * @memberOf BaseElement
    */
   removeStyle() {
     this.$.removeAttr('style');
@@ -620,7 +620,7 @@ module.exports = class BaseElement extends Renderer {
 
   /**
    * Get root container
-   * @property BaseElement
+   * @memberOf BaseElement
    * @returns {*|HTMLElement}
    */
   getRootContainer() {
@@ -629,7 +629,7 @@ module.exports = class BaseElement extends Renderer {
 
   /**
    * Set element opacity
-   * @property BaseElement
+   * @memberOf BaseElement
    * @param {Number} opacity
    */
   setOpacity(opacity) {
@@ -640,7 +640,7 @@ module.exports = class BaseElement extends Renderer {
 
   /**
    * Get position
-   * @property BaseElement
+   * @memberOf BaseElement
    * @returns {{top, left}}
    */
   getPosition() {
@@ -649,7 +649,7 @@ module.exports = class BaseElement extends Renderer {
 
   /**
    * Get offset
-   * @property BaseElement
+   * @memberOf BaseElement
    * @returns {{top, left}}
    */
   getOffset() {
@@ -658,7 +658,7 @@ module.exports = class BaseElement extends Renderer {
 
   /**
    * Get element width
-   * @property BaseElement
+   * @memberOf BaseElement
    * @returns {*}
    */
   getWidth() {
@@ -667,7 +667,7 @@ module.exports = class BaseElement extends Renderer {
 
   /**
    * Set element width
-   * @property BaseElement
+   * @memberOf BaseElement
    * @param {String|Number} width
    * @returns {Number}
    */
@@ -681,7 +681,7 @@ module.exports = class BaseElement extends Renderer {
 
   /**
    * Get element height
-   * @property BaseElement
+   * @memberOf BaseElement
    * @returns {*}
    */
   getHeight() {
@@ -690,7 +690,7 @@ module.exports = class BaseElement extends Renderer {
 
   /**
    * Set element height
-   * @property BaseElement
+   * @memberOf BaseElement
    * @param {String|Number} height
    * @returns {Number}
    */
@@ -704,7 +704,7 @@ module.exports = class BaseElement extends Renderer {
 
   /**
    * Get CSS attribute
-   * @property BaseElement
+   * @memberOf BaseElement
    * @param {string} value
    * @returns {Number}
    */
@@ -714,7 +714,7 @@ module.exports = class BaseElement extends Renderer {
 
   /**
    * Get z-index
-   * @property BaseElement
+   * @memberOf BaseElement
    * @returns {Number}
    */
   getZIndex() {
@@ -723,7 +723,7 @@ module.exports = class BaseElement extends Renderer {
 
   /**
    * Get padding right
-   * @property BaseElement
+   * @memberOf BaseElement
    * @returns {Number}
    */
   getPaddingRight() {
@@ -732,7 +732,7 @@ module.exports = class BaseElement extends Renderer {
 
   /**
    * Get padding left
-   * @property BaseElement
+   * @memberOf BaseElement
    * @returns {Number}
    */
   getPaddingLeft() {
@@ -741,7 +741,7 @@ module.exports = class BaseElement extends Renderer {
 
   /**
    * Get pudding top
-   * @property BaseElement
+   * @memberOf BaseElement
    * @returns {Number}
    */
   getPaddingTop() {
@@ -750,7 +750,7 @@ module.exports = class BaseElement extends Renderer {
 
   /**
    * Get padding bottom
-   * @property BaseElement
+   * @memberOf BaseElement
    * @returns {Number}
    */
   getPaddingBottom() {
@@ -759,7 +759,7 @@ module.exports = class BaseElement extends Renderer {
 
   /**
    * Get margin right
-   * @property BaseElement
+   * @memberOf BaseElement
    * @returns {Number}
    */
   getMarginRight() {
@@ -768,7 +768,7 @@ module.exports = class BaseElement extends Renderer {
 
   /**
    * Get margin left
-   * @property BaseElement
+   * @memberOf BaseElement
    * @returns {Number}
    */
   getMarginLeft() {
@@ -777,7 +777,7 @@ module.exports = class BaseElement extends Renderer {
 
   /**
    * Get margin top
-   * @property BaseElement
+   * @memberOf BaseElement
    * @returns {Number}
    */
   getMarginTop() {
@@ -786,7 +786,7 @@ module.exports = class BaseElement extends Renderer {
 
   /**
    * Get margin bottom
-   * @property BaseElement
+   * @memberOf BaseElement
    * @returns {Number}
    */
   getMarginBottom() {
@@ -795,7 +795,7 @@ module.exports = class BaseElement extends Renderer {
 
   /**
    * Get left delta
-   * @property BaseElement
+   * @memberOf BaseElement
    * @returns {Number}
    */
   getLeftDelta() {
@@ -804,7 +804,7 @@ module.exports = class BaseElement extends Renderer {
 
   /**
    * Get top delta
-   * @property BaseElement
+   * @memberOf BaseElement
    * @returns {Number}
    */
   getTopDelta() {
@@ -813,7 +813,7 @@ module.exports = class BaseElement extends Renderer {
 
   /**
    * Get $items
-   * @property BaseElement
+   * @memberOf BaseElement
    * @returns {*|jQuery|HTMLElement}
    */
   get$items() {
@@ -840,7 +840,7 @@ module.exports = class BaseElement extends Renderer {
 
   /**
    * Set html
-   * @property BaseElement
+   * @memberOf BaseElement
    * @param html
    * @param [$container]
    * @returns {boolean}
@@ -856,7 +856,7 @@ module.exports = class BaseElement extends Renderer {
 
   /**
    * Set text
-   * @property BaseElement
+   * @memberOf BaseElement
    * @param {string} text
    * @param [$container]
    * @returns {boolean}
@@ -875,7 +875,7 @@ module.exports = class BaseElement extends Renderer {
 
   /**
    * Set title
-   * @property BaseElement
+   * @memberOf BaseElement
    * @param {string} title
    */
   setTitle(title) {
@@ -891,7 +891,7 @@ module.exports = class BaseElement extends Renderer {
 
   /**
    * Unbind element
-   * @property BaseElement
+   * @memberOf BaseElement
    * @returns {BaseElement}
    */
   unbindElement() {
@@ -906,7 +906,7 @@ module.exports = class BaseElement extends Renderer {
 
   /**
    * Add scroll cover
-   * @property BaseElement
+   * @memberOf BaseElement
    * @param $container
    */
   scrollCover($container) {
@@ -917,7 +917,7 @@ module.exports = class BaseElement extends Renderer {
 
   /**
    * Adopt modal dialog position on content config
-   * @property BaseElement
+   * @memberOf BaseElement
    */
   adoptModalDialogPosition() {
 
@@ -944,7 +944,7 @@ module.exports = class BaseElement extends Renderer {
 
   /**
    * Remove loading class after loading items
-   * @property BaseElement
+   * @memberOf BaseElement
    */
   hideLoader() {
 
@@ -959,7 +959,7 @@ module.exports = class BaseElement extends Renderer {
 
   /**
    * Add loading class before loading items
-   * @property BaseElement
+   * @memberOf BaseElement
    */
   showLoader() {
 
@@ -974,7 +974,7 @@ module.exports = class BaseElement extends Renderer {
 
   /**
    * Render items list
-   * @property BaseElement
+   * @memberOf BaseElement
    * @param {Array} items
    * @returns {string}
    */
@@ -993,7 +993,7 @@ module.exports = class BaseElement extends Renderer {
 
   /**
    * Get site description
-   * @property BaseElement
+   * @memberOf BaseElement
    * @returns {string}
    */
   getSiteDescription() {
@@ -1002,7 +1002,7 @@ module.exports = class BaseElement extends Renderer {
 
   /**
    * Set site description
-   * @property BaseElement
+   * @memberOf BaseElement
    * @param {string} description
    */
   setSiteDescription(description) {
@@ -1011,7 +1011,7 @@ module.exports = class BaseElement extends Renderer {
 
   /**
    * Get site description
-   * @property BaseElement
+   * @memberOf BaseElement
    * @returns {string}
    */
   getSiteKeywords() {
@@ -1020,7 +1020,7 @@ module.exports = class BaseElement extends Renderer {
 
   /**
    * Set site description
-   * @property BaseElement
+   * @memberOf BaseElement
    * @param {string} keywords
    */
   setSiteKeywords(keywords) {
@@ -1029,7 +1029,7 @@ module.exports = class BaseElement extends Renderer {
 
   /**
    * Get footer html
-   * @property BaseElement
+   * @memberOf BaseElement
    * @returns {*|jQuery}
    */
   getFooter() {
@@ -1042,7 +1042,7 @@ module.exports = class BaseElement extends Renderer {
 
   /**
    * Check if content has iframe
-   * @property BaseElement
+   * @memberOf BaseElement
    * @returns {number}
    */
   hasIframe() {
@@ -1051,7 +1051,7 @@ module.exports = class BaseElement extends Renderer {
 
   /**
    * Check if content has flash
-   * @property BaseElement
+   * @memberOf BaseElement
    * @returns {number}
    */
   hasFlash() {
@@ -1060,7 +1060,7 @@ module.exports = class BaseElement extends Renderer {
 
   /**
    * Define sort asc/desc
-   * @property BaseElement
+   * @memberOf BaseElement
    * @param $element
    * @returns {boolean}
    */
@@ -1072,7 +1072,7 @@ module.exports = class BaseElement extends Renderer {
 
   /**
    * Define sort text @element
-   * @property BaseElement
+   * @memberOf BaseElement
    * @param {Event} event
    */
   sortTextElements(event) {
@@ -1107,7 +1107,7 @@ module.exports = class BaseElement extends Renderer {
 
   /**
    * Locate element
-   * @property BaseElement
+   * @memberOf BaseElement
    * @param {BaseElement} [$element]
    * @param {Event} event
    * @returns {boolean}
@@ -1136,7 +1136,7 @@ module.exports = class BaseElement extends Renderer {
 
   /**
    * isModal element
-   * @property BaseElement
+   * @memberOf BaseElement
    * @returns {boolean}
    */
   isModal() {
@@ -1145,7 +1145,7 @@ module.exports = class BaseElement extends Renderer {
 
   /**
    * Check if metamorphic element
-   * @property BaseElement
+   * @memberOf BaseElement
    * @returns {boolean}
    */
   isMetamorphicElement() {
@@ -1154,7 +1154,7 @@ module.exports = class BaseElement extends Renderer {
 
   /**
    * Define add content if defined
-   * @property BaseElement
+   * @memberOf BaseElement
    */
   addContent(embed) {
 

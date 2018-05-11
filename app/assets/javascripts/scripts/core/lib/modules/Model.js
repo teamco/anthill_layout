@@ -30,9 +30,9 @@ module.exports = class BaseModel extends CRUD {
 
   /**
    * Create a two way data-binding between model and controller
-   * @property BaseModel
+   * @memberOf BaseModel
    * @param {object} obj
-   * @param {string} property
+   * @param {string} memberOf
    * @param {function} fnCallback
    * Example:
    *      user = {};
@@ -43,8 +43,8 @@ module.exports = class BaseModel extends CRUD {
    *     'Joe'; inputElem.value = 'Bob'; alert("user.name is now
    *     "+user.name) //model is now 'Bob';
    */
-  bindModelObserver(obj, property, fnCallback) {
-    Object.defineProperty(obj, property, {
+  bindModelObserver(obj, memberOf, fnCallback) {
+    Object.defineProperty(obj, memberOf, {
       get: function get() {
         return fnCallback();
       },
@@ -57,7 +57,7 @@ module.exports = class BaseModel extends CRUD {
 
   /**
    * Get scope config
-   * @property BaseModel
+   * @memberOf BaseModel
    * @param {string} [key]
    * @returns {*}
    */
@@ -101,7 +101,7 @@ module.exports = class BaseModel extends CRUD {
 
   /**
    * Set scope config
-   * @property BaseModel
+   * @memberOf BaseModel
    * @param {string} [key]
    * @param {*} [value]
    * @returns {scope.config}
@@ -124,7 +124,7 @@ module.exports = class BaseModel extends CRUD {
 
   /**
    * Get scope namespace
-   * @property BaseModel
+   * @memberOf BaseModel
    * @param {*} node
    * @returns {string}
    */
@@ -136,7 +136,7 @@ module.exports = class BaseModel extends CRUD {
 
   /**
    * Get first item
-   * @property BaseModel
+   * @memberOf BaseModel
    * @returns {*}
    */
   getFirstItem() {
@@ -160,7 +160,7 @@ module.exports = class BaseModel extends CRUD {
 
   /**
    * Find item in a whole project
-   * @property BaseModel
+   * @memberOf BaseModel
    * @param {*} root
    * @param {string} uuid
    * @return {*}
@@ -199,7 +199,7 @@ module.exports = class BaseModel extends CRUD {
 
   /**
    * Get parent items
-   * @property BaseModel
+   * @memberOf BaseModel
    * @returns {*}
    */
   getParentItems() {
@@ -208,7 +208,7 @@ module.exports = class BaseModel extends CRUD {
 
   /**
    * Get items
-   * @property BaseModel
+   * @memberOf BaseModel
    * @returns {*}
    */
   getItems() {
@@ -217,7 +217,7 @@ module.exports = class BaseModel extends CRUD {
 
   /**
    * Get all items apart of item
-   * @property BaseModel
+   * @memberOf BaseModel
    * @param {{model}} item
    * @returns {Array}
    */
@@ -244,7 +244,7 @@ module.exports = class BaseModel extends CRUD {
 
   /**
    * Get UUID
-   * @property BaseModel
+   * @memberOf BaseModel
    * @param {{model, name}} [node]
    * @returns {string}
    */
@@ -255,7 +255,7 @@ module.exports = class BaseModel extends CRUD {
 
   /**
    * Get content UUID
-   * @property BaseModel
+   * @memberOf BaseModel
    */
   getContentUUID() {
     return [this.getUUID(), 'content'].join('-');
@@ -263,7 +263,7 @@ module.exports = class BaseModel extends CRUD {
 
   /**
    * Get item from collector by UUID
-   * @property BaseModel
+   * @memberOf BaseModel
    * @param {string} uuid
    * @returns {*}
    */
@@ -281,7 +281,7 @@ module.exports = class BaseModel extends CRUD {
 
   /**
    * Get item from collector by title
-   * @property BaseModel
+   * @memberOf BaseModel
    * @param {string} title
    * @returns {*}
    */
@@ -305,8 +305,7 @@ module.exports = class BaseModel extends CRUD {
          */
         const itemTitle = this.getItemTitle(item);
 
-        if (itemTitle &&
-            (itemTitle.toClassName() === title.toClassName())) {
+        if (itemTitle && (itemTitle.toClassName() === title.toClassName())) {
           return item;
         }
       }
@@ -317,7 +316,7 @@ module.exports = class BaseModel extends CRUD {
 
   /**
    * Get current item
-   * @property BaseModel
+   * @memberOf BaseModel
    * @returns {*}
    */
   getCurrentItem() {
@@ -334,7 +333,7 @@ module.exports = class BaseModel extends CRUD {
 
   /**
    * Get item title
-   * @property BaseModel
+   * @memberOf BaseModel
    * @param {{model}} [node]
    * @returns {string}
    */
@@ -354,14 +353,15 @@ module.exports = class BaseModel extends CRUD {
 
     const resource = preferences.resource,
         isDefault = resource ?
-            resource.humanize().toLowerCase() === title.toLowerCase() : false;
+            resource.humanize().toLowerCase() === title.toLowerCase() :
+            false;
 
-    return title.trim().length > 0 && !isDefault ? title : uuid;
+    return title.trim().length && !isDefault ? title : uuid;
   }
 
   /**
    * Reset collector
-   * @property BaseModel
+   * @memberOf BaseModel
    * @returns {*}
    */
   resetItems() {
@@ -371,7 +371,7 @@ module.exports = class BaseModel extends CRUD {
 
   /**
    * Delete widget from collector
-   * @property BaseModel
+   * @memberOf BaseModel
    * @param uuid
    * @returns {*}
    */
@@ -382,7 +382,7 @@ module.exports = class BaseModel extends CRUD {
 
   /**
    * Update collector
-   * @property BaseModel
+   * @memberOf BaseModel
    * @param {string} uuid
    * @param hash
    * returns {*}
@@ -395,7 +395,7 @@ module.exports = class BaseModel extends CRUD {
 
   /**
    * Add item to collector
-   * @property BaseModel
+   * @memberOf BaseModel
    * @param {{model, logger}} node
    * @param {boolean} [force]
    * @returns {*}
@@ -419,7 +419,7 @@ module.exports = class BaseModel extends CRUD {
 
   /**
    * Get Scope constructor name
-   * @property BaseModel
+   * @memberOf BaseModel
    * @returns {string}
    */
   getScopeName() {
@@ -430,7 +430,7 @@ module.exports = class BaseModel extends CRUD {
 
   /**
    * Get Item constructor name
-   * @property BaseModel
+   * @memberOf BaseModel
    * @returns {string}
    */
   getItemName() {
@@ -444,7 +444,7 @@ module.exports = class BaseModel extends CRUD {
 
   /**
    * Get Item constructor namespace
-   * @property BaseModel
+   * @memberOf BaseModel
    * @returns {string}
    */
   getItemNameSpace() {
@@ -454,7 +454,7 @@ module.exports = class BaseModel extends CRUD {
 
   /**
    * Get items order
-   * @property BaseModel
+   * @memberOf BaseModel
    * @returns {*}
    */
   getOrder() {
@@ -463,14 +463,14 @@ module.exports = class BaseModel extends CRUD {
 
   /**
    * Set rules on loading
-   * @property BaseModel
+   * @memberOf BaseModel
    * @param rules
    */
   setRules(rules) {
 
     /**
      * Local rules storage
-     * @property BaseModel
+     * @memberOf BaseModel
      * @type {{}}
      */
     this.rules = rules;
@@ -478,7 +478,7 @@ module.exports = class BaseModel extends CRUD {
 
   /**
    * Set Title
-   * @property BaseModel
+   * @memberOf BaseModel
    * @param {string} title
    */
   setTitle(title) {
@@ -487,7 +487,7 @@ module.exports = class BaseModel extends CRUD {
 
   /**
    * Set Description
-   * @property BaseModel
+   * @memberOf BaseModel
    * @param {string} description
    */
   setDescription(description) {
@@ -496,7 +496,7 @@ module.exports = class BaseModel extends CRUD {
 
   /**
    * Set item info preferences
-   * @property BaseModel
+   * @memberOf BaseModel
    * @param {string} index
    * @param value
    * @protected
@@ -524,7 +524,7 @@ module.exports = class BaseModel extends CRUD {
 
   /**
    * Check items limit
-   * @property BaseModel
+   * @memberOf BaseModel
    * @param {Function} constructor
    * @param {Number} limit
    * @returns {boolean}
@@ -543,7 +543,7 @@ module.exports = class BaseModel extends CRUD {
 
   /**
    * Update items collector
-   * @property BaseModel
+   * @memberOf BaseModel
    * @param {Function} Constructor
    * @param {{}} opts
    * @returns {*}
@@ -607,7 +607,7 @@ module.exports = class BaseModel extends CRUD {
 
   /**
    * Get collector
-   * @property BaseModel
+   * @memberOf BaseModel
    * @param {Workspace|Page|Widget|{name}} Item
    * @returns {*}
    */
@@ -627,7 +627,7 @@ module.exports = class BaseModel extends CRUD {
 
   /**
    * Load data
-   * @property BaseModel
+   * @memberOf BaseModel
    * @param {Workspace|Page|Widget} Item
    * @param {object} collector
    * @param {boolean} [isRoot]
@@ -691,7 +691,7 @@ module.exports = class BaseModel extends CRUD {
 
           /**
            * Reduce counter
-           * @property Application
+           * @memberOf Application
            * @type {number}
            */
           root.loadingDataCounter -= 1;
@@ -728,7 +728,7 @@ module.exports = class BaseModel extends CRUD {
 
   /**
    * Check if transfer preferences should be skipped
-   * @property BaseModel
+   * @memberOf BaseModel
    * @param {string} index
    * @returns {boolean}
    */

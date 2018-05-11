@@ -6,38 +6,46 @@
  * To change this template use File | Settings | File Templates.
  */
 
-defineP([
-  'modules/Event'
-], function definePanelEventManager(BaseEvent) {
+/**
+ * @constant BaseEvent
+ * @type {BaseEvent}
+ */
+const BaseEvent = require('../../../core/lib/modules/Event.js');
+
+/**
+ * @class PanelEventManager
+ * @extends BaseEvent
+ */
+module.exports = class PanelEventManager extends BaseEvent {
 
   /**
-   * Define layout event manager
-   * @class PanelEventManager
+   * Define PanelEvent Manager
    * @constructor
-   * @extends BaseEvent
+   * @param {Panel} scope
    */
-  var PanelEventManager = function PanelEventManager() {
+  constructor(scope) {
+    super('PanelEventManager', scope, false);
 
     /**
      * Define events
-     * @memberOf PanelEventManager
+     * @property PanelEventManager
      * @type {{}}
      */
     this.events = {};
 
     /**
      * Define event list
-     * @memberOf PanelEventManager
+     * @property PanelEventManager
      * @type {{
-         *      updateTranslations: string,
-         *      showContent: string,
-         *      defineModules: string,
-         *      definePackages: string,
-         *      openPanel: string,
-         *      closePanel: string,
-         *      refreshModulesContent: string,
-         *      subscribeGenericEvent: string
-         * }}
+       *  updateTranslations: string,
+       *  showContent: string,
+       *  defineModules: string,
+       *  definePackages: string,
+       *  openPanel: string,
+       *  closePanel: string,
+       *  refreshModulesContent: string,
+       *  subscribeGenericEvent: string
+       * }}
      */
     this.eventList = {
       updateTranslations: 'update.translations',
@@ -49,7 +57,5 @@ defineP([
       refreshModulesContent: 'refresh.modules.content',
       subscribeGenericEvent: 'subscribe.generic.event'
     };
-  };
-
-  return PanelEventManager.extend('PanelEventManager', {}, BaseEvent.prototype);
-});
+  }
+};

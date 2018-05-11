@@ -64,8 +64,28 @@ module.exports = class Renderer extends aggregation(AntHill) {
   }
 
   /**
+   * Define check visibility
+   * @memberOf Renderer
+   * @param $input
+   * @param {boolean} visible
+   */
+  static checkVisibility($input, visible) {
+    if (!visible) $input.hide();
+  }
+
+  /**
+   * Toggle disable
+   * @memberOf Renderer
+   * @param $input
+   * @param {boolean} disabled
+   */
+  static toggleDisableField($input, disabled) {
+    $input.attr({disabled: disabled});
+  }
+
+  /**
    * Focus on field
-   * @property Renderer
+   * @memberOf Renderer
    * @param {string} [element]
    */
   focusOn(element) {
@@ -76,7 +96,7 @@ module.exports = class Renderer extends aggregation(AntHill) {
 
   /**
    * Define monitor init
-   * @property Renderer
+   * @memberOf Renderer
    * @param $input
    * @param monitor
    */
@@ -119,25 +139,5 @@ module.exports = class Renderer extends aggregation(AntHill) {
         $input.on(monitor.events.join(' '), callback);
       }
     }
-  }
-
-  /**
-   * Define check visibility
-   * @property Renderer
-   * @param $input
-   * @param {boolean} visible
-   */
-  static checkVisibility($input, visible) {
-    if (!visible) $input.hide();
-  }
-
-  /**
-   * Toggle disable
-   * @property Renderer
-   * @param $input
-   * @param {boolean} disabled
-   */
-  static toggleDisableField($input, disabled) {
-    $input.attr({disabled: disabled});
   }
 };

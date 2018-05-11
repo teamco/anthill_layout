@@ -1,111 +1,110 @@
-defineP(['modules/Element'], function definePluginElement(BaseElement) {
+/**
+ * @constant BaseElement
+ * @type {BaseElement|*}
+ */
+const BaseElement = require('../core/lib/modules/Element.js');
+
+/**
+ * Define Plugin element
+ * @extends BaseElement
+ * @class PluginElement
+ * @type {module.PluginElement}
+ * @constructor
+ */
+module.exports = class PluginElement extends BaseElement {
 
   /**
-   * Define Plugin element
-   * @class PluginElement
-   * @extends BaseElement
-   * @extends Renderer
+   * @param {string} name
+   * @param {BaseView} view
+   * @param opts
    * @constructor
    */
-  var PluginElement = function PluginElement() {
-  };
+  constructor(name, view, opts) {
+    super(name || 'PluginElement', view, false);
+  }
 
-  return PluginElement.extend(
-      'PluginElement', {
+  /**
+   * Bind show modal data
+   * @memberOf PluginElement
+   * @param {Widget} widget
+   * @param {function} [callback]
+   */
+  bindShowModalData(widget, callback) {
 
-        /**
-         * Bind show modal data
-         * @memberOf PluginElement
-         * @param {Widget} widget
-         * @param {function} [callback]
-         */
-        bindShowModalData: function bindShowModalData(widget, callback) {
+    /**
+     * Click on
+     * @param {Event} event
+     * @private
+     */
+    function _clickOn(event) {
+      event.preventDefault();
+      scope.observer.publish(scope.eventManager.eventList.prepareActiveComponent, [config, true, event, callback]);
+    }
 
-          /**
-           * Click on
-           * @param {Event} event
-           * @private
-           */
-          function _clickOn(event) {
+    /**
+     * Get config
+     * @type {*}
+     */
+    const config = widget.model.getConfig();
 
-            event.preventDefault();
+    // Get scope
+    const scope = this.view.scope,
+        clickOn = 'click.' + scope.name.toLowerCase();
 
-            scope.observer.publish(
-                scope.eventManager.eventList.prepareActiveComponent,
-                [config, true, event, callback]
-            );
-          }
+    this.$.off(clickOn).on(clickOn, _clickOn);
+    $('.popover').remove();
+  }
 
-          /**
-           * Get config
-           * @type {*}
-           */
-          var config = widget.model.getConfig();
+  /**
+   * Define trigger click Show Modal Data
+   * @memberOf PluginElement
+   */
+  triggerShowModalData() {
 
-          // Get scope
-          var scope = this.view.scope,
-              clickOn = 'click.' + scope.name.toLowerCase();
+    // Get scope
+    const scope = this.view.scope,
+        clickOn = 'click.' + scope.name.toLowerCase();
 
-          this.$.off(clickOn).on(clickOn, _clickOn);
-          $('.popover').remove();
-        },
+    this.$.trigger(clickOn);
+  }
 
-        /**
-         * Define trigger click Show Modal Data
-         * @memberOf PluginElement
-         */
-        triggerShowModalData: function triggerShowModalData() {
+  /**
+   * Locate widget before
+   * @memberOf PluginElement
+   * @param data
+   */
+  bindLocate(data) {
 
-          // Get scope
-          var scope = this.view.scope,
-              clickOn = 'click.' + scope.name.toLowerCase();
+    /**
+     * Define scope
+     * @type {WidgetRules}
+     */
+    const scope = this.view.scope;
 
-          this.$.trigger(clickOn);
-        },
+    // Get location event
+    const locateOn = 'mouseenter.rules mouseleave.rules';
 
-        /**
-         * Locate widget before
-         * @memberOf PluginElement
-         * @param data
-         */
-        bindLocate: function bindLocate(data) {
+    this.$.off(locateOn).on(locateOn,
+        scope.controller.locateElementItem.bind({
+          scope: scope,
+          uuid: data.model.getUUID()
+        })
+    );
+  }
 
-          /**
-           * Define scope
-           * @type {WidgetRules}
-           */
-          var scope = this.view.scope;
+  /**
+   * Fetch External Resource Thumbnail
+   * @memberOf PluginElement
+   * @param {{is_external: boolean, external_resource: string, resource: string}} item
+   * @returns {string}
+   */
+  fetchExternalResourceThumbnail(item) {
 
-          // Get location event
-          var locateOn = 'mouseenter.rules mouseleave.rules';
+    let thumbnail = item.is_external ?
+        item.external_resource :
+        '/assets/scripts/plugins/stylesheets/';
 
-          this.$.off(locateOn).on(
-              locateOn,
-              scope.controller.locateElementItem.bind({
-                scope: scope,
-                uuid: data.model.getUUID()
-              })
-          );
-        },
-
-        /**
-         * Fetch External Resource Thumbnail
-         * @memberOf PluginElement
-         * @param {{is_external: boolean, external_resource: string, resource:
-         *     string}} item
-         * @returns {string}
-         */
-        fetchExternalResourceThumbnail: function fetchExternalResourceThumbnail(item) {
-
-          var thumbnail = item.is_external ?
-              item.external_resource :
-              '/assets/scripts/plugins/stylesheets/';
-
-          thumbnail += 'images/' + item.resource + '.png';
-
-          return thumbnail;
-        }
-
-      }, BaseElement.prototype
-  );
-});
+    thumbnail += 'images/' + item.resource + '.png';
+    return thumbnail;
+  }
+};

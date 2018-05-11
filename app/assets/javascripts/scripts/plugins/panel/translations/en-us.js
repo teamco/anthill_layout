@@ -6,8 +6,6 @@
  * To change this template use File | Settings | File Templates.
  */
 
-defineP(function defineEnUs() {
-  return {
-    'panel.items': 'items'
-  };
-});
+module.exports = {
+  'panel.items': 'items'
+};

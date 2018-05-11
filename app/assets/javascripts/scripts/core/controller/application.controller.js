@@ -71,12 +71,12 @@ module.exports = class ApplicationController extends aggregation(BaseController,
 
   /**
    * Define Load Application
-   * @property ApplicationController
+   * @memberOf ApplicationController
    */
   loadApplication() {
 
     // Render app
-    this.view.render();
+    this.lazyRender();
 
     // Load initial
     if (this.model.loadWorkspaces() === -1) {
@@ -119,7 +119,7 @@ module.exports = class ApplicationController extends aggregation(BaseController,
 
   /**
    * Define global instance
-   * @property ApplicationController
+   * @memberOf ApplicationController
    */
   defineGlobalInstance() {
     this.logger.debug('Define global instance', this.controller.getAppName());
@@ -127,7 +127,7 @@ module.exports = class ApplicationController extends aggregation(BaseController,
 
   /**
    * Define setting
-   * @property ApplicationController
+   * @memberOf ApplicationController
    */
   defineSetting() {
     this.model.initGlobalSetting();
@@ -137,7 +137,7 @@ module.exports = class ApplicationController extends aggregation(BaseController,
 
   /**
    * Update storage version
-   * @property ApplicationController
+   * @memberOf ApplicationController
    * @param {number} version
    * @param {boolean} activated
    */
@@ -149,7 +149,7 @@ module.exports = class ApplicationController extends aggregation(BaseController,
 
   /**
    * After update storage
-   * @property ApplicationController
+   * @memberOf ApplicationController
    */
   afterUpdateStorage() {
     this.logger.debug('After update storage');
@@ -157,7 +157,7 @@ module.exports = class ApplicationController extends aggregation(BaseController,
 
   /**
    * Define ajax setup
-   * @property ApplicationController
+   * @memberOf ApplicationController
    */
   ajaxSetup() {
 
@@ -165,22 +165,28 @@ module.exports = class ApplicationController extends aggregation(BaseController,
       // context: this,
       timeout: this.isDevelopmentMode() ? undefined : 10000,
       ifModified: true,
-      beforeSend: (xhr, settings) => {
+      beforeSend(xhr, settings) {
         this.scope.view.get$item().showLoader();
         if (this.utils._.isUndefined(settings.dataType)) {
           xhr.setRequestHeader('accept', '*/*;q=0.5, ' + settings.accepts.script);
         }
         xhr.setRequestHeader('X-CSRF-Token', this.getXCsrfToken());
       },
-      success: this._handleXhrLog.bind(this),
-      complete: this._handleXhrLog.bind(this),
-      error: this._handleXhrLog.bind(this)
+      success() {
+        this._handleXhrLog.apply(this, arguments);
+      },
+      complete() {
+        this._handleXhrLog.apply(this, arguments);
+      },
+      error() {
+        this._handleXhrLog.apply(this, arguments);
+      }
     });
   }
 
   /**
    * Load updated uuid
-   * @property ApplicationController
+   * @memberOf ApplicationController
    * @param {string} uuid
    */
   loadConfig(uuid) {
@@ -191,7 +197,7 @@ module.exports = class ApplicationController extends aggregation(BaseController,
 
   /**
    * Init window resize
-   * @property ApplicationController
+   * @memberOf ApplicationController
    */
   initResizeWindow() {
     this.logger.debug('Init window resize');
@@ -200,7 +206,7 @@ module.exports = class ApplicationController extends aggregation(BaseController,
 
   /**
    * Init scroll
-   * @property ApplicationController
+   * @memberOf ApplicationController
    */
   initScrollBehavior() {
     this.logger.debug('Init scroll');
@@ -222,7 +228,7 @@ module.exports = class ApplicationController extends aggregation(BaseController,
 
   /**
    * Scroll publisher
-   * @property ApplicationController
+   * @memberOf ApplicationController
    * @param {Event} e
    */
   scrollPublisher(e) {
@@ -231,7 +237,7 @@ module.exports = class ApplicationController extends aggregation(BaseController,
 
   /**
    * Resize window publisher
-   * @property ApplicationController
+   * @memberOf ApplicationController
    * @param {Event} e
    */
   resizeWindowPublisher(e) {
@@ -242,7 +248,7 @@ module.exports = class ApplicationController extends aggregation(BaseController,
 
   /**
    * Resize window callback
-   * @property ApplicationController
+   * @memberOf ApplicationController
    * @param {Event} e
    */
   resizeWindow(e) {
@@ -252,7 +258,7 @@ module.exports = class ApplicationController extends aggregation(BaseController,
 
   /**
    * Resize window hooks
-   * @property ApplicationController
+   * @memberOf ApplicationController
    */
   resizeWindowHooks() {
     this.logger.debug('Start resize window hooks', arguments);
@@ -260,7 +266,7 @@ module.exports = class ApplicationController extends aggregation(BaseController,
 
   /**
    * Approve clear data
-   * @property ApplicationController
+   * @memberOf ApplicationController
    */
   approveClearData() {
 
@@ -291,7 +297,7 @@ module.exports = class ApplicationController extends aggregation(BaseController,
   }
 
   /**
-   * @property ApplicationController
+   * @memberOf ApplicationController
    * @param xhr
    * @param status
    */
@@ -341,7 +347,7 @@ module.exports = class ApplicationController extends aggregation(BaseController,
 
   /**
    * Define start send log
-   * @property ApplicationController
+   * @memberOf ApplicationController
    */
   startSendLog() {
     this.model.setConfig('sendLog', true);
@@ -350,7 +356,7 @@ module.exports = class ApplicationController extends aggregation(BaseController,
 
   /**
    * Define stop send log
-   * @property ApplicationController
+   * @memberOf ApplicationController
    */
   stopSendLog() {
     this.model.setConfig('sendLog', false);
@@ -359,7 +365,7 @@ module.exports = class ApplicationController extends aggregation(BaseController,
 
   /**
    * Define before send log
-   * @property ApplicationController
+   * @memberOf ApplicationController
    */
   beforeSendLog() {
     this.logger.debug('Before send log', arguments);
@@ -367,7 +373,7 @@ module.exports = class ApplicationController extends aggregation(BaseController,
 
   /**
    * Define after send log
-   * @property ApplicationController
+   * @memberOf ApplicationController
    */
   afterSendLog() {
     this.logger.debug('After send log', arguments);

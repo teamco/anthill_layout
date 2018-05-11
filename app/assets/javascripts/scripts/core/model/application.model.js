@@ -36,7 +36,7 @@ module.exports = class ApplicationModel extends BaseModel {
 
   /**
    * Define global setting
-   * @property ApplicationModel
+   * @memberOf ApplicationModel
    */
   initGlobalSetting() {
 
@@ -58,13 +58,12 @@ module.exports = class ApplicationModel extends BaseModel {
      * @type {module.Setting}
      */
     this.setting = new Setting(scope, scope.controller.getAppName());
-
     scope.logger.debug('Define setting', this.setting);
   }
 
   /**
    * Define load workspaces
-   * @property ApplicationModel
+   * @memberOf ApplicationModel
    */
   loadWorkspaces() {
 
@@ -75,7 +74,6 @@ module.exports = class ApplicationModel extends BaseModel {
      * @type {object}
      */
     const collector = this.getCollector(this.item);
-
     return collector ? this.loadData(this.item, collector, true) : -1;
   }
 };

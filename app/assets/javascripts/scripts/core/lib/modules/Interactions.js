@@ -48,11 +48,7 @@ defineP(function defineInteractions() {
           eventName = scope.eventManager.eventList.debugInteractions;
 
       if (eventName) {
-
-        scope.observer.publish(
-            eventName,
-            [this.scope, event, ui]
-        );
+        scope.observer.publish(eventName, [this.scope, event, ui]);
       }
     },
 

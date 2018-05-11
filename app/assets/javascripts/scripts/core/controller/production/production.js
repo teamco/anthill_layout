@@ -6,7 +6,7 @@ module.exports = class ProductionController {
 
   /**
    * Define is production checker
-   * @property Production
+   * @memberOf ProductionController
    */
   isProduction() {
 
@@ -16,7 +16,7 @@ module.exports = class ProductionController {
 
   /**
    * Define load production mode
-   * @property Production
+   * @memberOf ProductionController
    */
   loadProduction() {
     // TODO

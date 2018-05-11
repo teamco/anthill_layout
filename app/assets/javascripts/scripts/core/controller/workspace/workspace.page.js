@@ -13,7 +13,7 @@ module.exports = class WorkspacePage {
 
   /**
    * Set page height
-   * @property WorkspacePage
+   * @memberOf WorkspacePage
    */
   setPageContainerDimensions() {
 
@@ -34,7 +34,7 @@ module.exports = class WorkspacePage {
 
   /**
    * Switch page on hash change
-   * @property WorkspacePage
+   * @memberOf WorkspacePage
    * @param {Event} [e]
    */
   switchPageOnHashChange(e) {
@@ -74,7 +74,7 @@ module.exports = class WorkspacePage {
 
   /**
    * Get page defined as Home page
-   * @property WorkspacePage
+   * @memberOf WorkspacePage
    * @returns {Page}
    */
   getHomePage() {
@@ -101,7 +101,7 @@ module.exports = class WorkspacePage {
 
   /**
    * Update pages width
-   * @property WorkspacePage
+   * @memberOf WorkspacePage
    */
   updatePagesWidth() {
 
@@ -128,7 +128,7 @@ module.exports = class WorkspacePage {
 
   /**
    * Before Switch to page
-   * @property WorkspacePage
+   * @memberOf WorkspacePage
    * @param {Page} page
    */
   beforeSwitchToPage(page) {
@@ -138,7 +138,7 @@ module.exports = class WorkspacePage {
 
     /**
      * Define swipe page
-     * @property Workspace
+     * @memberOf Workspace
      * @type {boolean}
      */
     this.switchPage = true;
@@ -196,7 +196,7 @@ module.exports = class WorkspacePage {
 
   /**
    * Switch to page
-   * @property WorkspacePage
+   * @memberOf WorkspacePage
    * @param {Page} page
    * @returns {boolean|*}
    */
@@ -235,7 +235,7 @@ module.exports = class WorkspacePage {
 
   /**
    * After Switch to page
-   * @property WorkspacePage
+   * @memberOf WorkspacePage
    * @param {Page} page
    */
   afterSwitchToPage(page) {
@@ -263,7 +263,7 @@ module.exports = class WorkspacePage {
 
   /**
    * Swipe to current page
-   * @property WorkspacePage
+   * @memberOf WorkspacePage
    */
   swipeToCurrentPage() {
 
@@ -293,7 +293,7 @@ module.exports = class WorkspacePage {
 
   /**
    * Check if load page content
-   * @property WorkspacePage
+   * @memberOf WorkspacePage
    * @returns {Page|boolean}
    */
   isLoadPageContent() {
@@ -318,7 +318,7 @@ module.exports = class WorkspacePage {
 
   /**
    * Reset pages height before switch
-   * @property WorkspacePage
+   * @memberOf WorkspacePage
    */
   resetPagesHeightBeforeSwitch() {
 
@@ -329,7 +329,7 @@ module.exports = class WorkspacePage {
 
   /**
    * Save after page ordering
-   * @property WorkspacePage
+   * @memberOf WorkspacePage
    * @param {Array} order
    */
   afterPageOrder(order) {
@@ -339,7 +339,7 @@ module.exports = class WorkspacePage {
 
   /**
    * Define clone page
-   * @property WorkspacePage
+   * @memberOf WorkspacePage
    * @param {string} uuid
    */
   clonePage(uuid) {

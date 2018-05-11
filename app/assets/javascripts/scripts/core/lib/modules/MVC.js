@@ -210,7 +210,7 @@ module.exports = class MVC extends AntHill {
 
   /**
    * Define parent node
-   * @property MVC
+   * @memberOf MVC
    */
   defineContainment() {
 
@@ -234,7 +234,7 @@ module.exports = class MVC extends AntHill {
 
   /**
    * Define MVC
-   * @property MVC
+   * @memberOf MVC
    * @param {Function|String} mvcPattern
    * @param {boolean} [force]
    * @returns {*}
@@ -285,7 +285,7 @@ module.exports = class MVC extends AntHill {
 
   /**
    * Set relation between MVC components
-   * @property MVC
+   * @memberOf MVC
    */
   setRelation() {
     const relations = this.RELATIONS,
@@ -310,7 +310,7 @@ module.exports = class MVC extends AntHill {
 
   /**
    * Apply MVC
-   * @property MVC
+   * @memberOf MVC
    * @returns {boolean}
    */
   applyMVC() {
@@ -347,7 +347,7 @@ module.exports = class MVC extends AntHill {
 
   /**
    * Apply MVC shims
-   * @property MVC
+   * @memberOf MVC
    * @param pattern
    */
   applyMVCShims(pattern) {
@@ -383,7 +383,7 @@ module.exports = class MVC extends AntHill {
 
   /**
    * Apply config
-   * @property MVC
+   * @memberOf MVC
    */
   applyConfig() {
     const scope = this.scope,
@@ -401,7 +401,7 @@ module.exports = class MVC extends AntHill {
 
   /**
    * Apply event manager
-   * @property MVC
+   * @memberOf MVC
    */
   applyEventManager() {
 
@@ -480,7 +480,7 @@ module.exports = class MVC extends AntHill {
 
   /**
    * Apply default listeners
-   * @property MVC
+   * @memberOf MVC
    */
   applyDefaultListeners() {
 
@@ -492,7 +492,7 @@ module.exports = class MVC extends AntHill {
     const scope = this.scope;
 
     /**
-     * @type {BaseController}
+     * @type {module.BaseController}
      */
     const controller = scope.controller;
 
@@ -513,7 +513,7 @@ module.exports = class MVC extends AntHill {
 
   /**
    * Apply global events
-   * @property MVC
+   * @memberOf MVC
    */
   applyGlobalEvents() {
 
@@ -545,7 +545,7 @@ module.exports = class MVC extends AntHill {
 
   /**
    * Apply listeners
-   * @property MVC
+   * @memberOf MVC
    */
   applyListeners(type) {
 
@@ -572,7 +572,7 @@ module.exports = class MVC extends AntHill {
 
           scope.eventManager.subscribe({
             event: {
-              eventName: event.name,
+              name: event.name,
               params: event.params,
               scope: event.scope
             },
@@ -587,7 +587,7 @@ module.exports = class MVC extends AntHill {
 
   /**
    * Define permissions
-   * @property MVC
+   * @memberOf MVC
    * @returns {boolean}
    */
   applyPermissions() {
@@ -623,7 +623,7 @@ module.exports = class MVC extends AntHill {
 
   /**
    * Apply global permissions
-   * @property MVC
+   * @memberOf MVC
    * @returns {*|boolean}
    */
   _applyPermissions(type) {
@@ -673,7 +673,7 @@ module.exports = class MVC extends AntHill {
 
   /**
    * Apply Logger
-   * @property MVC.applyLogger
+   * @memberOf MVC.applyLogger
    */
   applyLogger() {
     this.scope.logger.setConfig(this.scope.config.logger || {});
