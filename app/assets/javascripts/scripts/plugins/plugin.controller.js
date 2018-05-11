@@ -151,7 +151,7 @@ module.exports = class PluginController extends BaseController {
    * @returns {boolean}
    */
   isDataNotExist() {
-    return !Object.keys(this.scope.view.elements.items).length;
+    return !Object.keys(this.scope.view.elements.items || {}).length;
   }
 
   /**

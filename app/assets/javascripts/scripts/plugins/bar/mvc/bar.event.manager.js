@@ -6,15 +6,25 @@
  * To change this template use File | Settings | File Templates.
  */
 
-defineP(['modules/Event'], function defineBarEventManager(BaseEvent) {
+/**
+ * @constant BaseEvent
+ * @type {BaseEvent}
+ */
+const BaseEvent = require('../../../core/lib/modules/Event.js');
+
+/**
+ * @class BarEventManager
+ * @extends BaseEvent
+ */
+module.exports = class BarEventManager extends BaseEvent {
 
   /**
-   * Define bar event manager
-   * @class BarEventManager
+   * Define BarEvent Manager
    * @constructor
-   * @extends BaseEvent
+   * @param {Bar} scope
    */
-  var BarEventManager = function BarEventManager() {
+  constructor(scope) {
+    super('BarEventManager', scope, false);
 
     /**
      * Define events
@@ -27,9 +37,9 @@ defineP(['modules/Event'], function defineBarEventManager(BaseEvent) {
      * Define event list
      * @memberOf BarEventManager
      * @type {{
-     *      updateTranslations: string,
-     *      showContent: string,
-     *      defineModules: string
+     *  updateTranslations: string,
+     *  showContent: string,
+     *  defineModules: string
      * }}
      */
     this.eventList = {
@@ -37,7 +47,5 @@ defineP(['modules/Event'], function defineBarEventManager(BaseEvent) {
       showContent: 'show.content',
       defineModules: 'define.modules'
     };
-  };
-
-  return BarEventManager.extend('BarEventManager', {}, BaseEvent.prototype);
-});
+  }
+};

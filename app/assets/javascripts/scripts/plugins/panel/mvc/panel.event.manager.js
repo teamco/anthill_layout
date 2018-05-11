@@ -37,15 +37,15 @@ module.exports = class PanelEventManager extends BaseEvent {
      * Define event list
      * @property PanelEventManager
      * @type {{
-       *  updateTranslations: string,
-       *  showContent: string,
-       *  defineModules: string,
-       *  definePackages: string,
-       *  openPanel: string,
-       *  closePanel: string,
-       *  refreshModulesContent: string,
-       *  subscribeGenericEvent: string
-       * }}
+     *  updateTranslations: string,
+     *  showContent: string,
+     *  defineModules: string,
+     *  definePackages: string,
+     *  openPanel: string,
+     *  closePanel: string,
+     *  refreshModulesContent: string,
+     *  subscribeGenericEvent: string
+     * }}
      */
     this.eventList = {
       updateTranslations: 'update.translations',

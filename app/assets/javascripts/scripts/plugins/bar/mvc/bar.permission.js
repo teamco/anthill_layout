@@ -6,19 +6,24 @@
  * To change this template use File | Settings | File Templates.
  */
 
-defineP([
-  'modules/Permission'
-], function defineBarPermission(BasePermission) {
+/**
+ * @constant BasePermission
+ * @type {module.BasePermission}
+ */
+const BasePermission = require('../../../core/lib/modules/Permission.js');
+
+/**
+ * Define BarPermission
+ * @extends BasePermission
+ * @class BarPermission
+ */
+module.exports = class BarPermission extends BasePermission {
 
   /**
-   * Define Permissions
-   * @class BarPermission
    * @constructor
-   * @extends BasePermission
+   * @param {Bar} scope
    */
-  var BarPermission = function BarPermission() {
-
-  };
-
-  return BarPermission.extend('BarPermission', {}, BasePermission.prototype);
-});
+  constructor(scope) {
+    super('BarPermission', scope, false);
+  }
+};

@@ -5,17 +5,25 @@
  * Time: 11:06 PM
  * To change this template use File | Settings | File Templates.
  */
-defineP([
-  'modules/Model'
-], function defineBarModel(BaseModel) {
+/**
+ * @constant BaseModel
+ * @type {module.BaseModel}
+ */
+const BaseModel = require('../../../core/lib/modules/Model.js');
+
+/**
+ * Define Bar model
+ * @extends BaseModel
+ * @class BarModel
+ */
+module.exports = class BarModel extends BaseModel {
 
   /**
-   * Define Bar model
-   * @extends BaseModel
-   * @class BarModel
    * @constructor
+   * @param {Bar} scope
    */
-  var BarModel = function BarModel() {
+  constructor(scope) {
+    super('BarModel', scope, false);
 
     /**
      * Init modules
@@ -23,35 +31,31 @@ defineP([
      * @type {Array}
      */
     this.modules = [];
-  };
+  }
 
-  return BarModel.extend('BarModel', {
+  /**
+   * Get list of modules
+   * @memberOf BarModel
+   * @returns {*}
+   */
+  getModulesData() {
+    return this.scope.containment.model.getModule();
+  }
 
-    /**
-     * Get list of modules
-     * @memberOf BarModel
-     * @returns {*}
-     */
-    getModulesData: function getModulesData() {
-      return this.scope.containment.model.getModule();
-    },
+  /**
+   * Store modules
+   * @memberOf BarModel
+   */
+  storeModules() {
+    this.modules = this.getModulesData();
+  }
 
-    /**
-     * Store modules
-     * @memberOf BarModel
-     */
-    storeModules: function storeModules() {
-      this.modules = this.getModulesData();
-    },
-
-    /**
-     * Get modules
-     * @memberOf BarModel
-     * @returns {Array}
-     */
-    getModules: function getModules() {
-      return this.modules;
-    }
-
-  }, BaseModel.prototype);
-});
+  /**
+   * Get modules
+   * @memberOf BarModel
+   * @returns {Array}
+   */
+  getModules() {
+    return this.modules;
+  }
+};

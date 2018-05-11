@@ -167,7 +167,12 @@ module.exports = () => {
          */
         const Panel = require('../../../../scripts/plugins/panel/panel.js');
 
-        //   'plugins/bar/bar',
+        /**
+         * @constant Bar
+         * @type {module.Bar|*}
+         */
+        const Bar = require('../../../../scripts/plugins/bar/bar.js');
+
         //   'plugins/gallery/gallery',
         //   'plugins/page.data/page.data',
         //   'plugins/workspace.data/workspace.data',
@@ -190,7 +195,7 @@ module.exports = () => {
             }
           },
           modules: [/*Gallery, PageData, WidgetRules, WorkspaceData, SiteConfig*/],
-          packages: [/*Bar*/]
+          packages: [Bar]
         }, app);
 
         app.panels.designTime.lazyRender();
@@ -223,7 +228,12 @@ module.exports = () => {
          */
         const Panel = require('../../../../scripts/plugins/panel/panel.js');
 
-        //   'plugins/bar/bar',
+        /**
+         * @constant Bar
+         * @type {module.Bar|*}
+         */
+        const Bar = require('../../../../scripts/plugins/bar/bar.js');
+
         //   'plugins/maximize/maximize',
         //   'plugins/dashboard/dashboard'
 
@@ -243,7 +253,7 @@ module.exports = () => {
             }
           },
           modules: [/*Maximize, Dashboard*/],
-          packages: [/*Bar*/]
+          packages: [Bar]
         }, app);
 
         app.panels.runTime.lazyRender();

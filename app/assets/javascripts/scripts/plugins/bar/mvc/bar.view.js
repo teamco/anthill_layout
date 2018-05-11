@@ -6,112 +6,124 @@
  * To change this template use File | Settings | File Templates.
  */
 
-defineP([
-  'modules/View',
-  'element/header.element',
-  'element/footer.element',
-  'plugins/bar/element/bar.element',
-  'plugins/bar/element/bar.content.element'
-], function defineBarView(BaseView, Header, Footer, BarElement,
-    BarContentElement) {
+/**
+ * @constant BaseView
+ * @type {BaseView}
+ */
+const BaseView = require('../../../core/lib/modules/View.js');
+
+/**
+ * @class BarView
+ * @type {module.BarView}
+ */
+module.exports = class BarView extends BaseView {
 
   /**
-   * Define view
-   * @class BarView
    * @constructor
-   * @extends BaseView
+   * @param {string} name
+   * @param {Bar} scope
    */
-  var BarView = function BarView() {
-  };
+  constructor(name, scope) {
+    super(name || 'BarView', scope, false);
+  }
 
-  return BarView.extend('BarView', {
-
-    /**
-     * Render Bar
-     * @memberOf BarView
-     */
-    renderBar: function renderBar() {
-
-      if (this.isCached('$bar', BarElement)) {
-        return false;
-      }
-
-      this.header(Header, this.get$container());
-
-      /**
-       * Define container
-       * @type {BarElement}
-       */
-      this.elements.$bar = new BarElement(this, {
-        $container: this.get$container().$,
-        style: 'panel-bar'
-      });
-
-      this.footer(Footer, this.get$container());
-    },
+  /**
+   * Render Bar
+   * @memberOf BarView
+   */
+  renderBar() {
 
     /**
-     * Render bar content
-     * @param data
-     * @param {Boolean} force
-     * @memberOf BarView
-     * @returns {boolean}
+     * @constant BarElement
+     * @type {module.BarElement|*}
      */
-    renderContent: function renderContent(data, force) {
+    const BarElement = require('../element/bar.element.js');
 
-      if (this.isCachedItems() && !force) {
-        return false;
-      }
-
-      this.updateElementItems();
-
-      for (var index in data) {
-
-        if (data.hasOwnProperty(index)) {
-
-          /**
-           * Define item
-           */
-          var item = data[index];
-
-          /**
-           * Define module resource
-           * @type {string}
-           */
-          var moduleResource = item.module.name.toDash();
-
-          /**
-           * Render item
-           * @type {BarContentElement}
-           */
-          var $item = new BarContentElement(this, {
-            style: _.compact([
-              'content',
-              item.activated ? 'activated' : null,
-              moduleResource
-            ]).join(' '),
-            resource: item,
-            cname: moduleResource,
-            $container: this.get$item().$
-          });
-
-          this.updateElementItems($item);
-        }
-      }
-    },
-
-    /**
-     * Render bar
-     * @memberOf BarView
-     */
-    render: function render() {
-
-      this.scope.observer.publish(
-          this.scope.eventManager.eventList.successRendered,
-          this.renderBar.bind(this)
-      );
+    if (this.isCached('$bar', BarElement)) {
+      return false;
     }
 
-  }, BaseView.prototype)
+    /**
+     * @constant $container
+     * @type {{}}
+     */
+    const $container = this.get$container();
 
-});
+    this.header($container);
+
+    /**
+     * Define container
+     * @type {module.BarElement}
+     */
+    this.elements.$bar = new BarElement(this, {
+      $container: $container.$,
+      style: 'panel-bar'
+    });
+
+    this.footer($container);
+  }
+
+  /**
+   * Render bar content
+   * @param data
+   * @param {Boolean} force
+   * @memberOf BarView
+   * @returns {boolean}
+   */
+  renderContent(data, force) {
+
+    /**
+     * @constant BarContentElement
+     * @type {module.BarContentElement|*}
+     */
+    const BarContentElement = require('../element/bar.content.element.js');
+
+    if (this.isCachedItems() && !force) {
+      return false;
+    }
+
+    this.updateElementItems();
+
+    for (let index in data) {
+
+      if (data.hasOwnProperty(index)) {
+
+        /**
+         * Define item
+         */
+        const item = data[index];
+
+        /**
+         * Define module resource
+         * @type {string}
+         */
+        const moduleResource = item.module.name.toDash();
+
+        /**
+         * Render item
+         * @type {module.BarContentElement}
+         */
+        const $item = new BarContentElement(this, {
+          style: _.compact([
+            'content',
+            item.activated ? 'activated' : null,
+            moduleResource
+          ]).join(' '),
+          resource: item,
+          cname: moduleResource,
+          $container: this.get$item().$
+        });
+
+        this.updateElementItems($item);
+      }
+    }
+  }
+
+  /**
+   * Render bar
+   * @memberOf BarView
+   */
+  render() {
+    this.scope.observer.publish(this.scope.eventManager.eventList.successRendered, this.renderBar.bind(this));
+  }
+};

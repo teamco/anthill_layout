@@ -5,49 +5,50 @@
  * Time: 11:03 AM
  */
 
-defineP([
-  'plugins/plugin.controller'
-], function defineBarController(PluginBase) {
+/**
+ * @constant PluginController
+ * @type {module.PluginController|*}
+ */
+const PluginController = require('../../plugin.controller.js');
+
+/**
+ * Define Bar controller
+ * @class BarController
+ * @extends PluginController
+ */
+module.exports = class BarController extends PluginController {
 
   /**
-   * Define bar controller
-   * @class BarController
-   * @extends PluginController
    * @constructor
+   * @param {Bar} scope
    */
-  var BarController = function BarController() {
-  };
+  constructor(scope) {
+    super('BarController', scope, false);
+  }
 
-  return BarController.extend('BarController', {
+  /**
+   * Get modules data
+   * @memberOf BarController
+   */
+  getData() {
+    return this.model.getModules();
+  }
 
-    /**
-     * Get modules data
-     * @memberOf BarController
-     */
-    getData: function getData() {
-      return this.model.getModules();
-    },
+  /**
+   * Define modules
+   * @memberOf BarController
+   */
+  defineModules() {
+    this.model.storeModules();
+  }
 
-    /**
-     * Define modules
-     * @memberOf BarController
-     */
-    defineModules: function defineModules() {
-      this.model.storeModules();
-    },
-
-    /**
-     * Load gallery content
-     * @memberOf BarController
-     */
-    loadContent: function loadContent() {
-
-      if (this.isDataNotExist()) {
-        this.getView().renderContent(
-            this.getData()
-        );
-      }
+  /**
+   * Load gallery content
+   * @memberOf BarController
+   */
+  loadContent() {
+    if (this.isDataNotExist()) {
+      this.getView().renderContent(this.getData());
     }
-
-  }, PluginBase.prototype);
-});
+  }
+};

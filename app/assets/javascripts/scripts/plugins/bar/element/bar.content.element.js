@@ -4,21 +4,27 @@
  * Date: 5/9/13
  * Time: 11:48 AM
  */
-defineP([
-  'plugins/plugin.element'
-], function defineBarContentElement(PluginElement) {
+
+/**
+ * @constant PluginElement
+ * @type {module.PluginElement}
+ */
+const PluginElement = require('../../plugin.element.js');
+
+/**
+ * Define BarContent Element
+ * @class BarContentElement
+ * @extends PluginElement
+ */
+module.exports = class BarContentElement extends PluginElement {
 
   /**
-   * Define Bar Content Element
-   * @param view
+   * @param {BarView} view
    * @param opts
-   * @returns {BarContentElement}
    * @constructor
-   * @class BarContentElement
-   * @extends PluginElement
-   * @extends Renderer
    */
-  var BarContentElement = function BarContentElement(view, opts) {
+  constructor(view, opts) {
+    super('BarContentElement', view, false);
 
     /**
      * Define resource
@@ -26,60 +32,47 @@ defineP([
      */
     this.resource = opts.resource;
 
-    this._config(view, opts, $(this.getTemplate())).build({
-      $container: opts.$container,
-      destroy: true
-    });
-
+    this._config(view, opts, $(this.getTemplate())).build(opts);
     this.attachEvent(opts.cname);
-
-    return this;
   };
 
-  return BarContentElement.extend('BarContentElement', {
+  /**
+   * Define template
+   * @memberOf BarContentElement
+   * @returns {string}
+   */
+  getTemplate() {
+
+    // Get module name
+    const name = this.resource.module.name;
+
+    return [
+      '<li><a title="', name.humanize(), '">',
+      '<i class="fa ', name.toDash(), '"></i>',
+      '<span>', name.humanize(), '</span></a></li>'
+    ].join('');
+  }
+
+  /**
+   * Open tab
+   * @memberOf BarContentElement
+   * @param resource
+   */
+  attachEvent(resource) {
 
     /**
-     * Define template
-     * @memberOf BarContentElement
-     * @returns {string}
+     * Define panel instance
+     * @type {Panel}
      */
-    getTemplate: function getTemplate() {
+    const panel = this.view.scope.containment;
 
-      // Get module name
-      var name = this.resource.module.name;
+    const publish = panel.observer.publish.bind(panel.observer),
+        event = panel.eventManager.eventList;
 
-      return [
-        '<li><a title="', name.humanize(), '">',
-        '<i class="fa ', name.toDash(), '"></i><span>',
-        name.humanize(), '</span></a></li>'
-      ].join('');
-    },
-
-    /**
-     * Open tab
-     * @memberOf BarContentElement
-     * @param resource
-     */
-    attachEvent: function attachEvent(resource) {
-
-      /**
-       * Define panel instance
-       * @type {Panel}
-       */
-      var panel = this.view.scope.containment;
-
-      var publish = panel.observer.publish.bind(panel.observer),
-          event = panel.eventManager.eventList;
-
-      this.$.on(
-          'click.toggle',
-          function clickToggle() {
-            panel.view.controller.isOpened(resource) ?
-                publish(event.closePanel, [resource, true]) :
-                publish(event.openPanel, resource);
-          }
-      );
-    }
-
-  }, PluginElement.prototype);
-});
+    this.$.on('click.toggle', () => {
+      panel.view.controller.isOpened(resource) ?
+          publish(event.closePanel, [resource, true]) :
+          publish(event.openPanel, resource);
+    });
+  }
+};

@@ -5,50 +5,46 @@
  * Time: 11:48 AM
  */
 
-defineP([
-  'plugins/plugin.element'
-], function defineBarElement(PluginElement) {
+/**
+ * @constant PluginElement
+ * @type {module.PluginElement}
+ */
+const PluginElement = require('../../plugin.element.js');
+
+/**
+ * Define Bar Element
+ * @class BarElement
+ * @extends PluginElement
+ */
+module.exports = class BarElement extends PluginElement {
 
   /**
-   * Define Bar Element
-   * @param view
+   * @param {PanelView} view
    * @param opts
-   * @returns {BarElement}
    * @constructor
-   * @class BarElement
-   * @extends PluginElement
    */
-  var BarElement = function BarElement(view, opts) {
+  constructor(view, opts) {
+    super('BarElement', view, false);
 
-    this._config(view, opts, $(this.getTemplate())).build({
-      $container: opts.$container,
-      destroy: true
-    });
-
+    this._config(view, opts, $(this.getTemplate())).build(opts);
     this.addCSS('bar');
-
-    return this;
   };
 
-  return BarElement.extend('BarElement', {
+  /**
+   * Define template
+   * @memberOf BarElement
+   * @returns {string}
+   */
+  getTemplate() {
+    return '<ul class="nav" />';
+  }
 
-    /**
-     * Define template
-     * @memberOf BarElement
-     * @returns {string}
-     */
-    getTemplate: function getTemplate() {
-      return '<ul class="nav" />';
-    },
-
-    /**
-     * Define content container
-     * @memberOf BarElement
-     * @returns {*}
-     */
-    getContentContainer: function getContentContainer() {
-      return this.$.find('.nav');
-    }
-
-  }, PluginElement.prototype);
-});
+  /**
+   * Define content container
+   * @memberOf BarElement
+   * @returns {*}
+   */
+  getContentContainer() {
+    return this.$.find('.nav');
+  }
+};

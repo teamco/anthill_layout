@@ -20,7 +20,7 @@ module.exports = class PanelController extends PluginController {
 
   /**
    * @constructor
-   * @param {PanelController} scope
+   * @param {Panel} scope
    */
   constructor(scope) {
     super('PanelController', scope, false);

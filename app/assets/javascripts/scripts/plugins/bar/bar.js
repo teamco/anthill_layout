@@ -5,24 +5,25 @@
  * Time: 11:02 AM
  */
 
-defineP([
-  'config/anthill',
-  'modules/MVC',
-  'plugins/bar/mvc/bar.controller',
-  'plugins/bar/mvc/bar.model',
-  'plugins/bar/mvc/bar.view',
-  'plugins/bar/mvc/bar.event.manager',
-  'plugins/bar/mvc/bar.permission'
-], function defineBar(AntHill, MVC, Controller, Model, View, EventManager, Permission) {
+/**
+ * @constant AntHill
+ * @type {module.AntHill}
+ */
+const AntHill = require('../../core/config/anthill.js');
+
+/**
+ * Define Bar
+ * @class Bar
+ * @extends AntHill
+ */
+module.exports = class Bar extends AntHill {
 
   /**
-   * Define Bar
-   * @param containment
    * @constructor
-   * @class Bar
-   * @extends AntHill
+   * @param {Panel} containment
    */
-  var Bar = function Bar(containment) {
+  constructor(containment) {
+    super('Bar', null);
 
     /**
      * Define containment
@@ -31,23 +32,53 @@ defineP([
     this.containment = containment;
 
     /**
-     * Define defaults
+     * @constant BarController
+     * @type {module.BarController|*}
+     */
+    const BarController = require('./mvc/bar.controller.js');
+
+    /**
+     * @constant BarModel
+     * @type {module.BarModel|*}
+     */
+    const BarModel = require('./mvc/bar.model.js');
+
+    /**
+     * @constant BarView
+     * @type {module.BarView|*}
+     */
+    const BarView = require('./mvc/bar.view.js');
+
+    /**
+     * @constant BarEventManager
+     * @type {module.BarEventManager|*}
+     */
+    const BarEventManager = require('./mvc/bar.event.manager.js');
+
+    /**
+     * @constant BarPermission
+     * @type {module.BarPermission|*}
+     */
+    const BarPermission = require('./mvc/bar.permission.js');
+
+    /**
+     * @constant MVC
+     * @type {module.MVC}
+     */
+    const MVC = require('../../core/lib/modules/MVC.js');
+
+    /**
+     * @constant DEFAULTS
      * @type {{
-     *    plugin: boolean,
-     *    html: {
-     *        header: boolean,
-     *        footer: boolean,
-     *        floating: boolean,
-     *        padding: {
-     *            top: number,
-     *            right: number,
-     *            bottom: number,
-     *            left: number
-     *        }
-     *    }
+     *  plugin: boolean,
+     *  html: {
+     *    header: boolean,
+     *    footer: boolean,
+     *    padding: {top: number, right: number, bottom: number, left: number}
+     *  }
      * }}
      */
-    var DEFAULTS = {
+    const DEFAULTS = {
       plugin: true,
       html: {
         header: false,
@@ -64,34 +95,23 @@ defineP([
     /**
      * Define MVC
      * @property Bar
-     * @type {MVCJs}
+     * @type {module.MVC}
      */
     this.mvc = new MVC({
       scope: this,
       config: [DEFAULTS],
       components: [
-        Controller,
-        Model,
-        View,
-        EventManager,
-        Permission
+        BarController,
+        BarModel,
+        BarView,
+        BarEventManager,
+        BarPermission
       ],
       render: true
     });
 
-    this.observer.publish(
-        this.eventManager.eventList.successCreated
-    );
-
-    this.observer.publish(
-        this.eventManager.eventList.defineModules
-    );
-
-    this.observer.publish(
-        this.eventManager.eventList.updateTranslations,
-        ['plugins/bar/translations/en-us']
-    );
-  };
-
-  return Bar.extend('Bar', {}, AntHill.prototype);
-});
+    this.observer.publish(this.eventManager.eventList.successCreated);
+    this.observer.publish(this.eventManager.eventList.defineModules);
+    this.observer.publish(this.eventManager.eventList.updateTranslations, ['plugins/bar/translations/en-us']);
+  }
+};

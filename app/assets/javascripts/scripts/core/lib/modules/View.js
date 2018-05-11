@@ -108,7 +108,7 @@ module.exports = class BaseView extends AntHill {
    * @memberOf BaseView
    * @returns {*}
    */
-  get$get$preferences() {
+  get$preferences() {
     return this.elements.$preferences;
   }
 
@@ -339,7 +339,7 @@ module.exports = class BaseView extends AntHill {
    * @memberOf BaseView
    * @returns {*}
    */
-  get$get$container() {
+  get$container() {
     const $container = this.elements.$container;
 
     if (!$container) {
