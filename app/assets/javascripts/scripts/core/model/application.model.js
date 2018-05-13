@@ -29,7 +29,7 @@ module.exports = class ApplicationModel extends BaseModel {
     /**
      * Define item
      * @property ApplicationModel
-     * @type {Workspace}
+     * @type {module.Workspace}
      */
     this.item = require('../config/workspace.js');
   }

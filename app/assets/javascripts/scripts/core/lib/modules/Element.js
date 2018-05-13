@@ -42,7 +42,7 @@ module.exports = class BaseElement extends Renderer {
    * @param {{[style]: string, [uuid], [id]: boolean, [css], [events], [opacity], [id]: boolean,
    *  [disabled]: boolean}} opts
    * @param $html
-   * @returns {module.BaseElement}
+   * @returns {BaseElement}
    * @protected
    */
   _config(view, opts, $html) {

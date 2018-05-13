@@ -6,122 +6,128 @@
  * To change this template use File | Settings | File Templates.
  */
 
-defineP(
-    [
-      'config/anthill',
-      'modules/Controller',
-      'modules/Preferences',
-      'modules/Router',
-      'controller/page/page.layer',
-      'controller/page/page.layout',
-      'controller/page/page.widget',
-      'controller/page/page.maximize'
-    ], function definePageController(AntHill, BaseController, BasePreferences,
-        Router, PageLayer, PageLayout, PageWidget,
-        PageItemMaximize) {
-      /**
-       * Define page controller
-       * @class PageController
-       * @extends {AntHill} AntHill
-       * @extends {BaseController} BaseController
-       * @extends {BasePreferences} BasePreferences
-       * @extends {Router} Router
-       * @extends {PageLayer} PageLayer
-       * @extends {PageLayout} PageLayout
-       * @extends {PageWidget} PageWidget
-       * @extends {PageItemMaximize} PageItemMaximize
-       * @constructor
-       */
-      var PageController = function PageController() {
-      };
+//       'controller/page/page.maximize'
 
-      return PageController.extend('PageController', {
+/**
+ * Aggregation of base class and mixin classes.
+ * @type {(function(*, ...[*]): __Aggregate)|*|(function(): aggregate)}
+ */
+const aggregation = require('../lib/extends/aggregation.js');
 
-            /**
-             * Define set as ready state
-             * @memberOf PageController
-             */
-            setAsReady: function setAsReady() {
-              this.logger.debug('Page is ready to use');
-              this.controller.store();
-            },
+/**
+ * @constant BaseController
+ * @type {module.BaseController}
+ */
+const BaseController = require('../lib/modules/Controller.js');
 
-            /**
-             * Transfer preferences
-             * @memberOf PageController
-             * @param {string} index
-             * @param value
-             */
-            transferContentPreferences: function transferContentPreferences(index,
-                value) {
-              this.logger.debug('Preferences successfully transferred', index,
-                  value);
-            },
+/**
+ * @constant Router
+ * @type {module.Router}
+ */
+const Router = require('../lib/modules/Router.js');
 
-            /**
-             * Get content loaded
-             * @memberOf PageController
-             * @return {boolean}
-             */
-            isLoadedContent: function isLoadedContent() {
-              return this.scope.contentLoaded;
-            },
+/**
+ * @constant PageLayer
+ * @type {module.PageLayer|*}
+ */
+const PageLayer = require('./page/page.layer.js');
 
-            /**
-             * Define content loaded setter
-             * @memberOf PageController
-             * @param {boolean} loaded
-             */
-            setLoadedContent: function setLoadedContent(loaded) {
+/**
+ * @constant PageLayout
+ * @type {module.PageLayout|*}
+ */
+const PageLayout = require('./page/page.layout.js');
 
-              /**
-               * Define content loaded
-               * @memberOf Page
-               * @type {boolean}
-               */
-              this.contentLoaded = loaded;
-              this.view.get$item().hideLoader();
-            },
+/**
+ * @constant PageWidget
+ * @type {module.PageWidget|*}
+ */
+const PageWidget = require('./page/page.widget.js');
 
-            /**
-             * Check if page lazy loaded
-             * @memberOf PageController
-             * @returns {boolean}
-             */
-            isLazyLoaded: function isLazyLoaded() {
-              return !!this.model.getConfig('preferences').lazyLoading;
-            },
+/**
+ * @class
+ * @extends {BaseController, Router}
+ */
+module.exports = class PageController extends aggregation(BaseController, Router, PageLayer, PageLayout, PageWidget) {
 
-            /**
-             * Check if page is current
-             * @memberOf PageController
-             * @returns {Page}
-             */
-            isCurrent: function isCurrent() {
+  /**
+   * @constructor
+   * @param {Page} scope
+   */
+  constructor(scope) {
+    super('PageController', scope, false);
+  }
 
-              /**
-               * Define page matcher
-               * @type {Array|{index: number, input: string}}
-               */
-              var pageMatch = this.isPageMatch2Hash();
+  /**
+   * Define set as ready state
+   * @memberOf PageController
+   */
+  setAsReady() {
+    this.logger.debug('Page is ready to use');
+    this.controller.store();
+  }
 
-              if (pageMatch) {
-                if (pageMatch[1] === this.model.getItemTitle().
-                        toClassName()) {
-                  return this.scope;
-                }
-              }
-            }
-          },
+  /**
+   * Transfer preferences
+   * @memberOf PageController
+   * @param {string} index
+   * @param value
+   */
+  transferContentPreferences(index, value) {
+    this.logger.debug('Preferences successfully transferred', index, value);
+  }
 
-          AntHill.prototype,
-          BaseController.prototype,
-          BasePreferences.prototype,
-          PageLayer.prototype,
-          PageLayout.prototype,
-          PageWidget.prototype,
-          PageItemMaximize.prototype,
-          Router.prototype
-      );
+  /**
+   * Get content loaded
+   * @memberOf PageController
+   * @return {boolean}
+   */
+  isLoadedContent() {
+    return this.scope.contentLoaded;
+  }
+
+  /**
+   * Define content loaded setter
+   * @memberOf PageController
+   * @param {boolean} loaded
+   */
+  setLoadedContent(loaded) {
+
+    /**
+     * Define content loaded
+     * @memberOf Page
+     * @type {boolean}
+     */
+    this.contentLoaded = loaded;
+    this.view.get$item().hideLoader();
+  }
+
+  /**
+   * Check if page lazy loaded
+   * @memberOf PageController
+   * @returns {boolean}
+   */
+  isLazyLoaded() {
+    return !!this.model.getConfig('preferences').lazyLoading;
+  }
+
+  /**
+   * Check if page is current
+   * @memberOf PageController
+   * @returns {Page}
+   */
+  isCurrent() {
+
+    /**
+     * Define page matcher
+     * @type {Array|{index: number, input: string}}
+     */
+    const pageMatch = this.isPageMatch2Hash();
+
+    if (pageMatch) {
+      if (pageMatch[1] === this.model.getItemTitle().toClassName()) {
+        return this.scope;
+      }
     }
-);
+  }
+};

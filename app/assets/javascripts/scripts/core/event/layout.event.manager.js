@@ -6,46 +6,52 @@
  * To change this template use File | Settings | File Templates.
  */
 
-defineP([
-  'modules/Event'
-], function defineLayoutEventManager(BaseEvent) {
+/**
+ * @constant BaseEvent
+ * @type {BaseEvent}
+ */
+const BaseEvent = require('../lib/modules/Event.js');
+
+/**
+ * @class LayoutEventManager
+ * @extends BaseEvent
+ */
+module.exports = class LayoutEventManager extends BaseEvent {
 
   /**
-   * Define layout event manager
-   * @class LayoutEventManager
-   * @extends BaseEvent
+   * Define LayoutEvent Manager
    * @constructor
+   * @param {string} name
+   * @param {Layout} scope
    */
-  var LayoutEventManager = function LayoutEventManager() {
+  constructor(name, scope) {
+    super(name || 'LayoutEventManager', scope, false);
 
     /**
      * Define events
-     * @memberOf LayoutEventManager
+     * @property LayoutEventManager
      * @type {{}}
      */
     this.events = {};
-  };
-
-  return LayoutEventManager.extend('LayoutEventManager', {
 
     /**
      * Define event list
-     * @memberOf LayoutEventManager
+     * @property LayoutEventManager
      * @type {{
-     *      updateNumberOfColumns: string,
-     *      updateMinCellWidth: string,
-     *      beforeNestedOrganizer: string,
-     *      afterNestedOrganizer: string,
-     *      beforeExpand: string,
-     *      onExpand: string,
-     *      afterExpand: string,
-     *      setOrganizeMode: string,
-     *      setBehaviorMode: string,
-     *      setEmptySpacesMode: string,
-     *      toggleGrid: string
+     *  updateNumberOfColumns: string,
+     *  updateMinCellWidth: string,
+     *  beforeNestedOrganizer: string,
+     *  afterNestedOrganizer: string,
+     *  beforeExpand: string,
+     *  onExpand: string,
+     *  afterExpand: string,
+     *  setOrganizeMode: string,
+     *  setBehaviorMode: string,
+     *  setEmptySpacesMode: string,
+     *  toggleGrid: string
      * }}
      */
-    eventList: {
+    this.eventList = {
       updateNumberOfColumns: 'update.number.of.columns',
       updateMinCellWidth: 'update.min.cell.width',
       beforeNestedOrganizer: 'before.nested.organizer',
@@ -57,7 +63,6 @@ defineP([
       setBehaviorMode: 'set.behavior.mode',
       setEmptySpacesMode: 'set.empty.spaces.mode',
       toggleGrid: 'toggle.grid'
-    }
-
-  }, BaseEvent.prototype);
-});
+    };
+  };
+};

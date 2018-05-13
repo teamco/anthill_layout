@@ -1,8 +1,3 @@
-//       'view/workspace.view',
-//       'event/workspace.event.manager',
-//       'permission/workspace.permission'
-//     ],
-
 /**
  * @constant AntHill
  * @type {module.AntHill}

@@ -5,16 +5,22 @@
  * Time: 11:42 PM
  */
 
-defineP(['config/layout'], function defineLayoutPermissions(Layout) {
+/**
+ * @constant Layout
+ * @type {module.Layout}
+ */
+const Layout = require('../layout.js');
+
+module.exports = () => {
 
   /**
    * Define Layout Local permission
    * @type {{
-     *      development: {},
-     *      authorize: {},
-     *      consumption: {},
-     *      test: {}
-     * }}
+   *  development: {},
+   *  authorize: {},
+   *  consumption: {},
+   *  test: {}
+   * }}
    */
   Layout.prototype.localPermissions = {
     development: {},
@@ -22,6 +28,4 @@ defineP(['config/layout'], function defineLayoutPermissions(Layout) {
     consumption: {},
     test: {}
   };
-
-  return Layout;
-});
+};

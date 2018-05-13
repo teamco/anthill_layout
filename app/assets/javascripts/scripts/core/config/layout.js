@@ -6,47 +6,69 @@
  * To change this template use File | Settings | File Templates.
  */
 
-defineP([
-  'config/anthill',
-  'modules/MVC',
-  'controller/layout.controller',
-  'event/layout.event.manager',
-  'controller/layout/layout.overlapping',
-  'controller/layout/layout.empty.rows',
-  'controller/layout/layout.empty.columns',
-  'controller/layout/layout.expand',
-  'controller/layout/layout.grid',
-  'permission/layout.permission'
-], function defineLayout(AntHill, MVC, Controller, EventManager, Overlapping,
-    LayoutEmptyRows, LayoutEmptyColumns, LayoutExpand, LayoutGrid, Permission) {
+/**
+ * @constant AntHill
+ * @type {module.AntHill}
+ */
+const AntHill = require('./anthill.js');
+
+/**
+ * Define Layout
+ * @class Layout
+ * @extends AntHill
+ */
+module.exports = class Layout extends AntHill {
 
   /**
-   * Define Layout
-   * @class Layout
-   * @extends AntHill
+   * @constructor
+   * @param opts
+   * @param {Page} containment
    */
-  var Layout = function Layout(opts, containment) {
+  constructor(opts, containment) {
+    super('Layout', null, true);
+
+    (require('./permissions/layout.permissions.js'))();
+    (require('./listeners/layout.listeners.js'))();
+
+    /**
+     * @constant LayoutController
+     * @type {module.LayoutController}
+     */
+    const LayoutController = require('../controller/layout.controller.js');
+
+    /**
+     * @constant LayoutEventManager
+     * @type {module.LayoutEventManager}
+     */
+    const LayoutEventManager = require('../event/layout.event.manager.js');
+
+    /**
+     * @constant LayoutPermission
+     * @type {module.LayoutPermission}
+     */
+    const LayoutPermission = require('../permission/layout.permission.js');
+
+    /**
+     * @constant MVC
+     * @type {module.MVC}
+     */
+    const MVC = require('../lib/modules/MVC.js');
 
     /**
      * Define default config
      * @type {{
-     *      type: string,
-     *      limit: boolean,
-     *      containment: Page|Widget,
-     *      grid: {
-     *          columns: number,
-     *          additionalRows: number,
-     *          margin: number,
-     *          padding: {
-     *              top: number,
-     *              right: number,
-     *              bottom: number,
-     *              left: number
-     *          }
-     *      }
+     *  type: string,
+     *  limit: boolean,
+     *  containment: Page|Widget,
+     *  grid: {
+     *    columns: number,
+     *    additionalRows: number,
+     *    margin: number,
+     *    padding: {top: number, right: number, bottom: number, left: number}
+     *  }
      * }}
      */
-    var DEFAULTS = {
+    const DEFAULTS = {
       type: 'default',
       limit: true,
       containment: containment,
@@ -91,58 +113,84 @@ defineP([
     /**
      * Define MVC
      * @property Layout
-     * @type {MVCJs}
+     * @type {MVC}
      */
-    this.mvc = new MVC({
+    new MVC({
       scope: this,
       config: [opts, DEFAULTS],
       components: [
-        Controller,
-        EventManager,
-        Permission
+        LayoutController,
+        LayoutEventManager,
+        LayoutPermission
       ],
       render: false
     });
 
     /**
+     * @constant LayoutOverlapping
+     * @type {module.LayoutOverlapping|*}
+     */
+    const LayoutOverlapping = require('../controller/layout/layout.overlapping.js');
+
+    /**
      * Define overlapping
      * @property Layout
-     * @type {Overlapping}
+     * @type {module.LayoutOverlapping}
      */
-    this.overlapping = new Overlapping(this);
+    this.overlapping = new LayoutOverlapping(this);
+
+    /**
+     * @constant LayoutEmptyRows
+     * @type {module.LayoutEmptyRows|*}
+     */
+    const LayoutEmptyRows = require('../controller/layout/layout.empty.rows.js');
 
     /**
      * Define empty rows
      * @property Layout
-     * @type {LayoutEmptyRows}
+     * @type {module.LayoutEmptyRows}
      */
     this.emptyRows = new LayoutEmptyRows(this);
 
     /**
+     * @constant LayoutEmptyColumns
+     * @type {module.LayoutEmptyColumns|*}
+     */
+    const LayoutEmptyColumns = require('../controller/layout/layout.empty.columns.js');
+
+    /**
      * Define empty columns
      * @property Layout
-     * @type {LayoutEmptyColumns}
+     * @type {module.LayoutEmptyColumns}
      */
     this.emptyColumns = new LayoutEmptyColumns(this);
 
     /**
+     * @constant LayoutExpand
+     * @type {module.LayoutExpand|*}
+     */
+    const LayoutExpand = require('../controller/layout/layout.expand.js');
+
+    /**
      * Define expand
      * @property Layout
-     * @type {LayoutExpand}
+     * @type {module.LayoutExpand}
      */
     this.expand = new LayoutExpand(this);
 
     /**
+     * @constant LayoutGrid
+     * @type {module.LayoutGrid|*}
+     */
+    const LayoutGrid = require('../controller/layout/layout.grid.js');
+
+    /**
      * Define grid
      * @property Layout
-     * @type {LayoutExpand}
+     * @type {module.LayoutGrid}
      */
     this.grid = new LayoutGrid(this);
 
-    this.observer.publish(
-        this.eventManager.eventList.successCreated
-    );
-  };
-
-  return Layout.extend('Layout', {}, AntHill.prototype);
-});
+    this.observer.publish(this.eventManager.eventList.successCreated);
+  }
+};

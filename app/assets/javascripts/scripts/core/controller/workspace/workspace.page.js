@@ -120,7 +120,6 @@ module.exports = class WorkspacePage {
          * @type {Page}
          */
         page = pages[index];
-
         page.layout.observer.publish(page.layout.eventManager.eventList.updateMinCellWidth);
       }
     }
@@ -179,7 +178,6 @@ module.exports = class WorkspacePage {
       }
 
       if (this.controller.isWidget(widget)) {
-
         wURL = '/' + page.controller.getItemIdentity(widget);
         widget.observer.publish(widget.eventManager.eventList.enlargeWidget, true);
       }
@@ -201,20 +199,14 @@ module.exports = class WorkspacePage {
    * @returns {boolean|*}
    */
   switchToPage(page) {
-
-    if (page && page.model &&
-        this.items.hasOwnProperty(page.model.getUUID())) {
+    if (page && page.model && this.items.hasOwnProperty(page.model.getUUID())) {
 
       if (this.switchPage) {
-
         this.logger.debug('Page under swipe', page);
         return false;
       }
 
-      this.observer.publish(
-          this.eventManager.eventList.beforeSwitchToPage,
-          page
-      );
+      this.observer.publish(this.eventManager.eventList.beforeSwitchToPage, page);
 
       if (page === this.model.getCurrentItem()) {
         this.logger.debug('Page already current', page);
@@ -224,9 +216,7 @@ module.exports = class WorkspacePage {
       }
 
       this.controller.swipeToCurrentPage();
-
     } else {
-
       window.location.hash = '';
       this.logger.warn('Undefined page', page);
       return false;
@@ -239,7 +229,6 @@ module.exports = class WorkspacePage {
    * @param {Page} page
    */
   afterSwitchToPage(page) {
-
     this.logger.debug('After switch to page', page);
 
     /**
@@ -248,14 +237,8 @@ module.exports = class WorkspacePage {
      */
     this.switchPage = false;
 
-    page.observer.publish(
-        page.eventManager.eventList.updateHeight
-    );
-
-    this.view.get$item().defineActivePage(
-        this.model.getItems(),
-        page
-    );
+    page.observer.publish(page.eventManager.eventList.updateHeight);
+    this.view.get$item().defineActivePage(this.model.getItems(), page);
 
     //this.getWidgetByHashLocation()
     //console.log('TODO add widget implementation');
@@ -275,20 +258,18 @@ module.exports = class WorkspacePage {
 
     /**
      * Define local scope
-     * @type {Workspace}
+     * @type {module.Workspace|{view, observer}}
      */
     const scope = this.scope;
 
     scope.view.elements.$pages.swipeTo(page);
-    scope.observer.publish(
-        scope.eventManager.eventList.updateMetaData,
-        page
-    );
+    scope.observer.publish(scope.eventManager.eventList.updateMetaData, page);
 
-    page.view.get$item().showLoader();
-    page.observer.publish(
-        page.eventManager.eventList.loadItemsContent
-    );
+    page.view ?
+        page.view.get$item().showLoader() :
+        page.logger.warn('Page with no View');
+
+    page.observer.publish(page.eventManager.eventList.loadItemsContent);
   }
 
   /**
@@ -310,8 +291,7 @@ module.exports = class WorkspacePage {
      */
     const page = this.getPageByHashLocation(scope);
 
-    if (page.controller.isCurrent() ||
-        page.controller.isLazyLoaded()) {
+    if (page.controller.isCurrent() || page.controller.isLazyLoaded()) {
       return page;
     }
   }
@@ -321,9 +301,10 @@ module.exports = class WorkspacePage {
    * @memberOf WorkspacePage
    */
   resetPagesHeightBeforeSwitch() {
-
-    _.each(this.model.getItems(), function(item) {
-      item.view.get$item().$.addClass('height-auto');
+    this.utils._.each(this.model.getItems(), item => {
+      item.view ?
+          item.view.get$item().$.addClass('height-auto') :
+          this.logger.warn('Item with no View', item);
     });
   }
 
@@ -356,20 +337,14 @@ module.exports = class WorkspacePage {
      */
     const clonePage = this.model.getItemByUUID(uuid);
 
-    if (_.isUndefined(clonePage)) {
-
+    if (!clonePage) {
       this.logger.debug('Create empty page', uuid);
       return false;
     }
 
     // Transfer layout
-    currentPage.observer.publish(
-        currentPage.eventManager.eventList.createLayout,
-        clonePage.model.getConfig('layout')
-    );
-
+    currentPage.observer.publish(currentPage.eventManager.eventList.createLayout, clonePage.model.getConfig('layout'));
     this.logger.debug('Clone page', clonePage, currentPage);
-
     currentPage.controller.cloneWidgets(clonePage);
   }
 };

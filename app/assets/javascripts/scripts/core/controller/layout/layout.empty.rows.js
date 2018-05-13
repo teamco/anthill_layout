@@ -5,17 +5,17 @@
  * Time: 3:22 PM
  */
 
-defineP([
-  'config/anthill'
-], function defineLayoutLayoutEmptyRows(AntHill) {
+/**
+ * Define LayoutEmptyRows
+ * @class LayoutEmptyRows
+ */
+module.exports = class LayoutEmptyRows {
 
   /**
-   * Define LayoutEmptyRows
-   * @class LayoutEmptyRows
    * @param {Layout} layout
    * @constructor
    */
-  var LayoutEmptyRows = function LayoutEmptyRows(layout) {
+  constructor(layout) {
 
     /**
      * Define layout
@@ -30,135 +30,124 @@ defineP([
      * @type {Page}
      */
     this.page = this.layout.controller.getContainment();
-  };
+  }
 
-  return LayoutEmptyRows.extend('LayoutEmptyRows', {
+  /**
+   * Check if remove empty spaces is allowed
+   * @returns {boolean}
+   */
+  isAllowed() {
+    return this.layout.controller._getLayoutMode('emptySpaces') === this.page.ORGANIZE_MODES.row;
+  }
 
-    /**
-     * Check if remove empty spaces is allowed
-     * @returns {boolean}
-     */
-    isAllowed: function isAllowed() {
-      return this.layout.controller._getLayoutMode('emptySpaces') ===
-          this.page.ORGANIZE_MODES.row;
-    },
+  /**
+   * Find busy rows
+   * @returns {Array}
+   */
+  findRows() {
+    let rows = [],
+        widget, index, i, l, dom,
+        widgets = this.page.model.getItems();
 
-    /**
-     * Find busy rows
-     * @returns {Array}
-     */
-    findRows: function findRows() {
-      var rows = [],
-          widget, index, i, l, dom,
-          widgets = this.page.model.getItems();
+    for (index in widgets) {
+      if (widgets.hasOwnProperty(index)) {
+        widget = widgets[index];
+        dom = widget.dom;
+        l = dom.relHeight + dom.row - 1;
 
-      for (index in widgets) {
-        if (widgets.hasOwnProperty(index)) {
-          widget = widgets[index];
-          dom = widget.dom;
-          l = dom.relHeight + dom.row - 1;
-
-          for (i = dom.row; i <= l; i += 1) {
-            rows[i] = this.base.define(rows[i], [], true);
-            rows[i].push(widget);
-          }
+        for (i = dom.row; i <= l; i += 1) {
+          rows[i] = rows[i] || [];
+          rows[i].push(widget);
         }
       }
-      return rows;
-    },
+    }
+    return rows;
+  }
+
+  /**
+   * Remove empty rows
+   * @return {Boolean}
+   */
+  remove() {
 
     /**
-     * Remove empty rows
-     * @return {Boolean}
+     * Define layout
+     * @type {Layout}
      */
-    remove: function remove() {
+    const layout = this.layout;
 
-      /**
-       * Define layout
-       * @type {Layout}
-       */
-      var layout = this.layout;
-
-      if (!this.isAllowed()) {
-        layout.logger.warn('Remove empty spaces by row does not allowed');
-        return false;
-      }
-
-      var rows = this.findRows(),
-          moveIndex = 0,
-          alreadyFixed = [],
-          i = 0, rl = rows.length;
-
-      for (i; i <= rl; i += 1) {
-
-        if (this.base.isDefined(rows[i])) {
-
-          /**
-           * Define already fixed widgets
-           * @type {*}
-           */
-          alreadyFixed = this._updateWidgetDOM(
-              rows[i],
-              alreadyFixed,
-              moveIndex
-          );
-
-        } else {
-          moveIndex += 1;
-          alreadyFixed = [];
-        }
-      }
-    },
-
-    /**
-     * Get widget to update dom
-     * @param {*} widgets
-     * @param {Array} alreadyFixed
-     * @param {Number} moveIndex
-     * @returns {*}
-     * @private
-     */
-    _updateWidgetDOM: function _updateWidgetDOM(widgets, alreadyFixed,
-        moveIndex) {
-      var widget, uuid, y = 0,
-          wl = widgets.length,
-          row, top, dom;
-
-      for (y; y <= wl; y += 1) {
-
-        if (widgets[y]) {
-
-          /**
-           * Define widget
-           * @type {Widget}
-           */
-          widget = widgets[y];
-
-          /**
-           * Define UUID
-           * @type {string}
-           */
-          uuid = widget.model.getUUID();
-
-          if ($.inArray(uuid, alreadyFixed) === -1) {
-            alreadyFixed.push(uuid);
-
-            dom = widget.map.getDOM();
-            row = widget.dom.row - moveIndex;
-            top = widget.map.widgetTop(row);
-
-            widget.model.updateDOM({
-              row: row,
-              top: top,
-              bottom: widget.map.widgetBottom(top, dom.height)
-            });
-          }
-        }
-      }
-
-      return alreadyFixed;
+    if (!this.isAllowed()) {
+      layout.logger.warn('Remove empty spaces by row does not allowed');
+      return false;
     }
 
-  }, AntHill.prototype);
+    let rows = this.findRows(),
+        moveIndex = 0,
+        alreadyFixed = [],
+        i = 0, rl = rows.length;
 
-});
+    for (i; i <= rl; i += 1) {
+
+      if (rows[i]) {
+
+        /**
+         * Define already fixed widgets
+         * @type {*}
+         */
+        alreadyFixed = this._updateWidgetDOM(rows[i], alreadyFixed, moveIndex);
+
+      } else {
+        moveIndex += 1;
+        alreadyFixed = [];
+      }
+    }
+  }
+
+  /**
+   * Get widget to update dom
+   * @param {*} widgets
+   * @param {Array} alreadyFixed
+   * @param {Number} moveIndex
+   * @returns {*}
+   * @private
+   */
+  _updateWidgetDOM(widgets, alreadyFixed,
+                   moveIndex) {
+    let widget, uuid, y = 0,
+        wl = widgets.length,
+        row, top, dom;
+
+    for (y; y <= wl; y += 1) {
+      if (widgets[y]) {
+
+        /**
+         * Define widget
+         * @type {Widget}
+         */
+        widget = widgets[y];
+
+        /**
+         * Define UUID
+         * @type {string}
+         */
+        uuid = widget.model.getUUID();
+
+        if ($.inArray(uuid, alreadyFixed) === -1) {
+          alreadyFixed.push(uuid);
+
+          dom = widget.map.getDOM();
+          row = widget.dom.row - moveIndex;
+          top = widget.map.widgetTop(row);
+
+          widget.model.updateDOM({
+            row: row,
+            top: top,
+            bottom: widget.map.widgetBottom(top, dom.height)
+          });
+        }
+      }
+    }
+
+    return alreadyFixed;
+  }
+}

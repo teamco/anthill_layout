@@ -5,7 +5,13 @@
  * Time: 10:34 PM
  */
 
-defineP(['config/layout'], function defineLayoutListeners(Layout) {
+/**
+ * @constant Layout
+ * @type {module.Layout}
+ */
+const Layout = require('../../../../scripts/core/config/layout.js');
+
+module.exports = () => {
 
   /**
    * Define Layout global listeners
@@ -13,6 +19,4 @@ defineP(['config/layout'], function defineLayoutListeners(Layout) {
    * @type {{}}
    */
   Layout.prototype.globalListeners = {};
-
-  return Layout;
-});
+};

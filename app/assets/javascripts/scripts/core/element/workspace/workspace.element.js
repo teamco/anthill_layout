@@ -17,7 +17,6 @@ const BaseElement = require('../../lib/modules/Element.js');
  * @extends BaseElement
  * @class WorkspaceElement
  * @type {module.WorkspaceElement}
- * @constructor
  */
 module.exports = class WorkspaceElement extends BaseElement {
 
@@ -122,6 +121,8 @@ module.exports = class WorkspaceElement extends BaseElement {
       }
     }
 
-    item.view.get$item().setVisibility(true);
+    item.view ?
+        item.view.get$item().setVisibility(true) :
+        this.view.scope.logger.warn('Item with no View', item);
   }
 };

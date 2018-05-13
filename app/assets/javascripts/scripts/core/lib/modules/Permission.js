@@ -24,7 +24,6 @@ module.exports = class BasePermission extends AntHill {
    * @param scope
    */
   constructor(name, scope) {
-
     super(name || 'BasePermission', scope, false);
 
     /**
@@ -66,7 +65,7 @@ module.exports = class BasePermission extends AntHill {
       if (fallback) {
         fallback(args);
       }
-    } else {
+    } else if (typeof capability === 'undefined') {
       this.scope.logger.warn('Undefined capability', opts);
     }
   }

@@ -6,14 +6,8 @@
  * To change this template use File | Settings | File Templates.
  */
 
-// 'config/anthill',
-// 'modules/MVC',
 // 'api/page.api',
-// 'controller/page.controller',
-// 'model/page.model',
 // 'view/page.view',
-// 'event/page.event.manager',
-// 'permission/page.permission'
 
 /**
  * @constant AntHill
@@ -34,6 +28,45 @@ module.exports = class Page extends AntHill {
    */
   constructor(opts) {
     super('Page', null, true);
+
+    (require('./permissions/page.permissions.js'))();
+    (require('./listeners/page.listeners.js'))();
+
+    /**
+     * @constant PageAPI
+     * @type {module.PageAPI}
+     */
+    const PageAPI = require('../api/page.api.js');
+
+    /**
+     * @constant PageController
+     * @type {module.PageController}
+     */
+    const PageController = require('../controller/page.controller.js');
+
+    /**
+     * @constant PageModel
+     * @type {module.PageModel}
+     */
+    const PageModel = require('../model/page.model.js');
+
+    /**
+     * @constant PageView
+     * @type {module.PageView}
+     */
+    const PageView = require('../view/page.view.js');
+
+    /**
+     * @constant PageEventManager
+     * @type {module.PageEventManager}
+     */
+    const PageEventManager = require('../event/page.event.manager.js');
+
+    /**
+     * @constant PagePermission
+     * @type {module.PagePermission}
+     */
+    const PagePermission = require('../permission/page.permission.js');
 
     /**
      * @constant MVC
@@ -172,12 +205,12 @@ module.exports = class Page extends AntHill {
       scope: this,
       config: [opts.config, DEFAULTS],
       components: [
-        // API,
-        // Controller,
-        // Model,
-        // View,
-        // EventManager,
-        // Permission
+        PageController,
+        PageAPI,
+        PageModel,
+        PageView,
+        PageEventManager,
+        PagePermission
       ],
       render: true
     });
@@ -222,7 +255,7 @@ module.exports = class Page extends AntHill {
     /**
      * Define layout
      * @property Page
-     * @type {Layout}
+     * @type {Object|Layout}
      */
     this.layout = {};
 
@@ -233,15 +266,11 @@ module.exports = class Page extends AntHill {
      */
     this.openUrlEventHandler = 0;
 
-    // this.observer.publish(
-    //     this.eventManager.eventList.createLayout,
-    //     this.config.layout
-    // );
-    //
-    // this.observer.batchPublish(
-    //     this.eventManager.eventList.successCreated,
-    //     this.eventManager.eventList.loadPreferences
-    // );
+    this.observer.publish(this.eventManager.eventList.createLayout, this.config.layout);
+    this.observer.batchPublish(
+        this.eventManager.eventList.successCreated,
+        this.eventManager.eventList.loadPreferences
+    );
   }
 
 };

@@ -5,15 +5,18 @@
  * Time: 12:21 AM
  */
 
-defineP(function defineLayoutExpand() {
+/**
+ * Define LayoutExpand
+ * @class LayoutExpand
+ * @type {module.LayoutExpand}
+ */
+module.exports = class LayoutExpand {
 
   /**
-   * Define LayoutExpand
-   * @class LayoutExpand
    * @param {Layout} layout
    * @constructor
    */
-  var LayoutExpand = function LayoutExpand(layout) {
+  constructor(layout) {
 
     /**
      * Define layout
@@ -28,144 +31,125 @@ defineP(function defineLayoutExpand() {
      * @type {Page}
      */
     this.page = this.layout.controller.getContainment();
-  };
+  }
 
-  return LayoutExpand.extend('LayoutExpand', {
+  /**
+   * Define adoptLayout
+   * @memberOf LayoutExpand
+   * @param {Widget} widget
+   */
+  adoptLayout(widget) {
 
     /**
-     * Define adoptLayout
-     * @memberOf LayoutExpand
-     * @param {Widget} widget
+     * Get below items
+     * @type {Array}
      */
-    adoptLayout: function adoptLayout(widget) {
+    const below = this.locateBelowItems(widget);
+    let adopt = false,
+        item, overlap, $item,
+        duration = 500;
+
+    /**
+     * Calculate delta height
+     * @type {number}
+     */
+    const delta = widget.controller.isExpanded() ?
+        (widget.view.getDomData().height - widget.dom.height) : 0;
+
+    /**
+     * Get layout
+     * @type {Layout}
+     */
+    const layout = this.layout;
+
+    /**
+     * Run after adopt callback
+     * @private
+     */
+    function _callback() {
+      layout.observer.publish(layout.eventManager.eventList.afterExpand, widget);
+    }
+
+    /**
+     * Define adopt height
+     * @param {Widget} item
+     * @private
+     */
+    function _adoptHeight(item) {
 
       /**
-       * Get below items
-       * @type {Array}
+       * Get $item
+       * @type {WidgetElement}
        */
-      var below = this.locateBelowItems(widget),
-          adopt = false,
-          item, overlap, $item,
-          duration = 500;
+      $item = item.view.get$item();
+
+      // Get item top
+      let top = delta ? (delta + item.dom.top) : item.dom.top;
+      $item.$.stop().animate({top: top}, delta ? 0 : duration, _callback);
+    }
+
+    for (let i = 0, l = below.length; i < l; i++) {
 
       /**
-       * Calculate delta height
-       * @type {number}
+       * Get item
+       * @type {Widget}
        */
-      var delta = widget.controller.isExpanded() ?
-          (widget.view.getDomData().height - widget.dom.height) : 0;
+      item = below[i];
 
-      /**
-       * Get layout
-       * @type {Layout}
-       */
-      var layout = this.layout;
-
-      /**
-       * Run after adopt callback
-       * @private
-       */
-      function _callback() {
-
-        layout.observer.publish(
-            layout.eventManager.eventList.afterExpand,
-            widget
-        );
-      }
-
-      /**
-       * Define adopt height
-       * @param {Widget} item
-       * @private
-       */
-      function _adoptHeight(item) {
+      if (adopt || !delta) {
+        _adoptHeight(item);
+      } else {
 
         /**
-         * Get $item
-         * @type {WidgetElement}
+         * Get overlap
+         * @type {*}
          */
-        $item = item.view.get$item();
+        overlap = layout.overlapping.freeStyleOverlapping(widget, item);
 
-        // Get item top
-        var top = delta ?
-            (delta + item.dom.top) :
-            item.dom.top;
-
-        $item.$.stop().animate(
-            {top: top},
-            delta ? 0 : duration,
-            _callback
-        );
-      }
-
-      for (var i = 0, l = below.length; i < l; i++) {
-
-        /**
-         * Get item
-         * @type {Widget}
-         */
-        item = below[i];
-
-        if (adopt || !delta) {
-
+        if (overlap) {
+          adopt = true;
           _adoptHeight(item);
-
-        } else {
-
-          /**
-           * Get overlap
-           * @type {*}
-           */
-          overlap = layout.overlapping.freeStyleOverlapping(
-              widget, item
-          );
-
-          if (overlap) {
-
-            adopt = true;
-            _adoptHeight(item);
-          }
         }
       }
-    },
+    }
+  }
+
+  /**
+   * Get below located items
+   * @memberOf LayoutExpand
+   * @param {Widget} widget
+   * @returns {Array}
+   */
+  locateBelowItems(widget) {
 
     /**
-     * Get below located items
-     * @memberOf LayoutExpand
-     * @param {Widget} widget
-     * @returns {Array}
+     * Get page
+     * @type {Page}
      */
-    locateBelowItems: function locateBelowItems(widget) {
+    const page = this.page;
+    let below = [],
+        items = page.model.getItems(),
+        uuid = widget.model.getUUID();
 
-      /**
-       * Get page
-       * @type {Page}
-       */
-      var page = this.page,
-          below = [],
-          items = page.model.getItems(),
-          uuid = widget.model.getUUID();
+    /**
+     * Get layout
+     * @type {Layout}
+     */
+    const layout = page.controller.getLayout();
 
-      /**
-       * Get layout
-       * @type {Layout}
-       */
-      var layout = page.controller.getLayout();
+    /**
+     * Order items in page
+     * @type {Array}
+     */
+    const order = layout.emptyColumns.getWidgetOrder(items);
 
-      /**
-       * Order items in page
-       * @type {Array}
-       */
-      var order = layout.emptyColumns.getWidgetOrder(items);
+    // Get index
+    const index = order.indexOf(uuid) + 1;
 
-      // Get index
-      var index = order.indexOf(uuid) + 1;
-
-      for (var i = index, l = order.length; i < l; i++) {
-        below.push(items[order[i]]);
-      }
-
-      return below;
+    for (let i = index, l = order.length; i < l; i++) {
+      below.push(items[order[i]]);
     }
-  });
-});
+
+    return below;
+  }
+};

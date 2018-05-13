@@ -92,13 +92,7 @@ module.exports = class WorkspaceController extends aggregation(BaseController, R
    * @memberOf WorkspaceController
    */
   updateSiteWidth() {
-
-    /**
-     * Define element
-     * @type {module.WorkspaceElement}
-     */
     const $workspace = this.view.get$item();
-
     const preferences = this.model.getConfig('preferences');
     let width = 0;
 

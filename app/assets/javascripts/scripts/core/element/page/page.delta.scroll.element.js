@@ -6,25 +6,26 @@
  * To change this template use File | Settings | File Templates.
  */
 
-defineP([
-  'modules/Element'
-], function defineDeltaScroll(BaseElement) {
+/**
+ * @constant BaseElement
+ * @type {BaseElement|*}
+ */
+const BaseElement = require('../../lib/modules/Element.js');
+
+/**
+ * @extends BaseElement
+ * @class DeltaScrollElement
+ * @type {module.DeltaScrollElement}
+ */
+module.exports = class DeltaScrollElement extends BaseElement {
 
   /**
-   * Define delta scroll
-   * @param view
+   * @param {PageView} view
    * @param opts
-   * @returns {*}
    * @constructor
-   * @class DeltaScroll
-   * @extends BaseElement
    */
-  var DeltaScroll = function DeltaScroll(view, opts) {
-    return this._config(view, opts, $('<div />')).build({
-      $container: opts.$container,
-      destroy: true
-    });
-  };
-
-  return DeltaScroll.extend('DeltaScroll', {}, BaseElement.prototype);
-});
+  constructor(view, opts) {
+    super('DeltaScrollElement', view, false);
+    this._config(view, opts, $('<div />')).build(opts);
+  }
+};

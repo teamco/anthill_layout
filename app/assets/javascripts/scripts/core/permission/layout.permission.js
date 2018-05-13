@@ -6,20 +6,24 @@
  * To change this template use File | Settings | File Templates.
  */
 
-defineP([
-  'modules/Permission'
-], function defineLayoutPermission(BasePermission) {
+/**
+ * @constant BasePermission
+ * @type {module.BasePermission}
+ */
+const BasePermission = require('../lib/modules/Permission.js');
+
+/**
+ * Define Permissions
+ * @extends BasePermission
+ * @class LayoutPermission
+ */
+module.exports = class LayoutPermission extends BasePermission {
 
   /**
-   * Define Permissions
-   * @extends BasePermission
-   * @class LayoutPermission
    * @constructor
+   * @param scope
    */
-  var LayoutPermission = function LayoutPermission() {
-
-  };
-
-  return LayoutPermission.extend('LayoutPermission', {},
-      BasePermission.prototype);
-});
+  constructor(scope) {
+    super('LayoutPermission', scope, false);
+  }
+};

@@ -6,17 +6,25 @@
  * To change this template use File | Settings | File Templates.
  */
 
-defineP([
-  'modules/Event'
-], function definePageEventManager(BaseEvent) {
+/**
+ * @constant BaseEvent
+ * @type {BaseEvent}
+ */
+const BaseEvent = require('../lib/modules/Event.js');
+
+/**
+ * @class PageEventManager
+ * @extends BaseEvent
+ */
+module.exports = class PageEventManager extends BaseEvent {
 
   /**
-   * Define page event manager
-   * @class PageEventManager
-   * @extends BaseEvent
    * @constructor
+   * @param {string} name
+   * @param {Page} scope
    */
-  var PageEventManager = function PageEventManager() {
+  constructor(name, scope) {
+    super(name || 'PageEventManager', scope, false);
 
     /**
      * Define events
@@ -24,48 +32,45 @@ defineP([
      * @type {{}}
      */
     this.events = {};
-  };
-
-  return PageEventManager.extend('PageEventManager', {
 
     /**
      * Define event list
      * @property PageEventManager
      * @type {{
-         *      setMaximized: string,
-         *      unsetMaximized: string,
-         *      setAsReady: string,
-         *      createWidget: string,
-         *      destroyWidget: string,
-         *      destroyWidgets: string,
-         *      approveItemsDestroy: string,
-         *      createLayout: string,
-         *      destroyLayout: string,
-         *      updateSiteDescription: string,
-         *      updateSiteKeywords: string,
-         *      updateLayoutConfig: string,
-         *      expandLayout: string,
-         *      updatePadding: string,
-         *      resizeWidgets: string,
-         *      resizeWidget: string,
-         *      loadItemsContent: string,
-         *      setLoadedContent: string,
-         *      updateLoadedContent: string,
-         *      updateHashOnMaximize: string,
-         *      updateHashOnReduce: string,
-         *      updateHeight: string,
-         *      afterLoadingItems: string,
-         *      disableItemInteractions: string,
-         *      enableItemInteractions: string,
-         *      loadPreferences: string,
-         *      transferPreferences: string,
-         *      transferContentPreferences: string,
-         *      afterUpdatePreferences: string,
-         *      updatePageScrollHeight: string,
-         *      showWidgetContent: string
-         * }}
+     *  setMaximized: string,
+     *  unsetMaximized: string,
+     *  setAsReady: string,
+     *  createWidget: string,
+     *  destroyWidget: string,
+     *  destroyWidgets: string,
+     *  approveItemsDestroy: string,
+     *  createLayout: string,
+     *  destroyLayout: string,
+     *  updateSiteDescription: string,
+     *  updateSiteKeywords: string,
+     *  updateLayoutConfig: string,
+     *  expandLayout: string,
+     *  updatePadding: string,
+     *  resizeWidgets: string,
+     *  resizeWidget: string,
+     *  loadItemsContent: string,
+     *  setLoadedContent: string,
+     *  updateLoadedContent: string,
+     *  updateHashOnMaximize: string,
+     *  updateHashOnReduce: string,
+     *  updateHeight: string,
+     *  afterLoadingItems: string,
+     *  disableItemInteractions: string,
+     *  enableItemInteractions: string,
+     *  loadPreferences: string,
+     *  transferPreferences: string,
+     *  transferContentPreferences: string,
+     *  afterUpdatePreferences: string,
+     *  updatePageScrollHeight: string,
+     *  showWidgetContent: string
+     * }}
      */
-    eventList: {
+    this.eventList = {
 
       setMaximized: 'set.maximized',
       unsetMaximized: 'unset.maximized',
@@ -111,7 +116,6 @@ defineP([
       afterUpdatePreferences: 'after.update.preferences',
 
       showWidgetContent: 'show.widget.content'
-    }
-
-  }, BaseEvent.prototype);
-});
+    };
+  }
+};

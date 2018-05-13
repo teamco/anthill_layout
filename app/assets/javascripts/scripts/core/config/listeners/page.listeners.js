@@ -5,78 +5,65 @@
  * Time: 10:33 PM
  */
 
-defineP(['config/page'], function definePageListeners(Page) {
+/**
+ * @constant Page
+ * @type {module.Page}
+ */
+const Page = require('../page.js');
+
+module.exports = () => {
 
   /**
    * Define Page Local listeners
    * @memberOf Page
    * @type {{
    * successCreated: {name: string, callback: Function},
-     *      successRendered: {name: string, callback: Function},
-     *      createWidget: {name: string, callback: Function}
-     *      resizeWidget: {name: string, callback: Function}
-     * }}
+   *  successRendered: {name: string, callback: Function},
+   *  createWidget: {name: string, callback: Function}
+   *  resizeWidget: {name: string, callback: Function}
+   * }}
    */
   Page.prototype.localListeners = {
 
     successCreated: {
-      name: "success.created",
-      callback: function successCreatedCallback() {
+      name: 'success.created',
+      callback() {
       }
     },
 
     successRendered: {
-      name: "success.rendered",
-      callback: function successRenderedCallback() {
-
+      name: 'success.rendered',
+      callback() {
         this.view.renderPage();
         this.controller.updateLayout();
-
-        this.observer.batchPublish(
-            this.eventManager.eventList.updateItemInteractions
-        );
+        this.observer.batchPublish(this.eventManager.eventList.updateItemInteractions);
       }
     },
 
     createWidget: {
       name: 'create.widget',
-      callback: function createWidgetCallback() {
-
+      callback() {
         if (this.controller.root().model.getConfig('loading')) {
           return false;
         }
 
         /**
          * Get current widget
-         * @type {Widget}
+         * @type {module.Widget}
          */
-        var widget = this.model.getCurrentItem();
+        const widget = this.model.getCurrentItem();
 
-        widget.model.setOverlapping(
-            this.model.getConfig('widget/overlapping')
-        );
-
-        this.observer.publish(
-            this.eventManager.eventList.updateHeight
-        );
+        widget.model.setOverlapping(this.model.getConfig('widget/overlapping'));
+        this.observer.publish(this.eventManager.eventList.updateHeight);
       }
     },
 
     resizeWidget: {
       name: 'resize.widget',
-      callback: function resizeWidgetCallback(widget) {
-
-        widget.observer.publish(
-            widget.eventManager.eventList.adoptDimensions,
-            true
-        );
-
-        this.observer.publish(
-            this.eventManager.eventList.updateHeight
-        );
+      callback(widget) {
+        widget.observer.publish(widget.eventManager.eventList.adoptDimensions, true);
+        this.observer.publish(this.eventManager.eventList.updateHeight);
       }
     }
   };
-
-  return Page;
-});
+};

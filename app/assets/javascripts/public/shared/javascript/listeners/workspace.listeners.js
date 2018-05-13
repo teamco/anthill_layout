@@ -125,9 +125,9 @@ module.exports = () => {
    * Define Workspace Global listeners
    * @property Workspace
    * @type {{
-   *  successRendered: {name: string, callback: Workspace.globalListeners.successRendered.successRenderedCallback},
-   *  createDesignTimePanel: {name: string, callback: Workspace.globalListeners.createDesignTimePanel.createDesignTimePanelCallback},
-   *  createRunTimePanel: {name: string, callback: Workspace.globalListeners.createRunTimePanel.createRunTimePanelCallback}
+   *  successRendered: {name: string, callback: Workspace.globalListeners.successRendered.callback},
+   *  createDesignTimePanel: {name: string, callback: Workspace.globalListeners.createDesignTimePanel.callback},
+   *  createRunTimePanel: {name: string, callback: Workspace.globalListeners.createRunTimePanel.callback}
    * }}
    */
   Workspace.prototype.globalListeners = {

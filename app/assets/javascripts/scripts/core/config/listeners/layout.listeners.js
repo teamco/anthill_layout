@@ -5,24 +5,26 @@
  * Time: 10:34 PM
  */
 
-defineP(['config/layout'], function defineLayoutListeners(Layout) {
+/**
+ * @constant Layout
+ * @type {module.Layout}
+ */
+const Layout = require('../layout.js');
+
+module.exports = () => {
 
   /**
    * Define Layout Local listeners
    * @memberOf Layout
-   * @type {{
-     *      afterNestedOrganizer: {name: string, callback: Function}
-     * }}
+   * @type {{afterNestedOrganizer: {name: string, callback: Function}}}
    */
   Layout.prototype.localListeners = {
 
     afterNestedOrganizer: {
       name: 'after.nested.organizer',
-      callback: function afterNestedOrganizerCallback() {
+      callback() {
         // TODO
       }
     }
   };
-
-  return Layout;
-});
+};

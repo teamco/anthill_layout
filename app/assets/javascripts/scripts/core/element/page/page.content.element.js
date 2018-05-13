@@ -6,26 +6,26 @@
  * To change this template use File | Settings | File Templates.
  */
 
-defineP([
-  'modules/Element'
-], function definePageContent(BaseElement) {
+/**
+ * @constant BaseElement
+ * @type {BaseElement|*}
+ */
+const BaseElement = require('../../lib/modules/Element.js');
+
+/**
+ * @extends BaseElement
+ * @class PageContentElement
+ * @type {module.PageContentElement}
+ */
+module.exports = class PageContentElement extends BaseElement {
 
   /**
-   * Define page content
-   * @param view
+   * @param {PageView} view
    * @param opts
-   * @returns {*}
    * @constructor
-   * @class PageContent
-   * @extends BaseElement
    */
-  var PageContent = function PageContent(view, opts) {
-
-    return this._config(view, opts, $('<ul />')).build({
-      $container: opts.$container,
-      destroy: true
-    });
-  };
-
-  return PageContent.extend('PageContent', {}, BaseElement.prototype);
-});
+  constructor(view, opts) {
+    super('PageContentElement', view, false);
+    this._config(view, opts, $('<ul />')).build(opts);
+  }
+};

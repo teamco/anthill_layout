@@ -429,9 +429,7 @@ module.exports = class MVC extends AntHill {
         const controller = scope.controller;
 
         if (controller) {
-
           let callback = controller[index];
-
           if (!callback) {
             let method = index.toPoint().split('.'),
                 key = method[0];
@@ -441,18 +439,16 @@ module.exports = class MVC extends AntHill {
 
             if (this.RESERVED.hasOwnProperty(key)) {
 
-              if (this.RESERVED[key].singular.indexOf(method) > -1) {
+              const singular = this.RESERVED[key].singular;
+              const plural = this.RESERVED[key].plural;
 
+              if (singular && singular.indexOf(method) > -1) {
                 eventManager.abstract[key + 'Item'] = index;
                 callback = scope.controller[key + 'Item'];
-
-              } else if (this.RESERVED[key].plural.indexOf(method) > -1) {
-
+              } else if (plural && plural.indexOf(method) > -1) {
                 eventManager.abstract[key + 'Items'] = index;
                 callback = scope.controller[key + 'Items'];
-
               } else {
-
                 scope.logger.warn('Undefined Event Callback', [scope.controller, key + method]);
               }
             }
@@ -462,18 +458,14 @@ module.exports = class MVC extends AntHill {
             event: event,
             callback: callback
           }, true);
-
         } else {
-
           scope.logger.warn('Controller is not defined', event);
         }
       }
     }
 
     this.applyDefaultListeners();
-
     scope.logger.debug('Subscribe events', eventManager);
-
     this.applyListeners('local');
     this.applyListeners('global');
   }
