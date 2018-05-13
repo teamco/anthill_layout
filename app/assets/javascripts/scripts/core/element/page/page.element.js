@@ -35,7 +35,6 @@ module.exports = class PageElement extends BaseElement {
    * @memberOf PageElement
    */
   setPadding(padding) {
-
     this.view.elements.$widgets.$.css({
       paddingTop: padding.top,
       paddingRight: padding.right,
