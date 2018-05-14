@@ -5,18 +5,24 @@
  * Time: 11:50 PM
  */
 
-defineP(['config/widget'], function defineWidgetPermissions(Widget) {
+/**
+ * @constant Widget
+ * @type {module.Widget}
+ */
+const Widget = require('../widget.js');
+
+module.exports = () => {
 
   /**
    * Define Widget Local permission
    * @type {{
-     *      development: {maximizable: boolean, zoomable: boolean, draggable:
-     *     boolean, resizable: boolean}, authorize: {maximizable: boolean,
-     *     zoomable: boolean, draggable: boolean, resizable: boolean},
-     *     consumption: {maximizable: boolean, zoomable: boolean, draggable:
-     *     boolean, resizable: boolean}, test: {maximizable: boolean, zoomable:
-     *     boolean, draggable: boolean, resizable: boolean}
-     * }}
+   *  development: {maximizable: boolean, zoomable: boolean, draggable:
+   *  boolean, resizable: boolean}, authorize: {maximizable: boolean,
+   *  zoomable: boolean, draggable: boolean, resizable: boolean},
+   *  consumption: {maximizable: boolean, zoomable: boolean, draggable:
+   *  boolean, resizable: boolean}, test: {maximizable: boolean, zoomable:
+   *  boolean, draggable: boolean, resizable: boolean}
+   * }}
    */
   Widget.prototype.localPermissions = {
     development: {
@@ -44,6 +50,4 @@ defineP(['config/widget'], function defineWidgetPermissions(Widget) {
       resizable: true
     }
   };
-
-  return Widget;
-});
+};

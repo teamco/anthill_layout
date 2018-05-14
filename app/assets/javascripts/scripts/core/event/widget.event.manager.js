@@ -6,17 +6,25 @@
  * To change this template use File | Settings | File Templates.
  */
 
-defineP([
-  'modules/Event'
-], function defineWidgetEventManager(BaseEvent) {
+/**
+ * @constant BaseEvent
+ * @type {BaseEvent}
+ */
+const BaseEvent = require('../lib/modules/Event.js');
+
+/**
+ * @class WidgetEventManager
+ * @extends BaseEvent
+ */
+module.exports = class WidgetEventManager extends BaseEvent {
 
   /**
-   * Define widget event manager
-   * @class WidgetEventManager
    * @constructor
-   * @extends BaseEvent
+   * @param {string} name
+   * @param {Page} scope
    */
-  var WidgetEventManager = function WidgetEventManager() {
+  constructor(name, scope) {
+    super(name || 'WidgetEventManager', scope, false);
 
     /**
      * Define events
@@ -24,81 +32,78 @@ defineP([
      * @type {{}}
      */
     this.events = {};
-  };
-
-  return WidgetEventManager.extend('WidgetEventManager', {
 
     /**
      * Define event list
      * @property WidgetEventManager
      * @type {{
-         *      initDraggable: string,
-         *      enableDraggable: string,
-         *      disableDraggable: string,
-         *      destroyDraggable: string,
-         *      createDraggable: string,
-         *      startDraggable: string,
-         *      dragDraggable: {eventName: string, params: {buffer: number}},
-         *      stopDraggable: string,
-         *      updateDraggable: string,
-         *      initResizable: string,
-         *      enableResizable: string,
-         *      disableResizable: string,
-         *      destroyResizable: string,
-         *      createResizable: string,
-         *      startResizable: string,
-         *      resizeResizable: {eventName: string, params: {buffer: number}},
-         *      stopResizable: string,
-         *      updateResizable: string,
-         *      updateContainment: string,
-         *      afterExpand: string,
-         *      loadContent: string,
-         *      loadPreferences: string,
-         *      transferPreferences: string,
-         *      afterUpdatePreferences: string,
-         *      setContent: string,
-         *      afterSetContent: string,
-         *      afterRenderContent: string,
-         *      adoptDimensions: string,
-         *      restoreLayerIndex: string,
-         *      setLayerUp: string,
-         *      setLayerDown: string,
-         *      setAlwaysOnTop: string,
-         *      setOnClickUrl: string,
-         *      clearThumbnail: string,
-         *      customClassName: string,
-         *      saveDom: string,
-         *      afterMaximize: string,
-         *      beforeMaximize: string,
-         *      setZoomable: string,
-         *      unsetZoomable: string,
-         *      afterReduce: string,
-         *      beforeReduce: string,
-         *      enlargeWidget: string,
-         *      reduceWidget: string,
-         *      stretchHeight: string,
-         *      stretchWidth: string,
-         *      unsetStick: string,
-         *      setStickToCenterLeft: string,
-         *      setStickToCenterTop: string,
-         *      setStickToCenter: string,
-         *      setStickToCenterBottom: string,
-         *      setStickToCenterRight: string,
-         *      setStickToTopLeft: string,
-         *      setStickToBottomLeft: string,
-         *      setStickToTopRight: string,
-         *      setStickToBottomRight: string,
-         *      restoreWidgetSticker: string,
-         *      toggleContentExpander: string,
-         *      toggleFreeze: string,
-         *      expandContent: string,
-         *      collapseContent: string,
-         *      scrollContent: string,
-         *      scrollSpeedParallaxBehavior: string,
-         *      commentableContent: string
-         * }}
+     *  initDraggable: string,
+     *  enableDraggable: string,
+     *  disableDraggable: string,
+     *  destroyDraggable: string,
+     *  createDraggable: string,
+     *  startDraggable: string,
+     *  dragDraggable: {eventName: string, params: {buffer: number}},
+     *  stopDraggable: string,
+     *  updateDraggable: string,
+     *  initResizable: string,
+     *  enableResizable: string,
+     *  disableResizable: string,
+     *  destroyResizable: string,
+     *  createResizable: string,
+     *  startResizable: string,
+     *  resizeResizable: {eventName: string, params: {buffer: number}},
+     *  stopResizable: string,
+     *  updateResizable: string,
+     *  updateContainment: string,
+     *  afterExpand: string,
+     *  loadContent: string,
+     *  loadPreferences: string,
+     *  transferPreferences: string,
+     *  afterUpdatePreferences: string,
+     *  setContent: string,
+     *  afterSetContent: string,
+     *  afterRenderContent: string,
+     *  adoptDimensions: string,
+     *  restoreLayerIndex: string,
+     *  setLayerUp: string,
+     *  setLayerDown: string,
+     *  setAlwaysOnTop: string,
+     *  setOnClickUrl: string,
+     *  clearThumbnail: string,
+     *  customClassName: string,
+     *  saveDom: string,
+     *  afterMaximize: string,
+     *  beforeMaximize: string,
+     *  setZoomable: string,
+     *  unsetZoomable: string,
+     *  afterReduce: string,
+     *  beforeReduce: string,
+     *  enlargeWidget: string,
+     *  reduceWidget: string,
+     *  stretchHeight: string,
+     *  stretchWidth: string,
+     *  unsetStick: string,
+     *  setStickToCenterLeft: string,
+     *  setStickToCenterTop: string,
+     *  setStickToCenter: string,
+     *  setStickToCenterBottom: string,
+     *  setStickToCenterRight: string,
+     *  setStickToTopLeft: string,
+     *  setStickToBottomLeft: string,
+     *  setStickToTopRight: string,
+     *  setStickToBottomRight: string,
+     *  restoreWidgetSticker: string,
+     *  toggleContentExpander: string,
+     *  toggleFreeze: string,
+     *  expandContent: string,
+     *  collapseContent: string,
+     *  scrollContent: string,
+     *  scrollSpeedParallaxBehavior: string,
+     *  commentableContent: string
+     * }}
      */
-    eventList: {
+    this.eventList = {
 
       // Drag events
       initDraggable: 'init.draggable',
@@ -191,7 +196,6 @@ defineP([
       scrollContent: 'scroll.content',
       scrollSpeedParallaxBehavior: 'scroll.speed.parallax.behavior',
       commentableContent: 'commentable.content'
-    }
-
-  }, BaseEvent.prototype);
-});
+    };
+  }
+};

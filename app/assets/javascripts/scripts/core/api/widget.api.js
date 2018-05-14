@@ -5,97 +5,97 @@
  * Time: 7:22 PM
  */
 
-defineP([
-  'modules/API'
-], function defineWidgetAPI(BaseAPI) {
+/**
+ * @constant BaseAPI
+ * @type {module.BaseAPI}
+ */
+const BaseAPI = require('../lib/modules/API.js');
+
+module.exports = class WidgetAPI extends BaseAPI {
 
   /**
-   * Define Widget API
-   * @class WidgetAPI
-   * @extends BaseAPI
+   * @param {Widget} scope
+   * @param {string} name
    * @constructor
    */
-  var WidgetAPI = function WidgetAPI() {
-  };
+  constructor(name, scope) {
+    super('WidgetAPI', scope, false);
+  }
 
-  return WidgetAPI.extend('WidgetAPI', {
+  /**
+   * Init drag api
+   * @memberOf WidgetAPI
+   */
+  initDrag() {
+    this._setInteraction('initDraggable');
+  }
 
-    /**
-     * Init drag api
-     * @memberOf WidgetAPI
-     */
-    initDrag: function initDrag() {
-      this._setInteraction('initDraggable');
-    },
+  /**
+   * Enable drag api
+   * @memberOf WidgetAPI
+   */
+  initDrag() {
+    this._setInteraction('enableDraggable');
+  }
 
-    /**
-     * Enable drag api
-     * @memberOf WidgetAPI
-     */
-    enableDrag: function initDrag() {
-      this._setInteraction('enableDraggable');
-    },
+  /**
+   * Disable drag api
+   * @memberOf WidgetAPI
+   */
+  initDrag() {
+    this._setInteraction('disableDraggable');
+  }
 
-    /**
-     * Disable drag api
-     * @memberOf WidgetAPI
-     */
-    disableDrag: function initDrag() {
-      this._setInteraction('disableDraggable');
-    },
+  /**
+   * Destroy drag api
+   * @memberOf WidgetAPI
+   */
+  destroyDrag() {
+    this._setInteraction('destroyDraggable');
+  }
 
-    /**
-     * Destroy drag api
-     * @memberOf WidgetAPI
-     */
-    destroyDrag: function destroyDrag() {
-      this._setInteraction('destroyDraggable');
-    },
+  /**
+   * Init resize api
+   * @memberOf WidgetAPI
+   */
+  initResize() {
+    this._setInteraction('initResizable');
+  }
 
-    /**
-     * Init resize api
-     * @memberOf WidgetAPI
-     */
-    initResize: function initResize() {
-      this._setInteraction('initResizable');
-    },
+  /**
+   * Enable resize api
+   * @memberOf WidgetAPI
+   */
+  enableResize() {
+    this._setInteraction('enableResizable');
+  }
 
-    /**
-     * Enable resize api
-     * @memberOf WidgetAPI
-     */
-    enableResize: function enableResize() {
-      this._setInteraction('enableResizable');
-    },
+  /**
+   * Disable resize api
+   * @memberOf WidgetAPI
+   */
+  disableResize() {
+    this._setInteraction('disableResizable');
+  }
 
-    /**
-     * Disable resize api
-     * @memberOf WidgetAPI
-     */
-    disableResize: function disableResize() {
-      this._setInteraction('disableResizable');
-    },
+  /**
+   * Destroy resize api
+   * @memberOf WidgetAPI
+   */
+  destroyResize() {
+    this._setInteraction('destroyResizable');
+  }
 
-    /**
-     * Destroy resize api
-     * @memberOf WidgetAPI
-     */
-    destroyResize: function destroyResize() {
-      this._setInteraction('destroyResizable');
-    },
+  /**
+   * Set interaction
+   * @memberOf WidgetAPI
+   * @param {string} interaction
+   * @private
+   */
+  _setInteraction(interaction) {
+    const scope = this.scope;
+    scope.observer.publish(scope.eventManager.eventList[interaction]);
+  }
+};
 
-    /**
-     * Set interaction
-     * @memberOf WidgetAPI
-     * @param {string} interaction
-     * @private
-     */
-    _setInteraction: function _setInteraction(interaction) {
-      var scope = this.scope;
-      scope.observer.publish(
-          scope.eventManager.eventList[interaction]
-      );
-    }
-
-  }, BaseAPI.prototype);
-});
+  

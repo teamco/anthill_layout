@@ -12,14 +12,19 @@
  */
 const BaseController = require('../lib/modules/Controller.js');
 
+/**
+ * @class LayoutController
+ * @type {module.LayoutController}
+ */
 module.exports = class LayoutController extends BaseController {
 
   /**
    * @constructor
-   * @param {Layout} scope
+   * @param {string} name
+   * @param scope
    */
-  constructor(scope) {
-    super('LayoutController', scope, false);
+  constructor(name, scope) {
+    super(name || 'LayoutController', scope, false);
   }
 
   /**

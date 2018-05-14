@@ -5,19 +5,24 @@
  * Time: 1:11 PM
  */
 
-defineP([
-  'modules/Preferences'
-], function definePreferencesController(BasePreferences) {
+/**
+ * @constant BasePreferences
+ * @type {module.BasePreferences}
+ */
+const BasePreferences = require('../../core/lib/modules/Preferences.js');
+
+/**
+ * @class BasePreferences
+ * @type {module.PreferencesController}
+ */
+module.exports = class PreferencesController extends BasePreferences {
 
   /**
-   * Define Preferences Controller
-   * @class PreferencesController
    * @constructor
-   * @extends BasePreferences
+   * @param {string} name
+   * @param scope
    */
-  var PreferencesController = function PreferencesController() {
-  };
-
-  return PreferencesController.extend('PreferencesController', {},
-      BasePreferences.prototype);
-});
+  constructor(name, scope) {
+    super(name || 'PreferencesController', scope, false);
+  }
+};

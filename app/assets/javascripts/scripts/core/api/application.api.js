@@ -21,9 +21,10 @@ module.exports = class ApplicationAPI extends BaseAPI {
 
   /**
    * @param {Application} scope
+   * @param {string} name
    * @constructor
    */
-  constructor(scope) {
+  constructor(name, scope) {
     super('ApplicationAPI', scope, false);
   }
 

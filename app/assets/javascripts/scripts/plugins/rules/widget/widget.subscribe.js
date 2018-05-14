@@ -1,249 +1,205 @@
 /**
  * Created by teamco on 4/1/14.
  */
-defineP(function defineWidgetSubscribe() {
+
+module.exports = class WidgetSubscribe {
 
   /**
-   * Define widget subscribe events
-   * @class WidgetSubscribe
-   * @constructor
+   * On drag event simulate
+   * @memberOf WidgetSubscribe
+   * @param type
+   * @param args
    */
-  var WidgetSubscribe = function WidgetSubscribe() {
-  };
-
-  return WidgetSubscribe.extend('WidgetSubscribe', {
+  dragDraggableSimulate(type, args) {
 
     /**
-     * On drag event simulate
-     * @memberOf WidgetSubscribe
-     * @param type
-     * @param args
+     * Define widget
+     * @type {Widget}
      */
-    dragDraggableSimulate: function dragDraggableSimulate(type, args) {
-
-      /**
-       * Define widget
-       * @type {Widget}
-       */
-      var widget = this.scope.controller.getContainment();
-
-      /**
-       * Get jQuery.UI element
-       * @type {*}
-       */
-      var ui = args[1];
-
-      /**
-       * Get $widget
-       * @type {*}
-       */
-      var $widget = widget.view.get$item().$;
-
-      /**
-       * Set delta left
-       * @type {number}
-       */
-      var deltaLeft = ui.position.left -
-          ui.originalPosition.left;
-
-      /**
-       * Set delta top
-       * @type {number}
-       */
-      var deltaTop = ui.position.top -
-          ui.originalPosition.top;
-
-      $widget.css({
-        left: widget.dom.left + deltaLeft,
-        top: widget.dom.top + deltaTop
-      });
-    },
+    const widget = this.scope.controller.getContainment();
 
     /**
-     * On resize event simulate
-     * @memberOf WidgetSubscribe
-     * @param type
-     * @param args
+     * Get jQuery.UI element
+     * @type {{originalPosition, position}}
      */
-    resizeResizableSimulate: function resizeResizableSimulate(type, args) {
-
-      /**
-       * Get jQuery.UI element
-       * @type {*}
-       */
-      var ui = args[1];
-
-      /**
-       * Define widget
-       * @type {Widget}
-       */
-      var widget = this.scope.controller.getContainment();
-
-      /**
-       * Define resizable
-       * @type {Resizable}
-       */
-      var resizable = widget.interactions.resizable;
-      /**
-       * Define direction
-       * @type {string}
-       */
-      var direction = resizable.getResizeDirection(ui);
-
-      /**
-       * Get $widget
-       * @type {*}
-       */
-      var $widget = widget.view.get$item().$;
-
-      if (direction === 'w') {
-        $widget.css(resizable.getDirectionW(ui));
-      }
-
-      if (direction === 'e') {
-        $widget.css(resizable.getDirectionE(ui));
-      }
-
-      if (direction === 'n') {
-        $widget.css(resizable.getDirectionN(ui));
-      }
-
-      if (direction === 's') {
-        $widget.css(resizable.getDirectionS(ui));
-      }
-
-      if (direction === 'nw') {
-        $widget.css(resizable.getDirectionW(ui));
-        $widget.css(resizable.getDirectionN(ui));
-      }
-
-      if (direction === 'ne') {
-        $widget.css(resizable.getDirectionE(ui));
-        $widget.css(resizable.getDirectionN(ui));
-      }
-
-      if (direction === 'sw') {
-        $widget.css(resizable.getDirectionW(ui));
-        $widget.css(resizable.getDirectionS(ui));
-      }
-
-      if (direction === 'se') {
-        $widget.css(resizable.getDirectionE(ui));
-        $widget.css(resizable.getDirectionS(ui));
-      }
-    },
+    const ui = args[1];
 
     /**
-     * On drag stop event simulate
-     * @memberOf WidgetSubscribe
+     * Get $widget
+     * @type {*}
      */
-    stopDraggableSimulate: function stopDraggableSimulate() {
-
-      /**
-       * Define widget
-       * @type {Widget}
-       */
-      var widget = this.scope.controller.getContainment();
-
-      widget.observer.publish(
-          widget.eventManager.eventList.saveDom
-      );
-
-      widget.observer.publish(
-          widget.eventManager.eventList.stopDraggable,
-          'stopDraggable'
-      );
-    },
+    const $widget = widget.view.get$item().$;
 
     /**
-     * On resize stop event simulate
-     * @memberOf WidgetSubscribe
+     * Set delta left
+     * @type {number}
      */
-    stopResizableSimulate: function stopResizableSimulate() {
-
-      /**
-       * Define widget
-       * @type {Widget}
-       */
-      var widget = this.scope.controller.getContainment();
-
-      widget.observer.publish(
-          widget.eventManager.eventList.saveDom
-      );
-
-      widget.observer.publish(
-          widget.eventManager.eventList.stopResizable,
-          'stopResizable'
-      );
-    },
+    const deltaLeft = ui.position.left - ui.originalPosition.left;
 
     /**
-     * Split embedded content
-     * @memberOf WidgetSubscribe
-     * @returns {boolean}
+     * Set delta top
+     * @type {number}
      */
-    splitEmbeddedContentSimulate: function splitEmbeddedContentSimulate() {
+    const deltaTop = ui.position.top - ui.originalPosition.top;
 
-      /**
-       * Define referrer widget
-       * @type {Widget}
-       */
-      var widget = this.referrer;
+    $widget.css({
+      left: widget.dom.left + deltaLeft,
+      top: widget.dom.top + deltaTop
+    });
+  }
 
-      var subscribers = widget.controller.getSubscribers(
-          widget.eventManager.eventList.splitEmbeddedContent
-      );
-
-      /**
-       * Get subscribers
-       * @type {*}
-       */
-      var scope = this.scope;
-
-      scope.model.copyPrefs(widget);
-
-      scope.observer.publish(
-          scope.eventManager.eventList.splitEmbeddedContent,
-          [subscribers, true]
-      );
-
-      return false;
-    },
+  /**
+   * On resize event simulate
+   * @memberOf WidgetSubscribe
+   * @param type
+   * @param args
+   */
+  resizeResizableSimulate(type, args) {
 
     /**
-     * Set embedded content simulate
-     * @memberOf WidgetSubscribe
+     * Get jQuery.UI element
+     * @type {*}
      */
-    setEmbeddedContentSimulate: function setEmbeddedContentSimulate() {
+    const ui = args[1];
 
-      /**
-       * Define scope
-       * @type {*}
-       */
-      var content = this,
-          scope = content.scope;
+    /**
+     * Define widget
+     * @type {Widget}
+     */
+    const widget = this.scope.controller.getContainment();
 
-      scope.base.waitFor(
-          function condition() {
-            return scope.base.isDefined(scope.view.get$item()) &&
-                scope.base.isDefined(content.referrer);
-          },
+    /**
+     * Define resizable
+     * @type {Resizable}
+     */
+    const resizable = widget.interactions.resizable;
+    /**
+     * Define direction
+     * @type {string}
+     */
+    const direction = resizable.getResizeDirection(ui);
 
-          function callback() {
+    /**
+     * Get $widget
+     * @type {*}
+     */
+    const $widget = widget.view.get$item().$;
 
-            scope.model.copyPrefs(content.referrer);
-
-            scope.observer.publish(
-                scope.eventManager.eventList.setEmbeddedContent
-            );
-          },
-
-          function fallback() {
-            scope.logger.warn('Timeout. Unable to embed content');
-          }
-      );
-
-      return false;
+    if (direction === 'w') {
+      $widget.css(resizable.getDirectionW(ui));
     }
-  });
-});
+
+    if (direction === 'e') {
+      $widget.css(resizable.getDirectionE(ui));
+    }
+
+    if (direction === 'n') {
+      $widget.css(resizable.getDirectionN(ui));
+    }
+
+    if (direction === 's') {
+      $widget.css(resizable.getDirectionS(ui));
+    }
+
+    if (direction === 'nw') {
+      $widget.css(resizable.getDirectionW(ui));
+      $widget.css(resizable.getDirectionN(ui));
+    }
+
+    if (direction === 'ne') {
+      $widget.css(resizable.getDirectionE(ui));
+      $widget.css(resizable.getDirectionN(ui));
+    }
+
+    if (direction === 'sw') {
+      $widget.css(resizable.getDirectionW(ui));
+      $widget.css(resizable.getDirectionS(ui));
+    }
+
+    if (direction === 'se') {
+      $widget.css(resizable.getDirectionE(ui));
+      $widget.css(resizable.getDirectionS(ui));
+    }
+  }
+
+  /**
+   * On drag stop event simulate
+   * @memberOf WidgetSubscribe
+   */
+  stopDraggableSimulate() {
+
+    /**
+     * Define widget
+     * @type {Widget}
+     */
+    const widget = this.scope.controller.getContainment();
+
+    widget.observer.publish(widget.eventManager.eventList.saveDom);
+    widget.observer.publish(widget.eventManager.eventList.stopDraggable, 'stopDraggable');
+  }
+
+  /**
+   * On resize stop event simulate
+   * @memberOf WidgetSubscribe
+   */
+  stopResizableSimulate() {
+
+    /**
+     * Define widget
+     * @type {Widget}
+     */
+    const widget = this.scope.controller.getContainment();
+
+    widget.observer.publish(widget.eventManager.eventList.saveDom);
+    widget.observer.publish(widget.eventManager.eventList.stopResizable, 'stopResizable');
+  }
+
+  /**
+   * Split embedded content
+   * @memberOf WidgetSubscribe
+   * @returns {boolean}
+   */
+  splitEmbeddedContentSimulate() {
+
+    /**
+     * Define referrer widget
+     * @type {Widget}
+     */
+    const widget = this.referrer;
+    const subscribers = widget.controller.getSubscribers(widget.eventManager.eventList.splitEmbeddedContent);
+
+    /**
+     * Get subscribers
+     * @type {*}
+     */
+    const scope = this.scope;
+
+    scope.model.copyPrefs(widget);
+    scope.observer.publish(scope.eventManager.eventList.splitEmbeddedContent, [subscribers, true]);
+    return false;
+  }
+
+  /**
+   * Set embedded content simulate
+   * @memberOf WidgetSubscribe
+   */
+  setEmbeddedContentSimulate() {
+
+    /**
+     * Define scope
+     * @type {*}
+     */
+    const content = this,
+        scope = content.scope;
+
+    scope.utils.waitFor(
+        () => scope.view.get$item() && content.referrer,
+        () => {
+          scope.model.copyPrefs(content.referrer);
+          scope.observer.publish(scope.eventManager.eventList.setEmbeddedContent);
+        },
+        () => scope.logger.warn('Timeout. Unable to embed content')
+    );
+    return false;
+  }
+};

@@ -6,8 +6,6 @@
  * To change this template use File | Settings | File Templates.
  */
 
-//       'controller/page/page.maximize'
-
 /**
  * Aggregation of base class and mixin classes.
  * @type {(function(*, ...[*]): __Aggregate)|*|(function(): aggregate)}
@@ -39,6 +37,12 @@ const PageLayer = require('./page/page.layer.js');
 const PageLayout = require('./page/page.layout.js');
 
 /**
+ * @constant PageItemMaximize
+ * @type {module.PageItemMaximize|*}
+ */
+const PageItemMaximize = require('./page/page.maximize.js');
+
+/**
  * @constant PageWidget
  * @type {module.PageWidget|*}
  */
@@ -46,16 +50,18 @@ const PageWidget = require('./page/page.widget.js');
 
 /**
  * @class
- * @extends {BaseController, Router}
+ * @extends {BaseController, Router, PageLayer, PageLayout, PageWidget, PageItemMaximize}
  */
-module.exports = class PageController extends aggregation(BaseController, Router, PageLayer, PageLayout, PageWidget) {
+module.exports = class PageController extends aggregation(BaseController, Router, PageLayer, PageLayout, PageWidget,
+    PageItemMaximize) {
 
   /**
    * @constructor
-   * @param {Page} scope
+   * @param {string} name
+   * @param scope
    */
-  constructor(scope) {
-    super('PageController', scope, false);
+  constructor(name, scope) {
+    super(name || 'PageController', scope, false);
   }
 
   /**

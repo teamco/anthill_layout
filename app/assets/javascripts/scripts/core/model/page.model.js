@@ -20,11 +20,12 @@ const BaseModel = require('../lib/modules/Model.js');
 module.exports = class PageModel extends BaseModel {
 
   /**
-   * @param {Page} scope
    * @constructor
+   * @param {string} name
+   * @param scope
    */
-  constructor(scope) {
-    super('PageModel', scope, false);
+  constructor(name, scope) {
+    super(name || 'PageModel', scope, false);
 
     /**
      * Define item

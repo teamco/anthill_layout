@@ -21,9 +21,10 @@ module.exports = class WorkspaceAPI extends BaseAPI {
 
   /**
    * @param {Workspace} scope
+   * @param {string} name
    * @constructor
    */
-  constructor(scope) {
+  constructor(name, scope) {
     super('WorkspaceAPI', scope, false);
   }
 

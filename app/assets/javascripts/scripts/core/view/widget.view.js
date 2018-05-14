@@ -6,124 +6,114 @@
  * To change this template use File | Settings | File Templates.
  */
 
-defineP([
-  'config/anthill',
-  'modules/View',
-  'element/header.element',
-  'element/footer.element',
-  'element/widget/widget.content.element',
-  'element/widget/widget.comment.element',
-  'element/widget/widget.expander.element',
-  'element/widget/widget.element'
-], function defineWidgetView(AntHill, BaseView, Header, Footer,
-    WidgetContentElement, WidgetCommentElement, WidgetExpanderElement,
-    WidgetElement) {
+/**
+ * @constant BaseView
+ * @type {BaseView}
+ */
+const BaseView = require('../lib/modules/View.js');
+
+/**
+ * @class WidgetView
+ * @extends BaseView
+ * @type {module.WidgetView}
+ */
+module.exports = class WidgetView extends BaseView {
 
   /**
-   * Define Widget View
    * @constructor
-   * @class WidgetView
-   * @extends AntHill
-   * @extends BaseView
+   * @param {string} name
+   * @param {Widget} scope
    */
-  var WidgetView = function WidgetView() {
-  };
+  constructor(name, scope) {
+    super(name || 'WidgetView', scope, false);
+  }
 
-  return WidgetView.extend('WidgetView', {
-
-    /**
-     * Render widget
-     * @memberOf WidgetView
-     */
-    renderWidget: function renderWidget() {
-
-      /**
-       * Define $widget
-       * @type {WidgetElement}
-       */
-      this.elements.$widget = new WidgetElement(this, {
-        style: [
-          this.createStyle(),
-          this.scope.config.type
-        ].join(' '),
-        $container: this.getContainerSelector()
-      });
-
-      this.scope.map.setPosition();
-
-      this.header(Header, this.get$item());
-      this.content();
-      this.contentSharing();
-      this.footer(Footer, this.get$item());
-    },
+  /**
+   * Render widget
+   * @memberOf WidgetView
+   */
+  renderWidget() {
 
     /**
-     * Render content
-     * @memberOf WidgetView
+     * Define $widget
+     * @type {WidgetElement}
      */
-    content: function content() {
+    this.elements.$widget = new WidgetElement(this, {
+      style: [this.createStyle(), this.scope.config.type].join(' '),
+      $container: this.getContainerSelector()
+    });
 
-      /**
-       * Define $content
-       * @type {WidgetContentElement}
-       */
-      this.elements.$content = new WidgetContentElement(this, {
-        style: 'content',
-        resource: this.controller.getResource(),
-        thumbnail: this.controller.getThumbnail(),
-        $container: this.get$item().$
-      });
-    },
+    this.scope.map.setPosition();
+
+    this.header(this.get$item());
+    this.content();
+    this.contentSharing();
+    this.footer(this.get$item());
+  }
+
+  /**
+   * Render content
+   * @memberOf WidgetView
+   */
+  content() {
 
     /**
-     * Render content expander
-     * @memberOf WidgetView
+     * Define $content
+     * @type {WidgetContentElement}
      */
-    contentExpander: function contentExpander() {
+    this.elements.$content = new WidgetContentElement(this, {
+      style: 'content',
+      resource: this.controller.getResource(),
+      thumbnail: this.controller.getThumbnail(),
+      $container: this.get$item().$
+    });
+  }
 
-      /**
-       * Define $expander
-       * @type {WidgetExpanderElement}
-       */
-      this.elements.$expander = new WidgetExpanderElement(this, {
-        style: 'expander',
-        $container: this.get$item().$
-      });
-    },
+  /**
+   * Render content expander
+   * @memberOf WidgetView
+   */
+  contentExpander() {
 
     /**
-     * Render comments
-     * @memberOf WidgetView
+     * Define $expander
+     * @type {WidgetExpanderElement}
      */
-    contentComments: function contentComments() {
+    this.elements.$expander = new WidgetExpanderElement(this, {
+      style: 'expander',
+      $container: this.get$item().$
+    });
+  }
 
-      /**
-       * Define $comments
-       * @type {WidgetCommentElement}
-       */
-      this.elements.$comments = new WidgetCommentElement(this, {
-        style: 'comments',
-        $container: this.elements.$content
-      });
-    },
-
-    contentSharing: function contentSharing() {
-
-    },
+  /**
+   * Render comments
+   * @memberOf WidgetView
+   */
+  contentComments() {
 
     /**
-     * Render widget
-     * @memberOf WidgetView
-     * @param {boolean} silent
+     * Define $comments
+     * @type {WidgetCommentElement}
      */
-    render: function render(silent) {
+    this.elements.$comments = new WidgetCommentElement(this, {
+      style: 'comments',
+      $container: this.elements.$content
+    });
+  }
 
-      this.scope.observer.publish(
-          this.scope.eventManager.eventList.successRendered,
-          silent
-      );
-    }
+  /**
+   * @memberOf WidgetView
+   */
+  contentSharing() {
 
-  }, AntHill.prototype, BaseView.prototype)
+  }
 
-});
+  /**
+   * Render widget
+   * @memberOf WidgetView
+   * @param {boolean} silent
+   */
+  render(silent) {
+    this.scope.observer.publish(this.scope.eventManager.eventList.successRendered, silent);
+  }
+};

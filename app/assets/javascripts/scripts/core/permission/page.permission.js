@@ -21,9 +21,10 @@ module.exports = class PagePermission extends BasePermission {
 
   /**
    * @constructor
+   * @param {string} name
    * @param scope
    */
-  constructor(scope) {
-    super('PagePermission', scope, false);
+  constructor(name, scope) {
+    super(name || 'PagePermission', scope, false);
   }
 };

@@ -6,10 +6,6 @@
  * To change this template use File | Settings | File Templates.
  */
 
-// 'element/modal.element',
-// 'element/header.element',
-// 'element/footer.element',
-// 'element/filter.element'
 /**
  * @constant AntHill
  * @type {module.AntHill}

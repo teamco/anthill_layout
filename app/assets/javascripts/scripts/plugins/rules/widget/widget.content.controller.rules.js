@@ -5,9 +5,18 @@
  * Time: 11:46 PM
  */
 
-defineP([
-  'plugins/rules/widget/widget.subscribe'
-], function defineWidgetContentControllerRulesBase(WidgetSubscribe) {
+/**
+ * @constant WidgetSubscribe
+ * @type {module.WidgetSubscribe|*}
+ */
+const WidgetSubscribe = require('./widget.subscribe.js');
+
+/**
+ * @class WidgetContentControllerRules
+ * @extends WidgetSubscribe
+ * @type {module.WidgetContentControllerRules}
+ */
+module.exports = class WidgetContentControllerRules extends WidgetSubscribe {
 
   /**
    * Define Base Widget controller Rules
@@ -16,589 +25,499 @@ defineP([
    * @extends WidgetSubscribe
    * @constructor
    */
-  var WidgetContentControllerRules = function WidgetContentControllerRules() {
-  };
+  constructor() {
+    super();
+  }
 
-  return WidgetContentControllerRules.extend('WidgetContentControllerRules', {
+  /**
+   * Update prefs
+   * @memberOf WidgetContentControllerRules
+   * @param {ModalElement} $modal
+   */
+  updateRules($modal) {
 
-    /**
-     * Update prefs
-     * @memberOf WidgetContentControllerRules
-     * @param {ModalElement} $modal
-     */
-    updateRules: function updateRules($modal) {
+    const published = $('ul.publish-rules li', $modal.$),
+        subscribed = $('ul.subscribe-rules > li', $modal.$),
+        events = {
+          publish: {},
+          subscribe: {}
+        },
+        scope = this.scope;
 
-      var published = $('ul.publish-rules li', $modal.$),
-          subscribed = $('ul.subscribe-rules > li', $modal.$),
-          event, events = {
-            publish: {},
-            subscribe: {}
-          },
-          scope = this.scope;
+    let event;
 
-      for (var i = 0, l = published.length; i < l; i++) {
+    for (let i = 0, l = published.length; i < l; i++) {
+
+      /**
+       * Get event
+       * @type {Array|jQuery}
+       */
+      event = $(published[i]).attr('value').split(':');
+
+      events.publish[event[0]] = events.publish[event[0]] || [];
+      events.publish[event[0]].push(event[1]);
+    }
+
+    for (let i1 = 0, l1 = subscribed.length; i1 < l1; i1++) {
+      const $inputs = $('input:checked', subscribed[i1]);
+
+      for (let i2 = 0, l2 = $inputs.length; i2 < l2; i2++) {
 
         /**
          * Get event
          * @type {Array|jQuery}
          */
-        event = $(published[i]).attr('value').split(':');
+        event = $($inputs[i2]).attr('name').split(':');
 
-        events.publish[event[0]] =
-            this.base.define(events.publish[event[0]], [], true);
-        events.publish[event[0]].push(event[1]);
+        /**
+         * Get uuid
+         * @type {string}
+         */
+        const uuid = $('legend', subscribed[i1]).attr('data-uuid');
+        this.updateEventSubscribes(events, event, uuid);
       }
+    }
 
-      for (var i1 = 0, l1 = subscribed.length; i1 < l1; i1++) {
+    scope.observer.publish(scope.eventManager.eventList.transferRules, events);
+    $modal.selfDestroy();
+    this.store();
+  }
 
-        var $inputs = $('input:checked', subscribed[i1]);
+  /**
+   * Update events are ready to subscribe
+   * @memberOf WidgetContentControllerRules
+   * @param events
+   * @param {Array} event
+   * @param {string} uuid
+   */
+  updateEventSubscribes(events, event, uuid) {
+    events.subscribe[uuid] = events.subscribe[uuid] || {};
+    events.subscribe[uuid][event[0]] = events.subscribe[uuid][event[0]] || [];
+    events.subscribe[uuid][event[0]].push(event[1]);
+  }
 
-        for (var i2 = 0, l2 = $inputs.length; i2 < l2; i2++) {
-
-          /**
-           * Get event
-           * @type {Array|jQuery}
-           */
-          event = $($inputs[i2]).attr('name').split(':');
-
-          /**
-           * Get uuid
-           * @type {string}
-           */
-          var uuid = $('legend', subscribed[i1]).attr('data-uuid');
-
-          this.updateEventSubscribes(events, event, uuid);
-        }
-      }
-
-      scope.observer.publish(
-          scope.eventManager.eventList.transferRules,
-          events
-      );
-
-      $modal.selfDestroy();
-
-      this.store();
-    },
-
-    /**
-     * Update events are ready to subscribe
-     * @memberOf WidgetContentControllerRules
-     * @param events
-     * @param {Array} event
-     * @param {string} uuid
-     */
-    updateEventSubscribes: function updateEventSubscribes(events, event, uuid) {
-
-      events.subscribe[uuid] = this.base.define(
-          events.subscribe[uuid], {}, true
-      );
-
-      events.subscribe[uuid][event[0]] = this.base.define(
-          events.subscribe[uuid][event[0]], [], true
-      );
-
-      events.subscribe[uuid][event[0]].push(event[1]);
-    },
+  /**
+   * Load rules
+   * @memberOf WidgetContentControllerRules
+   */
+  loadRules() {
 
     /**
      * Load rules
-     * @memberOf WidgetContentControllerRules
+     * @type {Widget}
      */
-    loadRules: function loadRules() {
+    const widget = this.controller.getContainment(),
+        rules = widget.model.getConfig('rules');
+
+    this.model.setRules(rules);
+    this.logger.debug('Load rules', rules);
+    this.observer.publish(this.eventManager.eventList.registerRules);
+  }
+
+  /**
+   * Get Published rules
+   * @memberOf WidgetContentControllerRules
+   * @returns {{}}
+   */
+  getPublishedRules() {
+
+    /**
+     * Get page
+     * @type {Page}
+     */
+    const page = this.getPage(),
+        items = page.model.getItems();
+    let item, rules, uuid;
+
+    /**
+     * Init published
+     * @type {*}
+     */
+    let published = {};
+
+    for (let index in items) {
+      if (!items.hasOwnProperty(index)) {
+        continue;
+      }
 
       /**
-       * Load rules
+       * Define page item
        * @type {Widget}
        */
-      var widget = this.controller.getContainment(),
-          rules = widget.model.getConfig('rules');
+      item = items[index];
 
-      this.model.setRules(rules);
-      this.logger.debug('Load rules', rules);
+      /**
+       * Get rules
+       * @type {{publish}}
+       */
+      rules = item.model.getConfig('rules');
 
-      this.observer.publish(
-          this.eventManager.eventList.registerRules
-      );
-    },
+      // Get uuid
+      uuid = item.controller.getContent().model.getUUID();
+
+      if (rules.hasOwnProperty('publish') && this.scope.model.getUUID() !== uuid) {
+        published[uuid] = {
+          rules: rules.publish,
+          type: item.controller.getContent().name
+        };
+      }
+    }
+    return published;
+  }
+
+  /**
+   * Transfer rules to containment
+   * @memberOf WidgetContentControllerRules
+   * @param rules
+   */
+  transferRules(rules) {
 
     /**
-     * Get Published rules
-     * @memberOf WidgetContentControllerRules
-     * @returns {{}}
+     * Define widget
+     * @type {*}
      */
-    getPublishedRules: function getPublishedRules() {
+    const widget = this.controller.getContainment();
 
-      /**
-       * Get page
-       * @type {Page}
-       */
-      var page = this.getPage(),
-          items = page.model.getItems(),
-          item, rules, uuid;
+    widget.model.updateRules(rules);
+    this.observer.publish(this.eventManager.eventList.registerRules);
+  }
 
-      /**
-       * Init published
-       * @type {*}
-       */
-      var published = {};
+  /**
+   * Unregister rules
+   * @memberOf WidgetContentControllerRules
+   * @return {boolean}
+   */
+  unregisterRules() {
 
-      for (var index in items) {
+    /**
+     * Define subscriber events
+     * @type {*}
+     */
+    const subscribeEM = this.scope.eventManager.subscribers;
 
-        if (!items.hasOwnProperty(index)) {
-          continue;
-        }
-
-        /**
-         * Define page item
-         * @type {Widget}
-         */
-        item = items[index];
-
-        /**
-         * Get rules
-         * @type {{publish}}
-         */
-        rules = item.model.getConfig('rules');
-
-        // Get uuid
-        uuid = item.controller.getContent().model.getUUID();
-
-        if (rules.hasOwnProperty('publish') &&
-            this.scope.model.getUUID() !== uuid) {
-          published[uuid] = {
-            rules: rules.publish,
-            type: item.controller.getContent().name
-          };
-        }
+    for (let index in subscribeEM) {
+      if (!subscribeEM.hasOwnProperty(index)) {
+        continue;
       }
 
-      return published;
-    },
-
-    /**
-     * Transfer rules to containment
-     * @memberOf WidgetContentControllerRules
-     * @param rules
-     */
-    transferRules: function transferRules(rules) {
+      const events = subscribeEM[index];
 
       /**
-       * Define widget
-       * @type {*}
+       * Define uuid
+       * @type {string}
        */
-      var widget = this.controller.getContainment();
+      let uuid = index;
 
-      widget.model.updateRules(rules);
-
-      this.observer.publish(
-          this.eventManager.eventList.registerRules
-      );
-    },
-
-    /**
-     * Unregister rules
-     * @memberOf WidgetContentControllerRules
-     * @return {boolean}
-     */
-    unregisterRules: function unregisterRules() {
-
-      /**
-       * Define subscriber events
-       * @type {*}
-       */
-      var subscribeEM = this.scope.eventManager.subscribers;
-
-      for (var index in subscribeEM) {
-
-        if (!subscribeEM.hasOwnProperty(index)) {
-          continue;
-        }
-
-        var events = subscribeEM[index];
-
-        /**
-         * Define uuid
-         * @type {string}
-         */
-        var uuid = index;
-
-        // check widget/content uuid
-        if (index.split('-').length > 5) {
-          uuid = index.substring(0, index.lastIndexOf('-'));
-        }
-
-        /**
-         * Find item
-         * @type {*}
-         */
-        var item = this.model.findItemByUUID(this.root(), uuid);
-
-        this.scope.logger.debug(item, events);
-
-        if (!item) {
-          this.scope.logger.warn('Undefined item', events);
-          return false;
-        }
-
-        if (this.base.lib.hash.hashLength(events) === 0) {
-          this.scope.logger.warn('Empty events', subscribeEM, index);
-          return false;
-        }
-
-        for (var event in events) {
-
-          if (!events.hasOwnProperty(event)) {
-            continue;
-          }
-
-          for (var i = 0, l = events[event].length; i < l; i++) {
-            item.observer.unRegister(
-                event,
-                events[event][i]
-            );
-          }
-
-          delete subscribeEM[index][event];
-
-          if (this.base.lib.hash.hashLength(subscribeEM[index]) === 0) {
-            delete subscribeEM[index];
-          }
-        }
+      // check widget/content uuid
+      if (index.split('-').length > 5) {
+        uuid = index.substring(0, index.lastIndexOf('-'));
       }
 
-      return true;
-    },
-
-    /**
-     * Register rules
-     * @memberOf WidgetContentControllerRules
-     */
-    registerRules: function registerRules() {
-
       /**
-       * Define rules
+       * Find item
        * @type {*}
        */
-      var rules = this.model.rules || {},
-          subscribe = rules.subscribe || {},
-          types, event, scope;
+      const item = this.model.findItemByUUID(this.root(), uuid);
+      this.scope.logger.debug(item, events);
 
-      /**
-       * Define subscriber events
-       * @type {*}
-       */
-      this.eventManager.subscribers = this.base.define(
-          this.eventManager.subscribers, {}, true
-      );
-
-      /**
-       * Copy subscribers
-       * @type {*}
-       */
-      var subscribeEM = {};
-
-      $.extend(
-          true,
-          subscribeEM,
-          this.eventManager.subscribers
-      );
-
-      if (!this.controller.unregisterRules()) {
+      if (!item) {
+        this.scope.logger.warn('Undefined item', events);
         return false;
       }
 
-      /**
-       * Define widget
-       * @type {Widget}
-       */
-      var widget = this.controller.getContainment();
+      if (!Object.keys(events).length) {
+        this.scope.logger.warn('Empty events', subscribeEM, index);
+        return false;
+      }
 
-      /**
-       * Define page
-       * @type {Page}
-       */
-      var page = widget.controller.getContainment(),
-          subscribersCounter = this.base.lib.hash.hashLength(subscribe);
-
-      for (var index in subscribe) {
-
-        if (!subscribe.hasOwnProperty(index)) {
+      for (let event in events) {
+        if (!events.hasOwnProperty(event)) {
           continue;
         }
 
-        /**
-         * Define types
-         * @type {{}}
-         */
-        types = subscribe[index];
+        for (let i = 0, l = events[event].length; i < l; i++) {
+          item.observer.unRegister(event, events[event][i]);
+        }
 
-        subscribersCounter -= 1;
+        delete subscribeEM[index][event];
 
-        /**
-         * Define widget publisher
-         * @type {Widget}
-         */
-        var widgetPublisher = page.model.getWidgetByContentUUID(
-            index
-        );
+        if (!Object.keys(subscribeEM[index]).length) {
+          delete subscribeEM[index];
+        }
+      }
+    }
+    return true;
+  }
 
-        for (var type in types) {
+  /**
+   * Register rules
+   * @memberOf WidgetContentControllerRules
+   */
+  registerRules() {
 
-          if (!types.hasOwnProperty(type)) {
-            continue;
-          }
+    /**
+     * Define rules
+     * @type {*}
+     */
+    const rules = this.model.rules || {},
+        subscribe = rules.subscribe || {};
 
-          for (var i = 0, l = types[type].length; i < l; i++) {
+    /**
+     * Define subscriber events
+     * @type {*}
+     */
+    this.eventManager.subscribers = this.eventManager.subscribers || {};
+
+    /**
+     * Copy subscribers
+     * @type {*}
+     */
+    let subscribeEM = {};
+
+    $.extend(true, subscribeEM, this.eventManager.subscribers);
+
+    if (!this.controller.unregisterRules()) {
+      return false;
+    }
+
+    /**
+     * Define widget
+     * @type {Widget}
+     */
+    const widget = this.controller.getContainment();
+
+    /**
+     * Define page
+     * @type {Page}
+     */
+    const page = widget.controller.getContainment();
+    let subscribersCounter = this.base.lib.hash.hashLength(subscribe);
+
+    for (let index in subscribe) {
+      if (!subscribe.hasOwnProperty(index)) {
+        continue;
+      }
+
+      /**
+       * Define types
+       * @type {{}}
+       */
+      const types = subscribe[index];
+      subscribersCounter -= 1;
+
+      /**
+       * Define widget publisher
+       * @type {Widget}
+       */
+      const widgetPublisher = page.model.getWidgetByContentUUID(index);
+
+      for (let type in types) {
+        if (!types.hasOwnProperty(type)) {
+          continue;
+        }
+
+        for (let i = 0, l = types[type].length; i < l; i++) {
+
+          /**
+           * Define event
+           * @type {string}
+           */
+          const event = types[type][i];
+
+          // add rule subscriber
+          widgetPublisher.model.setSubscriber(event, widget);
+
+          /**
+           * Define opts
+           * @type {{
+           *  widgetPublisher: Widget,
+           *  type: string,
+           *  event: *,
+           *  subscribeEM: *,
+           *  subscribersCounter: Number
+           * }}
+           */
+          const opts = {
+            widgetPublisher: widgetPublisher,
+            type: type,
+            event: event,
+            subscribeEM: subscribeEM,
+            subscribersCounter: subscribersCounter
+          };
+
+          if (type === 'widget') {
+            this.controller._registerScopeRule(widgetPublisher, opts);
+          } else {
 
             /**
-             * Define event
-             * @type {string}
+             * Define widget content scope
+             * @type {WidgetContent}
              */
-            event = types[type][i];
+            const scope = widgetPublisher.controller.getContent();
 
-            // add rule subscriber
-            widgetPublisher.model.setSubscriber(event, widget);
-
-            /**
-             * Define opts
-             * @type {{
-                         *      widgetPublisher: Widget,
-                         *      type: string,
-                         *      event: *,
-                         *      subscribeEM: *,
-                         *      subscribersCounter: Number
-                         * }}
-             */
-            var opts = {
-              widgetPublisher: widgetPublisher,
-              type: type,
-              event: event,
-              subscribeEM: subscribeEM,
-              subscribersCounter: subscribersCounter
-            };
-
-            if (type === 'widget') {
-
-              this.controller._registerScopeRule(widgetPublisher, opts);
-
+            if (scope) {
+              this.controller._registerScopeRule(scope, opts);
             } else {
-
-              /**
-               * Define widget content scope
-               * @type {WidgetContent}
-               */
-              scope = widgetPublisher.controller.getContent();
-
-              if (this.base.isDefined(scope)) {
-
-                this.controller._registerScopeRule(scope, opts);
-
-              } else {
-
-                // Define content scope
-                var content = this;
-
-                this.base.waitFor(
-                    function condition() {
-                      return opts.widgetPublisher.controller.getContent();
-                    },
-
-                    function callback() {
-                      content.controller._getContentScope.bind(content)(opts)
-                    },
-
-                    function fallback() {
-                      content.logger.warn('Timeout. Unable to register rules');
-                    }
-                );
-              }
+              this.utils.waitFor(
+                  () => opts.widgetPublisher.controller.getContent(),
+                  () => this.controller._getContentScope(opts),
+                  () => this.logger.warn('Timeout. Unable to register rules')
+              );
             }
           }
         }
       }
-    },
+    }
+  }
+
+  /**
+   * Get content scope via interval
+   * @memberOf WidgetContentControllerRules
+   * @param opts
+   * @returns {boolean}
+   * @private
+   */
+  _getContentScope(opts) {
 
     /**
-     * Get content scope via interval
-     * @memberOf WidgetContentControllerRules
-     * @param opts
-     * @returns {boolean}
-     * @private
+     * Define scope
+     * @type {WidgetContent}
      */
-    _getContentScope: function _getContentScope(opts) {
+    const scope = opts.widgetPublisher.controller.getContent();
+    this.logger.info('Scope available', scope);
+    this.controller._registerScopeRule(scope, opts);
+  }
 
-      /**
-       * Define scope
-       * @type {WidgetContent}
-       */
-      var scope = opts.widgetPublisher.controller.getContent();
+  /**
+   * Register scope rule
+   * @memberOf WidgetContentControllerRules
+   * @param scope
+   * @param opts
+   * @returns {boolean}
+   * @private
+   */
+  _registerScopeRule(scope, opts) {
+    if (!scope) {
+      this.logger.error('Undefined scope', opts.widgetPublisher, type);
+      return false;
+    }
+    this.registerRule(scope, opts.event, opts.subscribeEM, opts.subscribersCounter);
+  }
 
-      this.logger.info('Scope available', scope);
-
-      this.controller._registerScopeRule(scope, opts);
-    },
+  /**
+   * Register rule
+   * @memberOf WidgetContentControllerRules
+   * @param scope
+   * @param {string} event
+   * @param subscribeEM
+   * @param subscribersCounter
+   * @returns {boolean}
+   */
+  registerRule(scope, event, subscribeEM, subscribersCounter) {
 
     /**
-     * Register scope rule
-     * @memberOf WidgetContentControllerRules
-     * @param scope
-     * @param opts
-     * @returns {boolean}
-     * @private
+     * Define event list
+     * @type {{}}
      */
-    _registerScopeRule: function _registerScopeRule(scope, opts) {
-
-      if (!this.base.isDefined(scope)) {
-
-        this.logger.error('Undefined scope', opts.widgetPublisher, type);
-        return false;
-      }
-
-      this.registerRule(
-          scope,
-          opts.event,
-          opts.subscribeEM,
-          opts.subscribersCounter
-      );
-    },
+    const eventList = scope.eventManager.eventList || {};
 
     /**
-     * Register rule
-     * @memberOf WidgetContentControllerRules
-     * @param scope
-     * @param event
-     * @param subscribeEM
-     * @param subscribersCounter
-     * @returns {boolean}
+     * Define event name
+     * @type {string}
      */
-    registerRule: function registerRule(scope, event, subscribeEM,
-        subscribersCounter) {
-
-      /**
-       * Define event list
-       * @type {{}}
-       */
-      var eventList = scope.eventManager.eventList || {};
-
-      /**
-       * Define event name
-       * @type {string}
-       */
-      var ename = event.toCamel();
-
-      if (!eventList.hasOwnProperty(ename)) {
-
-        scope.logger.warn('Undefined event', event);
-        return false;
-      }
-
-      /**
-       * Define callback
-       * @type {function}
-       */
-      var callback = this[ename + 'Simulate'];
-
-      if (!_.isFunction(callback)) {
-
-        this.scope.logger.warn(
-            'Undefined callback',
-            event, ename + 'Simulate'
-        );
-
-        return false;
-      }
-
-      /**
-       * Define scope uuid
-       * @type {string}
-       */
-      var sUUID = scope.model.getUUID();
-
-      subscribeEM[sUUID] = this.base.define(
-          subscribeEM[sUUID], {}, true
-      );
-
-      if (!subscribeEM[sUUID][eventList[ename]]) {
-
-        /**
-         * Subscribe to event
-         * @type {Array}
-         */
-        var eventUUIDs = this.scope.eventManager.publishOn({
-          scope: scope,
-          events: [
-            {eventName: eventList[ename]}
-          ],
-          callback: callback.bind({
-            scope: this.scope,
-            referrer: scope,
-            subscriber: subscribersCounter
-          })
-        });
-
-        subscribeEM[sUUID][eventList[ename]] = eventUUIDs;
-        scope.logger.debug('Subscribed event', eventUUIDs,
-            subscribeEM[sUUID][eventList[ename]]);
-      }
-    },
-
-    /**
-     * Add widget rule
-     * @memberOf WidgetContentControllerRules
-     * @param {Event} e
-     * @param {string} type
-     */
-    addWidgetRule: function addWidgetRule(e, type) {
-
-      /**
-       * Define $button
-       * @type {*|jQuery|HTMLElement}
-       */
-      var $button = $(e.target);
-
-      if ($button.prop('tagName') !== 'BUTTON') {
-        $button = $button.closest('button');
-      }
-
-      var scope = this.scope,
-          value = $button.attr('value');
-
-      if ((value || '').match(/Select rule \(\d+\)/)) {
-        value = undefined;
-      }
-
-      scope.observer.publish(
-          scope.eventManager.eventList.publishRule,
-          [value, type || 'Widget']
-      );
-    },
-
-    /**
-     * Publish rule
-     * @memberOf WidgetContentControllerRules
-     * @param {string} rule
-     * @param {string} type
-     */
-    publishRule: function publishRule(rule, type) {
-
-      /**
-       * Define referrer
-       * @type {*}
-       */
-      var referrer = this.referrer;
-
-      /**
-       * Get $rules
-       * @type {*}
-       */
-      var $rules = this.view.elements.$rules;
-
-      $rules.addRule(
-          rule, type,
-          referrer.view.elements.$modal.get$Body()
-      );
+    const ename = event.toCamelCase();
+    if (!eventList.hasOwnProperty(ename)) {
+      scope.logger.warn('Undefined event', event);
+      return false;
     }
 
-  }, WidgetSubscribe.prototype);
-});
+    /**
+     * Define callback
+     * @type {function}
+     */
+    const callback = this[ename + 'Simulate'];
+    if (!callback) {
+      this.scope.logger.warn('Undefined callback', event, ename + 'Simulate');
+      return false;
+    }
+
+    /**
+     * Define scope uuid
+     * @type {string}
+     */
+    const sUUID = scope.model.getUUID();
+    subscribeEM[sUUID] = subscribeEM[sUUID] || {};
+
+    if (!subscribeEM[sUUID][eventList[ename]]) {
+
+      /**
+       * Subscribe to event
+       * @type {Array}
+       */
+      const eventUUIDs = this.scope.eventManager.publishOn({
+        scope: scope,
+        events: [{eventName: eventList[ename]}],
+        callback: callback.bind({
+          scope: this.scope,
+          referrer: scope,
+          subscriber: subscribersCounter
+        })
+      });
+
+      subscribeEM[sUUID][eventList[ename]] = eventUUIDs;
+      scope.logger.debug('Subscribed event', eventUUIDs, subscribeEM[sUUID][eventList[ename]]);
+    }
+  }
+
+  /**
+   * Add widget rule
+   * @memberOf WidgetContentControllerRules
+   * @param {Event} e
+   * @param {string} type
+   */
+  addWidgetRule(e, type) {
+
+    /**
+     * Define $button
+     * @type {*|jQuery|HTMLElement}
+     */
+    let $button = $(e.target);
+
+    if ($button.prop('tagName') !== 'BUTTON') {
+      $button = $button.closest('button');
+    }
+
+    let scope = this.scope,
+        value = $button.attr('value');
+
+    if ((value || '').match(/Select rule \(\d+\)/)) {
+      value = undefined;
+    }
+
+    scope.observer.publish(scope.eventManager.eventList.publishRule, [value, type || 'Widget']);
+  }
+
+  /**
+   * Publish rule
+   * @memberOf WidgetContentControllerRules
+   * @param {string} rule
+   * @param {string} type
+   */
+  publishRule(rule, type) {
+
+    /**
+     * Define referrer
+     * @type {*}
+     */
+    const referrer = this.referrer;
+
+    /**
+     * Get $rules
+     * @type {*}
+     */
+    const $rules = this.view.elements.$rules;
+
+    $rules.addRule(rule, type, referrer.view.elements.$modal.get$Body());
+  }
+};
+  

@@ -21,9 +21,10 @@ module.exports = class PageAPI extends BaseAPI {
 
   /**
    * @param {Page} scope
+   * @param {string} name
    * @constructor
    */
-  constructor(scope) {
+  constructor(name, scope) {
     super('PageAPI', scope, false);
   }
 

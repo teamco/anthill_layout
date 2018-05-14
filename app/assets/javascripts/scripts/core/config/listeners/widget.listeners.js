@@ -5,44 +5,50 @@
  * Time: 10:35 PM
  */
 
-defineP(['config/widget'], function defineWidgetListeners(Widget) {
+/**
+ * @constant Widget
+ * @type {module.Widget}
+ */
+const Widget = require('../widget.js');
+
+module.exports = () => {
 
   /**
    * Define Widget Local listeners
    * @memberOf Widget
    * @type {{
-     *      successCreated: {name: string, callback: Function},
-     *      successRendered: {name: string, callback: Function},
-     *      afterSetContent: {name: string, callback: Function},
-     *      startResizable: {name: string, callback: Function},
-     *      stopResizable: {name: string, callback: Function},
-     *      startDraggable: {name: string, callback: Function},
-     *      stopDraggable: {name: string, callback: Function}
-     * }}
+   *  successCreated: {name: string, callback: Function},
+   *  successRendered: {name: string, callback: Function},
+   *  afterSetContent: {name: string, callback: Function},
+   *  startResizable: {name: string, callback: Function},
+   *  stopResizable: {name: string, callback: Function},
+   *  startDraggable: {name: string, callback: Function},
+   *  stopDraggable: {name: string, callback: Function}
+   * }}
    */
   Widget.prototype.localListeners = {
 
     successCreated: {
-      name: "success.created",
-      callback: function successCreatedCallback() {
+      name: 'success.created',
+      callback() {
       }
     },
 
     successRendered: {
-      name: "success.rendered",
-      callback: function successRenderedCallback(silent) {
+      name: 'success.rendered',
+      callback(silent) {
 
         /**
          * Define silent
          * @type {boolean}
          */
-        silent = this.base.defineBoolean(silent, false, true);
+        silent = this.utils.setBoolean(silent, false);
 
         /**
          * Define event
          * @type {stopResizable|string}
          */
-        var event = this.eventManager.eventList.stopResizable;
+        const event = this.eventManager.eventList.stopResizable;
 
         this.view.renderWidget();
         this.controller.setupInteractions();
@@ -57,59 +63,52 @@ defineP(['config/widget'], function defineWidgetListeners(Widget) {
 
         /**
          * Get root
-         * @type {module.Application}
+         * @type {module.Application|{model}}
          */
-        var root = this.controller.root();
+        const root = this.controller.root();
 
         if (!silent && !root.model.getConfig('loading')) {
-          this.observer.batchPublish(
-              this.eventManager.eventList.loadContent,
-              this.eventManager.eventList.loadPreferences
-          );
+          this.observer.batchPublish(this.eventManager.eventList.loadContent,
+              this.eventManager.eventList.loadPreferences);
         }
       }
     },
 
     afterSetContent: {
-      name: "after.set.content",
-      callback: function afterSetContentCallback() {
+      name: 'after.set.content',
+      callback() {
       }
     },
 
     startDraggable: {
       name: 'start.draggable',
-      callback: function startDraggableCallback() {
+      callback() {
         this.controller.showContent(false);
       }
     },
 
     stopDraggable: {
       name: 'stop.draggable',
-      callback: function stopDraggableCallback() {
+      callback() {
         this.controller.showContent(true);
         this.controller.updateContainmentDimensions();
       }
     },
 
     startResizable: {
-      name: "start.resizable",
-      callback: function startResizableCallback() {
+      name: 'start.resizable',
+      callback() {
         this.controller.showContent(false);
       }
     },
 
     stopResizable: {
-      name: "stop.resizable",
-      callback: function stopResizableCallback() {
-        this.observer.publish(
-            this.eventManager.eventList.toggleContentExpander,
-            this.controller.isExpandable()
-        );
+      name: 'stop.resizable',
+      callback() {
+        this.observer.publish(this.eventManager.eventList.toggleContentExpander, this.controller.isExpandable());
         this.controller.showContent(true);
         this.controller.updateContainmentDimensions();
       }
     }
   };
-
-  return Widget;
-});
+};

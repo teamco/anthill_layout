@@ -39,19 +39,18 @@ const WorkspaceSEO = require('./workspace/workspace.seo.js');
 /**
  * Define workspace controller
  * @class WorkspaceController
- * @extends BasePreferences
- * @extends WorkspacePage
- * @extends WorkspaceSEO
+ * @extends {BaseController, Router, WorkspacePage, WorkspaceSEO}
  * @type {module.WorkspaceController|{prototype}}
  */
 module.exports = class WorkspaceController extends aggregation(BaseController, Router, WorkspacePage, WorkspaceSEO) {
 
   /**
    * @constructor
-   * @param {Workspace} scope
+   * @param {string} name
+   * @param scope
    */
-  constructor(scope) {
-    super('WorkspaceController', scope, false);
+  constructor(name, scope) {
+    super(name || 'WorkspaceController', scope, false);
   }
 
   /**

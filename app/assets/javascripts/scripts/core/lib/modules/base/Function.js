@@ -5,43 +5,32 @@
  * Time: 9:24 PM
  * To change this template use File | Settings | File Templates.
  */
-defineP(function defineLibFunction() {
+
+/**
+ * @class LibFunction
+ * @type {LibFunction}
+ */
+module.exports = class LibFunction {
 
   /**
-   * Define Lib function
-   * @class LibFunction
-   * @constructor
+   * Define function creator
+   * @memberOf LibFunction
+   * @param opts
+   * @returns {Function}
    */
-  var LibFunction = function LibFunction() {
-  };
-
-  LibFunction.extend('LibFunction', {
+  create(opts) {
 
     /**
-     * Define function creator
-     * @memberOf LibFunction
-     * @param opts
-     * @returns {Function}
+     * Define function
+     * @type {Function}
      */
-    create: function create(opts) {
+    const fn = new Function(opts.params, opts.body);
+    if (opts.scope) {
 
-      /**
-       * Define function
-       * @type {Function}
-       */
-      var fn = new Function(opts.params, opts.body);
-
-      if (opts.scope) {
-
-        // Add function to scope
-        opts.scope[opts.name] = fn;
-
-        return opts.scope[opts.name];
-      }
-
-      return fn;
+      // Add function to scope
+      opts.scope[opts.name] = fn;
+      return opts.scope[opts.name];
     }
-  });
-
-  return new LibFunction();
-});
+    return fn;
+  }
+};

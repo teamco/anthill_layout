@@ -5,7 +5,13 @@
  * Time: 10:35 PM
  */
 
-defineP(['config/widget'], function defineWidgetListeners(Widget) {
+/**
+ * @constant Widget
+ * @type {module.Widget}
+ */
+const Widget = require('../../../../scripts/core/config/widget.js');
+
+module.exports = () => {
 
   /**
    * Define Widget Global listeners
@@ -13,6 +19,4 @@ defineP(['config/widget'], function defineWidgetListeners(Widget) {
    * @type {{}}
    */
   Widget.prototype.globalListeners = {};
-
-  return Widget;
-});
+};

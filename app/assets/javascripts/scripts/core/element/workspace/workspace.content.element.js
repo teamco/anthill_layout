@@ -36,10 +36,7 @@ module.exports = class WorkspaceContentElement extends BaseElement {
    * @param {number} to
    */
   defineWidth(to) {
-
-    this.$.css({
-      width: (100 * to) + '%'
-    });
+    this.$.css({width: (100 * to) + '%'});
   }
 
   /**
@@ -52,7 +49,6 @@ module.exports = class WorkspaceContentElement extends BaseElement {
 
     let index, $item;
     for (index in items) {
-
       if (items.hasOwnProperty(index)) {
 
         /**
@@ -98,10 +94,10 @@ module.exports = class WorkspaceContentElement extends BaseElement {
      * Get pages order
      * @type {number}
      */
-    const order = page.model.getConfig('order') - 1;
+    const order = page.model.getConfig('order');
     const css = {left: (-order * 100) + '%'};
 
-    if (!animate ? scope.model.getConfig('page').animateSwipe : !!animate) {
+    if (animate ? !!animate : scope.model.getConfig('page').animateSwipe) {
 
       $pages.$.stop().animate(css, {
         duration: duration,
@@ -109,7 +105,6 @@ module.exports = class WorkspaceContentElement extends BaseElement {
       });
 
     } else {
-
       $pages.$.css(css);
       _completeCallback();
     }

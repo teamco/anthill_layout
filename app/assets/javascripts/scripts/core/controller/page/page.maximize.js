@@ -1,138 +1,111 @@
 /**
  * Created by teamco on 7/9/14.
  */
-defineP(function definePageItemMaximize() {
+
+/**
+ * @class PageItemMaximize
+ */
+module.exports = class PageItemMaximize {
 
   /**
-   * Define PageItemMaximize
-   * @class PageItemMaximize
-   * @constructor
+   * Get maximized widget
+   * @memberOf PageItemMaximize
+   * @returns {Widget|*}
    */
-  var PageItemMaximize = function PageItemMaximize() {
-  };
+  getMaximized() {
+    return this.scope.maximized;
+  }
 
-  return PageItemMaximize.extend('PageItemMaximize', {
+  /**
+   * Set widget as maximized
+   * @memberOf  {PageItemMaximize}
+   * @param {Widget} widget
+   */
+  setMaximized(widget) {
 
     /**
-     * Get maximized widget
+     * Set maximized
      * @memberOf PageItemMaximize
-     * @returns {Widget|*}
+     * @type {Widget}
      */
-    getMaximized: function getMaximized() {
-      return this.scope.maximized;
-    },
+    this.maximized = widget;
+    this.logger.debug('Set maximized', this.maximized);
+  }
+
+  /**
+   * Unset widget as maximized
+   * @memberOf PageItemMaximize
+   */
+  unsetMaximized() {
 
     /**
-     * Set widget as maximized
-     * @memberOf  {PageItemMaximize}
-     * @param {Widget} widget
-     */
-    setMaximized: function setMaximized(widget) {
-
-      /**
-       * Set maximized
-       * @memberOf PageItemMaximize
-       * @type {Widget}
-       */
-      this.maximized = widget;
-
-      this.logger.debug('Set maximized', this.maximized);
-    },
-
-    /**
-     * Unset widget as maximized
+     * Unset maximized
      * @memberOf PageItemMaximize
+     * @type {{}}
      */
-    unsetMaximized: function unsetMaximized() {
+    this.maximized = {};
+    this.logger.debug('Unset maximized', this.maximized);
+  }
 
-      /**
-       * Unset maximized
-       * @memberOf PageItemMaximize
-       * @type {{}}
-       */
-      this.maximized = {};
+  /**
+   * Disable items interactions on enlarge
+   * @memberOf PageItemMaximize
+   * @param {Widget} widget
+   */
+  disableItemInteractions(widget) {
+    const items = this.model.getItems();
 
-      this.logger.debug('Unset maximized', this.maximized);
-    },
+    for (let index in items) {
 
-    /**
-     * Disable items interactions on enlarge
-     * @memberOf PageItemMaximize
-     * @param {Widget} widget
-     */
-    disableItemInteractions: function disableItemInteractions(widget) {
+      if (items.hasOwnProperty(index)) {
 
-      var items = this.model.getItems(),
-          index, item;
+        /**
+         * Define item
+         * @type {Widget}
+         */
+        const item = items[index];
 
-      for (index in items) {
+        item.observer.batchPublish(
+            item.eventManager.eventList.disableDraggable,
+            item.eventManager.eventList.disableResizable
+        );
 
-        if (items.hasOwnProperty(index)) {
-
-          /**
-           * Define item
-           * @type {Widget}
-           */
-          item = items[index];
-
-          item.observer.publish(
-              item.eventManager.eventList.disableDraggable
-          );
-
-          item.observer.publish(
-              item.eventManager.eventList.disableResizable
-          );
-
-          if (widget !== item) {
-            item.view.get$item().hide();
-          }
+        if (widget !== item) {
+          item.view.get$item().hide();
         }
       }
-
-      this.controller.banAddWidget();
-
-      this.observer.publish(
-          this.eventManager.eventList.setMaximized,
-          widget
-      );
-    },
-
-    /**
-     * Enable item interaction on reduce
-     * @memberOf PageItemMaximize
-     */
-    enableItemInteractions: function enableItemInteractions() {
-
-      var items = this.model.getItems(),
-          index, item;
-
-      for (index in items) {
-
-        if (items.hasOwnProperty(index)) {
-
-          /**
-           * Define item
-           * @type {Widget}
-           */
-          item = items[index];
-
-          item.observer.publish(
-              item.eventManager.eventList.enableDraggable
-          );
-
-          item.observer.publish(
-              item.eventManager.eventList.enableResizable
-          );
-
-          item.view.get$item().show();
-        }
-      }
-
-      this.controller.allowAddWidget();
-
-      this.observer.publish(
-          this.eventManager.eventList.unsetMaximized
-      );
     }
-  });
-});
+
+    this.controller.banAddWidget();
+    this.observer.publish(this.eventManager.eventList.setMaximized, widget);
+  }
+
+  /**
+   * Enable item interaction on reduce
+   * @memberOf PageItemMaximize
+   */
+  enableItemInteractions() {
+    const items = this.model.getItems();
+
+    for (let index in items) {
+      if (items.hasOwnProperty(index)) {
+
+        /**
+         * Define item
+         * @type {Widget}
+         */
+        const item = items[index];
+
+        item.observer.batchPublish(
+            item.eventManager.eventList.enableDraggable,
+            item.eventManager.eventList.enableResizable
+        );
+
+        item.view.get$item().show();
+      }
+    }
+
+    this.controller.allowAddWidget();
+    this.observer.publish(this.eventManager.eventList.unsetMaximized);
+  }
+};

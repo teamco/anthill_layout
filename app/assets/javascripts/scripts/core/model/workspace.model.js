@@ -18,13 +18,14 @@ const BaseModel = require('../lib/modules/Model.js');
  * @extends BaseModel
  */
 module.exports = class WorkspaceModel extends BaseModel {
-  
+
   /**
-   * @param {Workspace} scope
    * @constructor
+   * @param {string} name
+   * @param scope
    */
-  constructor(scope) {
-    super('WorkspaceModel', scope, false);
+  constructor(name, scope) {
+    super(name || 'WorkspaceModel', scope, false);
 
     /**
      * Define item

@@ -39,6 +39,12 @@ module.exports = class Base {
      * @type {LibNumber}
      */
     this.num = new (require('./base/Number.js'));
+
+    /**
+     * @property Base.fn
+     * @type {LibFunction}
+     */
+    this.fn = new (require('./base/Function.js'));
   }
 
   /**
@@ -175,5 +181,50 @@ module.exports = class Base {
      */
     this.isDataURL.regex = /^data:.+\/(.+);base64,(.*)$/;
     return s ? !!s.match(this.isDataURL.regex) : s;
+  }
+
+  /**
+   * Define wait for condition
+   * @memberOf Base
+   * @param {function} conditionFn
+   * @param {function} callbackFn
+   * @param {function} [fallbackFn]
+   * @param {number} [timeout]
+   */
+  waitFor(conditionFn, callbackFn, fallbackFn, timeout) {
+
+    // Init timeout
+    timeout = timeout || 100;
+    let wait;
+
+    /**
+     * @constant _poll
+     * @private
+     */
+    const _poll = () => {
+
+      // Define timeout instance
+      wait = setTimeout(() => {
+        timeout--;
+        if (conditionFn()) {
+
+          // External file loaded
+          callbackFn();
+          clearTimeout(wait);
+
+        } else if (timeout > 0) {
+          _poll();
+        } else {
+
+          // External library failed to load
+          if (typeof(fallbackFn) === 'function') {
+            fallbackFn();
+          }
+        }
+      }, 100);
+    };
+
+    // Call timer
+    _poll();
   }
 };

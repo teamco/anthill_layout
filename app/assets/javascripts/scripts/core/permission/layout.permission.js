@@ -21,9 +21,10 @@ module.exports = class LayoutPermission extends BasePermission {
 
   /**
    * @constructor
+   * @param {string} name
    * @param scope
    */
-  constructor(scope) {
-    super('LayoutPermission', scope, false);
+  constructor(name, scope) {
+    super(name || 'LayoutPermission', scope, false);
   }
 };

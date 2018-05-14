@@ -49,7 +49,7 @@ module.exports = () => {
 
         /**
          * Get current widget
-         * @type {module.Widget}
+         * @type {module.Widget|{model}}
          */
         const widget = this.model.getCurrentItem();
 

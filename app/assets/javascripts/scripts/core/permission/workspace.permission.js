@@ -21,9 +21,10 @@ module.exports = class WorkspacePermission extends BasePermission {
 
   /**
    * @constructor
+   * @param {string} name
    * @param scope
    */
-  constructor(scope) {
-    super('WorkspacePermission', scope, false);
+  constructor(name, scope) {
+    super(name || 'WorkspacePermission', scope, false);
   }
 };

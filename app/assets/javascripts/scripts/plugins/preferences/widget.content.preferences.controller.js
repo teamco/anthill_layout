@@ -5,91 +5,74 @@
  * Time: 1:26 PM
  */
 
-defineP(function defineWidgetContentPreferencesController() {
+/**
+ * @class WidgetContentPreferencesController
+ * @type {module.WidgetContentPreferencesController}
+ */
+module.exports = class WidgetContentPreferencesController {
 
   /**
-   * Define widget content prefs controller
-   * @class WidgetContentPreferencesController
-   * @constructor
-   * @extends AntHill
+   * Load prefs
+   * @memberOf WidgetContentPreferencesController
    */
-  var WidgetContentPreferencesController = function WidgetContentPreferencesController() {
-  };
+  loadPreferences() {
 
-  return WidgetContentPreferencesController.extend(
-      'WidgetContentPreferencesController', {
+    /**
+     * Get widget
+     * @type {Widget|*}
+     */
+    const widget = this.controller.getContainment(),
+        globalPrefs = widget.model.getConfig('preferences'),
+        localPrefs = this.model.preferences || {};
 
-        /**
-         * Load prefs
-         * @memberOf WidgetContentPreferencesController
-         */
-        loadPreferences: function loadPreferences() {
+    let index, value;
 
-          /**
-           * Get widget
-           * @type {Widget|*}
-           */
-          var widget = this.controller.getContainment(),
-              globalPrefs = widget.model.getConfig('preferences'),
-              localPrefs = this.model.preferences || {};
+    for (index in localPrefs) {
 
-          var index, value;
-
-          for (index in localPrefs) {
-
-            if (localPrefs.hasOwnProperty(index) &&
-                globalPrefs.hasOwnProperty(index)) {
-
-              value = globalPrefs[index];
-
-              /**
-               * Define method name
-               * @type {string}
-               */
-              var setter = 'set' + index.toCamel().capitalize();
-
-              if (typeof(this.model[setter]) !== 'function') {
-
-                /**
-                 * Define setter
-                 * @type {Function}
-                 */
-                var fn = this.base.lib.function.create({
-                  name: setter,
-                  params: index,
-                  body: 'this.setPrefs("' + index + '", ' + index + ');' +
-                  this.controller.getCustomPublisher(index),
-                  scope: this.model.constructor.prototype
-                });
-
-                this.logger.debug('Define model setter', fn, index, setter);
-              }
-
-              this.model[setter](value);
-            }
-          }
-        },
+      if (localPrefs.hasOwnProperty(index) && globalPrefs.hasOwnProperty(index)) {
+        value = globalPrefs[index];
 
         /**
-         * Transfer preferences to containment
-         * @memberOf WidgetContentPreferencesController
-         * @param index
-         * @param value
+         * Define method name
+         * @type {string}
          */
-        transferContentPreferences: function transferContentPreferences(index,
-            value) {
+        const setter = 'set' + index.toCamel().capitalize();
+
+        if (typeof(this.model[setter]) !== 'function') {
 
           /**
-           * Define widget
-           * @type {Widget}
+           * Define setter
+           * @type {Function}
            */
-          var widget = this.controller.getContainment();
+          const fn = this.utils.fn.create({
+            name: setter,
+            params: index,
+            body: 'this.setPrefs("' + index + '", ' + index + ');' +
+            this.controller.getCustomPublisher(index),
+            scope: this.model.constructor.prototype
+          });
 
-          widget.observer.publish(
-              widget.eventManager.eventList.transferPreferences,
-              [index, value]
-          );
+          this.logger.debug('Define model setter', fn, index, setter);
         }
+
+        this.model[setter](value);
       }
-  );
-});
+    }
+  }
+
+  /**
+   * Transfer preferences to containment
+   * @memberOf WidgetContentPreferencesController
+   * @param index
+   * @param value
+   */
+  transferContentPreferences(index, value) {
+
+    /**
+     * Define widget
+     * @type {Widget}
+     */
+    const widget = this.controller.getContainment();
+    widget.observer.publish(widget.eventManager.eventList.transferPreferences, [index, value]);
+  }
+};

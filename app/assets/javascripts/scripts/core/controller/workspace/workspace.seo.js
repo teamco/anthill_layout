@@ -17,8 +17,8 @@ module.exports = class WorkspaceSEO {
    * @param {Page} page
    */
   updateMetaData(page) {
+    this.observer.publish(this.eventManager.eventList.updateSiteTitle);
     page.observer.batchPublish(
-        this.eventManager.eventList.updateSiteTitle,
         page.eventManager.eventList.updateSiteDescription,
         page.eventManager.eventList.updateSiteKeywords
     );

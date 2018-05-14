@@ -51,22 +51,18 @@ const Router = require('../lib/modules/Router.js');
 /**
  * Define application controller
  * @class ApplicationController
- * @extends BaseController
- * @extends BehaviorErrorHandler
- * @extends BehaviorFixVulnerabilities
- * @extends ProductionController
- * @extends Routes
- * @extends Router
+ * @extends {BaseController, BehaviorErrorHandler, BehaviorFixVulnerabilities, ProductionController, Routes, Router}
  */
 module.exports = class ApplicationController extends aggregation(BaseController, BehaviorErrorHandler,
     BehaviorFixVulnerabilities, ProductionController, Routes, Router) {
 
   /**
    * @constructor ApplicationController
-   * @param {Application} scope
+   * @param {string} name
+   * @param scope
    */
-  constructor(scope) {
-    super('ApplicationController', scope, false);
+  constructor(name, scope) {
+    super(name || 'ApplicationController', scope, false);
   }
 
   /**
@@ -222,8 +218,8 @@ module.exports = class ApplicationController extends aggregation(BaseController,
       return false;
     }
 
-    $item.$.on('scroll.parallax resize.parallax', e =>
-        scope.observer.publish(scope.eventManager.eventList.scrollPublisher, e));
+    $item.$.on('scroll.parallax resize.parallax',
+        e => this.observer.publish(this.eventManager.eventList.scrollPublisher, e));
   }
 
   /**
