@@ -6,211 +6,182 @@
  * To change this template use File | Settings | File Templates.
  */
 
-defineP([
-  'modules/Interactions'
-], function defineWidgetResize(Interactions) {
+/**
+ * @class WidgetResize
+ * @extends Interactions
+ * @type {module.WidgetResize}
+ */
+module.exports = class WidgetResize {
 
   /**
-   * Define Resize
-   * @class Resizable
-   * @extends Interactions
    * @param {Widget} scope
-   * @memberOf Widget.interactions
    * @constructor
    */
-  var Resizable = function Resizable(scope) {
+  constructor(scope) {
 
     /**
      * Define scope
-     * @property Resizable
+     * @property WidgetResize
      * @type {Widget}
      */
     this.scope = scope;
 
     /**
      * Define widget jquery element
-     * @property Resizable
+     * @property WidgetResize
      * @type {jQuery}
      */
     this.$scope = scope.view.get$item().$;
 
     this.checkPermission();
-  };
+  }
 
-  return Resizable.extend('Resizable', {
+  /**
+   * Init resizable
+   * @memberOf WidgetResize
+   */
+  init() {
 
     /**
-     * Init resizable
-     * @memberOf Resizable
+     * Define scope
+     * @type {Widget}
      */
-    init: function init() {
+    const scope = this.scope;
 
-      /**
-       * Define scope
-       * @type {Widget}
-       */
-      var scope = this.scope;
+    // Get resizable config
+    let resizable = scope.model.getConfig('events').resizable;
 
-      // Get resizable config
-      var resizable = scope.model.getConfig('events').resizable;
-
-      if (scope.permission.authorizedFunctionCall(this.init)) {
-
-        resizable = scope.controller.validateInteractionConfig(
-            'resizable', resizable
-        );
-
-        if (resizable) {
-
-          this.$scope.resizable(
-              $.extend({
-                containment: resizable.containment,
-                create: this.create.bind(this),
-                start: this.start.bind(this),
-                stop: this.stop.bind(this),
-                resize: this.resize.bind(this)
-              }, resizable)
-          );
-        }
+    if (scope.permission.authorizedFunctionCall(this.init)) {
+      resizable = scope.controller.validateInteractionConfig('resizable', resizable);
+      if (resizable) {
+        this.$scope.resizable($.extend({
+          containment: resizable.containment,
+          create: this.create.bind(this),
+          start: this.start.bind(this),
+          stop: this.stop.bind(this),
+          resize: this.resize.bind(this)
+        }, resizable));
       }
-    },
-
-    /**
-     * Enable resize
-     * @memberOf Resizable
-     */
-    enable: function enable() {
-
-      /**
-       * Define scope
-       */
-      var scope = this.scope;
-
-      if (scope.permission.eventTunnelFunctionCall(this.enable) &&
-          scope.controller.isResizable()) {
-        this.$scope.resizable('enable');
-      }
-    },
-
-    /**
-     * Disable resize
-     * @memberOf Resizable
-     */
-    disable: function disable() {
-
-      /**
-       * Define scope
-       */
-      var scope = this.scope;
-
-      if (scope.permission.eventTunnelFunctionCall(this.disable) &&
-          scope.controller.isResizable()) {
-        this.$scope.resizable('disable');
-      }
-    },
-
-    /**
-     * Destroy resize
-     * @memberOf Resizable
-     */
-    destroy: function destroy() {
-
-      /**
-       * Define scope
-       */
-      var scope = this.scope;
-
-      if (scope.permission.eventTunnelFunctionCall(this.destroy) &&
-          scope.controller.isResizable()) {
-        this.$scope.resizable('destroy');
-      }
-    },
-
-    /**
-     * Create resize
-     * @memberOf Resizable
-     * @param {Event} event
-     * @param ui
-     */
-    create: function create(event, ui) {
-
-      /**
-       * Define scope
-       */
-      var scope = this.scope;
-
-      scope.observer.publish(
-          scope.eventManager.eventList.createResizable,
-          [event.type, arguments]
-      );
-    },
-
-    /**
-     * Start resize
-     * @memberOf Resizable
-     * @param {Event} event
-     * @param ui
-     */
-    start: function start(event, ui) {
-
-      /**
-       * Define scope
-       */
-      var scope = this.scope;
-
-      this.debugUI(event, ui);
-
-      scope.controller.setAsCurrent();
-      scope.wireframe.resizeSticker();
-
-      scope.observer.publish(
-          scope.eventManager.eventList.startResizable,
-          [event.type, arguments]
-      );
-    },
-
-    /**
-     * Stop resize
-     * @memberOf Resizable
-     * @param {Event} event
-     * @param ui
-     */
-    stop: function stop(event, ui) {
-
-      /**
-       * Define scope
-       */
-      var scope = this.scope;
-
-      this.debugUI(event, ui);
-
-      scope.observer.publish(
-          scope.eventManager.eventList.stopResizable,
-          [event.type, arguments]
-      );
-      scope.wireframe.hide();
-    },
-
-    /**
-     * On resize event
-     * @memberOf Resizable
-     * @param {Event} event
-     * @param ui
-     */
-    resize: function resize(event, ui) {
-
-      /**
-       * Define scope
-       */
-      var scope = this.scope;
-
-      this.debugUI(event, ui);
-
-      scope.observer.publish(
-          scope.eventManager.eventList.resizeResizable,
-          [event.type, arguments]
-      );
     }
+  }
 
-  }, Interactions.prototype);
-});
+  /**
+   * Enable resize
+   * @memberOf WidgetResize
+   */
+  enable() {
+
+    /**
+     * Define scope
+     */
+    const scope = this.scope;
+
+    if (scope.permission.eventTunnelFunctionCall(this.enable) && scope.controller.isResizable()) {
+      this.$scope.resizable('enable');
+    }
+  }
+
+  /**
+   * Disable resize
+   * @memberOf WidgetResize
+   */
+  disable() {
+
+    /**
+     * Define scope
+     */
+    const scope = this.scope;
+
+    if (scope.permission.eventTunnelFunctionCall(this.disable) && scope.controller.isResizable()) {
+      this.$scope.resizable('disable');
+    }
+  }
+
+  /**
+   * Destroy resize
+   * @memberOf WidgetResize
+   */
+  destroy() {
+
+    /**
+     * Define scope
+     */
+    const scope = this.scope;
+
+    if (scope.permission.eventTunnelFunctionCall(this.destroy) && scope.controller.isResizable()) {
+      this.$scope.resizable('destroy');
+    }
+  }
+
+  /**
+   * Create resize
+   * @memberOf WidgetResize
+   * @param {Event} event
+   * @param ui
+   */
+  create(event, ui) {
+
+    /**
+     * Define scope
+     */
+    const scope = this.scope;
+
+    scope.observer.publish(scope.eventManager.eventList.createResizable, [event.type, arguments]
+    );
+  }
+
+  /**
+   * Start resize
+   * @memberOf WidgetResize
+   * @param {Event} event
+   * @param ui
+   */
+  start(event, ui) {
+
+    /**
+     * Define scope
+     */
+    const scope = this.scope;
+
+    this.debugUI(event, ui);
+
+    scope.controller.setAsCurrent();
+    scope.wireframe.resizeSticker();
+    scope.observer.publish(scope.eventManager.eventList.startResizable, [event.type, arguments]);
+  }
+
+  /**
+   * Stop resize
+   * @memberOf WidgetResize
+   * @param {Event} event
+   * @param ui
+   */
+  stop(event, ui) {
+
+    /**
+     * Define scope
+     */
+    const scope = this.scope;
+
+    this.debugUI(event, ui);
+    scope.observer.publish(scope.eventManager.eventList.stopResizable, [event.type, arguments]);
+    scope.wireframe.hide();
+  }
+
+  /**
+   * On resize event
+   * @memberOf WidgetResize
+   * @param {Event} event
+   * @param ui
+   */
+  resize(event, ui) {
+
+    /**
+     * Define scope
+     */
+    const scope = this.scope;
+
+    this.debugUI(event, ui);
+    scope.observer.publish(scope.eventManager.eventList.resizeResizable, [event.type, arguments]);
+  }
+};

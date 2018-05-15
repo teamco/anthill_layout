@@ -5,18 +5,17 @@
  * Time: 12:24 AM
  */
 
-defineP([
-  'config/anthill'
-], function defineWidgetWireframe(AntHill) {
+/**
+ * @class Wireframe
+ * @type {module.Wireframe}
+ */
+module.exports = class Wireframe {
 
   /**
-   * Define Widget Wireframe
-   * @class Wireframe
-   * @extends AntHill
-   * @param {*} widget
+   * @param {Widget} widget
    * @constructor
    */
-  var Wireframe = function Wireframe(widget) {
+  constructor(widget) {
 
     /**
      * Define widget
@@ -31,145 +30,131 @@ defineP([
      * @type {string}
      */
     this.selector = 'next-widget-position';
-  };
+  }
 
-  return Wireframe.extend('Wireframe', {
+  /**
+   * Move wireframe on widget drag
+   * @memberOf Wireframe
+   */
+  dragSticker() {
 
     /**
-     * Move wireframe on widget drag
-     * @memberOf Wireframe
+     * Define DOM
+     * @type {*}
      */
-    dragSticker: function dragSticker() {
+    const dom = this.widget.map.getDOM();
 
-      /**
-       * Define DOM
-       * @type {*}
-       */
-      var dom = this.widget.map.getDOM();
+    this.init({
+      style: {
+        left: dom.left,
+        top: dom.top,
+        width: dom.width,
+        height: dom.height
+      },
+      animate: false
+    });
+  }
 
-      this.init({
-        style: {
-          left: dom.left,
-          top: dom.top,
-          width: dom.width,
-          height: dom.height
-        },
-        animate: false
+  /**
+   * Resize wireframe on widget resize
+   * @memberOf Wireframe
+   */
+  resizeSticker() {
+
+    /**
+     * Define CSS
+     * @type {{width: Number, height: Number}}
+     */
+    const css = this.widget.map.resizeTo();
+
+    this.init({
+      style: {
+        left: css.left,
+        top: css.top,
+        width: css.width,
+        height: css.height
+      },
+      animate: false
+    });
+  }
+
+  /**
+   * Show wireframe
+   * @memberOf Wireframe
+   */
+  show() {
+    this.$.show();
+  }
+
+  /**
+   * Hide wireframe
+   * @memberOf Wireframe
+   */
+  hide() {
+    this.$.hide();
+  }
+
+  /**
+   * Get wireframe jQuery element
+   * @memberOf Wireframe
+   * @returns {*}
+   */
+  getWireFrame() {
+
+    const $wireFrame = $('#' + this.selector, this.widget.controller.get$page().$);
+
+    // Check if widget frozen
+    const frozen = this.widget.model.getConfig('preferences').freeze;
+
+    $wireFrame[(frozen ? 'add' : 'remove') + 'Class']('frozen');
+    return $wireFrame;
+  }
+
+  /**
+   * Move wireframe to current page
+   * @memberOf Wireframe
+   */
+  moveToCurrentPage() {
+    if (!this.getWireFrame().length) {
+      this.$.appendTo(this.widget.controller.get$page().$);
+    }
+  }
+
+  /**
+   * Define wireframe jQuery element
+   * @memberOf Wireframe
+   * @param {{style}} opts
+   * @returns {*}
+   */
+  defineHolder(opts) {
+
+    /**
+     * Define wireframe element
+     * @memberOf Wireframe
+     * @type {*}
+     */
+    this.$ = this.getWireFrame();
+
+    if (!this.$.length) {
+      $('#' + this.selector).remove();
+      this.$ = $('<div />').css(opts.style).attr({
+        id: this.selector
       });
-    },
-
-    /**
-     * Resize wireframe on widget resize
-     * @memberOf Wireframe
-     */
-    resizeSticker: function resizeSticker() {
-
-      /**
-       * Define CSS
-       * @type {{width: Number, height: Number}}
-       */
-      var css = this.widget.map.resizeTo();
-
-      this.init({
-        style: {
-          left: css.left,
-          top: css.top,
-          width: css.width,
-          height: css.height
-        },
-        animate: false
-      });
-    },
-
-    /**
-     * Show wireframe
-     * @memberOf Wireframe
-     */
-    show: function show() {
-      this.$.show();
-    },
-
-    /**
-     * Hide wireframe
-     * @memberOf Wireframe
-     */
-    hide: function hide() {
-      this.$.hide();
-    },
-
-    /**
-     * Get wireframe jQuery element
-     * @memberOf Wireframe
-     * @returns {*}
-     */
-    getWireFrame: function getWireFrame() {
-
-      var $wireFrame = $(
-          '#' + this.selector,
-          this.widget.controller.get$page().$
-      );
-
-      // Check if widget frozen
-      var frozen = this.widget.model.getConfig('preferences').freeze;
-
-      $wireFrame[(frozen ? 'add' : 'remove') + 'Class']('frozen');
-
-      return $wireFrame;
-    },
-
-    /**
-     * Move wireframe to current page
-     * @memberOf Wireframe
-     */
-    moveToCurrentPage: function moveToCurrentPage() {
-      if (this.getWireFrame().length === 0) {
-        this.$.appendTo(
-            this.widget.controller.get$page().$
-        );
-      }
-    },
-
-    /**
-     * Define wireframe jQuery element
-     * @memberOf Wireframe
-     * @param {{style}} opts
-     * @returns {*}
-     */
-    defineHolder: function defineHolder(opts) {
-
-      /**
-       * Define wireframe element
-       * @memberOf Wireframe
-       * @type {*}
-       */
-      this.$ = this.getWireFrame();
-
-      if (this.$.length === 0) {
-
-        $('#' + this.selector).remove();
-        this.$ = $('<div />').css(opts.style).attr({
-          id: this.selector
-        });
-      }
-
-      this.moveToCurrentPage();
-
-      return this;
-    },
-
-    /**
-     * Init wireframe
-     * @memberOf Wireframe
-     * @param opts
-     */
-    init: function init(opts) {
-
-      opts = this.base.define(opts, {}, true);
-
-      this.defineHolder(opts);
-      this.getWireFrame().show();
-      this.$.css(opts.style);
     }
 
-  }, AntHill.prototype);
-});
+    this.moveToCurrentPage();
+    return this;
+  }
+
+  /**
+   * Init wireframe
+   * @memberOf Wireframe
+   * @param opts
+   */
+  init(opts) {
+    opts = this.base.define(opts, {}, true);
+    this.defineHolder(opts);
+    this.getWireFrame().show();
+    this.$.css(opts.style);
+  }
+};

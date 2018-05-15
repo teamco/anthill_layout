@@ -6,10 +6,6 @@
  * To change this template use File | Settings | File Templates.
  */
 
-// 'api/widget.api',
-// 'controller/widget.controller',
-// 'model/widget.model',
-// 'view/widget.view',
 // 'event/widget.event.manager',
 // 'permission/widget.permission',
 // 'controller/widget/widget.map',
@@ -219,25 +215,36 @@ module.exports = class Widget extends AntHill {
     });
 
     /**
-     * Define map
-     * @property Widget
-     * @type {WidgetMap}
+     * @constant WidgetMap
+     * @type {module.WidgetMap}
      */
-    //this.map = new WidgetMap(this);
+    const WidgetMap = require('../controller/widget/widget.map.js');
 
     /**
-     * Define wireframe
+     * Define map
      * @property Widget
-     * @type {Wireframe}
+     * @type {module.WidgetMap}
      */
-    //this.wireframe = new Wireframe(this);
+    this.map = new WidgetMap(this);
+
+    /**
+     * @constant Wireframe
+     * @type {module.Wireframe}
+     */
+    const Wireframe = require('../controller/widget/widget.wireframe.js');
+
+    /**
+     * @property Widget
+     * @type {module.Wireframe}
+     */
+    this.wireframe = new Wireframe(this);
 
     /**
      * Define interactions: Drag/Resize/Drop
      * @property Widget
      * @type {{
-     *  draggable: Draggable,
-     *  resizable: Resizable,
+     *  draggable: module.WidgetDrag,
+     *  resizable: module.WidgetResize,
      *  droppable: undefined
      * }}
      */
@@ -246,14 +253,14 @@ module.exports = class Widget extends AntHill {
     /**
      * Define draggable interaction
      * @property Widget.interactions
-     * @type {Draggable}
+     * @type {module.WidgetDrag}
      */
     this.interactions.draggable = undefined;
 
     /**
      * Define resizable interaction
      * @property Widget.interactions
-     * @type {Resizable}
+     * @type {module.WidgetResize}
      */
     this.interactions.resizable = undefined;
 

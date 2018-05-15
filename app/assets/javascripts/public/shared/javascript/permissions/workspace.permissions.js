@@ -25,7 +25,7 @@ module.exports = () => {
    */
   Workspace.prototype.globalPermissions = {
     development: {
-      createDesignTimePanel: false,
+      createDesignTimePanel: true,
       createRunTimePanel: false,
       store: true
     },

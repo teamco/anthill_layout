@@ -6,7 +6,6 @@
  * To change this template use File | Settings | File Templates.
  */
 
-// 'controller/widget/widget.interactions',
 // 'controller/widget/widget.maximize',
 // 'controller/widget/widget.zoom',
 // 'controller/widget/widget.stretch',
@@ -28,10 +27,16 @@ const aggregation = require('../lib/extends/aggregation.js');
 const BaseController = require('../lib/modules/Controller.js');
 
 /**
+ * @constant WidgetInteractions
+ * @type {module.WidgetInteractions}
+ */
+const WidgetInteractions = require('./widget/widget.interactions.js');
+
+/**
  * @class WidgetController
  * @extends {BaseController}
  */
-module.exports = class WidgetController extends aggregation(BaseController) {
+module.exports = class WidgetController extends aggregation(BaseController, WidgetInteractions) {
 
   /**
    * @constructor
