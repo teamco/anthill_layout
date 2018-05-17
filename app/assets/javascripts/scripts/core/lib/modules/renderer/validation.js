@@ -2,111 +2,97 @@
  * Created by teamco on 10/30/14.
  */
 
-defineP(function defineTextFieldRenderer() {
+/**
+ * @class ValidationRenderer
+ * @type {module.ValidationRenderer}
+ */
+module.exports = class ValidationRenderer {
 
   /**
-   * Define ValidationRenderer
-   * @class ValidationRenderer
-   * @constructor
+   * Define validation
+   * @param $input
+   * @param opts
    */
-  var ValidationRenderer = function ValidationRenderer() {
-  };
+  validateByMask($input, opts) {
 
-  return ValidationRenderer.extend('ValidationRenderer', {
+    opts.validate = opts.validate || {};
 
     /**
-     * Define validation
-     * @param $input
-     * @param opts
+     * Validate mask
+     * @param value
+     * @returns {opts.validate.mask|*|Array|{index: number, input: string}}
+     * @private
      */
-    validateByMask: function validateByMask($input, opts) {
-
-      opts.validate = opts.validate || {};
+    function _checkMask(value) {
 
       /**
-       * Validate mask
-       * @param value
-       * @returns {opts.validate.mask|*|Array|{index: number, input: string}}
-       * @private
+       * Get mask
+       * @type {Array|RegExp|number}
        */
-      function _checkMask(value) {
+      let mask = opts.validate.mask,
+          i = 0, match = [];
 
-        /**
-         * Get mask
-         * @type {Array|RegExp|number}
-         */
-        var mask = opts.validate.mask,
-            i = 0, match = [];
+      if (!mask) return true;
 
-        if (_.isUndefined(mask)) return true;
-
-        if (Object.prototype.toString.call(mask) !== '[object Array]') {
-          mask = [mask];
-        }
-
-        for (i; i < mask.length; i++) {
-          match.push(!!value.match(mask[i]))
-        }
-
-        return (new Function([
-          'return ',
-          match.join('||'),
-          ';'
-        ].join('')))();
+      if (!Array.isArray(mask)) {
+        mask = [mask];
       }
 
-      /**
-       * Validate empty
-       * @param value
-       * @returns {boolean}
-       * @private
-       */
-      function _checkEmpty(value) {
-        if (typeof opts.validate.blank === 'undefined') {
-          return true;
-        }
-        return opts.validate.blank ?
-            true : !!$.trim(value).length;
+      for (i; i < mask.length; i++) {
+        match.push(!!value.match(mask[i]));
       }
 
-      /**
-       * Add message container
-       * @type {*|jQuery}
-       */
-      var $span = $('<span class="validate" />').text(
-          'The «' + opts.text + '» you entered is not valid'
-      );
-
-      /**
-       * Show error
-       * @private
-       */
-      function _showError() {
-        $input.addClass('validate');
-        $input.after($span);
-      }
-
-      /**
-       * Hide error
-       * @private
-       */
-      function _hideError() {
-        $input.removeClass('validate');
-        $span.remove();
-      }
-
-      $input.focusout(function focusOut() {
-
-        /**
-         * Get value
-         * @type {string}
-         */
-        var value = $input.val();
-
-        _showError();
-
-        if (_checkMask(value) && _checkEmpty(value)) _hideError();
-      });
+      return (new Function(['return ', match.join('||'), ';'].join('')))();
     }
-  });
-});
+
+    /**
+     * Validate empty
+     * @param value
+     * @returns {boolean}
+     * @private
+     */
+    function _checkEmpty(value) {
+      if (!opts.validate.blank) {
+        return true;
+      }
+      return opts.validate.blank ? true : !!$.trim(value).length;
+    }
+
+    /**
+     * Add message container
+     * @type {*|jQuery}
+     */
+    const $span = $('<span class="validate" />').text('The «' + opts.text + '» you entered is not valid');
+
+    /**
+     * Show error
+     * @private
+     */
+    function _showError() {
+      $input.addClass('validate');
+      $input.after($span);
+    }
+
+    /**
+     * Hide error
+     * @private
+     */
+    function _hideError() {
+      $input.removeClass('validate');
+      $span.remove();
+    }
+
+    $input.focusout(function focusOut() {
+
+      /**
+       * Get value
+       * @type {string}
+       */
+      const value = $input.val();
+
+      _showError();
+
+      if (_checkMask(value) && _checkEmpty(value)) _hideError();
+    });
+  }
+};

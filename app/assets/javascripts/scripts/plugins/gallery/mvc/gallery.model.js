@@ -5,20 +5,27 @@
  * Time: 11:06 PM
  * To change this template use File | Settings | File Templates.
  */
-defineP([
-  'config/anthill',
-  'modules/Model',
-  'plugins/gallery/mvc/model/gallery.widgets'
-], function defineGalleryModel(AntHill, BaseModel, GalleryWidgets) {
+
+/**
+ * @constant BaseModel
+ * @type {module.BaseModel}
+ */
+const BaseModel = require('../../../core/lib/modules/Model.js');
+
+/**
+ * @class GalleryModel
+ * @extends GalleryWidgets
+ * @type {module.GalleryModel}
+ */
+module.exports = class GalleryModel extends BaseModel {
 
   /**
-   * Define Gallery model
-   * @extends AntHill
-   * @extends BaseModel
-   * @class GalleryModel
    * @constructor
+   * @param {string} name
+   * @param {Panel} scope
    */
-  var GalleryModel = function GalleryModel() {
+  constructor(name, scope) {
+    super(name || 'GalleryModel', scope, false);
 
     /**
      * Define data types
@@ -26,145 +33,139 @@ defineP([
      * @type {{strings}}
      */
     this.dataTypes = undefined;
-  };
+  }
 
-  return GalleryModel.extend('GalleryModel', {
-
-    /**
-     * Define load static data
-     * @memberOf GalleryModel
-     */
-    loadStaticData: function loadStaticData() {
-
-      /**
-       * Define static data
-       * @property GalleryModel
-       * @type {GalleryWidgets}
-       */
-      this.staticData = new GalleryWidgets(this);
-
-      // Load data
-      this.staticData.loadDefaultData('name', 'string');
-    },
+  /**
+   * Define load static data
+   * @memberOf GalleryModel
+   */
+  loadStaticData() {
 
     /**
-     * Define init
-     * @memberOf GalleryModel
+     * @constant GalleryWidgets
+     * @type {module.GalleryWidgets}
      */
-    init: function init() {
-
-      /**
-       * Define providers
-       * @property GalleryModel
-       * @type {{indoor: {name: string, data: *[]}}}
-       */
-      this.providers = {
-        all: {
-          name: 'All widgets',
-          key: 'all',
-          data: this.staticData.getDefaultData()
-        }
-      };
-
-      /**
-       * Define default provider
-       * @property GalleryModel
-       * @type {{name: string, data: *[]}[]}
-       */
-      this.defaultProvider = this.getProvidersList().all;
-
-      /**
-       * Define current provider
-       * @property GalleryModel
-       * @type {{name: string, data: *[]}[]}
-       */
-      this.currentProvider = $.extend({}, this.defaultProvider);
-    },
+    const GalleryWidgets = require('./model/gallery.widgets.js');
 
     /**
-     * Get data provider
-     * @memberOf GalleryModel
-     * @param [provider]
-     * @returns {*}
+     * Define static data
+     * @property GalleryModel
+     * @type {module.GalleryWidgets}
      */
-    getDataProvider: function getDataProvider(provider) {
-      return (provider || this.currentProvider).data;
-    },
+    this.staticData = new GalleryWidgets(this);
+
+    // Load data
+    this.staticData.loadDefaultData('name', 'string');
+  }
+
+  /**
+   * Define init
+   * @memberOf GalleryModel
+   */
+  init() {
+
+    /**
+     * Define providers
+     * @property GalleryModel
+     * @type {{indoor: {name: string, data: *[]}}}
+     */
+    this.providers = {
+      all: {
+        name: 'All widgets',
+        key: 'all',
+        data: this.staticData.getDefaultData()
+      }
+    };
+
+    /**
+     * Define default provider
+     * @property GalleryModel
+     * @type {{name: string, data: *[]}[]}
+     */
+    this.defaultProvider = this.getProvidersList().all;
+
+    /**
+     * Define current provider
+     * @property GalleryModel
+     * @type {{name: string, data: *[]}[]}
+     */
+    this.currentProvider = $.extend({}, this.defaultProvider);
+  }
+
+  /**
+   * Get data provider
+   * @memberOf GalleryModel
+   * @param [provider]
+   * @returns {*}
+   */
+  getDataProvider(provider) {
+    return (provider || this.currentProvider).data;
+  }
+
+  /**
+   * Get providers list
+   * @memberOf GalleryModel
+   * @returns {*}
+   */
+  getProvidersList() {
+    return this.providers;
+  }
+
+  /**
+   * Set provider as current
+   * @memberOf GalleryModel
+   * @param {string} key
+   */
+  setProviderAsCurrent(key) {
+
+    /**
+     * Define provider
+     * @type {*}
+     */
+    let provider = this.providers[key];
+
+    if (!provider) {
+      provider = this.defaultProvider;
+      this.scope.logger.warn('Undefined provider, set default', provider);
+    }
+
+    /**
+     * Define current provider
+     * @property GalleryModel
+     * @type {{name: string, data: *[]}[]}
+     */
+    this.currentProvider = $.extend({}, provider);
+    this.scope.logger.debug('Current provider', provider);
+  }
+
+  /**
+   * Set widget to provider
+   * @memberOf GalleryModel
+   * @param {{type: string}} meta
+   */
+  setProvider(meta) {
 
     /**
      * Get providers list
-     * @memberOf GalleryModel
-     * @returns {*}
+     * @type {*}
      */
-    getProvidersList: function getProvidersList() {
-      return this.providers;
-    },
+    const providers = this.getProvidersList();
 
     /**
-     * Set provider as current
-     * @memberOf GalleryModel
-     * @param {string} key
+     * Get data types
+     * @type {{strings}}
      */
-    setProviderAsCurrent: function setProviderAsCurrent(key) {
+    const dataTypes = this.dataTypes;
 
-      /**
-       * Define provider
-       * @type {*}
-       */
-      var provider = this.providers[key];
-
-      if (!provider) {
-        provider = this.defaultProvider;
-        this.scope.logger.warn('Undefined provider, set default', provider);
-      }
-
-      /**
-       * Define current provider
-       * @property GalleryModel
-       * @type {{name: string, data: *[]}[]}
-       */
-      this.currentProvider = $.extend({}, provider);
-
-      this.scope.logger.debug('Current provider', provider);
-    },
-
-    /**
-     * Set widget to provider
-     * @memberOf GalleryModel
-     * @param {{type: string}} meta
-     */
-    setProvider: function setProvider(meta) {
-
-      /**
-       * Get providers list
-       * @type {*}
-       */
-      var providers = this.getProvidersList();
-
-      /**
-       * Get data types
-       * @type {{strings}}
-       */
-      var dataTypes = this.dataTypes;
-
-      if (meta.type) {
-
-        providers[meta.type] = this.base.define(
-            providers[meta.type], {
-              name: dataTypes[meta.type] || meta.type,
-              key: meta.type,
-              data: []
-            },
-            true
-        );
-
-        providers[meta.type].data.push(meta);
-
-      } else {
-
-        providers.all.data.push(meta);
-      }
+    if (meta.type) {
+      providers[meta.type] = providers[meta.type] || {
+        name: dataTypes[meta.type] || meta.type,
+        key: meta.type,
+        data: []
+      };
+      providers[meta.type].data.push(meta);
+    } else {
+      providers.all.data.push(meta);
     }
-
-  }, AntHill.prototype, BaseModel.prototype);
-});
+  }
+};

@@ -6,20 +6,25 @@
  * To change this template use File | Settings | File Templates.
  */
 
-defineP([
-  'modules/Permission'
-], function defineGalleryPermission(BasePermission) {
+/**
+ * @constant BasePermission
+ * @type {module.BasePermission}
+ */
+const BasePermission = require('../../../core/lib/modules/Permission.js');
+
+/**
+ * Define GalleryPermission
+ * @extends BasePermission
+ * @class GalleryPermission
+ */
+module.exports = class GalleryPermission extends BasePermission {
 
   /**
-   * Define Permissions
-   * @class GalleryPermission
    * @constructor
-   * @extends BasePermission
+   * @param {string} name
+   * @param {Panel} scope
    */
-  var GalleryPermission = function GalleryPermission() {
-
-  };
-
-  return GalleryPermission.extend('GalleryPermission', {},
-      BasePermission.prototype);
-});
+  constructor(name, scope) {
+    super(name || 'GalleryPermission', scope, false);
+  }
+};

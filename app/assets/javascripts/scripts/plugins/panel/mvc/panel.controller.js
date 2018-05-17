@@ -20,10 +20,11 @@ module.exports = class PanelController extends PluginController {
 
   /**
    * @constructor
+   * @param {string} name
    * @param {Panel} scope
    */
-  constructor(scope) {
-    super('PanelController', scope, false);
+  constructor(name, scope) {
+    super(name || 'PanelController', scope, false);
   }
 
   /**
@@ -207,7 +208,7 @@ module.exports = class PanelController extends PluginController {
   openPanel(resource, event, callback) {
     this.view.get$item().toggleModule(resource);
     this.controller.closePanels();
-    if (_.isFunction(callback)) {
+    if (callback) {
       callback(event);
     }
   }
@@ -270,8 +271,7 @@ module.exports = class PanelController extends PluginController {
      */
     const data = this.model.getModule(index);
 
-    if (_.isUndefined(data)) {
-
+    if (!data) {
       this.scope.logger.error('Undefined module');
       return false;
     }

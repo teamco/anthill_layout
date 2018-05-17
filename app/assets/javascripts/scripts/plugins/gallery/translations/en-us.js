@@ -6,11 +6,8 @@
  * To change this template use File | Settings | File Templates.
  */
 
-defineP([], function defineEnUs() {
-
-  return {
-    'gallery.provider': 'Provider',
-    'gallery.providers.all': 'All',
-    'gallery.providers.favorites': 'Favorites'
-  };
-});
+module.exports = {
+  'gallery.provider': 'Provider',
+  'gallery.providers.all': 'All',
+  'gallery.providers.favorites': 'Favorites'
+};

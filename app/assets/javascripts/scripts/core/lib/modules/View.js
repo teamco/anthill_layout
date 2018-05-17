@@ -203,7 +203,7 @@ module.exports = class BaseView extends AntHill {
     const cached = this.elements[$element] instanceof Constructor;
 
     if (cached) {
-      this.scope.logger.debug(this.i18n.t('element.already.rendered').replace(/\{0}/, Constructor.name));
+      this.scope.logger.debug(this.scope.i18n.t('element.already.rendered').replace(/\{0}/, Constructor.name));
     }
 
     return cached;
@@ -318,11 +318,17 @@ module.exports = class BaseView extends AntHill {
   renderFilter(callback, enter) {
 
     /**
+     * @constant FilterElement
+     * @type {module.FilterElement}
+     */
+    const FilterElement = require('../../element/filter.element.js');
+
+    /**
      * Define Search element
      * @memberOf BaseView.elements
-     * @type {FilterElement}
+     * @type {module.FilterElement}
      */
-    this.elements.$filter = new Filter(this, {
+    this.elements.$filter = new FilterElement(this, {
       $container: this.get$container().$,
       style: [this.scope.name.toDash(), 'filter'].join(' '),
       callback: callback,
@@ -339,12 +345,7 @@ module.exports = class BaseView extends AntHill {
     const $container = this.elements.$container;
 
     if (!$container) {
-
-      this.scope.logger.error(
-          'Unable to fetch $container',
-          this.elements
-      );
-
+      this.scope.logger.error('Unable to fetch $container', this.elements);
       return {};
     }
 

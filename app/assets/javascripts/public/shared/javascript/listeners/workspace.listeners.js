@@ -173,6 +173,12 @@ module.exports = () => {
          */
         const Bar = require('../../../../scripts/plugins/bar/bar.js');
 
+        /**
+         * @constant Gallery
+         * @type {module.Gallery|*}
+         */
+        const Gallery = require('../../../../scripts/plugins/gallery/gallery.js');
+
         //   'plugins/gallery/gallery',
         //   'plugins/page.data/page.data',
         //   'plugins/workspace.data/workspace.data',
@@ -194,7 +200,7 @@ module.exports = () => {
               }
             }
           },
-          modules: [/*Gallery, PageData, WidgetRules, WorkspaceData, SiteConfig*/],
+          modules: [Gallery/*, PageData, WidgetRules, WorkspaceData, SiteConfig*/],
           packages: [Bar]
         }, app);
 

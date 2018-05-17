@@ -3,25 +3,11 @@
  */
 
 /**
- * @constant AntHill
- * @type {module.AntHill}
- */
-const AntHill = require('../../../config/anthill.js');
-
-/**
  * Define CheckBoxRenderer
  * @class CheckBoxRenderer
  * @type {module.CheckBoxRenderer}
  */
-module.exports = class CheckBoxRenderer extends AntHill {
-
-  /**
-   * @constructor
-   * @param {string} name
-   */
-  constructor(name) {
-    super(name || 'CheckBoxRenderer', null, false);
-  }
+module.exports = class CheckBoxRenderer  {
 
   /**
    * Render checkbox
@@ -38,14 +24,14 @@ module.exports = class CheckBoxRenderer extends AntHill {
    * }} opts
    * @returns {*}
    */
-  renderCheckbox(opts) {
+  renderCombobox(opts) {
 
     /**
      * Create UUID
      * @type {string}
      */
-    const uuid = this.utils.gen.generator.UUID() + '-checkbox',
-        checked = this.utils.setBoolean(opts.checked, false, true);
+    const uuid = this.utils.gen.UUID() + '-checkbox';
+        const checked = this.utils.setBoolean(opts.checked, false);
 
     /**
      * Define $input
@@ -57,7 +43,7 @@ module.exports = class CheckBoxRenderer extends AntHill {
       id: uuid,
       title: opts.value,
       checked: checked,
-      disabled: this.base.defineBoolean(opts.disabled, false, true)
+      disabled: this.utils.setBoolean(opts.disabled, false)
     }).val(opts.value);
 
     $input.prop('checked', checked);
@@ -81,7 +67,7 @@ module.exports = class CheckBoxRenderer extends AntHill {
     const tooltip = opts.tooltip;
 
     if (tooltip) {
-      this.renderTooltip({
+      this.tooltip.render({
         title: opts.text.humanize(),
         description: opts.tooltip,
         selector: $template

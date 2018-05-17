@@ -17,7 +17,6 @@ const aggregation = require('../extends/aggregation.js');
  */
 const AntHill = require('../../config/anthill.js');
 
-// 'modules/renderer/check.box',
 // 'modules/renderer/combo.box',
 // 'modules/renderer/event.link',
 // 'modules/renderer/iframe',
@@ -31,9 +30,7 @@ const AntHill = require('../../config/anthill.js');
 // 'modules/renderer/slider',
 // 'modules/renderer/text.editor',
 // 'modules/renderer/text.area',
-// 'modules/renderer/text.field',
-// 'modules/renderer/number.field',
-// 'modules/renderer/tool.tip',
+// 'modules/renderer/number.field'
 // 'modules/renderer/upload.on.drop',
 // 'modules/renderer/text.download',
 // 'modules/renderer/validation',
@@ -42,12 +39,49 @@ const AntHill = require('../../config/anthill.js');
 // 'modules/renderer/list.box'
 
 /**
+ * @constant CheckBoxRenderer
+ * @type {module.CheckBoxRenderer}
+ */
+const CheckBoxRenderer = require('./renderer/check.box.js');
+
+/**
+ * @constant FilterRenderer
+ * @type {module.FilterRenderer}
+ */
+const FilterRenderer = require('./renderer/filter.js');
+
+/**
+ * @constant LabelRenderer
+ * @type {module.LabelRenderer}
+ */
+const LabelRenderer = require('./renderer/label.js');
+
+/**
+ * @constant TextFieldRenderer
+ * @type {module.TextFieldRenderer}
+ */
+const TextFieldRenderer = require('./renderer/text.field.js');
+
+/**
+ * @constant ToolTipRenderer
+ * @type {module.ToolTipRenderer}
+ */
+const ToolTipRenderer = require('./renderer/tool.tip.js');
+
+/**
+ * @constant ValidationRenderer
+ * @type {module.ValidationRenderer}
+ */
+const ValidationRenderer = require('./renderer/validation.js');
+
+/**
  * Define renderer
  * @class Renderer
  * @type {module.Renderer}
  * @extends AntHill
  */
-module.exports = class Renderer extends aggregation(AntHill) {
+module.exports = class Renderer extends aggregation(AntHill, CheckBoxRenderer, FilterRenderer, LabelRenderer,
+    TextFieldRenderer, ToolTipRenderer, ValidationRenderer) {
 
   /**
    * @constructor
@@ -55,12 +89,6 @@ module.exports = class Renderer extends aggregation(AntHill) {
    */
   constructor(name) {
     super(name || 'Renderer', null, false);
-
-    /**
-     * @property Renderer
-     * @type {module.CheckBoxRenderer}
-     */
-    this.checkbox = new (require('./renderer/check.box.js'));
   }
 
   /**
@@ -69,7 +97,7 @@ module.exports = class Renderer extends aggregation(AntHill) {
    * @param $input
    * @param {boolean} visible
    */
-  static checkVisibility($input, visible) {
+  checkVisibility($input, visible) {
     if (!visible) $input.hide();
   }
 
@@ -79,7 +107,7 @@ module.exports = class Renderer extends aggregation(AntHill) {
    * @param $input
    * @param {boolean} disabled
    */
-  static toggleDisableField($input, disabled) {
+  toggleDisableField($input, disabled) {
     $input.attr({disabled: disabled});
   }
 

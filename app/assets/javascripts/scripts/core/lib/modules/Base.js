@@ -45,6 +45,12 @@ module.exports = class Base {
      * @type {LibFunction}
      */
     this.fn = new (require('./base/Function.js'));
+
+    /**
+     * @property Base.array
+     * @type {LibArray}
+     */
+    this.array = new (require('./base/Array.js'));
   }
 
   /**

@@ -5,36 +5,42 @@
  * Time: 11:48 AM
  */
 
-defineP([
-  'plugins/plugin.element'
-], function defineGalleryContentElement(PluginElement) {
+/**
+ * @constant PluginElement
+ * @type {module.PluginElement}
+ */
+const PluginElement = require('../../plugin.element.js');
+
+/**
+ * Define PanelContent Element
+ * @class GalleryContentElement
+ * @extends PluginElement
+ */
+module.exports = class GalleryContentElement extends PluginElement {
 
   /**
-   * Define Gallery Content Element
-   * @param view
+   * @param {Gallery} view
    * @param opts
-   * @returns {GalleryContentElement}
    * @constructor
-   * @class GalleryContentElement
-   * @extends PluginElement
-   * @extends Renderer
    */
-  var GalleryContentElement = function GalleryContentElement(view, opts) {
+  constructor(view, opts) {
+    super('GalleryContentElement', view, false);
 
     this._config(view, opts, $('<li />')).build({
-      $container: opts.$container
+      $container: opts.$container,
+      destroy: false
     });
 
     /**
      * Define data
      * @property GalleryContentElement
      * @type {{
-         *      name: string,
-         *      resource: string,
-         *      description: string,
-         *      is_external: boolean,
-         *      external_resource: string
-         * }}
+     *  name: string,
+     *  resource: string,
+     *  description: string,
+     *  is_external: boolean,
+     *  external_resource: string
+     * }}
      */
     this.data = opts.data;
 
@@ -42,90 +48,82 @@ defineP([
     this.setAttributes();
     this.bindInstallWidget();
     this.bindShowInfo();
+  }
 
-    return this;
-  };
+  /**
+   * Define inner content
+   * @memberOf GalleryContentElement
+   */
+  getTemplate() {
+    $('<a class="widget ' + this.data.resource.toClassName() + '" />').appendTo(this.$);
+  }
 
-  return GalleryContentElement.extend('GalleryContentElement', {
+  /**
+   * Set attributes
+   * @memberOf GalleryContentElement
+   */
+  setAttributes() {
 
-    /**
-     * Define inner content
-     * @memberOf GalleryContentElement
-     */
-    getTemplate: function getTemplate() {
-      $('<a class="widget ' + this.data.resource.toClassName() + '" />').
-          appendTo(this.$);
-    },
+    this.$.attr({
+      title: this.data.name,
+      resource: this.data.resource
+    });
 
-    /**
-     * Set attributes
-     * @memberOf GalleryContentElement
-     */
-    setAttributes: function setAttributes() {
+    if (this.data.is_external) {
 
-      this.$.attr({
-        title: this.data.name,
-        resource: this.data.resource
+      $('a', this.$).attr({
+        style: 'background-image: url("' +
+        this.fetchExternalResourceThumbnail(this.data) + '");'
       });
 
-      if (this.data.is_external) {
+    } else {
+      this.$.addClass(this.view.controller.getResourceClassName(this.data.resource));
+    }
+  }
 
-        $('a', this.$).attr({
-          style: 'background-image: url("' +
-          this.fetchExternalResourceThumbnail(this.data) + '");'
-        });
-
-      } else {
-
-        this.$.addClass(
-            this.view.controller.getResourceClassName(
-                this.data.resource
-            )
-        );
-      }
-    },
+  /**
+   * Bind Install widget
+   * @memberOf GalleryContentElement
+   */
+  bindInstallWidget() {
 
     /**
-     * Bind Install widget
-     * @memberOf GalleryContentElement
+     * @constant that
+     * @type {module.GalleryContentElement}
      */
-    bindInstallWidget: function bindInstallWidget() {
-
-      /**
-       * Click to install
-       * @param {Event} event
-       * @private
-       */
-      function _clickInstall(event) {
-        event.preventDefault();
-        this.view.controller.addWidget(this);
-      }
-
-      this.$.on(
-          'click.install',
-          _clickInstall.bind(this)
-      );
-    },
+    const that = this;
 
     /**
-     * Show item info
-     * @memberOf GalleryContentElement
+     * Click to install
+     * @param {Event} event
+     * @private
      */
-    bindShowInfo: function bindShowInfo() {
-
-      /**
-       * Define content element
-       * @type {GalleryContentElement|string}
-       */
-      var element = this,
-          external = element.data.is_external ? 'External' : 'Core';
-
-      element.renderTooltip({
-        title: element.data.name,
-        description: element.data.description + '\n' + '(' + external + ')',
-        selector: element.$
-      });
+    function _clickInstall(event) {
+      event.preventDefault();
+      that.view.controller.addWidget(that);
     }
 
-  }, PluginElement.prototype);
-});
+    that.$.on('click.install', _clickInstall);
+  }
+
+  /**
+   * Show item info
+   * @memberOf GalleryContentElement
+   */
+  bindShowInfo() {
+
+    /**
+     * Define content element
+     * @type {GalleryContentElement|string}
+     */
+    const element = this,
+        external = element.data.is_external ? 'External' : 'Core';
+
+    element.renderTooltip({
+      title: element.data.name,
+      description: element.data.description + '\n' + '(' + external + ')',
+      selector: element.$
+    });
+  }
+  
+}

@@ -146,7 +146,7 @@ module Author
       widget_ids = widget_params[:author_site_storage_widget_ids]
       widgets = Author::Widget.where(id: widget_ids.reject(&:blank?)) rescue []
       connected_widgets = author_site_storage_widgets
-      connected_widgets.delete_all unless connected_widgets.empty?
+      connected_widgets.destroy_all unless connected_widgets.empty?
       author_widgets << widgets unless widgets.blank?
       author_item.touch
       widget_params.delete :author_site_storage_widget_ids

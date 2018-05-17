@@ -5,30 +5,26 @@
  * Time: 11:48 AM
  */
 
-defineP([
-  'plugins/plugin.element'
-], function defineGalleryElement(PluginElement) {
+/**
+ * @constant PluginElement
+ * @type {module.PluginElement}
+ */
+const PluginElement = require('../../plugin.element.js');
+
+/**
+ * @class GalleryElement
+ * @extends PluginElement
+ */
+module.exports = class GalleryElement extends PluginElement {
 
   /**
-   * Define Gallery Element
-   * @param view
+   * @param {Gallery} view
    * @param opts
-   * @returns {GalleryElement}
    * @constructor
-   * @class GalleryElement
-   * @extends PluginElement
    */
-  var GalleryElement = function GalleryElement(view, opts) {
-
-    this._config(view, opts, $('<ul />')).build({
-      $container: opts.$container
-    });
-
+  constructor(view, opts) {
+    super('GalleryElement', view, false);
+    this._config(view, opts, $('<ul />')).build(opts);
     this.addCSS('gallery');
-
-    return this;
   };
-
-  return GalleryElement.extend('GalleryElement', {}, PluginElement.prototype);
-
-});
+};

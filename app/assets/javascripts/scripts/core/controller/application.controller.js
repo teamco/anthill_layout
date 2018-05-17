@@ -156,26 +156,26 @@ module.exports = class ApplicationController extends aggregation(BaseController,
    * @memberOf ApplicationController
    */
   ajaxSetup() {
-
+    const that = this;
     $.ajaxSetup({
       // context: this,
-      timeout: this.isDevelopmentMode() ? undefined : 10000,
+      timeout: that.isDevelopmentMode() ? undefined : 10000,
       ifModified: true,
       beforeSend(xhr, settings) {
-        this.scope.view.get$item().showLoader();
-        if (this.utils._.isUndefined(settings.dataType)) {
+        that.scope.view.get$item().showLoader();
+        if (that.utils._.isUndefined(settings.dataType)) {
           xhr.setRequestHeader('accept', '*/*;q=0.5, ' + settings.accepts.script);
         }
-        xhr.setRequestHeader('X-CSRF-Token', this.getXCsrfToken());
+        xhr.setRequestHeader('X-CSRF-Token', that.getXCsrfToken());
       },
       success() {
-        this._handleXhrLog.apply(this, arguments);
+        that._handleXhrLog.apply(that, arguments);
       },
       complete() {
-        this._handleXhrLog.apply(this, arguments);
+        that._handleXhrLog.apply(that, arguments);
       },
       error() {
-        this._handleXhrLog.apply(this, arguments);
+        that._handleXhrLog.apply(that, arguments);
       }
     });
   }

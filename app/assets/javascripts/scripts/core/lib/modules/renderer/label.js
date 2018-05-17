@@ -2,49 +2,42 @@
  * Created by teamco on 7/10/14.
  */
 
-defineP(function defineLabelRenderer() {
+/**
+ * @class LabelRenderer
+ * @type {module.LabelRenderer}
+ */
+module.exports = class LabelRenderer {
 
   /**
-   * Define LabelRenderer
-   * @class LabelRenderer
-   * @constructor
+   * Render label
+   * @memberOf LabelRenderer
+   * @param {*|string} uuid
+   * @param {string} text
+   * @param {*|string} [type]
+   * @param {boolean} [visible]
+   * @returns {*|jQuery}
    */
-  var LabelRenderer = function LabelRenderer() {
-  };
-
-  return LabelRenderer.extend('LabelRenderer', {
+  renderLabel(uuid, text, type, visible) {
 
     /**
-     * Render label
-     * @memberOf LabelRenderer
-     * @param {*|string} uuid
-     * @param {string} text
-     * @param {*|string} [type]
-     * @param {boolean} [visible]
-     * @returns {*|jQuery}
+     * Parse Html
+     * @type {Array}
      */
-    renderLabel: function renderLabel(uuid, text, type, visible) {
+    let html = $.parseHTML(text) || [''];
 
-      /**
-       * Parse Html
-       * @type {Array}
-       */
-      var html = $.parseHTML(text) || [''];
+    html = html.length ? html : [''];
 
-      html = html.length ? html : [''];
+    const title = html[html.length - 1].data || '';
 
-      var title = html[html.length - 1].data || '';
+    const $label = $('<span />').attr({
+      id: uuid,
+      title: title.toUpperCase()
+    }).addClass(type + ' input-group-addon').html(text);
 
-      var $label = $('<span />').attr({
-        id: uuid,
-        title: title.toUpperCase()
-      }).addClass(type + ' input-group-addon').html(text);
-
-      if (!visible) {
-        $label.hide();
-      }
-
-      return $label;
+    if (!visible) {
+      $label.hide();
     }
-  });
-});
+
+    return $label;
+  }
+};

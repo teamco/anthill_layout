@@ -21,10 +21,11 @@ module.exports = class PanelModel extends BaseModel {
 
   /**
    * @constructor
+   * @param {string} name
    * @param {Panel} scope
    */
-  constructor(scope) {
-    super('PanelModel', scope, false);
+  constructor(name, scope) {
+    super(name || 'PanelModel', scope, false);
 
     /**
      * Init modules

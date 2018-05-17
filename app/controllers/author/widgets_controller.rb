@@ -35,7 +35,7 @@ class Author::WidgetsController < Author::AuthorController
   # GET /author/widgets.json
   def index
     @partial = {
-      name: 'categories'
+        name: 'categories'
     }
     @partial = partial_by_category unless @category.nil?
     @partial = partial_by_site_storage unless @json_data[:site_storage].nil?
@@ -44,10 +44,10 @@ class Author::WidgetsController < Author::AuthorController
   # GET /author/widgets/all
   def all
     @partial = {
-      name: 'all_widgets',
-      title: t('widget_management'),
-      collection: @json_data[:site_widgets],
-      all: @json_data[:widgets_all].length
+        name: 'all_widgets',
+        title: t('widget_management'),
+        collection: @json_data[:site_widgets],
+        all: @json_data[:widgets_all].length
     }
     render :index
   end
@@ -74,13 +74,13 @@ class Author::WidgetsController < Author::AuthorController
   def create
     unless @category.nil?
       @author_widget = Widget.build_data(
-        author_widget_params,
-        @category
+          author_widget_params,
+          @category
       )
     end
 
     if @author_widget.nil?
-      respond_to { |format| error_handler_on_create(format) }
+      respond_to {|format| error_handler_on_create(format)}
     else
 
       respond_to do |format|
@@ -90,8 +90,8 @@ class Author::WidgetsController < Author::AuthorController
 
           if request.xhr?
             data = {
-              widget: @author_widget,
-              category: @category
+                widget: @author_widget,
+                category: @category
             }
             format.json {
               render json: data, status: 200
@@ -113,18 +113,18 @@ class Author::WidgetsController < Author::AuthorController
     # html_content = Readability::Document.new(source).content
 
     html_content = url.empty? ?
-      t('readability_false') :
-      Pismo::Document.new(url).html_body
+                       t('readability_false') :
+                       Pismo::Document.new(url).html_body
 
     logger.info ">>> Content to parse: #{html_content.inspect}"
     respond_to do |format|
-      format.html { render text: html_content }
+      format.html {render text: html_content}
     end
   end
 
   def external_fetch
     @external = fetch_external_widget_data
-    respond_to { |format| on_success_xhr(format, @external, :external) }
+    respond_to {|format| on_success_xhr(format, @external, :external)}
   end
 
   def external_widgets
@@ -136,21 +136,21 @@ class Author::WidgetsController < Author::AuthorController
     @category = WidgetCategory.find_by_name_value(external['type'])
     unless @category.nil?
       @author_widget = current_user.author_widgets.build(
-        widget_category_id: @category.id,
-        name: external['name'],
-        description: external['description'],
-        resource: external['resource'],
-        width: external['width'],
-        height: external['height'],
-        thumbnail: external['thumbnail'],
-        visible: true,
-        is_external: true,
-        external_resource: external['url']
+          widget_category_id: @category.id,
+          name: external['name'],
+          description: external['description'],
+          resource: external['resource'],
+          width: external['width'],
+          height: external['height'],
+          thumbnail: external['thumbnail'],
+          visible: true,
+          is_external: true,
+          external_resource: external['url']
       )
     end
 
     if @author_widget.nil?
-      respond_to { |format| error_handler_on_create(format) }
+      respond_to {|format| error_handler_on_create(format)}
     else
 
       @author_widget.uuid = uuid
@@ -162,8 +162,8 @@ class Author::WidgetsController < Author::AuthorController
 
           if request.xhr?
             data = {
-              widget: @author_widget,
-              category: @category
+                widget: @author_widget,
+                category: @category
             }
             format.json {
               render json: data, status: 200
@@ -200,8 +200,8 @@ class Author::WidgetsController < Author::AuthorController
           on_success(format, @author_widget, t('widget_update_success'))
         end
       else
-        format.html { render :edit }
-        format.json { render json: @author_widget.errors, status: :unprocessable_entity }
+        format.html {render :edit}
+        format.json {render json: @author_widget.errors, status: :unprocessable_entity}
       end
     end
   end
@@ -211,15 +211,15 @@ class Author::WidgetsController < Author::AuthorController
   def destroy
     @author_widget.destroy
     respond_to do |format|
-      format.html { redirect_to author_widgets_url, notice: t('widget_destroy_success') }
-      format.json { head :no_content }
+      format.html {redirect_to author_widgets_url, notice: t('widget_destroy_success')}
+      format.json {head :no_content}
     end
   end
 
   def fetch_embedded_content
     iframely = Iframely::Requester.new api_key: params[:api_key]
     respond_to do |format|
-      format.json { render json: iframely.get_iframely_json(params[:url]) }
+      format.json {render json: iframely.get_iframely_json(params[:url])}
     end
   end
 
@@ -227,22 +227,22 @@ class Author::WidgetsController < Author::AuthorController
 
   def partial_by_category
     {
-      name: 'all_widgets',
-      title: t('widget_management'),
-      collection: [{
-        category: @category,
-        widgets: @json_data[:widgets_all]
-      }],
-      all: @json_data[:widgets_all].length
+        name: 'all_widgets',
+        title: t('widget_management'),
+        collection: [{
+                         category: @category,
+                         widgets: @json_data[:widgets_all]
+                     }],
+        all: @json_data[:widgets_all].length
     }
   end
 
   def partial_by_site_storage
     {
-      name: 'all_widgets',
-      title: t('site_widgets_management', site: @json_data[:site_storage].key),
-      collection: @json_data[:site_widgets],
-      all: @json_data[:site_widgets].length
+        name: 'all_widgets',
+        title: t('site_widgets_management', site: @json_data[:site_storage].key),
+        collection: @json_data[:site_widgets],
+        all: @json_data[:site_widgets].length
     }
   end
 
@@ -254,12 +254,12 @@ class Author::WidgetsController < Author::AuthorController
   def fetch_widgets_data
     fetch_category_data
     @json_data ||= {
-      user: current_user,
-      categories: [],
-      widgets: [],
-      widgets_all: Widget.fetch_data(current_user, @category),
-      site_widgets: [],
-      site_storage: SiteStorage.where(key: params[:site_storage_id]).first
+        user: current_user,
+        categories: [],
+        widgets: [],
+        widgets_all: Widget.fetch_data(current_user, @category),
+        site_widgets: [],
+        site_storage: SiteStorage.where(key: params[:site_storage_id]).first
     }
 
     @author_widgets = @json_data[:widgets_all]
@@ -275,12 +275,12 @@ class Author::WidgetsController < Author::AuthorController
   def collect_category_widgets
     @json_data[:categories].each do |c|
       widgets = c.author_widgets.fetch_category_site_widgets(
-        c, @json_data[:site_storage]
+          c, @json_data[:site_storage]
       )
       next if widgets.empty?
       @json_data[:site_widgets] << {
-        category: c,
-        widgets: widgets
+          category: c,
+          widgets: widgets
       }
     end
   end
@@ -289,13 +289,13 @@ class Author::WidgetsController < Author::AuthorController
     return unless request.xhr?
     url = '' || (params[:author_widget][:url] if request.post? || request.put?)
     external = {
-      name: '',
-      description: '',
-      resource: '',
-      type: '',
-      width: '',
-      height: '',
-      thumbnail: ''
+        name: '',
+        description: '',
+        resource: '',
+        type: '',
+        width: '',
+        height: '',
+        thumbnail: ''
     }
     if url.to_s =~ URI::regexp
       proxy = Crawler::NetHttp.new
@@ -356,13 +356,13 @@ class Author::WidgetsController < Author::AuthorController
   # through.
   def author_widget_params
     params.require(:author_widget).permit(
-      :name,
-      :description,
-      :thumbnail,
-      :width,
-      :height,
-      :resource,
-      :widget_category_id
+        :name,
+        :description,
+        :thumbnail,
+        :width,
+        :height,
+        :resource,
+        :widget_category_id
     )
   end
 
@@ -372,8 +372,8 @@ class Author::WidgetsController < Author::AuthorController
         render json: @author_widget.errors, status: 400
       }
     else
-      format.html { render :new }
-      format.json { render json: @author_widget.errors, status: :unprocessable_entity }
+      format.html {render :new}
+      format.json {render json: @author_widget.errors, status: :unprocessable_entity}
     end
   end
 
@@ -381,21 +381,23 @@ class Author::WidgetsController < Author::AuthorController
   def update_json_data
     @json_data[:categories] = @categories
     if request.xhr?
-      widgets = @author_widgets.includes(:author_widget_category)
+      widgets = @json_data[:site_storage].nil? ?
+                    @author_widgets.includes(:author_widget_category) :
+                    @json_data[:site_storage].author_widgets
       @json_data[:widgets] = widgets.map do |w|
         {
-          id: w[:id],
-          uuid: w[:uuid],
-          name: w[:name],
-          description: w[:description],
-          is_external: w[:is_external],
-          resource: w[:resource],
-          external_resource: w[:external_resource],
-          dimensions: {
-            width: w[:width],
-            height: w[:height]
-          },
-          type: w.author_widget_category.name_index
+            id: w[:id],
+            uuid: w[:uuid],
+            name: w[:name],
+            description: w[:description],
+            is_external: w[:is_external],
+            resource: w[:resource],
+            external_resource: w[:external_resource],
+            dimensions: {
+                width: w[:width],
+                height: w[:height]
+            },
+            type: w.author_widget_category.name_index
         }
       end
     end

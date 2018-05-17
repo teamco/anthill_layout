@@ -6,156 +6,156 @@
  * To change this template use File | Settings | File Templates.
  */
 
-defineP([
-  'modules/View',
-  'element/header.element',
-  'element/footer.element',
-  'plugins/gallery/element/gallery.providers.element',
-  'plugins/gallery/element/gallery.content.element',
-  'plugins/gallery/element/gallery.element'
-], function defineGalleryView(BaseView, Header, Footer, GalleryProvidersElement,
-    GalleryContentElement, GalleryElement) {
+/**
+ * @constant BaseView
+ * @type {BaseView}
+ */
+const BaseView = require('../../../core/lib/modules/View.js');
+
+/**
+ * @class GalleryView
+ * @type {module.GalleryView}
+ */
+module.exports = class GalleryView extends BaseView {
 
   /**
-   * Define view
-   * @class GalleryView
    * @constructor
-   * @extends BaseView
+   * @param {string} name
+   * @param {Panel} scope
    */
-  var GalleryView = function GalleryView() {
-  };
+  constructor(name, scope) {
+    super(name || 'GalleryView', scope, false);
+  }
 
-  return GalleryView.extend('GalleryView', {
+  /**
+   * Render Gallery
+   * @memberOf GalleryView
+   * @returns {boolean}
+   */
+  renderGallery() {
 
     /**
-     * Render Gallery
-     * @memberOf GalleryView
-     * @returns {boolean}
+     * @constant GalleryElement
+     * @type {module.GalleryElement|*}
      */
-    renderGallery: function renderGallery() {
+    const GalleryElement = require('../element/gallery.element.js');
 
-      this.renderFilter(
-          this.updateFooterContent.bind(this)
-      );
-
-      this.renderProviders(
-          this.controller.getProvidersData(),
-          this.controller.getModuleData()
-      );
-
-      if (this.isCached('$gallery', GalleryElement)) {
-
-        /**
-         * Get scope
-         * @type {Gallery}
-         */
-        var scope = this.scope;
-
-        scope.observer.publish(
-            scope.eventManager.eventList.loadModuleContent, [
-              true, true
-            ]
-        );
-
-        return false;
-      }
+    if (this.isCached('$gallery', GalleryElement)) {
 
       /**
-       * Define Gallery element
-       * @type {GalleryElement}
+       * Get scope
+       * @type {Gallery}
        */
-      this.elements.$gallery = new GalleryElement(this, {
-        $container: this.get$container().$
-      });
-    },
+      const scope = this.scope;
 
-    /**
-     * Render gallery providers
-     * @memberOf GalleryView
-     * @param providers
-     * @param currentProvider
-     * @returns {boolean}
-     */
-    renderProviders: function renderProviders(providers, currentProvider) {
-
-      /**
-       * Define Gallery element
-       * @type {GalleryProvidersElement}
-       */
-      this.elements.$providers = new GalleryProvidersElement(this, {
-        $container: this.get$container().$,
-        style: 'gallery-providers',
-        data: providers,
-        current: currentProvider
-      });
-    },
-
-    /**
-     * Render gallery content
-     * @memberOf GalleryView
-     * @param provider
-     * @param {Boolean} force
-     * @returns {boolean}
-     */
-    renderContent: function renderContent(provider, force) {
-
-      if (this.isCachedItems() && !force) {
-        return false;
-      }
-
-      this.cleanElementItems();
-      this.updateElementItems();
-
-      /**
-       * Define provider data
-       * @type {Array}
-       */
-      var data = (provider || {}).data || [];
-
-      for (var i = 0, l = data.length; i < l; i++) {
-
-        /**
-         * Render item
-         * @type {GalleryContentElement}
-         */
-        var $item = new GalleryContentElement(this, {
-          style: 'content',
-          $container: this.get$item().$,
-          data: data[i]
-        });
-
-        this.updateElementItems($item);
-      }
-
-      this.updateScrollCover();
-
-      this.elements.$filter.updateData({
-        items: this.elements.items,
-        focusOn: 'input'
-      });
-
-      this.updateFooterContent();
-    },
-
-    /**
-     * Update footer content
-     * @memberOf GalleryView
-     */
-    updateFooterContent: function updateFooterContent() {
-      this.renderFooter(Footer, this.get$item());
-    },
-
-    /**
-     * Render gallery
-     * @memberOf GalleryView
-     */
-    render: function render() {
-
-      this.scope.observer.publish(
-          this.scope.eventManager.eventList.successRendered,
-          this.renderGallery.bind(this)
-      );
+      scope.observer.publish(scope.eventManager.eventList.loadModuleContent, [true, true]);
+      return false;
     }
 
-  }, BaseView.prototype)
-});
+    /**
+     * Define Gallery element
+     * @type {module.GalleryElement}
+     */
+    this.elements.$gallery = new GalleryElement(this, {
+      $container: this.get$container().$
+    });
+
+    this.renderFilter(this.updateFooterContent.bind(this));
+    this.renderProviders(this.controller.getProvidersData(), this.controller.getModuleData());
+  }
+
+  /**
+   * Render gallery providers
+   * @memberOf GalleryView
+   * @param providers
+   * @param currentProvider
+   * @returns {boolean}
+   */
+  renderProviders(providers, currentProvider) {
+
+    /**
+     * @constant GalleryProvidersElement
+     * @type {module.GalleryProvidersElement|*}
+     */
+    const GalleryProvidersElement = require('../element/gallery.providers.element.js');
+
+    /**
+     * Define Gallery element
+     * @type {module.GalleryProvidersElement}
+     */
+    this.elements.$providers = new GalleryProvidersElement(this, {
+      $container: this.get$container().$,
+      style: 'gallery-providers',
+      data: providers,
+      current: currentProvider
+    });
+  }
+
+  /**
+   * Render gallery content
+   * @memberOf GalleryView
+   * @param provider
+   * @param {Boolean} force
+   * @returns {boolean}
+   */
+  renderContent(provider, force) {
+    if (this.isCachedItems() && !force) {
+      return false;
+    }
+
+    this.cleanElementItems();
+    this.updateElementItems();
+
+    /**
+     * Define provider data
+     * @type {Array}
+     */
+    let data = (provider || {}).data || [];
+
+    /**
+     * @constant GalleryContentElement
+     * @type {module.GalleryContentElement|*}
+     */
+    const GalleryContentElement = require('../element/gallery.content.element.js');
+
+    for (let i = 0, l = data.length; i < l; i++) {
+
+      /**
+       * Render item
+       * @type {module.GalleryContentElement}
+       */
+      let $item = new GalleryContentElement(this, {
+        style: 'content',
+        $container: this.get$item().$,
+        data: data[i]
+      });
+
+      this.updateElementItems($item);
+    }
+
+    this.updateScrollCover();
+
+    this.elements.$filter.updateData({
+      items: this.elements.items,
+      focusOn: 'input'
+    });
+
+    this.updateFooterContent();
+  }
+
+  /**
+   * Update footer content
+   * @memberOf GalleryView
+   */
+  updateFooterContent() {
+    this.renderFooter(this.get$item());
+  }
+
+  /**
+   * Render gallery
+   * @memberOf GalleryView
+   */
+  render() {
+    this.scope.observer.publish(this.scope.eventManager.eventList.successRendered, this.renderGallery.bind(this));
+  }
+};

@@ -107,4 +107,16 @@ module.exports = class PluginElement extends BaseElement {
     thumbnail += 'images/' + item.resource + '.png';
     return thumbnail;
   }
+
+  /**
+   * Get footer html
+   * @memberOf PluginElement
+   * @returns {*|jQuery}
+   */
+  getFooter() {
+    const counter = Object.keys(this.view.elements.items || {}).length.toString(),
+        $template = '<p class="text-center"><span class="badge" title="{0}">{0}</span>{1}</p>';
+
+    return $template.replace(/\{0}/g, counter).replace(/\{1}/g, this.view.scope.i18n.t('panel.items'));
+  }
 };

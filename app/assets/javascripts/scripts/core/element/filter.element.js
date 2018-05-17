@@ -2,60 +2,51 @@
  * Created by teamco on 3/25/14.
  */
 
-defineP([
-  'modules/Element'
-], function defineFilter(BaseElement) {
+/**
+ * @constant BaseElement
+ * @type {module.BaseElement}
+ */
+const BaseElement = require('../lib/modules/Element.js');
+
+/**
+ * @class FilterElement
+ * @type {module.FilterElement}
+ * @extends BaseElement
+ */
+module.exports = class FilterElement extends BaseElement {
 
   /**
-   * Define Filter Element
    * @param view
    * @param opts
-   * @returns {FilterElement}
    * @constructor
-   * @class FilterElement
-   * @extends BaseElement
    */
-  var FilterElement = function FilterElement(view, opts) {
+  constructor(view, opts) {
+    super('FilterElement', view, false);
+    this._config(view, opts, $('<div />')).build(opts);
+    this.renderData(opts.callback, opts.enter);
+  }
 
-    this._config(view, opts, $('<div />')).build({
-      $container: opts.$container,
-      destroy: true
-    });
-
-    return this.renderData(
-        opts.callback,
-        opts.enter
-    );
-  };
-
-  return FilterElement.extend('FilterElement', {
+  /**
+   * Render search
+   * @memberOf FilterElement
+   * @param {function} [callback]
+   * @param {boolean} [enter]
+   */
+  renderData(callback, enter) {
 
     /**
-     * Render search
-     * @memberOf FilterElement
-     * @param {function} [callback]
-     * @param {boolean} [enter]
-     * @returns {FilterElement}
+     * Define $filter
+     * @type {FilterRenderer}
      */
-    renderData: function renderData(callback, enter) {
+    this.$filter = this.renderFilter({
+      text: '',
+      name: 'filter',
+      placeholder: this.view.scope.i18n.t('filter'),
+      visible: true,
+      callback: callback,
+      enter: enter
+    });
 
-      /**
-       * Define $filter
-       * @type {FilterRenderer}
-       */
-      this.$filter = this.renderFilter({
-        text: '',
-        name: 'filter',
-        placeholder: this.i18n.t('filter'),
-        visible: true,
-        callback: callback,
-        enter: enter
-      });
-
-      this.$.append(this.$filter);
-
-      return this;
-    }
-
-  }, BaseElement.prototype);
-});
+    this.$.append(this.$filter);
+  }
+};

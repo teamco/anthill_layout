@@ -21,9 +21,10 @@ module.exports = class PanelPermission extends BasePermission {
 
   /**
    * @constructor
+   * @param {string} name
    * @param {Panel} scope
    */
-  constructor(scope) {
-    super('PanelPermission', scope, false);
+  constructor(name, scope) {
+    super(name || 'PanelPermission', scope, false);
   }
 };

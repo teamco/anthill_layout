@@ -5,25 +5,24 @@
  * Time: 11:02 AM
  */
 
-defineP([
-  'config/anthill',
-  'modules/MVC',
-  'plugins/gallery/mvc/gallery.controller',
-  'plugins/gallery/mvc/gallery.model',
-  'plugins/gallery/mvc/gallery.view',
-  'plugins/gallery/mvc/gallery.event.manager',
-  'plugins/gallery/mvc/gallery.permission'
-], function defineGallery(AntHill, MVC, Controller, Model, View, EventManager,
-    Permission) {
+/**
+ * @constant AntHill
+ * @type {module.AntHill}
+ */
+const AntHill = require('../../core/config/anthill.js');
+
+/**
+ * @class Gallery
+ * @extends AntHill
+ */
+module.exports = class Gallery extends AntHill {
 
   /**
-   * Define Gallery
    * @constructor
-   * @param containment
-   * @class Gallery
-   * @extends AntHill
+   * @param {Panel} containment
    */
-  var Gallery = function Gallery(containment) {
+  constructor(containment) {
+    super('Gallery', null);
 
     /**
      * Define containment
@@ -32,25 +31,56 @@ defineP([
     this.containment = containment;
 
     /**
+     * @constant GalleryController
+     * @type {module.GalleryController|*}
+     */
+    const GalleryController = require('./mvc/gallery.controller.js');
+
+    /**
+     * @constant GalleryModel
+     * @type {module.GalleryModel|*}
+     */
+    const GalleryModel = require('./mvc/gallery.model.js');
+
+    /**
+     * @constant GalleryView
+     * @type {module.GalleryView|*}
+     */
+    const GalleryView = require('./mvc/gallery.view.js');
+
+    /**
+     * @constant GalleryEventManager
+     * @type {module.GalleryEventManager|*}
+     */
+    const GalleryEventManager = require('./mvc/gallery.event.manager.js');
+
+    /**
+     * @constant GalleryPermission
+     * @type {module.GalleryPermission|*}
+     */
+    const GalleryPermission = require('./mvc/gallery.permission.js');
+    
+    /**
+     * @constant MVC
+     * @type {module.MVC}
+     */
+    const MVC = require('../../core/lib/modules/MVC.js');
+
+    /**
      * Define defaults
      * @type {{
-     *      plugin: boolean,
-     *      getter: boolean,
-     *      html: {
-     *          style: string,
-     *          header: boolean,
-     *          footer: boolean,
-     *          floating: boolean,
-     *          padding: {
-     *              top: number,
-     *              right: number,
-     *              bottom: number,
-     *              left: number
-     *          }
-     *      }
+     *  plugin: boolean,
+     *  getter: boolean,
+     *  html: {
+     *    style: string,
+     *    header: boolean,
+     *    footer: boolean,
+     *    floating: boolean,
+     *    padding: {top: number, right: number, bottom: number, left: number}
+     *  }
      * }}
      */
-    var DEFAULTS = {
+    const DEFAULTS = {
       plugin: true,
       getter: true,
       html: {
@@ -73,17 +103,17 @@ defineP([
     /**
      * Define MVC
      * @property Gallery
-     * @type {MVCJs}
+     * @type {module.MVC}
      */
-    this.mvc = new MVC({
+    new MVC({
       scope: this,
       config: [DEFAULTS],
       components: [
-        Controller,
-        Model,
-        View,
-        EventManager,
-        Permission
+        GalleryController,
+        GalleryModel,
+        GalleryView,
+        GalleryEventManager,
+        GalleryPermission
       ],
       render: true
     });
@@ -94,11 +124,6 @@ defineP([
         this.eventManager.eventList.initModel
     );
 
-    this.observer.publish(
-        this.eventManager.eventList.updateTranslations,
-        ['plugins/gallery/translations/en-us']
-    );
-  };
-
-  return Gallery.extend('Gallery', {}, AntHill.prototype);
-});
+    this.observer.publish(this.eventManager.eventList.updateTranslations, ['plugins/gallery/translations/en-us']);
+  }
+};

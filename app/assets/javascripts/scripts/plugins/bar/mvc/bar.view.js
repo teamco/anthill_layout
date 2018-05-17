@@ -104,7 +104,7 @@ module.exports = class BarView extends BaseView {
          * @type {module.BarContentElement}
          */
         const $item = new BarContentElement(this, {
-          style: _.compact([
+          style: this.utils._.compact([
             'content',
             item.activated ? 'activated' : null,
             moduleResource

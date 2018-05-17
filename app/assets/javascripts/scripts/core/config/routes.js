@@ -46,7 +46,7 @@ module.exports = class Routes {
    * @param [collector]
    * @return {Object|{authenticity_token: string}}
    */
-  static prepareXhrData(collector) {
+  prepareXhrData(collector) {
 
     collector = collector || {};
 
@@ -56,7 +56,7 @@ module.exports = class Routes {
      */
     const data = {authenticity_token: ''};
 
-    data[Routes.getXCsrfParam()] = Routes.getXCsrfToken();
+    data[this.getXCsrfParam()] = this.getXCsrfToken();
 
     for (let index in collector) {
       if (collector.hasOwnProperty(index)) {
@@ -75,7 +75,7 @@ module.exports = class Routes {
    * @property Routes
    * @returns {string}
    */
-  static getXCsrfParam() {
+  getXCsrfParam() {
     return document.querySelector('meta[name="csrf-param"]').getAttribute('content');
   }
 
@@ -84,7 +84,7 @@ module.exports = class Routes {
    * @property Routes
    * @returns {string}
    */
-  static getXCsrfToken() {
+  getXCsrfToken() {
     return document.querySelector('meta[name="csrf-token"]').getAttribute('content');
   }
 };

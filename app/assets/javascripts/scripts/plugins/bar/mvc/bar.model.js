@@ -5,6 +5,7 @@
  * Time: 11:06 PM
  * To change this template use File | Settings | File Templates.
  */
+
 /**
  * @constant BaseModel
  * @type {module.BaseModel}
@@ -20,10 +21,11 @@ module.exports = class BarModel extends BaseModel {
 
   /**
    * @constructor
+   * @param {string} name
    * @param {Bar} scope
    */
-  constructor(scope) {
-    super('BarModel', scope, false);
+  constructor(name, scope) {
+    super(name || 'BarModel', scope, false);
 
     /**
      * Init modules

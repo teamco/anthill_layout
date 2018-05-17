@@ -21,10 +21,11 @@ module.exports = class PanelEventManager extends BaseEvent {
   /**
    * Define PanelEvent Manager
    * @constructor
+   * @param {string} name
    * @param {Panel} scope
    */
-  constructor(scope) {
-    super('PanelEventManager', scope, false);
+  constructor(name, scope) {
+    super(name || 'PanelEventManager', scope, false);
 
     /**
      * Define events

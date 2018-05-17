@@ -6,17 +6,25 @@
  * To change this template use File | Settings | File Templates.
  */
 
-defineP([
-  'modules/Event'
-], function defineGalleryEventManager(BaseEvent) {
+/**
+ * @constant BaseEvent
+ * @type {BaseEvent}
+ */
+const BaseEvent = require('../../../core/lib/modules/Event.js');
+
+/**
+ * @class GalleryEventManager
+ * @extends BaseEvent
+ */
+module.exports = class GalleryEventManager extends BaseEvent {
 
   /**
-   * Define Gallery event manager
-   * @class GalleryEventManager
    * @constructor
-   * @extends BaseEvent
+   * @param {string} name
+   * @param {Panel} scope
    */
-  var GalleryEventManager = function GalleryEventManager() {
+  constructor(name, scope) {
+    super(name || 'GalleryEventManager', scope, false);
 
     /**
      * Define events
@@ -29,13 +37,13 @@ defineP([
      * Define event list
      * @memberOf GalleryEventManager
      * @type {{
-         *      updateTranslations: string,
-         *      loadModuleContent: string,
-         *      initModel: string,
-         *      setProviders: string,
-         *      setCurrentProvider: string,
-         *      setRoutes: string
-         * }}
+     *  updateTranslations: string,
+     *  loadModuleContent: string,
+     *  initModel: string,
+     *  setProviders: string,
+     *  setCurrentProvider: string,
+     *  setRoutes: string
+     * }}
      */
     this.eventList = {
       updateTranslations: 'update.translations',
@@ -46,9 +54,4 @@ defineP([
       setRoutes: 'set.routes'
     };
   };
-
-  return GalleryEventManager.extend(
-      'GalleryEventManager', {},
-      BaseEvent.prototype
-  );
-});
+};

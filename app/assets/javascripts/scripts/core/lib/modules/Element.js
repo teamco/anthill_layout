@@ -39,8 +39,7 @@ module.exports = class BaseElement extends Renderer {
    * Element config before build
    * @memberOf BaseElement
    * @param {BaseView} view
-   * @param {{[style]: string, [uuid], [id]: boolean, [css], [events], [opacity], [id]: boolean,
-   *  [disabled]: boolean}} opts
+   * @param {{[style]: string, [uuid], [id]: boolean, [css], [events], [opacity], [id]: boolean, [disabled]: boolean}} opts
    * @param $html
    * @returns {BaseElement}
    * @protected
@@ -311,10 +310,10 @@ module.exports = class BaseElement extends Renderer {
    * Build element
    * @memberOf BaseElement
    * @param {{
-   *    $container,
-   *    [append]: boolean,
-   *    [destroy]: boolean,
-   *    [callback]: function
+   *  $container,
+   *  [append]: boolean,
+   *  [destroy]: boolean,
+   *  [callback]: function
    * }} opts
    * @returns {*}
    */
@@ -326,7 +325,7 @@ module.exports = class BaseElement extends Renderer {
     /**
      * Define append/prepend
      */
-    const append = opts.append;
+    const prepend = opts.append;
 
     if (this.$) {
 
@@ -339,7 +338,7 @@ module.exports = class BaseElement extends Renderer {
 
       this.destroyB4Create(opts.destroy);
 
-      this.$[append ? 'appendTo' : 'prependTo'](opts.$container);
+      this.$[prepend ? 'prependTo' : 'appendTo'](opts.$container);
 
       if (this.view.utils._.isFunction(opts.callback)) {
         opts.callback();
@@ -1025,19 +1024,6 @@ module.exports = class BaseElement extends Renderer {
    */
   setSiteKeywords(keywords) {
     $('meta[name="keywords"]').attr('content', keywords);
-  }
-
-  /**
-   * Get footer html
-   * @memberOf BaseElement
-   * @returns {*|jQuery}
-   */
-  getFooter() {
-
-    const counter = Object.keys(this.view.elements.items || {}).length.toString(),
-        $template = '<p class="text-center"><span class="badge" title="{0}">{0}</span>{1}</p>';
-
-    return $template.replace(/\{0}/g, counter).replace(/\{1}/g, this.i18n.t('panel.items'));
   }
 
   /**
