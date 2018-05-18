@@ -555,7 +555,7 @@ module.exports = class BaseElement extends Renderer {
     delete cache[element.id];
 
     // Delete element
-    _.each(element.view.elements, (val, key) => {
+    this.view.utils._.each(element.view.elements, (val, key) => {
       if (val === element) {
         delete element.view.elements[key];
       }

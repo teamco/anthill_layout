@@ -6,11 +6,6 @@
  * To change this template use File | Settings | File Templates.
  */
 
-// 'event/widget.event.manager',
-// 'permission/widget.permission',
-// 'controller/widget/widget.map',
-// 'controller/widget/widget.wireframe'
-
 /**
  * @constant AntHill
  * @type {module.AntHill}
@@ -80,7 +75,7 @@ module.exports = class Widget extends AntHill {
      * @property Widget
      * @type {*}
      */
-    this.dom = this.base.define(opts.dom, {}, true);
+    this.dom = opts.dom || {};
 
     /**
      * @constant DEFAULTS

@@ -48,7 +48,7 @@ module.exports = class PageAPI extends BaseAPI {
     }
 
     if (!scope.controller.isAllowAddWidget()) {
-      scope.logger.warn(this.i18n.t('not.allowed.add.widget'), arguments);
+      scope.logger.warn(scope.i18n.t('not.allowed.add.widget'), arguments);
       return false;
     }
 

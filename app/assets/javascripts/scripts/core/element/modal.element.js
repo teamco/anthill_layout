@@ -244,6 +244,9 @@ module.exports = class ModalElement extends BaseElement {
     });
 
     this.adoptPositionOnResize();
+    this.setButtons();
+    this.setFocus();
+    this.bindTabsScroll(this.$);
 
     if (this.draggable) {
 
@@ -263,10 +266,6 @@ module.exports = class ModalElement extends BaseElement {
     if (this.autoclose) {
       $('.modal-backdrop.in').on('click.autoclose', view.controller.rejectModalEvent.bind(view));
     }
-
-    this.setButtons();
-    this.setFocus();
-    this.bindTabsScroll(this.$);
   }
 
   /**

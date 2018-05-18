@@ -56,7 +56,7 @@ body.modal-open {
     overflow: hidden;
     color: #333;
     position: absolute;
-    right: 0;
+    right: 15px;
 }
 
 .modal-dialog ul.nav-tabs {

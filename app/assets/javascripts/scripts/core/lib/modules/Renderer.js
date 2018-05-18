@@ -57,6 +57,12 @@ const FilterRenderer = require('./renderer/filter.js');
 const LabelRenderer = require('./renderer/label.js');
 
 /**
+ * @constant TabsRenderer
+ * @type {module.TabsRenderer}
+ */
+const TabsRenderer = require('./renderer/tabs.js');
+
+/**
  * @constant TextFieldRenderer
  * @type {module.TextFieldRenderer}
  */
@@ -81,7 +87,7 @@ const ValidationRenderer = require('./renderer/validation.js');
  * @extends AntHill
  */
 module.exports = class Renderer extends aggregation(AntHill, CheckBoxRenderer, FilterRenderer, LabelRenderer,
-    TextFieldRenderer, ToolTipRenderer, ValidationRenderer) {
+    TabsRenderer, TextFieldRenderer, ToolTipRenderer, ValidationRenderer) {
 
   /**
    * @constructor

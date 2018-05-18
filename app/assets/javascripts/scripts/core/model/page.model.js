@@ -13,6 +13,12 @@
 const BaseModel = require('../lib/modules/Model.js');
 
 /**
+ * @constant Widget
+ * @type {module.Widget|*}
+ */
+const Widget = require('../config/widget.js');
+
+/**
  * @constant PageModel
  * @type {module.PageModel}
  * @extends BaseModel
@@ -30,9 +36,9 @@ module.exports = class PageModel extends BaseModel {
     /**
      * Define item
      * @property PageModel
-     * @type {Widget}
+     * @type {module.Widget}
      */
-    this.item = {};//Widget;
+    this.item = Widget;
 
     /**
      * Define on destroy dependencies

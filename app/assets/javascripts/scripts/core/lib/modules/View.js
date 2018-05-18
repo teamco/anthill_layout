@@ -446,7 +446,7 @@ module.exports = class BaseView extends AntHill {
        * Define button
        * @type {ButtonElement}
        */
-      store[i] = new ButtonElement(view, {
+      store[i] = new ButtonElement(this, {
         $container: button.$container,
         $htmlElement: button.$htmlElement,
         style: i.toDash(),
@@ -456,8 +456,8 @@ module.exports = class BaseView extends AntHill {
         events: button.events
       });
 
-      $.each(button.events || {}, (key, event) =>
-          store[i].$.on(key + '.afterCallback', store[i].afterEventsCallback.bind(store[i])));
+      $.each(button.events || {}, (key, event) => store[i].$.on(key + '.afterCallback',
+          store[i].afterEventsCallback.bind(store[i])));
 
       this.scope.logger.debug('Button created', store[i]);
     });
