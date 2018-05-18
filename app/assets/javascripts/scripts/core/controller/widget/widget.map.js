@@ -453,7 +453,7 @@ module.exports = class WidgetMap extends WidgetOverlapping {
 
     widget.observer.publish(widget.eventManager.eventList.saveDom);
 
-    opts = this.base.define(opts, {}, true);
+    opts = opts || {};
 
     const css = this.isDrag(opts.type) ? this.dragTo() : this.resizeTo();
 
@@ -618,13 +618,13 @@ module.exports = class WidgetMap extends WidgetOverlapping {
      * Set DOM
      * @type {*}
      */
-    dom = this.base.define(dom, widget.dom, true);
+    dom = dom || widget.dom;
 
     /**
      * Init animate
      * @type {Boolean}
      */
-    animate = this.base.defineBoolean(animate, false, true);
+    animate = widget.utils.setBoolean(animate, false);
 
     /**
      * Init duration

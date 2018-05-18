@@ -11,7 +11,6 @@
 // 'controller/widget/widget.stretch',
 // 'controller/widget/widget.stick',
 // 'controller/widget/widget.layer',
-// 'controller/widget/widget.content',
 // 'controller/widget/widget.parallax'
 
 /**
@@ -33,10 +32,16 @@ const BaseController = require('../lib/modules/Controller.js');
 const WidgetInteractions = require('./widget/widget.interactions.js');
 
 /**
+ * @constant WidgetContent
+ * @type {module.WidgetContent}
+ */
+const WidgetContent = require('./widget/widget.content.js');
+
+/**
  * @class WidgetController
  * @extends {BaseController}
  */
-module.exports = class WidgetController extends aggregation(BaseController, WidgetInteractions) {
+module.exports = class WidgetController extends aggregation(BaseController, WidgetInteractions, WidgetContent) {
 
   /**
    * @constructor

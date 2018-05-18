@@ -35,8 +35,14 @@ module.exports = class WidgetView extends BaseView {
   renderWidget() {
 
     /**
+     * @constant WidgetElement
+     * @type {module.WidgetElement}
+     */
+    const WidgetElement = require('../element/widget/widget.element.js');
+
+    /**
      * Define $widget
-     * @type {WidgetElement}
+     * @type {module.WidgetElement}
      */
     this.elements.$widget = new WidgetElement(this, {
       style: [this.createStyle(), this.scope.config.type].join(' '),
@@ -58,8 +64,14 @@ module.exports = class WidgetView extends BaseView {
   content() {
 
     /**
+     * @constant WidgetContentElement
+     * @type {module.WidgetContentElement}
+     */
+    const WidgetContentElement = require('../element/widget/widget.content.element.js');
+
+    /**
      * Define $content
-     * @type {WidgetContentElement}
+     * @type {module.WidgetContentElement}
      */
     this.elements.$content = new WidgetContentElement(this, {
       style: 'content',

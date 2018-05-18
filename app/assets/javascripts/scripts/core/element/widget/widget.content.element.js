@@ -6,66 +6,57 @@
  * To change this template use File | Settings | File Templates.
  */
 
-defineP([
-  'modules/Element'
-], function defineContent(BaseElement) {
+/**
+ * @constant BaseElement
+ * @type {BaseElement|*}
+ */
+const BaseElement = require('../../lib/modules/Element.js');
+
+/**
+ * @extends BaseElement
+ * @class WidgetContentElement
+ * @type {module.WidgetContentElement}
+ */
+module.exports = class WidgetContentElement extends BaseElement {
 
   /**
-   * Define content
-   * @param view
+   * @param {WidgetView} view
    * @param opts
-   * @returns {WidgetContentElement}
-   * @class WidgetContentElement
    * @constructor
-   * @extends BaseElement
    */
-  var WidgetContentElement = function WidgetContentElement(view, opts) {
-
-    this._config(view, opts, $('<div />')).build({
-      $container: opts.$container,
-      destroy: true
-    });
-
+  constructor(view, opts) {
+    super('WidgetContentElement', view, false);
+    this._config(view, opts, $('<div />')).build(opts);
     this.setPadding();
     this.setBackgroundImage(opts);
+  }
 
-    return this;
-  };
+  /**
+   * Set background image
+   * @memberOf WidgetContentElement
+   * @param {{resource: string}} opts
+   */
+  setBackgroundImage(opts) {
+    this.$.addClass(opts.resource.replace(/\./g, '-'));
+  }
 
-  return WidgetContentElement.extend('WidgetContentElement', {
+  /**
+   * Set padding
+   * @memberOf WidgetContentElement
+   */
+  setPadding() {
+    const padding = this.view.controller.getLocalPadding();
+    this.$.css(padding);
+  }
 
-    /**
-     * Set background image
-     * @memberOf WidgetContentElement
-     * @param {{resource: string}} opts
-     */
-    setBackgroundImage: function setBackgroundImage(opts) {
-      this.$.addClass(
-          opts.resource.replace(/\./g, '-')
-      );
-    },
-
-    /**
-     * Set padding
-     * @memberOf WidgetContentElement
-     */
-    setPadding: function setPadding() {
-      var padding = this.view.controller.getLocalPadding();
-      this.$.css(padding);
-    },
-
-    /**
-     * Clean Metamorphic Content
-     * @memberOf WidgetContentElement
-     */
-    cleanMetamorphicContent: function cleanMetamorphicContent() {
-
-      if (!this.isMetamorphicElement()) {
-        return false;
-      }
-
-      $('> *', this.$).not(':hidden').remove();
+  /**
+   * Clean Metamorphic Content
+   * @memberOf WidgetContentElement
+   */
+  cleanMetamorphicContent() {
+    if (!this.isMetamorphicElement()) {
+      return false;
     }
-
-  }, BaseElement.prototype);
-});
+    $('> *', this.$).not(':hidden').remove();
+  }
+};
