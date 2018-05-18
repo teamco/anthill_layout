@@ -51,12 +51,17 @@ body.modal-open {
     border: 2px solid lightcoral;
 }
 
+.modal-dialog .modal-title {
+    margin-right: 25px;
+}
+
 .modal-dialog .modal-header .close {
     padding: 0 3px;
     overflow: hidden;
     color: #333;
     position: absolute;
     right: 15px;
+    top: 15px;
 }
 
 .modal-dialog ul.nav-tabs {

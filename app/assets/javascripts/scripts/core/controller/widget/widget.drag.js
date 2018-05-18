@@ -27,12 +27,18 @@ module.exports = class WidgetDrag {
     this.scope = scope;
 
     /**
+     * @property WidgetDrag
+     * @type {string}
+     */
+    this.name = 'WidgetDrag';
+
+    /**
      * Define widget jquery element
      * @property WidgetDrag
      * @type {jQuery}
      */
     this.$scope = scope.view.get$item().$;
-    this.checkPermission();
+    this.scope.controller.checkPermission.call(this);
   }
 
   /**

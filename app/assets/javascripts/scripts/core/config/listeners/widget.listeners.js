@@ -83,14 +83,14 @@ module.exports = () => {
     startDraggable: {
       name: 'start.draggable',
       callback() {
-        this.controller.showContent(false);
+        this.controller.showContent(false, 'startDraggable');
       }
     },
 
     stopDraggable: {
       name: 'stop.draggable',
       callback() {
-        this.controller.showContent(true);
+        this.controller.showContent(true, 'stopDraggable');
         this.controller.updateContainmentDimensions();
       }
     },
@@ -98,15 +98,18 @@ module.exports = () => {
     startResizable: {
       name: 'start.resizable',
       callback() {
-        this.controller.showContent(false);
+        this.controller.showContent(false, 'startResizable');
       }
     },
 
     stopResizable: {
       name: 'stop.resizable',
       callback() {
-        this.observer.publish(this.eventManager.eventList.toggleContentExpander, this.controller.isExpandable());
-        this.controller.showContent(true);
+        const method = this.controller.isExpandable;
+        method ?
+            this.observer.publish(this.eventManager.eventList.toggleContentExpander, method()) :
+            this.logger.warn('Expandable capability should be imported');
+        this.controller.showContent(true, 'stopResizable');
         this.controller.updateContainmentDimensions();
       }
     }

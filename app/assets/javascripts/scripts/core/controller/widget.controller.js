@@ -26,6 +26,12 @@ const aggregation = require('../lib/extends/aggregation.js');
 const BaseController = require('../lib/modules/Controller.js');
 
 /**
+ * @constant Interactions
+ * @type {module.Interactions}
+ */
+const Interactions = require('../lib/modules/Interactions.js');
+
+/**
  * @constant WidgetInteractions
  * @type {module.WidgetInteractions}
  */
@@ -41,7 +47,8 @@ const WidgetContent = require('./widget/widget.content.js');
  * @class WidgetController
  * @extends {BaseController}
  */
-module.exports = class WidgetController extends aggregation(BaseController, WidgetInteractions, WidgetContent) {
+module.exports = class WidgetController extends aggregation(BaseController, Interactions, WidgetInteractions,
+    WidgetContent) {
 
   /**
    * @constructor
@@ -50,6 +57,10 @@ module.exports = class WidgetController extends aggregation(BaseController, Widg
    */
   constructor(name, scope) {
     super(name || 'WidgetController', scope, false);
+
+    if (!this.getAvailableContent) {
+      this.getAvailableContent = undefined;
+    }
   }
 
   /**
@@ -118,7 +129,7 @@ module.exports = class WidgetController extends aggregation(BaseController, Widg
    * @memberOf WidgetController
    * @returns {PageElement}
    */
-  get$get$page() {
+  get$page() {
     return this.getContainment().view.elements.$page;
   }
 
@@ -139,7 +150,7 @@ module.exports = class WidgetController extends aggregation(BaseController, Widg
   getLocalPadding() {
     const padding = {},
         global = this.getGlobalPadding(),
-        local = this.base.define(this.scope.dom.padding, {}, true);
+        local = this.scope.dom.padding || {};
 
     this.scope.logger.debug('Merge local padding', $.extend(padding, global, local));
     return padding;

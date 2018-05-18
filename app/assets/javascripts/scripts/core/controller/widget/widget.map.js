@@ -373,13 +373,13 @@ module.exports = class WidgetMap extends WidgetOverlapping {
      * Define config animation
      * @type {*}
      */
-    animateCfg = this.utils.setBoolean(animateCfg, false);
+    animateCfg = this.widget.utils.setBoolean(animateCfg, false);
 
     /**
      * Define options animation
      * @type {*}
      */
-    animateOpts = this.utils.setBoolean(animateOpts, false);
+    animateOpts = this.widget.utils.setBoolean(animateOpts, false);
 
     return this.isStop(type) ? (animateCfg && animateOpts) : false;
   }

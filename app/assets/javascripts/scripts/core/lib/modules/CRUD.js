@@ -45,24 +45,23 @@ module.exports = class CRUD extends AntHill {
    */
   destroyItem(item) {
     const scope = this.scope,
-        base = this.base,
         namespace = item.name.toLowerCase();
 
-    if (!base.isDefined(item)) {
+    if (!item) {
       scope.logger.warn('Undefined ' + namespace, item);
       return false;
     }
 
     const model = item.model;
 
-    if (!base.isDefined(model)) {
+    if (!model) {
       scope.logger.warn('Uninitialized ' + namespace, item);
       return false;
     }
 
     const items = scope.items,
         index = model.getUUID(),
-        onDestroy = this.base.define(model.onDestroy, [], true),
+        onDestroy = model.onDestroy || [],
         eventManager = item.eventManager,
         l = onDestroy.length;
 
@@ -113,10 +112,9 @@ module.exports = class CRUD extends AntHill {
    */
   destroyItemView(item) {
     const scope = this.scope,
-        base = this.base,
         namespace = item.name.toLowerCase();
 
-    if (!base.isDefined(item)) {
+    if (!item) {
       scope.logger.warn('Undefined ' + namespace, item);
       return false;
     }

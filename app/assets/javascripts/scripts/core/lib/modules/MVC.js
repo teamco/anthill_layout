@@ -257,7 +257,7 @@ module.exports = class MVC extends AntHill {
        * Define pattern
        * @type {*}
        */
-      scope[name] = new mvcPattern(scope);
+      scope[name] = new mvcPattern(null, scope);
 
     } else if (force) {
 
@@ -273,7 +273,7 @@ module.exports = class MVC extends AntHill {
        */
       const fn = new Function(scopeName, [
             'return function ', mvcPattern,
-            '(', scopeName, ') { this.scope = ', scopeName, '; };'
+        '(null,', scopeName, ') { this.scope = ', scopeName, '; };'
           ].join('')
       );
 

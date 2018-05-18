@@ -11,9 +11,6 @@
 
 module.exports = class WidgetContent {
 
-  constructor() {
-  }
-
   /**
    * Define load widget data
    * @memberOf WidgetContent
@@ -81,10 +78,10 @@ module.exports = class WidgetContent {
   /**
    * Define fetch content
    * @memberOf WidgetContent
-   * @param {string} path
+   * @param {Class} Content
    * @param {boolean} isInternal
    */
-  fetchContent(path, isInternal) {
+  fetchContent(Content, isInternal) {
 
     /**
      * Define widget instance
@@ -92,22 +89,24 @@ module.exports = class WidgetContent {
      */
     const widget = this.scope;
 
-    widget.logger.debug('Load widget content', path);
+    if (!Content) {
+      widget.logger.debug('Unable to load widget content', Content);
+      return false;
+    }
 
-    requireP([path], function _getDependencies(Content) {
+    widget.logger.debug('Load widget content', Content);
 
-      if (isInternal) {
-        widget.controller.destroyContent();
-      }
+    if (isInternal) {
+      widget.controller.destroyContent();
+    }
 
-      widget.observer.publish(widget.eventManager.eventList.setContent, [
-        Content, {
-          events: widget.contentEvents || {},
-          rules: widget.contentRules || {}
-        }]);
+    widget.observer.publish(widget.eventManager.eventList.setContent, [
+      Content, {
+        events: widget.contentEvents || {},
+        rules: widget.contentRules || {}
+      }]);
 
-      widget.logger.debug('Content finish loading');
-    });
+    widget.logger.debug('Content finish loading');
   }
 
   /**
@@ -171,13 +170,7 @@ module.exports = class WidgetContent {
       return false;
     }
 
-    /**
-     * Define resource path
-     * @type {string}
-     */
-    const path = ['plugins/widgets', ('/' + resource).repeat(2)].join('');
-
-    this.fetchContent(path, 1);
+    this.fetchContent(this.getAvailableContent(resource), 1);
   }
 
   /**
@@ -206,7 +199,7 @@ module.exports = class WidgetContent {
    */
   prepareRenderingContent(plugin, callback) {
     const widget = this.scope,
-        language = this.i18n.getCurrentLanguage(),
+        language = widget.i18n.getCurrentLanguage(),
         translationPath = this.isExternalContent() ? [
           this.model.getConfig('preferences').external_resource,
           '/translations/', language, '.js'
@@ -228,8 +221,9 @@ module.exports = class WidgetContent {
    * Show/Hide content
    * @memberOf WidgetContent
    * @param {boolean} show
+   * @param {string} eventName
    */
-  showContent(show) {
+  showContent(show, eventName) {
 
     /**
      * Get scope
@@ -246,9 +240,7 @@ module.exports = class WidgetContent {
      * Get prefs
      * @type {*}
      */
-    const preferences = this.model.getConfig('preferences'),
-        eventName = this.showContent.caller.eventName;
-
+    const preferences = this.model.getConfig('preferences');
     let event;
 
     if (eventName.match(/drag/i)) {
@@ -257,7 +249,7 @@ module.exports = class WidgetContent {
       event = 'Resize';
     }
 
-    if (_.isUndefined(event)) {
+    if (!event) {
       scope.logger.warn('Undefined caller', fname);
       return false;
     }
@@ -353,7 +345,7 @@ module.exports = class WidgetContent {
    * @memberOf WidgetContent
    * @returns {*}
    */
-  get$get$content() {
+  get$content() {
 
     // Get widget content
     const content = this.getContent();

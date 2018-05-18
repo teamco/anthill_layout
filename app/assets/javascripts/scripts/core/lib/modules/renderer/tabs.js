@@ -99,7 +99,7 @@ module.exports = class TabsRenderer {
    */
   addTabItem($tabs, item, active) {
     const $item = $('<li role="presentation"><a href="#"></a></li>'),
-        uuid = this.base.lib.generator.UUID(item.uuid);
+        uuid = this.view.utils.gen.UUID(item.uuid);
 
     $item.find('a').text(item.text).attr({
       href: '#' + uuid,

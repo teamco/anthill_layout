@@ -291,7 +291,7 @@ module.exports = class WidgetContentControllerRules extends WidgetSubscribe {
      * @type {Page}
      */
     const page = widget.controller.getContainment();
-    let subscribersCounter = this.base.lib.hash.hashLength(subscribe);
+    let subscribersCounter = Object.keys(subscribe).length;
 
     for (let index in subscribe) {
       if (!subscribe.hasOwnProperty(index)) {

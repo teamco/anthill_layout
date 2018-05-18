@@ -27,13 +27,19 @@ module.exports = class WidgetResize {
     this.scope = scope;
 
     /**
+     * @property WidgetResize
+     * @type {string}
+     */
+    this.name = 'WidgetResize';
+
+    /**
      * Define widget jquery element
      * @property WidgetResize
      * @type {jQuery}
      */
     this.$scope = scope.view.get$item().$;
 
-    this.checkPermission();
+    this.scope.controller.checkPermission.call(this);
   }
 
   /**

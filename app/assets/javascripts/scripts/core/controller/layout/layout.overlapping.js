@@ -64,8 +64,8 @@ module.exports = class LayoutOverlapping extends Intersect {
      */
     const layout = this.layout;
 
-    opts = this.base.define(opts, {}, true);
-    opts.targets = this.base.define(opts.targets, {}, true);
+    opts = opts || {};
+    opts.targets = opts.targets || {};
 
     /**
      * Define not organize
@@ -88,7 +88,7 @@ module.exports = class LayoutOverlapping extends Intersect {
      */
     const emptyTargets = this._exitPointOn({
       log: 'Empty targets',
-      condition: this.base.lib.hash.isHashEmpty(opts.targets)
+      condition: !Object.keys(opts.targets).length
     });
 
     if (notOrganize || notOverlapping || emptyTargets) {
@@ -190,7 +190,7 @@ module.exports = class LayoutOverlapping extends Intersect {
   _cssOrganizer(callback) {
     const page = this.layout.controller.getContainment(),
         widgets = page.model.getItems(),
-        length = this.base.lib.hash.hashLength(widgets);
+        length = Object.keys(widgets).length;
 
     let counter = 1;
     for (let index in widgets) {

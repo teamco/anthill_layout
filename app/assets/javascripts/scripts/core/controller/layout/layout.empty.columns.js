@@ -97,7 +97,7 @@ module.exports = class LayoutEmptyColumns {
      * Order widgets
      * @type {Array}
      */
-    const widgetOrder = this.base.lib.hash.hashKeys(widgets);
+    const widgetOrder = Object.keys(widgets);
 
     // Sort widget UUIDs by widget position
     widgetOrder.sort(function(a, b) {

@@ -11,7 +11,32 @@
  */
 const Widget = require('../../../../scripts/core/config/widget.js');
 
+/**
+ * @constant WidgetController
+ * @type {module.WidgetController|*}
+ */
+const WidgetController = require('../../../../scripts/core/controller/widget.controller.js');
+
 module.exports = () => {
+
+  /**
+   * @memberOf WidgetController
+   * @method getAvailableContent
+   */
+  WidgetController.prototype.getAvailableContent = resource => {
+
+    /**
+     * @constant widgets
+     * @type {{}|*}
+     */
+    const widgets = require('../widgets.js') || {};
+
+    if (resource && widgets[resource]) {
+      return widgets[resource];
+    }
+
+    this.scope.logger.warn('Unable to fetch resource', resource, widgets);
+  };
 
   /**
    * Define Widget Global listeners

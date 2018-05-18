@@ -30,8 +30,9 @@
       }
 
       const config = require('./javascript/config.js');
-      const listeners = require('./javascript/listeners.js');
-      const permissions = require('./javascript/permissions.js');
+
+      require('./javascript/listeners.js');
+      require('./javascript/permissions.js');
 
       const defaults = {
         user: user,

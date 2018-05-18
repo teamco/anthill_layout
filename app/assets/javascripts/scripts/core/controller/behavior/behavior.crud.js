@@ -89,10 +89,10 @@ module.exports = class BehaviorCrud {
   approveItemDestroy(item, count) {
     const scope = this.scope;
 
-    count = this.base.define(count, 1, true);
+    count = count || 1;
 
     if (this.checkCondition({
-      condition: !this.base.isDefined(item),
+      condition: !item,
       type: 'warn',
       msg: 'Undefined item'
     })) {
@@ -138,13 +138,11 @@ module.exports = class BehaviorCrud {
    * @param {Boolean} [silent]
    */
   destroyItems(items, silent) {
-    items = this.base.define(items, this.items);
+    items = items || this.items;
 
-    this.base.defineBoolean(silent, false, true) ?
-        this.observer.publish(
-            this.eventManager.eventList.approveItemsDestroy,
-            items
-        ) : this.view.destroyWidgetsModalDialog(items);
+    this.utils.setBoolean(silent, false) ?
+        this.observer.publish(this.eventManager.eventList.approveItemsDestroy, items) :
+        this.view.destroyWidgetsModalDialog(items);
   }
 
   /**

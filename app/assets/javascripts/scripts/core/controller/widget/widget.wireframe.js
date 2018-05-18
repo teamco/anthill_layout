@@ -152,7 +152,7 @@ module.exports = class Wireframe {
    * @param opts
    */
   init(opts) {
-    opts = this.base.define(opts, {}, true);
+    opts = opts || {};
     this.defineHolder(opts);
     this.getWireFrame().show();
     this.$.css(opts.style);

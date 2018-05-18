@@ -573,7 +573,7 @@ module.exports = class BaseController extends aggregation(AntHill, BehaviorCrud,
          * Define setter
          * @type {Function}
          */
-        const fn = scope.base.lib.function.create({
+        const fn = scope.utils.fn.create({
           name: setter,
           params: index,
           body: 'this._setItemInfoPreferences("' + index + '", ' + index + ');' +

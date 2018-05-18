@@ -6,38 +6,11 @@
  */
 
 /**
- * @constant Interactions
- * @type {module.Interactions}
- */
-const Interactions = require('../../lib/modules/Interactions.js');
-
-/**
  * @class Interactions
  * @extends WidgetInteractions
  * @type {module.WidgetInteractions}
  */
-module.exports = class WidgetInteractions extends Interactions {
-
-  /**
-   * @constructor
-   */
-  constructor() {
-    super();
-
-    /**
-     * Define interactions
-     * @property Widget
-     * @type {*}
-     */
-    this.interactions = undefined;
-
-    /**
-     * Define map
-     * @property Widget
-     * @type {*}
-     */
-    this.map = undefined;
-  }
+module.exports = class WidgetInteractions {
 
   /**
    * Validate interaction config
@@ -72,7 +45,6 @@ module.exports = class WidgetInteractions extends Interactions {
    * @memberOf WidgetInteractions
    */
   setupInteractions() {
-
     const scope = this.scope,
         observer = scope.observer,
         eventList = scope.eventManager.eventList;
@@ -84,7 +56,7 @@ module.exports = class WidgetInteractions extends Interactions {
   /**
    * Set Interaction
    * @memberOf WidgetInteractions
-   * @param {module.WidgetResize|module.WidgetDrag|Droppable} InteractionEvent
+   * @param {module.WidgetResize|module.WidgetDrag|Droppable|{name}} InteractionEvent
    * @returns {*}
    */
   setInteraction(InteractionEvent) {
@@ -287,7 +259,7 @@ module.exports = class WidgetInteractions extends Interactions {
      * Define opts
      * @type {*}
      */
-    opts = this.base.define(opts, {}, true);
+    opts = opts || {};
 
     /**
      * Define controller

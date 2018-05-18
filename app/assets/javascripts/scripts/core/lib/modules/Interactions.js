@@ -19,7 +19,7 @@ module.exports = class Interactions {
   checkPermission() {
     this.scope.permission.check({
       capability: this.name.toLowerCase(),
-      callback: this.init.bind(this)
+      callback: this.init
     });
   }
 
