@@ -26,7 +26,7 @@ module.exports = class WidgetElement extends BaseElement {
    */
   constructor(view, opts) {
     super('WidgetElement', view, false);
-    this._config(view, opts, $('<li />')).build({
+    this._config(view, opts, $('<widget />')).build({
       $container: opts.$container,
       destroy: false
     });

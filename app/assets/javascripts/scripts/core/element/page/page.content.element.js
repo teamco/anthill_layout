@@ -26,6 +26,6 @@ module.exports = class PageContentElement extends BaseElement {
    */
   constructor(view, opts) {
     super('PageContentElement', view, false);
-    this._config(view, opts, $('<ul />')).build(opts);
+    this._config(view, opts, $('<widgets />')).build(opts);
   }
 };

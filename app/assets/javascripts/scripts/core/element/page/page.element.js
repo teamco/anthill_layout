@@ -26,7 +26,7 @@ module.exports = class PageElement extends BaseElement {
    */
   constructor(view, opts) {
     super('PageElement', view, false);
-    this._config(view, opts, $('<li />')).build(opts);
+    this._config(view, opts, $('<page />')).build(opts);
   }
 
   /**

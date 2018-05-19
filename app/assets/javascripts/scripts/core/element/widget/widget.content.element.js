@@ -26,7 +26,7 @@ module.exports = class WidgetContentElement extends BaseElement {
    */
   constructor(view, opts) {
     super('WidgetContentElement', view, false);
-    this._config(view, opts, $('<div />')).build(opts);
+    this._config(view, opts, $('<resource />')).build(opts);
     this.setPadding();
     this.setBackgroundImage(opts);
   }

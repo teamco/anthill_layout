@@ -27,6 +27,6 @@ module.exports = class ApplicationContentElement extends BaseElement {
    */
   constructor(view, opts) {
     super('ApplicationContentElement', view, false);
-    this._config(view, opts, $('<ul />')).build(opts);
+    this._config(view, opts, $('<workspaces />')).build(opts);
   }
 };

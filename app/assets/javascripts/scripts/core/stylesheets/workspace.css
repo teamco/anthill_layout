@@ -1,77 +1,77 @@
-.show-content .workspace {
+.show-content workspace {
     width: auto !important;
 }
 
-.workspace {
+workspace {
     position: relative;
     width: 100%;
     height: 100%;
     margin: 0 auto;
 }
 
-.workspace.sw-0 {
+workspace.sw-0 {
     width: 480px;
 }
 
-.workspace.sw-1 {
+workspace.sw-1 {
     width: 640px;
 }
 
-.workspace.sw-2 {
+workspace.sw-2 {
     width: 960px;
 }
 
-.workspace.sw-3 {
+workspace.sw-3 {
     width: 1024px;
 }
 
-.workspace.sw-4 {
+workspace.sw-4 {
     width: 1040px;
 }
 
-.workspace.sw-5 {
+workspace.sw-5 {
     width: 1140px;
 }
 
-.workspace.sw-6 {
+workspace.sw-6 {
     width: 1280px;
 }
 
-.workspace.sw-7 {
+workspace.sw-7 {
     width: 1920px;
 }
 
-.workspace-header,
-.workspace-footer {
+workspace-header,
+workspace-footer {
     width: 100%;
 }
 
-.workspace-header {
+workspace-header {
     width: 100%;
     height: 50px;
     position: relative;
 }
 
-.workspace-footer {
+workspace-footer {
     height: 40px;
     background-color: #555555;
     position: fixed;
     bottom: 0;
 }
 
-.workspace .pages {
+workspace pages {
     position: absolute;
     width: 100%;
     height: 100%;
     /*overflow: hidden;*/
 }
 
-.workspace .page {
+workspace page {
     display: block;
     border-right: 1px dotted #ccc;
     border-left: 1px dotted #ccc;
 }
 
-body.consumption .workspace .page {
+body.consumption workspace page {
     border: none;
 }

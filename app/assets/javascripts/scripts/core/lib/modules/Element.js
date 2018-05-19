@@ -30,7 +30,7 @@ module.exports = class BaseElement extends Renderer {
 
     /**
      * Define plugin path
-     * @memberOf BaseElement
+     * @property BaseElement
      */
     this.pluginPath = '/assets/scripts/plugins';
   }
@@ -50,58 +50,62 @@ module.exports = class BaseElement extends Renderer {
 
     /**
      * Define view
-     * @memberOf BaseElement
+     * @property BaseElement
      * @type {BaseView}
      */
     this.view = view;
 
     /**
      * Define style
-     * @memberOf BaseElement
+     * @property BaseElement
      * @type {string}
      */
     this.style = opts.style || view.createStyle();
 
     /**
      * Define id
-     * @memberOf BaseElement
+     * @property BaseElement
      * @type {string}
      */
     this.id = view.renderUUID(opts.uuid);
 
     /**
      * Define disabled
-     * @memberOf BaseElement
+     * @property BaseElement
      * @type {boolean}
      */
     this.disabled = this.view.utils.setBoolean(opts.disabled, false);
 
     /**
      * Define events
-     * @memberOf BaseElement
+     * @property BaseElement
      * @type {*}
      */
     this.events = opts.events;
 
     /**
      * Define opacity
-     * @memberOf BaseElement
+     * @property BaseElement
      * @type {*|number}
      */
     this.opacity = opts.opacity || 1.0;
 
     /**
      * Define CSS
-     * @memberOf BaseElement
+     * @property BaseElement
      * @type {*}
      */
     this.css = opts.css || {};
 
     /**
      * Define jQuery element
-     * @memberOf BaseElement
+     * @property BaseElement
      */
     this.$ = $html.addClass(this.style).css(this.css);
+
+    // if (opts.style) {
+    //   this.$.addClass(this.style);
+    // }
 
     if (opts.id) {
       this.$.attr({id: this.id});
@@ -295,14 +299,21 @@ module.exports = class BaseElement extends Renderer {
    * @param {Boolean} destroy
    */
   destroyB4Create(destroy) {
-
     if (this.view.utils.setBoolean(destroy, false)) {
 
       // Get scope
       const scope = this.view.scope;
+      let className = this.$.attr('class');
+      let removableElement;
       scope.observer.publish(scope.eventManager.eventList.successDestroyElement, this);
 
-      $('.' + this.$.attr('class').replace(/ /g, '.'), this.$container).remove();
+      if (className) {
+        className.replace(/ /g, '.');
+        removableElement = $('.' + className, this.$container);
+      } else {
+        removableElement = $(scope.name.toLowerCase(), this.$container);
+      }
+      removableElement.remove();
     }
   }
 
@@ -359,12 +370,12 @@ module.exports = class BaseElement extends Renderer {
    * @memberOf BaseElement
    * @param {string} type
    * @param {{
-     *    [type]: string,
-     *    [url]: string,
-     *    [rel]: string,
-     *    [media]: string,
-     *    [resource]: string
-     * }} [opts]
+   *  [type]: string,
+   *  [url]: string,
+   *  [rel]: string,
+   *  [media]: string,
+   *  [resource]: string
+   * }} [opts]
    */
   addCSS(type, opts) {
 

@@ -32,6 +32,6 @@ module.exports = class FooterElement extends BaseElement {
       return this;
     }
 
-    this._config(view, opts, $('<div />')).build(opts);
+    this._config(view, opts, $('<footer />')).build(opts);
   }
 };

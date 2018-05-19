@@ -27,7 +27,7 @@ module.exports = class WorkspaceElement extends BaseElement {
    */
   constructor(view, opts) {
     super('WorkspaceElement', view, false);
-    this._config(view, opts, $('<li />')).build(opts);
+    this._config(view, opts, $('<workspace />')).build(opts);
   }
 
   /**

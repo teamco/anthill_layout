@@ -50,9 +50,9 @@ module.exports = class ApplicationView extends BaseView {
       id: true
     });
 
-    this.footer(this.get$item());
-    this.workspaces();
     this.header(this.get$item());
+    this.workspaces();
+    this.footer(this.get$item());
   }
 
   /**
