@@ -33,6 +33,12 @@ module.exports = class WidgetResize {
     this.name = 'WidgetResize';
 
     /**
+     * @property WidgetResize
+     * @type {string}
+     */
+    this.capability = 'Resizable';
+
+    /**
      * Define widget jquery element
      * @property WidgetResize
      * @type {jQuery}
@@ -57,17 +63,15 @@ module.exports = class WidgetResize {
     // Get resizable config
     let resizable = scope.model.getConfig('events').resizable;
 
-    if (scope.permission.authorizedFunctionCall(this.init)) {
-      resizable = scope.controller.validateInteractionConfig('resizable', resizable);
-      if (resizable) {
-        this.$scope.resizable($.extend({
-          containment: resizable.containment,
-          create: this.create.bind(this),
-          start: this.start.bind(this),
-          stop: this.stop.bind(this),
-          resize: this.resize.bind(this)
-        }, resizable));
-      }
+    resizable = scope.controller.validateInteractionConfig('resizable', resizable);
+    if (resizable) {
+      this.$scope.resizable($.extend({
+        containment: resizable.containment,
+        create: this.create.bind(this),
+        start: this.start.bind(this),
+        stop: this.stop.bind(this),
+        resize: this.resize.bind(this)
+      }, resizable));
     }
   }
 
@@ -149,8 +153,7 @@ module.exports = class WidgetResize {
      */
     const scope = this.scope;
 
-    this.debugUI(event, ui);
-
+    scope.controller.debugUI(event, ui);
     scope.controller.setAsCurrent();
     scope.wireframe.resizeSticker();
     scope.observer.publish(scope.eventManager.eventList.startResizable, [event.type, arguments]);
@@ -169,7 +172,7 @@ module.exports = class WidgetResize {
      */
     const scope = this.scope;
 
-    this.debugUI(event, ui);
+    scope.controller.debugUI(event, ui);
     scope.observer.publish(scope.eventManager.eventList.stopResizable, [event.type, arguments]);
     scope.wireframe.hide();
   }
@@ -187,7 +190,7 @@ module.exports = class WidgetResize {
      */
     const scope = this.scope;
 
-    this.debugUI(event, ui);
+    scope.controller.debugUI(event, ui);
     scope.observer.publish(scope.eventManager.eventList.resizeResizable, [event.type, arguments]);
   }
 };

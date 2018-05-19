@@ -24,13 +24,7 @@
      * @private
      */
     function _setup() {
-
-      if (mode !== 'consumption') {
-        //loaderJs.unshift('jquery-ui');
-      }
-
       const config = require('./javascript/config.js');
-
       require('./javascript/listeners.js');
       require('./javascript/permissions.js');
 

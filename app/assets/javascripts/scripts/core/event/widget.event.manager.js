@@ -113,7 +113,7 @@ module.exports = class WidgetEventManager extends BaseEvent {
       createDraggable: 'create.draggable',
       startDraggable: 'start.draggable',
       dragDraggable: {
-        eventName: 'drag.draggable',
+        name: 'drag.draggable',
         params: {buffer: 50}
       },
       stopDraggable: 'stop.draggable',
@@ -127,7 +127,7 @@ module.exports = class WidgetEventManager extends BaseEvent {
       createResizable: 'create.resizable',
       startResizable: 'start.resizable',
       resizeResizable: {
-        eventName: 'resize.resizable',
+        name: 'resize.resizable',
         params: {buffer: 50}
       },
       stopResizable: 'stop.resizable',

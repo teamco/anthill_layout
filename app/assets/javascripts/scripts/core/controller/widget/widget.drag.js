@@ -33,6 +33,12 @@ module.exports = class WidgetDrag {
     this.name = 'WidgetDrag';
 
     /**
+     * @property WidgetDrag
+     * @type {string}
+     */
+    this.capability = 'Draggable';
+
+    /**
      * Define widget jquery element
      * @property WidgetDrag
      * @type {jQuery}
@@ -56,17 +62,15 @@ module.exports = class WidgetDrag {
     // Get draggable config
     let draggable = scope.model.getConfig('events').draggable;
 
-    if (scope.permission.authorizedFunctionCall(this.init)) {
-      draggable = scope.controller.validateInteractionConfig('draggable', draggable);
-      if (draggable) {
-        this.$scope.draggable($.extend({
-          containment: draggable.containment,
-          create: this.create.bind(this),
-          start: this.start.bind(this),
-          stop: this.stop.bind(this),
-          drag: this.drag.bind(this)
-        }, draggable));
-      }
+    draggable = scope.controller.validateInteractionConfig('draggable', draggable);
+    if (draggable) {
+      this.$scope.draggable($.extend({
+        containment: draggable.containment,
+        create: this.create.bind(this),
+        start: this.start.bind(this),
+        stop: this.stop.bind(this),
+        drag: this.drag.bind(this)
+      }, draggable));
     }
   }
 
@@ -130,8 +134,7 @@ module.exports = class WidgetDrag {
      */
     const scope = this.scope;
 
-    this.debugUI(event, ui);
-
+    scope.controller.debugUI(event, ui);
     scope.controller.setAsCurrent();
     scope.wireframe.dragSticker();
     scope.observer.publish(scope.eventManager.eventList.startDraggable, arguments);
@@ -150,8 +153,8 @@ module.exports = class WidgetDrag {
      * @type {Widget}
      */
     const scope = this.scope;
-    this.debugUI(event, ui);
 
+    scope.controller.debugUI(event, ui);
     scope.observer.publish(scope.eventManager.eventList.stopDraggable, [event.type, arguments]);
     scope.wireframe.hide();
   }
@@ -170,7 +173,7 @@ module.exports = class WidgetDrag {
      */
     const scope = this.scope;
 
-    this.debugUI(event, ui);
+    scope.controller.debugUI(event, ui);
     scope.observer.publish(scope.eventManager.eventList.dragDraggable, [event.type, arguments]);
   }
 };
