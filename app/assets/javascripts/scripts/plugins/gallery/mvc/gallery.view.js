@@ -57,11 +57,9 @@ module.exports = class GalleryView extends BaseView {
      * @type {module.GalleryElement}
      */
     this.elements.$gallery = new GalleryElement(this, {
-      $container: this.get$container().$
+      $container: this.get$container().$,
+      destroy: false
     });
-
-    this.renderFilter(this.updateFooterContent.bind(this));
-    this.renderProviders(this.controller.getProvidersData(), this.controller.getModuleData());
   }
 
   /**
@@ -78,6 +76,10 @@ module.exports = class GalleryView extends BaseView {
      * @type {module.GalleryProvidersElement|*}
      */
     const GalleryProvidersElement = require('../element/gallery.providers.element.js');
+
+    if (this.isCached('$providers', GalleryProvidersElement)) {
+      return false;
+    }
 
     /**
      * Define Gallery element
@@ -103,8 +105,10 @@ module.exports = class GalleryView extends BaseView {
       return false;
     }
 
+    this.renderFilterElement(this.updateFooterContent.bind(this));
+    this.renderProviders(this.controller.getProvidersData(), this.controller.getModuleData());
+
     this.cleanElementItems();
-    this.updateElementItems();
 
     /**
      * Define provider data

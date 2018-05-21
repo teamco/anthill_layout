@@ -221,8 +221,7 @@ module.exports = class PanelController extends PluginController {
    */
   showContent(resource, force) {
 
-    if (!force && this.controller.isActive(resource) &&
-        this.controller.isOpened()) {
+    if (!force && this.controller.isActive(resource) && this.controller.isOpened()) {
       return false;
     }
 
@@ -238,13 +237,9 @@ module.exports = class PanelController extends PluginController {
      */
     const module = this.controller.activateModule(index);
 
-    this.view.renderContent(module, true);
-
+    this.view.renderContent(module, false);
     module.view.render();
-
-    module.observer.publish(
-        module.eventManager.eventList.loadModuleContent
-    );
+    module.observer.publish(module.eventManager.eventList.loadModuleContent);
     this.controller.setBehavior(resource);
   }
 

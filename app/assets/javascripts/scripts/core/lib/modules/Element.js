@@ -304,16 +304,18 @@ module.exports = class BaseElement extends Renderer {
       // Get scope
       const scope = this.view.scope;
       let className = this.$.attr('class');
-      let removableElement;
-      scope.observer.publish(scope.eventManager.eventList.successDestroyElement, this);
+      let removableElementClass = scope.name.toLowerCase();
 
       if (className) {
-        className.replace(/ /g, '.');
-        removableElement = $('.' + className, this.$container);
-      } else {
-        removableElement = $(scope.name.toLowerCase(), this.$container);
+        removableElementClass = '.' + className.replace(/ /g, '.');
       }
-      removableElement.remove();
+      const $removableElement = $(removableElementClass, this.$container);
+      if (!$removableElement.length) {
+        scope.logger.info('Unable to detect removable element', removableElementClass, this.$container);
+        return false;
+      }
+      $removableElement.remove();
+      scope.observer.publish(scope.eventManager.eventList.successDestroyElement, this);
     }
   }
 

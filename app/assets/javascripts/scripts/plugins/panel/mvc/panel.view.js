@@ -96,9 +96,7 @@ module.exports = class PanelView extends BaseView {
     const style = [this.scope.model.getPanelEntityResourceName(module), 'content'].join('-'),
         sname = '$' + style;
 
-    this.updateElementItems();
-
-    if ((this.isCachedItems() || this.elements.items.hasOwnProperty(sname)) && !force) {
+    if (this.isCachedItems() && this.elements.items.hasOwnProperty(sname) && !force) {
       return false;
     }
 

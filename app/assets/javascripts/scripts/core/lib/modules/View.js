@@ -42,12 +42,7 @@ module.exports = class BaseView extends AntHill {
    * @param {string} [customId]
    */
   updateElementItems($item, customId) {
-
-    if (!$item) {
-      this.elements.items = this.elements.items || {};
-      return false;
-    }
-
+    this.elements.items = this.elements.items || {};
     this.elements.items[customId ? customId : $item.id] = $item;
   }
 
@@ -310,18 +305,21 @@ module.exports = class BaseView extends AntHill {
   }
 
   /**
-   * Render filter
    * @memberOf BaseView
    * @param {function} [callback]
    * @param {boolean} [enter]
    */
-  renderFilter(callback, enter) {
+  renderFilterElement(callback, enter) {
 
     /**
      * @constant FilterElement
      * @type {module.FilterElement}
      */
     const FilterElement = require('../../element/filter.element.js');
+
+    if (this.isCached('$filter', FilterElement)) {
+      return false;
+    }
 
     /**
      * Define Search element

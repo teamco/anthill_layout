@@ -24,7 +24,7 @@ module.exports = class CheckBoxRenderer  {
    * }} opts
    * @returns {*}
    */
-  renderCombobox(opts) {
+  renderCheckbox(opts) {
 
     /**
      * Create UUID

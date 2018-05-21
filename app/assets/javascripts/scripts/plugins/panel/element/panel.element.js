@@ -70,13 +70,8 @@ module.exports = class PanelElement extends PluginElement {
   toggleModule(resource) {
 
     // Define locals
-    var view = this.view,
-        scope = view.scope;
-
-    scope.observer.publish(
-        scope.eventManager.eventList.showContent,
-        resource
-    );
+    const scope = this.view.scope;
+    scope.observer.publish(scope.eventManager.eventList.showContent, resource);
   }
 
   /**

@@ -57,7 +57,7 @@ module.exports = class FilterRenderer extends AntHill {
 
     /**
      * Define $search
-     * @type {module.TextFieldRenderer}
+     * @type {module.TextFieldRenderer|{append}}
      */
     const $search = this.renderTextField({
       text: opts.text,
@@ -80,7 +80,7 @@ module.exports = class FilterRenderer extends AntHill {
 
     /**
      * Define $reset
-     * @type {*|jQuery}
+     * @type {*|jQuery|{find}}
      */
     const $reset = $([
       '<div class="input-group-btn hide">',
@@ -93,7 +93,7 @@ module.exports = class FilterRenderer extends AntHill {
 
       /**
        * Get $node
-       * @type {*|jQuery|HTMLElement}
+       * @type {*|jQuery|HTMLElement|{parents, parent}}
        */
       const $node = $(this);
 
@@ -118,19 +118,23 @@ module.exports = class FilterRenderer extends AntHill {
   /**
    * Filter search results
    * @memberOf FilterRenderer
-   * @param {Event} e
+   * @param {Event|{which}} e
    */
   filterResults(e) {
     e.preventDefault();
 
-    const input = e.target,
-        $reset = $(input).parent().find('.input-group-btn');
+    /**
+     * @constant input
+     * @type {EventTarget|{value}}
+     */
+    const input = e.target;
+    const $reset = $(input).parent().find('.input-group-btn');
 
     $reset.removeClass('hide');
 
     /**
      * Define $filter
-     * @type {$element}
+     * @type {$element|{items, view}}
      */
     const $filter = this.$element;
 
@@ -143,7 +147,7 @@ module.exports = class FilterRenderer extends AntHill {
 
     /**
      * Get logger
-     * @type {module.Logger}
+     * @type {module.Logger|{debug, warn}}
      */
     const logger = $filter.view.scope.logger;
 
@@ -159,7 +163,7 @@ module.exports = class FilterRenderer extends AntHill {
 
           /**
            * Define item
-           * @type {{name: string, description: string, [type]: string}}
+           * @type {{name: string, description: string, [type]: string, value, data}}
            */
           const $item = items[index];
 
@@ -167,10 +171,6 @@ module.exports = class FilterRenderer extends AntHill {
             $item.$.removeClass('hide');
           } else {
 
-            /**
-             * Define regex
-             * @type {RegExp}
-             */
             const regex = new RegExp(value, 'ig');
 
             if (!$item.data) {

@@ -47,6 +47,12 @@
 .panel-container .panel-footer {
     position: absolute;
     bottom: 0;
+    height: 32px;
+    border: none;
+    border-radius: 0;
+    width: 100%;
+    border-top: 1px solid #dedede;
+    padding: 5px 0;
 }
 
 .panel-container .scroll-cover {
@@ -215,6 +221,7 @@
 
 .panel-container.navbar-default .panel-content .content-container {
     margin-top: 205px;
+    width: 100%;
 }
 
 .panel-container.navbar-default.no-title .panel-content .content-container {

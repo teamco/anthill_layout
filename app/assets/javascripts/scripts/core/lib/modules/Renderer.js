@@ -45,6 +45,12 @@ const AntHill = require('../../config/anthill.js');
 const CheckBoxRenderer = require('./renderer/check.box.js');
 
 /**
+ * @constant ComboBoxRenderer
+ * @type {module.ComboBoxRenderer}
+ */
+const ComboBoxRenderer = require('./renderer/combo.box.js');
+
+/**
  * @constant FilterRenderer
  * @type {module.FilterRenderer}
  */
@@ -86,8 +92,8 @@ const ValidationRenderer = require('./renderer/validation.js');
  * @type {module.Renderer}
  * @extends AntHill
  */
-module.exports = class Renderer extends aggregation(AntHill, CheckBoxRenderer, FilterRenderer, LabelRenderer,
-    TabsRenderer, TextFieldRenderer, ToolTipRenderer, ValidationRenderer) {
+module.exports = class Renderer extends aggregation(AntHill, CheckBoxRenderer, ComboBoxRenderer, FilterRenderer,
+    LabelRenderer, TabsRenderer, TextFieldRenderer, ToolTipRenderer, ValidationRenderer) {
 
   /**
    * @constructor

@@ -82,10 +82,7 @@ module.exports = class BarView extends BaseView {
       return false;
     }
 
-    this.updateElementItems();
-
     for (let index in data) {
-
       if (data.hasOwnProperty(index)) {
 
         /**
@@ -104,11 +101,7 @@ module.exports = class BarView extends BaseView {
          * @type {module.BarContentElement}
          */
         const $item = new BarContentElement(this, {
-          style: this.utils._.compact([
-            'content',
-            item.activated ? 'activated' : null,
-            moduleResource
-          ]).join(' '),
+          style: this.utils._.compact(['content', item.activated ? 'activated' : null, moduleResource]).join(' '),
           resource: item,
           cname: moduleResource,
           $container: this.get$item().$
