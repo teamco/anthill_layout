@@ -170,7 +170,7 @@ module.exports = class WidgetContent {
       return false;
     }
 
-    this.fetchContent(this.getAvailableContent(resource), 1);
+    this.fetchContent(this.getAvailableContent.apply(this, [resource]), true);
   }
 
   /**

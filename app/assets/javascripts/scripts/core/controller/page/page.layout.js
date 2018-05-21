@@ -47,13 +47,18 @@ module.exports = class PageLayout {
 
     $.extend(padding, opts);
 
-    if (scope.view.get$item()) {
-      scope.view.get$item().setPadding(padding);
+    /**
+     * @type {module.PageElement|{setPadding}}
+     */
+    const $item = scope.view.get$item();
+
+    if ($item) {
+      $item.setPadding(padding);
     } else {
       scope.eventManager.subscribe({
         event: scope.eventManager.eventList.successRendered,
-        _setPadding() {
-          scope.view.get$item().setPadding(padding);
+        callback() {
+          scope.view.get$item().updateDimensions();
         }
       }, true);
     }
@@ -76,12 +81,17 @@ module.exports = class PageLayout {
     // Get scope
     const scope = this;
 
-    if (scope.view.get$item()) {
-      scope.view.get$item().updateDimensions();
+    /**
+     * @type {module.PageElement|{updateDimensions}}
+     */
+    const $item = scope.view.get$item();
+
+    if ($item) {
+      $item.updateDimensions(padding);
     } else {
       scope.eventManager.subscribe({
         event: scope.eventManager.eventList.successRendered,
-        _setPageScroll() {
+        callback() {
           scope.view.get$item().updateDimensions();
         }
       }, true);

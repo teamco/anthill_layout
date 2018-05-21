@@ -705,14 +705,13 @@ module.exports = class BaseModel extends CRUD {
              * Get fn name
              * @type {string}
              */
-            const fName = 'load' + child.prototype.name + 's';
+            const fName = 'load' + child.name + 's';
 
             typeof item.model[fName] === 'function' ?
                 item.model[fName].apply(item.model) :
                 item.logger.warn('Unable execute model method', fName);
 
           } else {
-
             item.logger.debug('Node with no items', item);
           }
         }

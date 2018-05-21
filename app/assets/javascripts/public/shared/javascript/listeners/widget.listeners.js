@@ -23,7 +23,7 @@ module.exports = () => {
    * @memberOf WidgetController
    * @method getAvailableContent
    */
-  WidgetController.prototype.getAvailableContent = resource => {
+  WidgetController.prototype.getAvailableContent = function(resource) {
 
     /**
      * @constant widgets

@@ -22,26 +22,25 @@ module.exports = class Setting extends Router {
    * @constructor
    */
   constructor(scope) {
-
     super('Setting', scope, false);
 
     /**
      * Define scope
-     * @memberOf Setting
+     * @property Setting
      * @type {*}
      */
     this.scope = scope;
 
     /**
      * Define setting mode
-     * @memberOf Setting
+     * @property Setting
      * @type {string}
      */
     this.mode = this.scope.controller.getMode();
 
     /**
      * Define storage modes
-     * @memberOf Setting
+     * @property Setting
      * @type {{
      *    localStorage: Storage,
      *    serverStorage: {setting: Setting, setItem: Function, getItem: Function, clear: Function}
@@ -54,7 +53,7 @@ module.exports = class Setting extends Router {
 
     /**
      * Define setting storage
-     * @memberOf Setting
+     * @property Setting
      * @type {{
      *    development: {setting: Setting, setItem: Function, getItem: Function, clear: Function},
      *    authorize: {setting: Setting, setItem: Function, getItem: Function, clear: Function},
@@ -71,15 +70,20 @@ module.exports = class Setting extends Router {
 
     /**
      * Define cache
-     * @memberOf Setting
+     * @property Setting
      * @type {Storage}
      */
     this.cache = this.STORAGE_MODES.localStorage;
 
-    this.activateOnSave(false);
+    /**
+     * Application name.
+     * @property Setting
+     * @type {string}
+     */
+    this._name = this.scope.model.getConfig('appName');
 
+    this.activateOnSave(false);
     this.init();
-    this._name = name;
   }
 
   /**
@@ -144,7 +148,6 @@ module.exports = class Setting extends Router {
    * @memberOf Setting
    */
   init() {
-
     this.setInitialState(true);
 
     /**
@@ -162,7 +165,6 @@ module.exports = class Setting extends Router {
        * @type {string}
        */
       this.token = this.utils.gen.UUID();
-
       this.save(storage);
     }
 
@@ -220,12 +222,7 @@ module.exports = class Setting extends Router {
      * Set data
      * @type {*}
      */
-    this.getStorage().setItem(
-        this.getNameSpace(),
-        this.compress(
-            JSON.stringify(data)
-        )
-    );
+    this.getStorage().setItem(this.getNameSpace(), this.compress(JSON.stringify(data)));
   }
 
   /**
@@ -339,7 +336,6 @@ module.exports = class Setting extends Router {
    * @return {*}
    */
   serverStorage() {
-
     return {
 
       /**
@@ -359,22 +355,15 @@ module.exports = class Setting extends Router {
          * @private
          */
         function _send(opts) {
-          $.ajax(opts).done(
-              function _done(data, type, xhr) {
+          $.ajax(opts).done((data, type, xhr) => {
 
-                setting.cache.setItem(key, value);
-                setting.activateOnSave(false);
+            setting.cache.setItem(key, value);
+            setting.activateOnSave(false);
 
-                scope.logger.debug(data.notice, arguments);
-
-                scope.observer.publish(
-                    scope.eventManager.eventList.updateStorageVersion,
-                    [data.version, data.activated]
-                );
-
-                scope.observer.publish(scope.eventManager.eventList.afterUpdateStorage);
-              }
-          );
+            scope.logger.debug(data.notice, arguments);
+            scope.observer.publish(scope.eventManager.eventList.updateStorageVersion, [data.version, data.activated]);
+            scope.observer.publish(scope.eventManager.eventList.afterUpdateStorage);
+          });
         }
 
         /**
