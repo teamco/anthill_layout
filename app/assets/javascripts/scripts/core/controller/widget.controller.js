@@ -44,11 +44,17 @@ const WidgetInteractions = require('./widget/widget.interactions.js');
 const WidgetContent = require('./widget/widget.content.js');
 
 /**
+ * @constant WidgetExpand
+ * @type {module.WidgetExpand}
+ */
+const WidgetExpand = require('./widget/widget.expand.js');
+
+/**
  * @class WidgetController
  * @extends {BaseController}
  */
 module.exports = class WidgetController extends aggregation(BaseController, Interactions, WidgetInteractions,
-    WidgetContent) {
+    WidgetContent, WidgetExpand) {
 
   /**
    * @constructor

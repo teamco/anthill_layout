@@ -45,7 +45,8 @@ module.exports = class PageView extends BaseView {
      * @type {module.PageElement}
      */
     this.elements.$page = new PageElement(this, {
-      $container: this.getContainerSelector()
+      $container: this.getContainerSelector(),
+      destroy: false
     });
 
     this.header(this.get$item());

@@ -250,14 +250,14 @@ module.exports = class Widget extends AntHill {
      * @property Widget.interactions
      * @type {module.WidgetDrag}
      */
-    this.interactions.draggable = undefined;
+    this.interactions.widgetdrag = undefined;
 
     /**
      * Define resizable interaction
      * @property Widget.interactions
      * @type {module.WidgetResize}
      */
-    this.interactions.resizable = undefined;
+    this.interactions.widgetresize = undefined;
 
     /**
      * Init content

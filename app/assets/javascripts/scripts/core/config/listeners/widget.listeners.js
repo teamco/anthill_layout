@@ -68,8 +68,10 @@ module.exports = () => {
         const root = this.controller.root();
 
         if (!silent && !root.model.getConfig('loading')) {
-          this.observer.batchPublish(this.eventManager.eventList.loadContent,
-              this.eventManager.eventList.loadPreferences);
+          this.observer.batchPublish(
+              this.eventManager.eventList.loadContent,
+              this.eventManager.eventList.loadPreferences
+          );
         }
       }
     },
@@ -107,7 +109,7 @@ module.exports = () => {
       callback() {
         const method = this.controller.isExpandable;
         method ?
-            this.observer.publish(this.eventManager.eventList.toggleContentExpander, method()) :
+            this.observer.publish(this.eventManager.eventList.toggleContentExpander, method.call(this)) :
             this.logger.warn('Expandable capability should be imported');
         this.controller.showContent(true, 'stopResizable');
         this.controller.updateContainmentDimensions();

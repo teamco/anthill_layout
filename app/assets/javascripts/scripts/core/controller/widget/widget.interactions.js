@@ -75,7 +75,7 @@ module.exports = class WidgetInteractions {
 
     /**
      * Register interactions
-     * @type {WidgetDrag|module.WidgetResize|Droppable}
+     * @type {module.WidgetDrag|module.WidgetResize|Droppable}
      */
     scope.interactions[ename] = new InteractionEvent(scope);
 
@@ -111,7 +111,7 @@ module.exports = class WidgetInteractions {
    * @memberOf WidgetInteractions
    */
   enableDraggable() {
-    this.interactions.draggable.enable();
+    this.interactions.widgetdrag.enable();
   }
 
   /**
@@ -119,7 +119,7 @@ module.exports = class WidgetInteractions {
    * @memberOf WidgetInteractions
    */
   disableDraggable() {
-    this.interactions.draggable.disable();
+    this.interactions.widgetdrag.disable();
   }
 
   /**
@@ -127,7 +127,7 @@ module.exports = class WidgetInteractions {
    * @memberOf WidgetInteractions
    */
   destroyDraggable() {
-    this.interactions.draggable.destroy();
+    this.interactions.widgetdrag.destroy();
   }
 
   /**
@@ -149,7 +149,7 @@ module.exports = class WidgetInteractions {
    * @memberOf WidgetInteractions
    */
   enableResizable() {
-    this.interactions.resizable.enable();
+    this.interactions.widgetresize.enable();
   }
 
   /**
@@ -157,7 +157,7 @@ module.exports = class WidgetInteractions {
    * @memberOf WidgetInteractions
    */
   disableResizable() {
-    this.interactions.resizable.disable();
+    this.interactions.widgetresize.disable();
   }
 
   /**
@@ -165,7 +165,7 @@ module.exports = class WidgetInteractions {
    * @memberOf WidgetInteractions
    */
   destroyResizable() {
-    this.interactions.resizable.destroy();
+    this.interactions.widgetresize.destroy();
   }
 
   /**
