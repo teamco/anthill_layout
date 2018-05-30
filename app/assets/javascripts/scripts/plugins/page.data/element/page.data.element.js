@@ -5,30 +5,27 @@
  * Time: 11:48 AM
  */
 
-defineP([
-  'plugins/plugin.element'
-], function definePageDataElement(PluginElement) {
+/**
+ * @constant PluginElement
+ * @type {module.PluginElement}
+ */
+const PluginElement = require('../../plugin.element.js');
+
+/**
+ * @class PageDataElement
+ * @extends PluginElement
+ */
+module.exports = class PageDataElement extends PluginElement {
 
   /**
-   * Define PageData Element
-   * @param view
+   * @param {PageDataView} view
    * @param opts
-   * @returns {PageDataElement}
    * @constructor
-   * @class PageDataElement
-   * @extends PluginElement
    */
-  var PageDataElement = function PageDataElement(view, opts) {
-
-    this._config(view, opts, $('<ul />')).build({
-      $container: opts.$container
-    });
-
+  constructor(view, opts) {
+    super('PageDataElement', view, false);
+    this._config(view, opts, $('<ul />')).build(opts);
     this.addCSS('page.data');
     this.addCSS('preferences');
-
-    return this;
-  };
-
-  return PageDataElement.extend('PageDataElement', {}, PluginElement.prototype);
-});
+  }
+};

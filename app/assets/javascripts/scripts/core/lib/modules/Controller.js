@@ -286,7 +286,7 @@ module.exports = class BaseController extends aggregation(AntHill, BehaviorCrud,
    * Get Workspace
    * @memberOf BaseController
    * @param {string} [uuid]
-   * @returns {Workspace}
+   * @returns {module.Workspace}
    */
   getWorkspace(uuid) {
 
@@ -303,13 +303,13 @@ module.exports = class BaseController extends aggregation(AntHill, BehaviorCrud,
    * Get Page
    * @memberOf BaseController
    * @param {string} [uuid]
-   * @returns {Page}
+   * @returns {module.Page|{}}
    */
   getPage(uuid) {
 
     /**
-     * Define workspace
-     * @type {Workspace|{model}}
+     * @constant workspace
+     * @type {module.Workspace}
      */
     const workspace = this.getWorkspace();
 

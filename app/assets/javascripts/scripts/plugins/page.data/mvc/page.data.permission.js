@@ -6,20 +6,24 @@
  * To change this template use File | Settings | File Templates.
  */
 
-defineP([
-  'modules/Permission'
-], function definePageDataPermission(BasePermission) {
+/**
+ * @constant BasePermission
+ * @type {module.BasePermission}
+ */
+const BasePermission = require('../../../core/lib/modules/Permission.js');
+
+/**
+ * @extends BasePermission
+ * @class PageDataPermission
+ */
+module.exports = class PageDataPermission extends BasePermission {
 
   /**
-   * Define Permissions
-   * @class PageDataPermission
    * @constructor
-   * @extends BasePermission
+   * @param {string} name
+   * @param {PageData} scope
    */
-  var PageDataPermission = function PageDataPermission() {
-
-  };
-
-  return PageDataPermission.extend('PageDataPermission', {},
-      BasePermission.prototype);
-});
+  constructor(name, scope) {
+    super(name || 'PageDataPermission', scope, false);
+  }
+};

@@ -38,7 +38,7 @@ module.exports = class BaseView extends AntHill {
   /**
    * Define update elements items
    * @memberOf BaseView
-   * @param [$item]
+   * @param $item
    * @param {string} [customId]
    */
   updateElementItems($item, customId) {

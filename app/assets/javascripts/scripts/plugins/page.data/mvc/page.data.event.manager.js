@@ -6,21 +6,29 @@
  * To change this template use File | Settings | File Templates.
  */
 
-defineP([
-  'modules/Event'
-], function definePageDataEventManager(BaseEvent) {
+/**
+ * @constant BaseEvent
+ * @type {BaseEvent}
+ */
+const BaseEvent = require('../../../core/lib/modules/Event.js');
+
+/**
+ * @class PageDataEventManager
+ * @extends BaseEvent
+ */
+module.exports = class PageDataEventManager extends BaseEvent {
 
   /**
-   * Define layout event manager
-   * @class PageDataEventManager
    * @constructor
-   * @extends BaseEvent
+   * @param {string} name
+   * @param {PageData} scope
    */
-  var PageDataEventManager = function PageDataEventManager() {
+  constructor(name, scope) {
+    super(name || 'PageDataEventManager', scope, false);
 
     /**
      * Define events
-     * @property PageDataEventManager
+     * @memberOf PageDataEventManager
      * @type {{}}
      */
     this.events = {};
@@ -29,12 +37,12 @@ defineP([
      * Define event list
      * @property PageDataEventManager
      * @type {{
-         *      updateTranslations: string,
-         *      loadModuleContent: string,
-         *      prepareActiveComponent: string,
-         *      storeItem: string,
-         *      setActiveContent: string
-         * }}
+     *  updateTranslations: string,
+     *  loadModuleContent: string,
+     *  prepareActiveComponent: string,
+     *  storeItem: string,
+     *  setActiveContent: string
+     * }}
      */
     this.eventList = {
       updateTranslations: 'update.translations',
@@ -44,8 +52,4 @@ defineP([
       setActiveContent: 'set.active.content'
     };
   };
-
-  return PageDataEventManager.extend(
-      'PageDataEventManager', {}, BaseEvent.prototype
-  );
-});
+};

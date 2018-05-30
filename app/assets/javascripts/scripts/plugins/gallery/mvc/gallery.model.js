@@ -14,7 +14,7 @@ const BaseModel = require('../../../core/lib/modules/Model.js');
 
 /**
  * @class GalleryModel
- * @extends GalleryWidgets
+ * @extends BaseModel
  * @type {module.GalleryModel}
  */
 module.exports = class GalleryModel extends BaseModel {

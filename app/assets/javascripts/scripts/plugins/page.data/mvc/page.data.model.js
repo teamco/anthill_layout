@@ -5,55 +5,61 @@
  * Time: 11:06 PM
  * To change this template use File | Settings | File Templates.
  */
-defineP([
-  'modules/Model'
-], function definePageDataModel(BaseModel) {
+
+/**
+ * @constant BaseModel
+ * @type {module.BaseModel}
+ */
+const BaseModel = require('../../../core/lib/modules/Model.js');
+
+/**
+ * @class PageDataModel
+ * @extends BaseModel
+ * @type {module.PageDataModel}
+ */
+module.exports = class PageDataModel extends BaseModel {
 
   /**
-   * Define PageData model
-   * @extends BaseModel
-   * @class PageDataModel
    * @constructor
+   * @param {string} name
+   * @param {PageData} scope
    */
-  var PageDataModel = function PageDataModel() {
+  constructor(name, scope) {
+    super(name || 'PageDataModel', scope, false);
 
     /**
      * Define data
-     * @memberOf PageDataModel
+     * @property PageDataModel
      * @type {{}}
      */
     this.data = {};
-  };
+  }
 
-  return PageDataModel.extend('PageDataModel', {
+  /**
+   * Get items
+   * @memberOf PageDataModel
+   * @param page
+   * @returns {*}
+   */
+  getPageData(page) {
+    return page.model.getItems();
+  }
 
-    /**
-     * Get items
-     * @memberOf PageDataModel
-     * @param page
-     * @returns {*}
-     */
-    getPageData: function getPageData(page) {
-      return page.model.getItems();
-    },
+  /**
+   * Collect items
+   * @memberOf PageDataModel
+   * @param item
+   */
+  collectItems(item) {
+    this.data[item.model.getUUID()] = item;
+  }
 
-    /**
-     * Collect items
-     * @memberOf PageDataModel
-     * @param item
-     */
-    collectItems: function collectItems(item) {
-      this.data[item.model.getUUID()] = item;
-    },
-
-    /**
-     * Get data
-     * @memberOf PageDataModel
-     * @returns {{}}
-     */
-    getCollectedItems: function getCollectedItems() {
-      return this.data;
-    }
-
-  }, BaseModel.prototype);
-});
+  /**
+   * Get data
+   * @memberOf PageDataModel
+   * @returns {{}}
+   */
+  getCollectedItems() {
+    return this.data;
+  }
+};

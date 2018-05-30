@@ -95,6 +95,7 @@ module.exports = class AntHill {
        */
       this.i18n = new i18n('en-us');
 
+      this.api = undefined;
       this.controller = undefined;
       this.model = undefined;
       this.eventManager = undefined;
@@ -104,7 +105,7 @@ module.exports = class AntHill {
     /**
      * Init utils.
      * @property AntHill
-     * @type {module.Base|{setBoolean}}
+     * @type {module.Base|{setBoolean, waitFor}}
      */
     this.utils = new Base();
   }

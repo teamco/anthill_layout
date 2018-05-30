@@ -37,9 +37,7 @@ defineP([
      * @memberOf MaximizeController
      */
     getModuleData: function getModuleData() {
-      return this.model.getMaximize(
-          this.getPage()
-      );
+      return this.model.getMaximize(this.getPage());
     },
 
     /**

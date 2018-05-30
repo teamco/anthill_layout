@@ -26,7 +26,7 @@ const Routes = require('../../../core/config/routes.js');
 /**
  * Define panel controller
  * @class GalleryController
- * @extends PluginController
+ * @extends {PluginController, Routes}
  */
 module.exports = class GalleryController extends aggregation(PluginController, Routes) {
 

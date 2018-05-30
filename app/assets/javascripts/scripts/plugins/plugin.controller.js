@@ -98,9 +98,8 @@ module.exports = class PluginController extends BaseController {
   }
 
   /**
-   * Get designtime panel
    * @memberOf PluginController
-   * @returns {Panel}
+   * @returns {module.Panel}
    */
   getDesignTimePanel() {
     return this.root().panels.designTime;
@@ -242,11 +241,7 @@ module.exports = class PluginController extends BaseController {
    * @param {function} [callback]
    */
   prepareActiveComponent(config, load, event, callback) {
-
-    this.observer.publish(
-        this.eventManager.eventList.setActiveContent,
-        config.uuid
-    );
+    this.observer.publish(this.eventManager.eventList.setActiveContent, config.uuid);
 
     /**
      * Define showModal
@@ -254,7 +249,7 @@ module.exports = class PluginController extends BaseController {
      */
     const showModal = this.view['show' + this.name + 'Modal'];
 
-    if (_.isFunction(showModal) && load) {
+    if (showModal && load) {
       showModal.bind(this.view)(config, load);
     }
 
@@ -270,7 +265,7 @@ module.exports = class PluginController extends BaseController {
       }
     }
 
-    if (_.isFunction(callback)) {
+    if (callback) {
       callback(event);
     }
   }

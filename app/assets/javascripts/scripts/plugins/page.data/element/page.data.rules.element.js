@@ -5,104 +5,90 @@
  * Time: 11:48 AM
  */
 
-defineP(
-    ['plugins/plugin.element'],
+/**
+ * @constant PluginElement
+ * @type {module.PluginElement}
+ */
+const PluginElement = require('../../plugin.element.js');
+
+/**
+ * @class PageDataRulesElement
+ * @extends PluginElement
+ */
+module.exports = class PageDataRulesElement extends PluginElement {
+
+  /**
+   * @param {PageDataView} view
+   * @param opts
+   * @constructor
+   */
+  constructor(view, opts) {
+    super('PageDataRulesElement', view, false);
+    this._config(view, opts, $('<li class="content" />')).build(opts);
 
     /**
-     * Define PageDataRulesElement
-     * @param {PluginElement} PluginElement
-     * @returns {*}
+     * Define title
+     * @property PageDataRulesElement
+     * @type {string}
      */
-    function definePageDataRulesElement(PluginElement) {
+    this.title = 'Show page content visual rules';
 
-      /**
-       * Define WorkspaceData AddPage Element
-       * @constructor
-       * @class PageDataRulesElement
-       * @extends Renderer
-       * @extends PluginElement
-       * @param {WorkspaceDataView} view
-       * @param opts
-       * @returns {PageDataRulesElement}
-       */
-      var PageDataRulesElement = function PageDataRulesElement(view, opts) {
+    /**
+     * Define description
+     * @property PageDataRulesElement
+     * @type {string}
+     */
+    this.description = 'Clicking a button will take you to the show page content rules';
 
-        this._config(view, opts, $('<li class="content" />')).build({
-          $container: opts.$container,
-          destroy: false
-        });
+    this.init();
+  }
 
-        /**
-         * Define title
-         * @memberOf PageDataRulesElement
-         * @type {string}
-         */
-        this.title = 'Show page content visual rules';
+  /**
+   * Define inner content
+   * @memberOf WorkspaceDataContentElement
+   */
+  getTemplate() {
+    $('<a class="page-rules" />').appendTo(this.$);
+  }
 
-        /**
-         * Define description
-         * @memberOf PageDataRulesElement
-         * @type {string}
-         */
-        this.description =
-            'Clicking a button will take you to the show page content rules';
+  /**
+   * Define Init
+   * @memberOf PageDataRulesElement
+   * @returns {PageDataRulesElement}
+   */
+  init() {
+    this.setTitle(this.title);
+    this.renderTooltip({
+      title: this.title,
+      description: this.description,
+      selector: this.$
+    });
 
-        return this.init();
-      };
+    this.getTemplate();
+  }
 
-      return PageDataRulesElement.extend(
-          'PageDataRulesElement', {
+  /**
+   * Render content rules wizard
+   * @memberOf PageDataRulesElement
+   * @param {Page} page
+   * @returns {*|jQuery|HTMLElement}
+   */
+  renderWizard(page) {
+    const uuid = this.base.lib.generator.UUID();
+    const $html = $('<div class="canvas-rules" />').attr({id: uuid});
 
-            /**
-             * Define inner content
-             * @memberOf WorkspaceDataContentElement
-             */
-            getTemplate: function getTemplate() {
-              $('<a class="page-rules" />').appendTo(this.$);
-            },
+    /**
+     * @constant GenerateRules
+     * @type {module.GenerateRules}
+     */
+    const GenerateRules = require('../../rules/page/page.rules.js');
 
-            /**
-             * Define Init
-             * @memberOf PageDataRulesElement
-             * @returns {PageDataRulesElement}
-             */
-            init: function init() {
+    /**
+     * @constant rules
+     * @type {module.GenerateRules}
+     */
+    const rules = new GenerateRules(uuid, page);
 
-              this.setTitle(this.title);
-              this.renderTooltip({
-                title: this.title,
-                description: this.description,
-                selector: this.$
-              });
-
-              this.getTemplate();
-
-              return this;
-            },
-
-            /**
-             * Render content rules wizard
-             * @memberOf PageDataRulesElement
-             * @param {Page} page
-             * @returns {*|jQuery|HTMLElement}
-             */
-            renderWizard: function renderWizard(page) {
-
-              var uuid = this.base.lib.generator.UUID();
-              var $html = $('<div class="canvas-rules" />').attr({id: uuid});
-
-              require(['lib/packages/go'], function() {
-                require(['plugins/rules/page/page.rules'],
-                    function(GenerateRules) {
-                      var rules = new GenerateRules(uuid, page);
-                    }
-                );
-              });
-
-              return $html;
-            }
-          },
-          PluginElement.prototype
-      );
-    }
-);
+    return $html;
+  }
+};
