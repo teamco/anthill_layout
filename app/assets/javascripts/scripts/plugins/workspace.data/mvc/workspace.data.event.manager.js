@@ -6,81 +6,84 @@
  * To change this template use File | Settings | File Templates.
  */
 
-defineP([
-  'modules/Event'
-], function defineWorkspaceDataEventManager(BaseEvent) {
+/**
+ * @constant BaseEvent
+ * @type {BaseEvent}
+ */
+const BaseEvent = require('../../../core/lib/modules/Event.js');
+
+/**
+ * @class WorkspaceDataEventManager
+ * @extends BaseEvent
+ */
+module.exports = class WorkspaceDataEventManager extends BaseEvent {
 
   /**
-   * Define WorkspaceData event manager
-   * @class WorkspaceDataEventManager
    * @constructor
-   * @extends BaseEvent
+   * @param {string} name
+   * @param {WorkspaceData} scope
    */
-  var WorkspaceDataEventManager = function WorkspaceDataEventManager() {
+  constructor(name, scope) {
+    super(name || 'WorkspaceDataEventManager', scope, false);
 
     /**
      * Define events
-     * @memberOf WorkspaceDataEventManager
+     * @property PageDataEventManager
      * @type {{}}
      */
     this.events = {};
-  };
-
-  return WorkspaceDataEventManager.extend('WorkspaceDataEventManager', {
 
     /**
      * Define event list
      * @memberOf WorkspaceDataEventManager
      * @type {{
-         *      updateTranslations: string,
-         *      loadModuleContent: string,
-         *      setActiveContent: string,
-         *      updatePagesOrder: string,
-         *      preparePreferences: string,
-         *      switchToActivePage: string
-         * }}
+     *  updateTranslations: string,
+     *  loadModuleContent: string,
+     *  setActiveContent: string,
+     *  updatePagesOrder: string,
+     *  preparePreferences: string,
+     *  switchToActivePage: string
+     * }}
      */
-    eventList: {
+    this.eventList = {
       updateTranslations: 'update.translations',
       loadModuleContent: 'load.module.content',
       setActiveContent: 'set.active.content',
       preparePreferences: 'prepare.preferences',
       updatePagesOrder: 'update.pages.order',
       switchToActivePage: 'switch.to.active.page'
-    },
+    };
+  }
+
+  /**
+   * Subscribe publish on
+   * @memberOf WorkspaceDataEventManager
+   * @param {Page} page
+   * @param {Function} [callback]
+   * @returns {{}}
+   */
+  subscribePublishOn(page, callback) {
 
     /**
-     * Subscribe publish on
-     * @memberOf WorkspaceDataEventManager
-     * @param {Page} page
-     * @param {Function} [callback]
-     * @returns {{}}
+     * Define event list
+     * @type {*}
      */
-    subscribePublishOn: function subscribePublishOn(page, callback) {
+    const pageEventList = page.eventManager.eventList;
 
-      /**
-       * Define event list
-       * @type {*}
-       */
-      var pageEventList = page.eventManager.eventList;
+    /**
+     * Define events
+     * @type {{scope: Page, events: {eventName: string}[], callback: function}}
+     */
+    const publish = {
+      scope: page,
+      events: [
+        {eventName: pageEventList.afterCreateItem},
+        {eventName: pageEventList.afterDestroyItem},
+        {eventName: pageEventList.afterDestroyItems}
+      ],
+      callback: callback
+    };
 
-      /**
-       * Define events
-       * @type {{scope: Page, events: {eventName: string}[], callback:
-       *     Function}}
-       */
-      var publish = {
-        scope: page,
-        events: [
-          {eventName: pageEventList.afterCreateItem},
-          {eventName: pageEventList.afterDestroyItem},
-          {eventName: pageEventList.afterDestroyItems}
-        ],
-        callback: callback
-      };
-
-      this.publishOn(publish);
-    }
-
-  }, BaseEvent.prototype);
-});
+    this.publishOn(publish);
+  }
+};

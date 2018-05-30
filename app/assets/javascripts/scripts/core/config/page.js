@@ -18,6 +18,7 @@ const AntHill = require('./anthill.js');
 /**
  * Define Page
  * @class Page
+ * @type {module.Page}
  * @extends AntHill
  */
 module.exports = class Page extends AntHill {

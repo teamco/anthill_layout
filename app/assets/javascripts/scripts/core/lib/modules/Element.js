@@ -1107,11 +1107,11 @@ module.exports = class BaseElement extends Renderer {
   /**
    * Locate element
    * @memberOf BaseElement
-   * @param {BaseElement} [$element]
+   * @param {module.BaseElement} [$element]
    * @param {Event} event
    * @returns {boolean}
    */
-  locate$locate$element(event, $element) {
+  locate$element(event, $element) {
 
     if (!$element) {
       $element = this;

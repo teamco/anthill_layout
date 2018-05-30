@@ -367,7 +367,7 @@ module.exports = class PluginController extends BaseController {
 
     /**
      * Get page
-     * @type {Page|PageData|Maximize}
+     * @type {module.Page}
      */
     const page = this.getPage();
 
@@ -376,11 +376,12 @@ module.exports = class PluginController extends BaseController {
      * @type {PageEventManager}
      */
     const pageEventManager = page.eventManager;
+    const scope = this.scope;
 
     pageEventManager.subscribe({
       event: {name: pageEventManager.eventList.afterDestroyItems},
-      destroyWidgetsCallback() {
-        this.scope.controller.refreshModuleContent(this.scope.containment.model.getPanelEntityResourceName());
+      callback() {
+        scope.controller.refreshModuleContent(scope.containment.model.getPanelEntityResourceName());
       }
     }, false);
   }
@@ -393,26 +394,21 @@ module.exports = class PluginController extends BaseController {
 
     /**
      * Get workspace
-     * @type {Workspace|PageData|Maximize}
+     * @type {module.Workspace}
      */
-    const workspace = this.getWorkspace(),
-        scope = this.scope;
+    const workspace = this.getWorkspace();
+    const scope = this.scope;
 
     /**
      * Get event manager
-     * @type {WorkspaceEventManager}
+     * @type {module.WorkspaceEventManager|{subscribe, eventList}}
      */
     const workspaceEventManager = workspace.eventManager;
 
     workspaceEventManager.subscribe({
-      event: {
-        eventName: workspaceEventManager.eventList.afterSwitchToPage
-      },
-      afterSwitchToPageCallback() {
-
-        scope.controller.refreshModuleContent(
-            scope.containment.model.getPanelEntityResourceName(scope)
-        );
+      event: {name: workspaceEventManager.eventList.afterSwitchToPage},
+      callback() {
+        scope.controller.refreshModuleContent(scope.containment.model.getPanelEntityResourceName(scope));
       }
     }, false);
   }

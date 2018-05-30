@@ -342,9 +342,7 @@ module.exports = class PanelController extends PluginController {
     }
 
     wsEventManager.subscribe({
-      event: {
-        name: wsEventManager.eventList.switchToPage
-      },
+      event: {name: wsEventManager.eventList.switchToPage},
       callback: this.controller.executeGenericEvent.bind(this)
     }, false);
   }

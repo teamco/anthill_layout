@@ -28,7 +28,7 @@ module.exports = class PageDataEventManager extends BaseEvent {
 
     /**
      * Define events
-     * @memberOf PageDataEventManager
+     * @property PageDataEventManager
      * @type {{}}
      */
     this.events = {};

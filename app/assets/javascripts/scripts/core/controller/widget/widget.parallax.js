@@ -68,7 +68,7 @@ defineP(function defineWidgetParallax() {
        */
       var eventUUID = root.eventManager.subscribe({
         event: {
-          eventName: eventName,
+          name: eventName,
           scope: this
         },
         callback: function _scrollWidgetCallback(event) {
