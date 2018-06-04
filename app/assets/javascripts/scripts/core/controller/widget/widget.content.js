@@ -297,7 +297,7 @@ module.exports = class WidgetContent {
      * @memberOf WidgetContent
      * @type {*}
      */
-    this.content = new Content(this, opts);
+    this.content = new Content(null, this, opts);
 
     this.observer.publish(this.eventManager.eventList.afterSetContent, opts);
   }

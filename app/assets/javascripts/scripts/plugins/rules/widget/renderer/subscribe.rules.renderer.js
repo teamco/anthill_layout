@@ -1,112 +1,94 @@
-defineP(function defineSubscribeRulesRenderer() {
+/**
+ * @type {{renderSubscribeRules(*=): boolean}}
+ */
+module.exports = {
 
-  return {
+  /**
+   * Render subscribe rules
+   * @param subscribe
+   */
+  renderSubscribeRules(subscribe) {
+    subscribe = subscribe || {};
 
     /**
-     * Render subscribe rules
-     * @memberOf BaseWidgetRules
-     * @param subscribe
+     * Get published rules
+     * @type {{}}
      */
-    renderSubscribeRules: function renderSubscribeRules(subscribe) {
+    const published = this.view.controller.getPublishedRules();
 
-      subscribe = this.base.define(subscribe, {}, true);
+    let empty = false,
+        render = false;
 
-      /**
-       * Get published rules
-       * @type {{}}
-       */
-      var published = this.view.controller.getPublishedRules();
+    if (!this.base.lib.hash.hashLength(published)) {
+      this.view.scope.logger.debug('No published rules', published);
+      return false;
+    }
 
-      var empty = false,
-          render = false;
+    /**
+     * Set $ul
+     * @type {*|jQuery}
+     */
+    const $ul = $('<ul />').addClass('subscribe-rules');
 
-      if (!this.base.lib.hash.hashLength(published)) {
-        this.view.scope.logger.debug('No published rules', published);
-        return false;
-      }
+    /**
+     * Define title
+     * @type {string}
+     */
+    const title = 'Subscribe events';
 
-      /**
-       * Set $ul
-       * @type {*|jQuery}
-       */
-      var $ul = $('<ul />').addClass('subscribe-rules');
+    for (let index in published) {
+      if (published.hasOwnProperty(index)) {
 
-      /**
-       * Define title
-       * @type {string}
-       */
-      var title = 'Subscribe events';
+        const $inner = $('<ul />'),
+            rulesList = published[index].rules || {},
+            checkedRulesList = subscribe[index] || {};
 
-      for (var index in published) {
-        if (published.hasOwnProperty(index)) {
+        empty = !Object.keys(rulesList).length;
 
-          var $inner = $('<ul />'),
-              rulesList = this.base.define(
-                  published[index].rules, {}, true
-              ),
-              checkedRulesList = this.base.define(
-                  subscribe[index], {}, true
-              );
+        for (let type in rulesList) {
+          if (rulesList.hasOwnProperty(type)) {
 
-          empty = !this.base.lib.hash.hashLength(rulesList);
+            const rules = rulesList[type],
+                checked = checkedRulesList[type] || [];
 
-          for (var type in rulesList) {
-            if (rulesList.hasOwnProperty(type)) {
+            for (let i = 0, l = rules.length; i < l; i++) {
 
-              var rules = rulesList[type],
-                  checked = checkedRulesList[type] || [];
+              const $checkbox = this.renderCheckbox({
+                name: [type, rules[i]].join(':'),
+                text: rules[i],
+                checked: $.inArray(rules[i], checked) !== -1,
+                disabled: false,
+                visible: true
+              });
 
-              for (var i = 0, l = rules.length; i < l; i++) {
-
-                var $checkbox = this.renderCheckbox({
-                  name: [type, rules[i]].join(':'),
-                  text: rules[i],
-                  checked: $.inArray(rules[i], checked) !== -1,
-                  disabled: false,
-                  visible: true
-                });
-
-                $checkbox.find('.input-group-addon').append(type);
-
-                $inner.append(
-                    $('<li />').append($checkbox)
-                );
-              }
+              $checkbox.find('.input-group-addon').append(type);
+              $inner.append($('<li />').append($checkbox));
             }
           }
+        }
 
-          if (!empty) {
+        if (!empty) {
+          render = true;
 
-            render = true;
-
-            $('<li />').append(
-                $('<fieldset />').append([
-                  $('<legend />').attr({'data-uuid': index}).html([
-                    '<span class="glyphicon glyphicon-chevron-up"></span>',
-                    published[index].type, ': ',
-                    index.replace(/-content/, '')
-                  ].join('')).on(
-                      'click.toggle',
-                      this.toggleFieldset.bind(this)
-                  ),
-                  $inner
-                ])
-            ).appendTo($ul);
-          }
+          $('<li />').append(
+              $('<fieldset />').append([
+                $('<legend />').attr({'data-uuid': index}).html([
+                  '<span class="glyphicon glyphicon-chevron-up"></span>',
+                  published[index].type, ': ',
+                  index.replace(/-content/, '')
+                ].join('')).on('click.toggle', this.toggleFieldset.bind(this)),
+                $inner
+              ])
+          ).appendTo($ul);
         }
       }
-
-      if (render) {
-        this.$.find('div.content-rules').append(
-            $('<fieldset />').append([
-              $('<legend />').text(title).on(
-                  'click.toggle',
-                  this.toggleFieldset.bind(this)
-              ).attr({title: title}),
-              $ul
-            ])
-        );
-      }
     }
-  };
-});
+
+    if (render) {
+      this.$.find('div.content-rules').append(
+          $('<fieldset />').append([
+            $('<legend />').text(title).on('click.toggle', this.toggleFieldset.bind(this)).attr({title: title}),
+            $ul]));
+    }
+  }
+};

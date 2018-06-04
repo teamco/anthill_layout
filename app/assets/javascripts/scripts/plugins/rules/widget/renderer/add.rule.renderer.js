@@ -1,74 +1,66 @@
-defineP(function defineAddRuleRenderer() {
+/**
+ * @type {{addRule(string, string, *=): boolean}}
+ */
+module.exports = {
 
-  return {
+  /**
+   * Add new rule
+   * @memberOf BaseWidgetRules
+   * @param {string} rule
+   * @param {string} type
+   * @param $container
+   * @returns {boolean}
+   */
+  addRule(rule, type, $container) {
 
     /**
-     * Add new rule
-     * @memberOf BaseWidgetRules
-     * @param {string} rule
-     * @param {string} type
-     * @param $container
-     * @returns {boolean}
+     * Get $ul
+     * @type {*|jQuery|HTMLElement|{length, append}}
      */
-    addRule: function addRule(rule, type, $container) {
+    let $ul = $('ul.publish-rules', $container);
+
+    if (!$ul.length) {
 
       /**
-       * Get $ul
-       * @type {*|jQuery|HTMLElement}
+       * Set $ul
+       * @type {*|jQuery}
        */
-      var $ul = $('ul.publish-rules', $container);
-
-      if (!$ul.length) {
-
-        /**
-         * Set $ul
-         * @type {*|jQuery}
-         */
-        $ul = $('<ul />').addClass('publish-rules');
-
-        /**
-         * Define title
-         * @type {string}
-         */
-        var title = 'Published events';
-
-        $container.find('div.content-rules').append(
-            $('<fieldset />').append([
-              $('<legend />').text(title).on(
-                  'click.toggle',
-                  this.toggleFieldset.bind(this)).attr({
-                title: title
-              }),
-              $ul
-            ])
-        );
-      }
-
-      if (!this.base.isDefined(rule)) {
-        this.view.scope.logger.warn('Select rule');
-        return false;
-      }
+      $ul = $('<ul />').addClass('publish-rules');
 
       /**
-       * Set value
+       * Define title
        * @type {string}
        */
-      var value = [type.toLowerCase(), rule].join(':');
+      const title = 'Published events';
 
-      if ($('li[value="' + value + '"]', $ul).length > 0) {
-        this.view.scope.logger.warn('Duplicate rule', value);
-        return false;
-      }
-
-      var $input = [
-        '<input value="', rule, '" disabled="disabled"',
-        ' type="text" class="form-control" placeholder="Rule">'
-      ].join('');
-
-      $ul.append(
-          $('<li />').attr({value: value}).
-              append(this.getTemplate(type).append($input))
+      $container.find('div.content-rules').append(
+          $('<fieldset />').append([
+            $('<legend />').text(title).on('click.toggle', this.toggleFieldset.bind(this)).attr({title: title}),
+            $ul
+          ])
       );
     }
-  };
-});
+
+    if (!rule) {
+      this.view.scope.logger.warn('Select rule');
+      return false;
+    }
+
+    /**
+     * Set value
+     * @type {string}
+     */
+    let value = [type.toLowerCase(), rule].join(':');
+
+    if ($('li[value="' + value + '"]', $ul).length) {
+      this.view.scope.logger.warn('Duplicate rule', value);
+      return false;
+    }
+
+    const $input = [
+      '<input value="', rule, '" disabled="disabled"',
+      ' type="text" class="form-control" placeholder="Rule">'].join('');
+
+    $ul.append($('<li />').attr({value: value}).append(this.getTemplate(type).append($input)));
+  }
+};

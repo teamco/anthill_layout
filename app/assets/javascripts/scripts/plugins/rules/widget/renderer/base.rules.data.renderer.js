@@ -1,28 +1,26 @@
-defineP(function defineBaseRulesDataRenderer() {
+/**
+ * @type {{renderBaseRulesData(*, *=, *=): void}}
+ */
+module.exports = {
 
-  return {
+  /**
+   * Render data
+   * @param data
+   * @param widgetRules
+   * @param contentRules
+   */
+  renderBaseRulesData(data, widgetRules, contentRules) {
 
     /**
-     * Render data
-     * @memberOf BaseWidgetRules
-     * @param data
-     * @param widgetRules
-     * @param contentRules
+     * Buttons collector
+     * @property BaseWidgetRules
+     * @type {{}}
      */
-    renderBaseRulesData: function renderBaseRulesData(data, widgetRules,
-        contentRules) {
+    this.$buttons = this.base.define(this.$buttons, {}, true);
 
-      /**
-       * Buttons collector
-       * @memberOf BaseWidgetRules
-       * @type {{}}
-       */
-      this.$buttons = this.base.define(this.$buttons, {}, true);
-
-      this.renderWidgetRules(widgetRules);
-      this.renderContentRules(contentRules);
-      this.$.append('<div class="content-rules" />');
-      this.renderSubscribeRules(data.subscribe);
-    }
-  };
-});
+    this.renderWidgetRules(widgetRules);
+    this.renderContentRules(contentRules);
+    this.$.append('<div class="content-rules" />');
+    this.renderSubscribeRules(data.subscribe);
+  }
+};

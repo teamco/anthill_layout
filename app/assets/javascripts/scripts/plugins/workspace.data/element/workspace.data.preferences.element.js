@@ -5,6 +5,18 @@
  * Time: 11:48 AM
  */
 
+/**
+ * Aggregation of base class and mixin classes.
+ * @type {(function(*, ...[*]): __Aggregate)|*|(function(): aggregate)}
+ */
+const aggregation = require('../../../core/lib/extends/aggregation.js');
+
+/**
+ * @constant PluginElement
+ * @type {module.PluginElement}
+ */
+const PluginElement = require('../../plugin.element.js');
+
 defineP([
   'plugins/plugin.element',
   'plugins/preferences/pages.preferences'

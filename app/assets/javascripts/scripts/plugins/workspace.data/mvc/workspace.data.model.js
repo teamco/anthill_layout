@@ -5,17 +5,26 @@
  * Time: 11:06 PM
  * To change this template use File | Settings | File Templates.
  */
-defineP([
-  'modules/Model'
-], function defineWorkspaceDataModel(BaseModel) {
+/**
+ * @constant BaseModel
+ * @type {module.BaseModel}
+ */
+const BaseModel = require('../../../core/lib/modules/Model.js');
+
+/**
+ * @class WorkspaceDataModel
+ * @extends BaseModel
+ * @type {module.WorkspaceDataModel}
+ */
+module.exports = class WorkspaceDataModel extends BaseModel {
 
   /**
-   * Define WorkspaceData model
-   * @class WorkspaceDataModel
    * @constructor
-   * @extends BaseModel
+   * @param {string} name
+   * @param {PageData} scope
    */
-  var WorkspaceDataModel = function WorkspaceDataModel() {
+  constructor(name, scope) {
+    super(name || 'WorkspaceDataModel', scope, false);
 
     /**
      * Define preferences
@@ -23,49 +32,38 @@ defineP([
      * @type {{}}
      */
     this.preferences = {};
-  };
+  }
 
-  return WorkspaceDataModel.extend('WorkspaceDataModel', {
+  /**
+   * Get data items
+   * @memberOf WorkspaceDataModel
+   */
+  getDataItems(workspace) {
+    const items = workspace.model.getItems(),
+        sorted = [];
 
-    /**
-     * Get data items
-     * @memberOf WorkspaceDataModel
-     */
-    getDataItems: function getDataItems(workspace) {
+    for (let index in items) {
+      if (items.hasOwnProperty(index)) {
 
-      var items = workspace.model.getItems(),
-          item, index, sorted = [],
-          sort;
+        /**
+         * Get page
+         * @type {Page}
+         */
+        const item = items[index];
+        const sort = item.model.getConfig('preferences').order;
 
-      for (index in items) {
-
-        if (items.hasOwnProperty(index)) {
-
-          /**
-           * Get page
-           * @type {Page}
-           */
-          item = items[index];
-          sort = item.model.getConfig('preferences').order;
-
-          if (typeof(sort) === 'number') {
-
-            if (sorted[sort]) {
-              this.scope.logger.warn('Unable to sort pages', sort);
-              return false;
-            }
-
-            sorted[sort] = item;
-
-          } else {
-
-            sorted.push(item);
+        if (typeof(sort) === 'number') {
+          if (sorted[sort]) {
+            this.scope.logger.warn('Unable to sort pages', sort);
+            return false;
           }
+          sorted[sort] = item;
+        } else {
+          sorted.push(item);
         }
       }
-
-      return sorted;
     }
 
-  }, BaseModel.prototype);
-});
+    return sorted;
+  }
+};

@@ -5,17 +5,19 @@
  * Time: 7:39 PM
  */
 
-defineP([
-  'plugins/rules/widget/rules',
-  'plugins/rules/widget/renderer/add.rule.renderer',
-  'plugins/rules/widget/renderer/base.rules.data.renderer',
-  'plugins/rules/widget/renderer/content.rules.renderer',
-  'plugins/rules/widget/renderer/subscribe.rules.renderer',
-  'plugins/rules/widget/renderer/widget.rules.renderer'
-], function defineBaseWidgetRules(BaseRules, addRuleRenderer,
-    baseRulesDataRenderer, contentRulesRenderer, subscribeRulesRenderer,
-    widgetRulesRenderer) {
+/**
+ * @constant BaseRules
+ * @type {module.BaseRules}
+ */
+const BaseRules = require('./rules.js');
 
+/**
+ * @class BaseWidgetRules
+ * @extends BaseRules
+ * @type {module.BaseWidgetRules}
+ */
+module.exports = class BaseWidgetRules extends BaseRules {
+  
   /**
    * Define rules
    * @class BaseWidgetRules
@@ -24,7 +26,8 @@ defineP([
    * @extends PluginElement
    * @constructor
    */
-  var BaseWidgetRules = function BaseWidgetRules() {
+  constructor() {
+    super();
 
     /**
      * Buttons collector
@@ -32,89 +35,78 @@ defineP([
      * @type {{}}
      */
     this.$buttons = {};
-  };
 
-  return BaseWidgetRules.extend('BaseWidgetRules', {
+    /**
+     * Define default widget rules
+     * @property BaseWidgetRules
+     * @type {*}
+     */
+    this.defaultRules = {};
+  }
 
-        /**
-         * Define default widget rules
-         * @memberOf BaseWidgetRules
-         * @type {*}
-         */
-        defaultRules: {},
+  /**
+   * Get rules template
+   * @memberOf BaseWidgetRules
+   * @param {string} text
+   * @private
+   */
+  getTemplate(text) {
+    return $([
+      '<div class="input-group">',
+      '<span class="input-group-addon">', text, '</span>',
+      '</div>'
+    ].join(''));
+  }
 
-        /**
-         * Get rules template
-         * @memberOf BaseWidgetRules
-         * @param {string} text
-         * @private
-         */
-        getTemplate: function getTemplate(text) {
-          return $([
-            '<div class="input-group">',
-            '<span class="input-group-addon">', text, '</span>',
-            '</div>'
-          ].join(''));
-        },
+  /**
+   * Transfer selected value
+   * @memberOf BaseWidgetRules
+   * @param {string} value
+   * @private
+   */
+  _transferValue(value) {
+    this.scope.$buttons[this.button].$.attr({value: value});
+  }
 
-        /**
-         * Transfer selected value
-         * @memberOf BaseWidgetRules
-         * @param {string} value
-         * @private
-         */
-        _transferValue: function _transferValue(value) {
-          this.scope.$buttons[this.button].$.attr({
-            value: value
-          });
-        },
+  /**
+   * Get rules list
+   * @memberOf BaseWidgetRules
+   * @param {array} rules
+   * @param {string} type
+   * @returns {array|boolean}
+   */
+  getRulesList(rules, type) {
 
-        /**
-         * Get rules list
-         * @memberOf BaseWidgetRules
-         * @param {array} rules
-         * @param {string} type
-         * @returns {array|boolean}
-         */
-        getRulesList: function getRulesList(rules, type) {
+    /**
+     * Define rules list
+     * @type {Array}
+     */
+    let rulesList = [];
 
-          /**
-           * Define rules list
-           * @type {Array}
-           */
-          var rulesList = [];
+    for (let key in rules) {
+      if (rules.hasOwnProperty(key)) {
+        rulesList.push({
+          type: 'text',
+          value: rules[key]
+        });
+      }
+    }
 
-          for (var key in rules) {
-            if (rules.hasOwnProperty(key)) {
-              rulesList.push({
-                type: 'text',
-                value: rules[key]
-              });
-            }
-          }
+    if (!rulesList.length) {
+      this.view.scope.logger.warn('No rules', type, rules);
+      return false;
+    }
 
-          if (!rulesList.length) {
-            this.view.scope.logger.warn('No rules', type, rules);
-            return false;
-          }
+    rulesList.sort(function sortByValue(a, b) {
+      return a.value.localeCompare(b.value);
+    });
 
-          rulesList.sort(function sortByValue(a, b) {
-            return a.value.localeCompare(b.value);
-          });
+    rulesList.unshift({
+      type: 'text',
+      value: ['Select rule (', rulesList.length - 1, ')'].join('')
+    });
 
-          rulesList.unshift({
-            type: 'text',
-            value: ['Select rule (', rulesList.length - 1, ')'].join('')
-          });
+    return rulesList;
+  }
+};
 
-          return rulesList;
-        }
-      },
-      BaseRules.prototype,
-      addRuleRenderer,
-      baseRulesDataRenderer,
-      contentRulesRenderer,
-      subscribeRulesRenderer,
-      widgetRulesRenderer
-  );
-});
