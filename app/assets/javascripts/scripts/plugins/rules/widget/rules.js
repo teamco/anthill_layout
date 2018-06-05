@@ -9,42 +9,42 @@
 const aggregation = require('../../../core/lib/extends/aggregation.js');
 
 /**
- * @constant addRuleRenderer
- * @type {{addRule}|*}
+ * @constant AddRule
+ * @type {module.AddRule}
  */
-const addRuleRenderer = require('./renderer/add.rule.renderer.js');
+const AddRule = require('./renderer/add.rule.renderer.js');
 
 /**
- * @constant baseRulesDataRenderer
- * @type {{renderBaseRulesData, (*, *=, *=): void}}
+ * @constant BaseRulesData
+ * @type {module.BaseRulesData}
  */
-const baseRulesDataRenderer = require('./renderer/base.rules.data.renderer.js');
+const BaseRulesData = require('./renderer/base.rules.data.renderer.js');
 
 /**
- * @constant contentRulesRenderer
- * @type {{renderContentRules, (*=): boolean}}
+ * @constant ContentRules
+ * @type {module.ContentRules}
  */
-const contentRulesRenderer = require('./renderer/content.rules.renderer.js');
+const ContentRules = require('./renderer/content.rules.renderer.js');
 
 /**
- * @constant subscribeRulesRenderer
- * @type {{renderSubscribeRules, (*=): boolean}}
+ * @constant SubscribeRules
+ * @type {module.SubscribeRules}
  */
-const subscribeRulesRenderer = require('./renderer/subscribe.rules.renderer.js');
+const SubscribeRules = require('./renderer/subscribe.rules.renderer.js');
 
 /**
- * @constant widgetRulesRenderer
- * @type {{renderWidgetRules, (*=): boolean}}
+ * @constant WidgetRules
+ * @type {module.WidgetRules}
  */
-const widgetRulesRenderer = require('./renderer/widget.rules.renderer.js');
+const WidgetRules = require('./renderer/widget.rules.renderer.js');
 
 /**
  * @class BaseRules
- * @extends {addRuleRenderer, baseRulesDataRenderer, contentRulesRenderer, subscribeRulesRenderer, widgetRulesRenderer}
+ * @extends {AddRule, BaseRulesData, ContentRules, SubscribeRules, WidgetRules}
  * @type {module.BaseRules}
  */
-module.exports = class BaseRules extends aggregation(addRuleRenderer, baseRulesDataRenderer, contentRulesRenderer,
-    subscribeRulesRenderer, widgetRulesRenderer) {
+module.exports = class BaseRules extends aggregation(AddRule, BaseRulesData, ContentRules, SubscribeRules,
+    WidgetRules) {
 
   /**
    * Open preferences

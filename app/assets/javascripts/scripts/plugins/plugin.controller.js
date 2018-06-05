@@ -20,10 +20,11 @@ module.exports = class PluginController extends BaseController {
 
   /**
    * @constructor
+   * @param {string} name
    * @param {PluginController} scope
    */
-  constructor(scope) {
-    super('PluginController', scope, false);
+  constructor(name, scope) {
+    super(name || 'PluginController', scope, false);
 
     /**
      * Get gallery
@@ -60,7 +61,7 @@ module.exports = class PluginController extends BaseController {
     /**
      * Define callback
      * @returns {boolean}
-     * @param {PluginController} plugin
+     * @param {module.PluginController} plugin
      * @private
      */
     function _successRenderedCallback(plugin) {
@@ -88,10 +89,11 @@ module.exports = class PluginController extends BaseController {
 
       /**
        * Get widget
-       * @type {Widget}
+       * @type {module.Widget}
        */
       const widget = this.controller.getContainment();
       widget.controller.prepareRenderingContent(this, _successRenderedCallback);
+
     } else {
       _successRenderedCallback(this);
     }
@@ -171,9 +173,9 @@ module.exports = class PluginController extends BaseController {
     //
     //   plugin.i18n.updateData(EnUs);
     //
-    //   if (_.isFunction(callback)) {
-    //     callback();
-    //   }
+    if (typeof callback === 'function') {
+      callback();
+    }
     // });
   }
 

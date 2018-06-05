@@ -1,10 +1,11 @@
 /**
- * @type {{renderContentRules(*=): boolean}}
+ * @class ContentRules
+ * @type {module.ContentRules}
  */
-module.exports = {
+module.exports = class ContentRules {
 
   /**
-   * Render content rules
+   * @memberOf ContentRules
    * @param contentRules
    */
   renderContentRules(contentRules) {

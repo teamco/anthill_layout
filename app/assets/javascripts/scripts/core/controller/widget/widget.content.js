@@ -194,7 +194,7 @@ module.exports = class WidgetContent {
   /**
    * Define prepare rendering content
    * @memberOf WidgetContent
-   * @param {PluginController} plugin
+   * @param {module.PluginController} plugin
    * @param {Function} callback
    */
   prepareRenderingContent(plugin, callback) {

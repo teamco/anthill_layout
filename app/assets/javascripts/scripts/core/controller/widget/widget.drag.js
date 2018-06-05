@@ -79,7 +79,7 @@ module.exports = class WidgetDrag {
    * @memberOf WidgetDrag
    */
   enable() {
-    if (this.scope.permission.eventTunnelFunctionCall(this.enable) && this.scope.controller.isDraggable()) {
+    if (this.scope.controller.isDraggable()) {
       this.$scope.draggable('enable');
     }
   }
@@ -89,7 +89,7 @@ module.exports = class WidgetDrag {
    * @memberOf WidgetDrag
    */
   disable() {
-    if (this.scope.permission.eventTunnelFunctionCall(this.disable) && this.scope.controller.isDraggable()) {
+    if (this.scope.controller.isDraggable()) {
       this.$scope.draggable('disable');
     }
   }
@@ -99,7 +99,7 @@ module.exports = class WidgetDrag {
    * @memberOf WidgetDrag
    */
   destroy() {
-    if (this.scope.permission.eventTunnelFunctionCall(this.destroy) && this.scope.controller.isDraggable()) {
+    if (this.scope.controller.isDraggable()) {
       this.$scope.draggable('destroy');
     }
   }

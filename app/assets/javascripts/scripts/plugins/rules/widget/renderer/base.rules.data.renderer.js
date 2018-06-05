@@ -1,10 +1,11 @@
 /**
- * @type {{renderBaseRulesData(*, *=, *=): void}}
+ * @class BaseRulesData
+ * @type {module.BaseRulesData}
  */
-module.exports = {
+module.exports = class BaseRulesData {
 
   /**
-   * Render data
+   * @memberOf BaseRulesData
    * @param data
    * @param widgetRules
    * @param contentRules

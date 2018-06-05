@@ -86,7 +86,7 @@ module.exports = class WidgetResize {
      */
     const scope = this.scope;
 
-    if (scope.permission.eventTunnelFunctionCall(this.enable) && scope.controller.isResizable()) {
+    if (scope.controller.isResizable()) {
       this.$scope.resizable('enable');
     }
   }
@@ -102,7 +102,7 @@ module.exports = class WidgetResize {
      */
     const scope = this.scope;
 
-    if (scope.permission.eventTunnelFunctionCall(this.disable) && scope.controller.isResizable()) {
+    if (scope.controller.isResizable()) {
       this.$scope.resizable('disable');
     }
   }
@@ -118,7 +118,7 @@ module.exports = class WidgetResize {
      */
     const scope = this.scope;
 
-    if (scope.permission.eventTunnelFunctionCall(this.destroy) && scope.controller.isResizable()) {
+    if (scope.controller.isResizable()) {
       this.$scope.resizable('destroy');
     }
   }
@@ -135,9 +135,7 @@ module.exports = class WidgetResize {
      * Define scope
      */
     const scope = this.scope;
-
-    scope.observer.publish(scope.eventManager.eventList.createResizable, [event.type, arguments]
-    );
+    scope.observer.publish(scope.eventManager.eventList.createResizable, [event.type, arguments]);
   }
 
   /**

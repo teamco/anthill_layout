@@ -21,8 +21,9 @@ module.exports = class WidgetContentPreferencesController {
      * Get widget
      * @type {Widget|*}
      */
-    const widget = this.controller.getContainment(),
-        globalPrefs = widget.model.getConfig('preferences'),
+    const widget = this.controller.getContainment();
+
+    const globalPrefs = widget.model.getConfig('preferences'),
         localPrefs = this.model.preferences || {};
 
     let index, value;

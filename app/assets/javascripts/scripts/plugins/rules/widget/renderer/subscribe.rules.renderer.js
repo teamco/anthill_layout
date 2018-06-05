@@ -1,9 +1,11 @@
 /**
- * @type {{renderSubscribeRules(*=): boolean}}
+ * @class SubscribeRules
+ * @type {module.SubscribeRules}
  */
-module.exports = {
+module.exports = class SubscribeRules {
 
   /**
+   * @memberOf SubscribeRules
    * Render subscribe rules
    * @param subscribe
    */

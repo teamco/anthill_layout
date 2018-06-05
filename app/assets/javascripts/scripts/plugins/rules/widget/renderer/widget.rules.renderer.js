@@ -1,10 +1,11 @@
 /**
- * @type {{renderWidgetRules(*=): boolean}}
+ * @class WidgetRules
+ * @type {module.WidgetRules}
  */
-module.exports = {
+module.exports = class WidgetRules {
 
   /**
-   * Render widget rules
+   * @memberOf WidgetRules
    * @param widgetRules
    */
   renderWidgetRules(widgetRules) {

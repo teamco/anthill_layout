@@ -1,11 +1,12 @@
 /**
- * @type {{addRule(string, string, *=): boolean}}
+ * @class AddRule
+ * @type {module.AddRule}
  */
-module.exports = {
+module.exports = class AddRule {
 
   /**
    * Add new rule
-   * @memberOf BaseWidgetRules
+   * @memberOf AddRule
    * @param {string} rule
    * @param {string} type
    * @param $container
