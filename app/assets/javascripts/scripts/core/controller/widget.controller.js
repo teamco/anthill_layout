@@ -50,11 +50,54 @@ const WidgetContent = require('./widget/widget.content.js');
 const WidgetExpand = require('./widget/widget.expand.js');
 
 /**
+ * @constant WidgetLayer
+ * @type {module.WidgetLayer}
+ */
+const WidgetLayer = require('./widget/widget.layer.js');
+
+/**
+ * @constant WidgetStretch
+ * @type {module.WidgetStretch}
+ */
+const WidgetStretch = require('./widget/widget.stretch.js');
+
+/**
+ * @constant WidgetZoom
+ * @type {module.WidgetZoom}
+ */
+const WidgetZoom = require('./widget/widget.zoom.js');
+
+/**
+ * @constant WidgetScroll
+ * @type {module.WidgetScroll}
+ */
+const WidgetScroll = require('./widget/widget.scroll.js');
+
+/**
+ * @constant WidgetStick
+ * @type {module.WidgetStick}
+ */
+const WidgetStick = require('./widget/widget.stick.js');
+
+/**
+ * @constant WidgetParallax
+ * @type {module.WidgetParallax}
+ */
+const WidgetParallax = require('./widget/widget.parallax.js');
+
+/**
+ * @constant WidgetMaximize
+ * @type {module.WidgetMaximize}
+ */
+const WidgetMaximize = require('./widget/widget.maximize.js');
+
+/**
  * @class WidgetController
  * @extends {BaseController}
  */
 module.exports = class WidgetController extends aggregation(BaseController, Interactions, WidgetInteractions,
-    WidgetContent, WidgetExpand) {
+    WidgetContent, WidgetExpand, WidgetLayer, WidgetMaximize, WidgetParallax, WidgetScroll, WidgetStick, WidgetStretch,
+    WidgetZoom) {
 
   /**
    * @constructor

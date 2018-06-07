@@ -5,10 +5,10 @@
  * Time: 5:40 PM
  */
 
-// 'controller/widget/widget.expand',
-// 'controller/widget/widget.scroll',
-// 'controller/widget/widget.comment'
-
+/**
+ * @class WidgetContent
+ * @type {module.WidgetContent}
+ */
 module.exports = class WidgetContent {
 
   /**

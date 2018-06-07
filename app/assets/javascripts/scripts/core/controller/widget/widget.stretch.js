@@ -2,54 +2,33 @@
  * Created by teamco on 7/3/14.
  */
 
-defineP(function defineWidgetStretch() {
+/**
+ * @class WidgetStretch
+ * @type {module.WidgetStretch}
+ */
+module.exports = class WidgetStretch {
 
   /**
-   * Define widget stretch
-   * @class WidgetStretch
-   * @constructor
+   * Stretch height
+   * @memberOf WidgetStretch
+   * @param {boolean} stretch
    */
-  var WidgetStretch = function WidgetStretch() {
-  };
+  stretchHeight(stretch) {
+    const $item = this.view.get$item();
+    stretch ?
+        $item.stretchHeight(this.controller.getContainment()) :
+        $item.restoreHeight();
+  }
 
-  return WidgetStretch.extend('WidgetStretch', {
-
-    /**
-     * Stretch height
-     * @memberOf WidgetStretch
-     * @param {boolean} stretch
-     */
-    stretchHeight: function stretchHeight(stretch) {
-
-      if (stretch) {
-
-        this.view.get$item().stretchHeight(
-            this.controller.getContainment()
-        );
-
-      } else {
-
-        this.view.get$item().restoreHeight();
-      }
-    },
-
-    /**
-     * Stretch width
-     * @memberOf WidgetStretch
-     * @param {boolean} stretch
-     */
-    stretchWidth: function stretchWidth(stretch) {
-
-      if (stretch) {
-
-        this.view.get$item().stretchWidth(
-            this.controller.getContainment()
-        );
-
-      } else {
-
-        this.view.get$item().restoreWidth();
-      }
-    }
-  });
-});
+  /**
+   * Stretch width
+   * @memberOf WidgetStretch
+   * @param {boolean} stretch
+   */
+  stretchWidth(stretch) {
+    const $item = this.view.get$item();
+    stretch ?
+        $item.stretchWidth(this.controller.getContainment()) :
+        $item.restoreWidth();
+  }
+};

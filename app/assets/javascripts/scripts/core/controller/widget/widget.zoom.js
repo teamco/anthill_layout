@@ -5,33 +5,26 @@
  * Time: 9:15 PM
  */
 
-defineP(function defineWidgetZoom() {
+/**
+ * @class WidgetZoom
+ * @type {module.WidgetZoom}
+ */
+module.exports = class WidgetZoom {
 
   /**
-   * Define WidgetZoom
-   * @class WidgetZoom
-   * @constructor
-   * @extends AntHill
+   * Define set zoom
+   * @memberOf WidgetZoom
    */
-  var WidgetZoom = function WidgetZoom() {
-  };
+  setZoomable() {
+    this.view.get$item().setZoom(true);
+  }
 
-  return WidgetZoom.extend('WidgetZoom', {
+  /**
+   * Define unset zoom
+   * @memberOf WidgetZoom
+   */
+  unsetZoomable() {
+    this.view.get$item().setZoom(false);
+  }
+};
 
-    /**
-     * Define set zoom
-     * @memberOf WidgetZoom
-     */
-    setZoomable: function setZoomable() {
-      this.view.get$item().setZoom(true);
-    },
-
-    /**
-     * Define unset zoom
-     * @memberOf WidgetZoom
-     */
-    unsetZoomable: function unsetZoomable() {
-      this.view.get$item().setZoom(false);
-    }
-  });
-});

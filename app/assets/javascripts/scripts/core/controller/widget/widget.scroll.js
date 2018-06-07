@@ -5,32 +5,24 @@
  * Time: 8:45 PM
  */
 
-defineP(function defineWidgetScroll() {
+/**
+ * @class WidgetScroll
+ * @type {module.WidgetScroll}
+ */
+module.exports = class WidgetScroll {
 
   /**
-   * Define WidgetScroll
-   * @class WidgetScroll
-   * @constructor
+   * Define scroll content
+   * @memberOf WidgetScroll
+   * @param {boolean} scrollable
    */
-  var WidgetScroll = function WidgetScroll() {
-  };
-
-  return WidgetScroll.extend('WidgetScroll', {
+  scrollContent(scrollable) {
 
     /**
-     * Define scroll content
-     * @memberOf WidgetScroll
-     * @param {boolean} scrollable
+     * Define css action
+     * @type {string}
      */
-    scrollContent: function scrollContent(scrollable) {
-
-      /**
-       * Define css action
-       * @type {string}
-       */
-      var action = (scrollable ? 'add' : 'remove') + 'Class';
-
-      this.view.get$item().$[action]('scroll');
-    }
-  });
-});
+    const action = (scrollable ? 'add' : 'remove') + 'Class';
+    this.view.get$item().$[action]('scroll');
+  }
+};

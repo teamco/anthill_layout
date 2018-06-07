@@ -2,84 +2,75 @@
  * Created by teamco on 7/8/14.
  */
 
-defineP(function defineWidgetLayer() {
+/**
+ * @class WidgetLayer
+ * @type {module.WidgetLayer}
+ */
+module.exports = class WidgetLayer {
 
   /**
-   * Define WidgetLayer
-   * @class WidgetLayer
-   * @constructor
+   * Set widget layer up
+   * @memberOf WidgetLayer
+   * @param {boolean} save
    */
-  var WidgetLayer = function WidgetLayer() {
-  };
+  setLayerUp(save) {
+    this.map.updateLayer(true, save);
+  }
 
-  return WidgetLayer.extend('WidgetLayer', {
+  /**
+   * Set widget layer down
+   * @memberOf WidgetLayer
+   * @param {boolean} save
+   */
+  setLayerDown(save) {
+    this.map.updateLayer(false, save);
+  }
 
-    /**
-     * Set widget layer up
-     * @memberOf WidgetLayer
-     * @param {boolean} save
-     */
-    setLayerUp: function setLayerUp(save) {
-      this.map.updateLayer(true, save);
-    },
-
-    /**
-     * Set widget layer down
-     * @memberOf WidgetLayer
-     * @param {boolean} save
-     */
-    setLayerDown: function setLayerDown(save) {
-      this.map.updateLayer(false, save);
-    },
+  /**
+   * Update layout z-index
+   * @memberOf WidgetLayer
+   * @param index
+   */
+  updateLayerIndex(index) {
 
     /**
-     * Update layout z-index
-     * @memberOf WidgetLayer
-     * @param index
+     * Define config html
+     * @type {{}}
      */
-    updateLayerIndex: function updateLayerIndex(index) {
+    const configHtml = this.model.getConfig('html');
 
-      /**
-       * Define config html
-       * @type {{}}
-       */
-      var configHtml = this.model.getConfig('html');
+    configHtml.zIndex = index;
+    this.mode.setConfig('html', configHtml);
+  }
 
-      configHtml.zIndex = index;
-      this.mode.setConfig('html', configHtml);
-    },
+  /**
+   * Restore layer index
+   * @memberOf WidgetLayer
+   */
+  restoreLayerIndex() {
 
     /**
-     * Restore layer index
-     * @memberOf WidgetLayer
+     * Get containment
+     * @type {module.Page|*}
      */
-    restoreLayerIndex: function restoreLayerIndex() {
+    const page = this.controller.getContainment();
 
-      /**
-       * Get containment
-       * @type {Page|*}
-       */
-      var containment = this.controller.getContainment();
+    page.controller.revertLayer();
+  }
 
-      containment.controller.revertLayer();
-    },
+  /**
+   * Set widget always on top
+   * @memberOf WidgetLayer
+   * @param {boolean} ontop
+   */
+  setAlwaysOnTop(ontop) {
+    this.view.get$item().moveOnTopLayer(ontop);
 
     /**
-     * Set widget always on top
-     * @memberOf WidgetLayer
-     * @param {boolean} ontop
+     * Get containment
+     * @type {module.Page}
      */
-    setAlwaysOnTop: function setAlwaysOnTop(ontop) {
-
-      this.view.get$item().moveOnTopLayer(ontop);
-
-      /**
-       * Get containment
-       * @type {Page|*}
-       */
-      var containment = this.controller.getContainment();
-
-      containment.controller.reorderLayers();
-    }
-  });
-});
+    const page = this.controller.getContainment();
+    page.controller.reorderLayers();
+  }
+};
