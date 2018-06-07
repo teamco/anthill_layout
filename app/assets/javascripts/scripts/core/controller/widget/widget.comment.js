@@ -5,54 +5,44 @@
  * Time: 8:48 PM
  */
 
-defineP(function defineWidgetComment() {
+/**
+ * @class WidgetComment
+ * @type {module.WidgetComment}
+ */
+module.exports = class WidgetComment {
 
   /**
-   * Define WidgetComment
-   * @class WidgetComment
-   * @extends AntHill
-   * @constructor
+   * Define commentable content
+   * @memberOf WidgetComment
+   * @param {boolean} commentable
    */
-  var WidgetComment = function WidgetComment() {
-  };
+  commentableContent(commentable) {
 
-  return WidgetComment.extend('WidgetComment', {
-
-    /**
-     * Define commentable content
-     * @memberOf WidgetComment
-     * @param {boolean} commentable
-     */
-    commentableContent: function commentableContent(commentable) {
-
-      if (_.isUndefined(commentable)) {
-        return false;
-      }
-
-      if (commentable) {
-
-        this.view.contentComments();
-
-      } else if (this.view.elements.$comments) {
-
-        this.view.elements.$comments.destroy();
-      }
-    },
-
-    /**
-     * Define post comment
-     * @memberOf WidgetComment
-     */
-    postComment: function postComment() {
-      debugger
-    },
-
-    /**
-     * Define cancel comment
-     * @memberOf WidgetComment
-     */
-    cancelComment: function cancelComment() {
-      debugger
+    if (!commentable) {
+      return false;
     }
-  });
-});
+
+    this.view.contentComments();
+
+    if (this.view.elements.$comments) {
+      this.view.elements.$comments.destroy();
+    }
+  }
+
+  /**
+   * Define post comment
+   * @memberOf WidgetComment
+   */
+  postComment() {
+    debugger;
+  }
+
+  /**
+   * Define cancel comment
+   * @memberOf WidgetComment
+   */
+  cancelComment() {
+    debugger;
+  }
+};
+  

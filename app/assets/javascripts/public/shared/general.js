@@ -4,6 +4,14 @@
       dataset = script.dataset || {};
 
   /**
+   * @method _load3rdParties
+   * @private
+   */
+  function _load3rdParties() {
+    require('../../scripts/core/lib/jquery/jquery.zoomooz.min.js');
+  }
+
+  /**
    * Define public loader
    * @returns {boolean}
    * @private
@@ -50,10 +58,8 @@
        */
       new Application({config: {...config, ...defaults} || {}});
     }
-
     _setup();
   }
-
   _loadPublic();
-
+  _load3rdParties();
 })();

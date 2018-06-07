@@ -6,13 +6,6 @@
  * To change this template use File | Settings | File Templates.
  */
 
-// 'controller/widget/widget.maximize',
-// 'controller/widget/widget.zoom',
-// 'controller/widget/widget.stretch',
-// 'controller/widget/widget.stick',
-// 'controller/widget/widget.layer',
-// 'controller/widget/widget.parallax'
-
 /**
  * Aggregation of base class and mixin classes.
  * @type {(function(*, ...[*]): __Aggregate)|*|(function(): aggregate)}
@@ -86,6 +79,12 @@ const WidgetStick = require('./widget/widget.stick.js');
 const WidgetParallax = require('./widget/widget.parallax.js');
 
 /**
+ * @constant WidgetComment
+ * @type {module.WidgetComment}
+ */
+const WidgetComment = require('./widget/widget.comment.js');
+
+/**
  * @constant WidgetMaximize
  * @type {module.WidgetMaximize}
  */
@@ -95,9 +94,9 @@ const WidgetMaximize = require('./widget/widget.maximize.js');
  * @class WidgetController
  * @extends {BaseController}
  */
-module.exports = class WidgetController extends aggregation(BaseController, Interactions, WidgetInteractions,
-    WidgetContent, WidgetExpand, WidgetLayer, WidgetMaximize, WidgetParallax, WidgetScroll, WidgetStick, WidgetStretch,
-    WidgetZoom) {
+module.exports = class WidgetController extends aggregation(BaseController, Interactions, WidgetComment,
+    WidgetInteractions, WidgetContent, WidgetExpand, WidgetLayer, WidgetMaximize, WidgetParallax, WidgetScroll,
+    WidgetStick, WidgetStretch, WidgetZoom) {
 
   /**
    * @constructor
