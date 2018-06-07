@@ -242,11 +242,7 @@ module.exports = class Observer {
     }
 
     scope.logger.timer(name, true);
-    args = args || [];
-
-    if (typeof args === 'string') {
-      args = [args];
-    }
+    args = Array.isArray(args) ? args : [args];
 
     /**
      * Get events

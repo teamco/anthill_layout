@@ -17,8 +17,8 @@ module Author
 
     include Base::AnthillModel
     has_many :author_site_versions, class_name: 'Author::SiteVersion', dependent: :destroy
-    has_many :author_site_storage_widgets, class_name: 'Author::SiteStorageWidget'
-    has_many :author_widgets, class_name: 'Author::Widget', through: :author_site_storage_widgets
+    has_many :author_site_storage_widgets, class_name: 'Author::SiteStorageWidget', dependent: :destroy
+    has_many :author_widgets, class_name: 'Author::Widget', through: :author_site_storage_widgets, dependent: :destroy
     belongs_to :author_site_type, class_name: 'Author::SiteType', foreign_key: :site_type_id
     has_many :vulnerability_storages, foreign_key: :site_storage_id, dependent: :destroy
     has_one :creator, source: :user, class_name: 'User', through: :author_item
@@ -144,10 +144,12 @@ module Author
 
     def update_widget_connections(widget_params, storage_params)
       widget_ids = widget_params[:author_site_storage_widget_ids]
-      widgets = Author::Widget.where(id: widget_ids.reject(&:blank?)) rescue []
-      connected_widgets = author_site_storage_widgets
-      connected_widgets.destroy_all unless connected_widgets.empty?
-      author_widgets << widgets unless widgets.blank?
+      widgets = Widget.where(id: widget_ids.reject(&:blank?)) rescue []
+      logger.info ">>> Connected widgets before: #{widgets.inspect}"
+      author_site_storage_widgets.destroy_all
+      widgets.each {|widget| author_site_storage_widgets.build(site_storage_id: id, widget_id: widget.id)}
+      save!
+      logger.info ">>> Connected widgets after: #{author_site_storage_widgets.inspect}"
       author_item.touch
       widget_params.delete :author_site_storage_widget_ids
       storage_params.delete :author_site_storage_widget_ids

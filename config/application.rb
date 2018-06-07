@@ -59,6 +59,9 @@ module Anthill
     # or as a string:
     config.browserify_rails.commandline_options = "-t browserify-shim --fast"
 
+    # enabling incremental in production
+    config.browserify_rails.use_browserifyinc = true
+
     # Define NODE_ENV to be used with envify
     #
     # defaults to Rails.env
