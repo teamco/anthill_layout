@@ -185,7 +185,12 @@ module.exports = () => {
          */
         const PageData = require('../../../../scripts/plugins/page.data/page.data.js');
 
-        //   'plugins/workspace.data/workspace.data',
+        /**
+         * @constant WorkspaceData
+         * @type {module.WorkspaceData|*}
+         */
+        const WorkspaceData = require('../../../../scripts/plugins/workspace.data/workspace.data.js');
+
         //   'plugins/widget.rules/widget.rules',
         //   'plugins/site.config/site.config'
 
@@ -204,7 +209,7 @@ module.exports = () => {
               }
             }
           },
-          modules: [Gallery, PageData/*, WidgetRules, WorkspaceData, SiteConfig*/],
+          modules: [Gallery, PageData, WorkspaceData/*, WidgetRules, SiteConfig*/],
           packages: [Bar]
         }, app);
 

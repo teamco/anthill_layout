@@ -68,7 +68,7 @@ module.exports = class TabsRenderer {
    * @memberOf TabsRenderer
    * @returns {*|jQuery}
    */
-  renderTabItemContent() {
+  renderTabItemsContent() {
     return $('<div class="tab-content" />');
   }
 
@@ -176,7 +176,7 @@ module.exports = class TabsRenderer {
 
     $left.off().on('click.left', e => element.scrollToTab(element.scrollTabsLeft($tabs), $tabs, 0, e));
 
-    $right.off().on('click.right', function _scrollRight(e) {
+    $right.off().on('click.right', function(e) {
       element.scrollToTab(element.scrollTabsRight($tabs, this), $tabs, 1, e);
     });
 
@@ -202,10 +202,7 @@ module.exports = class TabsRenderer {
 
     if (delta) {
       element.reAdjustTabs($pt);
-      $tabs.stop().animate(
-          {left: (side ? '-' : '+') + '=' + delta + 'px'},
-          () => element.reAdjustTabs($pt)
-      );
+      $tabs.stop().animate({left: (side ? '-' : '+') + '=' + delta + 'px'}, () => element.reAdjustTabs($pt));
     }
   }
 

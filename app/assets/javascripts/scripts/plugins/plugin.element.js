@@ -109,6 +109,15 @@ module.exports = class PluginElement extends BaseElement {
   }
 
   /**
+   * Get page $counter
+   * @memberOf PluginElement
+   * @returns {*|jQuery|HTMLElement}
+   */
+  get$counter() {
+    return $('.counter', this.$);
+  }
+
+  /**
    * Get footer html
    * @memberOf PluginElement
    * @returns {*|jQuery}

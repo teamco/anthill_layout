@@ -17,38 +17,27 @@ const aggregation = require('../../../core/lib/extends/aggregation.js');
  */
 const PluginElement = require('../../plugin.element.js');
 
-defineP([
-  'plugins/plugin.element',
-  'plugins/preferences/pages.preferences'
-], function defineWorkspaceDataPreferencesElement(PluginElement,
-    PagesPreferences) {
+/**
+ * @constant PagesPreferences
+ * @type {module.PagesPreferences}
+ */
+const PagesPreferences = require('../../preferences/pages.preferences.js');
+
+/**
+ * @class WorkspaceDataPreferencesElement
+ * @extends {PluginElement}
+ * @type {module.WorkspaceDataPreferencesElement}
+ */
+module.exports = class WorkspaceDataPreferencesElement extends aggregation(PluginElement, PagesPreferences) {
 
   /**
-   * Define WorkspaceData Preferences Element
-   * @param view
-   * @param opts
-   * @returns {WorkspaceDataPreferencesElement}
    * @constructor
-   * @class WorkspaceDataPreferencesElement
-   * @extends PluginElement
-   * @extends PagesPreferences
+   * @param {WorkspaceData} view
+   * @param opts
    */
-  var WorkspaceDataPreferencesElement = function WorkspaceDataPreferencesElement(view,
-      opts) {
-
-    this._config(view, opts, $('<ul />')).build({
-      $container: opts.$container,
-      destroy: true
-    });
-
+  constructor(view, opts) {
+    super('WorkspaceDataPreferencesElement', view, false);
+    this._config(view, opts, $('<ul />')).build(opts);
     this.renderData(opts);
-
-    return this;
-  };
-
-  return WorkspaceDataPreferencesElement.extend(
-      'WorkspaceDataPreferencesElement', {},
-      PluginElement.prototype,
-      PagesPreferences.prototype
-  );
-});
+  }
+};

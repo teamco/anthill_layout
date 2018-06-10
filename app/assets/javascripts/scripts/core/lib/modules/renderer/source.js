@@ -2,57 +2,47 @@
  * Created by teamco on 7/10/14.
  */
 
-defineP(function defineSourceRenderer() {
+/**
+ * @constant SourceRenderer
+ * @type {module.SourceRenderer}
+ */
+module.exports = class SourceRenderer {
 
   /**
-   * Define SourceRenderer
-   * @class SourceRenderer
-   * @extends AntHill
-   * @constructor
+   * Render source
+   * @memberOf SourceRenderer
+   * @param {string} src
+   * @param {string} type
+   * @param {{monitor, [visible]: boolean}} [opts]
+   * @returns {*|jQuery}
    */
-  var SourceRenderer = function SourceRenderer() {
-  };
+  renderSource(src, type, opts) {
 
-  return SourceRenderer.extend('SourceRenderer', {
+    require('../../packages/highlight/vkbeautify.js');
 
     /**
-     * Render source
-     * @memberOf SourceRenderer
-     * @extends AntHill
-     * @extends BaseElement
-     * @param {string} src
-     * @param {string} type
-     * @param {{monitor, [visible]: boolean}} [opts]
-     * @returns {*|jQuery}
+     * @constant hljs
+     * @type {globalObject.hljs}
      */
-    renderSource: function renderSource(src, type, opts) {
+    const hljs = require('../../../../../../../../node_modules/highlight.js/lib/index.js');
 
-      var $source = $(
-          '<div class="source"><pre><code class="hljs"></code></pre></div>'),
-          $code = $source.find('code');
+    const $source = $('<div class="source"><pre><code class="hljs"></code></pre></div>'),
+        $code = $source.find('code');
 
-      try {
-        requireP([
-          'lib/packages/highlight/vkbeautify',
-          'lib/packages/highlight/highlight.pack'
-        ], function () {
-          $code.text(vkbeautify.xml(src));
-          hljs.highlightBlock($code.get(0));
-        });
+    try {
+      $code.text(vkbeautify.xml(src));
+      hljs.initHighlightingOnLoad();
+      hljs.highlightBlock($code.get(0));
 
-        this.createLinkCss({
-          href: '/assets/scripts/core/lib/packages/highlight/styles/agate.css'
-        });
+      this.createLinkCss({href: '/assets/scripts/core/lib/packages/highlight/styles/agate.css'});
 
-        this.initMonitor($source, opts.monitor);
-        this.checkVisibility($source, opts.visible);
+      this.initMonitor($source, opts.monitor);
+      this.checkVisibility($source, opts.visible);
 
-      } catch (e) {
-
-        this.view.scope.logger.warn('Unable to render source', e);
-      }
-
-      return $source;
+    } catch (e) {
+      this.view.scope.logger.warn('Unable to render source', e);
     }
-  });
-});
+
+    return $source;
+  }
+};

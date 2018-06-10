@@ -1,15 +1,16 @@
 <%= javascript_include_tag "app.#{storage[:mode] == 'consumption' ? 'published' : 'draft'}.js" %>
 <%= javascript_include_tag(script_src,
-                           'defer': 'defer',
-                           'data-resource': storage[:key],
-                           'data-user': current_user.nil? ? 'guest' : current_user.email,
-                           'data-current': storage[:show],
-                           'data-published': storage[:published],
-                           'data-version': storage[:last],
-                           'data-activated': storage[:activated],
-                           'data-mode': storage[:mode],
-                           'data-environment': Rails.env,
-                           'data-deployed': storage[:deployed],
-                           'data-uuid': storage[:uuid],
-                           'id': 'require-init'
-    ) %>
+    'defer': 'defer',
+    'data-resource': storage[:key],
+    'data-user': current_user.nil? ? 'guest' : current_user.email,
+    'data-current': storage[:show],
+    'data-published': storage[:published],
+    'data-version': storage[:last],
+    'data-activated': storage[:activated],
+    'data-mode': storage[:mode],
+    'data-environment': Rails.env,
+    'data-deployed': storage[:deployed],
+    'data-uuid': storage[:uuid],
+    'id': 'require-init') %>
+
+<%= javascript_include_tag 'scripts/core/lib/jquery/jquery.zoomooz.min.js' %>

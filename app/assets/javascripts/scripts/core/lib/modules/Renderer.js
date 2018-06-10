@@ -57,10 +57,34 @@ const ComboBoxRenderer = require('./renderer/combo.box.js');
 const FilterRenderer = require('./renderer/filter.js');
 
 /**
+ * @constant EventLinkRenderer
+ * @type {module.EventLinkRenderer}
+ */
+const EventLinkRenderer = require('./renderer/event.link.js');
+
+/**
  * @constant LabelRenderer
  * @type {module.LabelRenderer}
  */
 const LabelRenderer = require('./renderer/label.js');
+
+/**
+ * @constant NumberFieldRenderer
+ * @type {module.NumberFieldRenderer}
+ */
+const NumberFieldRenderer = require('./renderer/number.field.js');
+
+/**
+ * @constant SourceRenderer
+ * @type {module.SourceRenderer}
+ */
+const SourceRenderer = require('./renderer/source.js');
+
+/**
+ * @constant TextAreaRenderer
+ * @type {module.TextAreaRenderer}
+ */
+const TextAreaRenderer = require('./renderer/text.area.js');
 
 /**
  * @constant TabsRenderer
@@ -73,6 +97,12 @@ const TabsRenderer = require('./renderer/tabs.js');
  * @type {module.TextFieldRenderer}
  */
 const TextFieldRenderer = require('./renderer/text.field.js');
+
+/**
+ * @constant TextEditorRenderer
+ * @type {module.TextEditorRenderer}
+ */
+const TextEditorRenderer = require('./renderer/text.editor.js');
 
 /**
  * @constant ToolTipRenderer
@@ -92,8 +122,9 @@ const ValidationRenderer = require('./renderer/validation.js');
  * @type {module.Renderer}
  * @extends AntHill
  */
-module.exports = class Renderer extends aggregation(AntHill, CheckBoxRenderer, ComboBoxRenderer, FilterRenderer,
-    LabelRenderer, TabsRenderer, TextFieldRenderer, ToolTipRenderer, ValidationRenderer) {
+module.exports = class Renderer extends aggregation(AntHill, CheckBoxRenderer, ComboBoxRenderer, EventLinkRenderer,
+    FilterRenderer, LabelRenderer, NumberFieldRenderer, SourceRenderer, TextAreaRenderer, TabsRenderer,
+    TextEditorRenderer, TextFieldRenderer, ToolTipRenderer, ValidationRenderer) {
 
   /**
    * @constructor

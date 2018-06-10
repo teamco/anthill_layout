@@ -5,25 +5,24 @@
  * Time: 11:02 AM
  */
 
-defineP([
-  'config/anthill',
-  'modules/MVC',
-  'plugins/workspace.data/mvc/workspace.data.controller',
-  'plugins/workspace.data/mvc/workspace.data.model',
-  'plugins/workspace.data/mvc/workspace.data.view',
-  'plugins/workspace.data/mvc/workspace.data.event.manager',
-  'plugins/workspace.data/mvc/workspace.data.permission'
-], function defineWorkspaceData(AntHill, MVC, Controller, Model, View,
-    EventManager, Permission) {
+/**
+ * @constant AntHill
+ * @type {module.AntHill}
+ */
+const AntHill = require('../../core/config/anthill.js');
+
+/**
+ * @class WorkspaceData
+ * @extends AntHill
+ */
+module.exports = class WorkspaceData extends AntHill {
 
   /**
-   * Define WorkspaceData
-   * @constructor
    * @param containment
-   * @class WorkspaceData
-   * @extends AntHill
+   * @constructor
    */
-  var WorkspaceData = function WorkspaceData(containment) {
+  constructor(containment) {
+    super('WorkspaceData', null, true);
 
     /**
      * Define containment
@@ -48,24 +47,19 @@ defineP([
     /**
      * Define defaults
      * @type {{
-     *      plugin: boolean,
-     *      getter: boolean,
-     *      switch: boolean,
-     *      html: {
-     *          style: string,
-     *          header: boolean,
-     *          footer: boolean,
-     *          floating: boolean,
-     *          padding: {
-     *              top: number,
-     *              right: number,
-     *              bottom: number,
-     *              left: number
-     *          }
-     *      }
+     *  plugin: boolean,
+     *  getter: boolean,
+     *  switch: boolean,
+     *  html: {
+     *    style: string,
+     *    header: boolean,
+     *    footer: boolean,
+     *    floating: boolean,
+     *    padding: {top: number, right: number, bottom: number, left: number}
+     *  }
      * }}
      */
-    var DEFAULTS = {
+    const DEFAULTS = {
       plugin: true,
       getter: true,
       switch: false,
@@ -84,32 +78,61 @@ defineP([
     };
 
     /**
+     * @constant WorkspaceController
+     * @type {module.WorkspaceController|*}
+     */
+    const WorkspaceController = require('./mvc/workspace.data.controller.js');
+
+    /**
+     * @constant WorkspaceModel
+     * @type {module.WorkspaceModel|*}
+     */
+    const WorkspaceModel = require('./mvc/workspace.data.model.js');
+
+    /**
+     * @constant WorkspaceView
+     * @type {module.WorkspaceView|*}
+     */
+    const WorkspaceView = require('./mvc/workspace.data.view.js');
+
+    /**
+     * @constant WorkspaceEventManager
+     * @type {module.WorkspaceEventManager|*}
+     */
+    const WorkspaceEventManager = require('./mvc/workspace.data.event.manager.js');
+
+    /**
+     * @constant WorkspacePermission
+     * @type {module.WorkspacePermission|*}
+     */
+    const WorkspacePermission = require('./mvc/workspace.data.permission.js');
+
+    /**
+     * @constant MVC
+     * @type {module.MVC}
+     */
+    const MVC = require('../../core/lib/modules/MVC.js');
+    
+    /**
      * Define MVC
      * @property WorkspaceData
-     * @type {MVCJs}
+     * @type {MVC}
      */
-    this.mvc = new MVC({
+    new MVC({
       scope: this,
       config: [DEFAULTS],
       components: [
-        Controller,
-        Model,
-        View,
-        EventManager,
-        Permission
+        WorkspaceController,
+        WorkspaceModel,
+        WorkspaceView,
+        WorkspaceEventManager,
+        WorkspacePermission
       ],
       render: true
     });
 
-    this.observer.publish(
-        this.eventManager.eventList.successCreated
-    );
-
-    this.observer.publish(
-        this.eventManager.eventList.updateTranslations,
-        ['plugins/workspace.data/translations/en-us']
-    );
-  };
-
-  return WorkspaceData.extend('WorkspaceData', {}, AntHill.prototype);
-});
+    this.observer.publish(this.eventManager.eventList.successCreated);
+    this.observer.publish(this.eventManager.eventList.updateTranslations,
+        ['plugins/workspace.data/translations/en-us']);
+  }
+};

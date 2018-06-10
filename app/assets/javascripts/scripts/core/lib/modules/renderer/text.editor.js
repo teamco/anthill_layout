@@ -1,146 +1,131 @@
 /**
  * Created by teamco on 7/10/14.
  */
-defineP(['tinymce'], function defineTextEditorRenderer(tinyMCE) {
+
+module.exports = class TextEditorRenderer {
 
   /**
-   * Define TextEditorRenderer
-   * @class TextEditorRenderer
-   * @extends LabelRenderer
-   * @extends TextAreaRenderer
-   * @extends ToolTipRenderer
-   * @extends BaseElement
-   * @constructor
+   * Render text area
+   * @memberOf TextEditorRenderer
+   * @param {{
+   *  text: string,
+   *  name: string,
+   *  [placeholder]: string,
+   *  [tooltip]: string,
+   *  value,
+   *  [monitor],
+   *  [visible],
+   *  [mask],
+   *  [disabled]: boolean,
+   *  [validate]: {mask: RegExp, blank: boolean}
+   * }} opts
+   * @returns {*}
    */
-  var TextEditorRenderer = function TextEditorRenderer() {
-  };
-
-  return TextEditorRenderer.extend('TextEditorRenderer', {
+  renderTextEditor(opts) {
 
     /**
-     * Render text area
-     * @memberOf TextEditorRenderer
-     * @param {{
-         *      text: string,
-         *      name: string,
-         *      [placeholder]: string,
-         *      [tooltip]: string,
-         *      value,
-         *      [monitor],
-         *      [visible],
-         *      [mask],
-         *      [disabled]: boolean,
-         *      [validate]: {mask: RegExp, blank: boolean}
-         * }} opts
-     * @returns {*}
+     * @constant tinyMCE
+     * @type {Bw}
      */
-    renderTextEditor: function renderTextEditor(opts) {
+    const tinyMCE = require('../../packages/tinymce/tinymce.min.js');
+
+    /**
+     * Get $element
+     * @type {TextEditorRenderer}
+     */
+    const scope = this;
+    let $input;
+
+    if (this.view.utils.setBoolean(opts.disabled, false)) {
 
       /**
-       * Create UUID
-       * @type {string}
+       * Define $input
+       * @type {*|jQuery}
        */
-      var uuid = this.base.lib.generator.UUID() + '-tinymce-content',
-          $input;
+      $input = this.renderTextArea({
+        name: opts.name,
+        text: opts.text,
+        value: opts.value,
+        disabled: opts.disabled,
+        visible: opts.visible
+      });
+
+    } else {
 
       /**
-       * Get $element
-       * @type {TextEditorRenderer}
+       * Define $input
+       * @type {*|jQuery}
        */
-      var scope = this;
-
-      if (this.base.defineBoolean(opts.disabled, false, true)) {
-
-        /**
-         * Define $input
-         * @type {*|jQuery}
-         */
-        $input = this.renderTextArea({
-          name: opts.name,
-          text: opts.text,
-          value: opts.value,
-          disabled: opts.disabled,
-          visible: opts.visible
-        });
-
-      } else {
-
-        /**
-         * Define $input
-         * @type {*|jQuery}
-         */
-        $input = this.renderTextArea({
-          name: opts.name,
-          text: opts.text,
-          style: 'editor',
-          value: opts.value,
-          placeholder: opts.placeholder,
-          disabled: opts.disabled,
-          visible: opts.visible,
-          monitor: {
-            events: ['focus.tinymce'],
-            callback: function _initTinyMCE() {
-              tinyMCE.init({
-                selector: '#' + this.id,
-                init_instance_callback: scope.afterInitTinyMce.bind(scope),
-                setup: function setup(editor) {
-                  scope.initMonitor(editor, opts.monitor);
-                }
-              });
-            }
+      $input = this.renderTextArea({
+        name: opts.name,
+        text: opts.text,
+        style: 'editor',
+        value: opts.value,
+        placeholder: opts.placeholder,
+        disabled: opts.disabled,
+        visible: opts.visible,
+        monitor: {
+          events: ['focus.tinymce'],
+          _initTinyMCE() {
+            tinyMCE.init({
+              selector: '#' + this.id,
+              init_instance_callback: scope.afterInitTinyMce.bind(scope),
+              setup(editor) {
+                scope.initMonitor(editor, opts.monitor);
+              }
+            });
           }
-        });
-      }
+        }
+      });
+    }
 
-      var $textarea = $input[1];
+    const $textarea = $input[1];
 
-      scope.checkVisibility($textarea, opts.visible);
-      scope.validateByMask($textarea, opts);
-
-      /**
-       * Get tooltip
-       * @type {string|*}
-       */
-      var tooltip = opts.tooltip;
-
-      if (tooltip) {
-        this.renderTooltip({
-          title: opts.text.humanize(),
-          description: opts.tooltip,
-          selector: $input
-        });
-      }
-
-      return $input;
-    },
+    scope.checkVisibility($textarea, opts.visible);
+    scope.validateByMask($textarea, opts);
 
     /**
-     * Define after init tinyMce callback
-     * @memberOf TextEditorRenderer
+     * Get tooltip
+     * @type {string|*}
      */
-    afterInitTinyMce: function afterInitTinyMce(editor) {
+    const tooltip = opts.tooltip;
 
-      this.view.scope.logger.debug('TinyMCE initialized', arguments);
-
-      /**
-       * Get referrer (opener)
-       * @type {*}
-       */
-      var referrer = this.view.scope.referrer;
-
-      /**
-       * Get $modal
-       * @type {ModalElement}
-       */
-      var $modal = referrer.view.elements.$modal;
-
-      if ($modal) {
-        this.setPosition({
-          $container: $modal.$container,
-          $item: $modal.$,
-          position: $modal.position
-        });
-      }
+    if (tooltip) {
+      this.renderTooltip({
+        title: opts.text.humanize(),
+        description: opts.tooltip,
+        selector: $input
+      });
     }
-  });
-});
+
+    return $input;
+  }
+
+  /**
+   * Define after init tinyMce callback
+   * @memberOf TextEditorRenderer
+   */
+  afterInitTinyMce(editor) {
+    this.view.scope.logger.debug('TinyMCE initialized', arguments);
+
+    /**
+     * Get referrer (opener)
+     * @type {*}
+     */
+    const referrer = this.view.scope.referrer;
+
+    /**
+     * Get $modal
+     * @type {ModalElement}
+     */
+    const $modal = referrer.view.elements.$modal;
+
+    if ($modal) {
+      this.setPosition({
+        $container: $modal.$container,
+        $item: $modal.$,
+        position: $modal.position
+      });
+    }
+  }
+};

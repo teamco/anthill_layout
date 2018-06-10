@@ -107,7 +107,7 @@ module.exports = class PageLayout {
 
     /**
      * Get layout
-     * @type {Layout}
+     * @type {module.Layout}
      */
     const layout = this.controller.getLayout();
     layout.observer.publish(layout.eventManager.eventList.onExpand, widget);
@@ -146,7 +146,7 @@ module.exports = class PageLayout {
   /**
    * Get Layout
    * @memberOf PageLayout
-   * @returns {Layout}
+   * @returns {module.Layout}
    */
   getLayout() {
     return this.scope.layout;

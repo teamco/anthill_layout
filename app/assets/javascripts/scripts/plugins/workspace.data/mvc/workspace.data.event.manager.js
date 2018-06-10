@@ -77,9 +77,9 @@ module.exports = class WorkspaceDataEventManager extends BaseEvent {
     const publish = {
       scope: page,
       events: [
-        {eventName: pageEventList.afterCreateItem},
-        {eventName: pageEventList.afterDestroyItem},
-        {eventName: pageEventList.afterDestroyItems}
+        {name: pageEventList.afterCreateItem},
+        {name: pageEventList.afterDestroyItem},
+        {name: pageEventList.afterDestroyItems}
       ],
       callback: callback
     };

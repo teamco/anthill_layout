@@ -42,7 +42,7 @@ module.exports = class BaseEvent extends AntHill {
    * @param data
    * @return {Array}
    */
-  static publishOn(data) {
+  publishOn(data) {
     let eventUUIDs = [];
 
     for (let i = 0, l = data.events.length; i < l; i++) {
@@ -53,16 +53,14 @@ module.exports = class BaseEvent extends AntHill {
        */
       const event = data.events[i];
 
-      eventUUIDs.push(
-          data.scope.eventManager.subscribe({
-            event: {
-              name: event.name,
-              params: event.params,
-              scope: event.scope
-            },
-            callback: data.callback
-          }, false)
-      );
+      eventUUIDs.push(data.scope.eventManager.subscribe({
+        event: {
+          name: event.name,
+          params: event.params,
+          scope: event.scope
+        },
+        callback: data.callback
+      }, false));
     }
 
     return eventUUIDs;
@@ -88,7 +86,6 @@ module.exports = class BaseEvent extends AntHill {
    * @param {string} name
    */
   detachEventUnSubscribe(scope, name) {
-
     if (!this.unSubscribe) {
       return false;
     }
@@ -149,14 +146,11 @@ module.exports = class BaseEvent extends AntHill {
     const items = root.model.getItems();
 
     for (let index in items) {
-
       if (items.hasOwnProperty(index)) {
-
         const item = items[index];
 
         // Recursive search
         const search = item.eventManager.findItemByEventUUID(item, uuid);
-
         if (search) {
           return item;
         }
@@ -184,7 +178,7 @@ module.exports = class BaseEvent extends AntHill {
         observer = scope.observer,
         events = this.events;
 
-    opts = opts||{};
+    opts = opts || {};
 
     if (scope.utils._.isEmpty(opts)) {
       this.logger.warn('Empty opts', opts);

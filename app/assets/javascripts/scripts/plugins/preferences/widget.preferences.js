@@ -9,7 +9,7 @@
  * @constant BasePreferencesElement
  * @type {module.BasePreferencesElement}
  */
-const BasePreferencesElement = require('../preferences/preferences.js');
+const BasePreferencesElement = require('./preferences.js');
 
 /**
  * @class WidgetPreferences
@@ -17,8 +17,12 @@ const BasePreferencesElement = require('../preferences/preferences.js');
  * @type {module.WidgetPreferences}
  */
 module.exports = class WidgetPreferences extends BasePreferencesElement {
+
+  /**
+   * @constructor
+   */
   constructor() {
-    super();
+    super('WidgetPreferences');
   }
 
   /**
@@ -48,12 +52,17 @@ module.exports = class WidgetPreferences extends BasePreferencesElement {
          */
         const text = index.replace(title.replace(/ /g, '').toLowerCase(), '').toPoint().humanize();
 
+        /**
+         * @constant nodeRenderer
+         */
+        const nodeRenderer = this.view.pageDataView.getNodeRenderer(node, text, index);
+
         nodes.push($('<div />').addClass([
           title.humanize().toClassName() + '-prefs',
           node.type,
           node.visible ? '' : 'hidden',
           node.separator ? 'separator' : ''
-        ].join(' ')).append(this.getNodeRenderer(node, text, index)));
+        ].join(' ')).append(nodeRenderer));
       }
     }
 
@@ -108,7 +117,7 @@ module.exports = class WidgetPreferences extends BasePreferencesElement {
 
     /**
      * Get widget
-     * @type {Widget}
+     * @type {module.Widget}
      */
     const widget = scope.controller.getContainment();
 
@@ -185,7 +194,7 @@ module.exports = class WidgetPreferences extends BasePreferencesElement {
   /**
    * Render widget interactions
    * @memberOf WidgetPreferences
-   * @param {Widget} widget
+   * @param {module.Widget} widget
    * @returns {*}
    */
   renderWidgetInteractions(widget) {

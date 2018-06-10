@@ -75,15 +75,6 @@ defineP([
     },
 
     /**
-     * Get page $counter
-     * @memberOf SiteConfigContentElement
-     * @returns {*|jQuery|HTMLElement}
-     */
-    get$counter: function get$counter() {
-      return $('.counter', this.$);
-    },
-
-    /**
      * Define attributes
      * @memberOf SiteConfigContentElement
      * @param data

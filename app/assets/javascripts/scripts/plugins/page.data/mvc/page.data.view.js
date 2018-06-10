@@ -225,7 +225,7 @@ module.exports = class PageDataView extends aggregation(BaseView, BasePreference
      * Define $html
      * @type {PluginElement}
      */
-    const $html = content.view.renderPreferences();
+    const $html = content.view.renderPreferences(this);
 
     this.openPreferences({
       config: config,

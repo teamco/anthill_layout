@@ -512,15 +512,25 @@ module.exports = class WidgetElement extends BaseElement {
      */
     const $element = this;
 
+    /**
+     * @constant domElement
+     */
+    const domElement = $element.$;
+
+    if (!domElement.zoomTo) {
+      this.view.scope.logger.warn('Plugin: jquery.zoomooz.min.js, should be initialized', zoomable);
+      return false;
+    }
+
     if (zoomable) {
-      $element.$.on('dblclick', e => {
+      domElement.on('dblclick', e => {
         e.stopPropagation();
-        if ($element.$.hasClass('zoomTarget')) {
+        if (domElement.hasClass('zoomTarget')) {
           $element.unsetZoom();
           return false;
         }
 
-        $element.$.addClass('zoomTarget').zoomTo({
+        domElement.addClass('zoomTarget').zoomTo({
           targetsize: 0.75,
           closeclick: true,
           duration: 600
@@ -538,11 +548,22 @@ module.exports = class WidgetElement extends BaseElement {
    */
   unsetZoom(force) {
 
+    /**
+     * @constant body
+     * @type {*|jQuery|HTMLElement}
+     */
+    const body = $('body');
+
+    if (!body.zoomTo) {
+      this.view.scope.logger.warn('Plugin: jquery.zoomooz.min.js, should be initialized', force);
+      return false;
+    }
+
     if (force) {
       this.$.off('dblclick.zoom');
     }
 
-    $('body').zoomTo({targetsize: 1.0});
+    body.zoomTo({targetsize: 1.0});
     this.$.removeClass('zoomTarget');
   }
 

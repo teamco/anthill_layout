@@ -75,7 +75,7 @@ module.exports = class WorkspaceDataView extends aggregation(BaseView, BasePrefe
   renderContent(data) {
     this.cleanElementItems();
     this.renderCreatePage();
-    this.renderFilter(this.updateFooterContent.bind(this));
+    this.renderFilterElement(this.updateFooterContent.bind(this));
 
     /**
      * Get current page
@@ -268,8 +268,14 @@ module.exports = class WorkspaceDataView extends aggregation(BaseView, BasePrefe
   renderPreferences(page) {
 
     /**
+     * @constant WorkspaceDataPreferencesElement
+     * @type {module.WorkspaceDataPreferencesElement|*}
+     */
+    const WorkspaceDataPreferencesElement = require('../element/workspace.data.preferences.element.js');
+
+    /**
      * Define WorkspaceData Preferences Element
-     * @type {WorkspaceDataPreferencesElement}
+     * @type {module.WorkspaceDataPreferencesElement}
      */
     this.elements.$preferences = new WorkspaceDataPreferencesElement(this, {
       data: page.model.getConfig('preferences'),
@@ -284,6 +290,12 @@ module.exports = class WorkspaceDataView extends aggregation(BaseView, BasePrefe
    * @memberOf WorkspaceDataView
    */
   render() {
-    this.scope.observer.publish(this.scope.eventManager.eventList.successRendered, this.renderWorkspaceData.bind(this));
+
+    /**
+     * @constant scope
+     * @type {module.WorkspaceData}
+     */
+    const scope = this.scope;
+    scope.observer.publish(scope.eventManager.eventList.successRendered, this.renderWorkspaceData.bind(this));
   }
 };
