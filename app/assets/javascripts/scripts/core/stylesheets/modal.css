@@ -15,7 +15,7 @@ body.modal-open {
 .modal .modal-body {
     overflow-x: hidden;
     overflow-y: auto;
-    max-height: 500px;
+    max-height: 80%;
     min-height: 100px;
 }
 
@@ -29,12 +29,13 @@ body.modal-open {
     padding-right: 30px;
 }
 
-.modal-dialog,
-.modal-dialog .modal-header {
+.modal-dialog {
+    width: 900px !important;
     margin: 0 !important;
 }
 
 .modal-dialog .modal-header {
+    margin: 0 !important;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
 }

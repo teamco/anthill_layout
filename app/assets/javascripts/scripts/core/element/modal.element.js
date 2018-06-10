@@ -74,35 +74,35 @@ module.exports = class ModalElement extends BaseElement {
 
     /**
      * Set modal title
-     * @memberOf ModalElement
+     * @property ModalElement
      * @type {string|*}
      */
     this.title = opts.title;
 
     /**
      * Set modal type ['danger', 'warning', 'success', 'info']
-     * @memberOf ModalElement
+     * @property ModalElement
      * @type {string|*}
      */
     this.type = opts.type;
 
     /**
      * Set modal html
-     * @memberOf ModalElement
+     * @property ModalElement
      * @type {string|*}
      */
     this.html = opts.html;
 
     /**
      * Set modal text
-     * @memberOf ModalElement
+     * @property ModalElement
      * @type {string|*}
      */
     this.text = opts.text;
 
     /**
      * Set modal item dependency (called from)
-     * @memberOf ModalElement
+     * @property ModalElement
      */
     this.items = opts.items;
 
@@ -115,21 +115,21 @@ module.exports = class ModalElement extends BaseElement {
 
     /**
      * Set modal css
-     * @memberOf ModalElement
+     * @property ModalElement
      * @type {$modal.css}
      */
     this.css = opts.css || {};
 
     /**
      * Set hover opacity
-     * @memberOf ModalElement
+     * @property ModalElement
      * @type {*}
      */
     this.hover = view.utils.setBoolean(opts.hover, true);
 
     /**
      * Set modal parent container
-     * @memberOf ModalElement
+     * @property ModalElement
      * @type {*|jQuery|HTMLElement}
      */
     this.$container = opts.$container || $defaultContainer;
@@ -139,56 +139,56 @@ module.exports = class ModalElement extends BaseElement {
      *  ['tl' 'tc' 'tr']
      *  ['cl' 'cc' 'cr']
      *  ['bl' 'bc' 'br']
-     * @memberOf ModalElement
+     * @property ModalElement
      * @type {string}
      */
     this.position = opts.position || 'cc';
 
     /**
      * Adopt position on resize
-     * @memberOf ModalElement
+     * @property ModalElement
      * @type {boolean}
      */
     this.adoptOnResize = view.utils.setBoolean(opts.adoptOnResize, true);
 
     /**
      * Set modal is draggable condition
-     * @memberOf ModalElement
+     * @property ModalElement
      * @type {*}
      */
     this.draggable = view.utils.setBoolean(opts.draggable, true);
 
     /**
      * Set close X button
-     * @memberOf ModalElement
+     * @property ModalElement
      * @type {*}
      */
     this.closeX = view.utils.setBoolean(opts.closeX, true);
 
     /**
      * Set cover config
-     * @memberOf ModalElement
+     * @property ModalElement
      * @type {*}
      */
     this.cover = view.utils.setBoolean(opts.cover, true);
 
     /**
      * Set close modal on click cover
-     * @memberOf ModalElement
+     * @property ModalElement
      * @type {*}
      */
     this.autoclose = view.utils.setBoolean(opts.autoclose, false);
 
     /**
      * Set cover opacity
-     * @memberOf ModalElement
+     * @property ModalElement
      * @type {Number|*}
      */
     this.coverOpacity = opts.coverOpacity;
 
     /**
      * Set buttons config
-     * @memberOf ModalElement
+     * @property ModalElement
      * @type {*|{}}
      */
     this.buttons = opts.buttons || {};
@@ -249,9 +249,7 @@ module.exports = class ModalElement extends BaseElement {
     this.bindTabsScroll(this.$);
 
     if (this.draggable) {
-
       if (typeof this.$.draggable !== 'function') {
-
         if (view.controller.isConsumptionMode()) {
           return false;
         }
@@ -283,7 +281,6 @@ module.exports = class ModalElement extends BaseElement {
    * @memberOf ModalElement
    */
   adoptPositionOnResize() {
-
     if (this.adoptOnResize) {
 
       /**
@@ -407,7 +404,7 @@ module.exports = class ModalElement extends BaseElement {
     this.unsetButtons();
     this.destroy();
 
-    if (this.view.utils.setBoolean(backdrop, true)) {
+    if (this.utils.setBoolean(backdrop, true)) {
       $('body').removeClass('modal-open');
       this.removeBackdrop();
     }
@@ -418,7 +415,10 @@ module.exports = class ModalElement extends BaseElement {
    * @memberOf ModalElement
    */
   removeBackdrop() {
-    $('.modal-backdrop').remove();
+    const backdrops = document.querySelectorAll('.modal-backdrop');
+    if (backdrops.length) {
+      backdrops[backdrops.length - 1].remove();
+    }
   }
 
   /**
@@ -451,7 +451,6 @@ module.exports = class ModalElement extends BaseElement {
     const editorInstance = window.tinymce;
 
     if (editorInstance) {
-
       $inputs.filter('.editor').each(function() {
 
         /**
