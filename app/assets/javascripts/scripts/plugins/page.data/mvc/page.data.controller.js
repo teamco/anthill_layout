@@ -53,7 +53,7 @@ module.exports = class PageDataController extends aggregation(PluginController, 
    * @memberOf PageDataController
    */
   getModuleData() {
-    return this.model.getPageData(this.getPage());
+    return this.model.getPageItems(this.getPage());
   }
 
   /**

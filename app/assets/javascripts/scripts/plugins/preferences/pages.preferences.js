@@ -112,35 +112,60 @@ module.exports = class PagesPreferences extends BasePreferencesElement {
          * @type {string}
          */
         const className = 'page-prefs' + (isCheckBox ? ' checkbox' : '');
+        const nodeRenderer = this.view.getNodeRenderer(opts.data[index], index.toPoint().humanize(), index);
 
-        nodes.push($('<li />').append(this.getNodeRenderer(opts.data[index], index.toPoint().humanize(), index)).
-            addClass(className));
+        nodes.push($('<li />').append(nodeRenderer).addClass(className));
       }
     }
 
     const $tabs = this.renderTabs(),
         $container = this.renderTabItemsContent();
 
-    let text = 'Meta Data';
-
     this.$.append($tabs, $container);
 
+    this.renderMetaData($tabs, $container, nodes);
+    this.renderLayout($tabs, $container, opts.page);
+    this.renderWidgets($tabs, $container, opts.page);
+  }
+
+  /**
+   * @memberOf PagesPreferences
+   * @param $tabs
+   * @param $container
+   * @param nodes
+   */
+  renderMetaData($tabs, $container, nodes) {
     this.addTabItem($tabs, {
       uuid: 'meta_data',
-      text: text,
+      text: 'Meta Data',
       $container: $container,
       content: $('<ul class="default" />').append(nodes)
     }, true);
+  }
 
-    text = 'Layout';
+  /**
+   * @memberOf PagesPreferences
+   * @param $tabs
+   * @param $container
+   * @param page
+   */
+  renderLayout($tabs, $container, page) {
     this.addTabItem($tabs, {
       uuid: 'layout',
-      text: text,
+      text: 'Layout',
       $container: $container,
-      content: this.renderLayoutPrefs(opts.page)
+      content: this.renderLayoutPrefs(page)
     });
+  }
 
-    const node = this.renderWidgetsPrefs(opts.page);
+  /**
+   * @memberOf PagesPreferences
+   * @param $tabs
+   * @param $container
+   * @param page
+   */
+  renderWidgets($tabs, $container, page) {
+    const node = this.renderWidgetsPrefs(page);
     this.addTabItem($tabs, {
       uuid: 'widgets',
       text: node[1],
@@ -530,9 +555,9 @@ module.exports = class PagesPreferences extends BasePreferencesElement {
 
     /**
      * Define page data
-     * @type {*|PageData}
+     * @type {*|module.PageData}
      */
-    const pageData = panel.controller.getPageData();
+    const pageData = panel.controller.getModuleByName('page-data');
 
     /**
      * Get scope

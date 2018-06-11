@@ -41,7 +41,7 @@ module.exports = class PageDataModel extends BaseModel {
    * @param page
    * @returns {*}
    */
-  getPageData(page) {
+  getPageItems(page) {
     return page.model.getItems();
   }
 

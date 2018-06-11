@@ -55,7 +55,7 @@ module.exports = class WidgetPreferences extends BasePreferencesElement {
         /**
          * @constant nodeRenderer
          */
-        const nodeRenderer = this.view.pageDataView.getNodeRenderer(node, text, index);
+        const nodeRenderer = this.view.dataView.getNodeRenderer(node, text, index);
 
         nodes.push($('<div />').addClass([
           title.humanize().toClassName() + '-prefs',

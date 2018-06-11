@@ -29,8 +29,10 @@ body.modal-open {
     padding-right: 30px;
 }
 
-.modal-dialog {
-    width: 900px !important;
+.anthill .modal-dialog {
+    width: 900px;
+    max-width: 900px;
+    min-width: 600px;
     margin: 0 !important;
 }
 
