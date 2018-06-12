@@ -11,17 +11,16 @@
 
 page widget {
     display: block;
-    position: absolute;
+    position: absolute !important;
     cursor: move;
     border: none;
     overflow: hidden;
     padding: 0;
     border-radius: 0;
     margin: 0;
-    -webkit-backface-visibility: hidden;
-    -webkit-transform-style: preserve-3d;
-    -webkit-perspective: 1000;
-    -webkit-transform: translateZ(0)
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
 }
 
 .development page widget,

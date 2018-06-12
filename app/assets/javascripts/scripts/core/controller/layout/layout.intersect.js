@@ -69,7 +69,7 @@ module.exports = class Intersect {
      * Define local instance
      * @type {boolean}
      */
-    const isOverlappedH = this._overlappedCore(src, target, 'column', 'relRight');
+    const isOverlappedH = this._isOverlappedCore(src, target, 'column', 'relRight');
     this.layout.logger.debug('Overlap H', src, target, isOverlappedH);
     return isOverlappedH;
   }
@@ -88,7 +88,7 @@ module.exports = class Intersect {
      * Define local instance
      * @type {boolean}
      */
-    const isOverlappedV = this._overlappedCore(src, target, 'row', 'relBottom');
+    const isOverlappedV = this._isOverlappedCore(src, target, 'row', 'relBottom');
     this.layout.logger.debug('Overlap V', src, target, isOverlappedV);
     return isOverlappedV;
   }

@@ -24,6 +24,7 @@
     white-space: nowrap;
     width: 300px;
     position: relative;
+    z-index: 2;
 }
 
 .range > span {

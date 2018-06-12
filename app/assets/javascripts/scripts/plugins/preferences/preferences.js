@@ -332,20 +332,21 @@ module.exports = class BasePreferencesElement {
   /**
    * Get node renderer
    * @memberOf BasePreferencesElement
+   * @param view
    * @param node
    * @param {string} text
    * @param {string} index
    * @returns {*}
    */
-  getNodeRenderer(node, text, index) {
-    if (this.isEvent(node)) return this.eventLink(text, index, node);
-    if (this.isTextEditor(node)) return this.textEditor(text, index, node);
-    if (this.isTextField(node)) return this.textField(text, index, node);
-    if (this.isTextAreaField(node)) return this.textAreaField(text, index, node);
-    if (this.isNumberField(node)) return this.numberField(text, index, node);
-    if (this.isRangeField(node)) return this.rangeField(text, index, node);
-    if (this.isCheckBoxField(node)) return this.checkBoxField(text, index, node);
-    if (this.isListBoxField(node)) return this.listBoxField(text, index, node);
-    if (this.isComboBoxField(node)) return this.comboBoxField(text, index, node);
+  getNodeRenderer(view, node, text, index) {
+    if (this.isEvent(node)) return this.eventLink.call(view, text, index, node);
+    if (this.isTextEditor(node)) return this.textEditor.call(view, text, index, node);
+    if (this.isTextField(node)) return this.textField.call(view, text, index, node);
+    if (this.isTextAreaField(node)) return this.textAreaField.call(view, text, index, node);
+    if (this.isNumberField(node)) return this.numberField.call(view, text, index, node);
+    if (this.isRangeField(node)) return this.rangeField.call(view, text, index, node);
+    if (this.isCheckBoxField(node)) return this.checkBoxField.call(view, text, index, node);
+    if (this.isListBoxField(node)) return this.listBoxField.call(view, text, index, node);
+    if (this.isComboBoxField(node)) return this.comboBoxField.call(view, text, index, node);
   }
 };

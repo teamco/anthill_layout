@@ -46,6 +46,12 @@ module.exports = class EventLinkRenderer {
     $input.prop('checked', checked);
 
     /**
+     * Define widget content
+     * @type {WidgetContent}
+     */
+    const content = this.view.scope;
+
+    /**
      * Define monitor
      * @type {{events: *, callback: (function(this:EventLinkRenderer))}}
      */
@@ -55,12 +61,6 @@ module.exports = class EventLinkRenderer {
 
         e.preventDefault();
         e.stopPropagation();
-
-        /**
-         * Define widget content
-         * @type {WidgetContent}
-         */
-        const content = this.view.scope;
 
         // Reset to default value
         $('input:radio[name="' + opts.group + '"]').val('on');

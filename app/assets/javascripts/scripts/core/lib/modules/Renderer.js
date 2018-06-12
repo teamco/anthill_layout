@@ -117,13 +117,19 @@ const ToolTipRenderer = require('./renderer/tool.tip.js');
 const ValidationRenderer = require('./renderer/validation.js');
 
 /**
+ * @constant RangeRenderer
+ * @type {module.RangeRenderer}
+ */
+const RangeRenderer = require('./renderer/range.js');
+
+/**
  * Define renderer
  * @class Renderer
  * @type {module.Renderer}
  * @extends AntHill
  */
 module.exports = class Renderer extends aggregation(AntHill, CheckBoxRenderer, ComboBoxRenderer, EventLinkRenderer,
-    FilterRenderer, LabelRenderer, NumberFieldRenderer, SourceRenderer, TextAreaRenderer, TabsRenderer,
+    FilterRenderer, LabelRenderer, NumberFieldRenderer, RangeRenderer, SourceRenderer, TextAreaRenderer, TabsRenderer,
     TextEditorRenderer, TextFieldRenderer, ToolTipRenderer, ValidationRenderer) {
 
   /**

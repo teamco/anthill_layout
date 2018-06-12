@@ -416,8 +416,13 @@ module.exports = class ModalElement extends BaseElement {
    */
   removeBackdrop() {
     const backdrops = document.querySelectorAll('.modal-backdrop');
-    if (backdrops.length) {
-      backdrops[backdrops.length - 1].remove();
+    if (document.querySelectorAll('.modal').length) {
+      // TODO: Handled by previous modals
+      if (backdrops.length) {
+        backdrops[backdrops.length - 1].remove();
+      }
+    } else if (backdrops.length) {
+      backdrops.forEach(backdrop => backdrop.remove());
     }
   }
 
