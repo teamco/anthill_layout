@@ -51,6 +51,12 @@ module.exports = class Base {
      * @type {LibArray}
      */
     this.array = new (require('./base/Array.js'));
+
+    /**
+     * @property Base.css
+     * @type {LibCss}
+     */
+    this.css = new (require('./base/Css.js'));
   }
 
   /**

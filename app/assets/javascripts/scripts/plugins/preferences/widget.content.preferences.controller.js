@@ -29,7 +29,6 @@ module.exports = class WidgetContentPreferencesController {
     let index, value;
 
     for (index in localPrefs) {
-
       if (localPrefs.hasOwnProperty(index) && globalPrefs.hasOwnProperty(index)) {
         value = globalPrefs[index];
 
@@ -37,7 +36,7 @@ module.exports = class WidgetContentPreferencesController {
          * Define method name
          * @type {string}
          */
-        const setter = 'set' + index.toCamel().capitalize();
+        const setter = 'set' + index.toCamelCase().capitalize();
 
         if (typeof(this.model[setter]) !== 'function') {
 
