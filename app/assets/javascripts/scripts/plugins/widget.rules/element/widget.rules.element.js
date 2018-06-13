@@ -5,31 +5,27 @@
  * Time: 11:48 AM
  */
 
-defineP([
-  'plugins/plugin.element'
-], function defineWidgetRulesElement(PluginElement) {
+/**
+ * @constant PluginElement
+ * @type {module.PluginElement}
+ */
+const PluginElement = require('../../plugin.element.js');
+
+/**
+ * @class WidgetRulesElement
+ * @extends PluginElement
+ */
+module.exports = class WidgetRulesElement extends PluginElement {
 
   /**
-   * Define WidgetRules Element
-   * @param view
+   * @param {WidgetRulesView} view
    * @param opts
-   * @returns {WidgetRulesElement}
    * @constructor
-   * @class WidgetRulesElement
-   * @extends PluginElement
    */
-  var WidgetRulesElement = function WidgetRulesElement(view, opts) {
-
-    this._config(view, opts, $('<ul />')).build({
-      $container: opts.$container
-    });
-
+  constructor(view, opts) {
+    super('WidgetRulesElement', view, false);
+    this._config(view, opts, $('<ul />')).build(opts);
     this.addCSS('widget.rules');
     this.addCSS('', {url: '/assets/scripts/plugins/rules/widget/rules.css'});
-
-    return this;
-  };
-
-  return WidgetRulesElement.extend('WidgetRulesElement', {},
-      PluginElement.prototype);
-});
+  }
+};

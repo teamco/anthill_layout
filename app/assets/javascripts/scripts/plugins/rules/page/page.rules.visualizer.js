@@ -41,12 +41,12 @@ module.exports = class PageRulesVisualizer {
      * @param {string} color
      * @param {array} subscribers
      * @returns {{
-       *    key: string,
-       *    title: *,
-       *    uuid: (*|String),
-       *    color: *,
-       *    count: (number|Number)
-       * }}
+     *  key: string,
+     *  title: *,
+     *  uuid: (*|String),
+     *  color: *,
+     *  count: (number|Number)
+     * }}
      * @private
      */
     function _node(widget, rule, color, subscribers) {
@@ -60,18 +60,18 @@ module.exports = class PageRulesVisualizer {
     }
 
     const widgets = page.model.getItems();
-    return _.filter(_.map(widgets, function(widget) {
+    return page.utils._.filter(page.utils._.map(widgets, widget => {
       const rules = widget.model.getConfig('rules'),
           publish = rules.publish || {},
           subscribers = rules.subscribers || {},
           resource = widget.model.getConfig('preferences/resource'),
-          resourceRules = publish[resource.toCamel().toLowerCase()];
+          resourceRules = publish[resource.toCamelCase().toLowerCase()];
       let data = [];
       if (publish.widget) {
-        data = _.map(publish.widget, rule => _node(widget, rule, 'lightgreen', subscribers));
+        data = page.utils._.map(publish.widget, rule => _node(widget, rule, 'lightgreen', subscribers));
       }
       if (resourceRules) {
-        return data.concat(_.map(resourceRules, rule => _node(widget, rule, 'lightblue', subscribers)));
+        return data.concat(page.utils._.map(resourceRules, rule => _node(widget, rule, 'lightblue', subscribers)));
       }
       return data;
     }), Boolean);
@@ -85,12 +85,12 @@ module.exports = class PageRulesVisualizer {
    */
   getWidgetSubscriberRules(page) {
     const widgets = page.model.getItems();
-    return _.filter(_.map(widgets, widget => {
+    return page.utils._.filter(page.utils._.map(widgets, widget => {
       const rules = widget.model.getConfig('rules'),
           subscribers = rules.subscribers,
           publish = rules.publish || {};
       if (subscribers) {
-        return _.map(publish.widget, rule => ({
+        return page.utils._.map(publish.widget, rule => ({
           key: rule + ':' + widget.model.getUUID(),
           subscribers: subscribers
         }));

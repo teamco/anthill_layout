@@ -5,55 +5,60 @@
  * Time: 11:06 PM
  * To change this template use File | Settings | File Templates.
  */
-defineP([
-  'modules/Model'
-], function defineWidgetRulesModel(BaseModel) {
+
+/**
+ * @constant BaseModel
+ * @type {module.BaseModel}
+ */
+const BaseModel = require('../../../core/lib/modules/Model.js');
+
+/**
+ * @extends BaseModel
+ * @class WidgetRulesModel
+ */
+module.exports = class WidgetRulesModel extends BaseModel {
 
   /**
-   * Define WidgetRules model
-   * @extends BaseModel
-   * @class WidgetRulesModel
    * @constructor
+   * @param {string} name
+   * @param {Bar} scope
    */
-  var WidgetRulesModel = function WidgetRulesModel() {
+  constructor(name, scope) {
+    super(name || 'WidgetRulesModel', scope, false);
 
     /**
      * Define data
-     * @memberOf WidgetRulesModel
+     * @property WidgetRulesModel
      * @type {{}}
      */
     this.data = {};
-  };
+  }
 
-  return WidgetRulesModel.extend('WidgetRulesModel', {
+  /**
+   * Get items
+   * @memberOf WidgetRulesModel
+   * @param page
+   * @returns {*}
+   */
+  getWidgetRulesItems(page) {
+    return page.model.getItems();
+  }
 
-    /**
-     * Get items
-     * @memberOf WidgetRulesModel
-     * @param page
-     * @returns {*}
-     */
-    getWidgetRulesItems: function getWidgetRulesItems(page) {
-      return page.model.getItems();
-    },
+  /**
+   * Collect items
+   * @memberOf WidgetRulesModel
+   * @param item
+   */
+  collectItems(item) {
+    this.data[item.model.getUUID()] = item;
+  }
 
-    /**
-     * Collect items
-     * @memberOf WidgetRulesModel
-     * @param item
-     */
-    collectItems: function collectItems(item) {
-      this.data[item.model.getUUID()] = item;
-    },
-
-    /**
-     * Get data
-     * @memberOf WidgetRulesModel
-     * @returns {{}}
-     */
-    getCollectedItems: function getCollectedItems() {
-      return this.data;
-    }
-
-  }, BaseModel.prototype);
-});
+  /**
+   * Get data
+   * @memberOf WidgetRulesModel
+   * @returns {{}}
+   */
+  getCollectedItems() {
+    return this.data;
+  }
+};

@@ -2,6 +2,10 @@
  * Created by teamco on 4/1/14.
  */
 
+/**
+ * @class WidgetSubscribe
+ * @type {module.WidgetSubscribe}
+ */
 module.exports = class WidgetSubscribe {
 
   /**

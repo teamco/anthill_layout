@@ -143,9 +143,7 @@ module.exports = class GenerateRules extends PageRulesVisualizer {
    */
   defineTemplate(go) {
     const _make = go.GraphObject.make;
-    const node = _make(go.Node, 'Auto', {
-          click: this.showConnections
-        },
+    const node = _make(go.Node, 'Auto', {click: this.showConnections},
         _make(go.Shape, new go.Binding('figure', 'figure'), {
               name: 'shape',
               strokeWidth: 0.5,
@@ -159,10 +157,7 @@ module.exports = class GenerateRules extends PageRulesVisualizer {
               toLinkableDuplicates: true
             },
             new go.Binding('fill', 'color'),
-            new go.Binding('stroke', 'isHighlighted', function(h) {
-              return h ? 'red' : 'black';
-            }).ofObject())
-    );
+            new go.Binding('stroke', 'isHighlighted', h => h ? 'red' : 'black').ofObject()));
 
     node.linkConnected = this.updateConnectivity;
     node.linkDisconnected = this.updateConnectivity;
@@ -173,11 +168,8 @@ module.exports = class GenerateRules extends PageRulesVisualizer {
           alignment: go.Spot.Center,
           opacity: 0.5,
           margin: new go.Margin(10, 10)
-        }, {
-          sourceCrossOrigin: function() {
-            return 'use-credentials';
-          }
         },
+        {sourceCrossOrigin: () => 'use-credentials'},
         new go.Binding('source', 'path'))
     );
 
@@ -270,8 +262,8 @@ module.exports = class GenerateRules extends PageRulesVisualizer {
   updatePublishedRules() {
     const published = this.getWidgetPublishedRules(this.page);
     const that = this;
-    _.each(published, rules =>
-        _.each(rules, rule => that.updateDiagram(rule)));
+    const _ = this.page.utils._;
+    _.each(published, rules => _.each(rules, rule => that.updateDiagram(rule)));
   }
 
   /**
@@ -282,6 +274,7 @@ module.exports = class GenerateRules extends PageRulesVisualizer {
   updateSubscriberRules() {
     const subscribed = this.getWidgetSubscriberRules(this.page);
     const that = this;
+    const _ = this.page.utils._;
     _.each(subscribed, sData =>
         _.each(sData, data =>
             _.each(data.subscribers, uuids =>

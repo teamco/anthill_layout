@@ -186,6 +186,12 @@ module.exports = () => {
         const PageData = require('../../../../scripts/plugins/page.data/page.data.js');
 
         /**
+         * @constant WidgetRules
+         * @type {module.WidgetRules|*}
+         */
+        const WidgetRules = require('../../../../scripts/plugins/widget.rules/widget.rules.js');
+
+        /**
          * @constant WorkspaceData
          * @type {module.WorkspaceData|*}
          */
@@ -209,7 +215,7 @@ module.exports = () => {
               }
             }
           },
-          modules: [Gallery, PageData, WorkspaceData/*, WidgetRules, SiteConfig*/],
+          modules: [Gallery, PageData, WorkspaceData, WidgetRules/*, SiteConfig*/],
           packages: [Bar]
         }, app);
 

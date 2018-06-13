@@ -29,13 +29,13 @@ module.exports = class BarEventManager extends BaseEvent {
     /**
      * Define events
      * @type {{}}
-     * @memberOf BarEventManager
+     * @property BarEventManager
      */
     this.events = {};
 
     /**
      * Define event list
-     * @memberOf BarEventManager
+     * @property BarEventManager
      * @type {{
      *  updateTranslations: string,
      *  showContent: string,

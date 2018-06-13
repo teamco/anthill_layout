@@ -6,20 +6,23 @@
  * To change this template use File | Settings | File Templates.
  */
 
-defineP([
-  'modules/Permission'
-], function defineWidgetRulesPermission(BasePermission) {
+/**
+ * @constant BasePermission
+ * @type {module.BasePermission}
+ */
+const BasePermission = require('../../../core/lib/modules/Permission.js');
+
+/**
+ * @extends BasePermission
+ * @class WidgetRulesPermission
+ */
+module.exports = class WidgetRulesPermission extends BasePermission {
 
   /**
-   * Define Permissions
-   * @class WidgetRulesPermission
    * @constructor
-   * @extends BasePermission
+   * @param {Bar} scope
    */
-  var WidgetRulesPermission = function WidgetRulesPermission() {
-
-  };
-
-  return WidgetRulesPermission.extend('WidgetRulesPermission', {},
-      BasePermission.prototype);
-});
+  constructor(scope) {
+    super('WidgetRulesPermission', scope, false);
+  }
+};

@@ -19,13 +19,12 @@ const PluginElement = require('../../plugin.element.js');
 module.exports = class BarElement extends PluginElement {
 
   /**
-   * @param {PanelView} view
+   * @param {BarView} view
    * @param opts
    * @constructor
    */
   constructor(view, opts) {
     super('BarElement', view, false);
-
     this._config(view, opts, $(this.getTemplate())).build(opts);
     this.addCSS('bar');
   };

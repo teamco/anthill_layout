@@ -5,25 +5,24 @@
  * Time: 11:02 AM
  */
 
-defineP([
-  'config/anthill',
-  'modules/MVC',
-  'plugins/widget.rules/mvc/widget.rules.controller',
-  'plugins/widget.rules/mvc/widget.rules.model',
-  'plugins/widget.rules/mvc/widget.rules.view',
-  'plugins/widget.rules/mvc/widget.rules.event.manager',
-  'plugins/widget.rules/mvc/widget.rules.permission'
-], function defineWidgetRules(AntHill, MVC, Controller, Model, View,
-    EventManager, Permission) {
+/**
+ * @constant AntHill
+ * @type {module.AntHill}
+ */
+const AntHill = require('../../core/config/anthill.js');
+
+/**
+ * @class WidgetRules
+ * @extends AntHill
+ */
+module.exports = class WidgetRules extends AntHill {
 
   /**
-   * Define WidgetRules
-   * @constructor
    * @param containment
-   * @class WidgetRules
-   * @extends AntHill
+   * @constructor
    */
-  var WidgetRules = function WidgetRules(containment) {
+  constructor(containment) {
+    super('WidgetRules', null, true);
 
     /**
      * Define containment
@@ -48,23 +47,18 @@ defineP([
     /**
      * Define defaults
      * @type {{
-     *      plugin: boolean,
-     *      getter: boolean,
-     *      html: {
-     *          style: string,
-     *          header: boolean,
-     *          footer: boolean,
-     *          floating: boolean,
-     *          padding: {
-     *              top: number,
-     *              right: number,
-     *              bottom: number,
-     *              left: number
-     *          }
-     *      }
+     *  plugin: boolean,
+     *  getter: boolean,
+     *  html: {
+     *    style: string,
+     *    header: boolean,
+     *    footer: boolean,
+     *    floating: boolean,
+     *    padding: {top: number, right: number, bottom: number, left: number}
+     *  }
      * }}
      */
-    var DEFAULTS = {
+    const DEFAULTS = {
       plugin: true,
       getter: true,
       html: {
@@ -82,35 +76,69 @@ defineP([
     };
 
     /**
+     * @constant WidgetRulesController
+     * @type {module.WidgetRulesController|*}
+     */
+    const WidgetRulesController = require('./mvc/widget.rules.controller.js');
+
+    /**
+     * @constant WidgetRulesModel
+     * @type {module.WidgetRulesModel|*}
+     */
+    const WidgetRulesModel = require('./mvc/widget.rules.model.js');
+
+    /**
+     * @constant WidgetRulesView
+     * @type {module.WidgetRulesView|*}
+     */
+    const WidgetRulesView = require('./mvc/widget.rules.view.js');
+
+    /**
+     * @constant WidgetRulesEventManager
+     * @type {module.WidgetRulesEventManager|*}
+     */
+    const WidgetRulesEventManager = require('./mvc/widget.rules.event.manager.js');
+
+    /**
+     * @constant WidgetRulesPermission
+     * @type {module.WidgetRulesPermission|*}
+     */
+    const WidgetRulesPermission = require('./mvc/widget.rules.permission.js');
+
+    /**
+     * @constant MVC
+     * @type {module.MVC}
+     */
+    const MVC = require('../../core/lib/modules/MVC.js');
+
+    /**
      * Define MVC
      * @property WidgetRules
-     * @type {MVCJs}
+     * @type {module.MVC}
      */
-    this.mvc = new MVC({
+    new MVC({
       scope: this,
       config: [DEFAULTS],
       components: [
-        Controller,
-        Model,
-        View,
-        EventManager,
-        Permission
+        WidgetRulesController,
+        WidgetRulesModel,
+        WidgetRulesView,
+        WidgetRulesEventManager,
+        WidgetRulesPermission
       ],
       render: true
     });
 
-    this.observer.publish(
-        this.eventManager.eventList.successCreated
+    this.observer.publish(this.eventManager.eventList.successCreated);
+    this.observer.publish(this.eventManager.eventList.updateTranslations, ['plugins/widget.rules/translations/en-us']);
+
+    this.utils.waitFor(
+        () => this.controller.getPage().eventManager,
+        () => {
+          this.controller.subscribeRefreshContentAfterDestroyItems();
+          this.controller.subscribeRefreshContentSwitchPage();
+        },
+        () => scope.logger.warn('Page should rendered.')
     );
-
-    this.observer.publish(
-        this.eventManager.eventList.updateTranslations,
-        ['plugins/widget.rules/translations/en-us']
-    );
-
-    this.controller.subscribeRefreshContentAfterDestroyItems();
-    this.controller.subscribeRefreshContentSwitchPage();
-  };
-
-  return WidgetRules.extend('WidgetRules', {}, AntHill.prototype);
-});
+  }
+};

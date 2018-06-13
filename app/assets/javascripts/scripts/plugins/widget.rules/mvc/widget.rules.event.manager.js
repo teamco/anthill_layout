@@ -6,17 +6,25 @@
  * To change this template use File | Settings | File Templates.
  */
 
-defineP([
-  'modules/Event'
-], function defineWidgetRulesEventManager(BaseEvent) {
+/**
+ * @constant BaseEvent
+ * @type {BaseEvent}
+ */
+const BaseEvent = require('../../../core/lib/modules/Event.js');
+
+/**
+ * @class WidgetRulesEventManager
+ * @extends BaseEvent
+ */
+module.exports = class WidgetRulesEventManager extends BaseEvent {
 
   /**
-   * Define widget rules event manager
-   * @class WidgetRulesEventManager
+   * Define BarEvent Manager
    * @constructor
-   * @extends BaseEvent
+   * @param {WidgetRules} scope
    */
-  var WidgetRulesEventManager = function WidgetRulesEventManager() {
+  constructor(scope) {
+    super('WidgetRulesEventManager', scope, false);
 
     /**
      * Define events
@@ -29,12 +37,12 @@ defineP([
      * Define event list
      * @property WidgetRulesEventManager
      * @type {{
-         *      updateTranslations: string,
-         *      loadModuleContent: string,
-         *      prepareActiveComponent: string,
-         *      storeItem: string,
-         *      setActiveContent: string
-         * }}
+     *  updateTranslations: string,
+     *  loadModuleContent: string,
+     *  prepareActiveComponent: string,
+     *  storeItem: string,
+     *  setActiveContent: string
+     * }}
      */
     this.eventList = {
       updateTranslations: 'update.translations',
@@ -43,9 +51,5 @@ defineP([
       storeItem: 'store.item',
       setActiveContent: 'set.active.content'
     };
-  };
-
-  return WidgetRulesEventManager.extend(
-      'WidgetRulesEventManager', {}, BaseEvent.prototype
-  );
-});
+  }
+};
