@@ -9,42 +9,42 @@
 const aggregation = require('../../../core/lib/extends/aggregation.js');
 
 /**
- * @constant AddRule
- * @type {module.AddRule}
+ * @constant AddRuleRenderer
+ * @type {module.AddRuleRenderer}
  */
-const AddRule = require('./renderer/add.rule.renderer.js');
+const AddRuleRenderer = require('./renderer/add.rule.renderer.js');
 
 /**
- * @constant BaseRulesData
- * @type {module.BaseRulesData}
+ * @constant BaseRulesDataRenderer
+ * @type {module.BaseRulesDataRenderer}
  */
-const BaseRulesData = require('./renderer/base.rules.data.renderer.js');
+const BaseRulesDataRenderer = require('./renderer/base.rules.data.renderer.js');
 
 /**
- * @constant ContentRules
- * @type {module.ContentRules}
+ * @constant ContentRulesRenderer
+ * @type {module.ContentRulesRenderer}
  */
-const ContentRules = require('./renderer/content.rules.renderer.js');
+const ContentRulesRenderer = require('./renderer/content.rules.renderer.js');
 
 /**
- * @constant SubscribeRules
- * @type {module.SubscribeRules}
+ * @constant SubscribeRulesRenderer
+ * @type {module.SubscribeRulesRenderer}
  */
-const SubscribeRules = require('./renderer/subscribe.rules.renderer.js');
+const SubscribeRulesRenderer = require('./renderer/subscribe.rules.renderer.js');
 
 /**
- * @constant WidgetRules
- * @type {module.WidgetRules}
+ * @constant WidgetRulesRenderer
+ * @type {module.WidgetRulesRenderer}
  */
-const WidgetRules = require('./renderer/widget.rules.renderer.js');
+const WidgetRulesRenderer = require('./renderer/widget.rules.renderer.js');
 
 /**
  * @class BaseRules
- * @extends {AddRule, BaseRulesData, ContentRules, SubscribeRules, WidgetRules}
+ * @extends {AddRuleRenderer, BaseRulesDataRenderer, ContentRulesRenderer, SubscribeRulesRenderer, WidgetRulesRenderer}
  * @type {module.BaseRules}
  */
-module.exports = class BaseRules extends aggregation(AddRule, BaseRulesData, ContentRules, SubscribeRules,
-    WidgetRules) {
+module.exports = class BaseRules extends aggregation(AddRuleRenderer, BaseRulesDataRenderer, ContentRulesRenderer,
+    SubscribeRulesRenderer, WidgetRulesRenderer) {
 
   /**
    * Open preferences

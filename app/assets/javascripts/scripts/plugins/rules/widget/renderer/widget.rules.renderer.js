@@ -1,11 +1,11 @@
 /**
- * @class WidgetRules
- * @type {module.WidgetRules}
+ * @class WidgetRulesRenderer
+ * @type {module.WidgetRulesRenderer}
  */
-module.exports = class WidgetRules {
+module.exports = class WidgetRulesRenderer {
 
   /**
-   * @memberOf WidgetRules
+   * @memberOf WidgetRulesRenderer
    * @param widgetRules
    */
   renderWidgetRules(widgetRules) {

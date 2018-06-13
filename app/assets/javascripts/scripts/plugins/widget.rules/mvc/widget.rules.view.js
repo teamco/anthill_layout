@@ -61,7 +61,7 @@ module.exports = class WidgetRulesView extends BaseView {
    */
   renderContent(data) {
     this.cleanElementItems();
-    this.renderFilter(this.updateFooterContent.bind(this));
+    this.renderFilterElement(this.updateFooterContent.bind(this));
 
     /**
      * @constant WidgetRulesContentElement
@@ -80,7 +80,8 @@ module.exports = class WidgetRulesView extends BaseView {
           style: 'content',
           uuid: [data[index].model.getConfig('uuid'), this.scope.name.toDash()].join('-'),
           $container: this.get$item().$,
-          data: data[index]
+          data: data[index],
+          destroy: false
         });
 
         this.scope.observer.publish(this.scope.eventManager.eventList.storeItem, data[index]);

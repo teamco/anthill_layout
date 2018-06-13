@@ -1,11 +1,11 @@
 /**
- * @class BaseRulesData
- * @type {module.BaseRulesData}
+ * @class BaseRulesDataRenderer
+ * @type {module.BaseRulesDataRenderer}
  */
-module.exports = class BaseRulesData {
+module.exports = class BaseRulesDataRenderer {
 
   /**
-   * @memberOf BaseRulesData
+   * @memberOf BaseRulesDataRenderer
    * @param data
    * @param widgetRules
    * @param contentRules
@@ -14,10 +14,10 @@ module.exports = class BaseRulesData {
 
     /**
      * Buttons collector
-     * @property BaseWidgetRules
+     * @property BaseRulesDataRenderer
      * @type {{}}
      */
-    this.$buttons = this.base.define(this.$buttons, {}, true);
+    this.$buttons = this.$buttons || {};
 
     this.renderWidgetRules(widgetRules);
     this.renderContentRules(contentRules);

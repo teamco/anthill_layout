@@ -97,9 +97,7 @@ module.exports = class BaseWidgetRules extends BaseRules {
       return false;
     }
 
-    rulesList.sort(function sortByValue(a, b) {
-      return a.value.localeCompare(b.value);
-    });
+    rulesList.sort((a, b) => a.value.localeCompare(b.value));
 
     rulesList.unshift({
       type: 'text',

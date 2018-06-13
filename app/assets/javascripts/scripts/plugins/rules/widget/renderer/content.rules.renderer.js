@@ -1,11 +1,11 @@
 /**
- * @class ContentRules
- * @type {module.ContentRules}
+ * @class ContentRulesRenderer
+ * @type {module.ContentRulesRenderer}
  */
-module.exports = class ContentRules {
+module.exports = class ContentRulesRenderer {
 
   /**
-   * @memberOf ContentRules
+   * @memberOf ContentRulesRenderer
    * @param contentRules
    */
   renderContentRules(contentRules) {

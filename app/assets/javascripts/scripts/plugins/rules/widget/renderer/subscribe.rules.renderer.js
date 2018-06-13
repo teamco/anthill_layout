@@ -1,11 +1,11 @@
 /**
- * @class SubscribeRules
- * @type {module.SubscribeRules}
+ * @class SubscribeRulesRenderer
+ * @type {module.SubscribeRulesRenderer}
  */
-module.exports = class SubscribeRules {
+module.exports = class SubscribeRulesRenderer {
 
   /**
-   * @memberOf SubscribeRules
+   * @memberOf SubscribeRulesRenderer
    * Render subscribe rules
    * @param subscribe
    */

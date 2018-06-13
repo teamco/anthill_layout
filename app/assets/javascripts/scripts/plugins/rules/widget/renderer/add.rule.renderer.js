@@ -1,12 +1,12 @@
 /**
- * @class AddRule
- * @type {module.AddRule}
+ * @class AddRuleRenderer
+ * @type {module.AddRuleRenderer}
  */
-module.exports = class AddRule {
+module.exports = class AddRuleRenderer {
 
   /**
    * Add new rule
-   * @memberOf AddRule
+   * @memberOf AddRuleRenderer
    * @param {string} rule
    * @param {string} type
    * @param $container
