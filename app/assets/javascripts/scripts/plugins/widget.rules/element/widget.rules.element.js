@@ -12,6 +12,12 @@
 const PluginElement = require('../../plugin.element.js');
 
 /**
+ * @constant BaseRules
+ * @type {module.BaseRules}
+ */
+const BaseRules = require('../../../plugins/rules/widget/rules');
+
+/**
  * @class WidgetRulesElement
  * @extends PluginElement
  */
@@ -27,5 +33,11 @@ module.exports = class WidgetRulesElement extends PluginElement {
     this._config(view, opts, $('<ul />')).build(opts);
     this.addCSS('widget.rules');
     this.addCSS('', {url: '/assets/scripts/plugins/rules/widget/rules.css'});
+
+    /**
+     * @property WidgetRulesElement
+     * @type {module.BaseRules}
+     */
+    this.rules = new BaseRules('BaseRules', this);
   }
 };

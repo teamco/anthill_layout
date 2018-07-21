@@ -63,6 +63,12 @@ const FilterRenderer = require('./renderer/filter.js');
 const EventLinkRenderer = require('./renderer/event.link.js');
 
 /**
+ * @constant FieldSetRenderer
+ * @type {module.FieldSetRenderer}
+ */
+const FieldSetRenderer = require('./renderer/fieldset');
+
+/**
  * @constant LabelRenderer
  * @type {module.LabelRenderer}
  */
@@ -129,8 +135,8 @@ const RangeRenderer = require('./renderer/range.js');
  * @extends AntHill
  */
 module.exports = class Renderer extends aggregation(AntHill, CheckBoxRenderer, ComboBoxRenderer, EventLinkRenderer,
-    FilterRenderer, LabelRenderer, NumberFieldRenderer, RangeRenderer, SourceRenderer, TextAreaRenderer, TabsRenderer,
-    TextEditorRenderer, TextFieldRenderer, ToolTipRenderer, ValidationRenderer) {
+    FilterRenderer, FieldSetRenderer, LabelRenderer, NumberFieldRenderer, RangeRenderer, SourceRenderer,
+    TextAreaRenderer, TabsRenderer, TextEditorRenderer, TextFieldRenderer, ToolTipRenderer, ValidationRenderer) {
 
   /**
    * @constructor

@@ -2,71 +2,80 @@
  * Created by teamco on 7/10/14.
  */
 
-defineP(function defineFieldSetRenderer() {
+/**
+ * @class FieldSetRenderer
+ * @type {module.FieldSetRenderer}
+ */
+module.exports = class FieldSetRenderer {
 
   /**
-   * Define FieldSetRenderer
-   * @class FieldSetRenderer
-   * @extends ModalElement
-   * @constructor
+   * @static
+   * @param $element
+   * @return {boolean}
    */
-  var FieldSetRenderer = function FieldSetRenderer() {
-  };
+  static isOpenedFieldSet($element) {
+    return $element.hasClass('open');
+  }
 
-  return FieldSetRenderer.extend('FieldSetRenderer', {
+  /**
+   * @static
+   * @param $element
+   */
+  static openFieldSet($element) {
+    $element.addClass('open');
+  }
+
+  /**
+   * @static
+   * @param $element
+   */
+  static closeFieldSet($element) {
+    $element.removeClass('open');
+  }
+
+  /**
+   * Toggle fieldset
+   * @memberOf FieldSetRenderer
+   * @param {Event} e
+   */
+  toggleFieldset(e) {
 
     /**
-     * Toggle fieldset
-     * @memberOf FieldSetRenderer
-     * @param {Event} e
+     * Define $li
+     * @type {jQuery}
      */
-    toggleFieldset: function toggleFieldset(e) {
+    const $li = $(e.target);
 
-      /**
-       * Define $li
-       * @type {*|jQuery|HTMLElement}
-       */
-      var $li = $(e.target);
+    FieldSetRenderer.isOpenedFieldSet($li) ?
+        FieldSetRenderer.closeFieldSet($li) :
+        FieldSetRenderer.openFieldSet($li);
 
-      $li.hasClass('open') ?
-          $li.removeClass('open') :
-          $li.addClass('open');
-
-      if (_.isFunction(this.adoptModalDialogPosition)) {
-        this.adoptModalDialogPosition();
-      }
-    },
-
-    /**
-     * Render fieldset
-     * @memberOf FieldSetRenderer
-     * @param {string} text
-     * @param {*} $content
-     * @param {boolean} [open]
-     * @returns {*|jQuery}
-     */
-    renderFieldSet: function renderFieldSet(text, $content, open) {
-
-      var $legend = {
-        $: $('<legend />').html(text).
-            on('click.toggle', this.toggleFieldset.bind(this))
-      };
-
-      if (open) {
-        $legend.$.addClass('open');
-      }
-
-      var $fieldset = $('<fieldset />').append(
-          $legend.$,
-          $content
-      );
-
-      this.renderTooltip({
-        title: $('<div />').html(text).text(),
-        selector: $legend.$
-      });
-
-      return $fieldset;
+    if (this.adoptModalDialogPosition) {
+      this.adoptModalDialogPosition();
     }
-  });
-});
+  }
+
+  /**
+   * Render fieldset
+   * @memberOf FieldSetRenderer
+   * @param {string} text
+   * @param {*} $content
+   * @param {boolean} [open]
+   * @returns {*|jQuery}
+   */
+  renderFieldSet(text, $content, open) {
+    const $legend = $('<legend />').html(text).on('click.toggle', this.toggleFieldset.bind(this));
+    const $fieldset = $('<fieldset />').append($legend, $content);
+
+    if (open) {
+      FieldSetRenderer.openFieldSet($legend);
+    }
+
+    this.renderTooltip({
+      title: $('<div />').html(text).text(),
+      selector: $legend
+    });
+
+    return $fieldset;
+  }
+};

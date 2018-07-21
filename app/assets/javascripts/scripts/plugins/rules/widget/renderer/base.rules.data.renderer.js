@@ -21,7 +21,7 @@ module.exports = class BaseRulesDataRenderer {
 
     this.renderWidgetRules(widgetRules);
     this.renderContentRules(contentRules);
-    this.$.append('<div class="content-rules" />');
+    this.element.$.append('<div class="content-rules" />');
     this.renderSubscribeRules(data.subscribe);
   }
 };

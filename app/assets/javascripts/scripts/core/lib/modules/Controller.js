@@ -401,9 +401,7 @@ module.exports = class BaseController extends aggregation(AntHill, BehaviorCrud,
        * Define generated getter
        * @returns {*}
        */
-      controller[fnName] = function genericGetter() {
-        return scope;
-      };
+      controller[fnName] = () => scope;
 
     } else {
       scope.logger.debug('Config getter was missing', scope);

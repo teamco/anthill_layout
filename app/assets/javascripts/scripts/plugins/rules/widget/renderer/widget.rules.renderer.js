@@ -16,9 +16,15 @@ module.exports = class WidgetRulesRenderer {
       return false;
     }
 
-    this.$.append(
+    /**
+     * @constant $element
+     * @type {jQuery}
+     */
+    const $element = this.element.$;
+
+    $element.append(
         this.getTemplate(text).append(
-            this.renderCombobox(rulesList, rulesList[0].value, text,
+            this.element.renderCombobox(rulesList, rulesList[0].value, text,
                 'widgetRule', {
                   type: 'click.transferValue',
                   callback: this._transferValue.bind({
@@ -27,11 +33,11 @@ module.exports = class WidgetRulesRenderer {
                   })
                 }, true)));
 
-    this.view.button({
+    this.element.view.button({
           addWidgetRule: {
             text: 'Publish',
             type: 'warning',
-            $container: this.$.find('.input-group:last'),
+            $container: $element.find('.input-group:last'),
             events: {click: 'addWidgetRule'}
           }
         },

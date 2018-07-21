@@ -117,6 +117,21 @@ module.exports = class PanelModel extends BaseModel {
   }
 
   /**
+   * @method getEntityBy
+   * @param {string} type - name/index
+   * @param value
+   */
+  getModuleBy(type, value) {
+    let _m = {};
+    if (type === 'name') {
+      _m = this.getModule(this.getModuleIndex(value));
+    } else if (type === 'index') {
+      _m = this.getModule(value);
+    }
+    return _m.module;
+  }
+
+  /**
    * Get module index
    * @memberOf PanelModel
    * @param resource

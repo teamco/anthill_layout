@@ -189,7 +189,7 @@ module.exports = class WidgetRulesController extends PluginController {
 
     /**
      * Define panel
-     * @type {Panel}
+     * @type {module.Panel}
      */
     const panel = this.getDesignTimePanel();
 
@@ -197,7 +197,7 @@ module.exports = class WidgetRulesController extends PluginController {
      * Define widget rules
      * @type {module.PageData}
      */
-    const pageData = panel.controller.getPageData();
+    const pageData = panel.model.getModuleBy('name', 'page-data');
 
     /**
      * Define active content

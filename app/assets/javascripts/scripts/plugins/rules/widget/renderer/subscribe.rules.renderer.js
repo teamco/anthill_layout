@@ -13,16 +13,22 @@ module.exports = class SubscribeRulesRenderer {
     subscribe = subscribe || {};
 
     /**
+     * @constant view
+     * @type {BaseView}
+     */
+    const view = this.element.view;
+
+    /**
      * Get published rules
      * @type {{}}
      */
-    const published = this.view.controller.getPublishedRules();
+    const published = view.controller.getPublishedRules();
 
     let empty = false,
         render = false;
 
-    if (!this.base.lib.hash.hashLength(published)) {
-      this.view.scope.logger.debug('No published rules', published);
+    if (!Object.keys(published).length) {
+      view.scope.logger.debug('No published rules', published);
       return false;
     }
 
@@ -55,7 +61,7 @@ module.exports = class SubscribeRulesRenderer {
 
             for (let i = 0, l = rules.length; i < l; i++) {
 
-              const $checkbox = this.renderCheckbox({
+              const $checkbox = this.element.renderCheckbox({
                 name: [type, rules[i]].join(':'),
                 text: rules[i],
                 checked: $.inArray(rules[i], checked) !== -1,
@@ -78,7 +84,7 @@ module.exports = class SubscribeRulesRenderer {
                   '<span class="glyphicon glyphicon-chevron-up"></span>',
                   published[index].type, ': ',
                   index.replace(/-content/, '')
-                ].join('')).on('click.toggle', this.toggleFieldset.bind(this)),
+                ].join('')).on('click.toggle', this.element.toggleFieldset.bind(this)),
                 $inner
               ])
           ).appendTo($ul);
@@ -87,9 +93,9 @@ module.exports = class SubscribeRulesRenderer {
     }
 
     if (render) {
-      this.$.find('div.content-rules').append(
+      this.element.$.find('div.content-rules').append(
           $('<fieldset />').append([
-            $('<legend />').text(title).on('click.toggle', this.toggleFieldset.bind(this)).attr({title: title}),
+            $('<legend />').text(title).on('click.toggle', this.element.toggleFieldset.bind(this)).attr({title: title}),
             $ul]));
     }
   }

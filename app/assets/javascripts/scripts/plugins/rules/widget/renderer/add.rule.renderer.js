@@ -36,10 +36,8 @@ module.exports = class AddRuleRenderer {
 
       $container.find('div.content-rules').append(
           $('<fieldset />').append([
-            $('<legend />').text(title).on('click.toggle', this.toggleFieldset.bind(this)).attr({title: title}),
-            $ul
-          ])
-      );
+            $('<legend />').text(title).on('click.toggle',
+                this.element.toggleFieldset.bind(this)).attr({title: title}), $ul]));
     }
 
     if (!rule) {

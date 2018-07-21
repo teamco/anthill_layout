@@ -20,7 +20,9 @@
   },
   "browserify-shim": {},
   "dependencies": {
+    "aggregation": "^1.2.3",
     "browserify": "^14.0.0",
+    "mics": "^0.7.0",
     "strip-css-comments": "^3.0.0",
     "through2": "^2.0.3"
   },

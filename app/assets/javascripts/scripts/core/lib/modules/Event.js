@@ -286,7 +286,7 @@ module.exports = class BaseEvent extends AntHill {
           method = controller[events[i]];
 
       if (typeof method !== 'function') {
-        this.logger.warn('Undefined method', event, method);
+        this.scope.logger.warn('Undefined method', event, method);
         continue;
       }
 

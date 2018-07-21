@@ -132,7 +132,7 @@ module.exports = class WidgetRulesView extends BaseView {
       return false;
     }
 
-    this.openRules({
+    this.get$item().rules.openRules({
       config: config,
       $html: $html.$,
       style: [config.preferences.resource, 'widget-rules rules'].join(' '),

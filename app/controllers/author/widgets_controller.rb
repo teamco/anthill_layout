@@ -113,8 +113,8 @@ class Author::WidgetsController < Author::AuthorController
     # html_content = Readability::Document.new(source).content
 
     html_content = url.empty? ?
-                       t('readability_false') :
-                       Pismo::Document.new(url).html_body
+        t('readability_false') :
+        Pismo::Document.new(url).html_body
 
     logger.info ">>> Content to parse: #{html_content.inspect}"
     respond_to do |format|
@@ -225,182 +225,181 @@ class Author::WidgetsController < Author::AuthorController
 
   private
 
-  def partial_by_category
-    {
-        name: 'all_widgets',
-        title: t('widget_management'),
-        collection: [{
-                         category: @category,
-                         widgets: @json_data[:widgets_all]
-                     }],
-        all: @json_data[:widgets_all].length
-    }
-  end
-
-  def partial_by_site_storage
-    {
-        name: 'all_widgets',
-        title: t('site_widgets_management', site: @json_data[:site_storage].key),
-        collection: @json_data[:site_widgets],
-        all: @json_data[:site_widgets].length
-    }
-  end
-
-  def fetch_category_data
-    @categories = WidgetCategory.fetch_data(current_user)
-    @category = @categories.where(id: params[:widget_category_id]).first
-  end
-
-  def fetch_widgets_data
-    fetch_category_data
-    @json_data ||= {
-        user: current_user,
-        categories: [],
-        widgets: [],
-        widgets_all: Widget.fetch_data(current_user, @category),
-        site_widgets: [],
-        site_storage: SiteStorage.where(key: params[:site_storage_id]).first
-    }
-
-    @author_widgets = @json_data[:widgets_all]
-    # unless @json_data[:site_storage].nil?
-    #   @json_data[:site_storage].author_widgets.includes(
-    #     :author_site_storage_widgets
-    #   )
-    # end
-
-    update_json_data unless @author_widgets.blank?
-  end
-
-  def collect_category_widgets
-    @json_data[:categories].each do |c|
-      widgets = c.author_widgets.fetch_category_site_widgets(
-          c, @json_data[:site_storage]
-      )
-      next if widgets.empty?
-      @json_data[:site_widgets] << {
-          category: c,
-          widgets: widgets
+    def partial_by_category
+      {
+          name: 'all_widgets',
+          title: t('widget_management'),
+          collection: [{
+              category: @category,
+              widgets: @json_data[:widgets_all]
+          }],
+          all: @json_data[:widgets_all].length
       }
     end
-  end
 
-  def fetch_external_widget_data
-    return unless request.xhr?
-    url = '' || (params[:author_widget][:url] if request.post? || request.put?)
-    external = {
-        name: '',
-        description: '',
-        resource: '',
-        type: '',
-        width: '',
-        height: '',
-        thumbnail: ''
-    }
-    if url.to_s =~ URI::regexp
-      proxy = Crawler::NetHttp.new
-      json = proxy.request_response(url)
-      external = JSON.parse(json) if json?(json)
-    end
-    external['url'] = url.gsub(/config\.json/, '') unless url.nil?
-    external['thumbnail'] = external['url'] + external['thumbnail']
-    external
-  end
-
-  def generate_widget
-    @widget_lib = WidgetLib::Generate.new
-    @widget_lib.init_params(@author_widget.resource)
-    generate = false
-    begin
-      logger.info '>>>>> Do it'
-      @widget_lib.set_clone(@clone_from)
-      @widget_lib.do_it
-      logger.info '>>>>> Generate Css'
-      if uri?(@author_widget.thumbnail)
-        thumbnail = to_base64(@author_widget.thumbnail)
-        @author_widget.thumbnail = thumbnail unless thumbnail.is_a? String
-      else
-        thumbnail = to_image(@author_widget.thumbnail)
-      end
-      @widget_lib.generate_css(thumbnail)
-      generate = true
-    rescue
-      logger.info '>>>>> Rescue: Remove widget'
-      @widget_lib.remove_widget_dir
-      @author_widget.errors.add(:error, @create_status || 'Undefined error')
-      generate = false
-    end
-    generate
-  end
-
-  def set_author_widget_category
-    if params[:author_widget_category].nil?
-      @category = @author_widget.author_widget_category
-    else
-      index = params[:author_widget_category][:name_index]
-      @category = WidgetCategory.where(name_index: index).first
-    end
-  end
-
-  # Use callbacks to share common setup or constraints between actions.
-  def set_author_widget
-    @author_widget = Widget.where(id: params[:id]).first
-  end
-
-  def set_clone_from
-    clone_from = Widget.where(resource: params[:author_widget_clone])
-    @clone_from = clone_from.first.resource || 'empty'
-  end
-
-  # Never trust parameters from the scary internet, only allow the white list
-  # through.
-  def author_widget_params
-    params.require(:author_widget).permit(
-        :name,
-        :description,
-        :thumbnail,
-        :width,
-        :height,
-        :resource,
-        :widget_category_id
-    )
-  end
-
-  def error_handler_on_create(format)
-    if request.xhr?
-      format.json {
-        render json: @author_widget.errors, status: 400
+    def partial_by_site_storage
+      {
+          name: 'all_widgets',
+          title: t('site_widgets_management', site: @json_data[:site_storage].key),
+          collection: @json_data[:site_widgets],
+          all: @json_data[:site_widgets].length
       }
-    else
-      format.html {render :new}
-      format.json {render json: @author_widget.errors, status: :unprocessable_entity}
     end
-  end
 
-  # @return [Object]
-  def update_json_data
-    @json_data[:categories] = @categories
-    if request.xhr?
-      widgets = @json_data[:site_storage].nil? ?
-                    @author_widgets.includes(:author_widget_category) :
-                    @json_data[:site_storage].author_widgets
-      @json_data[:widgets] = widgets.map do |w|
-        {
-            id: w[:id],
-            uuid: w[:uuid],
-            name: w[:name],
-            description: w[:description],
-            is_external: w[:is_external],
-            resource: w[:resource],
-            external_resource: w[:external_resource],
-            dimensions: {
-                width: w[:width],
-                height: w[:height]
-            },
-            type: w.author_widget_category.name_index
+    def fetch_category_data
+      @categories = WidgetCategory.fetch_data(current_user)
+      @category = @categories.where(id: params[:widget_category_id]).first
+    end
+
+    def fetch_widgets_data
+      fetch_category_data
+      @json_data ||= {
+          user: current_user,
+          categories: [],
+          widgets: [],
+          widgets_all: Widget.fetch_data(current_user, @category),
+          site_widgets: [],
+          site_storage: SiteStorage.where(key: params[:site_storage_id]).first
+      }
+
+      @author_widgets = @json_data[:widgets_all]
+      # unless @json_data[:site_storage].nil?
+      #   @json_data[:site_storage].author_widgets.includes(
+      #     :author_site_storage_widgets
+      #   )
+      # end
+
+      update_json_data unless @author_widgets.blank?
+    end
+
+    def collect_category_widgets
+      @json_data[:categories].each do |c|
+        widgets = c.author_widgets.fetch_category_site_widgets(
+            c, @json_data[:site_storage]
+        )
+        next if widgets.empty?
+        @json_data[:site_widgets] << {
+            category: c,
+            widgets: widgets
         }
       end
     end
-    collect_category_widgets unless request.xhr?
-  end
+
+    def fetch_external_widget_data
+      return unless request.xhr?
+      url = '' || (params[:author_widget][:url] if request.post? || request.put?)
+      external = {
+          name: '',
+          description: '',
+          resource: '',
+          type: '',
+          width: '',
+          height: '',
+          thumbnail: ''
+      }
+      if url.to_s =~ URI::regexp
+        proxy = Crawler::NetHttp.new
+        json = proxy.request_response(url)
+        external = JSON.parse(json) if json?(json)
+      end
+      external['url'] = url.gsub(/config\.json/, '') unless url.nil?
+      external['thumbnail'] = external['url'] + external['thumbnail']
+      external
+    end
+
+    def generate_widget
+      @widget_lib = WidgetLib::Generate.new
+      @widget_lib.init_params(@author_widget.resource)
+      generate = false
+      begin
+        logger.info '>>>>> Do it'
+        @widget_lib.set_clone(@clone_from)
+        @widget_lib.do_it
+        logger.info '>>>>> Generate Css'
+        if uri?(@author_widget.thumbnail)
+          thumbnail = to_base64(@author_widget.thumbnail)
+          @author_widget.thumbnail = thumbnail unless thumbnail.is_a? String
+        else
+          thumbnail = to_image(@author_widget.thumbnail)
+        end
+        @widget_lib.generate_css(thumbnail)
+        generate = true
+      rescue
+        logger.info '>>>>> Rescue: Remove widget'
+        @widget_lib.remove_widget_dir
+        @author_widget.errors.add(:error, @create_status || 'Undefined error')
+        generate = false
+      end
+      generate
+    end
+
+    def set_author_widget_category
+      if params[:author_widget_category].nil?
+        @category = @author_widget.author_widget_category
+      else
+        index = params[:author_widget_category][:name_index]
+        @category = WidgetCategory.where(name_index: index).first
+      end
+    end
+
+  # Use callbacks to share common setup or constraints between actions.
+    def set_author_widget
+      @author_widget = Widget.where(id: params[:id]).first
+    end
+
+    def set_clone_from
+      clone_from = Widget.where(resource: params[:author_widget_clone])
+      @clone_from = clone_from.first.resource || 'empty'
+    end
+
+  # Never trust parameters from the scary internet, only allow the white list
+  # through.
+    def author_widget_params
+      params.require(:author_widget).permit(
+          :name,
+          :description,
+          :thumbnail,
+          :width,
+          :height,
+          :resource,
+          :widget_category_id
+      )
+    end
+
+    def error_handler_on_create(format)
+      if request.xhr?
+        format.json {
+          render json: @author_widget.errors, status: 400
+        }
+      else
+        format.html {render :new}
+        format.json {render json: @author_widget.errors, status: :unprocessable_entity}
+      end
+    end
+
+  # @return [Object]
+    def update_json_data
+      @json_data[:categories] = @categories
+      if request.xhr?
+        widgets = @json_data[:site_storage].nil? ?
+            @author_widgets : @json_data[:site_storage].author_widgets
+        @json_data[:widgets] = widgets.includes(:author_widget_category).map do |w|
+          {
+              id: w[:id],
+              uuid: w[:uuid],
+              name: w[:name],
+              description: w[:description],
+              is_external: w[:is_external],
+              resource: w[:resource],
+              external_resource: w[:external_resource],
+              dimensions: {
+                  width: w[:width],
+                  height: w[:height]
+              },
+              type: w.author_widget_category.name_index
+          }
+        end
+      end
+      collect_category_widgets unless request.xhr?
+    end
 end
