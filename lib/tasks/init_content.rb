@@ -10,6 +10,7 @@ module WidgetLib
 
     def init
       clean_db
+      add_user
       add_categories
       set_routes
     end
@@ -28,6 +29,7 @@ module WidgetLib
     end
 
     def clean_db
+      skip = ['ApplicationRecord']
       puts "\n>>> Start Clean models"
       Dir['app/models/**/*.rb'].each do |model|
         model = model.camelize.gsub(/App::Models::/, '').gsub(/\.rb/, '')
@@ -35,10 +37,30 @@ module WidgetLib
 
         if model_object.methods.include? :delete_all
           puts "- Delete: #{model.inspect}"
-          model_object.delete_all
+          if skip.include? model
+            puts "--> Skip Model: #{model_object.inspect}"
+          else
+            model_object.delete_all
+          end
         end
       end
       puts '>>> Finish Clean models'
+    end
+
+    def add_user
+      puts "\n>>> 1. Add user authentication"
+      User.destroy_all
+      puts '-- Clean: User'
+      %w(registered banned moderator admin guest).each do |role|
+        Role.find_or_create_by({name: role})
+      end
+      password = '1234567890'
+      item = Author::Item.create(public: false, visible: true, user_id: 1)
+      item.build_user(email: 'email@gmail.com', password: password,
+          role_id: Role.find_by_name(:admin).id)
+      item.save!
+      puts "--- Admin: #{item.user.email}|#{password}"
+      puts "--- Admin item: #{item.inspect}"
     end
 
     def add_categories
@@ -59,8 +81,11 @@ module WidgetLib
       puts "\n>>> Start Add categories"
 
       categories.each_with_index do |c, index|
+        item = Author::Item.new(public: true, visible: true, user_id: User.first.id)
+        item.build_author_widget_category({name_index: c[0], name_value: c[1]})
+        item.save!
         puts "#{index}: #{c[0]} >> #{c[1]}"
-        Author::WidgetCategory.create({name_index: c[0], name_value: c[1]})
+        puts "#{Author::WidgetCategory.last.inspect}"
       end
 
       puts '>>> Finish Add categories'
@@ -70,7 +95,7 @@ module WidgetLib
       require default_path
       @widgets = (WidgetsInitList.new).widgets
       # Clear file
-      File.open(json_path, 'w') { |file| file.truncate(0) }
+      File.open(json_path, 'w') {|file| file.truncate(0)}
     end
 
     def load_json
@@ -88,6 +113,7 @@ module WidgetLib
         category = Author::WidgetCategory.find_by_name_index(w['type'])
 
         puts "#{index + 1}: #{w['name']} (#{category.name_value})" unless category.nil?
+        puts "------#{w['name']}: #{w['type']}" if category.nil?
 
         hash = {
             name: w['name'],
@@ -180,7 +206,7 @@ module WidgetLib
       combined = "#{css_path}/combined.css"
       File.delete(combined) if File.exist? combined if force
       cli = RUBY_PLATFORM =~ /mswin|mingw|cygwin/ ? 'type' : 'cat'
-      system("#{cli} #{css_path}/widgets/*.css #{force ? '>': '>>'} #{combined}")
+      system("#{cli} #{css_path}/widgets/*.css #{force ? '>' : '>>'} #{combined}")
       puts '--- Delete uncombined CSS'
       FileUtils.rm_rf("#{css_path}/widgets")
     end

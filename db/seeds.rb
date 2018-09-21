@@ -1,19 +1,7 @@
 require 'uuid'
 
 if Author::Widget.all.length > 0
-  puts "\n>>> 1. Add user authentication"
-  User.destroy_all
-  puts '-- Clean: User'
-  %w(registered banned moderator admin guest).each do |role|
-    Role.find_or_create_by({name: role})
-  end
-  password = '1234567890'
-  admin = User.create(email: 'email@gmail.com', password: password, role_id: Role.find_by_name(:admin).id)
-  item = Author::Item.create(public: false, visible: true, user_id: admin.id)
-  admin.update(item_id: item.id)
-  puts "--- Admin: #{admin.email}|#{password}"
-  puts "--- Admin item: #{admin.author_item.inspect}"
-
+  admin = User.first
   puts "\n>>> 2. Start types"
   Author::SiteType.destroy_all
   puts '-- Clean: SiteType'
@@ -51,7 +39,7 @@ if Author::Widget.all.length > 0
       site_type_id: Author::SiteType.find_by_name('development').id
   )
   site.users << admin
-  item.save
+  item.save!
 
   puts "\n--- Site: #{item.author_site_storage.inspect}"
   puts "\n--- Site item: #{item.inspect}"
@@ -62,7 +50,7 @@ if Author::Widget.all.length > 0
       version: 1,
       item_id: item.id,
       activated: true
-  ).save
+  ).save!
 
   puts "--- Storage: #{site.key} -> #{site.author_site_type.name}"
   puts "--- Version: #{site.author_site_versions.inspect}"

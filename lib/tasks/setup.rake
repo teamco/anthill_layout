@@ -26,8 +26,6 @@ namespace :setup do
   task load: :environment do
     puts "\n>>> widget:load"
     Rake::Task['widget:load'].execute
-    puts "\n>>> db:seed"
-    Rake::Task['db:seed'].execute
   end
 
   desc 'Map static resources'

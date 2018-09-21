@@ -42,77 +42,74 @@ class User < ApplicationRecord
   TEMP_EMAIL_REGEX = /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
 
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable,
-         :timeoutable, :omniauthable, :lastseenable,
-         omniauth_providers: [
-             # :digitalocean,
-             :twitter,
-             :facebook,
-             # :google,
-             # :amazon,
-             :github,
-             :bitbucket,
-             :linkedin,
-             :aliexpress
-         ]
+      :recoverable, :rememberable, :trackable,
+      :timeoutable, :omniauthable, :lastseenable,
+      omniauth_providers: [
+          # :digitalocean,
+          :twitter,
+          :facebook,
+          # :google,
+          # :amazon,
+          :github,
+          :bitbucket,
+          :linkedin,
+          :aliexpress
+      ]
 
   has_and_belongs_to_many :author_site_storages,
-                          class_name: 'Author::SiteStorage'
+      class_name: 'Author::SiteStorage'
 
   belongs_to :author_item,
-             class_name: 'Author::Item',
-             foreign_key: :item_id,
-             dependent: :destroy
+      class_name: 'Author::Item',
+      dependent: :destroy
 
   has_many :author_widgets,
-           class_name: 'Author::Widget',
-           dependent: :destroy,
-           through: :author_item
+      class_name: 'Author::Widget',
+      dependent: :destroy
+
+  has_many :author_site_storages,
+      class_name: 'Author::SiteStorage',
+      dependent: :destroy
 
   has_many :author_site_versions,
-           class_name: 'Author::SiteVersion',
-           dependent: :destroy,
-           through: :author_item
+      dependent: :destroy,
+      class_name: 'Author::SiteVersion'
 
   has_many :author_site_storage_widgets,
-           class_name: 'Author::SiteStorageWidget',
-           dependent: :destroy,
-           through: :author_item
+      class_name: 'Author::SiteStorageWidget',
+      dependent: :destroy
 
   has_many :author_site_types,
-           class_name: 'Author::SiteType',
-           dependent: :destroy,
-           through: :author_item
+      class_name: 'Author::SiteType',
+      dependent: :destroy
 
   has_many :author_widget_categories,
-           class_name: 'Author::WidgetCategory',
-           dependent: :destroy,
-           through: :author_item
+      class_name: 'Author::WidgetCategory',
+      dependent: :destroy
 
   has_many :user_logs,
-           class_name: 'UserLog',
-           dependent: :destroy
+      class_name: 'UserLog',
+      dependent: :destroy
 
   has_many :error_logs,
-           class_name: 'ErrorLog',
-           dependent: :destroy,
-           through: :user_logs
+      class_name: 'ErrorLog',
+      dependent: :destroy
 
   has_many :vulnerability_storages,
-           class_name: 'VulnerabilityStorage',
-           dependent: :destroy,
-           through: :author_site_storages
+      class_name: 'VulnerabilityStorage',
+      dependent: :destroy,
+      through: :author_site_storages
 
   belongs_to :role
 
   before_create :set_default_role
 
   validates_format_of :email,
-                      with: TEMP_EMAIL_REGEX,
-                      on: :update,
-                      uniqueness: {
-                          case_sensitive: false
-                      }
+      with: TEMP_EMAIL_REGEX,
+      on: :update,
+      uniqueness: {
+          case_sensitive: false
+      }
 
   before_create :update_profile
   before_update :update_profile
@@ -129,7 +126,7 @@ class User < ApplicationRecord
   end
 
   def self.from_omniauth(auth)
-    where(provider: auth.provider, uid: auth.uid).first_or_initialize.tap { |user| create_from(auth, user) }
+    where(provider: auth.provider, uid: auth.uid).first_or_initialize.tap {|user| create_from(auth, user)}
   end
 
   def email_verified?
