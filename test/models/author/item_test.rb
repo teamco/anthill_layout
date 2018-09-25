@@ -3,7 +3,7 @@
 # Table name: author_items
 #
 #  id         :integer          not null, primary key
-#  user_id    :integer          not null
+#  user_id    :integer
 #  visible    :boolean          default(TRUE)
 #  public     :boolean          default(FALSE)
 #  created_at :datetime         not null

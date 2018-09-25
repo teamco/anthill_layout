@@ -41,9 +41,8 @@ class User < ApplicationRecord
 
   TEMP_EMAIL_REGEX = /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
 
-  devise :database_authenticatable, :registerable,
-      :recoverable, :rememberable, :trackable,
-      :timeoutable, :omniauthable, :lastseenable,
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable,
+      :trackable, :timeoutable, :omniauthable, :lastseenable,
       omniauth_providers: [
           # :digitalocean,
           :twitter,
@@ -55,6 +54,8 @@ class User < ApplicationRecord
           :linkedin,
           :aliexpress
       ]
+
+  attr_accessor :oauth_expires_at
 
   has_and_belongs_to_many :author_site_storages,
       class_name: 'Author::SiteStorage'
@@ -122,7 +123,7 @@ class User < ApplicationRecord
 
   def update_item
     item = Author::Item.create(public: false, visible: true, user_id: self.id)
-    self.update(item_id: item.id)
+    self.update(author_item_id: item.id)
   end
 
   def self.from_omniauth(auth)
@@ -151,6 +152,8 @@ class User < ApplicationRecord
 
   private
 
+  ##
+  # @param user [Hash]
   def self.create_from(auth, user)
     user.provider = auth.provider
     user.uid = auth.uid

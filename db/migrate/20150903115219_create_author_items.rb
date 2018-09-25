@@ -36,7 +36,7 @@ class CreateAuthorItems < ActiveRecord::Migration[5.0]
     remove_column :author_widgets, :updated_at
 
     create_table :author_items do |t|
-      t.integer :user_id, null: false, index: true
+      t.integer :user_id, index: true
       t.boolean :visible, default: true
       t.boolean :public, default: false
       t.timestamps null: false

@@ -26,6 +26,20 @@ namespace :setup do
   task load: :environment do
     puts "\n>>> widget:load"
     Rake::Task['widget:load'].execute
+    puts "\n>>> db:seed"
+    Rake::Task['db:seed'].execute
+  end
+
+  desc 'Add site storage admin users'
+  task storage_users: :environment do
+    sites = Author::SiteStorage.all
+    admin = User.first
+    sites.each do |s|
+      s.users.clear
+      s.users << admin
+      s.save!
+      puts ">>> Site users: #{s.users}"
+    end
   end
 
   desc 'Map static resources'

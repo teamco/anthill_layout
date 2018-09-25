@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2016_12_19_211324) do
+ActiveRecord::Schema.define(version: 2018_09_25_084343) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "author_items", id: :serial, force: :cascade do |t|
-    t.integer "user_id", null: false
+    t.integer "user_id"
     t.boolean "visible", default: true
     t.boolean "public", default: false
     t.datetime "created_at", null: false
@@ -161,7 +161,7 @@ ActiveRecord::Schema.define(version: 2016_12_19_211324) do
     t.string "name"
     t.string "image"
     t.datetime "last_seen"
-    t.integer "item_id"
+    t.integer "author_item_id"
     t.string "original_email"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true

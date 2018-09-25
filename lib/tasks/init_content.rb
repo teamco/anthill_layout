@@ -10,7 +10,6 @@ module WidgetLib
 
     def init
       clean_db
-      add_user
       add_categories
       set_routes
     end
@@ -47,22 +46,6 @@ module WidgetLib
       puts '>>> Finish Clean models'
     end
 
-    def add_user
-      puts "\n>>> 1. Add user authentication"
-      User.destroy_all
-      puts '-- Clean: User'
-      %w(registered banned moderator admin guest).each do |role|
-        Role.find_or_create_by({name: role})
-      end
-      password = '1234567890'
-      item = Author::Item.create(public: false, visible: true, user_id: 1)
-      item.build_user(email: 'email@gmail.com', password: password,
-          role_id: Role.find_by_name(:admin).id)
-      item.save!
-      puts "--- Admin: #{item.user.email}|#{password}"
-      puts "--- Admin item: #{item.inspect}"
-    end
-
     def add_categories
       categories = {
           regular: 'Regular widgets',
@@ -81,11 +64,18 @@ module WidgetLib
       puts "\n>>> Start Add categories"
 
       categories.each_with_index do |c, index|
-        item = Author::Item.new(public: true, visible: true, user_id: User.first.id)
-        item.build_author_widget_category({name_index: c[0], name_value: c[1]})
-        item.save!
+        category = Author::WidgetCategory.new(
+            name_index: c[0],
+            name_value: c[1]
+        )
+        category.build_author_item(
+            public: true,
+            visible: true,
+            user_id: User.first.try(:id)
+        )
+        category.save!(validate: false)
         puts "#{index}: #{c[0]} >> #{c[1]}"
-        puts "#{Author::WidgetCategory.last.inspect}"
+        puts "#{category.inspect}"
       end
 
       puts '>>> Finish Add categories'
@@ -128,11 +118,15 @@ module WidgetLib
             external_resource: w['external_resource']
         }
 
-        item = Author::Item.new(public: true, visible: w['visible'].nil? ? true : w['visible'], user_id: 1)
-        item.build_author_widget(hash)
-        item.save!
+        a_widget = Author::Widget.new(hash)
+        a_widget.build_author_item(
+            public: true,
+            visible: w['visible'].nil? ? true : w['visible'],
+            user_id: 1
+        )
+        a_widget.save!(validate: false)
 
-        puts "Model item: #{item.author_widget.name}"
+        puts "Model item: #{a_widget.name}"
         puts "External: #{hash[:is_external]}" if hash[:is_external]
         puts "Resource: #{hash[:external_resource]}" if hash[:is_external]
 
@@ -142,19 +136,17 @@ module WidgetLib
         end
 
         widget.update_json(
-            {
-                name: w['name'],
-                description: w['description'],
-                thumbnail: w['thumbnail'],
-                dimensions: {
-                    width: w['dimensions']['width'],
-                    height: w['dimensions']['height']
-                },
-                is_external: w['is_external'],
-                external_resource: w['external_resource'],
-                type: w['type'],
-                resource: w['resource']
-            }
+            name: w['name'],
+            description: w['description'],
+            thumbnail: w['thumbnail'],
+            dimensions: {
+                width: w['dimensions']['width'],
+                height: w['dimensions']['height']
+            },
+            is_external: w['is_external'],
+            external_resource: w['external_resource'],
+            type: w['type'],
+            resource: w['resource']
         ) if store
 
       end
@@ -193,7 +185,7 @@ module WidgetLib
 
       item = Author::Item.new(public: true, visible: last['visible'].nil? ? true : last['visible'], user_id: 1)
       item.build_author_widget(hash)
-      item.save!
+      item.save!(validate: false)
 
       puts "Model item: #{item.author_widget.name}"
       puts ">>> Finish Add widget: #{Author::Widget.last.inspect}"
