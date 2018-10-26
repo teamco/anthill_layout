@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.5.1'
+ruby '2.5.3'
 require 'socket'
 teamco = Socket.gethostname =~ /teamco/
 
@@ -111,10 +111,12 @@ gem 'sprockets'
 # gem 'cancan'
 
 gem 'puma_worker_killer'
-gem 'unicorn'
+# gem 'unicorn'
 gem 'rack-handlers'
 
-gem 'sprockets-es6'
-gem 'babel-source'
-gem 'babel-transpiler'
-gem 'browserify-rails', '>=4.2.0'
+# gem 'sprockets-es6'
+# gem 'babel-source'
+# gem 'babel-transpiler'
+# gem 'browserify-rails', '>=4.2.0'
+
+gem 'webpacker'

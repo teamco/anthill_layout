@@ -20,6 +20,7 @@
   },
   "browserify-shim": {},
   "dependencies": {
+    "@rails/webpacker": "3.5",
     "aggregation": "^1.2.3",
     "browserify": "^14.0.0",
     "mics": "^0.7.0",
@@ -42,6 +43,7 @@
     "npm-packlist": "^1.1.10",
     "rimraf": "^2.6.2",
     "ssri": "^6.0.0",
-    "string_decoder": "^1.1.1"
+    "string_decoder": "^1.1.1",
+    "webpack-dev-server": "2.11.2"
   }
 }
