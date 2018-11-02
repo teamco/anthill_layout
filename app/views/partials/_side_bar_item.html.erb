@@ -1,0 +1,23 @@
+<% items = (defined? items).nil? ? nil : items %>
+<!--<li class="nav-title"></li>-->
+<li class="nav-item <%= 'nav-dropdown' unless items.nil? %>">
+  <% active_css = active ? 'active' : '' %>
+  <%= link_to url, title: title,
+      class: "nav-link #{active_css}#{'nav-dropdown-toggle' unless items.nil?}" do %>
+    <i class="nav-icon glyphicon <%= icon %>"></i>
+    <%= title %>
+  <% end %>
+  <% unless items.nil? %>
+    <ul class="nav-dropdown-items">
+      <% items.each do |item| %>
+        <li class="nav-item">
+          <%= link_to item[:url], title: item[:title],
+              class: "nav-link #{active_css}" do %>
+            <i class="<%= item[:icon] %>"></i>
+            <%= item[:title] %>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+</li>

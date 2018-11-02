@@ -1,0 +1,17 @@
+@charset "UTF-8";
+@import '~bootstrap/scss/bootstrap';
+@import '~bootstrap/scss/variables';
+
+$fa-font-path: '~@fortawesome/fontawesome-free-webfonts/webfonts';
+@import '~@fortawesome/fontawesome-free-webfonts/scss/fontawesome';
+@import '~@fortawesome/fontawesome-free-webfonts/scss/fa-solid';
+
+@import '~@coreui/icons/scss/coreui-icons.scss';
+@import '~flag-icon-css/css/flag-icon.min';
+@import '~simple-line-icons/scss/simple-line-icons';
+
+@import '~@coreui/coreui/scss/coreui';
+@import './author';
+
+//@import './shared';
+//@import '../plugins/stylesheets/combined';

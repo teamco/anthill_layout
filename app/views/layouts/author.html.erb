@@ -2,29 +2,25 @@
 <html>
 <head>
   <title>AntHill</title>
-  <%= stylesheet_link_tag 'application', media: 'all' %>
-  <%= javascript_include_tag 'author' %>
+  <%= stylesheet_pack_tag 'author' %>
+  <%= javascript_pack_tag 'author' %>
   <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
   <%= csrf_meta_tags %>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <%= render '/partials/ie_shims' %>
 </head>
-<body class="anthill admin pace-done <%= 'm-0' unless user_signed_in? %>">
-<div id="wrapper">
-  <%= render '/partials/left_menu' if user_signed_in? %>
-  <div id="page-wrapper" class="gray-bg">
-    <%= render '/partials/user_info' if user_signed_in? %>
-    <div class="wrapper wrapper-content">
-      <div class="row">
-        <div class="col-lg-12">
-          <section class="admin-dashboard content">
-            <%= yield %>
-          </section>
-        </div>
-      </div>
+<% side_bar = user_signed_in? ? 'sidebar-fixed aside-menu-fixed sidebar-lg-show' : '' %>
+<body class="anthill app header-fixed <%= side_bar %>">
+<%= render 'partials/header' %>
+<div class="app-body">
+  <%= render 'partials/side_bar' if user_signed_in? %>
+  <main class="main">
+    <%= render 'partials/breadcrumbs' if user_signed_in? %>
+    <div class="container-fluid">
+      <%= yield %>
     </div>
-    <%= render '/partials/footer' %>
-  </div>
+  </main>
+  <%= render 'partials/aside_menu' if user_signed_in? %>
 </div>
+<%= render 'partials/footer' %>
 </body>
 </html>

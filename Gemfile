@@ -107,7 +107,8 @@ gem 'omniauth-twitter'
 # gem 'omniauth-google'
 
 gem 'koala'
-gem 'sprockets'
+# gem 'sprockets'
+gem 'foreman'
 # gem 'cancan'
 
 gem 'puma_worker_killer'

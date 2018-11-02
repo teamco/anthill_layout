@@ -1,10 +1,11 @@
-<div class="footer">
+<footer class="app-footer">
   <% if user_signed_in? %>
-      <div class="pull-right">
-        Last sign in at <strong><%= current_user.last_sign_in_at.to_formatted_s(:long) %></strong>
-      </div>
+    <div>
+      <span>Last sign in at <strong><%= current_user.last_sign_in_at.to_formatted_s(:long) %></strong></span>
+    </div>
   <% end %>
-  <div>
-    <strong>Copyright</strong> iTeam&copy; 2014-<%= Date.today.year %>
+  <div class="ml-auto">
+    <span>Copyright</span>
+    <strong>iTeam&copy; 2014</strong>-<%= Date.today.year %>
   </div>
-</div>
+</footer>

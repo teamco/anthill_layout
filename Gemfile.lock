@@ -74,9 +74,9 @@ GEM
       sass (>= 3.3.4)
     brakeman (4.3.1)
     builder (3.2.3)
-    bullet (5.7.6)
+    bullet (5.8.1)
       activesupport (>= 3.0.0)
-      uniform_notifier (~> 1.11.0)
+      uniform_notifier (~> 1.11)
     byebug (10.0.2)
     callsite (0.0.11)
     capistrano (3.11.0)
@@ -165,6 +165,8 @@ GEM
       sexp_processor (~> 4.8)
     font-awesome-sass (5.4.1)
       sassc (>= 1.11)
+    foreman (0.85.0)
+      thor (~> 0.19.1)
     formatador (0.2.5)
     get_process_mem (0.2.3)
     github_api (0.18.2)
@@ -236,7 +238,7 @@ GEM
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
       ruby_dep (~> 1.2)
-    loofah (2.2.2)
+    loofah (2.2.3)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     lumberjack (1.0.13)
@@ -347,7 +349,7 @@ GEM
       puma (>= 2.7, < 4)
     querystring (0.1.0)
     rack (2.0.5)
-    rack-attack (5.4.1)
+    rack-attack (5.4.2)
       rack (>= 1.0, < 3)
     rack-contrib (2.1.0)
       rack (~> 2.0)
@@ -380,7 +382,7 @@ GEM
     rails_12factor (0.0.3)
       rails_serve_static_assets
       rails_stdout_logging
-    rails_best_practices (1.19.3)
+    rails_best_practices (1.19.4)
       activesupport
       code_analyzer (>= 0.4.8)
       erubis
@@ -481,15 +483,15 @@ GEM
     therubyracer (0.12.3)
       libv8 (~> 3.16.14.15)
       ref
-    thor (0.20.0)
+    thor (0.19.4)
     thread_safe (0.3.6)
     tilt (2.0.8)
-    traceroute (0.7.1)
+    traceroute (0.8.0)
       rails (>= 3.0.0)
     tty-which (0.3.0)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
-    tzinfo-data (1.2018.6)
+    tzinfo-data (1.2018.7)
       tzinfo (>= 1.0.0)
     uglifier (4.1.19)
       execjs (>= 0.3.0, < 3)
@@ -497,7 +499,7 @@ GEM
       unf_ext
     unf_ext (0.0.7.5)
     unicode-display_width (1.4.0)
-    uniform_notifier (1.11.0)
+    uniform_notifier (1.12.1)
     uuid (2.3.9)
       macaddr (~> 1.0)
     virtus (1.0.5)
@@ -545,6 +547,7 @@ DEPENDENCIES
   devise_lastseenable
   embedly
   font-awesome-sass
+  foreman
   github_api
   gravtastic
   guard
@@ -591,7 +594,6 @@ DEPENDENCIES
   sass-rails
   sdoc
   spring
-  sprockets
   stackprof
   therubyracer
   traceroute
