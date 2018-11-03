@@ -18,6 +18,10 @@
       <i class="fa fa-exclamation-triangle"></i>
       Errors<span class="badge badge-danger"><%= errors_owner %></span>
     </div>
+    <div class="dropdown-item">
+      <i class="fa fa-location-arrow"></i>
+      <%= user_location %>
+    </div>
     <small class="dropdown-item text-center">
       Member since<br />
       <%= current_user.created_at.to_formatted_s(:long) %>

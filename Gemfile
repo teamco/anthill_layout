@@ -18,6 +18,7 @@ gem 'pismo'
 gem 'puma'
 gem 'rake'
 gem 'will_paginate'
+gem 'geocoder'
 
 group :test, :development do
   gem 'annotate', require: false

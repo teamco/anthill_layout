@@ -112,6 +112,10 @@ module ApplicationHelper
     ErrorLog.where(user_id: current_user.id).length
   end
 
+  def user_location
+    request.location.city || 'Localhost'
+  end
+
   def is_active_url(*args)
     args.each {|x| return true if controller_name == x}
     false
