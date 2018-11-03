@@ -9,11 +9,11 @@
   <div class="dropdown-menu dropdown-menu-right"
        x-placement="bottom-end">
     <%= link_to item_new, class: 'dropdown-item' do %>
-      <i class="fa fa-plus-square fa-lg float-right"></i>
+      <i class="fa fa-plus-square fa-lg"></i>
       <%= t('add_new') %>
     <% end unless item_new.nil? %>
     <%= link_to item_path, class: 'dropdown-item' do %>
-      <i class="fa fa-info-circle fa-lg float-right"></i>
+      <i class="fa fa-info-circle fa-lg"></i>
       <%= t('more_info') %>
     <% end unless item_path.nil? %>
   </div>
