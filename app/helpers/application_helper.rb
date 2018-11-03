@@ -104,6 +104,14 @@ module ApplicationHelper
     Author::Item.where(user_id: current_user.id).length
   end
 
+  def logs_owner
+    UserLog.where(user_id: current_user.id).length
+  end
+
+  def errors_owner
+    ErrorLog.where(user_id: current_user.id).length
+  end
+
   def is_active_url(*args)
     args.each {|x| return true if controller_name == x}
     false
