@@ -12,8 +12,7 @@ import '@coreui/coreui-plugin-chartjs-custom-tooltips/dist/js/custom-tooltips.mi
 // import fontawesome from '@fortawesome/fontawesome';
 // import {faCoffee, faCameraRetro} from '@fortawesome/fontawesome-free-solid';
 // fontawesome.library.add(faCoffee, faCameraRetro)
-import '@fortawesome/fontawesome';
-import '@fortawesome/fontawesome-free-solid';
+import '@fortawesome/fontawesome-free/js/all.min';
 
 (function() {
   document.addEventListener('DOMContentLoaded', () => {

@@ -1,33 +1,16 @@
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title"><%= t('logs_management') %></h3>
-  </div>
-  <div class="panel-body">
-    <div class="row">
-      <div class="col-lg-3 col-sm-6 col-xs-12">
-        <%= render 'author/author/ibox_index',
-                   item_box: 'bg-green',
-                   item_title: t('user_logs'),
-                   item_path: user_logs_path,
-                   item_info: @author[:user_logs],
-                   item_icon: 'glyphicon-time' %>
-      </div>
-      <div class="col-lg-3 col-sm-6 col-xs-12">
-        <%= render 'author/author/ibox_index',
-                   item_box: 'bg-red',
-                   item_title: t('error_logs'),
-                   item_path: error_logs_path,
-                   item_info: @author[:error_logs],
-                   item_icon: 'glyphicon-exclamation-sign' %>
-      </div>
-      <!--<div class="col-lg-3 col-sm-6 col-xs-12">-->
-      <%#= render 'author/author/ibox_index',
-                            item_box: 'bg-yellow',
-                            item_title: t('vulnerability_storage'),
-                            item_path: vulnerability_storages_path,
-                            item_info: @author[:vulnerability_storage],
-                           item_icon: 'glyphicon-fire' %>
-      <!--</div>-->
-    </div>
-  </div>
+<div class="col-sm-6 col-lg-3">
+  <%= render 'author/author/ibox_index',
+      item_bg: empty_ibox?(@author[:user_logs], 'bg-green'),
+      item_title: t('user_logs'),
+      item_path: user_logs_path,
+      item_info: @author[:user_logs],
+      item_icon: 'fa-crosshairs' %>
+</div>
+<div class="col-sm-6 col-lg-3">
+  <%= render 'author/author/ibox_index',
+      item_bg: empty_ibox?(@author[:user_logs], 'bg-red'),
+      item_title: t('error_logs'),
+      item_path: error_logs_path,
+      item_info: @author[:error_logs],
+      item_icon: 'fa-chart-bar' %>
 </div>

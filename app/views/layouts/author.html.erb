@@ -16,7 +16,11 @@
   <main class="main">
     <%= render 'partials/breadcrumbs' if user_signed_in? %>
     <div class="container-fluid">
-      <%= yield %>
+      <div id="ui-view">
+        <div>
+          <div class="animated fadeIn"><%= yield %></div>
+        </div>
+      </div>
     </div>
   </main>
   <%= render 'partials/aside_menu' if user_signed_in? %>

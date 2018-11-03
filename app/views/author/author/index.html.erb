@@ -1,4 +1,12 @@
-<%= render 'author/author/sites' %>
-<%= render 'author/author/widgets' %>
-<%= render 'author/author/users' %>
-<%= render 'author/author/logs' %>
+<%= render 'author/author/ibox_container',
+    path: 'sites',
+    title: t('sites_management') %>
+<%= render 'author/author/ibox_container',
+    path: 'widgets',
+    title: t('widget_management') %>
+<%= render 'author/author/ibox_container',
+    path: 'users',
+    title: t('users_management') %>
+<%= render 'author/author/ibox_container',
+    path: 'logs',
+    title: t('logs_management') %>

@@ -1,10 +1,16 @@
-<div class="col-lg-3 col-sm-6 col-xs-12">
+<div class="col-sm-6 col-lg-3">
+  <% widgets = item.author_site_storage_widgets.length %>
+  <% widgets_badge = widgets > 0 ? 'success' : 'warning' %>
   <%= render 'author/author/ibox_edit',
-             item_type: 'edit',
-             item_box: last_published?(item) ? 'bg-green' : 'bg-gray',
-             item: item,
-             item_info: "#{item.key} (#{item.author_site_storage_widgets.length})",
-             item_title: "#{published(item)}/#{activated(item)} (#{item.author_site_versions.length})",
-             item_icon: 'glyphicon-globe',
-             item_menu: 'menu' %>
+      item_type: 'edit',
+      item_bg: last_published?(item) ? 'bg-green' : 'bg-info',
+      item: item,
+      item_info: item.key,
+      item_title: "
+      #{t('site_connected_widgets')} <span class=\"badge badge-#{widgets_badge}\">
+          #{widgets}</span><br />
+      #{t('version').pluralize} <span class=\"badge badge-dark\">
+#{item.author_site_versions.length}</span>".html_safe,
+      item_icon: 'fa-globe',
+      item_menu: 'menu' %>
 </div>

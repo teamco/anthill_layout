@@ -4,7 +4,7 @@
   <% active_css = active ? 'active' : '' %>
   <%= link_to url, title: title,
       class: "nav-link #{active_css}#{'nav-dropdown-toggle' unless items.nil?}" do %>
-    <i class="nav-icon glyphicon <%= icon %>"></i>
+    <i class="nav-icon fa fa-<%= icon %> fa-lg"></i>
     <%= title %>
   <% end %>
   <% unless items.nil? %>
@@ -13,7 +13,7 @@
         <li class="nav-item">
           <%= link_to item[:url], title: item[:title],
               class: "nav-link #{active_css}" do %>
-            <i class="<%= item[:icon] %>"></i>
+            <i class="fa fa-<%= item[:icon] %>"></i>
             <%= item[:title] %>
           <% end %>
         </li>

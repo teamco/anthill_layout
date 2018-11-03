@@ -1,12 +1,12 @@
-<div class="small-box <%= item_info.to_i > 0 ? item_box : 'bg-gray' %>">
-  <div class="inner">
-    <h3><%= item_info %></h3>
-    <p><%= item_title %></p>
+<div class="card dashboard text-white <%= item_bg %>">
+  <div class="card-body pb-0">
+    <%= render 'author/author/setting',
+        item_path: defined?(item_path) ? item_path : nil,
+        item_new: defined?(item_new) ? item_new : nil %>
+    <div class="text-value"><%= item_info %></div>
+    <div><%= item_title %></div>
   </div>
   <div class="icon">
-    <i class="glyphicon <%= item_icon %>"></i>
+    <i class="fa <%= item_icon %>"></i>
   </div>
-  <%= link_to item_path, class: 'small-box-footer clearfix' do %>
-      <%= t('more_info') %> <i class="fa fa-arrow-circle-right"></i>
-  <% end %>
 </div>

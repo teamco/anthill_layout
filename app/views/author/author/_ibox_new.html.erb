@@ -1,12 +1,8 @@
-<div class="small-box bg-aqua">
-  <div class="inner">
-    <h3><%= t('add_new') %></h3>
-    <p><%= controller_name.singularize.humanize %></p>
-  </div>
-  <div class="icon">
-    <i class="glyphicon glyphicon-plus"></i>
-  </div>
-  <%= link_to (defined? url).nil? ? send("new_author_#{controller_name.singularize}_path") : url, class: 'small-box-footer clearfix' do %>
-      <%= t('create') %> <i class="fa fa-arrow-circle-right"></i>
-  <% end %>
+<div class="col-sm-6 col-lg-3">
+  <%= render 'author/author/ibox_index',
+      item_bg: 'bg-gray',
+      item_title: controller_name.singularize.humanize,
+      item_new: (defined? url).nil? ? send("new_author_#{controller_name.singularize}_path") : url,
+      item_info: t('add_new'),
+      item_icon: 'fa-plus-circle' %>
 </div>

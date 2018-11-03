@@ -34,6 +34,7 @@ en:
   sites_latest_version: "Latest version"
   sites_activated_version: "Activated version"
   sites_published_version: "Published version"
+  site_connected_widgets: "Connected widgets"
   site_version_activate: "Activate"
   site_version_deactivate: "Deactivate"
   site_current_version: "Show version"

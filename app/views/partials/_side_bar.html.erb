@@ -4,48 +4,82 @@
       <%= render 'partials/side_bar_item',
           url: '/',
           active: is_active_url('author'),
-          icon: 'glyphicon-dashboard',
+          icon: 'desktop',
           title: t('dashboard') %>
       <%= render 'partials/side_bar_item',
           url: '#',
           active: is_active_url('site_storages', 'site_types', 'site_versions'),
-          icon: 'glyphicon-globe',
+          icon: 'globe',
           title: t('sites_management'),
           items: [
-              {title: t('sites_storage'), url: author_site_storages_path, active: is_active_url('site_storages'), icon: 'glyphicon glyphicon-globe'},
-              {title: t('site_types'), url: author_site_types_path, active: is_active_url('site_types'), icon: 'glyphicon glyphicon-th-list'}
+              {
+                  title: t('sites_storage'),
+                  url: author_site_storages_path,
+                  active: is_active_url('site_storages'),
+                  icon: 'building'
+              },
+              {
+                  title: t('site_types'),
+                  url: author_site_types_path,
+                  active: is_active_url('site_types'),
+                  icon: 'archive'
+              }
           ] %>
       <%= render 'partials/side_bar_item',
           url: '#',
           active: is_active_url('widgets', 'widget_categories'),
-          icon: 'glyphicon-th-large',
+          icon: 'layer-group',
           title: t('widget_management'),
           items: [
-              {title: t('widgets'), url: author_widgets_path, active: is_active_url('widgets'), icon: 'glyphicon glyphicon-th-large'},
-              {title: t('widget_categories'), url: author_widget_categories_path, active: is_active_url('widget_categories'), icon: 'fa fa-tasks'}
+              {
+                  title: t('widgets'),
+                  url: author_widgets_path,
+                  active: is_active_url('widgets'),
+                  icon: 'th-large'
+              },
+              {
+                  title: t('widget_categories'),
+                  url: author_widget_categories_path,
+                  active: is_active_url('widget_categories'),
+                  icon: 'map'
+              }
           ] %>
       <%= render 'partials/side_bar_item',
           url: '#',
           active: false,
-          icon: 'glyphicon-user',
+          icon: 'user',
           title: t('users_management'),
           items: [
-              {title: t('users'), url: author_users_path, icon: 'glyphicon glyphicon-user'}
+              {
+                  title: t('users'),
+                  url: author_users_path,
+                  icon: 'address-card'
+              }
           ] %>
       <%= render 'partials/side_bar_item',
           url: '#',
-          active: is_active_url('error_logs', 'user_logs'), # 'vulnerability_storages'),
-          icon: 'glyphicon-time',
+          active: is_active_url('error_logs', 'user_logs'),
+          icon: 'atom',
           title: t('logs_management'),
           items: [
-              {title: t('error_logs'), url: error_logs_path, active: is_active_url('error_logs'), icon: 'fa fa-line-chart'},
-              {title: t('user_logs'), url: user_logs_path, active: is_active_url('user_logs'), icon: 'fa fa-bar-chart'}
+              {
+                  title: t('error_logs'),
+                  url: error_logs_path,
+                  active: is_active_url('error_logs'),
+                  icon: 'chart-bar'
+              },
+              {
+                  title: t('user_logs'),
+                  url: user_logs_path,
+                  active: is_active_url('user_logs'),
+                  icon: 'crosshairs'
+              }
           # {title: t('vulnerability_storage'), url: vulnerability_storages_path, icon: 'fa fa-bar-chart'},
           ] %>
       <%= render 'partials/side_bar_item',
           url: 'javascript:makeScreenshot()',
           active: false,
-          icon: 'glyphicon-camera',
+          icon: 'camera',
           title: t('screenshot') %>
     </ul>
   </nav>
