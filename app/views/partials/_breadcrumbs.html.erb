@@ -5,10 +5,10 @@
   <% unless controller_name == 'author' %>
     <li class="breadcrumb-item">
       <%= link_to controller_name.humanize,
-          send("#{controller_name.pluralize}_path") %>
+          send("author_#{controller_name.pluralize}_path") %>
     </li>
   <% end %>
-  <% unless action_name == 'index' %>
+  <% unless ahi? %>
     <li class="breadcrumb-item">
       <%= link_to action_name.humanize,
           send("#{action_name}_#{controller_name.singularize}_path", params[:id]) %>

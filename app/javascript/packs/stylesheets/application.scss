@@ -35,10 +35,6 @@ $fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
   .dropdown-item {
     border: none;
     padding: 5px 20px;
-    svg {
-      margin-left: -10px;
-      margin-right: 10px;
-    }
   }
   .dropdown-divider.with-text {
     height: auto;
@@ -63,5 +59,18 @@ $fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
   }
   .icon:hover {
     color: rgba(0, 0, 0, 0.15);
+  }
+}
+
+.dropdown-item {
+  svg {
+    margin-left: -10px;
+    margin-right: 10px;
+  }
+}
+
+header {
+  .user-image {
+    height: 40px;
   }
 }

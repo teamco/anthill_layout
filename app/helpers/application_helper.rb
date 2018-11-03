@@ -1,6 +1,6 @@
 module ApplicationHelper
 
-  def must_authenticate(list=[])
+  def must_authenticate(list = [])
     %w[sessions passwords registrations].concat(list).include? controller_name
   end
 
@@ -27,10 +27,10 @@ module ApplicationHelper
       (is_author? ? "Author::#{mn}" : mn).constantize
     rescue => e
       case controller_path
-        when 'users/management' then
-          User
-        else
-          raise Exception.new(e)
+      when 'users/management' then
+        User
+      else
+        raise Exception.new(e)
       end
     end
   end
@@ -43,12 +43,17 @@ module ApplicationHelper
     action_name == 'index'
   end
 
-  def c_index(id=nil)
+  def c_index(id = nil)
     {controller: controller_name, action: id.nil? ? :index : action_name, id: id}
   end
 
-  def do_logout
-    link_to t('logout'), destroy_user_session_path, method: :delete, class: 'btn btn-default btn-flat'
+  def do_logout(css = nil)
+    link_to destroy_user_session_path,
+        title: t('logout'),
+        method: :delete,
+        class: css do
+      "<i class=\"fa fa-sign-out-alt\"></i>#{t('logout')}".html_safe
+    end
   end
 
   def is_sessions?
@@ -95,8 +100,12 @@ module ApplicationHelper
     current_user.name || current_user.original_email
   end
 
+  def items_owner
+    Author::Item.where(user_id: current_user.id).length
+  end
+
   def is_active_url(*args)
-    args.each { |x| return true if controller_name == x }
+    args.each {|x| return true if controller_name == x}
     false
   end
 end
