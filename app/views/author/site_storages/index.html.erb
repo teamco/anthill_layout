@@ -1,14 +1,1 @@
-<div class="panel panel-default <%= controller_name %>">
-  <div class="panel-heading">
-    <h3 class="panel-title">
-      <%= controller_name.humanize %>
-      <span class="badge badge-secondary"><%= @author_site_storages.length %></span>
-    </h3>
-  </div>
-  <div class="panel-body">
-    <div class="row">
-      <%= render 'author/author/ibox_new' %>
-      <% render_loop(@author_site_storages, 'sites') %>
-    </div>
-  </div>
-</div>
+<%= render 'partials/panel_cards', entity: @author_site_storages, type: 'sites' %>

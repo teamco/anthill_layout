@@ -1,6 +1,5 @@
 <% item_info = (defined? item_info).nil? ? nil : item_info %>
 <% item_menu = (defined? item_menu).nil? ? nil : item_menu %>
-<% item_actions = (defined? item_actions).nil? ? nil : item_actions %>
 <% item_edit_path = (defined? item_edit_path).nil? ? nil : item_edit_path %>
 <% item_destroy_path = (defined? item_destroy_path).nil? ? nil : item_destroy_path %>
 <div class="card dashboard-edit text-white <%= item_info.nil? ? 'bg-gray' : item_bg %>">
@@ -15,12 +14,12 @@
       </button>
       <div class="dropdown-menu dropdown-menu-right"
            x-placement="bottom-end">
-        <%= (render "author/#{controller_name}/#{item_menu}", item: item) unless item_menu.nil? %>
-        <% if item_actions.nil? %>
+        <% unless item_menu.nil? %>
+          <%= render "author/#{controller_name}/#{item_menu}", item: item %>
           <div class="dropdown-divider"></div>
-          <%= link_to_edit(item, item_edit_path, 'dropdown-item') %>
-          <%= link_to_destroy(item, item_info, item_destroy_path, 'dropdown-item') %>
         <% end %>
+        <%= link_to_edit(item, item_edit_path, 'dropdown-item') %>
+        <%= link_to_destroy(item, item_info, item_destroy_path, 'dropdown-item') %>
       </div>
     </div>
     <div class="text-value"><%= item_info.to_s %></div>

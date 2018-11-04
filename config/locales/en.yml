@@ -23,6 +23,8 @@ en:
   hello: "Hello world"
   author_panel: "Author Panel"
   logout: "Sign out"
+  all: "All"
+  items: "Items"
   widgets: "Widgets"
   widget_categories: "Widget Categories"
   widget_categories_management: "Widget Categories Management"

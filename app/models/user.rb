@@ -116,6 +116,10 @@ class User < ApplicationRecord
   before_update :update_profile
   after_create :update_item
 
+  def owner_of
+    Author::Item.where(user_id: self.id)
+  end
+
   def update_profile
     self.original_email = self.email.clone
     self.email = "#{self.uid}@#{self.provider}.com" unless self.provider.nil?

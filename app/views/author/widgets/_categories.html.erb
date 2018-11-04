@@ -1,20 +1,21 @@
 <div class="panel panel-default">
   <div class="panel-heading">
     <h3 class="panel-title">
-      <%= t('widget_management') %>
-      <span class="badge"><%= @json_data[:widgets_all].length %></span>
+      <%= controller_name.humanize %>
+      <span class="badge badge-secondary"><%= @json_data[:widgets_all].length %></span>
     </h3>
-
   </div>
   <div class="panel-body">
     <div class="row">
       <div class="col-lg-3 col-sm-6 col-xs-12">
+        <% widgets = @json_data[:widgets_all].length || 0 %>
         <%= render 'author/author/ibox_index',
-            item_box: 'bg-green',
-            item_title: 'All widgets',
+            item_bg: 'bg-green',
             item_path: '/author/widgets/all',
-            item_info: @json_data[:widgets_all].length || 0,
-            item_icon: 'glyphicon-th-large' %>
+            item_title: "#{t('widgets')} <span class=\"badge
+      badge-#{badge(widgets)}\">#{widgets}</span>".html_safe,
+            item_info: t('all'),
+            item_icon: 'fa-th-large' %>
       </div>
       <% render_loop(@json_data[:site_widgets], 'site_widgets') %>
     </div>

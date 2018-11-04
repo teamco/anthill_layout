@@ -116,6 +116,10 @@ module ApplicationHelper
     request.location.city || 'Localhost'
   end
 
+  def badge(items)
+    items > 0 ? 'dark' : 'warning'
+  end
+
   def is_active_url(*args)
     args.each {|x| return true if controller_name == x}
     false
