@@ -120,6 +120,14 @@ module ApplicationHelper
     items > 0 ? 'dark' : 'warning'
   end
 
+  def is_development?(mode)
+    mode == 'development'
+  end
+
+  def is_consumption?(mode)
+    mode == 'consumption'
+  end
+
   def is_active_url(*args)
     args.each {|x| return true if controller_name == x}
     false

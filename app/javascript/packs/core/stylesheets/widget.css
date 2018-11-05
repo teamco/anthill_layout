@@ -1,0 +1,233 @@
+.show-content page widget,
+.show-content page widget:after {
+    display: none;
+}
+
+.show-content page widget.active-content {
+    width: 100%;
+    height: 100% ;
+    display: block;
+}
+
+page widget {
+    display: block;
+    position: absolute !important;
+    cursor: move;
+    border: none;
+    overflow: hidden;
+    padding: 0;
+    border-radius: 0;
+    margin: 0;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
+}
+
+.development page widget,
+.authoring page widget {
+    -webkit-box-shadow: 0 0 0 1px rgba(50, 50, 50, 0.3);
+    -moz-box-shadow: 0 0 0 1px rgba(50, 50, 50, 0.3);
+    box-shadow: 0 0 0 1px rgba(50, 50, 50, 0.3);
+}
+
+.development page widget:hover,
+.authoring page widget:hover {
+    z-index: 1000;
+}
+
+.ui-state-disabled {
+    opacity: 1;
+}
+
+page widget.maximize:hover {
+    z-index: 0;
+}
+
+page widget.overlapped:after {
+    content: ' ';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 2px dashed lightcoral;
+}
+
+page widget.select:after,
+.development page widget:hover:after,
+.authorize page widget:hover:after,
+page widget.ui-draggable-dragging:after,
+page widget.ui-resizable-resizing:after {
+    content: ' ';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 4px solid lightcoral;
+    z-index: 10;
+}
+
+page widget.ui-draggable:hover .content {
+    cursor: move;
+}
+
+page widget.ui-resizable-resizing .ui-resizable-handle,
+page widget:hover .ui-resizable-handle {
+    visibility: visible;
+}
+
+page widget .ui-resizable-handle {
+    background: #cd0a0a none;
+    transform-origin: 50% 50%;
+    width: 10px;
+    height: 10px;
+    visibility: hidden;
+}
+
+page widget.ui-draggable.disable-interactions:hover .content,
+page widget.maximize,
+page widget.maximize:hover .content {
+    cursor: default;
+}
+
+page widget.disable-interactions:after,
+page widget.disable-interactions .ui-resizable-handle,
+page widget.maximize .ui-resizable-handle {
+    display: none;
+}
+
+page widget .ui-resizable-n {
+    box-shadow: 0 1px 1px #333;
+    transform: translate(-50%, 0);
+    left: 50%;
+    top: 0;
+}
+
+page widget .ui-resizable-e {
+    box-shadow: 0 1px 1px #333;
+    transform: translate(0, -50%);
+    top: 50%;
+    right: 0;
+}
+
+page widget .ui-resizable-s {
+    left: 50%;
+    bottom: 0;
+    box-shadow: 0 -1px 1px #333;
+    transform: translate(-50%, 0%);
+}
+
+page widget .ui-resizable-w {
+    top: 50%;
+    left: 0;
+    box-shadow: 0 -1px 1px #333;
+    transform: translate(0%, -50%);
+}
+
+page widget .ui-resizable-se {
+    right: 0;
+    bottom: 0;
+    box-shadow: 0 -1px 1px #333;
+}
+
+page widget .ui-resizable-sw {
+    left: 0;
+    bottom: 0;
+    box-shadow: 0 -1px 1px #333;
+}
+
+page widget .ui-resizable-ne {
+    box-shadow: 0 1px 1px #333;
+    right: 0;
+    top: 0;
+}
+
+page widget .ui-resizable-nw {
+    box-shadow: 0 1px 1px #333;
+    left: 0;
+    top: 0;
+}
+
+page widget.ontop {
+}
+
+#nextwidget-position {
+    position: absolute;
+    z-index: 51;
+    background: #000;
+    opacity: 0.05;
+}
+
+#nextwidget-position.frozen {
+    position: fixed;
+}
+
+page widget .content {
+    cursor: default;
+    height: 100%;
+    max-height: 100%;
+    background: transparent no-repeat center;
+    overflow: hidden;
+    display: block;
+}
+
+page widget.no-bg .content {
+    background: transparent;
+}
+
+page widget.ui-resizable-resizing iframe,
+page widget.ui-draggable-dragging iframe,
+page widget.ui-draggable-dragging .ui-resizable-handle {
+    display: none;
+}
+
+page widget.ui-draggable-dragging,
+page widget.ui-resizable-resizing {
+    opacity: 0.6;
+}
+
+page widget .expander {
+    position: absolute;
+    padding: 3px 5px;
+    bottom: 0;
+    right: 0;
+    font-size: 10px;
+    cursor: pointer;
+    background: #fff;
+    box-shadow: -5px -2px 10px 0 #fff;
+    border: 1px solid #999;
+    border-right-style: none;
+    border-bottom-style: none;
+    border-top-left-radius: 5px;
+}
+
+page widget.scroll .content {
+    overflow: auto;
+}
+
+page widget .comments {
+    position: absolute;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.8);
+    width: 100%;
+    box-shadow: 0 0 1px 0 #000;
+    cursor: auto;
+}
+
+page widget .comments label {
+    display: none;
+}
+
+page widget .comments textarea {
+    width: 98%;
+    margin: 1%;
+    background: rgba(255, 255, 255, 0.8);
+}
+
+page widget.animateParallax {
+    -webkit-transition: 0s ease-in-out;
+    -moz-transition: 0s ease-in-out;
+    -o-transition: 0s ease-in-out;
+    transition: 0s ease-in-out;
+}

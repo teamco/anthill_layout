@@ -121,4 +121,4 @@ gem 'rack-handlers'
 # gem 'babel-transpiler'
 # gem 'browserify-rails', '>=4.2.0'
 
-gem 'webpacker'
+gem 'webpacker', '>=4.0.0.pre.3'

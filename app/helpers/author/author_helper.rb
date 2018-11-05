@@ -1,13 +1,5 @@
 module Author::AuthorHelper
 
-  def is_development?(mode)
-    mode == 'development'
-  end
-
-  def is_consumption?(mode)
-    mode == 'consumption'
-  end
-
   def get_development
     get_site_type('development')
   end

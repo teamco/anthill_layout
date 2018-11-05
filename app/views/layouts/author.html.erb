@@ -4,8 +4,9 @@
   <title>AntHill</title>
   <%= stylesheet_pack_tag 'author' %>
   <%= javascript_pack_tag 'author' %>
-  <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
   <%= csrf_meta_tags %>
+  <%= action_cable_meta_tag %>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <% side_bar = user_signed_in? ? 'sidebar-fixed aside-menu-fixed sidebar-lg-show' : '' %>
