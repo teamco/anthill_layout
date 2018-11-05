@@ -1,36 +1,56 @@
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title">
+<div class="card">
+  <div class="card-header">
+    <h3 class="card-title">
       <%= controller_name.humanize %>
-      <span class="badge"><%= @partial[:all_versions].length %></span>
+      <span class="badge badge-secondary"><%= @partial[:all_versions].length %></span>
     </h3>
   </div>
-  <div class="panel-body">
+  <div class="card-body">
     <ul class="nav nav-tabs">
       <% if @partial[:scope] == 'list' %>
-          <li><a data-toggle="tab" href="#favorites">Favorites</a></li>
+        <li class="nav-item">
+          <a class="nav-link"
+             data-toggle="tab"
+             role="tab"
+             id="favorites-tab"
+             aria-controls="favorites"
+             aria-selected="false"
+             href="#favorites">Favorites</a>
+        </li>
       <% end %>
-      <li class="active"><a data-toggle="tab" href="#versions">All Versions</a></li>
+      <li class="nav-item">
+        <a class="nav-link active"
+           data-toggle="tab"
+           id="versions-tab"
+           role="tab"
+           aria-controls="versions"
+           aria-selected="true"
+           href="#versions">All Versions</a>
+      </li>
     </ul>
     <div class="tab-content">
       <% if @partial[:scope] == 'list' %>
-          <div id="favorites" class="tab-pane fade">
-            <div class="row">
-              <% unless @partial[:favorites].nil? %>
-                  <div class="panel panel-default">
-                    <table id="<%= controller_name %>_favorites" class="table">
-                      <%= version_th %>
-                      <%= version_td([@partial[:favorites]]) %>
-                    </table>
-                  </div>
-              <% end %>
+        <div class="tab-pane fade"
+             id="favorites"
+             role="tabpanel"
+             aria-labelledby="favorites-tab">
+          <% unless @partial[:favorites].nil? %>
+            <div class="card">
+              <div class="card-body">
+                <table id="<%= controller_name %>_favorites" class="table">
+                  <%= version_th %>
+                  <%= version_td([@partial[:favorites]]) %>
+                </table>
+              </div>
             </div>
-          </div>
-      <% end %>
-      <div id="versions" class="tab-pane fade in active">
-        <div class="row">
-          <% render_loop(@partial[:collection], @partial[:name]) %>
+          <% end %>
         </div>
+      <% end %>
+      <div class="tab-pane fade show active"
+           id="versions"
+           role="tabpanel"
+           aria-labelledby="versions-tab">
+        <% render_loop(@partial[:collection], @partial[:name]) %>
       </div>
     </div>
   </div>

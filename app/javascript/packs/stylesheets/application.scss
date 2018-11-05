@@ -69,6 +69,23 @@ $fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
   }
 }
 
+.dropdown-submenu {
+  margin: -4px;
+  z-index: 10;
+  .dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-top: -6px;
+  }
+}
+
+td.separate {
+  white-space: nowrap;
+  .menu {
+    margin-right: 10px;
+  }
+}
+
 header {
   .user-image {
     height: 40px;

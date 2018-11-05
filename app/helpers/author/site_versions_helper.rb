@@ -39,11 +39,11 @@ module Author::SiteVersionsHelper
   end
 
   def activation_icon(item)
-    "glyphicon-thumbs-#{item.activated? ? 'down' : 'up'}"
+    "fa-thumbs-#{item.activated? ? 'down' : 'up'}"
   end
 
   def get_version_style(item, latest)
-    style = 'default'
+    style = 'secondary'
     style = 'warning' if latest == item
     style = 'success' if item.published
     style = 'info' if item.activated

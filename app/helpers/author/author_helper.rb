@@ -41,7 +41,7 @@ module Author::AuthorHelper
   end
 
   def th(names = [])
-    "<tr>#{names.map {|n| "<th>#{n}</th>"}.join}</tr>".html_safe
+    "<tr>#{names.map {|n| "<th scope=\"col\">#{n}</th>"}.join}</tr>".html_safe
   end
 
   def link_to_icon(url, title, icon, css = '', icon_float = 'none', target =

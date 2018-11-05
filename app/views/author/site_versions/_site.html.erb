@@ -1,9 +1,11 @@
-<div class="panel panel-default">
-  <table id="<%= controller_name %>" class="table">
-    <%= version_th %>
-    <%= version_td(@partial[:collection]) %>
-  </table>
-  <div class="panel-footer text-center">
+<div class="card">
+  <div class="card-body">
+    <table id="<%= controller_name %>" class="table">
+      <%= version_th %>
+      <%= version_td(@partial[:collection]) %>
+    </table>
+  </div>
+  <div class="card-footer text-center">
     <%= will_paginate @partial[:collection].first %>
   </div>
 </div>

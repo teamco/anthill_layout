@@ -1,37 +1,60 @@
 <div class="menu btn-group">
-  <button class="btn btn-<%= get_version_style(item, @partial[:latest]) %> btn-xs dropdown-toggle"
+  <button class="btn btn-<%= get_version_style(item, @partial[:latest]) %> btn-sm dropdown-toggle"
           type="button"
           data-toggle="dropdown"
           aria-haspopup="true"
           aria-expanded="false">
-    <span class="glyphicon glyphicon-cog"></span>
+    <span class="fa fa-cog"></span>
     <%= t('options') %>
-    <span class="caret"></span>
   </button>
-  <ul class="dropdown-menu pull-left">
-    <li><%= image_tag(item.screenshot,
-                      alt: item.author_site_storage.try(:key),
-                      class: 'thumbnail-preview') unless item.screenshot.nil? %></li>
-    <li>
-      <%= link_to(edit_author_site_storage_site_version_path(item.author_site_storage, item)) do %>
-          <i class="fa fa-code-fork"></i><%= t('edit_site_version') %>
-      <% end %>
-    </li>
-    <li class="dropdown-submenu">
-      <a tabindex="-1">
-        <i class="fa fa-code-fork"></i><%= t('site_current_version') %>
-      </a>
-      <ul class="dropdown-menu">
+  <div class="dropdown-menu">
+    <%= image_tag(item.screenshot,
+        alt: item.author_site_storage.try(:key),
+        class: 'thumbnail-preview') unless item.screenshot.nil? %>
+    <%= link_to(edit_author_site_storage_site_version_path(
+        item.author_site_storage, item), class: 'dropdown-item') do %>
+      <i class="fa fa-edit"></i><%= t('edit_site_version') %>
+    <% end %>
+    <div class="dropright dropdown-submenu">
+      <div class="dropdown-toggle dropdown-item"
+           type="button"
+           data-toggle="dropdown"
+           aria-haspopup="true"
+           aria-expanded="true">
+        <i class="fa fa-eye"></i><%= t('site_current_version') %>
+      </div>
+      <div class="dropdown-menu show">
         <% @partial[:site_types].each do |type| %>
-            <li><%= link_to_icon(version_path(item.author_site_storage, type[1], item.version),
-                                 type[1].capitalize, 'glyphicon-globe', '_blank') %></li>
+          <%= link_to_icon(version_path(item.author_site_storage, type[1],
+              item.version),
+              type[1].capitalize,
+              'fa-globe',
+              'dropdown-item',
+              'none',
+              '_blank') %>
         <% end %>
-      </ul>
-    </li>
-    <li><%= link_to_icon(edit_author_site_storage_site_version_path(item.author_site_storage, item), t('edit_site'), 'glyphicon-globe') %></li>
-    <li><%= link_to_icon(activation_link(item), activation_name(item), activation_icon(item), nil, :put) %></li>
-    <li><%= link_to_icon(publish_path(item.author_site_storage, item), t('publish'), 'fa fa-bolt', nil, :put) %></li>
-    <li><%= link_to_icon(deploy_path(item.author_site_storage, item), t('deploy'), 'fa fa-cloud-upload', nil, :put) %></li>
-    <li><%= link_to_destroy(item, item.version) %></li>
-  </ul>
+      </div>
+    </div>
+    <%= link_to_icon(edit_author_site_storage_site_version_path(
+        item.author_site_storage, item),
+        t('edit_site'),
+        'fa-globe',
+        'dropdown-item',
+        'none') %>
+    <%= link_to_icon(activation_link(item),
+        activation_name(item),
+        activation_icon(item),
+        'dropdown-item',
+        'none', nil, :put) %>
+    <%= link_to_icon(publish_path(item.author_site_storage, item),
+        t('publish'),
+        'fa fa-bolt',
+        'dropdown-item',
+        'none', nil, :put) %>
+    <%= link_to_icon(deploy_path(item.author_site_storage, item),
+        t('deploy'), 'fa fa-cloud-upload-alt',
+        'dropdown-item',
+        'none', nil, :put) %>
+    <%= link_to_destroy(item, item.version, nil, 'dropdown-item') %>
+  </div>
 </div>
