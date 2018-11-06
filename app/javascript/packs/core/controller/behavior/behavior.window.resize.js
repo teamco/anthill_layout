@@ -10,7 +10,7 @@
  * @class BehaviorWindowResize
  * @type {module.BehaviorWindowResize}
  */
-module.exports = class BehaviorWindowResize {
+export class BehaviorWindowResize {
 
   /**
    * Get resize attributes
@@ -112,4 +112,4 @@ module.exports = class BehaviorWindowResize {
   resizeItem(item) {
     this.controller._resizeNestedEventTrigger(item.controller._getResizeAttributes());
   }
-};
+}

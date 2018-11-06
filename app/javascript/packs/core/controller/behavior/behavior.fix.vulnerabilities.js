@@ -6,7 +6,7 @@
  * Define fixes for vulnerabilities
  * @class BehaviorFixVulnerabilities
  */
-module.exports = class BehaviorFixVulnerabilities {
+export class BehaviorFixVulnerabilities {
 
   /**
    * Define fix for ClickJacking
@@ -67,4 +67,4 @@ module.exports = class BehaviorFixVulnerabilities {
         }.bind(this)
     );
   }
-};
+}

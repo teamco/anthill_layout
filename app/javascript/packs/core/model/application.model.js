@@ -6,18 +6,14 @@
  * To change this template use File | Settings | File Templates.
  */
 
-/**
- * @constant BaseModel
- * @type {module.BaseModel}
- */
-const BaseModel = require('../lib/modules/Model.js');
+import {BaseModel} from '../../modules/Model';
 
 /**
  * @constant ApplicationModel
  * @type {module.ApplicationModel}
  * @extends BaseModel
  */
-module.exports = class ApplicationModel extends BaseModel {
+export class ApplicationModel extends BaseModel {
 
   /**
    * @constructor
@@ -25,7 +21,7 @@ module.exports = class ApplicationModel extends BaseModel {
    * @param scope
    */
   constructor(name, scope) {
-    super(name || 'ApplicationModel', scope, false);
+    super(name || 'ApplicationModel', scope);
 
     /**
      * Define item

@@ -6,17 +6,13 @@
  * To change this template use File | Settings | File Templates.
  */
 
-/**
- * @constant BaseEvent
- * @type {BaseEvent}
- */
-const BaseEvent = require('../lib/modules/Event.js');
+import {BaseEvent} from '../../modules/Event';
 
 /**
  * @class ApplicationEventManager
  * @extends BaseEvent
  */
-module.exports = class ApplicationEventManager extends BaseEvent {
+export class ApplicationEventManager extends BaseEvent {
 
   /**
    * Define ApplicationEvent Manager
@@ -25,7 +21,7 @@ module.exports = class ApplicationEventManager extends BaseEvent {
    * @param {Application} scope
    */
   constructor(name, scope) {
-    super(name || 'ApplicationEventManager', scope, false);
+    super(name || 'ApplicationEventManager', scope);
 
     /**
      * Define events
@@ -104,4 +100,4 @@ module.exports = class ApplicationEventManager extends BaseEvent {
       afterLoadingItems: 'after.loading.items'
     };
   }
-};
+}

@@ -9,7 +9,7 @@
  * Define Error handler
  * @class BehaviorErrorHandler
  */
-module.exports = class BehaviorErrorHandler {
+export class BehaviorErrorHandler {
 
   /**
    * Define Client ErrorHandler
@@ -104,5 +104,5 @@ module.exports = class BehaviorErrorHandler {
     this.scope.logger[isXhrError ? 'warn' : 'debug'](arguments);
     this.scope.view.get$item().hideLoader();
   }
-};
+}
   

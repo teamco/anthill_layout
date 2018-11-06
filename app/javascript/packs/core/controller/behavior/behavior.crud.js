@@ -10,7 +10,7 @@
  * @extends AntHill
  * @class BehaviorCrud
  */
-module.exports = class BehaviorCrud {
+export class BehaviorCrud {
 
   /**
    * Create Item
@@ -169,4 +169,4 @@ module.exports = class BehaviorCrud {
     this.logger.debug('After destroy items');
     this.controller.store();
   }
-};
+}

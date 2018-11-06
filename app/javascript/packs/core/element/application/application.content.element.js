@@ -6,11 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 
-/**
- * @constant BaseElement
- * @type {module.BaseElement}
- */
-const BaseElement = require('../../lib/modules/Element.js');
+import {BaseElement} from '../../../modules/Element';
 
 /**
  * Define Application content element
@@ -18,7 +14,7 @@ const BaseElement = require('../../lib/modules/Element.js');
  * @type {module.ApplicationContentElement}
  * @extends BaseElement
  */
-module.exports = class ApplicationContentElement extends BaseElement {
+export class ApplicationContentElement extends BaseElement {
 
   /**
    * @param {ApplicationView} view
@@ -26,7 +22,7 @@ module.exports = class ApplicationContentElement extends BaseElement {
    * @constructor
    */
   constructor(view, opts) {
-    super('ApplicationContentElement', view, false);
+    super('ApplicationContentElement', view);
     this._config(view, opts, $('<workspaces />')).build(opts);
   }
-};
+}

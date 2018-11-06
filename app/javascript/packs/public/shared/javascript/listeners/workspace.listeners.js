@@ -5,19 +5,11 @@
  * Time: 10:32 PM
  */
 
-/**
- * @constant Workspace
- * @type {module.Workspace}
- */
-// const Workspace = require('../../../../scripts/core/config/workspace.js');
+import {Workspace} from '../../../../core/config/workspace';
 
-/**
- * @constant WorkspaceController
- * @type {module.WorkspaceController}
- */
-// const WorkspaceController = require('../../../../scripts/core/controller/workspace.controller.js');
+const WorkspaceController = require
 
-module.exports = () => {
+export const WorkspaceGlobalListeners = () => {
 
   /**
    * Define global events

@@ -6,11 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 
-/**
- * @constant BaseElement
- * @type {module.BaseElement}
- */
-const BaseElement = require('../lib/modules/Element.js');
+import {BaseElement} from '../../modules/Element';
 
 /**
  * Define Header Element
@@ -18,7 +14,7 @@ const BaseElement = require('../lib/modules/Element.js');
  * @type {module.HeaderElement}
  * @extends BaseElement
  */
-module.exports = class HeaderElement extends BaseElement {
+export class HeaderElement extends BaseElement {
 
   /**
    * @param view
@@ -26,7 +22,7 @@ module.exports = class HeaderElement extends BaseElement {
    * @constructor
    */
   constructor(view, opts) {
-    super('HeaderElement', view, false);
+    super('HeaderElement', view);
 
     if (!view.getConfigHTML('header')) {
       return this;
@@ -34,4 +30,4 @@ module.exports = class HeaderElement extends BaseElement {
 
     this._config(view, opts, $('<header />')).build(opts);
   }
-};
+}

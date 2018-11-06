@@ -6,11 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 
-/**
- * @constant BaseElement
- * @type {module.BaseElement}
- */
-const BaseElement = require('../lib/modules/Element.js');
+import {BaseElement} from '../../modules/Element';
 
 /**
  * Define Modal Element
@@ -18,7 +14,7 @@ const BaseElement = require('../lib/modules/Element.js');
  * @type {module.ModalElement}
  * @extends BaseElement
  */
-module.exports = class ModalElement extends BaseElement {
+export class ModalElement extends BaseElement {
 
   /**
    * @param {BaseView} view
@@ -26,7 +22,7 @@ module.exports = class ModalElement extends BaseElement {
    * @constructor
    */
   constructor(view, opts) {
-    super('ModalElement', view, false);
+    super('ModalElement', view);
 
     /**
      * Set button elements
@@ -500,4 +496,4 @@ module.exports = class ModalElement extends BaseElement {
       this.$.addClass(this.type);
     }, 4000);
   }
-};
+}

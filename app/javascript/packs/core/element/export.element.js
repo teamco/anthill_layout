@@ -6,18 +6,14 @@
  * To change this template use File | Settings | File Templates.
  */
 
-/**
- * @constant BaseElement
- * @type {module.BaseElement}
- */
-const BaseElement = require('../lib/modules/Element.js');
+import {BaseElement} from '../../modules/Element';
 
 /**
  * Define Application export element
  * @class ExportElement
  * @extends module.BaseElement
  */
-module.exports = class ExportElement extends BaseElement {
+export class ExportElement extends BaseElement {
 
   /**
    * @param view
@@ -25,7 +21,7 @@ module.exports = class ExportElement extends BaseElement {
    * @constructor
    */
   constructor(view, opts) {
-    super('ExportElement', view, false);
+    super('ExportElement', view);
 
     this._config(view, opts, $('<a />')).build(opts);
     this.init(opts.data || {});
@@ -124,4 +120,4 @@ module.exports = class ExportElement extends BaseElement {
 
     return this;
   }
-};
+}

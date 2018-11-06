@@ -9,7 +9,7 @@
  * Define Routes
  * @class Routes
  */
-module.exports = class Routes {
+export class Routes {
 
   /**
    * @method initializer
@@ -87,4 +87,4 @@ module.exports = class Routes {
   getXCsrfToken() {
     return document.querySelector('meta[name="csrf-token"]').getAttribute('content');
   }
-};
+}

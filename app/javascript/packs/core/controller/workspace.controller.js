@@ -10,7 +10,7 @@
  * Aggregation of base class and mixin classes.
  * @type {(function(*, ...[*]): __Aggregate)|*|(function(): aggregate)}
  */
-const aggregation = require('../lib/extends/aggregation.js');
+const aggregation = require("aggregation/es6");
 
 /**
  * @constant BaseController

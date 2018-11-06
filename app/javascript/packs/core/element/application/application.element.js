@@ -6,11 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 
-/**
- * @constant BaseElement
- * @type {BaseElement|*}
- */
-const BaseElement = require('../../lib/modules/Element.js');
+import {BaseElement} from '../../../modules/Element';
 
 /**
  * Define Application element
@@ -19,7 +15,7 @@ const BaseElement = require('../../lib/modules/Element.js');
  * @type {module.ApplicationElement}
  * @constructor
  */
-module.exports = class ApplicationElement extends BaseElement {
+export class ApplicationElement extends BaseElement {
 
   /**
    * @param {ApplicationView} view
@@ -27,7 +23,7 @@ module.exports = class ApplicationElement extends BaseElement {
    * @constructor
    */
   constructor(view, opts) {
-    super('ApplicationElement', view, false);
+    super('ApplicationElement', view);
     this._config(view, opts, $('<application />')).build(opts);
     $(opts.$container).addClass(opts.mode);
   }
@@ -40,4 +36,4 @@ module.exports = class ApplicationElement extends BaseElement {
   hideScroll(hide) {
     this.$[(hide ? 'add' : 'remove') + 'Class']('overflow-scroll');
   }
-};
+}

@@ -5,13 +5,9 @@
  * Time: 11:34 PM
  */
 
-/**
- * @constant Application
- * @type {module.Application}
- */
-const Application = require('../application.js');
+import {Application} from '../application';
 
-module.exports = () => {
+export const ApplicationLocalPermission = () => {
 
   /**
    * Define Application Local permission

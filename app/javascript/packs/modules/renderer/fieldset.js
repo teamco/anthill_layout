@@ -1,0 +1,81 @@
+/**
+ * Created by teamco on 7/10/14.
+ */
+
+/**
+ * @class FieldSetRenderer
+ * @type {module.FieldSetRenderer}
+ */
+export class FieldSetRenderer {
+
+  /**
+   * @static
+   * @param $element
+   * @return {boolean}
+   */
+  static isOpenedFieldSet($element) {
+    return $element.hasClass('open');
+  }
+
+  /**
+   * @static
+   * @param $element
+   */
+  static openFieldSet($element) {
+    $element.addClass('open');
+  }
+
+  /**
+   * @static
+   * @param $element
+   */
+  static closeFieldSet($element) {
+    $element.removeClass('open');
+  }
+
+  /**
+   * Toggle fieldset
+   * @memberOf FieldSetRenderer
+   * @param {Event} e
+   */
+  toggleFieldset(e) {
+
+    /**
+     * Define $li
+     * @type {jQuery}
+     */
+    const $li = $(e.target);
+
+    FieldSetRenderer.isOpenedFieldSet($li) ?
+        FieldSetRenderer.closeFieldSet($li) :
+        FieldSetRenderer.openFieldSet($li);
+
+    if (this.adoptModalDialogPosition) {
+      this.adoptModalDialogPosition();
+    }
+  }
+
+  /**
+   * Render fieldset
+   * @memberOf FieldSetRenderer
+   * @param {string} text
+   * @param {*} $content
+   * @param {boolean} [open]
+   * @returns {*|jQuery}
+   */
+  renderFieldSet(text, $content, open) {
+    const $legend = $('<legend />').html(text).on('click.toggle', this.toggleFieldset.bind(this));
+    const $fieldset = $('<fieldset />').append($legend, $content);
+
+    if (open) {
+      FieldSetRenderer.openFieldSet($legend);
+    }
+
+    this.renderTooltip({
+      title: $('<div />').html(text).text(),
+      selector: $legend
+    });
+
+    return $fieldset;
+  }
+}

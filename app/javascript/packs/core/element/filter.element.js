@@ -2,18 +2,14 @@
  * Created by teamco on 3/25/14.
  */
 
-/**
- * @constant BaseElement
- * @type {module.BaseElement}
- */
-const BaseElement = require('../lib/modules/Element.js');
+import {BaseElement} from '../../modules/Element';
 
 /**
  * @class FilterElement
  * @type {module.FilterElement}
  * @extends BaseElement
  */
-module.exports = class FilterElement extends BaseElement {
+export class FilterElement extends BaseElement {
 
   /**
    * @param view
@@ -21,7 +17,7 @@ module.exports = class FilterElement extends BaseElement {
    * @constructor
    */
   constructor(view, opts) {
-    super('FilterElement', view, false);
+    super('FilterElement', view);
     this._config(view, opts, $('<div />')).build(opts);
     this.renderData(opts.callback, opts.enter);
   }
@@ -49,4 +45,4 @@ module.exports = class FilterElement extends BaseElement {
 
     this.$.append(this.$filter);
   }
-};
+}

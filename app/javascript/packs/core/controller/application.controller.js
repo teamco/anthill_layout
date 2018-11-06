@@ -6,55 +6,25 @@
  * To change this template use File | Settings | File Templates.
  */
 
+import {BaseController} from '../../modules/Controller';
+import {BehaviorErrorHandler} from './behavior/behavior.error.handler';
+import {BehaviorFixVulnerabilities} from './behavior/behavior.fix.vulnerabilities';
+import {Routes} from '../config/routes';
+import {Router} from '../../modules/Router';
+
 /**
  * Aggregation of base class and mixin classes.
  * @type {(function(*, ...[*]): __Aggregate)|*|(function(): aggregate)}
  */
-const aggregation = require('../lib/extends/aggregation.js');
-
-/**
- * @constant BaseController
- * @type {module.BaseController}
- */
-const BaseController = require('../lib/modules/Controller.js');
-
-/**
- * @constant BehaviorErrorHandler
- * @type {module.BehaviorErrorHandler}
- */
-const BehaviorErrorHandler = require('./behavior/behavior.error.handler.js');
-
-/**
- * @constant BehaviorFixVulnerabilities
- * @type {module.BehaviorFixVulnerabilities}
- */
-const BehaviorFixVulnerabilities = require('./behavior/behavior.fix.vulnerabilities.js');
-
-/**
- * @constant ProductionController
- * @type {module.ProductionController}
- */
-const ProductionController = require('./production/production.js');
-
-/**
- * @constant Routes
- * @type {module.Routes}
- */
-const Routes = require('../config/routes.js');
-
-/**
- * @constant Router
- * @type {module.Router}
- */
-const Router = require('../lib/modules/Router.js');
+const aggregation = require('aggregation/es6');
 
 /**
  * Define application controller
  * @class ApplicationController
  * @extends {BaseController, BehaviorErrorHandler, BehaviorFixVulnerabilities, ProductionController, Routes, Router}
  */
-module.exports = class ApplicationController extends aggregation(BaseController, BehaviorErrorHandler,
-    BehaviorFixVulnerabilities, ProductionController, Routes, Router) {
+export class ApplicationController extends aggregation(BaseController, BehaviorErrorHandler,
+    BehaviorFixVulnerabilities, Routes, Router) {
 
   /**
    * @constructor ApplicationController
@@ -374,4 +344,4 @@ module.exports = class ApplicationController extends aggregation(BaseController,
   afterSendLog() {
     this.logger.debug('After send log', arguments);
   }
-};
+}

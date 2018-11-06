@@ -5,13 +5,9 @@
  * Time: 10:26 PM
  */
 
-/**
- * @constant Application
- * @type {module.Application}
- */
-const Application = require('../application.js');
+import {Application} from '../application';
 
-module.exports = () => {
+export const ApplicationLocalListeners = () => {
 
   /**
    * Define Application Local listeners

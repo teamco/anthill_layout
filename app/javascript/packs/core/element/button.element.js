@@ -5,11 +5,7 @@
  * Time: 11:48 AM
  */
 
-/**
- * @constant BaseElement
- * @type {module.BaseElement}
- */
-const BaseElement = require('../lib/modules/Element.js');
+import {BaseElement} from '../../modules/Element';
 
 /**
  * Define Button Element
@@ -17,7 +13,7 @@ const BaseElement = require('../lib/modules/Element.js');
  * @type {module.ButtonElement}
  * @extends BaseElement
  */
-module.exports = class ButtonElement extends BaseElement {
+export class ButtonElement extends BaseElement {
 
   /**
    * @param view
@@ -25,7 +21,7 @@ module.exports = class ButtonElement extends BaseElement {
    * @constructor
    */
   constructor(view, opts) {
-    super('ButtonElement', view, false);
+    super('ButtonElement', view);
     this.setup(opts);
     this._config(view, opts, this.getTemplate(opts.$htmlElement)).build(opts);
     this.setContent();
@@ -112,4 +108,4 @@ module.exports = class ButtonElement extends BaseElement {
   afterEventsCallback(e) {
     this.view.scope.logger.debug('After events callback', e);
   }
-};
+}

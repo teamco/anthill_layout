@@ -1,3 +1,5 @@
+import './stylesheets/jquery-ui.min.css';
+
 import 'jquery-ui/ui/core';
 import 'jquery-ui/ui/labels';
 import 'jquery-ui/ui/position';

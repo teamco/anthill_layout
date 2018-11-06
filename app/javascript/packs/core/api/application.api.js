@@ -5,11 +5,7 @@
  * Time: 7:22 PM
  */
 
-/**
- * @constant BaseAPI
- * @type {module.BaseAPI}
- */
-const BaseAPI = require('../lib/modules/API.js');
+import {BaseAPI} from '../../modules/API';
 
 /**
  * Define Application API
@@ -17,7 +13,7 @@ const BaseAPI = require('../lib/modules/API.js');
  * @extends BaseAPI
  * @type {module.ApplicationAPI}
  */
-module.exports = class ApplicationAPI extends BaseAPI {
+export class ApplicationAPI extends BaseAPI {
 
   /**
    * @param {Application} scope
@@ -25,7 +21,7 @@ module.exports = class ApplicationAPI extends BaseAPI {
    * @constructor
    */
   constructor(name, scope) {
-    super('ApplicationAPI', scope, false);
+    super('ApplicationAPI', scope);
   }
 
   /**
@@ -53,4 +49,4 @@ module.exports = class ApplicationAPI extends BaseAPI {
 
     return workspace;
   }
-};
+}

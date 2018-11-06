@@ -1,4 +1,13 @@
 import {AntHill} from './anthill';
+import {ApplicationAPI} from '../api/application.api';
+import {ApplicationEventManager} from '../event/application.event.manager';
+import {ApplicationController} from '../controller/application.controller';
+import {ApplicationModel} from '../model/application.model';
+import {ApplicationView} from '../view/application.view';
+import {ApplicationPermission} from '../permission/application.permission';
+import {ApplicationLocalListeners} from './listeners/application.listeners';
+import {ApplicationLocalPermission} from './permissions/application.permissions';
+import {MVC} from '../../modules/MVC';
 
 /**
  * @class Application
@@ -15,50 +24,8 @@ export class Application extends AntHill {
   constructor(opts) {
     super('Application', null, true);
 
-    // (require('./permissions/application.permissions.js'))();
-    // (require('./listeners/application.listeners.js'))();
-
-    /**
-     * @constant ApplicationAPI
-     * @type {module.ApplicationAPI}
-     */
-    // const ApplicationAPI = require('../api/application.api.js');
-
-    /**
-     * @constant ApplicationEventManager
-     * @type {module.ApplicationEventManager}
-     */
-    // const ApplicationEventManager = require('../event/application.event.manager.js');
-
-    /**
-     * @constant ApplicationController
-     * @type {module.ApplicationController}
-     */
-    // const ApplicationController = require('../controller/application.controller.js');
-
-    /**
-     * @constant ApplicationModel
-     * @type {module.ApplicationModel}
-     */
-    // const ApplicationModel = require('../model/application.model.js');
-
-    /**
-     * @constant ApplicationView
-     * @type {module.ApplicationView}
-     */
-    // const ApplicationView = require('../view/application.view.js');
-
-    /**
-     * @constant ApplicationPermission
-     * @type {module.ApplicationPermission}
-     */
-    // const ApplicationPermission = require('../permission/application.permission.js');
-
-    /**
-     * @constant MVC
-     * @type {module.MVC}
-     */
-    // const MVC = require('../lib/modules/MVC.js');
+    ApplicationLocalListeners();
+    ApplicationLocalPermission();
 
     /**
      * Default config
@@ -156,19 +123,19 @@ export class Application extends AntHill {
      */
     this.workspace = {};
 
-    // new MVC({
-    //   scope: this,
-    //   config: [opts.config, DEFAULTS],
-    //   components: [
-    //     ApplicationController,
-    //     ApplicationAPI,
-    //     ApplicationModel,
-    //     ApplicationView,
-    //     ApplicationEventManager,
-    //     ApplicationPermission
-    //   ],
-    //   render: true
-    // });
+    new MVC({
+      scope: this,
+      config: [opts.config, DEFAULTS],
+      components: [
+        ApplicationController,
+        ApplicationAPI,
+        ApplicationModel,
+        ApplicationView,
+        ApplicationEventManager,
+        ApplicationPermission
+      ],
+      render: true
+    });
 
     /**
      * Update routes

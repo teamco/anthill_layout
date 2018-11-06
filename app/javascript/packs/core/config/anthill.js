@@ -23,7 +23,7 @@ export class AntHill {
      * @constant Base
      * @type {module.Base}
      */
-    // const Base = require('../lib/modules/Base.js');
+    const Base = require('../../modules/Base');
 
     /**
      * Init scope name.
@@ -53,19 +53,19 @@ export class AntHill {
        * @constant Observer
        * @type {module.Observer}
        */
-      // const Observer = require('../lib/modules/Observer.js');
+      const Observer = require('../../modules/Observer.js');
 
       /**
        * @constant Logger
        * @type {module.Logger}
        */
-      // const Logger = require('../lib/modules/Logger.js');
+      const Logger = require('../../modules/Logger.js');
 
       /**
        * @constant i18n
        * @type {module.i18n}
        */
-      // const i18n = require('../lib/modules/i18n.js');
+      const i18n = require('../../modules/i18n.js');
 
       /**
        * Init config
@@ -79,21 +79,21 @@ export class AntHill {
        * @property AntHill
        * @type {module.Observer}
        */
-      // this.observer = new Observer(this.scope || this);
+      this.observer = new Observer(this.scope || this);
 
       /**
        * Init logger
        * @property Anthill
        * @type {module.Logger}
        */
-      // this.logger = new Logger(this.scope || this);
+      this.logger = new Logger(this.scope || this);
 
       /**
        * Init logger
        * @property Anthill
        * @type {module.i18n}
        */
-      // this.i18n = new i18n('en-us');
+      this.i18n = new i18n('en-us');
 
       this.api = undefined;
       this.controller = undefined;
@@ -107,7 +107,7 @@ export class AntHill {
      * @property AntHill
      * @type {module.Base|{setBoolean, waitFor}}
      */
-    // this.utils = new Base();
+    this.utils = new Base();
   }
 
   /**
