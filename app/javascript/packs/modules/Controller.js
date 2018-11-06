@@ -14,7 +14,7 @@ import {BehaviorWindowResize} from '../core/controller/behavior/behavior.window.
  * Aggregation of base class and mixin classes.
  * @type {(function(*, ...[*]): __Aggregate)|*|(function(): aggregate)}
  */
-const aggregation = require('aggregation/es6');
+const aggregation = require('../lib/extends/aggregation');
 
 /**
  * Define Base Controller

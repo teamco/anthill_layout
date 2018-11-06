@@ -26,7 +26,7 @@ import {ValidationRenderer} from './renderer/validation';
  * Aggregation of base class and mixin classes.
  * @type {(function(*, ...[*]): __Aggregate)|*|(function(): aggregate)}
  */
-const aggregation = require('aggregation/es6');
+const aggregation = require('../lib/extends/aggregation');
 
 // 'modules/renderer/combo.box',
 // 'modules/renderer/event.link',
