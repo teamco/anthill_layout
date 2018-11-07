@@ -154,23 +154,14 @@ export class PluginController extends BaseController {
   /**
    * Update translations
    * @memberOf PluginController
-   * @param {string} i18nPath
-   * @param {Function|_successRenderedCallback} callback
+   * @param {string} keys
+   * @param {function} [callback]
    */
-  updateTranslations(i18nPath, callback) {
-
-    /**
-     * Define this reference
-     * @type {*}
-     */
-    const plugin = this;
-
-    import(i18nPath).then(lang => {
-      plugin.i18n.updateData(lang);
-      if (typeof callback === 'function') {
-        callback();
-      }
-    });
+  updateTranslations(keys, callback) {
+    this.i18n.updateData(keys);
+    if (typeof callback === 'function') {
+      callback();
+    }
   }
 
   /**

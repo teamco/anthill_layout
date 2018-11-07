@@ -40,7 +40,7 @@ export class BarContentElement extends PluginElement {
   getTemplate() {
 
     // Get module name
-    const name = this.resource.name;
+    const name = this.resource.module.name;
 
     return [
       '<li><a title="', name.humanize(), '">',

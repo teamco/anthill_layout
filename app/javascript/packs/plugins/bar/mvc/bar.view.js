@@ -80,7 +80,7 @@ export class BarView extends BaseView {
          * Define module resource
          * @type {string}
          */
-        const moduleResource = item.name.toDash();
+        const moduleResource = item.module.name.toDash();
 
         /**
          * Render item
