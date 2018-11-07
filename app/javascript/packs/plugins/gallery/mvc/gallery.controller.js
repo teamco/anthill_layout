@@ -5,30 +5,21 @@
  * Time: 11:03 AM
  */
 
+import {PluginController} from '../../plugin.controller';
+import {Routes} from '../../../core/config/routes';
+
 /**
  * Aggregation of base class and mixin classes.
  * @type {(function(*, ...[*]): __Aggregate)|*|(function(): aggregate)}
  */
-const aggregation = require('../../../core/lib/extends/aggregation.js');
-
-/**
- * @constant PluginController
- * @type {module.PluginController|*}
- */
-const PluginController = require('../../plugin.controller.js');
-
-/**
- * @constant Routes
- * @type {module.Routes}
- */
-const Routes = require('../../../core/config/routes.js');
+const aggregation = require('../../../lib/extends/aggregation');
 
 /**
  * Define panel controller
  * @class GalleryController
  * @extends {PluginController, Routes}
  */
-module.exports = class GalleryController extends aggregation(PluginController, Routes) {
+export class GalleryController extends aggregation(PluginController, Routes) {
 
   /**
    * @constructor
@@ -188,8 +179,8 @@ module.exports = class GalleryController extends aggregation(PluginController, R
      * Get page
      * @type {Page}
      */
-    const page = this.getPage(),
-        data = $element.data;
+    const page = this.getPage();
+    const data = $element.data;
 
     page.controller.createWidgetFromResource({
       width: data.dimensions.width,
@@ -201,4 +192,4 @@ module.exports = class GalleryController extends aggregation(PluginController, R
       description: data.description
     }, true, false);
   }
-};
+}

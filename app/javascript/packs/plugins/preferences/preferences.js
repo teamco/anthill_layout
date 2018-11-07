@@ -4,9 +4,9 @@
 
 /**
  * @class BasePreferencesElement
- * @type {module.BasePreferencesElement}
+ * @type {BasePreferencesElement}
  */
-module.exports = class BasePreferencesElement {
+export class BasePreferencesElement {
 
   /**
    * @constructor
@@ -186,7 +186,7 @@ module.exports = class BasePreferencesElement {
    * @param text
    * @param index
    * @param node
-   * @return {module.TextFieldRenderer}
+   * @return {TextFieldRenderer}
    */
   textField(text, index, node) {
     return this.get$item().renderTextField({
@@ -349,4 +349,4 @@ module.exports = class BasePreferencesElement {
     if (this.isListBoxField(node)) return this.listBoxField.call(view, text, index, node);
     if (this.isComboBoxField(node)) return this.comboBoxField.call(view, text, index, node);
   }
-};
+}

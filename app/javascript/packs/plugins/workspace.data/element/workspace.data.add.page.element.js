@@ -5,20 +5,16 @@
  * Time: 11:48 AM
  */
 
-/**
- * @constant PluginElement
- * @type {module.PluginElement}
- */
-const PluginElement = require('../../plugin.element.js');
+import {PluginElement} from '../../plugin.element';
 
 /**
  * @class WorkspaceDataAddPageElement
  * @extends PluginElement
  */
-module.exports = class WorkspaceDataAddPageElement extends PluginElement {
+export class WorkspaceDataAddPageElement extends PluginElement {
 
   /**
-   * @param {module.WorkspaceDataView} view
+   * @param {BaseView|WorkspaceDataView} view
    * @param opts
    * @constructor
    */
@@ -77,7 +73,7 @@ module.exports = class WorkspaceDataAddPageElement extends PluginElement {
 
     /**
      * Define element
-     * @type {module.WorkspaceDataAddPageElement}
+     * @type {WorkspaceDataAddPageElement}
      */
     const element = this;
 
@@ -90,7 +86,7 @@ module.exports = class WorkspaceDataAddPageElement extends PluginElement {
 
       /**
        * Fetch page
-       * @type {module.Page}
+       * @type {Page}
        */
       const page = workspace.model.getItemByUUID(puuid);
 
@@ -196,4 +192,4 @@ module.exports = class WorkspaceDataAddPageElement extends PluginElement {
     const $items = $('<div class="page-items-prefs" />');
     return $ul.append([$clone, $title, $items]);
   }
-};
+}

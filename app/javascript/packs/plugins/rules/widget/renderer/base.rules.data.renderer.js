@@ -1,8 +1,8 @@
 /**
  * @class BaseRulesDataRenderer
- * @type {module.BaseRulesDataRenderer}
+ * @type {BaseRulesDataRenderer}
  */
-module.exports = class BaseRulesDataRenderer {
+export class BaseRulesDataRenderer {
 
   /**
    * @memberOf BaseRulesDataRenderer
@@ -24,4 +24,4 @@ module.exports = class BaseRulesDataRenderer {
     this.element.$.append('<div class="content-rules" />');
     this.renderSubscribeRules(data.subscribe);
   }
-};
+}

@@ -4,7 +4,7 @@
 
 /**
  * @class TextFieldRenderer
- * @type {module.TextFieldRenderer}
+ * @type {TextFieldRenderer}
  */
 export class TextFieldRenderer {
 
@@ -25,7 +25,7 @@ export class TextFieldRenderer {
     *  [visible],
     *  [validate]: {[mask]: RegExp, blank: boolean}
     * }} opts
-   * @returns {module.TextFieldRenderer}
+   * @returns {TextFieldRenderer}
    */
   renderTextField(opts) {
 

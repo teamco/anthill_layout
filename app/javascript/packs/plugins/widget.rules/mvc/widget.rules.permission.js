@@ -6,23 +6,19 @@
  * To change this template use File | Settings | File Templates.
  */
 
-/**
- * @constant BasePermission
- * @type {module.BasePermission}
- */
-const BasePermission = require('../../../core/lib/modules/Permission.js');
+import {BasePermission} from '../../../modules/Permission';
 
 /**
  * @extends BasePermission
  * @class WidgetRulesPermission
  */
-module.exports = class WidgetRulesPermission extends BasePermission {
+export class WidgetRulesPermission extends BasePermission {
 
   /**
    * @constructor
    * @param {Bar} scope
    */
   constructor(scope) {
-    super('WidgetRulesPermission', scope, false);
+    super('WidgetRulesPermission', scope);
   }
-};
+}

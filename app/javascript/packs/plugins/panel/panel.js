@@ -5,18 +5,22 @@
  * Time: 11:02 AM
  */
 
-/**
- * @constant AntHill
- * @type {module.AntHill}
- */
-const AntHill = require('../../core/config/anthill.js');
+import './panel.css';
+
+import {AntHill} from '../../core/config/anthill';
+import {MVC} from '../../modules/MVC';
+import {PanelController} from './mvc/panel.controller';
+import {PanelModel} from './mvc/panel.model';
+import {PanelView} from './mvc/panel.view';
+import {PanelEventManager} from './mvc/panel.event.manager';
+import {PanelPermission} from './mvc/panel.permission';
 
 /**
  * Define Panel
  * @class Panel
  * @extends AntHill
  */
-module.exports = class Panel extends AntHill {
+export class Panel extends AntHill {
 
   /**
    * Define Panel
@@ -26,42 +30,6 @@ module.exports = class Panel extends AntHill {
    */
   constructor(opts, containment) {
     super('Panel', null, true);
-
-    /**
-     * @constant PanelController
-     * @type {module.PanelController|*}
-     */
-    const PanelController = require('./mvc/panel.controller.js');
-
-    /**
-     * @constant PanelModel
-     * @type {module.PanelModel|*}
-     */
-    const PanelModel = require('./mvc/panel.model.js');
-
-    /**
-     * @constant PanelView
-     * @type {module.PanelView|*}
-     */
-    const PanelView = require('./mvc/panel.view.js');
-
-    /**
-     * @constant PanelEventManager
-     * @type {module.PanelEventManager|*}
-     */
-    const PanelEventManager = require('./mvc/panel.event.manager.js');
-
-    /**
-     * @constant PanelPermission
-     * @type {module.PanelPermission|*}
-     */
-    const PanelPermission = require('./mvc/panel.permission.js');
-
-    /**
-     * @constant MVC
-     * @type {module.MVC}
-     */
-    const MVC = require('../../core/lib/modules/MVC.js');
 
     /**
      * Define containment
@@ -124,7 +92,7 @@ module.exports = class Panel extends AntHill {
     /**
      * Define MVC
      * @property Panel
-     * @type {module.MVC}
+     * @type {MVC}
      */
     new MVC({
       scope: this,
@@ -145,4 +113,4 @@ module.exports = class Panel extends AntHill {
     this.observer.publish(this.eventManager.eventList.definePackages, [opts.packages]);
     this.observer.publish(this.eventManager.eventList.subscribeGenericEvent);
   }
-};
+}

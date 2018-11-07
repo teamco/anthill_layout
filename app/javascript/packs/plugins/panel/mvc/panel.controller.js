@@ -5,18 +5,14 @@
  * Time: 11:03 AM
  */
 
-/**
- * @constant PluginController
- * @type {module.PluginController|*}
- */
-const PluginController = require('../../plugin.controller.js');
+import {PluginController} from '../../plugin.controller';
 
 /**
  * Define panel controller
  * @class PanelController
  * @extends PluginController
  */
-module.exports = class PanelController extends PluginController {
+export class PanelController extends PluginController {
 
   /**
    * @constructor
@@ -24,7 +20,7 @@ module.exports = class PanelController extends PluginController {
    * @param {Panel} scope
    */
   constructor(name, scope) {
-    super(name || 'PanelController', scope, false);
+    super(name || 'PanelController', scope);
   }
 
   /**
@@ -238,8 +234,8 @@ module.exports = class PanelController extends PluginController {
     const module = this.controller.activateModule(index);
 
     this.view.renderContent(module, false);
-    module.view.render();
-    module.observer.publish(module.eventManager.eventList.loadModuleContent);
+    view.render();
+    observer.publish(eventManager.eventList.loadModuleContent);
     this.controller.setBehavior(resource);
   }
 
@@ -304,6 +300,7 @@ module.exports = class PanelController extends PluginController {
       const module = packages[i];
 
       this.scope.view.renderContent(module, false);
+
       module.view.render();
       module.controller.loadContent();
     }
@@ -346,4 +343,4 @@ module.exports = class PanelController extends PluginController {
       callback: this.controller.executeGenericEvent.bind(this)
     }, false);
   }
-};
+}

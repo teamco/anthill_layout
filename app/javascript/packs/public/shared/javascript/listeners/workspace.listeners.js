@@ -7,6 +7,12 @@
 
 import {Workspace} from '../../../../core/config/workspace';
 import {WorkspaceController} from '../../../../core/controller/workspace.controller';
+import {Panel} from '../../../../plugins/panel/panel';
+import {Gallery} from '../../../../plugins/gallery/gallery';
+import {PageData} from '../../../../plugins/page.data/page.data';
+import {WorkspaceData} from '../../../../plugins/workspace.data/workspace.data';
+import {WidgetRules} from '../../../../plugins/widget.rules/widget.rules';
+import {Bar} from '../../../../plugins/bar/bar';
 
 export const workspaceGlobalListeners = () => {
 
@@ -148,69 +154,33 @@ export const workspaceGlobalListeners = () => {
 
         /**
          * Define app
-         * @type {module.Application|{panels, controller, logger}}
+         * @type {Application|{panels, controller, logger}}
          */
         const app = this.controller.root();
 
-        // /**
-        //  * @constant Panel
-        //  * @type {module.Panel|*}
-        //  */
-        // const Panel = require('../../../../scripts/plugins/panel/panel.js');
-        //
-        // /**
-        //  * @constant Bar
-        //  * @type {module.Bar|*}
-        //  */
-        // const Bar = require('../../../../scripts/plugins/bar/bar.js');
-        //
-        // /**
-        //  * @constant Gallery
-        //  * @type {module.Gallery|*}
-        //  */
-        // const Gallery = require('../../../../scripts/plugins/gallery/gallery.js');
-        //
-        // /**
-        //  * @constant PageData
-        //  * @type {module.PageData|*}
-        //  */
-        // const PageData = require('../../../../scripts/plugins/page.data/page.data.js');
-        //
-        // /**
-        //  * @constant WidgetRules
-        //  * @type {module.WidgetRules|*}
-        //  */
-        // const WidgetRules = require('../../../../scripts/plugins/widget.rules/widget.rules.js');
-        //
-        // /**
-        //  * @constant WorkspaceData
-        //  * @type {module.WorkspaceData|*}
-        //  */
-        // const WorkspaceData = require('../../../../scripts/plugins/workspace.data/workspace.data.js');
-        //
-        // //   'plugins/widget.rules/widget.rules',
-        // //   'plugins/site.config/site.config'
-        //
-        // /**
-        //  * Init panel plugin
-        //  * @type {module.Panel}
-        //  */
-        // app.panels.designTime = new Panel({
-        //   config: {
-        //     renderAt: 'right',
-        //     header: {
-        //       visible: true,
-        //       title: {
-        //         short: 'DT',
-        //         long: 'Design'
-        //       }
-        //     }
-        //   },
-        //   modules: [Gallery, PageData, WorkspaceData, WidgetRules/*, SiteConfig*/],
-        //   packages: [Bar]
-        // }, app);
-        //
-        // app.panels.designTime.lazyRender();
+        //   'plugins/widget.rules/widget.rules',
+        //   'plugins/site.config/site.config'
+
+        /**
+         * Init panel plugin
+         * @type {Panel}
+         */
+        app.panels.designTime = new Panel({
+          config: {
+            renderAt: 'right',
+            header: {
+              visible: true,
+              title: {
+                short: 'DT',
+                long: 'Design'
+              }
+            }
+          },
+          modules: [Gallery, PageData, WorkspaceData, WidgetRules/*, SiteConfig*/],
+          packages: [Bar]
+        }, app);
+
+        app.panels.designTime.lazyRender();
 
         /**
          * Match regex
@@ -230,45 +200,33 @@ export const workspaceGlobalListeners = () => {
 
         /**
          * Define app
-         * @type {module.Application|{panels, controller, logger}}
+         * @type {Application|{panels, controller, logger}}
          */
         const app = this.controller.root();
 
+        //   'plugins/maximize/maximize',
+        //   'plugins/dashboard/dashboard'
+
         /**
-         * @constant Panel
-         * @type {module.Panel|{lazyRender}}
+         * Init panel plugin
+         * @type {Panel}
          */
-        // const Panel = require('../../../../scripts/plugins/panel/panel.js');
-        //
-        // /**
-        //  * @constant Bar
-        //  * @type {module.Bar|*}
-        //  */
-        // const Bar = require('../../../../scripts/plugins/bar/bar.js');
-        //
-        // //   'plugins/maximize/maximize',
-        // //   'plugins/dashboard/dashboard'
-        //
-        // /**
-        //  * Init panel plugin
-        //  * @type {module.Panel}
-        //  */
-        // app.panels.runTime = new Panel({
-        //   config: {
-        //     renderAt: 'left',
-        //     header: {
-        //       visible: true,
-        //       title: {
-        //         short: 'RT',
-        //         long: 'Runtime'
-        //       }
-        //     }
-        //   },
-        //   modules: [/*Maximize, Dashboard*/],
-        //   packages: [Bar]
-        // }, app);
-        //
-        // app.panels.runTime.lazyRender();
+        app.panels.runTime = new Panel({
+          config: {
+            renderAt: 'left',
+            header: {
+              visible: true,
+              title: {
+                short: 'RT',
+                long: 'Runtime'
+              }
+            }
+          },
+          modules: [/*Maximize, Dashboard*/],
+          packages: [Bar]
+        }, app);
+
+        app.panels.runTime.lazyRender();
 
         /**
          * Match regex

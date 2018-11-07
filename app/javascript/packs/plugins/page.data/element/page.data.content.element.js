@@ -5,20 +5,16 @@
  * Time: 11:48 AM
  */
 
-/**
- * @constant PluginElement
- * @type {module.PluginElement}
- */
-const PluginElement = require('../../plugin.element.js');
+import {PluginElement} from '../../plugin.element';
 
 /**
  * @class PageDataContentElement
  * @extends PluginElement
  */
-module.exports = class PageDataContentElement extends PluginElement {
+export class PageDataContentElement extends PluginElement {
 
   /**
-   * @param {PageDataView} view
+   * @param {BaseView|PageDataView} view
    * @param opts
    * @constructor
    */
@@ -90,4 +86,4 @@ module.exports = class PageDataContentElement extends PluginElement {
   bindShowPrefs(data) {
     this.bindShowModalData(data);
   }
-};
+}

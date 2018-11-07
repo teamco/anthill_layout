@@ -2,17 +2,14 @@
  * Created by teamco on 27/05/2017.
  */
 
-/**
- * @constant PageRulesVisualizer
- * @type {module.PageRulesVisualizer}
- */
-const PageRulesVisualizer = require('./page.rules.visualizer.js');
+import {PageRulesVisualizer} from './page.rules.visualizer';
+import go from 'gojs';
 
 /**
  * @class GenerateRules
- * @type {module.GenerateRules}
+ * @type {GenerateRules}
  */
-module.exports = class GenerateRules extends PageRulesVisualizer {
+export class GenerateRules extends PageRulesVisualizer {
 
   /**
    * GenerateRules
@@ -36,7 +33,6 @@ module.exports = class GenerateRules extends PageRulesVisualizer {
      */
     this.page = page;
 
-    require('../../../core/lib/packages/go.js');
     this.createDiagram();
   }
 
@@ -46,12 +42,6 @@ module.exports = class GenerateRules extends PageRulesVisualizer {
    * @memberOf GenerateRules
    */
   createDiagram() {
-
-    /**
-     * @constant go
-     * @type {module.exports|{Diagram, Spot, Node, Shape, GraphObject, Binding}}
-     */
-    const go = window.go;
 
     if (!go) {
       this.scope.logger.warn('Go.js should be initialized');
@@ -301,4 +291,4 @@ module.exports = class GenerateRules extends PageRulesVisualizer {
     node.findNodesOutOf().each(n => n.isHighlighted = true);
     diagram.commitTransaction('highlight');
   }
-};
+}

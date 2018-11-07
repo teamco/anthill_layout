@@ -5,17 +5,22 @@
  * Time: 11:02 AM
  */
 
-/**
- * @constant AntHill
- * @type {module.AntHill}
- */
-const AntHill = require('../../core/config/anthill.js');
+import './page.data.css';
+import '../preferences/preferences.css';
+
+import {AntHill} from '../../core/config/anthill';
+import {MVC} from '../../modules/MVC';
+import {PageDataController} from './mvc/page.data.controller';
+import {PageDataModel} from './mvc/page.data.model';
+import {PageDataView} from './mvc/page.data.view';
+import {PageDataEventManager} from './mvc/page.data.event.manager';
+import {PageDataPermission} from './mvc/page.data.permission';
 
 /**
  * @class PageData
  * @extends AntHill
  */
-module.exports = class PageData extends AntHill {
+export class PageData extends AntHill {
 
   /**
    * @param containment
@@ -75,42 +80,6 @@ module.exports = class PageData extends AntHill {
       }
     };
 
-    /**
-     * @constant PageDataController
-     * @type {module.PageDataController|*}
-     */
-    const PageDataController = require('./mvc/page.data.controller.js');
-
-    /**
-     * @constant PageDataModel
-     * @type {module.PageDataModel|*}
-     */
-    const PageDataModel = require('./mvc/page.data.model.js');
-
-    /**
-     * @constant PageDataView
-     * @type {module.PageDataView|*}
-     */
-    const PageDataView = require('./mvc/page.data.view.js');
-
-    /**
-     * @constant PageDataEventManager
-     * @type {module.PageDataEventManager|*}
-     */
-    const PageDataEventManager = require('./mvc/page.data.event.manager.js');
-
-    /**
-     * @constant PageDataPermission
-     * @type {module.PageDataPermission|*}
-     */
-    const PageDataPermission = require('./mvc/page.data.permission.js');
-
-    /**
-     * @constant MVC
-     * @type {module.MVC}
-     */
-    const MVC = require('../../core/lib/modules/MVC.js');
-
     new MVC({
       scope: this,
       config: [DEFAULTS],
@@ -136,4 +105,4 @@ module.exports = class PageData extends AntHill {
         () => this.logger.warn('Timeout. Unable to subscribe to refresh content')
     );
   }
-};
+}

@@ -5,17 +5,22 @@
  * Time: 11:02 AM
  */
 
-/**
- * @constant AntHill
- * @type {module.AntHill}
- */
-const AntHill = require('../../core/config/anthill.js');
+import './workspace.data.css';
+import '../preferences/preferences.css';
+
+import {AntHill} from '../../core/config/anthill';
+import {MVC} from '../../modules/MVC';
+import {WorkspaceDataController} from './mvc/workspace.data.controller';
+import {WorkspaceDataModel} from './mvc/workspace.data.model';
+import {WorkspaceDataView} from './mvc/workspace.data.view';
+import {WorkspaceDataEventManager} from './mvc/workspace.data.event.manager';
+import {WorkspaceDataPermission} from './mvc/workspace.data.permission';
 
 /**
  * @class WorkspaceData
  * @extends AntHill
  */
-module.exports = class WorkspaceData extends AntHill {
+export class WorkspaceData extends AntHill {
 
   /**
    * @param containment
@@ -78,42 +83,6 @@ module.exports = class WorkspaceData extends AntHill {
     };
 
     /**
-     * @constant WorkspaceController
-     * @type {module.WorkspaceController|*}
-     */
-    const WorkspaceController = require('./mvc/workspace.data.controller.js');
-
-    /**
-     * @constant WorkspaceModel
-     * @type {module.WorkspaceModel|*}
-     */
-    const WorkspaceModel = require('./mvc/workspace.data.model.js');
-
-    /**
-     * @constant WorkspaceView
-     * @type {module.WorkspaceView|*}
-     */
-    const WorkspaceView = require('./mvc/workspace.data.view.js');
-
-    /**
-     * @constant WorkspaceEventManager
-     * @type {module.WorkspaceEventManager|*}
-     */
-    const WorkspaceEventManager = require('./mvc/workspace.data.event.manager.js');
-
-    /**
-     * @constant WorkspacePermission
-     * @type {module.WorkspacePermission|*}
-     */
-    const WorkspacePermission = require('./mvc/workspace.data.permission.js');
-
-    /**
-     * @constant MVC
-     * @type {module.MVC}
-     */
-    const MVC = require('../../core/lib/modules/MVC.js');
-    
-    /**
      * Define MVC
      * @property WorkspaceData
      * @type {MVC}
@@ -122,11 +91,11 @@ module.exports = class WorkspaceData extends AntHill {
       scope: this,
       config: [DEFAULTS],
       components: [
-        WorkspaceController,
-        WorkspaceModel,
-        WorkspaceView,
-        WorkspaceEventManager,
-        WorkspacePermission
+        WorkspaceDataController,
+        WorkspaceDataModel,
+        WorkspaceDataView,
+        WorkspaceDataEventManager,
+        WorkspaceDataPermission
       ],
       render: true
     });
@@ -135,4 +104,4 @@ module.exports = class WorkspaceData extends AntHill {
     this.observer.publish(this.eventManager.eventList.updateTranslations,
         ['plugins/workspace.data/translations/en-us']);
   }
-};
+}

@@ -6,18 +6,15 @@
  * To change this template use File | Settings | File Templates.
  */
 
-/**
- * @constant BaseModel
- * @type {module.BaseModel}
- */
-const BaseModel = require('../../../core/lib/modules/Model.js');
+import {BaseModel} from '../../../modules/Model';
+import {GalleryWidgets} from './model/gallery.widgets';
 
 /**
  * @class GalleryModel
  * @extends BaseModel
- * @type {module.GalleryModel}
+ * @type {GalleryModel}
  */
-module.exports = class GalleryModel extends BaseModel {
+export class GalleryModel extends BaseModel {
 
   /**
    * @constructor
@@ -25,7 +22,7 @@ module.exports = class GalleryModel extends BaseModel {
    * @param {Panel} scope
    */
   constructor(name, scope) {
-    super(name || 'GalleryModel', scope, false);
+    super(name || 'GalleryModel', scope);
 
     /**
      * Define data types
@@ -42,15 +39,9 @@ module.exports = class GalleryModel extends BaseModel {
   loadStaticData() {
 
     /**
-     * @constant GalleryWidgets
-     * @type {module.GalleryWidgets}
-     */
-    const GalleryWidgets = require('./model/gallery.widgets.js');
-
-    /**
      * Define static data
      * @property GalleryModel
-     * @type {module.GalleryWidgets}
+     * @type {GalleryWidgets}
      */
     this.staticData = new GalleryWidgets(this);
 
@@ -168,4 +159,4 @@ module.exports = class GalleryModel extends BaseModel {
       providers.all.data.push(meta);
     }
   }
-};
+}

@@ -39,7 +39,7 @@ defineP([
      */
     this.eventList = {
       updateTranslations: 'update.translations',
-      loadModuleContent: 'load.module.content',
+      loadModuleContent: 'load.content',
       defineInteraction: 'define.interaction',
       storeItem: 'store.item',
       prepareActiveComponent: 'prepare.active.component',

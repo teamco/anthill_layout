@@ -52,7 +52,7 @@ const aggregation = require('../lib/extends/aggregation');
 /**
  * Define renderer
  * @class Renderer
- * @type {module.Renderer}
+ * @type {Renderer}
  * @extends AntHill
  */
 export class Renderer extends aggregation(AntHill, CheckBoxRenderer, ComboBoxRenderer, EventLinkRenderer,

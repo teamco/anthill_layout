@@ -4,7 +4,7 @@
 
 /**
  * @class EventLinkRenderer
- * @type {module.EventLinkRenderer}
+ * @type {EventLinkRenderer}
  */
 export class EventLinkRenderer {
 

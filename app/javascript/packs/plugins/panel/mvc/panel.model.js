@@ -6,18 +6,14 @@
  * To change this template use File | Settings | File Templates.
  */
 
-/**
- * @constant BaseModel
- * @type {module.BaseModel}
- */
-const BaseModel = require('../../../core/lib/modules/Model.js');
+import {BaseModel} from '../../../modules/Model';
 
 /**
  * Define Panel model
  * @extends BaseModel
  * @class PanelModel
  */
-module.exports = class PanelModel extends BaseModel {
+export class PanelModel extends BaseModel {
 
   /**
    * @constructor
@@ -25,7 +21,7 @@ module.exports = class PanelModel extends BaseModel {
    * @param {Panel} scope
    */
   constructor(name, scope) {
-    super(name || 'PanelModel', scope, false);
+    super(name || 'PanelModel', scope);
 
     /**
      * Init modules
@@ -176,4 +172,4 @@ module.exports = class PanelModel extends BaseModel {
 
     this.scope.logger.error('Undefined package index', resource, packages);
   }
-};
+}

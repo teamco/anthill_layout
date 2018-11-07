@@ -4,7 +4,7 @@
 
 /**
  * @class LabelRenderer
- * @type {module.LabelRenderer}
+ * @type {LabelRenderer}
  */
 export class LabelRenderer {
 

@@ -6,17 +6,13 @@
  * To change this template use File | Settings | File Templates.
  */
 
-/**
- * @constant BaseEvent
- * @type {BaseEvent}
- */
-const BaseEvent = require('../../../core/lib/modules/Event.js');
+import {BaseEvent} from '../../../modules/Event';
 
 /**
  * @class GalleryEventManager
  * @extends BaseEvent
  */
-module.exports = class GalleryEventManager extends BaseEvent {
+export class GalleryEventManager extends BaseEvent {
 
   /**
    * @constructor
@@ -24,18 +20,18 @@ module.exports = class GalleryEventManager extends BaseEvent {
    * @param {Panel} scope
    */
   constructor(name, scope) {
-    super(name || 'GalleryEventManager', scope, false);
+    super(name || 'GalleryEventManager', scope);
 
     /**
      * Define events
-     * @memberOf GalleryEventManager
+     * @property GalleryEventManager
      * @type {{}}
      */
     this.events = {};
 
     /**
      * Define event list
-     * @memberOf GalleryEventManager
+     * @property GalleryEventManager
      * @type {{
      *  updateTranslations: string,
      *  loadModuleContent: string,
@@ -47,11 +43,11 @@ module.exports = class GalleryEventManager extends BaseEvent {
      */
     this.eventList = {
       updateTranslations: 'update.translations',
-      loadModuleContent: 'load.module.content',
+      loadModuleContent: 'load.content',
       initModel: 'init.model',
       setProviders: 'set.providers',
       setCurrentProvider: 'set.current.provider',
       setRoutes: 'set.routes'
     };
   };
-};
+}

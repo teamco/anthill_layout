@@ -1,8 +1,8 @@
 /**
  * @class WidgetRulesRenderer
- * @type {module.WidgetRulesRenderer}
+ * @type {WidgetRulesRenderer}
  */
-module.exports = class WidgetRulesRenderer {
+export class WidgetRulesRenderer {
 
   /**
    * @memberOf WidgetRulesRenderer
@@ -43,4 +43,4 @@ module.exports = class WidgetRulesRenderer {
         },
         this.$buttons);
   }
-};
+}

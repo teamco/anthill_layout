@@ -5,17 +5,21 @@
  * Time: 11:02 AM
  */
 
-/**
- * @constant AntHill
- * @type {module.AntHill}
- */
-const AntHill = require('../../core/config/anthill.js');
+import './gallery.css';
+
+import {AntHill} from '../../core/config/anthill';
+import {MVC} from '../../modules/MVC';
+import {GalleryController} from './mvc/gallery.controller';
+import {GalleryModel} from './mvc/gallery.model';
+import {GalleryView} from './mvc/gallery.view';
+import {GalleryEventManager} from './mvc/gallery.event.manager';
+import {GalleryPermission} from './mvc/gallery.permission';
 
 /**
  * @class Gallery
  * @extends AntHill
  */
-module.exports = class Gallery extends AntHill {
+export class Gallery extends AntHill {
 
   /**
    * @constructor
@@ -29,42 +33,6 @@ module.exports = class Gallery extends AntHill {
      * @property Gallery
      */
     this.containment = containment;
-
-    /**
-     * @constant GalleryController
-     * @type {module.GalleryController|*}
-     */
-    const GalleryController = require('./mvc/gallery.controller.js');
-
-    /**
-     * @constant GalleryModel
-     * @type {module.GalleryModel|*}
-     */
-    const GalleryModel = require('./mvc/gallery.model.js');
-
-    /**
-     * @constant GalleryView
-     * @type {module.GalleryView|*}
-     */
-    const GalleryView = require('./mvc/gallery.view.js');
-
-    /**
-     * @constant GalleryEventManager
-     * @type {module.GalleryEventManager|*}
-     */
-    const GalleryEventManager = require('./mvc/gallery.event.manager.js');
-
-    /**
-     * @constant GalleryPermission
-     * @type {module.GalleryPermission|*}
-     */
-    const GalleryPermission = require('./mvc/gallery.permission.js');
-    
-    /**
-     * @constant MVC
-     * @type {module.MVC}
-     */
-    const MVC = require('../../core/lib/modules/MVC.js');
 
     /**
      * Define defaults
@@ -103,7 +71,7 @@ module.exports = class Gallery extends AntHill {
     /**
      * Define MVC
      * @property Gallery
-     * @type {module.MVC}
+     * @type {MVC}
      */
     new MVC({
       scope: this,
@@ -126,4 +94,4 @@ module.exports = class Gallery extends AntHill {
 
     this.observer.publish(this.eventManager.eventList.updateTranslations, ['plugins/gallery/translations/en-us']);
   }
-};
+}

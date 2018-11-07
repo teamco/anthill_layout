@@ -7,9 +7,9 @@
 
 /**
  * @class WidgetContentPreferencesController
- * @type {module.WidgetContentPreferencesController}
+ * @type {WidgetContentPreferencesController}
  */
-module.exports = class WidgetContentPreferencesController {
+export class WidgetContentPreferencesController {
 
   /**
    * Load prefs
@@ -75,4 +75,4 @@ module.exports = class WidgetContentPreferencesController {
     const widget = this.controller.getContainment();
     widget.observer.publish(widget.eventManager.eventList.transferPreferences, [index, value]);
   }
-};
+}

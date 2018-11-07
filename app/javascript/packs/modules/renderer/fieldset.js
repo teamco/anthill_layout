@@ -4,7 +4,7 @@
 
 /**
  * @class FieldSetRenderer
- * @type {module.FieldSetRenderer}
+ * @type {FieldSetRenderer}
  */
 export class FieldSetRenderer {
 

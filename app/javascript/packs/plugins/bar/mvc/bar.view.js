@@ -6,17 +6,15 @@
  * To change this template use File | Settings | File Templates.
  */
 
-/**
- * @constant BaseView
- * @type {BaseView}
- */
-const BaseView = require('../../../core/lib/modules/View.js');
+import {BaseView} from '../../../modules/View';
+import {BarElement} from '../element/bar.element';
+import {BarContentElement} from '../element/bar.content.element';
 
 /**
  * @class BarView
- * @type {module.BarView}
+ * @type {BarView}
  */
-module.exports = class BarView extends BaseView {
+export class BarView extends BaseView {
 
   /**
    * @constructor
@@ -24,7 +22,7 @@ module.exports = class BarView extends BaseView {
    * @param {Bar} scope
    */
   constructor(name, scope) {
-    super(name || 'BarView', scope, false);
+    super(name || 'BarView', scope);
   }
 
   /**
@@ -32,12 +30,6 @@ module.exports = class BarView extends BaseView {
    * @memberOf BarView
    */
   renderBar() {
-
-    /**
-     * @constant BarElement
-     * @type {module.BarElement|*}
-     */
-    const BarElement = require('../element/bar.element.js');
 
     if (this.isCached('$bar', BarElement)) {
       return false;
@@ -53,7 +45,7 @@ module.exports = class BarView extends BaseView {
 
     /**
      * Define container
-     * @type {module.BarElement}
+     * @type {BarElement}
      */
     this.elements.$bar = new BarElement(this, {
       $container: $container.$,
@@ -72,12 +64,6 @@ module.exports = class BarView extends BaseView {
    */
   renderContent(data, force) {
 
-    /**
-     * @constant BarContentElement
-     * @type {module.BarContentElement|*}
-     */
-    const BarContentElement = require('../element/bar.content.element.js');
-
     if (this.isCachedItems() && !force) {
       return false;
     }
@@ -94,11 +80,11 @@ module.exports = class BarView extends BaseView {
          * Define module resource
          * @type {string}
          */
-        const moduleResource = item.module.name.toDash();
+        const moduleResource = item.name.toDash();
 
         /**
          * Render item
-         * @type {module.BarContentElement}
+         * @type {BarContentElement}
          */
         const $item = new BarContentElement(this, {
           style: this.utils._.compact(['content', item.activated ? 'activated' : null, moduleResource]).join(' '),
@@ -119,4 +105,4 @@ module.exports = class BarView extends BaseView {
   render() {
     this.scope.observer.publish(this.scope.eventManager.eventList.successRendered, this.renderBar.bind(this));
   }
-};
+}

@@ -6,17 +6,13 @@
  * To change this template use File | Settings | File Templates.
  */
 
-/**
- * @constant BaseModel
- * @type {module.BaseModel}
- */
-const BaseModel = require('../../../core/lib/modules/Model.js');
+import {BaseModel} from '../../../modules/Model';
 
 /**
  * @extends BaseModel
  * @class WidgetRulesModel
  */
-module.exports = class WidgetRulesModel extends BaseModel {
+export class WidgetRulesModel extends BaseModel {
 
   /**
    * @constructor
@@ -24,7 +20,7 @@ module.exports = class WidgetRulesModel extends BaseModel {
    * @param {Bar} scope
    */
   constructor(name, scope) {
-    super(name || 'WidgetRulesModel', scope, false);
+    super(name || 'WidgetRulesModel', scope);
 
     /**
      * Define data
@@ -61,4 +57,4 @@ module.exports = class WidgetRulesModel extends BaseModel {
   getCollectedItems() {
     return this.data;
   }
-};
+}

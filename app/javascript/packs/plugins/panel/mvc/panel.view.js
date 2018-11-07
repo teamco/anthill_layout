@@ -6,17 +6,16 @@
  * To change this template use File | Settings | File Templates.
  */
 
-/**
- * @constant BaseView
- * @type {BaseView}
- */
-const BaseView = require('../../../core/lib/modules/View.js');
+import {BaseView} from '../../../modules/View';
+import {PanelElement} from '../element/panel.element';
+import {PanelContentContainerElement} from '../element/panel.content.container.element';
+import {PanelContentElement} from '../element/panel.content.element';
 
 /**
  * @class PanelView
- * @type {module.PanelView}
+ * @type {PanelView}
  */
-module.exports = class PanelView extends BaseView {
+export class PanelView extends BaseView {
 
   /**
    * @constructor
@@ -24,7 +23,7 @@ module.exports = class PanelView extends BaseView {
    * @param {Panel} scope
    */
   constructor(name, scope) {
-    super(name || 'PanelView', scope, false);
+    super(name || 'PanelView', scope);
   }
 
   /**
@@ -32,13 +31,6 @@ module.exports = class PanelView extends BaseView {
    * @memberOf PanelView
    */
   renderPanel() {
-
-    /**
-     * @constant PanelElement
-     * @type {module.PanelElement|*}
-     */
-    const PanelElement = require('../element/panel.element.js');
-
     if (this.isCached('$panel', PanelElement)) {
       return false;
     }
@@ -46,7 +38,7 @@ module.exports = class PanelView extends BaseView {
     /**
      * Define Panel element
      * @property PanelView.elements
-     * @type {module.PanelElement}
+     * @type {PanelElement}
      */
     this.elements.$panel = new PanelElement(this, {
       $container: 'body',
@@ -65,14 +57,8 @@ module.exports = class PanelView extends BaseView {
   renderContentContainer() {
 
     /**
-     * @constant PanelContentContainerElement
-     * @type {module.PanelContentContainerElement|*}
-     */
-    const PanelContentContainerElement = require('../element/panel.content.container.element.js');
-
-    /**
      * Define Panel element
-     * @type {module.PanelContentContainerElement}
+     * @type {PanelContentContainerElement}
      */
     this.elements.$content = new PanelContentContainerElement(this, {
       $container: this.get$item().getContentContainer(),
@@ -101,21 +87,15 @@ module.exports = class PanelView extends BaseView {
     }
 
     /**
-     * @constant PanelContentElement
-     * @type {module.PanelContentElement|*}
-     */
-    const PanelContentElement = require('../element/panel.content.element.js');
-
-    /**
      * Render item
-     * @type {module.PanelContentElement}
+     * @type {PanelContentElement}
      */
     const $item = new PanelContentElement(this, {
       style: style,
       $container: this.elements.$content.$
     });
 
-    module.view.defineContainer($item);
+    this.defineContainer($item);
     this.updateElementItems($item, sname);
   }
 
@@ -126,4 +106,4 @@ module.exports = class PanelView extends BaseView {
   render() {
     this.scope.observer.publish(this.scope.eventManager.eventList.successRendered, this.renderPanel.bind(this));
   }
-};
+}

@@ -5,21 +5,17 @@
  * Time: 11:48 AM
  */
 
-/**
- * @constant PluginElement
- * @type {module.PluginElement}
- */
-const PluginElement = require('../../plugin.element.js');
+import {PluginElement} from '../../plugin.element';
 
 /**
  * Define PanelContent Element
  * @class GalleryContentElement
  * @extends PluginElement
  */
-module.exports = class GalleryContentElement extends PluginElement {
+export class GalleryContentElement extends PluginElement {
 
   /**
-   * @param {Gallery} view
+   * @param {GalleryView} view
    * @param opts
    * @constructor
    */
@@ -89,7 +85,7 @@ module.exports = class GalleryContentElement extends PluginElement {
 
     /**
      * @constant that
-     * @type {module.GalleryContentElement}
+     * @type {GalleryContentElement}
      */
     const that = this;
 
@@ -125,5 +121,4 @@ module.exports = class GalleryContentElement extends PluginElement {
       selector: element.$
     });
   }
-  
 }

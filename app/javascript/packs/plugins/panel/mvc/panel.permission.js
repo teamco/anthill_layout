@@ -6,18 +6,14 @@
  * To change this template use File | Settings | File Templates.
  */
 
-/**
- * @constant BasePermission
- * @type {module.BasePermission}
- */
-const BasePermission = require('../../../core/lib/modules/Permission.js');
+import {BasePermission} from '../../../modules/Permission';
 
 /**
  * Define PanelPermission
  * @extends BasePermission
  * @class PanelPermission
  */
-module.exports = class PanelPermission extends BasePermission {
+export class PanelPermission extends BasePermission {
 
   /**
    * @constructor
@@ -25,6 +21,6 @@ module.exports = class PanelPermission extends BasePermission {
    * @param {Panel} scope
    */
   constructor(name, scope) {
-    super(name || 'PanelPermission', scope, false);
+    super(name || 'PanelPermission', scope);
   }
-};
+}

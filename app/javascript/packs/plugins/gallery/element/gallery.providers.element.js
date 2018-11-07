@@ -2,20 +2,16 @@
  * Created by teamco on 3/25/14.
  */
 
-/**
- * @constant PluginElement
- * @type {module.PluginElement}
- */
-const PluginElement = require('../../plugin.element.js');
+import {PluginElement} from '../../plugin.element';
 
 /**
  * @class GalleryProvidersElement
  * @extends PluginElement
  */
-module.exports = class GalleryProvidersElement extends PluginElement {
+export class GalleryProvidersElement extends PluginElement {
 
   /**
-   * @param {Gallery} view
+   * @param {GalleryView} view
    * @param opts
    * @constructor
    */
@@ -51,7 +47,7 @@ module.exports = class GalleryProvidersElement extends PluginElement {
    * @memberOf GalleryProvidersElement
    * @param data
    * @param currentProvider
-   * @returns {module.GalleryProvidersElement|boolean}
+   * @returns {GalleryProvidersElement|boolean}
    */
   renderData(data, currentProvider) {
     if (!currentProvider) {
@@ -73,4 +69,4 @@ module.exports = class GalleryProvidersElement extends PluginElement {
 
     return this;
   }
-};
+}

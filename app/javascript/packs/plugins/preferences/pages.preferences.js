@@ -5,18 +5,14 @@
  * Time: 7:39 PM
  */
 
-/**
- * @constant BasePreferencesElement
- * @type {module.BasePreferencesElement}
- */
-const BasePreferencesElement = require('./preferences.js');
+import {BasePreferencesElement} from './preferences';
 
 /**
  * @class PagesPreferences
  * @extends BasePreferencesElement
- * @type {module.PagesPreferences}
+ * @type {PagesPreferences}
  */
-module.exports = class PagesPreferences extends BasePreferencesElement {
+export class PagesPreferences extends BasePreferencesElement {
 
   /**
    * @constructor
@@ -34,7 +30,7 @@ module.exports = class PagesPreferences extends BasePreferencesElement {
 
     /**
      * Get workspace
-     * @type {module.Workspace}
+     * @type {Workspace}
      */
     const ws = this.view.controller.getWorkspace();
 
@@ -197,7 +193,7 @@ module.exports = class PagesPreferences extends BasePreferencesElement {
 
     /**
      * Define layout
-     * @type {module.Layout}
+     * @type {Layout}
      */
     const layout = page.controller.getLayout();
 
@@ -555,7 +551,7 @@ module.exports = class PagesPreferences extends BasePreferencesElement {
 
     /**
      * Define page data
-     * @type {*|module.PageData}
+     * @type {*|PageData}
      */
     const pageData = panel.controller.getModuleByName('page-data');
 
@@ -584,4 +580,4 @@ module.exports = class PagesPreferences extends BasePreferencesElement {
       }));
     }
   }
-};
+}

@@ -5,29 +5,20 @@
  * Time: 11:03 AM
  */
 
+import {PluginController} from '../../plugin.controller';
+import {Router} from '../../../modules/Router';
+
 /**
  * Aggregation of base class and mixin classes.
  * @type {(function(*, ...[*]): __Aggregate)|*|(function(): aggregate)}
  */
-const aggregation = require('../../../core/lib/extends/aggregation.js');
-
-/**
- * @constant PluginController
- * @type {module.PluginController|*}
- */
-const PluginController = require('../../plugin.controller.js');
-
-/**
- * @constant Router
- * @type {module.Router}
- */
-const Router = require('../../../core/lib/modules/Router.js');
+const aggregation = require('../../../lib/extends/aggregation');
 
 /**
  * @class PageDataController
  * @extends {PluginController, Router}
  */
-module.exports = class PageDataController extends aggregation(PluginController, Router) {
+export class PageDataController extends aggregation(PluginController, Router) {
 
   /**
    * @constructor
@@ -77,7 +68,7 @@ module.exports = class PageDataController extends aggregation(PluginController, 
 
     /**
      * Get current page
-     * @type {module.Page|{model}}
+     * @type {Page|{model}}
      */
     const page = this.controller.getPage();
 
@@ -120,7 +111,7 @@ module.exports = class PageDataController extends aggregation(PluginController, 
 
     /**
      * @property PageData
-     * @type {module.PageDataController}
+     * @type {PageDataController}
      */
     this.activeContent.referrer = this;
     this.logger.debug('Active content', this.activeContent);
@@ -273,13 +264,13 @@ module.exports = class PageDataController extends aggregation(PluginController, 
 
     /**
      * @constant page
-     * @type {module.Page}
+     * @type {Page}
      */
     const page = this.getPage();
 
     /**
      * @constant panel
-     * @type {module.Panel|{controller}}
+     * @type {Panel|{controller}}
      */
     const panel = this.getDesignTimePanel();
 
@@ -353,13 +344,13 @@ module.exports = class PageDataController extends aggregation(PluginController, 
 
     /**
      * Get view
-     * @type {module.PageDataView}
+     * @type {PageDataView}
      */
     const view = scope.view;
 
     /**
      * Get workspace
-     * @type {module.Page}
+     * @type {Page}
      */
     const page = this.getPage();
 
@@ -378,4 +369,4 @@ module.exports = class PageDataController extends aggregation(PluginController, 
    */
   approveEditRules() {
   }
-};
+}

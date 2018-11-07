@@ -89,7 +89,7 @@ export class BaseController extends aggregation(AntHill, BehaviorCrud, BehaviorW
 
     /**
      * Get root
-     * @type {module.Application}
+     * @type {Application}
      */
     const root = this.root();
 
@@ -272,7 +272,7 @@ export class BaseController extends aggregation(AntHill, BehaviorCrud, BehaviorW
    * Get Workspace
    * @memberOf BaseController
    * @param {string} [uuid]
-   * @returns {module.Workspace}
+   * @returns {Workspace}
    */
   getWorkspace(uuid) {
 
@@ -289,13 +289,13 @@ export class BaseController extends aggregation(AntHill, BehaviorCrud, BehaviorW
    * Get Page
    * @memberOf BaseController
    * @param {string} [uuid]
-   * @returns {module.Page|{}}
+   * @returns {Page|{}}
    */
   getPage(uuid) {
 
     /**
      * @constant workspace
-     * @type {module.Workspace}
+     * @type {Workspace}
      */
     const workspace = this.getWorkspace();
 
@@ -807,7 +807,7 @@ export class BaseController extends aggregation(AntHill, BehaviorCrud, BehaviorW
 
     /**
      * Define root
-     * @type {module.Application}
+     * @type {Application}
      */
     const root = this.root();
 

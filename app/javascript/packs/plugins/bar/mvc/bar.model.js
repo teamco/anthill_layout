@@ -6,18 +6,14 @@
  * To change this template use File | Settings | File Templates.
  */
 
-/**
- * @constant BaseModel
- * @type {module.BaseModel}
- */
-const BaseModel = require('../../../core/lib/modules/Model.js');
+import {BaseModel} from '../../../modules/Model';
 
 /**
  * Define Bar model
  * @extends BaseModel
  * @class BarModel
  */
-module.exports = class BarModel extends BaseModel {
+export class BarModel extends BaseModel {
 
   /**
    * @constructor
@@ -25,7 +21,7 @@ module.exports = class BarModel extends BaseModel {
    * @param {Bar} scope
    */
   constructor(name, scope) {
-    super(name || 'BarModel', scope, false);
+    super(name || 'BarModel', scope);
 
     /**
      * Init modules
@@ -60,4 +56,4 @@ module.exports = class BarModel extends BaseModel {
   getModules() {
     return this.modules;
   }
-};
+}

@@ -1,17 +1,13 @@
 /**
- * @constant BaseElement
- * @type {BaseElement|*}
- */
-const BaseElement = require('../core/lib/modules/Element.js');
-
-/**
  * Define Plugin element
  * @extends BaseElement
  * @class PluginElement
- * @type {module.PluginElement}
+ * @type {PluginElement}
  * @constructor
  */
-module.exports = class PluginElement extends BaseElement {
+import {BaseElement} from '../modules/Element';
+
+export class PluginElement extends BaseElement {
 
   /**
    * @param {string} name
@@ -20,7 +16,7 @@ module.exports = class PluginElement extends BaseElement {
    * @constructor
    */
   constructor(name, view, opts) {
-    super(name || 'PluginElement', view, false);
+    super(name || 'PluginElement', view);
   }
 
   /**
@@ -128,4 +124,4 @@ module.exports = class PluginElement extends BaseElement {
 
     return $template.replace(/\{0}/g, counter).replace(/\{1}/g, this.view.scope.i18n.t('panel.items'));
   }
-};
+}

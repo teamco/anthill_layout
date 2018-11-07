@@ -28,7 +28,7 @@ export class Logger {
 
     /**
      * @property Logger.utils
-     * @type {module.Base}
+     * @type {Base}
      */
     this.utils = new Base();
 

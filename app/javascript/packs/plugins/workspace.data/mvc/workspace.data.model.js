@@ -5,18 +5,15 @@
  * Time: 11:06 PM
  * To change this template use File | Settings | File Templates.
  */
-/**
- * @constant BaseModel
- * @type {module.BaseModel}
- */
-const BaseModel = require('../../../core/lib/modules/Model.js');
+
+import {BaseModel} from '../../../modules/Model';
 
 /**
  * @class WorkspaceDataModel
  * @extends BaseModel
- * @type {module.WorkspaceDataModel}
+ * @type {WorkspaceDataModel}
  */
-module.exports = class WorkspaceDataModel extends BaseModel {
+export class WorkspaceDataModel extends BaseModel {
 
   /**
    * @constructor
@@ -24,7 +21,7 @@ module.exports = class WorkspaceDataModel extends BaseModel {
    * @param {PageData} scope
    */
   constructor(name, scope) {
-    super(name || 'WorkspaceDataModel', scope, false);
+    super(name || 'WorkspaceDataModel', scope);
 
     /**
      * Define preferences
@@ -66,4 +63,4 @@ module.exports = class WorkspaceDataModel extends BaseModel {
 
     return sorted;
   }
-};
+}

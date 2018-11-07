@@ -4,9 +4,9 @@
 
 /**
  * @class GalleryWidgets
- * @type {module.GalleryWidgets}
+ * @type {GalleryWidgets}
  */
-module.exports = class GalleryWidgets {
+export class GalleryWidgets {
 
   /**
    * @constructor
@@ -167,13 +167,11 @@ module.exports = class GalleryWidgets {
   updateDefaultData(json) {
 
     /**
-     * Get default data
+     * @constant
      * @type {{
      *  name: string,
      *  description: string,
      *  thumbnail: string,
-     *  is_external: boolean,
-     *  external_resource: string,
      *  dimensions: {width: number, height: number},
      *  type: string,
      *  resource: string
@@ -356,4 +354,4 @@ module.exports = class GalleryWidgets {
       scope.logger.warn('Undefined widget data', source);
     }
   }
-};
+}

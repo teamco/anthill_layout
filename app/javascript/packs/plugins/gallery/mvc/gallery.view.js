@@ -6,17 +6,16 @@
  * To change this template use File | Settings | File Templates.
  */
 
-/**
- * @constant BaseView
- * @type {BaseView}
- */
-const BaseView = require('../../../core/lib/modules/View.js');
+import {BaseView} from '../../../modules/View';
+import {GalleryElement} from '../element/gallery.element';
+import {GalleryProvidersElement} from '../element/gallery.providers.element';
+import {GalleryContentElement} from '../element/gallery.content.element';
 
 /**
  * @class GalleryView
- * @type {module.GalleryView}
+ * @type {GalleryView}
  */
-module.exports = class GalleryView extends BaseView {
+export class GalleryView extends BaseView {
 
   /**
    * @constructor
@@ -24,7 +23,7 @@ module.exports = class GalleryView extends BaseView {
    * @param {Panel} scope
    */
   constructor(name, scope) {
-    super(name || 'GalleryView', scope, false);
+    super(name || 'GalleryView', scope);
   }
 
   /**
@@ -33,12 +32,6 @@ module.exports = class GalleryView extends BaseView {
    * @returns {boolean}
    */
   renderGallery() {
-
-    /**
-     * @constant GalleryElement
-     * @type {module.GalleryElement|*}
-     */
-    const GalleryElement = require('../element/gallery.element.js');
 
     if (this.isCached('$gallery', GalleryElement)) {
 
@@ -54,7 +47,7 @@ module.exports = class GalleryView extends BaseView {
 
     /**
      * Define Gallery element
-     * @type {module.GalleryElement}
+     * @type {GalleryElement}
      */
     this.elements.$gallery = new GalleryElement(this, {
       $container: this.get$container().$,
@@ -71,19 +64,13 @@ module.exports = class GalleryView extends BaseView {
    */
   renderProviders(providers, currentProvider) {
 
-    /**
-     * @constant GalleryProvidersElement
-     * @type {module.GalleryProvidersElement|*}
-     */
-    const GalleryProvidersElement = require('../element/gallery.providers.element.js');
-
     if (this.isCached('$providers', GalleryProvidersElement)) {
       return false;
     }
 
     /**
      * Define Gallery element
-     * @type {module.GalleryProvidersElement}
+     * @type {GalleryProvidersElement}
      */
     this.elements.$providers = new GalleryProvidersElement(this, {
       $container: this.get$container().$,
@@ -116,17 +103,11 @@ module.exports = class GalleryView extends BaseView {
      */
     let data = (provider || {}).data || [];
 
-    /**
-     * @constant GalleryContentElement
-     * @type {module.GalleryContentElement|*}
-     */
-    const GalleryContentElement = require('../element/gallery.content.element.js');
-
     for (let i = 0, l = data.length; i < l; i++) {
 
       /**
        * Render item
-       * @type {module.GalleryContentElement}
+       * @type {GalleryContentElement}
        */
       let $item = new GalleryContentElement(this, {
         style: 'content',
@@ -162,4 +143,4 @@ module.exports = class GalleryView extends BaseView {
   render() {
     this.scope.observer.publish(this.scope.eventManager.eventList.successRendered, this.renderGallery.bind(this));
   }
-};
+}

@@ -478,7 +478,7 @@ export class MVC {
     const scope = this.scope;
 
     /**
-     * @type {module.BaseController}
+     * @type {BaseController}
      */
     const controller = scope.controller;
 

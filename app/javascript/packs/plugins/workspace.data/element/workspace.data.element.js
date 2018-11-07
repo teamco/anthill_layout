@@ -5,28 +5,22 @@
  * Time: 11:48 AM
  */
 
-/**
- * @constant PluginElement
- * @type {module.PluginElement}
- */
-const PluginElement = require('../../plugin.element.js');
+import {PluginElement} from '../../plugin.element';
 
 /**
  * @class WorkspaceDataElement
  * @extends PluginElement
  */
-module.exports = class WorkspaceDataElement extends PluginElement {
+export class WorkspaceDataElement extends PluginElement {
 
   /**
-   * @param {module.WorkspaceDataView} view
+   * @param {BaseView|WorkspaceDataView} view
    * @param opts
    * @constructor
    */
   constructor(view, opts) {
     super('WorkspaceDataElement', view, false);
     this._config(view, opts, $('<ul />')).build(opts);
-    this.addCSS('workspace.data');
-    this.addCSS('preferences');
     this.initSortable();
   }
 
@@ -62,7 +56,7 @@ module.exports = class WorkspaceDataElement extends PluginElement {
 
     /**
      * Get scope
-     * @type {module.WorkspaceData}
+     * @type {WorkspaceData}
      */
     const scope = this.view.scope;
 
@@ -71,4 +65,4 @@ module.exports = class WorkspaceDataElement extends PluginElement {
 
     ui.item.attr('style', ui.item.attr('style').replace(/position: relative;/, ''));
   }
-};
+}

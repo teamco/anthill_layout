@@ -6,17 +6,13 @@
  * To change this template use File | Settings | File Templates.
  */
 
-/**
- * @constant BaseEvent
- * @type {BaseEvent}
- */
-const BaseEvent = require('../../../core/lib/modules/Event.js');
+import {BaseEvent} from '../../../modules/Event';
 
 /**
  * @class PanelEventManager
  * @extends BaseEvent
  */
-module.exports = class PanelEventManager extends BaseEvent {
+export class PanelEventManager extends BaseEvent {
 
   /**
    * Define PanelEvent Manager
@@ -25,7 +21,7 @@ module.exports = class PanelEventManager extends BaseEvent {
    * @param {Panel} scope
    */
   constructor(name, scope) {
-    super(name || 'PanelEventManager', scope, false);
+    super(name || 'PanelEventManager', scope);
 
     /**
      * Define events
@@ -59,4 +55,4 @@ module.exports = class PanelEventManager extends BaseEvent {
       subscribeGenericEvent: 'subscribe.generic.event'
     };
   }
-};
+}

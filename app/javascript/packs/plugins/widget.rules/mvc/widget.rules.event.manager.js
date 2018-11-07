@@ -6,17 +6,13 @@
  * To change this template use File | Settings | File Templates.
  */
 
-/**
- * @constant BaseEvent
- * @type {BaseEvent}
- */
-const BaseEvent = require('../../../core/lib/modules/Event.js');
+import {BaseEvent} from '../../../modules/Event';
 
 /**
  * @class WidgetRulesEventManager
  * @extends BaseEvent
  */
-module.exports = class WidgetRulesEventManager extends BaseEvent {
+export class WidgetRulesEventManager extends BaseEvent {
 
   /**
    * Define BarEvent Manager
@@ -24,7 +20,7 @@ module.exports = class WidgetRulesEventManager extends BaseEvent {
    * @param {WidgetRules} scope
    */
   constructor(scope) {
-    super('WidgetRulesEventManager', scope, false);
+    super('WidgetRulesEventManager', scope);
 
     /**
      * Define events
@@ -46,10 +42,10 @@ module.exports = class WidgetRulesEventManager extends BaseEvent {
      */
     this.eventList = {
       updateTranslations: 'update.translations',
-      loadModuleContent: 'load.module.content',
+      loadModuleContent: 'load.content',
       prepareActiveComponent: 'prepare.active.component',
       storeItem: 'store.item',
       setActiveContent: 'set.active.content'
     };
   }
-};
+}

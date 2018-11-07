@@ -4,18 +4,15 @@
  * Date: 5/9/13
  * Time: 11:48 AM
  */
-/**
- * @constant PluginElement
- * @type {module.PluginElement}
- */
-const PluginElement = require('../../plugin.element.js');
+
+import {PluginElement} from '../../plugin.element';
 
 /**
  * Define PanelContentContainer Element
  * @class PanelContentContainerElement
  * @extends PluginElement
  */
-module.exports = class PanelContentContainerElement extends PluginElement {
+export class PanelContentContainerElement extends PluginElement {
 
   /**
    * @param {PanelView} view
@@ -26,4 +23,4 @@ module.exports = class PanelContentContainerElement extends PluginElement {
     super('PanelContentContainerElement', view, false);
     this._config(view, opts, $('<li />')).build(opts);
   };
-};
+}

@@ -1,8 +1,8 @@
 /**
  * @class AddRuleRenderer
- * @type {module.AddRuleRenderer}
+ * @type {AddRuleRenderer}
  */
-module.exports = class AddRuleRenderer {
+export class AddRuleRenderer {
 
   /**
    * Add new rule
@@ -62,4 +62,4 @@ module.exports = class AddRuleRenderer {
 
     $ul.append($('<li />').attr({value: value}).append(this.getTemplate(type).append($input)));
   }
-};
+}

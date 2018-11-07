@@ -4,7 +4,7 @@
 
 /**
  * @class ToolTipRenderer
- * @type {module.ToolTipRenderer}
+ * @type {ToolTipRenderer}
  */
 export class ToolTipRenderer {
 

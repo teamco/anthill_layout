@@ -5,18 +5,22 @@
  * Time: 11:02 AM
  */
 
-/**
- * @constant AntHill
- * @type {module.AntHill}
- */
-const AntHill = require('../../core/config/anthill.js');
+import './bar.css';
+
+import {AntHill} from '../../core/config/anthill';
+import {MVC} from '../../modules/MVC';
+import {BarController} from './mvc/bar.controller';
+import {BarModel} from './mvc/bar.model';
+import {BarView} from './mvc/bar.view';
+import {BarEventManager} from './mvc/bar.event.manager';
+import {BarPermission} from './mvc/bar.permission';
 
 /**
  * Define Bar
  * @class Bar
  * @extends AntHill
  */
-module.exports = class Bar extends AntHill {
+export class Bar extends AntHill {
 
   /**
    * @constructor
@@ -30,42 +34,6 @@ module.exports = class Bar extends AntHill {
      * @property Bar
      */
     this.containment = containment;
-
-    /**
-     * @constant BarController
-     * @type {module.BarController|*}
-     */
-    const BarController = require('./mvc/bar.controller.js');
-
-    /**
-     * @constant BarModel
-     * @type {module.BarModel|*}
-     */
-    const BarModel = require('./mvc/bar.model.js');
-
-    /**
-     * @constant BarView
-     * @type {module.BarView|*}
-     */
-    const BarView = require('./mvc/bar.view.js');
-
-    /**
-     * @constant BarEventManager
-     * @type {module.BarEventManager|*}
-     */
-    const BarEventManager = require('./mvc/bar.event.manager.js');
-
-    /**
-     * @constant BarPermission
-     * @type {module.BarPermission|*}
-     */
-    const BarPermission = require('./mvc/bar.permission.js');
-
-    /**
-     * @constant MVC
-     * @type {module.MVC}
-     */
-    const MVC = require('../../core/lib/modules/MVC.js');
 
     /**
      * @constant DEFAULTS
@@ -95,7 +63,7 @@ module.exports = class Bar extends AntHill {
     /**
      * Define MVC
      * @property Bar
-     * @type {module.MVC}
+     * @type {MVC}
      */
     this.mvc = new MVC({
       scope: this,
@@ -114,4 +82,4 @@ module.exports = class Bar extends AntHill {
     this.observer.publish(this.eventManager.eventList.defineModules);
     this.observer.publish(this.eventManager.eventList.updateTranslations, ['plugins/bar/translations/en-us']);
   }
-};
+}

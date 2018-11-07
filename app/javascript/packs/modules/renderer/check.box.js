@@ -5,7 +5,7 @@
 /**
  * Define CheckBoxRenderer
  * @class CheckBoxRenderer
- * @type {module.CheckBoxRenderer}
+ * @type {CheckBoxRenderer}
  */
 export class CheckBoxRenderer  {
 

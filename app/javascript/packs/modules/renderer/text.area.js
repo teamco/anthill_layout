@@ -4,7 +4,7 @@
 
 /**
  * @class TextAreaRenderer
- * @type {module.TextAreaRenderer}
+ * @type {TextAreaRenderer}
  */
 export class TextAreaRenderer {
 

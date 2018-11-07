@@ -1,8 +1,8 @@
 /**
  * @class ContentRulesRenderer
- * @type {module.ContentRulesRenderer}
+ * @type {ContentRulesRenderer}
  */
-module.exports = class ContentRulesRenderer {
+export class ContentRulesRenderer {
 
   /**
    * @memberOf ContentRulesRenderer
@@ -51,4 +51,4 @@ module.exports = class ContentRulesRenderer {
         this.$buttons
     );
   }
-};
+}

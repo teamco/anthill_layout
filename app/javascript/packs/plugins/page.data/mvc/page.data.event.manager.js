@@ -6,17 +6,13 @@
  * To change this template use File | Settings | File Templates.
  */
 
-/**
- * @constant BaseEvent
- * @type {BaseEvent}
- */
-const BaseEvent = require('../../../core/lib/modules/Event.js');
+import {BaseEvent} from '../../../modules/Event';
 
 /**
  * @class PageDataEventManager
  * @extends BaseEvent
  */
-module.exports = class PageDataEventManager extends BaseEvent {
+export class PageDataEventManager extends BaseEvent {
 
   /**
    * @constructor
@@ -24,7 +20,7 @@ module.exports = class PageDataEventManager extends BaseEvent {
    * @param {PageData} scope
    */
   constructor(name, scope) {
-    super(name || 'PageDataEventManager', scope, false);
+    super(name || 'PageDataEventManager', scope);
 
     /**
      * Define events
@@ -46,10 +42,10 @@ module.exports = class PageDataEventManager extends BaseEvent {
      */
     this.eventList = {
       updateTranslations: 'update.translations',
-      loadModuleContent: 'load.module.content',
+      loadModuleContent: 'load.content',
       prepareActiveComponent: 'prepare.active.component',
       storeItem: 'store.item',
       setActiveContent: 'set.active.content'
     };
   };
-};
+}

@@ -6,18 +6,14 @@
  * To change this template use File | Settings | File Templates.
  */
 
-/**
- * @constant BaseModel
- * @type {module.BaseModel}
- */
-const BaseModel = require('../../../core/lib/modules/Model.js');
+import {BaseModel} from '../../../modules/Model';
 
 /**
  * @class PageDataModel
  * @extends BaseModel
- * @type {module.PageDataModel}
+ * @type {PageDataModel}
  */
-module.exports = class PageDataModel extends BaseModel {
+export class PageDataModel extends BaseModel {
 
   /**
    * @constructor
@@ -25,7 +21,7 @@ module.exports = class PageDataModel extends BaseModel {
    * @param {PageData} scope
    */
   constructor(name, scope) {
-    super(name || 'PageDataModel', scope, false);
+    super(name || 'PageDataModel', scope);
 
     /**
      * Define data
@@ -62,4 +58,4 @@ module.exports = class PageDataModel extends BaseModel {
   getCollectedItems() {
     return this.data;
   }
-};
+}

@@ -9,7 +9,7 @@ import {AntHill} from '../core/config/anthill';
 
 /**
  * @class BasePreferences
- * @type {module.BasePreferences}
+ * @type {BasePreferences}
  */
 export class BasePreferences extends AntHill {
 

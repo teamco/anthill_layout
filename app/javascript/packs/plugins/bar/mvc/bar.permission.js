@@ -6,24 +6,20 @@
  * To change this template use File | Settings | File Templates.
  */
 
-/**
- * @constant BasePermission
- * @type {module.BasePermission}
- */
-const BasePermission = require('../../../core/lib/modules/Permission.js');
+import {BasePermission} from '../../../modules/Permission';
 
 /**
  * Define BarPermission
  * @extends BasePermission
  * @class BarPermission
  */
-module.exports = class BarPermission extends BasePermission {
+export class BarPermission extends BasePermission {
 
   /**
    * @constructor
    * @param {Bar} scope
    */
   constructor(scope) {
-    super('BarPermission', scope, false);
+    super('BarPermission', scope);
   }
-};
+}

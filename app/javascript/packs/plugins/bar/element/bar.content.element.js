@@ -5,18 +5,14 @@
  * Time: 11:48 AM
  */
 
-/**
- * @constant PluginElement
- * @type {module.PluginElement}
- */
-const PluginElement = require('../../plugin.element.js');
+import {PluginElement} from '../../plugin.element';
 
 /**
  * Define BarContent Element
  * @class BarContentElement
  * @extends PluginElement
  */
-module.exports = class BarContentElement extends PluginElement {
+export class BarContentElement extends PluginElement {
 
   /**
    * @param {BarView} view
@@ -44,7 +40,7 @@ module.exports = class BarContentElement extends PluginElement {
   getTemplate() {
 
     // Get module name
-    const name = this.resource.module.name;
+    const name = this.resource.name;
 
     return [
       '<li><a title="', name.humanize(), '">',
@@ -75,4 +71,4 @@ module.exports = class BarContentElement extends PluginElement {
           publish(event.openPanel, resource);
     });
   }
-};
+}

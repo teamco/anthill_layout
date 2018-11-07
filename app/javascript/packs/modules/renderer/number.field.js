@@ -4,7 +4,7 @@
 
 /**
  * @class NumberFieldRenderer
- * @type {module.NumberFieldRenderer}
+ * @type {NumberFieldRenderer}
  */
 export class NumberFieldRenderer {
 

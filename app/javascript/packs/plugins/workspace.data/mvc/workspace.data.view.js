@@ -6,29 +6,24 @@
  * To change this template use File | Settings | File Templates.
  */
 
+import {BaseView} from '../../../modules/View';
+import {BasePreferencesElement} from '../../preferences/preferences';
+import {WorkspaceDataElement} from '../element/workspace.data.element';
+import {WorkspaceDataContentElement} from '../element/workspace.data.content.element';
+import {WorkspaceDataAddPageElement} from '../element/workspace.data.add.page.element';
+import {WorkspaceDataPreferencesElement} from '../element/workspace.data.preferences.element';
+
 /**
  * Aggregation of base class and mixin classes.
  * @type {(function(*, ...[*]): __Aggregate)|*|(function(): aggregate)}
  */
-const aggregation = require('../../../core/lib/extends/aggregation.js');
-
-/**
- * @constant BaseView
- * @type {BaseView}
- */
-const BaseView = require('../../../core/lib/modules/View.js');
-
-/**
- * @constant BasePreferencesElement
- * @type {module.BasePreferencesElement}
- */
-const BasePreferencesElement = require('../../preferences/preferences.js');
+const aggregation = require('../../../lib/extends/aggregation');
 
 /**
  * @class WorkspaceDataView
- * @type {module.WorkspaceDataView}
+ * @type {WorkspaceDataView}
  */
-module.exports = class WorkspaceDataView extends aggregation(BaseView, BasePreferencesElement) {
+export class WorkspaceDataView extends aggregation(BaseView, BasePreferencesElement) {
 
   /**
    * @constructor
@@ -45,20 +40,13 @@ module.exports = class WorkspaceDataView extends aggregation(BaseView, BasePrefe
    * @returns {boolean}
    */
   renderWorkspaceData() {
-
-    /**
-     * @constant WorkspaceDataElement
-     * @type {module.WorkspaceDataElement|*}
-     */
-    const WorkspaceDataElement = require('../element/workspace.data.element.js');
-
     if (this.isCached('$workspacedata', WorkspaceDataElement)) {
       return false;
     }
 
     /**
      * Define WorkspaceData element
-     * @type {module.WorkspaceDataElement}
+     * @type {WorkspaceDataElement}
      */
     this.elements.$workspacedata = new WorkspaceDataElement(this, {
       uuid: this.createUUID(),
@@ -79,16 +67,10 @@ module.exports = class WorkspaceDataView extends aggregation(BaseView, BasePrefe
 
     /**
      * Get current page
-     * @type {module.Page}
+     * @type {Page}
      */
     const page = this.controller.getPage();
     const l = data.length;
-
-    /**
-     * @constant WorkspaceDataContentElement
-     * @type {module.WorkspaceDataContentElement|*}
-     */
-    const WorkspaceDataContentElement = require('../element/workspace.data.content.element.js');
 
     for (let i = 0; i < l; i++) {
       if (!data[i]) {
@@ -110,7 +92,7 @@ module.exports = class WorkspaceDataView extends aggregation(BaseView, BasePrefe
 
       /**
        * Render item
-       * @type {module.WorkspaceDataContentElement}
+       * @type {WorkspaceDataContentElement}
        */
       const $item = new WorkspaceDataContentElement(this, {
         style: 'page content' + current + show,
@@ -147,14 +129,8 @@ module.exports = class WorkspaceDataView extends aggregation(BaseView, BasePrefe
   renderCreatePage() {
 
     /**
-     * @constant WorkspaceDataAddPageElement
-     * @type {module.WorkspaceDataAddPageElement|*}
-     */
-    const WorkspaceDataAddPageElement = require('../element/workspace.data.add.page.element.js');
-
-    /**
      * Render add new pages
-     * @type {module.WorkspaceDataAddPageElement}
+     * @type {WorkspaceDataAddPageElement}
      */
     this.elements.$addPage = new WorkspaceDataAddPageElement(this, {
       style: 'add-page',
@@ -268,14 +244,8 @@ module.exports = class WorkspaceDataView extends aggregation(BaseView, BasePrefe
   renderPreferences(page) {
 
     /**
-     * @constant WorkspaceDataPreferencesElement
-     * @type {module.WorkspaceDataPreferencesElement|*}
-     */
-    const WorkspaceDataPreferencesElement = require('../element/workspace.data.preferences.element.js');
-
-    /**
      * Define WorkspaceData Preferences Element
-     * @type {module.WorkspaceDataPreferencesElement}
+     * @type {WorkspaceDataPreferencesElement}
      */
     this.elements.$preferences = new WorkspaceDataPreferencesElement(this, {
       data: page.model.getConfig('preferences'),
@@ -293,9 +263,9 @@ module.exports = class WorkspaceDataView extends aggregation(BaseView, BasePrefe
 
     /**
      * @constant scope
-     * @type {module.WorkspaceData}
+     * @type {WorkspaceData}
      */
     const scope = this.scope;
     scope.observer.publish(scope.eventManager.eventList.successRendered, this.renderWorkspaceData.bind(this));
   }
-};
+}

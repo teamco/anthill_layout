@@ -112,7 +112,7 @@ defineP([
 
           /**
            * Get root
-           * @type {module.Application}
+           * @type {Application}
            */
           var root = view.controller.root();
 

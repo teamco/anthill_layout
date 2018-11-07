@@ -6,18 +6,14 @@
  * To change this template use File | Settings | File Templates.
  */
 
-/**
- * @constant BasePermission
- * @type {module.BasePermission}
- */
-const BasePermission = require('../../../core/lib/modules/Permission.js');
+import {BasePermission} from '../../../modules/Permission';
 
 /**
  * Define GalleryPermission
  * @extends BasePermission
  * @class GalleryPermission
  */
-module.exports = class GalleryPermission extends BasePermission {
+export class GalleryPermission extends BasePermission {
 
   /**
    * @constructor
@@ -25,6 +21,6 @@ module.exports = class GalleryPermission extends BasePermission {
    * @param {Panel} scope
    */
   constructor(name, scope) {
-    super(name || 'GalleryPermission', scope, false);
+    super(name || 'GalleryPermission', scope);
   }
 };

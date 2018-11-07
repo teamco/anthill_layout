@@ -38,7 +38,7 @@ defineP(function defineSiteConfigCleanup() {
 
             /**
              * Get root
-             * @type {module.Application}
+             * @type {Application}
              */
             var root = scope.controller.root();
 
@@ -81,7 +81,7 @@ defineP(function defineSiteConfigCleanup() {
 
       /**
        * Get root
-       * @type {module.Application}
+       * @type {Application}
        */
       var root = this.root();
 

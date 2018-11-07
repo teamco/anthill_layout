@@ -5,25 +5,21 @@
  * Time: 11:03 AM
  */
 
-/**
- * @constant PluginController
- * @type {module.PluginController|*}
- */
-const PluginController = require('../../plugin.controller.js');
+import {PluginController} from '../../plugin.controller';
 
 /**
  * Define Bar controller
  * @class BarController
  * @extends PluginController
  */
-module.exports = class BarController extends PluginController {
+export class BarController extends PluginController {
 
   /**
    * @constructor
    * @param {Bar} scope
    */
   constructor(scope) {
-    super('BarController', scope, false);
+    super('BarController', scope);
   }
 
   /**
@@ -51,4 +47,4 @@ module.exports = class BarController extends PluginController {
       this.getView().renderContent(this.getData());
     }
   }
-};
+}

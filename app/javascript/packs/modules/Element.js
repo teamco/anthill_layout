@@ -11,7 +11,7 @@ import {Renderer} from './Renderer';
 /**
  * Define Base element
  * @class BaseElement
- * @type {module.BaseElement}
+ * @type {BaseElement}
  * @extends Renderer
  */
 export class BaseElement extends Renderer {
@@ -1103,7 +1103,7 @@ export class BaseElement extends Renderer {
   /**
    * Locate element
    * @memberOf BaseElement
-   * @param {module.BaseElement} [$element]
+   * @param {BaseElement} [$element]
    * @param {Event} event
    * @returns {boolean}
    */

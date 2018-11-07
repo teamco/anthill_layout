@@ -5,30 +5,21 @@
  * Time: 11:48 AM
  */
 
+import {PluginElement} from '../../plugin.element';
+import {PagesPreferences} from '../../preferences/pages.preferences';
+
 /**
  * Aggregation of base class and mixin classes.
  * @type {(function(*, ...[*]): __Aggregate)|*|(function(): aggregate)}
  */
-const aggregation = require('../../../core/lib/extends/aggregation.js');
-
-/**
- * @constant PluginElement
- * @type {module.PluginElement}
- */
-const PluginElement = require('../../plugin.element.js');
-
-/**
- * @constant PagesPreferences
- * @type {module.PagesPreferences}
- */
-const PagesPreferences = require('../../preferences/pages.preferences.js');
+const aggregation = require('../../../lib/extends/aggregation');
 
 /**
  * @class WorkspaceDataPreferencesElement
  * @extends {PluginElement}
- * @type {module.WorkspaceDataPreferencesElement}
+ * @type {WorkspaceDataPreferencesElement}
  */
-module.exports = class WorkspaceDataPreferencesElement extends aggregation(PluginElement, PagesPreferences) {
+export class WorkspaceDataPreferencesElement extends aggregation(PluginElement, PagesPreferences) {
 
   /**
    * @constructor
@@ -40,4 +31,4 @@ module.exports = class WorkspaceDataPreferencesElement extends aggregation(Plugi
     this._config(view, opts, $('<ul />')).build(opts);
     this.renderData(opts);
   }
-};
+}

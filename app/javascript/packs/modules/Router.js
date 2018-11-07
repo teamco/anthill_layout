@@ -97,7 +97,7 @@ export class Router extends AntHill {
   /**
    * Get page by hash
    * @memberOf Router
-   * @param {module.Workspace|{model, observer, eventManager}} workspace
+   * @param {Workspace|{model, observer, eventManager}} workspace
    * @returns {Page}
    */
   getPageByHashLocation(workspace) {
@@ -110,7 +110,7 @@ export class Router extends AntHill {
 
     /**
      * Get workspace
-     * @type {module.Workspace}
+     * @type {Workspace}
      */
     workspace = workspace || this.getWorkspace();
 

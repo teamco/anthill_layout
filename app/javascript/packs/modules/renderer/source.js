@@ -7,7 +7,7 @@ import 'highlight.js/styles/agate.css';
 
 /**
  * @constant SourceRenderer
- * @type {module.SourceRenderer}
+ * @type {SourceRenderer}
  */
 export class SourceRenderer {
 

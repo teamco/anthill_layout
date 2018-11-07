@@ -5,24 +5,21 @@
  * Time: 11:03 AM
  */
 
-/**
- * @constant PluginController
- * @type {module.PluginController|*}
- */
-const PluginController = require('../../plugin.controller.js');
+
+import {PluginController} from '../../plugin.controller';
 
 /**
  * @class WidgetRulesController
  * @extends PluginController
  */
-module.exports = class WidgetRulesController extends PluginController {
+export class WidgetRulesController extends PluginController {
 
   /**
    * @constructor
    * @param {Bar} scope
    */
   constructor(scope) {
-    super('WidgetRulesController', scope, false);
+    super('WidgetRulesController', scope);
   }
 
   /**
@@ -88,13 +85,13 @@ module.exports = class WidgetRulesController extends PluginController {
 
     /**
      * Get current page
-     * @type {module.Page}
+     * @type {Page}
      */
     const page = this.controller.getPage();
 
     /**
      * Get widget
-     * @type {module.Widget}
+     * @type {Widget}
      */
     const widget = page.model.getItemByUUID(uuid);
 
@@ -189,13 +186,13 @@ module.exports = class WidgetRulesController extends PluginController {
 
     /**
      * Define panel
-     * @type {module.Panel}
+     * @type {Panel}
      */
     const panel = this.getDesignTimePanel();
 
     /**
      * Define widget rules
-     * @type {module.PageData}
+     * @type {PageData}
      */
     const pageData = panel.model.getModuleBy('name', 'page-data');
 
@@ -223,4 +220,4 @@ module.exports = class WidgetRulesController extends PluginController {
         ]
     );
   }
-};
+}

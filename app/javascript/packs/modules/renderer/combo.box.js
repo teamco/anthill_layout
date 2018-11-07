@@ -4,7 +4,7 @@
 
 /**
  * @class ComboBoxRenderer
- * @type {module.ComboBoxRenderer}
+ * @type {ComboBoxRenderer}
  */
 export class ComboBoxRenderer {
 

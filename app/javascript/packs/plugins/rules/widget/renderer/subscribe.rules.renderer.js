@@ -1,8 +1,8 @@
 /**
  * @class SubscribeRulesRenderer
- * @type {module.SubscribeRulesRenderer}
+ * @type {SubscribeRulesRenderer}
  */
-module.exports = class SubscribeRulesRenderer {
+export class SubscribeRulesRenderer {
 
   /**
    * @memberOf SubscribeRulesRenderer
@@ -99,4 +99,4 @@ module.exports = class SubscribeRulesRenderer {
             $ul]));
     }
   }
-};
+}

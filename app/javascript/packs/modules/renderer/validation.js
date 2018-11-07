@@ -4,7 +4,7 @@
 
 /**
  * @class ValidationRenderer
- * @type {module.ValidationRenderer}
+ * @type {ValidationRenderer}
  */
 export class ValidationRenderer {
 

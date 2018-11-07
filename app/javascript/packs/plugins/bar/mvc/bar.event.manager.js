@@ -6,17 +6,13 @@
  * To change this template use File | Settings | File Templates.
  */
 
-/**
- * @constant BaseEvent
- * @type {BaseEvent}
- */
-const BaseEvent = require('../../../core/lib/modules/Event.js');
+import {BaseEvent} from '../../../modules/Event';
 
 /**
  * @class BarEventManager
  * @extends BaseEvent
  */
-module.exports = class BarEventManager extends BaseEvent {
+export class BarEventManager extends BaseEvent {
 
   /**
    * Define BarEvent Manager
@@ -24,7 +20,7 @@ module.exports = class BarEventManager extends BaseEvent {
    * @param {Bar} scope
    */
   constructor(scope) {
-    super('BarEventManager', scope, false);
+    super('BarEventManager', scope);
 
     /**
      * Define events
@@ -48,4 +44,4 @@ module.exports = class BarEventManager extends BaseEvent {
       defineModules: 'define.modules'
     };
   }
-};
+}

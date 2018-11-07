@@ -1,8 +1,8 @@
 /**
  * @class PageRulesVisualizer
- * @type {module.PageRulesVisualizer}
+ * @type {PageRulesVisualizer}
  */
-module.exports = class PageRulesVisualizer {
+export class PageRulesVisualizer {
 
   /**
    * getWidgets
@@ -12,7 +12,7 @@ module.exports = class PageRulesVisualizer {
    */
   getWidgets(page) {
     const widgets = page.model.getItems();
-    return _.map(widgets, function(widget) {
+    return page.utils._.map(widgets, function(widget) {
       const prefs = widget.model.getConfig('preferences'),
           imgPath = '/assets/scripts/plugins/widgets/{0}/images/{1}';
       return {
@@ -97,5 +97,5 @@ module.exports = class PageRulesVisualizer {
       }
     }), Boolean);
   }
-};
+}
   

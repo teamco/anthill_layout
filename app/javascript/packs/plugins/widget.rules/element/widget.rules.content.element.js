@@ -5,17 +5,13 @@
  * Time: 11:48 AM
  */
 
-/**
- * @constant PluginElement
- * @type {module.PluginElement}
- */
-const PluginElement = require('../../plugin.element.js');
+import {PluginElement} from '../../plugin.element';
 
 /**
  * @class WidgetRulesContentElement
  * @extends PluginElement
  */
-module.exports = class WidgetRulesContentElement extends PluginElement {
+export class WidgetRulesContentElement extends PluginElement {
 
   /**
    * @param {WidgetRulesView} view
@@ -99,4 +95,4 @@ module.exports = class WidgetRulesContentElement extends PluginElement {
 
     this.bindShowModalData(data, () => scope.controller.loadStoredRules(data.model.getConfig().rules));
   }
-};
+}

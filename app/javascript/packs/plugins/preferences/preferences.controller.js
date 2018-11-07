@@ -5,17 +5,13 @@
  * Time: 1:11 PM
  */
 
-/**
- * @constant BasePreferences
- * @type {module.BasePreferences}
- */
-const BasePreferences = require('../../core/lib/modules/Preferences.js');
+import {BasePreferences} from '../../modules/Preferences';
 
 /**
  * @class BasePreferences
- * @type {module.PreferencesController}
+ * @type {PreferencesController}
  */
-module.exports = class PreferencesController extends BasePreferences {
+export class PreferencesController extends BasePreferences {
 
   /**
    * @constructor
@@ -23,6 +19,6 @@ module.exports = class PreferencesController extends BasePreferences {
    * @param scope
    */
   constructor(name, scope) {
-    super(name || 'PreferencesController', scope, false);
+    super(name || 'PreferencesController', scope);
   }
-};
+}

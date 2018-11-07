@@ -8,7 +8,7 @@
 
 /**
  * @class Interactions
- * @type {module.Interactions}
+ * @type {Interactions}
  */
 export class Interactions {
 

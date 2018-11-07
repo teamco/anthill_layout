@@ -5,20 +5,17 @@
  * Time: 11:48 AM
  */
 
-/**
- * @constant PluginElement
- * @type {module.PluginElement}
- */
-const PluginElement = require('../../plugin.element.js');
+import {PluginElement} from '../../plugin.element';
+import {GenerateRules} from '../../rules/page/page.rules';
 
 /**
  * @class PageDataRulesElement
  * @extends PluginElement
  */
-module.exports = class PageDataRulesElement extends PluginElement {
+export class PageDataRulesElement extends PluginElement {
 
   /**
-   * @param {PageDataView} view
+   * @param {BaseView|PageDataView} view
    * @param opts
    * @constructor
    */
@@ -78,17 +75,11 @@ module.exports = class PageDataRulesElement extends PluginElement {
     const $html = $('<div class="canvas-rules" />').attr({id: uuid});
 
     /**
-     * @constant GenerateRules
-     * @type {module.GenerateRules}
-     */
-    const GenerateRules = require('../../rules/page/page.rules.js');
-
-    /**
      * @constant rules
-     * @type {module.GenerateRules}
+     * @type {GenerateRules}
      */
     const rules = new GenerateRules(uuid, page);
 
     return $html;
   }
-};
+}

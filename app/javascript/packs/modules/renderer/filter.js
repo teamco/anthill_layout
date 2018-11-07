@@ -10,7 +10,7 @@ import {AntHill} from '../../core/config/anthill';
 /**
  * @class FilterRenderer
  * @extends AntHill
- * @type {module.FilterRenderer}
+ * @type {FilterRenderer}
  */
 export class FilterRenderer extends AntHill {
 
@@ -53,7 +53,7 @@ export class FilterRenderer extends AntHill {
 
     /**
      * Define $search
-     * @type {module.TextFieldRenderer|{append}}
+     * @type {TextFieldRenderer|{append}}
      */
     const $search = this.renderTextField({
       text: opts.text,
@@ -143,7 +143,7 @@ export class FilterRenderer extends AntHill {
 
     /**
      * Get logger
-     * @type {module.Logger|{debug, warn}}
+     * @type {Logger|{debug, warn}}
      */
     const logger = $filter.view.scope.logger;
 

@@ -5,29 +5,20 @@
  * Time: 11:03 AM
  */
 
+import {PluginController} from '../../plugin.controller';
+import {PreferencesController} from '../../preferences/preferences.controller';
+
 /**
  * Aggregation of base class and mixin classes.
  * @type {(function(*, ...[*]): __Aggregate)|*|(function(): aggregate)}
  */
-const aggregation = require('../../../core/lib/extends/aggregation.js');
-
-/**
- * @constant PluginController
- * @type {module.PluginController|*}
- */
-const PluginController = require('../../plugin.controller.js');
-
-/**
- * @constant PreferencesController
- * @type {module.PreferencesController}
- */
-const PreferencesController = require('../../preferences/preferences.controller.js');
+const aggregation = require('../../../lib/extends/aggregation');
 
 /**
  * @class WorkspaceDataController
  * @extends {PluginController, Router}
  */
-module.exports = class WorkspaceDataController extends aggregation(PluginController, PreferencesController) {
+export class WorkspaceDataController extends aggregation(PluginController, PreferencesController) {
 
   /**
    * @constructor
@@ -77,7 +68,7 @@ module.exports = class WorkspaceDataController extends aggregation(PluginControl
 
     /**
      * Define workspace
-     * @type {module.Workspace}
+     * @type {Workspace}
      */
     const workspace = this.controller.getWorkspace();
 
@@ -107,7 +98,7 @@ module.exports = class WorkspaceDataController extends aggregation(PluginControl
 
       /**
        * Define Workspace
-       * @type {module.Workspace}
+       * @type {Workspace}
        */
       const workspace = this.view.controller.getWorkspace();
 
@@ -125,13 +116,13 @@ module.exports = class WorkspaceDataController extends aggregation(PluginControl
 
     /**
      * Define scope
-     * @type {module.WorkspaceData}
+     * @type {WorkspaceData}
      */
     const scope = this.scope;
 
     /**
      * Get page
-     * @type {module.Page}
+     * @type {Page}
      */
     const page = scope.activeContent;
 
@@ -145,7 +136,7 @@ module.exports = class WorkspaceDataController extends aggregation(PluginControl
 
     /**
      * Get $item
-     * @type {module.BaseElement}
+     * @type {BaseElement}
      */
     const $item = this.getView().elements.items[uuid];
 
@@ -154,7 +145,7 @@ module.exports = class WorkspaceDataController extends aggregation(PluginControl
 
     /**
      * Get workspace
-     * @type {module.Workspace}
+     * @type {Workspace}
      */
     const workspace = this.getWorkspace();
     workspace.controller.setPageByHashLocation(page);
@@ -188,13 +179,13 @@ module.exports = class WorkspaceDataController extends aggregation(PluginControl
 
     /**
      * Get page
-     * @type {module.Page}
+     * @type {Page}
      */
     const page = this.scope.activeContent;
 
     /**
      * Define $item
-     * @type {module.BaseElement}
+     * @type {BaseElement}
      */
     const $item = page.view.get$item();
     $item.locate$element(event);
@@ -208,7 +199,7 @@ module.exports = class WorkspaceDataController extends aggregation(PluginControl
 
     /**
      * Define page
-     * @type {module.Page}
+     * @type {Page}
      */
     const page = this.scope.activeContent;
 
@@ -225,7 +216,7 @@ module.exports = class WorkspaceDataController extends aggregation(PluginControl
 
     /**
      * Get page
-     * @type {module.Page}
+     * @type {Page}
      */
     const page = this.getPage();
 
@@ -257,7 +248,7 @@ module.exports = class WorkspaceDataController extends aggregation(PluginControl
 
         /**
          * Define page
-         * @type {module.Page}
+         * @type {Page}
          */
         const page = pages[index];
 
@@ -269,7 +260,7 @@ module.exports = class WorkspaceDataController extends aggregation(PluginControl
 
         /**
          * Define pages content element
-         * @type {module.WorkspaceDataContentElement}
+         * @type {WorkspaceDataContentElement}
          */
         const $item = this.view.elements.items[uuid + cname];
 
@@ -292,7 +283,7 @@ module.exports = class WorkspaceDataController extends aggregation(PluginControl
 
     /**
      * Get scope
-     * @type {module.WorkspaceData}
+     * @type {WorkspaceData}
      */
     const scope = this.scope;
 
@@ -301,13 +292,13 @@ module.exports = class WorkspaceDataController extends aggregation(PluginControl
 
     /**
      * Get view
-     * @type {module.WorkspaceDataView}
+     * @type {WorkspaceDataView}
      */
     const view = scope.view;
 
     /**
      * Get workspace
-     * @type {module.Workspace}
+     * @type {Workspace}
      */
     const workspace = this.getWorkspace();
 
@@ -327,7 +318,7 @@ module.exports = class WorkspaceDataController extends aggregation(PluginControl
 
     /**
      * Get workspace
-     * @type {module.Workspace}
+     * @type {Workspace}
      */
     const workspace = this.getWorkspace();
 
@@ -360,13 +351,13 @@ module.exports = class WorkspaceDataController extends aggregation(PluginControl
 
       /**
        * Get $item
-       * @type {module.WorkspaceDataContentElement}
+       * @type {WorkspaceDataContentElement}
        */
       const $item = this.view.elements.items[order[i] + '-workspace-data-view'];
 
       /**
        * Get page
-       * @type {module.Page}
+       * @type {Page}
        */
       const page = $item.page;
       page.observer.publish(page.eventManager.eventList.transferPreferences, ['order', i]);
@@ -374,7 +365,7 @@ module.exports = class WorkspaceDataController extends aggregation(PluginControl
 
     /**
      * Get workspace
-     * @type {module.Workspace}
+     * @type {Workspace}
      */
     const ws = page.controller.getContainment();
     ws.observer.publish(ws.eventManager.eventList.afterPageOrder, order);
@@ -389,7 +380,7 @@ module.exports = class WorkspaceDataController extends aggregation(PluginControl
 
     /**
      * Get scope
-     * @type {module.WorkspaceData}
+     * @type {WorkspaceData}
      */
     const scope = this.scope;
     scope.observer.publish(scope.eventManager.eventList.switchToActivePage, scope.activeContent);
@@ -421,9 +412,9 @@ module.exports = class WorkspaceDataController extends aggregation(PluginControl
 
     /**
      * Get workspace
-     * @type {module.Workspace}
+     * @type {Workspace}
      */
     const ws = page.controller.getContainment();
     ws.observer.publish(ws.eventManager.eventList.switchToPage, [page, false]);
   }
-};
+}

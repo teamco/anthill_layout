@@ -6,29 +6,23 @@
  * To change this template use File | Settings | File Templates.
  */
 
+import {BaseView} from '../../../modules/View';
+import {BasePreferencesElement} from '../../preferences/preferences';
+import {PageDataElement} from '../element/page.data.element';
+import {PageDataContentElement} from '../element/page.data.content.element';
+import {PageDataRulesElement} from '../element/page.data.rules.element';
+
 /**
  * Aggregation of base class and mixin classes.
  * @type {(function(*, ...[*]): __Aggregate)|*|(function(): aggregate)}
  */
-const aggregation = require('../../../core/lib/extends/aggregation.js');
-
-/**
- * @constant BaseView
- * @type {BaseView}
- */
-const BaseView = require('../../../core/lib/modules/View.js');
-
-/**
- * @constant BasePreferencesElement
- * @type {module.BasePreferencesElement}
- */
-const BasePreferencesElement = require('../../preferences/preferences.js');
+const aggregation = require('../../../lib/extends/aggregation');
 
 /**
  * @class PageDataView
- * @type {module.PageDataView}
+ * @type {PageDataView}
  */
-module.exports = class PageDataView extends aggregation(BaseView, BasePreferencesElement) {
+export class PageDataView extends aggregation(BaseView, BasePreferencesElement) {
 
   /**
    * @constructor
@@ -46,19 +40,13 @@ module.exports = class PageDataView extends aggregation(BaseView, BasePreference
    */
   renderPageData() {
 
-    /**
-     * @constant PageDataElement
-     * @type {module.PageDataElement|*}
-     */
-    const PageDataElement = require('../element/page.data.element.js');
-
     if (this.isCached('$pagedata', PageDataElement)) {
       return false;
     }
 
     /**
      * Define PageData element
-     * @type {module.PageDataElement}
+     * @type {PageDataElement}
      */
     this.elements.$pagedata = new PageDataElement(this, {
       uuid: this.createUUID(),
@@ -78,18 +66,12 @@ module.exports = class PageDataView extends aggregation(BaseView, BasePreference
 
     this.renderFilterElement(this.updateFooterContent.bind(this));
 
-    /**
-     * @constant PageDataContentElement
-     * @type {module.PageDataContentElement|*}
-     */
-    const PageDataContentElement = require('../element/page.data.content.element.js');
-
     for (let index in data) {
       if (data.hasOwnProperty(index)) {
 
         /**
          * Render item
-         * @type {module.PageDataContentElement}
+         * @type {PageDataContentElement}
          */
         const $item = new PageDataContentElement(this, {
           style: 'content',
@@ -123,14 +105,8 @@ module.exports = class PageDataView extends aggregation(BaseView, BasePreference
   renderDataRules() {
 
     /**
-     * @constant PageDataRulesElement
-     * @type {module.PageDataRulesElement|*}
-     */
-    const PageDataRulesElement = require('../element/page.data.rules.element.js');
-
-    /**
      * $contentRules
-     * @type {module.PageDataRulesElement}
+     * @type {PageDataRulesElement}
      */
     this.elements.$contentRules = new PageDataRulesElement(this, {
       $container: this.get$item().$,
@@ -276,4 +252,4 @@ module.exports = class PageDataView extends aggregation(BaseView, BasePreference
   render() {
     this.scope.observer.publish(this.scope.eventManager.eventList.successRendered, this.renderPageData.bind(this));
   }
-};
+}

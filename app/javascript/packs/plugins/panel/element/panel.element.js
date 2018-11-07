@@ -5,18 +5,14 @@
  * Time: 11:48 AM
  */
 
-/**
- * @constant PluginElement
- * @type {module.PluginElement}
- */
-const PluginElement = require('../../plugin.element.js');
+import {PluginElement} from '../../plugin.element';
 
 /**
  * Define Panel Element
  * @class PanelElement
  * @extends PluginElement
  */
-module.exports = class PanelElement extends PluginElement {
+export class PanelElement extends PluginElement {
 
   /**
    * @param {PanelView} view
@@ -32,11 +28,7 @@ module.exports = class PanelElement extends PluginElement {
      * @property PanelElement
      */
     this.header = this.view.scope.model.getConfig('header');
-
-    this.addCSS('panel');
     this.setPanelHeader();
-
-    return this;
   }
 
   /**

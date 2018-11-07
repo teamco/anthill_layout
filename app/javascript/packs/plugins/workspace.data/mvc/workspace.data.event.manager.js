@@ -6,17 +6,13 @@
  * To change this template use File | Settings | File Templates.
  */
 
-/**
- * @constant BaseEvent
- * @type {BaseEvent}
- */
-const BaseEvent = require('../../../core/lib/modules/Event.js');
+import {BaseEvent} from '../../../modules/Event';
 
 /**
  * @class WorkspaceDataEventManager
  * @extends BaseEvent
  */
-module.exports = class WorkspaceDataEventManager extends BaseEvent {
+export class WorkspaceDataEventManager extends BaseEvent {
 
   /**
    * @constructor
@@ -24,7 +20,7 @@ module.exports = class WorkspaceDataEventManager extends BaseEvent {
    * @param {WorkspaceData} scope
    */
   constructor(name, scope) {
-    super(name || 'WorkspaceDataEventManager', scope, false);
+    super(name || 'WorkspaceDataEventManager', scope);
 
     /**
      * Define events
@@ -47,7 +43,7 @@ module.exports = class WorkspaceDataEventManager extends BaseEvent {
      */
     this.eventList = {
       updateTranslations: 'update.translations',
-      loadModuleContent: 'load.module.content',
+      loadModuleContent: 'load.content',
       setActiveContent: 'set.active.content',
       preparePreferences: 'prepare.preferences',
       updatePagesOrder: 'update.pages.order',
@@ -86,4 +82,4 @@ module.exports = class WorkspaceDataEventManager extends BaseEvent {
 
     this.publishOn(publish);
   }
-};
+}

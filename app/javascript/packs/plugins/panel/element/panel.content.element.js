@@ -5,18 +5,14 @@
  * Time: 11:48 AM
  */
 
-/**
- * @constant PluginElement
- * @type {module.PluginElement}
- */
-const PluginElement = require('../../plugin.element.js');
+import {PluginElement} from '../../plugin.element';
 
 /**
  * Define PanelContent Element
  * @class PanelContentElement
  * @extends PluginElement
  */
-module.exports = class PanelContentElement extends PluginElement {
+export class PanelContentElement extends PluginElement {
 
   /**
    * @param {PanelView} view
@@ -54,4 +50,4 @@ module.exports = class PanelContentElement extends PluginElement {
   deactivateItems() {
     return $('ul.panel-bar li', this.$).removeClass('activated collapsed');
   }
-};
+}

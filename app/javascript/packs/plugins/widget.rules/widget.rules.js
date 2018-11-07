@@ -5,17 +5,22 @@
  * Time: 11:02 AM
  */
 
-/**
- * @constant AntHill
- * @type {module.AntHill}
- */
-const AntHill = require('../../core/config/anthill.js');
+import './widget.rules.css';
+import '../rules/widget/rules.css';
+
+import {AntHill} from '../../core/config/anthill';
+import {WidgetRulesController} from './mvc/widget.rules.controller';
+import {WidgetRulesModel} from './mvc/widget.rules.model';
+import {WidgetRulesView} from './mvc/widget.rules.view';
+import {WidgetRulesEventManager} from './mvc/widget.rules.event.manager';
+import {WidgetRulesPermission} from './mvc/widget.rules.permission';
+import {MVC} from '../../modules/MVC';
 
 /**
  * @class WidgetRules
  * @extends AntHill
  */
-module.exports = class WidgetRules extends AntHill {
+export class WidgetRules extends AntHill {
 
   /**
    * @param containment
@@ -76,45 +81,9 @@ module.exports = class WidgetRules extends AntHill {
     };
 
     /**
-     * @constant WidgetRulesController
-     * @type {module.WidgetRulesController|*}
-     */
-    const WidgetRulesController = require('./mvc/widget.rules.controller.js');
-
-    /**
-     * @constant WidgetRulesModel
-     * @type {module.WidgetRulesModel|*}
-     */
-    const WidgetRulesModel = require('./mvc/widget.rules.model.js');
-
-    /**
-     * @constant WidgetRulesView
-     * @type {module.WidgetRulesView|*}
-     */
-    const WidgetRulesView = require('./mvc/widget.rules.view.js');
-
-    /**
-     * @constant WidgetRulesEventManager
-     * @type {module.WidgetRulesEventManager|*}
-     */
-    const WidgetRulesEventManager = require('./mvc/widget.rules.event.manager.js');
-
-    /**
-     * @constant WidgetRulesPermission
-     * @type {module.WidgetRulesPermission|*}
-     */
-    const WidgetRulesPermission = require('./mvc/widget.rules.permission.js');
-
-    /**
-     * @constant MVC
-     * @type {module.MVC}
-     */
-    const MVC = require('../../core/lib/modules/MVC.js');
-
-    /**
      * Define MVC
      * @property WidgetRules
-     * @type {module.MVC}
+     * @type {MVC}
      */
     new MVC({
       scope: this,
@@ -141,4 +110,4 @@ module.exports = class WidgetRules extends AntHill {
         () => scope.logger.warn('Page should rendered.')
     );
   }
-};
+}

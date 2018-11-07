@@ -5,18 +5,14 @@
  * Time: 10:28 PM
  */
 
-/**
- * @constant BaseController
- * @type {module.BaseController}
- */
-const BaseController = require('../core/lib/modules/Controller.js');
+import {BaseController} from '../modules/Controller';
 
 /**
  * Define Plugin controller
  * @class PluginController
  * @extends BaseController
  */
-module.exports = class PluginController extends BaseController {
+export class PluginController extends BaseController {
 
   /**
    * @constructor
@@ -24,7 +20,7 @@ module.exports = class PluginController extends BaseController {
    * @param {PluginController} scope
    */
   constructor(name, scope) {
-    super(name || 'PluginController', scope, false);
+    super(name || 'PluginController', scope);
 
     /**
      * Get gallery
@@ -61,7 +57,7 @@ module.exports = class PluginController extends BaseController {
     /**
      * Define callback
      * @returns {boolean}
-     * @param {module.PluginController} plugin
+     * @param {PluginController} plugin
      * @private
      */
     function _successRenderedCallback(plugin) {
@@ -89,7 +85,7 @@ module.exports = class PluginController extends BaseController {
 
       /**
        * Get widget
-       * @type {module.Widget}
+       * @type {Widget}
        */
       const widget = this.controller.getContainment();
       widget.controller.prepareRenderingContent(this, _successRenderedCallback);
@@ -101,7 +97,7 @@ module.exports = class PluginController extends BaseController {
 
   /**
    * @memberOf PluginController
-   * @returns {module.Panel}
+   * @returns {Panel}
    */
   getDesignTimePanel() {
     return this.root().panels.designTime;
@@ -169,14 +165,12 @@ module.exports = class PluginController extends BaseController {
      */
     const plugin = this;
 
-    // require([i18nPath], function defineEnUs(EnUs) {
-    //
-    //   plugin.i18n.updateData(EnUs);
-    //
-    if (typeof callback === 'function') {
-      callback();
-    }
-    // });
+    import(i18nPath).then(lang => {
+      plugin.i18n.updateData(lang);
+      if (typeof callback === 'function') {
+        callback();
+      }
+    });
   }
 
   /**
@@ -369,7 +363,7 @@ module.exports = class PluginController extends BaseController {
 
     /**
      * Get page
-     * @type {module.Page}
+     * @type {Page}
      */
     const page = this.getPage();
 
@@ -396,14 +390,14 @@ module.exports = class PluginController extends BaseController {
 
     /**
      * Get workspace
-     * @type {module.Workspace}
+     * @type {Workspace}
      */
     const workspace = this.getWorkspace();
     const scope = this.scope;
 
     /**
      * Get event manager
-     * @type {module.WorkspaceEventManager|{subscribe, eventList}}
+     * @type {WorkspaceEventManager|{subscribe, eventList}}
      */
     const workspaceEventManager = workspace.eventManager;
 
@@ -414,7 +408,7 @@ module.exports = class PluginController extends BaseController {
       }
     }, false);
   }
-};
+}
 
 /**
  * Copy successRendered

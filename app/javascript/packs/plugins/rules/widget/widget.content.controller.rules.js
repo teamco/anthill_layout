@@ -5,18 +5,14 @@
  * Time: 11:46 PM
  */
 
-/**
- * @constant WidgetSubscribe
- * @type {module.WidgetSubscribe|*}
- */
-const WidgetSubscribe = require('./widget.subscribe.js');
+import {WidgetSubscribe} from './widget.subscribe';
 
 /**
  * @class WidgetContentControllerRules
  * @extends WidgetSubscribe
- * @type {module.WidgetContentControllerRules}
+ * @type {WidgetContentControllerRules}
  */
-module.exports = class WidgetContentControllerRules extends WidgetSubscribe {
+export class WidgetContentControllerRules extends WidgetSubscribe {
 
   /**
    * Define Base Widget controller Rules
@@ -519,5 +515,5 @@ module.exports = class WidgetContentControllerRules extends WidgetSubscribe {
 
     $element.rules.addRule(rule, type, referrer.view.elements.$modal.get$Body());
   }
-};
+}
   

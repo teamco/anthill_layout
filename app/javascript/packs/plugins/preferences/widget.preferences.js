@@ -5,18 +5,14 @@
  * Time: 7:39 PM
  */
 
-/**
- * @constant BasePreferencesElement
- * @type {module.BasePreferencesElement}
- */
-const BasePreferencesElement = require('./preferences.js');
+import {BasePreferencesElement} from './preferences';
 
 /**
  * @class WidgetPreferences
  * @extends BasePreferencesElement
- * @type {module.WidgetPreferences}
+ * @type {WidgetPreferences}
  */
-module.exports = class WidgetPreferences extends BasePreferencesElement {
+export class WidgetPreferences extends BasePreferencesElement {
 
   /**
    * @constructor
@@ -117,7 +113,7 @@ module.exports = class WidgetPreferences extends BasePreferencesElement {
 
     /**
      * Get widget
-     * @type {module.Widget}
+     * @type {Widget}
      */
     const widget = scope.controller.getContainment();
 
@@ -194,7 +190,7 @@ module.exports = class WidgetPreferences extends BasePreferencesElement {
   /**
    * Render widget interactions
    * @memberOf WidgetPreferences
-   * @param {module.Widget} widget
+   * @param {Widget} widget
    * @returns {*}
    */
   renderWidgetInteractions(widget) {
@@ -270,4 +266,4 @@ module.exports = class WidgetPreferences extends BasePreferencesElement {
 
     return this.mergeWidgetPrefs(layout, widget.model.getConfig('preferences'));
   }
-};
+}

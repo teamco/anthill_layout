@@ -4,7 +4,7 @@
 
 /**
  * @class TabsRenderer
- * @type {module.TabsRenderer}
+ * @type {TabsRenderer}
  */
 export class TabsRenderer {
 

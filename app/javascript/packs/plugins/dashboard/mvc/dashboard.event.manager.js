@@ -35,7 +35,7 @@ defineP([
      */
     this.eventList = {
       updateTranslations: 'update.translations',
-      loadModuleContent: 'load.module.content'
+      loadModuleContent: 'load.content'
     };
   };
 

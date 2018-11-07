@@ -4,7 +4,7 @@
 
 /**
  * @class RangeRenderer
- * @type {module.RangeRenderer}
+ * @type {RangeRenderer}
  */
 export class RangeRenderer {
 

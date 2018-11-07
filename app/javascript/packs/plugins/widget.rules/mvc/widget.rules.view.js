@@ -6,17 +6,15 @@
  * To change this template use File | Settings | File Templates.
  */
 
-/**
- * @constant BaseView
- * @type {BaseView}
- */
-const BaseView = require('../../../core/lib/modules/View.js');
+import {BaseView} from '../../../modules/View';
+import {WidgetRulesElement} from '../element/widget.rules.element';
+import {WidgetRulesContentElement} from '../element/widget.rules.content.element';
 
 /**
  * @class WidgetRulesView
- * @type {module.WidgetRulesView}
+ * @type {WidgetRulesView}
  */
-module.exports = class WidgetRulesView extends BaseView {
+export class WidgetRulesView extends BaseView {
 
   /**
    * @constructor
@@ -24,7 +22,7 @@ module.exports = class WidgetRulesView extends BaseView {
    * @param {WidgetRules} scope
    */
   constructor(name, scope) {
-    super(name || 'WidgetRulesView', scope, false);
+    super(name || 'WidgetRulesView', scope);
   }
 
   /**
@@ -34,17 +32,11 @@ module.exports = class WidgetRulesView extends BaseView {
    */
   renderWidgetRules() {
 
-    /**
-     * @constant WidgetRulesElement
-     * @type {module.WidgetRulesElement|*}
-     */
-    const WidgetRulesElement = require('../element/widget.rules.element.js');
-
     if (!this.isCached('$widgetrules', WidgetRulesElement)) {
 
       /**
        * Define WidgetRules element
-       * @type {module.WidgetRulesElement}
+       * @type {WidgetRulesElement}
        */
       this.elements.$widgetrules = new WidgetRulesElement(this, {
         id: this.createUUID(),
@@ -63,18 +55,12 @@ module.exports = class WidgetRulesView extends BaseView {
     this.cleanElementItems();
     this.renderFilterElement(this.updateFooterContent.bind(this));
 
-    /**
-     * @constant WidgetRulesContentElement
-     * @type {module.WidgetRulesContentElement|*}
-     */
-    const WidgetRulesContentElement = require('../element/widget.rules.content.element.js');
-
     for (let index in data) {
       if (data.hasOwnProperty(index)) {
 
         /**
          * Render item
-         * @type {module.WidgetRulesContentElement}
+         * @type {WidgetRulesContentElement}
          */
         const $item = new WidgetRulesContentElement(this, {
           style: 'content',
@@ -91,7 +77,10 @@ module.exports = class WidgetRulesView extends BaseView {
     }
 
     this.updateScrollCover();
-    this.elements.$filter.updateData({items: this.elements.items, focusOn: 'input'});
+    this.elements.$filter.updateData({
+      items: this.elements.items,
+      focusOn: 'input'
+    });
     this.updateFooterContent();
   }
 
@@ -156,4 +145,4 @@ module.exports = class WidgetRulesView extends BaseView {
   render() {
     this.scope.observer.publish(this.scope.eventManager.eventList.successRendered, this.renderWidgetRules.bind(this));
   }
-};
+}

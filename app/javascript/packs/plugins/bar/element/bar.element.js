@@ -5,18 +5,14 @@
  * Time: 11:48 AM
  */
 
-/**
- * @constant PluginElement
- * @type {module.PluginElement}
- */
-const PluginElement = require('../../plugin.element.js');
+import {PluginElement} from '../../plugin.element';
 
 /**
  * Define Bar Element
  * @class BarElement
  * @extends PluginElement
  */
-module.exports = class BarElement extends PluginElement {
+export class BarElement extends PluginElement {
 
   /**
    * @param {BarView} view
@@ -26,7 +22,6 @@ module.exports = class BarElement extends PluginElement {
   constructor(view, opts) {
     super('BarElement', view, false);
     this._config(view, opts, $(this.getTemplate())).build(opts);
-    this.addCSS('bar');
   };
 
   /**
@@ -46,4 +41,4 @@ module.exports = class BarElement extends PluginElement {
   getContentContainer() {
     return this.$.find('.nav');
   }
-};
+}

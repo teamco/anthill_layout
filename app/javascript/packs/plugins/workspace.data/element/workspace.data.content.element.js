@@ -5,20 +5,16 @@
  * Time: 11:48 AM
  */
 
-/**
- * @constant PluginElement
- * @type {module.PluginElement}
- */
-const PluginElement = require('../../plugin.element.js');
+import {PluginElement} from '../../plugin.element';
 
 /**
  * @class WorkspaceDataContentElement
  * @extends PluginElement
  */
-module.exports = class WorkspaceDataContentElement extends PluginElement {
+export class WorkspaceDataContentElement extends PluginElement {
 
   /**
-   * @param {module.WorkspaceDataView} view
+   * @param {BaseView|WorkspaceDataView} view
    * @param opts
    * @constructor
    */
@@ -192,4 +188,4 @@ module.exports = class WorkspaceDataContentElement extends PluginElement {
 
     this.$.off('click.prefs').on('click.prefs', _clickPrefs);
   }
-};
+}

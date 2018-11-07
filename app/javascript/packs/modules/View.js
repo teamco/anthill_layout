@@ -80,7 +80,7 @@ export class BaseView extends AntHill {
   /**
    * Get item.$
    * @memberOf BaseView
-   * @returns {module.BaseElement|*}
+   * @returns {BaseElement|*}
    */
   get$item() {
     return this.elements['$' + this.scope.name.toLowerCase()];
@@ -218,7 +218,7 @@ export class BaseView extends AntHill {
    * Render Header
    * @memberOf BaseView
    * @param $container
-   * @return {module.HeaderElement|HeaderElement}
+   * @return {HeaderElement}
    */
   header($container) {
 
@@ -249,7 +249,7 @@ export class BaseView extends AntHill {
    * Render Footer
    * @memberOf BaseView
    * @param $container
-   * @returns {module.FooterElement}
+   * @returns {FooterElement}
    */
   footer($container) {
 

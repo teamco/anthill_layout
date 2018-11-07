@@ -6,17 +6,13 @@
  * To change this template use File | Settings | File Templates.
  */
 
-/**
- * @constant BasePermission
- * @type {module.BasePermission}
- */
-const BasePermission = require('../../../core/lib/modules/Permission.js');
+import {BasePermission} from '../../../modules/Permission';
 
 /**
  * @extends BasePermission
  * @class PageDataPermission
  */
-module.exports = class PageDataPermission extends BasePermission {
+export class PageDataPermission extends BasePermission {
 
   /**
    * @constructor
@@ -24,6 +20,6 @@ module.exports = class PageDataPermission extends BasePermission {
    * @param {PageData} scope
    */
   constructor(name, scope) {
-    super(name || 'PageDataPermission', scope, false);
+    super(name || 'PageDataPermission', scope);
   }
-};
+}

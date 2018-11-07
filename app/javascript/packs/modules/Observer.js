@@ -32,7 +32,7 @@ export class Observer {
     /**
      * Define local scope
      * @property Observer
-     * @type {module.AntHill}
+     * @type {AntHill}
      */
     this.scope = scope;
   }

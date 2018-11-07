@@ -4,9 +4,9 @@
 
 /**
  * @class WidgetSubscribe
- * @type {module.WidgetSubscribe}
+ * @type {WidgetSubscribe}
  */
-module.exports = class WidgetSubscribe {
+export class WidgetSubscribe {
 
   /**
    * On drag event simulate
@@ -74,7 +74,7 @@ module.exports = class WidgetSubscribe {
 
     /**
      * Define resizable
-     * @type {Resizable}
+     * @type {WidgetResize}
      */
     const resizable = widget.interactions.resizable;
     /**
@@ -206,4 +206,4 @@ module.exports = class WidgetSubscribe {
     );
     return false;
   }
-};
+}
