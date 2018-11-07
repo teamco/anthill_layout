@@ -17,7 +17,7 @@ export class PluginController extends BaseController {
   /**
    * @constructor
    * @param {string} name
-   * @param {PluginController} scope
+   * @param {PluginController|*} scope
    */
   constructor(name, scope) {
     super(name || 'PluginController', scope);

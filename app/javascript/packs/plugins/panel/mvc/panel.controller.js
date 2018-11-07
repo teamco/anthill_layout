@@ -234,8 +234,9 @@ export class PanelController extends PluginController {
     const module = this.controller.activateModule(index);
 
     this.view.renderContent(module, false);
-    view.render();
-    observer.publish(eventManager.eventList.loadModuleContent);
+
+    module.view.render();
+    module.observer.publish(module.eventManager.eventList.loadModuleContent);
     this.controller.setBehavior(resource);
   }
 

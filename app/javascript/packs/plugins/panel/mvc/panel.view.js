@@ -95,7 +95,7 @@ export class PanelView extends BaseView {
       $container: this.elements.$content.$
     });
 
-    this.defineContainer($item);
+    module.view.defineContainer($item);
     this.updateElementItems($item, sname);
   }
 
