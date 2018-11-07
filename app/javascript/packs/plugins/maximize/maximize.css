@@ -1,0 +1,7 @@
+.panel-container.navbar-default .panel-content .content-container.maximize-content {
+    margin-top: 127px;
+}
+
+div.maximize-content a {
+    cursor: zoom-in;
+}

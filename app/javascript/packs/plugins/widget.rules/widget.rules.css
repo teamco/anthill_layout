@@ -1,0 +1,7 @@
+div.widget-rules-content {
+    margin-top: 228px;
+}
+
+ul.widget-rules .content > a {
+    cursor: context-menu;
+}
