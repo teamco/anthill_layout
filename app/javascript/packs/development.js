@@ -37,7 +37,7 @@ import {Application} from './core/config/application';
     };
 
     import(`./public/${site}/index`).then(config => {
-      window.anthill = new Application({config: {...config, ...defaults} || {}});
+      window.anthill = new Application({config: {...config.default, ...defaults} || {}});
     });
   });
 })();

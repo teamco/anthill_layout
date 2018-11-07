@@ -34,11 +34,21 @@ export class ApplicationView extends BaseView {
   renderApplication() {
 
     /**
+     * Define container
+     * @constant
+     * @type {string}
+     */
+    const container = this.getConfigHTML().container;
+    if (!container) {
+      this.scope.logger.warn('Undefined container. Use <body /> as a default');
+    }
+
+    /**
      * Define $application
      * @type {ApplicationElement}
      */
     this.elements.$application = new ApplicationElement(this, {
-      $container: this.getConfigHTML().container,
+      $container: container || 'body',
       mode: this.controller.getMode(),
       id: true
     });
