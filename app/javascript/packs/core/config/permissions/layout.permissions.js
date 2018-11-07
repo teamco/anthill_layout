@@ -5,13 +5,9 @@
  * Time: 11:42 PM
  */
 
-/**
- * @constant Layout
- * @type {module.Layout}
- */
-const Layout = require('../layout.js');
+import {Layout} from '../layout';
 
-module.exports = () => {
+export const layoutLocalPermission = () => {
 
   /**
    * Define Layout Local permission

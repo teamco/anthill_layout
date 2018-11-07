@@ -6,95 +6,31 @@
  * To change this template use File | Settings | File Templates.
  */
 
+import {BaseController} from '../../modules/Controller';
+import {Interactions} from '../../modules/Interactions';
+import {WidgetComment} from './widget/widget.comment';
+import {WidgetScroll} from './widget/widget.scroll';
+import {WidgetParallax} from './widget/widget.parallax';
+import {WidgetMaximize} from './widget/widget.maximize';
+import {WidgetLayer} from './widget/widget.layer';
+import {WidgetExpand} from './widget/widget.expand';
+import {WidgetZoom} from './widget/widget.zoom';
+import {WidgetInteractions} from './widget/widget.interactions';
+import {WidgetStretch} from './widget/widget.stretch';
+import {WidgetStick} from './widget/widget.stick';
+import {WidgetContent} from './widget/widget.content';
+
 /**
  * Aggregation of base class and mixin classes.
  * @type {(function(*, ...[*]): __Aggregate)|*|(function(): aggregate)}
  */
-const aggregation = require('../lib/extends/aggregation.js');
-
-/**
- * @constant BaseController
- * @type {module.BaseController}
- */
-const BaseController = require('../lib/modules/Controller.js');
-
-/**
- * @constant Interactions
- * @type {module.Interactions}
- */
-const Interactions = require('../lib/modules/Interactions.js');
-
-/**
- * @constant WidgetInteractions
- * @type {module.WidgetInteractions}
- */
-const WidgetInteractions = require('./widget/widget.interactions.js');
-
-/**
- * @constant WidgetContent
- * @type {module.WidgetContent}
- */
-const WidgetContent = require('./widget/widget.content.js');
-
-/**
- * @constant WidgetExpand
- * @type {module.WidgetExpand}
- */
-const WidgetExpand = require('./widget/widget.expand.js');
-
-/**
- * @constant WidgetLayer
- * @type {module.WidgetLayer}
- */
-const WidgetLayer = require('./widget/widget.layer.js');
-
-/**
- * @constant WidgetStretch
- * @type {module.WidgetStretch}
- */
-const WidgetStretch = require('./widget/widget.stretch.js');
-
-/**
- * @constant WidgetZoom
- * @type {module.WidgetZoom}
- */
-const WidgetZoom = require('./widget/widget.zoom.js');
-
-/**
- * @constant WidgetScroll
- * @type {module.WidgetScroll}
- */
-const WidgetScroll = require('./widget/widget.scroll.js');
-
-/**
- * @constant WidgetStick
- * @type {module.WidgetStick}
- */
-const WidgetStick = require('./widget/widget.stick.js');
-
-/**
- * @constant WidgetParallax
- * @type {module.WidgetParallax}
- */
-const WidgetParallax = require('./widget/widget.parallax.js');
-
-/**
- * @constant WidgetComment
- * @type {module.WidgetComment}
- */
-const WidgetComment = require('./widget/widget.comment.js');
-
-/**
- * @constant WidgetMaximize
- * @type {module.WidgetMaximize}
- */
-const WidgetMaximize = require('./widget/widget.maximize.js');
+const aggregation = require('../../lib/extends/aggregation');
 
 /**
  * @class WidgetController
  * @extends {BaseController}
  */
-module.exports = class WidgetController extends aggregation(BaseController, Interactions, WidgetComment,
+export class WidgetController extends aggregation(BaseController, Interactions, WidgetComment,
     WidgetInteractions, WidgetContent, WidgetExpand, WidgetLayer, WidgetMaximize, WidgetParallax, WidgetScroll,
     WidgetStick, WidgetStretch, WidgetZoom) {
 
@@ -340,4 +276,4 @@ module.exports = class WidgetController extends aggregation(BaseController, Inte
     this.logger.debug(this.i18n.t('save.widget'));
     this.model.defineDOM();
   }
-};
+}

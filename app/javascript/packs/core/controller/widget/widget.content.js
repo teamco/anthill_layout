@@ -7,9 +7,9 @@
 
 /**
  * @class WidgetContent
- * @type {module.WidgetContent}
+ * @type {WidgetContent}
  */
-module.exports = class WidgetContent {
+export class WidgetContent {
 
   /**
    * Define load widget data
@@ -194,7 +194,7 @@ module.exports = class WidgetContent {
   /**
    * Define prepare rendering content
    * @memberOf WidgetContent
-   * @param {module.PluginController} plugin
+   * @param {PluginController} plugin
    * @param {Function} callback
    */
   prepareRenderingContent(plugin, callback) {
@@ -396,4 +396,4 @@ module.exports = class WidgetContent {
   getResource() {
     return this.model.getConfig('preferences').resource;
   }
-};
+}

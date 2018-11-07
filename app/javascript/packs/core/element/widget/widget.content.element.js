@@ -6,18 +6,14 @@
  * To change this template use File | Settings | File Templates.
  */
 
-/**
- * @constant BaseElement
- * @type {BaseElement|*}
- */
-const BaseElement = require('../../lib/modules/Element.js');
+import {BaseElement} from '../../../modules/Element';
 
 /**
  * @extends BaseElement
  * @class WidgetContentElement
- * @type {module.WidgetContentElement}
+ * @type {WidgetContentElement}
  */
-module.exports = class WidgetContentElement extends BaseElement {
+export class WidgetContentElement extends BaseElement {
 
   /**
    * @param {WidgetView} view
@@ -25,7 +21,7 @@ module.exports = class WidgetContentElement extends BaseElement {
    * @constructor
    */
   constructor(view, opts) {
-    super('WidgetContentElement', view, false);
+    super('WidgetContentElement', view);
     this._config(view, opts, $('<resource />')).build(opts);
     this.setPadding();
     this.setBackgroundImage(opts);
@@ -59,4 +55,4 @@ module.exports = class WidgetContentElement extends BaseElement {
     }
     $('> *', this.$).not(':hidden').remove();
   }
-};
+}

@@ -7,7 +7,7 @@
 
 import {Application} from '../application';
 
-export const ApplicationLocalPermission = () => {
+export const applicationLocalPermission = () => {
 
   /**
    * Define Application Local permission

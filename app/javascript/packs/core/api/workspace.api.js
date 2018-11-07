@@ -5,19 +5,16 @@
  * Time: 7:22 PM
  */
 
-/**
- * @constant BaseAPI
- * @type {module.BaseAPI}
- */
-const BaseAPI = require('../lib/modules/API.js');
+import {BaseAPI} from '../../modules/API';
+import {Page} from '../config/page';
 
 /**
  * Define Workspace API
  * @class WorkspaceAPI
  * @extends BaseAPI
- * @type {module.WorkspaceAPI}
+ * @type {WorkspaceAPI}
  */
-module.exports = class WorkspaceAPI extends BaseAPI {
+export class WorkspaceAPI extends BaseAPI {
 
   /**
    * @param {Workspace} scope
@@ -25,7 +22,7 @@ module.exports = class WorkspaceAPI extends BaseAPI {
    * @constructor
    */
   constructor(name, scope) {
-    super('WorkspaceAPI', scope, false);
+    super('WorkspaceAPI', scope);
   }
 
   /**
@@ -39,12 +36,6 @@ module.exports = class WorkspaceAPI extends BaseAPI {
   createPage(args, render, silent) {
 
     /**
-     * @constant Page
-     * @type {module.Page}
-     */
-    const Page = require('../config/page.js');
-
-    /**
      * Define page
      * @type {Page}
      */
@@ -53,4 +44,4 @@ module.exports = class WorkspaceAPI extends BaseAPI {
 
     return page;
   }
-};
+}

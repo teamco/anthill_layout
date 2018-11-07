@@ -6,17 +6,13 @@
  * To change this template use File | Settings | File Templates.
  */
 
-/**
- * @constant BaseEvent
- * @type {BaseEvent}
- */
-const BaseEvent = require('../lib/modules/Event.js');
+import {BaseEvent} from '../../modules/Event';
 
 /**
  * @class WidgetEventManager
  * @extends BaseEvent
  */
-module.exports = class WidgetEventManager extends BaseEvent {
+export class WidgetEventManager extends BaseEvent {
 
   /**
    * @constructor
@@ -24,7 +20,7 @@ module.exports = class WidgetEventManager extends BaseEvent {
    * @param {Page} scope
    */
   constructor(name, scope) {
-    super(name || 'WidgetEventManager', scope, false);
+    super(name || 'WidgetEventManager', scope);
 
     /**
      * Define events
@@ -198,4 +194,4 @@ module.exports = class WidgetEventManager extends BaseEvent {
       commentableContent: 'commentable.content'
     };
   }
-};
+}

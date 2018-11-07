@@ -6,7 +6,7 @@
  * Project: JetBrains RubyMine
  **/
 
-module.exports = class Observer {
+export class Observer {
 
   /**
    * Define observer
@@ -394,4 +394,4 @@ module.exports = class Observer {
 
     return executeCallback.apply(this);
   }
-};
+}

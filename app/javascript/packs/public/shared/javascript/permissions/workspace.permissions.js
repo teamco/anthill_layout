@@ -4,14 +4,9 @@
  * Date: 2/23/15
  * Time: 11:39 PM
  */
+import {Workspace} from '../../../../core/config/workspace';
 
-/**
- * @constant Workspace
- * @type {module.Workspace}
- */
-// const Workspace = require('../../../../scripts/core/config/workspace.js');
-
-module.exports = () => {
+export const workspaceGlobalPermissions = () => {
 
   /**
    * Define Workspace global permission

@@ -11,7 +11,7 @@ import {BaseElement} from '../../modules/Element';
 /**
  * Define Modal Element
  * @class ModalElement
- * @type {module.ModalElement}
+ * @type {ModalElement}
  * @extends BaseElement
  */
 export class ModalElement extends BaseElement {
@@ -281,7 +281,7 @@ export class ModalElement extends BaseElement {
 
       /**
        * Get app event manager
-       * @type {module.ApplicationEventManager|{subscribe, eventList}}
+       * @type {ApplicationEventManager|{subscribe, eventList}}
        */
       const appEventManager = this.view.controller.root().eventManager;
 

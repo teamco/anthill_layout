@@ -7,9 +7,9 @@
 
 /**
  * @class WidgetExpand
- * @type {module.WidgetExpand}
+ * @type {WidgetExpand}
  */
-module.exports = class WidgetExpand {
+export class WidgetExpand {
 
   /**
    * Get expandable
@@ -179,5 +179,5 @@ module.exports = class WidgetExpand {
 
     page.observer.publish(page.eventManager.eventList.expandLayout, this);
   }
-};
+}
   

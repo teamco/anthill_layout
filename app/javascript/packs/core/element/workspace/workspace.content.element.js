@@ -6,19 +6,15 @@
  * To change this template use File | Settings | File Templates.
  */
 
-/**
- * @constant BaseElement
- * @type {module.BaseElement}
- */
-const BaseElement = require('../../lib/modules/Element.js');
+import {BaseElement} from '../../../modules/Element';
 
 /**
  * Define Workspace content element
  * @class WorkspaceContentElement
- * @type {module.WorkspaceContentElement}
+ * @type {WorkspaceContentElement}
  * @extends BaseElement
  */
-module.exports = class WorkspaceContentElement extends BaseElement {
+export class WorkspaceContentElement extends BaseElement {
 
   /**
    * @param {WorkspaceView} view
@@ -26,7 +22,7 @@ module.exports = class WorkspaceContentElement extends BaseElement {
    * @constructor
    */
   constructor(view, opts) {
-    super('WorkspaceContentElement', view, false);
+    super('WorkspaceContentElement', view);
     this._config(view, opts, $('<pages />')).build(opts);
   }
 
@@ -109,4 +105,4 @@ module.exports = class WorkspaceContentElement extends BaseElement {
       _completeCallback();
     }
   }
-};
+}

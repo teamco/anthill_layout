@@ -6,18 +6,14 @@
  * To change this template use File | Settings | File Templates.
  */
 
-/**
- * @constant BaseElement
- * @type {BaseElement|*}
- */
-const BaseElement = require('../../lib/modules/Element.js');
+import {BaseElement} from '../../../modules/Element';
 
 /**
  * @extends BaseElement
  * @class PageElement
- * @type {module.PageElement}
+ * @type {PageElement}
  */
-module.exports = class PageElement extends BaseElement {
+export class PageElement extends BaseElement {
 
   /**
    * @param {PageView} view
@@ -25,7 +21,7 @@ module.exports = class PageElement extends BaseElement {
    * @constructor
    */
   constructor(view, opts) {
-    super('PageElement', view, false);
+    super('PageElement', view);
     this._config(view, opts, $('<page />')).build(opts);
   }
 
@@ -122,4 +118,4 @@ module.exports = class PageElement extends BaseElement {
   setVisibility(visible) {
     this.$[(visible ? 'add' : 'remove') + 'Class']('current-page');
   }
-};
+}

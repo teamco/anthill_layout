@@ -5,13 +5,9 @@
  * Time: 10:32 PM
  */
 
-/**
- * @constant Workspace
- * @type {module.Workspace}
- */
-const Workspace = require('../../../../scripts/core/config/workspace.js');
+import {Workspace} from '../workspace';
 
-module.exports = () => {
+export const workspaceLocalListeners = () => {
 
   /**
    * Define Workspace Local listeners

@@ -7,9 +7,9 @@
 
 /**
  * @class WidgetZoom
- * @type {module.WidgetZoom}
+ * @type {WidgetZoom}
  */
-module.exports = class WidgetZoom {
+export class WidgetZoom {
 
   /**
    * Define set zoom
@@ -26,5 +26,5 @@ module.exports = class WidgetZoom {
   unsetZoomable() {
     this.view.get$item().setZoom(false);
   }
-};
+}
 

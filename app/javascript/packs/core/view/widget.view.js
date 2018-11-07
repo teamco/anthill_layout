@@ -6,18 +6,18 @@
  * To change this template use File | Settings | File Templates.
  */
 
-/**
- * @constant BaseView
- * @type {BaseView}
- */
-const BaseView = require('../lib/modules/View.js');
+import {BaseView} from '../../modules/View';
+import {WidgetElement} from '../element/widget/widget.element';
+import {WidgetContentElement} from '../element/widget/widget.content.element';
+import {WidgetExpanderElement} from '../element/widget/widget.expander.element';
+import {WidgetCommentElement} from '../element/widget/widget.comment.element';
 
 /**
  * @class WidgetView
  * @extends BaseView
- * @type {module.WidgetView}
+ * @type {WidgetView}
  */
-module.exports = class WidgetView extends BaseView {
+export class WidgetView extends BaseView {
 
   /**
    * @constructor
@@ -25,7 +25,7 @@ module.exports = class WidgetView extends BaseView {
    * @param {Widget} scope
    */
   constructor(name, scope) {
-    super(name || 'WidgetView', scope, false);
+    super(name || 'WidgetView', scope);
   }
 
   /**
@@ -35,14 +35,8 @@ module.exports = class WidgetView extends BaseView {
   renderWidget() {
 
     /**
-     * @constant WidgetElement
-     * @type {module.WidgetElement}
-     */
-    const WidgetElement = require('../element/widget/widget.element.js');
-
-    /**
      * Define $widget
-     * @type {module.WidgetElement}
+     * @type {WidgetElement}
      */
     this.elements.$widget = new WidgetElement(this, {
       style: [this.createStyle(), this.scope.config.type].join(' '),
@@ -64,14 +58,8 @@ module.exports = class WidgetView extends BaseView {
   content() {
 
     /**
-     * @constant WidgetContentElement
-     * @type {module.WidgetContentElement}
-     */
-    const WidgetContentElement = require('../element/widget/widget.content.element.js');
-
-    /**
      * Define $content
-     * @type {module.WidgetContentElement}
+     * @type {WidgetContentElement}
      */
     this.elements.$content = new WidgetContentElement(this, {
       style: 'content',
@@ -128,4 +116,4 @@ module.exports = class WidgetView extends BaseView {
   render(silent) {
     this.scope.observer.publish(this.scope.eventManager.eventList.successRendered, silent);
   }
-};
+}

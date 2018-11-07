@@ -5,21 +5,17 @@
  * Time: 11:47 PM
  */
 
-/**
- * @constant WidgetOverlapping
- * @type {module.WidgetOverlapping}
- */
-const WidgetOverlapping = require('./widget.overlapping.js');
+import {WidgetOverlapping} from './widget.overlapping';
 
 /**
  * @class WidgetMap
- * @type {module.WidgetMap}
+ * @type {WidgetMap}
  */
-module.exports = class WidgetMap extends WidgetOverlapping {
+export class WidgetMap extends WidgetOverlapping {
 
   /**
    * @constructor
-   * @param {module.Widget} widget
+   * @param {Widget} widget
    */
   constructor(widget) {
     super();
@@ -711,6 +707,6 @@ module.exports = class WidgetMap extends WidgetOverlapping {
 
     return row;
   }
-};
+}
 
  

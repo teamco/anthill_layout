@@ -6,21 +6,26 @@
  * To change this template use File | Settings | File Templates.
  */
 
-defineP([
-  'modules/Element'
-], function defineExpander(BaseElement) {
+import {BaseElement} from '../../../modules/Element';
+
+/**
+ * Define content
+ * @param {WidgetView} view
+ * @param opts
+ * @class WidgetExpanderElement
+ * @constructor
+ * @extends BaseElement
+ */
+export class WidgetExpanderElement extends BaseElement {
 
   /**
-   * Define content
-   * @param {WidgetView} view
+   * @constructor
+   * @param view
    * @param opts
    * @returns {WidgetExpanderElement}
-   * @class WidgetExpanderElement
-   * @constructor
-   * @extends BaseElement
    */
-  var WidgetExpanderElement = function WidgetExpanderElement(view, opts) {
-
+  constructor(view, opts) {
+    super('WidgetExpanderElement', view);
     if (view.controller.isExpandable()) {
 
       this._config(view, opts, $('<div />')).build({
@@ -31,46 +36,34 @@ defineP([
       this.toggleExpandText(true);
       this.bindExpander();
     }
+  }
 
-    return this;
-  };
-
-  return WidgetExpanderElement.extend('WidgetExpanderElement', {
-
-    /**
-     * Define bind Expander
-     * @memberOf WidgetExpanderElement
-     */
-    bindExpander: function bindExpander() {
-
-      /**
-       * Get scope
-       * @type {Widget}
-       */
-      var scope = this.view.scope;
-
-      this.$.on('click.expand', function expand(e) {
-
-        scope.observer.publish(
-            scope.eventManager.eventList.expandContent,
-            e
-        );
-      });
-    },
+  /**
+   * Define bind Expander
+   * @memberOf WidgetExpanderElement
+   */
+  bindExpander() {
 
     /**
-     * Define text toggle
-     * @memberOf WidgetExpanderElement
-     * @param {boolean} expand
+     * Get scope
+     * @type {Widget}
      */
-    toggleExpandText: function toggleExpandText(expand) {
+    const scope = this.view.scope;
 
-      this.setText(
-          expand ?
-              this.i18n.t('expand.widget') :
-              this.i18n.t('collapse.widget')
-      );
-    }
+    this.$.on('click.expand', e => {
+      scope.observer.publish(scope.eventManager.eventList.expandContent, e);
+    });
+  }
 
-  }, BaseElement.prototype);
-});
+  /**
+   * Define text toggle
+   * @memberOf WidgetExpanderElement
+   * @param {boolean} expand
+   */
+  toggleExpandText(expand) {
+    this.setText(expand ?
+        this.i18n.t('expand.widget') :
+        this.i18n.t('collapse.widget')
+    );
+  }
+}

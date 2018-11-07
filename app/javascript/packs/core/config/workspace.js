@@ -1,14 +1,19 @@
-/**
- * @constant AntHill
- * @type {module.AntHill}
- */
-const AntHill = require('./anthill.js');
+import {AntHill} from './anthill';
+import {WorkspaceAPI} from '../api/workspace.api';
+import {WorkspaceController} from '../controller/workspace.controller';
+import {WorkspaceModel} from '../model/workspace.model';
+import {WorkspaceView} from '../view/workspace.view';
+import {WorkspaceEventManager} from '../event/workspace.event.manager';
+import {WorkspacePermission} from '../permission/workspace.permission';
+import {workspaceLocalListeners} from './listeners/workspace.listeners';
+import {workspaceLocalPermission} from './permissions/workspace.permissions';
+import {MVC} from '../../modules/MVC';
 
 /**
  * Define Workspace
  * @extends AntHill
  */
-module.exports = class Workspace extends AntHill {
+export class Workspace extends AntHill {
 
   /**
    * @param opts
@@ -17,50 +22,8 @@ module.exports = class Workspace extends AntHill {
   constructor(opts) {
     super('Workspace', null, true);
 
-    (require('./permissions/workspace.permissions.js'))();
-    (require('./listeners/workspace.listeners.js'))();
-
-    /**
-     * @constant WorkspaceAPI
-     * @type {module.WorkspaceAPI}
-     */
-    const WorkspaceAPI = require('../api/workspace.api.js');
-
-    /**
-     * @constant WorkspaceController
-     * @type {module.WorkspaceController}
-     */
-    const WorkspaceController = require('../controller/workspace.controller.js');
-
-    /**
-     * @constant WorkspaceModel
-     * @type {module.WorkspaceModel}
-     */
-    const WorkspaceModel = require('../model/workspace.model.js');
-
-    /**
-     * @constant WorkspaceView
-     * @type {module.WorkspaceView}
-     */
-    const WorkspaceView = require('../view/workspace.view.js');
-
-    /**
-     * @constant WorkspaceEventManager
-     * @type {module.WorkspaceEventManager}
-     */
-    const WorkspaceEventManager = require('../event/workspace.event.manager.js');
-
-    /**
-     * @constant WorkspacePermission
-     * @type {module.WorkspacePermission}
-     */
-    const WorkspacePermission = require('../permission/workspace.permission.js');
-
-    /**
-     * @constant MVC
-     * @type {module.MVC}
-     */
-    const MVC = require('../lib/modules/MVC.js');
+    workspaceLocalListeners();
+    workspaceLocalPermission();
 
     /**
      * Define default config
@@ -157,5 +120,5 @@ module.exports = class Workspace extends AntHill {
         this.eventManager.eventList.bindHashChange
     );
   }
-};
+}
  

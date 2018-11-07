@@ -5,13 +5,9 @@
  * Time: 10:33 PM
  */
 
-/**
- * @constant Page
- * @type {module.Page}
- */
-const Page = require('../page.js');
+import {Page} from '../page';
 
-module.exports = () => {
+export const pageLocalListeners = () => {
 
   /**
    * Define Page Local listeners
@@ -49,7 +45,7 @@ module.exports = () => {
 
         /**
          * Get current widget
-         * @type {module.Widget|{model}}
+         * @type {Widget|{model}}
          */
         const widget = this.model.getCurrentItem();
 

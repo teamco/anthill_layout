@@ -9,7 +9,7 @@
  * Define LayoutEmptyRows
  * @class LayoutEmptyRows
  */
-module.exports = class LayoutEmptyRows {
+export class LayoutEmptyRows {
 
   /**
    * @param {Layout} layout

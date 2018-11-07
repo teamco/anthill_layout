@@ -5,18 +5,15 @@
  * Time: 11:06 PM
  * To change this template use File | Settings | File Templates.
  */
-/**
- * @constant BaseModel
- * @type {module.BaseModel}
- */
-const BaseModel = require('../lib/modules/Model.js');
+
+import {BaseModel} from '../../modules/Model';
 
 /**
  * @constant WidgetModel
- * @type {module.WidgetModel}
+ * @type {WidgetModel}
  * @extends BaseModel
  */
-module.exports = class WidgetModel extends BaseModel {
+export class WidgetModel extends BaseModel {
 
   /**
    * @constructor
@@ -24,7 +21,7 @@ module.exports = class WidgetModel extends BaseModel {
    * @param scope
    */
   constructor(name, scope) {
-    super(name || 'WidgetModel', scope, false);
+    super(name || 'WidgetModel', scope);
 
     /**
      * @constant defaults
@@ -1088,4 +1085,4 @@ module.exports = class WidgetModel extends BaseModel {
     const containment = outline ? false : page.view.get$item().$;
     scope.observer.publish(scope.eventManager.eventList.updateContainment, [['draggable', 'resizable'], containment]);
   }
-};
+}

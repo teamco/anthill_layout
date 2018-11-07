@@ -6,12 +6,13 @@
  */
 
 import {BaseAPI} from '../../modules/API';
+import {Workspace} from '../config/workspace';
 
 /**
  * Define Application API
  * @class ApplicationApi
  * @extends BaseAPI
- * @type {module.ApplicationAPI}
+ * @type {ApplicationAPI}
  */
 export class ApplicationAPI extends BaseAPI {
 
@@ -33,12 +34,6 @@ export class ApplicationAPI extends BaseAPI {
    * @returns {*}
    */
   createWorkspace(args, render, silent) {
-
-    /**
-     * @constant Workspace
-     * @type {module.Workspace}
-     */
-    const Workspace = require('../config/workspace.js');
 
     /**
      * Define workspace

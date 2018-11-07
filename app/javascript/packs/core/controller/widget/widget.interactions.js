@@ -8,9 +8,9 @@
 /**
  * @class Interactions
  * @extends WidgetInteractions
- * @type {module.WidgetInteractions}
+ * @type {WidgetInteractions}
  */
-module.exports = class WidgetInteractions {
+export class WidgetInteractions {
 
   /**
    * Validate interaction config
@@ -56,7 +56,7 @@ module.exports = class WidgetInteractions {
   /**
    * Set Interaction
    * @memberOf WidgetInteractions
-   * @param {module.WidgetResize|module.WidgetDrag|Droppable|{name}} InteractionEvent
+   * @param {WidgetResize|WidgetDrag|Droppable|{name}} InteractionEvent
    * @returns {*}
    */
   setInteraction(InteractionEvent) {
@@ -75,7 +75,7 @@ module.exports = class WidgetInteractions {
 
     /**
      * Register interactions
-     * @type {module.WidgetDrag|module.WidgetResize|Droppable}
+     * @type {WidgetDrag|WidgetResize|Droppable}
      */
     scope.interactions[ename] = new InteractionEvent(scope);
 
@@ -100,7 +100,7 @@ module.exports = class WidgetInteractions {
 
     /**
      * @constant WidgetDrag
-     * @type {module.WidgetDrag}
+     * @type {WidgetDrag}
      */
     const WidgetDrag = require('./widget.drag.js');
     this.controller.setInteraction(WidgetDrag);
@@ -138,7 +138,7 @@ module.exports = class WidgetInteractions {
 
     /**
      * @constant WidgetResize
-     * @type {module.WidgetResize}
+     * @type {WidgetResize}
      */
     const WidgetResize = require('./widget.resize.js');
     this.controller.setInteraction(WidgetResize);
@@ -400,4 +400,4 @@ module.exports = class WidgetInteractions {
     }
     this.logger.debug('Update interaction containment', types, containment);
   }
-};
+}

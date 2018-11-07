@@ -6,53 +6,24 @@
  * To change this template use File | Settings | File Templates.
  */
 
+import {BaseController} from '../../modules/Controller';
+import {Router} from '../../modules/Router';
+import {PageLayer} from './page/page.layer';
+import {PageLayout} from './page/page.layout';
+import {PageWidget} from './page/page.widget';
+import {PageItemMaximize} from './page/page.maximize';
+
 /**
  * Aggregation of base class and mixin classes.
  * @type {(function(*, ...[*]): __Aggregate)|*|(function(): aggregate)}
  */
-const aggregation = require('../lib/extends/aggregation.js');
-
-/**
- * @constant BaseController
- * @type {module.BaseController}
- */
-const BaseController = require('../lib/modules/Controller.js');
-
-/**
- * @constant Router
- * @type {module.Router}
- */
-const Router = require('../lib/modules/Router.js');
-
-/**
- * @constant PageLayer
- * @type {module.PageLayer|*}
- */
-const PageLayer = require('./page/page.layer.js');
-
-/**
- * @constant PageLayout
- * @type {module.PageLayout|*}
- */
-const PageLayout = require('./page/page.layout.js');
-
-/**
- * @constant PageItemMaximize
- * @type {module.PageItemMaximize|*}
- */
-const PageItemMaximize = require('./page/page.maximize.js');
-
-/**
- * @constant PageWidget
- * @type {module.PageWidget|*}
- */
-const PageWidget = require('./page/page.widget.js');
+const aggregation = require('../../lib/extends/aggregation');
 
 /**
  * @class
  * @extends {BaseController, Router, PageLayer, PageLayout, PageWidget, PageItemMaximize}
  */
-module.exports = class PageController extends aggregation(BaseController, Router, PageLayer, PageLayout, PageWidget,
+export class PageController extends aggregation(BaseController, Router, PageLayer, PageLayout, PageWidget,
     PageItemMaximize) {
 
   /**
@@ -136,4 +107,4 @@ module.exports = class PageController extends aggregation(BaseController, Router
       }
     }
   }
-};
+}

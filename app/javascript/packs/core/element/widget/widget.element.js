@@ -6,18 +6,14 @@
  * To change this template use File | Settings | File Templates.
  */
 
-/**
- * @constant BaseElement
- * @type {BaseElement|*}
- */
-const BaseElement = require('../../lib/modules/Element.js');
+import {BaseElement} from '../../../modules/Element';
 
 /**
  * @extends BaseElement
  * @class WidgetElement
- * @type {module.WidgetElement}
+ * @type {WidgetElement}
  */
-module.exports = class WidgetElement extends BaseElement {
+export class WidgetElement extends BaseElement {
 
   /**
    * @param {WidgetView} view
@@ -25,7 +21,7 @@ module.exports = class WidgetElement extends BaseElement {
    * @constructor
    */
   constructor(view, opts) {
-    super('WidgetElement', view, false);
+    super('WidgetElement', view);
     this._config(view, opts, $('<widget />')).build({
       $container: opts.$container,
       destroy: false
@@ -237,7 +233,7 @@ module.exports = class WidgetElement extends BaseElement {
      */
     const scope = this.view.scope;
     const duration = force ? 0 : 500;
-    dom = scope.dom;
+    const dom = scope.dom;
 
     scope.controller.root().view.get$item().hideScroll(false);
 
@@ -611,4 +607,4 @@ module.exports = class WidgetElement extends BaseElement {
       webkitTransform: translateY
     });
   }
-};
+}

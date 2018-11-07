@@ -9,9 +9,9 @@
 /**
  * @class WidgetDrag
  * @extends Interactions
- * @type {module.WidgetDrag}
+ * @type {WidgetDrag}
  */
-module.exports = class WidgetDrag {
+export class WidgetDrag {
 
   /**
    * @param {Widget} scope
@@ -176,4 +176,4 @@ module.exports = class WidgetDrag {
     scope.controller.debugUI(event, ui);
     scope.observer.publish(scope.eventManager.eventList.dragDraggable, [event.type, arguments]);
   }
-};
+}

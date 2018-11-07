@@ -6,22 +6,24 @@
  * To change this template use File | Settings | File Templates.
  */
 
-// 'api/page.api',
-// 'view/page.view',
-
-/**
- * @constant AntHill
- * @type {module.AntHill}
- */
-const AntHill = require('./anthill.js');
+import {AntHill} from './anthill';
+import {pageLocalListeners} from './listeners/page.listeners';
+import {pageLocalPermission} from './permissions/page.permissions';
+import {MVC} from '../../modules/MVC';
+import {PageController} from '../controller/page.controller';
+import {PageAPI} from '../api/page.api';
+import {PageModel} from '../model/page.model';
+import {PageView} from '../view/page.view';
+import {PageEventManager} from '../event/page.event.manager';
+import {PagePermission} from '../permission/page.permission';
 
 /**
  * Define Page
  * @class Page
- * @type {module.Page}
+ * @type {Page}
  * @extends AntHill
  */
-module.exports = class Page extends AntHill {
+export class Page extends AntHill {
 
   /**
    * @param opts
@@ -30,50 +32,8 @@ module.exports = class Page extends AntHill {
   constructor(opts) {
     super('Page', null, true);
 
-    (require('./permissions/page.permissions.js'))();
-    (require('./listeners/page.listeners.js'))();
-
-    /**
-     * @constant PageAPI
-     * @type {module.PageAPI}
-     */
-    const PageAPI = require('../api/page.api.js');
-
-    /**
-     * @constant PageController
-     * @type {module.PageController}
-     */
-    const PageController = require('../controller/page.controller.js');
-
-    /**
-     * @constant PageModel
-     * @type {module.PageModel}
-     */
-    const PageModel = require('../model/page.model.js');
-
-    /**
-     * @constant PageView
-     * @type {module.PageView}
-     */
-    const PageView = require('../view/page.view.js');
-
-    /**
-     * @constant PageEventManager
-     * @type {module.PageEventManager}
-     */
-    const PageEventManager = require('../event/page.event.manager.js');
-
-    /**
-     * @constant PagePermission
-     * @type {module.PagePermission}
-     */
-    const PagePermission = require('../permission/page.permission.js');
-
-    /**
-     * @constant MVC
-     * @type {module.MVC}
-     */
-    const MVC = require('../lib/modules/MVC.js');
+    pageLocalListeners();
+    pageLocalPermission();
 
     /**
      * Define layout modes
@@ -200,7 +160,7 @@ module.exports = class Page extends AntHill {
     /**
      * Define MVC
      * @property Page
-     * @type {module.MVC}
+     * @type {MVC}
      */
     new MVC({
       scope: this,
@@ -273,6 +233,5 @@ module.exports = class Page extends AntHill {
         this.eventManager.eventList.loadPreferences
     );
   }
-
-};
+}
   

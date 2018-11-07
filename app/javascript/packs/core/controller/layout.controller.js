@@ -6,17 +6,13 @@
  * To change this template use File | Settings | File Templates.
  */
 
-/**
- * @constant BaseController
- * @type {module.BaseController}
- */
-const BaseController = require('../lib/modules/Controller.js');
+import {BaseController} from '../../modules/Controller';
 
 /**
  * @class LayoutController
- * @type {module.LayoutController}
+ * @type {LayoutController}
  */
-module.exports = class LayoutController extends BaseController {
+export class LayoutController extends BaseController {
 
   /**
    * @constructor
@@ -24,7 +20,7 @@ module.exports = class LayoutController extends BaseController {
    * @param scope
    */
   constructor(name, scope) {
-    super(name || 'LayoutController', scope, false);
+    super(name || 'LayoutController', scope);
   }
 
   /**
@@ -331,4 +327,4 @@ module.exports = class LayoutController extends BaseController {
     this.scope.config.behavior[this.getBehaviorMode()][type] = mode;
     return this._getLayoutMode(type);
   }
-};
+}

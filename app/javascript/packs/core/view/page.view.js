@@ -6,18 +6,17 @@
  * To change this template use File | Settings | File Templates.
  */
 
-/**
- * @constant BaseView
- * @type {BaseView}
- */
-const BaseView = require('../lib/modules/View.js');
+import {BaseView} from '../../modules/View';
+import {PageElement} from '../element/page/page.element';
+import {DeltaScrollElement} from '../element/page/page.delta.scroll.element';
+import {PageContentElement} from '../element/page/page.content.element';
 
 /**
  * @class PageView
  * @extends BaseView
- * @type {module.PageView}
+ * @type {PageView}
  */
-module.exports = class PageView extends BaseView {
+export class PageView extends BaseView {
 
   /**
    * @constructor
@@ -25,7 +24,7 @@ module.exports = class PageView extends BaseView {
    * @param {Page} scope
    */
   constructor(name, scope) {
-    super(name || 'PageView', scope, false);
+    super(name || 'PageView', scope);
   }
 
   /**
@@ -35,14 +34,8 @@ module.exports = class PageView extends BaseView {
   renderPage() {
 
     /**
-     * @constant PageElement
-     * @type {module.PageElement}
-     */
-    const PageElement = require('../element/page/page.element.js');
-
-    /**
      * Define page element
-     * @type {module.PageElement}
+     * @type {PageElement}
      */
     this.elements.$page = new PageElement(this, {
       $container: this.getContainerSelector(),
@@ -73,14 +66,8 @@ module.exports = class PageView extends BaseView {
   deltaScroll() {
 
     /**
-     * @constant DeltaScrollElement
-     * @type {module.DeltaScrollElement}
-     */
-    const DeltaScrollElement = require('../element/page/page.delta.scroll.element.js');
-
-    /**
      * Define delta scroll element
-     * @type {module.DeltaScrollElement}
+     * @type {DeltaScrollElement}
      */
     this.elements.$deltaScroll = new DeltaScrollElement(this, {
       $container: this.get$item().$,
@@ -95,14 +82,8 @@ module.exports = class PageView extends BaseView {
   widgets() {
 
     /**
-     * @constant PageContentElement
-     * @type {module.PageContentElement}
-     */
-    const PageContentElement = require('../element/page/page.content.element.js');
-
-    /**
      * Define widgets container element
-     * @type {module.PageContentElement}
+     * @type {PageContentElement}
      */
     this.elements.$widgets = new PageContentElement(this, {
       style: 'widgets',
@@ -152,4 +133,4 @@ module.exports = class PageView extends BaseView {
   render(silent) {
     this.scope.observer.publish(this.scope.eventManager.eventList.successRendered, silent);
   }
-};
+}

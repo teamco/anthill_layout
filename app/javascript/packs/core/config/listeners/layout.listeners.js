@@ -5,13 +5,9 @@
  * Time: 10:34 PM
  */
 
-/**
- * @constant Layout
- * @type {module.Layout}
- */
-const Layout = require('../layout.js');
+import {Layout} from '../layout';
 
-module.exports = () => {
+export const layoutLocalListeners = () => {
 
   /**
    * Define Layout Local listeners

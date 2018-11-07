@@ -6,20 +6,18 @@
  * To change this template use File | Settings | File Templates.
  */
 
-import {AntHill} from '../core/config/anthill';
-
 /**
  * @class MVC
  * @extends AntHill
  */
-export class MVC extends AntHill {
+export class MVC {
 
   /**
    * @constructor
    * @param opts
    */
   constructor(opts) {
-    super('MVC', opts.scope, false);
+    //super('MVC', opts.scope, false);
 
     /**
      * Define scope
@@ -146,7 +144,7 @@ export class MVC extends AntHill {
     /**
      * Define mvc components
      * @property MVC
-     * @type {mvc.components}
+     * @type {MVC.components}
      */
     this.components = opts.components || [];
 
@@ -383,10 +381,10 @@ export class MVC extends AntHill {
    */
   applyConfig() {
     const scope = this.scope,
-        timestamp = this.utils.ts.timestamp(this.scope.config.timestamp),
+        timestamp = scope.utils.ts.timestamp(this.scope.config.timestamp),
         config = scope.config;
 
-    config.uuid = this.utils.gen.UUID(this.scope.config.uuid);
+    config.uuid = scope.utils.gen.UUID(this.scope.config.uuid);
     config.timestamp = timestamp;
 
     if (this.render) {

@@ -7,7 +7,7 @@
 
 import {Application} from '../application';
 
-export const ApplicationLocalListeners = () => {
+export const applicationLocalListeners = () => {
 
   /**
    * Define Application Local listeners

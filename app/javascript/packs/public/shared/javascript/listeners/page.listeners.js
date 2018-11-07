@@ -4,14 +4,9 @@
  * Date: 2/23/15
  * Time: 10:33 PM
  */
+import {Page} from '../../../../core/config/page';
 
-/**
- * @constant Page
- * @type {module.Page}
- */
-// const Page = require('../../../../scripts/core/config/page.js');
-
-module.exports = () => {
+export const pageGlobalListeners = () => {
 
   /**
    * Define Page Global listeners

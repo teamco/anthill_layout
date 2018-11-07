@@ -11,7 +11,7 @@ import {BaseElement} from '../../../modules/Element';
 /**
  * Define Application content element
  * @class ApplicationContentElement
- * @type {module.ApplicationContentElement}
+ * @type {ApplicationContentElement}
  * @extends BaseElement
  */
 export class ApplicationContentElement extends BaseElement {

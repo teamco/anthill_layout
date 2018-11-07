@@ -6,18 +6,15 @@
  * To change this template use File | Settings | File Templates.
  */
 
-/**
- * @constant BaseModel
- * @type {module.BaseModel}
- */
-const BaseModel = require('../lib/modules/Model.js');
+import {BaseModel} from '../../modules/Model';
+import {Page} from '../config/page';
 
 /**
  * @constant WorkspaceModel
- * @type {module.WorkspaceModel}
+ * @type {WorkspaceModel}
  * @extends BaseModel
  */
-module.exports = class WorkspaceModel extends BaseModel {
+export class WorkspaceModel extends BaseModel {
 
   /**
    * @constructor
@@ -25,14 +22,14 @@ module.exports = class WorkspaceModel extends BaseModel {
    * @param scope
    */
   constructor(name, scope) {
-    super(name || 'WorkspaceModel', scope, false);
+    super(name || 'WorkspaceModel', scope);
 
     /**
      * Define item
      * @property WorkspaceModel
      * @type {Page}
      */
-    this.item = require('../config/page.js');
+    this.item = Page;
 
     /**
      * Skip transfer preferences
@@ -180,5 +177,5 @@ module.exports = class WorkspaceModel extends BaseModel {
     const collector = this.getCollector(this.item);
     this.loadData(this.item, collector);
   }
-};
+}
   

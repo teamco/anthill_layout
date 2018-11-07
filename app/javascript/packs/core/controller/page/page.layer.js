@@ -7,7 +7,7 @@
  * @class PageLayer
  * @constructor
  */
-module.exports = class PageLayer {
+export class PageLayer {
 
   /**
    * Get container target widgets
@@ -143,4 +143,4 @@ module.exports = class PageLayer {
       }
     }
   }
-};
+}

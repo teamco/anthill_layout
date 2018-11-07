@@ -12,7 +12,7 @@ import {BaseElement} from '../../../modules/Element';
  * Define Application element
  * @extends BaseElement
  * @class ApplicationElement
- * @type {module.ApplicationElement}
+ * @type {ApplicationElement}
  * @constructor
  */
 export class ApplicationElement extends BaseElement {

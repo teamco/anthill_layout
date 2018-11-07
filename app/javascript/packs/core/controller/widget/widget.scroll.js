@@ -7,9 +7,9 @@
 
 /**
  * @class WidgetScroll
- * @type {module.WidgetScroll}
+ * @type {WidgetScroll}
  */
-module.exports = class WidgetScroll {
+export class WidgetScroll {
 
   /**
    * Define scroll content
@@ -25,4 +25,4 @@ module.exports = class WidgetScroll {
     const action = (scrollable ? 'add' : 'remove') + 'Class';
     this.view.get$item().$[action]('scroll');
   }
-};
+}

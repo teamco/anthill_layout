@@ -5,17 +5,13 @@
  * Time: 11:57 PM
  */
 
-/**
- * @const Intersect
- * @type {module.Intersect|*}
- */
-const Intersect = require('./layout.intersect.js');
+import {Intersect} from './layout.intersect';
 
 /**
  * @class LayoutOverlapping
  * @extends Intersect
  */
-module.exports = class LayoutOverlapping extends Intersect {
+export class LayoutOverlapping extends Intersect {
 
   /**
    * @param {Layout} layout
@@ -347,4 +343,4 @@ module.exports = class LayoutOverlapping extends Intersect {
   bottom(target) {
     return (target.row + target.relHeight - 1);
   }
-};
+}

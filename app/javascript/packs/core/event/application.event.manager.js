@@ -68,7 +68,6 @@ export class ApplicationEventManager extends BaseEvent {
       beforeSendLog: 'before.send.log',
       afterSendLog: 'after.send.log',
       loadApplication: 'load.application',
-      loadProduction: 'load.production',
       handleVulnerabilities: 'handle.vulnerabilities',
       afterHandleVulnerabilities: 'after.handle.vulnerabilities',
       defineGlobalInstance: 'define.global.instance',

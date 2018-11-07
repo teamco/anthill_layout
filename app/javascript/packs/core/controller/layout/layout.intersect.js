@@ -10,7 +10,7 @@
  * @class Intersect
  * @constructor
  */
-module.exports = class Intersect {
+export class Intersect {
 
   /**
    * Check overlapping
@@ -268,4 +268,4 @@ module.exports = class Intersect {
       return target;
     }
   }
-};
+}

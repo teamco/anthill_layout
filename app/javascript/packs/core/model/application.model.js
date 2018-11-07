@@ -7,10 +7,12 @@
  */
 
 import {BaseModel} from '../../modules/Model';
+import {Workspace} from '../config/workspace';
+import {Setting} from '../../modules/Setting';
 
 /**
  * @constant ApplicationModel
- * @type {module.ApplicationModel}
+ * @type {ApplicationModel}
  * @extends BaseModel
  */
 export class ApplicationModel extends BaseModel {
@@ -26,9 +28,9 @@ export class ApplicationModel extends BaseModel {
     /**
      * Define item
      * @property ApplicationModel
-     * @type {module.Workspace}
+     * @type {Workspace}
      */
-    this.item = require('../config/workspace.js');
+    this.item = Workspace;
   }
 
   /**
@@ -44,15 +46,9 @@ export class ApplicationModel extends BaseModel {
     const scope = this.scope;
 
     /**
-     * @constant Setting
-     * @type {module.Setting}
-     */
-    const Setting = require('../lib/modules/Setting.js');
-
-    /**
      * Define setting
      * @property ApplicationModel
-     * @type {module.Setting}
+     * @type {Setting}
      */
     this.setting = new Setting(scope, scope.controller.getAppName());
     scope.logger.debug('Define setting', this.setting);
@@ -73,4 +69,4 @@ export class ApplicationModel extends BaseModel {
     const collector = this.getCollector(this.item);
     return collector ? this.loadData(this.item, collector, true) : -1;
   }
-};
+}

@@ -6,11 +6,13 @@
  * To change this template use File | Settings | File Templates.
  */
 
+import {Base} from './Base';
+
 /**
  * @constructor
  * @class Logger
  */
-module.exports = class Logger {
+export class Logger {
 
   /**
    * @constructor
@@ -28,7 +30,7 @@ module.exports = class Logger {
      * @property Logger.utils
      * @type {module.Base}
      */
-    this.utils = new (require('./Base.js'));
+    this.utils = new Base();
 
     this.setConfig(scope.config.logger || {});
   }
@@ -252,4 +254,4 @@ module.exports = class Logger {
       }
     }
   }
-};
+}

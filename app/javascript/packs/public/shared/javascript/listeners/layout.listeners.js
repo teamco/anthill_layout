@@ -4,14 +4,9 @@
  * Date: 2/23/15
  * Time: 10:34 PM
  */
+import {Layout} from '../../../../core/config/layout';
 
-/**
- * @constant Layout
- * @type {module.Layout}
- */
-// const Layout = require('../../../../scripts/core/config/layout.js');
-
-module.exports = () => {
+export const layoutGlobalListeners = () => {
 
   /**
    * Define Layout global listeners

@@ -5,13 +5,9 @@
  * Time: 11:39 PM
  */
 
-/**
- * @constant Workspace
- * @type {module.Workspace}
- */
-const Workspace = require('../workspace.js');
+import {Workspace} from '../workspace';
 
-module.exports = () => {
+export const workspaceLocalPermission = () => {
 
   /**
    * Define Workspace Local permission

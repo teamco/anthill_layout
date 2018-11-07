@@ -7,9 +7,9 @@
 
 /**
  * @class WidgetComment
- * @type {module.WidgetComment}
+ * @type {WidgetComment}
  */
-module.exports = class WidgetComment {
+export class WidgetComment {
 
   /**
    * Define commentable content
@@ -44,5 +44,5 @@ module.exports = class WidgetComment {
   cancelComment() {
     debugger;
   }
-};
+}
   

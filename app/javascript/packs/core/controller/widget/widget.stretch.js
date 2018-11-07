@@ -4,9 +4,9 @@
 
 /**
  * @class WidgetStretch
- * @type {module.WidgetStretch}
+ * @type {WidgetStretch}
  */
-module.exports = class WidgetStretch {
+export class WidgetStretch {
 
   /**
    * Stretch height
@@ -31,4 +31,4 @@ module.exports = class WidgetStretch {
         $item.stretchWidth(this.controller.getContainment()) :
         $item.restoreWidth();
   }
-};
+}

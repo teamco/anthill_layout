@@ -6,17 +6,13 @@
  * To change this template use File | Settings | File Templates.
  */
 
-/**
- * @constant BaseEvent
- * @type {BaseEvent}
- */
-const BaseEvent = require('../lib/modules/Event.js');
+import {BaseEvent} from '../../modules/Event';
 
 /**
  * @class WorkspaceEventManager
  * @extends BaseEvent
  */
-module.exports = class WorkspaceEventManager extends BaseEvent {
+export class WorkspaceEventManager extends BaseEvent {
 
   /**
    * Define workspace event manager
@@ -25,7 +21,7 @@ module.exports = class WorkspaceEventManager extends BaseEvent {
    * @param {Workspace} scope
    */
   constructor(name, scope) {
-    super(name || 'WorkspaceEventManager', scope, false);
+    super(name || 'WorkspaceEventManager', scope);
 
     /**
      * Define events
@@ -100,4 +96,4 @@ module.exports = class WorkspaceEventManager extends BaseEvent {
       clonePage: 'clone.page'
     };
   }
-};
+}

@@ -4,9 +4,9 @@
 
 /**
  * @class WidgetLayer
- * @type {module.WidgetLayer}
+ * @type {WidgetLayer}
  */
-module.exports = class WidgetLayer {
+export class WidgetLayer {
 
   /**
    * Set widget layer up
@@ -51,7 +51,7 @@ module.exports = class WidgetLayer {
 
     /**
      * Get containment
-     * @type {module.Page|*}
+     * @type {Page|*}
      */
     const page = this.controller.getContainment();
 
@@ -68,9 +68,9 @@ module.exports = class WidgetLayer {
 
     /**
      * Get containment
-     * @type {module.Page}
+     * @type {Page}
      */
     const page = this.controller.getContainment();
     page.controller.reorderLayers();
   }
-};
+}

@@ -6,53 +6,36 @@
  * To change this template use File | Settings | File Templates.
  */
 
-/**
- * @constant AntHill
- * @type {module.AntHill}
- */
-const AntHill = require('./anthill.js');
+import {AntHill} from './anthill';
+import {LayoutController} from '../controller/layout.controller';
+import {LayoutEventManager} from '../event/layout.event.manager';
+import {LayoutPermission} from '../permission/layout.permission';
+import {LayoutEmptyRows} from '../controller/layout/layout.empty.rows';
+import {LayoutEmptyColumns} from '../controller/layout/layout.empty.columns';
+import {LayoutOverlapping} from '../controller/layout/layout.overlapping';
+import {LayoutExpand} from '../controller/layout/layout.expand';
+import {LayoutGrid} from '../controller/layout/layout.grid';
+import {layoutLocalPermission} from './permissions/layout.permissions';
+import {layoutLocalListeners} from './listeners/layout.listeners';
+import {MVC} from '../../modules/MVC';
 
 /**
  * Define Layout
  * @class Layout
  * @extends AntHill
  */
-module.exports = class Layout extends AntHill {
+export class Layout extends AntHill {
 
   /**
    * @constructor
    * @param opts
-   * @param {Page} containment
+   * @param {PageLayout} containment
    */
   constructor(opts, containment) {
     super('Layout', null, true);
 
-    (require('./permissions/layout.permissions.js'))();
-    (require('./listeners/layout.listeners.js'))();
-
-    /**
-     * @constant LayoutController
-     * @type {module.LayoutController}
-     */
-    const LayoutController = require('../controller/layout.controller.js');
-
-    /**
-     * @constant LayoutEventManager
-     * @type {module.LayoutEventManager}
-     */
-    const LayoutEventManager = require('../event/layout.event.manager.js');
-
-    /**
-     * @constant LayoutPermission
-     * @type {module.LayoutPermission}
-     */
-    const LayoutPermission = require('../permission/layout.permission.js');
-
-    /**
-     * @constant MVC
-     * @type {module.MVC}
-     */
-    const MVC = require('../lib/modules/MVC.js');
+    layoutLocalPermission();
+    layoutLocalListeners();
 
     /**
      * Define default config
@@ -127,70 +110,40 @@ module.exports = class Layout extends AntHill {
     });
 
     /**
-     * @constant LayoutOverlapping
-     * @type {module.LayoutOverlapping|*}
-     */
-    const LayoutOverlapping = require('../controller/layout/layout.overlapping.js');
-
-    /**
      * Define overlapping
      * @property Layout
-     * @type {module.LayoutOverlapping}
+     * @type {LayoutOverlapping}
      */
     this.overlapping = new LayoutOverlapping(this);
 
     /**
-     * @constant LayoutEmptyRows
-     * @type {module.LayoutEmptyRows|*}
-     */
-    const LayoutEmptyRows = require('../controller/layout/layout.empty.rows.js');
-
-    /**
      * Define empty rows
      * @property Layout
-     * @type {module.LayoutEmptyRows}
+     * @type {LayoutEmptyRows}
      */
     this.emptyRows = new LayoutEmptyRows(this);
 
     /**
-     * @constant LayoutEmptyColumns
-     * @type {module.LayoutEmptyColumns|*}
-     */
-    const LayoutEmptyColumns = require('../controller/layout/layout.empty.columns.js');
-
-    /**
      * Define empty columns
      * @property Layout
-     * @type {module.LayoutEmptyColumns}
+     * @type {LayoutEmptyColumns}
      */
     this.emptyColumns = new LayoutEmptyColumns(this);
 
     /**
-     * @constant LayoutExpand
-     * @type {module.LayoutExpand|*}
-     */
-    const LayoutExpand = require('../controller/layout/layout.expand.js');
-
-    /**
      * Define expand
      * @property Layout
-     * @type {module.LayoutExpand}
+     * @type {LayoutExpand}
      */
     this.expand = new LayoutExpand(this);
 
     /**
-     * @constant LayoutGrid
-     * @type {module.LayoutGrid|*}
-     */
-    const LayoutGrid = require('../controller/layout/layout.grid.js');
-
-    /**
      * Define grid
      * @property Layout
-     * @type {module.LayoutGrid}
+     * @type {LayoutGrid}
      */
     this.grid = new LayoutGrid(this);
 
     this.observer.publish(this.eventManager.eventList.successCreated);
   }
-};
+}

@@ -7,9 +7,9 @@
 
 /**
  * @class Wireframe
- * @type {module.Wireframe}
+ * @type {Wireframe}
  */
-module.exports = class Wireframe {
+export class Wireframe {
 
   /**
    * @param {Widget} widget
@@ -157,4 +157,4 @@ module.exports = class Wireframe {
     this.getWireFrame().show();
     this.$.css(opts.style);
   }
-};
+}

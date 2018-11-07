@@ -4,20 +4,10 @@
  * Date: 2/23/15
  * Time: 10:35 PM
  */
+import {WidgetController} from '../../../../core/controller/widget.controller';
+import {Widget} from '../../../../core/config/widget';
 
-/**
- * @constant Widget
- * @type {module.Widget}
- */
-// const Widget = require('../../../../scripts/core/config/widget.js');
-
-/**
- * @constant WidgetController
- * @type {module.WidgetController|*}
- */
-// const WidgetController = require('../../../../scripts/core/controller/widget.controller.js');
-
-module.exports = () => {
+export const widgetGlobalListeners = () => {
 
   /**
    * @memberOf WidgetController

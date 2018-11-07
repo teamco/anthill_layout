@@ -9,7 +9,7 @@
  * Define WorkspacePage controller
  * @class WorkspacePage
  */
-module.exports = class WorkspacePage {
+export class WorkspacePage {
 
   /**
    * Set page height
@@ -258,7 +258,7 @@ module.exports = class WorkspacePage {
 
     /**
      * Define local scope
-     * @type {module.Workspace|{view, observer}}
+     * @type {Workspace|{view, observer}}
      */
     const scope = this.scope;
 
@@ -347,4 +347,4 @@ module.exports = class WorkspacePage {
     this.logger.debug('Clone page', clonePage, currentPage);
     currentPage.controller.cloneWidgets(clonePage);
   }
-};
+}

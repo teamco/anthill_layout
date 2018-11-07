@@ -6,17 +6,13 @@
  * To change this template use File | Settings | File Templates.
  */
 
-/**
- * @constant BaseEvent
- * @type {BaseEvent}
- */
-const BaseEvent = require('../lib/modules/Event.js');
+import {BaseEvent} from '../../modules/Event';
 
 /**
  * @class LayoutEventManager
  * @extends BaseEvent
  */
-module.exports = class LayoutEventManager extends BaseEvent {
+export class LayoutEventManager extends BaseEvent {
 
   /**
    * Define LayoutEvent Manager
@@ -25,7 +21,7 @@ module.exports = class LayoutEventManager extends BaseEvent {
    * @param {Layout} scope
    */
   constructor(name, scope) {
-    super(name || 'LayoutEventManager', scope, false);
+    super(name || 'LayoutEventManager', scope);
 
     /**
      * Define events
@@ -65,4 +61,4 @@ module.exports = class LayoutEventManager extends BaseEvent {
       toggleGrid: 'toggle.grid'
     };
   };
-};
+}

@@ -4,14 +4,9 @@
  * Date: 2/23/15
  * Time: 10:35 PM
  */
+import {Widget} from '../widget';
 
-/**
- * @constant Widget
- * @type {module.Widget}
- */
-const Widget = require('../widget.js');
-
-module.exports = () => {
+export const widgetLocalListeners = () => {
 
   /**
    * Define Widget Local listeners
@@ -63,7 +58,7 @@ module.exports = () => {
 
         /**
          * Get root
-         * @type {module.Application|{model}}
+         * @type {Application|{model}}
          */
         const root = this.controller.root();
 

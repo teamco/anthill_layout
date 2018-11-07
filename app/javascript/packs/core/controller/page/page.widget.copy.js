@@ -9,7 +9,7 @@
  * Define PageWidgetCopy
  * @class PageWidgetCopy
  */
-module.exports = class PageWidgetCopy {
+export class PageWidgetCopy {
 
   /**
    * Define clone widgets from other page
@@ -150,7 +150,7 @@ module.exports = class PageWidgetCopy {
         if (rs.match(/content/)) {
 
           // Get content key
-          currentKey = cloneMap[rs.replace(/\-content/, '')] + '-content';
+          currentKey = cloneMap[rs.replace(/-content/, '')] + '-content';
         }
 
         subscribe[currentKey] = {};
@@ -218,4 +218,4 @@ module.exports = class PageWidgetCopy {
       }
     }
   }
-};
+}

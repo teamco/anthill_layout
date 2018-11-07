@@ -6,18 +6,14 @@
  * To change this template use File | Settings | File Templates.
  */
 
-/**
- * @constant BasePermission
- * @type {module.BasePermission}
- */
-const BasePermission = require('../lib/modules/Permission.js');
+import {BasePermission} from '../../modules/Permission';
 
 /**
  * Define Permissions
  * @extends BasePermission
  * @class WorkspacePermission
  */
-module.exports = class WorkspacePermission extends BasePermission {
+export class WorkspacePermission extends BasePermission {
 
   /**
    * @constructor
@@ -25,6 +21,6 @@ module.exports = class WorkspacePermission extends BasePermission {
    * @param scope
    */
   constructor(name, scope) {
-    super(name || 'WorkspacePermission', scope, false);
+    super(name || 'WorkspacePermission', scope);
   }
-};
+}

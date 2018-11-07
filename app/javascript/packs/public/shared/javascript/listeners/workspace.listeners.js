@@ -6,10 +6,9 @@
  */
 
 import {Workspace} from '../../../../core/config/workspace';
+import {WorkspaceController} from '../../../../core/controller/workspace.controller';
 
-const WorkspaceController = require
-
-export const WorkspaceGlobalListeners = () => {
+export const workspaceGlobalListeners = () => {
 
   /**
    * Define global events

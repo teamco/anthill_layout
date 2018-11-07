@@ -1,8 +1,8 @@
 /**
  * @class LayoutGrid
- * @type {module.LayoutGrid}
+ * @type {LayoutGrid}
  */
-module.exports = class LayoutGrid {
+export class LayoutGrid {
 
   /**
    * @param {Layout} layout
@@ -31,4 +31,4 @@ module.exports = class LayoutGrid {
     $page[(remove ? 'remove' : 'add') + 'Class']('grid');
     $page.css({backgroundSize: cellWidth + 'px ' + cellWidth + 'px'});
   }
-};
+}

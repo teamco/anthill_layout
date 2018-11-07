@@ -5,13 +5,9 @@
  * Time: 11:41 PM
  */
 
-/**
- * @constant Page
- * @type {module.Page}
- */
-const Page = require('../page.js');
+import {Page} from '../page';
 
-module.exports = () => {
+export const pageLocalPermission = () => {
 
   /**
    * Define Page Local permission

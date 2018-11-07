@@ -4,14 +4,9 @@
  * Date: 2/23/15
  * Time: 11:50 PM
  */
+import {Widget} from '../widget';
 
-/**
- * @constant Widget
- * @type {module.Widget}
- */
-const Widget = require('../widget.js');
-
-module.exports = () => {
+export const widgetLocalPermission = () => {
 
   /**
    * Define Widget Local permission

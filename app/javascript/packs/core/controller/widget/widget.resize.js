@@ -9,9 +9,9 @@
 /**
  * @class WidgetResize
  * @extends Interactions
- * @type {module.WidgetResize}
+ * @type {WidgetResize}
  */
-module.exports = class WidgetResize {
+export class WidgetResize {
 
   /**
    * @param {Widget} scope
@@ -191,4 +191,4 @@ module.exports = class WidgetResize {
     scope.controller.debugUI(event, ui);
     scope.observer.publish(scope.eventManager.eventList.resizeResizable, [event.type, arguments]);
   }
-};
+}

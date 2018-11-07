@@ -8,7 +8,7 @@
 /**
  * Define Behavior Window resize
  * @class BehaviorWindowResize
- * @type {module.BehaviorWindowResize}
+ * @type {BehaviorWindowResize}
  */
 export class BehaviorWindowResize {
 

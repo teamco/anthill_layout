@@ -6,24 +6,15 @@
  * To change this template use File | Settings | File Templates.
  */
 
-/**
- * @constant BaseModel
- * @type {module.BaseModel}
- */
-const BaseModel = require('../lib/modules/Model.js');
-
-/**
- * @constant Widget
- * @type {module.Widget|*}
- */
-const Widget = require('../config/widget.js');
+import {BaseModel} from '../../modules/Model';
+import {Widget} from '../config/widget';
 
 /**
  * @constant PageModel
- * @type {module.PageModel}
+ * @type {PageModel}
  * @extends BaseModel
  */
-module.exports = class PageModel extends BaseModel {
+export class PageModel extends BaseModel {
 
   /**
    * @constructor
@@ -31,12 +22,12 @@ module.exports = class PageModel extends BaseModel {
    * @param scope
    */
   constructor(name, scope) {
-    super(name || 'PageModel', scope, false);
+    super(name || 'PageModel', scope);
 
     /**
      * Define item
      * @property PageModel
-     * @type {module.Widget}
+     * @type {Widget}
      */
     this.item = Widget;
 
@@ -412,4 +403,4 @@ module.exports = class PageModel extends BaseModel {
     const collector = this.getCollector(this.item);
     this.loadData(this.item, collector);
   }
-};
+}

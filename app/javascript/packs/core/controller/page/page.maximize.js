@@ -5,7 +5,7 @@
 /**
  * @class PageItemMaximize
  */
-module.exports = class PageItemMaximize {
+export class PageItemMaximize {
 
   /**
    * Get maximized widget
@@ -108,4 +108,4 @@ module.exports = class PageItemMaximize {
     this.controller.allowAddWidget();
     this.observer.publish(this.eventManager.eventList.unsetMaximized);
   }
-};
+}

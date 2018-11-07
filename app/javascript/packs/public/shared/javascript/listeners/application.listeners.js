@@ -7,7 +7,7 @@
 
 import {Application} from '../../../../core/config/application';
 
-export const ApplicationGlobalListeners = () => {
+export const applicationGlobalListeners = () => {
 
   /**
    * Define Application Global listeners

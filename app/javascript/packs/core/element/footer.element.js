@@ -11,7 +11,7 @@ import {BaseElement} from '../../modules/Element';
 /**
  * Define Footer Element
  * @class FooterElement
- * @type {module.FooterElement}
+ * @type {FooterElement}
  * @extends BaseElement
  */
 export class FooterElement extends BaseElement {

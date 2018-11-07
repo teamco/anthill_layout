@@ -6,18 +6,14 @@
  * To change this template use File | Settings | File Templates.
  */
 
-/**
- * @constant BasePermission
- * @type {module.BasePermission}
- */
-const BasePermission = require('../lib/modules/Permission.js');
+import {BasePermission} from '../../modules/Permission';
 
 /**
  * Define Permissions
  * @extends BasePermission
  * @class WidgetPermission
  */
-module.exports = class WidgetPermission extends BasePermission {
+export class WidgetPermission extends BasePermission {
 
   /**
    * @constructor
@@ -25,7 +21,7 @@ module.exports = class WidgetPermission extends BasePermission {
    * @param scope
    */
   constructor(name, scope) {
-    super(name || 'WidgetPermission', scope, false);
+    super(name || 'WidgetPermission', scope);
   }
 
   /**
@@ -71,4 +67,4 @@ module.exports = class WidgetPermission extends BasePermission {
     }
     scope.logger.warn('Undefined capability', capability);
   }
-};
+}

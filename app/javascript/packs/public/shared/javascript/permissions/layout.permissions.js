@@ -4,14 +4,9 @@
  * Date: 2/23/15
  * Time: 11:42 PM
  */
+import {Layout} from '../../../../core/config/layout';
 
-/**
- * @constant Layout
- * @type {module.Layout}
- */
-// const Layout = require('../../../../scripts/core/config/layout.js');
-
-module.exports = () => {
+export const layoutGlobalPermissions = () => {
 
   /**
    * Define Layout global permission

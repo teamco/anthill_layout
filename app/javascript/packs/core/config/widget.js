@@ -6,17 +6,23 @@
  * To change this template use File | Settings | File Templates.
  */
 
-/**
- * @constant AntHill
- * @type {module.AntHill}
- */
-const AntHill = require('./anthill.js');
+import {AntHill} from './anthill';
+import {widgetLocalListeners} from './listeners/widget.listeners';
+import {widgetLocalPermission} from './permissions/widget.permissions';
+import {MVC} from '../../modules/MVC';
+import {WidgetController} from '../controller/widget.controller';
+import {WidgetAPI} from '../api/widget.api';
+import {WidgetModel} from '../model/widget.model';
+import {WidgetView} from '../view/widget.view';
+import {WidgetEventManager} from '../event/widget.event.manager';
+import {WidgetPermission} from '../permission/widget.permission';
+import {Wireframe} from '../controller/widget/widget.wireframe';
 
 /**
  * @class Widget
  * @extends AntHill
  */
-module.exports = class Widget extends AntHill {
+export class Widget extends AntHill {
 
   /**
    * @param opts
@@ -25,51 +31,9 @@ module.exports = class Widget extends AntHill {
   constructor(opts) {
     super('Widget', null, true);
 
-    (require('./permissions/widget.permissions.js'))();
-    (require('./listeners/widget.listeners.js'))();
+    widgetLocalListeners();
+    widgetLocalPermission();
 
-    /**
-     * @constant WidgetAPI
-     * @type {module.WidgetAPI}
-     */
-    const WidgetAPI = require('../api/widget.api.js');
-
-    /**
-     * @constant WidgetController
-     * @type {module.WidgetController}
-     */
-    const WidgetController = require('../controller/widget.controller.js');
-
-    /**
-     * @constant WidgetModel
-     * @type {module.WidgetModel}
-     */
-    const WidgetModel = require('../model/widget.model.js');
-
-    /**
-     * @constant WidgetView
-     * @type {module.WidgetView}
-     */
-    const WidgetView = require('../view/widget.view.js');
-
-    /**
-     * @constant WidgetEventManager
-     * @type {module.WidgetEventManager}
-     */
-    const WidgetEventManager = require('../event/widget.event.manager.js');
-
-    /**
-     * @constant WidgetPermission
-     * @type {module.WidgetPermission}
-     */
-    const WidgetPermission = require('../permission/widget.permission.js');
-
-    /**
-     * @constant MVC
-     * @type {module.MVC}
-     */
-    const MVC = require('../lib/modules/MVC.js');
-    
     /**
      * Define dom
      * @property Widget
@@ -210,27 +174,15 @@ module.exports = class Widget extends AntHill {
     });
 
     /**
-     * @constant WidgetMap
-     * @type {module.WidgetMap}
-     */
-    const WidgetMap = require('../controller/widget/widget.map.js');
-
-    /**
      * Define map
      * @property Widget
-     * @type {module.WidgetMap}
+     * @type {WidgetMap}
      */
     this.map = new WidgetMap(this);
 
     /**
-     * @constant Wireframe
-     * @type {module.Wireframe}
-     */
-    const Wireframe = require('../controller/widget/widget.wireframe.js');
-
-    /**
      * @property Widget
-     * @type {module.Wireframe}
+     * @type {Wireframe}
      */
     this.wireframe = new Wireframe(this);
 
@@ -238,8 +190,8 @@ module.exports = class Widget extends AntHill {
      * Define interactions: Drag/Resize/Drop
      * @property Widget
      * @type {{
-     *  draggable: module.WidgetDrag,
-     *  resizable: module.WidgetResize,
+     *  draggable: WidgetDrag,
+     *  resizable: WidgetResize,
      *  droppable: undefined
      * }}
      */
@@ -248,14 +200,14 @@ module.exports = class Widget extends AntHill {
     /**
      * Define draggable interaction
      * @property Widget.interactions
-     * @type {module.WidgetDrag}
+     * @type {WidgetDrag}
      */
     this.interactions.widgetdrag = undefined;
 
     /**
      * Define resizable interaction
      * @property Widget.interactions
-     * @type {module.WidgetResize}
+     * @type {WidgetResize}
      */
     this.interactions.widgetresize = undefined;
 
@@ -275,4 +227,4 @@ module.exports = class Widget extends AntHill {
 
     this.observer.publish(this.eventManager.eventList.successCreated);
   };
-};
+}

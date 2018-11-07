@@ -5,9 +5,15 @@
  * Time: 2:43 PM
  */
 
+import {Base} from '../../modules/Base';
+import {Observer} from '../../modules/Observer';
+import {Logger} from '../../modules/Logger';
+import {i18n} from '../../modules/i18n';
+import {MVC} from '../../modules/MVC';
+
 /**
  * @class AntHill
- * @type {module.AntHill}
+ * @type {AntHill}
  */
 export class AntHill {
 
@@ -18,12 +24,6 @@ export class AntHill {
    * @constructor
    */
   constructor(name, scope, isGeneral) {
-
-    /**
-     * @constant Base
-     * @type {module.Base}
-     */
-    const Base = require('../../modules/Base');
 
     /**
      * Init scope name.
@@ -50,24 +50,6 @@ export class AntHill {
     if (isGeneral) {
 
       /**
-       * @constant Observer
-       * @type {module.Observer}
-       */
-      const Observer = require('../../modules/Observer.js');
-
-      /**
-       * @constant Logger
-       * @type {module.Logger}
-       */
-      const Logger = require('../../modules/Logger.js');
-
-      /**
-       * @constant i18n
-       * @type {module.i18n}
-       */
-      const i18n = require('../../modules/i18n.js');
-
-      /**
        * Init config
        * @property AntHill
        * @type {Object}
@@ -77,21 +59,21 @@ export class AntHill {
       /**
        * Init observer
        * @property AntHill
-       * @type {module.Observer}
+       * @type {Observer}
        */
       this.observer = new Observer(this.scope || this);
 
       /**
        * Init logger
        * @property Anthill
-       * @type {module.Logger}
+       * @type {Logger}
        */
       this.logger = new Logger(this.scope || this);
 
       /**
        * Init logger
        * @property Anthill
-       * @type {module.i18n}
+       * @type {i18n}
        */
       this.i18n = new i18n('en-us');
 
@@ -105,7 +87,7 @@ export class AntHill {
     /**
      * Init utils.
      * @property AntHill
-     * @type {module.Base|{setBoolean, waitFor}}
+     * @type {Base|{setBoolean, waitFor}}
      */
     this.utils = new Base();
   }

@@ -1,8 +1,8 @@
 /**
  * @class WidgetParallax
- * @type {module.WidgetParallax}
+ * @type {WidgetParallax}
  */
-module.exports = class WidgetParallax {
+export class WidgetParallax {
 
   /**
    * Subscribe to scroll
@@ -19,7 +19,7 @@ module.exports = class WidgetParallax {
 
     /**
      * Get root
-     * @type {module.Application}
+     * @type {Application}
      */
     const root = this.controller.root();
 
@@ -154,4 +154,4 @@ module.exports = class WidgetParallax {
       // TODO
     }
   }
-};
+}

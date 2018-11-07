@@ -128,7 +128,7 @@ class Author::SiteStoragesController < Author::AuthorController
   end
 
   def get_target_url(key)
-    "#{Rails.root}/app/assets/javascripts/public/#{key}"
+    "#{Rails.root}/app/javascript/packs/public/#{key}"
   end
 
   # Use callbacks to share common setup or constraints between actions.

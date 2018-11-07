@@ -5,10 +5,12 @@
  * Time: 6:35 PM
  */
 
+import {Layout} from '../../config/layout';
+
 /**
  * @class PageLayout
  */
-module.exports = class PageLayout {
+export class PageLayout {
 
   /**
    * Update layout config
@@ -48,7 +50,7 @@ module.exports = class PageLayout {
     $.extend(padding, opts);
 
     /**
-     * @type {module.PageElement|{setPadding}}
+     * @type {PageElement|{setPadding}}
      */
     const $item = scope.view.get$item();
 
@@ -82,7 +84,7 @@ module.exports = class PageLayout {
     const scope = this;
 
     /**
-     * @type {module.PageElement|{updateDimensions}}
+     * @type {PageElement|{updateDimensions}}
      */
     const $item = scope.view.get$item();
 
@@ -107,7 +109,7 @@ module.exports = class PageLayout {
 
     /**
      * Get layout
-     * @type {module.Layout}
+     * @type {Layout}
      */
     const layout = this.controller.getLayout();
     layout.observer.publish(layout.eventManager.eventList.onExpand, widget);
@@ -121,15 +123,9 @@ module.exports = class PageLayout {
   createLayout(opts) {
 
     /**
-     * @constant Layout
-     * @type {module.Layout|*}
-     */
-    const Layout = require('../../config/layout.js');
-
-    /**
      * Define layout
      * @memberOf Page
-     * @type {module.Layout}
+     * @type {Layout}
      */
     this.layout = new Layout(opts, this);
   }
@@ -146,7 +142,7 @@ module.exports = class PageLayout {
   /**
    * Get Layout
    * @memberOf PageLayout
-   * @returns {module.Layout}
+   * @returns {Layout}
    */
   getLayout() {
     return this.scope.layout;
@@ -167,4 +163,4 @@ module.exports = class PageLayout {
     layout.observer.publish(layout.eventManager.eventList.updateMinCellWidth);
     this.updateWidgetsConfig();
   }
-};
+}

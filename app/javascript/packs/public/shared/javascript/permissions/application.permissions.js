@@ -4,14 +4,9 @@
  * Date: 2/23/15
  * Time: 11:34 PM
  */
+import {Application} from '../../../../core/config/application';
 
-/**
- * @constant Application
- * @type {module.Application}
- */
-// const Application = require('../../../../scripts/core/config/application.js');
-
-module.exports = () => {
+export const applicationGlobalPermissions = () => {
 
   /**
    * Define Application global permission

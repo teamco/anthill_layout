@@ -8,9 +8,9 @@
 /**
  * Define LayoutExpand
  * @class LayoutExpand
- * @type {module.LayoutExpand}
+ * @type {LayoutExpand}
  */
-module.exports = class LayoutExpand {
+export class LayoutExpand {
 
   /**
    * @param {Layout} layout
@@ -152,4 +152,4 @@ module.exports = class LayoutExpand {
 
     return below;
   }
-};
+}

@@ -11,7 +11,7 @@ import {BaseElement} from '../../modules/Element';
 /**
  * Define Header Element
  * @class HeaderElement
- * @type {module.HeaderElement}
+ * @type {HeaderElement}
  * @extends BaseElement
  */
 export class HeaderElement extends BaseElement {

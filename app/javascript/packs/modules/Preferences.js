@@ -5,17 +5,13 @@
  * Time: 1:23 PM
  */
 
-/**
- * @constant AntHill
- * @type {module.AntHill}
- */
-const AntHill = require('../../config/anthill.js');
+import {AntHill} from '../core/config/anthill';
 
 /**
  * @class BasePreferences
  * @type {module.BasePreferences}
  */
-module.exports = class BasePreferences extends AntHill {
+export class BasePreferences extends AntHill {
 
   /**
    * @constructor
@@ -168,4 +164,4 @@ module.exports = class BasePreferences extends AntHill {
     $modal.selfDestroy();
     this.store();
   }
-};
+}

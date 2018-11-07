@@ -14,7 +14,7 @@ import {ExportElement} from '../element/export.element';
 /**
  * @class ApplicationView
  * @extends BaseView
- * @type {module.ApplicationView}
+ * @type {ApplicationView}
  */
 export class ApplicationView extends BaseView {
 

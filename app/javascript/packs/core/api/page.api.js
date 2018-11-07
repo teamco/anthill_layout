@@ -5,19 +5,16 @@
  * Time: 7:22 PM
  */
 
-/**
- * @constant BaseAPI
- * @type {module.BaseAPI}
- */
-const BaseAPI = require('../lib/modules/API.js');
+import {BaseAPI} from '../../modules/API';
+import {Widget} from '../config/widget';
 
 /**
  * Define Page API
  * @class PageAPI
  * @extends BaseAPI
- * @type {module.PageAPI}
+ * @type {PageAPI}
  */
-module.exports = class PageAPI extends BaseAPI {
+export class PageAPI extends BaseAPI {
 
   /**
    * @param {Page} scope
@@ -25,7 +22,7 @@ module.exports = class PageAPI extends BaseAPI {
    * @constructor
    */
   constructor(name, scope) {
-    super('PageAPI', scope, false);
+    super('PageAPI', scope);
   }
 
   /**
@@ -51,12 +48,6 @@ module.exports = class PageAPI extends BaseAPI {
       scope.logger.warn(scope.i18n.t('not.allowed.add.widget'), arguments);
       return false;
     }
-
-    /**
-     * @constant Widget
-     * @type {module.Widget}
-     */
-    const Widget = require('../config/widget.js');
 
     scope.layout.observer.publish(scope.layout.eventManager.eventList.beforeNestedOrganizer, silent);
     return scope.controller.updateWidgetsConfig(this._createItem(Widget, args, render, silent));
@@ -91,4 +82,4 @@ module.exports = class PageAPI extends BaseAPI {
     const scope = this.scope;
     scope.observer.publish(scope.eventManager.eventList.destroyWidgets, [items, silent]);
   }
-};
+}

@@ -10,7 +10,7 @@
  * Define translations
  * @class i18n
  */
-module.exports = class i18n {
+export class i18n {
 
   /**
    * @constructor
@@ -121,4 +121,4 @@ module.exports = class i18n {
     }
     return result;
   }
-};
+}

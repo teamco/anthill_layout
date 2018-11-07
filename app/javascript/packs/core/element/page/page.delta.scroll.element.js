@@ -6,18 +6,14 @@
  * To change this template use File | Settings | File Templates.
  */
 
-/**
- * @constant BaseElement
- * @type {BaseElement|*}
- */
-const BaseElement = require('../../lib/modules/Element.js');
+import {BaseElement} from '../../../modules/Element';
 
 /**
  * @extends BaseElement
  * @class DeltaScrollElement
- * @type {module.DeltaScrollElement}
+ * @type {DeltaScrollElement}
  */
-module.exports = class DeltaScrollElement extends BaseElement {
+export class DeltaScrollElement extends BaseElement {
 
   /**
    * @param {PageView} view
@@ -25,7 +21,7 @@ module.exports = class DeltaScrollElement extends BaseElement {
    * @constructor
    */
   constructor(view, opts) {
-    super('DeltaScrollElement', view, false);
+    super('DeltaScrollElement', view);
     this._config(view, opts, $('<div />')).build(opts);
   }
-};
+}

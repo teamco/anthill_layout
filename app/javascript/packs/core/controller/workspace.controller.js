@@ -6,43 +6,24 @@
  * To change this template use File | Settings | File Templates.
  */
 
+import {BaseController} from '../../modules/Controller';
+import {Router} from '../../modules/Router';
+import {WorkspacePage} from './workspace/workspace.page';
+import {WorkspaceSEO} from './workspace/workspace.seo';
+
 /**
  * Aggregation of base class and mixin classes.
  * @type {(function(*, ...[*]): __Aggregate)|*|(function(): aggregate)}
  */
-const aggregation = require("aggregation/es6");
-
-/**
- * @constant BaseController
- * @type {module.BaseController}
- */
-const BaseController = require('../lib/modules/Controller.js');
-
-/**
- * @constant Router
- * @type {module.Router}
- */
-const Router = require('../lib/modules/Router.js');
-
-/**
- * @constant WorkspacePage
- * @type {module.WorkspacePage|*}
- */
-const WorkspacePage = require('./workspace/workspace.page.js');
-
-/**
- * @constant WorkspaceSEO
- * @type {module.WorkspaceSEO|*}
- */
-const WorkspaceSEO = require('./workspace/workspace.seo.js');
+const aggregation = require("../../lib/extends/aggregation");
 
 /**
  * Define workspace controller
  * @class WorkspaceController
  * @extends {BaseController, Router, WorkspacePage, WorkspaceSEO}
- * @type {module.WorkspaceController|{prototype}}
+ * @type {WorkspaceController|{prototype}}
  */
-module.exports = class WorkspaceController extends aggregation(BaseController, Router, WorkspacePage, WorkspaceSEO) {
+export class WorkspaceController extends aggregation(BaseController, Router, WorkspacePage, WorkspaceSEO) {
 
   /**
    * @constructor
@@ -104,5 +85,5 @@ module.exports = class WorkspaceController extends aggregation(BaseController, R
       $workspace.unsetWidth();
     }
   }
-};
+}
       

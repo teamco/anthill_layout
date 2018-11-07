@@ -79,8 +79,6 @@ export class ApplicationController extends aggregation(BaseController, BehaviorE
         return false;
       }
     }
-
-    this.observer.publish(this.eventManager.eventList.loadProduction);
   }
 
   /**
@@ -238,13 +236,13 @@ export class ApplicationController extends aggregation(BaseController, BehaviorE
 
     /**
      * Define local scope
-     * @type {module.Application|{model, view}}
+     * @type {Application|{model, view}}
      */
     const scope = this.scope;
 
     /**
      * Define setting
-     * @type {module.Setting}
+     * @type {Setting}
      */
     const setting = scope.model.setting;
 
@@ -271,7 +269,7 @@ export class ApplicationController extends aggregation(BaseController, BehaviorE
 
     /**
      * Get Application
-     * @type {module.Application|{logger, observer}}
+     * @type {Application|{logger, observer}}
      */
     const scope = this.scope;
 

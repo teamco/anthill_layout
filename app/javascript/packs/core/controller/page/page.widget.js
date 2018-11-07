@@ -5,18 +5,14 @@
  * Time: 6:29 PM
  */
 
-/**
- * @constant PageWidgetCopy
- * @type {module.PageWidgetCopy|*}
- */
-const PageWidgetCopy = require('./page.widget.copy.js');
+import {PageWidgetCopy} from './page.widget.copy';
 
 /**
  * @class PageWidget
  * @extends PageWidgetCopy
- * @type {module.PageWidget}
+ * @type {PageWidget}
  */
-module.exports = class PageWidget extends PageWidgetCopy {
+export class PageWidget extends PageWidgetCopy {
 
   /**
    * @constructor
@@ -259,6 +255,4 @@ module.exports = class PageWidget extends PageWidgetCopy {
     rootElement.$.addClass('show-content');
     item.view.get$item().$.addClass('active-content');
   }
-};
-
- 
+}

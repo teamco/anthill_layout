@@ -11,7 +11,7 @@ import {BaseElement} from '../../modules/Element';
 /**
  * Define Application export element
  * @class ExportElement
- * @extends module.BaseElement
+ * @extends BaseElement
  */
 export class ExportElement extends BaseElement {
 
@@ -37,13 +37,13 @@ export class ExportElement extends BaseElement {
    *  content,
    *  [autoload]: boolean
    * }} data
-   * @returns {module.ExportElement}
+   * @returns {ExportElement}
    */
   init(data) {
 
     /**
      * Define scope
-     * @type {module.Application}
+     * @type {Application}
      */
     const scope = this.view.scope;
 

@@ -10,7 +10,7 @@ import {BaseElement} from '../../modules/Element';
 /**
  * Define Button Element
  * @class ButtonElement
- * @type {module.ButtonElement}
+ * @type {ButtonElement}
  * @extends BaseElement
  */
 export class ButtonElement extends BaseElement {

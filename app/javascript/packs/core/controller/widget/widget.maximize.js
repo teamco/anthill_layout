@@ -7,9 +7,9 @@
 
 /**
  * @class WidgetMaximize
- * @type {module.WidgetMaximize}
+ * @type {WidgetMaximize}
  */
-module.exports = class WidgetMaximize {
+export class WidgetMaximize {
 
   /**
    * Check if widget already maximized
@@ -20,7 +20,7 @@ module.exports = class WidgetMaximize {
 
     /**
      * Get page
-     * @type {module.Page}
+     * @type {Page}
      */
     const page = this.getContainment();
 
@@ -98,7 +98,7 @@ module.exports = class WidgetMaximize {
 
     /**
      * Get page
-     * @type {module.Page}
+     * @type {Page}
      */
     const page = this.controller.getContainment();
 
@@ -124,7 +124,7 @@ module.exports = class WidgetMaximize {
 
     /**
      * Get page
-     * @type {modules.Page}
+     * @type {Page}
      */
     const page = this.controller.getContainment();
 
@@ -139,6 +139,6 @@ module.exports = class WidgetMaximize {
   afterReduce() {
     this.logger.debug('After reduce');
   }
-};
+}
 
  

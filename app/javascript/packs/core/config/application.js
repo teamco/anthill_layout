@@ -5,14 +5,14 @@ import {ApplicationController} from '../controller/application.controller';
 import {ApplicationModel} from '../model/application.model';
 import {ApplicationView} from '../view/application.view';
 import {ApplicationPermission} from '../permission/application.permission';
-import {ApplicationLocalListeners} from './listeners/application.listeners';
-import {ApplicationLocalPermission} from './permissions/application.permissions';
+import {applicationLocalListeners} from './listeners/application.listeners';
+import {applicationLocalPermission} from './permissions/application.permissions';
 import {MVC} from '../../modules/MVC';
 
 /**
  * @class Application
  * @extends AntHill
- * @type {module.Application|{prototype}}
+ * @type {Application|{prototype}}
  */
 export class Application extends AntHill {
 
@@ -24,8 +24,8 @@ export class Application extends AntHill {
   constructor(opts) {
     super('Application', null, true);
 
-    ApplicationLocalListeners();
-    ApplicationLocalPermission();
+    applicationLocalListeners();
+    applicationLocalPermission();
 
     /**
      * Default config
@@ -147,14 +147,14 @@ export class Application extends AntHill {
       handleVulnerabilities: ['/vulnerability_storages', 'post']
     };
 
-    // this.observer.batchPublish(
-    //     this.eventManager.eventList.defineSetting,
-    //     this.eventManager.eventList.setRoutes,
-    //     this.eventManager.eventList.initResizeWindow,
-    //     this.eventManager.eventList.successCreated,
-    //     this.eventManager.eventList.loadApplication,
-    //     this.eventManager.eventList.defineGlobalInstance,
-    //     this.eventManager.eventList.initScrollBehavior
-    // );
+    this.observer.batchPublish(
+        this.eventManager.eventList.defineSetting,
+        this.eventManager.eventList.setRoutes,
+        this.eventManager.eventList.initResizeWindow,
+        this.eventManager.eventList.successCreated,
+        this.eventManager.eventList.loadApplication,
+        this.eventManager.eventList.defineGlobalInstance,
+        this.eventManager.eventList.initScrollBehavior
+    );
   }
 }

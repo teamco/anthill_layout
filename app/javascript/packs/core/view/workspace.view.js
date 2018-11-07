@@ -6,18 +6,16 @@
  * To change this template use File | Settings | File Templates.
  */
 
-/**
- * @constant BaseView
- * @type {BaseView}
- */
-const BaseView = require('../lib/modules/View.js');
+import {BaseView} from '../../modules/View';
+import {WorkspaceElement} from '../element/workspace/workspace.element';
+import {WorkspaceContentElement} from '../element/workspace/workspace.content.element';
 
 /**
  * @class WorkspaceView
  * @extends BaseView
- * @type {module.WorkspaceView}
+ * @type {WorkspaceView}
  */
-module.exports = class WorkspaceView extends BaseView {
+export class WorkspaceView extends BaseView {
 
   /**
    * @constructor
@@ -25,7 +23,7 @@ module.exports = class WorkspaceView extends BaseView {
    * @param {Workspace} scope
    */
   constructor(name, scope) {
-    super('WorkspaceView', scope, false);
+    super('WorkspaceView', scope);
   }
 
   /**
@@ -35,14 +33,8 @@ module.exports = class WorkspaceView extends BaseView {
   renderWorkspace() {
 
     /**
-     * @constant WorkspaceElement
-     * @type {module.WorkspaceElement}
-     */
-    const WorkspaceElement = require('../element/workspace/workspace.element.js');
-
-    /**
      * Define $workspace
-     * @type {module.WorkspaceElement}
+     * @type {WorkspaceElement}
      */
     this.elements.$workspace = new WorkspaceElement(this, {
       $container: this.getContainerSelector()
@@ -60,14 +52,8 @@ module.exports = class WorkspaceView extends BaseView {
   pages() {
 
     /**
-     * @constant WorkspaceContentElement
-     * @type {module.WorkspaceContentElement}
-     */
-    const WorkspaceContentElement = require('../element/workspace/workspace.content.element.js');
-
-    /**
      * Define $pages
-     * @type {module.WorkspaceContentElement}
+     * @type {WorkspaceContentElement}
      */
     this.elements.$pages = new WorkspaceContentElement(this, {
       $container: this.get$item().$,
@@ -83,4 +69,4 @@ module.exports = class WorkspaceView extends BaseView {
   render(silent) {
     this.scope.observer.publish(this.scope.eventManager.eventList.successRendered, silent);
   }
-};
+}

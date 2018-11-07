@@ -10,7 +10,7 @@
  * @class Interactions
  * @type {module.Interactions}
  */
-module.exports = class Interactions {
+export class Interactions {
 
   /**
    * Check permission
@@ -58,7 +58,7 @@ module.exports = class Interactions {
    * @returns {boolean}
    */
   isDisabled() {
-    return false;
+    return !this.isEnabled();
   }
 
   /**
@@ -228,4 +228,4 @@ module.exports = class Interactions {
 
     return {height: widget.dom.height + deltaHeight};
   }
-};
+}

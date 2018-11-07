@@ -6,19 +6,15 @@
  * To change this template use File | Settings | File Templates.
  */
 
-/**
- * @constant BaseElement
- * @type {BaseElement|*}
- */
-const BaseElement = require('../../lib/modules/Element.js');
+import {BaseElement} from '../../../modules/Element';
 
 /**
  * Define Workspace element
  * @extends BaseElement
  * @class WorkspaceElement
- * @type {module.WorkspaceElement}
+ * @type {WorkspaceElement}
  */
-module.exports = class WorkspaceElement extends BaseElement {
+export class WorkspaceElement extends BaseElement {
 
   /**
    * @param {WorkspaceView} view
@@ -26,7 +22,7 @@ module.exports = class WorkspaceElement extends BaseElement {
    * @constructor
    */
   constructor(view, opts) {
-    super('WorkspaceElement', view, false);
+    super('WorkspaceElement', view);
     this._config(view, opts, $('<workspace />')).build(opts);
   }
 
@@ -125,4 +121,4 @@ module.exports = class WorkspaceElement extends BaseElement {
         item.view.get$item().setVisibility(true) :
         this.view.scope.logger.warn('Item with no View', item);
   }
-};
+}

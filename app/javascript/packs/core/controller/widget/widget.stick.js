@@ -7,9 +7,9 @@
 
 /**
  * @class WidgetStick
- * @type {module.WidgetStick}
+ * @type {WidgetStick}
  */
-module.exports = class WidgetStick {
+export class WidgetStick {
 
   /**
    * Unset stick
@@ -109,6 +109,6 @@ module.exports = class WidgetStick {
     this.logger.debug('restoreWidgetSticker');
     this.view.get$item().restoreSticker();
   }
-};
+}
 
  

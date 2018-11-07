@@ -4,9 +4,9 @@
 
 /**
  * @class WidgetOverlapping
- * @type {module.WidgetOverlapping}
+ * @type {WidgetOverlapping}
  */
-module.exports = class WidgetOverlapping {
+export class WidgetOverlapping {
 
   /**
    * Adopt layer of a widgets
@@ -137,5 +137,5 @@ module.exports = class WidgetOverlapping {
       }
     }
   }
-};
+}
   

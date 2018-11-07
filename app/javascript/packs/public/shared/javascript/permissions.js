@@ -6,10 +6,16 @@
  * To change this template use File | Settings | File Templates.
  */
 
-(() => {
-  // require('./permissions/application.permissions.js')();
-  // require('./permissions/workspace.permissions.js')();
-  // require('./permissions/page.permissions.js')();
-  // require('./permissions/layout.permissions.js')();
-  // require('./permissions/widget.permissions.js')();
-})();
+import {applicationGlobalPermissions} from './permissions/application.permissions';
+import {workspaceGlobalPermissions} from './permissions/workspace.permissions';
+import {layoutGlobalPermissions} from './permissions/layout.permissions';
+import {pageGlobalPermissions} from './permissions/page.permissions';
+import {widgetGlobalPermissions} from './permissions/widget.permissions';
+
+export const permissions = {
+  application: applicationGlobalPermissions,
+  workspace: workspaceGlobalPermissions,
+  page: pageGlobalPermissions,
+  layout: layoutGlobalPermissions,
+  widget: widgetGlobalPermissions
+};

@@ -6,18 +6,14 @@
  * To change this template use File | Settings | File Templates.
  */
 
-/**
- * @constant BaseElement
- * @type {BaseElement|*}
- */
-const BaseElement = require('../../lib/modules/Element.js');
+import {BaseElement} from '../../../modules/Element';
 
 /**
  * @extends BaseElement
  * @class PageContentElement
- * @type {module.PageContentElement}
+ * @type {PageContentElement}
  */
-module.exports = class PageContentElement extends BaseElement {
+export class PageContentElement extends BaseElement {
 
   /**
    * @param {PageView} view
@@ -25,7 +21,7 @@ module.exports = class PageContentElement extends BaseElement {
    * @constructor
    */
   constructor(view, opts) {
-    super('PageContentElement', view, false);
+    super('PageContentElement', view);
     this._config(view, opts, $('<widgets />')).build(opts);
   }
-};
+}

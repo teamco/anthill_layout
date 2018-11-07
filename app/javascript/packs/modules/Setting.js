@@ -1,13 +1,10 @@
-/**
- * @constant Router
- * @type {Router}
- */
-const Router = require('./Router.js');
+import {Router} from './Router';
 
 /**
  * @constant LZString
+ * @type {{}}
  */
-const LZString = require('../lz-string.js');
+const LZString = require('lz-string');
 
 /**
  * Define Setting
@@ -15,14 +12,14 @@ const LZString = require('../lz-string.js');
  * @extends Router
  * @type {module.Setting}
  */
-module.exports = class Setting extends Router {
+export class Setting extends Router {
 
   /**
    * @param {*} scope
    * @constructor
    */
   constructor(scope) {
-    super('Setting', scope, false);
+    super('Setting');
 
     /**
      * Define scope
@@ -446,5 +443,4 @@ module.exports = class Setting extends Router {
   makeScreenshot(make, domElement, callback) {
     make ? this.base.lib.image.resizeThumbnail(domElement, callback) : callback();
   }
-
-};
+}

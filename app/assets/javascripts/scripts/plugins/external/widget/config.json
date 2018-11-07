@@ -1,9 +1,0 @@
-{
-  "name": "External widget",
-  "description": "A simple external widget",
-  "type": "External gallery",
-  "resource": "external.widget",
-  "width": 50,
-  "height": 50,
-  "thumbnail": "images/image.png"
-}

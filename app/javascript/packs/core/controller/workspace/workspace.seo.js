@@ -9,7 +9,7 @@
  * Define WorkspaceSEO
  * @class WorkspaceSEO
  */
-module.exports = class WorkspaceSEO {
+export class WorkspaceSEO {
 
   /**
    * Update metadata
@@ -121,4 +121,4 @@ module.exports = class WorkspaceSEO {
     const siteAuthor = this.model.getConfig('preferences')['siteAuthor'] || $item.getSiteAuthor();
     $item.setSiteAuthor(siteAuthor);
   }
-};
+}

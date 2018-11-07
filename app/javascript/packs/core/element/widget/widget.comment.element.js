@@ -5,45 +5,36 @@
  * Time: 10:12 PM
  * To change this template use File | Settings | File Templates.
  */
+import {ButtonElement} from '../button.element';
+import {BaseElement} from '../../../modules/Element';
 
-defineP([
-  'modules/Element',
-  'element/button.element'
-], function defineComment(BaseElement, ButtonElement) {
+/**
+ * Define Comment
+ * @param view
+ * @param opts
+ * @class WidgetCommentElement
+ * @constructor
+ * @extends BaseElement
+ */
+export class WidgetCommentElement extends BaseElement{
 
-  /**
-   * Define Comment
-   * @param view
-   * @param opts
-   * @returns {WidgetCommentElement}
-   * @class WidgetCommentElement
-   * @constructor
-   * @extends BaseElement
-   */
-  var WidgetCommentElement = function WidgetCommentElement(view, opts) {
-
+  constructor(view, opts) {
+    super('WidgetCommentElement', view);
     this._config(view, opts, $('<div />')).build({
       $container: opts.$container,
       destroy: true
     });
 
     this.defineContent(ButtonElement);
+  }
 
-    return this;
-  };
-
-  return WidgetCommentElement.extend('WidgetCommentElement', {
-
-    /**
-     * Define comments content
-     * @param {ButtonElement} ButtonElement
-     */
-    defineContent: function defineContent(ButtonElement) {
-
-      this.renderCommentsForm(ButtonElement, {
-        visible: true
-      });
-    }
-
-  }, BaseElement.prototype);
-});
+  /**
+   * Define comments content
+   * @param {ButtonElement} ButtonElement
+   */
+  defineContent(ButtonElement) {
+    this.renderCommentsForm(ButtonElement, {
+      visible: true
+    });
+  }
+}

@@ -4,14 +4,9 @@
  * Date: 2/23/15
  * Time: 11:50 PM
  */
+import {Widget} from '../../../../core/config/widget';
 
-/**
- * @constant Widget
- * @type {module.Widget}
- */
-// const Widget = require('../../../../scripts/core/config/widget.js');
-
-module.exports = () => {
+export const widgetGlobalPermissions = () => {
 
   /**
    * Define Widget global permission

@@ -9,7 +9,7 @@
  * Define LayoutEmptyColumns
  * @class LayoutEmptyColumns
  */
-module.exports = class LayoutEmptyColumns {
+export class LayoutEmptyColumns {
 
   /**
    * @param {Layout} layout
@@ -100,19 +100,24 @@ module.exports = class LayoutEmptyColumns {
     const widgetOrder = Object.keys(widgets);
 
     // Sort widget UUIDs by widget position
-    widgetOrder.sort(function(a, b) {
+    widgetOrder.sort((a, b) => {
       a = widgets[a];
       b = widgets[b];
+      let res = 0;
       const aBottom = a.dom.row + a.dom.relHeight,
           bBottom = b.dom.row + b.dom.relHeight;
       switch (true) {
         case (aBottom < bBottom):
-          return -1;
+          res = -1;
+          break;
         case (aBottom > bBottom):
-          return 1;
+          res = 1;
+          break;
         default:
-          return 0;
+          res = 0;
+          break;
       }
+      return res;
     });
 
     return widgetOrder;
@@ -147,4 +152,4 @@ module.exports = class LayoutEmptyColumns {
     }
     return null;
   }
-};
+}

@@ -6,7 +6,7 @@ import {BaseElement} from '../../modules/Element';
 
 /**
  * @class FilterElement
- * @type {module.FilterElement}
+ * @type {FilterElement}
  * @extends BaseElement
  */
 export class FilterElement extends BaseElement {

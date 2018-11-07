@@ -4,14 +4,9 @@
  * Date: 5/1/13
  * Time: 7:22 PM
  */
+import {BaseAPI} from '../../modules/API';
 
-/**
- * @constant BaseAPI
- * @type {module.BaseAPI}
- */
-const BaseAPI = require('../lib/modules/API.js');
-
-module.exports = class WidgetAPI extends BaseAPI {
+export class WidgetAPI extends BaseAPI {
 
   /**
    * @param {Widget} scope
@@ -19,7 +14,7 @@ module.exports = class WidgetAPI extends BaseAPI {
    * @constructor
    */
   constructor(name, scope) {
-    super('WidgetAPI', scope, false);
+    super('WidgetAPI', scope);
   }
 
   /**
@@ -96,6 +91,6 @@ module.exports = class WidgetAPI extends BaseAPI {
     const scope = this.scope;
     scope.observer.publish(scope.eventManager.eventList[interaction]);
   }
-};
+}
 
   

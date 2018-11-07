@@ -3,7 +3,7 @@
  * @class Base
  * @constructor
  */
-module.exports = class Base {
+export class Base {
 
   /**
    * @constructor
@@ -239,4 +239,4 @@ module.exports = class Base {
     // Call timer
     _poll();
   }
-};
+}
