@@ -12,10 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2018_11_01_202629) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
-  create_table "author_items", id: :serial, force: :cascade do |t|
+  create_table "author_items", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "user_id"
     t.boolean "visible", default: true
     t.boolean "public", default: false
@@ -24,7 +21,7 @@ ActiveRecord::Schema.define(version: 2018_11_01_202629) do
     t.index ["user_id"], name: "index_author_items_on_user_id"
   end
 
-  create_table "author_site_storage_widgets", id: :serial, force: :cascade do |t|
+  create_table "author_site_storage_widgets", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "site_storage_id"
     t.integer "widget_id"
     t.datetime "created_at", null: false
@@ -33,7 +30,7 @@ ActiveRecord::Schema.define(version: 2018_11_01_202629) do
     t.index ["widget_id"], name: "index_author_site_storage_widgets_on_widget_id"
   end
 
-  create_table "author_site_storages", id: :serial, force: :cascade do |t|
+  create_table "author_site_storages", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "uuid"
     t.string "key"
     t.integer "site_type_id"
@@ -41,42 +38,42 @@ ActiveRecord::Schema.define(version: 2018_11_01_202629) do
     t.integer "layout_type", default: 0
   end
 
-  create_table "author_site_storages_users", id: false, force: :cascade do |t|
+  create_table "author_site_storages_users", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "site_storage_id"
     t.integer "user_id"
     t.index ["site_storage_id"], name: "index_author_site_storages_users_on_site_storage_id"
     t.index ["user_id"], name: "index_author_site_storages_users_on_user_id"
   end
 
-  create_table "author_site_types", id: :serial, force: :cascade do |t|
+  create_table "author_site_types", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.integer "item_id"
   end
 
-  create_table "author_site_versions", id: :serial, force: :cascade do |t|
+  create_table "author_site_versions", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "version"
     t.integer "site_storage_id"
     t.boolean "activated", default: false
-    t.text "content"
+    t.text "content", limit: 16777215
     t.integer "item_id"
-    t.text "screenshot"
+    t.text "screenshot", limit: 16777215
     t.boolean "published", default: false
     t.boolean "deployed", default: false
     t.index ["site_storage_id"], name: "index_author_site_versions_on_site_storage_id"
   end
 
-  create_table "author_widget_categories", id: :serial, force: :cascade do |t|
+  create_table "author_widget_categories", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name_index"
     t.string "name_value"
     t.integer "item_id"
   end
 
-  create_table "author_widgets", id: :serial, force: :cascade do |t|
+  create_table "author_widgets", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "widget_category_id"
     t.string "uuid"
     t.string "name"
-    t.text "description"
-    t.text "thumbnail"
+    t.text "description", limit: 16777215
+    t.text "thumbnail", limit: 16777215
     t.integer "width"
     t.integer "height"
     t.string "resource"
@@ -85,12 +82,12 @@ ActiveRecord::Schema.define(version: 2018_11_01_202629) do
     t.integer "item_id"
   end
 
-  create_table "error_logs", id: :serial, force: :cascade do |t|
+  create_table "error_logs", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "user_log_id"
     t.string "name"
     t.text "message"
     t.text "exception"
-    t.text "backtrace"
+    t.text "backtrace", limit: 16777215
     t.boolean "is_fixed", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -98,13 +95,13 @@ ActiveRecord::Schema.define(version: 2018_11_01_202629) do
     t.index ["user_log_id"], name: "index_error_logs_on_user_log_id"
   end
 
-  create_table "roles", id: :serial, force: :cascade do |t|
+  create_table "roles", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "user_logs", id: :serial, force: :cascade do |t|
+  create_table "user_logs", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "user_id"
     t.string "remote_addr"
     t.string "session_id"
@@ -119,7 +116,7 @@ ActiveRecord::Schema.define(version: 2018_11_01_202629) do
     t.string "protocol"
     t.string "host"
     t.string "port"
-    t.text "user_params"
+    t.text "user_params", limit: 16777215
     t.text "user_session"
     t.text "query_string"
     t.string "http_accept"
@@ -134,7 +131,7 @@ ActiveRecord::Schema.define(version: 2018_11_01_202629) do
     t.index ["user_id"], name: "index_user_logs_on_user_id"
   end
 
-  create_table "users", id: :serial, force: :cascade do |t|
+  create_table "users", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -171,7 +168,7 @@ ActiveRecord::Schema.define(version: 2018_11_01_202629) do
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 
-  create_table "vulnerability_storages", id: :serial, force: :cascade do |t|
+  create_table "vulnerability_storages", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "site_storage_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

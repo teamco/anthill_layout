@@ -62,30 +62,42 @@ module Author::SiteStoragesHelper
     send("js_#{storage[:mode]}", storage)
   end
 
-  def js_development(storage)
-    javascript_pack_tag('development', js_opts(storage))
-  end
-
-  def js_consumption(storage)
-    javascript_pack_tag('app.consumption', js_opts(storage))
+  def load_css(storage)
+    send("css_#{storage[:mode]}")
   end
 
   private
 
-  def js_opts(storage)
-    {
-        'data-resource': storage[:key],
-        'data-user': current_user.nil? ? 'guest' : current_user.email,
-        'data-current': storage[:show],
-        'data-published': storage[:published],
-        'data-version': storage[:last],
-        'data-activated': storage[:activated],
-        'data-mode': storage[:mode],
-        'data-environment': Rails.env,
-        'data-deployed': storage[:deployed],
-        'data-uuid': storage[:uuid],
-        'id': 'require-init'
-    }
-  end
+    def js_development(storage)
+      javascript_pack_tag('development', js_opts(storage))
+    end
+
+    def js_consumption(storage)
+      javascript_pack_tag('consumption', js_opts(storage))
+    end
+
+    def css_development()
+      stylesheet_pack_tag('development')
+    end
+
+    def css_consumption()
+      stylesheet_pack_tag('consumption')
+    end
+
+    def js_opts(storage)
+      {
+          'data-resource': storage[:key],
+          'data-user': current_user.nil? ? 'guest' : current_user.email,
+          'data-current': storage[:show],
+          'data-published': storage[:published],
+          'data-version': storage[:last],
+          'data-activated': storage[:activated],
+          'data-mode': storage[:mode],
+          'data-environment': Rails.env,
+          'data-deployed': storage[:deployed],
+          'data-uuid': storage[:uuid],
+          'id': 'require-init'
+      }
+    end
 
 end

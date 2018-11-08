@@ -60,11 +60,9 @@ export class BaseRules extends aggregation(AntHill, AddRuleRenderer, BaseRulesDa
    * @private
    */
   getTemplate(text) {
-    return $([
-      '<div class="input-group">',
-      '<span class="input-group-addon">', text, '</span>',
-      '</div>'
-    ].join(''));
+    return $(`<div class="input-group">
+        <span class="input-group-addon">${text}</span>
+        </div>`);
   }
 
   /**
