@@ -1,99 +1,65 @@
+import {PluginController} from '../../plugin.controller';
+import {Routes} from '../../../core/config/routes';
+import {PreferencesController} from '../../preferences/preferences.controller';
+import {SiteConfigActivate} from './controller/site.config.activate';
+import {SiteConfigCleanup} from './controller/site.config.cleanup';
+import {SiteConfigExport} from './controller/site.config.export';
+import {SiteConfigImport} from './controller/site.config.import';
+import {SiteConfigPreferences} from './controller/site.config.preferences';
+import {SiteConfigPublish} from './controller/site.config.publish';
+import {SiteConfigWidgetGenerator} from './controller/site.config.widget.generator';
+
 /**
- * Created with RubyMine.
- * User: teamco
- * Date: 2/23/14
- * Time: 11:03 AM
+ * Aggregation of base class and mixin classes.
+ * @type {(function(*, ...[*]): __Aggregate)|*|(function(): aggregate)}
  */
+const aggregation = require('../../../lib/extends/aggregation');
 
-defineP(
-    [
-      'plugins/plugin.controller',
-      'config/routes',
-      'plugins/site.config/mvc/controller/site.config.import',
-      'plugins/site.config/mvc/controller/site.config.export',
-      'plugins/site.config/mvc/controller/site.config.cleanup',
-      'plugins/site.config/mvc/controller/site.config.preferences',
-      'plugins/site.config/mvc/controller/site.config.activate',
-      'plugins/site.config/mvc/controller/site.config.publish',
-      'plugins/site.config/mvc/controller/site.config.widget.generator',
-      'plugins/preferences/preferences.controller'
-    ],
+/**
+ * @class SiteConfigController
+ */
+export class SiteConfigController extends aggregation(PluginController, Routes, PreferencesController,
+    SiteConfigActivate, SiteConfigCleanup, SiteConfigExport, SiteConfigImport, SiteConfigPreferences,
+    SiteConfigPublish, SiteConfigWidgetGenerator) {
 
-    /**
-     * Define SiteConfigController
-     * @param {PluginController} PluginController
-     * @param {Routes} Routes
-     * @param {SiteConfigImport} SiteConfigImport
-     * @param {SiteConfigExport} SiteConfigExport
-     * @param {SiteConfigCleanup} SiteConfigCleanup
-     * @param {SiteConfigPreferences} SiteConfigPreferences
-     * @param {SiteConfigActivate} SiteConfigActivate
-     * @param {SiteConfigPublish} SiteConfigPublish
-     * @param {SiteConfigWidgetGenerator} SiteConfigWidgetGenerator
-     * @param {PreferencesController} PreferencesController
-     * @returns {SiteConfigController}
-     */
-    function defineSiteConfigController(PluginController, Routes,
-        SiteConfigImport, SiteConfigExport, SiteConfigCleanup,
-        SiteConfigPreferences, SiteConfigActivate, SiteConfigPublish,
-        SiteConfigWidgetGenerator, PreferencesController) {
+  /**
+   * @constructor
+   * @param name
+   * @param scope
+   */
+  constructor(name, scope) {
+    super('SiteConfigController', scope);
+  }
 
-      /**
-       * Define site config controller
-       * @class SiteConfigController
-       * @extends PluginController
-       * @extends Routes
-       * @extends SiteConfigImport
-       * @extends PreferencesController
-       * @extends SiteConfigExport
-       * @extends SiteConfigCleanup
-       * @extends SiteConfigPreferences
-       * @extends SiteConfigActivate
-       * @extends SiteConfigPublish
-       * @extends SiteConfigWidgetGenerator
-       * @constructor
-       */
-      var SiteConfigController = function SiteConfigController() {
-      };
+  /**
+   * Get module data
+   * @memberOf SiteConfigController
+   * @returns {*}
+   */
+  getModuleData() {
+    return this.model.getDataItems(
+        this.getWorkspace()
+    );
+  }
 
-      return SiteConfigController.extend(
-          'SiteConfigController', {
-
-            /**
-             * Get module data
-             * @memberOf SiteConfigController
-             * @returns {*}
-             */
-            getModuleData: function getModuleData() {
-              return this.model.getDataItems(
-                  this.getWorkspace()
-              );
-            },
-
-            /**
-             * Load site content
-             * @memberOf SiteConfigController
-             * @param opened
-             */
-            loadModuleContent: function loadModuleContent(opened) {
-              if (opened) {
-                this.getView().renderContent(
-                    this.getData()
-                );
-              }
-            }
-          },
-
-          PluginController.prototype,
-          Routes.prototype,
-          SiteConfigImport.prototype,
-          SiteConfigExport.prototype,
-          SiteConfigCleanup.prototype,
-          SiteConfigPreferences.prototype,
-          SiteConfigActivate.prototype,
-          SiteConfigPublish.prototype,
-          SiteConfigWidgetGenerator.prototype,
-          PreferencesController.prototype
+  /**
+   * Load site content
+   * @memberOf SiteConfigController
+   * @param opened
+   */
+  loadModuleContent(opened) {
+    if (opened) {
+      this.getView().renderContent(
+          this.getData()
       );
     }
-);
+  }
+}
+
+//           SiteConfigImport.prototype,
+//           SiteConfigExport.prototype,
+//           SiteConfigCleanup.prototype,
+//           SiteConfigPreferences.prototype,
+//
+//           SiteConfigPublish.prototype,
+//           SiteConfigWidgetGenerator.prototype

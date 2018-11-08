@@ -1,91 +1,79 @@
 /**
  * Created by teamco on 11/4/14.
  */
-defineP(function defineSiteConfigCleanup() {
+
+/**
+ * @class SiteConfigCleanup
+ */
+export class SiteConfigCleanup {
 
   /**
-   * Define SiteConfig Cleanup
-   * @class SiteConfigCleanup
-   * @extends BaseController
-   * @extends Routes
-   * @constructor
+   * Clean up local storage
+   * @memberOf SiteConfigCleanup
    */
-  var SiteConfigCleanup = function SiteConfigCleanup() {
-  };
-
-  return SiteConfigCleanup.extend('SiteConfigCleanup', {
+  cleanUpLocalStorage() {
 
     /**
-     * Clean up local storage
-     * @memberOf SiteConfigCleanup
+     * Get scope
+     * @type {SiteConfig}
      */
-    cleanUpLocalStorage: function cleanUpLocalStorage() {
+    const scope = this;
 
-      /**
-       * Get scope
-       * @type {SiteConfigCleanup}
-       */
-      var scope = this;
+    scope.view.cleanUpConfirmation();
 
-      scope.view.cleanUpConfirmation();
+    scope.eventManager.subscribePublishOn(scope.controller.root(), () => {
 
-      scope.eventManager.subscribePublishOn(
-          scope.controller.root(),
-          function _afterUpdateStorageCallback() {
-
-            // Reload without cache
-            // document.location.reload(true);
-
-            /**
-             * Get root
-             * @type {Application}
-             */
-            var root = scope.controller.root();
-
-            // Store current location
-            var currentLocation = window.location.href;
-
-            var regExp = new RegExp([
-              ('[' + root.config.appName),
-              (root.controller.getMode()),
-              '](\\d+)'
-            ].join('/'));
-
-            if (!(regExp && currentLocation.match(regExp))) {
-              scope.logger.warn('Unable to fetch latest version');
-              return false;
-            }
-
-            window.location.href = currentLocation.replace(regExp,
-                '/' + root.model.getConfig('version'));
-          }
-      );
-    },
-
-    /**
-     * Approve clean up
-     * @memberOf SiteConfigCleanup
-     */
-    approveCleanUp: function approveCleanUp() {
-
-      /**
-       * Define scope
-       * @memberOf SiteConfig
-       */
-      var scope = this.scope,
-          $modal = scope.view.elements.$modal;
-
-      if (scope.base.isDefined($modal)) {
-        $modal.selfDestroy();
-      }
+      // Reload without cache
+      // document.location.reload(true);
 
       /**
        * Get root
        * @type {Application}
        */
-      var root = this.root();
+      const root = scope.controller.root();
 
-      root.model.setting.clear();
+      // Store current location
+      const currentLocation = window.location.href;
+
+      const regExp = new RegExp([
+        ('[' + root.config.appName),
+        (root.controller.getMode()),
+        '](\\d+)'
+      ].join('/'));
+
+      if (!(regExp && currentLocation.match(regExp))) {
+        scope.logger.warn('Unable to fetch latest version');
+        return false;
+      }
+
+      window.location.href = currentLocation.replace(regExp,
+          '/' + root.model.getConfig('version'));
+    });
+  }
+
+  /**
+   * Approve clean up
+   * @memberOf SiteConfigCleanup
+   */
+  approveCleanUp() {
+
+    /**
+     * Define scope
+     * @memberOf SiteConfig
+     */
+    const scope = this.scope,
+        $modal = scope.view.elements.$modal;
+
+    if ($modal) {
+      $modal.selfDestroy();
     }
-  });
-});
+
+    /**
+     * Get root
+     * @type {Application}
+     */
+    const root = this.root();
+
+    root.model.setting.clear();
+  }
+}

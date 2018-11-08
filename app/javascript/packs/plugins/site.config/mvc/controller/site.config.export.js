@@ -1,45 +1,30 @@
 /**
- * Created by teamco on 11/4/14.
+ * @class SiteConfigExport
  */
-
-defineP(function defineSiteConfigExport() {
+export class SiteConfigExport {
 
   /**
-   * Define site Export
-   * @class SiteConfigExport
-   * @extends BaseController
-   * @constructor
+   * Export site data
+   * @memberOf SiteConfigExport
    */
-  var SiteConfigExport = function SiteConfigExport() {
-  };
+  exportSiteData() {
 
-  return SiteConfigExport.extend('SiteConfigExport', {
+    const root = this.controller.root(),
+        setting = root.model.setting,
+        ns = setting.getNameSpace();
 
-    /**
-     * Export site data
-     * @memberOf SiteConfigExport
-     */
-    exportSiteData: function exportSiteData() {
+    const fName = [ns, root.model.getUUID()].join('-');
 
-      var root = this.controller.root(),
-          setting = root.model.setting,
-          ns = setting.getNameSpace();
-
-      var fName = [
-        ns, root.model.getUUID()
-      ].join('-');
-
-      root.view.renderExportLink({
-        type: 'text/json',
-        fileName: fName + '.json',
-        content: JSON.stringify(
-            setting.decompress(
-                setting.getStorage().getItem([ns])
-            )
-        ),
-        title: 'Export JSON',
-        autoload: true
-      });
-    }
-  });
-});
+    root.view.renderExportLink({
+      type: 'text/json',
+      fileName: fName + '.json',
+      content: JSON.stringify(
+          setting.decompress(
+              setting.getStorage().getItem([ns])
+          )
+      ),
+      title: 'Export JSON',
+      autoload: true
+    });
+  }
+}

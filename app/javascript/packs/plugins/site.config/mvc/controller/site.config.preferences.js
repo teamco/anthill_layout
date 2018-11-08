@@ -2,65 +2,52 @@
  * Created by teamco on 11/4/14.
  */
 
-defineP(function defineSiteConfigPreferences() {
+/**
+ * @class SiteConfigPreferences
+ */
+export class SiteConfigPreferences {
 
   /**
-   * Define SiteConfig Preferences
-   * @class SiteConfigPreferences
-   * @extends BaseController
-   * @constructor
+   * Load preferences
+   * @memberOf SiteConfigPreferences
+   * @param data
    */
-  var SiteConfigPreferences = function SiteConfigPreferences() {
-  };
+  loadSitePreferences(data) {
+    this.view.showPreferences(data, this.model.getSiteWidthRange());
+  }
 
-  return SiteConfigPreferences.extend('SiteConfigPreferences', {
-
-    /**
-     * Load preferences
-     * @memberOf SiteConfigPreferences
-     * @param data
-     */
-    loadSitePreferences: function loadSitePreferences(data) {
-      this.view.showPreferences(
-          data,
-          this.model.getSiteWidthRange()
-      );
-    },
+  /**
+   * Approve update preferences
+   * @memberOf SiteConfigPreferences
+   */
+  approveUpdatePreferences() {
 
     /**
-     * Approve update preferences
-     * @memberOf SiteConfigPreferences
+     * Define scope
+     * @type {SitePreferences}
      */
-    approveUpdatePreferences: function approveUpdatePreferences() {
+    const scope = this.scope;
+    const workspace = scope.controller.getWorkspace();
 
-      /**
-       * Define scope
-       * @type {SitePreferences}
-       */
-      var scope = this.scope,
-          workspace = scope.controller.getWorkspace();
+    workspace.controller.updatePreferences(
+        scope.view.elements.$modal,
+        false
+    );
+  }
 
-      workspace.controller.updatePreferences(
-          scope.view.elements.$modal,
-          false
-      );
-    },
+  /**
+   * Revert preferences on cancel
+   * @memberOf SiteConfigPreferences
+   */
+  revertSitePreferences() {
 
     /**
-     * Revert preferences on cancel
-     * @memberOf SiteConfigPreferences
+     * Define workspace
+     * @type {Workspace}
      */
-    revertSitePreferences: function revertSitePreferences() {
+    const workspace = this.getWorkspace();
 
-      /**
-       * Define workspace
-       * @type {Workspace}
-       */
-      var workspace = this.getWorkspace();
-
-      workspace.observer.publish(
-          workspace.eventManager.eventList.updateSiteWidth
-      );
-    }
-  });
-});
+    workspace.observer.publish(workspace.eventManager.eventList.updateSiteWidth);
+  }
+}
+  

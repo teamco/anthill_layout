@@ -2,93 +2,85 @@
  * Created by teamco on 11/4/14.
  */
 
-defineP(function defineSiteConfigImport() {
+/**
+ * @class SiteConfigImport
+ */
+export class SiteConfigImport {
 
   /**
-   * Define site import
-   * @class SiteConfigImport
-   * @extends BaseController
-   * @constructor
+   * Import site data
+   * @memberOf SiteConfigImport
    */
-  var SiteConfigImport = function SiteConfigImport() {
-  };
+  importSiteData() {
+    this.view.showImportData();
+  }
 
-  return SiteConfigImport.extend('SiteConfigImport', {
-
-    /**
-     * Import site data
-     * @memberOf SiteConfigImport
-     */
-    importSiteData: function importSiteData() {
-      this.view.showImportData();
-    },
+  /**
+   * Approve import site data
+   * @memberOf SiteConfigImport
+   */
+  approveImportSiteData() {
 
     /**
-     * Approve import site data
-     * @memberOf SiteConfigImport
+     * Get scope
+     * @type {SiteConfig}
      */
-    approveImportSiteData: function approveImportSiteData() {
-
-      /**
-       * Get scope
-       * @type {SiteConfig}
-       */
-      var scope = this.scope;
-
-      /**
-       * Get view elements
-       * @type {SiteConfigView.elements|{$import}}
-       */
-      var elements = scope.view.elements;
-
-      /**
-       * Get $modal
-       * @type {ModalElement}
-       */
-      var $modal = scope.view.get$modal();
-
-      if (!$modal || $modal.$buttons.confirm.disabled) {
-        return false;
-      }
-
-      this.root().model.setting.importData(
-          elements.$import.data,
-          true
-      );
-
-      $modal.$buttons.reload.enable();
-      $modal.$buttons.confirm.disable();
-      $modal.$buttons.reject.destroy();
-      $modal.$buttons.closeX.destroy();
-    },
+    const scope = this.scope;
 
     /**
-     * Ready to import site data
-     * @memberOf SiteConfigImport
-     * @param {object} json
-     * @param {File} file
+     * Get view elements
+     * @type {SiteConfigView.elements|{$import}}
      */
-    readyToImportSiteData: function readyToImportSiteData(json, file) {
-      this.view.showApproveImportData(json, file);
-    },
+    const elements = scope.view.elements;
 
     /**
-     * Reload site data
-     * @memberOf SiteConfigImport
+     * Get $modal
+     * @type {ModalElement}
      */
-    reloadSiteData: function reloadSiteData() {
+    const $modal = scope.view.get$modal();
 
-      /**
-       * Get $modal
-       * @type {ModalElement}
-       */
-      var $modal = this.scope.view.get$modal();
-
-      if (!$modal || $modal.$buttons.reload.disabled) {
-        return false;
-      }
-
-      document.location.reload(true);
+    if (!$modal || $modal.$buttons.confirm.disabled) {
+      return false;
     }
-  });
-});
+
+    this.root().model.setting.importData(
+        elements.$import.data,
+        true
+    );
+
+    $modal.$buttons.reload.enable();
+    $modal.$buttons.confirm.disable();
+    $modal.$buttons.reject.destroy();
+    $modal.$buttons.closeX.destroy();
+  }
+
+  /**
+   * Ready to import site data
+   * @memberOf SiteConfigImport
+   * @param {object} json
+   * @param {File} file
+   */
+  readyToImportSiteData(json, file) {
+    this.view.showApproveImportData(json, file);
+  }
+
+  /**
+   * Reload site data
+   * @memberOf SiteConfigImport
+   */
+  reloadSiteData() {
+
+    /**
+     * Get $modal
+     * @type {ModalElement}
+     */
+    const $modal = this.scope.view.get$modal();
+
+    if (!$modal || $modal.$buttons.reload.disabled) {
+      return false;
+    }
+
+    document.location.reload(true);
+  }
+}
+  

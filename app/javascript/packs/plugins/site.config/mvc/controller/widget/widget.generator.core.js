@@ -2,141 +2,126 @@
  * Created by teamco on 7/15/15.
  */
 
-defineP(function defineWidgetGeneratorCore() {
+/**
+ * @export
+ * @class WidgetGeneratorCore
+ */
+export class WidgetGeneratorCore {
 
   /**
-   * Define WidgetGeneratorCore
-   * @class WidgetGeneratorCore
-   * @extends SiteConfigWidgetGenerator
-   * @extends WidgetGeneratorForm
-   * @constructor
+   * Define create widget step
+   * @memberOf WidgetGeneratorCore
    */
-  var WidgetGeneratorCore = function WidgetGeneratorCore() {
-  };
-
-  return WidgetGeneratorCore.extend('WidgetGeneratorCore', {
+  nextWidgetGenerator() {
 
     /**
-     * Define create widget step
-     * @memberOf WidgetGeneratorCore
+     * Define panel
+     * @type {Panel}
      */
-    nextWidgetGenerator: function nextWidgetGenerator() {
-
-      /**
-       * Define panel
-       * @type {Panel}
-       */
-      var panel = this.getDesignTimePanel();
-
-      /**
-       * Get gallery
-       * @type {Gallery}
-       */
-      var gallery = panel.controller.getGallery();
-
-      if (gallery) {
-        this.scope.view.showWidgetGenerator(
-            gallery.model.staticData.getDefaultData(),
-            gallery.model.dataTypes,
-            this.model.getConfig('widget')
-        );
-      }
-    },
+    const panel = this.getDesignTimePanel();
 
     /**
-     * Generate new widget
-     * @memberOf WidgetGeneratorCore
+     * Get gallery
+     * @type {Gallery}
      */
-    generateNewWidget: function generateNewWidget() {
+    const gallery = panel.controller.getGallery();
 
-      /**
-       * Get collector
-       * @type {{
-             *      category: string,
-             *      collector: {},
-             *      $modal: ModalElement,
-             *      clone,
-             *      validate: *,
-             *      empty: number
-             * }}
-       */
-      var data = this._collectFormWidgetData();
-
-      /**
-       * Get create new widget route
-       * @type {Routes.resources.createNewWidget|*}
-       */
-      var route = this.resources.createNewWidget;
-
-      $.ajax({
-
-        url: route[0],
-        method: route[1],
-
-        data: this.prepareXhrData({
-          author_widget: data.collector,
-          author_widget_clone: data.clone,
-          author_widget_category: {
-            name_index: data.category
-          }
-        }),
-
-        beforeSend: this._beforeSendWidgetData.bind({
-          controller: this,
-          data: data
-        }),
-
-        error: this._onErrorSendWidgetData.bind({
-          controller: this,
-          data: data
-        })
-
-      }).done(
-          this.generateNewWidgetCallback.bind(this)
+    if (gallery) {
+      this.scope.view.showWidgetGenerator(
+          gallery.model.staticData.getDefaultData(),
+          gallery.model.dataTypes,
+          this.model.getConfig('widget')
       );
-    },
+    }
+  }
+
+,
+
+  /**
+   * Generate new widget
+   * @memberOf WidgetGeneratorCore
+   */
+  generateNewWidget() {
 
     /**
-     * Define callback for generate new widget
-     * @memberOf WidgetGeneratorCore
-     * @param data
-     * @param status
-     * @param xhr
+     * @constant
+     * @type {*|boolean|{category: string, collector: {}, $modal: ModalElement, validate: *, empty: number}}
      */
-    generateNewWidgetCallback: function generateNewWidgetCallback(data, status,
-        xhr) {
+    const data = this._collectFormWidgetData();
 
-      this._handleSuccessSendWidgetData(data, status, xhr);
+    /**
+     * Get create new widget route
+     * @type {Routes.resources.createNewWidget|*}
+     */
+    const route = this.resources.createNewWidget;
 
-      /**
-       * Get $modal
-       * @type {ModalElement|string}
-       */
-      var $modal = this.scope.view.get$modal(),
-          msg = this.i18n.t('widget.generated.ok').
-              replace(/\{1}/, data.name);
+    $.ajax({
 
-      // Show message
-      $modal.handleNotification(msg, 'success');
+      url: route[0],
+      method: route[1],
 
-      /**
-       * Define panel
-       * @type {Panel}
-       */
-      var panel = this.getDesignTimePanel();
+      data: this.prepareXhrData({
+        author_widget: data.collector,
+        author_widget_clone: data.clone,
+        author_widget_category: {
+          name_index: data.category
+        }
+      }),
 
-      /**
-       * Get gallery
-       * @type {Gallery}
-       */
-      var gallery = panel.controller.getGallery();
+      beforeSend: this._beforeSendWidgetData.bind({
+        controller: this,
+        data: data
+      }),
 
-      if (gallery) {
-        gallery.model.staticData.addDefaultData(data);
-      }
+      error: this._onErrorSendWidgetData.bind({
+        controller: this,
+        data: data
+      })
 
-      this._clearWidgetForm();
-      this.loadWidgetsList();
+    }).done(
+        this.generateNewWidgetCallback.bind(this)
+    );
+  }
+
+  /**
+   * Define callback for generate new widget
+   * @memberOf WidgetGeneratorCore
+   * @param data
+   * @param status
+   * @param xhr
+   */
+  generateNewWidgetCallback(data, status, xhr) {
+
+    this._handleSuccessSendWidgetData(data, status, xhr);
+
+    /**
+     * Get $modal
+     * @type {ModalElement|string}
+     */
+    const $modal = this.scope.view.get$modal();
+    const msg = this.i18n.t('widget.generated.ok').replace(/\{1}/, data.name);
+
+    // Show message
+    $modal.handleNotification(msg, 'success');
+
+    /**
+     * Define panel
+     * @type {Panel}
+     */
+    const panel = this.getDesignTimePanel();
+
+    /**
+     * Get gallery
+     * @type {Gallery}
+     */
+    const gallery = panel.controller.getGallery();
+
+    if (gallery) {
+      gallery.model.staticData.addDefaultData(data);
     }
-  });
-});
+
+    this._clearWidgetForm();
+    this.loadWidgetsList();
+  }
+}
+  

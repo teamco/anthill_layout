@@ -188,6 +188,12 @@ export class ModalElement extends BaseElement {
      * @type {*|{}}
      */
     this.buttons = opts.buttons || {};
+
+    /**
+     * Button elements
+     * @type {*}
+     */
+    this.$buttons = undefined;
   }
 
   /**

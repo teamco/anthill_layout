@@ -5,25 +5,24 @@
  * Time: 11:02 AM
  */
 
-defineP([
-  'config/anthill',
-  'modules/MVC',
-  'plugins/site.config/mvc/site.config.controller',
-  'plugins/site.config/mvc/site.config.model',
-  'plugins/site.config/mvc/site.config.view',
-  'plugins/site.config/mvc/site.config.event.manager',
-  'plugins/site.config/mvc/site.config.permission'
-], function defineSiteConfig(AntHill, MVC, Controller, Model, View,
-    EventManager, Permission) {
+import 'site.config.css';
+
+import {AntHill} from '../../core/config/anthill';
+import {MVC} from '../../modules/MVC';
+
+/**
+ * Define SiteConfig
+ * @class SiteConfig
+ * @extends AntHill
+ */
+export class SiteConfig extends AntHill {
 
   /**
-   * Define SiteConfig
    * @constructor
    * @param containment
-   * @class SiteConfig
-   * @extends AntHill
    */
-  var SiteConfig = function SiteConfig(containment) {
+  constructor(containment) {
+    super('SiteConfig');
 
     /**
      * Define containment
@@ -53,25 +52,29 @@ defineP([
     this.allowToLocate = true;
 
     /**
-     * Define defaults
+     * @constant
      * @type {{
-     *      plugin: boolean,
-     *      getter: boolean,
-     *      html: {
-     *          style: string,
-     *          header: boolean,
-     *          footer: boolean,
-     *          floating: boolean,
-     *          padding: {
-     *              top: number,
-     *              right: number,
-     *              bottom: number,
-     *              left: number
-     *          }
-     *      }
+     *  plugin: boolean,
+     *  getter: boolean,
+     *  html: {
+     *    style: string,
+     *    header: boolean,
+     *    footer: boolean,
+     *    floating: boolean,
+     *    padding: {top: number, right: number, bottom: number, left: number}
+     *  },
+     *  routes: {
+     *    activateSiteStorage: string[],
+     *    createNewWidget: string[],
+     *    updateExistingWidget: string[],
+     *    publishSiteStorage: string[],
+     *    createExternalWidget: string[],
+     *    fetchExternalWidget: string[]
+     *  },
+     *  widget: {type: string, thumbnail: string, dimensions: {height: number, width: number}}
      * }}
      */
-    var DEFAULTS = {
+    const DEFAULTS = {
       plugin: true,
       getter: true,
       html: {
@@ -107,9 +110,9 @@ defineP([
     /**
      * Define MVC
      * @property SiteConfig
-     * @type {MVCJs}
+     * @type {MVC}
      */
-    this.mvc = new MVC({
+    new MVC({
       scope: this,
       config: [DEFAULTS],
       components: [
@@ -131,7 +134,5 @@ defineP([
         this.eventManager.eventList.updateTranslations,
         ['plugins/site.config/translations/en-us']
     );
-  };
-
-  return SiteConfig.extend('SiteConfig', {}, AntHill.prototype);
-});
+  }
+}
