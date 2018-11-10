@@ -3,13 +3,17 @@
  * @type {(function(*, ...[*]): __Aggregate)|*|(function(): aggregate)}
  */
 import {WidgetGeneratorCore} from './widget/widget.generator.core';
+import {WidgetGeneratorEdit} from './widget/widget.generator.edit';
+import {WidgetGeneratorExternal} from './widget/widget.generator.external';
+import {WidgetGeneratorForm} from './widget/widget.generator.form';
 
 const aggregation = require('../../../../lib/extends/aggregation');
 
 /**
  * @class SiteConfigWidgetGenerator
  */
-export class SiteConfigWidgetGenerator extends aggregation(WidgetGeneratorCore) {
+export class SiteConfigWidgetGenerator extends aggregation(WidgetGeneratorCore, WidgetGeneratorEdit,
+    WidgetGeneratorExternal, WidgetGeneratorForm) {
 
   /**
    * Define widget generator

@@ -5,7 +5,8 @@
  * Time: 11:02 AM
  */
 
-import 'site.config.css';
+import './site.config.css';
+import '../preferences/preferences.css';
 
 import {AntHill} from '../../core/config/anthill';
 import {MVC} from '../../modules/MVC';
@@ -132,7 +133,7 @@ export class SiteConfig extends AntHill {
 
     this.observer.publish(
         this.eventManager.eventList.updateTranslations,
-        ['plugins/site.config/translations/en-us']
+        ['plugins/siteConfig/translations/en-us']
     );
   }
 }

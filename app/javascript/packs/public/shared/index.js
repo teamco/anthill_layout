@@ -1,3 +1,5 @@
+import './css/shared.css';
+
 import {config} from './javascript/config';
 import {listeners} from './javascript/listeners';
 import {permissions} from './javascript/permissions';

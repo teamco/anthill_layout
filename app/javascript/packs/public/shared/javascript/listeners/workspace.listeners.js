@@ -9,9 +9,9 @@ import {Workspace} from '../../../../core/config/workspace';
 import {WorkspaceController} from '../../../../core/controller/workspace.controller';
 import {Panel} from '../../../../plugins/panel/panel';
 import {Gallery} from '../../../../plugins/gallery/gallery';
-import {PageData} from '../../../../plugins/page.data/page.data';
-import {WorkspaceData} from '../../../../plugins/workspace.data/workspace.data';
-import {WidgetRules} from '../../../../plugins/widget.rules/widget.rules';
+import {PageData} from '../../../../plugins/pageData/page.data';
+import {WorkspaceData} from '../../../../plugins/workspaceData/workspace.data';
+import {WidgetRules} from '../../../../plugins/widgetRules/widget.rules';
 import {Bar} from '../../../../plugins/bar/bar';
 
 export const workspaceGlobalListeners = () => {

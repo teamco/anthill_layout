@@ -55,11 +55,3 @@ export class SiteConfigController extends aggregation(PluginController, Routes, 
     }
   }
 }
-
-//           SiteConfigImport.prototype,
-//           SiteConfigExport.prototype,
-//           SiteConfigCleanup.prototype,
-//           SiteConfigPreferences.prototype,
-//
-//           SiteConfigPublish.prototype,
-//           SiteConfigWidgetGenerator.prototype

@@ -35,8 +35,6 @@ export class WidgetGeneratorCore {
     }
   }
 
-,
-
   /**
    * Generate new widget
    * @memberOf WidgetGeneratorCore

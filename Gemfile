@@ -77,7 +77,7 @@ gem 'coffee-rails'
 gem 'data_uri'
 gem 'font-awesome-sass'
 gem 'github_api'
-gem 'sass-rails'
+gem 'sassc'
 
 gem 'i18n'
 gem 'tzinfo'

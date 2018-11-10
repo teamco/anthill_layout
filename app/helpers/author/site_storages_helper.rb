@@ -76,11 +76,11 @@ module Author::SiteStoragesHelper
       javascript_pack_tag('consumption', js_opts(storage))
     end
 
-    def css_development()
+    def css_development
       stylesheet_pack_tag('development')
     end
 
-    def css_consumption()
+    def css_consumption
       stylesheet_pack_tag('consumption')
     end
 
