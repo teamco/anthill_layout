@@ -1,6 +1,6 @@
 export const config = {
   html: {
-    container: 'body',
+    container: '.fetcher',
     header: true
   }
 };

@@ -9,9 +9,29 @@
   <meta name="application-name" content="AntHill Co. 2018">
   <%= csrf_meta_tags %>
   <%= action_cable_meta_tag %>
+  <%= stylesheet_pack_tag 'author' %>
 </head>
-<body class="anthill loading">
+<body class="anthill loading app header-fixed sidebar-fixed aside-menu-fixed sidebar-lg-show">
 <div class='uil-ripple-css'></div>
-<div class="fetcher"><%= yield %></div>
+<header class="app-header navbar">
+  <%= render 'partials/button_aside_menu' %>
+</header>
+<div class="app-body">
+  <div class="sidebar">
+    <nav class="sidebar-nav"></nav>
+  </div>
+  <main class="main">
+    <ol class="breadcrumb"></ol>
+    <div class="container-fluid">
+      <div id="ui-view">
+        <div>
+          <div class="animated fadeIn fetcher"><%= yield %></div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <aside class="aside-menu"></aside>
+</div>
+<footer class="app-footer"></footer>
 </body>
 </html>

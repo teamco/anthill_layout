@@ -41,7 +41,7 @@ export class PanelView extends BaseView {
      * @type {PanelElement}
      */
     this.elements.$panel = new PanelElement(this, {
-      $container: 'body',
+      $container: '.sidebar-nav',
       style: ['panel-container', this.controller.getRenderAt()].join(' ')
     });
 
