@@ -1,3 +1,5 @@
 #!/bin/bash -i
+git config --global http.postBuffer 1048576000
+export NODE_OPTIONS=--max_old_space_size=4096
 bundle install
 bundle exec foreman start -f Procfile.dev
