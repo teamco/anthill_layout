@@ -52,6 +52,7 @@ export class PageData extends AntHill {
     /**
      * Define defaults
      * @type {{
+     *  icon: string,
      *  plugin: boolean,
      *  getter: boolean,
      *  html: {
@@ -64,6 +65,7 @@ export class PageData extends AntHill {
      * }}
      */
     const DEFAULTS = {
+      icon: 'newspaper',
       plugin: true,
       getter: true,
       html: {

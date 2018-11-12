@@ -37,20 +37,7 @@ export class PanelElement extends PluginElement {
    * @returns {string}
    */
   getTemplate() {
-    return [
-      '<nav class="navbar-default navbar-static-side" role="navigation">',
-      '<div class="sidebar-collapse">',
-      '<ul></ul></div></nav>'
-    ].join('');
-  }
-
-  /**
-   * Define content container
-   * @memberOf PanelElement
-   * @returns {*}
-   */
-  getContentContainer() {
-    return this.$.find('ul:first');
+    return `<div class="sidebar"></div>`;
   }
 
   /**

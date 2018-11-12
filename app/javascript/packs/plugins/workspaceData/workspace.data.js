@@ -52,6 +52,7 @@ export class WorkspaceData extends AntHill {
     /**
      * Define defaults
      * @type {{
+     *  icon: string,
      *  plugin: boolean,
      *  getter: boolean,
      *  switch: boolean,
@@ -65,6 +66,7 @@ export class WorkspaceData extends AntHill {
      * }}
      */
     const DEFAULTS = {
+      icon: 'building',
       plugin: true,
       getter: true,
       switch: false,

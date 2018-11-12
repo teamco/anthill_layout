@@ -37,6 +37,7 @@ export class Gallery extends AntHill {
     /**
      * Define defaults
      * @type {{
+     *  icon: string,
      *  plugin: boolean,
      *  getter: boolean,
      *  html: {
@@ -49,6 +50,7 @@ export class Gallery extends AntHill {
      * }}
      */
     const DEFAULTS = {
+      icon: 'wallet',
       plugin: true,
       getter: true,
       html: {

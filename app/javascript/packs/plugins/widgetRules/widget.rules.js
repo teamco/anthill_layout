@@ -52,6 +52,7 @@ export class WidgetRules extends AntHill {
     /**
      * Define defaults
      * @type {{
+     *  icon: string,
      *  plugin: boolean,
      *  getter: boolean,
      *  html: {
@@ -64,6 +65,7 @@ export class WidgetRules extends AntHill {
      * }}
      */
     const DEFAULTS = {
+      icon: 'gavel',
       plugin: true,
       getter: true,
       html: {

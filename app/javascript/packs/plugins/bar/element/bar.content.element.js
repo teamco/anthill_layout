@@ -38,15 +38,15 @@ export class BarContentElement extends PluginElement {
    * @returns {string}
    */
   getTemplate() {
+    const module = this.resource.module;
+    const humanized = module.name.humanize();
 
-    // Get module name
-    const name = this.resource.module.name;
-
-    return [
-      '<li><a title="', name.humanize(), '">',
-      '<i class="fa ', name.toDash(), '"></i>',
-      '<span>', name.humanize(), '</span></a></li>'
-    ].join('');
+    return `<li class="nav-item">
+      <a class="nav-link" title="${humanized}">
+        <i class="fa fa-${module.model.getConfig('icon')}"></i>
+        ${humanized}
+      </a>
+    </li>`;
   }
 
   /**

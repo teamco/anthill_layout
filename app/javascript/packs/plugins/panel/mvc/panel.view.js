@@ -8,7 +8,6 @@
 
 import {BaseView} from '../../../modules/View';
 import {PanelElement} from '../element/panel.element';
-import {PanelContentContainerElement} from '../element/panel.content.container.element';
 import {PanelContentElement} from '../element/panel.content.element';
 
 /**
@@ -41,29 +40,13 @@ export class PanelView extends BaseView {
      * @type {PanelElement}
      */
     this.elements.$panel = new PanelElement(this, {
-      $container: '.sidebar-nav',
-      style: ['panel-container', this.controller.getRenderAt()].join(' ')
+      $container: '.app-body',
+      append: true
     });
 
-    this.renderContentContainer();
-    this.footer(this.get$item());
     this.controller.renderPackages();
-  }
-
-  /**
-   * Render content container
-   * @memberOf PanelView
-   */
-  renderContentContainer() {
-
-    /**
-     * Define Panel element
-     * @type {PanelContentContainerElement}
-     */
-    this.elements.$content = new PanelContentContainerElement(this, {
-      $container: this.get$item().getContentContainer(),
-      style: 'panel-content'
-    });
+    // this.renderContentContainer();
+    this.footer(this.get$item());
   }
 
   /**
@@ -91,8 +74,8 @@ export class PanelView extends BaseView {
      * @type {PanelContentElement}
      */
     const $item = new PanelContentElement(this, {
-      style: style,
-      $container: this.elements.$content.$
+      $container: this.get$item().$,
+      style: style
     });
 
     module.view.defineContainer($item);

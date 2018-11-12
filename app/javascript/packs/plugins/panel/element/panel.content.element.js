@@ -21,7 +21,7 @@ export class PanelContentElement extends PluginElement {
    */
   constructor(view, opts) {
     super('PanelContentElement', view, false);
-    this._config(view, opts, $('<div class="content-container" />')).build(opts);
+    this._config(view, opts, $('<nav class="sidebar-nav" />')).build(opts);
   };
 
   /**
