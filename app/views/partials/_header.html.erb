@@ -1,6 +1,8 @@
 <header class="app-header navbar">
-  <%= render 'button_side_menu' %>
-  <%= render 'header_links' %>
-  <%= render 'header_info' %>
-  <%= render 'button_aside_menu' %>>
+  <%= render 'partials/toggler_side_menu_sm' unless current_user.nil? %>
+  <%= render 'partials/brand' %>
+  <%= render 'partials/toggler_side_menu_lg' unless current_user.nil? %>
+  <%= render 'partials/header_links' %>
+  <%= render 'partials/header_info' %>
+  <%= render 'partials/button_aside_menu' unless current_user.nil? %>
 </header>

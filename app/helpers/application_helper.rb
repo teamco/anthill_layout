@@ -53,6 +53,27 @@ module ApplicationHelper
         method: :delete,
         class: css do
       "<i class=\"fa fa-sign-out-alt\"></i>#{t('logout')}".html_safe
+    end unless current_user.nil?
+  end
+
+  def do_login(css = nil)
+    link_to root_path,
+        title: t('login'),
+        class: css do
+      "<i class=\"fa fa-sign-in-alt\"></i>#{t('login')}".html_safe
+    end if current_user.nil?
+  end
+
+  def button_link(title, url, css = 'default', icon = nil, condition, direction)
+    link_to title, url, class: "btn btn-sm btn-#{css}" do
+      content_tag(:i, class: "fa #{icon}")
+    end if (direction ? condition : !condition)
+  end
+
+  def submit_button(f, title, css = 'primary', icon = 'thumbs-up')
+    f.button class: "btn btn-sm btn-#{css}" do
+      concat "<i class=\"fa fa-#{icon}\"></i>&nbsp;".html_safe
+      concat title
     end
   end
 
@@ -93,27 +114,41 @@ module ApplicationHelper
   end
 
   def user_image_url
-    current_user.image || current_user.gravatar_url
+    return asset_pack_path('images/user_info.png') if current_user.nil?
+    current_user.image ?
+        asset_pack_path("images/#{current_user.image}") :
+        current_user.gravatar_url
   end
 
   def user_name
-    current_user.name || current_user.original_email
+    current_user.nil? ? 'Guest' :
+        (current_user.name || current_user.original_email)
   end
 
   def items_owner
-    Author::Item.where(user_id: current_user.id).length
+    current_user.nil? ? 0 :
+        Author::Item.where(user_id: current_user.id).length
   end
 
   def logs_owner
-    UserLog.where(user_id: current_user.id).length
+    current_user.nil? ? 0 :
+        UserLog.where(user_id: current_user.id).length
   end
 
   def errors_owner
-    ErrorLog.where(user_id: current_user.id).length
+    current_user.nil? ? 0 :
+        ErrorLog.where(user_id: current_user.id).length
   end
 
   def user_location
     request.location.city || 'Localhost'
+  end
+
+  def member_since
+    "<small class=\"dropdown-item text-center\">
+        Member since<br/>
+        #{current_user.created_at.to_formatted_s(:long)}
+    </small>".html_safe unless current_user.nil?
   end
 
   def badge(items)

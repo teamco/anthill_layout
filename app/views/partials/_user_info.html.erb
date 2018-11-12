@@ -22,10 +22,9 @@
       <i class="fa fa-location-arrow"></i>
       <%= user_location %>
     </div>
-    <small class="dropdown-item text-center">
-      Member since<br />
-      <%= current_user.created_at.to_formatted_s(:long) %>
-    </small>
+    <%= member_since %>
     <%= do_logout('dropdown-item') %>
+    <%= do_login('dropdown-item') %>
+    <% %>
   </div>
 </li>

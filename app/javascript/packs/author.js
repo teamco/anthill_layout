@@ -1,9 +1,11 @@
-import './images';
+require.context('../images/', true, /\.(gif|jpg|png|svg)$/i);
 import './stylesheets/application.scss';
 
-import 'jquery-ujs/src/rails';
+import Rails from 'rails-ujs';
+import Turbolinks from 'turbolinks';
+
+import 'popper.js/dist/popper.min';
 import 'bootstrap';
-import html2canvas from 'html2canvas';
 import 'perfect-scrollbar/dist/perfect-scrollbar.min';
 import '@coreui/coreui/dist/js/coreui.min';
 import '@coreui/coreui-plugin-chartjs-custom-tooltips/dist/js/custom-tooltips.min';
@@ -19,3 +21,8 @@ import '@fortawesome/fontawesome-free/js/all.min';
     $('a[href="#"]').on('click', e => e.preventDefault());
   });
 })();
+
+global.Rails = Rails;
+
+Rails.start();
+Turbolinks.start();

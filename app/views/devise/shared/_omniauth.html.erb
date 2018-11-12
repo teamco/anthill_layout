@@ -1,9 +1,12 @@
 <%- if devise_mapping.omniauthable? %>
-    <div class="row social-omniauth">
-      <%- resource_class.omniauth_providers.each do |provider| %>
-          <%= link_to image_tag(image_url("#{provider.to_s}.png")),
-                      omniauth_authorize_path(resource_name, provider),
-                      {title: "Sign in with #{provider.to_s.titleize}"} %>
-      <% end -%>
-    </div>
+  <div class="social-omniauth">
+    <%- resource_class.omniauth_providers.each do |provider| %>
+      <%= link_to image_tag(asset_pack_path("images/#{provider.to_s}.png")),
+          omniauth_authorize_path(resource_name, provider), {
+              title: "Sign in with #{provider.to_s.titleize}",
+              'data-toggle': :tooltip,
+              'data-placement': :top
+          } %>
+    <% end -%>
+  </div>
 <% end -%>

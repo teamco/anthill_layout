@@ -81,7 +81,7 @@ en:
   new_confirmation_link: "Didn't receive confirmation instructions?"
   forgot_password_link: "Forgot your password?"
   sign_up_link: "Sign up"
-  login_in_link: "Log in"
+  login_in_link: "Login"
   reset_password: "Send me reset password instructions"
   forgot_password_title: "Forgot your password?"
   sign_up_title: "Sign up"
