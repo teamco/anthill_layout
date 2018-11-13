@@ -70,11 +70,6 @@ defineP([
          */
         var panel = this.controller.getDesignTimePanel();
 
-        panel.observer.publish(
-            panel.eventManager.eventList.closePanel,
-            panel.active
-        );
-
         return false;
       }
 

@@ -22,13 +22,6 @@ export class PanelElement extends PluginElement {
   constructor(view, opts) {
     super('PanelElement', view, false);
     this._config(view, opts, $(this.getTemplate())).build(opts);
-
-    /**
-     * Fetch panel header
-     * @property PanelElement
-     */
-    this.header = this.view.scope.model.getConfig('header');
-    this.setPanelHeader();
   }
 
   /**
@@ -37,7 +30,7 @@ export class PanelElement extends PluginElement {
    * @returns {string}
    */
   getTemplate() {
-    return `<div class="sidebar"></div>`;
+    return `<div class="sidebar" />`;
   }
 
   /**
@@ -51,54 +44,6 @@ export class PanelElement extends PluginElement {
     // Define locals
     const scope = this.view.scope;
     scope.observer.publish(scope.eventManager.eventList.showContent, resource);
-  }
-
-  /**
-   * Define header wrapper
-   * @memberOf PanelElement
-   */
-  setPanelHeader() {
-    const $tpl = $('<li class="nav-header" />'),
-        header = this.header;
-
-    if (header && this.view.utils.setBoolean(header.visible, true)) {
-      $tpl.appendTo(this.$.find('ul:first'));
-      this.setLongHeader();
-      this.setShortHeader();
-      this.$.removeClass('no-title');
-    } else {
-      this.$.addClass('no-title');
-    }
-  }
-
-  /**
-   * Define long header wrapper
-   * @memberOf PanelElement
-   */
-  setLongHeader() {
-
-    const $tpl = $('<div class="profile-element text-center"><h1 class="logo-element"></h1></div>'),
-        title = this.header.title;
-
-    if (title && title.long) {
-      $tpl.find('.logo-element').text(title.long);
-      $tpl.appendTo(this.$.find('.nav-header'));
-    }
-  }
-
-  /**
-   * Define short header wrapper
-   * @memberOf PanelElement
-   */
-  setShortHeader() {
-
-    const $tpl = $('<div class="logo-element" />'),
-        title = this.header.title;
-
-    if (title && title.short) {
-      $tpl.find('.logo-element').text(title.short);
-      $tpl.appendTo(this.$.find('.nav-header'));
-    }
   }
 
   /**
@@ -125,4 +70,13 @@ export class PanelElement extends PluginElement {
   getContentItemIndex() {
     return ['$', this.view.controller.getActiveResource(), '-content'].join('');
   }
-};
+
+  /**
+   * @method renderMinimizer
+   * @memberOf PanelElement
+   */
+  renderMinimizer() {
+    const template = `<button class="sidebar-minimizer brand-minimizer" type="button" />`;
+    this.$.append(template);
+  }
+}

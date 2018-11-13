@@ -1,15 +1,6 @@
 import './stylesheets/jquery-ui.min.css';
 import './stylesheets/development.scss';
 
-import 'jquery-ujs/src/rails';
-import 'bootstrap';
-
-// If you want to reduce size for performance. You can only load what icons you want.
-// import fontawesome from '@fortawesome/fontawesome';
-// import {faCoffee, faCameraRetro} from '@fortawesome/fontawesome-free-solid';
-// fontawesome.library.add(faCoffee, faCameraRetro)
-import '@fortawesome/fontawesome-free/js/all.min';
-
 import 'jquery-ui/ui/core';
 import 'jquery-ui/ui/labels';
 import 'jquery-ui/ui/position';

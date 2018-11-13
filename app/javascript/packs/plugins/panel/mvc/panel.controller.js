@@ -334,7 +334,6 @@ export class PanelController extends PluginController {
     const wsEventManager = ws.eventManager;
 
     if (!wsEventManager) {
-
       this.logger.warn('Workspace not initialized', ws);
       return false;
     }

@@ -18,12 +18,30 @@ $fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
 //@import './shared';
 //@import '../plugins/stylesheets/combined';
 
-.sidebar .nav-link {
-  font-size: 0.8em;
+.sidebar {
+  svg {
+    margin-right: 0.5em;
+  }
+  .nav-link {
+    font-size: 0.8em;
+    cursor: pointer;
+  }
+  .nav-dropdown.open .nav-link {
+    border-left: 1px solid #0d8ddb;
+  }
+  .nav-dropdown-items {
+    svg {
+      margin-left: 0.25em;
+    }
+  }
 }
 
-.sidebar .nav-dropdown.open .nav-link {
-  border-left: 1px solid #0d8ddb;
+.sidebar-minimized {
+  .nav-link {
+    svg {
+      margin: 0 0.7em;
+    }
+  }
 }
 
 .card.dashboard,

@@ -43,7 +43,7 @@ export class BarContentElement extends PluginElement {
 
     return `<li class="nav-item">
       <a class="nav-link" title="${humanized}">
-        <i class="fa fa-${module.model.getConfig('icon')}"></i>
+        <i class="nav-icon fa fa-${module.model.getConfig('icon')}"></i>
         ${humanized}
       </a>
     </li>`;

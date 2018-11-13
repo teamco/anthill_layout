@@ -45,7 +45,7 @@ export class PanelView extends BaseView {
     });
 
     this.controller.renderPackages();
-    // this.renderContentContainer();
+    this.get$item().renderMinimizer();
     this.footer(this.get$item());
   }
 

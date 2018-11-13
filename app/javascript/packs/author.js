@@ -4,8 +4,11 @@ import './stylesheets/application.scss';
 import Rails from 'rails-ujs';
 import Turbolinks from 'turbolinks';
 
+import 'babel-polyfill';
+
 import 'popper.js';
 import 'bootstrap';
+
 import 'perfect-scrollbar/dist/perfect-scrollbar.min';
 import '@coreui/coreui/dist/js/coreui.min';
 import '@coreui/coreui-plugin-chartjs-custom-tooltips/dist/js/custom-tooltips.min';
