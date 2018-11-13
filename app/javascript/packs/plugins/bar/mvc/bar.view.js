@@ -81,6 +81,7 @@ export class BarView extends BaseView {
          * @type {string}
          */
         const moduleResource = item.module.name.toDash();
+        // const moduleItems
 
         /**
          * Render item
@@ -90,7 +91,8 @@ export class BarView extends BaseView {
           style: this.utils._.compact([item.activated ? 'activated' : null, moduleResource]).join(' '),
           resource: item,
           cname: moduleResource,
-          $container: this.get$item().$
+          $container: this.get$item().$,
+          count: item.module.model.getItems()
         });
 
         this.updateElementItems($item);

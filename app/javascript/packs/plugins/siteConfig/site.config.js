@@ -5,11 +5,12 @@
  * Time: 11:02 AM
  */
 
-import './site.config.css';
-import '../preferences/preferences.css';
+import './site.config.scss';
+import '../preferences/preferences.scss';
 
 import {AntHill} from '../../core/config/anthill';
 import {MVC} from '../../modules/MVC';
+import {SiteConfigController} from './mvc/site.config.controller';
 
 /**
  * Define SiteConfig
@@ -117,7 +118,7 @@ export class SiteConfig extends AntHill {
       scope: this,
       config: [DEFAULTS],
       components: [
-        Controller,
+        SiteConfigController,
         Model,
         View,
         EventManager,

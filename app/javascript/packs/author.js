@@ -6,7 +6,6 @@ import Turbolinks from 'turbolinks';
 
 import 'babel-polyfill';
 
-import 'popper.js';
 import 'bootstrap';
 
 import 'perfect-scrollbar/dist/perfect-scrollbar.min';

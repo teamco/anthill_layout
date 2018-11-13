@@ -5,21 +5,21 @@
  * Time: 11:06 PM
  * To change this template use File | Settings | File Templates.
  */
-defineP([
-  'modules/Model'
-], function defineDashboardModel(BaseModel) {
+
+import {BaseModel} from '../../../modules/Model';
+
+/**
+ * @class DashboardModel
+ * @extends BaseModel
+ */
+export class DashboardModel extends BaseModel {
 
   /**
-   * Define Dashboard model
-   * @extends BaseModel
-   * @class DashboardModel
    * @constructor
+   * @param name
+   * @param scope
    */
-  var DashboardModel = function DashboardModel() {
-  };
-
-  return DashboardModel.extend(
-      'DashboardModel', {},
-      BaseModel.prototype
-  );
-});
+  constructor(name, scope) {
+    super(name || 'DashboardModel', scope);
+  }
+}

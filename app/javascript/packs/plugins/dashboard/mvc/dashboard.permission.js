@@ -6,21 +6,20 @@
  * To change this template use File | Settings | File Templates.
  */
 
-defineP([
-  'modules/Permission'
-], function defineDashboardPermission(BasePermission) {
+import {BasePermission} from '../../../modules/Permission';
+
+/**
+ * @class DashboardPermission
+ * @extends BasePermission
+ */
+export class DashboardPermission extends BasePermission {
 
   /**
-   * Define Permissions
-   * @class DashboardPermission
    * @constructor
-   * @extends BasePermission
+   * @param {string} name
+   * @param {Panel} scope
    */
-  var DashboardPermission = function DashboardPermission() {
-  };
-
-  return DashboardPermission.extend(
-      'DashboardPermission', {},
-      BasePermission.prototype
-  );
-});
+  constructor(name, scope) {
+    super(name || 'DashboardPermission', scope);
+  }
+}

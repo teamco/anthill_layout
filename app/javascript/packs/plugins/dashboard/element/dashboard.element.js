@@ -5,55 +5,40 @@
  * Time: 11:48 AM
  */
 
-defineP([
-  'plugins/plugin.element'
-], function defineDashboardElement(PluginElement) {
+import {PluginElement} from '../../plugin.element';
+
+export class DashboardElement extends PluginElement {
 
   /**
-   * Define Dashboard Element
+   * @constructor
    * @param view
    * @param opts
-   * @returns {DashboardElement}
-   * @constructor
-   * @class DashboardElement
-   * @extends PluginElement
    */
-  var DashboardElement = function DashboardElement(view, opts) {
-
-    this._config(view, opts, $()).build({
-      $container: opts.$container
-    });
+  constructor(view, opts) {
+    super('DashboardElement', view, false);
+    this._config(view, opts, $()).build(opts);
 
     /**
      * Define opener
      * @property DashboardElement
      */
     this.opener = undefined;
+  }
 
-    return this;
-  };
+  /**
+   * Bind open dashboard
+   * @memberOf DashboardElement
+   */
+  openDashboard() {
+    if (this.opener && !this.opener.closed) {
+      this.opener.focus();
+      return false;
+    }
 
-  return DashboardElement.extend(
-      'DashboardElement', {
-
-        /**
-         * Bind open dashboard
-         * @memberOf DashboardElement
-         */
-        openDashboard: function openDashboard() {
-
-          if (this.opener && !this.opener.closed) {
-            this.opener.focus();
-            return false;
-          }
-
-          /**
-           * Define window open
-           * @type {Window}
-           */
-          this.opener = window.open('/');
-        }
-      },
-      PluginElement.prototype
-  );
-});
+    /**
+     * Define window open
+     * @type {Window}
+     */
+    this.opener = window.open('/');
+  }
+}

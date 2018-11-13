@@ -20,7 +20,7 @@ export class WorkspaceDataContentElement extends PluginElement {
    */
   constructor(view, opts) {
     super('WorkspaceDataContentElement', view, false);
-    this._config(view, opts, $('<li />')).build(opts);
+    this._config(view, opts, $('<li class="nav-item" />')).build(opts);
 
     /**
      * Define page index
@@ -38,7 +38,7 @@ export class WorkspaceDataContentElement extends PluginElement {
    * @memberOf WorkspaceDataContentElement
    */
   getTemplate(page) {
-    $('<a class="page" data-uuid="' + page.model.getUUID() + '" />').appendTo(this.$);
+    $('<a class="page nav-link" data-uuid="' + page.model.getUUID() + '" />').appendTo(this.$);
   }
 
   /**

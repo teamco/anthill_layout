@@ -5,25 +5,26 @@
  * Time: 11:02 AM
  */
 
-defineP([
-  'config/anthill',
-  'modules/MVC',
-  'plugins/dashboard/mvc/dashboard.controller',
-  'plugins/dashboard/mvc/dashboard.model',
-  'plugins/dashboard/mvc/dashboard.view',
-  'plugins/dashboard/mvc/dashboard.event.manager',
-  'plugins/dashboard/mvc/dashboard.permission'
-], function defineDashboard(AntHill, MVC, Controller, Model, View, EventManager,
-    Permission) {
+import {MVC} from '../../modules/MVC';
+import {AntHill} from '../../core/config/anthill';
+import {DashboardController} from './mvc/dashboard.controller';
+import {DashboardModel} from './mvc/dashboard.model';
+import {DashboardEventManager} from './mvc/dashboard.event.manager';
+import {DashboardPermission} from './mvc/dashboard.permission';
+import {DashboardView} from './mvc/dashboard.view';
+
+/**
+ * @class Dashboard
+ * @extends AntHill
+ */
+export class Dashboard extends AntHill {
 
   /**
-   * Define Dashboard
    * @constructor
    * @param containment
-   * @class Dashboard
-   * @extends AntHill
    */
-  var Dashboard = function Dashboard(containment) {
+  constructor(containment) {
+    super('Dashboard', null);
 
     /**
      * Define containment
@@ -32,25 +33,22 @@ defineP([
     this.containment = containment;
 
     /**
-     * Define defaults
+     * @constant
      * @type {{
-     *      plugin: boolean,
-     *      getter: boolean,
-     *      html: {
-     *          style: string,
-     *          header: boolean,
-     *          footer: boolean,
-     *          floating: boolean,
-     *          padding: {
-     *              top: number,
-     *              right: number,
-     *              bottom: number,
-     *              left: number
-     *          }
-     *      }
+     *  icon: string,
+     *  plugin: boolean,
+     *  getter: boolean,
+     *  html: {
+     *    style: string,
+     *    header: boolean,
+     *    footer: boolean,
+     *    floating: boolean,
+     *    padding: {top: number, right: number, bottom: number, left: number}
+     *  }
      * }}
      */
-    var DEFAULTS = {
+    const DEFAULTS = {
+      icon: 'desktop',
       plugin: true,
       getter: true,
       html: {
@@ -70,30 +68,26 @@ defineP([
     /**
      * Define MVC
      * @property Dashboard
-     * @type {MVCJs}
+     * @type {MVC}
      */
-    this.mvc = new MVC({
+    new MVC({
       scope: this,
       config: [DEFAULTS],
       components: [
-        Controller,
-        Model,
-        View,
-        EventManager,
-        Permission
+        DashboardController,
+        DashboardModel,
+        DashboardView,
+        DashboardEventManager,
+        DashboardPermission
       ],
       render: true
     });
 
-    this.observer.publish(
-        this.eventManager.eventList.successCreated
-    );
+    this.observer.publish(this.eventManager.eventList.successCreated);
 
     this.observer.publish(
         this.eventManager.eventList.updateTranslations,
         ['plugins/dashboard/translations/en-us']
     );
-  };
-
-  return Dashboard.extend('Dashboard', {}, AntHill.prototype);
-});
+  }
+}

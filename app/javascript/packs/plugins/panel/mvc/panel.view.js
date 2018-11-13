@@ -9,6 +9,7 @@
 import {BaseView} from '../../../modules/View';
 import {PanelElement} from '../element/panel.element';
 import {PanelContentElement} from '../element/panel.content.element';
+import {PanelPackagesElement} from '../element/panel.packages.element';
 
 /**
  * @class PanelView
@@ -47,6 +48,39 @@ export class PanelView extends BaseView {
     this.controller.renderPackages();
     this.get$item().renderMinimizer();
     this.footer(this.get$item());
+  }
+
+  /**
+   * Render panel packages
+   * @memberOf PanelView
+   * @param module
+   * @param {Boolean} [force]
+   * @returns {boolean}
+   */
+  renderPackagesContent(module, force) {
+
+    /**
+     * Define style
+     * @type {string}
+     */
+    const style = [this.scope.model.getPanelEntityResourceName(module), 'content'].join('-'),
+        sname = '$' + style;
+
+    if (this.isCachedItems() && this.elements.items.hasOwnProperty(sname) && !force) {
+      return false;
+    }
+
+    /**
+     * Render item
+     * @type {PanelPackagesElement}
+     */
+    const $item = new PanelPackagesElement(this, {
+      $container: this.get$item().$,
+      style: style
+    });
+
+    module.view.defineContainer($item);
+    this.updateElementItems($item, sname);
   }
 
   /**

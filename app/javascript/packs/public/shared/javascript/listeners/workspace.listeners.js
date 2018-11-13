@@ -13,6 +13,8 @@ import {PageData} from '../../../../plugins/pageData/page.data';
 import {WorkspaceData} from '../../../../plugins/workspaceData/workspace.data';
 import {WidgetRules} from '../../../../plugins/widgetRules/widget.rules';
 import {Bar} from '../../../../plugins/bar/bar';
+import {SiteConfig} from '../../../../plugins/siteConfig/site.config';
+import {Dashboard} from '../../../../plugins/dashboard/dashboard';
 
 export const workspaceGlobalListeners = () => {
 
@@ -158,9 +160,6 @@ export const workspaceGlobalListeners = () => {
          */
         const app = this.controller.root();
 
-        //   'plugins/widget.rules/widget.rules',
-        //   'plugins/site.config/site.config'
-
         /**
          * Init panel plugin
          * @type {Panel}
@@ -176,7 +175,7 @@ export const workspaceGlobalListeners = () => {
               }
             }
           },
-          modules: [Gallery, PageData, WorkspaceData, WidgetRules/*, SiteConfig*/],
+          modules: [Dashboard, Gallery, PageData, WorkspaceData, WidgetRules],
           packages: [Bar]
         }, app);
 

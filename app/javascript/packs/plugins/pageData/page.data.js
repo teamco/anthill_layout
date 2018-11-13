@@ -6,7 +6,7 @@
  */
 
 import './page.data.css';
-import '../preferences/preferences.css';
+import '../preferences/preferences.scss';
 
 import {AntHill} from '../../core/config/anthill';
 import {MVC} from '../../modules/MVC';

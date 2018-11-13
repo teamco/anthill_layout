@@ -20,7 +20,7 @@ export class WorkspaceDataElement extends PluginElement {
    */
   constructor(view, opts) {
     super('WorkspaceDataElement', view, false);
-    this._config(view, opts, $('<ul />')).build(opts);
+    this._config(view, opts, $('<ul class="nav-dropdown-items" />')).build(opts);
     this.initSortable();
   }
 

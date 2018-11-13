@@ -300,7 +300,7 @@ export class PanelController extends PluginController {
        */
       const module = packages[i];
 
-      this.scope.view.renderContent(module, false);
+      this.scope.view.renderPackagesContent(module, false);
 
       module.view.render();
       module.controller.loadContent();

@@ -6,72 +6,60 @@
  * To change this template use File | Settings | File Templates.
  */
 
-defineP([
-  'config/anthill',
-  'modules/View',
-  'plugins/preferences/preferences',
-  'element/header.element',
-  'element/footer.element',
-  'plugins/dashboard/element/dashboard.element'
-], function defineDashboardView(AntHill, BaseView, BasePreferencesElement,
-    Header, Footer, DashboardElement) {
+import {BaseView} from '../../../modules/View';
+import {DashboardElement} from '../element/dashboard.element';
+
+/**
+ * @class DashboardView
+ * @extends BaseView
+ */
+export class DashboardView extends BaseView {
 
   /**
-   * Define view
-   * @class DashboardView
    * @constructor
-   * @extends BaseView
-   * @extends BasePreferencesElement
+   * @param {string} name
+   * @param {Panel} scope
    */
-  var DashboardView = function DashboardView() {
-  };
+  constructor(name, scope) {
+    super(name || 'DashboardView', scope);
+  }
 
-  return DashboardView.extend(
-      'DashboardView', {
+  /**
+   * Render Dashboard
+   * @memberOf DashboardView
+   * @returns {boolean}
+   */
+  renderDashboard() {
+    if (this.isCached('$dashboard', DashboardElement)) {
+      return false;
+    }
 
-        /**
-         * Render Dashboard
-         * @memberOf DashboardView
-         * @returns {boolean}
-         */
-        renderDashboard: function renderDashboard() {
+    /**
+     * Define Dashboard element
+     * @type {DashboardElement}
+     */
+    this.elements.$dashboard = new DashboardElement(this, {
+      $container: this.get$container().$
+    });
+  }
 
-          if (this.isCached('$dashboard', DashboardElement)) {
-            return false;
-          }
+  /**
+   * Render empty content
+   * @memberOf DashboardView
+   * @returns {boolean}
+   */
+  renderContent() {
+    return false;
+  }
 
-          /**
-           * Define Dashboard element
-           * @type {DashboardElement}
-           */
-          this.elements.$dashboard = new DashboardElement(this, {
-            $container: this.get$container().$
-          });
-        },
-
-        /**
-         * Render empty content
-         * @memberOf DashboardView
-         * @returns {boolean}
-         */
-        renderContent: function renderContent() {
-          return false;
-        },
-
-        /**
-         * Render dashboard
-         * @memberOf DashboardView
-         */
-        render: function render() {
-
-          this.scope.observer.publish(
-              this.scope.eventManager.eventList.successRendered,
-              this.renderDashboard.bind(this)
-          );
-        }
-      },
-      AntHill.prototype,
-      BaseView.prototype,
-      BasePreferencesElement.prototype
-  )
-});
+  /**
+   * Render dashboard
+   * @memberOf DashboardView
+   */
+  render() {
+    this.scope.observer.publish(
+        this.scope.eventManager.eventList.successRendered,
+        this.renderDashboard.bind(this)
+    );
+  }
+}

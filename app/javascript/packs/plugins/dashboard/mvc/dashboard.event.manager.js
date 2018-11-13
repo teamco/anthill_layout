@@ -6,17 +6,21 @@
  * To change this template use File | Settings | File Templates.
  */
 
-defineP([
-  'modules/Event'
-], function defineDashboardEventManager(BaseEvent) {
+import {BaseEvent} from '../../../modules/Event';
+
+/**
+ * @class DashboardEventManager
+ * @extends BaseEvent
+ */
+export class DashboardEventManager extends BaseEvent {
 
   /**
-   * Define dashboard event manager
-   * @class DashboardEventManager
    * @constructor
-   * @extends BaseEvent
+   * @param {string} name
+   * @param {Panel} scope
    */
-  var DashboardEventManager = function DashboardEventManager() {
+  constructor(name, scope) {
+    super(name || 'DashboardEventManager', scope);
 
     /**
      * Define events
@@ -29,17 +33,13 @@ defineP([
      * Define event list
      * @property DashboardEventManager
      * @type {{
-         *      updateTranslations: string,
-         *      loadModuleContent: string
-         * }}
+     *  updateTranslations: string,
+     *  loadModuleContent: string
+     * }}
      */
     this.eventList = {
       updateTranslations: 'update.translations',
       loadModuleContent: 'load.content'
     };
-  };
-
-  return DashboardEventManager.extend(
-      'DashboardEventManager', {}, BaseEvent.prototype
-  );
-});
+  }
+}

@@ -30,15 +30,6 @@ export class BarElement extends PluginElement {
    * @returns {string}
    */
   getTemplate() {
-    return '<ul class="nav" />';
-  }
-
-  /**
-   * Define content container
-   * @memberOf BarElement
-   * @returns {*}
-   */
-  getContentContainer() {
-    return this.$.find('.nav');
+    return `<ul class="nav" />`;
   }
 }

@@ -5,8 +5,8 @@
  * Time: 11:02 AM
  */
 
-import './workspace.data.css';
-import '../preferences/preferences.css';
+import './workspace.data.scss';
+import '../preferences/preferences.scss';
 
 import {AntHill} from '../../core/config/anthill';
 import {MVC} from '../../modules/MVC';

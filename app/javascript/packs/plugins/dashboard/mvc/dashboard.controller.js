@@ -4,31 +4,28 @@
  * Date: 2/23/14
  * Time: 11:03 AM
  */
+import {PluginController} from '../../plugin.controller';
 
-defineP([
-  'config/anthill',
-  'plugins/plugin.controller'
-], function defineDashboardController(AntHill, PluginBase) {
+/**
+ * @class DashboardController
+ * @extends PluginController
+ */
+export class DashboardController extends PluginController {
 
   /**
-   * Define dashboard controller
-   * @class DashboardController
-   * @extends AntHill
-   * @extends PluginController
    * @constructor
+   * @param name
+   * @param scope
    */
-  var DashboardController = function DashboardController() {
-  };
+  constructor(name, scope) {
+    super(name || 'DashboardController', scope);
+  }
 
-  return DashboardController.extend('DashboardController', {
-
-    /**
-     * Define show content
-     * @memberOf DashboardController
-     */
-    getModuleData: function getModuleData() {
-      this.getView().get$item().openDashboard();
-    }
-
-  }, AntHill.prototype, PluginBase.prototype);
-});
+  /**
+   * Define show content
+   * @memberOf DashboardController
+   */
+  getModuleData() {
+    this.getView().get$item().openDashboard();
+  }
+}

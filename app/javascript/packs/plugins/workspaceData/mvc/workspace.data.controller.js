@@ -41,7 +41,6 @@ export class WorkspaceDataController extends aggregation(PluginController, Prefe
   /**
    * Load pages content
    * @memberOf WorkspaceDataController
-   * @param opened
    */
   loadContent(opened) {
     if (opened) {

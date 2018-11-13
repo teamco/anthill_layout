@@ -28,23 +28,24 @@ export class BarContentElement extends PluginElement {
      */
     this.resource = opts.resource;
 
-    this._config(view, opts, $(this.getTemplate())).build(opts);
+    this._config(view, opts, $(this.getTemplate(opts.count))).build(opts);
     this.attachEvent(opts.cname);
   };
 
   /**
    * Define template
    * @memberOf BarContentElement
+   * @param count
    * @returns {string}
    */
-  getTemplate() {
+  getTemplate(count) {
     const module = this.resource.module;
     const humanized = module.name.humanize();
 
     return `<li class="nav-item">
       <a class="nav-link" title="${humanized}">
         <i class="nav-icon fa fa-${module.model.getConfig('icon')}"></i>
-        ${humanized}
+        ${humanized} <span class="badge badge-secondary">${count}</span>
       </a>
     </li>`;
   }

@@ -8,11 +8,11 @@
 import {PluginElement} from '../../plugin.element';
 
 /**
- * Define PanelContent Element
- * @class PanelContentElement
+ * Define Panel Packages Element
+ * @class PanelPackagesElement
  * @extends PluginElement
  */
-export class PanelContentElement extends PluginElement {
+export class PanelPackagesElement extends PluginElement {
 
   /**
    * @param {PanelView} view
@@ -20,13 +20,13 @@ export class PanelContentElement extends PluginElement {
    * @constructor
    */
   constructor(view, opts) {
-    super('PanelContentElement', view, false);
-    this._config(view, opts, $(`<ul class="nav-dropdown-items" />`)).build(opts);
+    super('PanelPackagesElement', view, false);
+    this._config(view, opts, $(`<nav class="sidebar-nav ps" />`)).build(opts);
   };
 
   /**
    * Select item
-   * @memberOf PanelContentElement
+   * @memberOf PanelPackagesElement
    * @param {string} resource
    */
   selectItem(resource) {
@@ -36,7 +36,7 @@ export class PanelContentElement extends PluginElement {
 
   /**
    * Remove items selection
-   * @memberOf PanelContentElement
+   * @memberOf PanelPackagesElement
    */
   unselectItems() {
     this.deactivateItems().addClass('collapsed');
@@ -44,7 +44,7 @@ export class PanelContentElement extends PluginElement {
 
   /**
    * Remove items activation
-   * @memberOf PanelContentElement
+   * @memberOf PanelPackagesElement
    * @returns {*|jQuery}
    */
   deactivateItems() {

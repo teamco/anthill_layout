@@ -63,7 +63,7 @@ export class WorkspaceDataView extends aggregation(BaseView, BasePreferencesElem
   renderContent(data) {
     this.cleanElementItems();
     this.renderCreatePage();
-    this.renderFilterElement(this.updateFooterContent.bind(this));
+    this.renderFilterElement();
 
     /**
      * Get current page
@@ -98,8 +98,7 @@ export class WorkspaceDataView extends aggregation(BaseView, BasePreferencesElem
         style: 'page content' + current + show,
         uuid: [data[i].model.getUUID(), 'workspace-data-view'].join('-'),
         $container: this.get$item().$,
-        data: data[i],
-        counter: i + 1
+        data: data[i]
       });
 
       this.updateElementItems($item);

@@ -23,4 +23,4 @@ export class GalleryPermission extends BasePermission {
   constructor(name, scope) {
     super(name || 'GalleryPermission', scope);
   }
-};
+}

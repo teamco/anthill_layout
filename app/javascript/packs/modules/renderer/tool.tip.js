@@ -2,6 +2,8 @@
  * Created by teamco on 7/10/14.
  */
 
+import Popper from 'popper.js';
+
 /**
  * @class ToolTipRenderer
  * @type {ToolTipRenderer}
@@ -50,18 +52,23 @@ export class ToolTipRenderer {
       }
 
       if (!$selector.popover) {
-        this.element.view.scope.logger.warn('Undefined popover');
+        this.view.scope.logger.warn('Undefined popover');
         return false;
       }
 
-      $selector.attr({
+      new Popper($selector.attr({
         'data-toggle': 'popover',
         title: config.title
-      }).popover(config);
+      }))
+      // $selector.attr({
+      //   'data-toggle': 'popover',
+      //   title: config.title
+      // }).popover(config);
 
     } else {
+
       if (!$selector.tooltip) {
-        this.element.view.scope.logger.warn('Undefined tooltip');
+        this.view.scope.logger.warn('Undefined tooltip');
         return false;
       }
       $selector.tooltip(config);

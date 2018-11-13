@@ -6,7 +6,4 @@
  * To change this template use File | Settings | File Templates.
  */
 
-module.export = {
-  'gallery.providers.all': 'All',
-  'gallery.providers.favorites': 'Favorites'
-};
+module.export = {};
