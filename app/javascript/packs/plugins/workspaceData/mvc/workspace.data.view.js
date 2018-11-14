@@ -8,7 +8,6 @@
 
 import {BaseView} from '../../../modules/View';
 import {BasePreferencesElement} from '../../preferences/preferences';
-import {WorkspaceDataElement} from '../element/workspace.data.element';
 import {WorkspaceDataContentElement} from '../element/workspace.data.content.element';
 import {WorkspaceDataAddPageElement} from '../element/workspace.data.add.page.element';
 import {WorkspaceDataPreferencesElement} from '../element/workspace.data.preferences.element';
@@ -40,18 +39,13 @@ export class WorkspaceDataView extends aggregation(BaseView, BasePreferencesElem
    * @returns {boolean}
    */
   renderWorkspaceData() {
-    if (this.isCached('$workspacedata', WorkspaceDataElement)) {
-      return false;
-    }
 
     /**
      * Define WorkspaceData element
-     * @type {WorkspaceDataElement}
+     * @type {PanelContentElement}
      */
-    this.elements.$workspacedata = new WorkspaceDataElement(this, {
-      uuid: this.createUUID(),
-      $container: this.get$container().$
-    });
+    this.elements.$workspacedata = this.get$container();
+    this.elements.$workspacedata.initSortable();
   }
 
   /**
@@ -104,13 +98,10 @@ export class WorkspaceDataView extends aggregation(BaseView, BasePreferencesElem
       this.updateElementItems($item);
     }
 
-    this.updateScrollCover();
     this.elements.$filter.updateData({
       items: this.elements.items,
       focusOn: 'input'
     });
-
-    this.updateFooterContent();
   }
 
   /**

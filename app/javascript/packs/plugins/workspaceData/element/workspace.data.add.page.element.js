@@ -9,7 +9,7 @@ import {PluginElement} from '../../plugin.element';
 
 /**
  * @class WorkspaceDataAddPageElement
- * @extends PluginElement
+ * @extends {PluginElement, Renderer}
  */
 export class WorkspaceDataAddPageElement extends PluginElement {
 
@@ -20,7 +20,7 @@ export class WorkspaceDataAddPageElement extends PluginElement {
    */
   constructor(view, opts) {
     super('WorkspaceDataAddPageElement', view, false);
-    this._config(view, opts, $('<li class="content" />')).build(opts);
+    this._config(view, opts, $('<li class="nav-item content" />')).build(opts);
 
     /**
      * Define title
@@ -44,7 +44,9 @@ export class WorkspaceDataAddPageElement extends PluginElement {
    * @memberOf WorkspaceDataContentElement
    */
   getTemplate() {
-    $('<a class="page add" />').appendTo(this.$);
+    $(`<a class="nav-link" href="#">
+        <i class="fas fa-folder-plus"></i>
+       </a>`).appendTo(this.$);
   }
 
   /**

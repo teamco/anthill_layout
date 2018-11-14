@@ -5,21 +5,17 @@
  * Time: 7:31 PM
  */
 
-import {AntHill} from '../../core/config/anthill';
-
 /**
  * @class FilterRenderer
- * @extends AntHill
  * @type {FilterRenderer}
  */
-export class FilterRenderer extends AntHill {
+export class FilterRenderer {
 
   /**
    * @constructor
    * @param {BaseElement} element
    */
   constructor(element) {
-    super('FilterRenderer', null, false);
 
     /**
      * @property FilterRenderer
@@ -58,7 +54,7 @@ export class FilterRenderer extends AntHill {
     const $search = this.renderTextField({
       text: opts.text,
       name: opts.name,
-      type: 'input-sm',
+      type: 'panel-filter',
       placeholder: opts.placeholder,
       monitor: {
         events: [filterEvent],
@@ -68,7 +64,6 @@ export class FilterRenderer extends AntHill {
           $element: this
         })
       },
-      style: 'glyphicon glyphicon-filter',
       visible: opts.visible
     });
 
@@ -78,12 +73,11 @@ export class FilterRenderer extends AntHill {
      * Define $reset
      * @type {*|jQuery|{find}}
      */
-    const $reset = $([
-      '<div class="input-group-btn hide">',
-      '<button type="button" class="btn btn-default reset" aria-label="Reset" title="Reset">',
-      '<span class="glyphicon glyphicon-remove"></span>',
-      '</button></div>'
-    ].join(''));
+    const $reset = $(`<div class="input-group-append">
+        <button type="button" class="btn btn-secondary rounded-0" aria-label="Reset" title="Reset">
+          <span class="fa fa-times"></span>
+        </button>
+      </div>`);
 
     $reset.find('button').on('click.reset', function reset() {
 
@@ -159,7 +153,7 @@ export class FilterRenderer extends AntHill {
 
           /**
            * Define item
-           * @type {{name: string, description: string, [type]: string, value, data}}
+           * @type {{$, name: string, description: string, [type]: string, value, data}}
            */
           const $item = items[index];
 

@@ -33,7 +33,7 @@ export class BehaviorCrud {
     const item = this.model.createItem(this.controller.extendConfig(opts));
 
     this.logger.debug('Create ' + item.name, this.model.getUUID(item), item);
-    this.observer.publish(this.eventManager.eventList.afterCreateItem);
+    this.observer.publish(this.eventManager.eventList.afterCreateItem, item);
   }
 
   /**
@@ -148,9 +148,10 @@ export class BehaviorCrud {
   /**
    * After create item event
    * @memberOf BehaviorCrud
+   * @param {{}} item
    */
-  afterCreateItem() {
-    this.logger.debug('After create item');
+  afterCreateItem(item) {
+    this.logger.debug('After create item', item);
   }
 
   /**

@@ -60,6 +60,33 @@ export class BaseView extends AntHill {
   }
 
   /**
+   * @memberOf BaseView
+   * @returns {*}
+   */
+  getContentElements() {
+    return this.elements.items;
+  }
+
+  /**
+   * @method getContentElementBy
+   * @memberOf BaseView
+   * @param {string} type
+   * @param {string} value
+   * @returns {*}
+   */
+  getContentElementBy(type, value) {
+    const elements = this.getContentElements();
+    for (let index in elements) {
+      if (elements.hasOwnProperty(index)) {
+        if (elements[index][type] === value) {
+          return elements[index];
+        }
+      }
+    }
+    this.scope.logger.warn('Undefined content item', elements, arguments);
+  }
+
+  /**
    * Get config HTML
    * @memberOf BaseView
    * @param {string} [key]
@@ -240,7 +267,8 @@ export class BaseView extends AntHill {
     const scope = this.scope;
 
     scope.observer.publish(scope.eventManager.eventList.successRenderHeader, [
-      this.elements.$header, this.getConfigHTML('header')]);
+      this.elements.$header, this.getConfigHTML('header')
+    ]);
 
     return this.elements.$header;
   }
@@ -270,7 +298,8 @@ export class BaseView extends AntHill {
     const scope = this.scope;
 
     scope.observer.publish(scope.eventManager.eventList.successRenderFooter, [
-      this.elements.$footer, this.getConfigHTML('footer')]);
+      this.elements.$footer, this.getConfigHTML('footer')
+    ]);
 
     return this.elements.$footer;
   }
@@ -300,10 +329,6 @@ export class BaseView extends AntHill {
    */
   renderFilterElement(callback, enter) {
 
-    if (this.isCached('$filter', FilterElement)) {
-      return false;
-    }
-
     /**
      * Define Search element
      * @memberOf BaseView.elements
@@ -313,7 +338,8 @@ export class BaseView extends AntHill {
       $container: this.get$container().$,
       style: [this.scope.name.toDash(), 'filter'].join(' '),
       callback: callback,
-      enter: enter
+      enter: enter,
+      append: true
     });
   }
 

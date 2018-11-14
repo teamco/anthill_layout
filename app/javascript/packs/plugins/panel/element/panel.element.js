@@ -51,7 +51,6 @@ export class PanelElement extends PluginElement {
    * @memberOf PanelElement
    */
   hideActiveModule() {
-    this.view.elements.items[this.getContentItemIndex()].hide();
   }
 
   /**
@@ -59,7 +58,6 @@ export class PanelElement extends PluginElement {
    * @memberOf PanelElement
    */
   showActiveModule() {
-    this.view.elements.items[this.getContentItemIndex()].show();
   }
 
   /**
@@ -68,7 +66,7 @@ export class PanelElement extends PluginElement {
    * @returns {string}
    */
   getContentItemIndex() {
-    return ['$', this.view.controller.getActiveResource(), '-content'].join('');
+    return `$${this.view.controller.getActiveResource()}-content`;
   }
 
   /**

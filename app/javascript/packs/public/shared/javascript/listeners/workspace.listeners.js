@@ -124,9 +124,9 @@ export const workspaceGlobalListeners = () => {
    * Define Workspace Global listeners
    * @property Workspace
    * @type {{
-   *  successRendered: {name: string, callback: Workspace.globalListeners.successRendered.callback},
-   *  createDesignTimePanel: {name: string, callback: Workspace.globalListeners.createDesignTimePanel.callback},
-   *  createRunTimePanel: {name: string, callback: Workspace.globalListeners.createRunTimePanel.callback}
+   *  successRendered: {name: string, callback(): void},
+   *  createDesignTimePanel: {name: string, callback(): void},
+   *  createRunTimePanel: {name: string, callback(): void}
    * }}
    */
   Workspace.prototype.globalListeners = {
@@ -147,6 +147,16 @@ export const workspaceGlobalListeners = () => {
             this.observer.publish(this.eventManager.eventList.createRunTimePanel);
           }
         });
+      }
+    },
+
+    afterCreateItem: {
+      name: 'after.create.item',
+      callback(item) {
+        this.logger.debug('Global listener: afterCreateItem', item);
+        const panel = this.controller.getDesignTimePanel();
+        const element = panel.controller.getPackageContentElementBy('bar', 'style', 'workspace-data');
+        element.updateBadge(Object.keys(this.model.getItems()).length);
       }
     },
 

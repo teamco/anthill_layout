@@ -65,17 +65,10 @@ end
 
 gem 'rack-attack'
 
-# Use jquery as the JavaScript library
-gem 'jquery-rails'
-gem 'jquery-ui-rails'
-# gem 'requirejs-rails'
-
 gem 'rmagick'
 
-gem 'bootstrap-sass'
 gem 'coffee-rails'
 gem 'data_uri'
-gem 'font-awesome-sass'
 gem 'github_api'
 gem 'sassc'
 

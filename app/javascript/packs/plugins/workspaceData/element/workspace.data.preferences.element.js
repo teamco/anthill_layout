@@ -23,7 +23,7 @@ export class WorkspaceDataPreferencesElement extends aggregation(PluginElement, 
 
   /**
    * @constructor
-   * @param {WorkspaceData} view
+   * @param {WorkspaceDataView} view
    * @param opts
    */
   constructor(view, opts) {

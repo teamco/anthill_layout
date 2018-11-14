@@ -17,7 +17,6 @@ export class MVC {
    * @param opts
    */
   constructor(opts) {
-    //super('MVC', opts.scope, false);
 
     /**
      * Define scope
@@ -267,7 +266,7 @@ export class MVC {
        */
       const fn = new Function(scopeName, [
             'return function ', mvcPattern,
-        '(null,', scopeName, ') { this.scope = ', scopeName, '; };'
+            '(null,', scopeName, ') { this.scope = ', scopeName, '; };'
           ].join('')
       );
 

@@ -15,6 +15,9 @@ $fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
 @import '~@coreui/coreui/scss/coreui';
 @import './author';
 
+$popover-offset-left: 200px !important;
+$popover-offset-width: 200px !important;
+
 //@import './shared';
 //@import '../plugins/stylesheets/combined';
 
@@ -134,4 +137,20 @@ header {
       cursor: pointer;
     }
   }
+}
+
+.popover.bs-popover-right {
+  left: $popover-offset-left;
+}
+
+.popover {
+  .description {
+    font-style: italic;
+    color: #2f353a;
+  }
+  span {
+    margin-right: 10px;
+    text-decoration: underline;
+  }
+  max-width: $popover-offset-width;
 }

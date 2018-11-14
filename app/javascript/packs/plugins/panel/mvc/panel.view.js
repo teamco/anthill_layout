@@ -91,13 +91,15 @@ export class PanelView extends BaseView {
    * @returns {boolean}
    */
   renderContent(module, force) {
+    const name = this.scope.model.getPanelEntityResourceName(module);
+    const style = `${name}-content`;
+    const sname = `$${style}`;
 
     /**
-     * Define style
-     * @type {string}
+     * @constant
+     * @type {BarContentElement}
      */
-    const style = [this.scope.model.getPanelEntityResourceName(module), 'content'].join('-'),
-        sname = '$' + style;
+    const $container = this.controller.getPackageContentElementBy('bar', 'style', name);
 
     if (this.isCachedItems() && this.elements.items.hasOwnProperty(sname) && !force) {
       return false;
@@ -108,7 +110,7 @@ export class PanelView extends BaseView {
      * @type {PanelContentElement}
      */
     const $item = new PanelContentElement(this, {
-      $container: this.get$item().$,
+      $container: $container.$,
       style: style
     });
 

@@ -128,6 +128,23 @@ export class PluginController extends BaseController {
   }
 
   /**
+   * @memberOf PluginController
+   * @param {string} name
+   * @param {string} type
+   * @param {string} value
+   */
+  getPackageContentElementBy(name, type, value) {
+    const module = this.getPackageByName(name);
+    const element = module.view.getContentElementBy(type, value);
+
+    if (element) {
+      return element;
+    }
+
+    panel.logger.warn('Undefined element', arguments);
+  }
+
+  /**
    * Get package by name
    * @memberOf PluginController
    * @returns {*}

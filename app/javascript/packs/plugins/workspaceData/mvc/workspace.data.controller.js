@@ -135,7 +135,7 @@ export class WorkspaceDataController extends aggregation(PluginController, Prefe
 
     /**
      * Get $item
-     * @type {BaseElement}
+     * @type {WorkspaceDataContentElement}
      */
     const $item = this.getView().elements.items[uuid];
 

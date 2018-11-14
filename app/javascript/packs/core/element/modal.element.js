@@ -188,12 +188,6 @@ export class ModalElement extends BaseElement {
      * @type {*|{}}
      */
     this.buttons = opts.buttons || {};
-
-    /**
-     * Button elements
-     * @type {*}
-     */
-    this.$buttons = undefined;
   }
 
   /**
@@ -202,16 +196,18 @@ export class ModalElement extends BaseElement {
    * @returns {*|jQuery|HTMLElement}
    */
   getTemplate() {
-    return $([
-      '<div class="modal modal-notification" tabindex="-1" role="dialog" aria-labelledby="modalLabel">',
-      '<div class="modal-dialog" role="document">',
-      '<div class="modal-content">',
-      '<div class="modal-header alert">',
-      '<h4 class="modal-title" id="modalLabel"></h4></div>',
-      '<div class="modal-body"></div>',
-      '<div class="modal-footer separator">',
-      '</div></div></div></div>'
-    ].join(''));
+    return $(`
+        <div class="modal modal-notification fade" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header alert">
+                        <h4 class="modal-title" id="modalLabel"></h4>
+                    </div>
+                    <div class="modal-body"></div>
+                    <div class="modal-footer separator"></div>
+                </div>
+            </div>
+        </div>`);
   }
 
   /**
@@ -321,7 +317,8 @@ export class ModalElement extends BaseElement {
       $htmlElement: $([
         '<button type="button" class="close" data-dismiss="modal" aria-label="Close">',
         '<span aria-hidden="true">&times;</span>',
-        '</button>'].join('')),
+        '</button>'
+      ].join('')),
       events: {click: 'rejectModalEvent'}
     };
   }

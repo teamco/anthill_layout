@@ -51,8 +51,7 @@ export class TextFieldRenderer {
 
     const labelClass = [opts.style, opts.visible ? '' : 'hide'].join(' '),
         $template = $('<div class="input-group" />').append(
-            this.renderLabel(uuid, opts.text, labelClass, opts.visible)
-        );
+            this.renderLabel(uuid, opts.text, labelClass, opts.visible));
 
     /**
      * Get tooltip

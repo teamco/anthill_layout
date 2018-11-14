@@ -31,7 +31,6 @@ export class PanelPackagesElement extends PluginElement {
    */
   selectItem(resource) {
     this.unselectItems();
-    $('.content.' + resource, this.$).addClass('activated').removeClass('collapsed');
   }
 
   /**
@@ -39,7 +38,6 @@ export class PanelPackagesElement extends PluginElement {
    * @memberOf PanelPackagesElement
    */
   unselectItems() {
-    this.deactivateItems().addClass('collapsed');
   }
 
   /**
@@ -48,6 +46,5 @@ export class PanelPackagesElement extends PluginElement {
    * @returns {*|jQuery}
    */
   deactivateItems() {
-    return $('ul.panel-bar li', this.$).removeClass('activated collapsed');
   }
 }

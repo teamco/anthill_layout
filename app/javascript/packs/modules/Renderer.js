@@ -21,6 +21,7 @@ import {TextFieldRenderer} from './renderer/text.field';
 import {TextEditorRenderer} from './renderer/text.editor';
 import {ToolTipRenderer} from './renderer/tool.tip';
 import {ValidationRenderer} from './renderer/validation';
+import {ListBoxRenderer} from './renderer/list.box';
 
 /**
  * Aggregation of base class and mixin classes.
@@ -56,8 +57,9 @@ const aggregation = require('../lib/extends/aggregation');
  * @extends AntHill
  */
 export class Renderer extends aggregation(AntHill, CheckBoxRenderer, ComboBoxRenderer, EventLinkRenderer,
-    FilterRenderer, FieldSetRenderer, LabelRenderer, NumberFieldRenderer, RangeRenderer, SourceRenderer,
-    TextAreaRenderer, TabsRenderer, TextEditorRenderer, TextFieldRenderer, ToolTipRenderer, ValidationRenderer) {
+    FilterRenderer, FieldSetRenderer, LabelRenderer, ListBoxRenderer, NumberFieldRenderer, RangeRenderer,
+    SourceRenderer, TextAreaRenderer, TabsRenderer, TextEditorRenderer, TextFieldRenderer, ToolTipRenderer,
+    ValidationRenderer) {
 
   /**
    * @constructor

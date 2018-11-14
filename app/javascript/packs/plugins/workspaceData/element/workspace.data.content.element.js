@@ -38,7 +38,9 @@ export class WorkspaceDataContentElement extends PluginElement {
    * @memberOf WorkspaceDataContentElement
    */
   getTemplate(page) {
-    $('<a class="page nav-link" data-uuid="' + page.model.getUUID() + '" />').appendTo(this.$);
+    $(`<a class="page nav-link" data-uuid="${page.model.getUUID()}" data-toggle="modal" data-target="#${page.model.getUUID()}">
+        <i class="fas fa-file-image"></i>
+       </a>`).appendTo(this.$);
   }
 
   /**
@@ -51,7 +53,6 @@ export class WorkspaceDataContentElement extends PluginElement {
     this.setAttributes(page);
     this.setPublishOn(page);
     this.bindShowPrefs(page);
-    this.renderCounter(page);
 
     /**
      * Define page reference
@@ -69,15 +70,7 @@ export class WorkspaceDataContentElement extends PluginElement {
       name: page.model.getItemTitle(),
       description: page.model.getConfig('preferences').description || ''
     };
-  }
 
-  /**
-   * Render page widgets counter
-   * @memberOf WorkspaceDataContentElement
-   * @param {Page} page
-   */
-  renderCounter(page) {
-    this.$.append($('<div />').addClass('counter'));
     this.updateCounter(page);
   }
 
@@ -97,16 +90,17 @@ export class WorkspaceDataContentElement extends PluginElement {
 
     this.get$counter().text(items).attr({title: [items, 'items'].join(' ')});
 
+    let description = ``;
+    if (preferences.description) {
+      description = `<div class="description">${preferences.description}</div>`;
+    }
+
     this.renderTooltip({
       title: page.model.getItemTitle(),
-      description: [
-        preferences.description || '', '<br />',
-        '<span>uuid: </span>', page.model.getUUID(), '<br /><br />',
-        '<span>items: </span>', items, '<br />',
-        '<span>index: </span>', (
-            page.model.getConfig('preferences').order ||
-            page.model.getConfig('order'))
-      ].join(''),
+      description: `${description}
+        <div><span>uuid:</span>${page.model.getUUID()}</div>
+        <div><span>items:</span>${items}
+        <div><span>index:</span>${(page.model.getConfig('preferences').order || page.model.getConfig('order'))}</div>`,
       selector: this.$
     });
   }

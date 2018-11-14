@@ -18,7 +18,7 @@ export class FilterElement extends BaseElement {
    */
   constructor(view, opts) {
     super('FilterElement', view);
-    this._config(view, opts, $('<div />')).build(opts);
+    this._config(view, opts, $('<li class="nav-item" />')).build(opts);
     this.renderData(opts.callback, opts.enter);
   }
 

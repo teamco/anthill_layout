@@ -6,6 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 
+import('bootstrap');
 import {Renderer} from './Renderer';
 
 /**
@@ -35,7 +36,8 @@ export class BaseElement extends Renderer {
    * Element config before build
    * @memberOf BaseElement
    * @param {BaseView} view
-   * @param {{[style]: string, [uuid], [id]: boolean, [css], [events], [opacity], [id]: boolean, [disabled]: boolean}} opts
+   * @param {{[style]: string, [uuid], [id]: boolean, [css], [events], [opacity], [id]: boolean, [disabled]: boolean}}
+   *     opts
    * @param $html
    * @returns {BaseElement}
    * @protected
@@ -98,10 +100,6 @@ export class BaseElement extends Renderer {
      * @property BaseElement
      */
     this.$ = $html.addClass(this.style).css(this.css);
-
-    // if (opts.style) {
-    //   this.$.addClass(this.style);
-    // }
 
     if (opts.id) {
       this.$.attr({id: this.id});
@@ -420,7 +418,10 @@ export class BaseElement extends Renderer {
       item.logger.debug('CSS already loaded', cache.css[url]);
       cache.css[url].push(this);
 
-      this[type + 'LinkCSS'] = {path: url, link: ''};
+      this[type + 'LinkCSS'] = {
+        path: url,
+        link: ''
+      };
 
       return false;
     }
