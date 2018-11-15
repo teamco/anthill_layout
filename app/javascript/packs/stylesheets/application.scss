@@ -29,8 +29,15 @@ $popover-offset-width: 200px !important;
     font-size: 0.8em;
     cursor: pointer;
   }
-  .nav-dropdown.open .nav-link {
-    border-left: 1px solid #0d8ddb;
+  .nav-dropdown.open {
+    .nav-link {
+      border-left: 1px solid #0d8ddb;
+    }
+    .nav-link.page {
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
   }
   .nav-dropdown-items {
     svg {

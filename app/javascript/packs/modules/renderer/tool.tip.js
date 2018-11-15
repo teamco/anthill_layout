@@ -52,6 +52,8 @@ export class ToolTipRenderer {
         return false;
       }
 
+      this.removeOpenPopups();
+
       $selector.attr({
         'data-toggle': 'popover',
         title: config.title
@@ -65,5 +67,13 @@ export class ToolTipRenderer {
       }
       $selector.tooltip(config);
     }
+  }
+
+  /**
+   * @memberOf ToolTipRenderer
+   */
+  removeOpenPopups() {
+    const popups = document.querySelectorAll('.popover');
+    popups.forEach(popup => popup.remove());
   }
 }

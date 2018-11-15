@@ -40,6 +40,7 @@ export class WorkspaceDataContentElement extends PluginElement {
   getTemplate(page) {
     $(`<a class="page nav-link" data-uuid="${page.model.getUUID()}" data-toggle="modal" data-target="#${page.model.getUUID()}">
         <i class="fas fa-file-image"></i>
+        ${page.model.getItemTitle()}
        </a>`).appendTo(this.$);
   }
 

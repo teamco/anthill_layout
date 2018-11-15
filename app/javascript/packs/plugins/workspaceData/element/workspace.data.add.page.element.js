@@ -46,6 +46,7 @@ export class WorkspaceDataAddPageElement extends PluginElement {
   getTemplate() {
     $(`<a class="nav-link" href="#">
         <i class="fas fa-folder-plus"></i>
+        ${this.title}
        </a>`).appendTo(this.$);
   }
 
