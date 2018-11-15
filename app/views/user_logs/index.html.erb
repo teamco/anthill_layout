@@ -12,7 +12,6 @@
         <%= user_log_trace(user_log, ' class=hide') %>
     <% end %>
   </table>
-  <%= load_pretty_print(false) %>
   <%= bind_events(%w(.user-params .user-session)) %>
   <div class="panel-footer text-center">
     <%= will_paginate @user_logs %>

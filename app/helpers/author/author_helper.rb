@@ -191,16 +191,7 @@ module Author::AuthorHelper
 
   def render_json(content, selector, compressed = true, load = true)
     content_tag(:div, class: 'json-view') do
-      concat load_pretty_print(compressed)
       concat pretty_print(content, selector, compressed) if load
-    end
-  end
-
-  def load_pretty_print(compressed)
-    if compressed
-      javascript_include_tag 'scripts/core/lib/lz-string.js', 'scripts/core/lib/packages/pretty.print.js'
-    else
-      javascript_include_tag 'scripts/core/lib/packages/pretty.print.js'
     end
   end
 
