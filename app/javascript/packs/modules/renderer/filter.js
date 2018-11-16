@@ -49,7 +49,7 @@ export class FilterRenderer {
 
     /**
      * Define $search
-     * @type {TextFieldRenderer|{append}}
+     * @type {jQuery}
      */
     const $search = this.renderTextField({
       text: opts.text,
@@ -74,7 +74,7 @@ export class FilterRenderer {
      * @type {*|jQuery|{find}}
      */
     const $reset = $(`<div class="input-group-append">
-        <button type="button" class="btn btn-secondary rounded-0" aria-label="Reset" title="Reset">
+        <button type="button" class="btn btn-secondary rounded-0 d-none reset-filter" title="Reset">
           <span class="fa fa-times"></span>
         </button>
       </div>`);
@@ -88,7 +88,7 @@ export class FilterRenderer {
       const $node = $(this);
 
       $node.parents('.filter').find('input').val('').trigger(filterEvent).focus();
-      $node.parent().addClass('hide');
+      $node.parent().addClass('d-none');
     });
 
     $search.append($reset);
@@ -113,25 +113,10 @@ export class FilterRenderer {
   filterResults(e) {
     e.preventDefault();
 
-    /**
-     * @constant input
-     * @type {EventTarget|{value}}
-     */
     const input = e.target;
-    const $reset = $(input).parent().find('.input-group-btn');
-
-    $reset.removeClass('hide');
-
-    /**
-     * Define $filter
-     * @type {$element|{items, view}}
-     */
     const $filter = this.$element;
+    const $reset = $filter.$.find('button');
 
-    /**
-     * Get item elements
-     * @type {{}}
-     */
     const items = $filter.items,
         value = input.value;
 
@@ -147,6 +132,7 @@ export class FilterRenderer {
      * @private
      */
     function _filter() {
+      $reset[(value.length ? 'remove' : 'add') + 'Class']('d-none');
 
       for (let index in items) {
         if (items.hasOwnProperty(index)) {
@@ -158,9 +144,8 @@ export class FilterRenderer {
           const $item = items[index];
 
           if (!value.length) {
-            $item.$.removeClass('hide');
+            $item.$.removeClass('d-none');
           } else {
-
             const regex = new RegExp(value, 'ig');
 
             if (!$item.data) {
@@ -173,7 +158,8 @@ export class FilterRenderer {
                 typeMatch = ($item.data.type || '').match(regex),
                 descriptionMatch = ($item.data.description || '').match(regex);
 
-            $item.$[((nameMatch || typeMatch || descriptionMatch) ? 'remove' : 'add') + 'Class']('hide');
+            const condition = nameMatch || typeMatch || descriptionMatch;
+            $item.$[(condition ? 'remove' : 'add') + 'Class']('d-none');
           }
         }
       }
@@ -192,7 +178,7 @@ export class FilterRenderer {
 
       if (e.which === 27) {
         input.value = '';
-        $reset.addClass('hide');
+        $reset.addClass('d-none');
         logger.debug('Clear results on escape');
       }
 

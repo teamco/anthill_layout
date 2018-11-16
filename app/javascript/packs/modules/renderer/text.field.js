@@ -25,7 +25,7 @@ export class TextFieldRenderer {
     *  [visible],
     *  [validate]: {[mask]: RegExp, blank: boolean}
     * }} opts
-   * @returns {TextFieldRenderer}
+   * @returns {jQuery}
    */
   renderTextField(opts) {
 
@@ -49,7 +49,7 @@ export class TextFieldRenderer {
       disabled: this.utils.setBoolean(opts.disabled, false)
     }).val(opts.value);
 
-    const labelClass = [opts.style, opts.visible ? '' : 'hide'].join(' '),
+    const labelClass = [opts.style, opts.visible ? '' : 'd-none'].join(' '),
         $template = $('<div class="input-group" />').append(
             this.renderLabel(uuid, opts.text, labelClass, opts.visible));
 

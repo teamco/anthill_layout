@@ -197,8 +197,8 @@ module Author::AuthorHelper
 
   def pretty_print(content, selector = '.json-view', compressed)
     javascript_tag compressed ?
-        "$(prettyPrint(JSON.parse(LZString.decompressFromBase64('#{content}')))).appendTo('#{selector}');".html_safe :
-        "$(prettyPrint(JSON.parse('#{content}'))).appendTo('#{selector}');".html_safe
+        "debugger;$(prettyPrint(JSON.parse(LZString.decompressFromBase64('#{content}')))).appendTo('#{selector}');".html_safe :
+        "debugger;$(prettyPrint(JSON.parse('#{content}'))).appendTo('#{selector}');".html_safe
   end
 
   def json_pre(json)
