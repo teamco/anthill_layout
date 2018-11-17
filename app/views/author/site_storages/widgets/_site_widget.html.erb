@@ -1,16 +1,31 @@
-<div class="site-widgets input-group<%= external_widget(item) -%>">
-
-  <%= label_tag dom_id(item), nil, {
-      class: widget_css_class(item),
-      title: "#{item.name}\n#{item.description}"
-  } do -%>
-      <%= check_box_tag 'author_site_storage[author_site_storage_widget_ids][]',
-                        item.id,
-                        widget_selected?(item), {
-                            id: dom_id(item),
-                            class: 'form-control',
-                            onclick: 'uc(this)'
-                        } -%>
-      <span><%= item.name %></span>
-  <% end %>
+<div class="card widget-info">
+  <div class="card-body">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <div class="card-img widget <%= widget_css_class(item) %>"></div>
+        </div>
+        <div class="col">
+          <h5 class="card-title align-middle"><%= item.name %></h5>
+        </div>
+        <div class="col-8">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <div class="input-group-text pr-3">
+                <%= check_box_tag 'author_site_storage[author_site_storage_widget_ids][]',
+                    item.id,
+                    widget_selected?(item), {
+                        id: dom_id(item),
+                        'aria-label': 'Checkbox for following widget',
+                        class: 'form-control'
+                    } -%>
+              </div>
+            </div>
+            <div class="form-control widget-description"><%= item.description %></div>
+            <div class="w-100"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

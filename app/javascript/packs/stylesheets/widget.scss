@@ -1,0 +1,27 @@
+.card.widget-info {
+  .container {
+    padding: 0;
+  }
+  .col.bg-widget {
+    height: 64px;
+  }
+  .widget {
+    position: relative;
+    right: auto;
+    left: auto;
+    top: auto;
+    bottom: auto;
+    height: 100%;
+  }
+  .widget-description {
+    min-height: 3.5em;
+    display: table;
+  }
+  span {
+    padding-right: 1.5em;
+  }
+}
+
+.widget {
+  background-repeat: no-repeat;
+}

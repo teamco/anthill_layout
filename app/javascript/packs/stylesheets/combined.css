@@ -1,0 +1,9 @@
+.widget.empty {
+    background-image: url('../plugins/widgets/empty/images/empty.png');
+}
+.widget.image {
+    background-image: url('../plugins/widgets/image/images/image.png');
+}
+.widget.page-tabs {
+    background-image: url('../plugins/widgets/pageTabs/images/page.tabs.png');
+}

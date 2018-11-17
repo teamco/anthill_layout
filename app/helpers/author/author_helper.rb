@@ -69,7 +69,8 @@ module Author::AuthorHelper
   def render_loop(collection, partial)
     collection.blank? ?
         (concat "<p class=\"no-data\">#{t('no_data_in_collection', items: controller_name.gsub(/_controller/, '').titleize.humanize)}</p>".html_safe) :
-        collection.each {|item| concat render partial, item: item}
+        collection.each_with_index {|item, index| concat render partial,
+            item: item, index: index}
   end
 
   def render_title
@@ -112,7 +113,7 @@ module Author::AuthorHelper
   def render_checkbox(f, name, disabled = false)
     content_tag(:div, class: 'input-group mb-1') do
       concat render_group_field(:check_box, f, name, disabled)
-      concat text_field_tag(name, name, disabled: true, class: 'form-control')
+      concat text_field_tag(name, name.to_s.humanize, disabled: true, class: 'form-control')
     end
   end
 
@@ -136,21 +137,21 @@ module Author::AuthorHelper
   end
 
   def render_collection_field(f, name, opts)
-    content_tag(:div, class: 'input-group') do
-      concat content_tag(:div, class: 'input-group-prepend') do
-        concat content_tag(:div, class: 'input-group-text') do
-          concat f.label opts[:id], name
-        end
-      end
-      concat f.collection_select(opts[:id], opts[:collection], opts[:index], opts[:value], opts[:html] || {}, {class: 'form-control'})
-    end unless opts[:collection].nil?
+    "<div class=\"input-group mb-1\">
+      <div class=\"input-group-prepend\">
+        <div class=\"input-group-text\">#{f.label opts[:id], name, class: 'm-0'}</div>
+      </div>
+      #{f.collection_select(opts[:id], opts[:collection], opts[:index], opts[:value], opts[:html] || {}, {class: 'form-control'})}
+    </div>".html_safe unless opts[:collection].nil?
   end
 
   def render_select_field(f, name, opts)
-    content_tag(:div, class: 'input-group') do
-      concat f.label opts[:id], name, class: 'input-group-addon text-left'
-      concat f.select(opts[:id], opts[:collection], opts[:html] || {}, {class: 'form-control'})
-    end unless opts[:collection].nil?
+    "<div class=\"input-group mb-1\">
+      <div class=\"input-group-prepend\">
+        <div class=\"input-group-text\">#{f.label opts[:id], name, class: 'm-0'}</div>
+      </div>
+      #{f.select(opts[:id], opts[:collection], opts[:html] || {}, {class: 'form-control'})}
+    </div>".html_safe unless opts[:collection].nil?
   end
 
   def render_submit(title = nil)

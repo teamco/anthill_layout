@@ -1,0 +1,5 @@
+<div role="tabpanel"
+     id="<%= item.name_index %>"
+     class="tab-pane fade <%= index == 0 ? 'in active show' : '' %>">
+  <% render_loop(item.author_widgets.order(:name), 'author/site_storages/widgets/site_widget') %>
+</div>

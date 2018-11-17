@@ -1,5 +1,6 @@
 require.context('../images/', true, /\.(gif|jpg|png|svg)$/i);
 import './stylesheets/application.scss';
+import './combined';
 
 import Rails from 'rails-ujs';
 import Turbolinks from 'turbolinks';

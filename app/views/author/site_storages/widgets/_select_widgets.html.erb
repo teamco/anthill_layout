@@ -1,20 +1,7 @@
-<div class="panel panel-default category-widgets">
-  <div class="panel-heading">
-    <h3 class="panel-title">
-      <label class="pull-left" onclick="sa(this)" for="select_all_widgets">(Un)Select All widgets</label>
-      <span class="badge"><%= @author_site_storage.author_widgets.size %></span>
-    </h3>
-  </div>
-  <div class="panel-body">
-    <div class="row">
-      <%= hidden_field_tag('author_site_storage[author_site_storage_widget_ids][]', nil) %>
-      <% render_loop(@widget_categories, 'author/site_storages/widgets/category_widgets') %>
-    </div>
-  </div>
+<%= hidden_field_tag('author_site_storage[author_site_storage_widget_ids][]', nil) %>
+<ul class="nav nav-pills" role="tablist">
+  <% render_loop(@widget_categories, 'author/site_storages/widgets/category_widgets') %>
+</ul>
+<div class="tab-content">
+  <% render_loop(@widget_categories, 'author/site_storages/widgets/site_widgets') %>
 </div>
-<%= javascript_tag [
-                       "function uc(e){var $p=$(e).closest('.panel');$p.find('.badge.selected').text($('.site-widgets input[type=\"checkbox\"]:checked',$p).length);ca();}",
-                       "function ca(){$('.category-widgets .badge:first').text($.map($('.badge.selected'),function(e){return parseInt(e.innerText,10)}).reduce(function(a,b){return a+b;},0));}",
-                       "function sa(e){$(e).closest('.panel').find('.category-title').trigger('click');}",
-                       "function sc(e){var $p=$(e).closest('.panel'),$w=$p.find('.site-widgets input[type=\"checkbox\"]');$w.prop('checked',!$w.prop('checked'));uc(e);}"
-                   ].join.html_safe %>
