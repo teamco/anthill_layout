@@ -1,15 +1,10 @@
-<div class="panel panel-default form">
-  <div class="panel-heading">
-    <h3 class="panel-title">
-      <span class="group-addon">
-        <%= "#{action_name.humanize} #{controller_name.singularize
-            .humanize}:" %>
-      </span>
-      <%= instance_variable_get("@author_#{controller_name.singularize}")
-              .send(title) || (DateTime.now).strftime('%Y %b %d %I:%M:%S %p') %>
-    </h3>
+<div class="card">
+  <div class="card-header">
+    <h5 class="card-title"><%= author_variable_get(title) %></h5>
   </div>
-  <div class="panel-body">
-    <%= render_form %>
+  <div class="card-body"><%= render_form %></div>
+  <div class="card-footer">
+    <%= cancel_button -%>
+    <%= render_submit -%>
   </div>
 </div>

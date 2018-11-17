@@ -93,19 +93,24 @@ module Author::AuthorHelper
   end
 
   def render_field_tag(type, name, value, disabled = false, autofocus = false)
-    content_tag(:div, class: 'input-group') do
-      concat label_tag name, nil, class: 'input-group-addon text-left'
+    content_tag(:div, class: 'form-group') do
+      concat label_tag name, nil
       concat send(type, name, value,
           disabled: disabled,
           autofocus: autofocus,
           class: 'form-control',
+          'aria-describedby': "#{name}-help",
           placeholder: "Enter #{name.to_s.humanize}"
       )
+      concat content_tag :small,
+          'Encrypted content parsed below',
+          id: "#{name}-help",
+          class: 'form-text text-muted'
     end
   end
 
   def render_checkbox(f, name, disabled = false)
-    content_tag(:div, class: 'input-group') do
+    content_tag(:div, class: 'input-group mb-1') do
       concat render_group_field(:check_box, f, name, disabled)
       concat text_field_tag(name, name, disabled: true, class: 'form-control')
     end
@@ -119,8 +124,10 @@ module Author::AuthorHelper
   end
 
   def render_group_field(type, f, name, disabled)
-    content_tag(:span, nil, class: 'input-group-addon') do
-      concat f.send(type, name, disabled: disabled)
+    content_tag(:div, nil, class: 'input-group-prepend') do
+      content_tag(:div, nil, class: 'input-group-text') do
+        concat f.send(type, name, disabled: disabled)
+      end
     end
   end
 
@@ -130,7 +137,11 @@ module Author::AuthorHelper
 
   def render_collection_field(f, name, opts)
     content_tag(:div, class: 'input-group') do
-      concat f.label opts[:id], name, class: 'input-group-addon text-left'
+      concat content_tag(:div, class: 'input-group-prepend') do
+        concat content_tag(:div, class: 'input-group-text') do
+          concat f.label opts[:id], name
+        end
+      end
       concat f.collection_select(opts[:id], opts[:collection], opts[:index], opts[:value], opts[:html] || {}, {class: 'form-control'})
     end unless opts[:collection].nil?
   end
@@ -142,14 +153,17 @@ module Author::AuthorHelper
     end unless opts[:collection].nil?
   end
 
-  def render_submit(f)
-    f.submit nil, class: 'btn btn-warning'
+  def render_submit(title = nil)
+    name = action_name === 'edit' ? 'Update' : 'Create'
+    title = title || "#{name} #{controller_name.singularize.humanize}"
+    button_tag title, class: 'btn btn-warning',
+        data: {disable_with: "Please wait..."}
   end
 
   def cancel_button(**args)
     name = args[:name] || t('cancel')
     redirect_url = args[:redirect_url] || send("author_#{controller_name}_path")
-    link_to name, redirect_url, title: t('cancel'), class: 'btn btn-default'
+    link_to name, redirect_url, title: t('cancel')
   end
 
   def render_notification(item)
@@ -160,13 +174,11 @@ module Author::AuthorHelper
   end
 
   def render_form
-    content_tag(:div) do
-      concat render partial: "/author/#{controller_name}/form",
-          locals: {
-              item: instance_variable_get("@author_#{controller_name.singularize}"),
-              types: @author_site_types
-          }
-    end
+    render partial: "/author/#{controller_name}/form",
+        locals: {
+            item: instance_variable_get("@author_#{controller_name.singularize}"),
+            types: @author_site_types
+        }
   end
 
   private
@@ -231,6 +243,11 @@ module Author::AuthorHelper
 
   def activated(item)
     item.get_activated_version.version rescue '?'
+  end
+
+  def author_variable_get(title)
+    instance_variable_get("@author_#{controller_name.singularize}").send(title) ||
+        (DateTime.now).strftime('%Y %b %d %I:%M:%S %p')
   end
 
   private
