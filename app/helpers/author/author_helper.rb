@@ -154,10 +154,11 @@ module Author::AuthorHelper
     </div>".html_safe unless opts[:collection].nil?
   end
 
-  def render_submit(title = nil)
+  def render_submit(title = nil, click = 'this.parentNode.parentNode.querySelector(\'form\').submit()')
     name = action_name === 'edit' ? 'Update' : 'Create'
     title = title || "#{name} #{controller_name.singularize.humanize}"
     button_tag title, class: 'btn btn-warning',
+        onclick: click,
         data: {disable_with: "Please wait..."}
   end
 
