@@ -2,7 +2,7 @@
   <div class="card-body">
     <div class="container">
       <div class="row">
-        <div class="col">
+        <div class="col bg-widget">
           <div class="card-img widget <%= widget_css_class(item) %>"></div>
         </div>
         <div class="col">
@@ -21,8 +21,10 @@
                     } -%>
               </div>
             </div>
-            <div class="form-control widget-description"><%= item.description %></div>
-            <div class="w-100"></div>
+            <label class="form-control widget-description"
+                   for="<%= dom_id(item) %>">
+              <%= item.description %>
+            </label>
           </div>
         </div>
       </div>
