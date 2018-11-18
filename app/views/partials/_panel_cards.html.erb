@@ -7,7 +7,7 @@
   </div>
   <div class="card-body">
     <div class="row">
-      <%= render 'author/author/ibox_new' %>
+      <%= render 'author/author/ibox_new', url: (defined? url) ? url : nil %>
       <% render_loop(entity, type) %>
     </div>
   </div>

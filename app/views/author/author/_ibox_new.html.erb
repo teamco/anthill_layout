@@ -2,7 +2,7 @@
   <%= render 'author/author/ibox_index',
       item_bg: 'bg-gray',
       item_title: controller_name.singularize.humanize,
-      item_new: (defined? url).nil? ? send("new_author_#{controller_name.singularize}_path") : url,
+      item_new: ((defined? url) ? url : nil).nil? ? send("new_author_#{controller_name.singularize}_path") : url,
       item_info: t('add_new'),
       item_icon: 'fa-plus-circle' %>
 </div>
