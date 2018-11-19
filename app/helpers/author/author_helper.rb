@@ -1,31 +1,35 @@
 module Author::AuthorHelper
 
-  def get_development
-    get_site_type('development')
+  def development
+    site_type('development')
   end
 
-  def get_consumption
-    get_site_type('consumption')
+  def consumption
+    site_type('consumption')
   end
 
-  def get_authoring
-    get_site_type('authorize')
+  def authoring
+    site_type('authorize')
   end
 
-  def get_test
-    get_site_type('test')
+  def test
+    site_type('test')
   end
 
-  def is_action?(action)
+  def action?(action)
     action_name == action
   end
 
-  def is_new?
-    is_action? 'new'
+  def new?
+    action? 'new'
   end
 
-  def is_edit?
-    is_action? 'edit'
+  def edit?
+    action? 'edit'
+  end
+
+  def new_url
+    send("new_author_#{controller_name.singularize}_path")
   end
 
   def empty_ibox?(item, color, fallback_color = 'bg-gray')
@@ -254,7 +258,7 @@ module Author::AuthorHelper
 
   private
 
-  def get_site_type(mode)
+  def site_type(mode)
     Author::SiteType.where(name: mode).first
   end
 
