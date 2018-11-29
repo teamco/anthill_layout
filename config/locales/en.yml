@@ -23,6 +23,7 @@ en:
   hello: "Hello world"
   author_panel: "Author Panel"
   login: "Sign in"
+  reset: "Reset"
   logout: "Sign out"
   all: "All"
   items: "Items"

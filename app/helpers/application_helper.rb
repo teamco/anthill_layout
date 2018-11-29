@@ -47,32 +47,27 @@ module ApplicationHelper
     {controller: controller_name, action: id.nil? ? :index : action_name, id: id}
   end
 
-  def do_logout(css = nil)
-    link_to destroy_user_session_path,
-        title: t('logout'),
-        method: :delete,
-        class: css do
-      "<i class=\"fa fa-sign-out-alt\"></i>#{t('logout')}".html_safe
-    end unless current_user.nil?
+  def do_logout(css = nil, title = t('logout'))
+    link_to(destroy_user_session_path, title: title, method: :delete,
+        class: css) {render_icon(title, 'fa-sign-out-alt')} unless current_user.nil?
   end
 
-  def do_login(css = nil)
-    link_to root_path, title: t('login'), class: css do
-      "<i class=\"fa fa-sign-in-alt\"></i>#{t('login')}".html_safe
-    end if current_user.nil?
+  def do_login(css = nil, title = t('login'))
+    link_to(root_path, title: title, class: css) {render_icon(title,
+        'fa-sign-in-alt')} if current_user.nil?
   end
 
   def button_link(title, url, css = 'default', icon = nil, condition, direction)
-    link_to url, class: "btn btn-sm btn-#{css}" do
-      "<i class=\"fa #{icon}\"></i>#{title}".html_safe
-    end if (direction ? condition : !condition)
+    link_to(url, title: title, class: "btn btn-sm btn-#{css}") {
+      render_icon(title, icon)} if (direction ? condition : !condition)
   end
 
-  def submit_button(f, title, css = 'primary', icon = 'thumbs-up')
-    f.button class: "btn btn-sm btn-#{css}" do
-      concat "<i class=\"fa fa-#{icon}\"></i>&nbsp;".html_safe
-      concat title
-    end
+  def submit_button(f, title, css = 'primary', icon = 'fa-thumbs-up')
+    f.button(class: "btn btn-sm btn-#{css}") {render_icon(title, icon)}
+  end
+
+  def reset_button(f, title, css = 'danger', icon = 'fa-ban')
+    f.button(class: "btn btn-sm btn-#{css}", type: 'reset') {render_icon(title, icon)}
   end
 
   def is_sessions?
@@ -171,5 +166,9 @@ module ApplicationHelper
   def handle_external_images(url)
     return url if url.match(/http\:/)
     asset_pack_path("images/#{current_user.image}")
+  end
+
+  def render_icon(title, icon)
+    "<i class=\"fa #{icon}\"></i> #{title}".html_safe
   end
 end

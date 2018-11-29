@@ -54,9 +54,7 @@
           </div>
           <div class="card-footer">
             <%= submit_button(f, t('login')) %>
-            <button class="btn btn-sm btn-danger" type="reset">
-              <i class="fa fa-ban"></i> Reset
-            </button>
+            <%= reset_button(f, t('reset')) %>
             <%#= render 'devise/shared/links' %>
           </div>
         <% end %>
