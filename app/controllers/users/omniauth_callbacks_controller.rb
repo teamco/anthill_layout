@@ -5,7 +5,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def generic_callback(provider)
     begin
       @user = User.from_omniauth(request.env['omniauth.auth'])
-
+logger.info ">>>>>>> #{@user.inspect}"
       if @user.persisted?
         #this will throw if @user is not activated
         sign_in_and_redirect @user, event: :authentication

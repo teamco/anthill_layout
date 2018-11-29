@@ -1,6 +1,5 @@
 require 'fileutils'
 require 'json'
-require "#{Rails.root}/lib/tasks/map_resources.rb"
 
 class Author::SiteStoragesController < Author::AuthorController
 
@@ -33,10 +32,6 @@ class Author::SiteStoragesController < Author::AuthorController
               {name: params[:mode]}
       )
       @storage.deep_merge!(config)
-      if Rails.env == 'production'
-        router = MapResources::JsMap.new
-        @storage[:router] = router.map[:public_assets].to_json
-      end
     end
   end
 

@@ -57,16 +57,14 @@ module ApplicationHelper
   end
 
   def do_login(css = nil)
-    link_to root_path,
-        title: t('login'),
-        class: css do
+    link_to root_path, title: t('login'), class: css do
       "<i class=\"fa fa-sign-in-alt\"></i>#{t('login')}".html_safe
     end if current_user.nil?
   end
 
   def button_link(title, url, css = 'default', icon = nil, condition, direction)
-    link_to title, url, class: "btn btn-sm btn-#{css}" do
-      content_tag(:i, class: "fa #{icon}")
+    link_to url, class: "btn btn-sm btn-#{css}" do
+      "<i class=\"fa #{icon}\"></i>#{title}".html_safe
     end if (direction ? condition : !condition)
   end
 
@@ -116,7 +114,7 @@ module ApplicationHelper
   def user_image_url
     return asset_pack_path('images/user_info.png') if current_user.nil?
     current_user.image ?
-        asset_pack_path("images/#{current_user.image}") :
+        handle_external_images(current_user.image) :
         current_user.gravatar_url
   end
 
@@ -166,5 +164,12 @@ module ApplicationHelper
   def is_active_url(*args)
     args.each {|x| return true if controller_name == x}
     false
+  end
+
+  private
+
+  def handle_external_images(url)
+    return url if url.match(/http\:/)
+    asset_pack_path("images/#{current_user.image}")
   end
 end

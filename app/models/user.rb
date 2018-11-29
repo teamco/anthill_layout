@@ -103,8 +103,6 @@ class User < ApplicationRecord
 
   belongs_to :role
 
-  before_create :set_default_role
-
   validates_format_of :email,
       with: TEMP_EMAIL_REGEX,
       on: :update,
@@ -154,6 +152,10 @@ class User < ApplicationRecord
     Thread.current[:user] = user
   end
 
+  def set_default_role
+    self.role ||= Role.find_by_name('registered')
+  end
+
   private
 
   ##
@@ -170,11 +172,10 @@ class User < ApplicationRecord
 
     # assuming the user model has an image
     user.image = auth.info.image
-    user.save
-  end
 
-  def set_default_role
-    self.role ||= Role.find_by_name('registered')
-  end
+    user.build_author_item(public: false, visible: true, user_id: user)
+    user.set_default_role
 
+    user.save!
+  end
 end

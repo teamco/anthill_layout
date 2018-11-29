@@ -1,6 +1,6 @@
-@import "theme";
+@import url(theme.css);
+@import url(combined.css);
 @import "./widget";
-@import './combined';
 
 .json-view {
   margin-bottom: 1em;
