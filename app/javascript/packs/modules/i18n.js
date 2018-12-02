@@ -64,7 +64,6 @@ export class i18n {
   /**
    * @method getData
    * @param translation
-   * @property i18n
    */
   updateData(translation) {
     for (let index in translation) {

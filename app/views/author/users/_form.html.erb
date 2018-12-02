@@ -1,5 +1,5 @@
-<% method = is_action?('new') ? 'post' : 'put' %>
-<% action = is_action?('new') ? 'create' : 'update' %>
+<% method = new? ? 'post' : 'put' %>
+<% action = new? ? 'create' : 'update' %>
 <%= form_for(item, url: {controller: 'author/users', action: action}, method: method) do |f| %>
 
     <%= render_notification(item) %>

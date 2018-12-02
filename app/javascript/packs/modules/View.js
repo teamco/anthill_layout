@@ -346,7 +346,7 @@ export class BaseView extends AntHill {
   /**
    * Define get $container
    * @memberOf BaseView
-   * @returns {*}
+   * @returns {BaseElement|*}
    */
   get$container() {
     const $container = this.elements.$container;

@@ -22,7 +22,7 @@ export class GalleryContentElement extends PluginElement {
   constructor(view, opts) {
     super('GalleryContentElement', view, false);
 
-    this._config(view, opts, $('<li />')).build({
+    this._config(view, opts, $('<li class="nav-item" />')).build({
       $container: opts.$container,
       destroy: false
     });
@@ -51,7 +51,10 @@ export class GalleryContentElement extends PluginElement {
    * @memberOf GalleryContentElement
    */
   getTemplate() {
-    $('<a class="widget ' + this.data.resource.toClassName() + '" />').appendTo(this.$);
+    $(`<a class="widget nav-link ${this.data.resource.toClassName()} data-uuid="${this.data.resource}" data-toggle="modal" data-target="#${this.data.resource}">
+         <i class="fas fa-file-image"></i>
+        ${this.data.resource} 
+        </a>`).appendTo(this.$);
   }
 
   /**

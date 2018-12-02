@@ -17,7 +17,7 @@ export class GalleryProvidersElement extends PluginElement {
    */
   constructor(view, opts) {
     super('GalleryProvidersElement', view, false);
-    this._config(view, opts, $('<div />')).build(opts);
+    this._config(view, opts, $('<li />')).build(opts);
     this.renderData(opts.data, opts.current);
   }
 

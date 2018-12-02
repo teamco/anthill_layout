@@ -8,16 +8,15 @@
         <div class="col">
           <h5 class="card-title align-middle"><%= item.name %></h5>
         </div>
-        <div class="col-8">
+        <div class="col-9">
           <div class="input-group">
             <div class="input-group-prepend">
-              <div class="input-group-text pr-3">
+              <div class="input-group-text">
                 <%= check_box_tag 'author_site_storage[author_site_storage_widget_ids][]',
                     item.id,
                     widget_selected?(item), {
                         id: dom_id(item),
-                        'aria-label': 'Checkbox for following widget',
-                        class: 'form-control'
+                        'aria-label': 'Checkbox for following widget'
                     } -%>
               </div>
             </div>

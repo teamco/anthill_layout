@@ -1,8 +1,8 @@
 <%= form_for(item) do |f| -%>
   <% content = item.get_activated_version.content rescue nil %>
   <%= render_notification(item) -%>
-  <%= render_text_field(f, :key) if is_action?('new') %>
-  <%= render_field_tag(:text_area_tag, :content, content, true) unless is_action?('new') -%>
+  <%= render_text_field(f, :key) if new? %>
+  <%= render_field_tag(:text_area_tag, :content, content, true) unless new? -%>
   <%= render_json(content, '.json-view') unless content.nil? %>
 
   <%= render 'author/author/item', f: f -%>
@@ -38,7 +38,7 @@
       </h6>
     </div>
     <div class="card-body">
-      <%= render 'author/site_storages/widgets/select_widgets' unless is_action?('new') %>
+      <%= render 'author/site_storages/widgets/select_widgets' unless new? %>
     </div>
   </div>
 <% end -%>

@@ -105,14 +105,6 @@ export class WorkspaceDataView extends aggregation(BaseView, BasePreferencesElem
   }
 
   /**
-   * Update footer content
-   * @memberOf WorkspaceDataView
-   */
-  updateFooterContent() {
-    this.renderFooter(this.get$item());
-  }
-
-  /**
    * Render create new page
    * @memberOf WorkspaceDataView
    */

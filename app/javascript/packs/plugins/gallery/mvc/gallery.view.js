@@ -7,7 +7,6 @@
  */
 
 import {BaseView} from '../../../modules/View';
-import {GalleryElement} from '../element/gallery.element';
 import {GalleryProvidersElement} from '../element/gallery.providers.element';
 import {GalleryContentElement} from '../element/gallery.content.element';
 
@@ -33,26 +32,23 @@ export class GalleryView extends BaseView {
    */
   renderGallery() {
 
-    if (this.isCached('$gallery', GalleryElement)) {
-
-      /**
-       * Get scope
-       * @type {Gallery}
-       */
-      const scope = this.scope;
-
-      scope.observer.publish(scope.eventManager.eventList.loadModuleContent, [true, true]);
-      return false;
-    }
+    // if (this.isCached('$gallery', GalleryElement)) {
+    //
+    //   /**
+    //    * Get scope
+    //    * @type {Gallery}
+    //    */
+    //   const scope = this.scope;
+    //
+    //   scope.observer.publish(scope.eventManager.eventList.loadModuleContent, [true, true]);
+    //   return false;
+    // }
 
     /**
      * Define Gallery element
-     * @type {GalleryElement}
+     * @type {PanelContentElement}
      */
-    this.elements.$gallery = new GalleryElement(this, {
-      $container: this.get$container().$,
-      destroy: false
-    });
+    this.elements.$gallery = this.get$container();
   }
 
   /**
@@ -63,10 +59,6 @@ export class GalleryView extends BaseView {
    * @returns {boolean}
    */
   renderProviders(providers, currentProvider) {
-
-    if (this.isCached('$providers', GalleryProvidersElement)) {
-      return false;
-    }
 
     /**
      * Define Gallery element
@@ -88,14 +80,9 @@ export class GalleryView extends BaseView {
    * @returns {boolean}
    */
   renderContent(provider, force) {
-    if (this.isCachedItems() && !force) {
-      return false;
-    }
-
-    this.renderFilterElement(this.updateFooterContent.bind(this));
-    this.renderProviders(this.controller.getProvidersData(), this.controller.getModuleData());
-
     this.cleanElementItems();
+    this.renderFilterElement();
+    this.renderProviders(this.controller.getProvidersData(), this.controller.getModuleData());
 
     /**
      * Define provider data
@@ -118,22 +105,10 @@ export class GalleryView extends BaseView {
       this.updateElementItems($item);
     }
 
-    this.updateScrollCover();
-
     this.elements.$filter.updateData({
       items: this.elements.items,
       focusOn: 'input'
     });
-
-    this.updateFooterContent();
-  }
-
-  /**
-   * Update footer content
-   * @memberOf GalleryView
-   */
-  updateFooterContent() {
-    this.renderFooter(this.get$item());
   }
 
   /**
