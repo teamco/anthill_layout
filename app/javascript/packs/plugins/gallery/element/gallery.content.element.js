@@ -11,6 +11,7 @@ import {PluginElement} from '../../plugin.element';
  * Define PanelContent Element
  * @class GalleryContentElement
  * @extends PluginElement
+ * @extends Renderer
  */
 export class GalleryContentElement extends PluginElement {
 
@@ -51,10 +52,11 @@ export class GalleryContentElement extends PluginElement {
    * @memberOf GalleryContentElement
    */
   getTemplate() {
-    $(`<a class="widget nav-link ${this.data.resource.toClassName()} data-uuid="${this.data.resource}" data-toggle="modal" data-target="#${this.data.resource}">
-         <i class="fas fa-file-image"></i>
-        ${this.data.resource} 
-        </a>`).appendTo(this.$);
+    const resource = this.data.resource;
+    const name = this.data.name;
+    $(`<a class="nav-link" data-uuid="${resource}" data-toggle="modal" data-target="#${resource}">
+         <span class="widget ${resource.toClassName()}">${name}</span> 
+       </a>`).appendTo(this.$);
   }
 
   /**
@@ -69,14 +71,9 @@ export class GalleryContentElement extends PluginElement {
     });
 
     if (this.data.is_external) {
-
-      $('a', this.$).attr({
-        style: 'background-image: url("' +
-        this.fetchExternalResourceThumbnail(this.data) + '");'
+      $('a span', this.$).attr({
+        style: `background-image: url("${this.fetchExternalResourceThumbnail(this.data)}");`
       });
-
-    } else {
-      this.$.addClass(this.view.controller.getResourceClassName(this.data.resource));
     }
   }
 
@@ -110,18 +107,13 @@ export class GalleryContentElement extends PluginElement {
    * @memberOf GalleryContentElement
    */
   bindShowInfo() {
+    const external = this.data.is_external ? 'External' : 'Core';
 
-    /**
-     * Define content element
-     * @type {GalleryContentElement|string}
-     */
-    const element = this,
-        external = element.data.is_external ? 'External' : 'Core';
-
-    element.renderTooltip({
-      title: element.data.name,
-      description: element.data.description + '\n' + '(' + external + ')',
-      selector: element.$
+    this.renderTooltip({
+      title: this.data.name,
+      description: this.data.description + '\n' + '(' + external + ')',
+      selector: this.$,
+      customCss: `widget ${this.data.resource.toClassName()}`
     });
   }
 }

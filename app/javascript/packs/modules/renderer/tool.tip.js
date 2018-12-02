@@ -17,7 +17,8 @@ export class ToolTipRenderer {
    *  [description]: string,
    *  [imageUrl]: string,
    *  [imageFloat]: string,
-   *  [container]: string
+   *  [container]: string,
+   *  [customCss]: string
    * }} opts
    * @returns {*|jQuery}
    */
@@ -58,6 +59,13 @@ export class ToolTipRenderer {
         'data-toggle': 'popover',
         title: config.title
       }).popover(config);
+
+      if (opts.customCss) {
+        $selector.on('shown.bs.popover', function() {
+          const popoverId = this.getAttribute('aria-describedby');
+          $(`#${popoverId} .popover-header`).addClass(opts.customCss);
+        });
+      }
 
     } else {
 

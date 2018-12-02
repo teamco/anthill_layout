@@ -168,6 +168,7 @@ header {
   }
   pointer-events: none;
   max-width: $popover-offset-width;
+  min-width: $popover-offset-width;
 }
 
 .tooltip {

@@ -1,0 +1,13 @@
+$img-path: '../plugins/widgets/';
+
+.widget.empty {
+  background-image: url($img-path + 'empty/images/empty.png');
+}
+
+.widget.image {
+  background-image: url($img-path + 'image/images/image.png');
+}
+
+.widget.page-tabs {
+  background-image: url($img-path + 'pageTabs/images/page.tabs.png');
+}

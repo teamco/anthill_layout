@@ -12,6 +12,8 @@ import 'jquery-ui/ui/widgets/resizable';
 import 'jquery-ui/ui/widgets/selectable';
 import 'jquery-ui/ui/widgets/sortable';
 
+import 'jquery.initialize';
+
 import {Application} from './core/config/application';
 
 (function() {

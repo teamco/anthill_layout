@@ -1,10 +1,14 @@
+$gallery-widget: 2.5em;
+
 .card.widget-info {
   .container {
     padding: 0;
   }
+
   .col.bg-widget {
     min-height: 64px;
   }
+
   .widget {
     position: relative;
     right: auto;
@@ -13,11 +17,13 @@
     bottom: auto;
     height: 100%;
   }
+
   .widget-description {
     min-height: 3.5em;
     display: table;
     cursor: pointer;
   }
+
   span {
     padding-right: 1.5em;
   }
@@ -25,4 +31,18 @@
 
 .widget {
   background-repeat: no-repeat;
+  display: inline-block;
+  height: $gallery-widget;
+  line-height: $gallery-widget;
+  background-size: $gallery-widget;
+  padding-left: 3.2em;
+}
+
+.popover {
+  .widget {
+    background-position: 0.5em center;
+    background-size: 2em;
+    width: 100%;
+    line-height: 1.5em;
+  }
 }
