@@ -9,7 +9,8 @@
   <meta name="application-name" content="AntHill Co. 2018">
   <%= csrf_meta_tags %>
   <%= action_cable_meta_tag %>
-  <%= stylesheet_pack_tag 'author', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= stylesheet_pack_tag 'author', media: 'all',
+      'data-turbolinks-track': 'reload' unless Webpacker.dev_server.hot_module_replacing? %>
   <%= javascript_pack_tag 'author', 'data-turbolinks-track': 'reload' %>
 </head>
 <body class="anthill loading app header-fixed sidebar-fixed aside-menu-fixed sidebar-lg-show">

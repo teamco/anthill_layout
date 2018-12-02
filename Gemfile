@@ -1,7 +1,5 @@
 source 'https://rubygems.org'
 ruby '2.5.3'
-require 'socket'
-teamco = Socket.gethostname =~ /teamco/
 
 # case RUBY_PLATFORM
 #   when /darwin|linux/
@@ -12,7 +10,7 @@ gem 'embedly'
 gem 'iframely'
 gem 'informant-rails'
 gem 'mechanize'
-gem 'mysql2' #unless teamco.nil?
+# gem 'mysql2' #unless teamco.nil?
 gem 'pg'
 gem 'pismo'
 gem 'puma'
