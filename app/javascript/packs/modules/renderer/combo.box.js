@@ -45,27 +45,25 @@ export class ComboBoxRenderer {
      */
     const activeContent = this.view.scope.activeContent;
 
-    const $input = $('<input class="hidden' + (store ? ' store' : '') + '" />').attr({
+    const $input = $(`<input type="hidden" class="${store ? ' store' : ''}" />`).attr({
       name: index,
-      disabled: true,
-      type: 'text',
       value: selected
     });
 
-    /**
-     * Define container
-     * @type {*|jQuery}
-     */
     const style = (activeContent ? [index, activeContent.name].join('') : index).toDash(),
-        id = this.view.utils.gen.UUID() + '-combobox',
-        $combo = $([
-          '<ul class="nav"><li role="presentation" class="dropdown">',
-          '<a class="dropdown-toggle', disabled ? ' disabled' : '',
-          '" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">',
-          '<span class="caret pull-right"></span></a>',
-          '<ul class="dropdown-menu"></ul>',
-          '</li></ul>'
-        ].join('')).addClass(style).attr({id: id}).append($input);
+        id = `${this.view.utils.gen.UUID()}-combobox`;
+
+    const $combo = $(
+        `<ul class="nav ${style}" id="${id}">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle ${disabled ? ' disabled' : ''}" 
+             data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"></a>         
+          <div class="dropdown-menu"></div>         
+        </li>
+      </ul>`
+    );
+
+    $('li', $combo).append($input);
 
     /**
      * Update placeholder
@@ -73,7 +71,7 @@ export class ComboBoxRenderer {
      * @private
      */
     function _updatePlaceholder(value) {
-      $('.dropdown-toggle', $combo).html(value + '<span class="caret pull-right"></span>');
+      $('.dropdown-toggle', $combo).html(`${value}<span class="caret pull-right"></span>`);
     }
 
     /**
@@ -102,7 +100,7 @@ export class ComboBoxRenderer {
 
       $('li', $selected.parent()).removeClass('selected');
       $selected.addClass('selected');
-      $('input[name="' + index + '"]', $combo).val(value);
+      $(`input[name="${index}"]`, $combo).val(value);
       _updatePlaceholder(value);
     }
 
@@ -110,24 +108,24 @@ export class ComboBoxRenderer {
      * Define $ul
      * @type {*|jQuery}
      */
-    const $ul = $('ul.dropdown-menu', $combo);
+    const $ul = $('div.dropdown-menu', $combo);
     let i = 0, l = data.length;
 
     for (; i < l; i++) {
 
-      const field = data[i],
-          $li = $('<li />');
+      const field = data[i];
+      let $li;
 
       if (field.type === 'text') {
-        $li.html($('<a href="#" />').text(field.value));
+        $li = $('<a class="dropdown-item" href="#" />').text(field.value);
       }
 
       if (field.type === 'html') {
-        $li.html(field.value);
+        $li = field.value;
       }
 
       if (field.type === 'field') {
-        $li.append(this.renderTextField({
+        $li = this.renderTextField({
           name: field.name,
           text: field.text.trim(),
           placeholder: field.placeholder,
@@ -136,7 +134,7 @@ export class ComboBoxRenderer {
           visible: field.visible,
           validate: field.validate,
           monitor: field.monitor
-        }));
+        });
       }
 
       if (selected === field.value) {
