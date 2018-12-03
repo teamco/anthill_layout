@@ -107,9 +107,4 @@ gem 'puma_worker_killer'
 # gem 'unicorn'
 gem 'rack-handlers'
 
-# gem 'sprockets-es6'
-# gem 'babel-source'
-# gem 'babel-transpiler'
-# gem 'browserify-rails', '>=4.2.0'
-
 gem 'webpacker', '>=4.0.0.pre.3'
