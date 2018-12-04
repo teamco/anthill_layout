@@ -48,17 +48,8 @@ export class ToolTipRenderer {
         config.content += $image[0];
       }
 
-      if (!$selector.popover) {
-        this.view.scope.logger.warn('Undefined popover');
-        return false;
-      }
-
       this.removeOpenPopups();
-
-      $selector.attr({
-        'data-toggle': 'popover',
-        title: config.title
-      }).popover(config);
+      this._initPopover($selector, config);
 
       if (opts.customCss) {
         $selector.on('shown.bs.popover', function() {
@@ -68,13 +59,41 @@ export class ToolTipRenderer {
       }
 
     } else {
-
-      if (!$selector.tooltip) {
-        this.view.scope.logger.warn('Undefined tooltip');
-        return false;
-      }
-      $selector.tooltip(config);
+      this._initTooltip($selector, config);
     }
+  }
+
+  /**
+   * @memberOf ToolTipRenderer
+   * @param $selector
+   * @param config
+   * @return {boolean}
+   * @private
+   */
+  _initPopover($selector, config) {
+    if (!$selector.popover) {
+      this.view.scope.logger.warn('Undefined popover');
+      return false;
+    }
+    $selector.attr({
+      'data-toggle': 'popover',
+      title: config.title
+    }).popover(config);
+  }
+
+  /**
+   * @memberOf ToolTipRenderer
+   * @param $selector
+   * @param config
+   * @return {boolean}
+   * @private
+   */
+  _initTooltip($selector, config) {
+    if (!$selector.tooltip) {
+      this.view.scope.logger.warn('Undefined tooltip');
+      return false;
+    }
+    $selector.tooltip(config);
   }
 
   /**

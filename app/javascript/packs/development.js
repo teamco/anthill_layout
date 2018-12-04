@@ -1,4 +1,4 @@
-import './stylesheets/jquery-ui.min.css';
+import './stylesheets/jquery-ui.min.scss';
 import './stylesheets/development.scss';
 
 import 'jquery-ui/ui/core';

@@ -2,15 +2,17 @@ const {environment} = require('@rails/webpacker');
 const merge = require('webpack-merge');
 const webpack = require('webpack');
 
-environment.plugins.prepend('Provide', new webpack.ProvidePlugin({
-  $: 'jquery',
-  jQuery: 'jquery',
-  jquery: 'jquery',
-  'window.jQuery': 'jquery',
-  'window.Tether': 'tether',
-  Popper: ['popper.js', 'default'],
-  html2canvas: 'html2canvas'
-}));
+environment.plugins.append(
+    'Provide',
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery',
+      'window.jQuery': 'jquery',
+      'window.Tether': 'tether',
+      Popper: ['popper.js', 'default'],
+      html2canvas: 'html2canvas'
+    })
+);
 
 environment.loaders.append('expose', {
   test: require.resolve('jquery'),

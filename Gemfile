@@ -10,7 +10,7 @@ gem 'embedly'
 gem 'iframely'
 gem 'informant-rails'
 gem 'mechanize'
-# gem 'mysql2' #unless teamco.nil?
+gem 'mysql2' #unless teamco.nil?
 gem 'pg'
 gem 'pismo'
 gem 'puma'
