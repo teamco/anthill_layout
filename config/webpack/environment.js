@@ -14,14 +14,23 @@ environment.plugins.append(
     })
 );
 
-environment.loaders.append('expose', {
-  test: require.resolve('jquery'),
-  use: [
-    {
-      loader: 'expose-loader',
-      options: '$'
-    }
-  ]
+// environment.loaders.append('expose', {
+//   test: require.resolve('jquery'),
+//   use: [
+//     {
+//       loader: 'expose-loader',
+//       options: '$'
+//     },
+//     {
+//       loader: 'expose-loader',
+//       options: 'jQuery'
+//     }
+//   ]
+// });
+//
+environment.loaders.append('imports-loader', {
+  test: require.resolve("jquery"),
+  loader: 'imports-loader?jQuery=jquery,$=jquery,this=>window'
 });
 
 environment.loaders.get('sass').use.splice(-1, 0, {
