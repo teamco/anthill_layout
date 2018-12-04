@@ -40,6 +40,7 @@ export class PanelEventManager extends BaseEvent {
      *  definePackages: string,
      *  openPanel: string,
      *  closePanel: string,
+     *  updateItemsCount: string,
      *  refreshModulesContent: string,
      *  subscribeGenericEvent: string
      * }}
@@ -51,6 +52,7 @@ export class PanelEventManager extends BaseEvent {
       definePackages: 'define.packages',
       openPanel: 'open.panel',
       closePanel: 'close.panel',
+      updateItemsCount: 'update.items.count',
       refreshModulesContent: 'refresh.modules.content',
       subscribeGenericEvent: 'subscribe.generic.event'
     };

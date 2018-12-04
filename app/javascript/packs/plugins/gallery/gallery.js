@@ -5,7 +5,7 @@
  * Time: 11:02 AM
  */
 
-import './gallery.css';
+import './gallery.scss';
 
 import {AntHill} from '../../core/config/anthill';
 import {MVC} from '../../modules/MVC';

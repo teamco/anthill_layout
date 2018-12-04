@@ -55,12 +55,17 @@ export class ComboBoxRenderer {
 
     const $combo = $(
         `<ul class="nav ${style}" id="${id}">
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle ${disabled ? ' disabled' : ''}" 
-             data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"></a>         
-          <div class="dropdown-menu"></div>         
-        </li>
-      </ul>`
+          <li class="nav-item position-static">
+            <div class="dropdown">
+              <button class="btn btn-secondary btn-sm w-100 dropdown-toggle ${disabled ? ' disabled' : ''}" type="button" 
+                      id="${id}-categories" data-toggle="dropdown" aria-haspopup="true" data-boundary="viewport" 
+                      aria-expanded="false">
+                Choose category
+              </button>                                        
+              <div class="dropdown-menu" aria-labelledby="${id}-categories"></div> 
+            </div>        
+          </li>
+        </ul>`
     );
 
     $('li', $combo).append($input);

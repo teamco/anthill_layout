@@ -114,12 +114,27 @@ export class GalleryController extends aggregation(PluginController, Routes) {
     const scope = this.scope;
 
     scope.observer.publish(scope.eventManager.eventList.loadModuleContent, [true, true]);
+    this.updateWidgetsCounter();
+  }
+
+  /**
+   * @memberOf GalleryController
+   */
+  updateWidgetsCounter() {
+
+    /**
+     * @constant
+     * @type {Panel}
+     */
+    const panel = this.getDesignTimePanel();
+    panel.observer.publish(panel.eventManager.eventList.updateItemsCount, [
+      'gallery', this.model.getItems()])
   }
 
   /**
    * Filter search results
    * @memberOf GalleryController
-   * @param {Event} e
+   * @param e
    */
   filterResults(e) {
     e.preventDefault();
@@ -164,8 +179,6 @@ export class GalleryController extends aggregation(PluginController, Routes) {
         }
       }
     }
-
-    this.getView().updateFooterContent();
   }
 
   /**

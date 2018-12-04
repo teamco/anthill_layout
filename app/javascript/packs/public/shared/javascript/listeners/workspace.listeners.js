@@ -154,9 +154,14 @@ export const workspaceGlobalListeners = () => {
       name: 'after.create.item',
       callback(item) {
         this.logger.debug('Global listener: afterCreateItem', item);
+
+        /**
+         * @constant
+         * @type {Panel}
+         */
         const panel = this.controller.getDesignTimePanel();
-        const element = panel.controller.getPackageContentElementBy('bar', 'style', 'workspace-data');
-        element.updateBadge(Object.keys(this.model.getItems()).length);
+        panel.observer.publish(panel.eventManager.eventList.updateItemsCount, [
+            'workspace-data', this.model.getItems()])
       }
     },
 

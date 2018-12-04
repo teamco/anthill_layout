@@ -6,7 +6,6 @@
  * To change this template use File | Settings | File Templates.
  */
 
-import('bootstrap');
 import {Renderer} from './Renderer';
 
 /**
@@ -36,8 +35,7 @@ export class BaseElement extends Renderer {
    * Element config before build
    * @memberOf BaseElement
    * @param {BaseView} view
-   * @param {{[style]: string, [uuid], [id]: boolean, [css], [events], [opacity], [id]: boolean, [disabled]: boolean}}
-   *     opts
+   * @param opts
    * @param $html
    * @returns {BaseElement}
    * @protected
