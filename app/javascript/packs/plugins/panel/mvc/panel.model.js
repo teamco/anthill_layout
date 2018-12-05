@@ -39,6 +39,20 @@ export class PanelModel extends BaseModel {
   }
 
   /**
+   * @memberOf PanelModel
+   * @param Entity
+   * @param type
+   */
+  defineGetters(Entity, type) {
+    const name = Entity.name;
+    if (!this[name]) {
+      this[`get${name}`] = () => {
+        return this[`get${type}By`]('name', this.getPanelEntityResourceName(Entity));
+      };
+    }
+  }
+
+  /**
    * Init module
    * @memberOf PanelModel
    * @param Module
@@ -48,6 +62,7 @@ export class PanelModel extends BaseModel {
       activated: false,
       module: new Module(this.scope)
     });
+    this.defineGetters(Module, 'Module');
   }
 
   /**
@@ -57,6 +72,7 @@ export class PanelModel extends BaseModel {
    */
   definePackage(Package) {
     this.packages.push(new Package(this.scope));
+    this.defineGetters(Package, 'Package');
   }
 
   /**
@@ -78,15 +94,30 @@ export class PanelModel extends BaseModel {
   }
 
   /**
+   * @memberOf PanelModel
+   * @param type
+   * @param index
+   * @private
+   */
+  _getEntity(type, index) {
+    const method = this[`getAll${type}s`];
+    if (method) {
+      const entities = this[`getAll${type}s`](),
+          entity = entities[index];
+      return entity ? entity : entities;
+    } else {
+      this.scope.logger.warn('Undefined type', type);
+    }
+  }
+
+  /**
    * Get module by index
    * @memberOf PanelModel
    * @param {number} [index]
    * @returns {*}
    */
   getModule(index) {
-    const modules = this.getAllModules(),
-        module = modules[index];
-    return module ? module : modules;
+    return this._getEntity('Module', index);
   }
 
   /**
@@ -96,9 +127,7 @@ export class PanelModel extends BaseModel {
    * @returns {*}
    */
   getPackage(index) {
-    const packages = this.getAllPackages(),
-        packet = packages[index];
-    return packet ? packet : packages;
+    return this._getEntity('Package', index);
   }
 
   /**
@@ -113,18 +142,39 @@ export class PanelModel extends BaseModel {
   }
 
   /**
-   * @method getEntityBy
+   * @memberOf PanelModel
+   * @param type
+   * @param value
+   * @param entityType
+   * @returns {*}
+   * @private
+   */
+  _getEntityBy(type, value, entityType) {
+    let _m = {};
+    if (type === 'name') {
+      _m = this[`get${entityType}`](this[`get${entityType}Index`](value));
+    } else if (type === 'index') {
+      _m = this[`get${entityType}`](value);
+    }
+    return _m;
+  }
+
+  /**
+   * @method getModuleBy
    * @param {string} type - name/index
    * @param value
    */
   getModuleBy(type, value) {
-    let _m = {};
-    if (type === 'name') {
-      _m = this.getModule(this.getModuleIndex(value));
-    } else if (type === 'index') {
-      _m = this.getModule(value);
-    }
-    return _m.module;
+    return this._getEntityBy(type, value, 'Module').module;
+  }
+
+  /**
+   * @method getPackageBy
+   * @param {string} type - name/index
+   * @param value
+   */
+  getPackageBy(type, value) {
+    return this._getEntityBy(type, value, 'Package');
   }
 
   /**

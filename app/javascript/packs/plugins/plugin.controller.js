@@ -141,7 +141,7 @@ export class PluginController extends BaseController {
       return element;
     }
 
-    panel.logger.warn('Undefined element', arguments);
+    module.logger.warn('Undefined element', arguments);
   }
 
   /**
@@ -196,7 +196,6 @@ export class PluginController extends BaseController {
    * @param {Event} event
    */
   locateElementItem(event) {
-
     event.preventDefault();
 
     /**

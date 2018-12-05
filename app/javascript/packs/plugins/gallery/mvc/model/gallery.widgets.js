@@ -77,7 +77,7 @@ export class GalleryWidgets {
       const defaultData = galleryWidgets.defaultData;
 
       // Store ordered data
-      const data = typeof(key) === 'string' && typeof(type) === 'string' ?
+      const data = typeof (key) === 'string' && typeof (type) === 'string' ?
           scope.utils.array.sortByValue.call(defaultData, key, type, reverse) :
           defaultData;
 
@@ -91,6 +91,15 @@ export class GalleryWidgets {
       );
     }
 
+    /**
+     * @method
+     * @private
+     */
+    function _handleCallback() {
+      _sortData();
+      scope.controller.updateWidgetsCounter(scope.model.providers.all.data);
+    }
+
     if (!galleryWidgets.defaultData.length) {
 
       /**
@@ -101,10 +110,10 @@ export class GalleryWidgets {
 
       $.getJSON(route[0].replace(/\{0}/, scope.controller.getAppName()), json => {
         galleryWidgets.setDefaultData(json);
-        _sortData();
+        _handleCallback();
       });
     } else {
-      _sortData();
+      _handleCallback();
     }
   }
 

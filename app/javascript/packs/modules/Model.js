@@ -208,7 +208,7 @@ export class BaseModel extends CRUD {
    * @returns {*}
    */
   getItems() {
-    return this.scope.items;
+    return this.scope.items || {};
   }
 
   /**

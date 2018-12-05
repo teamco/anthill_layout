@@ -119,16 +119,16 @@ export class GalleryController extends aggregation(PluginController, Routes) {
 
   /**
    * @memberOf GalleryController
+   * @param items
    */
-  updateWidgetsCounter() {
+  updateWidgetsCounter(items = []) {
 
     /**
      * @constant
      * @type {Panel}
      */
     const panel = this.getDesignTimePanel();
-    panel.observer.publish(panel.eventManager.eventList.updateItemsCount, [
-      'gallery', this.model.getItems()]);
+    panel.observer.publish(panel.eventManager.eventList.updateItemsCount, ['gallery', items]);
   }
 
   /**

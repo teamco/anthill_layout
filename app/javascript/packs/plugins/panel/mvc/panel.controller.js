@@ -349,7 +349,7 @@ export class PanelController extends PluginController {
    * @param {string} value
    * @param items
    */
-  updateItemsCount(value, items) {
+  updateItemsCount(value, items = {}) {
     const bar = this.controller.getPackageContentElementBy('bar', 'style', value);
     bar.updateBadge(Object.keys(items).length);
   }

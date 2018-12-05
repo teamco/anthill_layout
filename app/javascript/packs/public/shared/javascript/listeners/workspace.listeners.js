@@ -212,45 +212,45 @@ export const workspaceGlobalListeners = () => {
       name: 'create.run.time.panel',
       callback() {
 
-        /**
-         * Define app
-         * @type {Application|{panels, controller, logger}}
-         */
-        const app = this.controller.root();
-
-        //   'plugins/maximize/maximize',
-        //   'plugins/dashboard/dashboard'
-
-        /**
-         * Init panel plugin
-         * @type {Panel}
-         */
-        app.panels.runTime = new Panel({
-          config: {
-            renderAt: 'left',
-            header: {
-              visible: true,
-              title: {
-                short: 'RT',
-                long: 'Runtime'
-              }
-            }
-          },
-          modules: [/*Maximize, Dashboard*/],
-          packages: [Bar]
-        }, app);
-
-        app.panels.runTime.lazyRender();
-
-        /**
-         * Match regex
-         * @type {Array|{index: number, input: string}}
-         */
-        const widgetMatch = app.controller.isWidgetMatch2Hash();
-
-        if (widgetMatch && widgetMatch[2] === 'content') {
-          app.panels.runTime.view.get$item().hide();
-        }
+        // /**
+        //  * Define app
+        //  * @type {Application|{panels, controller, logger}}
+        //  */
+        // const app = this.controller.root();
+        //
+        // //   'plugins/maximize/maximize',
+        // //   'plugins/dashboard/dashboard'
+        //
+        // /**
+        //  * Init panel plugin
+        //  * @type {Panel}
+        //  */
+        // app.panels.runTime = new Panel({
+        //   config: {
+        //     renderAt: 'left',
+        //     header: {
+        //       visible: true,
+        //       title: {
+        //         short: 'RT',
+        //         long: 'Runtime'
+        //       }
+        //     }
+        //   },
+        //   modules: [/*Maximize, Dashboard*/],
+        //   packages: [Bar]
+        // }, app);
+        //
+        // app.panels.runTime.lazyRender();
+        //
+        // /**
+        //  * Match regex
+        //  * @type {Array|{index: number, input: string}}
+        //  */
+        // const widgetMatch = app.controller.isWidgetMatch2Hash();
+        //
+        // if (widgetMatch && widgetMatch[2] === 'content') {
+        //   app.panels.runTime.view.get$item().hide();
+        // }
       }
     }
   };

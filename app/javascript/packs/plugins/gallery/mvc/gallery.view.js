@@ -32,18 +32,6 @@ export class GalleryView extends BaseView {
    */
   renderGallery() {
 
-    // if (this.isCached('$gallery', GalleryElement)) {
-    //
-    //   /**
-    //    * Get scope
-    //    * @type {Gallery}
-    //    */
-    //   const scope = this.scope;
-    //
-    //   scope.observer.publish(scope.eventManager.eventList.loadModuleContent, [true, true]);
-    //   return false;
-    // }
-
     /**
      * Define Gallery element
      * @type {PanelContentElement}
