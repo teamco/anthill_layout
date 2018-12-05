@@ -148,6 +148,9 @@ export class ComboBoxRenderer {
 
       $li.on('click.comboBoxInternal', _store);
 
+      // Get scope
+      const scope = this.view.scope;
+
       if (typeof event.callback === 'function') {
         $li.on(event.type, e => {
 
@@ -155,7 +158,7 @@ export class ComboBoxRenderer {
           e.preventDefault();
 
           // Execute callback with value as parameter
-          event.callback($(e.target).parent().attr('rel'));
+          event.callback.call(scope.controller, $(e.target).attr('rel'));
         });
       }
 

@@ -114,7 +114,7 @@ export class GalleryController extends aggregation(PluginController, Routes) {
     const scope = this.scope;
 
     scope.observer.publish(scope.eventManager.eventList.loadModuleContent, [true, true]);
-    this.updateWidgetsCounter();
+    this.updateWidgetsCounter(this.model.providers[provider].data);
   }
 
   /**
