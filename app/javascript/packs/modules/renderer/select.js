@@ -38,7 +38,7 @@ export class SelectRenderer {
     const $label = `<label for="${id}">${name}</label>`;
 
     const $template = $(`
-      <div>
+      <div class="select-container">
         ${label ? $label : ''}
         <select id="${id}" class="form-control"${disabled}${multiple}${autofocus}>
           ${$options}

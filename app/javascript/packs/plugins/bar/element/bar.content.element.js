@@ -74,10 +74,12 @@ export class BarContentElement extends PluginElement {
     const publish = panel.observer.publish.bind(panel.observer),
         event = panel.eventManager.eventList;
 
-    this.$.on('click.toggle', () => {
-      panel.view.controller.isOpened(resource) ?
-          publish(event.closePanel, [resource, true]) :
-          publish(event.openPanel, resource);
+    this.$.on('click.toggle', e => {
+      if(e.target.className.match(/nav-dropdown-toggle/)) {
+        panel.view.controller.isOpened(resource) ?
+            publish(event.closePanel, [resource, true]) :
+            publish(event.openPanel, resource);
+      }
     });
   }
 }

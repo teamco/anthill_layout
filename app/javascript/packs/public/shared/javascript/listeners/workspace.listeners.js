@@ -190,7 +190,7 @@ export const workspaceGlobalListeners = () => {
               }
             }
           },
-          modules: [Dashboard, Gallery, PageData, WorkspaceData, WidgetRules],
+          modules: [Dashboard, Gallery, WidgetRules, PageData, WorkspaceData],
           packages: [Bar]
         }, app);
 

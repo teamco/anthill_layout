@@ -64,7 +64,7 @@ export class BaseView extends AntHill {
   destroyElementItems() {
     for (let index in this.elements.items) {
       if (this.elements.items.hasOwnProperty(index)) {
-        this.elements.items[index].empty();
+        this.elements.items[index].$.off().remove();
       }
     }
 
