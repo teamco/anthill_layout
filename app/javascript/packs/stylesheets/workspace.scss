@@ -1,0 +1,80 @@
+.show-content workspace {
+  width: auto !important;
+}
+
+body.consumption {
+  workspace {
+    page {
+      border: none;
+    }
+  }
+}
+
+workspace {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+
+  workspace-header,
+  workspace-footer {
+    width: 100%;
+  }
+
+  workspace-header {
+    width: 100%;
+    height: 50px;
+    position: relative;
+  }
+
+  workspace-footer {
+    height: 40px;
+    background-color: #555555;
+    position: fixed;
+    bottom: 0;
+  }
+
+  pages {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+
+    page {
+      display: block;
+      border-right: 1px dotted #ccc;
+      border-left: 1px dotted #ccc;
+    }
+  }
+}
+
+workspace.sw-0 {
+  width: 480px;
+}
+
+workspace.sw-1 {
+  width: 640px;
+}
+
+workspace.sw-2 {
+  width: 960px;
+}
+
+workspace.sw-3 {
+  width: 1024px;
+}
+
+workspace.sw-4 {
+  width: 1040px;
+}
+
+workspace.sw-5 {
+  width: 1140px;
+}
+
+workspace.sw-6 {
+  width: 1280px;
+}
+
+workspace.sw-7 {
+  width: 1920px;
+}

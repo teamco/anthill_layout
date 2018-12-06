@@ -1,7 +1,50 @@
+
+
 application,
 workspace,
 page {
   height: 100%;
   width: 100%;
   display: block;
+}
+
+widget {
+  -moz-user-select: text;
+  -khtml-user-select: text;
+  -webkit-user-select: text;
+
+  /*
+    Introduced in IE 10.
+    See http://ie.microsoft.com/testdrive/HTML5/msUserSelect/
+  */
+  -ms-user-select: text;
+  user-select: text;
+}
+
+html, body, application,
+workspaces, workspace,
+pages, page, widget.no-select {
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+
+  /*
+    Introduced in IE 10.
+    See http://ie.microsoft.com/testdrive/HTML5/msUserSelect/
+  */
+  -ms-user-select: none;
+  user-select: none;
+}
+
+application {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+application.overflow-scroll {
+  overflow: hidden !important;
+}
+
+workspaces, pages, widgets {
+  list-style: none;
 }
