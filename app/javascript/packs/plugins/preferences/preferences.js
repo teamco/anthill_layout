@@ -315,7 +315,7 @@ export class BasePreferencesElement {
    * @return {*}
    */
   comboBoxField(text, index, node) {
-    return this.get$item().renderCombobox(
+    return this.get$item().renderDropDown(
         node.list,
         node.value,
         text.trim(),

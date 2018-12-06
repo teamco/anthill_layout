@@ -181,7 +181,7 @@ export class WorkspaceDataAddPageElement extends PluginElement {
      * @type {*|jQuery}
      */
     const $clone = $('<li />').append($cloneTemplate.append(
-        element.renderCombobox(
+        element.renderDropDown(
             clonePages,
             clonePages[0].value,
             text,

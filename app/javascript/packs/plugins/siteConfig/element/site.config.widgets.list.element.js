@@ -431,7 +431,7 @@ export class SiteConfigWidgetsListElement extends aggregation(PluginElement, Gal
 
             $field = $('<div class="input-group input-group-sm" />').append(
                 this.renderLabel(undefined, index, '', true),
-                $element.renderCombobox(
+                $element.renderDropDown(
                     sorted,
                     (types[widgetData[index]] || sorted[0].value),
                     index,
@@ -705,7 +705,7 @@ export class SiteConfigWidgetsListElement extends aggregation(PluginElement, Gal
      * @type {*|jQuery}
      */
     const $combo = $('<div class="clone-from" />').append(
-        $element.renderCombobox(
+        $element.renderDropDown(
             sorted,
             undefined,
             'clone',

@@ -55,6 +55,18 @@ export class BaseView extends AntHill {
 
     // clean content
     this.get$item().empty();
+    this.destroyElementItems();
+  }
+
+  /**
+   * @memberOf BaseView
+   */
+  destroyElementItems() {
+    for (let index in this.elements.items) {
+      if (this.elements.items.hasOwnProperty(index)) {
+        this.elements.items[index].empty();
+      }
+    }
 
     delete this.elements.items;
   }

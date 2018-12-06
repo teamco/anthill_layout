@@ -32,7 +32,6 @@ export class GalleryProvidersElement extends PluginElement {
     for (let index in data) {
       if (data.hasOwnProperty(index)) {
         combo.push({
-          type: 'text',
           key: data[index].key,
           value: data[index].name
         });
@@ -56,15 +55,15 @@ export class GalleryProvidersElement extends PluginElement {
       return false;
     }
 
-    this.$.append(this.renderCombobox(
+    this.$.append(this.renderSelect(
         this.sortComboBoxData(data),
         currentProvider.name,
-        this.view.scope.i18n.t('gallery.provider'),
-        'galleryProviders', {
-          type: 'click.changeProvider',
+        this.view.scope.i18n.t('gallery.provider'), {
+          $container: this.view.get$item().$
+        }, {
+          type: 'change.provider',
           callback: this.view.controller.changeProvider
-        },
-        true
+        }
     ));
 
     return this;

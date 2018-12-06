@@ -80,11 +80,8 @@ export class GalleryController extends aggregation(PluginController, Routes) {
         index, i = 0, pl;
 
     for (index in data) {
-
       if (data.hasOwnProperty(index)) {
-
         pl = data[index].data.length;
-
         for (; i < pl; i++) {
 
           // Categorize providers data list

@@ -24,7 +24,7 @@ export class WidgetRulesRenderer {
 
     $element.append(
         this.getTemplate(text).append(
-            this.element.renderCombobox(rulesList, rulesList[0].value, text,
+            this.element.renderDropDown(rulesList, rulesList[0].value, text,
                 'widgetRule', {
                   type: 'click.transferValue',
                   callback: this._transferValue.bind({

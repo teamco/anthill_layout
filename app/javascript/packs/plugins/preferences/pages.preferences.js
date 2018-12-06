@@ -245,7 +245,7 @@ export class PagesPreferences extends BasePreferencesElement {
 
       $('<li class="layout-behavior" />').append(
           $combo.append(
-              this.renderCombobox([
+              this.renderDropDown([
                     {
                       type: 'text',
                       value: modes.freeStyle

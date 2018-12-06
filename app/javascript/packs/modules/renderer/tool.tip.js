@@ -2,6 +2,8 @@
  * Created by teamco on 7/10/14.
  */
 
+import('bootstrap');
+
 /**
  * @class ToolTipRenderer
  * @type {ToolTipRenderer}

@@ -68,15 +68,20 @@ export class GalleryView extends BaseView {
    * @returns {boolean}
    */
   renderContent(provider, force) {
-    this.cleanElementItems();
-    this.renderFilterElement();
-    this.renderProviders(this.controller.getProvidersData(), this.controller.getModuleData());
 
     /**
      * Define provider data
      * @type {Array}
      */
     let data = (provider || {}).data || [];
+
+    if (!this.elements.$filter) {
+      this.cleanElementItems();
+      this.renderFilterElement();
+      this.renderProviders(this.controller.getProvidersData(), this.controller.getModuleData());
+    }
+
+    this.destroyElementItems();
 
     for (let i = 0, l = data.length; i < l; i++) {
 

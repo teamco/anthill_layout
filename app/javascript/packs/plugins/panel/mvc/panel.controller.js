@@ -236,7 +236,7 @@ export class PanelController extends PluginController {
     this.view.renderContent(module, false);
 
     module.view.render();
-    module.observer.publish(module.eventManager.eventList.loadModuleContent);
+    module.observer.publish(module.eventManager.eventList.loadModuleContent, true);
     this.controller.setBehavior(resource);
   }
 

@@ -3,14 +3,14 @@
  */
 
 /**
- * @class ComboBoxRenderer
- * @type {ComboBoxRenderer}
+ * @class DropDownRenderer
+ * @type {DropDownRenderer}
  */
-export class ComboBoxRenderer {
+export class DropDownRenderer {
 
   /**
-   * Render combo box
-   * @memberOf ComboBoxRenderer
+   * Render drop down list
+   * @memberOf DropDownRenderer
    * @param {Array} data
    * @param selected
    * @param {string} name
@@ -22,7 +22,7 @@ export class ComboBoxRenderer {
    * @param {boolean} [store]
    * @param {boolean} [label]
    */
-  renderCombobox(data, selected, name, index, event, visible, disabled, placeholder, store, label) {
+  renderDropDown(data, selected, name, index, event, visible, disabled, placeholder, store, label) {
 
     // Init placeholder
     placeholder = this.view.utils._.isUndefined(placeholder) ? false : placeholder;
@@ -51,7 +51,7 @@ export class ComboBoxRenderer {
     });
 
     const style = (activeContent ? [index, activeContent.name].join('') : index).toDash(),
-        id = `${this.view.utils.gen.UUID()}-combobox`;
+        id = `${this.view.utils.gen.UUID()}-dropdown`;
 
     const $combo = $(
         `<ul class="nav ${style}" id="${id}">
@@ -146,7 +146,7 @@ export class ComboBoxRenderer {
         _store($li, true);
       }
 
-      $li.on('click.comboBoxInternal', _store);
+      $li.on('click.dropDownInternal', _store);
 
       // Get scope
       const scope = this.view.scope;
@@ -184,7 +184,7 @@ export class ComboBoxRenderer {
 
     if (!selected) {
       _updatePlaceholder(placeholder ?
-          this.view.scope.i18n.t('combobox.placeholder', [name]) :
+          this.view.scope.i18n.t('DropDown.placeholder', [name]) :
           $('li:first', $ul).text());
     }
 
@@ -199,7 +199,7 @@ export class ComboBoxRenderer {
     ].join(''));
 
     if (disabled) {
-      this.disableComboBox($combo);
+      this.disableDropDown($combo);
     }
 
     return label ? $label.append($combo) : $combo;
@@ -207,30 +207,30 @@ export class ComboBoxRenderer {
 
   /**
    * Check if combo box disabled
-   * @memberOf ComboBoxRenderer
+   * @memberOf DropDownRenderer
    * @param $combo
    * @returns {boolean}
    */
-  isDisabledComboBox($combo) {
+  isDisabledDropDown($combo) {
     return $('li.dropdown', $combo).hasClass('disabled');
   }
 
   /**
    * Define enable combo box
-   * @memberOf ComboBoxRenderer
+   * @memberOf DropDownRenderer
    * @param $combo
    */
-  enableComboBox($combo) {
+  enableDropDown($combo) {
     $('li.dropdown', $combo).removeClass('disabled');
     $('li.dropdown > a.dropdown-toggle', $combo).removeClass('disabled');
   }
 
   /**
    * Define disable combo box
-   * @memberOf ComboBoxRenderer
+   * @memberOf DropDownRenderer
    * @param $combo
    */
-  disableComboBox($combo) {
+  disableDropDown($combo) {
     $('li.dropdown', $combo).addClass('disabled');
     $('li.dropdown > a.dropdown-toggle', $combo).addClass('disabled');
   }

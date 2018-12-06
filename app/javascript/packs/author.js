@@ -6,7 +6,8 @@ import Rails from 'rails-ujs';
 import Turbolinks from 'turbolinks';
 
 import 'babel-polyfill';
-import 'bootstrap';
+import 'jquery/dist/jquery.slim.min';
+import 'bootstrap/dist/js/bootstrap.bundle.min';
 
 import 'perfect-scrollbar/dist/perfect-scrollbar.min';
 import '@coreui/coreui/dist/js/coreui.min';

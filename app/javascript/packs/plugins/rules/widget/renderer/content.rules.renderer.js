@@ -31,7 +31,7 @@ export class ContentRulesRenderer {
     }
 
     $element.append(this.getTemplate(text).append(
-        this.element.renderCombobox(rulesList, rulesList[0].value, text,
+        this.element.renderDropDown(rulesList, rulesList[0].value, text,
             [cname, 'Rule'].join(''), {
               type: 'click.transferValue',
               callback: this._transferValue.bind({

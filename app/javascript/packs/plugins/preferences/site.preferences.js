@@ -227,7 +227,7 @@ defineP([
           var defaultValue = plugins[0].value;
 
           var text = 'Plugins';
-          var $combo = this.renderCombobox(
+          var $combo = this.renderDropDown(
               plugins.sortByValue('value', 'string'),
               defaultValue,
               text,
