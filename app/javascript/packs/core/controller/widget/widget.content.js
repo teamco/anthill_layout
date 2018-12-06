@@ -78,7 +78,7 @@ export class WidgetContent {
   /**
    * Define fetch content
    * @memberOf WidgetContent
-   * @param {Class} Content
+   * @param {class} Content
    * @param {boolean} isInternal
    */
   fetchContent(Content, isInternal) {
@@ -104,9 +104,11 @@ export class WidgetContent {
       Content, {
         events: widget.contentEvents || {},
         rules: widget.contentRules || {}
-      }]);
+      }
+    ]);
 
     widget.logger.debug('Content finish loading');
+    widget.observer.publish(widget.eventManager.eventList.loadPreferences);
   }
 
   /**
@@ -135,9 +137,9 @@ export class WidgetContent {
      * Define resource path
      * @type {string}
      */
-    const path = [prefs.external_resource, resource, '.js'].join('');
+    const path = `${prefs.external_resource}${resource}.js`;
 
-    this.fetchContent(path, 0);
+    this.fetchContent(path, false);
   }
 
   /**
@@ -169,7 +171,6 @@ export class WidgetContent {
       widget.logger.debug('Fetch external content');
       return false;
     }
-
     this.fetchContent(this.getAvailableContent.apply(this, [resource]), true);
   }
 
@@ -210,10 +211,11 @@ export class WidgetContent {
         ];
 
     plugin.observer.publish(plugin.eventManager.eventList.updateTranslations, [
-      translationPath.join(''), () => {
-        callback(plugin);
-        widget.observer.publish(widget.eventManager.eventList.afterRenderContent);
-      }]
+          translationPath.join(''), () => {
+            callback(plugin);
+            widget.observer.publish(widget.eventManager.eventList.afterRenderContent);
+          }
+        ]
     );
   }
 
@@ -287,7 +289,7 @@ export class WidgetContent {
   /**
    * Set content
    * @memberOf WidgetContent
-   * @param {Function} Content
+   * @param {class} Content
    * @param {{}} [opts]
    */
   setContent(Content, opts) {
@@ -298,7 +300,6 @@ export class WidgetContent {
      * @type {*}
      */
     this.content = new Content(null, this, opts);
-
     this.observer.publish(this.eventManager.eventList.afterSetContent, opts);
   }
 

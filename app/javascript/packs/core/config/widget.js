@@ -16,6 +16,7 @@ import {WidgetModel} from '../model/widget.model';
 import {WidgetView} from '../view/widget.view';
 import {WidgetEventManager} from '../event/widget.event.manager';
 import {WidgetPermission} from '../permission/widget.permission';
+import {WidgetMap} from '../controller/widget/widget.map';
 import {Wireframe} from '../controller/widget/widget.wireframe';
 
 /**

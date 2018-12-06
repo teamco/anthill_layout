@@ -6,6 +6,7 @@
  */
 import {WidgetController} from '../../../../core/controller/widget.controller';
 import {Widget} from '../../../../core/config/widget';
+import {widgets} from '../widgets';
 
 export const widgetGlobalListeners = () => {
 
@@ -14,12 +15,6 @@ export const widgetGlobalListeners = () => {
    * @method getAvailableContent
    */
   WidgetController.prototype.getAvailableContent = function(resource) {
-
-    /**
-     * @constant widgets
-     * @type {{}|*}
-     */
-    const widgets = require('../widgets.js') || {};
 
     if (resource && widgets[resource]) {
       return widgets[resource];

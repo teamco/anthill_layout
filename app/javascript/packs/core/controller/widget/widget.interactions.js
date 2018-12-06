@@ -102,8 +102,8 @@ export class WidgetInteractions {
      * @constant WidgetDrag
      * @type {WidgetDrag}
      */
-    const WidgetDrag = require('./widget.drag.js');
-    this.controller.setInteraction(WidgetDrag);
+    const module = require('./widget.drag.js');
+    this.controller.setInteraction(module.WidgetDrag);
   }
 
   /**
@@ -140,8 +140,8 @@ export class WidgetInteractions {
      * @constant WidgetResize
      * @type {WidgetResize}
      */
-    const WidgetResize = require('./widget.resize.js');
-    this.controller.setInteraction(WidgetResize);
+    const module = require('./widget.resize.js');
+    this.controller.setInteraction(module.WidgetResize);
   }
 
   /**

@@ -75,7 +75,7 @@ export class BarContentElement extends PluginElement {
         event = panel.eventManager.eventList;
 
     this.$.on('click.toggle', e => {
-      if(e.target.className.match(/nav-dropdown-toggle/)) {
+      if ((e.target.className || '').toString().match(/nav-dropdown-toggle/)) {
         panel.view.controller.isOpened(resource) ?
             publish(event.closePanel, [resource, true]) :
             publish(event.openPanel, resource);

@@ -63,10 +63,7 @@ export const widgetLocalListeners = () => {
         const root = this.controller.root();
 
         if (!silent && !root.model.getConfig('loading')) {
-          this.observer.batchPublish(
-              this.eventManager.eventList.loadContent,
-              this.eventManager.eventList.loadPreferences
-          );
+          this.observer.publish(this.eventManager.eventList.loadContent);
         }
       }
     },

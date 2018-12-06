@@ -817,6 +817,10 @@ export class BaseController extends aggregation(AntHill, BehaviorCrud, BehaviorW
      */
     node = node || root;
 
+    if (this.isWidget(node)) {
+      return false;
+    }
+
     /**
      * Define data
      * @type {*}
