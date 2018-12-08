@@ -71,7 +71,7 @@ export class PageDataRulesElement extends PluginElement {
    * @returns {*|jQuery|HTMLElement}
    */
   renderWizard(page) {
-    const uuid = this.base.lib.generator.UUID();
+    const uuid = this.utils.gen.UUID();
     const $html = $('<div class="canvas-rules" />').attr({id: uuid});
 
     /**
