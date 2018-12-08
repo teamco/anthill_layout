@@ -34,12 +34,12 @@ export class TabsRenderer {
    * @returns {string}
    */
   renderScroller() {
-    return [
-      '<div class="', this.getScrollerClassName('left'), '">',
-      '<i class="glyphicon glyphicon-chevron-left"></i></div>',
-      '<div class="', this.getScrollerClassName('right'), '">',
-      '<i class="glyphicon glyphicon-chevron-right"></i></div>'
-    ].join('');
+    return `<div class="${this.getScrollerClassName('left')}">
+              <i class="glyphicon glyphicon-chevron-left"></i>
+            </div>
+            <div class="${this.getScrollerClassName('right')}">
+              <i class="glyphicon glyphicon-chevron-right"></i>
+            </div>`;
   }
 
   /**
@@ -48,7 +48,7 @@ export class TabsRenderer {
    * @returns {*|jQuery}
    */
   get$scroller($container, side) {
-    return $('.' + this.getScrollerSideClassName(side), $container);
+    return $(`.${this.getScrollerSideClassName(side)}`, $container);
   }
 
   /**
@@ -59,7 +59,7 @@ export class TabsRenderer {
   renderTabs() {
     return $('<div class="tabs-wrapper" />').append(
         this.renderScroller(),
-        '<ul class="nav nav-tabs" role="tablist" />'
+        '<ul class="nav" />'
     );
   }
 
@@ -82,7 +82,10 @@ export class TabsRenderer {
    */
   addTabItemContent(uuid, content, active) {
     const $item = $('<div role="tabpanel" class="tab-pane" />');
-    $item.attr({id: uuid, 'aria-labelledby': uuid + '-tab'});
+    $item.attr({
+      id: uuid,
+      'aria-labelledby': uuid + '-tab'
+    });
 
     if (active) {
       $item.addClass('active');
@@ -98,8 +101,8 @@ export class TabsRenderer {
    * @param {boolean} [active]
    */
   addTabItem($tabs, item, active) {
-    const $item = $('<li role="presentation"><a href="#"></a></li>'),
-        uuid = this.view.utils.gen.UUID(item.uuid);
+    const $item = $('<li class="nav-item"><a class="nav-link"></a></li>'),
+        uuid = this.utils.gen.UUID(item.uuid);
 
     $item.find('a').text(item.text).attr({
       href: '#' + uuid,
@@ -122,7 +125,7 @@ export class TabsRenderer {
    * @returns {number}
    */
   getTabsLeftPos($container) {
-    return $('.nav-tabs', $container).position().left;
+    return $('.nav', $container).position().left;
   }
 
   /**
@@ -144,7 +147,7 @@ export class TabsRenderer {
         leftOffset = element.getTabsLeftPos($container);
 
     const leftFade = leftOffset < 0,
-        $rightLast = $('ul li[role="presentation"]:last', $container),
+        $rightLast = $('ul li:last', $container),
         rightFade = Math.abs(leftOffset) + width < $rightLast.outerWidth() + $rightLast.position().left;
 
     $right.stop()[(rightFade ? 'show' : 'hide')]();
@@ -172,11 +175,15 @@ export class TabsRenderer {
       return false;
     }
 
-    const $tabs = $('.nav-tabs', $container);
+    const $tabs = $('.nav', $container);
 
-    $left.off().on('click.left', e => element.scrollToTab(element.scrollTabsLeft($tabs), $tabs, 0, e));
+    $left.off().on('click.left', e => {
+      e.preventDefault();
+      element.scrollToTab(element.scrollTabsLeft($tabs), $tabs, 0, e)
+    });
 
     $right.off().on('click.right', function(e) {
+      e.preventDefault();
       element.scrollToTab(element.scrollTabsRight($tabs, this), $tabs, 1, e);
     });
 

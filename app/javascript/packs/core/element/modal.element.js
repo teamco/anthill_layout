@@ -197,17 +197,17 @@ export class ModalElement extends BaseElement {
    */
   getTemplate() {
     return $(`
-        <div class="modal modal-notification fade" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header alert">
-                        <h4 class="modal-title" id="modalLabel"></h4>
-                    </div>
-                    <div class="modal-body"></div>
-                    <div class="modal-footer separator"></div>
-                </div>
+      <div class="modal modal-notification fade" tabindex="-1" role="dialog" data-backdrop="true" aria-labelledby="modalLabel">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header alert">
+              <h5 class="modal-title" id="modalLabel"></h5>
             </div>
-        </div>`);
+            <div class="modal-body"></div>
+            <div class="modal-footer separator"></div>
+          </div>
+        </div>
+      </div>`);
   }
 
   /**
@@ -235,13 +235,13 @@ export class ModalElement extends BaseElement {
     this.setText(this.text, this.get$Body());
     this.setHtml(this.html, this.get$Body());
 
-    this.setPosition({
-      $container: this.$container,
-      $item: this.$,
-      position: this.position
-    });
+    // this.setPosition({
+    //   $container: this.$container,
+    //   $item: this.$,
+    //   position: this.position
+    // });
 
-    this.adoptPositionOnResize();
+    // this.adoptPositionOnResize();
     this.setButtons();
     this.setFocus();
     this.bindTabsScroll(this.$);
@@ -257,10 +257,6 @@ export class ModalElement extends BaseElement {
       }
 
       this.$.draggable({handle: this._get$Header()});
-    }
-
-    if (this.autoclose) {
-      $('.modal-backdrop.in').on('click.autoclose', view.controller.rejectModalEvent.bind(view));
     }
   }
 
@@ -314,11 +310,11 @@ export class ModalElement extends BaseElement {
 
     this.buttons['closeX'] = {
       $container: this._get$Header(),
-      $htmlElement: $([
-        '<button type="button" class="close" data-dismiss="modal" aria-label="Close">',
-        '<span aria-hidden="true">&times;</span>',
-        '</button>'
-      ].join('')),
+      $htmlElement: $(`
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      `),
       events: {click: 'rejectModalEvent'}
     };
   }
@@ -391,7 +387,7 @@ export class ModalElement extends BaseElement {
    * @private
    */
   _get$Header() {
-    return this.$.find('h4');
+    return this.$.find('.modal-title');
   }
 
   /**
@@ -405,23 +401,6 @@ export class ModalElement extends BaseElement {
 
     if (this.utils.setBoolean(backdrop, true)) {
       $('body').removeClass('modal-open');
-      this.removeBackdrop();
-    }
-  }
-
-  /**
-   * Remove Bootstrap backdrop
-   * @memberOf ModalElement
-   */
-  removeBackdrop() {
-    const backdrops = document.querySelectorAll('.modal-backdrop');
-    if (document.querySelectorAll('.modal').length) {
-      // TODO: Handled by previous modals
-      if (backdrops.length) {
-        backdrops[backdrops.length - 1].remove();
-      }
-    } else if (backdrops.length) {
-      backdrops.forEach(backdrop => backdrop.remove());
     }
   }
 
