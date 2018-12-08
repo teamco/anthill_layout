@@ -45,10 +45,14 @@ $gallery-widget: 2.5em;
 .popover {
   .widget {
     background-position: 0.5em center;
+    background-repeat: no-repeat;
+    padding-left: 3rem;
     background-size: 2em;
     width: 100%;
     line-height: 1.5em;
   }
+
+  opacity: 0.9;
 }
 
 .show-content {

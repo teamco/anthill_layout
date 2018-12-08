@@ -646,10 +646,10 @@
   resolved "https://registry.yarnpkg.com/@coreui/coreui-plugin-npm-postinstall/-/coreui-plugin-npm-postinstall-1.0.2.tgz#6daeb2ec786580d9c0849b05bc3e8d0222d5c463"
   integrity sha512-yeeoWp+bNS84nP1977Y8UCiQ9pssO+f4QuVj3i0/gYZFjjvOgxx0dnyWhtowD5sLYnCRMPlPpqyjwXze3SlkYg==
 
-"@coreui/coreui@^2.1.3":
-  version "2.1.3"
-  resolved "https://registry.yarnpkg.com/@coreui/coreui/-/coreui-2.1.3.tgz#0e59d1f98f1730d0556d937617641826bb0470dd"
-  integrity sha512-dIsJNcCDYHwPQ3uf+0uOSgs/ZLhwPSWLCBHNsWAYdncXecJC0Hw12PkJPFsAeKmCdMKOVip3CPy8Ul3sC2vPgw==
+"@coreui/coreui@^2.1.4":
+  version "2.1.4"
+  resolved "https://registry.yarnpkg.com/@coreui/coreui/-/coreui-2.1.4.tgz#6b3c091658a07de8248dfa1135a10e7e2d921506"
+  integrity sha512-Zy+yXaAYFuejYRkz/q5WdKlMEN5UdAmwqWMh9PWT0Zv+PUjIwRn5VPwppOPB2cTVLRSfGwjcp0wxlXKzJNwVTQ==
   dependencies:
     "@babel/polyfill" "^7.0.0"
     "@coreui/coreui-plugin-npm-postinstall" "^1.0.2"
@@ -665,10 +665,10 @@
   resolved "https://registry.yarnpkg.com/@csstools/convert-colors/-/convert-colors-1.4.0.tgz#ad495dc41b12e75d588c6db8b9834f08fa131eb7"
   integrity sha512-5a6wqoJV/xEdbRNKVo6I4hO3VjyDq//8q2f9I6PBAvMesJHFauXDorcNCsr9RzvsZnaWi5NYCcfyqP1QeFHFbw==
 
-"@fortawesome/fontawesome-free@^5.5.0":
-  version "5.5.0"
-  resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-free/-/fontawesome-free-5.5.0.tgz#0c6c53823d04457ae669cd19567b8a21dbb4fcfd"
-  integrity sha512-p4lu0jfj5QN013ddArh99r3OXZ/fp9rbovs62LfaO70OMBsAXxtNd0lAq/97fitrscR0fqfd+/a5KNcp6Sh/0A==
+"@fortawesome/fontawesome-free@^5.6.0":
+  version "5.6.0"
+  resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-free/-/fontawesome-free-5.6.0.tgz#7d7624cdb0ef2edd8a91baa193398e6ad16cb21c"
+  integrity sha512-cB426XiX7R421kL8XnTWXlBUzeOYWl63KTUw1wP3fnmNBCuWeLGqglmZGheu0TClBSHZl5HVnKQ0uFFRtn43JQ==
 
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
@@ -1011,9 +1011,9 @@ amdefine@>=0.0.4:
   integrity sha1-SlKCrBZHKek2Gbz9OtFR+BfOkfU=
 
 ansi-colors@^3.0.0:
-  version "3.2.2"
-  resolved "https://registry.yarnpkg.com/ansi-colors/-/ansi-colors-3.2.2.tgz#e49349137dbeb6d381b91e607c189915e53265ba"
-  integrity sha512-kJmcp4PrviBBEx95fC3dYRiC/QSN3EBd0GU1XoNEk/IuUa92rsB6o90zP3w5VAyNznR38Vkc9i8vk5zK6T7TxA==
+  version "3.2.3"
+  resolved "https://registry.yarnpkg.com/ansi-colors/-/ansi-colors-3.2.3.tgz#57d35b8686e851e2cc04c403f1c00203976a1813"
+  integrity sha512-LEHHyuhlPY3TmuUYMh2oz89lTShfvgbmzaBcxve9t/9Wuy7Dwf4yoAKcND7KFT1HAQfqZ12qtc+DUrBMeKF9nw==
 
 ansi-html@0.0.7:
   version "0.0.7"
@@ -4285,10 +4285,10 @@ globule@^1.0.0:
     lodash "~4.17.10"
     minimatch "~3.0.2"
 
-gojs@^1.8.34:
-  version "1.8.34"
-  resolved "https://registry.yarnpkg.com/gojs/-/gojs-1.8.34.tgz#cb1a8c32a1eae2df257f580ae3025089b74e2d25"
-  integrity sha512-wjgBUQGZ3/yxCDakJGWjgslA/Ov0NeTyheyt3+og/B/yWYwJuZXmhJzIvUsGZ1K1nhB+71H6KnulImQBeFlSeA==
+gojs@^1.8.35:
+  version "1.8.35"
+  resolved "https://registry.yarnpkg.com/gojs/-/gojs-1.8.35.tgz#38362d20eaebf429a6468ae7f3eb5d875522d8d0"
+  integrity sha512-fVQ4a4jAN84nVEv2TCXuCDRRFc02Y09de1sAbUYyAIHtMYCZWMF24jBaOX4FLqOjtvTsJsZcDXuVQldgJT4RwA==
 
 graceful-fs@^4.1.11, graceful-fs@^4.1.2, graceful-fs@^4.1.6:
   version "4.1.15"
@@ -5763,9 +5763,9 @@ minipass@^2.2.1, minipass@^2.3.4:
     yallist "^3.0.0"
 
 minizlib@^1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/minizlib/-/minizlib-1.1.1.tgz#6734acc045a46e61d596a43bb9d9cd326e19cc42"
-  integrity sha512-TrfjCjk4jLhcJyGMYymBH6oTXcWjYbUAXTHDbtnWHjZC25h0cdajHuPE1zxb4DVmu8crfh+HwH/WMuyLG0nHBg==
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/minizlib/-/minizlib-1.2.1.tgz#dd27ea6136243c7c880684e8672bb3a45fd9b614"
+  integrity sha512-7+4oTUOWKg7AuL3vloEWekXY2/D20cevzsrNT2kGWm+39J9hGTCBv8VI5Pm5lXZ/o3/mdR4f8rflAPhnQb8mPA==
   dependencies:
     minipass "^2.2.1"
 
@@ -7404,7 +7404,7 @@ querystringify@^2.0.0:
   resolved "https://registry.yarnpkg.com/querystringify/-/querystringify-2.1.0.tgz#7ded8dfbf7879dcc60d0a644ac6754b283ad17ef"
   integrity sha512-sluvZZ1YiTLD5jsqZcDmFyV2EwToyXZBfpoVOmktMmW+VEnhgakFHnasVph65fOjGPTWN0Nw3+XQaSeMayr0kg==
 
-rails-ujs@^5.2.1-1:
+rails-ujs@^5.2.2:
   version "5.2.2"
   resolved "https://registry.yarnpkg.com/rails-ujs/-/rails-ujs-5.2.2.tgz#ab01dd087a323975637b50e93e7afcc0f9068568"
   integrity sha512-tJl7MdysGrQEKmwF7BJkz5XwUOkdnI9E7SvSbT39yO7pdFc96D4hWKm6Sb15pU4n5mt4rLPb/6kkyTQujP1k7Q==
@@ -8658,7 +8658,7 @@ timsort@^0.3.0:
   resolved "https://registry.yarnpkg.com/timsort/-/timsort-0.3.0.tgz#405411a8e7e6339fe64db9a234de11dc31e02bd4"
   integrity sha1-QFQRqOfmM5/mTbmiNN4R3DHgK9Q=
 
-tinymce@^4.9.0:
+tinymce@^4.9.1:
   version "4.9.1"
   resolved "https://registry.yarnpkg.com/tinymce/-/tinymce-4.9.1.tgz#821cecb103982ec8e37aae44a8f732849e3660d0"
   integrity sha512-lGk6QFI2KYWnIkti0TvtN30GIgJAfWWl8LBqUYdnHuywrNvgl92fqrQHhUP7YChHNhiYZj6JAy8M5cwVlbO7iQ==
