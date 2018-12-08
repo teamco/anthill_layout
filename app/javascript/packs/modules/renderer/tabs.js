@@ -59,7 +59,7 @@ export class TabsRenderer {
   renderTabs() {
     return $('<div class="tabs-wrapper" />').append(
         this.renderScroller(),
-        '<ul class="nav" />'
+        '<ul class="nav nav-pills" />'
     );
   }
 
@@ -104,7 +104,8 @@ export class TabsRenderer {
     const $item = $('<li class="nav-item"><a class="nav-link"></a></li>'),
         uuid = this.utils.gen.UUID(item.uuid);
 
-    $item.find('a').text(item.text).attr({
+    const $a = $item.find('a');
+    $a.text(item.text).attr({
       href: '#' + uuid,
       id: uuid + '-tab',
       'data-toggle': item.dataToggle || 'tab'
@@ -114,7 +115,7 @@ export class TabsRenderer {
     item.$container.append(this.addTabItemContent(uuid, item.content, active));
 
     if (active) {
-      $item.addClass('active');
+      $a.addClass('active show');
     }
   }
 

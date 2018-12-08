@@ -303,13 +303,13 @@ export class ModalElement extends BaseElement {
    * @private
    */
   _setCloseX() {
-
     if (!this.closeX) {
       return false;
     }
 
     this.buttons['closeX'] = {
-      $container: this._get$Header(),
+      $container: this._get$Header().parent(),
+      // language=HTML
       $htmlElement: $(`
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
