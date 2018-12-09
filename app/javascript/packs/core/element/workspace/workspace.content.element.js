@@ -60,7 +60,7 @@ export class WorkspaceContentElement extends BaseElement {
   /**
    * Swipe container to current page
    * @memberOf WorkspaceContentElement
-   * @param {Page} page
+   * @param {Page|{containment}} page
    */
   swipeTo(page) {
 
@@ -85,13 +85,7 @@ export class WorkspaceContentElement extends BaseElement {
      * @type {WorkspaceContentElement}
      */
     const $pages = this.view.elements.$pages;
-
-    /**
-     * Get pages order
-     * @type {number}
-     */
-    const order = page.model.getConfig('order');
-    const css = {left: (-order * 100) + '%'};
+    const css = page.controller.adaptLeftPosition();
 
     if (animate ? !!animate : scope.model.getConfig('page').animateSwipe) {
 

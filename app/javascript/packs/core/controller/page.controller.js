@@ -107,4 +107,18 @@ export class PageController extends aggregation(BaseController, Router, PageLaye
       }
     }
   }
+
+  /**
+   * memberOf PageController
+   * @return {{left: string}}
+   */
+  adaptLeftPosition() {
+
+    /**
+     * Get pages order
+     * @type {number}
+     */
+    const order = this.model.getConfig('order');
+    return {left: (-order * 100) + '%'};
+  }
 }

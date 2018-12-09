@@ -242,7 +242,6 @@ export class WorkspaceDataController extends aggregation(PluginController, Prefe
         cname = '-workspace-data-view';
 
     for (let index in pages) {
-
       if (pages.hasOwnProperty(index)) {
 
         /**
@@ -291,7 +290,7 @@ export class WorkspaceDataController extends aggregation(PluginController, Prefe
 
     /**
      * Get view
-     * @type {WorkspaceDataView}
+     * @type {WorkspaceDataView|{elements}}
      */
     const view = scope.view;
 
