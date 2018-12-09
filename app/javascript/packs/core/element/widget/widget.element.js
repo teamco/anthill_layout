@@ -16,16 +16,13 @@ import {BaseElement} from '../../../modules/Element';
 export class WidgetElement extends BaseElement {
 
   /**
+   * @constructor
    * @param {WidgetView} view
    * @param opts
-   * @constructor
    */
   constructor(view, opts) {
     super('WidgetElement', view);
-    this._config(view, opts, $('<widget />')).build({
-      $container: opts.$container,
-      destroy: false
-    });
+    this._config(view, opts, $('<widget />')).build(opts);
 
     /**
      * Define overlapped css class

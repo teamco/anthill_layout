@@ -18,12 +18,14 @@ import {BaseElement} from '../../../modules/Element';
  */
 export class WidgetCommentElement extends BaseElement{
 
+  /**
+   * @constructor
+   * @param {WidgetView} view
+   * @param opts
+   */
   constructor(view, opts) {
     super('WidgetCommentElement', view);
-    this._config(view, opts, $('<div />')).build({
-      $container: opts.$container,
-      destroy: true
-    });
+    this._config(view, opts, $('<div />')).build(opts);
 
     this.defineContent(ButtonElement);
   }
