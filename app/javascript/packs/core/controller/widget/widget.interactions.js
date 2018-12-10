@@ -6,8 +6,7 @@
  */
 
 /**
- * @class Interactions
- * @extends WidgetInteractions
+ * @class WidgetInteractions
  * @type {WidgetInteractions}
  */
 export class WidgetInteractions {

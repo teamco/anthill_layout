@@ -120,7 +120,6 @@ export class WidgetOverlapping {
      * @type {Page|*}
      */
     const containment = this.widget.controller.getContainment();
-
     const widgets = containment.model.getItems();
 
     for (let widget in widgets) {
