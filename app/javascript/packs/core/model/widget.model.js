@@ -23,73 +23,11 @@ export class WidgetModel extends BaseModel {
   constructor(name, scope) {
     super(name || 'WidgetModel', scope);
 
-    const defaults = require('./widget/defaults');
-    const interactions = require('./widget/interactions');
-    const layout = require('./widget/layout');
-    const parallax = require('./widget/parallax');
-
-    /**
-     * Define widget prefs
-     * @property WidgetModel
-     * @type {{
-     *  defaults: {
-     *    title: {type: string, disabled: boolean, value: undefined, visible: boolean},
-     *    description: {type: string, disabled: boolean, value: undefined, visible: boolean},
-     *    widgetUrl: {type: string, disabled: boolean, value: undefined, visible: boolean},
-     *    onClickOpenUrl: {type: string, disabled: boolean, value: undefined, visible: boolean},
-     *    customClassName: {type: string, disabled: boolean, value: undefined, visible: boolean},
-     *    scrollSpeed: {type: string, disabled: boolean, value: undefined, visible: boolean},
-     *    statistics: {type: string, disabled: boolean, value: undefined, visible: boolean},
-     *    hideContentOnDrag: {type: string, disabled: boolean, value: undefined, visible: boolean},
-     *    hideContentOnResize: {type: string, disabled: boolean, value: undefined, visible: boolean},
-     *    pageContainment: {type: string, disabled: boolean, value: undefined, visible: boolean},
-     *    showInMobile: {type: string, disabled: boolean, value: undefined, visible: boolean}
-     *  },
-     *  interactions: {
-     *    overlapping: {type: string, disabled: boolean, checked: boolean, visible: boolean},
-     *    alwaysOnTop: {type: string, disabled: boolean, checked: boolean, visible: boolean},
-     *    setLayerUp: {type: string, disabled: boolean, group: string, events: string[], checked: boolean, visible: boolean},
-     *    setLayerDown: {type: string, disabled: boolean, group: string, events: string[], checked: boolean, visible: boolean},
-     *    stretchWidth: {type: string, disabled: boolean, checked: boolean, visible: boolean},
-     *    stretchHeight: {type: string, disabled: boolean, checked: boolean, visible: boolean},
-     *    maximizable: {type: string, disabled: boolean, checked: boolean, visible: boolean},
-     *    zoomable: {type: string, disabled: boolean, checked: boolean, visible: boolean},
-     *    draggable: {type: string, disabled: boolean, checked: boolean, visible: boolean},
-     *    resizable: {type: string, disabled: boolean, checked: boolean, visible: boolean},
-     *    freeze: {type: string, disabled: boolean, checked: boolean, visible: boolean},
-     *    expandable: {type: string, disabled: boolean, checked: boolean, visible: boolean},
-     *    unsetStick: {type: string, disabled: boolean, group: string, events: string[], checked: boolean, visible: boolean},
-     *    setStickToCenterLeft: {type: string, disabled: boolean, group: string, events: string[], checked: boolean, visible: boolean},
-     *    setStickToCenterTop: {type: string, disabled: boolean, group: string, events: string[], checked: boolean, visible: boolean},
-     *    setStickToCenter: {type: string, disabled: boolean, group: string, events: string[], checked: boolean, visible: boolean},
-     *    setStickToCenterBottom: {type: string, disabled: boolean, group: string, events: string[], checked: boolean, visible: boolean},
-     *    setStickToCenterRight: {type: string, disabled: boolean, group: string, events: string[], checked: boolean, visible: boolean},
-     *    setStickToTopLeft: {type: string, disabled: boolean, group: string, events: string[], checked: boolean, visible: boolean},
-     *    setStickToBottomLeft: {type: string, disabled: boolean, group: string, events: string[], checked: boolean, visible: boolean},
-     *    setStickToTopRight: {type: string, disabled: boolean, group: string, events: string[], checked: boolean, visible: boolean},
-     *    setStickToBottomRight: {type: string, disabled: boolean, group: string, events: string[], checked: boolean, visible: boolean}
-     *  },
-     *  layout: {
-     *    column: {type: string, disabled: boolean, value: number, visible: boolean},
-     *    row: {type: string, disabled: boolean, value: number, visible: boolean},
-     *    width: {type: string, disabled: boolean, value: number, visible: boolean},
-     *    height: {type: string, disabled: boolean, value: number, visible: boolean},
-     *    border: {type: string, disabled: boolean, value: string, visible: boolean},
-     *    borderRadius: {type: string, disabled: boolean, value: number, visible: boolean}
-     *  },
-     *  parallax: {
-     *    allowParallax: {type: string, disabled: boolean, checked: boolean, visible: boolean},
-     *    scrollSpeed: {type: string, disabled: boolean, value: number, visible: boolean},
-     *    reactionTo: {type: string, disabled: boolean, list: *[], value: string, visible: boolean},
-     *    orientation: {type: string, disabled: boolean, list: *[], value: string, visible: boolean}
-     *  }
-     * }}
-     */
     this.preferences = {
-      defaults: defaults,
-      interactions: interactions,
-      layout: layout,
-      parallax: parallax
+      defaults: require('./widget/defaults'),
+      interactions: require('./widget/interactions'),
+      layout: require('./widget/layout'),
+      parallax: require('./widget/parallax')
     };
   }
 
