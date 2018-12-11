@@ -37,7 +37,8 @@ export class WorkspaceView extends BaseView {
      * @type {WorkspaceElement}
      */
     this.elements.$workspace = new WorkspaceElement(this, {
-      $container: this.getContainerSelector()
+      $container: this.getContainerSelector(),
+      destroy: false
     });
 
     this.header(this.get$item());

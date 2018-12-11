@@ -40,7 +40,8 @@ export class WidgetView extends BaseView {
      */
     this.elements.$widget = new WidgetElement(this, {
       style: [this.createStyle(), this.scope.config.type].join(' '),
-      $container: this.getContainerSelector()
+      $container: this.getContainerSelector(),
+      destroy: false
     });
 
     this.scope.map.setPosition();
