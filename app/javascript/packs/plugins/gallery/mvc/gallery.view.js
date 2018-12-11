@@ -92,7 +92,8 @@ export class GalleryView extends BaseView {
       let $item = new GalleryContentElement(this, {
         style: 'content',
         $container: this.get$item().$,
-        data: data[i]
+        data: data[i],
+        destroy: false
       });
 
       this.updateElementItems($item);

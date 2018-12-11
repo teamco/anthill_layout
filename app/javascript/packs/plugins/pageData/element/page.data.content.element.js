@@ -20,7 +20,7 @@ export class PageDataContentElement extends PluginElement {
    */
   constructor(view, opts) {
     super('PageDataContentElement', view, false);
-    this._config(view, opts, $('<li />')).build(opts);
+    this._config(view, opts, $('<li class="nav-item" />')).build(opts);
     this.getTemplate(opts.data);
     this.setAttributes(opts.data);
     this.bindShowPrefs(opts.data);
@@ -32,7 +32,11 @@ export class PageDataContentElement extends PluginElement {
    * @memberOf PageDataContentElement
    */
   getTemplate(data) {
-    $('<a class="widget ' + data.model.getConfig('preferences').resource.toClassName() + '" />').appendTo(this.$);
+    const resource = data.model.getConfig('preferences').resource.toClassName();
+    const name = data.name;
+    $(`<a class="nav-link" data-uuid="${resource}" data-toggle="modal" data-target="#${resource}">
+         <span class="widget ${resource.toClassName()}">${name}</span> 
+       </a>`).appendTo(this.$)
   }
 
   /**

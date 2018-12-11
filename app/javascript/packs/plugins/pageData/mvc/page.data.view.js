@@ -8,7 +8,6 @@
 
 import {BaseView} from '../../../modules/View';
 import {BasePreferencesElement} from '../../preferences/preferences';
-import {PageDataElement} from '../element/page.data.element';
 import {PageDataContentElement} from '../element/page.data.content.element';
 import {PageDataRulesElement} from '../element/page.data.rules.element';
 
@@ -40,18 +39,11 @@ export class PageDataView extends aggregation(BaseView, BasePreferencesElement) 
    */
   renderPageData() {
 
-    if (this.isCached('$pagedata', PageDataElement)) {
-      return false;
-    }
-
     /**
      * Define PageData element
-     * @type {PageDataElement}
+     * @type {PanelContentElement}
      */
-    this.elements.$pagedata = new PageDataElement(this, {
-      uuid: this.createUUID(),
-      $container: this.get$container().$
-    });
+    this.elements.$pagedata = this.get$container();
   }
 
   /**
@@ -63,8 +55,8 @@ export class PageDataView extends aggregation(BaseView, BasePreferencesElement) 
   renderContent(data) {
     this.cleanElementItems();
     this.renderDataRules();
-
-    this.renderFilterElement(this.updateFooterContent.bind(this));
+    this.renderFilterElement();
+    this.destroyElementItems();
 
     for (let index in data) {
       if (data.hasOwnProperty(index)) {
@@ -87,14 +79,10 @@ export class PageDataView extends aggregation(BaseView, BasePreferencesElement) 
       }
     }
 
-    this.updateScrollCover();
-
     this.elements.$filter.updateData({
       items: this.elements.items,
       focusOn: 'input'
     });
-
-    this.updateFooterContent();
   }
 
   /**

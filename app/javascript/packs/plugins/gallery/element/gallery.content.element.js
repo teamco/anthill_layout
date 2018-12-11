@@ -22,11 +22,7 @@ export class GalleryContentElement extends PluginElement {
    */
   constructor(view, opts) {
     super('GalleryContentElement', view, false);
-
-    this._config(view, opts, $('<li class="nav-item" />')).build({
-      $container: opts.$container,
-      destroy: false
-    });
+    this._config(view, opts, $('<li class="nav-item" />')).build(opts);
 
     /**
      * Define data
@@ -52,10 +48,10 @@ export class GalleryContentElement extends PluginElement {
    * @memberOf GalleryContentElement
    */
   getTemplate() {
-    const resource = this.data.resource;
+    const resource = this.data.resource.toClassName();
     const name = this.data.name;
     $(`<a class="nav-link" data-uuid="${resource}" data-toggle="modal" data-target="#${resource}">
-         <span class="widget ${resource.toClassName()}">${name}</span> 
+         <span class="widget ${resource}">${name}</span> 
        </a>`).appendTo(this.$);
   }
 
