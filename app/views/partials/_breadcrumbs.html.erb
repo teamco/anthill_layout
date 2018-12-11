@@ -11,7 +11,7 @@
   <% unless ahi? %>
     <li class="breadcrumb-item">
       <%= link_to action_name.humanize,
-          send("#{action_name}_#{controller_name.singularize}_path", params[:id]) %>
+          send("#{action_name}_author_#{controller_name.singularize}_path", params[:id]) %>
     </li>
   <% end %>
 </ol>

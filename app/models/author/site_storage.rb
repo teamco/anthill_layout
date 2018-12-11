@@ -53,7 +53,7 @@ module Author
     end
 
     def get_versions
-      author_site_versions.joins(:author_item).includes(:author_site_storage).order('author_items.created_at DESC')
+      author_site_versions.includes(:author_item).order('author_items.created_at DESC')
     end
 
     def get_last_version
