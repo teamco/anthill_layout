@@ -78,7 +78,8 @@ export class PageDataContentElement extends PluginElement {
     this.renderTooltip({
       title: title,
       description: description,
-      selector: this.$
+      selector: this.$,
+      customCss: `widget ${prefs.resource.toClassName()}`
     });
   }
 

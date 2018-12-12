@@ -21,7 +21,7 @@ export class PageDataRulesElement extends PluginElement {
    */
   constructor(view, opts) {
     super('PageDataRulesElement', view, false);
-    this._config(view, opts, $('<li class="content" />')).build(opts);
+    this._config(view, opts, $('<li class="nav-item content" />')).build(opts);
 
     /**
      * Define title
@@ -45,7 +45,10 @@ export class PageDataRulesElement extends PluginElement {
    * @memberOf WorkspaceDataContentElement
    */
   getTemplate() {
-    $('<a class="page-rules" />').appendTo(this.$);
+    $(`<a class="nav-link" data-uuid="page-rules" data-toggle="modal" data-target="#page-rules">
+         <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+         <span class="widget page-rules">${this.title}</span> 
+       </a>`).appendTo(this.$);
   }
 
   /**
@@ -58,7 +61,8 @@ export class PageDataRulesElement extends PluginElement {
     this.renderTooltip({
       title: this.title,
       description: this.description,
-      selector: this.$
+      selector: this.$,
+      customCss: `widget page-rules`
     });
 
     this.getTemplate();
@@ -74,11 +78,7 @@ export class PageDataRulesElement extends PluginElement {
     const uuid = this.utils.gen.UUID();
     const $html = $('<div class="canvas-rules" />').attr({id: uuid});
 
-    /**
-     * @constant rules
-     * @type {GenerateRules}
-     */
-    const rules = new GenerateRules(uuid, page);
+    new GenerateRules(uuid, page);
 
     return $html;
   }

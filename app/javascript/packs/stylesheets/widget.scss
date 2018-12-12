@@ -31,7 +31,8 @@ $gallery-widget: 2.5em;
   }
 }
 
-.gallery-content {
+.gallery-content,
+.page-data-content {
   .widget {
     background-repeat: no-repeat;
     display: inline-block;
@@ -39,6 +40,11 @@ $gallery-widget: 2.5em;
     line-height: $gallery-widget;
     background-size: $gallery-widget;
     padding-left: 3.2em;
+    padding-right: 0.75rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 180px;
   }
 }
 

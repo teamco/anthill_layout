@@ -1,0 +1,21 @@
+$page-rules: url(./images/rules.png);
+
+.sidebar {
+  .nav-dropdown.open.page-data {
+    .page-data-content {
+      .nav-link {
+        padding: 0.35rem 1rem;
+      }
+
+      .widget.page-rules {
+        background-image: $page-rules;
+      }
+    }
+  }
+}
+
+.popover {
+  .widget.page-rules {
+    background-image: $page-rules;
+  }
+}

@@ -5,8 +5,9 @@
  * Time: 11:02 AM
  */
 
-import './page.data.css';
+import './page.data.scss';
 import '../preferences/preferences.scss';
+import './images/rules.png';
 
 import {AntHill} from '../../core/config/anthill';
 import {MVC} from '../../modules/MVC';
