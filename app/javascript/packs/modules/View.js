@@ -378,7 +378,6 @@ export class BaseView extends AntHill {
    *  [style]: String,
    *  $container,
    *  [cover]: Boolean,
-   *  [coverOpacity]: Number,
    *  [autoclose]: Boolean,
    *  [closeX]: Boolean,
    *  [css],
@@ -390,6 +389,7 @@ export class BaseView extends AntHill {
    *  [text]: String,
    *  [draggable]: Boolean,
    *  [items],
+   *  [callbacks],
    *  [position]: String ('tl/tc/tr', 'cl/cc/cr'. 'bl/bc/br'),
    *  [buttons]
    * }} opts
@@ -405,7 +405,6 @@ export class BaseView extends AntHill {
       style: opts.style,
       $container: opts.$container,
       cover: opts.cover,
-      coverOpacity: opts.coverOpacity,
       autoclose: opts.autoclose,
       closeX: opts.closeX,
       css: opts.css,
@@ -413,6 +412,7 @@ export class BaseView extends AntHill {
       opacityOn: opts.opacityOn,
       title: opts.title,
       type: opts.type,
+      callbacks: opts.callbacks,
       html: opts.html,
       text: opts.text,
       draggable: opts.draggable,

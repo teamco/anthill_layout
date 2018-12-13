@@ -9,19 +9,20 @@ export class PageRulesVisualizer {
    * @memberOf PageRulesVisualizer
    * @method getWidgets
    * @param {Page} page
+   * @static
    */
-  getWidgets(page) {
+  static getWidgets(page) {
     const widgets = page.model.getItems();
     return page.utils._.map(widgets, function(widget) {
       const prefs = widget.model.getConfig('preferences'),
-          imgPath = '/assets/scripts/plugins/widgets/{0}/images/{1}';
+          imgPath = widget.content.image;
       return {
         key: widget.model.getUUID(),
         figure: 'RoundedRectangle',
         title: prefs.title,
         description: prefs.description,
         color: '#dedede',
-        path: imgPath.replace(/\{0}/, prefs.resource).replace(/\{1}/, prefs.resource + '.png')
+        path: imgPath
       };
     });
   }

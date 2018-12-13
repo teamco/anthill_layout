@@ -37,7 +37,7 @@ export class FilterElement extends BaseElement {
     this.$filter = this.renderFilter({
       text: '',
       name: 'filter',
-      placeholder: this.view.scope.i18n.t('filter'),
+      placeholder: `${this.view.scope.i18n.t('filter')}`,
       visible: true,
       callback: callback,
       enter: enter

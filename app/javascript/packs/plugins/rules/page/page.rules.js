@@ -32,8 +32,6 @@ export class GenerateRules extends PageRulesVisualizer {
      * @type {Page}
      */
     this.page = page;
-
-    this.createDiagram();
   }
 
   /**
@@ -49,10 +47,21 @@ export class GenerateRules extends PageRulesVisualizer {
     }
 
     /**
+     * @constant
+     * @type {HTMLDivElement|HTMLElement}
+     */
+    const div = document.getElementById(this.id);
+
+    if (!div) {
+      this.scope.logger.warn('<DIV> should be in DOM');
+      return false;
+    }
+
+    /**
      * @property GenerateRules
      * @type {go.Diagram}
      */
-    this.diagram = new go.Diagram(document.getElementById(this.id));
+    this.diagram = new go.Diagram(div);
 
     this.diagram.initialContentAlignment = go.Spot.Center;
     this.diagram.nodeTemplate = this.defineTemplate(go);
@@ -128,8 +137,8 @@ export class GenerateRules extends PageRulesVisualizer {
   /**
    * @method defineTemplate
    * @memberOf GenerateRules
-   * @param go {{GraphObject, Binding, Shape, Node, Picture, TextBlock, Margin, Spot}}
-   * @returns {go.GraphObject.make}
+   * @param go
+   * @returns {go.Part}
    */
   defineTemplate(go) {
     const _make = go.GraphObject.make;
@@ -177,11 +186,11 @@ export class GenerateRules extends PageRulesVisualizer {
   /**
    * @method updateModel
    * @memberOf GenerateRules
-   * @param go {{GraphLinksModel}}
+   * @param go
    * @returns {go.GraphLinksModel}
    */
   updateModel(go) {
-    return new go.GraphLinksModel(this.getWidgets(this.page));
+    return new go.GraphLinksModel(GenerateRules.getWidgets(this.page));
   }
 
   /**

@@ -78,7 +78,11 @@ export class PageDataRulesElement extends PluginElement {
     const uuid = this.utils.gen.UUID();
     const $html = $('<div class="canvas-rules" />').attr({id: uuid});
 
-    new GenerateRules(uuid, page);
+    /**
+     * @property PageDataRulesElement
+     * @type {GenerateRules}
+     */
+    this.canvas = new GenerateRules(uuid, page);
 
     return $html;
   }

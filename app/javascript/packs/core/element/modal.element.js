@@ -56,10 +56,10 @@ export class ModalElement extends BaseElement {
    *  [hover]: boolean,
    *  [draggable]: boolean,
    *  [autoclose]: boolean,
-   *  [coverOpacity]: Number
    *  $container,
    *  [css],
    *  [items],
+   *  [callbacks],
    *  [buttons]
    * }} opts
    */
@@ -176,18 +176,18 @@ export class ModalElement extends BaseElement {
     this.autoclose = view.utils.setBoolean(opts.autoclose, false);
 
     /**
-     * Set cover opacity
-     * @property ModalElement
-     * @type {Number|*}
-     */
-    this.coverOpacity = opts.coverOpacity;
-
-    /**
      * Set buttons config
      * @property ModalElement
      * @type {*|{}}
      */
     this.buttons = opts.buttons || {};
+
+    /**
+     * Set BS callbacks
+     * @property ModalElement
+     * @type {{[beforeHide], [afterHide], [beforeShow], [afterShow]}}
+     */
+    this.callbacks = opts.callbacks || {};
   }
 
   /**
@@ -258,6 +258,16 @@ export class ModalElement extends BaseElement {
 
       this.$.draggable({handle: this._get$Header()});
     }
+
+    for (let index in this.callbacks) {
+      if (this.callbacks.hasOwnProperty(index)) {
+        if (typeof this[index] === 'function') {
+          this[index](this.callbacks[index]);
+        } else {
+          this.view.scope.logger.warn('Unable to recognize callback', index);
+        }
+      }
+    }
   }
 
   /**
@@ -311,9 +321,9 @@ export class ModalElement extends BaseElement {
       $container: this._get$Header().parent(),
       // language=HTML
       $htmlElement: $(`
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+          </button>
       `),
       events: {click: 'rejectModalEvent'}
     };
@@ -398,10 +408,22 @@ export class ModalElement extends BaseElement {
   selfDestroy(backdrop) {
     this.unsetButtons();
     this.destroy();
-
+    ModalElement.coverDestroy(0);
     if (this.utils.setBoolean(backdrop, true)) {
       $('body').removeClass('modal-open');
     }
+  }
+
+  /**
+   * Cover destroy functionality
+   * @memberOf ModalElement
+   * @param {number} [index]
+   * @static
+   */
+  static coverDestroy(index) {
+    index = typeof index === 'undefined' ? 0 : index;
+    const $covers = document.querySelectorAll('.modal-backdrop');
+    $covers[index] && $covers[index].remove();
   }
 
   /**
@@ -477,5 +499,74 @@ export class ModalElement extends BaseElement {
       this.$.removeClass(type);
       this.$.addClass(this.type);
     }, 4000);
+  }
+
+  /**
+   * Define handle hide
+   * @memberOf ModalElement
+   * @param {function} [callback]
+   */
+  handleHide(callback) {
+    this.$.on('hidden.bs.modal', e => {
+      ModalElement.handleBSEvents(e, callback);
+    });
+  }
+
+  /**
+   * Define handle hide
+   * @memberOf ModalElement
+   * @param {function} [callback]
+   */
+  beforeHide(callback) {
+    this.$.on('hide.bs.modal', e => {
+      ModalElement.handleBSEvents(e, callback);
+    });
+  }
+
+  /**
+   * Define handle hidden
+   * @memberOf ModalElement
+   * @param {function} [callback]
+   */
+  afterHide(callback) {
+    this.$.on('hidden.bs.modal', e => {
+      ModalElement.handleBSEvents(e, callback);
+    });
+  }
+
+  /**
+   * Define handle show
+   * @memberOf ModalElement
+   * @param {function} [callback]
+   */
+  beforeShow(callback) {
+    this.$.on('show.bs.modal', e => {
+      ModalElement.handleBSEvents(e, callback);
+    });
+  }
+
+  /**
+   * Define handle shown
+   * @memberOf ModalElement
+   * @param {function} [callback]
+   */
+  afterShow(callback) {
+    this.$.on('shown.bs.modal', e => {
+      ModalElement.handleBSEvents(e, callback);
+    });
+  }
+
+  /**
+   * Define handle bootstrap events
+   * @memberOf ModalElement
+   * @param e
+   * @param {function} [callback]
+   * @static
+   */
+  static handleBSEvents(e, callback) {
+    e.preventDefault();
+    if (callback) {
+      callback();
+    }
   }
 }

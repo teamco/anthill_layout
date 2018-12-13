@@ -142,6 +142,12 @@ export class PageDataView extends aggregation(BaseView, BasePreferencesElement) 
       }
     };
 
+    /**
+     * @instance
+     * @type {GenerateRules}
+     */
+    const canvas = this.elements.$contentRules.canvas;
+
     this.modalDialog({
       style: opts.style,
       type: opts.type || 'info',
@@ -149,16 +155,11 @@ export class PageDataView extends aggregation(BaseView, BasePreferencesElement) 
       text: opts.page.model.getUUID(),
       html: opts.$html,
       cover: true,
-      buttons: buttons
+      buttons: buttons,
+      callbacks: {
+        afterShow: () => canvas.createDiagram.call(canvas)
+      }
     });
-  }
-
-  /**
-   * Update footer content
-   * @memberOf PageDataView
-   */
-  updateFooterContent() {
-    this.renderFooter(this.get$item());
   }
 
   /**

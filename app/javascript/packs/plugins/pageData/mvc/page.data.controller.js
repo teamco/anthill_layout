@@ -344,7 +344,7 @@ export class PageDataController extends aggregation(PluginController, Router) {
 
     /**
      * Get view
-     * @type {PageDataView}
+     * @type {{elements}|PageDataView}
      */
     const view = scope.view;
 
