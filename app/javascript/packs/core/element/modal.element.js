@@ -432,7 +432,8 @@ export class ModalElement extends BaseElement {
    * @param {string} type
    */
   setModalType(type) {
-    this.$.find('.modal-header').addClass([this.style, 'alert-' + type].join(' '));
+    type = type === 'error' ? 'danger' : type;
+    this.$.find('.modal-header').addClass(`${this.style} alert-${type}`);
   }
 
   /**

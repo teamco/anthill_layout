@@ -64,12 +64,12 @@ export class GenerateRules extends PageRulesVisualizer {
     this.diagram = new go.Diagram(div);
 
     this.diagram.initialContentAlignment = go.Spot.Center;
-    this.diagram.nodeTemplate = this.defineTemplate(go);
+    this.diagram.nodeTemplate = GenerateRules.defineTemplate(go);
     this.diagram.model = this.updateModel(go);
     this.diagram.undoManager.isEnabled = true;
 
     this.diagram.addDiagramListener('ObjectSingleClicked', this.objectSingleClicked.bind(this));
-    this.diagram.ModelChanged = this.modelChanged.bind(this);
+    this.diagram.ModelChanged = GenerateRules.modelChanged.bind(this);
     this.diagram.addDiagramListener('ChangedSelection', this.changedSelection.bind(this));
 
     this.updatePublishedRules();
@@ -81,8 +81,9 @@ export class GenerateRules extends PageRulesVisualizer {
    * @method modelChanged
    * @memberOf GenerateRules
    * @param {Event|{isTransactionFinished}} e
+   * @static
    */
-  modelChanged(e) {
+  static modelChanged(e) {
     if (e.isTransactionFinished) {
       //saveModel();
     }
@@ -126,8 +127,9 @@ export class GenerateRules extends PageRulesVisualizer {
    * @param node
    * @param link
    * @param port
+   * @static
    */
-  updateConnectivity(node, link, port) {
+  static updateConnectivity(node, link, port) {
     const shape = node.findObject('shape'),
         condition = node.findLinksInto().count;
     shape.stroke = condition ? 'lightcoral' : 'green';
@@ -139,10 +141,11 @@ export class GenerateRules extends PageRulesVisualizer {
    * @memberOf GenerateRules
    * @param go
    * @returns {go.Part}
+   * @static
    */
-  defineTemplate(go) {
+  static defineTemplate(go) {
     const _make = go.GraphObject.make;
-    const node = _make(go.Node, 'Auto', {click: this.showConnections},
+    const node = _make(go.Node, 'Auto', {click: GenerateRules.showConnections},
         _make(go.Shape, new go.Binding('figure', 'figure'), {
               name: 'shape',
               strokeWidth: 0.5,
@@ -158,8 +161,8 @@ export class GenerateRules extends PageRulesVisualizer {
             new go.Binding('fill', 'color'),
             new go.Binding('stroke', 'isHighlighted', h => h ? 'red' : 'black').ofObject()));
 
-    node.linkConnected = this.updateConnectivity;
-    node.linkDisconnected = this.updateConnectivity;
+    node.linkConnected = GenerateRules.updateConnectivity;
+    node.linkDisconnected = GenerateRules.updateConnectivity;
 
     node.add(_make(go.Picture, {
           width: 32,
@@ -288,8 +291,9 @@ export class GenerateRules extends PageRulesVisualizer {
    * @memberOf GenerateRules
    * @param e
    * @param node
+   * @static
    */
-  showConnections(e, node) {
+  static showConnections(e, node) {
     const diagram = node.diagram;
     diagram.startTransaction('highlight');
     // remove any previous highlighting

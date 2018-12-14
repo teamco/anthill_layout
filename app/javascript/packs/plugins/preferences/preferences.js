@@ -70,72 +70,81 @@ export class BasePreferencesElement {
   /**
    * @memberOf BasePreferencesElement
    * @return {boolean}
+   * @static
    */
-  isEvent(node) {
+  static isEvent(node) {
     return node.type === 'event';
   }
 
   /**
    * @memberOf BasePreferencesElement
    * @return {boolean}
+   * @static
    */
-  isTextEditor(node) {
+  static isTextEditor(node) {
     return node.type === 'texteditor';
   }
 
   /**
    * @memberOf BasePreferencesElement
    * @return {boolean}
+   * @static
    */
-  isTextField(node) {
+  static isTextField(node) {
     return node.type === 'text';
   }
 
   /**
    * @memberOf BasePreferencesElement
    * @return {boolean}
+   * @static
    */
-  isTextAreaField(node) {
+  static isTextAreaField(node) {
     return node.type === 'textarea';
   }
 
   /**
    * @memberOf BasePreferencesElement
    * @return {boolean}
+   * @static
    */
-  isNumberField(node) {
+  static isNumberField(node) {
     return node.type === 'number';
   }
 
   /**
    * @memberOf BasePreferencesElement
    * @return {boolean}
+   * @static
    */
-  isRangeField(node) {
+  static isRangeField(node) {
     return node.type === 'range';
   }
 
   /**
    * @memberOf BasePreferencesElement
    * @return {boolean}
+   * @static
    */
-  isListBoxField(node) {
+  static isListBoxField(node) {
     return node.type === 'listbox';
   }
 
   /**
    * @memberOf BasePreferencesElement
    * @return {boolean}
+   * @static
    */
-  isCheckBoxField(node) {
+  static isCheckBoxField(node) {
     return node.type === 'checkbox';
   }
 
   /**
    * @memberOf BasePreferencesElement
    * @return {boolean}
+   * @static
    */
-  isComboBoxField(node) {
+  static isComboBoxField(node) {
     return node.type === 'combobox';
   }
 
@@ -339,14 +348,14 @@ export class BasePreferencesElement {
    * @returns {*}
    */
   getNodeRenderer(view, node, text, index) {
-    if (this.isEvent(node)) return this.eventLink.call(view, text, index, node);
-    if (this.isTextEditor(node)) return this.textEditor.call(view, text, index, node);
-    if (this.isTextField(node)) return this.textField.call(view, text, index, node);
-    if (this.isTextAreaField(node)) return this.textAreaField.call(view, text, index, node);
-    if (this.isNumberField(node)) return this.numberField.call(view, text, index, node);
-    if (this.isRangeField(node)) return this.rangeField.call(view, text, index, node);
-    if (this.isCheckBoxField(node)) return this.checkBoxField.call(view, text, index, node);
-    if (this.isListBoxField(node)) return this.listBoxField.call(view, text, index, node);
-    if (this.isComboBoxField(node)) return this.comboBoxField.call(view, text, index, node);
+    if (BasePreferencesElement.isEvent(node)) return this.eventLink.call(view, text, index, node);
+    if (BasePreferencesElement.isTextEditor(node)) return this.textEditor.call(view, text, index, node);
+    if (BasePreferencesElement.isTextField(node)) return this.textField.call(view, text, index, node);
+    if (BasePreferencesElement.isTextAreaField(node)) return this.textAreaField.call(view, text, index, node);
+    if (BasePreferencesElement.isNumberField(node)) return this.numberField.call(view, text, index, node);
+    if (BasePreferencesElement.isRangeField(node)) return this.rangeField.call(view, text, index, node);
+    if (BasePreferencesElement.isCheckBoxField(node)) return this.checkBoxField.call(view, text, index, node);
+    if (BasePreferencesElement.isListBoxField(node)) return this.listBoxField.call(view, text, index, node);
+    if (BasePreferencesElement.isComboBoxField(node)) return this.comboBoxField.call(view, text, index, node);
   }
 }

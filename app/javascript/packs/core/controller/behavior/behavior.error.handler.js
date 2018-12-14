@@ -34,11 +34,7 @@ export class BehaviorErrorHandler {
         status: errorMsg,
         statusText: [url, lineNumber, columnNumber].join(':'),
         responseJSON: {
-          error: [
-            '<pre><code>',
-            (errorObject || {}).stack,
-            '</code></pre>'
-          ].join('')
+          error: `<pre><code>${(errorObject || {}).stack}</code></pre>`
         }
       }, 'danger');
 
@@ -81,7 +77,7 @@ export class BehaviorErrorHandler {
           msg = 'Ajax request aborted';
           break;
         default:
-          msg = 'Uncaught Error. ' + xhr.responseText;
+          msg = `Uncaught Error. ${xhr.responseText}`;
           break;
       }
       return msg;

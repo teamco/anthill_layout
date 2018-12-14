@@ -71,9 +71,9 @@ export class WidgetPreferences extends BasePreferencesElement {
    * @param defaults
    * @param prefs
    * @returns {{}}
-   * @private
+   * @static
    */
-  mergeWidgetPrefs(defaults, prefs) {
+  static mergeWidgetPrefs(defaults, prefs) {
     for (let index in prefs) {
       if (prefs.hasOwnProperty(index)) {
         if (defaults.hasOwnProperty(index)) {
@@ -124,7 +124,7 @@ export class WidgetPreferences extends BasePreferencesElement {
         $container = this.renderTabItemsContent();
 
     let text = 'Widget';
-    let form = this.mergeWidgetPrefs(defaultPrefs, widget.model.getConfig('preferences'));
+    let form = WidgetPreferences.mergeWidgetPrefs(defaultPrefs, widget.model.getConfig('preferences'));
 
     this.$.append($tabs, $container);
 
@@ -190,7 +190,7 @@ export class WidgetPreferences extends BasePreferencesElement {
   /**
    * Render widget interactions
    * @memberOf WidgetPreferences
-   * @param {Widget} widget
+   * @param {Widget|{permission}} widget
    * @returns {*}
    */
   renderWidgetInteractions(widget) {
@@ -219,7 +219,7 @@ export class WidgetPreferences extends BasePreferencesElement {
     interactions.resizable.disabled = !resizablePermission;
     interactions.resizable.checked = resizable;
 
-    return this.mergeWidgetPrefs(interactions, preferences);
+    return WidgetPreferences.mergeWidgetPrefs(interactions, preferences);
   }
 
   /**
@@ -233,7 +233,7 @@ export class WidgetPreferences extends BasePreferencesElement {
     // Get parallax prefs
     const parallax = widget.controller.getPreferences().parallax;
 
-    return this.mergeWidgetPrefs(parallax, widget.model.getConfig('preferences'));
+    return WidgetPreferences.mergeWidgetPrefs(parallax, widget.model.getConfig('preferences'));
   }
 
   /**
@@ -264,6 +264,6 @@ export class WidgetPreferences extends BasePreferencesElement {
     layout.width.value = width;
     layout.height.value = height;
 
-    return this.mergeWidgetPrefs(layout, widget.model.getConfig('preferences'));
+    return WidgetPreferences.mergeWidgetPrefs(layout, widget.model.getConfig('preferences'));
   }
 }
