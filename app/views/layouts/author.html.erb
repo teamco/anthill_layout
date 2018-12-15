@@ -2,8 +2,7 @@
 <html>
 <head>
   <title>AntHill</title>
-  <%= stylesheet_pack_tag 'author', media: 'all',
-      'data-turbolinks-track': 'reload' unless Webpacker.dev_server.hot_module_replacing? %>
+  <%= stylesheet_pack_tag 'author', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_pack_tag 'author', 'data-turbolinks-track': 'reload' %>
   <%= csrf_meta_tags %>
   <%= action_cable_meta_tag %>
