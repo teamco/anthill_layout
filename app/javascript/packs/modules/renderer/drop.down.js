@@ -54,18 +54,14 @@ export class DropDownRenderer {
         id = `${this.view.utils.gen.UUID()}-dropdown`;
 
     const $combo = $(
-        `<ul class="nav ${style}" id="${id}">
-          <li class="nav-item position-static">
-            <div class="dropdown">
-              <button class="btn btn-secondary btn-sm w-100 dropdown-toggle ${disabled ? ' disabled' : ''}" type="button" 
-                      id="${id}-categories" data-toggle="dropdown" aria-haspopup="true" data-boundary="viewport" 
-                      aria-expanded="false">
-                Choose category
-              </button>                                        
-              <div class="dropdown-menu" aria-labelledby="${id}-categories"></div> 
-            </div>        
-          </li>
-        </ul>`
+        `<div class="input-group mb-2">         
+          <button class="btn btn-outline-secondary btn-sm dropdown-toggle ${disabled ? ' disabled' : ''}" type="button" 
+                  id="${id}-categories" data-toggle="dropdown" aria-haspopup="true" data-boundary="viewport" 
+                  aria-expanded="false">
+            Choose category
+          </button>                                        
+          <div class="dropdown-menu" aria-labelledby="${id}-categories"></div> 
+        </div>`
     );
 
     $('li', $combo).append($input);
@@ -76,7 +72,7 @@ export class DropDownRenderer {
      * @private
      */
     function _updatePlaceholder(value) {
-      $('.dropdown-toggle', $combo).html(`${value}<span class="caret pull-right"></span>`);
+      $('.dropdown-toggle', $combo).html(`${value}`);
     }
 
     /**
@@ -191,18 +187,16 @@ export class DropDownRenderer {
     const labelPattern = new RegExp(this.view.scope.name.toLowerCase());
 
     // Define label
-    const $label = $([
-      '<div class="input-group">',
-      '<span class="input-group-addon">',
-      (index.replace(labelPattern, '').humanize()), '</span>',
-      '</div>'
-    ].join(''));
+    const $label = $(`
+      <div class="input-group-prepend">
+        <span class="input-group-text lg-input">${(index.replace(labelPattern, '').humanize())}</span>
+      </div>`);
 
     if (disabled) {
       this.disableDropDown($combo);
     }
 
-    return label ? $label.append($combo) : $combo;
+    return label ? $combo.prepend($label) : $combo;
   }
 
   /**
