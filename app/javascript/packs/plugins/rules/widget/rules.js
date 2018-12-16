@@ -59,7 +59,7 @@ export class BaseRules extends AntHill {
    * @private
    */
   _transferValue(value) {
-    this.element.view.scope.$buttons[this.button].$.attr({value: value});
+    this.view.scope.$buttons[this.button].$.attr({value: value});
   }
 
   /**
@@ -87,7 +87,7 @@ export class BaseRules extends AntHill {
     }
 
     if (!rulesList.length) {
-      this.element.view.scope.logger.warn('No rules', type, rules);
+      this.view.scope.logger.warn('No rules', type, rules);
       return false;
     }
 
@@ -136,7 +136,7 @@ export class BaseRules extends AntHill {
       }
     }, opts.buttons || {});
 
-    this.element.view.modalDialog({
+    this.view.modalDialog({
       style: opts.style,
       type: opts.type || 'info',
       title: opts.title,
@@ -163,11 +163,11 @@ export class BaseRules extends AntHill {
      * @constant $element
      * @type {jQuery}
      */
-    const $element = this.element.$;
+    const $element = this.$;
 
     $element.append(
         this.getTemplate(text).append(
-            this.element.renderDropDown(rulesList, rulesList[0].value, text,
+            this.renderDropDown(rulesList, rulesList[0].value, text,
                 'widgetRule', {
                   type: 'click.transferValue',
                   callback: this._transferValue.bind({
@@ -176,7 +176,7 @@ export class BaseRules extends AntHill {
                   })
                 }, true)));
 
-    this.element.view.button({
+    this.view.button({
           addWidgetRule: {
             text: 'Publish',
             type: 'warning',
@@ -199,7 +199,7 @@ export class BaseRules extends AntHill {
      * @constant view
      * @type {BaseView}
      */
-    const view = this.element.view;
+    const view = this.view;
 
     /**
      * Get published rules
@@ -244,7 +244,7 @@ export class BaseRules extends AntHill {
 
             for (let i = 0, l = rules.length; i < l; i++) {
 
-              const $checkbox = this.element.renderCheckbox({
+              const $checkbox = this.renderCheckbox({
                 name: [type, rules[i]].join(':'),
                 text: rules[i],
                 checked: $.inArray(rules[i], checked) !== -1,
@@ -267,7 +267,7 @@ export class BaseRules extends AntHill {
                   '<span class="glyphicon glyphicon-chevron-up"></span>',
                   published[index].type, ': ',
                   index.replace(/-content/, '')
-                ].join('')).on('click.toggle', this.element.toggleFieldset.bind(this)),
+                ].join('')).on('click.toggle', this.toggleFieldset.bind(this)),
                 $inner
               ])
           ).appendTo($ul);
@@ -276,9 +276,9 @@ export class BaseRules extends AntHill {
     }
 
     if (render) {
-      this.element.$.find('div.content-rules').append(
+      this.$.find('div.content-rules').append(
           $('<fieldset />').append([
-            $('<legend />').text(title).on('click.toggle', this.element.toggleFieldset.bind(this)).attr({title: title}),
+            $('<legend />').text(title).on('click.toggle', this.toggleFieldset.bind(this)).attr({title: title}),
             $ul]));
     }
   }
@@ -293,13 +293,13 @@ export class BaseRules extends AntHill {
      * @constant $element
      * @type {jQuery}
      */
-    const $element = this.element.$;
+    const $element = this.$;
 
     /**
      * @constant view
      * @type {BaseView}
      */
-    const view = this.element.view;
+    const view = this.view;
 
     const cname = view.scope.name,
         text = [cname, 'rules'].join(' '),
@@ -310,7 +310,7 @@ export class BaseRules extends AntHill {
     }
 
     $element.append(this.getTemplate(text).append(
-        this.element.renderDropDown(rulesList, rulesList[0].value, text,
+        this.renderDropDown(rulesList, rulesList[0].value, text,
             [cname, 'Rule'].join(''), {
               type: 'click.transferValue',
               callback: this._transferValue.bind({
@@ -319,7 +319,7 @@ export class BaseRules extends AntHill {
               })
             }, true)));
 
-    this.element.view.button({
+    this.view.button({
           addContentRule: {
             text: 'Publish',
             type: 'warning',
@@ -348,7 +348,7 @@ export class BaseRules extends AntHill {
 
     this.renderWidgetRules(widgetRules);
     this.renderContentRules(contentRules);
-    this.element.$.append('<div class="content-rules" />');
+    this.$.append('<div class="content-rules" />');
     this.renderSubscribeRules(data.subscribe);
   }
 
@@ -385,7 +385,7 @@ export class BaseRules extends AntHill {
       $container.find('div.content-rules').append(
           $('<fieldset />').append([
             $('<legend />').text(title).on('click.toggle',
-                this.element.toggleFieldset.bind(this)).attr({title: title}), $ul]));
+                this.toggleFieldset.bind(this)).attr({title: title}), $ul]));
     }
 
     if (!rule) {

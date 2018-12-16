@@ -26,6 +26,12 @@ export class WidgetRulesContentElement extends PluginElement {
     this.setAttributes(opts.data);
     this.bindShowRules(opts.data);
     this.bindLocate(opts.data);
+
+    /**
+     * @property WidgetRulesContentElement
+     * @type {EmptyRulesElement}
+     */
+    this.$rules = opts.data.controller.getContent().view.elements.$rules;
   }
 
   /**

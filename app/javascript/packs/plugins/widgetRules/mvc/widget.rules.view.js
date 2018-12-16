@@ -107,7 +107,10 @@ export class WidgetRulesView extends BaseView {
       return false;
     }
 
-    this.get$item().rules.openRules({
+    const activeContent = this.scope.activeContent;
+    const $rules = activeContent.view.elements.$rules;
+
+    $rules.openRules({
       config: config,
       $html: $html.$,
       style: [config.preferences.resource, 'widget-rules rules'].join(' '),
