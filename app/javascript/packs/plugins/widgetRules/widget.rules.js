@@ -5,7 +5,7 @@
  * Time: 11:02 AM
  */
 
-import './widget.rules.css';
+import './widget.rules.scss';
 import '../rules/widget/rules.css';
 
 import {AntHill} from '../../core/config/anthill';

@@ -20,7 +20,7 @@ export class WidgetRulesContentElement extends PluginElement {
    */
   constructor(view, opts) {
     super('WidgetRulesContentElement', view, false);
-    this._config(view, opts, $('<li />')).build(opts);
+    this._config(view, opts, $('<li class="nav-item" />')).build(opts);
 
     this.getTemplate(opts.data);
     this.setAttributes(opts.data);
@@ -31,29 +31,34 @@ export class WidgetRulesContentElement extends PluginElement {
   /**
    * Define inner content
    * @memberOf WidgetRulesContentElement
+   * @param {Widget} widget
    */
-  getTemplate(data) {
-    $('<a class="widget ' + data.model.getConfig('preferences').resource.toClassName() + '" />').appendTo(this.$);
+  getTemplate(widget) {
+    const resource = widget.model.getConfig('preferences').resource.toClassName();
+    const name = widget.controller.getContent().name;
+    $(`<a class="nav-link" data-uuid="${resource}" data-toggle="modal" data-target="#${resource}">
+         <span class="widget ${resource}">${name}</span> 
+       </a>`).appendTo(this.$);
   }
 
   /**
    * Define attributes
    * @memberOf WidgetRulesContentElement
-   * @param data
+   * @param {Widget} widget
    */
-  setAttributes(data) {
+  setAttributes(widget) {
 
     /**
      * Get title
      * @type {boolean|string}
      */
-    const title = data.model.getItemTitle();
+    const title = widget.model.getItemTitle();
 
     /**
      * Get prefs
      * @type {{description: string, resource: string}}
      */
-    const prefs = data.model.getConfig('preferences');
+    const prefs = widget.model.getConfig('preferences');
 
     /**
      * Get description
@@ -76,7 +81,8 @@ export class WidgetRulesContentElement extends PluginElement {
     this.renderTooltip({
       title: title,
       description: description,
-      selector: this.$
+      selector: this.$,
+      customCss: `widget ${prefs.resource.toClassName()}`
     });
   }
 

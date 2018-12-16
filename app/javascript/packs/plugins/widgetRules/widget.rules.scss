@@ -1,0 +1,13 @@
+ul.widget-rules .content > a {
+  cursor: context-menu;
+}
+
+.sidebar {
+  .nav-dropdown.open.widget-rules {
+    .widget-rules-content {
+      .nav-link {
+        padding: 0.35rem 1rem 0.05rem;
+      }
+    }
+  }
+}

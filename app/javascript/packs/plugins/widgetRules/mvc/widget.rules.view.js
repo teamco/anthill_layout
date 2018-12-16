@@ -7,7 +7,6 @@
  */
 
 import {BaseView} from '../../../modules/View';
-import {WidgetRulesElement} from '../element/widget.rules.element';
 import {WidgetRulesContentElement} from '../element/widget.rules.content.element';
 
 /**
@@ -32,17 +31,11 @@ export class WidgetRulesView extends BaseView {
    */
   renderWidgetRules() {
 
-    if (!this.isCached('$widgetrules', WidgetRulesElement)) {
-
-      /**
-       * Define WidgetRules element
-       * @type {WidgetRulesElement}
-       */
-      this.elements.$widgetrules = new WidgetRulesElement(this, {
-        id: this.createUUID(),
-        $container: this.get$container().$
-      });
-    }
+    /**
+     * Define WidgetRules element
+     * @type {PanelContentElement}
+     */
+    this.elements.$widgetrules = this.get$container();
   }
 
   /**
@@ -52,8 +45,11 @@ export class WidgetRulesView extends BaseView {
    * @returns {boolean}
    */
   renderContent(data) {
-    this.cleanElementItems();
-    this.renderFilterElement(this.updateFooterContent.bind(this));
+    if (!this.elements.$filter) {
+      this.cleanElementItems();
+      this.renderFilterElement();
+    }
+    this.destroyElementItems();
 
     for (let index in data) {
       if (data.hasOwnProperty(index)) {
@@ -76,20 +72,10 @@ export class WidgetRulesView extends BaseView {
       }
     }
 
-    this.updateScrollCover();
     this.elements.$filter.updateData({
       items: this.elements.items,
       focusOn: 'input'
     });
-    this.updateFooterContent();
-  }
-
-  /**
-   * Update footer content
-   * @memberOf WidgetRulesView
-   */
-  updateFooterContent() {
-    this.renderFooter(this.get$item());
   }
 
   /**
