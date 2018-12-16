@@ -51,14 +51,16 @@ export class CheckBoxRenderer  {
     this.initMonitor($input, opts.monitor);
     this.checkVisibility($input, opts.visible);
 
-    const $template = $([
-      '<div class="input-group">',
-      '<span class="input-group-addon"></span>',
-      '<input type="text" class="form-control" disabled="disabled" value="', opts.text, '">',
-      '</div>'
-    ].join(''));
+    const $template = $(`
+      <div class="input-group mb-2">
+        <div class="input-group-prepend">
+          <div class="input-group-text sm-input">
+          </div>
+        </div>
+        <input type="text" class="form-control" disabled="disabled" value="${opts.text}">
+      </div>`);
 
-    $template.find('.input-group-addon').append($input);
+    $template.find('.input-group-text').append($input);
 
     /**
      * Get tooltip

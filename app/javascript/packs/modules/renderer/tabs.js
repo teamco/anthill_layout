@@ -57,7 +57,7 @@ export class TabsRenderer {
    * @returns {*|jQuery}
    */
   renderTabs() {
-    return $('<div class="tabs-wrapper" />').append(
+    return $('<div class="tabs-wrapper mb-2 mt-2" />').append(
         this.renderScroller(),
         '<ul class="nav nav-pills" />'
     );

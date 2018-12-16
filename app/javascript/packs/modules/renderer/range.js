@@ -17,6 +17,7 @@ export class RangeRenderer {
    *  [placeholder]: string,
    *  value, min, max, step,
    *  [disabled]: boolean,
+   *  [style],
    *  [monitor],
    *  [visible],
    *  [unit],
@@ -70,7 +71,7 @@ export class RangeRenderer {
       _triggerCallback();
     }
 
-    const uuid = this.view.utils.gen.UUID() + '-input',
+    const uuid = this.view.utils.gen.UUID() + '-range',
         disabled = this.view.utils.setBoolean(opts.disabled, false),
         $input = $('<input />').attr({
           name: opts.name,
@@ -90,6 +91,8 @@ export class RangeRenderer {
     const $numberField = this.renderNumberField({
           value: opts.value,
           disabled: disabled,
+          text: opts.text,
+          style: opts.style,
           visible: true,
           monitor: {
             events: ['keyup.range', 'blur.range'],
@@ -104,8 +107,16 @@ export class RangeRenderer {
       _triggerCallback();
     });
 
+    $numberField.find('.input-group-text').addClass('lg-input');
     $input.val(opts.value);
-    const $unit = $('<div />').append([$numberInput, opts.unit || '']);
-    return [this.renderLabel(undefined, opts.text, 'text', opts.visible), $unit, $input];
+
+    if (opts.unit) {
+      $numberField.append(`
+        <div class="input-group-append">
+          <span class="input-group-text sm-input">${opts.unit}</span>
+        </div>
+      `);
+    }
+    return [$numberField, $input];
   }
 }

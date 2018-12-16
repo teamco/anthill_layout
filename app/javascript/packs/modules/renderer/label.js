@@ -29,15 +29,17 @@ export class LabelRenderer {
 
     const title = html[html.length - 1].data || '';
 
-    const $label = $('<span />').attr({
-      id: uuid,
-      title: title.toUpperCase()
-    }).addClass(type + ' input-group-addon').html(text);
-
-    if (!visible) {
-      $label.hide();
+    if (visible) {
+      if (!(text || '').length) {
+        visible = false;
+      }
     }
+    const $template = $(`
+      <div class="input-group-prepend${visible ? '' : ' d-none'}">
+        <span class="${type} input-group-text" id="${uuid}" title="${title.toUpperCase()}"></span>
+      </div>`);
 
-    return $label;
+    $template.find('span').html(text);
+    return $template;
   }
 }

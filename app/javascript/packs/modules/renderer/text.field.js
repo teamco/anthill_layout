@@ -50,7 +50,7 @@ export class TextFieldRenderer {
     }).val(opts.value);
 
     const labelClass = [opts.style, opts.visible ? '' : 'd-none'].join(' '),
-        $template = $('<div class="input-group" />').append(
+        $template = $('<div class="input-group mb-2" />').append(
             this.renderLabel(uuid, opts.text, labelClass, opts.visible));
 
     /**

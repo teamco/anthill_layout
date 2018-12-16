@@ -54,6 +54,9 @@ export class TextAreaRenderer {
       title: opts.value
     }).val(opts.value).addClass(opts.style);
 
+    const $template = $('<div class="input-group mb-2" />').append(
+        this.renderLabel(uuid, opts.text, 'textarea', opts.visible));
+
     this.initMonitor($input, opts.monitor);
     this.checkVisibility($input, opts.visible);
     this.validateByMask($input, opts);
@@ -72,14 +75,8 @@ export class TextAreaRenderer {
       });
     }
 
-    return [
-      this.renderLabel(
-          uuid.replace(/-textarea/, '-label'),
-          opts.text,
-          'textarea',
-          opts.visible
-      ),
-      $input
-    ];
+    $template.append($input);
+
+    return $template;
   }
 }

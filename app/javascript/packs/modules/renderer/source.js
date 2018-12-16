@@ -2,8 +2,13 @@
  * Created by teamco on 7/10/14.
  */
 
-import hljs from 'highlight.js';
 import 'highlight.js/styles/agate.css';
+
+/**
+ * @constant
+ * @type {hljs}
+ */
+import hljs from 'highlight.js';
 
 /**
  * @constant SourceRenderer
@@ -21,14 +26,18 @@ export class SourceRenderer {
    */
   renderSource(src, type, opts) {
 
+    /**
+     * @constant
+     * @type {vkbeautify}
+     */
     const vkbeautify = require('vkbeautify');
 
-    const $source = $('<div class="source"><pre><code class="hljs"></code></pre></div>'),
+    const $source = $('<div class="source"><pre><code class="html hljs"></code></pre></div>'),
         $code = $source.find('code');
 
     try {
       $code.text(vkbeautify.xml(src));
-      hljs.initHighlightingOnLoad();
+      hljs.initHighlighting();
       hljs.highlightBlock($code.get(0));
 
       this.initMonitor($source, opts.monitor);

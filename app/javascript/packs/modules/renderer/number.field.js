@@ -17,6 +17,7 @@ export class NumberFieldRenderer {
    *  [placeholder]: string,
    *  [tooltip]: string,
    *  value,
+   *  [style],
    *  [disabled]: boolean,
    *  [monitor],
    *  [visible],
@@ -51,8 +52,8 @@ export class NumberFieldRenderer {
       disabled: utils.setBoolean(opts.disabled, false)
     }).val(opts.value);
 
-    const labelClass = [opts.style, opts.visible ? '' : 'hide'].join(' '),
-        $template = $('<div class="input-group" />').append(
+    const labelClass = [opts.style, opts.visible ? '' : 'd-none'].join(' '),
+        $template = $('<div class="input-group w-16 mb-2" />').append(
             this.renderLabel(uuid, opts.text, labelClass, opts.visible)
         );
 
