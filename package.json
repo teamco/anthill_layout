@@ -83,6 +83,7 @@
     "browserify-incremental": "^3.1.1",
     "browserify-shim": "^3.8.14",
     "caller-id": "^0.1.0",
+    "exports-loader": "^0.7.0",
     "expose-loader": "^0.7.5",
     "highlight.js": "^9.13.1",
     "imports-loader": "^0.8.0",

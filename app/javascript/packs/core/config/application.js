@@ -42,8 +42,9 @@ export class Application extends AntHill {
      *  isResized: boolean,
      *  loading: boolean,
      *  limit: boolean,
-     *  logger: {handle: boolean, show: boolean, namespaces: boolean, type: {debug: boolean, log: boolean, info: boolean, error: boolean, warn: boolean}},
-     *  html: {style: string, header: boolean, footer: boolean, stretch: boolean, padding: {top: number, right: number, bottom: number, left: number}}
+     *  logger: {handle: boolean, show: boolean, namespaces: boolean, type: {debug: boolean, log: boolean, info:
+     *     boolean, error: boolean, warn: boolean}}, html: {style: string, header: boolean, footer: boolean, stretch:
+     *     boolean, padding: {top: number, right: number, bottom: number, left: number}}
      * }}
      */
     const DEFAULTS = {

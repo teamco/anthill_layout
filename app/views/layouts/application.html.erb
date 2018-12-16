@@ -10,7 +10,8 @@
   <%= csrf_meta_tags %>
   <%= action_cable_meta_tag %>
   <%= stylesheet_pack_tag 'author', media: 'all', 'data-turbolinks-track': 'reload' %>
-  <%= javascript_pack_tag 'author', 'data-turbolinks-track': 'reload' %>
+  <%= load_css(@storage) %>
+  <%= load_js(@storage) %>
 </head>
 <body class="anthill loading app header-fixed sidebar-fixed aside-menu-fixed sidebar-lg-show">
 <div class='uil-ripple-css'></div>

@@ -6,8 +6,7 @@ import Rails from 'rails-ujs';
 import Turbolinks from 'turbolinks';
 
 import 'babel-polyfill';
-import 'jquery/dist/jquery.slim.min';
-import 'bootstrap/dist/js/bootstrap.bundle.min';
+import 'bootstrap';
 
 import 'perfect-scrollbar/dist/perfect-scrollbar.min';
 import '@coreui/coreui/dist/js/coreui.min';
@@ -18,8 +17,9 @@ import '@coreui/coreui-plugin-chartjs-custom-tooltips/dist/js/custom-tooltips.mi
 // fontawesome.library.add(faCoffee, faCameraRetro)
 import '@fortawesome/fontawesome-free/js/all.min';
 
+global['Rails'] = Rails;
+
 document.addEventListener('DOMContentLoaded', () => {
-  global.Rails = Rails;
   Rails.start();
   Turbolinks.start();
 });

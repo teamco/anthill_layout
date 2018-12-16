@@ -161,7 +161,48 @@ module ApplicationHelper
     false
   end
 
+  def load_js(storage)
+    send("js_#{storage[:mode]}", storage)
+  end
+
+  def load_css(storage)
+    send("css_#{storage[:mode]}")
+  end
+
   private
+
+  def js_development(storage)
+    javascript_pack_tag('development', js_opts(storage))
+  end
+
+  def js_consumption(storage)
+    javascript_pack_tag('consumption', js_opts(storage))
+  end
+
+  def css_development
+    stylesheet_pack_tag('development')
+  end
+
+  def css_consumption
+    stylesheet_pack_tag('consumption')
+  end
+
+  def js_opts(storage)
+    {
+        'data-resource': storage[:key],
+        'data-user': current_user.nil? ? 'guest' : current_user.email,
+        'data-current': storage[:show],
+        'data-published': storage[:published],
+        'data-version': storage[:last],
+        'data-activated': storage[:activated],
+        'data-mode': storage[:mode],
+        'data-environment': Rails.env,
+        'data-deployed': storage[:deployed],
+        'data-uuid': storage[:uuid],
+        'data-turbolinks-track': 'reload',
+        'id': 'require-init'
+    }
+  end
 
   def handle_external_images(url)
     return url if url.match(/http\:/)

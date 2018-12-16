@@ -1,5 +1,20 @@
-import './stylesheets/jquery-ui.min.scss';
+require.context('../images/', true, /\.(gif|jpg|png|svg)$/i);
+
 import './stylesheets/development.scss';
+import './stylesheets/application.scss';
+import './stylesheets/jquery-ui.min.scss';
+import './combined';
+
+import Rails from 'rails-ujs';
+import Turbolinks from 'turbolinks';
+
+import 'babel-polyfill';
+import 'bootstrap';
+
+import 'perfect-scrollbar/dist/perfect-scrollbar.min';
+import '@coreui/coreui/dist/js/coreui.min';
+import '@coreui/coreui-plugin-chartjs-custom-tooltips/dist/js/custom-tooltips.min';
+import '@fortawesome/fontawesome-free/js/all.min';
 
 import 'jquery-ui/ui/core';
 import 'jquery-ui/ui/labels';
@@ -16,9 +31,15 @@ import 'jquery.initialize';
 
 import {Application} from './core/config/application';
 
-const complete = setInterval(async () => {
+global['Rails'] = Rails;
+
+document.addEventListener('DOMContentLoaded', () => {
+  Rails.start();
+  Turbolinks.start();
+});
+
+document.onreadystatechange = async () => {
   if (document.readyState === 'complete') {
     await Application.init();
-    clearInterval(complete);
   }
-}, 200);
+};

@@ -27,7 +27,7 @@ export class WidgetInteractions {
     const scope = this.scope;
 
     if (typeof scope.view.get$item().$[type] !== 'function') {
-      scope.logger.warn('Unable to defineP', type, config);
+      scope.logger.warn('Unable to define', type, config);
       return false;
     }
 
