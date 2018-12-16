@@ -54,7 +54,7 @@ export class WidgetOverlapping {
         targetWidgetsData = controller.getTargetWidgetsData(widget, up),
         markedWidgets = layout.overlapping.intersectWidgets(this.widget, true);
 
-    if (widget.base.lib.hash.hashLength(markedWidgets) === 0) {
+    if (!Object.keys(markedWidgets || {}).length) {
       return false;
     }
 

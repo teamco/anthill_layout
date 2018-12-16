@@ -75,13 +75,22 @@ export class WidgetDrag {
   }
 
   /**
+   * @memberOf WidgetDrag
+   * @param {string} type
+   * @private
+   */
+  _draggableShould(type) {
+    if (this.scope.controller.isDraggable()) {
+      this.$scope.draggable(type);
+    }
+  }
+
+  /**
    * Enable drag
    * @memberOf WidgetDrag
    */
   enable() {
-    if (this.scope.controller.isDraggable()) {
-      this.$scope.draggable('enable');
-    }
+    this._draggableShould('enable');
   }
 
   /**
@@ -89,9 +98,7 @@ export class WidgetDrag {
    * @memberOf WidgetDrag
    */
   disable() {
-    if (this.scope.controller.isDraggable()) {
-      this.$scope.draggable('disable');
-    }
+    this._draggableShould('disable');
   }
 
   /**
@@ -99,9 +106,7 @@ export class WidgetDrag {
    * @memberOf WidgetDrag
    */
   destroy() {
-    if (this.scope.controller.isDraggable()) {
-      this.$scope.draggable('destroy');
-    }
+    this._draggableShould('destroy');
   }
 
   /**

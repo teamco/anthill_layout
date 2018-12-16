@@ -80,10 +80,8 @@ export class BaseModel extends CRUD {
       const node = path[i];
 
       if (reference.hasOwnProperty(node)) {
-
         scope.logger.debug('Get config by key', node);
         reference = reference[node];
-
       } else {
         scope.logger.warn('Undefined config key', node);
         return false;
@@ -103,7 +101,6 @@ export class BaseModel extends CRUD {
    * @returns {scope.config}
    */
   setConfig(key, value) {
-
     const scope = this.scope,
         config = scope.config;
 
@@ -136,21 +133,13 @@ export class BaseModel extends CRUD {
    * @returns {*}
    */
   getFirstItem() {
+    const items = this.getItems() || [];
+    const item = items.filter(item => item.model.getConfig('order') === 1)[0];
 
-    const items = this.getItems();
-    let item;
-
-    for (let index in items) {
-      if (items.hasOwnProperty(index)) {
-
-        // Get item
-        item = items[index];
-
-        if (item.model.getConfig('order') === 1) {
-          break;
-        }
-      }
+    if (!item) {
+      this.scope.logger.warn('Unable to get first item', items);
     }
+
     return item;
   }
 
@@ -162,7 +151,6 @@ export class BaseModel extends CRUD {
    * @return {*}
    */
   findItemByUUID(root, uuid) {
-
     if (!root) {
       this.scope.logger.error('Undefined root', root);
     }
@@ -178,9 +166,7 @@ export class BaseModel extends CRUD {
     const items = root.model.getItems();
 
     for (let index in items) {
-
       if (items.hasOwnProperty(index)) {
-
         const item = items[index];
 
         // Recursive search
@@ -218,15 +204,12 @@ export class BaseModel extends CRUD {
    * @returns {Array}
    */
   getItemsApartOf(item) {
-
     const items = this.getItems(),
         nodes = [],
         uuid = item.model.getUUID();
 
     for (let index in items) {
-
       if (items.hasOwnProperty(index)) {
-
         let node = items[index];
         let nodeUUID = node.model.getUUID();
 
@@ -264,7 +247,6 @@ export class BaseModel extends CRUD {
    * @returns {*}
    */
   getItemByUUID(uuid) {
-
     const items = this.getItems(),
         item = items[uuid];
 
@@ -282,11 +264,9 @@ export class BaseModel extends CRUD {
    * @returns {*}
    */
   getItemByTitle(title) {
-
     const items = this.getItems();
 
     for (let index in items) {
-
       if (items.hasOwnProperty(index)) {
 
         /**
@@ -316,7 +296,6 @@ export class BaseModel extends CRUD {
    * @returns {*}
    */
   getCurrentItem() {
-
     const scope = this.scope,
         sName = this.getItemNameSpace();
 
@@ -497,9 +476,7 @@ export class BaseModel extends CRUD {
    * @param value
    * @protected
    */
-  _setItemInfoPreferences(
-      index,
-      value) {
+  _setItemInfoPreferences(index, value) {
 
     // Get scope
     const scope = this.scope;
@@ -511,11 +488,7 @@ export class BaseModel extends CRUD {
 
     // Update config
     scope.config.preferences[index] = value;
-
-    scope.observer.publish(
-        scope.eventManager.eventList.afterUpdatePreferences,
-        arguments
-    );
+    scope.observer.publish(scope.eventManager.eventList.afterUpdatePreferences, arguments);
   }
 
   /**
@@ -545,7 +518,6 @@ export class BaseModel extends CRUD {
    * @returns {*}
    */
   updateCollector(Constructor, opts) {
-
     const namespace = this.getNameSpace(Constructor),
         scope = this.scope,
         cname = Constructor.name;
@@ -561,13 +533,8 @@ export class BaseModel extends CRUD {
     const limit = this.getConfig(namespace).limit;
 
     if (this.checkLimit(Constructor, limit)) {
-
-      scope.logger.warn(
-          cname + ': Maximum limit reached',
-          limit
-      );
+      scope.logger.warn(cname + ': Maximum limit reached', limit);
       node.model.setConfig('limit', true);
-
     } else {
 
       /**
@@ -604,7 +571,7 @@ export class BaseModel extends CRUD {
   /**
    * Get collector
    * @memberOf BaseModel
-   * @param {Workspace|Page|Widget|{name}} Item
+   * @param {Workspace|Page|Widget|{name}|string} Item
    * @returns {*}
    */
   getCollector(Item) {
@@ -618,7 +585,19 @@ export class BaseModel extends CRUD {
     const data = root.model.setting.load(),
         collector = data.collector || {};
 
-    return collector[Item.name.toLowerCase()];
+    let name = '';
+    if (typeof Item === 'string') {
+      name = Item;
+    } else {
+      name = (Item || {}).name || '';
+    }
+    name = name.toLowerCase();
+
+    if (collector[name]) {
+      return collector[name];
+    } else {
+      this.scope.logger.warn(`Unable to get ${name} data collector`, data.collector);
+    }
   }
 
   /**
@@ -666,7 +645,6 @@ export class BaseModel extends CRUD {
     root.loadingDataCounter += counter;
 
     for (let index in collector) {
-
       if (collector.hasOwnProperty(index) && _inContainment(this.getUUID(), index)) {
         const node = collector[index] || {};
 
@@ -737,11 +715,9 @@ export class BaseModel extends CRUD {
         this.skipPreferencesOn.indexOf(index) > -1;
 
     if (skipTransfer) {
-      this.scope.logger.debug(
-          'Transfer preferences should be skipped'
-      );
+      this.scope.logger.debug('Transfer preferences should be skipped');
     }
 
     return skipTransfer;
   }
-};
+}

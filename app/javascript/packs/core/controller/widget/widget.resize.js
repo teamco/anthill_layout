@@ -76,19 +76,22 @@ export class WidgetResize {
   }
 
   /**
+   * @memberOf WidgetResize
+   * @param {string} type
+   * @private
+   */
+  _resizableShould(type) {
+    if (this.scope.controller.isResizable()) {
+      this.$scope.resizable(type);
+    }
+  }
+
+  /**
    * Enable resize
    * @memberOf WidgetResize
    */
   enable() {
-
-    /**
-     * Define scope
-     */
-    const scope = this.scope;
-
-    if (scope.controller.isResizable()) {
-      this.$scope.resizable('enable');
-    }
+    this._resizableShould('enable');
   }
 
   /**
@@ -96,15 +99,7 @@ export class WidgetResize {
    * @memberOf WidgetResize
    */
   disable() {
-
-    /**
-     * Define scope
-     */
-    const scope = this.scope;
-
-    if (scope.controller.isResizable()) {
-      this.$scope.resizable('disable');
-    }
+    this._resizableShould('disable');
   }
 
   /**
@@ -112,15 +107,7 @@ export class WidgetResize {
    * @memberOf WidgetResize
    */
   destroy() {
-
-    /**
-     * Define scope
-     */
-    const scope = this.scope;
-
-    if (scope.controller.isResizable()) {
-      this.$scope.resizable('destroy');
-    }
+    this._resizableShould('destroy');
   }
 
   /**

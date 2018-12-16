@@ -111,8 +111,7 @@ export class LayoutEmptyRows {
    * @returns {*}
    * @private
    */
-  _updateWidgetDOM(widgets, alreadyFixed,
-                   moveIndex) {
+  _updateWidgetDOM(widgets, alreadyFixed, moveIndex) {
     let widget, uuid, y = 0,
         wl = widgets.length,
         row, top, dom;

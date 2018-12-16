@@ -274,6 +274,17 @@ export class WidgetController extends aggregation(BaseController, Interactions, 
    */
   saveDom() {
     this.logger.debug(this.i18n.t('save.widget'));
-    this.model.defineDOM();
+
+    /**
+     * @constant
+     * @type {Page}
+     */
+    const page = this.controller.getContainment();
+
+    if (page.contentLoaded) {
+      this.model.defineDOM();
+    } else {
+      page.logger.debug('Content not loaded yet');
+    }
   }
 }

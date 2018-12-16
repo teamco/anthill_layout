@@ -51,18 +51,46 @@ export class WidgetMap extends WidgetOverlapping {
    * @returns {*}
    */
   getDOM() {
-    const widget = this.widget,
-        $widget = widget.view.get$item(),
-        position = $widget.getPosition(),
+
+    /**
+     * Get widget
+     * @type {Widget}
+     */
+    const widget = this.widget;
+
+    /**
+     * Get $widget
+     * @type {WidgetElement}
+     */
+    const $widget = widget.view.get$item();
+
+    /**
+     * Get page
+     * @type {Page}
+     */
+    const page = widget.controller.getContainment();
+
+    /**
+     * Get page layout
+     * @type {Layout}
+     */
+    const layout = widget.controller.getPageLayout();
+
+    const width = $widget.getWidth(),
+        height = $widget.getHeight();
+
+    if (!page.contentLoaded || (width === 0 || height === 0)) {
+      return widget.dom;
+    }
+
+    const position = $widget.getPosition(),
         dom = {
           left: position.left,
           top: position.top,
-          width: $widget.getWidth(),
-          height: $widget.getHeight()
+          width: width,
+          height: height
         },
-        layout = widget.controller.getPageLayout(),
-        cell = layout.controller.minCellWidth() +
-            layout.config.grid.margin;
+        cell = layout.controller.minCellWidth() + layout.config.grid.margin;
 
     dom.right = this.widgetRight(dom.left, dom.width);
     dom.bottom = this.widgetBottom(dom.top, dom.height);
