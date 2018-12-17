@@ -5,25 +5,12 @@
  * Time: 11:46 PM
  */
 
-import {WidgetSubscribe} from './widget.subscribe';
-
 /**
  * @class WidgetContentControllerRules
  * @extends WidgetSubscribe
  * @type {WidgetContentControllerRules}
  */
-export class WidgetContentControllerRules extends WidgetSubscribe {
-
-  /**
-   * Define Base Widget controller Rules
-   * @class WidgetContentControllerRules
-   * @extends BaseController
-   * @extends WidgetSubscribe
-   * @constructor
-   */
-  constructor() {
-    super();
-  }
+export class WidgetContentControllerRules {
 
   /**
    * Update prefs
@@ -431,7 +418,7 @@ export class WidgetContentControllerRules extends WidgetSubscribe {
      * Define callback
      * @type {function}
      */
-    const callback = this[ename + 'Simulate'];
+    const callback = this.simulator[ename + 'Simulate'];
     if (!callback) {
       this.scope.logger.warn('Undefined callback', event, ename + 'Simulate');
       return false;
