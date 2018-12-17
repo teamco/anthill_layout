@@ -1,7 +1,9 @@
-.modal.handle-error {
-  span {
-    display: inline-block;
-    font-weight: bold;
-    width: 100%;
+.modal {
+  &.handle-error {
+    span {
+      display: inline-block;
+      font-weight: bold;
+      width: 100%;
+    }
   }
 }

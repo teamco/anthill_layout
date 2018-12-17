@@ -47,9 +47,10 @@ export class BaseRules extends AntHill {
    * @private
    */
   getTemplate(text) {
-    return $(`<div class="input-group">
+    return $(`
+      <div class="input-group">
         <span class="input-group-addon">${text}</span>
-        </div>`);
+      </div>`);
   }
 
   /**
@@ -59,7 +60,7 @@ export class BaseRules extends AntHill {
    * @private
    */
   _transferValue(value) {
-    this.view.scope.$buttons[this.button].$.attr({value: value});
+    this.element.$buttons[this.button].$.attr({value: value});
   }
 
   /**
@@ -171,7 +172,7 @@ export class BaseRules extends AntHill {
                 'widgetRule', {
                   type: 'click.transferValue',
                   callback: this._transferValue.bind({
-                    scope: this,
+                    element: this,
                     button: 'addWidgetRule'
                   })
                 }, true)));
@@ -279,7 +280,8 @@ export class BaseRules extends AntHill {
       this.$.find('div.content-rules').append(
           $('<fieldset />').append([
             $('<legend />').text(title).on('click.toggle', this.toggleFieldset.bind(this)).attr({title: title}),
-            $ul]));
+            $ul
+          ]));
     }
   }
 
@@ -385,7 +387,8 @@ export class BaseRules extends AntHill {
       $container.find('div.content-rules').append(
           $('<fieldset />').append([
             $('<legend />').text(title).on('click.toggle',
-                this.toggleFieldset.bind(this)).attr({title: title}), $ul]));
+                this.toggleFieldset.bind(this)).attr({title: title}), $ul
+          ]));
     }
 
     if (!rule) {
@@ -406,7 +409,8 @@ export class BaseRules extends AntHill {
 
     const $input = [
       '<input value="', rule, '" disabled="disabled"',
-      ' type="text" class="form-control" placeholder="Rule">'].join('');
+      ' type="text" class="form-control" placeholder="Rule">'
+    ].join('');
 
     $ul.append($('<li />').attr({value: value}).append(this.getTemplate(type).append($input)));
   }

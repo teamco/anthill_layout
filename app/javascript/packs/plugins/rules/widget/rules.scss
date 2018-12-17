@@ -1,0 +1,101 @@
+/*.modal-open .modal.rules,*/
+/*.modal.rules .modal-body {*/
+    /*overflow: visible;*/
+/*}*/
+
+/*.modal.rules .input-group-addon {*/
+    /*min-width: 150px;*/
+    /*padding: 10px;*/
+    /*float: left;*/
+    /*text-align: left;*/
+/*}*/
+
+/*.modal.rules .publish-rules .input-group-addon,*/
+/*.modal.rules .subscribe-rules .input-group-addon {*/
+    /*float: none;*/
+    /*padding: 8px;*/
+    /*text-transform: capitalize;*/
+/*}*/
+
+/*.modal.rules .subscribe-rules {*/
+    /*width: 100%;*/
+    /*list-style: decimal;*/
+/*}*/
+
+/*.modal.rules .subscribe-rules li {*/
+    /*margin-left: 20px;*/
+/*}*/
+
+/*.modal.rules .subscribe-rules .input-group-addon input[type="checkbox"] {*/
+    /*margin-right: 10px;*/
+/*}*/
+
+/*.modal.rules .subscribe-rules legend {*/
+    /*border: none;*/
+    /*cursor: pointer;*/
+    /*font-size: 18px;*/
+    /*margin-bottom: 10px;*/
+/*}*/
+
+/*.modal.rules .subscribe-rules legend > span {*/
+    /*margin-right: 5px;*/
+    /*font-size: 12px;*/
+/*}*/
+
+/*.modal.rules .subscribe-rules legend + ul {*/
+    /*display: none;*/
+/*}*/
+
+/*.modal.rules .subscribe-rules legend.open > span {*/
+    /*margin-right: 10px;*/
+/*}*/
+
+/*.modal.rules .subscribe-rules legend.open > span:before {*/
+    /*content: "\e114";*/
+/*}*/
+
+/*.modal.rules .subscribe-rules legend.open + ul {*/
+    /*display: block;*/
+/*}*/
+
+/*.modal .nav > li {*/
+    /*list-style: none;*/
+/*}*/
+
+/*.modal.rules .nav > li > a {*/
+    /*padding: 7px 10px;*/
+    /*border-radius: 0 5px 5px 0;*/
+    /*min-width: 300px;*/
+    /*margin-right: 10px;*/
+    /*border: 1px solid #dfdfdf;*/
+/*}*/
+
+/*.modal.rules .nav > li > a .caret {*/
+    /*margin-top: 8px;*/
+/*}*/
+
+/*.modal.rules ul[class*="-rule"] {*/
+    /*float: left;*/
+/*}*/
+
+/*.modal.rules ul[class*="-rule"] + button {*/
+    /*margin-bottom: 10px;*/
+    /*clear: both;*/
+/*}*/
+
+/*.modal.rules .content-rules {*/
+    /*max-height: 300px;*/
+    /*overflow-x: hidden;*/
+    /*overflow-y: auto;*/
+/*}*/
+.modal {
+  &.rules {
+    .dropdown-menu {
+      &.show {
+        max-height: 300px;
+        overflow-x: hidden;
+        overflow-y: auto;
+      }
+    }
+  }
+}

@@ -511,9 +511,9 @@ export class WidgetContentControllerRules extends WidgetSubscribe {
      * Get $rules
      * @type {*}
      */
-    const $element = this.view.elements.$rules;
+    const $rules = this.view.elements.$rules;
 
-    $element.rules.addRule(rule, type, referrer.view.elements.$modal.get$Body());
+    $rules.addRule(rule, type, referrer.view.elements.$modal.get$Body());
   }
 }
   

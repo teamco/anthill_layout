@@ -6,7 +6,7 @@
  */
 
 import './widget.rules.scss';
-import '../rules/widget/rules.css';
+import '../rules/widget/rules.scss';
 
 import {AntHill} from '../../core/config/anthill';
 import {WidgetRulesController} from './mvc/widget.rules.controller';
