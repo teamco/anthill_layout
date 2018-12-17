@@ -3,8 +3,9 @@
 <% elsif @storage[:content].nil? && is_consumption?(@storage[:mode]) %>
   <p class="undefined-site"><%= t('not_published') %></p>
 <% else %>
-  <!-- Do something -->
+  <!-- Loading content -->
   <%= javascript_tag do -%>
-    window.localStorage['<%= @storage[:key] %>'] = '<%= @storage[:content] %>';
+    window.localStorage.setItem('<%= @storage[:key] %>', '<%= @storage[:content] %>');
   <% end %>
+  <!-- /Loading content -->
 <% end %>
