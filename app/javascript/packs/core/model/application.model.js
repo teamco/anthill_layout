@@ -59,7 +59,6 @@ export class ApplicationModel extends BaseModel {
    * @memberOf ApplicationModel
    */
   loadWorkspaces() {
-
     this.scope.controller.setAsLoading(true);
 
     /**

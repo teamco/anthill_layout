@@ -43,10 +43,7 @@ module Author::SiteStoragesHelper
   end
 
   def render_as(layout = 'js', collection, user)
-    "<div>#{layout}: #{collection.inspect}</div>".html_safe
-    render "show_#{layout}",
-        storage: collection,
-        current_user: user
+    render "show_#{layout}", storage: collection, current_user: user
   end
 
   def widget_css_class(item)

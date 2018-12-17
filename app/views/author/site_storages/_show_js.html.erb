@@ -1,0 +1,10 @@
+<% if @storage[:show].nil? %>
+  <p class="undefined-site"><%= t('undefined_version') %></p>
+<% elsif @storage[:content].nil? && is_consumption?(@storage[:mode]) %>
+  <p class="undefined-site"><%= t('not_published') %></p>
+<% else %>
+  <!-- Do something -->
+  <%= javascript_tag do -%>
+    window.localStorage['<%= @storage[:key] %>'] = '<%= @storage[:content] %>';
+  <% end %>
+<% end %>

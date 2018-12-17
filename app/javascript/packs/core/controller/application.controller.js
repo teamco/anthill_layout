@@ -46,7 +46,6 @@ export class ApplicationController extends aggregation(BaseController, BehaviorE
 
     // Load initial
     if (this.model.loadWorkspaces() === -1) {
-
       this.model.setConfig('loading', true);
 
       /**

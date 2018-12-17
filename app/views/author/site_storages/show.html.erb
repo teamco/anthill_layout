@@ -1,13 +1,1 @@
-<% if @storage[:layout] == 'js' %>
-    <% if @storage[:version].nil? %>
-        <p class="undefined-site"><%= t('undefined_version') %></p>
-    <% elsif @storage[:content].nil? && is_consumption?(@storage[:mode]) %>
-        <p class="undefined-site"><%= t('not_published') %></p>
-    <% else %>
-        <%= render_as @storage[:layout], @storage, current_user %>
-    <% end %>
-<% end %>
-
-<% if @storage[:layout] == 'template' %>
-    <%= render_as @storage[:layout], @storage, current_user %>
-<% end %>
+<%= render_as @storage[:layout], @storage, current_user %>
