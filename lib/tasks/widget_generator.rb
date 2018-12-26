@@ -9,9 +9,10 @@ module WidgetLib
     include Magick
 
     TASKS_PATH = "#{Rails.root}/lib/tasks/"
-    PLUGINS_PATH = "#{Rails.root}/app/assets/javascripts/scripts/plugins/"
+    PLUGINS_PATH = "#{Rails.root}/app/javascript/plugins/"
+    PLUGINS_CSS_PATH = "#{Rails.root}/app/assets/javascripts/scripts/plugins/"
     WIDGETS_PATH = "#{PLUGINS_PATH}widgets/"
-    CSS_PATH = "#{PLUGINS_PATH}stylesheets"
+    CSS_PATH = "#{PLUGINS_CSS_PATH}stylesheets"
 
     def initialize
       @img = BaseImage.new
@@ -89,7 +90,7 @@ module WidgetLib
           write_file src_pattern, @class_name.downcase
         end
 
-        generate_css(@thumbnail)
+        # generate_css(@thumbnail)
       end
 
     end
@@ -163,8 +164,8 @@ module WidgetLib
         return false
       end
 
-      create_dir("#{CSS_PATH}/widgets")
-      create_dir("#{WIDGETS_PATH}#{@file_name}/images")
+      # create_dir("#{CSS_PATH}/widgets")
+      # create_dir("#{WIDGETS_PATH}#{@file_name}/images")
 
       path = "#{CSS_PATH}/widgets/#{@file_name}.css"
       delete_css
@@ -172,7 +173,7 @@ module WidgetLib
 
       File.open("#{path}", 'w') do |f|
         pattern = @file_name.gsub(/\./, '-')
-        f.write(".widget.#{pattern}{background-image:url('/assets/scripts/plugins/widgets/#{@file_name}/images/#{@file_name}.png');}")
+        # f.write(".widget.#{pattern}{background-image:url('/assets/scripts/plugins/widgets/#{@file_name}/images/#{@file_name}.png');}")
       end
 
       img_path = "#{WIDGETS_PATH}#{@file_name}/images/#{@file_name}.png"
@@ -215,6 +216,10 @@ module WidgetLib
     end
 
     def create_dir(path)
+      # if path.match(/\./)
+      #   path.gsub!(/\./, )
+      # end
+      puts ">>>> #{path}"
       Dir.mkdir path unless File.exists? path
     end
   end

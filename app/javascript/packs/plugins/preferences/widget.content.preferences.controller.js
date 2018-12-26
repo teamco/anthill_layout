@@ -6,14 +6,14 @@
  */
 
 /**
- * @class WidgetContentPreferencesController
- * @type {WidgetContentPreferencesController}
+ * @constant widgetContentPreferencesController
+ * @type {{transferContentPreferences, loadPreferences}}
  */
-export class WidgetContentPreferencesController {
-
+export const widgetContentPreferencesController = {
+  
   /**
    * Load prefs
-   * @memberOf WidgetContentPreferencesController
+   * @property widgetContentPreferencesController
    */
   loadPreferences() {
 
@@ -58,11 +58,11 @@ export class WidgetContentPreferencesController {
         this.model[setter](value);
       }
     }
-  }
+  },
 
   /**
    * Transfer preferences to containment
-   * @memberOf WidgetContentPreferencesController
+   * @property widgetContentPreferencesController
    * @param index
    * @param value
    */
@@ -75,4 +75,4 @@ export class WidgetContentPreferencesController {
     const widget = this.controller.getContainment();
     widget.observer.publish(widget.eventManager.eventList.transferPreferences, [index, value]);
   }
-}
+};

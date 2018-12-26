@@ -27,8 +27,15 @@ if Author::Widget.all.length > 0
   puts '-- Clean: SiteType'
   types = %w(authorize consumption development test)
   types.each do |x|
+    # type = Author::SiteType.new(name: x)
+    # type.build_author_item(validation: false)
+    # type.save!
+    item = Author::Item.new(public: true, visible: true, user_id: admin.id)
+    item.build_author_site_type(name: x)
+    item.save
+    puts "-- Create: #{item.author_site_type.name}"
     type = Author::SiteType.new(name: x)
-    type.build_author_itemRack app error handling request
+    type.build_author_item(public: true, visible: true, user_id: admin.id)
     type.save!
     puts "-- Create: #{type.name}"
   end

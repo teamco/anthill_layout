@@ -5,26 +5,15 @@
  * Time: 1:23 PM
  */
 
-import {AntHill} from '../core/config/anthill';
-
 /**
- * @class BasePreferences
- * @type {BasePreferences}
+ * @constant
+ * @type {{updatePreferences}}
  */
-export class BasePreferences extends AntHill {
-
-  /**
-   * @constructor
-   * @param {string} name
-   * @param scope
-   */
-  constructor(name, scope) {
-    super(name || 'BasePreferences', scope, false);
-  }
+export const basePreferences = {
 
   /**
    * Update prefs
-   * @memberOf BasePreferences
+   * @property basePreferences
    * @param {ModalElement} $modal
    * @param {boolean} render
    */
@@ -164,4 +153,4 @@ export class BasePreferences extends AntHill {
     $modal.selfDestroy();
     this.store();
   }
-}
+};

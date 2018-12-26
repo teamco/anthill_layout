@@ -132,7 +132,7 @@ module WidgetLib
 
         unless hash[:is_external]
           widget.init_params(w['resource'])
-          widget.generate_css(w['thumbnail'])
+          #widget.generate_css(w['thumbnail'])
         end
 
         widget.update_json(
