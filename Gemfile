@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
-ruby '2.5.3'
+ruby '2.6.0'
 
-# case RUBY_PLATFORM
-#   when /darwin|linux/
+db = (RUBY_PLATFORM =~ /darwin/).nil? ? 'mysql2' : 'pg'
+
 gem 'rails', '>= 5.0.0'
 
 gem 'bullet'
@@ -10,8 +10,7 @@ gem 'embedly'
 gem 'iframely'
 gem 'informant-rails'
 gem 'mechanize'
-gem 'mysql2' #unless teamco.nil?
-gem 'pg'
+gem db
 gem 'pismo'
 gem 'puma'
 gem 'rake'

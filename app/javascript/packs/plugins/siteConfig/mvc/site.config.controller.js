@@ -1,6 +1,6 @@
 import {PluginController} from '../../plugin.controller';
 import {Routes} from '../../../core/config/routes';
-import {PreferencesController} from '../../preferences/preferences.controller';
+// import {PreferencesController} from '../../preferences/preferences.controller';
 import {SiteConfigActivate} from './controller/site.config.activate';
 import {SiteConfigCleanup} from './controller/site.config.cleanup';
 import {SiteConfigExport} from './controller/site.config.export';
@@ -18,7 +18,7 @@ const aggregation = require('../../../lib/extends/aggregation');
 /**
  * @class SiteConfigController
  */
-export class SiteConfigController extends aggregation(PluginController, Routes, PreferencesController,
+export class SiteConfigController extends aggregation(PluginController, Routes, /*PreferencesController,*/
     SiteConfigActivate, SiteConfigCleanup, SiteConfigExport, SiteConfigImport, SiteConfigPreferences,
     SiteConfigPublish, SiteConfigWidgetGenerator) {
 

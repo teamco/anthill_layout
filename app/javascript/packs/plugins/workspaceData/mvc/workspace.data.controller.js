@@ -6,7 +6,7 @@
  */
 
 import {PluginController} from '../../plugin.controller';
-import {PreferencesController} from '../../preferences/preferences.controller';
+// import {PreferencesController} from '../../preferences/preferences.controller';
 
 /**
  * Aggregation of base class and mixin classes.
@@ -18,7 +18,7 @@ const aggregation = require('../../../lib/extends/aggregation');
  * @class WorkspaceDataController
  * @extends {PluginController, Router}
  */
-export class WorkspaceDataController extends aggregation(PluginController, PreferencesController) {
+export class WorkspaceDataController extends aggregation(PluginController/*, PreferencesController*/) {
 
   /**
    * @constructor
