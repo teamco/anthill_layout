@@ -36,7 +36,7 @@
     "browserify": "^16.2.3",
     "chart.js": "^2.7.3",
     "flag-icon-css": "^3.2.1",
-    "gojs": "^1.8.35",
+    "gojs": "^1.8.36",
     "html2canvas": "^1.0.0-alpha.12",
     "jquery": "^3.3.1",
     "jquery-knob": "^1.2.11",
