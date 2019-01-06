@@ -118,7 +118,8 @@ export class PageController extends aggregation(BaseController, Router, PageLaye
      * Get pages order
      * @type {number}
      */
-    const order = this.model.getConfig('order');
+    let order = this.model.getConfig('order') - 1;
+    order = order < 0 ? 0 : order;
     return {left: (-order * 100) + '%'};
   }
 }

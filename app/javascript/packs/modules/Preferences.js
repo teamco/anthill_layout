@@ -7,7 +7,7 @@
 
 /**
  * @constant
- * @type {{updatePreferences}}
+ * @export basePreferences
  */
 export const basePreferences = {
 

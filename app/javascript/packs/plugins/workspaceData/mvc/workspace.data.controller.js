@@ -6,19 +6,12 @@
  */
 
 import {PluginController} from '../../plugin.controller';
-// import {PreferencesController} from '../../preferences/preferences.controller';
-
-/**
- * Aggregation of base class and mixin classes.
- * @type {(function(*, ...[*]): __Aggregate)|*|(function(): aggregate)}
- */
-const aggregation = require('../../../lib/extends/aggregation');
 
 /**
  * @class WorkspaceDataController
  * @extends {PluginController, Router}
  */
-export class WorkspaceDataController extends aggregation(PluginController/*, PreferencesController*/) {
+export class WorkspaceDataController extends PluginController {
 
   /**
    * @constructor
@@ -26,7 +19,7 @@ export class WorkspaceDataController extends aggregation(PluginController/*, Pre
    * @param {PageData} scope
    */
   constructor(name, scope) {
-    super(name || 'WorkspaceDataController', scope, false);
+    super(name || 'WorkspaceDataController', scope);
   }
 
   /**
