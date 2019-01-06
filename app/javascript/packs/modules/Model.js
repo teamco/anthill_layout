@@ -544,7 +544,7 @@ export class BaseModel extends CRUD {
       node = new Constructor(opts || {});
 
       if (node.model) {
-        node.model.setConfig('order', scope.config[namespace].counter - 1);
+        node.model.setConfig('order', scope.config[namespace].counter);
         node.model.setConfig('limit', false);
       } else {
         scope.logger.warn(cname + ' was created with some errors (Model must be defined)', node);
