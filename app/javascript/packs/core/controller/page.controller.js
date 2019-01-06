@@ -119,6 +119,8 @@ export class PageController extends aggregation(BaseController, Router, PageLaye
      * @type {number}
      */
     let order = this.model.getConfig('order') - 1;
+
+    // Fix to load first version
     order = order < 0 ? 0 : order;
     return {left: (-order * 100) + '%'};
   }
