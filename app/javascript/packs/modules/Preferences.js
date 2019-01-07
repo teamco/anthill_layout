@@ -77,7 +77,7 @@ export class BasePreferences {
          * Define setter
          * @type {Function}
          */
-        setter = opts.scope.base.lib.function.create({
+        setter = opts.scope.utils.fn.create({
           name: opts.setter,
           params: name,
           body: `this.${method}("${name}", ${name});${opts.scope.controller.getCustomPublisher(opts.name)}`,
@@ -147,7 +147,7 @@ export class BasePreferences {
     });
 
     if (render) {
-      scope.view['render' + this.scope.name]();
+      scope.view.render();
     }
 
     $modal.selfDestroy();
