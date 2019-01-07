@@ -11,12 +11,7 @@ import {BehaviorErrorHandler} from './behavior/behavior.error.handler';
 import {BehaviorFixVulnerabilities} from './behavior/behavior.fix.vulnerabilities';
 import {Routes} from '../config/routes';
 import {Router} from '../../modules/Router';
-
-/**
- * Aggregation of base class and mixin classes.
- * @type {(function(*, ...[*]): __Aggregate)|*|(function(): aggregate)}
- */
-const aggregation = require('../../lib/extends/aggregation');
+import {aggregation} from '../../lib/extends/aggregation';
 
 /**
  * Define application controller

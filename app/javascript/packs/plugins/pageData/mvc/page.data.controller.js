@@ -7,12 +7,7 @@
 
 import {PluginController} from '../../plugin.controller';
 import {Router} from '../../../modules/Router';
-
-/**
- * Aggregation of base class and mixin classes.
- * @type {(function(*, ...[*]): __Aggregate)|*|(function(): aggregate)}
- */
-const aggregation = require('../../../lib/extends/aggregation');
+import {aggregation} from '../../../lib/extends/aggregation';
 
 /**
  * @class PageDataController

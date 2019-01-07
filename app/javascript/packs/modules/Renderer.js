@@ -23,13 +23,7 @@ import {ToolTipRenderer} from './renderer/tool.tip';
 import {ValidationRenderer} from './renderer/validation';
 import {ListBoxRenderer} from './renderer/list.box';
 import {SelectRenderer} from './renderer/select';
-
-/**
- * Aggregation of base class and mixin classes.
- * @type {(function(*, ...[*]): __Aggregate)|*|(function(): aggregate)}
- */
-const aggregation = require('../lib/extends/aggregation');
-
+import {aggregation} from '../lib/extends/aggregation';
 // 'modules/renderer/combo.box',
 // 'modules/renderer/event.link',
 // 'modules/renderer/iframe',

@@ -5,11 +5,13 @@
  * Time: 1:26 PM
  */
 
+import {BasePreferences} from '../../modules/Preferences';
+
 /**
- * @constant widgetContentPreferencesController
- * @type {{transferContentPreferences, loadPreferences}}
+ * @class WidgetContentPreferencesController
+ * @export WidgetContentPreferencesController
  */
-export const widgetContentPreferencesController = {
+export class WidgetContentPreferencesController extends BasePreferences {
   
   /**
    * Load prefs
@@ -58,7 +60,7 @@ export const widgetContentPreferencesController = {
         this.model[setter](value);
       }
     }
-  },
+  }
 
   /**
    * Transfer preferences to containment
@@ -75,4 +77,4 @@ export const widgetContentPreferencesController = {
     const widget = this.controller.getContainment();
     widget.observer.publish(widget.eventManager.eventList.transferPreferences, [index, value]);
   }
-};
+}

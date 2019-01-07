@@ -1,6 +1,5 @@
 import {PluginController} from '../../plugin.controller';
 import {Routes} from '../../../core/config/routes';
-// import {PreferencesController} from '../../preferences/preferences.controller';
 import {SiteConfigActivate} from './controller/site.config.activate';
 import {SiteConfigCleanup} from './controller/site.config.cleanup';
 import {SiteConfigExport} from './controller/site.config.export';
@@ -8,17 +7,13 @@ import {SiteConfigImport} from './controller/site.config.import';
 import {SiteConfigPreferences} from './controller/site.config.preferences';
 import {SiteConfigPublish} from './controller/site.config.publish';
 import {SiteConfigWidgetGenerator} from './controller/site.config.widget.generator';
-
-/**
- * Aggregation of base class and mixin classes.
- * @type {(function(*, ...[*]): __Aggregate)|*|(function(): aggregate)}
- */
-const aggregation = require('../../../lib/extends/aggregation');
+import {BasePreferences} from '../../../modules/Preferences';
+import {aggregation} from '../../../lib/extends/aggregation';
 
 /**
  * @class SiteConfigController
  */
-export class SiteConfigController extends aggregation(PluginController, Routes, /*PreferencesController,*/
+export class SiteConfigController extends aggregation(PluginController, Routes, BasePreferences,
     SiteConfigActivate, SiteConfigCleanup, SiteConfigExport, SiteConfigImport, SiteConfigPreferences,
     SiteConfigPublish, SiteConfigWidgetGenerator) {
 

@@ -1,13 +1,8 @@
-/**
- * Aggregation of base class and mixin classes.
- * @type {(function(*, ...[*]): __Aggregate)|*|(function(): aggregate)}
- */
 import {WidgetGeneratorCore} from './widget/widget.generator.core';
 import {WidgetGeneratorEdit} from './widget/widget.generator.edit';
 import {WidgetGeneratorExternal} from './widget/widget.generator.external';
 import {WidgetGeneratorForm} from './widget/widget.generator.form';
-
-const aggregation = require('../../../../lib/extends/aggregation');
+import {aggregation} from '../../../../lib/extends/aggregation';
 
 /**
  * @class SiteConfigWidgetGenerator

@@ -5,12 +5,7 @@
  * Time: 11:48 AM
  */
 import {PluginElement} from '../../plugin.element';
-
-/**
- * Aggregation of base class and mixin classes.
- * @type {(function(*, ...[*]): __Aggregate)|*|(function(): aggregate)}
- */
-const aggregation = require('../../../lib/extends/aggregation');
+import {aggregation} from '../../../lib/extends/aggregation';
 
 // 'plugins/preferences/site.preferences'
 

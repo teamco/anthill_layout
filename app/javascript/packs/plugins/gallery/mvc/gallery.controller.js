@@ -7,12 +7,7 @@
 
 import {PluginController} from '../../plugin.controller';
 import {Routes} from '../../../core/config/routes';
-
-/**
- * Aggregation of base class and mixin classes.
- * @type {(function(*, ...[*]): __Aggregate)|*|(function(): aggregate)}
- */
-const aggregation = require('../../../lib/extends/aggregation');
+import {aggregation} from '../../../lib/extends/aggregation';
 
 /**
  * Define panel controller

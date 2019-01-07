@@ -4,12 +4,7 @@
 
 import {PluginElement} from '../../plugin.element';
 import {GalleryProvidersElement} from '../../gallery/element/gallery.providers.element';
-
-/**
- * Aggregation of base class and mixin classes.
- * @type {(function(*, ...[*]): __Aggregate)|*|(function(): aggregate)}
- */
-const aggregation = require('../../../lib/extends/aggregation');
+import {aggregation} from '../../../lib/extends/aggregation';
 
 /**
  * @class SiteConfigWidgetsListElement

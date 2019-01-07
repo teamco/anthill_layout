@@ -1,9 +1,11 @@
+import define from 'mixinable';
+
 /**
  * @param base
  * @param mixins
  * @return {__Aggregate}
  */
-module.exports = (base, ...mixins) => {
+export const aggregation = (base, ...mixins) => {
 
   /**
    * @class __Aggregate
@@ -47,3 +49,10 @@ module.exports = (base, ...mixins) => {
 
   return aggregate;
 };
+
+/**
+ * @exports
+ * @param mixins
+ * @return {*}
+ */
+export const mix = (...mixins) => define({}, [...mixins]);

@@ -19,12 +19,7 @@ import {WidgetInteractions} from './widget/widget.interactions';
 import {WidgetStretch} from './widget/widget.stretch';
 import {WidgetStick} from './widget/widget.stick';
 import {WidgetContent} from './widget/widget.content';
-
-/**
- * Aggregation of base class and mixin classes.
- * @type {(function(*, ...[*]): __Aggregate)|*|(function(): aggregate)}
- */
-const aggregation = require('../../lib/extends/aggregation');
+import {aggregation} from '../../lib/extends/aggregation';
 
 /**
  * @class WidgetController

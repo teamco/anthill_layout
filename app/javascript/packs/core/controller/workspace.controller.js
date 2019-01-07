@@ -10,12 +10,7 @@ import {BaseController} from '../../modules/Controller';
 import {Router} from '../../modules/Router';
 import {WorkspacePage} from './workspace/workspace.page';
 import {WorkspaceSEO} from './workspace/workspace.seo';
-
-/**
- * Aggregation of base class and mixin classes.
- * @type {(function(*, ...[*]): __Aggregate)|*|(function(): aggregate)}
- */
-const aggregation = require("../../lib/extends/aggregation");
+import {aggregation} from '../../lib/extends/aggregation';
 
 /**
  * Define workspace controller

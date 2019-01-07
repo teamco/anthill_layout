@@ -12,12 +12,7 @@ import {PageLayer} from './page/page.layer';
 import {PageLayout} from './page/page.layout';
 import {PageWidget} from './page/page.widget';
 import {PageItemMaximize} from './page/page.maximize';
-
-/**
- * Aggregation of base class and mixin classes.
- * @type {(function(*, ...[*]): __Aggregate)|*|(function(): aggregate)}
- */
-const aggregation = require('../../lib/extends/aggregation');
+import {aggregation} from '../../lib/extends/aggregation';
 
 /**
  * @class

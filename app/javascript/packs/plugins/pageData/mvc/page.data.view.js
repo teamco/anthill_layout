@@ -10,12 +10,7 @@ import {BaseView} from '../../../modules/View';
 import {BasePreferencesElement} from '../../preferences/preferences';
 import {PageDataContentElement} from '../element/page.data.content.element';
 import {PageDataRulesElement} from '../element/page.data.rules.element';
-
-/**
- * Aggregation of base class and mixin classes.
- * @type {(function(*, ...[*]): __Aggregate)|*|(function(): aggregate)}
- */
-const aggregation = require('../../../lib/extends/aggregation');
+import {aggregation} from '../../../lib/extends/aggregation';
 
 /**
  * @class PageDataView

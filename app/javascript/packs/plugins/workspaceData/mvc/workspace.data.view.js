@@ -11,12 +11,7 @@ import {BasePreferencesElement} from '../../preferences/preferences';
 import {WorkspaceDataContentElement} from '../element/workspace.data.content.element';
 import {WorkspaceDataAddPageElement} from '../element/workspace.data.add.page.element';
 import {WorkspaceDataPreferencesElement} from '../element/workspace.data.preferences.element';
-
-/**
- * Aggregation of base class and mixin classes.
- * @type {(function(*, ...[*]): __Aggregate)|*|(function(): aggregate)}
- */
-const aggregation = require('../../../lib/extends/aggregation');
+import {aggregation} from '../../../lib/extends/aggregation';
 
 /**
  * @class WorkspaceDataView
