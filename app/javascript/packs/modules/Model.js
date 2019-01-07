@@ -133,11 +133,12 @@ export class BaseModel extends CRUD {
    * @returns {*}
    */
   getFirstItem() {
-    const items = this.getItems() || [];
-    const item = items.filter(item => item.model.getConfig('order') === 1)[0];
+    const items = this.getItems() || {};
+    const uuid = Object.keys(items).filter(key => items[key].model.getConfig('order') === 1)[0];
+    const item = items[uuid];
 
     if (!item) {
-      this.scope.logger.warn('Unable to get first item', items);
+      this.scope.logger.warn('Unable to get first item', items, uuid);
     }
 
     return item;
