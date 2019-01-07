@@ -5,13 +5,11 @@
  * Time: 1:26 PM
  */
 
-import {BasePreferences} from '../../modules/Preferences';
-
 /**
  * @class WidgetContentPreferencesController
  * @export WidgetContentPreferencesController
  */
-export class WidgetContentPreferencesController extends BasePreferences {
+export class WidgetContentPreferencesController {
   
   /**
    * Load prefs

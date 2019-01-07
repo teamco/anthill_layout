@@ -5,22 +5,11 @@
  * Time: 1:23 PM
  */
 
-import {AntHill} from '../core/config/anthill';
-
 /**
  * @class BasePreferences
  * @type {BasePreferences}
  */
-export class BasePreferences extends AntHill {
-
-  /**
-   * @constructor
-   * @param {string} name
-   * @param scope
-   */
-  constructor(name, scope) {
-    super(name || 'BasePreferences', scope, false);
-  }
+export class BasePreferences {
 
   /**
    * Update prefs
@@ -68,7 +57,7 @@ export class BasePreferences extends AntHill {
       let setter = opts.scope.model[opts.setter],
           name = opts.name;
 
-      if (typeof(setter) === 'function') {
+      if (typeof (setter) === 'function') {
         return _validateCallback();
       }
 
@@ -91,8 +80,7 @@ export class BasePreferences extends AntHill {
         setter = opts.scope.base.lib.function.create({
           name: opts.setter,
           params: name,
-          body: 'this.' + method + '("' + name + '", ' + name + ');' +
-          opts.scope.controller.getCustomPublisher(opts.name),
+          body: `this.${method}("${name}", ${name});${opts.scope.controller.getCustomPublisher(opts.name)}`,
           scope: opts.scope.model.constructor.prototype
         });
 
@@ -104,6 +92,7 @@ export class BasePreferences extends AntHill {
     $inputs.each((index, input) => {
 
       // Get input class name
+      // language=JQuery-CSS
       const inputClass = $(input).closest('[class*="-prefs"]').attr('class') || '';
 
       /**
