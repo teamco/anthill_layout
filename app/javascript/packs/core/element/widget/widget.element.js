@@ -6,6 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 
+import 'zoomooz';
 import {BaseElement} from '../../../modules/Element';
 
 /**
@@ -511,7 +512,7 @@ export class WidgetElement extends BaseElement {
     const domElement = $element.$;
 
     if (!domElement.zoomTo) {
-      this.view.scope.logger.warn('Plugin: jquery.zoomooz.min.js, should be initialized', zoomable);
+      $element.view.scope.logger.warn('Plugin: jquery.zoomooz.min.js, should be initialized', zoomable);
       return false;
     }
 

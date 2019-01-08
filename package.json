@@ -27,7 +27,7 @@
   },
   "browserify-shim": {},
   "dependencies": {
-    "@coreui/coreui": "^2.1.4",
+    "@coreui/coreui": "^2.1.5",
     "@coreui/coreui-plugin-chartjs-custom-tooltips": "^1.2.0",
     "@coreui/icons": "^0.3.0",
     "@rails/webpacker": "4.0.0-rc.2",
@@ -68,7 +68,8 @@
     "underscore": "^1.9.1",
     "vkbeautify": "^0.99.3",
     "webpack-bundle": "^0.9.8",
-    "webpack-merge": "^4.1.5"
+    "webpack-merge": "^4.1.5",
+    "zoomooz": "^1.0.0"
   },
   "license": "MIT",
   "engines": {
@@ -79,6 +80,7 @@
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@fortawesome/fontawesome-free": "^5.6.3",
     "babel-core": "^7.0.0-beta.3",
+    "babel-loader": "^8.0.5",
     "babel-plugin-transform-object-rest-spread": "^7.0.0-beta.3",
     "babel-polyfill": "^7.0.0-beta.3",
     "babel-preset-env": "^7.0.0-beta.3",
@@ -87,8 +89,10 @@
     "browserify-incremental": "^3.1.1",
     "browserify-shim": "^3.8.14",
     "caller-id": "^0.1.0",
+    "css-loader": "^2.1.0",
     "exports-loader": "^0.7.0",
     "expose-loader": "^0.7.5",
+    "file-loader": "^3.0.1",
     "highlight.js": "^9.13.1",
     "imports-loader": "^0.8.0",
     "npm-packlist": "^1.1.12",
@@ -98,13 +102,14 @@
     "postcss-plugin": "^1.0.0",
     "postcss-scss": "^2.0.0",
     "rimraf": "^2.6.3",
+    "sass-loader": "^7.1.0",
     "ssri": "^6.0.1",
     "string_decoder": "^1.2.0",
     "sugarss": "^2.0.0",
     "typescript": "^3.2.2",
     "webpack": "^4.28.3",
     "webpack-bundle-analyzer": "^3.0.3",
-    "webpack-cli": "^3.2.0",
+    "webpack-cli": "^3.2.1",
     "webpack-dev-server": "3.1.14"
   }
 }
