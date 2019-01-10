@@ -96,7 +96,7 @@ export class BaseRules extends AntHill {
 
     rulesList.unshift({
       type: 'text',
-      value: ['Select rule (', rulesList.length - 1, ')'].join('')
+      value: [`Select rule (${rulesList.length - 1})`].join('')
     });
 
     return rulesList;
@@ -117,23 +117,17 @@ export class BaseRules extends AntHill {
       locate: {
         text: 'Locate',
         type: 'default',
-        events: {
-          click: 'locateElementItem'
-        }
+        events: {click: 'locateElementItem'}
       },
       approve: {
         text: 'OK',
         type: 'success',
-        events: {
-          click: 'approveUpdateRules'
-        }
+        events: {click: 'approveUpdateRules'}
       },
       reject: {
         text: 'Cancel',
         type: 'default',
-        events: {
-          click: 'rejectModalEvent'
-        }
+        events: {click: 'rejectModalEvent'}
       }
     }, opts.buttons || {});
 
@@ -228,47 +222,74 @@ export class BaseRules extends AntHill {
      */
     const title = 'Subscribe events';
 
+    /**
+     * @method _checkRule
+     * @param rulesList
+     * @param checkedRulesList
+     * @param type
+     * @param $inner
+     * @private
+     */
+    function _checkRule(rulesList, checkedRulesList, type, $inner) {
+      const rules = rulesList[type],
+          checked = checkedRulesList[type] || [];
+
+      for (let i = 0, l = rules.length; i < l; i++) {
+
+        const $checkbox = this.renderCheckbox({
+          name: [type, rules[i]].join(':'),
+          text: rules[i],
+          checked: $.inArray(rules[i], checked) !== -1,
+          disabled: false,
+          visible: true
+        });
+
+        $checkbox.find('.input-group-addon').append(type);
+        $inner.append($('<li />').append($checkbox));
+      }
+    }
+
+    /**
+     * @method _checkPublished
+     * @param published
+     * @param index
+     * @return {jQuery|HTMLElement}
+     * @private
+     */
+    function _checkPublished(published, index) {
+      const $inner = $('<ul />'),
+          rulesList = published[index].rules || {},
+          checkedRulesList = subscribe[index] || {};
+
+      empty = !Object.keys(rulesList).length;
+
+      for (let type in rulesList) {
+        if (rulesList.hasOwnProperty(type)) {
+          _checkRule.call(this, rulesList, checkedRulesList, type, $inner);
+        }
+      }
+
+      return $inner;
+    }
+
     for (let index in published) {
       if (published.hasOwnProperty(index)) {
 
-        const $inner = $('<ul />'),
-            rulesList = published[index].rules || {},
-            checkedRulesList = subscribe[index] || {};
-
-        empty = !Object.keys(rulesList).length;
-
-        for (let type in rulesList) {
-          if (rulesList.hasOwnProperty(type)) {
-
-            const rules = rulesList[type],
-                checked = checkedRulesList[type] || [];
-
-            for (let i = 0, l = rules.length; i < l; i++) {
-
-              const $checkbox = this.renderCheckbox({
-                name: [type, rules[i]].join(':'),
-                text: rules[i],
-                checked: $.inArray(rules[i], checked) !== -1,
-                disabled: false,
-                visible: true
-              });
-
-              $checkbox.find('.input-group-addon').append(type);
-              $inner.append($('<li />').append($checkbox));
-            }
-          }
-        }
+        /**
+         * @constant
+         * @type {jQuery|HTMLElement}
+         */
+        const $inner = _checkPublished.call(this, published, index);
 
         if (!empty) {
           render = true;
 
           $('<li />').append(
               $('<fieldset />').append([
-                $('<legend />').attr({'data-uuid': index}).html([
-                  '<span class="glyphicon glyphicon-chevron-up"></span>',
-                  published[index].type, ': ',
-                  index.replace(/-content/, '')
-                ].join('')).on('click.toggle', this.toggleFieldset.bind(this)),
+                $('<legend />').attr({'data-uuid': index}).html(`
+                  <span class="glyphicon glyphicon-chevron-up"></span>
+                  ${published[index].type}: ${index.replace(/-content/, '')}`).on(
+                      'click.toggle', this.toggleFieldset.bind(this)),
                 $inner
               ])
           ).appendTo($ul);
@@ -313,7 +334,7 @@ export class BaseRules extends AntHill {
 
     $element.append(this.getTemplate(text).append(
         this.renderDropDown(rulesList, rulesList[0].value, text,
-            [cname, 'Rule'].join(''), {
+            `${cname}Rule`, {
               type: 'click.transferValue',
               callback: this._transferValue.bind({
                 scope: this,
@@ -402,16 +423,12 @@ export class BaseRules extends AntHill {
      */
     let value = [type.toLowerCase(), rule].join(':');
 
-    if ($('li[value="' + value + '"]', $ul).length) {
+    if ($(`li[value="${value}"]`, $ul).length) {
       this.view.scope.logger.warn('Duplicate rule', value);
       return false;
     }
 
-    const $input = [
-      '<input value="', rule, '" disabled="disabled"',
-      ' type="text" class="form-control" placeholder="Rule">'
-    ].join('');
-
+    const $input = `<input value="${rule}" disabled="disabled" type="text" class="form-control" placeholder="Rule">`;
     $ul.append($('<li />').attr({value: value}).append(this.getTemplate(type).append($input)));
   }
 }
