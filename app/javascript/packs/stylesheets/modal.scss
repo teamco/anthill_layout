@@ -1,9 +1,47 @@
+.modal-open {
+  .modal {
+    overflow: hidden;
+  }
+}
+
 .modal {
+  max-height: 90%;
+  overflow: hidden;
+
   &.handle-error {
     span {
       display: inline-block;
-      font-weight: bold;
+      font-weight: normal;
       width: 100%;
+    }
+  }
+
+  .modal-body {
+    overflow-x: hidden;
+    overflow-y: auto;
+    max-height: 90%;
+  }
+
+  .ui-draggable-handle {
+    cursor: move;
+    word-break: break-all;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    position: inherit;
+    padding-right: 30px;
+    width: 100%;
+  }
+
+  button.locate {
+    border: 2px solid lightcoral;
+  }
+
+  ul {
+    list-style: none;
+
+    &.remove {
+      list-style: decimal inside;
     }
   }
 }
