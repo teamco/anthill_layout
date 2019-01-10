@@ -1,6 +1,5 @@
 /.byebug_history
 .idea
-.keep
 .DS_Store
 .settings/
 *.rbc
@@ -25,7 +24,7 @@ pickle-email-*.html
 /vendor/bundle
 
 # these should all be checked in to normalise the environment:
-# Gemfile.lock, .ruby-version, .ruby-gemset
+.ruby-version, .ruby-gemset
 
 # unless supporting rvm < 1.11.0 or doing something fancy, ignore this:
 .rvmrc
@@ -37,17 +36,9 @@ public/assets
 target
 
 app/assets/.sass-cache/
-app/assets/node_modules/
-app/assets/stylesheets/output.css
-app/assets/stylesheets/shared.css*
-app/assets/stylesheets/style.min.css*
-app/assets/package-lock.json
+
 
 Gemfile.lock
 !/package-lock.json
 /public/packs
-/public/packs-test
-/node_modules
-yarn-debug.log*
-.yarn-integrity
 /yarn-error.log
