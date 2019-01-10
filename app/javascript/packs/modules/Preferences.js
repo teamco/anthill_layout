@@ -152,5 +152,7 @@ export class BasePreferences {
 
     $modal.selfDestroy();
     this.store();
+
+    //scope.observer.publish(scope.eventManager.eventList.setEmbeddedContent);
   }
 }

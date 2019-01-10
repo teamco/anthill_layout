@@ -10,7 +10,7 @@
  * @export WidgetContentPreferencesController
  */
 export class WidgetContentPreferencesController {
-  
+
   /**
    * Load prefs
    * @property widgetContentPreferencesController

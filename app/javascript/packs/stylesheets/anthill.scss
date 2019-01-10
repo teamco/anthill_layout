@@ -19,6 +19,10 @@ widget {
   user-select: text;
 }
 
+html, body {
+  overflow: hidden;
+}
+
 html, body, application,
 workspaces, workspace,
 pages, page, widget.no-select {

@@ -1,12 +1,9 @@
-.modal-open {
-  .modal {
-    overflow: hidden;
-  }
-}
-
 .modal {
-  max-height: 90%;
-  overflow: hidden;
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
   &.handle-error {
     span {
