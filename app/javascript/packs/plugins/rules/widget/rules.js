@@ -96,7 +96,7 @@ export class BaseRules extends AntHill {
 
     rulesList.unshift({
       type: 'text',
-      value: [`Select rule (${rulesList.length - 1})`].join('')
+      value: `Select rule (${rulesList.length - 1})`
     });
 
     return rulesList;
