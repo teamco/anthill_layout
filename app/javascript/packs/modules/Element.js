@@ -727,14 +727,10 @@ export class BaseElement extends Renderer {
    * @param {string} title
    */
   setTitle(title) {
-
     if (!this.$) {
       return false;
     }
-
-    this.$.attr({
-      title: title
-    });
+    this.$.attr({title: title});
   }
 
   /**
@@ -743,12 +739,10 @@ export class BaseElement extends Renderer {
    * @returns {BaseElement}
    */
   unbindElement() {
-
     if (this.$) {
       this.$.find('*').off();
       this.$.off();
     }
-
     return this;
   }
 
@@ -798,26 +792,25 @@ export class BaseElement extends Renderer {
 
     /**
      * Get $root
-     * @type {ApplicationElement}
+     * @type {ApplicationElement|{$container}}
      */
     const $root = this.view.controller.root().view.get$item();
-
-    $root.$container.removeClass('loading');
+    $root.$container.removeClass((index, className) => (className.match(/(^|\s)load\S+/g) || []).join(' '));
   }
 
   /**
    * Add loading class before loading items
    * @memberOf BaseElement
+   * @param {string} type
    */
-  showLoader() {
+  showLoader(type) {
 
     /**
      * Get $root
-     * @type {ApplicationElement}
+     * @type {ApplicationElement|{$container}}
      */
     const $root = this.view.controller.root().view.get$item();
-
-    $root.$container.addClass('loading');
+    $root.$container.addClass(`loading load-${type}`);
   }
 
   /**
@@ -827,16 +820,9 @@ export class BaseElement extends Renderer {
    * @returns {string}
    */
   getItemsList(items) {
-
-    return [
-      '<ul class="remove">',
-      $.map(items, (item, i) => [
-        '<li rel="', item.model.getUUID(), '">',
-        item.model.getItemTitle(),
-        '</li>'
-      ].join('')).join(''),
-      '</ul>'
-    ].join('');
+    return `<ul class="remove">
+        ${$.map(items, (item, i) => `<li rel="${item.model.getUUID()}">${item.model.getItemTitle()}</li>`).join('')}
+      </ul>`;
   }
 
   /**
@@ -911,7 +897,6 @@ export class BaseElement extends Renderer {
    * @param {Event} event
    */
   sortTextElements(event) {
-
     const $container = this.$container,
         $element = this.$element,
         on = this.which,
@@ -922,9 +907,7 @@ export class BaseElement extends Renderer {
      * @type {*|boolean}
      */
     const sorted = $element.defineSorted($(event.target));
-
     $(on, $container).sort((a, b) => {
-
       let t1, t2;
       if (selector) {
         t1 = $(selector, a).text();
@@ -936,7 +919,6 @@ export class BaseElement extends Renderer {
       if (t1 < t2) return sorted ? -1 : 1;
       if (t1 > t2) return sorted ? 1 : -1;
       return 0;
-
     }).appendTo($container);
   }
 
@@ -948,7 +930,6 @@ export class BaseElement extends Renderer {
    * @returns {boolean}
    */
   locate$element(event, $element) {
-
     if (!$element) {
       $element = this;
     }
@@ -992,14 +973,11 @@ export class BaseElement extends Renderer {
    * @memberOf BaseElement
    */
   addContent(embed) {
-
     if (!embed) {
       this.$.empty();
       return false;
     }
-
     this.$.append(embed);
-
     return this;
   }
 }

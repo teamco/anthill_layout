@@ -1,4 +1,4 @@
-import './css/shared.css';
+import './css/shared.scss';
 
 import {config} from './javascript/config';
 import {listeners} from './javascript/listeners';

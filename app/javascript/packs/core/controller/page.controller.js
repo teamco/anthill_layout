@@ -67,7 +67,7 @@ export class PageController extends aggregation(BaseController, Router, PageLaye
 
     /**
      * Define content loaded
-     * @memberOf Page
+     * @memberOf PageController
      * @type {boolean}
      */
     this.contentLoaded = loaded;

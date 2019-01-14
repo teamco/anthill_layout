@@ -13,21 +13,23 @@
   <%= load_css(@storage) %>
   <%= load_js(@storage) %>
 </head>
-<body class="anthill loading app header-fixed sidebar-fixed aside-menu-fixed sidebar-lg-show">
-<div class='uil-ripple-css'></div>
-<%= render 'partials/header' %>
-<div class="app-body">
-  <main class="main">
-    <div class="container-fluid h-100">
-      <div id="ui-view" class="h-100">
-        <div class="h-100">
-          <div class="animated fadeIn fetcher h-100"><%= yield %></div>
+<body class="anthill app header-fixed sidebar-fixed aside-menu-fixed sidebar-lg-show">
+  <%= render 'partials/header' %>
+  <div class="app-body">
+    <main class="main">
+      <div class="container-fluid h-100">
+        <div id="ui-view" class="h-100">
+          <div class="h-100">
+            <div class="animated fadeIn fetcher h-100 loading">
+              <div class='uil-ripple-css'></div>
+              <%= yield %>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </main>
-  <aside class="aside-menu"></aside>
-</div>
-<footer class="app-footer"></footer>
+    </main>
+    <aside class="aside-menu"></aside>
+  </div>
+  <footer class="app-footer"></footer>
 </body>
 </html>

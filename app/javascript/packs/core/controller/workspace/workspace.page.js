@@ -16,7 +16,6 @@ export class WorkspacePage {
    * @memberOf WorkspacePage
    */
   setPageContainerDimensions() {
-
     if (!this.view) {
       this.logger.warn('View should be defined');
       return false;
@@ -46,7 +45,6 @@ export class WorkspacePage {
     const scope = this.scope;
 
     let page = this.getPageByHashLocation(scope);
-
     scope.logger.debug('Change hash', e, page, window.location.hash.length);
 
     if (window.location.hash.length) {
@@ -83,7 +81,6 @@ export class WorkspacePage {
     let index, page;
 
     for (index in items) {
-
       if (items.hasOwnProperty(index)) {
 
         /**
@@ -131,7 +128,6 @@ export class WorkspacePage {
    * @param {Page} page
    */
   beforeSwitchToPage(page) {
-
     this.logger.debug('Before switch to page', page);
     this.observer.publish(this.eventManager.eventList.resetPagesHeightBeforeSwitch);
 
@@ -167,7 +163,6 @@ export class WorkspacePage {
       widget = item;
 
       if (showContent) {
-
         page.observer.publish(page.eventManager.eventList.showWidgetContent, item[0]);
 
         /**
@@ -266,7 +261,7 @@ export class WorkspacePage {
     scope.observer.publish(scope.eventManager.eventList.updateMetaData, page);
 
     page.view ?
-        page.view.get$item().showLoader() :
+        page.view.get$item().showLoader('page-swipe') :
         page.logger.warn('Page with no View');
 
     page.observer.publish(page.eventManager.eventList.loadItemsContent);

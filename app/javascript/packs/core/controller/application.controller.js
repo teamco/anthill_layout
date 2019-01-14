@@ -66,7 +66,7 @@ export class ApplicationController extends aggregation(BaseController, BehaviorE
       workspace.observer.publish(workspace.eventManager.eventList.switchToPage, page);
 
       if (page.view) {
-        page.view.get$item().showLoader();
+        page.view.get$item().showLoader('widgets');
         page.observer.publish(page.eventManager.eventList.loadItemsContent);
       } else {
         workspace.logger.warn('PageView should be defined', page);
@@ -124,9 +124,9 @@ export class ApplicationController extends aggregation(BaseController, BehaviorE
       timeout: that.isDevelopmentMode() ? undefined : 10000,
       ifModified: true,
       beforeSend(xhr, settings) {
-        that.scope.view.get$item().showLoader();
+        that.scope.view.get$item().showLoader('xhr');
         if (that.utils._.isUndefined(settings.dataType)) {
-          xhr.setRequestHeader('accept', '*/*;q=0.5, ' + settings.accepts.script);
+          xhr.setRequestHeader('accept', `*/*;q=0.5, ${settings.accepts.script}`);
         }
         xhr.setRequestHeader('X-CSRF-Token', that.getXCsrfToken());
       },

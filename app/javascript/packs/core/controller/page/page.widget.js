@@ -225,6 +225,7 @@ export class PageWidget extends PageWidgetCopy {
 
     if (this.ready === items) {
       this.observer.publish(this.eventManager.eventList.setLoadedContent, true);
+      this.view.get$item().hideLoader();
     }
   }
 
