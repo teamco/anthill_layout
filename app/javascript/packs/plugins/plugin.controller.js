@@ -191,6 +191,22 @@ export class PluginController extends BaseController {
   }
 
   /**
+   * @memberOf PluginController
+   * @param {string} type
+   * @param {array} items
+   */
+  updateContentCounter(type, items = []) {
+
+    /**
+     * @constant
+     * @type {Panel}
+     */
+    const panel = this.getDesignTimePanel();
+    panel.observer.publish(panel.eventManager.eventList.updateItemsCount, [type, items]);
+  }
+
+
+  /**
    * Locate element item
    * @memberOf PluginController
    * @param {Event} event

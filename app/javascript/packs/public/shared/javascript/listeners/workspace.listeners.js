@@ -133,7 +133,6 @@ export const workspaceGlobalListeners = () => {
     successRendered: {
       name: 'success.rendered',
       callback() {
-
         this.permission.check({
           capability: 'createDesignTimePanel',
           callback: () => {
@@ -160,8 +159,7 @@ export const workspaceGlobalListeners = () => {
          * @type {Panel}
          */
         const panel = this.controller.getDesignTimePanel();
-        panel.observer.publish(panel.eventManager.eventList.updateItemsCount, [
-            'workspace-data', this.model.getItems()])
+        panel.controller.updateContentCounter('workspace-data', this.model.getItems());
       }
     },
 

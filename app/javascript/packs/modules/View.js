@@ -358,7 +358,7 @@ export class BaseView extends AntHill {
   /**
    * Define get $container
    * @memberOf BaseView
-   * @returns {BaseElement|{}}
+   * @returns {BaseElement}
    */
   get$container() {
     const $container = this.elements.$container;
@@ -463,7 +463,7 @@ export class BaseView extends AntHill {
         events: button.events
       });
 
-      $.each(button.events || {}, (key, event) => store[i].$.on(key + '.afterCallback',
+      $.each(button.events || {}, (key, event) => store[i].$.on(`${key}.afterCallback`,
           store[i].afterEventsCallback.bind(store[i])));
 
       this.scope.logger.debug('Button created', store[i]);

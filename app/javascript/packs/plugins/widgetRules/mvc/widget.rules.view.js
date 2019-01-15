@@ -33,7 +33,7 @@ export class WidgetRulesView extends BaseView {
 
     /**
      * Define WidgetRules element
-     * @type {PanelContentElement}
+     * @type {PanelContentElement|BaseElement}
      */
     this.elements.$widgetrules = this.get$container();
   }

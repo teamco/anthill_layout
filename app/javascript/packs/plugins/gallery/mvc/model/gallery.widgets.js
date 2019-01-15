@@ -97,7 +97,7 @@ export class GalleryWidgets {
      */
     function _handleCallback() {
       _sortData();
-      scope.controller.updateWidgetsCounter(scope.model.providers.all.data);
+      scope.controller.updateContentCounter('gallery', scope.model.providers.all.data);
     }
 
     if (!galleryWidgets.defaultData.length) {

@@ -48,8 +48,8 @@ export class BaseRules extends AntHill {
    */
   getTemplate(text) {
     return $(`
-      <div class="input-group">
-        <span class="input-group-addon">${text}</span>
+      <div class="input-group-prepend">
+        <span class="input-group-text">${text}</span>
       </div>`);
   }
 
@@ -147,7 +147,7 @@ export class BaseRules extends AntHill {
    * @param widgetRules
    */
   renderWidgetRules(widgetRules) {
-    const text = 'Widget rules',
+    const text = 'Widget Rule',
         rulesList = this.getRulesList(widgetRules, text);
 
     if (!rulesList) {
@@ -160,22 +160,22 @@ export class BaseRules extends AntHill {
      */
     const $element = this.$;
 
-    $element.append(
-        this.getTemplate(text).append(
-            this.renderDropDown(rulesList, rulesList[0].value, text,
-                'widgetRule', {
-                  type: 'click.transferValue',
-                  callback: this._transferValue.bind({
-                    element: this,
-                    button: 'addWidgetRule'
-                  })
-                }, true)));
+    const $dropDown = this.renderDropDown(rulesList, rulesList[0].value, text,
+        'widgetRule', {
+          type: 'click.transferValue',
+          callback: this._transferValue.bind({
+            element: this,
+            button: 'addWidgetRule'
+          })
+        }, true);
+
+    $element.append($dropDown.append(`<div class="input-group-append"></div>`));
 
     this.view.button({
           addWidgetRule: {
-            text: 'Publish',
+            text: `Publish ${text}`,
             type: 'warning',
-            $container: $element.find('.input-group:last'),
+            $container: $element.find('.input-group-append'),
             events: {click: 'addWidgetRule'}
           }
         },
@@ -236,6 +236,9 @@ export class BaseRules extends AntHill {
 
       for (let i = 0, l = rules.length; i < l; i++) {
 
+        /**
+         * @constant $checkbox
+         */
         const $checkbox = this.renderCheckbox({
           name: [type, rules[i]].join(':'),
           text: rules[i],
@@ -244,7 +247,7 @@ export class BaseRules extends AntHill {
           visible: true
         });
 
-        $checkbox.find('.input-group-addon').append(type);
+        $checkbox.find('.input-group-prepend').append(type);
         $inner.append($('<li />').append($checkbox));
       }
     }
@@ -289,7 +292,8 @@ export class BaseRules extends AntHill {
                 $('<legend />').attr({'data-uuid': index}).html(`
                   <span class="glyphicon glyphicon-chevron-up"></span>
                   ${published[index].type}: ${index.replace(/-content/, '')}`).on(
-                      'click.toggle', this.toggleFieldset.bind(this)),
+                    'click.toggle', this.toggleFieldset.bind(this)
+                ),
                 $inner
               ])
           ).appendTo($ul);
@@ -300,7 +304,9 @@ export class BaseRules extends AntHill {
     if (render) {
       this.$.find('div.content-rules').append(
           $('<fieldset />').append([
-            $('<legend />').text(title).on('click.toggle', this.toggleFieldset.bind(this)).attr({title: title}),
+            $('<legend />').text(title).attr({title: title}).on(
+                'click.toggle', this.toggleFieldset.bind(this)
+            ),
             $ul
           ]));
     }
@@ -325,28 +331,32 @@ export class BaseRules extends AntHill {
     const view = this.view;
 
     const cname = view.scope.name,
-        text = [cname, 'rules'].join(' '),
+        text = `${cname}`,
         rulesList = this.getRulesList(contentRules, text);
 
     if (!rulesList) {
       return false;
     }
 
-    $element.append(this.getTemplate(text).append(
-        this.renderDropDown(rulesList, rulesList[0].value, text,
-            `${cname}Rule`, {
-              type: 'click.transferValue',
-              callback: this._transferValue.bind({
-                scope: this,
-                button: 'addContentRule'
-              })
-            }, true)));
+    /**
+     * @constant $dropDown
+     */
+    const $dropDown = this.renderDropDown(rulesList, rulesList[0].value, text,
+        `${cname}Rule`, {
+          type: 'click.transferValue',
+          callback: this._transferValue.bind({
+            scope: this,
+            button: 'addContentRule'
+          })
+        }, true);
+
+    $element.append($dropDown.append(`<div class="input-group-append"></div>`));
 
     this.view.button({
           addContentRule: {
-            text: 'Publish',
+            text: `Publish ${text} Rule`,
             type: 'warning',
-            $container: $element.find('.input-group:last'),
+            $container: $element.find('.input-group-append:last'),
             events: {click: 'addContentRule'}
           }
         },
@@ -421,7 +431,7 @@ export class BaseRules extends AntHill {
      * Set value
      * @type {string}
      */
-    let value = [type.toLowerCase(), rule].join(':');
+    let value = `${type.toLowerCase()}:${rule}`;
 
     if ($(`li[value="${value}"]`, $ul).length) {
       this.view.scope.logger.warn('Duplicate rule', value);

@@ -11,7 +11,29 @@ export const pageGlobalListeners = () => {
   /**
    * Define Page Global listeners
    * @memberOf Page
-   * @type {{}}
+   * @type {{afterCreateItem: {name: string, callback(*=): void}}}
    */
-  Page.prototype.globalListeners = {};
+  Page.prototype.globalListeners = {
+    afterCreateItem: {
+      name: 'after.create.item',
+      callback(item) {
+        this.logger.debug('Global listener: afterCreateItem', item);
+
+        /**
+         * @constant
+         * @type {Workspace}
+         */
+        const workspace = this.controller.getContainment();
+
+        /**
+         * @constant
+         * @type {Panel}
+         */
+        const panel = workspace.controller.getDesignTimePanel();
+        const items = this.model.getItems();
+        panel.controller.updateContentCounter('widget-rules', items);
+        panel.controller.updateContentCounter('page-data', items);
+      }
+    },
+  };
 };

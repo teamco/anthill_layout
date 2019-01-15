@@ -50,13 +50,18 @@ export class DropDownRenderer {
       value: selected
     });
 
-    const style = (activeContent ? [index, activeContent.name].join('') : index).toDash(),
-        id = `${this.view.utils.gen.UUID()}-dropdown`;
+    const style = (activeContent ? `${index}${activeContent.name}` : index).toDash(),
+        id = `${this.view.utils.gen.UUID()}-dropdown`,
+        customCss = `${style} ${disabled ? ' disabled' : ''}`;
 
     const $combo = $(
         `<div class="input-group mb-2">         
-          <button class="btn btn-outline-secondary btn-sm dropdown-toggle ${disabled ? ' disabled' : ''}" type="button" 
-                  id="${id}-categories" data-toggle="dropdown" aria-haspopup="true" data-boundary="viewport" 
+          <button class="form-control btn btn-outline-secondary btn-sm dropdown-toggle ${customCss}" 
+                  type="button" 
+                  id="${id}-categories" 
+                  data-toggle="dropdown" 
+                  aria-haspopup="true" 
+                  data-boundary="viewport" 
                   aria-expanded="false">
             Choose category
           </button>                                        
@@ -83,8 +88,9 @@ export class DropDownRenderer {
      * @private
      */
     function _store($selected, force) {
-      if ($selected instanceof $.Event) {
-        $selected = $($selected.target).parent();
+      const target = arguments[0].target;
+      if (target) {
+        $selected = $(target);
       }
 
       /**
@@ -99,7 +105,7 @@ export class DropDownRenderer {
 
       selected = value;
 
-      $('li', $selected.parent()).removeClass('selected');
+      $('a', $selected.parent()).removeClass('selected');
       $selected.addClass('selected');
       $(`input[name="${index}"]`, $combo).val(value);
       _updatePlaceholder(value);

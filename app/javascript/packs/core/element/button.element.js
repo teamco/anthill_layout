@@ -67,6 +67,7 @@ export class ButtonElement extends BaseElement {
   setContent() {
     if (this.text) {
       this.setText(this.text);
+      this.setTitle(this.text);
     }
   }
 
