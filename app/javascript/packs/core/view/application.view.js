@@ -44,12 +44,18 @@ export class ApplicationView extends BaseView {
     }
 
     /**
+     * @constant
+     * @type {string}
+     */
+    const mode = this.controller.getMode();
+
+    /**
      * Define $application
      * @type {ApplicationElement}
      */
     this.elements.$application = new ApplicationElement(this, {
       $container: container || 'body',
-      mode: this.controller.getMode(),
+      mode: mode,
       id: true
     });
 
