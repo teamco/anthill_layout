@@ -247,7 +247,7 @@ export class BaseRules extends AntHill {
           visible: true
         });
 
-        $checkbox.find('.input-group-prepend').append(type);
+        $checkbox.find('.input-group-prepend .input-group-text').append(type).attr({title: type});
         $inner.append($('<li />').append($checkbox));
       }
     }
@@ -290,7 +290,7 @@ export class BaseRules extends AntHill {
           $('<li />').append(
               $('<fieldset />').append([
                 $('<legend />').attr({'data-uuid': index}).html(`
-                  <span class="glyphicon glyphicon-chevron-up"></span>
+                  <span class="fa fa-caret-down"></span>
                   ${published[index].type}: ${index.replace(/-content/, '')}`).on(
                     'click.toggle', this.toggleFieldset.bind(this)
                 ),

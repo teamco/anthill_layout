@@ -54,8 +54,7 @@ export class CheckBoxRenderer  {
     const $template = $(`
       <div class="input-group mb-2">
         <div class="input-group-prepend">
-          <div class="input-group-text sm-input">
-          </div>
+          <div class="input-group-text sm-input"></div>
         </div>
         <input type="text" class="form-control" disabled="disabled" value="${opts.text}">
       </div>`);
