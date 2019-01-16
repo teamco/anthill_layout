@@ -286,17 +286,22 @@ export class BaseRules extends AntHill {
 
         if (!empty) {
           render = true;
+          const legend = `${published[index].type}: ${index.replace(/-content/, '')}`;
 
-          $('<li />').append(
+          const $li = $('<li />').append(
               $('<fieldset />').append([
-                $('<legend />').attr({'data-uuid': index}).html(`
-                  <span class="fa fa-caret-down"></span>
-                  ${published[index].type}: ${index.replace(/-content/, '')}`).on(
-                    'click.toggle', this.toggleFieldset.bind(this)
+                $('<legend class="open" />').attr({
+                  'data-uuid': index,
+                  title: legend
+                }).html(`
+                    <span class="fa fa-caret-down"></span>
+                    <span class="d-none fa fa-caret-up"></span>
+                    ${legend}`).on('click.toggle', this.toggleFieldset.bind(this)
                 ),
                 $inner
               ])
-          ).appendTo($ul);
+          );
+          $ul.append($li);
         }
       }
     }
@@ -439,6 +444,8 @@ export class BaseRules extends AntHill {
     }
 
     const $input = `<input value="${rule}" disabled="disabled" type="text" class="form-control" placeholder="Rule">`;
-    $ul.append($('<li />').attr({value: value}).append(this.getTemplate(type).append($input)));
+    $ul.append($('<li class="mb-2" />').
+        attr({value: value}).
+        append(`<div class="input-group">${this.getTemplate(type).prop('outerHTML')}${$input}</div>`));
   }
 }

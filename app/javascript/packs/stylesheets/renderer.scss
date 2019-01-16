@@ -1,14 +1,19 @@
 fieldset {
-  legend {
+  fieldset {
+    legend {
+      cursor: pointer;
 
-  }
+      svg {
+        float: left;
+        margin-right: 0.5rem;
+      }
+    }
 
-  ul {
-    display: none;
-  }
+    legend + ul {
+      display: none;
+    }
 
-  &.open {
-    ul {
+    legend.open + ul {
       display: block;
     }
   }

@@ -20,9 +20,20 @@ export class FieldSetRenderer {
   /**
    * @static
    * @param $element
+   * @param {string} type
+   */
+  static handleCaret($element, type) {
+    $element.find('svg').hide();
+    $element.find(`svg.fa-caret-${type}`).show().removeClass('d-none');
+  }
+
+  /**
+   * @static
+   * @param $element
    */
   static openFieldSet($element) {
     $element.addClass('open');
+    FieldSetRenderer.handleCaret($element, 'up');
   }
 
   /**
@@ -31,6 +42,7 @@ export class FieldSetRenderer {
    */
   static closeFieldSet($element) {
     $element.removeClass('open');
+    FieldSetRenderer.handleCaret($element, 'down');
   }
 
   /**
