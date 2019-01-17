@@ -74,9 +74,10 @@ export class WidgetSubscribe {
 
     /**
      * Define resizable
-     * @type {WidgetResize}
+     * @type {Interactions}
      */
-    const resizable = widget.interactions.resizable;
+    const resizable = this.referrer.controller;
+
     /**
      * Define direction
      * @type {string}
