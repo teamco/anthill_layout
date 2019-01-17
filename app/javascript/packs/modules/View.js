@@ -471,19 +471,24 @@ export class BaseView extends AntHill {
   }
 
   /**
-   * Define cover
+   * @method getElementByTagName
    * @memberOf BaseView
-   * @param CoverElement
-   * @param opts
-   * @returns {CoverElement}
+   * @param e
+   * @param {string} tag
+   * @return {*|jQuery|HTMLElement}
    */
-  cover(CoverElement, opts) {
-    return new CoverElement(this, {
-      $container: opts.$container,
-      style: opts.style,
-      opacity: opts.opacity,
-      events: opts.events
-    });
+  getElementByTagName(e, tag) {
+
+    /**
+     * Define $element
+     * @type {*|jQuery|HTMLElement}
+     */
+    let $element = $(e.target);
+
+    if ($element.prop('tagName') !== tag.toUpperCase()) {
+      $element = $element.closest(tag.toLowerCase());
+    }
+    return $element;
   }
 
   /**

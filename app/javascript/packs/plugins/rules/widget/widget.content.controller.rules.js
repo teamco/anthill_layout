@@ -439,7 +439,7 @@ export class WidgetContentControllerRules {
        */
       const eventUUIDs = this.scope.eventManager.publishOn({
         scope: scope,
-        events: [{eventName: eventList[ename]}],
+        events: [{name: eventList[ename]}],
         callback: callback.bind({
           scope: this.scope,
           referrer: scope,
@@ -460,18 +460,14 @@ export class WidgetContentControllerRules {
    */
   addWidgetRule(e, type) {
 
+    const scope = this.scope;
+
     /**
      * Define $button
      * @type {*|jQuery|HTMLElement}
      */
-    let $button = $(e.target);
-
-    if ($button.prop('tagName') !== 'BUTTON') {
-      $button = $button.closest('button');
-    }
-
-    let scope = this.scope,
-        value = $button.attr('value');
+    const $button = scope.view.getElementByTagName(e, 'button');
+    let value = $button.attr('value');
 
     if ((value || '').match(/Select rule \(\d+\)/)) {
       value = undefined;

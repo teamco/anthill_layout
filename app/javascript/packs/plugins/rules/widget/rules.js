@@ -350,7 +350,7 @@ export class BaseRules extends AntHill {
         `${cname}Rule`, {
           type: 'click.transferValue',
           callback: this._transferValue.bind({
-            scope: this,
+            element: this,
             button: 'addContentRule'
           })
         }, true);

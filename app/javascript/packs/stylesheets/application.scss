@@ -24,6 +24,7 @@ $fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
 
 $popover-offset-left: 200px !important;
 $popover-offset-width: 200px !important;
+$sidebar-bg-color: #0d8ddb;
 
 .sidebar {
   svg {
@@ -37,7 +38,15 @@ $popover-offset-width: 200px !important;
 
   .nav-dropdown.open {
     .nav-link {
-      border-left: 1px solid #0d8ddb;
+      border-left: 1px solid $sidebar-bg-color;
+    }
+
+    & > .nav-link {
+      background-color: $sidebar-bg-color;
+
+      .nav-icon {
+        color: #fff;
+      }
     }
 
     .nav-link.page {
