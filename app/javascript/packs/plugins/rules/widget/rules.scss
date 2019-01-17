@@ -33,5 +33,11 @@
     label {
       cursor: pointer;
     }
+
+    .publish-rules,
+    .subscribe-rules {
+      max-height: 13rem;
+      overflow: auto;
+    }
   }
 }
