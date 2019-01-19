@@ -139,7 +139,7 @@ module Author
         config[:content] = versions[:published].content
         config[:published] = versions[:published].published
       end if config[:mode] == :consumption
-      logger.info ">>>>>>>> config: #{config.inspect}"
+      # logger.info ">>>>>>>> config: #{config.inspect}"
       config
     end
 

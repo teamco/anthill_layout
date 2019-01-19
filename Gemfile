@@ -107,4 +107,4 @@ gem 'puma_worker_killer'
 # gem 'unicorn'
 gem 'rack-handlers'
 
-gem 'webpacker', '>=4.0.0.rc.2'
+gem 'webpacker', '>=4.0.0.rc.3'
