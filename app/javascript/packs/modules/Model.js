@@ -259,6 +259,24 @@ export class BaseModel extends CRUD {
   }
 
   /**
+   * @memberOf BaseModel
+   * @param {string} uuid
+   * @param scope
+   * @return {*}
+   */
+  findByUUID(uuid, scope = this.scope.controller.root()) {
+    const items = scope.model.getItems() || {};
+    if (items[uuid]) {
+      return items[uuid];
+    }
+    for (let index in items) {
+      if (items.hasOwnProperty(index)) {
+        return this.findByUUID(uuid, items[index]);
+      }
+    }
+  }
+
+  /**
    * Get item from collector by title
    * @memberOf BaseModel
    * @param {string} title

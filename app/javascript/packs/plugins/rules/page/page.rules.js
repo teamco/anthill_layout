@@ -32,6 +32,12 @@ export class GenerateRules extends PageRulesVisualizer {
      * @type {Page}
      */
     this.page = page;
+
+    /**
+     * @property GenerateRules
+     * @type {{}}
+     */
+    this.cache = {};
   }
 
   /**
@@ -233,8 +239,20 @@ export class GenerateRules extends PageRulesVisualizer {
         event = opts.event,
         _make = go.GraphObject.make;
 
-    if (event && from.findLinksOutOf().count === 1) {
-      return false;
+    const _fKey = from.data.key,
+        _tKey = to.data.key;
+
+    if (event) {
+      const _from = this.cache[_fKey];
+      if (_from) {
+        if (_from.indexOf(_tKey) > -1) {
+          return false;
+        } else {
+          this.cache[_fKey].push(_tKey);
+        }
+      } else {
+        this.cache[_fKey] = [_tKey];
+      }
     }
 
     this.diagram.add(
@@ -243,7 +261,7 @@ export class GenerateRules extends PageRulesVisualizer {
               toNode: to,
               adjusting: go.Link.Stretch,
               routing: go.Link.AvoidsNodes,
-              curve: go.Link.Stretch,
+              curve: go.Link.JumpOver,
               toShortLength: 3,
               corner: 5,
               reshapable: true,
@@ -288,9 +306,12 @@ export class GenerateRules extends PageRulesVisualizer {
     _.each(subscribed, sData =>
         _.each(sData, data =>
             _.each(data.subscribers, uuids =>
-                _.each(uuids, uuid => that.updateLink(
-                    that.diagram.findNodeForKey(data.key),
-                    that.diagram.findNodeForKey(uuid), {event: true})))));
+                _.each(uuids, uuid => {
+                  console.log(data.key, uuid);
+                  return that.updateLink(
+                      that.diagram.findNodeForKey(data.key),
+                      that.diagram.findNodeForKey(uuid), {event: true});
+                }))));
   }
 
   /**

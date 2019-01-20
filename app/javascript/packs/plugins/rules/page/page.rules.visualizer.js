@@ -13,7 +13,7 @@ export class PageRulesVisualizer {
    */
   static getWidgets(page) {
     const widgets = page.model.getItems();
-    return page.utils._.map(widgets, function(widget) {
+    return page.utils._.map(widgets, widget => {
       const prefs = widget.model.getConfig('preferences'),
           imgPath = widget.content.image;
       return {
@@ -52,7 +52,7 @@ export class PageRulesVisualizer {
      */
     function _node(widget, rule, color, subscribers) {
       return {
-        key: rule + ':' + widget.model.getUUID(),
+        key: `${rule}:${widget.model.getUUID()}`,
         title: rule,
         uuid: widget.model.getUUID(),
         color: color,
@@ -61,7 +61,8 @@ export class PageRulesVisualizer {
     }
 
     const widgets = page.model.getItems();
-    return page.utils._.filter(page.utils._.map(widgets, widget => {
+    const _ = page.utils._;
+    return _.filter(_.map(widgets, widget => {
       const rules = widget.model.getConfig('rules'),
           publish = rules.publish || {},
           subscribers = rules.subscribers || {},
@@ -69,7 +70,7 @@ export class PageRulesVisualizer {
           resourceRules = publish[resource.toCamelCase().toLowerCase()];
       let data = [];
       if (publish.widget) {
-        data = page.utils._.map(publish.widget, rule => _node(widget, rule, 'lightgreen', subscribers));
+        data = _.map(publish.widget, rule => _node(widget, rule, 'lightgreen', subscribers));
       }
       if (resourceRules) {
         return data.concat(page.utils._.map(resourceRules, rule => _node(widget, rule, 'lightblue', subscribers)));
@@ -86,13 +87,14 @@ export class PageRulesVisualizer {
    */
   getWidgetSubscriberRules(page) {
     const widgets = page.model.getItems();
-    return page.utils._.filter(page.utils._.map(widgets, widget => {
+    const _ = page.utils._;
+    return _.filter(_.map(widgets, widget => {
       const rules = widget.model.getConfig('rules'),
           subscribers = rules.subscribers,
           publish = rules.publish || {};
       if (subscribers) {
-        return page.utils._.map(publish.widget, rule => ({
-          key: rule + ':' + widget.model.getUUID(),
+        return _.map(publish.widget, rule => ({
+          key: `${rule}:${widget.model.getUUID()}`,
           subscribers: subscribers
         }));
       }
