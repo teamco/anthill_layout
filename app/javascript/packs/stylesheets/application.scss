@@ -39,6 +39,11 @@ $sidebar-bg-color: #0d8ddb;
   .nav-dropdown.open {
     .nav-link {
       border-left: 1px solid $sidebar-bg-color;
+
+      &:hover {
+        background-color: #8BC3FF;
+        color: #333;
+      }
     }
 
     & > .nav-link {
@@ -57,6 +62,11 @@ $sidebar-bg-color: #0d8ddb;
   }
 
   .nav-dropdown-items {
+
+    .nav-item {
+      background-color: #464B51;
+    }
+
     svg {
       margin-left: 0.25em;
     }

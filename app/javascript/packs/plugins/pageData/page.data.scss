@@ -4,7 +4,7 @@ $page-rules: url(./images/rules.png);
   .nav-dropdown.open.page-data {
     .page-data-content {
       .nav-link {
-        padding: 0.35rem 1rem 0.05rem;
+        padding: 0.6rem 1rem 0.05rem;
       }
 
       .widget.page-rules {
@@ -21,5 +21,5 @@ $page-rules: url(./images/rules.png);
 }
 
 .canvas-rules {
-  height: 400px;
+  height: 50rem;
 }

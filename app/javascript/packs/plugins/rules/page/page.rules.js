@@ -46,6 +46,8 @@ export class GenerateRules extends PageRulesVisualizer {
       return false;
     }
 
+    const _make = go.GraphObject.make;
+
     /**
      * @constant
      * @type {HTMLDivElement|HTMLElement}
@@ -61,7 +63,9 @@ export class GenerateRules extends PageRulesVisualizer {
      * @property GenerateRules
      * @type {go.Diagram}
      */
-    this.diagram = new go.Diagram(div);
+    this.diagram = _make(go.Diagram, this.id, {
+      layout: _make(go.TreeLayout)
+    });
 
     this.diagram.initialContentAlignment = go.Spot.Center;
     this.diagram.nodeTemplate = GenerateRules.defineTemplate(go);
@@ -207,7 +211,7 @@ export class GenerateRules extends PageRulesVisualizer {
       key: rule.key,
       figure: 'Rectangle',
       color: rule.color,
-      title: rule.title + ' (' + rule.count + ')',
+      title: `${rule.title}: (${rule.count})`,
       description: rule.title.humanize()
     });
     this.updateLink(
@@ -237,15 +241,19 @@ export class GenerateRules extends PageRulesVisualizer {
         _make(go.Link, {
               fromNode: from,
               toNode: to,
-              routing: go.Link.Normal,
-              curve: go.Link.Bezier,
+              adjusting: go.Link.Stretch,
+              routing: go.Link.AvoidsNodes,
+              curve: go.Link.Stretch,
+              toShortLength: 3,
+              corner: 5,
+              reshapable: true,
               relinkableFrom: true,
               relinkableTo: true
             },
             _make(go.Shape, {
               isPanelMain: true,
               stroke: color,
-              strokeWidth: 2
+              strokeWidth: 1
             }),
             _make(go.Shape, {
               toArrow: 'Standard',
