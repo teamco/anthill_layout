@@ -306,12 +306,10 @@ export class GenerateRules extends PageRulesVisualizer {
     _.each(subscribed, sData =>
         _.each(sData, data =>
             _.each(data.subscribers, uuids =>
-                _.each(uuids, uuid => {
-                  console.log(data.key, uuid);
-                  return that.updateLink(
-                      that.diagram.findNodeForKey(data.key),
-                      that.diagram.findNodeForKey(uuid), {event: true});
-                }))));
+                _.each(uuids, uuid =>
+                    that.updateLink(
+                        that.diagram.findNodeForKey(data.key),
+                        that.diagram.findNodeForKey(uuid), {event: true})))));
   }
 
   /**
