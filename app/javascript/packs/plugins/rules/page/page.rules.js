@@ -73,7 +73,7 @@ export class GenerateRules extends PageRulesVisualizer {
       layout: _make(go.LayeredDigraphLayout),
       initialDocumentSpot: go.Spot.TopCenter,
       initialViewportSpot: go.Spot.TopCenter,
-      initialAutoScale: go.Diagram.UniformToFill
+      initialAutoScale: go.Diagram.Uniform
     });
 
     this.diagram.initialContentAlignment = go.Spot.Center;
