@@ -18,7 +18,6 @@ export class WidgetContentControllerRules {
    * @param {ModalElement} $modal
    */
   updateRules($modal) {
-
     const published = $('ul.publish-rules li', $modal.$),
         subscribed = $('ul.subscribe-rules > li', $modal.$),
         events = {
@@ -28,7 +27,6 @@ export class WidgetContentControllerRules {
         scope = this.scope;
 
     let event;
-
     for (let i = 0, l = published.length; i < l; i++) {
 
       /**
@@ -36,7 +34,6 @@ export class WidgetContentControllerRules {
        * @type {Array|jQuery}
        */
       event = $(published[i]).attr('value').split(':');
-
       events.publish[event[0]] = events.publish[event[0]] || [];
       events.publish[event[0]].push(event[1]);
     }
@@ -367,8 +364,8 @@ export class WidgetContentControllerRules {
      * @type {WidgetContent}
      */
     const scope = opts.widgetPublisher.controller.getContent();
-    this.logger.info('Scope available', scope);
-    this.controller._registerScopeRule(scope, opts);
+    this.scope.logger.info('Scope available', scope);
+    this._registerScopeRule(scope, opts);
   }
 
   /**
@@ -381,7 +378,7 @@ export class WidgetContentControllerRules {
    */
   _registerScopeRule(scope, opts) {
     if (!scope) {
-      this.logger.error('Undefined scope', opts.widgetPublisher, type);
+      this.scope.logger.error('Undefined scope', opts);
       return false;
     }
     this.registerRule(scope, opts.event, opts.subscribeEM, opts.subscribersCounter);
