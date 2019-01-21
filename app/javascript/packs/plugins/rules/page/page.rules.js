@@ -87,6 +87,7 @@ export class GenerateRules extends PageRulesVisualizer {
 
     this.updatePublishedRules();
     this.updateSubscriberRules();
+    this.handleNodeDblClick(this.page);
   }
 
   /**
@@ -143,10 +144,34 @@ export class GenerateRules extends PageRulesVisualizer {
    * @static
    */
   static updateConnectivity(node, link, port) {
-    const shape = node.findObject('shape'),
+    const shape = node.findObject(node.data.name),
         condition = node.findLinksInto().count;
     shape.stroke = condition ? 'lightcoral' : 'green';
     shape.strokeWidth = 2;
+  }
+
+  /**
+   * @method handleNodeDblClick
+   * @memberOf GenerateRules
+   * @param {Page} page
+   */
+  handleNodeDblClick(page) {
+    this.diagram.addDiagramListener('ObjectDoubleClicked', function (e) {
+      const data = e.subject.part.data || {};
+      if (data.name === 'widget') {
+
+        /**
+         * @constant widget
+         * @type {Widget}
+         */
+        const widget = page.model.getItemByUUID(data.key);
+
+
+      }
+      if (data.name === 'rule') {
+        // TODO (teamco): Do something.
+      }
+    });
   }
 
   /**
@@ -160,7 +185,7 @@ export class GenerateRules extends PageRulesVisualizer {
     const _make = go.GraphObject.make;
     const node = _make(go.Node, 'Auto', {click: GenerateRules.showConnections},
         _make(go.Shape, new go.Binding('figure', 'figure'), {
-              name: 'shape',
+              // name: 'shape',
               strokeWidth: 0.5,
               portId: '',
               cursor: 'pointer',
@@ -171,6 +196,7 @@ export class GenerateRules extends PageRulesVisualizer {
               fromLinkableDuplicates: true,
               toLinkableDuplicates: true
             },
+            new go.Binding('name', 'name'),
             new go.Binding('fill', 'color'),
             new go.Binding('stroke', 'isHighlighted', h => h ? 'red' : 'gray').ofObject()));
 
@@ -218,6 +244,7 @@ export class GenerateRules extends PageRulesVisualizer {
   updateDiagram(rule) {
     this.diagram.model.addNodeData({
       key: rule.key,
+      name: 'rule',
       figure: 'Ellipse',
       color: rule.color,
       title: `${rule.title}: (${rule.count})`,

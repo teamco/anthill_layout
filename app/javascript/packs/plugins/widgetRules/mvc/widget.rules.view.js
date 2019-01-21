@@ -109,19 +109,19 @@ export class WidgetRulesView extends BaseView {
 
     const activeContent = this.scope.activeContent;
     const $rules = activeContent.view.elements.$rules;
-    const uuid = [config.uuid, this.scope.name.toDash()].join('-');
+    const uuid = `${config.uuid}-${this.scope.name.toDash()}`;
 
     $rules.openRules.call(this.elements.items[uuid], {
       config: config,
       $html: $html.$,
-      style: [config.preferences.resource, 'widget-rules rules'].join(' '),
+      style: `${config.preferences.resource} widget-rules rules`,
       title: 'Widget rules',
       buttons: {
         preferences: {
           text: 'Preferences',
           type: 'info',
           events: {
-            click: 'preferences' + scope.name
+            click: `preferences${scope.name}`
           }
         }
       }

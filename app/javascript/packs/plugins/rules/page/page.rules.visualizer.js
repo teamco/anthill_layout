@@ -22,6 +22,7 @@ export class PageRulesVisualizer {
         title: prefs.title,
         description: prefs.description,
         color: '#dedede',
+        name: 'widget',
         path: imgPath
       };
     });
