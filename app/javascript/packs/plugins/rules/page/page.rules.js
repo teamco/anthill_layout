@@ -70,7 +70,10 @@ export class GenerateRules extends PageRulesVisualizer {
      * @type {go.Diagram}
      */
     this.diagram = _make(go.Diagram, this.id, {
-      layout: _make(go.LayeredDigraphLayout)
+      layout: _make(go.LayeredDigraphLayout),
+      initialDocumentSpot: go.Spot.TopCenter,
+      initialViewportSpot: go.Spot.TopCenter,
+      initialAutoScale: go.Diagram.UniformToFill
     });
 
     this.diagram.initialContentAlignment = go.Spot.Center;
@@ -169,7 +172,7 @@ export class GenerateRules extends PageRulesVisualizer {
               toLinkableDuplicates: true
             },
             new go.Binding('fill', 'color'),
-            new go.Binding('stroke', 'isHighlighted', h => h ? 'red' : 'black').ofObject()));
+            new go.Binding('stroke', 'isHighlighted', h => h ? 'red' : 'gray').ofObject()));
 
     node.linkConnected = GenerateRules.updateConnectivity;
     node.linkDisconnected = GenerateRules.updateConnectivity;
@@ -215,7 +218,7 @@ export class GenerateRules extends PageRulesVisualizer {
   updateDiagram(rule) {
     this.diagram.model.addNodeData({
       key: rule.key,
-      figure: 'Rectangle',
+      figure: 'Ellipse',
       color: rule.color,
       title: `${rule.title}: (${rule.count})`,
       description: rule.title.humanize()
