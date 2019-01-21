@@ -70,7 +70,7 @@ export class GenerateRules extends PageRulesVisualizer {
      * @type {go.Diagram}
      */
     this.diagram = _make(go.Diagram, this.id, {
-      layout: _make(go.TreeLayout)
+      layout: _make(go.LayeredDigraphLayout)
     });
 
     this.diagram.initialContentAlignment = go.Spot.Center;

@@ -90,10 +90,13 @@ export class PageRulesVisualizer {
     const _ = page.utils._;
     return _.filter(_.map(widgets, widget => {
       const rules = widget.model.getConfig('rules'),
+          resource = widget.model.getConfig('preferences/resource'),
           subscribers = rules.subscribers,
-          publish = rules.publish || {};
+          publish = rules.publish || {},
+          resourceRules = publish[resource.toCamelCase().toLowerCase()];
       if (subscribers) {
-        return _.map(publish.widget, rule => ({
+        const publishedRules = publish.widget ? publish.widget : resourceRules;
+        return _.map(publishedRules, rule => ({
           key: `${rule}:${widget.model.getUUID()}`,
           subscribers: subscribers
         }));
