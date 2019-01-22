@@ -161,6 +161,7 @@ export class PanelModel extends BaseModel {
 
   /**
    * @method getModuleBy
+   * @memberOf PanelModel
    * @param {string} type - name/index
    * @param value
    */

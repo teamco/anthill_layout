@@ -156,22 +156,75 @@ export class GenerateRules extends PageRulesVisualizer {
    * @param {Page} page
    */
   handleNodeDblClick(page) {
-    this.diagram.addDiagramListener('ObjectDoubleClicked', function (e) {
+    this.diagram.addDiagramListener('ObjectDoubleClicked', function(e) {
       const data = e.subject.part.data || {};
-      if (data.name === 'widget') {
 
-        /**
-         * @constant widget
-         * @type {Widget}
-         */
-        const widget = page.model.getItemByUUID(data.key);
-
-
-      }
-      if (data.name === 'rule') {
-        // TODO (teamco): Do something.
+      /**
+       * @constant method
+       * @type {GenerateRules.widgetDiagramDoubleClick|GenerateRules.ruleDiagramDoubleClick|Function}
+       */
+      const method = GenerateRules[`${data.name}DiagramDoubleClick`];
+      if (typeof GenerateRules[`${data.name}DiagramDoubleClick`] === 'function') {
+        method(page, data);
+      } else {
+        page.logger.warn('Undefined diagram element method', data.name);
       }
     });
+  }
+
+  /**
+   * @method widgetDiagramDoubleClick
+   * @memberOf GenerateRules
+   * @static
+   * @param {Page} page
+   * @param data
+   */
+  static widgetDiagramDoubleClick(page, data) {
+
+    /**
+     * @constant widget
+     * @type {Widget}
+     */
+    const widget = page.model.getItemByUUID(data.key);
+
+    /**
+     * @constant workspace
+     * @type {Workspace}
+     */
+    const workspace = page.controller.getContainment();
+
+    /**
+     * @constant panel
+     * @type {Panel}
+     */
+    const panel = workspace.controller.getDesignTimePanel();
+
+    /**
+     * @constant widgetRules
+     * @type {WidgetRules}
+     */
+    const widgetRules = panel.model.getModuleBy('name', 'widget-rules');
+
+    /**
+     * @type {{setActiveContent, prepareActiveComponent}}
+     */
+    const eventList = widgetRules.eventManager.eventList;
+    const config = widget.model.getConfig();
+
+    // Set active widget
+    widgetRules.observer.publish(eventList.setActiveContent, data.key);
+    widgetRules.observer.publish(eventList.prepareActiveComponent, [config, true]);
+  }
+
+  /**
+   * @method ruleDiagramDoubleClick
+   * @memberOf GenerateRules
+   * @static
+   * @param {Page} page
+   * @param data
+   */
+  static ruleDiagramDoubleClick(page, data) {
+    // TODO (teamco): Do something.
   }
 
   /**
