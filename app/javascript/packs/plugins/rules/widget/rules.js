@@ -131,7 +131,7 @@ export class BaseRules extends AntHill {
       }
     }, opts.buttons || {});
 
-    this.view.modalDialog({
+    this.modalDialog({
       style: opts.style,
       type: opts.type || 'info',
       title: opts.title,
