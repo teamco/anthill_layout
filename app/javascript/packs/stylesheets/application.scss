@@ -92,7 +92,8 @@ $sidebar-bg-color: #0d8ddb;
 
 .card.dashboard,
 .card.dashboard-edit {
-  height: 9em;
+  height: 9.2em;
+  overflow: hidden;
 }
 
 .card.dashboard-edit {
