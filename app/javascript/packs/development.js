@@ -1,8 +1,8 @@
 require.context('../images/', true, /\.(gif|jpg|png|svg)$/i);
 
-import './stylesheets/development.scss';
-import './stylesheets/application.scss';
-import './stylesheets/jquery-ui.min.scss';
+import './scss/development.scss';
+import './scss/application.scss';
+import './scss/jquery-ui.min.scss';
 import './combined';
 
 import Rails from 'rails-ujs';
