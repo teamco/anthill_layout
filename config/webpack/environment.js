@@ -8,6 +8,7 @@ environment.plugins.append(
     new webpack.ProvidePlugin({
       $: 'jquery',
       jQuery: 'jquery',
+      'window.$': 'jquery',
       'window.jQuery': 'jquery',
       'window.Tether': 'tether',
       html2canvas: 'html2canvas',

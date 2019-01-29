@@ -2,8 +2,6 @@
  * Created by teamco on 7/10/14.
  */
 
-import 'highlight.js/styles/agate.css';
-
 /**
  * @constant
  * @type {hljs}

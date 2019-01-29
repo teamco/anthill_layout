@@ -19,6 +19,7 @@ import '@coreui/coreui-plugin-chartjs-custom-tooltips/dist/js/custom-tooltips.mi
 import '@fortawesome/fontawesome-free/js/all.min';
 
 global['Rails'] = Rails;
+global['$'] = jQuery;
 
 document.addEventListener('DOMContentLoaded', () => {
   Rails.start();
