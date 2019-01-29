@@ -7,7 +7,7 @@
 }
 
 .text-value,
-.text-description {
+.text-description > div {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
