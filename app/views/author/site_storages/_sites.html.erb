@@ -8,9 +8,9 @@
       item: item,
       item_info: item.key,
       item_title: "
-      #{t('site_connected_widgets')} <span class=\"badge badge-#{badge(widgets)}\">#{widgets}</span><br />
-      #{t('version').pluralize} <span class=\"badge badge-dark\">#{versions}</span><br />
-      #{t('type')} <span class=\"badge badge-dark\">#{type}</span>".html_safe,
+      #{ibox_text(t('site_connected_widgets'), badge(widgets), widgets)}
+      #{ibox_text(t('version').pluralize, 'dark', versions)}
+      #{ibox_text(t('type'), 'dark', type)}".html_safe,
       item_icon: 'fa-globe',
       item_menu: 'menu' %>
 </div>

@@ -5,3 +5,10 @@
 .json-view {
   margin-bottom: 1em;
 }
+
+.text-value,
+.text-description {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

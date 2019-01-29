@@ -175,6 +175,27 @@ module ApplicationHelper
     send("css_#{storage[:mode]}")
   end
 
+  def ibox_text(text, icon, value)
+    "<div>#{text} <span class=\"badge badge-#{icon}\">#{value}</span></div>".html_safe
+  end
+
+  def path_exists?(path)
+    begin
+      Rails.application.routes.recognize_path(path)
+    rescue
+      return false
+    end
+  end
+
+  def send_path(path, prefix = nil, params = nil)
+    to_path = "#{path}_path"
+    to_auth_path = "author_#{path}_path"
+    prefix = prefix.nil? ? '' : "#{prefix}_"
+
+    send("#{prefix}#{to_path}", params) if path_exists?("#{prefix}#{to_path}")
+    send("#{prefix}#{to_auth_path}", params) if path_exists?("#{prefix}#{to_auth_path}")
+  end
+
   private
 
   def js_development(storage)
