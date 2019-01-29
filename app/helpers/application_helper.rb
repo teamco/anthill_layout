@@ -180,11 +180,7 @@ module ApplicationHelper
   end
 
   def path_exists?(path)
-    begin
-      Rails.application.routes.recognize_path(path)
-    rescue
-      return false
-    end
+    Rails.application.routes.named_routes.routes.any? {|key, value| key.to_s === path}
   end
 
   def send_path(path, prefix = nil, params = nil)
