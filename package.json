@@ -6,7 +6,7 @@
   "description": "SPA OOP Framework",
   "scripts": {
     "preinstall": "node -e \"if(process.env.npm_execpath.indexOf('yarn')===-1) throw new Error('You must use Yarn to install, not NPM')\"",
-    "postinstall": "./node_modules/.bin/jasmine init",
+    "postinstall": "",
     "test": "./node_modules/.bin/babel-node --presets env ./node_modules/.bin/karma start karma.conf.js"
   },
   "browserify-css": {
