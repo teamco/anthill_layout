@@ -106,11 +106,17 @@ module ApplicationHelper
     devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && !is_unlocks?
   end
 
-  def user_image_url
-    return asset_pack_path('images/user_info.png') if current_user.nil?
-    current_user.image ?
-        handle_external_images(current_user.image) :
-        current_user.gravatar_url
+  def user_image(user_name)
+    return image_pack_tag('media/user_info.png',
+        class: 'user-image',
+        alt: user_name) if current_user.nil?
+    current_user&.image ?
+        image_pack_tag(handle_external_images(current_user.image),
+            class: 'user-image',
+            alt: user_name) :
+        image_tag(current_user&.gravatar_url,
+            class: 'user-image',
+            alt: user_name)
   end
 
   def user_name
@@ -206,7 +212,7 @@ module ApplicationHelper
 
   def handle_external_images(url)
     return url if url.match(/http\:/)
-    asset_pack_path("images/#{current_user.image}")
+    "images/#{current_user.image}"
   end
 
   def render_icon(title, icon)
