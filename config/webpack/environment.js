@@ -30,6 +30,10 @@ environment.loaders.append('imports-loader', {
   loader: 'imports-loader?jQuery=jquery,$=jquery,this=>window'
 });
 
+environment.loaders.append('css-loader', {test: /\.css$/});
+environment.loaders.append('style-loader', {test: /\.css$/});
+environment.loaders.append('to-string-loader', {test: /\.css$/});
+
 environment.loaders.get('sass').use.splice(-1, 0, {
   loader: 'resolve-url-loader',
   options: {

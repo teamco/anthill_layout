@@ -1,18 +1,30 @@
 {
   "presets": [
-    ["env", {
-      "modules": false,
-      "targets": {
-        "browsers": "> 1%",
-        "forceAllTransforms": true
-      },
-      "useBuiltIns": false
-    }]
+    [
+      "env",
+      {
+        "modules": false,
+        "useBuiltIns": false,
+        "loose": true,
+        "targets": {
+          "forceAllTransforms": true,
+          "browsers": [
+            "last 2 versions",
+            "not ie > 0",
+            "not Android > 0"
+          ]
+        }
+      }
+    ]
   ],
-
   "plugins": [
     "dynamic-import-node",
     "transform-object-rest-spread",
-    ["transform-class-properties", { "spec": true }]
+    [
+      "transform-class-properties",
+      {
+        "spec": true
+      }
+    ]
   ]
 }
