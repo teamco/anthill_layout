@@ -126,7 +126,7 @@ export class PageDataController extends aggregation(PluginController, Router) {
      * @type {*}
      */
     const hash = this.base.lib.hash;
-    return hash.hashLength(data || {}) !== hash.hashLength(content || {});
+    return hash.hashLength(data) !== hash.hashLength(content);
   }
 
   /**
