@@ -546,7 +546,7 @@ export class BaseController extends aggregation(AntHill, BehaviorCrud, BehaviorW
        */
       const setter = 'set' + index.toCamelCase().capitalize();
 
-      if (typeof(scope.model[setter]) !== 'function') {
+      if (typeof (scope.model[setter]) !== 'function') {
 
         /**
          * Define setter
@@ -556,7 +556,7 @@ export class BaseController extends aggregation(AntHill, BehaviorCrud, BehaviorW
           name: setter,
           params: index,
           body: 'this._setItemInfoPreferences("' + index + '", ' + index + ');' +
-          scope.controller.getCustomPublisher(index),
+              scope.controller.getCustomPublisher(index),
           scope: scope.model.constructor.prototype
         });
 
@@ -691,12 +691,10 @@ export class BaseController extends aggregation(AntHill, BehaviorCrud, BehaviorW
    */
   extendConfig(opts) {
     const scope = this.scope;
+    const sname = scope.model.getScopeName().toLowerCase();
     const config = {
       html: {
-        container: [
-          '#', scope.model.getUUID(),
-          '-', scope.model.getScopeName().toLowerCase()
-        ].join('')
+        container: `#${sname}-${scope.model.getUUID()}`
       },
       containment: scope
     };

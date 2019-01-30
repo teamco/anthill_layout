@@ -154,7 +154,7 @@ export class PageDataController extends aggregation(PluginController, Router) {
      * Get element uuid
      * @type {string}
      */
-    const uuid = [widget.model.getUUID(), scope.name.toDash()].join('-');
+    const uuid = `${scope.name.toDash()}-${widget.model.getUUID()}`;
 
     this.getView().elements.items[uuid].setAttributes(widget);
   }

@@ -41,7 +41,7 @@ export class PluginController extends BaseController {
     /**
      * Get widget rules
      * @memberOf PluginController
-     * @type {function}
+     * @type {Function|*}
      * @returns {WidgetRules}
      */
     this.getWidgetRules = null;
