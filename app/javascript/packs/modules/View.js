@@ -167,7 +167,7 @@ export class BaseView extends AntHill {
    * @returns {string}
    */
   createStyle() {
-    return [this.getContainerClassName(), this.getConfigHTML('style')].join(' ');
+    return `${this.getContainerClassName()} ${this.getConfigHTML('style')}`;
   }
 
   /**
@@ -176,7 +176,7 @@ export class BaseView extends AntHill {
    * @returns {string}
    */
   createUUID() {
-    return [this.scope.model.getUUID(), this.getContainerClassName()].join('-');
+    return `${this.scope.model.getUUID()}-${this.getContainerClassName()}`;
   }
 
   /**
@@ -186,7 +186,7 @@ export class BaseView extends AntHill {
    * @returns {*|string}
    */
   renderUUID(id) {
-    return id || [this.utils.gen.UUID(), this.scope.name.toDash()].join('-');
+    return id || `${this.scope.name.toDash()}-${this.utils.gen.UUID()}`;
   }
 
   /**

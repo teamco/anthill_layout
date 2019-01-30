@@ -84,8 +84,8 @@ export class WorkspaceDataView extends aggregation(BaseView, BasePreferencesElem
        * @type {WorkspaceDataContentElement}
        */
       const $item = new WorkspaceDataContentElement(this, {
-        style: 'page content' + current + show,
-        uuid: [data[i].model.getUUID(), 'workspace-data-view'].join('-'),
+        style: `page content${current}${show}`,
+        uuid: `workspace-data-view-${data[i].model.getUUID()}`,
         $container: this.get$item().$,
         data: data[i]
       });

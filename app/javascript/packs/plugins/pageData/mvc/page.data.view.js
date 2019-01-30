@@ -62,7 +62,7 @@ export class PageDataView extends aggregation(BaseView, BasePreferencesElement) 
          */
         const $item = new PageDataContentElement(this, {
           style: 'content',
-          uuid: [data[index].model.getConfig('uuid'), this.scope.name.toDash()].join('-'),
+          uuid: `${this.scope.name.toDash()}-${data[index].model.getConfig('uuid')}`,
           $container: this.get$item().$,
           data: data[index],
           destroy: false
