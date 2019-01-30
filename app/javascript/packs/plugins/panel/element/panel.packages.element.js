@@ -38,6 +38,7 @@ export class PanelPackagesElement extends PluginElement {
    * @memberOf PanelPackagesElement
    */
   unselectItems() {
+    this.deactivateItems();
   }
 
   /**
@@ -46,5 +47,6 @@ export class PanelPackagesElement extends PluginElement {
    * @returns {*|jQuery}
    */
   deactivateItems() {
+    $('.open', this.$).removeClass('open');
   }
 }

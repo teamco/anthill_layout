@@ -614,6 +614,8 @@ export class BaseModel extends CRUD {
 
     if (collector[name]) {
       return collector[name];
+    } else if (root.model.getConfig('version') === 1) {
+      this.scope.logger.info(`First time load ${name} data collector`, data.collector);
     } else {
       this.scope.logger.warn(`Unable to get ${name} data collector`, data.collector);
     }

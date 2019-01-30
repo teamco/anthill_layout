@@ -232,7 +232,7 @@ export class WorkspaceDataController extends PluginController {
      */
     const workspace = this.controller.getWorkspace();
     const pages = workspace.model.getItems(),
-        cname = '-workspace-data-view';
+        cname = 'workspace-data-view-';
 
     for (let index in pages) {
       if (pages.hasOwnProperty(index)) {
@@ -253,11 +253,11 @@ export class WorkspaceDataController extends PluginController {
          * Define pages content element
          * @type {WorkspaceDataContentElement}
          */
-        const $item = this.view.elements.items[uuid + cname];
+        const $item = this.view.elements.items[cname + uuid];
 
         // TODO Fix
         if (!$item) {
-          this.logger.warn('Unable to fetch item', this.view.elements.items, uuid, cname);
+          this.logger.warn('Unable to fetch item', this.view.elements.items, cname + uuid);
           return false;
         }
 
