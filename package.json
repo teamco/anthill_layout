@@ -60,7 +60,7 @@
     "mixinable": "^4.0.0",
     "module-alias": "^2.2.0",
     "moment": "^2.24.0",
-    "npm": "6.7.0",
+    "npm": "6.8.0",
     "perfect-scrollbar": "^1.4.0",
     "pluralize": "^7.0.0",
     "popper.js": "^1.14.7",
@@ -72,7 +72,7 @@
     "strip-css-comments": "^3.0.0",
     "tether": "^1.4.5",
     "through2": "^3.0.0",
-    "tinymce": "^4.9.3",
+    "tinymce": "^5.0.0",
     "turbolinks": "^5.2.0",
     "underscore": "^1.9.1",
     "vkbeautify": "^0.99.3",
@@ -85,7 +85,7 @@
     "node": ">= 0.10"
   },
   "devDependencies": {
-    "@babel/core": "^7.2.2",
+    "@babel/core": "^7.3.3",
     "@babel/node": "^7.2.2",
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@fortawesome/fontawesome-free": "^5.7.2",
@@ -133,7 +133,7 @@
     "sugarss": "^2.0.0",
     "to-string-loader": "^1.1.5",
     "typescript": "^3.3.3",
-    "webpack": "^4.29.3",
+    "webpack": "^4.29.4",
     "webpack-bundle-analyzer": "^3.0.4",
     "webpack-cli": "^3.2.3",
     "webpack-dev-server": "3.1.14"
