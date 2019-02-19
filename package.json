@@ -7,8 +7,13 @@
   "scripts": {
     "preinstall": "node -e \"if(process.env.npm_execpath.indexOf('yarn')===-1) throw new Error('You must use Yarn to install, not NPM')\"",
     "postinstall": "",
-    "test": "./node_modules/.bin/babel-node --presets env ./node_modules/.bin/karma start karma.conf.js",
-    "test-mocha": "./node_modules/.bin/cross-env NODE_ENV=test ./node_modules/.bin/nyc ./node_modules/.bin/mocha --compilers js:@babel/register"
+    "clean": "rm -rf dist",
+    "prebuild": "yarn run clean",
+    "build": "./node_modules/.bin/babel app/javascript/packs -d ./dist",
+    "pretest": "yarn run build",
+    "test-mocha1": "./node_modules/.bin/cross-env NODE_ENV=test ./node_modules/.bin/nyc ./node_modules/.bin/mocha --compilers js:@babel/register",
+    "test": "./node_modules/.bin/mocha --require @babel/polyfill --require @babel/register"
+
   },
   "nyc": {
     "require": [
@@ -113,9 +118,11 @@
     "node": ">= 0.10"
   },
   "devDependencies": {
+    "@babel/cli": "^7.2.3",
     "@babel/core": "^7.3.3",
     "@babel/node": "^7.2.2",
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+    "@babel/register": "^7.0.0",
     "@fortawesome/fontawesome-free": "^5.7.2",
     "babel-core": "^7.0.0-beta.3",
     "babel-loader": "^8.0.5",
@@ -123,6 +130,7 @@
     "babel-polyfill": "^7.0.0-beta.3",
     "babel-preset-env": "^7.0.0-beta.3",
     "babel-preset-stage-0": "^7.0.0-beta.3",
+    "babel-register": "^7.0.0-beta.3",
     "babelify": "^10.0.0",
     "browserify-incremental": "^3.1.1",
     "browserify-shim": "^3.8.14",

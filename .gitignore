@@ -45,3 +45,4 @@ app/assets/javascripts/
 /yarn.lock
 .nyc_output
 .keep
+dist
