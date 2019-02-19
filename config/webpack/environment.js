@@ -1,7 +1,26 @@
 const {environment} = require('@rails/webpacker');
 const merge = require('webpack-merge');
 const webpack = require('webpack');
+//const WebpackBar = require('webpackbar');
+const SimpleProgressWebpackPlugin = require('simple-progress-webpack-plugin');
+const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const path = require('path');
+
+const handler = (percentage, message, ...args) => {
+  // e.g. Output each progress message directly to the console:
+  console.info(percentage, message, ...args);
+};
+
+environment.plugins.append(
+    'Progress',
+    new SimpleProgressWebpackPlugin()
+    // new webpack.ProgressPlugin(handler)
+);
+
+environment.plugins.append(
+    'Errors',
+    new FriendlyErrorsWebpackPlugin()
+);
 
 environment.plugins.append(
     'Provide',
