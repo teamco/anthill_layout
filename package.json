@@ -10,9 +10,9 @@
     "clean": "rm -rf dist",
     "prebuild": "yarn run clean",
     "build": "./node_modules/.bin/babel app/javascript/packs -d ./dist",
-    "pretest": "yarn run build",
-    "test-mocha1": "./node_modules/.bin/cross-env NODE_ENV=test ./node_modules/.bin/nyc ./node_modules/.bin/mocha --require @babel/register",
-    "test": "./node_modules/.bin/mocha --require @babel/register --compilers js:@babel/register"
+    "pretest": "",
+    "test-mocha1": "./node_modules/.bin/cross-env NODE_ENV=test ./node_modules/.bin/nyc ./node_modules/.bin/_mocha --ecma6 --require @babel/register --require @babel/polyfill --check-leaks --timeout 5000 --recursive",
+    "test": "./node_modules/.bin/mocha --require @babel/register --require @babel/polyfill --check-leaks --timeout 5000 --recursive"
   },
   "nyc": {
     "require": [
@@ -126,7 +126,6 @@
     "babel-core": "^7.0.0-beta.3",
     "babel-loader": "^8.0.5",
     "babel-plugin-dynamic-import-node": "^2.2.0",
-    "babel-plugin-istanbul": "^5.1.0",
     "babel-polyfill": "^7.0.0-beta.3",
     "babel-preset-env": "^7.0.0-beta.3",
     "babel-preset-stage-0": "^7.0.0-beta.3",
