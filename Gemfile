@@ -6,6 +6,7 @@ db = (ENV['PATH'] =~ /teamco/).nil? ? 'pg' : db
 
 gem 'rails', '>= 5.0.0'
 
+gem 'json'
 gem 'bullet'
 gem 'embedly'
 gem 'iframely'
