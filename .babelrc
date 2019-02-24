@@ -1,34 +1,38 @@
 {
   "presets": [
     [
-      "env",
+      "@babel/env",
       {
         "modules": false,
         "useBuiltIns": false,
         "loose": true,
+        "forceAllTransforms": true,
         "targets": {
-          "forceAllTransforms": true,
           "browsers": [
             "last 2 versions",
             "not ie > 0",
             "not Android > 0"
           ]
-        },
-        "test": {
-          "plugins": [
-            "istanbul"
-          ]
         }
       }
     ]
   ],
+  "env": {
+    "test": {
+      "plugins": [
+      ]
+    }
+  },
   "plugins": [
-    "dynamic-import-node",
-    "transform-object-rest-spread",
+    "@babel/plugin-syntax-dynamic-import",
+    "@babel/plugin-transform-runtime",
+    "@babel/plugin-transform-async-to-generator",
+    "@babel/plugin-proposal-object-rest-spread",
     [
-      "transform-class-properties",
+      "@babel/plugin-proposal-class-properties",
       {
-        "spec": true
+        "spec": true,
+        "loose": true
       }
     ]
   ]
