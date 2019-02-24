@@ -5,10 +5,9 @@ import './scss/application.scss';
 import './scss/jquery-ui.min.scss';
 import './combined';
 
-import Rails from 'rails-ujs';
 import Turbolinks from 'turbolinks';
 
-import 'babel-polyfill';
+import '@babel/polyfill';
 import 'bootstrap';
 
 import 'perfect-scrollbar/dist/perfect-scrollbar.min';
@@ -31,10 +30,7 @@ import 'jquery.initialize';
 
 import {Application} from './core/config/application';
 
-global['Rails'] = Rails;
-
 document.addEventListener('DOMContentLoaded', () => {
-  Rails.start();
   Turbolinks.start();
 });
 

@@ -3,10 +3,9 @@ require.context('../images/', true, /\.(gif|jpg|png|svg)$/i);
 import './scss/application.scss';
 import './combined';
 
-import Rails from 'rails-ujs';
 import Turbolinks from 'turbolinks';
 
-import 'babel-polyfill';
+import '@babel/polyfill';
 import 'bootstrap';
 
 import 'perfect-scrollbar/dist/perfect-scrollbar.min';
@@ -18,10 +17,8 @@ import '@coreui/coreui-plugin-chartjs-custom-tooltips/dist/js/custom-tooltips.mi
 // fontawesome.library.add(faCoffee, faCameraRetro)
 import '@fortawesome/fontawesome-free/js/all.min';
 
-global['Rails'] = Rails;
 global['$'] = jQuery;
 
 document.addEventListener('DOMContentLoaded', () => {
-  Rails.start();
   Turbolinks.start();
 });
