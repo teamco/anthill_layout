@@ -4,8 +4,9 @@
       "@babel/preset-env",
       {
         "modules": false,
-        "useBuiltIns": false,
+        "useBuiltIns": "entry",
         "loose": true,
+        "debug": true,
         "forceAllTransforms": true,
         "targets": {
           "browsers": [
@@ -28,6 +29,7 @@
     "@babel/plugin-transform-runtime",
     "@babel/plugin-transform-async-to-generator",
     "@babel/plugin-proposal-object-rest-spread",
+    "@babel/plugin-proposal-optional-chaining",
     [
       "@babel/plugin-proposal-class-properties",
       {
