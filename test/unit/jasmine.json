@@ -5,6 +5,7 @@
     "!**/*.nospec.js"
   ],
   "helpers": [
+    "unit/helpers/**/*.js"
   ],
   "stopSpecOnExpectationFailure": false,
   "random": false
