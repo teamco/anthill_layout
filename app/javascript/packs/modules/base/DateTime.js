@@ -10,7 +10,7 @@
  * Define Date time
  * @class LibDateTime
  */
-module.exports = class LibDateTime {
+export class LibDateTime {
 
   /**
    * @constructor
@@ -240,7 +240,7 @@ module.exports = class LibDateTime {
             Z: utc ? 'UTC' : (String(date).match(timezone) || ['']).pop().
                 replace(timezoneClip, ''),
             o: (o > 0 ? '-' : '+') +
-            pad(Math.floor(Math.abs(o) / 60) * 100 + Math.abs(o) % 60, 4),
+                pad(Math.floor(Math.abs(o) / 60) * 100 + Math.abs(o) % 60, 4),
             S: ['th', 'st', 'nd', 'rd'][d % 10 > 3 ? 0 :
                 (d % 100 - d % 10 !== 10) * d % 10]
           };
@@ -248,4 +248,4 @@ module.exports = class LibDateTime {
       return mask.replace(token, $0 => $0 in flags ? flags[$0] : $0.slice(1, $0.length - 1));
     })();
   }
-};
+}

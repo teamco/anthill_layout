@@ -2,7 +2,7 @@
  * @class LibString
  * @type {LibString}
  */
-module.exports = class LibString {
+export class LibString {
 
   /**
    * @constructor
@@ -129,4 +129,4 @@ module.exports = class LibString {
       return this.replace(/([A-Z])/g, $1 => '_' + $1.toLowerCase());
     });
   }
-};
+}

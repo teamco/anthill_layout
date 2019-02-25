@@ -10,7 +10,7 @@
  * @class LibFunction
  * @type {LibFunction}
  */
-module.exports = class LibFunction {
+export class LibFunction {
 
   /**
    * Define function creator
@@ -33,4 +33,4 @@ module.exports = class LibFunction {
     }
     return fn;
   }
-};
+}

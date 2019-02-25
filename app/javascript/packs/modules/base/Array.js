@@ -9,7 +9,7 @@
 /**
  * @class LibArray
  */
-module.exports = class LibArray {
+export class LibArray {
 
   /**
    * Sort array by value
@@ -93,4 +93,4 @@ module.exports = class LibArray {
 
     return this.sort(fn);
   }
-};
+}

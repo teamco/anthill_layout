@@ -1,3 +1,11 @@
+import {LibDateTime} from './base/DateTime';
+import {LibGenerator} from './base/Generator';
+import {LibString} from './base/String';
+import {LibNumber} from './base/Number';
+import {LibFunction} from './base/Function';
+import {LibArray} from './base/Array';
+import {LibCss} from './base/Css';
+
 /**
  * Define base utils
  * @class Base
@@ -20,43 +28,43 @@ export class Base {
      * @property Base.ts
      * @type {LibDateTime}
      */
-    this.ts = new (require('./base/DateTime.js'));
+    this.ts = new LibDateTime();
 
     /**
      * @property Base.gen
      * @type {LibGenerator}
      */
-    this.gen = new (require('./base/Generator.js'));
+    this.gen = new LibGenerator();
 
     /**
      * @property Base.str
      * @type {LibString}
      */
-    this.str = new (require('./base/String.js'));
+    this.str = new LibString();
 
     /**
      * @property Base.str
      * @type {LibNumber}
      */
-    this.num = new (require('./base/Number.js'));
+    this.num = new LibNumber();
 
     /**
      * @property Base.fn
      * @type {LibFunction}
      */
-    this.fn = new (require('./base/Function.js'));
+    this.fn = new LibFunction();
 
     /**
      * @property Base.array
      * @type {LibArray}
      */
-    this.array = new (require('./base/Array.js'));
+    this.array = new LibArray();
 
     /**
      * @property Base.css
      * @type {LibCss}
      */
-    this.css = new (require('./base/Css.js'));
+    this.css = new LibCss();
   }
 
   /**

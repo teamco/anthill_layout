@@ -11,7 +11,7 @@
  * @class LibGenerator
  * @constructor
  */
-module.exports = class LibGenerator {
+export class LibGenerator {
 
   constructor() {
   }
@@ -68,4 +68,4 @@ module.exports = class LibGenerator {
       ].join('');
     }
   }
-};
+}

@@ -9,7 +9,7 @@
  * @class LibCss
  * @constructor
  */
-module.exports = class LibCss {
+export class LibCss {
 
   /**
    * Define reset matrix css
@@ -82,4 +82,4 @@ module.exports = class LibCss {
 
     _updateCss(_value.join(' '));
   }
-};
+}

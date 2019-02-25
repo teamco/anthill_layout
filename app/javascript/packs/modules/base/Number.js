@@ -12,7 +12,7 @@
  * @class LibNumber
  * @type {LibNumber}
  */
-module.exports = class LibNumber {
+export class LibNumber {
 
   /**
    * @constructor
@@ -103,4 +103,4 @@ module.exports = class LibNumber {
     const i = Math.floor(Math.log(bytes) / Math.log(k));
     return (bytes / Math.pow(k, i)).toPrecision(3) + ' ' + sizes[i];
   }
-};
+}
