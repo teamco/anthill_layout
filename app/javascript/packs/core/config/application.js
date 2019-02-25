@@ -162,10 +162,11 @@ export class Application extends AntHill {
   /**
    * @static
    * @method
+   * @param {{}} [mock]
    */
-  static async init() {
+  static async init(mock = {}) {
     const script = document.querySelector('script#require-init'),
-        data = script.dataset || {};
+        data = (script || {}).dataset || mock;
 
     const site = data.resource,
         uuid = data.uuid,

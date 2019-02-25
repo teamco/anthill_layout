@@ -6,7 +6,7 @@
         "modules": "auto",
         "useBuiltIns": "usage",
         "loose": true,
-        "debug": true,
+        "debug": false,
         "forceAllTransforms": true,
         "targets": {
           "browsers": [
