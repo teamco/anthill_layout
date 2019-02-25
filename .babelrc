@@ -3,8 +3,8 @@
     [
       "@babel/preset-env",
       {
-        "modules": false,
-        "useBuiltIns": "entry",
+        "modules": "auto",
+        "useBuiltIns": "usage",
         "loose": true,
         "debug": true,
         "forceAllTransforms": true,
