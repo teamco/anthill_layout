@@ -51,6 +51,29 @@ export class MVC {
         ];
 
     /**
+     * Default logger config
+     * @property MVC.LOGGER_CONFIG
+     * @type {{
+     *  show: boolean,
+     *  handle: boolean,
+     *  type: {warn: boolean, debug: boolean, log: boolean, error: boolean, info: boolean},
+     *  namespaces: boolean
+     * }}
+     */
+    this.LOGGER_CONFIG = {
+      handle: false,
+      show: false,
+      namespaces: false,
+      type: {
+        debug: false,
+        log: false,
+        info: false,
+        error: false,
+        warn: false
+      }
+    };
+
+    /**
      * Define reserved methods
      * @property MVC.RESERVED
      * @type {{
@@ -661,6 +684,6 @@ export class MVC {
    * @memberOf MVC.applyLogger
    */
   applyLogger() {
-    this.scope.logger.setConfig(this.scope.config.logger || {});
+    this.scope.logger.setConfig(this.scope.config.logger || this.LOGGER_CONFIG);
   }
 }
