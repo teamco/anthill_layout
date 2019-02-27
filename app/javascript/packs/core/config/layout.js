@@ -29,7 +29,7 @@ export class Layout extends AntHill {
   /**
    * @constructor
    * @param opts
-   * @param {PageLayout} containment
+   * @param {Page} containment
    */
   constructor(opts, containment) {
     super('Layout', null, true);

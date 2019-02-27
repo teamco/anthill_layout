@@ -1,8 +1,9 @@
-import {Application} from '../../app/javascript/packs/core/config/application';
+import {Page} from '../../app/javascript/packs/core/config/page';
 
-describe('Create Application', () => {
+describe('Create Layout', () => {
 
   it('and so is a spec', async () => {
-    const anthill = await Application.init();
+    //const layout = await new Layout();
+    const page = await new Page({});
   });
 });

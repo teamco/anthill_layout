@@ -138,7 +138,7 @@ export class MVC {
      * @property MVC.scope
      * @type {*}
      */
-    this.scope.config = $.extend(true, {}, selfDefaults, selfConfig);
+    this.scope.config = Object.assign({}, selfDefaults, selfConfig);
 
     /**
      * Define mvc components
