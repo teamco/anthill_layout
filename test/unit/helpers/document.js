@@ -11,6 +11,7 @@ const {document} = (new JSDOM(``, {url: 'http://localhost:5000'})).window;
   const window = document.defaultView;
   global.document = document;
   global.window = window;
+  global.jQuery = global.$ = require('jquery');
 
   if (!Object.keys(window).length) {
     throw 'jsdom failed to create a usable environment, try uninstalling and reinstalling it';
