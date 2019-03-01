@@ -5,6 +5,7 @@ import {LibNumber} from './base/Number';
 import {LibFunction} from './base/Function';
 import {LibArray} from './base/Array';
 import {LibCss} from './base/Css';
+import {LibHash} from './base/Hash';
 
 /**
  * Define base utils
@@ -43,10 +44,16 @@ export class Base {
     this.str = new LibString();
 
     /**
-     * @property Base.str
+     * @property Base.num
      * @type {LibNumber}
      */
     this.num = new LibNumber();
+
+    /**
+     * @property Base.hash
+     * @type {LibHash}
+     */
+    this.hash = new LibHash();
 
     /**
      * @property Base.fn
@@ -237,7 +244,7 @@ export class Base {
         } else {
 
           // External library failed to load
-          if (typeof(fallbackFn) === 'function') {
+          if (typeof (fallbackFn) === 'function') {
             fallbackFn();
           }
         }

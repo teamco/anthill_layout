@@ -1,12 +1,9 @@
 {
-  "spec_dir": "test",
+  "spec_dir": "test/unit",
   "spec_files": [
-    "**/*.unit.js",
-    "!**/*.nospec.js"
+    "../**/*.unit.spec.js"
   ],
   "helpers": [
-    "unit/helpers/**/*.js"
-  ],
-  "stopSpecOnExpectationFailure": false,
-  "random": false
+    "../../node_modules/@babel/register/lib/node.js"
+  ]
 }

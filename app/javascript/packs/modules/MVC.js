@@ -3,7 +3,6 @@
  * User: teamco
  * Date: 11/4/12
  * Time: 10:14 PM
- * To change this template use File | Settings | File Templates.
  */
 
 /**
@@ -161,7 +160,7 @@ export class MVC {
      * @property MVC.scope
      * @type {*}
      */
-    this.scope.config = Object.assign({}, selfDefaults, selfConfig);
+    this.scope.config = $.extend(true, {}, selfDefaults, selfConfig);
 
     /**
      * Define mvc components

@@ -6,7 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 
-import 'zoomooz';
+//import 'zoomooz';
 import {BaseElement} from '../../../modules/Element';
 
 /**

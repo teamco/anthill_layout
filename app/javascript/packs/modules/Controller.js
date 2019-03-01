@@ -538,13 +538,14 @@ export class BaseController extends aggregation(AntHill, BehaviorCrud, BehaviorW
      */
     const prefs = scope.model.getConfig('preferences');
 
-    $.each(prefs, (index, value) => {
+    for (let index in prefs) {
+      let value = prefs[index];
 
       /**
        * Define method name
        * @type {string}
        */
-      const setter = 'set' + index.toCamelCase().capitalize();
+      const setter = `set${index.toCamelCase().capitalize()}`;
 
       if (typeof (scope.model[setter]) !== 'function') {
 
@@ -555,8 +556,8 @@ export class BaseController extends aggregation(AntHill, BehaviorCrud, BehaviorW
         const fn = scope.utils.fn.create({
           name: setter,
           params: index,
-          body: 'this._setItemInfoPreferences("' + index + '", ' + index + ');' +
-              scope.controller.getCustomPublisher(index),
+          body: `this._setItemInfoPreferences("${index}", ${index});
+            ${scope.controller.getCustomPublisher(index)}`,
           scope: scope.model.constructor.prototype
         });
 
@@ -564,7 +565,7 @@ export class BaseController extends aggregation(AntHill, BehaviorCrud, BehaviorW
       }
 
       scope.model[setter](value);
-    });
+    }
   }
 
   /**

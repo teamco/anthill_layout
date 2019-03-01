@@ -5,139 +5,72 @@
  * Time: 9:24 PM
  * To change this template use File | Settings | File Templates.
  */
-defineP(function defineLibHash() {
+
+/**
+ * @class LibHash
+ */
+export class LibHash {
 
   /**
-   * Define Hash lib
-   * @class LibHash
-   * @constructor
+   * @memberOf LibHash
+   * @param obj1
+   * @param obj2
+   * @returns {*}
    */
-  var LibHash = function LibHash() {
-  };
+  extend(obj1 = {}, obj2 = {}) {
+    const keys = this.keys(obj2);
+    for (let i = 0; i < keys.length; i += 1) {
+      const val = obj2[keys[i]];
+      const _is = ['string', 'number', 'array', 'boolean'].indexOf(typeof val);
+      obj1[keys[i]] = _is === -1 ? this.extend(obj1[keys[i]], val) : val;
+    }
+    return obj1;
+  }
 
-  LibHash.extend('LibHash', {
+  /**
+   * Check if hash empty
+   * @memberOf LibHash
+   * @param {*} o
+   * @returns {boolean}
+   */
+  isEmpty(o = {}) {
+    return !this.length(o);
+  }
 
-    /**
-     * Extend hash
-     * @memberOf LibHash
-     * @param {*} hash
-     * @param {*} defaults
-     * @returns {*}
-     */
-    extendHash: function extendHash(hash, defaults) {
-      defaults = defaults || {};
-      hash = hash || {};
-      $.extend(true, defaults, hash);
-      return defaults;
-    },
+  /**
+   * Find all Hash keys
+   * @memberOf LibHash
+   * @param {*} h
+   * @returns {Array}
+   */
+  keys(h = {}) {
+    return Object.keys(h);
+  }
 
-    /**
-     * Check if hash empty
-     * @memberOf LibHash
-     * @param {*} o
-     * @returns {boolean}
-     */
-    isHashEmpty: function isHashEmpty(o) {
-      return this.hashLength(o) === 0;
-    },
+  /**
+   * Get Hash length
+   * @memberOf LibHash
+   * @param {*} o
+   * @returns {Number}
+   */
+  length(o = {}) {
+    return this.keys(o).length;
+  }
 
-    /**
-     * Check if Hash(h) has Key(k)
-     * @memberOf LibHash
-     * @param {*} h
-     * @param {string} k
-     * @returns {boolean}
-     */
-    isHashKey: function isHashKey(h, k) {
-      if (typeof(h) === 'object') {
-        return h.hasOwnProperty(k);
-      }
-    },
-
-    /**
-     * First hash element value
-     * @memberOf LibHash
-     * @param {*} h
-     * @returns {*}
-     */
-    firstHashElement: function firstHashElement(h) {
-      var k;
-      if (this.isHashEmpty(h)) {
-        return false;
-      }
-      for (k in h) {
-        if (h.hasOwnProperty(k)) {
-          break;
-        }
-      }
-      return h[k];
-    },
-
-    /**
-     * First hash element's key
-     * @memberOf LibHash
-     * @param {*} h
-     * @returns {Boolean|String}
-     */
-    firstHashKey: function firstHashKey(h) {
-      var k;
-      if (this.isHashEmpty(h)) {
-        return false;
-      }
-      for (k in h) {
-        if (h.hasOwnProperty(k)) {
-          break;
-        }
-      }
-      return k;
-    },
-
-    /**
-     * Find all Hash keys
-     * @memberOf LibHash
-     * @param {*} h
-     * @returns {Array}
-     */
-    hashKeys: function hashKeys(h) {
-      if (Object.keys) {
-        return Object.keys(h);
-      }
-      var keys = [], k;
-      for (k in h) {
-        if (this.isHashKey(h, k)) {
-          keys.push(k);
-        }
-      }
-      return keys;
-    },
-
-    /**
-     * Get Hash length
-     * @memberOf LibHash
-     * @param {*} o
-     * @returns {Number}
-     */
-    hashLength: function hashLength(o) {
-      return this.hashKeys(o || {}).length;
-    },
-
-    /**
-     * Get hash key by value
-     * @memberOf LibHash
-     * @param {*} h
-     * @param {*} v
-     * @returns {string}
-     */
-    getKeyByValue: function getKeyByValue(h, v) {
-      for (var prop in h) {
-        if (h.hasOwnProperty(prop)) {
-          if (h[prop] === v) {
-            return prop;
-          }
+  /**
+   * Get hash key by value
+   * @memberOf LibHash
+   * @param {*} h
+   * @param {*} v
+   * @returns {string}
+   */
+  getKeyByValue(h = {}, v) {
+    for (const prop in h) {
+      if (h.hasOwnProperty(prop)) {
+        if (h[prop] === v) {
+          return prop;
         }
       }
     }
-  });
-
-  return new LibHash();
-});
+  }
+}

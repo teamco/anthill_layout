@@ -7,11 +7,11 @@
   "scripts": {
     "preinstall": "node -e \"if(process.env.npm_execpath.indexOf('yarn')===-1) throw new Error('You must use Yarn to install, not NPM')\"",
     "postinstall": "",
-    "au123toclean-modules": "yarn autoclean --force",
+    "clean": "yarn autoclean --force",
     "prebuild": "yarn run clean",
     "build": "./node_modules/.bin/babel app/javascript/packs -d ./dist",
     "pretest": "",
-    "jasmine-init": "node ./node_modules/jasminebabel-preset-stage-0/bin/jasmine.js init",
+    "jasmine-init": "node ./node_modules/jasmine/bin/jasmine.js init",
     "test": "./node_modules/.bin/babel-node ./node_modules/.bin/jasmine --config=test/unit/jasmine.json",
     "coverage": "./node_modules/.bin/babel-node ./node_modules/.bin/nyc ./node_modules/.bin/jasmine --config=test/unit/jasmine.json"
   },
@@ -103,11 +103,12 @@
     "strip-css-comments": "^3.0.0",
     "style-loader": "^0.23.1",
     "tether": "^1.4.5",
-    "through2": "^3.0.0",
+    "through2": "^3.0.1",
     "tinymce": "^5.0.1",
     "to-string-loader": "^1.1.5",
     "turbolinks": "^5.2.0",
     "underscore": "^1.9.1",
+    "underscore-deep-extend": "^1.1.5",
     "vkbeautify": "^0.99.3",
     "webpack-bundle": "^0.9.9",
     "webpack-merge": "^4.2.1",
@@ -130,6 +131,7 @@
     "@babel/preset-env": "^7.3.4",
     "@babel/register": "^7.0.0",
     "babel-loader": "^8.0.5",
+    "babel-plugin-module-resolver": "^3.2.0",
     "babelify": "^10.0.0",
     "browserify": "^16.2.3",
     "browserify-incremental": "^3.1.1",
@@ -150,14 +152,10 @@
     "string_decoder": "^1.2.0",
     "sugarss": "^2.0.0",
     "typescript": "^3.3.3333",
-    "webpack": "^4.29.5",
+    "webpack": "^4.29.6",
     "webpack-bundle-analyzer": "^3.0.4",
     "webpack-cli": "^3.2.3",
     "webpack-dev-server": "3.2.1",
     "webpackbar": "^3.1.5"
-  },
-  "_moduleAliases": {
-    "vendor": "app/javascript/packs/lib/",
-    "js": "app/javascript/packs/"
   }
 }

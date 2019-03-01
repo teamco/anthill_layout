@@ -36,6 +36,21 @@
         "spec": true,
         "loose": true
       }
+    ],
+    [
+      "module-resolver",
+      {
+        "root": [
+          "./app/javascript/packs/"
+        ],
+        "alias": {
+          "app": "./",
+          "js": "./app/javascript/packs/",
+          "lib": "./app/javascript/packs/lib/",
+          "config": "./app/javascript/packs/core/config/",
+          "test": "./test/unit/"
+        }
+      }
     ]
   ]
 }
