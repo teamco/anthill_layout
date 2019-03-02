@@ -2,9 +2,14 @@ import {Application} from 'config/application';
 import {mvcExpectation} from '../helpers/utils';
 
 describe('Application', () => {
-  it('Application should be created', async () => {
-    const app = await Application.init();
+
+  /**
+   * @constant
+   * @type {Promise<void>}
+   */
+  const appPromise = Application.init();
+
+  appPromise.then(app => {
     mvcExpectation(app);
-    expect(app instanceof Application).toBeTruthy();
   });
 });

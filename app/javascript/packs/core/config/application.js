@@ -186,7 +186,7 @@ export class Application extends AntHill {
       mode: mode
     };
 
-    const config = await import(`../../public/${site}/index`);
-    window.anthill = new Application({config: {...config.default, ...defaults} || {}});
+    return import(`../../public/${site}/index`).then(config => new Application(
+        {config: {...config.default, ...defaults} || {}}));
   }
 }

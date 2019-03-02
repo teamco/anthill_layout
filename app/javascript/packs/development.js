@@ -30,12 +30,10 @@ import 'jquery.initialize';
 
 import {Application} from './core/config/application';
 
-document.addEventListener('DOMContentLoaded', () => {
-  Turbolinks.start();
-});
+document.addEventListener('DOMContentLoaded', () => Turbolinks.start());
 
 document.onreadystatechange = async () => {
   if (document.readyState === 'complete') {
-    await Application.init();
+    window.anthill = await Application.init();
   }
 };
