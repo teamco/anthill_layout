@@ -6,7 +6,6 @@
  * To change this template use File | Settings | File Templates.
  */
 
-//import 'zoomooz';
 import {BaseElement} from '../../../modules/Element';
 
 /**
@@ -511,24 +510,16 @@ export class WidgetElement extends BaseElement {
      */
     const domElement = $element.$;
 
-    if (!domElement.zoomTo) {
-      $element.view.scope.logger.warn('Plugin: jquery.zoomooz.min.js, should be initialized', zoomable);
-      return false;
-    }
-
     if (zoomable) {
       domElement.on('dblclick', e => {
+        e.preventDefault();
         e.stopPropagation();
         if (domElement.hasClass('zoomTarget')) {
           $element.unsetZoom();
-          return false;
+        } else {
+          domElement.addClass('zoomTarget');
+          $element.view.scope.utils.ua.fullScreen(domElement);
         }
-
-        domElement.addClass('zoomTarget').zoomTo({
-          targetsize: 0.75,
-          closeclick: true,
-          duration: 600
-        });
       });
     } else {
       $element.unsetZoom(true);
@@ -541,24 +532,12 @@ export class WidgetElement extends BaseElement {
    * @param {boolean} [force]
    */
   unsetZoom(force) {
-
-    /**
-     * @constant body
-     * @type {*|jQuery|HTMLElement}
-     */
-    const body = $('body');
-
-    if (!body.zoomTo) {
-      this.view.scope.logger.warn('Plugin: jquery.zoomooz.min.js, should be initialized', force);
-      return false;
-    }
-
     if (force) {
       this.$.off('dblclick.zoom');
     }
 
-    body.zoomTo({targetsize: 1.0});
     this.$.removeClass('zoomTarget');
+    this.view.scope.utils.ua.fullScreen(this.$, false);
   }
 
   /**

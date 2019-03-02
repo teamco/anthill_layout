@@ -6,6 +6,7 @@ import {LibFunction} from './base/Function';
 import {LibArray} from './base/Array';
 import {LibCss} from './base/Css';
 import {LibHash} from './base/Hash';
+import {LibUserAgent} from './base/UA';
 
 /**
  * Define base utils
@@ -48,6 +49,12 @@ export class Base {
      * @type {LibNumber}
      */
     this.num = new LibNumber();
+
+    /**
+     * @property Base.ua
+     * @type {LibUserAgent}
+     */
+    this.ua = new LibUserAgent();
 
     /**
      * @property Base.hash

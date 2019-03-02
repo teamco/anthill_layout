@@ -6,6 +6,6 @@ describe('JS Unit tests', () => {
     jsDocument();
   });
 
-  require('./unit/application/application.unit');
+  //require('./unit/application/application.unit');
   require('./unit/page/page.unit');
 });
