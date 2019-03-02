@@ -12,12 +12,12 @@ export const mvcExpectation = (node, order = 1, render = true) => {
    * @private
    */
   function _it(type) {
-    it(`${node.name}: ${type.toUpperCase()} should be defined`, async () => {
+    it(`${type}: should be defined`, async () => {
       expect(node[type]).toBeDefined();
     });
   }
 
-  it(`${node.name} should be created`, async () => {
+  it(`should be created`, async () => {
     expect(node instanceof node.constructor).toBeTruthy();
   });
 
@@ -28,7 +28,7 @@ export const mvcExpectation = (node, order = 1, render = true) => {
   _it('permission');
 
   if (render) {
-    it(`${node.name}: ORDER should be ${order}`, async () => {
+    it(`order: should be ${order}`, async () => {
       expect(node.model.getConfig('order')).toBe(order);
     });
 
