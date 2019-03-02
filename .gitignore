@@ -47,3 +47,4 @@ app/assets/javascripts/
 .keep
 dist
 .yarnclean
+/test/junitresults-JSUnittests.xml
