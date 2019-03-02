@@ -111,8 +111,7 @@
     "underscore-deep-extend": "^1.1.5",
     "vkbeautify": "^0.99.3",
     "webpack-bundle": "^0.9.9",
-    "webpack-merge": "^4.2.1",
-    "zoomooz": "^1.0.0"
+    "webpack-merge": "^4.2.1"
   },
   "license": "MIT",
   "engines": {

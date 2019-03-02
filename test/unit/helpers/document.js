@@ -28,6 +28,12 @@ export const jsDocument = () => {
       }
     });
 
-    return document;
+    const editableFn = _value => ({
+      get: () => _value,
+      set: (v) => _value = v
+    });
+
+    Object.defineProperty(navigator, 'userAgent', editableFn(navigator.userAgent));
+    Object.defineProperty(navigator, 'appVersion', editableFn(navigator.appVersion));
   })();
 };
