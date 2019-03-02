@@ -34,14 +34,7 @@ export class WorkspaceController extends aggregation(BaseController, Router, Wor
    * @memberOf WorkspaceController
    */
   bindHashChange() {
-
-    /**
-     * Get controller
-     * @type {WorkspaceController}
-     */
-    const controller = this.controller;
-
-    $(window).on('hashchange', controller.switchPageOnHashChange.bind(controller));
+    window.addEventListener('hashchange', this.controller.switchPageOnHashChange.bind(this.controller));
   }
 
   /**
