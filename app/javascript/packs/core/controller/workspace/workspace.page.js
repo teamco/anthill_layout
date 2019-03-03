@@ -296,7 +296,7 @@ export class WorkspacePage {
    * @memberOf WorkspacePage
    */
   resetPagesHeightBeforeSwitch() {
-    this.utils._.each(this.model.getItems(), item => {
+    _.each(this.model.getItems(), item => {
       item.view ?
           item.view.get$item().$.addClass('height-auto') :
           this.logger.warn('Item with no View', item);

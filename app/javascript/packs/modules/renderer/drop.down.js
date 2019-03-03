@@ -25,7 +25,7 @@ export class DropDownRenderer {
   renderDropDown(data, selected, name, index, event, visible, disabled, placeholder, store, label) {
 
     // Init placeholder
-    placeholder = this.view.utils._.isUndefined(placeholder) ? false : placeholder;
+    placeholder = _.isUndefined(placeholder) ? false : placeholder;
 
     // Init disabled
     disabled = this.view.utils.setBoolean(disabled, false);

@@ -345,7 +345,7 @@ export class BaseElement extends Renderer {
 
       this.$[prepend ? 'prependTo' : 'appendTo'](opts.$container);
 
-      if (this.view.utils._.isFunction(opts.callback)) {
+      if (_.isFunction(opts.callback)) {
         opts.callback();
       }
     }
@@ -395,7 +395,7 @@ export class BaseElement extends Renderer {
           delete css[item.path];
         }
         if (link.length > 1) {
-          css[item.path] = this.view.utils._.reject(link, css => element.id === css.id);
+          css[item.path] = _.reject(link, css => element.id === css.id);
         }
       }
     }
@@ -404,7 +404,7 @@ export class BaseElement extends Renderer {
     delete cache[element.id];
 
     // Delete element
-    this.view.utils._.each(element.view.elements, (val, key) => {
+    _.each(element.view.elements, (val, key) => {
       if (val === element) {
         delete element.view.elements[key];
       }

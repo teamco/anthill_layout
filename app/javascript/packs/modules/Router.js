@@ -128,7 +128,7 @@ export class Router extends AntHill {
         (workspace.model.getItemByTitle(pageMatch[1]) || workspace.model.getItemByUUID(pageMatch[1])) :
         currentPage;
 
-    if (this.utils._.isUndefined(page)) {
+    if (_.isUndefined(page)) {
 
       workspace.observer.publish(workspace.eventManager.eventList.switchToPage, currentPage);
 

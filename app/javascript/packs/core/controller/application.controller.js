@@ -125,7 +125,7 @@ export class ApplicationController extends aggregation(BaseController, BehaviorE
       ifModified: true,
       beforeSend(xhr, settings) {
         that.scope.view.get$item().showLoader('xhr');
-        if (that.utils._.isUndefined(settings.dataType)) {
+        if (_.isUndefined(settings.dataType)) {
           xhr.setRequestHeader('accept', `*/*;q=0.5, ${settings.accepts.script}`);
         }
         xhr.setRequestHeader('X-CSRF-Token', that.getXCsrfToken());

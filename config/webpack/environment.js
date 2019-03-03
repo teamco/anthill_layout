@@ -28,6 +28,7 @@ environment.plugins.append(
       $: 'jquery',
       jQuery: 'jquery',
       '_': 'underscore',
+      'window._': 'underscore',
       'window.$': 'jquery',
       'window.jQuery': 'jquery',
       'window.Tether': 'tether',

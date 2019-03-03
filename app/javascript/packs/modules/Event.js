@@ -176,7 +176,7 @@ export class BaseEvent extends AntHill {
 
     opts = opts || {};
 
-    if (scope.utils._.isEmpty(opts)) {
+    if (_.isEmpty(opts)) {
       this.logger.warn('Empty opts', opts);
       return false;
     }
@@ -227,7 +227,7 @@ export class BaseEvent extends AntHill {
     opts = opts || {};
     internal = typeof internal === 'undefined' ? false : internal;
 
-    if (this.utils._.isString(opts.event)) {
+    if (_.isString(opts.event)) {
       opts.name = opts.event;
     } else {
       opts.name = opts.event.name;

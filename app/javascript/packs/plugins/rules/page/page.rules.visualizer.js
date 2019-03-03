@@ -13,7 +13,7 @@ export class PageRulesVisualizer {
    */
   static getWidgets(page) {
     const widgets = page.model.getItems();
-    return page.utils._.map(widgets, widget => {
+    return _.map(widgets, widget => {
       const prefs = widget.model.getConfig('preferences'),
           imgPath = widget.content.image;
       return {
@@ -74,7 +74,7 @@ export class PageRulesVisualizer {
         data = _.map(publish.widget, rule => _node(widget, rule, 'lightgreen', subscribers));
       }
       if (resourceRules) {
-        return data.concat(page.utils._.map(resourceRules, rule => _node(widget, rule, 'lightblue', subscribers)));
+        return data.concat(_.map(resourceRules, rule => _node(widget, rule, 'lightblue', subscribers)));
       }
       return data;
     }), Boolean);

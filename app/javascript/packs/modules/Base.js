@@ -22,12 +22,6 @@ export class Base {
   constructor() {
 
     /**
-     * Init underscore.
-     * @property Base._
-     */
-    this._ = require('underscore');
-
-    /**
      * @property Base.ts
      * @type {LibDateTime}
      */

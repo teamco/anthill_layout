@@ -123,7 +123,7 @@ export class BaseModel extends CRUD {
    */
   getNameSpace(node) {
     const scope = node ? node : this.scope,
-        constructor = this.utils._.isFunction(scope) ? scope : scope.constructor;
+        constructor = _.isFunction(scope) ? scope : scope.constructor;
     return constructor.name.toLowerCase();
   }
 
@@ -429,7 +429,7 @@ export class BaseModel extends CRUD {
    */
   getItemName() {
     this.scope.logger.debug('Get item name', this.item);
-    if (this.hasOwnProperty('item') && this.utils._.isFunction(this.item)) {
+    if (this.hasOwnProperty('item') && _.isFunction(this.item)) {
       return this.item.name;
     }
 
