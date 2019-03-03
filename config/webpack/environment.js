@@ -53,6 +53,13 @@ environment.loaders.append('imports-loader', {
   loader: 'imports-loader?jQuery=jquery,$=jquery,this=>window'
 });
 
+environment.loaders.append('bootstrap.native-loader', {
+  test: /bootstrap\.native/,
+  use: {
+    loader: 'bootstrap.native-loader'
+  }
+});
+
 environment.loaders.append('css-loader', {test: /\.css$/});
 environment.loaders.append('style-loader', {test: /\.css$/});
 environment.loaders.append('to-string-loader', {test: /\.css$/});
