@@ -7,6 +7,7 @@ import {LibArray} from './base/Array';
 import {LibCss} from './base/Css';
 import {LibHash} from './base/Hash';
 import {LibUserAgent} from './base/UA';
+import {LibEvent} from './base/Event';
 
 /**
  * Define base utils
@@ -73,6 +74,12 @@ export class Base {
      * @type {LibArray}
      */
     this.array = new LibArray();
+
+    /**
+     * @property Base.event
+     * @type {LibEvent}
+     */
+    this.event = new LibEvent();
 
     /**
      * @property Base.css

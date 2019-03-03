@@ -2,6 +2,8 @@
  * @export jsDocument
  * @constant
  */
+import {_it} from './utils';
+
 export const jsDocument = () => {
   const jsdom = require('jsdom');
   const {JSDOM} = jsdom;
@@ -12,11 +14,11 @@ export const jsDocument = () => {
    * @returns {*}
    */
   (function createDocument() {
-    global.document = document;
     const window = document.defaultView;
     global.document = document;
     global.window = window;
     global.jQuery = global.$ = require('jquery')(window);
+    global._ = require('underscore');
 
     if (!Object.keys(window).length) {
       throw 'jsdom failed to create a usable environment, try uninstalling and reinstalling it';
@@ -36,4 +38,12 @@ export const jsDocument = () => {
     Object.defineProperty(navigator, 'userAgent', editableFn(navigator.userAgent));
     Object.defineProperty(navigator, 'appVersion', editableFn(navigator.appVersion));
   })();
+
+  describe('Define globals', () => {
+    _it(global, 'window');
+    _it(global, 'document');
+    _it(global, 'jQuery');
+    _it(global, '$');
+    _it(global, '_');
+  });
 };

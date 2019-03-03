@@ -27,6 +27,7 @@ environment.plugins.append(
     new webpack.ProvidePlugin({
       $: 'jquery',
       jQuery: 'jquery',
+      '_': 'underscore',
       'window.$': 'jquery',
       'window.jQuery': 'jquery',
       'window.Tether': 'tether',
