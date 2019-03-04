@@ -37,7 +37,6 @@ target
 
 app/assets/.sass-cache/
 
-Gemfile.lock
 !/package-lock.json
 /public/packs
 /yarn-error.log
