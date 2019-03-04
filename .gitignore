@@ -42,7 +42,6 @@ Gemfile.lock
 /public/packs
 /yarn-error.log
 app/assets/javascripts/
-/yarn.lock
 .nyc_output
 .keep
 dist
