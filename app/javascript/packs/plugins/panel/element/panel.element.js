@@ -56,8 +56,10 @@ export class PanelElement extends PluginElement {
   /**
    * Show Active module
    * @memberOf PanelElement
+   * @param module
    */
-  showActiveModule() {
+  showActiveModule(module) {
+    module.view.get$item().$.parent().addClass('open');
   }
 
   /**

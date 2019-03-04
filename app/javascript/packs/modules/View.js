@@ -112,7 +112,7 @@ export class BaseView extends AntHill {
      */
     const model = this.scope.model;
 
-    return key ? model.getConfig('html/' + key) :
+    return key ? model.getConfig(`html/${key}`) :
         model.getConfig('html');
   }
 
@@ -122,7 +122,7 @@ export class BaseView extends AntHill {
    * @returns {BaseElement|*}
    */
   get$item() {
-    return this.elements['$' + this.scope.name.toLowerCase()];
+    return this.elements[`$${this.scope.name.toLowerCase()}`];
   }
 
   /**

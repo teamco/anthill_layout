@@ -143,7 +143,6 @@ export class PanelController extends PluginController {
      * @type {string}
      */
     this.setActiveResource(resource);
-    $panel.showActiveModule();
   }
 
   /**
@@ -181,6 +180,7 @@ export class PanelController extends PluginController {
    */
   closePanels() {
     const panels = this.root().panels;
+
     for (let index in panels) {
       if (panels.hasOwnProperty(index)) {
 
@@ -202,8 +202,17 @@ export class PanelController extends PluginController {
    * @param {function} [callback]
    */
   openPanel(resource, event, callback) {
-    this.view.get$item().toggleModule(resource);
+
+    /**
+     * Define $panel
+     * @type {PanelElement}
+     */
+    const $panel = this.view.get$item();
+
     this.controller.closePanels();
+    $panel.toggleModule(resource);
+    $panel.showActiveModule(this.model.getModuleBy('name', resource));
+
     if (callback) {
       callback(event);
     }

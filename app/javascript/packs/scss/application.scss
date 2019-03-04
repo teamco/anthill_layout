@@ -58,6 +58,7 @@ $sidebar-bg-color: #0d8ddb;
       white-space: nowrap;
       text-overflow: ellipsis;
       overflow: hidden;
+      max-width: 200px;
     }
   }
 
@@ -68,12 +69,12 @@ $sidebar-bg-color: #0d8ddb;
     }
 
     svg {
-      margin-left: 0.25em;
+      margin-left: 0.25rem;
     }
 
     .filter {
       .reset-filter {
-        width: 3em;
+        width: 2.7rem;
       }
 
       padding: 0 0.05em 0 0;
@@ -210,4 +211,12 @@ header {
 
 .tooltip {
   pointer-events: none;
+}
+
+.app-header {
+  .nav-item {
+    .nav-link {
+      max-height: 32px;
+    }
+  }
 }

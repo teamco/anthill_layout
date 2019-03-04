@@ -21,7 +21,7 @@ export class PanelPackagesElement extends PluginElement {
    */
   constructor(view, opts) {
     super('PanelPackagesElement', view, false);
-    this._config(view, opts, $(`<nav class="sidebar-nav ps" />`)).build(opts);
+    this._config(view, opts, $(`<nav class="sidebar-nav" />`)).build(opts);
   };
 
   /**

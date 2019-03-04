@@ -5,7 +5,6 @@ import './combined';
 
 import Turbolinks from 'turbolinks';
 
-import '@babel/polyfill';
 import 'bootstrap';
 
 import 'perfect-scrollbar/dist/perfect-scrollbar.min';

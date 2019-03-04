@@ -7,8 +7,7 @@ import './combined';
 
 import Turbolinks from 'turbolinks';
 
-import '@babel/polyfill';
-import 'bootstrap.native';
+import 'bootstrap';
 
 import 'perfect-scrollbar/dist/perfect-scrollbar.min';
 import '@coreui/coreui/dist/js/coreui.min';
