@@ -88,6 +88,7 @@ export class BaseController extends aggregation(AntHill, BehaviorCrud, BehaviorW
      */
     const root = this.root();
 
+    root.cache = root.cache || {};
     return uuid ? root.cache[uuid] : root.cache;
   }
 
@@ -107,7 +108,9 @@ export class BaseController extends aggregation(AntHill, BehaviorCrud, BehaviorW
    * @param {*} value
    */
   updateCache(uuid, value) {
-    this.root().cache[uuid] = value;
+    const root = this.root();
+    root.cache = root.cache || {};
+    root.cache[uuid] = value;
   }
 
   /**
@@ -119,7 +122,7 @@ export class BaseController extends aggregation(AntHill, BehaviorCrud, BehaviorW
   updateCacheCss(path, element) {
 
     // Get cache
-    const cache = this.root().cache;
+    const cache = this.root().cache || {};
 
     cache.css = cache.css || {};
     cache.css[path] = element;
@@ -249,6 +252,11 @@ export class BaseController extends aggregation(AntHill, BehaviorCrud, BehaviorW
     let root = this.scope;
     while (root.hasOwnProperty('containment')) {
       root = root.containment;
+    }
+
+    if (!root) {
+      this.scope.logger.warn('Unable to access root');
+      return {};
     }
 
     return root;

@@ -8,9 +8,10 @@ describe('JS Unit tests', () => {
   beforeAll(() => {
   });
 
-  jsDocument();
+  jsDocument(true);
 
   //require('./unit/application/application.unit');
   require('./unit/workspace/workspace.unit');
-  require('./unit/page/page.unit');
+  // require('./unit/page/page.unit');
+  // require('./unit/widget/widget.unit');
 });

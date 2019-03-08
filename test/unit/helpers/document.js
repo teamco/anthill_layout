@@ -4,7 +4,7 @@
  */
 import {_it} from './utils';
 
-export const jsDocument = () => {
+export const jsDocument = (init = false) => {
   const jsdom = require('jsdom');
   const {JSDOM} = jsdom;
   const {document} = (new JSDOM(``, {url: 'http://localhost:5000'})).window;
@@ -35,8 +35,10 @@ export const jsDocument = () => {
       set: (v) => _value = v
     });
 
-    Object.defineProperty(navigator, 'userAgent', editableFn(navigator.userAgent));
-    Object.defineProperty(navigator, 'appVersion', editableFn(navigator.appVersion));
+    if (init) {
+      Object.defineProperty(navigator, 'userAgent', editableFn(navigator.userAgent));
+      Object.defineProperty(navigator, 'appVersion', editableFn(navigator.appVersion));
+    }
   })();
 
   describe('Define globals', () => {

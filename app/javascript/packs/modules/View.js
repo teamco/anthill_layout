@@ -6,6 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 
+import $ from 'jquery';
 import {AntHill} from '../core/config/anthill';
 import {FooterElement} from '../core/element/footer.element';
 import {HeaderElement} from '../core/element/header.element';
@@ -34,6 +35,14 @@ export class BaseView extends AntHill {
      * @type {Object}
      */
     this.elements = {};
+  }
+
+  /**
+   * @static
+   * @returns {jQuery|HTMLElement}
+   */
+  static defaultRoot() {
+    return $('body');
   }
 
   /**
@@ -219,6 +228,13 @@ export class BaseView extends AntHill {
    */
   getContainerSelector() {
     const containment = this.scope.controller.getContainment();
+
+    // Test fallback
+    if (!containment) {
+      this.scope.logger.warn('Undefined containment. Render in default root');
+      return BaseView.defaultRoot();
+    }
+
     return containment.view.get$item().getElementContainer(containment.model.getItemNameSpace());
   }
 

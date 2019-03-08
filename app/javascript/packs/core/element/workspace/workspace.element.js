@@ -7,6 +7,7 @@
  */
 
 import {BaseElement} from '../../../modules/Element';
+import $ from 'jquery';
 
 /**
  * Define Workspace element
@@ -69,7 +70,7 @@ export class WorkspaceElement extends BaseElement {
    */
   updateWidth(width) {
 
-    if (typeof(width) !== 'number') {
+    if (typeof (width) !== 'number') {
       this.view.scope.logger.warn('Width should be numeric');
       return false;
     }

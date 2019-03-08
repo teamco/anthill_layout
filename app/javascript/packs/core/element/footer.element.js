@@ -6,6 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 
+import $ from 'jquery';
 import {BaseElement} from '../../modules/Element';
 
 /**

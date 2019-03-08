@@ -6,6 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 
+import $ from 'jquery';
 import {Renderer} from './Renderer';
 
 /**
@@ -153,7 +154,7 @@ export class BaseElement extends Renderer {
    * @returns {*}
    */
   getElementContainer(title) {
-    return this.$.find('.' + title + 's');
+    return this.$.find(`.${title}s`);
   }
 
   /**
