@@ -37,7 +37,7 @@ export class ButtonElement extends BaseElement {
    * @returns {*}
    */
   getTemplate($htmlElement) {
-    return $htmlElement ? $htmlElement : $('<button />');
+    return $htmlElement ? $htmlElement : '<button />';
   }
 
   /**

@@ -38,7 +38,7 @@ defineP(function defineSiteConfigMetaDataPreferences() {
        * Split SEO title
        * @type {*|Array}
        */
-      var seoTitle = workspace.view.get$item().getSiteTitle().split(
+      var seoTitle = WorkspaceElement.getSiteTitle().split(
           workspace.model.getConfig('SEOSeparator')
       );
 

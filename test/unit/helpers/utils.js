@@ -11,12 +11,23 @@ export const _it = (node, type) => {
 };
 
 /**
+ * @method
+ * @param node
+ * @param wrapper
+ * @param container
+ */
+export const shouldBeRendered = (node, wrapper, container) => {
+  expect(node.view.elements[wrapper]).toBeDefined();
+  expect(node.view.elements[container]).toBeDefined();
+};
+
+/**
  * @constant
  * @param node
  * @param order
  * @param render
  */
-export const mvcExpectation = (node, order = 1, render = true, __it = true) => {
+export const mvcExpectation = (node, order = 1, render = true) => {
 
   it(`should be created`, async () => {
     expect(node instanceof node.constructor).toBeTruthy();

@@ -7,7 +7,6 @@
  */
 
 import {BaseElement} from '../../../modules/Element';
-import $ from 'jquery';
 
 /**
  * Define Workspace element
@@ -24,43 +23,47 @@ export class WorkspaceElement extends BaseElement {
    */
   constructor(view, opts) {
     super('WorkspaceElement', view);
-    this._config(view, opts, $('<workspace />')).build(opts);
+    this._config(view, opts, '<workspace />').build(opts);
   }
 
   /**
    * Get site author
    * @memberOf WorkspaceElement
+   * @static
    * @returns {string}
    */
-  getSiteAuthor() {
-    return $('meta[name="author"]').attr('content');
+  static getSiteAuthor() {
+    return document.querySelector('meta[name="author"]').getAttribute('content');
   }
 
   /**
    * Set site author
    * @memberOf WorkspaceElement
+   * @static
    * @param {string} author
    */
-  setSiteAuthor(author) {
-    $('meta[name="author"]').attr('content', author);
+  static setSiteAuthor(author) {
+    document.querySelector('meta[name="author"]').setAttribute('content', author);
   }
 
   /**
    * Get site title
    * @memberOf WorkspaceElement
+   * @static
    * @returns {jQuery|string}
    */
-  getSiteTitle() {
-    return $('title').text();
+  static getSiteTitle() {
+    return document.querySelector('title').innerText;
   }
 
   /**
    * Set site title
    * @memberOf WorkspaceElement
+   * @static
    * @param {string} title
    */
-  setSiteTitle(title) {
-    $('title').text(title);
+  static setSiteTitle(title) {
+    document.querySelector('title').innerText = title;
   }
 
   /**

@@ -5,6 +5,8 @@
  * Time: 12:45 PM
  */
 
+import {WorkspaceElement} from '../../element/workspace/workspace.element';
+
 /**
  * Define WorkspaceSEO
  * @class WorkspaceSEO
@@ -36,7 +38,7 @@ export class WorkspaceSEO {
      */
     const $item = this.view.get$item();
 
-    let siteTitle = this.model.getConfig('preferences')['siteTitle'] || $item.getSiteTitle();
+    let siteTitle = this.model.getConfig('preferences')['siteTitle'] || WorkspaceElement.getSiteTitle();
 
     /**
      * Define default title
@@ -103,7 +105,7 @@ export class WorkspaceSEO {
       }
     }
 
-    $item.setSiteTitle(title);
+    WorkspaceElement.setSiteTitle(title);
   }
 
   /**
@@ -118,7 +120,7 @@ export class WorkspaceSEO {
      */
     const $item = this.view.get$item();
 
-    const siteAuthor = this.model.getConfig('preferences')['siteAuthor'] || $item.getSiteAuthor();
-    $item.setSiteAuthor(siteAuthor);
+    const siteAuthor = this.model.getConfig('preferences')['siteAuthor'] || WorkspaceElement.getSiteAuthor();
+    WorkspaceElement.setSiteAuthor(siteAuthor);
   }
 }

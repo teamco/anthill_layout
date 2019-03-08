@@ -24,12 +24,6 @@ export class BaseElement extends Renderer {
    */
   constructor(name, scope) {
     super(name || 'BaseElement', scope);
-
-    /**
-     * Define plugin path
-     * @property BaseElement
-     */
-    this.pluginPath = '/assets/scripts/plugins';
   }
 
   /**
@@ -98,7 +92,7 @@ export class BaseElement extends Renderer {
      * Define jQuery element
      * @property BaseElement
      */
-    this.$ = $html.addClass(this.style).css(this.css);
+    this.$ = $($html).addClass(this.style).css(this.css);
 
     if (opts.id) {
       this.$.attr({id: this.id});

@@ -28,7 +28,7 @@ export class WidgetExpanderElement extends BaseElement {
     super('WidgetExpanderElement', view);
     if (view.controller.isExpandable()) {
 
-      this._config(view, opts, $('<div />')).build({
+      this._config(view, opts, '<div />').build({
         $container: opts.$container,
         destroy: true
       });

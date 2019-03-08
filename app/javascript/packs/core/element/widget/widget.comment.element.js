@@ -25,7 +25,7 @@ export class WidgetCommentElement extends BaseElement{
    */
   constructor(view, opts) {
     super('WidgetCommentElement', view);
-    this._config(view, opts, $('<div />')).build(opts);
+    this._config(view, opts, '<div />').build(opts);
 
     this.defineContent(ButtonElement);
   }
@@ -35,8 +35,8 @@ export class WidgetCommentElement extends BaseElement{
    * @param {ButtonElement} ButtonElement
    */
   defineContent(ButtonElement) {
-    this.renderCommentsForm(ButtonElement, {
-      visible: true
-    });
+    // this.renderCommentsForm(ButtonElement, {
+    //   visible: true
+    // });
   }
 }

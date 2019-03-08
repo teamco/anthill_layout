@@ -23,7 +23,7 @@ export class ExportElement extends BaseElement {
   constructor(view, opts) {
     super('ExportElement', view);
 
-    this._config(view, opts, $('<a />')).build(opts);
+    this._config(view, opts, '<a />').build(opts);
     this.init(opts.data || {});
   }
 
@@ -43,12 +43,16 @@ export class ExportElement extends BaseElement {
 
     /**
      * Define scope
-     * @type {Application}
+     * @type {Application|{base}}
      */
     const scope = this.view.scope;
 
-    const lib = scope.base.lib,
-        fname = data.fileName || 'file.txt';
+    /**
+     * @constant
+     * @type {{string: {utf8ToBase64}, file, event}}
+     */
+    const lib = scope.base.lib;
+    const fname = data.fileName || 'file.txt';
 
     /**
      * Define url
@@ -57,7 +61,6 @@ export class ExportElement extends BaseElement {
     let url;
 
     try {
-
       url = lib.file.createURL(
           scope.base.isBase64(data.content) ?
               data.content :
@@ -69,41 +72,29 @@ export class ExportElement extends BaseElement {
       scope.logger.debug('Blob URL', url);
 
     } catch (e) {
-
       scope.logger.warn('Unable to create Blob URL', e);
 
       /**
        * Define content
        * @type {string}
        */
-      const content = lib.string.base64.encode(
-          data.content
-      );
+      const content = lib.string.base64.encode(data.content);
 
       if (content.length <= 50000) {
 
         try {
-
-          url = [
-            'data:', data.type,
-            ';charset=utf-8;base64,', content
-          ].join('');
-
+          url = `data:${data.type};charset=utf-8;base64${content}`;
           scope.logger.debug('Data-URI URL', url);
-
         } catch (e) {
-
           scope.logger.warn('Unable to create URL', e);
         }
 
       } else {
-
         scope.logger.warn('URL too long');
       }
     }
 
     if (url) {
-
       this.$.attr({
 
         href: url,
@@ -113,7 +104,6 @@ export class ExportElement extends BaseElement {
       }).text(data.title || 'Download');
 
       if (data.autoload) {
-
         lib.event.simulate(this.$[0], 'click');
       }
     }

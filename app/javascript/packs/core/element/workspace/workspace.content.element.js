@@ -6,7 +6,6 @@
  * To change this template use File | Settings | File Templates.
  */
 
-import $ from 'jquery';
 import {BaseElement} from '../../../modules/Element';
 
 /**
@@ -24,7 +23,7 @@ export class WorkspaceContentElement extends BaseElement {
    */
   constructor(view, opts) {
     super('WorkspaceContentElement', view);
-    this._config(view, opts, $('<pages />')).build(opts);
+    this._config(view, opts, '<pages />').build(opts);
   }
 
   /**

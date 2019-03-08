@@ -25,7 +25,7 @@ defineP([
       $container: opts.$container
     });
 
-    this.getTemplate(opts.data);
+    ModalElement.getTemplate(opts.data);
     this.setAttributes(opts.data);
     this.bindLocate(opts.data);
     this.bindMaximize(opts.data);

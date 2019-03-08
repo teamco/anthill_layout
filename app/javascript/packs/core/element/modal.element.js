@@ -32,7 +32,7 @@ export class ModalElement extends BaseElement {
 
     this.setup(view, opts);
 
-    this._config(view, opts, this.getTemplate()).build({
+    this._config(view, opts, ModalElement.getTemplate()).build({
       $container: opts.$container || $('body')
     });
 
@@ -193,10 +193,11 @@ export class ModalElement extends BaseElement {
   /**
    * Get template
    * @memberOf ModalElement
+   * @static
    * @returns {*|jQuery|HTMLElement}
    */
-  getTemplate() {
-    return $(`
+  static getTemplate() {
+    return `
       <div class="modal modal-notification fade" tabindex="-1" role="dialog" data-backdrop="true" aria-labelledby="modalLabel">
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
           <div class="modal-content">
@@ -207,7 +208,7 @@ export class ModalElement extends BaseElement {
             <div class="modal-footer separator"></div>
           </div>
         </div>
-      </div>`);
+      </div>`;
   }
 
   /**

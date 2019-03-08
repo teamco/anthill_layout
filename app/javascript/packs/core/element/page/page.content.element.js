@@ -6,7 +6,6 @@
  * To change this template use File | Settings | File Templates.
  */
 
-import $ from 'jquery';
 import {BaseElement} from '../../../modules/Element';
 
 /**
@@ -23,6 +22,6 @@ export class PageContentElement extends BaseElement {
    */
   constructor(view, opts) {
     super('PageContentElement', view);
-    this._config(view, opts, $('<widgets />')).build(opts);
+    this._config(view, opts, '<widgets />').build(opts);
   }
 }

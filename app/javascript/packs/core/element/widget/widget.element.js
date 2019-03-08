@@ -6,6 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 
+import $ from 'jquery';
 import {BaseElement} from '../../../modules/Element';
 
 /**
@@ -22,7 +23,7 @@ export class WidgetElement extends BaseElement {
    */
   constructor(view, opts) {
     super('WidgetElement', view);
-    this._config(view, opts, $('<widget />')).build(opts);
+    this._config(view, opts, '<widget />').build(opts);
 
     /**
      * Define overlapped css class

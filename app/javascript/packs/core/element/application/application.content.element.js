@@ -23,6 +23,6 @@ export class ApplicationContentElement extends BaseElement {
    */
   constructor(view, opts) {
     super('ApplicationContentElement', view);
-    this._config(view, opts, $('<workspaces />')).build(opts);
+    this._config(view, opts, '<workspaces />').build(opts);
   }
 }

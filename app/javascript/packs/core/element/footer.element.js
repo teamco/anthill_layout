@@ -6,7 +6,6 @@
  * To change this template use File | Settings | File Templates.
  */
 
-import $ from 'jquery';
 import {BaseElement} from '../../modules/Element';
 
 /**
@@ -29,6 +28,6 @@ export class FooterElement extends BaseElement {
       return this;
     }
 
-    this._config(view, opts, $('<footer />')).build(opts);
+    this._config(view, opts, '<footer />').build(opts);
   }
 }

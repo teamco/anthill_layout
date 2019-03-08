@@ -77,7 +77,7 @@ defineP([
             text: text,
             $container: $container,
             content: $('<ul class="default" />').append(
-                this.setSiteTitle(),
+                WorkspaceElement.setSiteTitle(),
                 this.setSiteMetaAuthor(),
                 this.setSiteMetaDescription(),
                 this.setSiteMetaKeywords()

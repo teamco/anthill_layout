@@ -6,6 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 
+import $ from 'jquery';
 import {BaseElement} from '../../../modules/Element';
 
 /**
@@ -22,7 +23,7 @@ export class WidgetContentElement extends BaseElement {
    */
   constructor(view, opts) {
     super('WidgetContentElement', view);
-    this._config(view, opts, $('<resource />')).build(opts);
+    this._config(view, opts, '<resource />').build(opts);
     this.setPadding();
     this.setBackgroundImage(opts);
   }

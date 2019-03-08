@@ -89,10 +89,7 @@ export class WorkspaceModel extends BaseModel {
     const scope = this.scope;
 
     this._setItemInfoPreferences('siteTitle', title);
-
-    scope.observer.publish(
-        scope.eventManager.eventList.updateSiteTitle
-    );
+    scope.observer.publish(scope.eventManager.eventList.updateSiteTitle);
   }
 
   /**
