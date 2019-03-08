@@ -25,7 +25,7 @@ export class ApplicationElement extends BaseElement {
   constructor(view, opts) {
     super('ApplicationElement', view);
     this._config(view, opts, '<application />').build(opts);
-    opts.$container.addClass(`${opts.mode} loading`);
+    document.querySelector(opts.$container).classList.add(opts.mode, 'loading');
   }
 
   /**
