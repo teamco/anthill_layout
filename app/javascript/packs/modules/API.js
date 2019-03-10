@@ -96,13 +96,13 @@ export class BaseAPI extends AntHill {
       return false;
     }
 
-    scope.observer.publish(
-        scope.eventManager.eventList['create' + scope.model.getItemName()],
-        [args, scope.silent]
-    );
+    /**
+     * @type {string}
+     */
+    const event = scope.eventManager.eventList[`create${scope.model.getItemName()}`];
+    scope.observer.publish(event, [args, scope.silent]);
 
     this._renderItem(item, render, silent, where);
-
     return scope[cname];
   }
 
@@ -122,10 +122,14 @@ export class BaseAPI extends AntHill {
         cname = scope.model.getItemNameSpace(),
         itemConfig = scope.model.getConfig(cname);
 
-    if (scope.model.getConfig('limit') && itemConfig.count >= itemConfig.limit) {
+    /**
+     * @type {boolean}
+     */
+    const overLimit = scope.model.getConfig('limit') && itemConfig.count >= itemConfig.limit;
+    if (overLimit) {
       scope.logger.warn(this.i18n.t('reached.maximum.limit'), [cname, itemConfig]);
-      return true;
     }
+    return overLimit;
   }
 
   /**

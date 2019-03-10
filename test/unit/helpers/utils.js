@@ -27,7 +27,7 @@ export const shouldBeRendered = (node, wrapper, container) => {
  * @param order
  * @param render
  */
-export const mvcExpectation = (node, order = 1, render = true) => {
+export const mvcExpectation = (node, order = 0, render = true) => {
 
   it(`should be created`, async () => {
     expect(node instanceof node.constructor).toBeTruthy();

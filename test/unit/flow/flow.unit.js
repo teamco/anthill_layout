@@ -15,7 +15,7 @@ describe('Workspace', () => {
     shouldBeRendered(workspace, '$workspace', '$pages');
   });
 
-  describe('Page', () => {
+  describe('Page 1', () => {
 
     /**
      * @constant page
@@ -23,6 +23,20 @@ describe('Workspace', () => {
      */
     const page = workspace.api.createPage([], true);
     mvcExpectation(page);
+
+    it('Render page', async () => {
+      shouldBeRendered(page, '$page', '$widgets');
+    });
+  });
+
+  describe('Page 2', () => {
+
+    /**
+     * @constant page
+     * @type {Page}
+     */
+    const page = workspace.api.createPage([], true);
+    mvcExpectation(page, 1);
 
     it('Render page', async () => {
       shouldBeRendered(page, '$page', '$widgets');

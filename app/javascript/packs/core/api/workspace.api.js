@@ -22,7 +22,7 @@ export class WorkspaceAPI extends BaseAPI {
    * @constructor
    */
   constructor(name, scope) {
-    super('WorkspaceAPI', scope);
+    super(name || 'WorkspaceAPI', scope);
   }
 
   /**
