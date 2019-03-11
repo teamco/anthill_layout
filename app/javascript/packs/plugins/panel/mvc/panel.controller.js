@@ -6,6 +6,7 @@
  */
 
 import {PluginController} from '../../plugin.controller';
+import {PanelElement} from '../element/panel.element';
 
 /**
  * Define panel controller
