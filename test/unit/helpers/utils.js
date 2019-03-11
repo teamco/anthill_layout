@@ -41,6 +41,9 @@ export const mvcExpectation = (node, order = 0, render = true) => {
 
   if (render) {
     it(`order: should be ${order}`, async () => {
+      if (node.containment) {
+        console.log(node.containment.config[node.name.toLowerCase()].counter);
+      }
       expect(node.model.getConfig('order')).toBe(order);
     });
 

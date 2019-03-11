@@ -14,9 +14,10 @@ export class LibCss {
   /**
    * Define reset matrix css
    * @memberOf LibCss
+   * @static
    * @param $element
    */
-  resetMatrix($element) {
+  static resetMatrix($element) {
     $element.attr({
       style: $element.attr('style').
           replace(/matrix\(([+\-\d.]+), ([+\-\d.]+), ([+\-\d.]+), ([+\-\d.]+), ([+\-\d.]+), ([+\-\d.]+)\) /g, '')
@@ -81,5 +82,18 @@ export class LibCss {
     }
 
     _updateCss(_value.join(' '));
+  }
+
+  /**
+   * @static
+   * @memberOf LibCss
+   * @param target
+   * @param css
+   */
+  static toggle(target, css) {
+    css = typeof css === 'string' ? css.split(' ') : css;
+    for (let i in css) {
+      target.classList.toggle(css[i]);
+    }
   }
 }

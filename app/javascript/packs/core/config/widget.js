@@ -86,7 +86,7 @@ export class Widget extends AntHill {
       rules: opts.rules || {},
       limit: false,
       metamorphic: false,
-      order: 1,
+      order: 0,
       html: {
         header: false,
         footer: false,

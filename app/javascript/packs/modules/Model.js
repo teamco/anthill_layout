@@ -134,7 +134,7 @@ export class BaseModel extends CRUD {
    */
   getFirstItem() {
     const items = this.getItems() || {};
-    const uuid = Object.keys(items).filter(key => items[key].model.getConfig('order') === 1)[0];
+    const uuid = Object.keys(items).filter(key => items[key].model.getConfig('order') === 0)[0];
     const item = items[uuid];
 
     if (!item) {
@@ -566,7 +566,7 @@ export class BaseModel extends CRUD {
         node.model.setConfig('order', scope.config[namespace].counter);
         node.model.setConfig('limit', false);
       } else {
-        scope.logger.warn(cname + ' was created with some errors (Model must be defined)', node);
+        scope.logger.warn(`${cname} was created with some errors (Model must be defined)`, node);
       }
 
       this.setItem(node);

@@ -211,7 +211,7 @@ export class PanelController extends PluginController {
 
     this.controller.closePanels();
     $panel.toggleModule(resource);
-    $panel.showActiveModule(this.model.getModuleBy('name', resource));
+    PanelElement.showActiveModule(this.model.getModuleBy('name', resource));
 
     if (callback) {
       callback(event);

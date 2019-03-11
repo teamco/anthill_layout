@@ -6,6 +6,7 @@
  */
 
 import {PluginElement} from '../../plugin.element';
+import {LibCss} from '../../../modules/base/Css';
 
 /**
  * Define Panel Element
@@ -21,15 +22,18 @@ export class PanelElement extends PluginElement {
    */
   constructor(view, opts) {
     super('PanelElement', view, false);
-    this._config(view, opts, $(this.getTemplate())).build(opts);
+    this._config(view, opts, PanelElement.getTemplate()).build(opts);
+    this.togglePanel();
+    this.toggleMinimizePanel();
   }
 
   /**
    * Define template
    * @memberOf PanelElement
+   * @static
    * @returns {string}
    */
-  getTemplate() {
+  static getTemplate() {
     return `<div class="sidebar" />`;
   }
 
@@ -56,9 +60,10 @@ export class PanelElement extends PluginElement {
   /**
    * Show Active module
    * @memberOf PanelElement
+   * @static
    * @param module
    */
-  showActiveModule(module) {
+  static showActiveModule(module) {
     module.view.get$item().$.parent().addClass('open');
   }
 
@@ -78,5 +83,35 @@ export class PanelElement extends PluginElement {
   renderMinimizer() {
     const template = `<button class="sidebar-minimizer brand-minimizer" type="button" />`;
     this.$.append(template);
+  }
+
+  /**
+   * @method togglePanel
+   * @memberOf PanelElement
+   */
+  togglePanel() {
+    const css = 'sidebar-lg-show';
+    this.view.scope.utils.event.on(document, 'click', `button[data-toggle='${css}']`, () =>
+        document.querySelector('body').classList.toggle(css));
+  }
+
+  /**
+   * @method toggleMinimizePanel
+   * @memberOf PanelElement
+   */
+  toggleMinimizePanel() {
+    const trigger = 'minimizer';
+    const target = 'minimized';
+    const css = 'sidebar-{0} brand-{0}';
+
+    /**
+     * @constant
+     * @type {Base}
+     */
+    const utils = this.view.scope.utils;
+    utils.event.on(document, 'click', `button[class='${css.replace(/\{0}/g, trigger)}']`, () => {
+      const body = document.querySelector('body');
+      LibCss.toggle(body, css.replace(/\{0}/g, target));
+    });
   }
 }

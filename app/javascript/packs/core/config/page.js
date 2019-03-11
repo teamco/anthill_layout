@@ -99,7 +99,7 @@ export class Page extends AntHill {
       preferences: opts.preferences || {
         showInTabs: true
       },
-      order: 1,
+      order: 0,
       type: 'default',
       limit: false,
       isResized: true,

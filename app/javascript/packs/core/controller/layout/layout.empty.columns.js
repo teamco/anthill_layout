@@ -42,47 +42,33 @@ export class LayoutEmptyColumns {
   }
 
   /**
-   * Remove empty spaces by column
+   * Get widgets above
    * @memberOf LayoutEmptyColumns
-   * @returns {boolean}
+   * @param {string} uuid
+   * @param {{}} widgets
+   * @param {Array} order
+   * @returns {*}
    */
-  remove() {
-    let widgets, widget, widgetAbove,
-        order, lookupOrder,
-        uuid, row = 0, top;
+  static getWidgetAbove(uuid, widgets, order) {
+    const length = order.length,
+        widget = widgets[uuid],
+        leftC = widget.dom.column,
+        rightC = widget.dom.column + widget.dom.relWidth;
+    let curWidget,
+        curLeft, curRight;
 
-    if (!this.isAllowed()) {
-      this.layout.logger.warn('Remove empty spaces by column does not allowed');
-      return false;
-    }
+    for (let i = 0; i < length; i++) {
+      curWidget = widgets[order[i]];
+      curLeft = curWidget.dom.column;
+      curRight = curWidget.dom.column + curWidget.dom.relWidth;
 
-    widgets = this.page.model.getItems();
-    order = this.getWidgetOrder(widgets);
-
-    for (let i = 0, length = order.length; i < length; i += 1) {
-      uuid = order[i];
-      widget = widgets[uuid];
-
-      lookupOrder = order.slice(0).reverse().slice(length - i);
-      widgetAbove = this.getWidgetAbove(uuid, widgets, lookupOrder);
-
-      row = 0;
-
-      if (widgetAbove) {
-        row = widgetAbove.dom.row + widgetAbove.dom.relHeight;
+      if ((curLeft > leftC && curLeft < rightC)
+          || (curRight > leftC && curRight < rightC)
+          || (curLeft <= leftC && curRight >= rightC)) {
+        return curWidget;
       }
-
-      top = widget.map.widgetTop(row);
-
-      widget.model.updateDOM({
-        row: row,
-        top: top,
-        bottom: widget.map.widgetBottom(top, widget.dom.height),
-        relBottom: widget.map.relBottom(row, widget.dom.relHeight)
-      });
-
-      order = this.getWidgetOrder(widgets);
     }
+    return null;
   }
 
   /**
@@ -124,32 +110,46 @@ export class LayoutEmptyColumns {
   }
 
   /**
-   * Get widgets above
+   * Remove empty spaces by column
    * @memberOf LayoutEmptyColumns
-   * @param {string} uuid
-   * @param {{}} widgets
-   * @param {Array} order
-   * @returns {*}
+   * @returns {boolean}
    */
-  getWidgetAbove(uuid, widgets, order) {
-    const length = order.length,
-        widget = widgets[uuid],
-        leftC = widget.dom.column,
-        rightC = widget.dom.column + widget.dom.relWidth;
-    let curWidget,
-        curLeft, curRight;
+  remove() {
+    let widgets, widget, widgetAbove,
+        order, lookupOrder,
+        uuid, row = 0, top;
 
-    for (let i = 0; i < length; i++) {
-      curWidget = widgets[order[i]];
-      curLeft = curWidget.dom.column;
-      curRight = curWidget.dom.column + curWidget.dom.relWidth;
-
-      if ((curLeft > leftC && curLeft < rightC)
-          || (curRight > leftC && curRight < rightC)
-          || (curLeft <= leftC && curRight >= rightC)) {
-        return curWidget;
-      }
+    if (!this.isAllowed()) {
+      this.layout.logger.warn('Remove empty spaces by column does not allowed');
+      return false;
     }
-    return null;
+
+    widgets = this.page.model.getItems();
+    order = this.getWidgetOrder(widgets);
+
+    for (let i = 0, length = order.length; i < length; i += 1) {
+      uuid = order[i];
+      widget = widgets[uuid];
+
+      lookupOrder = order.slice(0).reverse().slice(length - i);
+      widgetAbove = LayoutEmptyColumns.getWidgetAbove(uuid, widgets, lookupOrder);
+
+      row = 0;
+
+      if (widgetAbove) {
+        row = widgetAbove.dom.row + widgetAbove.dom.relHeight;
+      }
+
+      top = widget.map.widgetTop(row);
+
+      widget.model.updateDOM({
+        row: row,
+        top: top,
+        bottom: widget.map.widgetBottom(top, widget.dom.height),
+        relBottom: widget.map.relBottom(row, widget.dom.relHeight)
+      });
+
+      order = this.getWidgetOrder(widgets);
+    }
   }
 }

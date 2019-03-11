@@ -34,8 +34,9 @@ export class Workspace extends AntHill {
      *  isResized: boolean,
      *  type: string,
      *  order: number,
-     *  page: {plural: boolean, counter: number, limit: number, animateSwipe: boolean, showInTabs: boolean, onDestroyShowPrevious: boolean},
-     *  html: {style: string, header: boolean, footer: boolean, stretch: boolean, padding: {top: number, right: number, bottom: number, left: number}}
+     *  page: {plural: boolean, counter: number, limit: number, animateSwipe: boolean, showInTabs: boolean,
+     *     onDestroyShowPrevious: boolean}, html: {style: string, header: boolean, footer: boolean, stretch: boolean,
+     *     padding: {top: number, right: number, bottom: number, left: number}}
      * }}
      */
     const DEFAULTS = {
@@ -47,7 +48,7 @@ export class Workspace extends AntHill {
       limit: false,
       isResized: true,
       type: 'default',
-      order: 1,
+      order: 0,
       page: {
         plural: false,
         counter: 0,
