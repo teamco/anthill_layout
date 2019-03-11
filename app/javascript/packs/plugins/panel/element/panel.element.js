@@ -91,8 +91,10 @@ export class PanelElement extends PluginElement {
    */
   togglePanel() {
     const css = 'sidebar-lg-show';
-    this.view.scope.utils.event.on(document, 'click', `button[data-toggle='${css}']`, () =>
-        document.querySelector('body').classList.toggle(css));
+    this.view.scope.utils.event.on(document, 'click', `button[data-toggle='${css}']`, () => {
+      const body = document.querySelector('body');
+      LibCss.toggle(body, css);
+    });
   }
 
   /**
