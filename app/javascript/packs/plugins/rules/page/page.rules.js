@@ -373,7 +373,6 @@ export class GenerateRules extends PageRulesVisualizer {
   updatePublishedRules() {
     const published = this.getWidgetPublishedRules(this.page);
     const that = this;
-    const _ = this.page.utils._;
     _.each(published, rules => _.each(rules, rule => that.updateDiagram(rule)));
   }
 
@@ -385,7 +384,6 @@ export class GenerateRules extends PageRulesVisualizer {
   updateSubscriberRules() {
     const subscribed = this.getWidgetSubscriberRules(this.page);
     const that = this;
-    const _ = this.page.utils._;
     _.each(subscribed, sData =>
         _.each(sData, data =>
             _.each(data.subscribers, uuids =>

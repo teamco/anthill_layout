@@ -62,7 +62,6 @@ export class PageRulesVisualizer {
     }
 
     const widgets = page.model.getItems();
-    const _ = page.utils._;
     return _.filter(_.map(widgets, widget => {
       const rules = widget.model.getConfig('rules'),
           publish = rules.publish || {},
@@ -88,7 +87,6 @@ export class PageRulesVisualizer {
    */
   getWidgetSubscriberRules(page) {
     const widgets = page.model.getItems();
-    const _ = page.utils._;
     return _.filter(_.map(widgets, widget => {
       const rules = widget.model.getConfig('rules'),
           resource = widget.model.getConfig('preferences/resource'),
