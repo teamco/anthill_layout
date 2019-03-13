@@ -111,7 +111,7 @@
     "underscore": "^1.9.1",
     "underscore-deep-extend": "^1.1.5",
     "vkbeautify": "^0.99.3",
-    "webpack-bundle": "^0.9.9",
+    "webpack-bundle": "^0.9.10",
     "webpack-merge": "^4.2.1"
   },
   "license": "MIT",
