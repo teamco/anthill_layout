@@ -107,7 +107,7 @@ module ApplicationHelper
   end
 
   def user_image(user_name)
-    return image_pack_tag('media/user_info.png',
+    return image_pack_tag('media/images/user_info.png',
         class: 'user-image',
         alt: user_name) if current_user.nil?
     current_user&.image ?

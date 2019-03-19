@@ -1,7 +1,7 @@
 <%- if devise_mapping.omniauthable? %>
   <div class="social-omniauth">
     <%- resource_class.omniauth_providers.each do |provider| %>
-      <%= link_to image_pack_tag("media/#{provider.to_s}.png"),
+      <%= link_to image_pack_tag("media/images/#{provider.to_s}.png"),
           omniauth_authorize_path(resource_name, provider), {
               title: "Sign in with #{provider.to_s.titleize}",
               'data-toggle': :tooltip,
