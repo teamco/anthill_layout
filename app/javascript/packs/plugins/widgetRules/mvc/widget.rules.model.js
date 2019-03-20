@@ -33,10 +33,11 @@ export class WidgetRulesModel extends BaseModel {
   /**
    * Get items
    * @memberOf WidgetRulesModel
+   * @static
    * @param page
    * @returns {*}
    */
-  getWidgetRulesItems(page) {
+  static getWidgetRulesItems(page) {
     return page.model.getItems();
   }
 

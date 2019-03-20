@@ -237,7 +237,8 @@ export class GenerateRules extends PageRulesVisualizer {
   static defineTemplate(go) {
     const _make = go.GraphObject.make;
     const node = _make(go.Node, 'Auto', {click: GenerateRules.showConnections},
-        _make(go.Shape, new go.Binding('figure', 'figure'), {
+        _make(go.Shape,
+            new go.Binding('figure', 'figure'), {
               // name: 'shape',
               strokeWidth: 0.5,
               portId: '',
@@ -251,7 +252,9 @@ export class GenerateRules extends PageRulesVisualizer {
             },
             new go.Binding('name', 'name'),
             new go.Binding('fill', 'color'),
-            new go.Binding('stroke', 'isHighlighted', h => h ? 'red' : 'gray').ofObject()));
+            new go.Binding('stroke', 'isHighlighted', h => h ? 'red' : 'gray').ofObject()
+        )
+    );
 
     node.linkConnected = GenerateRules.updateConnectivity;
     node.linkDisconnected = GenerateRules.updateConnectivity;
@@ -271,6 +274,10 @@ export class GenerateRules extends PageRulesVisualizer {
           margin: new go.Margin(5, 10),
           font: 'normal 14px Tahoma',
           cursor: 'pointer'
+        },
+        {
+          toolTip: _make('ToolTip', _make(go.TextBlock, {margin: 4},
+              new go.Binding('text', '', data => data.key)))
         },
         new go.Binding('text', 'title'))
     );

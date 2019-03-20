@@ -5,8 +5,8 @@
  * Time: 11:03 AM
  */
 
-
 import {PluginController} from '../../plugin.controller';
+import {WidgetRulesModel} from 'js/plugins/widgetRules/mvc/widget.rules.model';
 
 /**
  * @class WidgetRulesController
@@ -33,11 +33,15 @@ export class WidgetRulesController extends PluginController {
   }
 
   /**
-   * Get module data
+   * Check if content was updated
    * @memberOf WidgetRulesController
+   * @static
+   * @param data
+   * @param content
+   * @returns {boolean}
    */
-  getModuleData() {
-    return this.model.getWidgetRulesItems(this.getPage());
+  static isUpdate(data, content) {
+    return Object.keys(data || {}).length !== Object.keys(content || {}).length;
   }
 
   /**
@@ -153,14 +157,11 @@ export class WidgetRulesController extends PluginController {
   }
 
   /**
-   * Check if content was updated
+   * Get module data
    * @memberOf WidgetRulesController
-   * @param data
-   * @param content
-   * @returns {boolean}
    */
-  isUpdate(data, content) {
-    return Object.keys(data || {}).length !== Object.keys(content || {}).length;
+  getModuleData() {
+    return WidgetRulesModel.getWidgetRulesItems(this.getPage());
   }
 
   /**
