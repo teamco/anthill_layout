@@ -372,19 +372,25 @@ export class BaseView extends AntHill {
   }
 
   /**
-   * Define get $container
+   * @method getElementByTagName
    * @memberOf BaseView
-   * @returns {BaseElement}
+   * @static
+   * @param e
+   * @param {string} tag
+   * @return {*|jQuery|HTMLElement}
    */
-  get$container() {
-    const $container = this.elements.$container;
+  static getElementByTagName(e, tag) {
 
-    if (!$container) {
-      this.scope.logger.error('Unable to fetch $container', this.elements);
-      return {};
+    /**
+     * Define $element
+     * @type {*|jQuery|HTMLElement}
+     */
+    let $element = $(e.target);
+
+    if ($element.prop('tagName') !== tag.toUpperCase()) {
+      $element = $element.closest(tag.toLowerCase());
     }
-
-    return $container;
+    return $element;
   }
 
   /**
@@ -487,40 +493,36 @@ export class BaseView extends AntHill {
   }
 
   /**
-   * @method getElementByTagName
-   * @memberOf BaseView
-   * @param e
-   * @param {string} tag
-   * @return {*|jQuery|HTMLElement}
-   */
-  getElementByTagName(e, tag) {
-
-    /**
-     * Define $element
-     * @type {*|jQuery|HTMLElement}
-     */
-    let $element = $(e.target);
-
-    if ($element.prop('tagName') !== tag.toUpperCase()) {
-      $element = $element.closest(tag.toLowerCase());
-    }
-    return $element;
-  }
-
-  /**
    * Locate DOM element in array
    * @memberOf BaseView
+   * @static
    * @param {Array} source
    * @param {string} type
    * @returns {*}
    */
-  locateDOMElement(source, type) {
+  static locateDOMElement(source, type) {
     for (let i = 0, l = source.length; i < l; i++) {
       if ((source[i].tagName + '').toLowerCase() === type) {
         return source[i];
       }
     }
     return {};
+  }
+
+  /**
+   * Define get $container
+   * @memberOf BaseView
+   * @returns {BaseElement|{}}
+   */
+  get$container() {
+    let $container = this.elements.$container;
+
+    if (!$container) {
+      this.scope.logger.error('Unable to fetch $container', this.elements);
+      $container = {};
+    }
+
+    return $container;
   }
 
   /**

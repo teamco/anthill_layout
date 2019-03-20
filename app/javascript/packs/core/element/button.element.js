@@ -23,20 +23,21 @@ export class ButtonElement extends BaseElement {
   constructor(view, opts) {
     super('ButtonElement', view);
     this.setup(opts);
-    this._config(view, opts, this.getTemplate(opts.$htmlElement)).build(opts);
+    this._config(view, opts, ButtonElement.getTemplate(opts.$htmlElement)).build(opts);
     this.setContent();
-    this.$.addClass('btn btn-' + this.type);
+    this.$.addClass('btn btn-sm btn-' + this.type);
     this.disabled ? this.disable() : this.enable();
     return this;
   }
 
   /**
    * Get Button Template
+   * @static
    * @memberOf ButtonElement
    * @param $htmlElement
    * @returns {*}
    */
-  getTemplate($htmlElement) {
+  static getTemplate($htmlElement) {
     return $htmlElement ? $htmlElement : '<button />';
   }
 

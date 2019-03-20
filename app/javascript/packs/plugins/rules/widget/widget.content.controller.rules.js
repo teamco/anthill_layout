@@ -5,6 +5,8 @@
  * Time: 11:46 PM
  */
 
+import {BaseView} from 'js/modules/View';
+
 /**
  * @class WidgetContentControllerRules
  * @extends WidgetSubscribe
@@ -463,7 +465,7 @@ export class WidgetContentControllerRules {
      * Define $button
      * @type {*|jQuery|HTMLElement}
      */
-    const $button = scope.view.getElementByTagName(e, 'button');
+    const $button = BaseView.getElementByTagName(e, 'button');
     let value = $button.attr('value');
 
     if ((value || '').match(/Select rule \(\d+\)/)) {
