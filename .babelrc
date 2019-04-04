@@ -4,7 +4,6 @@
       "@babel/preset-env",
       {
         "modules": "auto",
-        "useBuiltIns": "usage",
         "loose": true,
         "debug": false,
         "forceAllTransforms": true,
