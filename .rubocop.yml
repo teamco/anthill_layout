@@ -1,3 +1,5 @@
+require: rubocop-performance
+
 AllCops:
   Exclude:
     - config/initializers/secret_token.rb

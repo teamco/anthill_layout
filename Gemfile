@@ -33,6 +33,7 @@ group :test, :development do
   gem 'rails_best_practices', require: false
   gem 'request-log-analyzer', require: false
   gem 'rubocop', require: false
+  gem 'rubocop-performance', require: false
   gem 'rubocop-github', require: false
   gem 'ruby-debug-ide', require: false
   gem 'rubycritic', require: false
