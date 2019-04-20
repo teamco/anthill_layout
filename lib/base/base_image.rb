@@ -1,12 +1,11 @@
 require 'base64'
 require 'data_uri'
-require 'rmagick'
 require 'open-uri'
 require 'net/http'
 
 class BaseImage
 
-  include Magick
+  # include Magick
 
   def allowed?(url)
     puts '>>>>> Check allowed size'
@@ -24,7 +23,7 @@ class BaseImage
       raise '--- Connection error'
     end
 
-    tmp_file = open(url) { |io| io.read }
+    tmp_file = open(url, &:read)
     image = ImageList.new
     image.from_blob(tmp_file)
   end

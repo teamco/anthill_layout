@@ -1,4 +1,3 @@
-require 'rmagick'
 require 'fileutils'
 require 'open-uri'
 # require 'readability'
@@ -18,7 +17,7 @@ require "#{Rails.root}/lib/image_base.rb"
 class Author::WidgetsController < Author::AuthorController
 
   include Author
-  include Magick
+  # include Magick
   include Shims
   include ImageBase
 
@@ -80,7 +79,7 @@ class Author::WidgetsController < Author::AuthorController
     end
 
     if @author_widget.nil?
-      respond_to {|format| error_handler_on_create(format)}
+      respond_to(&method(:error_handler_on_create))
     else
 
       respond_to do |format|

@@ -65,7 +65,8 @@ end
 
 gem 'rack-attack'
 
-gem 'rmagick'
+# gem 'rmagick'
+gem 'chunky_png'
 
 gem 'coffee-rails'
 gem 'data_uri'

@@ -6,7 +6,7 @@ module WidgetLib
 
   class Generate
 
-    include Magick
+    # include Magick
 
     TASKS_PATH = "#{Rails.root}/lib/tasks/"
     PLUGINS_PATH = "#{Rails.root}/app/javascript/plugins/"

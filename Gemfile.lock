@@ -66,7 +66,7 @@ GEM
       thread_safe (~> 0.3, >= 0.3.1)
     bcrypt (3.1.12)
     benchmark-ips (2.7.2)
-    bindex (0.6.0)
+    bindex (0.7.0)
     brakeman (4.5.0)
     builder (3.2.3)
     bullet (5.9.0)
@@ -85,6 +85,7 @@ GEM
       capistrano (~> 3.1)
       capistrano-bundler (~> 1.1)
     chronic (0.10.2)
+    chunky_png (1.3.11)
     code_analyzer (0.4.8)
       sexp_processor
     codeclimate-engine-rb (0.4.1)
@@ -310,7 +311,7 @@ GEM
       rack
     orm_adapter (0.5.0)
     parallel (1.17.0)
-    parser (2.6.2.0)
+    parser (2.6.2.1)
       ast (~> 2.4.0)
     path_expander (1.0.3)
     pg (1.1.4)
@@ -336,7 +337,7 @@ GEM
       puma (>= 2.7, < 4)
     querystring (0.1.0)
     rack (2.0.7)
-    rack-attack (5.4.2)
+    rack-attack (6.0.0)
       rack (>= 1.0, < 3)
     rack-contrib (2.1.0)
       rack (~> 2.0)
@@ -405,8 +406,7 @@ GEM
       actionpack (>= 4.2.0, < 6.0)
       railties (>= 4.2.0, < 6.0)
     rkelly-remix (0.0.7)
-    rmagick (3.0.0)
-    rubocop (0.67.1)
+    rubocop (0.67.2)
       jaro_winkler (~> 1.5.1)
       parallel (~> 1.10)
       parser (>= 2.5, != 2.5.1.1)
@@ -416,8 +416,8 @@ GEM
       unicode-display_width (>= 1.4.0, < 1.6)
     rubocop-github (0.12.0)
       rubocop (~> 0.59)
-    rubocop-performance (1.0.0)
-      rubocop (>= 0.58.0)
+    rubocop-performance (1.1.0)
+      rubocop (>= 0.67.0)
     ruby-debug-ide (0.6.1)
       rake (>= 0.8.1)
     ruby-progressbar (1.10.0)
@@ -477,7 +477,7 @@ GEM
       execjs (>= 0.3.0, < 3)
     unf (0.1.4)
       unf_ext
-    unf_ext (0.0.7.5)
+    unf_ext (0.0.7.6)
     unicode-display_width (1.5.0)
     uniform_notifier (1.12.1)
     uuid (2.3.9)
@@ -517,6 +517,7 @@ DEPENDENCIES
   bullet
   byebug
   capistrano-rails
+  chunky_png
   coffee-rails
   data-confirm-modal
   data_uri
@@ -563,7 +564,6 @@ DEPENDENCIES
   rails_best_practices
   rake
   request-log-analyzer
-  rmagick
   rubocop
   rubocop-github
   rubocop-performance
