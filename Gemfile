@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
 ruby '2.6.0'
 
-db = (RUBY_PLATFORM =~ /darwin/).nil? ? 'mysql2' : 'pg'
-db = (ENV['PATH'] =~ /teamco/).nil? ? 'pg' : db
+# db = (RUBY_PLATFORM =~ /darwin/).nil? ? 'mysql2' : 'pg'
+# db = (ENV['PATH'] =~ /teamco/).nil? ? 'pg' : db
 
 gem 'rails', '>= 5.0.0'
 
