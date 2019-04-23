@@ -13,7 +13,7 @@ gem 'iframely'
 gem 'informant-rails'
 gem 'mechanize'
 
-if Gem.available?('pg')
+if Gem::Specification::find_all_by_name('pg').any?
   gem 'pg'
 else
   gem 'mysql2'
