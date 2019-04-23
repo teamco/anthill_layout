@@ -13,7 +13,11 @@ gem 'iframely'
 gem 'informant-rails'
 gem 'mechanize'
 
-(Gem.available?('pg') ? gem 'pg' : gem 'mysql2')
+if Gem.available?('pg')
+  gem 'pg'
+else
+  gem 'mysql2'
+end
 
 gem 'pismo'
 gem 'puma'
