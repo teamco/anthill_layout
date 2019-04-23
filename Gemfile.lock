@@ -263,6 +263,7 @@ GEM
     multi_json (1.13.1)
     multi_xml (0.6.0)
     multipart-post (2.0.0)
+    mysql2 (0.5.2)
     nenv (0.3.0)
     net-http-digest_auth (1.4.1)
     net-http-persistent (3.0.0)
@@ -314,7 +315,6 @@ GEM
     parser (2.6.2.1)
       ast (~> 2.4.0)
     path_expander (1.0.3)
-    pg (1.1.4)
     pismo (0.7.4)
       awesome_print
       chronic
@@ -543,6 +543,7 @@ DEPENDENCIES
   koala
   mechanize
   meta_request
+  mysql2
   omniauth
   omniauth-aliexpress!
   omniauth-bitbucket
@@ -550,7 +551,6 @@ DEPENDENCIES
   omniauth-github
   omniauth-linkedin-oauth2
   omniauth-twitter
-  pg
   pismo
   prmd
   pry-rails

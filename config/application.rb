@@ -26,6 +26,8 @@ module Anthill
     config.autoload_paths << Rails.root.join('lib')
     config.action_view.field_error_proc = Proc.new { |html_tag, instance| html_tag }
 
+    config.middleware.use Rack::Attack
+
     # Specify the file paths that should be browserified. We browserify everything that
     # matches (===) one of the paths. So you will most likely put lambdas
     # regexes in here.
