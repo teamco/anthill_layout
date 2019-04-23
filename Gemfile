@@ -12,7 +12,9 @@ gem 'embedly'
 gem 'iframely'
 gem 'informant-rails'
 gem 'mechanize'
-gem db
+
+Gem.available?('pg') ? gem 'pg' : gem 'mysql2'
+
 gem 'pismo'
 gem 'puma'
 gem 'rake'
