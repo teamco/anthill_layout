@@ -37,13 +37,14 @@ development:
     host: localhost
     port: 3035
     public: localhost:3035
-    hmr: false
+    hmr: true
     # Inline should be set to true if using HMR
     inline: true
     open: true
     overlay: true
     compress: true
     disable_host_check: true
+    check_yarn_integrity: false
     use_local_ip: false
     quiet: false
     headers:
@@ -61,7 +62,6 @@ test:
 
 production:
   <<: *default
-  check_yarn_integrity: false
 
   # Production depends on precompilation of packs prior to booting for performance.
   compile: false
