@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
 ruby '2.6.0'
 
-# db = (RUBY_PLATFORM =~ /darwin/).nil? ? 'mysql2' : 'pg'
-# db = (ENV['PATH'] =~ /teamco/).nil? ? 'pg' : db
+db = (RUBY_PLATFORM =~ /darwin/).nil? ? 'mysql2' : 'pg'
+db = (ENV['PATH'] =~ /teamco/).nil? ? 'pg' : db
 
 gem 'rails', '>= 5.0.0'
 
@@ -12,12 +12,9 @@ gem 'embedly'
 gem 'iframely'
 gem 'informant-rails'
 gem 'mechanize'
+gem 'pg'
 
-if Gem::Specification::find_all_by_name('pg').any?
-  gem 'pg'
-else
-  gem 'mysql2'
-end
+# Gem::Specification::find_all_by_name('pg').any? ? gem 'pg' : gem 'mysql2'
 
 gem 'pismo'
 gem 'puma'
