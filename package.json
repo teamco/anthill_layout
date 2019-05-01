@@ -9,6 +9,7 @@
     "postinstall": "",
     "clean": "yarn autoclean --force",
     "prebuild": "yarn run clean",
+    "compile": "NODE_ENV=production bundle exec rails webpacker:compile",
     "build": "./node_modules/.bin/babel app/javascript/packs -d ./dist",
     "pretest": "",
     "jasmine-init": "node ./node_modules/jasmine/bin/jasmine.js init",
