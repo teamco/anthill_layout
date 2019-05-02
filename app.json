@@ -1,6 +1,7 @@
 {
   "name": "anthill_layout",
   "description": "AntHill Layout",
+  "stack": "heroku-18",
   "env": {
     "LANG": {
       "required": true
