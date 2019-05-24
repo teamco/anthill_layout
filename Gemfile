@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 # db = (RUBY_PLATFORM =~ /darwin/).nil? ? 'mysql2' : 'pg'
 # db = (ENV['PATH'] =~ /teamco/).nil? ? 'pg' : db
 
-gem 'rails', '>= 5.0.0'
+gem 'rails', '>= 6.0.0.rc1'
 
 gem 'json'
 gem 'bullet'

@@ -213,6 +213,13 @@ header {
   pointer-events: none;
 }
 
+.app-body {
+  .main {
+    overflow-y: auto;
+    height: calc(100vh - 55px);
+  }
+}
+
 .app-header {
   .nav-item {
     .nav-link {

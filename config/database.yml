@@ -14,15 +14,7 @@ postgresql: &postgresql
   password: <%= ENV['POSTGRESS_PWD'] %>
 
 default: &default
-  <% unless (ENV['PATH'] =~ /teamco/).nil? %>
-    <% if (RUBY_PLATFORM =~ /darwin/).nil? %>
-      <<: *mysql
-    <% else %>
-      <<: *postgresql
-    <% end %>
-  <% else %>
-    <<: *postgresql
-  <% end %>  
+  <<: *postgresql
 
 development:
   <<: *default
