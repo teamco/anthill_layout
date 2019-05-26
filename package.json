@@ -17,7 +17,8 @@
     "test": "./node_modules/.bin/babel-node ./node_modules/.bin/jasmine --random=false --config=test/unit/jasmine.json",
     "precoverage": "",
     "coverage": "./node_modules/.bin/babel-node ./node_modules/.bin/nyc npm test",
-    "postcoverage": ""
+    "postcoverage": "",
+    "start": "/Users/teamco/.rvm/gems/ruby-2.6.3/bin/bundle exec foreman start -f Procfile.dev"
   },
   "nyc": {
     "require": [
