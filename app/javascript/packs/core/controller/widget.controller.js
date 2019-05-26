@@ -38,6 +38,7 @@ export class WidgetController extends aggregation(BaseController, Interactions, 
     super(name || 'WidgetController', scope, false);
 
     if (!this.getAvailableContent) {
+      this.scope.logger.warn('No available widget resource content');
       this.getAvailableContent = undefined;
     }
   }

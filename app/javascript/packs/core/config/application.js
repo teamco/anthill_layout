@@ -186,7 +186,15 @@ export class Application extends AntHill {
       mode: mode
     };
 
-    return import(`../../public/${site}/index`).then(config => new Application(
-        {config: {...config.default, ...defaults} || {}}));
+    /**
+     * Fetch site.
+     * @type {*}
+     */
+    const config = await import(`../../public/${site}/index`).catch(error => {
+      // TODO (teamco): Do something.
+      // console.warn(error);
+    });
+
+    return new Application({config: {...(config || {}).default, ...defaults} || {}});
   }
 }

@@ -11,9 +11,9 @@ describe('JS Unit tests', () => {
   jsDocument(true);
 
   //require('./unit/application/application.unit');
-  require('./unit/workspace/workspace.unit');
-  require('./unit/page/page.unit');
-  require('./unit/widget/widget.unit');
+  //require('./unit/workspace/workspace.unit');
+  //require('./unit/page/page.unit');
+  //require('./unit/widget/widget.unit');
 
   require('./unit/flow/flow.unit');
 });

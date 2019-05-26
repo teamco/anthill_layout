@@ -17,7 +17,7 @@ export const jsDocument = (init = false) => {
     const window = document.defaultView;
     global.document = document;
     global.window = window;
-    global.jQuery = global.$ = require('jquery')(window);
+    global.jQuery = global.$ = require('jquery');
     global._ = require('underscore');
 
     if (!Object.keys(window).length) {

@@ -116,6 +116,17 @@ export class BaseElement extends Renderer {
   }
 
   /**
+   * Get DOM element.
+   * @param css
+   * @memberOf BaseElement
+   * @static
+   * @returns {any}
+   */
+  static getDomElement(css) {
+    return document.querySelector(css);
+  }
+
+  /**
    * Get $element by uuid
    * @param {string} uuid
    * @returns {*}

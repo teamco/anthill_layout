@@ -171,7 +171,10 @@ export class WidgetContent {
       widget.logger.debug('Fetch external content');
       return false;
     }
-    this.fetchContent(this.getAvailableContent.apply(this, [resource]), true);
+
+    if (this.getAvailableContent) {
+      this.fetchContent(this.getAvailableContent.apply(this, [resource]), true);
+    }
   }
 
   /**
