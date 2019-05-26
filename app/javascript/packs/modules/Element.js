@@ -122,7 +122,7 @@ export class BaseElement extends Renderer {
    * @static
    * @returns {any}
    */
-  static getDomElement(css) {
+  static querySelector(css) {
     return document.querySelector(css);
   }
 

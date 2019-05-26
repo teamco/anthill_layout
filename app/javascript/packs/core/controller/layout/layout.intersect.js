@@ -261,8 +261,8 @@ export class Intersect {
       }
     };
 
-    const $source = BaseElement.getDomElement(),
-        $widget = BaseElement.getDomElement();
+    const $source = source.view.getDomElement(),
+        $widget = target.view.getDomElement();
 
     if (is.collide($source, $widget) || is.inside($source, $widget)) {
       return target;
