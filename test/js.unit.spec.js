@@ -1,5 +1,9 @@
 import {jsDocument} from './unit/helpers/document';
 import {initReporter} from './unit/helpers/reporter';
+import requireHacker from 'require-hacker';
+
+requireHacker.hook('png', () => 'module.exports = ""');
+requireHacker.hook('scss', () => 'module.exports = ""');
 
 initReporter();
 

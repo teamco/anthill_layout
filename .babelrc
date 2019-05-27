@@ -34,6 +34,7 @@
   "plugins": [
     "@babel/plugin-syntax-dynamic-import",
     "dynamic-import-node",
+    "css-modules-transform",
     [
       "@babel/plugin-transform-runtime",
       {
