@@ -1,11 +1,18 @@
 import LZString from 'lz-string';
 import {prettyPrint} from './lib/pretty.print';
+import {BaseElement} from 'js/modules/Element';
 
 /**
- * @method handleParser
+ * @method _handleParser
+ * @private
  */
-function handleParser() {
-  const script = document.querySelector('script#parser') || {};
+function _handleParser() {
+  const script = BaseElement.getQs('script#parser') || {};
+
+  /**
+   * @constant
+   * @type {*|{compressed, selector}}
+   */
   const data = script.dataset || {};
   let content = data.content;
   let parsed = {error: 'Unable to parse content'};
@@ -21,6 +28,4 @@ function handleParser() {
   $(prettyPrint(parsed)).appendTo(data.selector);
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  handleParser();
-});
+document.addEventListener('DOMContentLoaded', _handleParser);

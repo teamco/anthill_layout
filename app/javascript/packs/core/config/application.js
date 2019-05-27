@@ -8,6 +8,7 @@ import {ApplicationPermission} from '../permission/application.permission';
 import {applicationLocalListeners} from './listeners/application.listeners';
 import {applicationLocalPermission} from './permissions/application.permissions';
 import {MVC} from '../../modules/MVC';
+import {BaseElement} from 'js/modules/Element';
 
 /**
  * @class Application
@@ -165,7 +166,7 @@ export class Application extends AntHill {
    * @param {{}} [mock]
    */
   static async init(mock = {}) {
-    const script = document.querySelector('script#require-init'),
+    const script = BaseElement.getQs('script#require-init'),
         data = (script || {}).dataset || mock;
 
     const site = data.resource,

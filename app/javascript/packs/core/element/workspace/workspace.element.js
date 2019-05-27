@@ -33,7 +33,7 @@ export class WorkspaceElement extends BaseElement {
    * @returns {string}
    */
   static getSiteAuthor() {
-    const dom = BaseElement.querySelector('meta[name="author"]');
+    const dom = BaseElement.getQs('meta[name="author"]');
     return dom ? dom.getAttribute('content') : '';
   }
 
@@ -44,7 +44,7 @@ export class WorkspaceElement extends BaseElement {
    * @param {string} author
    */
   static setSiteAuthor(author) {
-    const dom = BaseElement.querySelector('meta[name="author"]');
+    const dom = BaseElement.getQs('meta[name="author"]');
     if (dom) {
       dom.setAttribute('content', author);
     }
@@ -57,7 +57,7 @@ export class WorkspaceElement extends BaseElement {
    * @returns {jQuery|string}
    */
   static getSiteTitle() {
-    const dom = BaseElement.querySelector('title');
+    const dom = BaseElement.getQs('title');
     return dom ? dom.innerText : '';
   }
 
@@ -68,7 +68,7 @@ export class WorkspaceElement extends BaseElement {
    * @param {string} title
    */
   static setSiteTitle(title) {
-    const dom = BaseElement.querySelector('title');
+    const dom = BaseElement.getQs('title');
     if (dom) {
       dom.innerText = title;
     }

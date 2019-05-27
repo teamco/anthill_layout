@@ -128,7 +128,7 @@ export class ApplicationController extends aggregation(BaseController, BehaviorE
         if (_.isUndefined(settings.dataType)) {
           xhr.setRequestHeader('accept', `*/*;q=0.5, ${settings.accepts.script}`);
         }
-        xhr.setRequestHeader('X-CSRF-Token', that.getXCsrfToken());
+        xhr.setRequestHeader('X-CSRF-Token', Routes.getXCsrfToken());
       },
       success() {
         that._handleXhrLog.apply(that, arguments);

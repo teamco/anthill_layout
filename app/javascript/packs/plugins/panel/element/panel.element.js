@@ -7,6 +7,7 @@
 
 import {PluginElement} from '../../plugin.element';
 import {LibCss} from '../../../modules/base/Css';
+import {BaseElement} from 'js/modules/Element';
 
 /**
  * Define Panel Element
@@ -92,7 +93,7 @@ export class PanelElement extends PluginElement {
   togglePanel() {
     const css = 'sidebar-lg-show';
     this.view.scope.utils.event.on(document, 'click', `button[data-toggle='${css}']`, () => {
-      const body = document.querySelector('body');
+      const body = BaseElement.getQs('body');
       LibCss.toggle(body, css);
     });
   }
@@ -112,7 +113,7 @@ export class PanelElement extends PluginElement {
      */
     const utils = this.view.scope.utils;
     utils.event.on(document, 'click', `button[class='${css.replace(/\{0}/g, trigger)}']`, () => {
-      const body = document.querySelector('body');
+      const body = BaseElement.getQs('body');
       LibCss.toggle(body, css.replace(/\{0}/g, target));
     });
   }

@@ -6,6 +6,7 @@
  */
 
 import {PluginElement} from '../../plugin.element';
+import {BaseElement} from 'js/modules/Element';
 
 /**
  * Define BarContent Element
@@ -54,7 +55,7 @@ export class BarContentElement extends PluginElement {
    * @param count
    */
   updateBadge(count) {
-    const badge = this.$[0].querySelector('.badge');
+    const badge = BaseElement.getQs('.badge', this.$[0]);
     badge.innerText = count;
   }
 

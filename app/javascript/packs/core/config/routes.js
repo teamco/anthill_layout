@@ -5,6 +5,8 @@
  * Time: 11:23 PM
  */
 
+import {BaseElement} from 'js/modules/Element';
+
 /**
  * Define Routes
  * @class Routes
@@ -41,6 +43,28 @@ export class Routes {
   }
 
   /**
+   * Get X-Csrf-Token param
+   * @property Routes
+   * @static
+   * @returns {string}
+   */
+  static getXCsrfParam() {
+    const csrf = BaseElement.getQs('meta[name="csrf-param"]');
+    return csrf ? csrf.getAttribute('content') : '';
+  }
+
+  /**
+   * Get X-Csrf-Token
+   * @property Routes
+   * @static
+   * @returns {string}
+   */
+  static getXCsrfToken() {
+    const csrf = BaseElement.getQs('meta[name="csrf-token"]');
+    return csrf ? csrf.getAttribute('content') : '';
+  }
+
+  /**
    * Prepare XHR data before send
    * @property Routes
    * @param [collector]
@@ -56,35 +80,17 @@ export class Routes {
      */
     const data = {authenticity_token: ''};
 
-    data[this.getXCsrfParam()] = this.getXCsrfToken();
+    data[Routes.getXCsrfParam()] = Routes.getXCsrfToken();
 
     for (let index in collector) {
       if (collector.hasOwnProperty(index)) {
         if (data.hasOwnProperty(index)) {
-          throw new Error('Duplicate params', index);
+          throw new Error(`Duplicate params: ${index}`);
         }
         data[index] = collector[index];
       }
     }
 
     return data;
-  }
-
-  /**
-   * Get X-Csrf-Token param
-   * @property Routes
-   * @returns {string}
-   */
-  getXCsrfParam() {
-    return document.querySelector('meta[name="csrf-param"]').getAttribute('content');
-  }
-
-  /**
-   * Get X-Csrf-Token
-   * @property Routes
-   * @returns {string}
-   */
-  getXCsrfToken() {
-    return document.querySelector('meta[name="csrf-token"]').getAttribute('content');
   }
 }

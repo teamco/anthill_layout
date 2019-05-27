@@ -118,12 +118,13 @@ export class BaseElement extends Renderer {
   /**
    * Get DOM element.
    * @param css
+   * @param {HTMLElement} [node]
    * @memberOf BaseElement
    * @static
    * @returns {any}
    */
-  static querySelector(css) {
-    return document.querySelector(css);
+  static getQs(css, node) {
+    return (node || document).querySelector(css);
   }
 
   /**
