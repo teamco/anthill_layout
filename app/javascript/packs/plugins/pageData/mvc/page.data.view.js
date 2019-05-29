@@ -152,7 +152,9 @@ export class PageDataView extends aggregation(BaseView, BasePreferencesElement) 
       cover: true,
       buttons: buttons,
       callbacks: {
-        afterShow: () => canvas.createDiagram.call(canvas)
+        afterShow: () => {
+          import('gojs').then(go => canvas.createDiagram.call(canvas, go));
+        }
       }
     });
   }

@@ -17,6 +17,7 @@ export const jsDocument = (init = false) => {
     const window = document.defaultView;
     global.document = document;
     global.window = window;
+    global.navigator = window.navigator;
     global.jQuery = global.$ = require('jquery');
     global._ = require('underscore');
 
@@ -44,6 +45,7 @@ export const jsDocument = (init = false) => {
   describe('Define globals', () => {
     _it(global, 'window');
     _it(global, 'document');
+    _it(global, 'navigator');
     _it(global, 'jQuery');
     _it(global, '$');
     _it(global, '_');

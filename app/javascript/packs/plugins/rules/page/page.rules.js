@@ -3,7 +3,6 @@
  */
 
 import {PageRulesVisualizer} from './page.rules.visualizer';
-import go from 'gojs';
 
 /**
  * @class GenerateRules
@@ -44,8 +43,9 @@ export class GenerateRules extends PageRulesVisualizer {
    * createDiagram
    * @method createDiagram
    * @memberOf GenerateRules
+   * @param {go} go
    */
-  createDiagram() {
+  createDiagram(go) {
 
     if (!go) {
       this.scope.logger.warn('Go.js should be initialized');
