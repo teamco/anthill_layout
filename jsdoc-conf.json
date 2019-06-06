@@ -1,0 +1,39 @@
+{
+  "plugins": [
+    "plugins/markdown"
+  ],
+  "recurseDepth": 10,
+  "markdown": {
+    "parser": "gfm",
+    "hardwrap": true
+  },
+  "tags": {
+    "allowUnknownTags": true,
+    "dictionaries": [
+      "jsdoc"
+    ]
+  },
+  "templates": {
+    "name": "AIA E2E Test framework",
+    "footerText": "Version 1.0.0",
+    "logo": {
+      "link": "https://github.com/clenemt/docdash"
+    }
+  },
+  "opts": {
+    "encoding": "utf8",
+    "private": true,
+    "recurse": true,
+    "package": "package.json",
+    "template": "./node_modules/docdash",
+    "destination": "./docs/"
+  },
+  "source": {
+    "include": [
+      "app/javascript/packs",
+      "package.json"
+    ],
+    "includePattern": ".js$",
+    "excludePattern": "(node_modules/|docs)"
+  }
+}

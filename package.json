@@ -7,6 +7,7 @@
   "scripts": {
     "preinstall": "node -e \"if(process.env.npm_execpath.indexOf('yarn')===-1) throw new Error('You must use Yarn to install, not NPM')\"",
     "postinstall": "",
+    "doc": "node_modules/.bin/jsdoc -c jsdoc-conf.json",
     "clean": "yarn autoclean --force",
     "prebuild": "yarn run clean",
     "precompile": "rake assets:precompile",
@@ -143,6 +144,7 @@
     "browserify-incremental": "^3.1.1",
     "browserify-shim": "^3.8.14",
     "cross-env": "^5.2.0",
+    "docdash": "^1.1.1",
     "html-webpack-plugin": "^3.2.0",
     "ignore-styles": "^5.0.1",
     "jasmine": "^3.4.0",
@@ -150,6 +152,7 @@
     "jasmine-node": "^3.0.0",
     "jasmine-spec-reporter": "^4.2.1",
     "jasmine-ts-console-reporter": "^3.1.1",
+    "jsdoc": "^3.6.2",
     "jsdom": "^15.1.1",
     "nodemon": "^1.19.1",
     "npm-packlist": "^1.4.1",

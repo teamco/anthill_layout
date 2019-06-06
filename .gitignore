@@ -46,3 +46,4 @@ app/assets/javascripts/
 dist
 .yarnclean
 /test/junitresults-JSUnittests.xml
+docs/
