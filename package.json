@@ -35,11 +35,9 @@
     "parser": "postcss-scss",
     "map": false,
     "plugins": {
-      "postcss-plugin": {
-        "autoprefixer": {},
-        "postcss-modules": {},
-        "postcss-sorting": {}
-      }
+      "postcss-plugin": {},
+      "autoprefixer": {},
+      "postcss-preset-env": {}
     }
   },
   "browserify": {
@@ -99,6 +97,7 @@
     "postcss-cli": "^6.1.2",
     "postcss-js": "^2.0.1",
     "postcss-load-config": "^2.0.0",
+    "postcss-preset-env": "^6.6.0",
     "postcss-loader": "^3.0.0",
     "postcss-modules": "^1.4.1",
     "postcss-plugin": "^1.0.0",

@@ -1,0 +1,22 @@
+{
+  "ui-resizable-handle": "_ui-resizable-handle_1cr29_1",
+  "ui-resizable-disabled": "_ui-resizable-disabled_1cr29_8",
+  "ui-resizable-autohide": "_ui-resizable-autohide_1cr29_9",
+  "ui-resizable-n": "_ui-resizable-n_1cr29_12",
+  "ui-resizable-s": "_ui-resizable-s_1cr29_19",
+  "ui-resizable-e": "_ui-resizable-e_1cr29_26",
+  "ui-resizable-w": "_ui-resizable-w_1cr29_33",
+  "ui-resizable-se": "_ui-resizable-se_1cr29_40",
+  "ui-resizable-sw": "_ui-resizable-sw_1cr29_47",
+  "ui-resizable-nw": "_ui-resizable-nw_1cr29_54",
+  "ui-resizable-ne": "_ui-resizable-ne_1cr29_61",
+  "ui-slider": "_ui-slider_1cr29_68",
+  "ui-slider-handle": "_ui-slider-handle_1cr29_71",
+  "ui-slider-range": "_ui-slider-range_1cr29_79",
+  "ui-state-disabled": "_ui-state-disabled_1cr29_86",
+  "ui-slider-horizontal": "_ui-slider-horizontal_1cr29_89",
+  "ui-slider-range-min": "_ui-slider-range-min_1cr29_97",
+  "ui-slider-range-max": "_ui-slider-range-max_1cr29_99",
+  "ui-slider-vertical": "_ui-slider-vertical_1cr29_102",
+  "ui-sortable-handle": "_ui-sortable-handle_1cr29_117"
+}
