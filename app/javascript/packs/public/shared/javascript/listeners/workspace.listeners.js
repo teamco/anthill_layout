@@ -13,7 +13,6 @@ import {PageData} from '../../../../plugins/pageData/page.data';
 import {WorkspaceData} from '../../../../plugins/workspaceData/workspace.data';
 import {WidgetRules} from '../../../../plugins/widgetRules/widget.rules';
 import {Bar} from '../../../../plugins/bar/bar';
-import {SiteConfig} from '../../../../plugins/siteConfig/site.config';
 import {Dashboard} from '../../../../plugins/dashboard/dashboard';
 
 export const workspaceGlobalListeners = () => {
@@ -159,7 +158,10 @@ export const workspaceGlobalListeners = () => {
          * @type {Panel}
          */
         const panel = this.controller.getDesignTimePanel();
-        panel.controller.updateContentCounter('workspace-data', this.model.getItems());
+
+        if (panel) {
+          panel.controller.updateContentCounter('workspace-data', this.model.getItems());
+        }
       }
     },
 
@@ -175,7 +177,7 @@ export const workspaceGlobalListeners = () => {
 
         /**
          * Init panel plugin
-         * @type {Panel}
+         * @type {Panel|{lazyRender}}
          */
         app.panels.designTime = new Panel({
           config: {
