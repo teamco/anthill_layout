@@ -1,6 +1,10 @@
 .modal {
   -ms-overflow-style: none;
 
+  .modal-dialog {
+    min-width: 40rem;
+  }
+
   &::-webkit-scrollbar {
     display: none;
   }

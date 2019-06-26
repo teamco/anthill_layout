@@ -3,7 +3,10 @@
 .modal.preferences {
   .modal-content {
     overflow: hidden;
-    min-width: 35rem;
+
+    & > * {
+      font-size: .875rem !important;
+    }
 
     .tab-content {
       margin: 0;
