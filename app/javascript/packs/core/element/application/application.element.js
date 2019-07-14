@@ -26,7 +26,7 @@ export class ApplicationElement extends BaseElement {
     super('ApplicationElement', view);
     this._config(view, opts, '<application />').build(opts);
 
-    const container = BaseElement.getQs(opts.$container);
+    const container = BaseElement.getQs(opts.$container, null, 'body');
     container.classList.add(opts.mode, 'loading');
   }
 

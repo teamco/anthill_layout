@@ -119,12 +119,17 @@ export class BaseElement extends Renderer {
    * Get DOM element.
    * @param css
    * @param {HTMLElement} [node]
+   * @param {string} [fallback]
    * @memberOf BaseElement
    * @static
    * @returns {any}
    */
-  static getQs(css, node) {
-    return (node || document).querySelector(css);
+  static getQs(css, node, fallback) {
+    let qs = (node || document).querySelector(css);
+    if (!qs && fallback) {
+      qs = document.querySelector(fallback);
+    }
+    return qs;
   }
 
   /**
