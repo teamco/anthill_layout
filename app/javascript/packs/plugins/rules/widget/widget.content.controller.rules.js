@@ -6,6 +6,7 @@
  */
 
 import {BaseView} from 'js/modules/View';
+import {BaseEvent} from 'js/modules/Event';
 
 /**
  * @class WidgetContentControllerRules
@@ -372,7 +373,7 @@ export class WidgetContentControllerRules {
 
   /**
    * Register scope rule
-   * @memberOf WidgetContentControllerRules
+   * @property WidgetContentControllerRules
    * @param scope
    * @param opts
    * @returns {boolean}
@@ -388,7 +389,7 @@ export class WidgetContentControllerRules {
 
   /**
    * Register rule
-   * @memberOf WidgetContentControllerRules
+   * @property WidgetContentControllerRules
    * @param scope
    * @param {string} event
    * @param subscribeEM
@@ -436,7 +437,7 @@ export class WidgetContentControllerRules {
        * Subscribe to event
        * @type {Array}
        */
-      const eventUUIDs = this.scope.eventManager.publishOn({
+      const eventUUIDs = BaseEvent.publishOn({
         scope: scope,
         events: [{name: eventList[ename]}],
         callback: callback.bind({

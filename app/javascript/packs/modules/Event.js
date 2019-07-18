@@ -26,7 +26,7 @@ export class BaseEvent extends AntHill {
 
     /**
      * Define event to unsubscribe
-     * @memberOf BaseEvent
+     * @property BaseEvent
      * @type {{}}
      */
     this.unSubscribe = {};
@@ -34,18 +34,19 @@ export class BaseEvent extends AntHill {
 
   /**
    * Subscribe to external published events
-   * @memberOf BaseEvent
+   * @property BaseEvent
+   * @static
    * @param data
    * @return {Array}
    */
-  publishOn(data) {
+  static publishOn(data) {
     let eventUUIDs = [];
 
     for (let i = 0, l = data.events.length; i < l; i++) {
 
       /**
        * Define event opts
-       * @memberOf publishOn
+       * @property publishOn
        */
       const event = data.events[i];
 
@@ -63,8 +64,32 @@ export class BaseEvent extends AntHill {
   }
 
   /**
+   * Re-Emmit event
+   * @property BaseEvent
+   * @static
+   * @param {string} name
+   */
+  static reEmmit(name) {
+    const evt = document.createEvent('Event');
+    evt.initEvent(name, false, false);
+    window.dispatchEvent(evt);
+  }
+
+  /**
+   * Find events bound on an element
+   * @property BaseEvent
+   * @static
+   * @param {BaseElement} $element
+   * @returns {*}
+   */
+  static eventsBound($element) {
+    // Lookup events for this particular Element
+    return $._data($element.$[0], 'events');
+  }
+
+  /**
    * Define event as unSubscribe ready
-   * @memberOf BaseEvent
+   * @property BaseEvent
    * @param {string} name
    * @param {string} eventUUID
    */
@@ -77,7 +102,7 @@ export class BaseEvent extends AntHill {
 
   /**
    * Detach event as unsubscribe ready
-   * @memberOf BaseEvent
+   * @property BaseEvent
    * @param scope
    * @param {string} name
    */
@@ -96,7 +121,7 @@ export class BaseEvent extends AntHill {
 
   /**
    * Check if event was available in event list
-   * @memberOf BaseEvent
+   * @property BaseEvent
    * @param {string} event
    * @returns {boolean}
    */
@@ -106,7 +131,7 @@ export class BaseEvent extends AntHill {
 
   /**
    * Find event in a whole project
-   * @memberOf BaseEvent
+   * @property BaseEvent
    * @param {*} root
    * @param {string} uuid
    * @return {*}
@@ -156,7 +181,7 @@ export class BaseEvent extends AntHill {
 
   /**
    * Get event list
-   * @memberOf BaseEvent
+   * @property BaseEvent
    * @returns {{}}
    */
   getEvents() {
@@ -164,8 +189,17 @@ export class BaseEvent extends AntHill {
   }
 
   /**
+   * @property BaseEvent
+   * @param eventName
+   * @returns {*}
+   */
+  getEvent(eventName) {
+    return this.getEvents()[eventName];
+  }
+
+  /**
    * Add event listener
-   * @memberOf BaseEvent
+   * @property BaseEvent
    * @param {{name, eventUUID}} opts
    * @returns {*}
    */
@@ -189,7 +223,7 @@ export class BaseEvent extends AntHill {
 
   /**
    * Remove event listener
-   * @memberOf BaseEvent
+   * @property BaseEvent
    * @param {{name, eventUUID, scope}} opts
    * @returns {*}
    */
@@ -210,7 +244,7 @@ export class BaseEvent extends AntHill {
 
   /**
    * isSubscribed event
-   * @memberOf BaseEvent
+   * @property BaseEvent
    */
   isSubscribed() {
     // TODO
@@ -218,7 +252,7 @@ export class BaseEvent extends AntHill {
 
   /**
    * Subscribe event
-   * @memberOf BaseEvent
+   * @property BaseEvent
    * @param {{event, callback, [params], [name], [scope]}} opts
    * @param {boolean} internal
    * @returns {boolean|string}
@@ -264,7 +298,7 @@ export class BaseEvent extends AntHill {
 
   /**
    * Bind element events
-   * @memberOf BaseEvent
+   * @property BaseEvent
    * @param {string|Array} events
    * @param {string} on
    * @returns {boolean}
@@ -288,27 +322,5 @@ export class BaseEvent extends AntHill {
 
       this.$.on([on, event].join('.'), method.bind(controller));
     }
-  }
-
-  /**
-   * Re-Emmit event
-   * @memberOf BaseEvent
-   * @param {string} name
-   */
-  reEmmit(name) {
-    const evt = document.createEvent('Event');
-    evt.initEvent(name, false, false);
-    window.dispatchEvent(evt);
-  }
-
-  /**
-   * Find events bound on an element
-   * @memberOf BaseEvent
-   * @param {BaseElement} $element
-   * @returns {*}
-   */
-  eventsBound($element) {
-    // Lookup events for this particular Element
-    return $._data($element.$[0], 'events');
   }
 }

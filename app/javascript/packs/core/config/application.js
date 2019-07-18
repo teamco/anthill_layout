@@ -150,13 +150,13 @@ export class Application extends AntHill {
     };
 
     this.observer.batchPublish(
-        this.eventManager.eventList.defineSetting,
-        this.eventManager.eventList.setRoutes,
-        this.eventManager.eventList.initResizeWindow,
-        this.eventManager.eventList.successCreated,
-        this.eventManager.eventList.loadApplication,
-        this.eventManager.eventList.defineGlobalInstance,
-        this.eventManager.eventList.initScrollBehavior
+        this.eventManager.getEvent('defineSetting'),
+        this.eventManager.getEvent('setRoutes'),
+        this.eventManager.getEvent('initResizeWindow'),
+        this.eventManager.getEvent('successCreated'),
+        this.eventManager.getEvent('loadApplication'),
+        this.eventManager.getEvent('defineGlobalInstance'),
+        this.eventManager.getEvent('initScrollBehavior')
     );
   }
 

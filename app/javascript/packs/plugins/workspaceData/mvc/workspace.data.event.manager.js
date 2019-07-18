@@ -80,6 +80,6 @@ export class WorkspaceDataEventManager extends BaseEvent {
       callback: callback
     };
 
-    this.publishOn(publish);
+    BaseEvent.publishOn(publish);
   }
 }

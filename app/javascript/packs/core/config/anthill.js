@@ -9,7 +9,6 @@ import {Base} from '../../modules/Base';
 import {Observer} from '../../modules/Observer';
 import {Logger} from '../../modules/Logger';
 import {i18n} from '../../modules/i18n';
-import {MVC} from '../../modules/MVC';
 
 /**
  * @class AntHill
@@ -59,16 +58,16 @@ export class AntHill {
       /**
        * Init observer
        * @property AntHill
-       * @type {Observer}
+       * @type {Observer|{batchPublish}}
        */
-      this.observer = new Observer(this.scope || this);
+      this.observer = new Observer(scope || this);
 
       /**
        * Init logger
        * @property Anthill
        * @type {Logger}
        */
-      this.logger = new Logger(this.scope || this);
+      this.logger = new Logger(scope || this);
 
       /**
        * Init logger
@@ -77,10 +76,34 @@ export class AntHill {
        */
       this.i18n = new i18n('en-us');
 
+      /**
+       * @property Anthill
+       * @type {BaseAPI}
+       */
       this.api = undefined;
+
+      /**
+       * @property Anthill
+       * @type {BaseController}
+       */
       this.controller = undefined;
+
+      /**
+       * @property Anthill
+       * @type {BaseModel}
+       */
       this.model = undefined;
+
+      /**
+       * @property Anthill
+       * @type {BaseEvent}
+       */
       this.eventManager = undefined;
+
+      /**
+       * @property Anthill
+       * @type {BaseView}
+       */
       this.view = undefined;
     }
 
