@@ -29,3 +29,5 @@ Demo: https://anthill.herokuapp.com/
 Live Reload Chrome plugin: https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei
 
 https://gist.github.com/zhirzh/fbfe28ca0f33f14f22a025c914f1d0e3
+
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fteamco%2Fanthill_layout.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fteamco%2Fanthill_layout?ref=badge_large)
