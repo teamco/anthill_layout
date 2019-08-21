@@ -2,6 +2,8 @@
  * Created by teamco on 7/10/14.
  */
 
+import {LibGenerator} from 'js/modules/base/Generator';
+
 /**
  * @class EventLinkRenderer
  * @type {EventLinkRenderer}
@@ -20,7 +22,7 @@ export class EventLinkRenderer {
      * Create UUID
      * @type {string}
      */
-    const uuid = this.view.utils.gen.UUID() + '-event';
+    const uuid = LibGenerator.UUID() + '-event';
     const checked = !!opts.checked;
 
     const $input = $('<input />').attr({

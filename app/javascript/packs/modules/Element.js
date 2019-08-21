@@ -8,6 +8,7 @@
 
 import $ from 'jquery';
 import {Renderer} from './Renderer';
+import {LibNumber} from 'js/modules/base/Number';
 
 /**
  * Define Base element
@@ -569,7 +570,7 @@ export class BaseElement extends Renderer {
    * @returns {Number}
    */
   getCSS(value) {
-    return this.view.utils.num.str2float(this.$.css(value));
+    return LibNumber.str2float(this.$.css(value));
   }
 
   /**

@@ -5,6 +5,7 @@
  * Time: 11:40 AM
  * Project: JetBrains RubyMine
  **/
+import {LibGenerator} from 'js/modules/base/Generator';
 
 export class Observer {
 
@@ -143,7 +144,7 @@ export class Observer {
         defaultPriority = 'normal';
 
     opts = opts || {};
-    opts.eventUUID = this.scope.utils.gen.UUID();
+    opts.eventUUID = LibGenerator.UUID();
     opts.params = opts.params || {};
     opts.state = {};
     opts.priority = opts.priority || defaultPriority;

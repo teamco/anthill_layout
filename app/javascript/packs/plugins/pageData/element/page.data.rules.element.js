@@ -7,6 +7,7 @@
 
 import {PluginElement} from '../../plugin.element';
 import {GenerateRules} from '../../rules/page/page.rules';
+import {LibGenerator} from 'js/modules/base/Generator';
 
 /**
  * @class PageDataRulesElement
@@ -75,7 +76,7 @@ export class PageDataRulesElement extends PluginElement {
    * @returns {*|jQuery|HTMLElement}
    */
   renderWizard(page) {
-    const uuid = this.utils.gen.UUID();
+    const uuid = LibGenerator.UUID();
     const $html = $('<div class="canvas-rules" />').attr({id: uuid});
 
     /**

@@ -2,6 +2,8 @@
  * Created by teamco on 7/10/14.
  */
 
+import {LibGenerator} from 'js/modules/base/Generator';
+
 /**
  * @class DropDownRenderer
  * @type {DropDownRenderer}
@@ -51,7 +53,7 @@ export class DropDownRenderer {
     });
 
     const style = (activeContent ? `${index}${activeContent.name}` : index).toDash(),
-        id = `${this.view.utils.gen.UUID()}-dropdown`,
+        id = `${LibGenerator.UUID()}-dropdown`,
         customCss = `${style} ${disabled ? ' disabled' : ''}`;
 
     const $combo = $(

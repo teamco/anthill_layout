@@ -12,19 +12,13 @@
 export class LibHash {
 
   /**
+   * Find all Hash keys
    * @memberOf LibHash
-   * @param obj1
-   * @param obj2
-   * @returns {*}
+   * @param {*} h
+   * @returns {Array}
    */
-  extend(obj1 = {}, obj2 = {}) {
-    const keys = this.keys(obj2);
-    for (let i = 0; i < keys.length; i += 1) {
-      const val = obj2[keys[i]];
-      const _is = ['string', 'number', 'array', 'boolean'].indexOf(typeof val);
-      obj1[keys[i]] = _is === -1 ? this.extend(obj1[keys[i]], val) : val;
-    }
-    return obj1;
+  static keys(h = {}) {
+    return Object.keys(h);
   }
 
   /**
@@ -38,13 +32,19 @@ export class LibHash {
   }
 
   /**
-   * Find all Hash keys
    * @memberOf LibHash
-   * @param {*} h
-   * @returns {Array}
+   * @param obj1
+   * @param obj2
+   * @returns {*}
    */
-  keys(h = {}) {
-    return Object.keys(h);
+  extend(obj1 = {}, obj2 = {}) {
+    const keys = LibHash.keys(obj2);
+    for (let i = 0; i < keys.length; i += 1) {
+      const val = obj2[keys[i]];
+      const _is = ['string', 'number', 'array', 'boolean'].indexOf(typeof val);
+      obj1[keys[i]] = _is === -1 ? this.extend(obj1[keys[i]], val) : val;
+    }
+    return obj1;
   }
 
   /**
@@ -54,7 +54,7 @@ export class LibHash {
    * @returns {Number}
    */
   length(o = {}) {
-    return this.keys(o).length;
+    return LibHash.keys(o).length;
   }
 
   /**

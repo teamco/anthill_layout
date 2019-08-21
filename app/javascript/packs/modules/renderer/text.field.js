@@ -2,6 +2,8 @@
  * Created by teamco on 7/10/14.
  */
 
+import {LibGenerator} from 'js/modules/base/Generator';
+
 /**
  * @class TextFieldRenderer
  * @type {TextFieldRenderer}
@@ -33,7 +35,7 @@ export class TextFieldRenderer {
      * Create UUID
      * @type {string}
      */
-    const uuid = this.utils.gen.UUID() + '-input';
+    const uuid = LibGenerator.UUID() + '-input';
 
     /**
      * Define $input

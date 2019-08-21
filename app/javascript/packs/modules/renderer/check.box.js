@@ -2,12 +2,14 @@
  * Created by teamco on 7/10/14.
  */
 
+import {LibGenerator} from 'js/modules/base/Generator';
+
 /**
  * Define CheckBoxRenderer
  * @class CheckBoxRenderer
  * @type {CheckBoxRenderer}
  */
-export class CheckBoxRenderer  {
+export class CheckBoxRenderer {
 
   /**
    * Render checkbox
@@ -30,8 +32,8 @@ export class CheckBoxRenderer  {
      * Create UUID
      * @type {string}
      */
-    const uuid = this.utils.gen.UUID() + '-checkbox';
-        const checked = this.utils.setBoolean(opts.checked, false);
+    const uuid = LibGenerator.UUID() + '-checkbox';
+    const checked = this.utils.setBoolean(opts.checked, false);
 
     /**
      * Define $input

@@ -9,19 +9,19 @@ export class LibString {
    */
   constructor() {
 
-    String.prototype.repeat = undefined;
-    String.prototype.toInstanceName = undefined;
-    String.prototype.capitalize = undefined;
-    String.prototype.utf82base64 = undefined;
-    String.prototype.base642utf8 = undefined;
-    String.prototype.toHtml = undefined;
-    String.prototype.humanize = undefined;
-    String.prototype.toClassName = undefined;
-    String.prototype.toDash = undefined;
-    String.prototype.toResource = undefined;
-    String.prototype.toCamelCase = undefined;
-    String.prototype.toPoint = undefined;
-    String.prototype.toUnderscore = undefined;
+    String.prototype['repeat'] = undefined;
+    String.prototype['toInstanceName'] = undefined;
+    String.prototype['capitalize'] = undefined;
+    String.prototype['utf82base64'] = undefined;
+    String.prototype['base642utf8'] = undefined;
+    String.prototype['toHtml'] = undefined;
+    String.prototype['humanize'] = undefined;
+    String.prototype['toClassName'] = undefined;
+    String.prototype['toDash'] = undefined;
+    String.prototype['toResource'] = undefined;
+    String.prototype['toCamelCase'] = undefined;
+    String.prototype['toPoint'] = undefined;
+    String.prototype['toUnderscore'] = undefined;
 
     this.extendString();
   }

@@ -5,6 +5,8 @@
  * Time: 1:26 PM
  */
 
+import {LibFunction} from 'js/modules/base/Function';
+
 /**
  * @class WidgetContentPreferencesController
  * @export WidgetContentPreferencesController
@@ -44,7 +46,7 @@ export class WidgetContentPreferencesController {
            * Define setter
            * @type {Function}
            */
-          const fn = this.utils.fn.create({
+          const fn = LibFunction.create({
             name: setter,
             params: index,
             body: 'this.setPrefs("' + index + '", ' + index + ');' +

@@ -2,6 +2,8 @@
  * Created by teamco on 7/10/14.
  */
 
+import {LibGenerator} from 'js/modules/base/Generator';
+
 /**
  * @class NumberFieldRenderer
  * @type {NumberFieldRenderer}
@@ -37,7 +39,7 @@ export class NumberFieldRenderer {
      * Create UUID
      * @type {string}
      */
-    const uuid = utils.gen.UUID() + '-input';
+    const uuid = LibGenerator.UUID() + '-input';
 
     /**
      * Define $input

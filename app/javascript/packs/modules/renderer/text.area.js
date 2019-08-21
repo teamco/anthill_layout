@@ -2,6 +2,8 @@
  * Created by teamco on 7/10/14.
  */
 
+import {LibGenerator} from 'js/modules/base/Generator';
+
 /**
  * @class TextAreaRenderer
  * @type {TextAreaRenderer}
@@ -39,7 +41,7 @@ export class TextAreaRenderer {
      * Create UUID
      * @type {string}
      */
-    const uuid = utils.gen.UUID() + '-textarea';
+    const uuid = LibGenerator.UUID() + '-textarea';
 
     /**
      * Define $input

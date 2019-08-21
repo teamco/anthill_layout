@@ -5,6 +5,8 @@
  * Time: 10:14 PM
  */
 
+import {LibGenerator} from 'js/modules/base/Generator';
+
 /**
  * @class MVC
  * @extends AntHill
@@ -225,7 +227,7 @@ export class MVC {
 
   /**
    * Define parent node
-   * @memberOf MVC
+   * @property MVC
    */
   defineContainment() {
 
@@ -249,7 +251,7 @@ export class MVC {
 
   /**
    * Define MVC
-   * @memberOf MVC
+   * @property MVC
    * @param {Function|String} mvcPattern
    * @param {boolean} [force]
    * @returns {*}
@@ -300,7 +302,7 @@ export class MVC {
 
   /**
    * Set relation between MVC components
-   * @memberOf MVC
+   * @property MVC
    */
   setRelation() {
     const relations = this.RELATIONS,
@@ -325,7 +327,7 @@ export class MVC {
 
   /**
    * Apply MVC
-   * @memberOf MVC
+   * @property MVC
    * @returns {boolean}
    */
   applyMVC() {
@@ -362,7 +364,7 @@ export class MVC {
 
   /**
    * Apply MVC shims
-   * @memberOf MVC
+   * @property MVC
    * @param pattern
    */
   applyMVCShims(pattern) {
@@ -398,14 +400,14 @@ export class MVC {
 
   /**
    * Apply config
-   * @memberOf MVC
+   * @property MVC
    */
   applyConfig() {
     const scope = this.scope,
         timestamp = scope.utils.ts.timestamp(this.scope.config.timestamp),
         config = scope.config;
 
-    config.uuid = scope.utils.gen.UUID(this.scope.config.uuid);
+    config.uuid = LibGenerator.UUID(this.scope.config.uuid);
     config.timestamp = timestamp;
 
     if (this.render) {
@@ -416,7 +418,7 @@ export class MVC {
 
   /**
    * Apply event manager
-   * @memberOf MVC
+   * @property MVC
    */
   applyEventManager() {
 
@@ -437,41 +439,16 @@ export class MVC {
     const eventList = eventManager.eventList;
 
     for (let index in eventList) {
-
       if (eventList.hasOwnProperty(index)) {
 
         const event = eventList[index];
         const controller = scope.controller;
 
         if (controller) {
-          let callback = controller[index];
-          if (!callback) {
-            let method = index.toPoint().split('.'),
-                key = method[0];
-
-            method.shift();
-            method = ('.' + method.join('.')).toCamelCase();
-
-            if (this.RESERVED.hasOwnProperty(key)) {
-
-              const singular = this.RESERVED[key].singular;
-              const plural = this.RESERVED[key].plural;
-
-              if (singular && singular.indexOf(method) > -1) {
-                eventManager.abstract[key + 'Item'] = index;
-                callback = scope.controller[key + 'Item'];
-              } else if (plural && plural.indexOf(method) > -1) {
-                eventManager.abstract[key + 'Items'] = index;
-                callback = scope.controller[key + 'Items'];
-              } else {
-                scope.logger.warn('Undefined Event Callback', [scope.controller, key + method]);
-              }
-            }
-          }
-
+          const callback = eventManager.createCallback(scope, index, this.RESERVED);
           eventManager.subscribe({
-            event: event,
-            callback: callback
+            event,
+            callback
           }, true);
         } else {
           scope.logger.warn('Controller is not defined', event);
@@ -487,7 +464,7 @@ export class MVC {
 
   /**
    * Apply default listeners
-   * @memberOf MVC
+   * @property MVC
    */
   applyDefaultListeners() {
 
@@ -520,7 +497,7 @@ export class MVC {
 
   /**
    * Apply global events
-   * @memberOf MVC
+   * @property MVC
    */
   applyGlobalEvents() {
 
@@ -529,35 +506,30 @@ export class MVC {
         eventManager = scope.eventManager;
 
     if (scope.globalEvents) {
-
       for (let index in scope.globalEvents) {
-
         if (scope.globalEvents.hasOwnProperty(index)) {
-
           let event = scope.globalEvents[index];
-
           if (eventManager.eventList.hasOwnProperty(index)) {
-
             scope.logger.warn('Event already defined', index, event);
-
           } else {
-
             scope.logger.debug('Add event', index, event);
             eventManager.eventList[index] = event;
           }
         }
       }
+    } else {
+      scope.logger.debug('No global events');
     }
   }
 
   /**
    * Apply listeners
-   * @memberOf MVC
+   * @property MVC
    */
   applyListeners(type) {
 
     const scope = this.scope,
-        listener = type + 'Listeners';
+        listener = `${type}Listeners`;
 
     /**
      * Define scope listener
@@ -566,9 +538,7 @@ export class MVC {
     const scopeListener = scope[listener];
 
     if (typeof scopeListener === 'object') {
-
       for (let index in scopeListener) {
-
         if (scopeListener.hasOwnProperty(index)) {
 
           /**
@@ -589,12 +559,12 @@ export class MVC {
       }
     }
 
-    scope.logger.debug('Apply ' + type + ' listeners', scope[listener]);
+    scope.logger.debug(`Apply ${type} listeners`, scope[listener]);
   }
 
   /**
    * Define permissions
-   * @memberOf MVC
+   * @property MVC
    * @returns {boolean}
    */
   applyPermissions() {
@@ -630,7 +600,7 @@ export class MVC {
 
   /**
    * Apply global permissions
-   * @memberOf MVC
+   * @property MVC
    * @returns {*|boolean}
    */
   _applyPermissions(type) {
@@ -643,7 +613,7 @@ export class MVC {
     }
 
     const mode = scope.controller.getMode(),
-        permission = type + 'Permissions';
+        permission = `${type}Permissions`;
 
     /**
      * Define permission params
@@ -652,12 +622,12 @@ export class MVC {
     const scopePermission = scope[permission];
 
     if (!mode) {
-      scope.logger.warn('Undefined ' + type + ' mode');
+      scope.logger.warn(`Undefined ${type} mode`);
       return false;
     }
 
     if (!scopePermission) {
-      scope.logger.warn('Undefined ' + type + ' permission');
+      scope.logger.warn(`Undefined ${type} permission`);
       scope.constructor.prototype[permission] = {};
     }
 
@@ -665,11 +635,11 @@ export class MVC {
     const capabilities = (scopePermission || {})[mode];
 
     if (!capabilities) {
-      scope.logger.warn('Undefined ' + type + ' capabilities', mode);
+      scope.logger.warn(`Undefined ${type} capabilities`, mode);
       scope.constructor.prototype[permission][mode] = {};
     }
 
-    scope.logger.debug('Apply ' + type + ' permissions', capabilities);
+    scope.logger.debug(`Apply ${type} permissions`, capabilities);
 
     if (!scope.config.permission) {
       scope.config.permission = {};
@@ -680,7 +650,7 @@ export class MVC {
 
   /**
    * Apply Logger
-   * @memberOf MVC.applyLogger
+   * @property MVC.applyLogger
    */
   applyLogger() {
     this.scope.logger.setConfig(this.scope.config.logger || this.LOGGER_CONFIG);

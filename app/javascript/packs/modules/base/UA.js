@@ -14,18 +14,20 @@ export class LibUserAgent {
   /**
    * Check isLocalhost.
    * @memberOf LibUserAgent
+   * @static
    * @returns {boolean}
    */
-  isLocalHost() {
+  static isLocalHost() {
     return !!window.location.hostname.match(/localhost/);
   }
 
   /**
    * Get browser zoom
    * @memberOf LibUserAgent
+   * @static
    * @returns {number}
    */
-  getBrowserZoom() {
+  static getBrowserZoom() {
     let zoom = 1;
 
     // Get Firefox zoom
@@ -49,8 +51,9 @@ export class LibUserAgent {
    * @memberOf LibUserAgent
    * @param fullScreen
    * @param el
+   * @static
    */
-  fullScreen(el, fullScreen = true) {
+  static fullScreen(el, fullScreen = true) {
 
     // Define mode
     const mode = fullScreen ? 'Request' : 'Cancel';
@@ -74,7 +77,7 @@ export class LibUserAgent {
        * @type {ActiveXObject}
        */
       const wscript = new ActiveXObject('WScript.Shell');
-      if (wscript) wscript.SendKeys('{F11}');
+      if (wscript) wscript['SendKeys']('{F11}');
     }
   }
 }

@@ -1,4 +1,5 @@
 import {Router} from './Router';
+import {LibGenerator} from 'js/modules/base/Generator';
 
 /**
  * @constant LZString
@@ -161,7 +162,7 @@ export class Setting extends Router {
        * @memberOf Setting
        * @type {string}
        */
-      this.token = this.utils.gen.UUID();
+      this.token = LibGenerator.UUID();
       this.save(storage);
     }
 

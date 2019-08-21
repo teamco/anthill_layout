@@ -21,9 +21,10 @@ export class LibGenerator {
    * @description RFC4122 Description "http://www.ietf.org/rfc/rfc4122.txt"
    * @memberOf LibGenerator
    * @param {string} [uuid]
+   * @static
    * @returns {string}
    */
-  UUID(uuid) {
+  static UUID(uuid) {
 
     if (uuid) {
       return uuid;
@@ -45,9 +46,10 @@ export class LibGenerator {
   /**
    * Generate random color HEX
    * @memberOf LibGenerator
+   * @static
    * @returns {string}
    */
-  randomColor() {
+  static randomColor() {
     return '#' + (0x1000000 + (Math.random()) * 0xffffff).toString(16).substr(1, 6);
   }
 

@@ -13,6 +13,7 @@ import {HeaderElement} from '../core/element/header.element';
 import {FilterElement} from '../core/element/filter.element';
 import {ModalElement} from '../core/element/modal.element';
 import {ButtonElement} from '../core/element/button.element';
+import {LibGenerator} from 'js/modules/base/Generator';
 
 /**
  * Define base view
@@ -195,7 +196,7 @@ export class BaseView extends AntHill {
    * @returns {*|string}
    */
   renderUUID(id) {
-    return id || `${this.scope.name.toDash()}-${this.utils.gen.UUID()}`;
+    return id || `${this.scope.name.toDash()}-${LibGenerator.UUID()}`;
   }
 
   /**

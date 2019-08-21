@@ -2,6 +2,8 @@
  * Created by teamco on 7/10/14.
  */
 
+import {LibGenerator} from 'js/modules/base/Generator';
+
 /**
  * @class TabsRenderer
  * @type {TabsRenderer}
@@ -102,7 +104,7 @@ export class TabsRenderer {
    */
   addTabItem($tabs, item, active) {
     const $item = $('<li class="nav-item"><a class="nav-link"></a></li>'),
-        uuid = this.utils.gen.UUID(item.uuid);
+        uuid = LibGenerator.UUID(item.uuid);
 
     const $a = $item.find('a');
     $a.text(item.text).attr({

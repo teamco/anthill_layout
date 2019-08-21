@@ -10,6 +10,7 @@ import {AntHill} from '../core/config/anthill';
 import {BehaviorCrud} from '../core/controller/behavior/behavior.crud';
 import {BehaviorWindowResize} from '../core/controller/behavior/behavior.window.resize';
 import {aggregation} from '../lib/extends/aggregation';
+import {LibFunction} from 'js/modules/base/Function';
 
 /**
  * Define Base Controller
@@ -561,7 +562,7 @@ export class BaseController extends aggregation(AntHill, BehaviorCrud, BehaviorW
          * Define setter
          * @type {Function}
          */
-        const fn = scope.utils.fn.create({
+        const fn = LibFunction.create({
           name: setter,
           params: index,
           body: `this._setItemInfoPreferences("${index}", ${index});

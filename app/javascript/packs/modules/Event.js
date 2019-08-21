@@ -154,7 +154,7 @@ export class BaseEvent extends AntHill {
       return root;
     }
 
-    if (typeof(root.controller.getContent) === 'function') {
+    if (typeof (root.controller.getContent) === 'function') {
 
       child = root.controller.getContent().observer.getEventName(uuid);
 
@@ -195,6 +195,45 @@ export class BaseEvent extends AntHill {
    */
   getEvent(eventName) {
     return this.getEvents()[eventName];
+  }
+
+  /**
+   * @memberOf BaseEvent
+   * @param scope
+   * @param index
+   * @param _RESERVED
+   * @returns {*}
+   */
+  createCallback(scope, index, _RESERVED) {
+    let callback = scope.controller[index];
+    if (callback) {
+      return callback;
+    }
+    let method = index.toPoint().split('.'),
+        key = method[0];
+
+    method.shift();
+    method = (`.${method.join('.')}`).toCamelCase();
+
+    if (_RESERVED.hasOwnProperty(key)) {
+
+      const singular = _RESERVED[key].singular;
+      const plural = _RESERVED[key].plural;
+
+      if (singular && singular.indexOf(method) > -1) {
+        this.abstract[`${key}Item`] = index;
+        callback = scope.controller[`${key}Item`];
+      } else if (plural && plural.indexOf(method) > -1) {
+        this.abstract[`${key}Items`] = index;
+        callback = scope.controller[`${key}Items`];
+      } else {
+        scope.logger.warn('Undefined Event Callback', [scope.controller, key + method]);
+      }
+    } else {
+      scope.logger.warn('Undefined Reserved Callback', [_RESERVED, key]);
+    }
+
+    return callback;
   }
 
   /**
@@ -307,7 +346,7 @@ export class BaseEvent extends AntHill {
     const scope = this.scope,
         controller = scope.controller;
 
-    if (typeof(events) === 'string') {
+    if (typeof (events) === 'string') {
       events = [events];
     }
 

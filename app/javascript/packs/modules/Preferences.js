@@ -5,6 +5,8 @@
  * Time: 1:23 PM
  */
 
+import {LibFunction} from 'js/modules/base/Function';
+
 /**
  * @class BasePreferences
  * @type {BasePreferences}
@@ -77,7 +79,7 @@ export class BasePreferences {
          * Define setter
          * @type {Function}
          */
-        setter = opts.scope.utils.fn.create({
+        setter = LibFunction.create({
           name: opts.setter,
           params: name,
           body: `this.${method}("${name}", ${name});${opts.scope.controller.getCustomPublisher(opts.name)}`,

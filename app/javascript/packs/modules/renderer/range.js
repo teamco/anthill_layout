@@ -2,6 +2,8 @@
  * Created by teamco on 7/10/14.
  */
 
+import {LibGenerator} from 'js/modules/base/Generator';
+
 /**
  * @class RangeRenderer
  * @type {RangeRenderer}
@@ -71,7 +73,7 @@ export class RangeRenderer {
       _triggerCallback();
     }
 
-    const uuid = this.view.utils.gen.UUID() + '-range',
+    const uuid = LibGenerator.UUID() + '-range',
         disabled = this.view.utils.setBoolean(opts.disabled, false),
         $input = $('<input />').attr({
           name: opts.name,

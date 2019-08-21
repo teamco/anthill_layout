@@ -15,10 +15,11 @@ export class LibFunction {
   /**
    * Define function creator
    * @memberOf LibFunction
+   * @static
    * @param opts
    * @returns {Function}
    */
-  create(opts) {
+  static create(opts) {
 
     /**
      * Define function

@@ -18,7 +18,7 @@ export class LibNumber {
    * @constructor
    */
   constructor() {
-   
+
     /**
      * Default number type
      * @property LibNumber
@@ -33,20 +33,21 @@ export class LibNumber {
    * @param {number} t
    * @returns {Number}
    */
-  str2int(s, t) {
-    const number = parseInt(s, t || this.defaultNumberType);
-    return typeof(number) === 'number' ? number : 0;
+  static str2int(s, t = this.defaultNumberType) {
+    const number = parseInt(s, t);
+    return typeof (number) === 'number' ? number : 0;
   }
 
   /**
    * Convert String to Integer
    * @property LibNumber
    * @param {string} s
+   * @static
    * @returns {Number}
    */
-  str2float(s) {
+  static str2float(s) {
     const number = parseFloat(s);
-    return typeof(number) === 'number' ? number : 0;
+    return typeof (number) === 'number' ? number : 0;
   }
 
   /**
@@ -55,7 +56,7 @@ export class LibNumber {
    * @param {number} n
    * @returns {*|boolean}
    */
-  isPowerOf2(n) {
+  static isPowerOf2(n) {
     return n && !(n & (n - 1));
   }
 
@@ -63,9 +64,10 @@ export class LibNumber {
    * Check if number parity
    * @property LibNumber
    * @param n
+   * @static
    * @returns {boolean}
    */
-  isParity(n) {
+  static isParity(n) {
     return !(n & 1);
   }
 
@@ -74,9 +76,10 @@ export class LibNumber {
    * @property LibNumber
    * @param {number} min
    * @param {number} max
+   * @static
    * @returns {number}
    */
-  getRnd(min, max) {
+  static getRnd(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
   }
 
@@ -85,18 +88,20 @@ export class LibNumber {
    * @property LibNumber
    * @param {Number} a
    * @param {Number} b
+   * @static
    * @returns {Number}
    */
-  sortNumeric(a, b) {
+  static sortNumeric(a, b) {
     return a - b;
   }
 
   /**
    * Bytes to size
    * @param {number} bytes
+   * @static
    * @returns {string}
    */
-  bytes2Size(bytes) {
+  static bytes2Size(bytes) {
     if (!bytes) return '0 Byte';
     const k = 1000;
     const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];

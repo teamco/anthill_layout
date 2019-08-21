@@ -8,6 +8,7 @@
 
 import $ from 'jquery';
 import {BaseElement} from '../../../modules/Element';
+import {LibUserAgent} from 'js/modules/base/UA';
 
 /**
  * @extends BaseElement
@@ -519,7 +520,7 @@ export class WidgetElement extends BaseElement {
           $element.unsetZoom();
         } else {
           domElement.addClass('zoomTarget');
-          $element.view.scope.utils.ua.fullScreen(domElement);
+          LibUserAgent.fullScreen(domElement);
         }
       });
     } else {
@@ -538,7 +539,7 @@ export class WidgetElement extends BaseElement {
     }
 
     this.$.removeClass('zoomTarget');
-    this.view.scope.utils.ua.fullScreen(this.$, false);
+    LibUserAgent.fullScreen(this.$, false);
   }
 
   /**

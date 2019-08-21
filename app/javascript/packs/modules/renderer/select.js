@@ -2,6 +2,8 @@
  * @class SelectRenderer
  * @type {SelectRenderer}
  */
+import {LibGenerator} from 'js/modules/base/Generator';
+
 export class SelectRenderer {
 
   /**
@@ -34,7 +36,7 @@ export class SelectRenderer {
       }
     }
 
-    const id = `${this.view.utils.gen.UUID()}-select`;
+    const id = `${LibGenerator.UUID()}-select`;
     const $label = `<label for="${id}">${name}</label>`;
 
     const $template = $(`
