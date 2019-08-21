@@ -74,9 +74,9 @@ sassLoader.use.splice(-1, 0, {
   }
 });
 
-// const nodeModulesPath = [path.resolve(__dirname, 'node_modules')];
+const nodeModulesPath = [path.resolve(__dirname, 'node_modules')];
 
-// sassLoader.use.find(loader => loader.loader === 'sass-loader').options.includePaths = nodeModulesPath;
+sassLoader.use.find(loader => loader.loader === 'sass-loader').options.includePaths = nodeModulesPath;
 // sassLoader.use.find(loader => loader.loader === 'css-loader').options = {
 //   modules: true,
 //   sourceMap: true,
