@@ -60,7 +60,7 @@ environment.loaders.append('imports-loader', {
 //   }
 // });
 
-// environment.loaders.append('css-loader', {test: /\.css$/});
+environment.loaders.append('css-loader', {test: /\.css$/});
 environment.loaders.append('style-loader', {test: /\.css$/});
 environment.loaders.append('to-string-loader', {test: /\.css$/});
 
