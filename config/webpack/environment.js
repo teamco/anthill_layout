@@ -75,8 +75,10 @@ sassLoader.use.splice(-1, 0, {
 });
 
 const nodeModulesPath = [path.resolve(__dirname, 'node_modules')];
+let sassOptions = sassLoader.use.find(loader => loader.loader === 'sass-loader').options;
 
-sassLoader.use.find(loader => loader.loader === 'sass-loader').options.includePaths = nodeModulesPath;
+sassOptions = sassOptions || {};
+sassOptions.includePaths = nodeModulesPath;
 // sassLoader.use.find(loader => loader.loader === 'css-loader').options = {
 //   modules: true,
 //   sourceMap: true,

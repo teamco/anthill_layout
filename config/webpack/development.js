@@ -11,7 +11,7 @@ if (module.hot) {
       new webpack.HotModuleReplacementPlugin()
   );
 } else {
-  environment.loaders.get('sass').use.find(item => item.loader === 'sass-loader').options.sourceMapContents = false;
+  // environment.loaders.get('sass').use.find(item => item.loader === 'sass-loader').options.sourceMapContents = false;
 }
 
 // const bundle = {
