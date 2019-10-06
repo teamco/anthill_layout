@@ -35,7 +35,7 @@ export class WidgetRulesContentElement extends PluginElement {
    */
   getTemplate(widget) {
     const resource = widget.model.getConfig('preferences').resource.toClassName();
-    const name = widget.controller.getContent().name;
+    const name = (widget.controller.getContent() || {}).name;
     $(`<a class="nav-link" data-uuid="${resource}" data-toggle="modal" data-target="#${resource}">
          <span class="widget ${resource}">${name}</span> 
        </a>`).appendTo(this.$);

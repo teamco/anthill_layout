@@ -80,6 +80,7 @@ export class WidgetRulesController extends PluginController {
    * Set active content
    * @memberOf WidgetRulesController
    * @param {string} uuid
+   * @this WidgetRules
    */
   setActiveContent(uuid) {
     if (!uuid) {
@@ -109,6 +110,11 @@ export class WidgetRulesController extends PluginController {
      * @type {WidgetContent}
      */
     this.activeContent = widget.controller.getContent();
+
+    if (!this.activeContent) {
+      this.logger.warn('Undefined active content');
+      return false;
+    }
 
     /**
      * Define referrer

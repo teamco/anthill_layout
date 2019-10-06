@@ -341,7 +341,11 @@ export class WidgetContent {
    * @returns {*}
    */
   getContent() {
-    return this.scope.content;
+    const $content = this.scope.content;
+    if ($content) {
+      this.scope.logger.warn('Undefined content');
+    }
+    return $content;
   }
 
   /**
