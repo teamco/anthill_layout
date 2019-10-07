@@ -42,11 +42,15 @@ class ApplicationController < ActionController::Base
     # if localhost?
     logger.error "Status: #{status.inspect}"
     logger.error "Template: #{template.inspect}"
-    raise e
+    # raise e
     # else
-    #   log = ErrorLog.handle_error(current_user, e, @user_log)
-    #   raise e if error_logs?
-    #   redirect_to error_log_path(log)
+    logger.info "curr user"
+    logger.info "curr user"
+    logger.info "curr user"
+    logger.info current_user.inspect
+    log = ErrorLog.handle_error(current_user, e, @user_log)
+    raise e if error_logs?
+    redirect_to error_log_path(log)
     # end
   end
 
@@ -61,7 +65,7 @@ class ApplicationController < ActionController::Base
         controller_name,
         action_name,
         current_user
-    ) unless localhost?
+    ) #unless localhost?
   end
 
   def error_logs?

@@ -94,7 +94,8 @@ class User < ApplicationRecord
 
   has_many :error_logs,
       class_name: 'ErrorLog',
-      dependent: :destroy
+      dependent: :destroy,
+      through: :user_logs
 
   has_many :vulnerability_storages,
       class_name: 'VulnerabilityStorage',
