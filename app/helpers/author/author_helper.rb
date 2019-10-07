@@ -32,12 +32,8 @@ module Author::AuthorHelper
     send("new_author_#{controller_name.singularize}_path")
   end
 
-  def empty_ibox?(item, color, fallback_color = 'bg-gray')
-    item.to_i > 0 ? color : fallback_color
-  end
-
   def th(names = [])
-    "<tr>#{names.map {|n| "<th scope=\"col\">#{n}</th>"}.join}</tr>".html_safe
+    "<tr>#{names.map { |n| "<th scope=\"col\">#{n}</th>" }.join}</tr>".html_safe
   end
 
   def link_to_icon(url, title, icon, css = '', icon_float = 'none', target =
@@ -71,10 +67,13 @@ module Author::AuthorHelper
   end
 
   def render_loop(collection, partial)
-    collection.blank? ?
-        (concat "<p class=\"no-data\">#{t('no_data_in_collection', items: controller_name.gsub(/_controller/, '').titleize.humanize)}</p>".html_safe) :
-        collection.each_with_index {|item, index| concat render partial,
-            item: item, index: index}
+    if collection.blank?
+      (concat "<p class=\"no-data\">#{t('no_data_in_collection', items: controller_name.gsub(/_controller/, '').titleize.humanize)}</p>".html_safe)
+    else
+      collection.each_with_index do |item, index|
+        concat render partial, item: item, index: index
+      end
+    end
   end
 
   def render_title
@@ -175,7 +174,7 @@ module Author::AuthorHelper
   def render_notification(item)
     content_tag(:div, class: 'error_explanation') do
       concat content_tag(:h2, "#{pluralize(item.errors.count, 'error')}: prohibited this item from being saved:")
-      concat content_tag(:ul, item.errors.full_messages.collect {|message| "<li>#{message}</ li>"}.join.html_safe)
+      concat content_tag(:ul, item.errors.full_messages.collect { |message| "<li>#{message}</ li>" }.join.html_safe)
     end if item.errors.any?
   end
 
@@ -225,7 +224,7 @@ module Author::AuthorHelper
   end
 
   def bind_events(selectors = [], force = nil)
-    pretty_print = selectors.map {|x| "$param=$tr.find('li#{x}>div');$(prettyPrint(JSON.parse($param.text()))).appendTo($param.empty());"}
+    pretty_print = selectors.map { |x| "$param=$tr.find('li#{x}>div');$(prettyPrint(JSON.parse($param.text()))).appendTo($param.empty());" }
     javascript_tag [
         "var $table=$('##{controller_name}');",
         "$table.find('td>span').on('click.toggleTr',function(){",

@@ -2,10 +2,10 @@
   <% storages = item.author_site_storages.length %>
   <%= render 'author/author/ibox_edit',
       item_type: 'edit',
-      item_bg: storages > 0 ? 'bg-green' : 'bg-secondary',
+      item_bg: ibox_bg(storages),
       item: item,
-      item_title: "#{t('sites_storage').pluralize} <span class=\"badge
-      badge-#{badge(storages)}".html_safe,
+      item_title: ibox_title(storages, t('sites_storage').pluralize),
       item_info: item.name,
       item_icon: 'fa-th-list' %>
+</div>
 </div>

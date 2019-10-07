@@ -179,6 +179,18 @@ module ApplicationHelper
     "<div>#{text} <span class=\"badge badge-#{icon}\">#{value}</span></div>".html_safe
   end
 
+  def ibox_title(collection, text)
+    "#{text} <span class=\"badge badge-#{badge(collection)}".html_safe
+  end
+
+  def ibox_bg(collection)
+    collection > 0 ? 'bg-green' : 'bg-secondary'
+  end
+
+  def empty_ibox?(item, color, fallback_color = 'bg-gray')
+    item.to_i > 0 ? color : fallback_color
+  end
+
   def path_exists?(path)
     begin
       ActionController::Routing::Routes.recognize_path(path, :method => :get)

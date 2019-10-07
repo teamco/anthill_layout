@@ -1,5 +1,7 @@
 <% item_info = (defined? item_info).nil? ? nil : item_info %>
 <% item_menu = (defined? item_menu).nil? ? nil : item_menu %>
+<% item_title = (defined? item_title).nil? ? nil : item_title %>
+<% item_icon = (defined? item_icon).nil? ? nil : item_icon %>
 <% item_edit_path = (defined? item_edit_path).nil? ? nil : item_edit_path %>
 <% item_destroy_path = (defined? item_destroy_path).nil? ? nil : item_destroy_path %>
 <div class="card dashboard-edit text-white <%= item_info.nil? ? 'bg-gray' : item_bg %>">
@@ -23,9 +25,6 @@
       </div>
     </div>
     <div class="text-value"><%= item_info.to_s %></div>
-    <div class="text-description"><%= (defined? item_title).nil? ? nil : item_title %></div>
-  </div>
-  <div class="icon">
-    <i class="fa <%= item_icon %>"></i>
-  </div>
+    <%= render 'ibox_description', item_title: item_title %></div>
+  <%= render 'ibox_icon', item_icon: item_icon %>
 </div>
