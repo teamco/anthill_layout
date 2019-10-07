@@ -2,6 +2,10 @@
 @import './combined';
 @import "./widget";
 
+.hide {
+  display: none
+}
+
 .json-view {
   margin-bottom: 1em;
 }
@@ -11,4 +15,35 @@
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+}
+
+#user_logs,
+#error_logs {
+  font-size: 12px;
+
+  .nw {
+    svg {
+      width: 30px;
+    }
+  }
+
+  li {
+    list-style: none;
+
+    .label {
+      font-weight: bold;
+      margin-right: 10px;
+    }
+  }
+
+  .backtrace {
+    > div {
+      overflow: hidden;
+      display: grid;
+
+      pre {
+        background-color: #fcbebe;
+      }
+    }
+  }
 }
