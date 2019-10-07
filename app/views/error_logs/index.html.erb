@@ -9,7 +9,8 @@
     <%= error_log_th %>
     <% @error_logs.each do |error_log| %>
       <%= error_log_td(error_log, '<span class="toggle-trace
-        fa fa-plus"></span>') %>
+        fa fa-plus"></span><span class="toggle-trace
+        fa fa-minus hide"></span>') %>
         <%= error_log_trace(error_log, ' class=hide') %>
     <% end %>
   </table>

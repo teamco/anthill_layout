@@ -224,21 +224,28 @@ module Author::AuthorHelper
   end
 
   def bind_events(selectors = [], force = nil)
-    pretty_print = selectors.map { |x| "$param=$tr.find('li#{x}>div');$(prettyPrint(JSON.parse($param.text()))).appendTo($param.empty());" }
+    pretty_print = selectors.map { |x| "$param=$(tr).find('li#{x}>div');$
+(prettyPrint(JSON.parse($param.text()))).appendTo($param.empty());" }
     javascript_tag [
-        "var $table=$('##{controller_name}');",
-        "$table.find('td>span').on('click.toggleTr',function(){",
-        "var $span=$(this),$tr=$span.parents('tr:first').next();",
-        "if($tr.hasClass('hide')){",
-        "$tr.removeClass('hide');",
-        "$span.removeClass('glyphicon-plus').addClass('glyphicon-minus');",
+        "var table=document.querySelector('##{controller_name}'),",
+        "handlers=table.querySelectorAll('td.nw:first-child');",
+        "handlers.forEach(function(handler){",
+        "handler.addEventListener('click',function(){",
+        "var plus=this.querySelector('.fa-plus'),",
+        "minus=this.querySelector('.fa-minus'),",
+        "tr=this.parentNode.nextElementSibling;",
+        "if(tr.classList.contains('hide')){",
+        "tr.classList.remove('hide');",
+        "plus.classList.add('hide');",
+        "minus.classList.remove('hide');",
         'var $param;',
         pretty_print.join,
         '}else{',
-        "$tr.addClass('hide');",
-        "$span.removeClass('glyphicon-minus').addClass('glyphicon-plus');",
-        '}});',
-        "#{'$table.find(\'td>span\').trigger(\'click.toggleTr\')' unless force.nil? }"
+        "tr.classList.add('hide');",
+        "plus.classList.remove('hide');",
+        "minus.classList.add('hide')",
+        '}});});',
+        "#{'handler.dispatchEvent(\'click\')' unless force.nil? }"
     ].join
   end
 
