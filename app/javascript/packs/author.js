@@ -15,8 +15,11 @@ import '@coreui/coreui-plugin-chartjs-custom-tooltips/dist/js/custom-tooltips.mi
 // import {faCoffee, faCameraRetro} from '@fortawesome/fontawesome-free-solid';
 // fontawesome.library.add(faCoffee, faCameraRetro)
 import '@fortawesome/fontawesome-free/js/all.min';
+import {prettyPrint} from 'lib/pretty.print';
 
 global['$'] = jQuery;
+global['prettyPrint'] = prettyPrint;
+window['prettyPrint'] = prettyPrint;
 
 document.addEventListener('DOMContentLoaded', () => {
   Turbolinks.start();

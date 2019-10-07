@@ -224,8 +224,10 @@ module Author::AuthorHelper
   end
 
   def bind_events(selectors = [], force = nil)
-    pretty_print = selectors.map { |x| "$param=$(tr).find('li#{x}>div');$
-(prettyPrint(JSON.parse($param.text()))).appendTo($param.empty());" }
+    pretty_print = selectors.map do |x|
+      "param=tr.querySelector('li#{x}>div');
+       $(prettyPrint(JSON.parse(param.innerText))).appendTo($(param).empty());"
+    end
     javascript_tag [
         "var table=document.querySelector('##{controller_name}'),",
         "handlers=table.querySelectorAll('td.nw:first-child');",
@@ -238,7 +240,7 @@ module Author::AuthorHelper
         "tr.classList.remove('hide');",
         "plus.classList.add('hide');",
         "minus.classList.remove('hide');",
-        'var $param;',
+        'var param;',
         pretty_print.join,
         '}else{',
         "tr.classList.add('hide');",
