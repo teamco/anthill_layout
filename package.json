@@ -2,7 +2,7 @@
   "name": "anthill",
   "private": true,
   "author": "Vladimir Tkach",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "SPA OOP Framework",
   "scripts": {
     "preinstall": "node -e \"if(process.env.npm_execpath.indexOf('yarn')===-1) throw new Error('You must use Yarn to install, not NPM')\"",
@@ -114,7 +114,8 @@
   },
   "license": "MIT",
   "engines": {
-    "node": ">= 0.10"
+    "node": "6.11.1",
+    "yarn": "1.19.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.6.0",
