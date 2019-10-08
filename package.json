@@ -5,22 +5,22 @@
   "version": "1.0.2",
   "description": "SPA OOP Framework",
   "scripts": {
-    "preinstall": "node -e \"if(process.env.npm_execpath.indexOf('yarn')===-1) throw new Error('You must use Yarn to install, not NPM')\"",
+    "preinstall": "$(which node) -e \"if(process.env.npm_execpath.indexOf('yarn')===-1) throw new Error('You must use Yarn to install, not NPM')\"",
     "postinstall": "",
-    "doc": "node_modules/.bin/jsdoc -c jsdoc-conf.json",
-    "clean": "/usr/local/bin/yarn autoclean --force",
-    "cache-clean": "/usr/local/bin/yarn cache clean",
-    "prebuild": "/usr/local/bin/yarn run clean",
+    "doc": "./node_modules/.bin/jsdoc -c jsdoc-conf.json",
+    "clean": "$(which yarn) autoclean --force",
+    "cache-clean": "$(which yarn) cache clean",
+    "prebuild": "$(which yarn) run clean",
     "precompile": "$HOME/.rvm/gems/ruby-2.6.3/bin/rake assets:precompile",
     "compile": "$HOME/.rvm/gems/ruby-2.6.3/bin/bundle exec rails webpacker:compile",
     "build": "./node_modules/.bin/babel app/javascript/packs -d ./dist",
     "pretest": "",
-    "jasmine-init": "node ./node_modules/jasmine/bin/jasmine.js init",
+    "jasmine-init": "$(which node) ./node_modules/jasmine/bin/jasmine.js init",
     "test": "./node_modules/.bin/babel-node ./node_modules/.bin/jasmine --random=false --config=test/unit/jasmine.json",
     "precoverage": "",
     "coverage": "./node_modules/.bin/babel-node ./node_modules/.bin/nyc npm test",
     "postcoverage": "",
-    "start": "$HOME/.rvm/gems/ruby-2.6.3/bin/bundle exec foreman start -f Procfile.dev"
+    "start": "$(which bundle) exec foreman start -f Procfile.dev"
   },
   "nyc": {
     "require": [
