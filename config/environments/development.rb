@@ -53,15 +53,12 @@ Rails.application.configure do
   # Suppress logger output for asset requests.
   config.assets.quiet = true
 
-  # Websocket
-  # config.middleware.delete Rack::Lock
-
   Bullet.enable = true
   Bullet.console = true
   Bullet.rails_logger = true
   # Bullet.alert = true
 
-  # Raises error for missing translations
+  # Raises error for missing translations.
   # config.action_view.raise_on_missing_translations = true
 
   # Use an evented file watcher to asynchronously detect changes in source code,
