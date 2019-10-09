@@ -21,6 +21,7 @@ gem 'puma'
 gem 'rake'
 gem 'will_paginate'
 gem 'geocoder'
+gem 'listen'
 
 group :test, :development do
   gem 'annotate', require: false
