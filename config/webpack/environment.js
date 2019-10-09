@@ -34,6 +34,7 @@ environment.plugins.append(
       'window.Tether': 'tether',
       html2canvas: 'html2canvas',
       Popper: ['popper.js', 'default'],
+      Rails: ['@rails/ujs', '@rails/activestorage', '@rails/actioncable'],
       Alert: 'exports-loader?Alert!bootstrap/js/dist/alert',
       Button: 'exports-loader?Button!bootstrap/js/dist/button',
       Carousel: 'exports-loader?Carousel!bootstrap/js/dist/carousel',

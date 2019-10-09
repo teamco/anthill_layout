@@ -1,9 +1,12 @@
 module.exports = {
-  'parser': 'postcss-scss',
-  'map': false,
-  'plugins': {
-    'postcss-plugin': {},
-    'autoprefixer': {},
-    'postcss-preset-env': {}
-  }
+  plugins: [
+    require('postcss-import'),
+    require('postcss-flexbugs-fixes'),
+    require('postcss-preset-env')({
+      autoprefixer: {
+        flexbox: 'no-2009'
+      },
+      stage: 3
+    })
+  ]
 };

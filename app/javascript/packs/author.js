@@ -3,10 +3,6 @@ require.context('../images/', true, /\.(gif|jpg|png|svg)$/i);
 import './scss/application.scss';
 import './combined';
 
-import Turbolinks from 'turbolinks';
-
-import 'bootstrap';
-
 import 'perfect-scrollbar/dist/perfect-scrollbar.min';
 import '@coreui/coreui/dist/js/coreui.min';
 import '@coreui/coreui-plugin-chartjs-custom-tooltips/dist/js/custom-tooltips.min';
@@ -17,10 +13,7 @@ import '@coreui/coreui-plugin-chartjs-custom-tooltips/dist/js/custom-tooltips.mi
 import '@fortawesome/fontawesome-free/js/all.min';
 import {prettyPrint} from 'lib/pretty.print';
 
-global['$'] = jQuery;
 global['prettyPrint'] = prettyPrint;
 window['prettyPrint'] = prettyPrint;
 
-document.addEventListener('DOMContentLoaded', () => {
-  Turbolinks.start();
-});
+require('./rails');
