@@ -66,6 +66,7 @@ environment.loaders.append('style-loader', {test: /\.css$/});
 environment.loaders.append('to-string-loader', {test: /\.css$/});
 
 const sassLoader = environment.loaders.get('sass');
+const nodeModulesPath = [path.resolve(__dirname, 'node_modules')];
 
 sassLoader.use.splice(-1, 0, {
   loader: 'resolve-url-loader',
@@ -75,11 +76,18 @@ sassLoader.use.splice(-1, 0, {
   }
 });
 
-const nodeModulesPath = [path.resolve(__dirname, 'node_modules')];
-let sassOptions = sassLoader.use.find(loader => loader.loader === 'sass-loader').options;
+// sassLoader.use.splice(-1, 0, {
+//   loader: 'sass-loader',
+//   sassOptions: {
+//     includePaths: nodeModulesPath,
+//     indentedSyntax: true,
+//     sourceMap: true,
+//     sourceMapContents: false
+//   }
+// });
 
-sassOptions = sassOptions || {};
-sassOptions.includePaths = nodeModulesPath;
+// sassOptions = sassOptions || {};
+// sassOptions.includePaths = nodeModulesPath;
 // sassLoader.use.find(loader => loader.loader === 'css-loader').options = {
 //   modules: true,
 //   sourceMap: true,
