@@ -224,6 +224,8 @@ header {
   .nav-item {
     .nav-link {
       max-height: 32px;
+      max-width: 32px;
+      overflow: hidden;
     }
   }
 }

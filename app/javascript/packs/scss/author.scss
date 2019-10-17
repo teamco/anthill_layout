@@ -47,3 +47,20 @@
     }
   }
 }
+
+.pagination {
+  a, em {
+    margin: 0 3px;
+  }
+
+  em {
+    padding: 0 5px;
+    border-radius: 3px;
+    box-shadow: 1px 1px 5px #ccc;
+    font-style: normal;
+  }
+
+  span {
+    margin-right: 3px;
+  }
+}
