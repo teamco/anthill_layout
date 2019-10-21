@@ -86,5 +86,10 @@
   <button class="sidebar-minimizer brand-minimizer" type="button"></button>
 </div>
 <%= javascript_tag do %>
-  function makeScreenshot($target){html2canvas($target||$('body'),{onrendered:function(canvas){window.open(canvas.toDataURL())}});}
+  function makeScreenshot(target){
+  var ss = window['html2canvas'];
+  ss&&ss(target||document.querySelector('body')).then(function(canvas){
+  window.open(canvas.toDataURL())
+  });
+  }
 <% end %>

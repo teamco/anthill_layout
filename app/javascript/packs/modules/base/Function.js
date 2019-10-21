@@ -35,3 +35,13 @@ export class LibFunction {
     return fn;
   }
 }
+
+/**
+ * @export
+ * @param name
+ * @param lib
+ */
+export const setGlobals = (name, lib) => {
+  global[name] = lib;
+  window[name] = lib;
+};
