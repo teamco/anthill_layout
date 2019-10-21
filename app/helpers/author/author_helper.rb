@@ -229,14 +229,14 @@ module Author::AuthorHelper
        $(prettyPrint(JSON.parse(param.innerText))).appendTo($(param).empty());"
     end
     javascript_tag [
-        "var toggleTrace=new Event('toggleTrace');",
+        "var toggleTrace=new Event('click');",
         "var table=document.querySelector('##{controller_name}'),",
         "handlers=table.querySelectorAll('td.nw:first-child');",
         "handlers.forEach(function(handler){",
-        "handler.addEventListener('toggleTrace',function(){",
-        "var plus=this.querySelector('.fa-plus'),",
-        "minus=this.querySelector('.fa-minus'),",
-        "tr=this.parentNode.nextElementSibling;",
+        "handler.addEventListener('click',function(){",
+        "var plus=handler.querySelector('.fa-plus'),",
+        "minus=handler.querySelector('.fa-minus'),",
+        "tr=handler.parentNode.nextElementSibling;",
         "if(tr.classList.contains('hide')){",
         "tr.classList.remove('hide');",
         "if(plus)plus.classList.add('hide');",

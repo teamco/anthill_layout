@@ -6,6 +6,11 @@
   display: none
 }
 
+.break {
+  word-break: break-all;
+  white-space: normal;
+}
+
 .json-view {
   margin-bottom: 1em;
 }
@@ -27,12 +32,25 @@
     }
   }
 
-  li {
-    list-style: none;
+  td {
+    white-space: nowrap;
+  }
 
-    .label {
-      font-weight: bold;
-      margin-right: 10px;
+  .nw:first-child {
+    cursor: pointer;
+  }
+
+  ul {
+    padding: 10px;
+    background: #efefef;
+
+    li {
+      list-style: none;
+
+      .label {
+        font-weight: bold;
+        margin-right: 10px;
+      }
     }
   }
 
@@ -49,6 +67,8 @@
 }
 
 .pagination {
+  margin-bottom: 15px;
+
   a, em {
     margin: 0 3px;
   }
