@@ -36,6 +36,10 @@
     white-space: nowrap;
   }
 
+  td[colspan="5"] {
+    padding: 0;
+  }
+
   .nw:first-child {
     cursor: pointer;
   }
@@ -61,6 +65,8 @@
 
       pre {
         background-color: #fcbebe;
+        max-height: 400px;
+        overflow: auto;
       }
     }
   }
