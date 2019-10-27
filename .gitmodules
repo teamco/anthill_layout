@@ -1,6 +1,6 @@
 [submodule "app/javascript/packs/plugins/widgets"]
 	path = app/javascript/packs/plugins/widgets
-	url = https://teamco:(TR0ubLe99)@github.com/teamco/widgets
+	url = https://github.com/teamco/widgets
 [submodule "test/e2e"]
 	path = test/e2e
-	url = https://teamco:(TR0ubLe99)@github.com/teamco/e2e
+	url = https://github.com/teamco/e2e
