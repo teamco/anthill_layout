@@ -75,7 +75,7 @@ class UserLog < ApplicationRecord
         referer: request.env['HTTP_REFERER'],
         http_user_agent: request.headers['HTTP_USER_AGENT'],
         server_software: request.headers['SERVER_SOFTWARE'],
-        content_type: response.content_type
+        content_type: response.media_type
     }
 
     if except(cname, aname)
