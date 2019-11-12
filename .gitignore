@@ -44,5 +44,5 @@ app/assets/javascripts/
 .nyc_output
 .keep
 dist
-/test/junitresults-JSUnittests.xml
+test/junitresults-JSUnittests.xml
 docs/
