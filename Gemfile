@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
+#RUBY VERSION
 ruby '2.6.5'
+#BUNDLED WITH
+#'2.0.2'
 
 # db = (RUBY_PLATFORM =~ /darwin/).nil? ? 'mysql2' : 'pg'
 # db = (ENV['PATH'] =~ /teamco/).nil? ? 'pg' : db
