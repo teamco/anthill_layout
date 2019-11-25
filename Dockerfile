@@ -1,9 +1,10 @@
 FROM ruby:2.5
-RUN apt-get update -qq && apt-get install -y nodejs postgresql-client
+RUN apt-get update -qq && apt-get install -y apt-utils nodejs postgresql-client
 RUN mkdir /anthill
 WORKDIR /anthill
 COPY Gemfile /anthill/Gemfile
 COPY Gemfile.lock /anthill/Gemfile.lock
+RUN gem install bundler
 RUN bundle install
 COPY . /anthill
 
