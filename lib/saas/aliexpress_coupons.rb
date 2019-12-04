@@ -18,7 +18,7 @@ module AliExpress
   end
 
   class CouponsParser
-    def initialize(pages=5)
+    def initialize(pages = 5)
       @pages_limit = pages
       @page_number = 0
       @page = nil

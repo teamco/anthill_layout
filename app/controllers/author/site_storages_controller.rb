@@ -24,12 +24,16 @@ class Author::SiteStoragesController < Author::AuthorController
     return @storage if @author_site_storage.nil?
     if File.exist?(@target_path)
       @storage = @author_site_storage.get_storage_data
+      mode = {id: params[:site_type_id]} if params[:mode].nil?
+      begin
+        mode = {id: Integer(params[:mode])}
+      rescue
+        mode = {name: params[:mode]}
+      end unless params[:mode].nil?
       config = @author_site_storage.get_storage_configuration(
           params[:version],
           @versions,
-          params[:mode].nil? ?
-              {id: params[:site_type_id]} :
-              {name: params[:mode]}
+          mode
       )
       @storage.deep_merge!(config)
     end

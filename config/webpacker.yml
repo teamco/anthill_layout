@@ -63,6 +63,9 @@ test:
 
 production:
   <<: *default
+  source_path: dist
+  source_entry_path: dist
+  public_output_path: dist
 
   # Production depends on precompilation of packs prior to booting for performance.
   compile: false
