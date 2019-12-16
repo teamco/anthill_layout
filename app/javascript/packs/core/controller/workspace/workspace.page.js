@@ -81,7 +81,7 @@ export class WorkspacePage {
     let index, page;
 
     for (index in items) {
-      if (items.hasOwnProperty(index)) {
+      if (Object.prototype.hasOwnProperty.call(items, index)) {
 
         /**
          * Get page
@@ -110,7 +110,7 @@ export class WorkspacePage {
     let index, page;
 
     for (index in pages) {
-      if (pages.hasOwnProperty(index)) {
+      if (Object.prototype.hasOwnProperty.call(pages, index)) {
 
         /**
          * Get page
@@ -194,7 +194,8 @@ export class WorkspacePage {
    * @returns {boolean|*}
    */
   switchToPage(page) {
-    if (page && page.model && this.items.hasOwnProperty(page.model.getUUID())) {
+    if (page && page.model &&
+        Object.prototype.hasOwnProperty.call(this.items, page.model.getUUID())) {
 
       if (this.switchPage) {
         this.logger.debug('Page under swipe', page);
@@ -296,7 +297,7 @@ export class WorkspacePage {
    * @memberOf WorkspacePage
    */
   resetPagesHeightBeforeSwitch() {
-    _.each(this.model.getItems(), item => {
+    window._.each(this.model.getItems(), item => {
       item.view ?
           item.view.get$item().$.addClass('height-auto') :
           this.logger.warn('Item with no View', item);

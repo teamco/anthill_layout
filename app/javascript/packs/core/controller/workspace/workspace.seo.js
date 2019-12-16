@@ -36,7 +36,7 @@ export class WorkspaceSEO {
      * Define $item
      * @type {WorkspaceElement}
      */
-    const $item = this.view.get$item();
+    //const $item = this.view.get$item();
 
     let siteTitle = this.model.getConfig('preferences')['siteTitle'] || WorkspaceElement.getSiteTitle();
 
@@ -118,7 +118,7 @@ export class WorkspaceSEO {
      * Define $item
      * @type {WorkspaceElement}
      */
-    const $item = this.view.get$item();
+        //const $item = this.view.get$item();
 
     const siteAuthor = this.model.getConfig('preferences')['siteAuthor'] || WorkspaceElement.getSiteAuthor();
     WorkspaceElement.setSiteAuthor(siteAuthor);

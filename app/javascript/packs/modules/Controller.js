@@ -138,7 +138,7 @@ export class BaseController extends aggregation(AntHill, BehaviorCrud, BehaviorW
     const routes = this.model.getConfig('routes') || {};
 
     for (let index in routes) {
-      if (routes.hasOwnProperty(index)) {
+      if (Object.prototype.hasOwnProperty.call(routes, index)) {
         this.controller.setRoute(index, routes[index]);
       }
     }
@@ -251,7 +251,7 @@ export class BaseController extends aggregation(AntHill, BehaviorCrud, BehaviorW
      * @type {*}
      */
     let root = this.scope;
-    while (root.hasOwnProperty('containment')) {
+    while (Object.prototype.hasOwnProperty.call(root, 'containment')) {
       root = root.containment;
     }
 
@@ -709,7 +709,7 @@ export class BaseController extends aggregation(AntHill, BehaviorCrud, BehaviorW
       containment: scope
     };
 
-    opts.config = $.extend(true, opts.config || {}, config);
+    opts.config = window.$.extend(true, opts.config || {}, config);
     scope.logger.debug('Configuration', opts.config);
 
     return opts;
@@ -857,7 +857,7 @@ export class BaseController extends aggregation(AntHill, BehaviorCrud, BehaviorW
     }
 
     for (let index in items) {
-      if (items.hasOwnProperty(index)) {
+      if (Object.prototype.hasOwnProperty.call(items, index)) {
         const item = items[index];
         if (item.model && item.model.getItems()) {
           this.store.bind(node.controller)(item, data, Object.keys(items).length);
@@ -903,7 +903,7 @@ export class BaseController extends aggregation(AntHill, BehaviorCrud, BehaviorW
     }
 
     for (let index in items) {
-      if (items.hasOwnProperty(index)) {
+      if (Object.prototype.hasOwnProperty.call(items, index)) {
 
         const item = items[index],
             uuid = item.model.getConfig('uuid');

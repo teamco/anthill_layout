@@ -132,7 +132,7 @@ export class WidgetController extends aggregation(BaseController, Interactions, 
         global = this.getGlobalPadding(),
         local = this.scope.dom.padding || {};
 
-    this.scope.logger.debug('Merge local padding', $.extend(padding, global, local));
+    this.scope.logger.debug('Merge local padding', window.$.extend(padding, global, local));
     return padding;
   }
 
@@ -237,9 +237,9 @@ export class WidgetController extends aggregation(BaseController, Interactions, 
    * @param mode
    * @param behavior
    */
-  freeStyleMode(opts, mode, behavior) {
-    // TODO
-  }
+  // freeStyleMode(opts, mode, behavior) {
+  // TODO
+  // }
 
   /**
    * Define snap2grid mode

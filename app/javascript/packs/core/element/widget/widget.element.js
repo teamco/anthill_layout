@@ -477,13 +477,13 @@ export class WidgetElement extends BaseElement {
    */
   bindStatsCollector() {
 
-    function _clickPrefs(e) {
+    function _clickPrefs() {
 
       /**
        * Define scope
        * @type {Image}
        */
-      const scope = this.scope;
+      //const scope = this.scope;
 
       //                scope.observer.publish(
       //                    scope.eventManager.eventList.provideStats,

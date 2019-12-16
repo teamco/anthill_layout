@@ -37,7 +37,7 @@ export class ListBoxRenderer {
       const button = e.target,
           input = button.parentNode.nextSibling;
 
-      const $button = $(button);
+      const $button = window.$(button);
 
       if (input) {
 
@@ -66,7 +66,7 @@ export class ListBoxRenderer {
 
           input.value = button.getAttribute('data-resource');
 
-          $('button', button.parentNode).removeClass('btn-info').
+          window.$('button', button.parentNode).removeClass('btn-info').
               addClass('btn-default');
           $button.removeClass('btn-default').addClass('btn-info');
         }
@@ -77,7 +77,7 @@ export class ListBoxRenderer {
      * Define $input
      * @type {jQuery}
      */
-    const $input = $('<input />').attr({
+    const $input = window.$('<input />').attr({
       name: opts.name,
       type: 'text',
       value: opts.value
@@ -86,12 +86,12 @@ export class ListBoxRenderer {
     // Define opts.multiple
     opts.multiple = typeof opts.multiple === 'undefined' ? false : !!opts.multiple;
 
-    const l = opts.list.length, $list = $('<div />');
+    const l = opts.list.length, $list = window.$('<div />');
     let i = 0, data, $button;
 
     for (; i < l; i++) {
       data = opts.list[i];
-      $button = $(`<button class="widget btn btn-default ${data.resource.toClassName()} />`);
+      $button = window.$(`<button class="widget btn btn-default ${data.resource.toClassName()} />`);
       $button.attr({
         type: 'button',
         'data-resource': data.resource,

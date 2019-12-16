@@ -79,7 +79,7 @@ export class BaseModel extends CRUD {
        */
       const node = path[i];
 
-      if (reference.hasOwnProperty(node)) {
+      if (Object.prototype.hasOwnProperty.call(reference, node)) {
         scope.logger.debug('Get config by key', node);
         reference = reference[node];
       } else {
@@ -104,7 +104,7 @@ export class BaseModel extends CRUD {
     const scope = this.scope,
         config = scope.config;
 
-    if (config.hasOwnProperty(key)) {
+    if (Object.prototype.hasOwnProperty.call(config, key)) {
       scope.logger.debug('Update config', key, value);
       config[key] = value;
     }
@@ -123,7 +123,7 @@ export class BaseModel extends CRUD {
    */
   getNameSpace(node) {
     const scope = node ? node : this.scope,
-        constructor = _.isFunction(scope) ? scope : scope.constructor;
+        constructor = window._.isFunction(scope) ? scope : scope.constructor;
     return constructor.name.toLowerCase();
   }
 
@@ -174,7 +174,7 @@ export class BaseModel extends CRUD {
     const items = root.model.getItems();
 
     for (let index in items) {
-      if (items.hasOwnProperty(index)) {
+      if (Object.prototype.hasOwnProperty.call(items, index)) {
         const item = items[index];
 
         // Recursive search
@@ -217,7 +217,7 @@ export class BaseModel extends CRUD {
         uuid = item.model.getUUID();
 
     for (let index in items) {
-      if (items.hasOwnProperty(index)) {
+      if (Object.prototype.hasOwnProperty.call(items, index)) {
         let node = items[index];
         let nodeUUID = node.model.getUUID();
 
@@ -277,7 +277,7 @@ export class BaseModel extends CRUD {
       return items[uuid];
     }
     for (let index in items) {
-      if (items.hasOwnProperty(index)) {
+      if (Object.prototype.hasOwnProperty.call(items, index)) {
         return this.findByUUID(uuid, items[index]);
       }
     }
@@ -293,7 +293,7 @@ export class BaseModel extends CRUD {
     const items = this.getItems();
 
     for (let index in items) {
-      if (items.hasOwnProperty(index)) {
+      if (Object.prototype.hasOwnProperty.call(items, index)) {
 
         /**
          * Get item
@@ -436,7 +436,8 @@ export class BaseModel extends CRUD {
    */
   getItemName() {
     this.scope.logger.debug('Get item name', this.item);
-    if (this.hasOwnProperty('item') && _.isFunction(this.item)) {
+    if (Object.prototype.hasOwnProperty.call(this, 'item') &&
+        window._.isFunction(this.item)) {
       return this.item.name;
     }
 
@@ -663,7 +664,8 @@ export class BaseModel extends CRUD {
     let counter = 0;
 
     for (let key in collector) {
-      if (collector.hasOwnProperty(key) && _inContainment(this.getUUID(), key)) {
+      if (Object.prototype.hasOwnProperty.call(collector, key) &&
+          _inContainment(this.getUUID(), key)) {
         counter++;
       }
     }
@@ -673,7 +675,8 @@ export class BaseModel extends CRUD {
     root.loadingDataCounter += counter;
 
     for (let index in collector) {
-      if (collector.hasOwnProperty(index) && _inContainment(this.getUUID(), index)) {
+      if (Object.prototype.hasOwnProperty.call(collector, index) &&
+          _inContainment(this.getUUID(), index)) {
         const node = collector[index] || {};
 
         // Create item

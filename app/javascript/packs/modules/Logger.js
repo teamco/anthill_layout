@@ -129,10 +129,8 @@ export class Logger {
         hash = {};
 
     if (log && config.type[type]) {
-
       try {
-
-        if (!!config.namespaces) {
+        if (config.namespaces) {
 
           /**
            * Define constructor name instance
@@ -141,10 +139,9 @@ export class Logger {
           const instance = scope.name;
 
           if (instance) {
-
             config.namespaces = config.namespaces || [config.namespaces];
 
-            if ($.inArray(instance, config.namespaces) === -1) {
+            if (window.$.inArray(instance, config.namespaces) === -1) {
               return false;
             }
           }

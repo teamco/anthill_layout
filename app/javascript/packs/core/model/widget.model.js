@@ -69,7 +69,7 @@ export class WidgetModel extends BaseModel {
     const scope = this.scope;
 
     scope.logger.debug('Update DOM', hash);
-    $.extend(true, scope.dom, hash);
+    window.$.extend(true, scope.dom, hash);
     return scope;
   }
 
@@ -107,7 +107,7 @@ export class WidgetModel extends BaseModel {
     const rules = this.getConfig('rules');
 
     for (let index in data) {
-      if (data.hasOwnProperty(index)) {
+      if (Object.prototype.hasOwnProperty.call(data, index)) {
         rules[index] = data[index];
       }
     }
@@ -131,7 +131,7 @@ export class WidgetModel extends BaseModel {
     rules.subscribers = rules.subscribers || {};
     rules.subscribers[event] = rules.subscribers[event] || [];
 
-    if ($.inArray(uuid, rules.subscribers[event]) === -1) {
+    if (window.$.inArray(uuid, rules.subscribers[event]) === -1) {
       rules.subscribers[event].push(uuid);
     }
   }
@@ -241,7 +241,7 @@ export class WidgetModel extends BaseModel {
    * @memberOf WidgetModel
    * @param {string} eventName
    */
-  setStickToCenterLeft(eventName) {
+  setStickToCenterTop(eventName) {
     this._setStickTo(eventName);
   }
 
@@ -250,7 +250,7 @@ export class WidgetModel extends BaseModel {
    * @memberOf WidgetModel
    * @param {string} eventName
    */
-  setStickToCenterLeft(eventName) {
+  setStickToCenter(eventName) {
     this._setStickTo(eventName);
   }
 
@@ -259,7 +259,7 @@ export class WidgetModel extends BaseModel {
    * @memberOf WidgetModel
    * @param {string} eventName
    */
-  setStickToCenterLeft(eventName) {
+  setStickToCenterBottom(eventName) {
     this._setStickTo(eventName);
   }
 
@@ -268,7 +268,7 @@ export class WidgetModel extends BaseModel {
    * @memberOf WidgetModel
    * @param {string} eventName
    */
-  setStickToCenterLeft(eventName) {
+  setStickToCenterRight(eventName) {
     this._setStickTo(eventName);
   }
 
@@ -277,7 +277,7 @@ export class WidgetModel extends BaseModel {
    * @memberOf WidgetModel
    * @param {string} eventName
    */
-  setStickToCenterLeft(eventName) {
+  setStickToTopLeft(eventName) {
     this._setStickTo(eventName);
   }
 
@@ -286,7 +286,7 @@ export class WidgetModel extends BaseModel {
    * @memberOf WidgetModel
    * @param {string} eventName
    */
-  setStickToCenterLeft(eventName) {
+  setStickToBottomLeft(eventName) {
     this._setStickTo(eventName);
   }
 
@@ -295,7 +295,7 @@ export class WidgetModel extends BaseModel {
    * @memberOf WidgetModel
    * @param {string} eventName
    */
-  setStickToCenterLeft(eventName) {
+  setStickToTopRight(eventName) {
     this._setStickTo(eventName);
   }
 
@@ -304,7 +304,7 @@ export class WidgetModel extends BaseModel {
    * @memberOf WidgetModel
    * @param {string} eventName
    */
-  setStickToCenterLeft(eventName) {
+  setStickToBottomRight(eventName) {
     this._setStickTo(eventName);
   }
 

@@ -27,7 +27,7 @@ export class DropDownRenderer {
   renderDropDown(data, selected, name, index, event, visible, disabled, placeholder, store, label) {
 
     // Init placeholder
-    placeholder = _.isUndefined(placeholder) ? false : placeholder;
+    placeholder = window._.isUndefined(placeholder) ? false : placeholder;
 
     // Init disabled
     disabled = this.view.utils.setBoolean(disabled, false);
@@ -47,7 +47,7 @@ export class DropDownRenderer {
      */
     const activeContent = this.view.scope.activeContent;
 
-    const $input = $(`<input type="hidden" class="${store ? ' store' : ''}" />`).attr({
+    const $input = window.$(`<input type="hidden" class="${store ? ' store' : ''}" />`).attr({
       name: index,
       value: selected
     });
@@ -56,7 +56,7 @@ export class DropDownRenderer {
         id = `${LibGenerator.UUID()}-dropdown`,
         customCss = `${style} ${disabled ? ' disabled' : ''}`;
 
-    const $combo = $(
+    const $combo = window.$(
         `<div class="input-group mb-2">         
           <button class="form-control btn btn-outline-secondary btn-sm dropdown-toggle ${customCss}" 
                   type="button" 
@@ -71,7 +71,7 @@ export class DropDownRenderer {
         </div>`
     );
 
-    $('li', $combo).append($input);
+    window.$('li', $combo).append($input);
 
     /**
      * Update placeholder
@@ -79,7 +79,7 @@ export class DropDownRenderer {
      * @private
      */
     function _updatePlaceholder(value) {
-      $('.dropdown-toggle', $combo).html(`${value}`);
+      window.$('.dropdown-toggle', $combo).html(`${value}`);
     }
 
     /**
@@ -92,7 +92,7 @@ export class DropDownRenderer {
     function _store($selected, force) {
       const target = arguments[0].target;
       if (target) {
-        $selected = $(target);
+        $selected = window.$(target);
       }
 
       /**
@@ -107,9 +107,9 @@ export class DropDownRenderer {
 
       selected = value;
 
-      $('a', $selected.parent()).removeClass('selected');
+      window.$('a', $selected.parent()).removeClass('selected');
       $selected.addClass('selected');
-      $(`input[name="${index}"]`, $combo).val(value);
+      window.$(`input[name="${index}"]`, $combo).val(value);
       _updatePlaceholder(value);
     }
 
@@ -117,7 +117,7 @@ export class DropDownRenderer {
      * Define $ul
      * @type {*|jQuery}
      */
-    const $ul = $('div.dropdown-menu', $combo);
+    const $ul = window.$('div.dropdown-menu', $combo);
     let i = 0, l = data.length;
 
     for (; i < l; i++) {
@@ -126,7 +126,7 @@ export class DropDownRenderer {
       let $li;
 
       if (field.type === 'text') {
-        $li = $('<a class="dropdown-item" href="#" />').text(field.value);
+        $li = window.$('<a class="dropdown-item" href="#" />').text(field.value);
       }
 
       if (field.type === 'html') {
@@ -162,7 +162,7 @@ export class DropDownRenderer {
           e.preventDefault();
 
           // Execute callback with value as parameter
-          event.callback.call(scope.controller, $(e.target).attr('rel'));
+          event.callback.call(scope.controller, window.$(e.target).attr('rel'));
         });
       }
 
@@ -189,13 +189,13 @@ export class DropDownRenderer {
     if (!selected) {
       _updatePlaceholder(placeholder ?
           this.view.scope.i18n.t('DropDown.placeholder', [name]) :
-          $('li:first', $ul).text());
+          window.$('li:first', $ul).text());
     }
 
     const labelPattern = new RegExp(this.view.scope.name.toLowerCase());
 
     // Define label
-    const $label = $(`
+    const $label = window.$(`
       <div class="input-group-prepend">
         <span class="input-group-text lg-input">${(index.replace(labelPattern, '').humanize())}</span>
       </div>`);
@@ -214,7 +214,7 @@ export class DropDownRenderer {
    * @returns {boolean}
    */
   isDisabledDropDown($combo) {
-    return $('li.dropdown', $combo).hasClass('disabled');
+    return window.$('li.dropdown', $combo).hasClass('disabled');
   }
 
   /**
@@ -223,8 +223,8 @@ export class DropDownRenderer {
    * @param $combo
    */
   enableDropDown($combo) {
-    $('li.dropdown', $combo).removeClass('disabled');
-    $('li.dropdown > a.dropdown-toggle', $combo).removeClass('disabled');
+    window.$('li.dropdown', $combo).removeClass('disabled');
+    window.$('li.dropdown > a.dropdown-toggle', $combo).removeClass('disabled');
   }
 
   /**
@@ -233,7 +233,7 @@ export class DropDownRenderer {
    * @param $combo
    */
   disableDropDown($combo) {
-    $('li.dropdown', $combo).addClass('disabled');
-    $('li.dropdown > a.dropdown-toggle', $combo).addClass('disabled');
+    window.$('li.dropdown', $combo).addClass('disabled');
+    window.$('li.dropdown > a.dropdown-toggle', $combo).addClass('disabled');
   }
 }

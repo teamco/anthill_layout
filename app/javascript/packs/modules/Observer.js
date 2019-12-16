@@ -56,7 +56,7 @@ export class Observer {
   getEventUUID(name) {
     let index, uuid = [];
     for (index in this.listeners) {
-      if (this.listeners.hasOwnProperty(index)) {
+      if (Object.prototype.hasOwnProperty.call(this.listeners, index)) {
         const events = this.listeners[index],
             l = events.length;
 
@@ -79,7 +79,7 @@ export class Observer {
    */
   getEventName(eventUUID) {
     const events = this.getEventList();
-    if (events.hasOwnProperty(eventUUID)) {
+    if (Object.prototype.hasOwnProperty.call(events, eventUUID)) {
       return events[eventUUID];
     }
 

@@ -92,7 +92,8 @@ export class WidgetOverlapping {
     this.unSelectOverlappedWidgets();
 
     for (let widget in markedWidgets) {
-      if (markedWidgets.hasOwnProperty(widget) && widgets.hasOwnProperty(widget)) {
+      if (Object.prototype.hasOwnProperty.call(markedWidgets, widget) &&
+          Object.prototype.hasOwnProperty.call(widgets, widget)) {
 
         /**
          * Define widget
@@ -123,7 +124,7 @@ export class WidgetOverlapping {
     const widgets = containment.model.getItems();
 
     for (let widget in widgets) {
-      if (widgets.hasOwnProperty(widget)) {
+      if (Object.prototype.hasOwnProperty.call(widgets, widget)) {
 
         /**
          * Define widget

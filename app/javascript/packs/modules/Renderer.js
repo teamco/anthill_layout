@@ -92,7 +92,7 @@ export class Renderer extends aggregation(AntHill, CheckBoxRenderer, DropDownRen
    */
   focusOn(element) {
     if (element) {
-      $(element, this.$).focus();
+      window.$(element, this.$).focus();
     }
   }
 

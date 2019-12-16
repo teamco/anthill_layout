@@ -34,7 +34,7 @@ export class WidgetCommentElement extends BaseElement{
    * Define comments content
    * @param {ButtonElement} ButtonElement
    */
-  defineContent(ButtonElement) {
+  defineContent(/*ButtonElement*/) {
     // this.renderCommentsForm(ButtonElement, {
     //   visible: true
     // });

@@ -65,7 +65,7 @@ export class WidgetResize {
 
     resizable = scope.controller.validateInteractionConfig('resizable', resizable);
     if (resizable) {
-      this.$scope.resizable($.extend({
+      this.$scope.resizable(window.$.extend({
         containment: resizable.containment,
         create: this.create.bind(this),
         start: this.start.bind(this),
@@ -114,9 +114,8 @@ export class WidgetResize {
    * Create resize
    * @memberOf WidgetResize
    * @param {Event} event
-   * @param ui
    */
-  create(event, ui) {
+  create(event) {
 
     /**
      * Define scope

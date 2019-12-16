@@ -45,7 +45,7 @@ export class PageWidget extends PageWidgetCopy {
     const scope = this.scope;
 
     // Merge widget prefs
-    const prefs = $.extend(true, {}, this.model.getConfig('widget').preferences, {
+    const prefs = window.$.extend(true, {}, this.model.getConfig('widget').preferences, {
       resource: opts.resource,
       external_resource: opts.external_resource,
       is_external: !!opts.external_resource,
@@ -134,7 +134,7 @@ export class PageWidget extends PageWidgetCopy {
       }
 
       for (let index in items) {
-        if (items.hasOwnProperty(index)) {
+        if (Object.prototype.hasOwnProperty.call(items, index)) {
 
           /**
            * Define widget
@@ -170,7 +170,7 @@ export class PageWidget extends PageWidgetCopy {
       }
 
       for (index in items) {
-        if (items.hasOwnProperty(index)) {
+        if (Object.prototype.hasOwnProperty.call(items, index)) {
 
           /**
            * Get item
@@ -199,7 +199,7 @@ export class PageWidget extends PageWidgetCopy {
     this.logger.debug('Update widget containment interactions', outline, containment);
 
     for (index in items) {
-      if (items.hasOwnProperty(index)) {
+      if (Object.prototype.hasOwnProperty.call(items, index)) {
 
         /**
          * Get item

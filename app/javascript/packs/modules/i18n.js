@@ -54,7 +54,7 @@ export class i18n {
 
     langTypes[language] = require('./translations/en-us.js');
 
-    if (langTypes.hasOwnProperty(language)) {
+    if (Object.prototype.hasOwnProperty.call(langTypes, language)) {
       this.data = langTypes[language];
     } else {
       console.warn('Unable to define language', language);
@@ -67,7 +67,7 @@ export class i18n {
    */
   updateData(translation) {
     for (let index in translation) {
-      if (translation.hasOwnProperty(index)) {
+      if (Object.prototype.hasOwnProperty.call(translation, index)) {
         this.data[index] = translation[index];
       }
     }
@@ -85,7 +85,7 @@ export class i18n {
       return '';
     }
 
-    return this.data.hasOwnProperty(key) ? this.data[key] : '';
+    return Object.prototype.hasOwnProperty.call(this.data, key) ? this.data[key] : '';
   }
 
   /**

@@ -33,7 +33,7 @@ export class ModalElement extends BaseElement {
     this.setup(view, opts);
 
     this._config(view, opts, ModalElement.getTemplate()).build({
-      $container: opts.$container || $('body')
+      $container: opts.$container || window.$('body')
     });
 
     this.initBootstrapModal();
@@ -66,7 +66,7 @@ export class ModalElement extends BaseElement {
   setup(view, opts) {
 
     // Define default container
-    const $defaultContainer = $('body');
+    const $defaultContainer = window.$('body');
 
     /**
      * Set modal title
@@ -261,7 +261,7 @@ export class ModalElement extends BaseElement {
     }
 
     for (let index in this.callbacks) {
-      if (this.callbacks.hasOwnProperty(index)) {
+      if (Object.prototype.hasOwnProperty.call(this.callbacks, index)) {
         if (typeof this[index] === 'function') {
           this[index](this.callbacks[index]);
         } else {
@@ -277,7 +277,7 @@ export class ModalElement extends BaseElement {
    */
   setFocus() {
     if (this.html) {
-      $('input:first', this.$).focus();
+      window.$('input:first', this.$).focus();
     }
   }
 
@@ -321,10 +321,10 @@ export class ModalElement extends BaseElement {
     this.buttons['closeX'] = {
       $container: this._get$Header().parent(),
       // language=HTML
-      $htmlElement: $(`
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-          </button>
+      $htmlElement: window.$(`
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       `),
       events: {click: 'rejectModalEvent'}
     };
@@ -336,7 +336,7 @@ export class ModalElement extends BaseElement {
    */
   setButtons() {
     const $container = this._get$Buttons();
-    $.each(this.buttons, (i, button) => button.$container = $container);
+    window.$.each(this.buttons, (i, button) => button.$container = $container);
     this._setCloseX();
     this.view.button(this.buttons, this.$buttons);
   }
@@ -346,7 +346,7 @@ export class ModalElement extends BaseElement {
    * @memberOf ModalElement
    */
   unsetButtons() {
-    $.each(this.$buttons, (i, $button) => $button.destroy());
+    window.$.each(this.$buttons, (i, $button) => $button.destroy());
   }
 
   /**
@@ -411,7 +411,7 @@ export class ModalElement extends BaseElement {
     this.destroy();
     ModalElement.coverDestroy(0);
     if (this.utils.setBoolean(backdrop, true)) {
-      $('body').removeClass('modal-open');
+      window.$('body').removeClass('modal-open');
     }
   }
 
@@ -449,7 +449,7 @@ export class ModalElement extends BaseElement {
      * Get inputs
      * @type {*|jQuery|HTMLElement|{filter}}
      */
-    const $inputs = $('input:not(:disabled), textarea, .dropdown + input.store', this.$);
+    const $inputs = window.$('input:not(:disabled), textarea, .dropdown + input.store', this.$);
 
     /**
      * Get tinyMCE instance
@@ -467,7 +467,7 @@ export class ModalElement extends BaseElement {
         const editor = editorInstance.get(this.id);
 
         if (editor) {
-          $(this).val(editor.getContent());
+          window.$(this).val(editor.getContent());
         }
       });
     }
@@ -496,7 +496,7 @@ export class ModalElement extends BaseElement {
 
     setTimeout(() => {
       this._get$Notification().stop().slideUp(function() {
-        $(this).text('').show();
+        window.$(this).text('').show();
       });
       this.$.removeClass(type);
       this.$.addClass(this.type);

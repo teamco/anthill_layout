@@ -1,6 +1,6 @@
 require('./rails');
 
-import html2canvas from 'html2canvas';
+// import html2canvas from 'html2canvas';
 import './scss/jquery-ui.min.scss';
 
 import 'jquery-ui/ui/core';
@@ -19,7 +19,7 @@ import {Application} from './core/config/application';
 
 document.onreadystatechange = async () => {
   if (document.readyState === 'complete') {
-    setGlobals('html2canvas', html2canvas);
+    // setGlobals('html2canvas', html2canvas);
     setGlobals('anthill', await Application.init());
   }
 };

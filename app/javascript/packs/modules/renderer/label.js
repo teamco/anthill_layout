@@ -23,7 +23,7 @@ export class LabelRenderer {
      * Parse Html
      * @type {Array}
      */
-    let html = $.parseHTML(text) || [''];
+    let html = window.$.parseHTML(text) || [''];
 
     html = html.length ? html : [''];
 
@@ -34,7 +34,7 @@ export class LabelRenderer {
         visible = false;
       }
     }
-    const $template = $(`
+    const $template = window.$(`
       <div class="input-group-prepend${visible ? '' : ' d-none'}">
         <span class="${type} input-group-text" id="${uuid}" title="${title.toUpperCase()}"></span>
       </div>`);

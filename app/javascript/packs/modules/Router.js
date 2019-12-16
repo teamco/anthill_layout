@@ -67,7 +67,7 @@ export class Router extends AntHill {
    * @returns {Array|{index: number, input: string}}
    */
   isPageMatch2Hash() {
-    return this.getHashLocation().match(/#\/([^+(\/)]*):?/i);
+    return this.getHashLocation().match(/#\/([^+(/)]*):?/i);
   }
 
   /**
@@ -128,7 +128,7 @@ export class Router extends AntHill {
         (workspace.model.getItemByTitle(pageMatch[1]) || workspace.model.getItemByUUID(pageMatch[1])) :
         currentPage;
 
-    if (_.isUndefined(page)) {
+    if (window._.isUndefined(page)) {
 
       workspace.observer.publish(workspace.eventManager.eventList.switchToPage, currentPage);
 
@@ -189,9 +189,8 @@ export class Router extends AntHill {
   /**
    * Update hash on widget reduce
    * @memberOf Router
-   * @param {Widget} widget
    */
-  updateHashOnReduce(widget) {
+  updateHashOnReduce() {
 
     /**
      * Get workspace

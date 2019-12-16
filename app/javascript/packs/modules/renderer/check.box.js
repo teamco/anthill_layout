@@ -39,7 +39,7 @@ export class CheckBoxRenderer {
      * Define $input
      * @type {Object}
      */
-    const $input = $('<input />').attr({
+    const $input = window.$('<input />').attr({
       name: opts.name,
       type: 'checkbox',
       id: uuid,
@@ -53,7 +53,7 @@ export class CheckBoxRenderer {
     this.initMonitor($input, opts.monitor);
     this.checkVisibility($input, opts.visible);
 
-    const $template = $(`
+    const $template = window.$(`
       <div class="input-group mb-2">
         <div class="input-group-prepend">
           <div class="input-group-text sm-input"></div>

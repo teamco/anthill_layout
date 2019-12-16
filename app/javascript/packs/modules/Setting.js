@@ -353,7 +353,7 @@ export class Setting extends Router {
          * @private
          */
         function _send(opts) {
-          $.ajax(opts).done((data, type, xhr) => {
+          window.$.ajax(opts).done(data => {
 
             setting.cache.setItem(key, value);
             setting.activateOnSave(false);

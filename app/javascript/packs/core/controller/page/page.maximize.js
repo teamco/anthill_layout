@@ -56,8 +56,7 @@ export class PageItemMaximize {
     const items = this.model.getItems();
 
     for (let index in items) {
-
-      if (items.hasOwnProperty(index)) {
+      if (Object.prototype.hasOwnProperty.call(items, index)) {
 
         /**
          * Define item
@@ -88,7 +87,7 @@ export class PageItemMaximize {
     const items = this.model.getItems();
 
     for (let index in items) {
-      if (items.hasOwnProperty(index)) {
+      if (Object.prototype.hasOwnProperty.call(items, index)) {
 
         /**
          * Define item

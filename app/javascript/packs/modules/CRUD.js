@@ -66,19 +66,19 @@ export class CRUD extends AntHill {
       item.observer.publish(eventManager.eventList['destroy' + onDestroy[i]]);
     }
 
-    if (eventManager.abstract.hasOwnProperty('destroyItems')) {
-      if (eventManager.eventList.hasOwnProperty(eventManager.abstract['destroyItems'])) {
+    if (Object.prototype.hasOwnProperty.call(eventManager.abstract, 'destroyItems')) {
+      if (Object.prototype.hasOwnProperty.call(eventManager.eventList, eventManager.abstract['destroyItems'])) {
         item.observer.publish(eventManager.eventList[eventManager.abstract.destroyItems]);
       }
     }
 
     this.destroyItemView(item);
 
-    if (items.hasOwnProperty(index)) {
+    if (Object.prototype.hasOwnProperty.call(items, index)) {
       delete items[index];
     }
 
-    scope[namespace] = base.lib.hash.firstHashElement(items) || {};
+    scope[namespace] = Object.values(items)[0] || {};
 
     return items;
   }
@@ -93,7 +93,7 @@ export class CRUD extends AntHill {
     const items = this.scope.items || {};
 
     for (let index in items) {
-      if (items.hasOwnProperty(index)) {
+      if (Object.prototype.hasOwnProperty.call(items, index)) {
         this.destroyItem(items[index]);
       }
     }
@@ -119,7 +119,7 @@ export class CRUD extends AntHill {
     const elements = item.view.elements;
 
     for (let index in elements) {
-      if (elements.hasOwnProperty(index)) {
+      if (Object.prototype.hasOwnProperty.call(elements, index)) {
 
         /**
          * Define element

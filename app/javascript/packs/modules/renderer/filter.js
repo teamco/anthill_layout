@@ -73,7 +73,7 @@ export class FilterRenderer {
      * Define $reset
      * @type {*|jQuery|{find}}
      */
-    const $reset = $(`<div class="input-group-append">
+    const $reset = window.$(`<div class="input-group-append">
         <button type="button" class="btn btn-secondary rounded-0 d-none reset-filter" title="Reset">
           <span class="fa fa-times"></span>
         </button>
@@ -85,7 +85,7 @@ export class FilterRenderer {
        * Get $node
        * @type {*|jQuery|HTMLElement|{parents, parent}}
        */
-      const $node = $(this);
+      const $node = window.$(this);
 
       $node.parents('.filter').find('input').val('').trigger(filterEvent).focus();
       $node.parent().addClass('d-none');
@@ -135,7 +135,7 @@ export class FilterRenderer {
       $reset[(value.length ? 'remove' : 'add') + 'Class']('d-none');
 
       for (let index in items) {
-        if (items.hasOwnProperty(index)) {
+        if (Object.prototype.hasOwnProperty.call(items, index)) {
 
           /**
            * Define item

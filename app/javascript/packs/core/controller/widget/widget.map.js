@@ -604,7 +604,7 @@ export class WidgetMap extends WidgetOverlapping {
      */
     const dom = this.getDOM();
 
-    return $.extend({
+    return window.$.extend({
       width: this.getNextDims(dom.relWidth),
       height: this.getNextDims(dom.relHeight)
     }, this.dragTo());
@@ -714,7 +714,7 @@ export class WidgetMap extends WidgetOverlapping {
         widgets = this.widget.model.getParentItems();
 
     for (let index in widgets) {
-      if (widgets.hasOwnProperty(index)) {
+      if (Object.prototype.hasOwnProperty.call(widgets, index)) {
 
         /**
          * Define widget

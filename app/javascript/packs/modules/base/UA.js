@@ -35,7 +35,7 @@ export class LibUserAgent {
       zoom = 1 / (window.devicePixelRatio);
     } else {
       // Get Chrome/Safari zoom
-      zoom = 1 / (screen.width / $(window).width());
+      zoom = 1 / (screen.width / window.$(window).width());
     }
 
     // Get IE zoom
@@ -76,7 +76,7 @@ export class LibUserAgent {
       /**
        * @type {ActiveXObject}
        */
-      const wscript = new ActiveXObject('WScript.Shell');
+      const wscript = new window.ActiveXObject('WScript.Shell');
       if (wscript) wscript['SendKeys']('{F11}');
     }
   }

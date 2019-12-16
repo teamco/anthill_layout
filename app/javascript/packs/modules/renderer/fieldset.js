@@ -24,7 +24,7 @@ export class FieldSetRenderer {
    */
   static handleCaret($element, type) {
     $element.find('svg').hide();
-    $element.find(`svg.fa-caret-${type}`).show().removeClass('d-none');
+    $element.find(`svg.fa-caret-window.${type}`).show().removeClass('d-none');
   }
 
   /**
@@ -56,7 +56,7 @@ export class FieldSetRenderer {
      * Define $li
      * @type {jQuery}
      */
-    const $li = $(e.target);
+    const $li = window.$(e.target);
 
     FieldSetRenderer.isOpenedFieldSet($li) ?
         FieldSetRenderer.closeFieldSet($li) :
@@ -76,15 +76,15 @@ export class FieldSetRenderer {
    * @returns {*|jQuery}
    */
   renderFieldSet(text, $content, open) {
-    const $legend = $('<legend />').html(text).on('click.toggle', this.toggleFieldset.bind(this));
-    const $fieldset = $('<fieldset />').append($legend, $content);
+    const $legend = window.$('<legend />').html(text).on('click.toggle', this.toggleFieldset.bind(this));
+    const $fieldset = window.$('<fieldset />').append($legend, $content);
 
     if (open) {
       FieldSetRenderer.openFieldSet($legend);
     }
 
     this.renderTooltip({
-      title: $('<div />').html(text).text(),
+      title: window.$('<div />').html(text).text(),
       selector: $legend
     });
 

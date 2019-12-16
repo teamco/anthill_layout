@@ -45,7 +45,7 @@ export class NumberFieldRenderer {
      * Define $input
      * @type {jQuery}
      */
-    const $input = $('<input class="form-control" />').attr({
+    const $input = window.$('<input class="form-control" />').attr({
       name: opts.name,
       type: 'number',
       id: uuid,
@@ -55,7 +55,7 @@ export class NumberFieldRenderer {
     }).val(opts.value);
 
     const labelClass = [opts.style, opts.visible ? '' : 'd-none'].join(' '),
-        $template = $('<div class="input-group w-16 mb-2" />').append(
+        $template = window.$('<div class="input-group w-16 mb-2" />').append(
             this.renderLabel(uuid, opts.text, labelClass, opts.visible)
         );
 

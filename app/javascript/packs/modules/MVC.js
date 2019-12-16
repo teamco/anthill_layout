@@ -162,7 +162,7 @@ export class MVC {
      * @property MVC.scope
      * @type {*}
      */
-    this.scope.config = $.extend(true, {}, selfDefaults, selfConfig);
+    this.scope.config = window.$.extend(true, {}, selfDefaults, selfConfig);
 
     /**
      * Define mvc components
@@ -439,7 +439,7 @@ export class MVC {
     const eventList = eventManager.eventList;
 
     for (let index in eventList) {
-      if (eventList.hasOwnProperty(index)) {
+      if (Object.prototype.hasOwnProperty.call(eventList, index)) {
 
         const event = eventList[index];
         const controller = scope.controller;
@@ -486,7 +486,7 @@ export class MVC {
     }
 
     for (let index in listeners) {
-      if (listeners.hasOwnProperty(index)) {
+      if (Object.prototype.hasOwnProperty.call(listeners, index)) {
         scope.eventManager.subscribe({
           event: listeners[index],
           callback: controller[index]
@@ -507,9 +507,9 @@ export class MVC {
 
     if (scope.globalEvents) {
       for (let index in scope.globalEvents) {
-        if (scope.globalEvents.hasOwnProperty(index)) {
+        if (Object.prototype.hasOwnProperty.call(scope.globalEvents, index)) {
           let event = scope.globalEvents[index];
-          if (eventManager.eventList.hasOwnProperty(index)) {
+          if (Object.prototype.hasOwnProperty.call(eventManager.eventList, index)) {
             scope.logger.warn('Event already defined', index, event);
           } else {
             scope.logger.debug('Add event', index, event);
@@ -539,7 +539,7 @@ export class MVC {
 
     if (typeof scopeListener === 'object') {
       for (let index in scopeListener) {
-        if (scopeListener.hasOwnProperty(index)) {
+        if (Object.prototype.hasOwnProperty.call(scopeListener, index)) {
 
           /**
            * Define local instance of an event
@@ -568,8 +568,7 @@ export class MVC {
    * @returns {boolean}
    */
   applyPermissions() {
-
-    if (!this.scope.config.hasOwnProperty('plugin')) {
+    if (!Object.prototype.hasOwnProperty.call(this.scope.config, 'plugin')) {
       this._applyPermissions('local');
       this._applyPermissions('global');
     }

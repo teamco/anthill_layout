@@ -25,7 +25,7 @@ export class EventLinkRenderer {
     const uuid = LibGenerator.UUID() + '-event';
     const checked = !!opts.checked;
 
-    const $input = $('<input />').attr({
+    const $input = window.$('<input />').attr({
       name: opts.group,
       type: 'radio',
       checked: checked
@@ -39,7 +39,7 @@ export class EventLinkRenderer {
      * Define $link
      * @type {*|jQuery}
      */
-    const $link = $('<div />').attr({
+    const $link = window.$('<div />').attr({
       rel: opts.name,
       id: uuid,
       title: opts.title
@@ -65,10 +65,10 @@ export class EventLinkRenderer {
         e.stopPropagation();
 
         // Reset to default value
-        $('input:radio[name="' + opts.group + '"]').val('on');
+        window.$('input:radio[name="' + opts.group + '"]').val('on');
 
         // Set new value
-        $('input', $(e.target)).prop({checked: true}).val(opts.name);
+        window.$('input', window.$(e.target)).prop({checked: true}).val(opts.name);
 
         content.observer.publish(content.eventManager.eventList.executeOnWidgetEvent, opts.name);
       }

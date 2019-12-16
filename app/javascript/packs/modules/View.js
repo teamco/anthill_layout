@@ -73,7 +73,7 @@ export class BaseView extends AntHill {
    */
   destroyElementItems() {
     for (let index in this.elements.items) {
-      if (this.elements.items.hasOwnProperty(index)) {
+      if (Object.prototype.hasOwnProperty.call(this.elements.items, index)) {
         this.elements.items[index].$.off().remove();
       }
     }
@@ -99,7 +99,7 @@ export class BaseView extends AntHill {
   getContentElementBy(type, value) {
     const elements = this.getContentElements();
     for (let index in elements) {
-      if (elements.hasOwnProperty(index)) {
+      if (Object.prototype.hasOwnProperty.call(elements, index)) {
         if (elements[index][type] === value) {
           return elements[index];
         }
@@ -486,7 +486,7 @@ export class BaseView extends AntHill {
         events: button.events
       });
 
-      $.each(button.events || {}, (key, event) => store[i].$.on(`${key}.afterCallback`,
+      window.$.each(button.events || {}, key => store[i].$.on(`${key}.afterCallback`,
           store[i].afterEventsCallback.bind(store[i])));
 
       this.scope.logger.debug('Button created', store[i]);

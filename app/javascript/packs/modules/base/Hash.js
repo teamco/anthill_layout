@@ -66,7 +66,7 @@ export class LibHash {
    */
   getKeyByValue(h = {}, v) {
     for (const prop in h) {
-      if (h.hasOwnProperty(prop)) {
+      if (Object.prototype.hasOwnProperty.call(h, prop)) {
         if (h[prop] === v) {
           return prop;
         }

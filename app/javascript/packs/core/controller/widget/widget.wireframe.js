@@ -101,7 +101,7 @@ export class Wireframe {
    */
   getWireFrame() {
 
-    const $wireFrame = $('#' + this.selector, this.widget.controller.get$page().$);
+    const $wireFrame = window.$('#' + this.selector, this.widget.controller.get$page().$);
 
     // Check if widget frozen
     const frozen = this.widget.model.getConfig('preferences').freeze;
@@ -136,8 +136,8 @@ export class Wireframe {
     this.$ = this.getWireFrame();
 
     if (!this.$.length) {
-      $('#' + this.selector).remove();
-      this.$ = $('<div />').css(opts.style).attr({
+      window.$('#' + this.selector).remove();
+      this.$ = window.$('<div />').css(opts.style).attr({
         id: this.selector
       });
     }

@@ -84,7 +84,7 @@ export class BaseEvent extends AntHill {
    */
   static eventsBound($element) {
     // Lookup events for this particular Element
-    return $._data($element.$[0], 'events');
+    return window.$._data($element.$[0], 'events');
   }
 
   /**
@@ -126,7 +126,7 @@ export class BaseEvent extends AntHill {
    * @returns {boolean}
    */
   isEvent(event) {
-    return this.eventList.hasOwnProperty(event);
+    return Object.prototype.hasOwnProperty.call(this.eventList, event);
   }
 
   /**
@@ -167,7 +167,7 @@ export class BaseEvent extends AntHill {
     const items = root.model.getItems();
 
     for (let index in items) {
-      if (items.hasOwnProperty(index)) {
+      if (Object.prototype.hasOwnProperty.call(items, index)) {
         const item = items[index];
 
         // Recursive search
@@ -215,8 +215,7 @@ export class BaseEvent extends AntHill {
     method.shift();
     method = (`.${method.join('.')}`).toCamelCase();
 
-    if (_RESERVED.hasOwnProperty(key)) {
-
+    if (Object.prototype.hasOwnProperty.call(_RESERVED, key)) {
       const singular = _RESERVED[key].singular;
       const plural = _RESERVED[key].plural;
 
@@ -249,7 +248,7 @@ export class BaseEvent extends AntHill {
 
     opts = opts || {};
 
-    if (_.isEmpty(opts)) {
+    if (window._.isEmpty(opts)) {
       this.logger.warn('Empty opts', opts);
       return false;
     }
@@ -300,7 +299,7 @@ export class BaseEvent extends AntHill {
     opts = opts || {};
     internal = typeof internal === 'undefined' ? false : internal;
 
-    if (_.isString(opts.event)) {
+    if (window._.isString(opts.event)) {
       opts.name = opts.event;
     } else {
       opts.name = opts.event.name;
@@ -316,7 +315,8 @@ export class BaseEvent extends AntHill {
       return false;
     }
 
-    if (!internal && !this.eventList.hasOwnProperty(eventKey)) {
+    if (!internal &&
+        !Object.prototype.hasOwnProperty.call(this.eventList, eventKey)) {
       this.scope.logger.warn('Untrusted external event', opts);
       return false;
     }

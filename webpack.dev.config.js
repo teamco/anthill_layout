@@ -1,8 +1,12 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
+const StartServerPlugin = require('start-server-webpack-plugin');
+const NodemonPlugin = require('nodemon-webpack-plugin');
+const SimpleProgressWebpackPlugin = require('simple-progress-webpack-plugin');
+const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 
-module.exports = {
+const config = {
   entry: {
     main: [
       'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000',
@@ -12,7 +16,9 @@ module.exports = {
   output: {
     path: path.join(__dirname, 'dist'),
     publicPath: '/',
-    filename: '[name].js'
+    filename: '[name].js',
+    libraryTarget: 'umd',
+    globalObject: `(typeof self !== 'undefined' ? self : this)`
   },
   mode: 'development',
   target: 'web',
@@ -56,6 +62,7 @@ module.exports = {
             loader: 'sass-loader?sourceMap',
             options: {
               // Prefer `dart-sass`
+              sourceMap: true,
               implementation: require('sass')
             }
           }
@@ -73,10 +80,20 @@ module.exports = {
   },
   plugins: [
     new HtmlWebPackPlugin({
-      template: 'app/javascript/packs/html/index.html',
+      template: './app/javascript/packs/html/index.html',
       filename: './index.html',
       excludeChunks: ['server']
     }),
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
+    new NodemonPlugin({}),
+    new SimpleProgressWebpackPlugin(),
+    new FriendlyErrorsWebpackPlugin(),
+    new StartServerPlugin({
+      name: 'main.js',
+      signal: true,
+      nodeArgs: ['--inspect']
+    })
   ]
 };
+
+module.exports = config;

@@ -114,8 +114,7 @@ export class WorkspaceElement extends BaseElement {
 
     let index, page;
     for (index in items) {
-
-      if (items.hasOwnProperty(index)) {
+      if (Object.prototype.hasOwnProperty.call(items, index)) {
 
         /**
          * Get page

@@ -95,7 +95,7 @@ export class BasePreferences {
 
       // Get input class name
       // language=JQuery-CSS
-      const inputClass = $(input).closest('[class*="-prefs"]').attr('class') || '';
+      const inputClass = window.$(input).closest('[class*="-prefs"]').attr('class') || '';
 
       /**
        * Check if prefs in content
@@ -131,7 +131,7 @@ export class BasePreferences {
       let value = input.value;
 
       if (input.type === 'checkbox') {
-        value = $(input).prop('checked');
+        value = window.$(input).prop('checked');
       }
 
       if (input.type === 'radio') {

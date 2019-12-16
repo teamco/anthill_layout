@@ -45,7 +45,7 @@ export class WorkspaceContentElement extends BaseElement {
 
     let index, $item;
     for (index in items) {
-      if (items.hasOwnProperty(index)) {
+      if (Object.prototype.hasOwnProperty.call(items, index)) {
 
         /**
          * Define page

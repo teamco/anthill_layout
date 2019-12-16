@@ -10,6 +10,8 @@ import $ from 'jquery';
 import {Renderer} from './Renderer';
 import {LibNumber} from 'js/modules/base/Number';
 
+const _ = window._;
+
 /**
  * Define Base element
  * @class BaseElement
@@ -399,7 +401,8 @@ export class BaseElement extends Renderer {
 
     // Remove css
     for (const index in element) {
-      if (element.hasOwnProperty(index) && index.match(/LinkCSS/)) {
+      if (Object.prototype.hasOwnProperty.call(element, index) &&
+          index.match(/LinkCSS/)) {
         const item = element[index];
         const link = css[item.path] || [];
         if (link.length === 1) {
@@ -834,7 +837,7 @@ export class BaseElement extends Renderer {
    */
   getItemsList(items) {
     return `<ul class="remove">
-        ${$.map(items, (item, i) => `<li rel="${item.model.getUUID()}">${item.model.getItemTitle()}</li>`).join('')}
+        ${window.$.map(items, item => `<li rel="${item.model.getUUID()}">${item.model.getItemTitle()}</li>`).join('')}
       </ul>`;
   }
 
@@ -844,7 +847,7 @@ export class BaseElement extends Renderer {
    * @returns {string}
    */
   getSiteDescription() {
-    return $('meta[name="description"]').attr('content');
+    return window.$('meta[name="description"]').attr('content');
   }
 
   /**
@@ -853,7 +856,7 @@ export class BaseElement extends Renderer {
    * @param {string} description
    */
   setSiteDescription(description) {
-    $('meta[name="description"]').attr('content', description);
+    window.$('meta[name="description"]').attr('content', description);
   }
 
   /**
@@ -862,7 +865,7 @@ export class BaseElement extends Renderer {
    * @returns {string}
    */
   getSiteKeywords() {
-    return $('meta[name="keywords"]').attr('content');
+    return window.$('meta[name="keywords"]').attr('content');
   }
 
   /**
@@ -871,7 +874,7 @@ export class BaseElement extends Renderer {
    * @param {string} keywords
    */
   setSiteKeywords(keywords) {
-    $('meta[name="keywords"]').attr('content', keywords);
+    window.$('meta[name="keywords"]').attr('content', keywords);
   }
 
   /**
@@ -880,7 +883,7 @@ export class BaseElement extends Renderer {
    * @returns {number}
    */
   hasIframe() {
-    return $('iframe', this.$).length;
+    return window.$('iframe', this.$).length;
   }
 
   /**
@@ -889,7 +892,7 @@ export class BaseElement extends Renderer {
    * @returns {number}
    */
   hasFlash() {
-    return $('object', this.$).length || $('embed', this.$).length;
+    return window.$('object', this.$).length || $('embed', this.$).length;
   }
 
   /**
@@ -919,15 +922,15 @@ export class BaseElement extends Renderer {
      * Get sorted value
      * @type {*|boolean}
      */
-    const sorted = $element.defineSorted($(event.target));
-    $(on, $container).sort((a, b) => {
+    const sorted = $element.defineSorted(window.$(event.target));
+    window.$(on, $container).sort((a, b) => {
       let t1, t2;
       if (selector) {
-        t1 = $(selector, a).text();
-        t2 = $(selector, b).text();
+        t1 = window.$(selector, a).text();
+        t2 = window.$(selector, b).text();
       } else {
-        t1 = $(a).text();
-        t2 = $(b).text();
+        t1 = window.$(a).text();
+        t2 = window.$(b).text();
       }
       if (t1 < t2) return sorted ? -1 : 1;
       if (t1 > t2) return sorted ? 1 : -1;

@@ -75,7 +75,7 @@ export class RangeRenderer {
 
     const uuid = LibGenerator.UUID() + '-range',
         disabled = this.view.utils.setBoolean(opts.disabled, false),
-        $input = $('<input />').attr({
+        $input = window.$('<input />').attr({
           name: opts.name,
           type: 'range',
           id: uuid,

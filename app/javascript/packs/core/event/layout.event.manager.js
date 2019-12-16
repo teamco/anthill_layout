@@ -60,5 +60,5 @@ export class LayoutEventManager extends BaseEvent {
       setEmptySpacesMode: 'set.empty.spaces.mode',
       toggleGrid: 'toggle.grid'
     };
-  };
+  }
 }

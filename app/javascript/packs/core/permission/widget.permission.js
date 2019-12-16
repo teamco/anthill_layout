@@ -60,7 +60,7 @@ export class WidgetPermission extends BasePermission {
 
     if (list) {
       const regex = new RegExp(capability, 'ig'),
-          res = $.map(list, (k, v) => v.match(regex) ? v.replace(regex, '') : null);
+          res = window.$.map(list, (k, v) => v.match(regex) ? v.replace(regex, '') : null);
 
       scope.logger.debug('Capabilities', name, res);
       return res;
