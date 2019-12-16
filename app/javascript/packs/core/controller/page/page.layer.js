@@ -26,7 +26,7 @@ export class PageLayer {
         index, layer, uuid;
 
     for (index in items) {
-      if (items.hasOwnProperty(index)) {
+      if (Object.prototype.hasOwnProperty.call(items, index)) {
 
         /**
          * Define widget
@@ -41,7 +41,6 @@ export class PageLayer {
         uuid = widget.model.getUUID();
 
         if (source.model.getUUID() !== uuid) {
-
           targets.widgets[uuid] = widget;
           layer = widget.dom.zIndex;
 
@@ -81,7 +80,7 @@ export class PageLayer {
         onTop;
 
     for (index in items) {
-      if (items.hasOwnProperty(index)) {
+      if (Object.prototype.hasOwnProperty.call(items, index)) {
 
         /**
          * Define widget
@@ -132,7 +131,7 @@ export class PageLayer {
         index, widget;
 
     for (index in items) {
-      if (items.hasOwnProperty(index)) {
+      if (Object.prototype.hasOwnProperty.call(items, index)) {
 
         /**
          * Define widget

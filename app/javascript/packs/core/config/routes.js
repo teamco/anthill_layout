@@ -83,8 +83,8 @@ export class Routes {
     data[Routes.getXCsrfParam()] = Routes.getXCsrfToken();
 
     for (let index in collector) {
-      if (collector.hasOwnProperty(index)) {
-        if (data.hasOwnProperty(index)) {
+      if (Object.prototype.hasOwnProperty.call(collector, index)) {
+        if (Object.prototype.hasOwnProperty.call(data, index)) {
           throw new Error(`Duplicate params: ${index}`);
         }
         data[index] = collector[index];

@@ -1,3 +1,5 @@
+const _ = window._;
+
 /**
  * @class PageRulesVisualizer
  * @type {PageRulesVisualizer}

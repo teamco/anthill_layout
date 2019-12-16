@@ -31,7 +31,8 @@ export class WidgetContentPreferencesController {
     let index, value;
 
     for (index in localPrefs) {
-      if (localPrefs.hasOwnProperty(index) && globalPrefs.hasOwnProperty(index)) {
+      if (Object.prototype.hasOwnProperty.call(localPrefs, index) &&
+          Object.prototype.hasOwnProperty.call(globalPrefs, index)) {
         value = globalPrefs[index];
 
         /**
@@ -40,7 +41,7 @@ export class WidgetContentPreferencesController {
          */
         const setter = 'set' + index.toCamelCase().capitalize();
 
-        if (typeof(this.model[setter]) !== 'function') {
+        if (typeof (this.model[setter]) !== 'function') {
 
           /**
            * Define setter

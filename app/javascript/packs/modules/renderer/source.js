@@ -30,7 +30,7 @@ export class SourceRenderer {
      */
     const vkbeautify = require('vkbeautify');
 
-    const $source = $('<div class="source"><pre><code class="html hljs"></code></pre></div>'),
+    const $source = window.$('<div class="source"><pre><code class="html hljs"></code></pre></div>'),
         $code = $source.find('code');
 
     try {

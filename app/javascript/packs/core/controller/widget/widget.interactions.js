@@ -31,7 +31,7 @@ export class WidgetInteractions {
       return false;
     }
 
-    if (typeof config.containment === true) {
+    if (config.containment) {
       scope.logger.warn('Check containment', config);
       config.containment = 'parent';
     }
@@ -217,18 +217,16 @@ export class WidgetInteractions {
   /**
    * Create resize
    * @memberOf WidgetInteractions
-   * @param {string} type
    */
-  createResizable(type) {
+  createResizable() {
     this.logger.debug('Create resize', arguments);
   }
 
   /**
    * Resize start
    * @memberOf WidgetInteractions
-   * @param {string} type
    */
-  startResizable(type) {
+  startResizable() {
     this.logger.debug('Start resize', arguments);
   }
 
@@ -248,9 +246,8 @@ export class WidgetInteractions {
    * @memberOf WidgetInteractions
    * @param {string} type
    * @param {*} [opts]
-   * @param [args]
    */
-  stopResizable(type, opts, args) {
+  stopResizable(type, opts) {
     this.logger.debug('Stop resize', arguments);
     this.map.unSelectOverlappedWidgets();
 

@@ -119,13 +119,13 @@ export class ApplicationController extends aggregation(BaseController, BehaviorE
    */
   ajaxSetup() {
     const that = this;
-    $.ajaxSetup({
+    window.$.ajaxSetup({
       // context: this,
       timeout: that.isDevelopmentMode() ? undefined : 10000,
       ifModified: true,
       beforeSend(xhr, settings) {
         that.scope.view.get$item().showLoader('xhr');
-        if (_.isUndefined(settings.dataType)) {
+        if (window._.isUndefined(settings.dataType)) {
           xhr.setRequestHeader('accept', `*/*;q=0.5, ${settings.accepts.script}`);
         }
         xhr.setRequestHeader('X-CSRF-Token', Routes.getXCsrfToken());
@@ -159,7 +159,7 @@ export class ApplicationController extends aggregation(BaseController, BehaviorE
    */
   initResizeWindow() {
     this.logger.debug('Init window resize');
-    $(window).on('resizestop', e => this.observer.publish(this.eventManager.eventList.resizeWindowPublisher, e));
+    window.$(window).on('resizestop', e => this.observer.publish(this.eventManager.eventList.resizeWindowPublisher, e));
   }
 
   /**
@@ -299,7 +299,7 @@ export class ApplicationController extends aggregation(BaseController, BehaviorE
 
     scope.observer.publish(scope.eventManager.eventList.beforeSendLog, [arguments, opts]);
 
-    $.ajax(opts).done((data, type, xhr) =>
+    window.$.ajax(opts).done(() =>
         scope.observer.publish(scope.eventManager.eventList.afterSendLog, [arguments, opts]));
   }
 

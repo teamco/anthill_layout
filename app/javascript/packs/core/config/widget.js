@@ -227,5 +227,5 @@ export class Widget extends AntHill {
     this.expanded = false;
 
     this.observer.publish(this.eventManager.eventList.successCreated);
-  };
+  }
 }

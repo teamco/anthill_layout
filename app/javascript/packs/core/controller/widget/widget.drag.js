@@ -64,7 +64,7 @@ export class WidgetDrag {
 
     draggable = scope.controller.validateInteractionConfig('draggable', draggable);
     if (draggable) {
-      this.$scope.draggable($.extend({
+      this.$scope.draggable(window.$.extend({
         containment: draggable.containment,
         create: this.create.bind(this),
         start: this.start.bind(this),
@@ -112,10 +112,8 @@ export class WidgetDrag {
   /**
    * Create drag
    * @memberOf WidgetDrag
-   * @param {Event} event
-   * @param ui
    */
-  create(event, ui) {
+  create() {
 
     /**
      * Define scope

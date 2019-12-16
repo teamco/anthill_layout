@@ -16,7 +16,7 @@ export class DashboardElement extends PluginElement {
    */
   constructor(view, opts) {
     super('DashboardElement', view, false);
-    this._config(view, opts, $()).build(opts);
+    this._config(view, opts, window.$()).build(opts);
 
     /**
      * Define opener

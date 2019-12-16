@@ -64,10 +64,9 @@ export class GalleryView extends BaseView {
    * Render gallery content
    * @memberOf GalleryView
    * @param provider
-   * @param {Boolean} force
    * @returns {boolean}
    */
-  renderContent(provider, force) {
+  renderContent(provider) {
 
     /**
      * Define provider data

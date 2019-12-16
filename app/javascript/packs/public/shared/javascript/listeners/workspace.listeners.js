@@ -106,8 +106,7 @@ export const workspaceGlobalListeners = () => {
     const panels = this.getPanels();
 
     for (index in panels) {
-
-      if (panels.hasOwnProperty(index)) {
+      if (Object.prototype.hasOwnProperty.call(panels, index)) {
 
         /**
          * Get panel

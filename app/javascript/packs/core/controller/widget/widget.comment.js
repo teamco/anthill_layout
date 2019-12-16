@@ -34,7 +34,7 @@ export class WidgetComment {
    * @memberOf WidgetComment
    */
   postComment() {
-    debugger;
+    //debugger;
   }
 
   /**
@@ -42,7 +42,7 @@ export class WidgetComment {
    * @memberOf WidgetComment
    */
   cancelComment() {
-    debugger;
+    //debugger;
   }
 }
   

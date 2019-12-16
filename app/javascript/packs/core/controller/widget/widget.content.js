@@ -255,7 +255,7 @@ export class WidgetContent {
     }
 
     if (!event) {
-      scope.logger.warn('Undefined caller', fname);
+      scope.logger.warn('Undefined caller', event);
       return false;
     }
 

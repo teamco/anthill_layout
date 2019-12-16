@@ -21,8 +21,8 @@ export class WidgetContentControllerRules {
    * @param {ModalElement} $modal
    */
   updateRules($modal) {
-    const published = $('ul.publish-rules li', $modal.$),
-        subscribed = $('ul.subscribe-rules > li', $modal.$),
+    const published = window.$('ul.publish-rules li', $modal.$),
+        subscribed = window.$('ul.subscribe-rules > li', $modal.$),
         events = {
           publish: {},
           subscribe: {}
@@ -36,13 +36,13 @@ export class WidgetContentControllerRules {
        * Get event
        * @type {Array|jQuery}
        */
-      event = $(published[i]).attr('value').split(':');
+      event = window.$(published[i]).attr('value').split(':');
       events.publish[event[0]] = events.publish[event[0]] || [];
       events.publish[event[0]].push(event[1]);
     }
 
     for (let i1 = 0, l1 = subscribed.length; i1 < l1; i1++) {
-      const $inputs = $('input:checked', subscribed[i1]);
+      const $inputs = window.$('input:checked', subscribed[i1]);
 
       for (let i2 = 0, l2 = $inputs.length; i2 < l2; i2++) {
 
@@ -50,13 +50,13 @@ export class WidgetContentControllerRules {
          * Get event
          * @type {Array|jQuery}
          */
-        event = $($inputs[i2]).attr('name').split(':');
+        event = window.$($inputs[i2]).attr('name').split(':');
 
         /**
          * Get uuid
          * @type {string}
          */
-        const uuid = $('legend', subscribed[i1]).attr('data-uuid');
+        const uuid = window.$('legend', subscribed[i1]).attr('data-uuid');
         this.updateEventSubscribes(events, event, uuid);
       }
     }
@@ -119,7 +119,7 @@ export class WidgetContentControllerRules {
     let published = {};
 
     for (let index in items) {
-      if (!items.hasOwnProperty(index)) {
+      if (!Object.prototype.hasOwnProperty.call(items, index)) {
         continue;
       }
 
@@ -138,7 +138,7 @@ export class WidgetContentControllerRules {
       // Get uuid
       uuid = item.controller.getContent().model.getUUID();
 
-      if (rules.hasOwnProperty('publish') && this.scope.model.getUUID() !== uuid) {
+      if (Object.prototype.hasOwnProperty.call(rules, 'publish') && this.scope.model.getUUID() !== uuid) {
         published[uuid] = {
           rules: rules.publish,
           type: item.controller.getContent().name
@@ -179,7 +179,7 @@ export class WidgetContentControllerRules {
     const subscribeEM = this.scope.eventManager.subscribers;
 
     for (let index in subscribeEM) {
-      if (!subscribeEM.hasOwnProperty(index)) {
+      if (!Object.prototype.hasOwnProperty.call(subscribeEM, index)) {
         continue;
       }
 
@@ -214,7 +214,7 @@ export class WidgetContentControllerRules {
       }
 
       for (let event in events) {
-        if (!events.hasOwnProperty(event)) {
+        if (!Object.prototype.hasOwnProperty.call(events, event)) {
           continue;
         }
 
@@ -257,7 +257,7 @@ export class WidgetContentControllerRules {
      */
     let subscribeEM = {};
 
-    $.extend(true, subscribeEM, this.eventManager.subscribers);
+    window.$.extend(true, subscribeEM, this.eventManager.subscribers);
 
     if (!this.controller.unregisterRules()) {
       return false;
@@ -277,7 +277,7 @@ export class WidgetContentControllerRules {
     let subscribersCounter = Object.keys(subscribe).length;
 
     for (let index in subscribe) {
-      if (!subscribe.hasOwnProperty(index)) {
+      if (!Object.prototype.hasOwnProperty.call(subscribe, index)) {
         continue;
       }
 
@@ -295,7 +295,7 @@ export class WidgetContentControllerRules {
       const widgetPublisher = page.model.getWidgetByContentUUID(index);
 
       for (let type in types) {
-        if (!types.hasOwnProperty(type)) {
+        if (!Object.prototype.hasOwnProperty.call(types, type)) {
           continue;
         }
 
@@ -409,7 +409,7 @@ export class WidgetContentControllerRules {
      * @type {string}
      */
     const ename = event.toCamelCase();
-    if (!eventList.hasOwnProperty(ename)) {
+    if (!Object.prototype.hasOwnProperty.call(eventList, ename)) {
       scope.logger.warn('Undefined event', event);
       return false;
     }

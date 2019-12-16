@@ -20,7 +20,7 @@ export class WidgetRulesContentElement extends PluginElement {
    */
   constructor(view, opts) {
     super('WidgetRulesContentElement', view, false);
-    this._config(view, opts, $('<li class="nav-item" />')).build(opts);
+    this._config(view, opts, window.$('<li class="nav-item" />')).build(opts);
 
     this.getTemplate(opts.data);
     this.setAttributes(opts.data);
@@ -36,7 +36,7 @@ export class WidgetRulesContentElement extends PluginElement {
   getTemplate(widget) {
     const resource = widget.model.getConfig('preferences').resource.toClassName();
     const name = (widget.controller.getContent() || {}).name;
-    $(`<a class="nav-link" data-uuid="${resource}" data-toggle="modal" data-target="#${resource}">
+    window.$(`<a class="nav-link" data-uuid="${resource}" data-toggle="modal" data-target="#${resource}">
          <span class="widget ${resource}">${name}</span> 
        </a>`).appendTo(this.$);
   }

@@ -37,12 +37,10 @@ target
 
 app/assets/.sass-cache/
 
-!/package-lock.json
 /public/packs
-/yarn-error.log
-app/assets/javascripts/
 .nyc_output
 .keep
 dist
 test/junitresults-JSUnittests.xml
 docs/
+yarn-error.log

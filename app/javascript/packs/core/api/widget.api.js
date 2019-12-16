@@ -29,7 +29,7 @@ export class WidgetAPI extends BaseAPI {
    * Enable drag api
    * @memberOf WidgetAPI
    */
-  initDrag() {
+  enableDrag() {
     this._setInteraction('enableDraggable');
   }
 
@@ -37,7 +37,7 @@ export class WidgetAPI extends BaseAPI {
    * Disable drag api
    * @memberOf WidgetAPI
    */
-  initDrag() {
+  disableDrag() {
     this._setInteraction('disableDraggable');
   }
 

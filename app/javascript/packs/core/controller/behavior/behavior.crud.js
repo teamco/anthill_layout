@@ -74,7 +74,7 @@ export class BehaviorCrud {
       return false;
     }
 
-    $.each(items, (uuid, item) => scope.controller.approveItemDestroy(item, count));
+    window.$.each(items, (uuid, item) => scope.controller.approveItemDestroy(item, count));
 
     scope.observer.publish(scope.eventManager.eventList.afterDestroyItems);
   }

@@ -21,16 +21,16 @@ export class PanelContentElement extends PluginElement {
    * @constructor
    */
   constructor(view, opts, name) {
-    super(name || 'PanelContentElement', view, false);
-    this._config(view, opts, $(`<ul class="nav-dropdown-items" />`)).build(opts);
-  };
+    super(name || 'PanelContentElement', view);
+    this._config(view, opts, window.$(`<ul class="nav-dropdown-items" />`)).build(opts);
+  }
 
   /**
    * Select item
    * @memberOf PanelContentElement
    * @param {string} resource
    */
-  selectItem(resource) {
+  selectItem() {
     this.unselectItems();
   }
 

@@ -27,7 +27,7 @@ export class SelectRenderer {
     let $options = '';
 
     for (let index in list) {
-      if (list.hasOwnProperty(index)) {
+      if (Object.prototype.hasOwnProperty.call(list, index)) {
         const value = list[index].value;
         const key = list[index].key;
         const disabled = list[index].disabled ? ' disabled' : '';
@@ -39,7 +39,7 @@ export class SelectRenderer {
     const id = `${LibGenerator.UUID()}-select`;
     const $label = `<label for="${id}">${name}</label>`;
 
-    const $template = $(`
+    const $template = window.$(`
       <div class="select-container">
         ${label ? $label : ''}
         <select id="${id}" class="form-control"${disabled}${multiple}${autofocus}>

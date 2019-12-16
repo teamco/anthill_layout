@@ -41,7 +41,7 @@ export class TextFieldRenderer {
      * Define $input
      * @type {jQuery}
      */
-    const $input = $('<input class="form-control" />').addClass(opts.type).attr({
+    const $input = window.$('<input class="form-control" />').addClass(opts.type).attr({
       name: opts.name,
       type: 'text',
       placeholder: opts.placeholder || 'Enter ' + opts.text,
@@ -52,7 +52,7 @@ export class TextFieldRenderer {
     }).val(opts.value);
 
     const labelClass = [opts.style, opts.visible ? '' : 'd-none'].join(' '),
-        $template = $('<div class="input-group mb-2" />').append(
+        $template = window.$('<div class="input-group mb-2" />').append(
             this.renderLabel(uuid, opts.text, labelClass, opts.visible));
 
     /**

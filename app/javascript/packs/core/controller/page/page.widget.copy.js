@@ -26,7 +26,7 @@ export class PageWidgetCopy {
     let cloneMap = {};
 
     for (let index in cloneWidgets) {
-      if (cloneWidgets.hasOwnProperty(index)) {
+      if (Object.prototype.hasOwnProperty.call(cloneWidgets, index)) {
 
         /**
          * Get updated clone map
@@ -49,7 +49,7 @@ export class PageWidgetCopy {
     this.scope.logger.debug('Clone widget', arguments);
 
     // Get prefs
-    const cloneWidgetPrefs = $.extend(true, {}, cloneWidget.model.getConfig('preferences'));
+    const cloneWidgetPrefs = window.$.extend(true, {}, cloneWidget.model.getConfig('preferences'));
     if (!cloneWidgetPrefs.resource) {
       cloneWidget.logger.warn('Undefined resource', cloneWidgetPrefs);
       return false;
@@ -75,7 +75,7 @@ export class PageWidgetCopy {
     cloneMap[cloneWidget.model.getUUID()] = currentWidget.model.getUUID();
 
     // Copy dom
-    currentWidget.dom = $.extend(true, {}, cloneWidget.dom);
+    currentWidget.dom = window.$.extend(true, {}, cloneWidget.dom);
 
     // Render widget
     currentWidget.observer.publish(currentWidget.eventManager.eventList.successRendered);
@@ -84,7 +84,7 @@ export class PageWidgetCopy {
     currentWidget.config.preferences = cloneWidgetPrefs;
 
     // Temporary clone rules
-    currentWidget.config.rules = $.extend(true, {}, cloneWidget.model.getConfig('rules'));
+    currentWidget.config.rules = window.$.extend(true, {}, cloneWidget.model.getConfig('rules'));
     return cloneMap;
   }
 
@@ -99,7 +99,7 @@ export class PageWidgetCopy {
     const items = this.model.getItems();
 
     for (let item in items) {
-      if (items.hasOwnProperty(item)) {
+      if (Object.prototype.hasOwnProperty.call(items, item)) {
         this.defineWidgetRules(items[item], cloneMap);
       }
     }
@@ -143,7 +143,7 @@ export class PageWidgetCopy {
     }
 
     for (rs in subscribe) {
-      if (subscribe.hasOwnProperty(rs)) {
+      if (Object.prototype.hasOwnProperty.call(subscribe, rs)) {
 
         // Get current key
         currentKey = cloneMap[rs];
@@ -156,7 +156,7 @@ export class PageWidgetCopy {
         subscribe[currentKey] = {};
 
         for (let sk in subscribe[rs]) {
-          if (subscribe[rs].hasOwnProperty(sk)) {
+          if (Object.prototype.hasOwnProperty.call(subscribe[rs], sk)) {
 
             // Define subscribe array
             subscribe[currentKey][sk] = subscribe[currentKey][sk] || [];
@@ -205,7 +205,7 @@ export class PageWidgetCopy {
         rs, ssk = 0;
 
     for (rs in subscribers) {
-      if (subscribers.hasOwnProperty(rs)) {
+      if (Object.prototype.hasOwnProperty.call(subscribers, rs)) {
 
         // Get subscribers array of items
         const subscribersItems = subscribers[rs] || [];

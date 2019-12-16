@@ -27,10 +27,10 @@ export class BehaviorFixVulnerabilities {
    * @memberOf BehaviorFixVulnerabilities
    * @param data
    */
-  afterHandleVulnerabilities(data) {
+  afterHandleVulnerabilities() {
 
     // TODO
-    debugger;
+    //debugger;
   }
 
   /**
@@ -43,7 +43,7 @@ export class BehaviorFixVulnerabilities {
     const route = this.model.getConfig('routes/handleVulnerabilities'),
         appName = this.model.getConfig('appName');
 
-    $.ajax({
+    window.$.ajax({
 
       dataType: 'json',
 
@@ -56,7 +56,7 @@ export class BehaviorFixVulnerabilities {
       })
 
     }).done(
-        function done(data, type, xhr) {
+        function done(data) {
 
           this.logger.debug(arguments);
           this.observer.publish(

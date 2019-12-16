@@ -47,5 +47,5 @@ export class PageDataEventManager extends BaseEvent {
       storeItem: 'store.item',
       setActiveContent: 'set.active.content'
     };
-  };
+  }
 }

@@ -20,16 +20,15 @@ export class PanelPackagesElement extends PluginElement {
    * @constructor
    */
   constructor(view, opts) {
-    super('PanelPackagesElement', view, false);
-    this._config(view, opts, $(`<nav class="sidebar-nav" />`)).build(opts);
-  };
+    super('PanelPackagesElement', view);
+    this._config(view, opts, window.$(`<nav class="sidebar-nav" />`)).build(opts);
+  }
 
   /**
    * Select item
    * @memberOf PanelPackagesElement
-   * @param {string} resource
    */
-  selectItem(resource) {
+  selectItem() {
     this.unselectItems();
   }
 
@@ -47,6 +46,6 @@ export class PanelPackagesElement extends PluginElement {
    * @returns {*|jQuery}
    */
   deactivateItems() {
-    $('.open', this.$).removeClass('open');
+    window.$('.open', this.$).removeClass('open');
   }
 }

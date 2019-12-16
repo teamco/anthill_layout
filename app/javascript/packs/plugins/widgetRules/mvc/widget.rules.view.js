@@ -52,7 +52,7 @@ export class WidgetRulesView extends BaseView {
     this.destroyElementItems();
 
     for (let index in data) {
-      if (data.hasOwnProperty(index)) {
+      if (Object.prototype.hasOwnProperty.call(data, index)) {
 
         /**
          * Render item

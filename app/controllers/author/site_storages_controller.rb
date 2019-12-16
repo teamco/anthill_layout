@@ -25,10 +25,10 @@ class Author::SiteStoragesController < Author::AuthorController
     if File.exist?(@target_path)
       @storage = @author_site_storage.get_storage_data
       mode = {id: params[:site_type_id]} if params[:mode].nil?
-      begin
-        mode = {id: Integer(params[:mode])}
+      mode = begin
+        {id: Integer(params[:mode])}
       rescue
-        mode = {name: params[:mode]}
+        {name: params[:mode]}
       end unless params[:mode].nil?
       config = @author_site_storage.get_storage_configuration(
           params[:version],

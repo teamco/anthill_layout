@@ -106,7 +106,7 @@ export class TextEditorRenderer {
    * @memberOf TextEditorRenderer
    */
   afterInitTinyMce(editor) {
-    this.view.scope.logger.debug('TinyMCE initialized', arguments);
+    this.view.scope.logger.debug('TinyMCE initialized', arguments, editor);
 
     /**
      * Get referrer (opener)

@@ -47,7 +47,7 @@ export class BaseRules extends AntHill {
    * @private
    */
   getTemplate(text) {
-    return $(`
+    return window.$(`
       <div class="input-group-prepend">
         <span class="input-group-text">${text}</span>
       </div>`);
@@ -79,7 +79,7 @@ export class BaseRules extends AntHill {
     let rulesList = [];
 
     for (let key in rules) {
-      if (rules.hasOwnProperty(key)) {
+      if (Object.prototype.hasOwnProperty.call(rules, key)) {
         rulesList.push({
           type: 'text',
           value: rules[key]
@@ -113,7 +113,7 @@ export class BaseRules extends AntHill {
      * Define buttons
      * @type {*}
      */
-    const buttons = $.extend(true, {}, {
+    const buttons = window.$.extend(true, {}, {
       locate: {
         text: 'Locate',
         type: 'default',
@@ -214,7 +214,7 @@ export class BaseRules extends AntHill {
      * Set $ul
      * @type {*|jQuery}
      */
-    const $ul = $('<ul />').addClass('subscribe-rules');
+    const $ul = window.$('<ul />').addClass('subscribe-rules');
 
     /**
      * Define title
@@ -242,13 +242,13 @@ export class BaseRules extends AntHill {
         const $checkbox = this.renderCheckbox({
           name: [type, rules[i]].join(':'),
           text: rules[i],
-          checked: $.inArray(rules[i], checked) !== -1,
+          checked: window.$.inArray(rules[i], checked) !== -1,
           disabled: false,
           visible: true
         });
 
         $checkbox.find('.input-group-prepend .input-group-text').append(type).attr({title: type});
-        $inner.append($('<li />').append($checkbox));
+        $inner.append(window.$('<li />').append($checkbox));
       }
     }
 
@@ -260,14 +260,14 @@ export class BaseRules extends AntHill {
      * @private
      */
     function _checkPublished(published, index) {
-      const $inner = $('<ul />'),
+      const $inner = window.$('<ul />'),
           rulesList = published[index].rules || {},
           checkedRulesList = subscribe[index] || {};
 
       empty = !Object.keys(rulesList).length;
 
       for (let type in rulesList) {
-        if (rulesList.hasOwnProperty(type)) {
+        if (Object.prototype.hasOwnProperty.call(rulesList, type)) {
           _checkRule.call(this, rulesList, checkedRulesList, type, $inner);
         }
       }
@@ -276,7 +276,7 @@ export class BaseRules extends AntHill {
     }
 
     for (let index in published) {
-      if (published.hasOwnProperty(index)) {
+      if (Object.prototype.hasOwnProperty.call(published, index)) {
 
         /**
          * @constant
@@ -288,15 +288,15 @@ export class BaseRules extends AntHill {
           render = true;
           const legend = `${published[index].type}: ${index.replace(/-content/, '')}`;
 
-          const $li = $('<li />').append(
-              $('<fieldset />').append([
-                $('<legend class="open" />').attr({
+          const $li = window.$('<li />').append(
+              window.$('<fieldset />').append([
+                window.$('<legend class="open" />').attr({
                   'data-uuid': index,
                   title: legend
                 }).html(`
                     <span class="fa fa-caret-down"></span>
                     <span class="d-none fa fa-caret-up"></span>
-                    ${legend}`).on('click.toggle', this.toggleFieldset.bind(this)
+                    window.${legend}`).on('click.toggle', this.toggleFieldset.bind(this)
                 ),
                 $inner
               ])
@@ -308,8 +308,8 @@ export class BaseRules extends AntHill {
 
     if (render) {
       this.$.find('div.content-rules').append(
-          $('<fieldset />').append([
-            $('<legend />').text(title).attr({title: title}).on(
+          window.$('<fieldset />').append([
+            window.$('<legend />').text(title).attr({title: title}).on(
                 'click.toggle', this.toggleFieldset.bind(this)
             ),
             $ul
@@ -404,7 +404,7 @@ export class BaseRules extends AntHill {
      * Get $ul
      * @type {*|jQuery|HTMLElement|{length, append}}
      */
-    let $ul = $('ul.publish-rules', $container);
+    let $ul = window.$('ul.publish-rules', $container);
 
     if (!$ul.length) {
 
@@ -412,7 +412,7 @@ export class BaseRules extends AntHill {
        * Set $ul
        * @type {*|jQuery}
        */
-      $ul = $('<ul />').addClass('publish-rules');
+      $ul = window.$('<ul />').addClass('publish-rules');
 
       /**
        * Define title
@@ -421,8 +421,8 @@ export class BaseRules extends AntHill {
       const title = 'Published events';
 
       $container.find('div.content-rules').append(
-          $('<fieldset />').append([
-            $('<legend />').text(title).on('click.toggle',
+          window.$('<fieldset />').append([
+            window.$('<legend />').text(title).on('click.toggle',
                 this.toggleFieldset.bind(this)).attr({title: title}), $ul
           ]));
     }
@@ -438,13 +438,13 @@ export class BaseRules extends AntHill {
      */
     let value = `${type.toLowerCase()}:${rule}`;
 
-    if ($(`li[value="${value}"]`, $ul).length) {
+    if (window.$(`li[value="${value}"]`, $ul).length) {
       this.view.scope.logger.warn('Duplicate rule', value);
       return false;
     }
 
     const $input = `<input value="${rule}" disabled="disabled" type="text" class="form-control" placeholder="Rule">`;
-    $ul.append($('<li class="mb-2" />').
+    $ul.append(window.$('<li class="mb-2" />').
         attr({value: value}).
         append(`<div class="input-group">${this.getTemplate(type).prop('outerHTML')}${$input}</div>`));
   }

@@ -12,10 +12,9 @@ export class PluginElement extends BaseElement {
   /**
    * @param {string} name
    * @param {BaseView} view
-   * @param opts
    * @constructor
    */
-  constructor(name, view, opts) {
+  constructor(name, view) {
     super(name || 'PluginElement', view);
   }
 
@@ -48,7 +47,7 @@ export class PluginElement extends BaseElement {
         clickOn = 'click.' + scope.name.toLowerCase();
 
     this.$.off(clickOn).on(clickOn, _clickOn);
-    $('.popover').remove();
+    window.$('.popover').remove();
   }
 
   /**
@@ -110,7 +109,7 @@ export class PluginElement extends BaseElement {
    * @returns {*|jQuery|HTMLElement}
    */
   get$counter() {
-    return $('.counter', this.$);
+    return window.$('.counter', this.$);
   }
 
   /**

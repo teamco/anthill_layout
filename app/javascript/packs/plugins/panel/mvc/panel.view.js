@@ -66,7 +66,7 @@ export class PanelView extends BaseView {
     const style = [this.scope.model.getPanelEntityResourceName(module), 'content'].join('-'),
         sname = '$' + style;
 
-    if (this.isCachedItems() && this.elements.items.hasOwnProperty(sname) && !force) {
+    if (this.isCachedItems() && Object.prototype.hasOwnProperty.call(this.elements.items, sname) && !force) {
       return false;
     }
 
@@ -101,7 +101,7 @@ export class PanelView extends BaseView {
      */
     const $container = this.controller.getPackageContentElementBy('bar', 'style', name);
 
-    if (this.isCachedItems() && this.elements.items.hasOwnProperty(sname) && !force) {
+    if (this.isCachedItems() && Object.prototype.hasOwnProperty.call(this.elements.items, sname) && !force) {
       return false;
     }
 

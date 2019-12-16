@@ -1,8 +1,9 @@
 /**
  * Created by teamco on 27/05/2017.
  */
-
 import {PageRulesVisualizer} from './page.rules.visualizer';
+
+const _ = window._;
 
 /**
  * @class GenerateRules
@@ -40,54 +41,19 @@ export class GenerateRules extends PageRulesVisualizer {
   }
 
   /**
-   * createDiagram
-   * @method createDiagram
+   * updateConnectivity
+   * @method updateConnectivity
    * @memberOf GenerateRules
-   * @param {go} go
+   * @param node
+   * @param link
+   * @param port
+   * @static
    */
-  createDiagram(go) {
-
-    if (!go) {
-      this.scope.logger.warn('Go.js should be initialized');
-      return false;
-    }
-
-    const _make = go.GraphObject.make;
-
-    /**
-     * @constant
-     * @type {HTMLDivElement|HTMLElement}
-     */
-    const div = document.getElementById(this.id);
-
-    if (!div) {
-      this.scope.logger.warn('<DIV> should be in DOM');
-      return false;
-    }
-
-    /**
-     * @property GenerateRules
-     * @type {go.Diagram}
-     */
-    this.diagram = _make(go.Diagram, this.id, {
-      layout: _make(go.LayeredDigraphLayout),
-      initialDocumentSpot: go.Spot.TopCenter,
-      initialViewportSpot: go.Spot.TopCenter,
-      initialAutoScale: go.Diagram.Uniform
-    });
-
-    this.diagram.initialContentAlignment = go.Spot.Center;
-    this.diagram.nodeTemplate = GenerateRules.defineTemplate(go);
-    this.diagram.model = this.updateModel(go);
-    this.diagram.undoManager.isEnabled = true;
-
-    this.diagram.addDiagramListener('ObjectSingleClicked', this.objectSingleClicked.bind(this));
-    this.diagram.ModelChanged = GenerateRules.modelChanged.bind(this);
-    this.diagram.addDiagramListener('ChangedSelection', this.changedSelection.bind(this));
-
-    this.updatePublishedRules();
-    this.updateSubscriberRules();
-    this.handleNodeDblClick(this.page);
+  static updateConnectivity(node) {
+    const shape = node.findObject(node.data.name),
+        condition = node.findLinksInto().count;
+    shape.stroke = condition ? 'lightcoral' : 'green';
+    shape.strokeWidth = 2;
   }
 
   /**
@@ -104,50 +70,123 @@ export class GenerateRules extends PageRulesVisualizer {
   }
 
   /**
-   * Update model when the Diagram.selection changes
-   * @method changedSelection
+   * @method ruleDiagramDoubleClick
    * @memberOf GenerateRules
+   * @static
+   * @param {Page} page
+   * @param data
    */
-  changedSelection() {
-    this.diagram.model.selectedNodeData = null;
-    const it = this.diagram.selection.iterator;
-    while (it.next()) {
-      const node = it.value;
-      // Ignore a selected link or a deleted node
-      if (node instanceof go.Node && node.data) {
-        this.diagram.model.selectedNodeData = node.data;
-        break;
-      }
-    }
+  static ruleDiagramDoubleClick() {
+    // TODO (teamco): Do something.
   }
 
   /**
-   * @method objectSingleClicked
+   * @method defineTemplate
    * @memberOf GenerateRules
-   * @param {Event|{subject}} e
-   */
-  objectSingleClicked(e) {
-    const part = e.subject.part;
-    if (part instanceof go.Link) {
-    } else {
-      this.diagram.clearHighlighteds();
-    }
-  }
-
-  /**
-   * updateConnectivity
-   * @method updateConnectivity
-   * @memberOf GenerateRules
-   * @param node
-   * @param link
-   * @param port
+   * @param go
+   * @returns {window.go.Part}
    * @static
    */
-  static updateConnectivity(node, link, port) {
-    const shape = node.findObject(node.data.name),
-        condition = node.findLinksInto().count;
-    shape.stroke = condition ? 'lightcoral' : 'green';
-    shape.strokeWidth = 2;
+  static defineTemplate(go) {
+    const _make = go.GraphObject.make;
+    const node = _make(go.Node, 'Auto', {click: GenerateRules.showConnections},
+        _make(go.Shape,
+            new go.Binding('figure', 'figure'), {
+              // name: 'shape',
+              strokeWidth: 0.5,
+              portId: '',
+              cursor: 'pointer',
+              fromLinkable: true,
+              toLinkable: true,
+              fromLinkableSelfNode: true,
+              toLinkableSelfNode: true,
+              fromLinkableDuplicates: true,
+              toLinkableDuplicates: true
+            },
+            new go.Binding('name', 'name'),
+            new go.Binding('fill', 'color'),
+            new go.Binding('stroke', 'isHighlighted', h => h ? 'red' : 'gray').ofObject()
+        )
+    );
+
+    node.linkConnected = GenerateRules.updateConnectivity;
+    node.linkDisconnected = GenerateRules.updateConnectivity;
+
+    node.add(_make(go.Picture, {
+          width: 32,
+          height: 32,
+          alignment: go.Spot.Center,
+          opacity: 0.5,
+          margin: new go.Margin(10, 10)
+        },
+        {sourceCrossOrigin: () => 'use-credentials'},
+        new go.Binding('source', 'path'))
+    );
+
+    node.add(_make(go.TextBlock, {
+          margin: new go.Margin(5, 10),
+          font: 'normal 14px Tahoma',
+          cursor: 'pointer'
+        },
+        {
+          toolTip: _make('ToolTip', _make(go.TextBlock, {margin: 4},
+              new go.Binding('text', '', data => data.key)))
+        },
+        new go.Binding('text', 'title'))
+    );
+
+    return node;
+  }
+
+  /**
+   * createDiagram
+   * @method createDiagram
+   * @memberOf GenerateRules
+   * @param {go} go
+   */
+  createDiagram(go) {
+
+    if (!go) {
+      this.scope.logger.warn('Go.js should be initialized');
+      return false;
+    }
+
+    const _make = window.go.GraphObject.make;
+
+    /**
+     * @constant
+     * @type {HTMLDivElement|HTMLElement}
+     */
+    const div = document.getElementById(this.id);
+
+    if (!div) {
+      this.scope.logger.warn('<DIV> should be in DOM');
+      return false;
+    }
+
+    /**
+     * @property GenerateRules
+     * @type {window.go.Diagram}
+     */
+    this.diagram = _make(window.go.Diagram, this.id, {
+      layout: _make(window.go.LayeredDigraphLayout),
+      initialDocumentSpot: window.go.Spot.TopCenter,
+      initialViewportSpot: window.go.Spot.TopCenter,
+      initialAutoScale: window.go.Diagram.Uniform
+    });
+
+    this.diagram.initialContentAlignment = window.go.Spot.Center;
+    this.diagram.nodeTemplate = GenerateRules.defineTemplate(go);
+    this.diagram.model = this.updateModel(go);
+    this.diagram.undoManager.isEnabled = true;
+
+    this.diagram.addDiagramListener('ObjectSingleClicked', this.objectSingleClicked.bind(this));
+    this.diagram.ModelChanged = GenerateRules.modelChanged.bind(this);
+    this.diagram.addDiagramListener('ChangedSelection', this.changedSelection.bind(this));
+
+    this.updatePublishedRules();
+    this.updateSubscriberRules();
+    this.handleNodeDblClick(this.page);
   }
 
   /**
@@ -217,79 +256,42 @@ export class GenerateRules extends PageRulesVisualizer {
   }
 
   /**
-   * @method ruleDiagramDoubleClick
+   * Update model when the Diagram.selection changes
+   * @method changedSelection
    * @memberOf GenerateRules
-   * @static
-   * @param {Page} page
-   * @param data
    */
-  static ruleDiagramDoubleClick(page, data) {
-    // TODO (teamco): Do something.
+  changedSelection() {
+    this.diagram.model.selectedNodeData = null;
+    const it = this.diagram.selection.iterator;
+    while (it.next()) {
+      const node = it.value;
+      // Ignore a selected link or a deleted node
+      if (node instanceof window.go.Node && node.data) {
+        this.diagram.model.selectedNodeData = node.data;
+        break;
+      }
+    }
   }
 
   /**
-   * @method defineTemplate
+   * @method objectSingleClicked
    * @memberOf GenerateRules
-   * @param go
-   * @returns {go.Part}
-   * @static
+   * @param {Event|{subject}} e
    */
-  static defineTemplate(go) {
-    const _make = go.GraphObject.make;
-    const node = _make(go.Node, 'Auto', {click: GenerateRules.showConnections},
-        _make(go.Shape,
-            new go.Binding('figure', 'figure'), {
-              // name: 'shape',
-              strokeWidth: 0.5,
-              portId: '',
-              cursor: 'pointer',
-              fromLinkable: true,
-              toLinkable: true,
-              fromLinkableSelfNode: true,
-              toLinkableSelfNode: true,
-              fromLinkableDuplicates: true,
-              toLinkableDuplicates: true
-            },
-            new go.Binding('name', 'name'),
-            new go.Binding('fill', 'color'),
-            new go.Binding('stroke', 'isHighlighted', h => h ? 'red' : 'gray').ofObject()
-        )
-    );
-
-    node.linkConnected = GenerateRules.updateConnectivity;
-    node.linkDisconnected = GenerateRules.updateConnectivity;
-
-    node.add(_make(go.Picture, {
-          width: 32,
-          height: 32,
-          alignment: go.Spot.Center,
-          opacity: 0.5,
-          margin: new go.Margin(10, 10)
-        },
-        {sourceCrossOrigin: () => 'use-credentials'},
-        new go.Binding('source', 'path'))
-    );
-
-    node.add(_make(go.TextBlock, {
-          margin: new go.Margin(5, 10),
-          font: 'normal 14px Tahoma',
-          cursor: 'pointer'
-        },
-        {
-          toolTip: _make('ToolTip', _make(go.TextBlock, {margin: 4},
-              new go.Binding('text', '', data => data.key)))
-        },
-        new go.Binding('text', 'title'))
-    );
-
-    return node;
+  objectSingleClicked(e) {
+    const part = e.subject.part;
+    if (part instanceof window.go.Link) {
+      // TODO (teamco): Do something.
+    } else {
+      this.diagram.clearHighlighteds();
+    }
   }
 
   /**
    * @method updateModel
    * @memberOf GenerateRules
    * @param go
-   * @returns {go.GraphLinksModel}
+   * @returns {window.go.GraphLinksModel}
    */
   updateModel(go) {
     return new go.GraphLinksModel(GenerateRules.getWidgets(this.page));
@@ -327,7 +329,7 @@ export class GenerateRules extends PageRulesVisualizer {
     opts = opts || {};
     const color = opts.color || 'black',
         event = opts.event,
-        _make = go.GraphObject.make;
+        _make = window.go.GraphObject.make;
 
     const _fKey = from.data.key,
         _tKey = to.data.key;
@@ -346,24 +348,24 @@ export class GenerateRules extends PageRulesVisualizer {
     }
 
     this.diagram.add(
-        _make(go.Link, {
+        _make(window.go.Link, {
               fromNode: from,
               toNode: to,
-              adjusting: go.Link.Stretch,
-              routing: go.Link.AvoidsNodes,
-              curve: go.Link.JumpOver,
+              adjusting: window.go.Link.Stretch,
+              routing: window.go.Link.AvoidsNodes,
+              curve: window.go.Link.JumpOver,
               toShortLength: 3,
               corner: 5,
               reshapable: true,
               relinkableFrom: true,
               relinkableTo: true
             },
-            _make(go.Shape, {
+            _make(window.go.Shape, {
               isPanelMain: true,
               stroke: color,
               strokeWidth: 1
             }),
-            _make(go.Shape, {
+            _make(window.go.Shape, {
               toArrow: 'Standard',
               stroke: null,
               strokeWidth: 0

@@ -80,7 +80,7 @@ export class GalleryModel extends BaseModel {
      * @property GalleryModel
      * @type {{name: string, data: *[]}[]}
      */
-    this.currentProvider = $.extend({}, this.defaultProvider);
+    this.currentProvider = window.$.extend({}, this.defaultProvider);
   }
 
   /**
@@ -125,7 +125,7 @@ export class GalleryModel extends BaseModel {
      * @property GalleryModel
      * @type {{name: string, data: *[]}[]}
      */
-    this.currentProvider = $.extend({}, provider);
+    this.currentProvider = window.$.extend({}, provider);
     this.scope.logger.debug('Current provider', provider);
   }
 

@@ -22,6 +22,42 @@ export class WidgetPreferences extends BasePreferencesElement {
   }
 
   /**
+   * Merge prefs
+   * @memberOf WidgetPreferences
+   * @param defaults
+   * @param prefs
+   * @returns {{}}
+   * @static
+   */
+  static mergeWidgetPrefs(defaults, prefs) {
+    for (let index in prefs) {
+      if (Object.prototype.hasOwnProperty.call(prefs, index)) {
+        if (Object.prototype.hasOwnProperty.call(defaults, index)) {
+          defaults[index].value = prefs[index];
+        } else {
+
+          // Reset checked
+          for (let key in defaults) {
+            if (Object.prototype.hasOwnProperty.call(defaults, key)) {
+              if (defaults[key].group === index) {
+                defaults[key].checked = false;
+              }
+            }
+          }
+
+          if (Object.prototype.hasOwnProperty.call(defaults, prefs[index])) {
+
+            // check input-radio
+            defaults[prefs[index]].checked = true;
+          }
+        }
+      }
+    }
+
+    return defaults;
+  }
+
+  /**
    * Render form element
    * @param hash
    * @param {string} title
@@ -37,7 +73,7 @@ export class WidgetPreferences extends BasePreferencesElement {
     let nodes = [];
 
     for (let index in hash) {
-      if (hash.hasOwnProperty(index)) {
+      if (Object.prototype.hasOwnProperty.call(hash, index)) {
 
         // Define node
         const node = hash[index];
@@ -53,7 +89,7 @@ export class WidgetPreferences extends BasePreferencesElement {
          */
         const nodeRenderer = this.view.dataView.getNodeRenderer(this.view, node, text, index);
 
-        nodes.push($('<div />').addClass([
+        nodes.push(window.$('<div />').addClass([
           title.humanize().toClassName() + '-prefs',
           node.type,
           node.visible ? '' : 'hidden',
@@ -63,42 +99,6 @@ export class WidgetPreferences extends BasePreferencesElement {
     }
 
     return nodes;
-  }
-
-  /**
-   * Merge prefs
-   * @memberOf WidgetPreferences
-   * @param defaults
-   * @param prefs
-   * @returns {{}}
-   * @static
-   */
-  static mergeWidgetPrefs(defaults, prefs) {
-    for (let index in prefs) {
-      if (prefs.hasOwnProperty(index)) {
-        if (defaults.hasOwnProperty(index)) {
-          defaults[index].value = prefs[index];
-        } else {
-
-          // Reset checked
-          for (let key in defaults) {
-            if (defaults.hasOwnProperty(key)) {
-              if (defaults[key].group === index) {
-                defaults[key].checked = false;
-              }
-            }
-          }
-
-          if (defaults.hasOwnProperty(prefs[index])) {
-
-            // check input-radio
-            defaults[prefs[index]].checked = true;
-          }
-        }
-      }
-    }
-
-    return defaults;
   }
 
   /**

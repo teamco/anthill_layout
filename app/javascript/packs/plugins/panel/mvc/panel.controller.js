@@ -183,7 +183,7 @@ export class PanelController extends PluginController {
     const panels = this.root().panels;
 
     for (let index in panels) {
-      if (panels.hasOwnProperty(index)) {
+      if (Object.prototype.hasOwnProperty.call(panels, index)) {
 
         /**
          * Get panel

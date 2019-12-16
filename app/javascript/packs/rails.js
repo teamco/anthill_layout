@@ -18,9 +18,15 @@ import 'jquery.initialize';
 
 require('../channels');
 
-global['$'] = jQuery;
+global['$'] = window.jQuery;
 
 document.addEventListener('DOMContentLoaded', () => {
   Turbolinks.start();
   ActiveStorage.start();
 });
+
+// Needed for Hot Module Replacement
+if (module.hot) {
+  // eslint-disable-line no-undef
+  module.hot.accept();
+}

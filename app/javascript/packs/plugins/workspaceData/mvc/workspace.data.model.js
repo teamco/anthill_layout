@@ -40,7 +40,7 @@ export class WorkspaceDataModel extends BaseModel {
         sorted = [];
 
     for (let index in items) {
-      if (items.hasOwnProperty(index)) {
+      if (Object.prototype.hasOwnProperty.call(items, index)) {
 
         /**
          * Get page
@@ -49,7 +49,7 @@ export class WorkspaceDataModel extends BaseModel {
         const item = items[index];
         const sort = item.model.getConfig('preferences').order;
 
-        if (typeof(sort) === 'number') {
+        if (typeof (sort) === 'number') {
           if (sorted[sort]) {
             this.scope.logger.warn('Unable to sort pages', sort);
             return false;

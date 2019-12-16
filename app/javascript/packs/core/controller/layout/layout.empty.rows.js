@@ -50,7 +50,7 @@ export class LayoutEmptyRows {
         widgets = this.page.model.getItems();
 
     for (index in widgets) {
-      if (widgets.hasOwnProperty(index)) {
+      if (Object.prototype.hasOwnProperty.call(widgets, index)) {
         widget = widgets[index];
         dom = widget.dom;
         l = dom.relHeight + dom.row - 1;
@@ -131,7 +131,7 @@ export class LayoutEmptyRows {
          */
         uuid = widget.model.getUUID();
 
-        if ($.inArray(uuid, alreadyFixed) === -1) {
+        if (window.$.inArray(uuid, alreadyFixed) === -1) {
           alreadyFixed.push(uuid);
 
           dom = widget.map.getDOM();

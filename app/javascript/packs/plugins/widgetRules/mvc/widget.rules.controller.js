@@ -147,7 +147,7 @@ export class WidgetRulesController extends PluginController {
     const scope = this.scope.activeContent;
 
     for (let index in publish) {
-      if (publish.hasOwnProperty(index)) {
+      if (Object.prototype.hasOwnProperty.call(publish, index)) {
 
         /**
          * Define rules

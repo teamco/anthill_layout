@@ -16,8 +16,8 @@ export class GalleryProvidersElement extends PluginElement {
    * @constructor
    */
   constructor(view, opts) {
-    super('GalleryProvidersElement', view, false);
-    this._config(view, opts, $('<li />')).build(opts);
+    super('GalleryProvidersElement', view);
+    this._config(view, opts, window.$('<li />')).build(opts);
     this.renderData(opts.data, opts.current);
   }
 
@@ -30,7 +30,7 @@ export class GalleryProvidersElement extends PluginElement {
   sortComboBoxData(data) {
     let combo = [];
     for (let index in data) {
-      if (data.hasOwnProperty(index)) {
+      if (Object.prototype.hasOwnProperty.call(data, index)) {
         combo.push({
           key: data[index].key,
           value: data[index].name

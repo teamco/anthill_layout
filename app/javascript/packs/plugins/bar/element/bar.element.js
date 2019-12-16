@@ -20,9 +20,9 @@ export class BarElement extends PluginElement {
    * @constructor
    */
   constructor(view, opts) {
-    super('BarElement', view, false);
-    this._config(view, opts, $(this.getTemplate())).build(opts);
-  };
+    super('BarElement', view);
+    this._config(view, opts, window.$(this.getTemplate())).build(opts);
+  }
 
   /**
    * Define template

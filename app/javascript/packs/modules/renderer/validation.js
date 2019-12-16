@@ -55,14 +55,14 @@ export class ValidationRenderer {
       if (!opts.validate.blank) {
         return true;
       }
-      return opts.validate.blank ? true : !!$.trim(value).length;
+      return opts.validate.blank ? true : !!window.$.trim(value).length;
     }
 
     /**
      * Add message container
      * @type {*|jQuery}
      */
-    const $span = $('<span class="validate" />').text('The «' + opts.text + '» you entered is not valid');
+    const $span = window.$('<span class="validate" />').text('The «' + opts.text + '» you entered is not valid');
 
     /**
      * Show error

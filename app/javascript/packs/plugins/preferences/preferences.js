@@ -32,7 +32,7 @@ export class BasePreferencesElement {
      * Define buttons
      * @type {*}
      */
-    const buttons = $.extend(true, {}, {
+    const buttons = window.$.extend(true, {}, {
       locate: {
         text: 'Locate',
         type: 'default',

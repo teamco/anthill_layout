@@ -22,7 +22,7 @@ export class PageDataRulesElement extends PluginElement {
    */
   constructor(view, opts) {
     super('PageDataRulesElement', view, false);
-    this._config(view, opts, $('<li class="nav-item content" />')).build(opts);
+    this._config(view, opts, window.$('<li class="nav-item content" />')).build(opts);
 
     /**
      * Define title
@@ -46,7 +46,7 @@ export class PageDataRulesElement extends PluginElement {
    * @memberOf WorkspaceDataContentElement
    */
   getTemplate() {
-    $(`<a class="nav-link" data-uuid="page-rules" data-toggle="modal" data-target="#page-rules">
+    window.$(`<a class="nav-link" data-uuid="page-rules" data-toggle="modal" data-target="#page-rules">
          <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
          <span class="widget page-rules">${this.title}</span> 
        </a>`).appendTo(this.$);
@@ -77,7 +77,7 @@ export class PageDataRulesElement extends PluginElement {
    */
   renderWizard(page) {
     const uuid = LibGenerator.UUID();
-    const $html = $('<div class="canvas-rules" />').attr({id: uuid});
+    const $html = window.$('<div class="canvas-rules" />').attr({id: uuid});
 
     /**
      * @property PageDataRulesElement

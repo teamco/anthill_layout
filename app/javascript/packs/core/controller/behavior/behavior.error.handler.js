@@ -46,7 +46,7 @@ export class BehaviorErrorHandler {
    * Define error handler
    * @memberOf BehaviorErrorHandler
    */
-  _handleXhrLog(xhr, status, description) {
+  _handleXhrLog(xhr, status) {
 
     /**
      * Define error message

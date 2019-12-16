@@ -108,7 +108,7 @@ export class GalleryWidgets {
        */
       const route = scope.controller.resources.showWidgetsList;
 
-      $.getJSON(route[0].replace(/\{0}/, scope.controller.getAppName()), json => {
+      window.$.getJSON(route[0].replace(/\{0}/, scope.controller.getAppName()), json => {
         galleryWidgets.setDefaultData(json);
         _handleCallback();
       });

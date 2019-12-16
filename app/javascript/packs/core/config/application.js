@@ -193,6 +193,7 @@ export class Application extends AntHill {
      */
     const config = await import(`../../public/${site}/index`).catch(error => {
       // TODO (teamco): Do something.
+      window['console'].error(error);
     });
 
     return new Application({config: {...(config || {}).default, ...defaults} || {}});

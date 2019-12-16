@@ -112,8 +112,7 @@ export class LayoutOverlapping extends Intersect {
         index, moved, widget;
 
     for (index in widgets) {
-
-      if (widgets.hasOwnProperty(index)) {
+      if (Object.prototype.hasOwnProperty.call(widgets, index)) {
 
         /**
          * Define source widget
@@ -129,7 +128,7 @@ export class LayoutOverlapping extends Intersect {
         this._organizeCollector(src, intersecting);
 
         for (moved in intersecting) {
-          if (intersecting.hasOwnProperty(moved)) {
+          if (Object.prototype.hasOwnProperty.call(intersecting, moved)) {
 
             /**
              * Define intersected widget
@@ -190,8 +189,7 @@ export class LayoutOverlapping extends Intersect {
 
     let counter = 1;
     for (let index in widgets) {
-
-      if (widgets.hasOwnProperty(index)) {
+      if (Object.prototype.hasOwnProperty.call(widgets, index)) {
         const widget = page.model.getItemByUUID(widgets[index].model.getUUID());
         widget.logger.debug('Start nested organizer animation');
         widget.view.get$item()._setPosition({
@@ -243,7 +241,7 @@ export class LayoutOverlapping extends Intersect {
     const layout = this.layout;
 
     for (let index in targets) {
-      if (targets.hasOwnProperty(index)) {
+      if (Object.prototype.hasOwnProperty.call(targets, index)) {
         if (layout.controller.isSnap2Grid() || layout.controller.isUIGrid()) {
 
           this._snap2gridOrganizer(this.layout.controller.getBehavior(), source, targets[index],

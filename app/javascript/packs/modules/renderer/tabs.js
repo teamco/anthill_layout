@@ -50,7 +50,7 @@ export class TabsRenderer {
    * @returns {*|jQuery}
    */
   get$scroller($container, side) {
-    return $(`.${this.getScrollerSideClassName(side)}`, $container);
+    return window.$(`.${this.getScrollerSideClassName(side)}`, $container);
   }
 
   /**
@@ -59,7 +59,7 @@ export class TabsRenderer {
    * @returns {*|jQuery}
    */
   renderTabs() {
-    return $('<div class="tabs-wrapper mb-2 mt-2" />').append(
+    return window.$('<div class="tabs-wrapper mb-2 mt-2" />').append(
         this.renderScroller(),
         '<ul class="nav nav-pills" />'
     );
@@ -71,7 +71,7 @@ export class TabsRenderer {
    * @returns {*|jQuery}
    */
   renderTabItemsContent() {
-    return $('<div class="tab-content" />');
+    return window.$('<div class="tab-content" />');
   }
 
   /**
@@ -83,7 +83,7 @@ export class TabsRenderer {
    * @returns {*|jQuery}
    */
   addTabItemContent(uuid, content, active) {
-    const $item = $('<div role="tabpanel" class="tab-pane" />');
+    const $item = window.$('<div role="tabpanel" class="tab-pane" />');
     $item.attr({
       id: uuid,
       'aria-labelledby': uuid + '-tab'
@@ -103,7 +103,7 @@ export class TabsRenderer {
    * @param {boolean} [active]
    */
   addTabItem($tabs, item, active) {
-    const $item = $('<li class="nav-item"><a class="nav-link"></a></li>'),
+    const $item = window.$('<li class="nav-item"><a class="nav-link"></a></li>'),
         uuid = LibGenerator.UUID(item.uuid);
 
     const $a = $item.find('a');
@@ -128,7 +128,7 @@ export class TabsRenderer {
    * @returns {number}
    */
   getTabsLeftPos($container) {
-    return $('.nav', $container).position().left;
+    return window.$('.nav', $container).position().left;
   }
 
   /**
@@ -150,7 +150,7 @@ export class TabsRenderer {
         leftOffset = element.getTabsLeftPos($container);
 
     const leftFade = leftOffset < 0,
-        $rightLast = $('ul li:last', $container),
+        $rightLast = window.$('ul li:last', $container),
         rightFade = Math.abs(leftOffset) + width < $rightLast.outerWidth() + $rightLast.position().left;
 
     $right.stop()[(rightFade ? 'show' : 'hide')]();
@@ -178,7 +178,7 @@ export class TabsRenderer {
       return false;
     }
 
-    const $tabs = $('.nav', $container);
+    const $tabs = window.$('.nav', $container);
 
     $left.off().on('click.left', e => {
       e.preventDefault();
@@ -199,9 +199,8 @@ export class TabsRenderer {
    * @param {number} delta
    * @param $tabs
    * @param {number} side
-   * @param {Event} event
    */
-  scrollToTab(delta, $tabs, side, event) {
+  scrollToTab(delta, $tabs, side) {
 
     /**
      * Get element
@@ -220,7 +219,6 @@ export class TabsRenderer {
    * Scroll left
    * @memberOf TabsRenderer
    * @param $tabs
-   * @param scroller
    * @returns {number}
    */
   scrollTabsLeft($tabs) {
@@ -236,10 +234,10 @@ export class TabsRenderer {
    */
   scrollTabsRight($tabs, scroller) {
     const width = $tabs.outerWidth(),
-        $lis = $('li', $tabs), l = $lis.length;
+        $lis = window.$('li', $tabs), l = $lis.length;
     for (let i = 0; i < l; i++) {
       const $tab = $lis[i];
-      const delta = $($tab).position().left + $tab.getBoundingClientRect().width -
+      const delta = window.$($tab).position().left + $tab.getBoundingClientRect().width -
           Math.abs(this.getTabsLeftPos()) - width;
       if (delta > 0) return delta + scroller.getBoundingClientRect().width;
     }

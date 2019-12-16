@@ -47,7 +47,7 @@ export class PageLayout {
     // Get padding
     const padding = scope.model.getConfig('html/padding');
 
-    $.extend(padding, opts);
+    window.$.extend(padding, opts);
 
     /**
      * @type {PageElement|{setPadding}}
@@ -89,7 +89,7 @@ export class PageLayout {
     const $item = scope.view.get$item();
 
     if ($item) {
-      $item.updateDimensions(padding);
+      //$item.updateDimensions(padding);
     } else {
       scope.eventManager.subscribe({
         event: scope.eventManager.eventList.successRendered,

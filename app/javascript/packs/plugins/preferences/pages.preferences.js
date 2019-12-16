@@ -74,10 +74,10 @@ export class PagesPreferences extends BasePreferencesElement {
      */
     function _mergePrefs(defaults, prefs) {
       for (const index in prefs) {
-        if (prefs.hasOwnProperty(index)) {
-          if (defaults.hasOwnProperty(index)) {
+        if (Object.prototype.hasOwnProperty.call(prefs, index)) {
+          if (Object.prototype.hasOwnProperty.call(defaults, index)) {
             defaults[index].value = prefs[index];
-          } else if (defaults.hasOwnProperty(prefs[index])) {
+          } else if (Object.prototype.hasOwnProperty.call(defaults, prefs[index])) {
 
             // input-radio
             defaults[prefs[index]].value = true;
@@ -92,10 +92,10 @@ export class PagesPreferences extends BasePreferencesElement {
      * Merge prefs with default data
      * @type {{}}
      */
-    opts.data = _mergePrefs(defaultPrefs, $.extend(opts.data, {}, true));
+    opts.data = _mergePrefs(defaultPrefs, window.$.extend(opts.data, {}, true));
 
     for (const index in opts.data) {
-      if (opts.data.hasOwnProperty(index)) {
+      if (Object.prototype.hasOwnProperty.call(opts.data, index)) {
 
         /**
          * Define isCheckBox
@@ -110,7 +110,7 @@ export class PagesPreferences extends BasePreferencesElement {
         const className = 'page-prefs' + (isCheckBox ? ' checkbox' : '');
         const nodeRenderer = this.view.getNodeRenderer(opts.data[index], index.toPoint().humanize(), index);
 
-        nodes.push($('<li />').append(nodeRenderer).addClass(className));
+        nodes.push(window.$('<li />').append(nodeRenderer).addClass(className));
       }
     }
 
@@ -135,7 +135,7 @@ export class PagesPreferences extends BasePreferencesElement {
       uuid: 'meta_data',
       text: 'Meta Data',
       $container: $container,
-      content: $('<ul class="default" />').append(nodes)
+      content: window.$('<ul class="default" />').append(nodes)
     }, true);
   }
 
@@ -178,7 +178,7 @@ export class PagesPreferences extends BasePreferencesElement {
    */
   toggleOpenUrlInDialog(e) {
     const url = e.target.value,
-        $toggleDialog = $('input[name="pageOpenUrlInDialog"]');
+        $toggleDialog = window.$('input[name="pageOpenUrlInDialog"]');
 
     $toggleDialog.prop({disabled: !url.length});
   }
@@ -204,7 +204,7 @@ export class PagesPreferences extends BasePreferencesElement {
      * Define layout container
      * @type {*|jQuery}
      */
-    const $ul = $('<ul class="page-layout-prefs" />');
+    const $ul = window.$('<ul class="page-layout-prefs" />');
 
     /**
      * Define dom prefs
@@ -235,7 +235,7 @@ export class PagesPreferences extends BasePreferencesElement {
     const padding = page.model.getConfig('html/padding');
 
     const text = 'Mode',
-        $combo = $([
+        $combo = window.$([
           '<div class="input-group">',
           '<span class="input-group-addon">', text, '</span>',
           '</div>'
@@ -243,7 +243,7 @@ export class PagesPreferences extends BasePreferencesElement {
 
     return $ul.append([
 
-      $('<li class="layout-behavior" />').append(
+      window.$('<li class="layout-behavior" />').append(
           $combo.append(
               this.renderDropDown([
                     {
@@ -267,7 +267,7 @@ export class PagesPreferences extends BasePreferencesElement {
           )
       ),
 
-      $('<li class="layout-cell-width" />').append(
+      window.$('<li class="layout-cell-width" />').append(
           this.renderTextField({
             name: 'layout-cell-width',
             text: 'Cell size',
@@ -277,7 +277,7 @@ export class PagesPreferences extends BasePreferencesElement {
           })
       ),
 
-      $('<li class="page-width" />').append(
+      window.$('<li class="page-width" />').append(
           this.renderTextField({
             name: 'page-width',
             text: 'Page width',
@@ -287,7 +287,7 @@ export class PagesPreferences extends BasePreferencesElement {
           })
       ),
 
-      $('<li class="page-scroll-height" />').append(
+      window.$('<li class="page-scroll-height" />').append(
           this.renderNumberField({
             name: 'pageScrollHeight',
             text: 'Scroll height',
@@ -297,7 +297,7 @@ export class PagesPreferences extends BasePreferencesElement {
           })
       ),
 
-      $('<li class="page-layout-columns" />').append(
+      window.$('<li class="page-layout-columns" />').append(
           this.renderNumberField({
             name: 'layoutColumns',
             text: 'Columns',
@@ -307,7 +307,7 @@ export class PagesPreferences extends BasePreferencesElement {
           })
       ),
 
-      $('<li class="page-padding" />').append(
+      window.$('<li class="page-padding" />').append(
           this.renderNumberField({
             name: 'pagePaddingTop',
             text: 'Padding top',
@@ -317,7 +317,7 @@ export class PagesPreferences extends BasePreferencesElement {
           })
       ),
 
-      $('<li class="page-padding" />').append(
+      window.$('<li class="page-padding" />').append(
           this.renderNumberField({
             name: 'pagePaddingLeft',
             text: 'Padding left',
@@ -327,7 +327,7 @@ export class PagesPreferences extends BasePreferencesElement {
           })
       ),
 
-      $('<li class="page-padding" />').append(
+      window.$('<li class="page-padding" />').append(
           this.renderNumberField({
             name: 'pagePaddingBottom',
             text: 'Padding bottom',
@@ -337,7 +337,7 @@ export class PagesPreferences extends BasePreferencesElement {
           })
       ),
 
-      $('<li class="page-padding" />').append(
+      window.$('<li class="page-padding" />').append(
           this.renderNumberField({
             name: 'pagePaddingRight',
             text: 'Padding right',
@@ -372,7 +372,7 @@ export class PagesPreferences extends BasePreferencesElement {
       const list = [];
 
       for (let index in widgets) {
-        if (widgets.hasOwnProperty(index)) {
+        if (Object.prototype.hasOwnProperty.call(widgets, index)) {
 
           /**
            * Define widget
@@ -406,7 +406,7 @@ export class PagesPreferences extends BasePreferencesElement {
            * Define widget element
            * @type {*|jQuery}
            */
-          const $li = $('<li class="widget widget-prefs" />').addClass(
+          const $li = window.$('<li class="widget widget-prefs" />').addClass(
               this.view.controller.getResourceClassName(preferences.resource)
           ).attr({
             rel: uuid,
@@ -430,7 +430,7 @@ export class PagesPreferences extends BasePreferencesElement {
      * Define widgets container
      * @type {*|jQuery}
      */
-    const $ul = $('<ul class="default widgets-prefs" />'),
+    const $ul = window.$('<ul class="default widgets-prefs" />'),
         cname = 'Widgets: ' + Object.keys(widgets).length + ' items';
 
     return [
@@ -477,7 +477,7 @@ export class PagesPreferences extends BasePreferencesElement {
     let $element;
 
     for (const index in globalPrefs) {
-      if (globalPrefs.hasOwnProperty(index)) {
+      if (Object.prototype.hasOwnProperty.call(globalPrefs, index)) {
         const node = globalPrefs[index];
 
         /**
@@ -503,7 +503,7 @@ export class PagesPreferences extends BasePreferencesElement {
         }
 
         nodes.push(
-            $('<li class="page-widget-prefs" />').addClass([
+            window.$('<li class="page-widget-prefs" />').addClass([
               [page.name.toClassName(), index].join('-'),
               node.type,
               node.visible ? '' : 'hidden'
@@ -529,7 +529,7 @@ export class PagesPreferences extends BasePreferencesElement {
     const view = this.view;
 
     // Get $widget item ui
-    const $widget = $(e.target);
+    const $widget = window.$(e.target);
 
     /**
      * Get uuid

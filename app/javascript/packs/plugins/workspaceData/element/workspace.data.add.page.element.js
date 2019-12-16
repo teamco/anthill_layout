@@ -20,7 +20,7 @@ export class WorkspaceDataAddPageElement extends PluginElement {
    */
   constructor(view, opts) {
     super('WorkspaceDataAddPageElement', view, false);
-    this._config(view, opts, $('<li class="nav-item content" />')).build(opts);
+    this._config(view, opts, window.$('<li class="nav-item content" />')).build(opts);
 
     /**
      * Define title
@@ -44,10 +44,10 @@ export class WorkspaceDataAddPageElement extends PluginElement {
    * @memberOf WorkspaceDataContentElement
    */
   getTemplate() {
-    $(`<a class="nav-link" href="#">
+    window.$(`<a class="nav-link" href="#">
         <i class="fas fa-folder-plus"></i>
-        ${this.title}
-       </a>`).appendTo(this.$);
+        window.${this.title}
+       </a>`).appendTo(this.window.$);
   }
 
   /**
@@ -60,7 +60,7 @@ export class WorkspaceDataAddPageElement extends PluginElement {
     this.renderTooltip({
       title: this.title,
       description: this.description,
-      selector: this.$
+      selector: this.window.$
     });
 
     this.getTemplate();
@@ -105,37 +105,37 @@ export class WorkspaceDataAddPageElement extends PluginElement {
       const list = [];
 
       for (let index in items) {
-        if (items.hasOwnProperty(index)) {
-          list.push($.extend({uuid: items[index].model.getUUID()}, items[index].model.getConfig('preferences')));
+        if (Object.prototype.hasOwnProperty.call(items, index)) {
+          list.push(window.$.extend({uuid: items[index].model.getUUID()}, items[index].model.getConfig('preferences')));
+
+          $items.append(element.renderListBox({
+            name: index,
+            text: text.trim(),
+            list: list,
+            disabled: false,
+            visible: true,
+            tooltip: true,
+            label: true,
+            multiple: true,
+            monitor: {
+              events: ['select.preview'],
+              _updateSelected() {
+                //debugger;
+              }
+            }
+          }));
         }
       }
-
-      $items.append(element.renderListBox({
-        name: index,
-        text: text.trim(),
-        list: list,
-        disabled: false,
-        visible: true,
-        tooltip: true,
-        label: true,
-        multiple: true,
-        monitor: {
-          events: ['select.preview'],
-          _updateSelected() {
-            debugger;
-          }
-        }
-      }));
     }
 
-    const $ul = $('<ul />');
+    const $ul = window.$('<ul />');
     const items = workspace.model.getItems();
 
     /**
      * Define clone pages
      * @type {Array}
      */
-    const clonePages = $.map(items, page => {
+    const clonePages = window.$.map(items, page => {
       const uuid = page.model.getUUID(),
           title = page.model.getItemTitle(),
           counter = page.model.getConfig('widget/counter'),
@@ -159,7 +159,7 @@ export class WorkspaceDataAddPageElement extends PluginElement {
      * Define title
      * @type {*|jQuery}
      */
-    const $title = $('<li class="page-title-prefs" />').append(
+    const $title = window.$('<li class="page-title-prefs" />').append(
         element.renderTextField({
           name: 'title',
           text: 'Page title',
@@ -170,7 +170,7 @@ export class WorkspaceDataAddPageElement extends PluginElement {
     );
 
     const text = 'Clone from',
-        $cloneTemplate = $([
+        $cloneTemplate = window.$([
           '<div class="input-group input-group-sm">',
           '<span class="input-group-addon">', text, '</span>',
           '</div>'
@@ -180,7 +180,7 @@ export class WorkspaceDataAddPageElement extends PluginElement {
      * Define clone from
      * @type {*|jQuery}
      */
-    const $clone = $('<li />').append($cloneTemplate.append(
+    const $clone = window.$('<li />').append($cloneTemplate.append(
         element.renderDropDown(
             clonePages,
             clonePages[0].value,
@@ -192,7 +192,7 @@ export class WorkspaceDataAddPageElement extends PluginElement {
             true
         )));
 
-    const $items = $('<div class="page-items-prefs" />');
+    const $items = window.$('<div class="page-items-prefs" />');
     return $ul.append([$clone, $title, $items]);
   }
 }

@@ -69,7 +69,7 @@ export class BarView extends BaseView {
     }
 
     for (let index in data) {
-      if (data.hasOwnProperty(index)) {
+      if (Object.prototype.hasOwnProperty.call(data, index)) {
 
         /**
          * Define item
@@ -88,7 +88,7 @@ export class BarView extends BaseView {
          * @type {BarContentElement}
          */
         const $item = new BarContentElement(this, {
-          style: _.compact([item.activated ? 'activated' : null, moduleResource]).join(' '),
+          style: window._.compact([item.activated ? 'activated' : null, moduleResource]).join(' '),
           resource: item,
           cname: moduleResource,
           $container: this.get$item().$

@@ -49,5 +49,5 @@ export class GalleryEventManager extends BaseEvent {
       setCurrentProvider: 'set.current.provider',
       setRoutes: 'set.routes'
     };
-  };
+  }
 }

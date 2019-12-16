@@ -235,7 +235,7 @@ export class WorkspaceDataController extends PluginController {
         cname = 'workspace-data-view-';
 
     for (let index in pages) {
-      if (pages.hasOwnProperty(index)) {
+      if (Object.prototype.hasOwnProperty.call(pages, index)) {
 
         /**
          * Define page
@@ -352,14 +352,14 @@ export class WorkspaceDataController extends PluginController {
        */
       const page = $item.page;
       page.observer.publish(page.eventManager.eventList.transferPreferences, ['order', i]);
-    }
 
-    /**
-     * Get workspace
-     * @type {Workspace}
-     */
-    const ws = page.controller.getContainment();
-    ws.observer.publish(ws.eventManager.eventList.afterPageOrder, order);
+      /**
+       * Get workspace
+       * @type {Workspace}
+       */
+      const ws = page.controller.getContainment();
+      ws.observer.publish(ws.eventManager.eventList.afterPageOrder, order);
+    }
   }
 
   /**

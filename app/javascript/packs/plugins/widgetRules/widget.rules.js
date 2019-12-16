@@ -109,7 +109,7 @@ export class WidgetRules extends AntHill {
           this.controller.subscribeRefreshContentAfterDestroyItems();
           this.controller.subscribeRefreshContentSwitchPage();
         },
-        () => scope.logger.warn('Page should rendered.')
+        () => this.logger.warn('Page should rendered.')
     );
   }
 }

@@ -21,7 +21,7 @@ export class BarContentElement extends PluginElement {
    * @constructor
    */
   constructor(view, opts) {
-    super('BarContentElement', view, false);
+    super('BarContentElement', view);
 
     /**
      * Define resource
@@ -29,9 +29,9 @@ export class BarContentElement extends PluginElement {
      */
     this.resource = opts.resource;
 
-    this._config(view, opts, $(this.getTemplate())).build(opts);
+    this._config(view, opts, window.$(this.getTemplate())).build(opts);
     this.attachEvent(opts.cname);
-  };
+  }
 
   /**
    * Define template

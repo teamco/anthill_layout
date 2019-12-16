@@ -47,7 +47,7 @@ export class TextAreaRenderer {
      * Define $input
      * @type {*|jQuery}
      */
-    const $input = $('<textarea class="form-control" />').attr({
+    const $input = window.$('<textarea class="form-control" />').attr({
       name: opts.name,
       id: uuid,
       placeholder: opts.placeholder || 'Enter ' + opts.text,
@@ -56,7 +56,7 @@ export class TextAreaRenderer {
       title: opts.value
     }).val(opts.value).addClass(opts.style);
 
-    const $template = $('<div class="input-group mb-2" />').append(
+    const $template = window.$('<div class="input-group mb-2" />').append(
         this.renderLabel(uuid, opts.text, 'textarea', opts.visible));
 
     this.initMonitor($input, opts.monitor);

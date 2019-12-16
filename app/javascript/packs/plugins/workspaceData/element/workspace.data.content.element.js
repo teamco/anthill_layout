@@ -20,7 +20,7 @@ export class WorkspaceDataContentElement extends PluginElement {
    */
   constructor(view, opts) {
     super('WorkspaceDataContentElement', view, false);
-    this._config(view, opts, $('<li class="nav-item" />')).build(opts);
+    this._config(view, opts, window.$('<li class="nav-item" />')).build(opts);
 
     /**
      * Define page index
@@ -38,10 +38,11 @@ export class WorkspaceDataContentElement extends PluginElement {
    * @memberOf WorkspaceDataContentElement
    */
   getTemplate(page) {
-    $(`<a class="page nav-link" data-uuid="${page.model.getUUID()}" data-toggle="modal" data-target="#${page.model.getUUID()}">
+    window.$(
+        `<a class="page nav-link" data-uuid="window.${page.model.getUUID()}" data-toggle="modal" data-target="#window.${page.model.getUUID()}">
         <i class="fas fa-file-image"></i>
-        ${page.model.getItemTitle()}
-       </a>`).appendTo(this.$);
+        window.${page.model.getItemTitle()}
+       </a>`).appendTo(this.window.$);
   }
 
   /**
@@ -93,16 +94,17 @@ export class WorkspaceDataContentElement extends PluginElement {
 
     let description = ``;
     if (preferences.description) {
-      description = `<div class="description">${preferences.description}</div>`;
+      description = `<div class="description">window.${preferences.description}</div>`;
     }
 
     this.renderTooltip({
       title: page.model.getItemTitle(),
-      description: `${description}
-        <div><span>uuid:</span>${page.model.getUUID()}</div>
-        <div><span>items:</span>${items}
-        <div><span>index:</span>${(page.model.getConfig('preferences').order || page.model.getConfig('order'))}</div>`,
-      selector: this.$
+      description: `window.${description}
+        <div><span>uuid:</span>window.${page.model.getUUID()}</div>
+        <div><span>items:</span>window.${items}
+        <div><span>index:</span>window.${(page.model.getConfig('preferences').order ||
+          page.model.getConfig('order'))}</div>`,
+      selector: this.window.$
     });
   }
 
@@ -112,7 +114,7 @@ export class WorkspaceDataContentElement extends PluginElement {
    * @param {boolean} show
    */
   updateShowInTabs(show) {
-    this.$[(show ? 'remove' : 'add') + 'Class']('hide');
+    this.window.$[(show ? 'remove' : 'add') + 'Class']('hide');
   }
 
   /**
@@ -121,7 +123,7 @@ export class WorkspaceDataContentElement extends PluginElement {
    * @returns {*|jQuery|HTMLElement}
    */
   get$get$counter() {
-    return $('.counter', this.$);
+    return window.$('.counter', this.window.$);
   }
 
   /**
@@ -137,7 +139,7 @@ export class WorkspaceDataContentElement extends PluginElement {
      */
     const config = data.model.getConfig();
 
-    this.$.attr({
+    this.window.$.attr({
       rel: config.uuid,
       title: data.model.getItemTitle()
     }).addClass(config.resource);
@@ -181,6 +183,6 @@ export class WorkspaceDataContentElement extends PluginElement {
      */
     const config = data.model.getConfig();
 
-    this.$.off('click.prefs').on('click.prefs', _clickPrefs);
+    this.window.$.off('click.prefs').on('click.prefs', _clickPrefs);
   }
 }

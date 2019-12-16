@@ -54,7 +54,7 @@ export class PageDataView extends aggregation(BaseView, BasePreferencesElement) 
     this.destroyElementItems();
 
     for (let index in data) {
-      if (data.hasOwnProperty(index)) {
+      if (Object.prototype.hasOwnProperty.call(data, index)) {
 
         /**
          * Render item

@@ -18,12 +18,12 @@ export class WorkspaceDataPreferencesElement extends aggregation(PluginElement, 
 
   /**
    * @constructor
-   * @param {WorkspaceDataView} view
+   * @param {WorkspaceDataView|BaseView} view
    * @param opts
    */
   constructor(view, opts) {
     super('WorkspaceDataPreferencesElement', view, false);
-    this._config(view, opts, $('<ul />')).build(opts);
+    this._config(view, opts, window.$('<ul />')).build(opts);
     this.renderData(opts);
   }
 }

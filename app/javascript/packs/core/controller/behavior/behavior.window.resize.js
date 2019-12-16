@@ -73,8 +73,7 @@ export class BehaviorWindowResize {
       }
 
       for (const index in items) {
-
-        if (items.hasOwnProperty(index)) {
+        if (Object.prototype.hasOwnProperty.call(items, index)) {
 
           /**
            * Define local item

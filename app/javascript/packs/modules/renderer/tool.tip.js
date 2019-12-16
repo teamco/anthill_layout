@@ -40,7 +40,7 @@ export class ToolTipRenderer {
       }
 
       if (opts.imageUrl) {
-        const $image = $('<img />').attr({
+        const $image = window.$('<img />').attr({
           src: opts.imageUrl,
           alt: opts.title
         }).css({cssFloat: opts.imageFloat || 'none'});
@@ -54,7 +54,7 @@ export class ToolTipRenderer {
       if (opts.customCss) {
         $selector.on('shown.bs.popover', function() {
           const popoverId = this.getAttribute('aria-describedby');
-          $(`#${popoverId} .popover-header`).addClass(opts.customCss);
+          window.$(`#${popoverId} .popover-header`).addClass(opts.customCss);
         });
       }
 

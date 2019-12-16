@@ -75,7 +75,7 @@ export class GalleryController extends aggregation(PluginController, Routes) {
         index, i = 0, pl;
 
     for (index in data) {
-      if (data.hasOwnProperty(index)) {
+      if (Object.prototype.hasOwnProperty.call(data, index)) {
         pl = data[index].data.length;
         for (; i < pl; i++) {
 
@@ -133,7 +133,7 @@ export class GalleryController extends aggregation(PluginController, Routes) {
         value = e.target.value;
 
     for (let index in items) {
-      if (items.hasOwnProperty(index)) {
+      if (Object.prototype.hasOwnProperty.call(items, index)) {
 
         /**
          * Define item

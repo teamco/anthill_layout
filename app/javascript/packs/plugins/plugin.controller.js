@@ -279,7 +279,7 @@ export class PluginController extends BaseController {
     const items = this.model.getCollectedItems();
 
     for (let index in items) {
-      if (items.hasOwnProperty(index)) {
+      if (Object.prototype.hasOwnProperty.call(items, index)) {
         this.controller.defineContentReferrer(items[index]);
       }
     }
