@@ -70,7 +70,7 @@ class ErrorLog < ApplicationRecord
   private
 
   def self.create_error(log)
-    create!(log)
+    #create!(log)
     # rollbar(log, 'error')
   end
 

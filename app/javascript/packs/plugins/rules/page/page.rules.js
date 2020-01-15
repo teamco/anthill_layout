@@ -3,8 +3,6 @@
  */
 import {PageRulesVisualizer} from './page.rules.visualizer';
 
-const _ = window._;
-
 /**
  * @class GenerateRules
  * @type {GenerateRules}
@@ -45,8 +43,6 @@ export class GenerateRules extends PageRulesVisualizer {
    * @method updateConnectivity
    * @memberOf GenerateRules
    * @param node
-   * @param link
-   * @param port
    * @static
    */
   static updateConnectivity(node) {
@@ -382,7 +378,7 @@ export class GenerateRules extends PageRulesVisualizer {
   updatePublishedRules() {
     const published = this.getWidgetPublishedRules(this.page);
     const that = this;
-    _.each(published, rules => _.each(rules, rule => that.updateDiagram(rule)));
+    window._.each(published, rules => window._.each(rules, rule => that.updateDiagram(rule)));
   }
 
   /**
@@ -393,10 +389,10 @@ export class GenerateRules extends PageRulesVisualizer {
   updateSubscriberRules() {
     const subscribed = this.getWidgetSubscriberRules(this.page);
     const that = this;
-    _.each(subscribed, sData =>
-        _.each(sData, data =>
-            _.each(data.subscribers, uuids =>
-                _.each(uuids, uuid =>
+    window._.each(subscribed, sData =>
+        window._.each(sData, data =>
+            window._.each(data.subscribers, uuids =>
+                window._.each(uuids, uuid =>
                     that.updateLink(
                         that.diagram.findNodeForKey(data.key),
                         that.diagram.findNodeForKey(uuid), {event: true})))));

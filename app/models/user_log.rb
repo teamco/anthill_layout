@@ -80,9 +80,9 @@ class UserLog < ApplicationRecord
 
     if except(cname, aname)
       if user
-        user.user_logs.create!(opts)
+        #user.user_logs.create!(opts)
       else
-        create!(opts)
+        #create!(opts)
       end
     end
 

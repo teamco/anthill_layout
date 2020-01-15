@@ -10,8 +10,6 @@ import $ from 'jquery';
 import {Renderer} from './Renderer';
 import {LibNumber} from 'js/modules/base/Number';
 
-const _ = window._;
-
 /**
  * Define Base element
  * @class BaseElement
@@ -360,7 +358,7 @@ export class BaseElement extends Renderer {
 
       this.$[prepend ? 'prependTo' : 'appendTo'](opts.$container);
 
-      if (_.isFunction(opts.callback)) {
+      if (window._.isFunction(opts.callback)) {
         opts.callback();
       }
     }
@@ -411,7 +409,7 @@ export class BaseElement extends Renderer {
           delete css[item.path];
         }
         if (link.length > 1) {
-          css[item.path] = _.reject(link, css => element.id === css.id);
+          css[item.path] = window._.reject(link, css => element.id === css.id);
         }
       }
     }
@@ -420,7 +418,7 @@ export class BaseElement extends Renderer {
     delete cache[element.id];
 
     // Delete element
-    _.each(element.view.elements, (val, key) => {
+    window._.each(element.view.elements, (val, key) => {
       if (val === element) {
         delete element.view.elements[key];
       }

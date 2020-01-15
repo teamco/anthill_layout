@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 #RUBY VERSION
-ruby '2.6.5'
+ruby '2.7.0'
 #BUNDLED WITH
 #'2.0.2'
 

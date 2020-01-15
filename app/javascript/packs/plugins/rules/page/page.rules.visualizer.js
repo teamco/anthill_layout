@@ -1,5 +1,3 @@
-const _ = window._;
-
 /**
  * @class PageRulesVisualizer
  * @type {PageRulesVisualizer}
@@ -15,7 +13,7 @@ export class PageRulesVisualizer {
    */
   static getWidgets(page) {
     const widgets = page.model.getItems();
-    return _.map(widgets, widget => {
+    return window._.map(widgets, widget => {
       const prefs = widget.model.getConfig('preferences'),
           imgPath = widget.content.image;
       return {
@@ -64,7 +62,7 @@ export class PageRulesVisualizer {
     }
 
     const widgets = page.model.getItems();
-    return _.filter(_.map(widgets, widget => {
+    return window._.filter(window._.map(widgets, widget => {
       const rules = widget.model.getConfig('rules'),
           publish = rules.publish || {},
           subscribers = rules.subscribers || {},
@@ -72,10 +70,10 @@ export class PageRulesVisualizer {
           resourceRules = publish[resource.toCamelCase().toLowerCase()];
       let data = [];
       if (publish.widget) {
-        data = _.map(publish.widget, rule => _node(widget, rule, 'lightgreen', subscribers));
+        data = window._.map(publish.widget, rule => _node(widget, rule, 'lightgreen', subscribers));
       }
       if (resourceRules) {
-        return data.concat(_.map(resourceRules, rule => _node(widget, rule, 'lightblue', subscribers)));
+        return data.concat(window._.map(resourceRules, rule => _node(widget, rule, 'lightblue', subscribers)));
       }
       return data;
     }), Boolean);
@@ -89,7 +87,7 @@ export class PageRulesVisualizer {
    */
   getWidgetSubscriberRules(page) {
     const widgets = page.model.getItems();
-    return _.filter(_.map(widgets, widget => {
+    return window._.filter(window._.map(widgets, widget => {
       const rules = widget.model.getConfig('rules'),
           resource = widget.model.getConfig('preferences/resource'),
           subscribers = rules.subscribers,
@@ -97,7 +95,7 @@ export class PageRulesVisualizer {
           resourceRules = publish[resource.toCamelCase().toLowerCase()];
       if (subscribers) {
         const publishedRules = publish.widget ? publish.widget : resourceRules;
-        return _.map(publishedRules, rule => ({
+        return window._.map(publishedRules, rule => ({
           key: `${rule}:${widget.model.getUUID()}`,
           subscribers: subscribers
         }));
