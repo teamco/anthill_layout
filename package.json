@@ -119,7 +119,7 @@
     "style-loader": "^1.1.3",
     "tether": "^1.4.7",
     "through2": "^3.0.1",
-    "tinymce": "^5.2.1",
+    "tinymce": "^5.2.2",
     "to-string-loader": "^1.1.6",
     "turbolinks": "^5.2.0",
     "uglifyjs-webpack-plugin": "^2.2.0",
