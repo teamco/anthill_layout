@@ -39,19 +39,16 @@ class ApplicationController < ActionController::Base
   private
 
   def handle_error(e, status = 'Undefined', template = 'Undefined')
-    # if localhost?
-    logger.error "Status: #{status.inspect}"
-    logger.error "Template: #{template.inspect}"
-    # raise e
-    # else
-    logger.info "curr user"
-    logger.info "curr user"
-    logger.info "curr user"
-    logger.info current_user.inspect
-    log = ErrorLog.handle_error(current_user, e, @user_log)
-    raise e if error_logs?
-    redirect_to error_log_path(log) unless current_user.nil?
-    # end
+    if localhost?
+      logger.error "Status: #{status.inspect}"
+      logger.error "Template: #{template.inspect}"
+      raise e
+    else
+      logger.info current_user.inspect
+      log = ErrorLog.handle_error(current_user, e, @user_log)
+      raise e if error_logs?
+      redirect_to error_log_path(log) unless log.nil? and current_user.nil?
+    end
   end
 
   def current_user

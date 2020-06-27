@@ -21,21 +21,14 @@ class ErrorLog < ApplicationRecord
   has_one :user, through: :user_log
 
   def self.handle_error(user, e, user_log)
-
-    user_log = if user.nil?
-      UserLog.last
-    else
-      user.user_logs.empty? ?
-        UserLog.last :
-        user.user_logs.order('updated_at DESC').limit(1).first
-    end if user_log.nil?
+    user_log = user.user_logs.order('updated_at DESC').limit(1).first if user_log.nil?
 
     self.create_error({
-      user_log_id: user_log.try(:id),
-      name: (e.name rescue ''),
-      message: e.cause,
-      exception: e.exception,
-      backtrace: e.backtrace
+        user_log_id: user_log.nil? ? nil : user_log.try(:id),
+        name: (e.name rescue ''),
+        message: e.cause,
+        exception: e.exception,
+        backtrace: e.backtrace
     })
 
   end

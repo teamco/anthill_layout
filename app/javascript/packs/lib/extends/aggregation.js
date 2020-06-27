@@ -1,5 +1,3 @@
-import define from 'mixinable';
-
 /**
  * @param base
  * @param mixins
@@ -49,10 +47,3 @@ export const aggregation = (base, ...mixins) => {
 
   return aggregate;
 };
-
-/**
- * @exports
- * @param mixins
- * @return {*}
- */
-export const mix = (...mixins) => define({}, [...mixins]);

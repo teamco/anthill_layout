@@ -49,25 +49,25 @@ module ApplicationHelper
 
   def do_logout(css = nil, title = t('logout'))
     link_to(destroy_user_session_path, title: title, method: :delete,
-        class: css) {render_icon(title, 'fa-sign-out-alt')} unless current_user.nil?
+        class: css) { render_icon(title, 'fa-sign-out-alt') } unless current_user.nil?
   end
 
   def do_login(css = nil, title = t('login'))
-    link_to(root_path, title: title, class: css) {render_icon(title,
-        'fa-sign-in-alt')} if current_user.nil?
+    link_to(root_path, title: title, class: css) { render_icon(title,
+        'fa-sign-in-alt') } if current_user.nil?
   end
 
   def button_link(title, url, css = 'default', icon = nil, condition, direction)
     link_to(url, title: title, class: "btn btn-sm btn-#{css}") {
-      render_icon(title, icon)} if (direction ? condition : !condition)
+      render_icon(title, icon) } if (direction ? condition : !condition)
   end
 
   def submit_button(f, title, css = 'primary', icon = 'fa-thumbs-up')
-    f.button(class: "btn btn-sm btn-#{css}") {render_icon(title, icon)}
+    f.button(class: "btn btn-sm btn-#{css}") { render_icon(title, icon) }
   end
 
   def reset_button(f, title, css = 'danger', icon = 'fa-ban')
-    f.button(class: "btn btn-sm btn-#{css}", type: 'reset') {render_icon(title, icon)}
+    f.button(class: "btn btn-sm btn-#{css}", type: 'reset') { render_icon(title, icon) }
   end
 
   def is_sessions?
@@ -110,13 +110,20 @@ module ApplicationHelper
     return image_pack_tag('media/images/user_info.png',
         class: 'user-image',
         alt: user_name) if current_user.nil?
-    current_user&.image ?
-        image_pack_tag(handle_external_images(current_user.image),
-            class: 'user-image',
-            alt: user_name) :
-        image_tag(current_user&.gravatar_url,
-            class: 'user-image',
-            alt: user_name)
+    if current_user&.image
+      metadata = handle_external_images(current_user.image)
+      metadata[:internal] ?
+          image_pack_tag(metadata[:url],
+              class: 'user-image',
+              alt: user_name) :
+          image_tag(metadata[:url],
+              class: 'user-image',
+              alt: user_name)
+    else
+      image_tag(current_user&.gravatar_url,
+          class: 'user-image',
+          alt: user_name)
+    end
   end
 
   def user_name
@@ -163,7 +170,7 @@ module ApplicationHelper
   end
 
   def is_active_url(*args)
-    args.each {|x| return true if controller_name == x}
+    args.each { |x| return true if controller_name == x }
     false
   end
 
@@ -244,8 +251,16 @@ module ApplicationHelper
   end
 
   def handle_external_images(url)
-    return url if url.match(/http\:/)
-    "images/#{current_user.image}"
+    if url.match(/^(http|https):\/\//)
+      return {
+          internal: false,
+          url: url
+      }
+    end
+    {
+        internal: true,
+        url: "images/#{current_user.image}"
+    }
   end
 
   def render_icon(title, icon)
