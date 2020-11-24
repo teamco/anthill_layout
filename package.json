@@ -80,7 +80,7 @@
     "core-js": "^3.6.5",
     "flag-icon-css": "^3.5.0",
     "gojs": "^2.1.19",
-    "highlight.js": "^10.1.1",
+    "highlight.js": "^10.1.2",
     "html2canvas": "^1.0.0-rc.5",
     "imports-loader": "^0.8.0",
     "jquery": "^3.5.1",
