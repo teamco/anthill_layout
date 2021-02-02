@@ -10,8 +10,6 @@ import './combined';
 import 'bootstrap';
 
 import 'perfect-scrollbar/dist/perfect-scrollbar.min';
-import '@coreui/coreui/dist/js/coreui.min';
-import '@coreui/coreui-plugin-chartjs-custom-tooltips/dist/js/custom-tooltips.min';
 import '@fortawesome/fontawesome-free/js/all.min';
 
 import 'jquery.initialize';

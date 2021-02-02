@@ -44,3 +44,11 @@ dist
 test/junitresults-JSUnittests.xml
 docs/
 yarn-error.log
+
+anthill.sublime-workspace
+/public/packs
+/public/packs-test
+/node_modules
+/yarn-error.log
+yarn-debug.log*
+.yarn-integrity

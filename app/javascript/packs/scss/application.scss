@@ -8,11 +8,12 @@ $fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
 @import '~@fortawesome/fontawesome-free/scss/brands';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
 
-@import '~@coreui/icons/css/all.min';
-@import '~flag-icon-css/css/flag-icon.min';
+$flag-icon-css-path: '~flag-icon-css/flags';
+@import '~flag-icon-css/sass/flag-icon.scss';
+
+$simple-line-font-path: '~simple-line-icons/fonts/';
 @import '~simple-line-icons/scss/simple-line-icons';
 
-@import '~@coreui/coreui/scss/coreui';
 @import './author';
 @import './anthill';
 @import './workspace';

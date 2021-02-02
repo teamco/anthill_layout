@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 #RUBY VERSION
-ruby '2.7.0'
+ruby '3.0.0'
 #BUNDLED WITH
 #'2.0.2'
 
@@ -31,7 +31,7 @@ group :test, :development do
   gem 'brakeman', require: false
   gem 'byebug', require: false
   gem 'capistrano-rails', require: false
-  gem 'debase', require: false
+  # gem 'debase', require: false
   gem 'guard', require: false
   gem 'guard-livereload', require: false
   gem 'meta_request', require: false
@@ -62,7 +62,7 @@ group :console do
 end
 
 group :doc do
-  gem 'jsduck', require: false
+  #gem 'jsduck', require: false
   gem 'sdoc', require: false
 end
 
