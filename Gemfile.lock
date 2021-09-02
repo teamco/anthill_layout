@@ -237,6 +237,7 @@ GEM
     launchy (2.5.0)
       addressable (~> 2.7)
     libv8 (3.16.14.19)
+    libv8 (3.16.14.19-x86_64-linux)
     listen (3.4.1)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -284,6 +285,8 @@ GEM
     net-ssh (6.1.0)
     nio4r (2.5.4)
     nokogiri (1.11.1-x86_64-darwin)
+      racc (~> 1.4)
+    nokogiri (1.11.1-x86_64-linux)
       racc (~> 1.4)
     nokogumbo (2.0.4)
       nokogiri (~> 1.8, >= 1.8.4)
@@ -407,7 +410,7 @@ GEM
     rb-fsevent (0.10.4)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
-    rdoc (6.3.0)
+    rdoc (6.3.2)
     reek (6.0.3)
       kwalify (~> 0.7.0)
       parser (~> 3.0.0)
@@ -538,6 +541,7 @@ GEM
 
 PLATFORMS
   x86_64-darwin-20
+  x86_64-linux
 
 DEPENDENCIES
   annotate
